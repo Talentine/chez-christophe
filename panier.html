@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon panier — Chez Christophe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
+    --creme: #f5f0e8; --creme-fonce: #ede6d6;
+    --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
+    --rouge: #c0392b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--creme); color:var(--texte); padding-bottom:120px; }
+
+  header {
+    background:var(--vert-fonce); position:sticky; top:0; z-index:100;
+    padding:0 16px; height:60px; display:flex; align-items:center; gap:12px;
+  }
+  .btn-retour {
+    background:rgba(255,255,255,0.12); border:none; color:white;
+    width:38px; height:38px; border-radius:50%; font-size:18px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    text-decoration:none;
+  }
+  .header-titre { flex:1; font-family:'Playfair Display',serif; font-size:18px; color:white; }
+
+  /* ETAPES */
+  .etapes {
+    background:var(--blanc); border-bottom:1px solid var(--creme-fonce);
+    padding:16px 20px; display:flex; align-items:center; gap:0;
+  }
+  .etape {
+    display:flex; align-items:center; gap:8px; flex:1;
+    font-size:12px; color:var(--texte-doux);
+  }
+  .etape-num {
+    width:24px; height:24px; border-radius:50%;
+    background:var(--creme-fonce); color:var(--texte-doux);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:500; flex-shrink:0;
+  }
+  .etape.active .etape-num { background:var(--vert); color:white; }
+  .etape.active { color:var(--vert); font-weight:500; }
+  .etape.done .etape-num { background:var(--or); color:var(--vert-fonce); }
+  .etape-sep { width:20px; height:1px; background:var(--creme-fonce); margin:0 4px; flex-shrink:0; }
+
+  /* SECTIONS */
+  .section { background:var(--blanc); margin:12px 0; padding:20px; }
+  .section:first-of-type { margin-top:0; }
+  .section-titre {
+    font-family:'Playfair Display',serif; font-size:18px;
+    margin-bottom:16px; display:flex; align-items:center; gap:8px;
+  }
+
+  /* LIGNES PANIER */
+  .panier-ligne {
+    display:flex; align-items:center; gap:12px;
+    padding:12px 0; border-bottom:1px solid var(--creme-fonce);
+  }
+  .panier-ligne:last-child { border-bottom:none; }
+  .ligne-img {
+    width:52px; height:52px; border-radius:10px;
+    background:var(--creme-fonce); display:flex;
+    align-items:center; justify-content:center; font-size:24px;
+    overflow:hidden; flex-shrink:0;
+  }
+  .ligne-img img { width:100%; height:100%; object-fit:cover; }
+  .ligne-info { flex:1; min-width:0; }
+  .ligne-nom { font-size:14px; font-weight:500; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ligne-prix-unit { font-size:12px; color:var(--texte-doux); }
+  .ligne-droite { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .qty-ctrl { display:flex; align-items:center; gap:8px; }
+  .qty-btn {
+    width:28px; height:28px; border-radius:50%;
+    border:1px solid var(--creme-fonce); background:var(--creme);
+    cursor:pointer; font-size:16px; display:flex;
+    align-items:center; justify-content:center; transition:all .1s;
+  }
+  .qty-btn:active { transform:scale(0.88); }
+  .qty-num { font-size:15px; font-weight:500; min-width:20px; text-align:center; }
+  .ligne-total { font-size:14px; font-weight:500; min-width:52px; text-align:right; }
+
+  /* CRENEAUX */
+  .creneaux-grid { display:flex; flex-direction:column; gap:10px; }
+  .creneau-card {
+    border:1.5px solid var(--creme-fonce); border-radius:14px;
+    padding:14px 16px; cursor:pointer; transition:all .15s;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .creneau-card:active { transform:scale(0.98); }
+  .creneau-card.selectionne { border-color:var(--vert); background:#f0f5f3; }
+  .creneau-card.complet { opacity:0.45; cursor:not-allowed; }
+  .creneau-gauche { display:flex; align-items:center; gap:12px; }
+  .creneau-emoji { font-size:22px; }
+  .creneau-jour { font-size:14px; font-weight:500; }
+  .creneau-heure { font-size:13px; color:var(--texte-doux); }
+  .creneau-droit { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+  .creneau-dispo {
+    font-size:11px; font-weight:500; padding:3px 10px;
+    border-radius:20px;
+  }
+  .dispo-ok { background:#EAF3DE; color:#27500A; }
+  .dispo-limite { background:#FAEEDA; color:#633806; }
+  .dispo-complet { background:#FCEBEB; color:#791F1F; }
+  .creneau-check {
+    width:22px; height:22px; border-radius:50%;
+    border:2px solid var(--creme-fonce); display:flex;
+    align-items:center; justify-content:center; font-size:12px;
+    transition:all .15s;
+  }
+  .creneau-card.selectionne .creneau-check {
+    background:var(--vert); border-color:var(--vert); color:white;
+  }
+
+  /* FORMULAIRE CLIENT */
+  .form-group { margin-bottom:14px; }
+  .form-label { font-size:13px; color:var(--texte-doux); margin-bottom:6px; display:block; }
+  .form-input {
+    width:100%; padding:12px 14px; border:1.5px solid var(--creme-fonce);
+    border-radius:12px; font-size:15px; font-family:'DM Sans',sans-serif;
+    background:var(--creme); color:var(--texte); outline:none;
+    transition:border-color .15s;
+  }
+  .form-input:focus { border-color:var(--vert); background:white; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  /* EMPREINTE */
+  .empreinte-card {
+    background:#fff8e7; border:1px solid #e2c97a;
+    border-radius:14px; padding:16px; margin-top:4px;
+  }
+  .empreinte-titre { font-size:14px; font-weight:500; color:#7a5c1a; margin-bottom:6px; }
+  .empreinte-txt { font-size:13px; color:#8a6d20; line-height:1.5; }
+  .empreinte-legal { font-size:11px; color:#aaa; margin-top:8px; line-height:1.4; }
+
+  /* RÉCAP */
+  .recap-ligne {
+    display:flex; justify-content:space-between;
+    font-size:14px; padding:6px 0;
+    border-bottom:1px solid var(--creme-fonce);
+  }
+  .recap-ligne:last-child { border-bottom:none; }
+  .recap-ligne.total {
+    font-size:16px; font-weight:500; padding-top:12px;
+    border-top:2px solid var(--texte); border-bottom:none; margin-top:4px;
+  }
+  .recap-label { color:var(--texte-doux); }
+
+  /* CTA FIXE */
+  .cta-fixe {
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--blanc); border-top:1px solid var(--creme-fonce);
+    padding:14px 20px; z-index:100;
+  }
+  .btn-commander {
+    width:100%; background:var(--vert); color:white; border:none;
+    border-radius:50px; padding:16px; font-size:16px; font-weight:500;
+    font-family:'DM Sans',sans-serif; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    transition:all .15s;
+  }
+  .btn-commander:active { transform:scale(0.97); }
+  .btn-commander:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+  /* SUCCES */
+  .succes-screen {
+    display:none; text-align:center; padding:40px 24px;
+  }
+  .succes-icon { font-size:64px; margin-bottom:16px; }
+  .succes-titre { font-family:'Playfair Display',serif; font-size:26px; margin-bottom:8px; }
+  .succes-sub { font-size:14px; color:var(--texte-doux); line-height:1.6; margin-bottom:24px; }
+  .succes-num {
+    background:var(--creme-fonce); border-radius:12px;
+    padding:14px 20px; font-size:18px; font-weight:500;
+    margin-bottom:24px; display:inline-block;
+  }
+
+  .panier-vide {
+    text-align:center; padding:60px 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="btn-retour" href="catalogue.html">←</a>
+  <span class="header-titre">Mon panier</span>
+</header>
+
+<!-- ÉTAPES -->
+<div class="etapes">
+  <div class="etape active" id="etape1">
+    <div class="etape-num">1</div>
+    <span>Panier</span>
+  </div>
+  <div class="etape-sep"></div>
+  <div class="etape" id="etape2">
+    <div class="etape-num">2</div>
+    <span>Créneau</span>
+  </div>
+  <div class="etape-sep"></div>
+  <div class="etape" id="etape3">
+    <div class="etape-num">3</div>
+    <span>Coordonnées</span>
+  </div>
+  <div class="etape-sep"></div>
+  <div class="etape" id="etape4">
+    <div class="etape-num">4</div>
+    <span>Confirmation</span>
+  </div>
+</div>
+
+<!-- ÉCRAN PANIER VIDE -->
+<div id="panierVide" class="panier-vide" style="display:none">
+  <p style="font-size:48px">🛒</p>
+  <p style="font-size:18px; font-weight:500; margin:12px 0 8px">Panier vide</p>
+  <p style="color:var(--texte-doux); font-size:14px; margin-bottom:24px">Ajoutez des produits depuis le catalogue</p>
+  <a href="catalogue.html" style="background:var(--vert);color:white;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:500;">
+    Voir le catalogue →
+  </a>
+</div>
+
+<!-- ÉTAPE 1 : PANIER -->
+<div id="step1">
+  <div class="section">
+    <div class="section-titre">🛒 Vos articles</div>
+    <div id="lignesPanier"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">📊 Récapitulatif</div>
+    <div id="recapPanier"></div>
+  </div>
+</div>
+
+<!-- ÉTAPE 2 : CRÉNEAU -->
+<div id="step2" style="display:none">
+  <div class="section">
+    <div class="section-titre">🕐 Choisissez votre créneau</div>
+    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px">
+      Retrait en boutique — 8 rue Neuve Saint-Jean, Caen
+    </p>
+    <div class="creneaux-grid" id="creneauxGrid">
+      <div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement des créneaux...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ÉTAPE 3 : COORDONNÉES -->
+<div id="step3" style="display:none">
+  <div class="section">
+    <div class="section-titre">👤 Vos coordonnées</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Prénom *</label>
+        <input class="form-input" id="prenom" type="text" placeholder="Marie" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nom *</label>
+        <input class="form-input" id="nom" type="text" placeholder="Dupont" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Téléphone *</label>
+      <input class="form-input" id="telephone" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email *</label>
+      <input class="form-input" id="email" type="email" placeholder="marie@email.fr" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Note pour le primeur (optionnel)</label>
+      <input class="form-input" id="note" type="text" placeholder="Ex: Sonnez au portail...">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">🔒 Garantie anti no-show</div>
+    <div class="empreinte-card">
+      <div class="empreinte-titre">Empreinte bancaire requise</div>
+      <div class="empreinte-txt">
+        Votre carte est enregistrée à titre de garantie uniquement.
+        <strong>Aucun débit ne sera effectué</strong> si vous venez chercher votre commande.
+        En cas d'absence sans annulation, des frais de 5€ pourront être prélevés.
+      </div>
+      <div style="margin-top:12px">
+        <div style="background:white;border:1.5px solid var(--creme-fonce);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:12px;color:var(--texte-doux);margin-bottom:6px;">Numéro de carte</div>
+          <div style="font-size:16px;letter-spacing:2px;color:#bbb">•••• •••• •••• ••••</div>
+        </div>
+        <p style="font-size:11px;color:#aaa;margin-top:8px;line-height:1.4;">
+          🔒 Sécurisé par Stripe — Chez Christophe ne stocke jamais vos données bancaires
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ÉTAPE 4 : CONFIRMATION -->
+<div id="step4" style="display:none">
+  <div class="succes-screen" id="succesScreen">
+    <div class="succes-icon">🎉</div>
+    <div class="succes-titre">Commande confirmée !</div>
+    <div class="succes-sub">
+      Votre commande a bien été enregistrée.<br>
+      Vous recevrez un SMS de confirmation dans quelques instants.
+    </div>
+    <div class="succes-num" id="succesNumero">CCB-2026-0001</div>
+    <div style="background:var(--creme);border-radius:14px;padding:16px;text-align:left;margin-bottom:24px;">
+      <div style="font-size:13px;color:var(--texte-doux);margin-bottom:4px;">Retrait prévu</div>
+      <div style="font-size:15px;font-weight:500;" id="succesRetrait"></div>
+      <div style="font-size:13px;color:var(--texte-doux);margin-top:8px;">📍 8 rue Neuve Saint-Jean, Caen</div>
+    </div>
+    <a href="index.html" style="display:inline-block;background:var(--vert);color:white;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:500;">
+      Retour à l'accueil
+    </a>
+  </div>
+</div>
+
+<!-- CTA FIXE -->
+<div class="cta-fixe" id="ctaFixe">
+  <button class="btn-commander" id="btnAction" onclick="etapeSuivante()">
+    <span id="btnTxt">Choisir un créneau →</span>
+    <span id="btnMontant"></span>
+  </button>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+let panier = JSON.parse(sessionStorage.getItem('panier') || '[]');
+let etapeActuelle = 1;
+let creneauSelectionne = null;
+let creneaux = [];
+
+const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+const EMOJIS_HEURE = { matin: '🌅', midi: '☀️', soir: '🌙' };
+
+async function sb(table, params, method='GET', body=null) {
+  const opts = {
+    method,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
+    }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, opts);
+  if (method === 'GET') return r.json();
+  return r;
+}
+
+// ── INIT ──────────────────────────────────────────────
+function init() {
+  if (panier.length === 0) {
+    document.getElementById('panierVide').style.display = 'block';
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('ctaFixe').style.display = 'none';
+    return;
+  }
+  renderPanier();
+  mettreAJourCTA();
+}
+
+// ── ÉTAPE 1 : PANIER ─────────────────────────────────
+function renderPanier() {
+  const container = document.getElementById('lignesPanier');
+  container.innerHTML = panier.map((p, i) => `
+    <div class="panier-ligne">
+      <div class="ligne-img">
+        ${p.photo_url
+          ? `<img src="${p.photo_url}" alt="${p.nom}" loading="lazy">`
+          : `<span>${p.categories?.emoji || '🌿'}</span>`}
+      </div>
+      <div class="ligne-info">
+        <div class="ligne-nom">${p.nom}</div>
+        <div class="ligne-prix-unit">${(p.prix_marche_indicatif||0).toFixed(2).replace('.',',')}€ / ${p.unite}</div>
+      </div>
+      <div class="ligne-droite">
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changerQte(${i}, -1)">−</button>
+          <span class="qty-num">${p.qte}</span>
+          <button class="qty-btn" onclick="changerQte(${i}, 1)">+</button>
+        </div>
+        <div class="ligne-total">${((p.prix_marche_indicatif||0)*p.qte).toFixed(2).replace('.',',')}€</div>
+      </div>
+    </div>
+  `).join('');
+
+  renderRecap();
+}
+
+function renderRecap() {
+  const sous_total = panier.reduce((s,p) => s + (p.prix_marche_indicatif||0)*p.qte, 0);
+  const nb = panier.reduce((s,p) => s + p.qte, 0);
+  document.getElementById('recapPanier').innerHTML = `
+    <div class="recap-ligne">
+      <span class="recap-label">${nb} article${nb>1?'s':''}</span>
+      <span>${sous_total.toFixed(2).replace('.',',')} €</span>
+    </div>
+    <div class="recap-ligne">
+      <span class="recap-label">Livraison</span>
+      <span style="color:#27500A">Gratuite (retrait)</span>
+    </div>
+    <div class="recap-ligne total">
+      <span>Total</span>
+      <span>${sous_total.toFixed(2).replace('.',',')} €</span>
+    </div>
+  `;
+}
+
+function changerQte(idx, delta) {
+  panier[idx].qte += delta;
+  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  sessionStorage.setItem('panier', JSON.stringify(panier));
+  if (panier.length === 0) {
+    document.getElementById('panierVide').style.display = 'block';
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('ctaFixe').style.display = 'none';
+    return;
+  }
+  renderPanier();
+  mettreAJourCTA();
+}
+
+// ── ÉTAPE 2 : CRENEAUX ───────────────────────────────
+async function chargerCreneaux() {
+  const grid = document.getElementById('creneauxGrid');
+  
+  // Créneaux de la semaine courante
+  const data = await sb('creneaux', '?actif=eq.true&order=jour_semaine,heure_debut&select=*');
+  
+  if (!data || data.length === 0) {
+    // Créneaux d'exemple si pas encore configurés
+    creneaux = creneauxExemple();
+  } else {
+    creneaux = genererCreneauxSemaine(data);
+  }
+
+  grid.innerHTML = creneaux.map((c, i) => {
+    const dispoClass = c.places === 0 ? 'dispo-complet' : c.places <= 2 ? 'dispo-limite' : 'dispo-ok';
+    const dispoTxt = c.places === 0 ? 'Complet' : c.places <= 2 ? `${c.places} place${c.places>1?'s':''}` : 'Disponible';
+    const cardClass = c.places === 0 ? 'complet' : '';
+
+    return `
+      <div class="creneau-card ${cardClass}" id="creneau-${i}"
+        onclick="${c.places > 0 ? `selectionnerCreneau(${i})` : ''}">
+        <div class="creneau-gauche">
+          <span class="creneau-emoji">${c.emoji}</span>
+          <div>
+            <div class="creneau-jour">${c.jour} ${c.date}</div>
+            <div class="creneau-heure">${c.debut} – ${c.fin}</div>
+          </div>
+        </div>
+        <div class="creneau-droit">
+          <span class="creneau-dispo ${dispoClass}">${dispoTxt}</span>
+          <div class="creneau-check" id="check-${i}">✓</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function genererCreneauxSemaine(data) {
+  const now = new Date();
+  const resultats = [];
+
+  for (let j = 0; j <= 6; j++) {
+    const date = new Date(now);
+    date.setDate(now.getDate() + j);
+    const jourSemaine = date.getDay() === 0 ? 7 : date.getDay(); // 1=lundi...7=dimanche
+
+    const creneauxDuJour = data.filter(c => c.jour_semaine === jourSemaine);
+    for (const c of creneauxDuJour) {
+      const hDebut = parseInt(c.heure_debut.split(':')[0]);
+      const emoji = hDebut < 12 ? '🌅' : hDebut < 16 ? '☀️' : '🌙';
+      resultats.push({
+        id: c.id,
+        jour: JOURS[date.getDay()],
+        date: `${date.getDate()}/${date.getMonth()+1}`,
+        debut: c.heure_debut.slice(0,5),
+        fin: c.heure_fin.slice(0,5),
+        places: c.capacite_max - Math.floor(Math.random() * 3), // simulé
+        emoji,
+        dateObj: date,
+        capacite: c.capacite_max,
+      });
+    }
+  }
+  return resultats;
+}
+
+function creneauxExemple() {
+  const now = new Date();
+  const exemples = [];
+  const configs = [
+    { emoji:'🌅', debut:'08:00', fin:'11:00', places:5 },
+    { emoji:'☀️', debut:'11:00', fin:'15:00', places:2 },
+    { emoji:'🌙', debut:'15:00', fin:'19:00', places:6 },
+  ];
+  for (let j = 1; j <= 4; j++) {
+    const date = new Date(now);
+    date.setDate(now.getDate() + j);
+    if (date.getDay() === 0 || date.getDay() === 1) continue; // fermé dim/lun
+    for (const c of configs) {
+      exemples.push({
+        jour: JOURS[date.getDay()],
+        date: `${date.getDate()}/${date.getMonth()+1}`,
+        ...c, dateObj: date,
+      });
+    }
+  }
+  return exemples;
+}
+
+function selectionnerCreneau(idx) {
+  // Désélectionner l'ancien
+  if (creneauSelectionne !== null) {
+    document.getElementById(`creneau-${creneauSelectionne}`)?.classList.remove('selectionne');
+  }
+  creneauSelectionne = idx;
+  document.getElementById(`creneau-${idx}`)?.classList.add('selectionne');
+  mettreAJourCTA();
+}
+
+// ── NAVIGATION ÉTAPES ─────────────────────────────────
+async function etapeSuivante() {
+  if (etapeActuelle === 1) {
+    allerEtape(2);
+    await chargerCreneaux();
+  } else if (etapeActuelle === 2) {
+    if (creneauSelectionne === null) {
+      alert('Veuillez choisir un créneau de retrait.');
+      return;
+    }
+    allerEtape(3);
+  } else if (etapeActuelle === 3) {
+    if (!validerFormulaire()) return;
+    await confirmerCommande();
+  }
+}
+
+function allerEtape(num) {
+  document.getElementById(`step${etapeActuelle}`).style.display = 'none';
+  document.getElementById(`step${num}`).style.display = 'block';
+  etapeActuelle = num;
+  // Mettre à jour les indicateurs d'étapes
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById(`etape${i}`);
+    el.classList.remove('active', 'done');
+    if (i < num) el.classList.add('done');
+    if (i === num) el.classList.add('active');
+  }
+  mettreAJourCTA();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function mettreAJourCTA() {
+  const total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const btn = document.getElementById('btnTxt');
+  const montant = document.getElementById('btnMontant');
+
+  if (etapeActuelle === 1) {
+    btn.textContent = 'Choisir un créneau →';
+    montant.textContent = total.toFixed(2).replace('.',',') + ' €';
+  } else if (etapeActuelle === 2) {
+    btn.textContent = creneauSelectionne !== null ? 'Mes coordonnées →' : 'Choisissez un créneau';
+    montant.textContent = '';
+    document.getElementById('btnAction').disabled = creneauSelectionne === null;
+  } else if (etapeActuelle === 3) {
+    btn.textContent = 'Confirmer la commande →';
+    montant.textContent = total.toFixed(2).replace('.',',') + ' €';
+    document.getElementById('btnAction').disabled = false;
+  }
+}
+
+// ── VALIDATION FORMULAIRE ────────────────────────────
+function validerFormulaire() {
+  const prenom = document.getElementById('prenom').value.trim();
+  const nom = document.getElementById('nom').value.trim();
+  const tel = document.getElementById('telephone').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (!prenom || !nom) { alert('Veuillez entrer votre nom et prénom.'); return false; }
+  if (!tel || tel.length < 10) { alert('Veuillez entrer un numéro de téléphone valide.'); return false; }
+  if (!email || !email.includes('@')) { alert('Veuillez entrer un email valide.'); return false; }
+  return true;
+}
+
+// ── CONFIRMATION COMMANDE ────────────────────────────
+async function confirmerCommande() {
+  const btn = document.getElementById('btnAction');
+  btn.disabled = true;
+  document.getElementById('btnTxt').textContent = 'Envoi en cours...';
+
+  const creneau = creneaux[creneauSelectionne];
+  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const annee = new Date().getFullYear();
+  const numero = `CCB-${annee}-${Date.now().toString().slice(-4)}`;
+
+  // Afficher la confirmation
+  allerEtape(4);
+  document.getElementById('succesScreen').style.display = 'block';
+  document.getElementById('succesNumero').textContent = numero;
+  document.getElementById('succesRetrait').textContent =
+    `${creneau.jour} ${creneau.date} · ${creneau.debut} – ${creneau.fin}`;
+  document.getElementById('ctaFixe').style.display = 'none';
+
+  // Vider le panier
+  sessionStorage.removeItem('panier');
+  panier = [];
+}
+
+// Init
+init();
+</script>
+</body>
+</html>
