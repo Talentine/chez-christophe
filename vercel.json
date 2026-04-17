@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/catalogue", "destination": "/catalogue.html" },
+    { "source": "/panier", "destination": "/panier.html" },
+    { "source": "/app", "destination": "/app-commercant.html" }
+  ],
+  "cleanUrls": false
+}
