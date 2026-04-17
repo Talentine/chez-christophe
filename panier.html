@@ -434,11 +434,16 @@ function changerQte(idx, delta) {
 async function chargerCreneaux() {
   const grid = document.getElementById('creneauxGrid');
   
-  // Créneaux de la semaine courante
-  const data = await sb('creneaux', '?actif=eq.true&order=jour_semaine,heure_debut&select=*');
+  // Récupérer l'ID du commerçant Christophe
+  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
+  const commercantId = commercants?.[0]?.id;
+
+  let data = [];
+  if (commercantId) {
+    data = await sb('creneaux', `?actif=eq.true&commercant_id=eq.${commercantId}&order=jour_semaine,heure_debut&select=*`);
+  }
   
   if (!data || data.length === 0) {
-    // Créneaux d'exemple si pas encore configurés
     creneaux = creneauxExemple();
   } else {
     creneaux = genererCreneauxSemaine(data);
