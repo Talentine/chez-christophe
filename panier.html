@@ -183,6 +183,15 @@
     text-align:center; padding:60px 20px;
   }
 </style>
+<script>
+(function() {
+  const MOT_DE_PASSE = 'primeur2026';
+  const cle = 'acces_autorise';
+  if (sessionStorage.getItem(cle) !== 'oui') {
+    window.location.href = 'index.html';
+  }
+})();
+</script>
 </head>
 <body>
 
