@@ -6,6 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a2e26">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <title>Espace Primeur — Chez Christophe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1080,6 +1082,78 @@ function afficherToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+
+// ── PWA & NOTIFICATIONS PUSH ──────────────────────────────
+let deferredPrompt = null;
+
+// Enregistrer le Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => {
+      console.log('SW enregistré');
+      demanderPermissionNotifications(reg);
+    })
+    .catch(err => console.log('SW erreur:', err));
+}
+
+// Capturer l'événement d'installation PWA
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('btnInstaller').style.display = 'flex';
+});
+
+// Demander permission notifications
+async function demanderPermissionNotifications(reg) {
+  if ('Notification' in window && Notification.permission === 'default') {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      afficherToast('🔔 Notifications activées !');
+      abonnerAuxNotifications(reg);
+    }
+  }
+}
+
+async function abonnerAuxNotifications(reg) {
+  try {
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: null
+    });
+    console.log('Abonné aux notifications push');
+  } catch(e) {
+    console.log('Notifications non supportées:', e);
+  }
+}
+
+// Installer l'app
+async function installerApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const result = await deferredPrompt.userChoice;
+    if (result.outcome === 'accepted') {
+      afficherToast('✅ App installée sur votre téléphone !');
+      document.getElementById('btnInstaller').style.display = 'none';
+    }
+    deferredPrompt = null;
+  }
+}
+
+// Simuler une notification de test
+function testerNotification() {
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification('🛒 Nouvelle commande !', {
+      body: 'Marie L. — 36,10€ · 9 articles · Retrait 10h–11h',
+      icon: '/icon-192.png',
+      vibrate: [300, 100, 300],
+    });
+    afficherToast('🔔 Notification test envoyée');
+  } else {
+    afficherToast('⚠️ Activez les notifications d'abord');
+    demanderPermissionNotifications(null);
+  }
 }
 
 // Init
