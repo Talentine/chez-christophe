@@ -336,29 +336,6 @@
     </div>
   </div>
 
-  <!-- Adresse livraison (visible si mode livraison) -->
-  <div class="adresse-livraison" id="adresseLivraisonSection">
-    <div class="section-titre" style="margin-bottom:14px;">📍 Adresse de livraison</div>
-    <div class="form-group">
-      <label class="form-label">Adresse *</label>
-      <input class="form-input" id="livraisonAdresse" type="text" placeholder="12 rue de la Paix">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Code postal *</label>
-        <input class="form-input" id="livraisonCP" type="text" placeholder="14000">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Ville *</label>
-        <input class="form-input" id="livraisonVille" type="text" placeholder="Caen">
-      </div>
-    </div>
-    <div style="background:#fff8e7;border:1px solid var(--or-clair);border-radius:10px;padding:12px;font-size:13px;color:#7a5c1a;margin-top:4px;">
-      🚚 Frais de livraison : <strong>3,90€</strong> · Livraison dans un rayon de 10 km
-    </div>
-  </div>
-</div>
-
 <!-- ÉTAPE 3 : COORDONNÉES -->
 <div id="step3" style="display:none">
   <div class="section">
@@ -420,6 +397,18 @@
     <div class="succes-sub">
       Votre commande a bien été enregistrée.<br>
       Vous recevrez un SMS de confirmation dans quelques instants.
+      <div id="adresseLivraisonConfirm" style="display:none;margin-top:16px;background:#f0f7f4;border-radius:12px;padding:14px;">
+        <div style="font-size:13px;font-weight:500;margin-bottom:10px;">📍 Adresse de livraison</div>
+        <div id="adresseConfirmTxt" style="font-size:14px;color:var(--texte-doux);margin-bottom:12px;"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <a id="lienMaps" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#4285F4;color:white;border-radius:10px;padding:10px;font-size:13px;font-weight:500;text-decoration:none;">
+            🗺️ Google Maps
+          </a>
+          <a id="lienWaze" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#33CCFF;color:#1a1a1a;border-radius:10px;padding:10px;font-size:13px;font-weight:500;text-decoration:none;">
+            🚗 Waze
+          </a>
+        </div>
+      </div>
     </div>
     <div class="succes-num" id="succesNumero">CCB-2026-0001</div>
     <div style="background:var(--creme);border-radius:14px;padding:16px;text-align:left;margin-bottom:24px;">
@@ -453,11 +442,15 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 // ── MODE LIVRAISON ───────────────────────────────────
 function choisirMode(mode) {
   modeLivraison = mode === 'livraison';
+  modeCommande = mode; // Synchroniser les deux variables
   document.getElementById('modeRetrait').classList.toggle('actif', !modeLivraison);
   document.getElementById('modeLivraison').classList.toggle('actif', modeLivraison);
   // Afficher/masquer le champ adresse
   const adresseSection = document.getElementById('adresseLivraisonStep1');
   if (adresseSection) adresseSection.style.display = modeLivraison ? 'block' : 'none';
+  // Vider l'erreur adresse
+  const errDiv = document.getElementById('adresseErreur');
+  if (errDiv) errDiv.style.display = 'none';
   mettreAJourRecap();
   mettreAJourCTA();
 }
@@ -1004,6 +997,23 @@ async function confirmerCommande() {
       },
       body: JSON.stringify({ telephone: tel, message: smsMessage })
     }).catch(e => console.log('SMS error:', e));
+  }
+
+  // Afficher l'adresse de livraison dans la confirmation
+  if (modeLivraison) {
+    const adresse = document.getElementById('livraisonAdresse')?.value.trim();
+    const cp = document.getElementById('livraisonCP')?.value.trim();
+    const ville = document.getElementById('livraisonVille')?.value.trim();
+    const adresseFull = adresse + ', ' + cp + ' ' + ville;
+    const adresseEncoded = encodeURIComponent(adresseFull);
+    
+    const confirmDiv = document.getElementById('adresseLivraisonConfirm');
+    if (confirmDiv) {
+      confirmDiv.style.display = 'block';
+      document.getElementById('adresseConfirmTxt').textContent = adresseFull;
+      document.getElementById('lienMaps').href = 'https://maps.google.com/?q=' + adresseEncoded;
+      document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + adresseEncoded + '&navigate=yes';
+    }
   }
 
   // Afficher la confirmation
