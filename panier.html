@@ -192,6 +192,7 @@
   }
 })();
 </script>
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -296,10 +297,13 @@
         <strong>Aucun débit ne sera effectué</strong> si vous venez chercher votre commande.
         En cas d'absence sans annulation, des frais de 5€ pourront être prélevés.
       </div>
-      <div style="margin-top:12px">
-        <div style="background:white;border:1.5px solid var(--creme-fonce);border-radius:10px;padding:12px 14px;">
-          <div style="font-size:12px;color:var(--texte-doux);margin-bottom:6px;">Numéro de carte</div>
-          <div style="font-size:16px;letter-spacing:2px;color:#bbb">•••• •••• •••• ••••</div>
+      <div style="margin-top:12px" id="stripeContainer">
+        <div id="stripeLoading" style="text-align:center;padding:20px;color:var(--texte-doux);font-size:14px;">
+          ⏳ Chargement du formulaire sécurisé...
+        </div>
+        <div id="stripeForm" style="display:none">
+          <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:10px;padding:14px;"></div>
+          <div id="stripe-card-errors" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none"></div>
         </div>
         <p style="font-size:11px;color:#aaa;margin-top:8px;line-height:1.4;">
           🔒 Sécurisé par Stripe — Chez Christophe ne stocke jamais vos données bancaires
@@ -340,6 +344,11 @@
 
 <script>
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const STRIPE_PK = 'pk_test_51TNZXlEH5d5nXfSsSgBj9ZxnbdIa1BiukFetlslrxGUu3u4XuZkISjKN3vBhqNwgLdZhypC0pBt2TwC6r4NKKEes00GaQriPS8';
+let stripe = null;
+let stripeCardElement = null;
+let stripeClientSecret = null;
+let stripePaymentMethodId = null;
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 // Vérifier si le client est connecté
@@ -581,6 +590,8 @@ async function etapeSuivante() {
       if (session.user.email) document.getElementById('email').value = session.user.email;
       if (meta.telephone) document.getElementById('telephone').value = meta.telephone;
     }
+    // Initialiser Stripe
+    await initialiserStripe();
   } else if (etapeActuelle === 3) {
     if (!validerFormulaire()) return;
     await confirmerCommande();
@@ -634,6 +645,101 @@ function validerFormulaire() {
   return true;
 }
 
+
+// ── STRIPE EMPREINTE BANCAIRE ────────────────────────
+async function initialiserStripe() {
+  try {
+    stripe = Stripe(STRIPE_PK);
+    
+    // Créer un SetupIntent via Edge Function
+    const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+    
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-setup-intent', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        montant: sous_total,
+        commande_numero: 'EN_COURS',
+        commercant_id: 'christophe-frais-caen',
+      })
+    });
+    
+    const data = await r.json();
+    
+    if (data.error) {
+      console.log('Stripe error:', data.error);
+      afficherStripeErreur('Impossible de charger le formulaire de paiement');
+      return;
+    }
+    
+    stripeClientSecret = data.client_secret;
+    
+    // Créer le formulaire carte
+    const elements = stripe.elements();
+    stripeCardElement = elements.create('card', {
+      style: {
+        base: {
+          fontSize: '15px',
+          color: '#1a2e26',
+          fontFamily: 'DM Sans, sans-serif',
+          '::placeholder': { color: '#aaa' },
+        }
+      },
+      hidePostalCode: true,
+    });
+    
+    document.getElementById('stripeLoading').style.display = 'none';
+    document.getElementById('stripeForm').style.display = 'block';
+    stripeCardElement.mount('#stripe-card-element');
+    
+    stripeCardElement.on('change', function(event) {
+      const errDiv = document.getElementById('stripe-card-errors');
+      if (event.error) {
+        errDiv.textContent = event.error.message;
+        errDiv.style.display = 'block';
+      } else {
+        errDiv.style.display = 'none';
+      }
+    });
+    
+  } catch(e) {
+    console.log('Stripe init error:', e);
+    document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible — la commande sera validée sans empreinte';
+  }
+}
+
+function afficherStripeErreur(msg) {
+  document.getElementById('stripeLoading').textContent = '⚠️ ' + msg;
+}
+
+async function confirmerEmpreinte() {
+  if (!stripe || !stripeCardElement || !stripeClientSecret) return true; // Skip si Stripe non dispo
+  
+  const { setupIntent, error } = await stripe.confirmCardSetup(stripeClientSecret, {
+    payment_method: {
+      card: stripeCardElement,
+      billing_details: {
+        name: document.getElementById('prenom').value + ' ' + document.getElementById('nom').value,
+        email: document.getElementById('email').value,
+      }
+    }
+  });
+  
+  if (error) {
+    const errDiv = document.getElementById('stripe-card-errors');
+    errDiv.textContent = error.message;
+    errDiv.style.display = 'block';
+    return false;
+  }
+  
+  stripePaymentMethodId = setupIntent.payment_method;
+  return true;
+}
+
 // ── CONFIRMATION COMMANDE ────────────────────────────
 async function confirmerCommande() {
   const btn = document.getElementById('btnAction');
@@ -650,6 +756,14 @@ async function confirmerCommande() {
   const telephone = document.getElementById('telephone').value.trim();
   const email = document.getElementById('email').value.trim();
   const note = document.getElementById('note').value.trim();
+
+  // Confirmer l'empreinte Stripe d'abord
+  const empreinteOk = await confirmerEmpreinte();
+  if (!empreinteOk) {
+    btn.disabled = false;
+    document.getElementById('btnTxt').textContent = 'Confirmer la commande →';
+    return;
+  }
 
   try {
     // 1. Récupérer l'ID du commerçant
@@ -691,6 +805,7 @@ async function confirmerCommande() {
       frais_livraison: 0,
       total_ttc: sous_total,
       note_client: note || null,
+      empreinte_payment_method_id: stripePaymentMethodId || null,
     };
 
     const cmdResp = await sb('commandes', '', 'POST', commandeData);
