@@ -1086,9 +1086,6 @@ function voirCommandesCreneau(dateKey, heure) {
 
   if (cmds.length === 0) { afficherToast('Aucune commande sur ce créneau'); return; }
 
-  // Aller sur l'onglet commandes et filtrer
-  allerOnglet('commandes');
-  
   // Afficher une modale avec les commandes du créneau
   const [annee, mois, jour] = dateKey.split('-');
   const dateLabel = parseInt(jour) + ' ' + MOIS[parseInt(mois)-1];
@@ -1585,7 +1582,7 @@ async function chargerCommandesSupabase(commercantId) {
 
     // Forcer le rendu même si l'onglet n'est pas visible
     renderCommandes();
-    if (document.getElementById("content-planning")?.classList.contains("active")) chargerPlanningReel();
+    chargerPlanningReel();
     
     // S'assurer que l'onglet commandes est visible si nouvelles commandes
     if (nouvelles.length > 0) {
