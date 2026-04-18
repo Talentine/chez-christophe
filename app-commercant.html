@@ -993,6 +993,7 @@ function chargerPlanningDemo() {
 
 async function chargerPlanningReel() {
   const grid = document.getElementById('planningGrid');
+  if (!grid) return; // Element pas encore dans le DOM
   grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
 
   const now = new Date();
@@ -1011,9 +1012,27 @@ async function chargerPlanningReel() {
   const parDate = {};
   toutesLesCommandes.forEach(c => {
     if (!c.date_retrait) return;
-    const d = new Date(c.date_retrait);
-    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-    const heure = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    // Extraire date et heure directement depuis la string ISO
+    const dr = c.date_retrait;
+    let key, heure;
+    if (dr.includes('T')) {
+      // Format ISO : 2026-04-21T08:00:00
+      key = dr.slice(0, 10);
+      const timePart = dr.slice(11, 16);
+      heure = timePart;
+    } else {
+      // Format Postgres : 2026-04-21 08:00:00+00
+      const parts = dr.split(' ');
+      key = parts[0];
+      heure = parts[1] ? parts[1].slice(0, 5) : '00:00';
+      // Ajuster pour timezone FR (UTC+2)
+      const d = new Date(dr);
+      heure = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      key = yyyy + '-' + mm + '-' + dd;
+    }
     if (!parDate[key]) parDate[key] = {};
     if (!parDate[key][heure]) parDate[key][heure] = [];
     parDate[key][heure].push(c);
@@ -1079,8 +1098,11 @@ function voirCommandesCreneau(dateKey, heure) {
   const cmds = toutesLesCommandes.filter(c => {
     if (!c.date_retrait) return false;
     const d = new Date(c.date_retrait);
-    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-    const h = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    const key = yyyy + '-' + mm + '-' + dd;
+    const h = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
     return key === dateKey && h === heure;
   });
 
