@@ -342,6 +342,14 @@
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
+// Vérifier si le client est connecté
+function getSession() {
+  try {
+    const s = localStorage.getItem('session_client');
+    return s ? JSON.parse(s) : null;
+  } catch(e) { return null; }
+}
+
 let panier = JSON.parse(sessionStorage.getItem('panier') || '[]');
 let etapeActuelle = 1;
 let creneauSelectionne = null;
@@ -547,6 +555,15 @@ function selectionnerCreneau(idx) {
 // ── NAVIGATION ÉTAPES ─────────────────────────────────
 async function etapeSuivante() {
   if (etapeActuelle === 1) {
+    // Vérifier connexion avant de continuer
+    const session = getSession();
+    if (!session) {
+      if (confirm('Vous devez être connecté pour commander.\n\nAller sur la page de connexion ?')) {
+        // Sauvegarder le panier avant de rediriger
+        window.location.href = 'compte.html';
+      }
+      return;
+    }
     allerEtape(2);
     await chargerCreneaux();
   } else if (etapeActuelle === 2) {
@@ -555,6 +572,15 @@ async function etapeSuivante() {
       return;
     }
     allerEtape(3);
+    // Pré-remplir avec les infos du compte
+    const session = getSession();
+    if (session?.user) {
+      const meta = session.user.user_metadata || {};
+      if (meta.prenom) document.getElementById('prenom').value = meta.prenom;
+      if (meta.nom) document.getElementById('nom').value = meta.nom;
+      if (session.user.email) document.getElementById('email').value = session.user.email;
+      if (meta.telephone) document.getElementById('telephone').value = meta.telephone;
+    }
   } else if (etapeActuelle === 3) {
     if (!validerFormulaire()) return;
     await confirmerCommande();
