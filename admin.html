@@ -542,7 +542,7 @@ async function chargerDashboard() {
   // Activité récente
   document.getElementById('activiteRecente').innerHTML = (commandes || []).slice(0,5).map(c => {
     const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
-    return `<div style="font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);">📦 Nouvelle commande · ${date}</div>`;
+    return '<div style="font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);">📦 Nouvelle commande · ' + date + '</div>';
   }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucune commande récente</p>';
 }
 
