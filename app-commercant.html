@@ -1662,7 +1662,11 @@ async function seConnecterCommercant() {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + data.access_token }
     });
     const roles = await roleCheck.json();
-    const roleData = roles?.[0];
+    // Pour l'admin, prendre le rôle admin en priorité
+    const roleData = roles?.find(r => r.role === 'admin') 
+      || roles?.find(r => r.role === 'commercant')
+      || roles?.find(r => r.role === 'salarie')
+      || roles?.[0];
 
     if (!roleData || roleData.role === 'client') {
       erreur.style.display = 'block';
