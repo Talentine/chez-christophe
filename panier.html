@@ -515,14 +515,31 @@ function genererCreneauxSemaine(data) {
 
   data.forEach(c => {
     for (let semaine = 0; semaine <= 1; semaine++) {
+      let diff = (c.jour_semaine - now.getDay() + 7) % 7 + semaine * 7;
+      
+      // Si diff = 0 (aujourd'hui) et l'heure est dépassée → passer à la semaine suivante
+      if (diff === 0) {
+        const heureDebut = parseInt(c.heure_debut.split(':')[0]);
+        const minDebut = parseInt(c.heure_debut.split(':')[1] || 0);
+        const minutesCreneau = heureDebut * 60 + minDebut;
+        const minutesNow = now.getHours() * 60 + now.getMinutes();
+        // Blocage 2h avant retrait, 5h avant livraison
+        const delaiMin = c.type === 'livraison' ? 300 : 120;
+        if (minutesNow + delaiMin >= minutesCreneau) {
+          if (semaine === 0) diff = 7; // Reporter à la semaine suivante
+          else continue;
+        }
+      }
+
       const date = new Date(now);
-      const diff = ((c.jour_semaine - now.getDay() + 7) % 7) + semaine * 7;
-      if (diff === 0 && now.getHours() >= parseInt(c.heure_debut)) continue;
       date.setDate(now.getDate() + diff);
-      // Construire la date ISO complète avec l'heure de début
+      date.setHours(0, 0, 0, 0);
+
+      // Date ISO avec l'heure de début
       const [h, m] = c.heure_debut.split(':');
       const dateAvecHeure = new Date(date);
-      dateAvecHeure.setHours(parseInt(h), parseInt(m), 0, 0);
+      dateAvecHeure.setHours(parseInt(h), parseInt(m || 0), 0, 0);
+
       result.push({
         id: c.id,
         jour: jours[c.jour_semaine],
@@ -531,11 +548,21 @@ function genererCreneauxSemaine(data) {
         debut: c.heure_debut.slice(0,5),
         fin: c.heure_fin.slice(0,5),
         emoji: c.emoji || '🕐',
+        type: c.type || 'retrait',
       });
     }
   });
 
-  return result.slice(0, 12);
+  // Dédoublonner et trier
+  const vus = new Set();
+  const unique = result.filter(r => {
+    const key = r.id + r.dateISO;
+    if (vus.has(key)) return false;
+    vus.add(key);
+    return true;
+  });
+
+  return unique.sort((a,b) => new Date(a.dateISO) - new Date(b.dateISO)).slice(0, 12);
 }
 
 function renderCreneaux() {
