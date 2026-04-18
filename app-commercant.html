@@ -1221,6 +1221,11 @@ function allerOnglet(id) {
   document.getElementById(`nav-${id}`)?.classList.add('active');
 
   window.scrollTo({top:0, behavior:'smooth'});
+
+  // Charger les données de l'onglet
+  if (id === 'planning') chargerPlanningReel();
+  if (id === 'produits') chargerProduits();
+  if (id === 'creneaux') chargerCreneaux();
 }
 
 // ── PAUSE ─────────────────────────────────────────────
