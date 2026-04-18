@@ -443,23 +443,40 @@
 
   .toast.show { opacity:1; top:72px; }
 </style>
-<script>
-(function() {
-  const MOT_DE_PASSE = 'primeur2026';
-  const cle = 'acces_commercant';
-  if (sessionStorage.getItem(cle) !== 'oui') {
-    const mdp = prompt('🔒 Espace Primeur\n\nMot de passe commerçant :');
-    if (mdp !== MOT_DE_PASSE) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;flex-direction:column;gap:16px;background:#1a2e26;color:white;"><p style="font-size:20px;">🔒 Accès refusé</p><button onclick="location.reload()" style="background:#c9a84c;color:#1a2e26;border:none;padding:12px 24px;border-radius:50px;font-size:15px;cursor:pointer;">Réessayer</button></div>';
-      return;
-    }
-    sessionStorage.setItem(cle, 'oui');
-  }
-})();
-</script>
+
 </head>
 <body>
 
+<!-- ÉCRAN LOGIN -->
+<div id="loginScreen" style="position:fixed;inset:0;background:#1a2e26;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#243d32;border-radius:24px;padding:36px 28px;width:100%;max-width:380px;border:1px solid rgba(255,255,255,0.1);">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:40px;margin-bottom:10px;">🌿</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:white;margin-bottom:4px;">Espace Primeur</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);">Connexion commerçant</div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:6px;">Email</div>
+      <input id="loginEmail" type="email" placeholder="christophe@chezchristophe.fr" autocomplete="email"
+        style="width:100%;padding:13px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:white;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;">
+    </div>
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:6px;">Mot de passe</div>
+      <input id="loginMdp" type="password" placeholder="••••••••" autocomplete="current-password"
+        style="width:100%;padding:13px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:white;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;">
+    </div>
+    <div id="loginErreur" style="color:#ff6b6b;font-size:13px;margin-bottom:14px;display:none;text-align:center;">
+      ❌ Email ou mot de passe incorrect
+    </div>
+    <button onclick="seConnecterCommercant()" id="btnLogin"
+      style="width:100%;background:#c9a84c;color:#1a2e26;border:none;border-radius:50px;padding:15px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">
+      Accéder au dashboard
+    </button>
+  </div>
+</div>
+
+
+<div id="appPrincipal" style="display:none;">
 <!-- HEADER -->
 <div class="app-header">
   <div class="header-top">
@@ -1402,9 +1419,66 @@ async function chargerCommandesSupabase(commercantId) {
   }
 }
 
+
+// ── AUTHENTIFICATION COMMERÇANT ───────────────────────
+async function seConnecterCommercant() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const mdp = document.getElementById('loginMdp').value;
+  const btn = document.getElementById('btnLogin');
+  const erreur = document.getElementById('loginErreur');
+
+  if (!email || !mdp) { erreur.style.display = 'block'; erreur.textContent = '⚠️ Remplissez tous les champs'; return; }
+
+  btn.textContent = 'Connexion...';
+  btn.disabled = true;
+  erreur.style.display = 'none';
+
+  const r = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/auth/v1/token?grant_type=password', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password: mdp })
+  });
+  const data = await r.json();
+
+  if (data.access_token) {
+    localStorage.setItem('session_commercant', JSON.stringify({ access_token: data.access_token, email }));
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appPrincipal').style.display = 'block';
+    init();
+    demarrerRealtime();
+  } else {
+    erreur.style.display = 'block';
+    erreur.textContent = '❌ Email ou mot de passe incorrect';
+    btn.textContent = 'Accéder au dashboard';
+    btn.disabled = false;
+  }
+}
+
+function seDeconnecterCommercant() {
+  if (!confirm('Se déconnecter ?')) return;
+  localStorage.removeItem('session_commercant');
+  document.getElementById('appPrincipal').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function verifierSessionCommercant() {
+  const session = localStorage.getItem('session_commercant');
+  if (session) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appPrincipal').style.display = 'block';
+    return true;
+  }
+  return false;
+}
+
 // Init
-init();
-demarrerRealtime();
+if (!verifierSessionCommercant()) {
+  // Afficher login
+} else {
+  init();
+  demarrerRealtime();
+}
 </script>
+</div>
 </body>
 </html>
