@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon compte — Chez Christophe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
+    --creme: #f5f0e8; --creme-fonce: #ede6d6;
+    --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
+    --rouge: #e74c3c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--creme); color:var(--texte); padding-bottom:100px; }
+
+  header {
+    background:var(--vert-fonce); position:sticky; top:0; z-index:100;
+    padding:0 16px; height:60px; display:flex; align-items:center; gap:12px;
+  }
+  .header-titre { flex:1; font-family:'Playfair Display',serif; font-size:18px; color:white; }
+
+  /* ÉCRANS */
+  .ecran { display:none; }
+  .ecran.actif { display:block; }
+
+  /* CONNEXION / INSCRIPTION */
+  .auth-container {
+    max-width:420px; margin:40px auto; padding:0 20px;
+  }
+
+  .auth-tabs {
+    display:flex; background:var(--blanc);
+    border-radius:50px; padding:4px;
+    border:1px solid var(--creme-fonce);
+    margin-bottom:24px;
+  }
+
+  .auth-tab {
+    flex:1; padding:10px; border:none; background:none;
+    font-size:14px; font-weight:400; color:var(--texte-doux);
+    cursor:pointer; border-radius:50px; font-family:'DM Sans',sans-serif;
+    transition:all .2s;
+  }
+
+  .auth-tab.actif {
+    background:var(--vert); color:white; font-weight:500;
+  }
+
+  .auth-card {
+    background:var(--blanc); border-radius:20px;
+    padding:28px 24px; border:1px solid var(--creme-fonce);
+  }
+
+  .auth-titre {
+    font-family:'Playfair Display',serif; font-size:22px;
+    margin-bottom:6px;
+  }
+
+  .auth-sub {
+    font-size:13px; color:var(--texte-doux); margin-bottom:24px;
+  }
+
+  .form-group { margin-bottom:14px; }
+  .form-label { font-size:13px; color:var(--texte-doux); margin-bottom:6px; display:block; }
+  .form-input {
+    width:100%; padding:12px 14px;
+    border:1.5px solid var(--creme-fonce); border-radius:12px;
+    font-size:15px; font-family:'DM Sans',sans-serif;
+    background:var(--creme); color:var(--texte); outline:none;
+    transition:border-color .15s;
+  }
+  .form-input:focus { border-color:var(--vert); background:white; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  .btn-principal {
+    width:100%; background:var(--vert); color:white; border:none;
+    border-radius:50px; padding:15px; font-size:16px; font-weight:500;
+    font-family:'DM Sans',sans-serif; cursor:pointer; margin-top:8px;
+    transition:all .15s;
+  }
+  .btn-principal:active { transform:scale(0.97); }
+  .btn-principal:disabled { opacity:0.5; cursor:not-allowed; }
+
+  .auth-erreur {
+    background:#fdf0ef; color:var(--rouge); border-radius:10px;
+    padding:10px 14px; font-size:13px; margin-bottom:14px; display:none;
+  }
+
+  .auth-erreur.visible { display:block; }
+
+  .separateur {
+    text-align:center; color:var(--texte-doux); font-size:13px;
+    margin:16px 0; position:relative;
+  }
+
+  .separateur::before, .separateur::after {
+    content:''; position:absolute; top:50%;
+    width:40%; height:1px; background:var(--creme-fonce);
+  }
+
+  .separateur::before { left:0; }
+  .separateur::after { right:0; }
+
+  /* PROFIL CONNECTÉ */
+  .profil-header {
+    background:var(--vert-fonce); padding:32px 20px 24px;
+    text-align:center;
+  }
+
+  .avatar {
+    width:72px; height:72px; border-radius:50%;
+    background:var(--or); display:flex; align-items:center;
+    justify-content:center; font-size:28px; font-weight:500;
+    color:var(--vert-fonce); margin:0 auto 12px;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  .profil-nom { font-size:20px; font-weight:500; color:white; margin-bottom:4px; }
+  .profil-email { font-size:13px; color:rgba(255,255,255,0.6); }
+
+  .section { background:var(--blanc); margin:12px 0; padding:0; }
+  .section-titre {
+    font-size:13px; font-weight:500; color:var(--texte-doux);
+    text-transform:uppercase; letter-spacing:0.5px;
+    padding:16px 20px 8px;
+  }
+
+  /* COMMANDES */
+  .commande-item {
+    padding:16px 20px; border-bottom:1px solid var(--creme-fonce);
+    cursor:pointer; transition:background .1s;
+  }
+  .commande-item:last-child { border-bottom:none; }
+  .commande-item:active { background:var(--creme); }
+
+  .commande-item-header {
+    display:flex; align-items:center;
+    justify-content:space-between; margin-bottom:4px;
+  }
+
+  .commande-numero { font-size:14px; font-weight:500; }
+  .commande-montant { font-size:14px; font-weight:500; color:var(--vert); }
+
+  .commande-meta {
+    display:flex; align-items:center; gap:8px;
+    font-size:12px; color:var(--texte-doux);
+  }
+
+  .commande-statut {
+    padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500;
+  }
+  .statut-nouvelle { background:#e6f1fb; color:#185fa5; }
+  .statut-en_preparation { background:#fff3e0; color:#e67e22; }
+  .statut-prete { background:#eaf7ee; color:#27ae60; }
+  .statut-remise { background:var(--creme-fonce); color:var(--texte-doux); }
+  .statut-annulee { background:#fdf0ef; color:var(--rouge); }
+
+  /* MENU OPTIONS */
+  .menu-item {
+    display:flex; align-items:center; gap:14px;
+    padding:16px 20px; border-bottom:1px solid var(--creme-fonce);
+    cursor:pointer; transition:background .1s;
+  }
+  .menu-item:last-child { border-bottom:none; }
+  .menu-item:active { background:var(--creme); }
+
+  .menu-icone {
+    width:40px; height:40px; border-radius:12px;
+    background:var(--creme); display:flex;
+    align-items:center; justify-content:center; font-size:18px;
+    flex-shrink:0;
+  }
+
+  .menu-label { font-size:15px; flex:1; }
+  .menu-arrow { color:var(--texte-doux); font-size:18px; }
+
+  .btn-deconnexion {
+    width:calc(100% - 40px); margin:16px 20px;
+    background:var(--creme); color:var(--rouge); border:1.5px solid #fdd;
+    border-radius:50px; padding:14px; font-size:15px; font-weight:500;
+    font-family:'DM Sans',sans-serif; cursor:pointer; transition:all .15s;
+  }
+
+  .btn-deconnexion:active { transform:scale(0.97); }
+
+  /* VIDE */
+  .vide {
+    text-align:center; padding:40px 20px;
+    color:var(--texte-doux);
+  }
+
+  /* NAV BAS */
+  .bottom-nav {
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--blanc); border-top:1px solid rgba(0,0,0,0.08);
+    display:flex; z-index:100;
+  }
+  .nav-item {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:10px 0 8px; cursor:pointer; border:none;
+    background:none; font-family:'DM Sans',sans-serif; position:relative;
+  }
+  .nav-icon { font-size:22px; margin-bottom:3px; }
+  .nav-label { font-size:10px; color:#aaa; }
+  .nav-item.active .nav-label { color:var(--vert); font-weight:500; }
+  .nav-item.active::after {
+    content:''; position:absolute; bottom:0;
+    width:28px; height:2px; background:var(--vert);
+    border-radius:2px 2px 0 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="header-titre" id="headerTitre">Mon compte</span>
+</header>
+
+<!-- ÉCRAN 1 : AUTH -->
+<div class="ecran actif" id="ecranAuth">
+  <div class="auth-container">
+
+    <div class="auth-tabs">
+      <button class="auth-tab actif" id="tabConnexion" onclick="basculerAuth('connexion')">
+        Se connecter
+      </button>
+      <button class="auth-tab" id="tabInscription" onclick="basculerAuth('inscription')">
+        Créer un compte
+      </button>
+    </div>
+
+    <!-- CONNEXION -->
+    <div id="formConnexion" class="auth-card">
+      <div class="auth-titre">Bon retour 👋</div>
+      <div class="auth-sub">Connectez-vous pour suivre vos commandes</div>
+      <div class="auth-erreur" id="erreurConnexion"></div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="loginEmail" type="email" placeholder="marie@email.fr" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mot de passe</label>
+        <input class="form-input" id="loginMdp" type="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-principal" id="btnConnexion" onclick="seConnecter()">
+        Se connecter
+      </button>
+      <p style="text-align:center;font-size:13px;color:var(--texte-doux);margin-top:16px;cursor:pointer;" onclick="basculerAuth('inscription')">
+        Pas encore de compte ? <span style="color:var(--vert);font-weight:500;">S'inscrire</span>
+      </p>
+    </div>
+
+    <!-- INSCRIPTION -->
+    <div id="formInscription" class="auth-card" style="display:none">
+      <div class="auth-titre">Créer un compte</div>
+      <div class="auth-sub">Commandez et suivez vos achats facilement</div>
+      <div class="auth-erreur" id="erreurInscription"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Prénom</label>
+          <input class="form-input" id="regPrenom" type="text" placeholder="Marie" autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nom</label>
+          <input class="form-input" id="regNom" type="text" placeholder="Dupont" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="regEmail" type="email" placeholder="marie@email.fr" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Téléphone</label>
+        <input class="form-input" id="regTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mot de passe</label>
+        <input class="form-input" id="regMdp" type="password" placeholder="Minimum 6 caractères" autocomplete="new-password">
+      </div>
+      <button class="btn-principal" id="btnInscription" onclick="sInscrire()">
+        Créer mon compte
+      </button>
+      <p style="text-align:center;font-size:13px;color:var(--texte-doux);margin-top:16px;cursor:pointer;" onclick="basculerAuth('connexion')">
+        Déjà un compte ? <span style="color:var(--vert);font-weight:500;">Se connecter</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ÉCRAN 2 : PROFIL -->
+<div class="ecran" id="ecranProfil">
+
+  <div class="profil-header">
+    <div class="avatar" id="profilAvatar">?</div>
+    <div class="profil-nom" id="profilNom">Chargement...</div>
+    <div class="profil-email" id="profilEmail"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">Mes commandes</div>
+    <div id="mesCommandes">
+      <div class="vide">
+        <p style="font-size:32px">📦</p>
+        <p style="margin-top:8px;font-size:14px;">Chargement...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">Mon compte</div>
+    <div class="menu-item" onclick="voirInfos()">
+      <div class="menu-icone">👤</div>
+      <span class="menu-label">Mes informations</span>
+      <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item" onclick="voirAdresses()">
+      <div class="menu-icone">📍</div>
+      <span class="menu-label">Mes adresses</span>
+      <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item" onclick="voirNotifs()">
+      <div class="menu-icone">🔔</div>
+      <span class="menu-label">Notifications</span>
+      <span class="menu-arrow">›</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">Aide</div>
+    <div class="menu-item">
+      <div class="menu-icone">💬</div>
+      <span class="menu-label">Contacter la boutique</span>
+      <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icone">📋</div>
+      <span class="menu-label">Conditions d'utilisation</span>
+      <span class="menu-arrow">›</span>
+    </div>
+  </div>
+
+  <button class="btn-deconnexion" onclick="seDeconnecter()">
+    Se déconnecter
+  </button>
+
+</div>
+
+<!-- NAV BAS -->
+<nav class="bottom-nav">
+  <button class="nav-item" onclick="window.location='index.html'">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Accueil</span>
+  </button>
+  <button class="nav-item" onclick="window.location='catalogue.html'">
+    <span class="nav-icon">🛍️</span>
+    <span class="nav-label">Boutique</span>
+  </button>
+  <button class="nav-item" onclick="window.location='panier.html'">
+    <span class="nav-icon">🛒</span>
+    <span class="nav-label">Panier</span>
+  </button>
+  <button class="nav-item active">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Compte</span>
+  </button>
+</nav>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+let sessionToken = null;
+let utilisateur = null;
+
+async function sbAuth(endpoint, body) {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function sb(table, params='', method='GET', body=null) {
+  const headers = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${sessionToken || SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation',
+  };
+  const opts = { method, headers };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, opts);
+  return r.json();
+}
+
+// ── INIT ──────────────────────────────────────────────
+function init() {
+  const session = localStorage.getItem('session_client');
+  if (session) {
+    try {
+      const data = JSON.parse(session);
+      sessionToken = data.access_token;
+      utilisateur = data.user;
+      afficherProfil();
+    } catch(e) {
+      localStorage.removeItem('session_client');
+    }
+  }
+}
+
+// ── AUTH ──────────────────────────────────────────────
+function basculerAuth(mode) {
+  document.getElementById('formConnexion').style.display = mode === 'connexion' ? 'block' : 'none';
+  document.getElementById('formInscription').style.display = mode === 'inscription' ? 'block' : 'none';
+  document.getElementById('tabConnexion').classList.toggle('actif', mode === 'connexion');
+  document.getElementById('tabInscription').classList.toggle('actif', mode === 'inscription');
+}
+
+async function seConnecter() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const mdp = document.getElementById('loginMdp').value;
+  const erreur = document.getElementById('erreurConnexion');
+  const btn = document.getElementById('btnConnexion');
+
+  if (!email || !mdp) {
+    afficherErreur(erreur, 'Remplissez tous les champs');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Connexion...';
+  erreur.classList.remove('visible');
+
+  const data = await sbAuth('token?grant_type=password', { email, password: mdp });
+
+  if (data.error || data.error_description) {
+    afficherErreur(erreur, 'Email ou mot de passe incorrect');
+    btn.disabled = false;
+    btn.textContent = 'Se connecter';
+    return;
+  }
+
+  sessionToken = data.access_token;
+  utilisateur = data.user;
+  localStorage.setItem('session_client', JSON.stringify(data));
+  afficherProfil();
+}
+
+async function sInscrire() {
+  const prenom = document.getElementById('regPrenom').value.trim();
+  const nom = document.getElementById('regNom').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const tel = document.getElementById('regTel').value.trim();
+  const mdp = document.getElementById('regMdp').value;
+  const erreur = document.getElementById('erreurInscription');
+  const btn = document.getElementById('btnInscription');
+
+  if (!prenom || !nom || !email || !mdp) {
+    afficherErreur(erreur, 'Remplissez tous les champs obligatoires');
+    return;
+  }
+
+  if (mdp.length < 6) {
+    afficherErreur(erreur, 'Le mot de passe doit faire au moins 6 caractères');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Création...';
+  erreur.classList.remove('visible');
+
+  const data = await sbAuth('signup', {
+    email,
+    password: mdp,
+    data: { prenom, nom, telephone: tel }
+  });
+
+  if (data.error || data.error_description) {
+    afficherErreur(erreur, data.error_description || 'Erreur lors de la création du compte');
+    btn.disabled = false;
+    btn.textContent = 'Créer mon compte';
+    return;
+  }
+
+  // Créer le profil client dans notre table
+  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
+  const commercantId = commercants?.[0]?.id;
+
+  if (commercantId) {
+    await sb('clients', '', 'POST', {
+      commercant_id: commercantId,
+      email, nom, prenom, telephone: tel,
+    });
+  }
+
+  sessionToken = data.access_token || data.session?.access_token;
+  utilisateur = data.user;
+
+  if (sessionToken) {
+    localStorage.setItem('session_client', JSON.stringify({
+      access_token: sessionToken,
+      user: utilisateur
+    }));
+    afficherProfil();
+  } else {
+    afficherErreur(erreur, '✅ Compte créé ! Vérifiez votre email pour confirmer.');
+    btn.disabled = false;
+    btn.textContent = 'Créer mon compte';
+  }
+}
+
+function seDeconnecter() {
+  localStorage.removeItem('session_client');
+  sessionToken = null;
+  utilisateur = null;
+  document.getElementById('ecranProfil').classList.remove('actif');
+  document.getElementById('ecranAuth').classList.add('actif');
+}
+
+// ── PROFIL ────────────────────────────────────────────
+async function afficherProfil() {
+  document.getElementById('ecranAuth').classList.remove('actif');
+  document.getElementById('ecranProfil').classList.add('actif');
+
+  const meta = utilisateur?.user_metadata || {};
+  const prenom = meta.prenom || '';
+  const nom = meta.nom || '';
+  const email = utilisateur?.email || '';
+  const initiales = ((prenom[0] || '') + (nom[0] || '')).toUpperCase() || email[0].toUpperCase();
+
+  document.getElementById('profilAvatar').textContent = initiales;
+  document.getElementById('profilNom').textContent = prenom && nom ? `${prenom} ${nom}` : email;
+  document.getElementById('profilEmail').textContent = email;
+
+  chargerCommandes();
+}
+
+async function chargerCommandes() {
+  const container = document.getElementById('mesCommandes');
+
+  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
+  const commercantId = commercants?.[0]?.id;
+  if (!commercantId) return;
+
+  const email = utilisateur?.email;
+  const clients = await sb('clients', `?commercant_id=eq.${commercantId}&email=eq.${encodeURIComponent(email)}&select=id`);
+  const clientId = clients?.[0]?.id;
+
+  if (!clientId) {
+    container.innerHTML = `<div class="vide"><p style="font-size:32px">🛒</p><p style="margin-top:8px;font-size:14px;">Aucune commande pour l'instant</p></div>`;
+    return;
+  }
+
+  const commandes = await sb('commandes', `?client_id=eq.${clientId}&order=created_at.desc&limit=10`);
+
+  if (!commandes || commandes.length === 0) {
+    container.innerHTML = `<div class="vide"><p style="font-size:32px">🛒</p><p style="margin-top:8px;font-size:14px;">Aucune commande pour l'instant</p><p style="font-size:13px;color:var(--texte-doux);margin-top:4px;">Vos commandes apparaîtront ici</p></div>`;
+    return;
+  }
+
+  const statutLabels = {
+    nouvelle: 'En attente',
+    en_preparation: 'En préparation',
+    prete: 'Prête à retirer',
+    remise: 'Récupérée',
+    annulee: 'Annulée',
+    noshow: 'No-show',
+  };
+
+  container.innerHTML = commandes.map(c => {
+    const date = new Date(c.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
+    const statut = c.statut || 'nouvelle';
+    const label = statutLabels[statut] || statut;
+    return `
+      <div class="commande-item">
+        <div class="commande-item-header">
+          <span class="commande-numero">${c.numero}</span>
+          <span class="commande-montant">${(c.total_ttc||0).toFixed(2).replace('.',',')} €</span>
+        </div>
+        <div class="commande-meta">
+          <span>${date}</span>
+          <span>·</span>
+          <span class="commande-statut statut-${statut}">${label}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function afficherErreur(el, msg) {
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function voirInfos() { alert('Modification des informations — bientôt disponible'); }
+function voirAdresses() { alert('Gestion des adresses — bientôt disponible'); }
+function voirNotifs() { alert('Paramètres notifications — bientôt disponible'); }
+
+init();
+</script>
+</body>
+</html>
