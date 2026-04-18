@@ -446,9 +446,14 @@
 <script>
 (function() {
   const MOT_DE_PASSE = 'primeur2026';
-  const cle = 'acces_autorise';
+  const cle = 'acces_commercant';
   if (sessionStorage.getItem(cle) !== 'oui') {
-    window.location.href = 'index.html';
+    const mdp = prompt('🔒 Espace Primeur\n\nMot de passe commerçant :');
+    if (mdp !== MOT_DE_PASSE) {
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;flex-direction:column;gap:16px;background:#1a2e26;color:white;"><p style="font-size:20px;">🔒 Accès refusé</p><button onclick="location.reload()" style="background:#c9a84c;color:#1a2e26;border:none;padding:12px 24px;border-radius:50px;font-size:15px;cursor:pointer;">Réessayer</button></div>';
+      return;
+    }
+    sessionStorage.setItem(cle, 'oui');
   }
 })();
 </script>
