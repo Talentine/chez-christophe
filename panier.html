@@ -712,7 +712,7 @@ async function confirmerCommande() {
       document.getElementById('livraisonVille').value.trim()
     ) : null;
 
-    await sb('commandes', '', 'POST', {
+    const cmdResp = await sb('commandes', '', 'POST', {
       commercant_id: commercantId,
       client_id: clientId,
       numero,
@@ -727,6 +727,23 @@ async function confirmerCommande() {
       adresse_livraison: adresseLiv,
       empreinte_payment_method_id: stripePaymentMethodId || null,
     });
+
+    // Insérer les lignes de commande
+    const commandeId = Array.isArray(cmdResp) ? cmdResp[0]?.id : cmdResp?.id;
+    if (commandeId) {
+      for (const p of panier) {
+        await sb('commande_lignes', '', 'POST', {
+          commande_id: commandeId,
+          produit_base_id: p.id || null,
+          nom_produit: p.nom,
+          unite: p.unite,
+          quantite: p.qte,
+          prix_unitaire: p.prix_marche_indicatif || 0,
+          tva_pct: 5.50,
+          total_ligne: (p.prix_marche_indicatif || 0) * p.qte,
+        });
+      }
+    }
 
   } catch(e) { console.log('Erreur commande:', e); }
 
