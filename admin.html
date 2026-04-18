@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Primeur SaaS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
+    --creme: #f5f0e8; --creme-fonce: #ede6d6;
+    --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
+    --rouge: #e74c3c; --bleu: #2980b9; --orange: #e67e22;
+    --vert-ok: #27ae60;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:#0f1a14; color:white; min-height:100vh; }
+
+  /* LOGIN */
+  .login-screen {
+    display:flex; align-items:center; justify-content:center;
+    min-height:100vh; padding:20px;
+  }
+
+  .login-card {
+    background:#1a2e26; border-radius:20px; padding:40px 32px;
+    width:100%; max-width:380px; border:1px solid rgba(255,255,255,0.1);
+  }
+
+  .login-logo { font-size:32px; margin-bottom:8px; text-align:center; }
+  .login-titre {
+    font-family:'Playfair Display',serif; font-size:24px;
+    text-align:center; margin-bottom:4px;
+  }
+  .login-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; margin-bottom:28px; }
+
+  .login-input {
+    width:100%; padding:13px 16px; background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15); border-radius:12px;
+    color:white; font-size:15px; font-family:'DM Sans',sans-serif;
+    outline:none; margin-bottom:12px; transition:border-color .15s;
+  }
+  .login-input:focus { border-color:var(--or); }
+  .login-input::placeholder { color:rgba(255,255,255,0.3); }
+
+  .btn-login {
+    width:100%; background:var(--or); color:var(--vert-fonce);
+    border:none; border-radius:50px; padding:14px; font-size:15px;
+    font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer;
+    transition:all .15s;
+  }
+  .btn-login:active { transform:scale(0.97); }
+
+  /* DASHBOARD */
+  .dashboard { display:none; }
+  .dashboard.actif { display:block; }
+
+  /* SIDEBAR */
+  .sidebar {
+    position:fixed; left:0; top:0; bottom:0; width:220px;
+    background:#1a2e26; border-right:1px solid rgba(255,255,255,0.08);
+    padding:24px 0; z-index:100;
+  }
+
+  .sidebar-logo {
+    padding:0 20px 24px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    margin-bottom:16px;
+  }
+
+  .sidebar-logo-titre {
+    font-family:'Playfair Display',serif; font-size:16px; color:white;
+  }
+
+  .sidebar-logo-sub { font-size:11px; color:var(--or); }
+
+  .nav-link {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 20px; font-size:14px; color:rgba(255,255,255,0.6);
+    cursor:pointer; transition:all .15s; border-radius:0;
+    border-left:3px solid transparent;
+  }
+
+  .nav-link:hover { background:rgba(255,255,255,0.05); color:white; }
+  .nav-link.actif { color:white; border-left-color:var(--or); background:rgba(201,168,76,0.1); }
+  .nav-link-icon { font-size:18px; }
+
+  .sidebar-footer {
+    position:absolute; bottom:20px; left:0; right:0; padding:0 20px;
+  }
+
+  .btn-deco {
+    width:100%; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.5);
+    border:1px solid rgba(255,255,255,0.1); border-radius:10px;
+    padding:10px; font-size:13px; font-family:'DM Sans',sans-serif;
+    cursor:pointer; transition:all .15s;
+  }
+
+  /* MAIN */
+  .main { margin-left:220px; padding:28px; min-height:100vh; }
+
+  .page-titre {
+    font-family:'Playfair Display',serif; font-size:26px;
+    margin-bottom:6px;
+  }
+
+  .page-sub { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:28px; }
+
+  /* STATS GLOBALES */
+  .stats-grid {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+    margin-bottom:28px;
+  }
+
+  .stat-card {
+    background:#1a2e26; border-radius:16px; padding:20px;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-card-val { font-size:28px; font-weight:500; margin-bottom:4px; }
+  .stat-card-lbl { font-size:12px; color:rgba(255,255,255,0.5); }
+  .stat-card-delta { font-size:12px; margin-top:6px; }
+  .delta-up { color:#27ae60; }
+  .delta-down { color:var(--rouge); }
+
+  /* TABLE COMMERCANTS */
+  .table-card {
+    background:#1a2e26; border-radius:16px;
+    border:1px solid rgba(255,255,255,0.08); overflow:hidden;
+    margin-bottom:20px;
+  }
+
+  .table-header {
+    padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+
+  .table-titre { font-size:16px; font-weight:500; }
+
+  .btn-ajouter {
+    background:var(--or); color:var(--vert-fonce); border:none;
+    border-radius:50px; padding:8px 16px; font-size:13px;
+    font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer;
+  }
+
+  table { width:100%; border-collapse:collapse; }
+  th {
+    padding:12px 20px; text-align:left; font-size:11px;
+    font-weight:500; color:rgba(255,255,255,0.4);
+    text-transform:uppercase; letter-spacing:0.5px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+
+  td {
+    padding:14px 20px; font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(255,255,255,0.03); }
+
+  .badge {
+    display:inline-block; padding:3px 10px; border-radius:20px;
+    font-size:11px; font-weight:500;
+  }
+  .badge-actif { background:rgba(39,174,96,0.2); color:#27ae60; }
+  .badge-inactif { background:rgba(231,76,60,0.2); color:#e74c3c; }
+  .badge-starter { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); }
+  .badge-pro { background:rgba(201,168,76,0.2); color:var(--or); }
+  .badge-premium { background:rgba(155,89,182,0.2); color:#9b59b6; }
+
+  .action-btn {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+    color:rgba(255,255,255,0.7); border-radius:8px; padding:5px 12px;
+    font-size:12px; cursor:pointer; font-family:'DM Sans',sans-serif;
+    transition:all .15s; margin-right:4px;
+  }
+  .action-btn:hover { background:rgba(255,255,255,0.12); color:white; }
+  .action-btn.danger { color:#e74c3c; border-color:rgba(231,76,60,0.3); }
+
+  /* MRR */
+  .mrr-section {
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;
+  }
+
+  .mrr-card {
+    background:#1a2e26; border-radius:16px; padding:20px;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+
+  .mrr-titre { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+  .mrr-val { font-size:32px; font-weight:500; color:var(--or); }
+  .mrr-sub { font-size:12px; color:rgba(255,255,255,0.4); margin-top:4px; }
+
+  /* PAGES */
+  .page { display:none; }
+  .page.actif { display:block; }
+
+  /* CATALOGUE */
+  .catalogue-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:12px;
+  }
+
+  .produit-admin-card {
+    background:#1a2e26; border-radius:12px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+
+  .produit-admin-img {
+    width:100%; height:120px; object-fit:cover;
+    background:rgba(255,255,255,0.05);
+    display:flex; align-items:center; justify-content:center;
+    font-size:36px;
+  }
+
+  .produit-admin-img img { width:100%; height:100%; object-fit:cover; }
+
+  .produit-admin-body { padding:10px 12px; }
+  .produit-admin-nom { font-size:13px; font-weight:500; margin-bottom:2px; }
+  .produit-admin-prix { font-size:12px; color:rgba(255,255,255,0.5); }
+
+  /* RECHERCHE */
+  .search-bar {
+    display:flex; align-items:center; gap:12px; margin-bottom:20px;
+  }
+
+  .search-input {
+    flex:1; padding:10px 16px; background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12); border-radius:10px;
+    color:white; font-size:14px; font-family:'DM Sans',sans-serif; outline:none;
+  }
+
+  .search-input::placeholder { color:rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">🌿</div>
+    <div class="login-titre">Primeur SaaS</div>
+    <div class="login-sub">Espace administration — Paul</div>
+    <input class="login-input" type="email" id="adminEmail" placeholder="Email admin" value="paulpromerieultpro14@gmail.com">
+    <input class="login-input" type="password" id="adminMdp" placeholder="Mot de passe" id="adminMdp">
+    <button class="btn-login" onclick="seConnecterAdmin()">Accéder au dashboard</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-titre">🌿 Primeur SaaS</div>
+      <div class="sidebar-logo-sub">Back-office admin</div>
+    </div>
+
+    <div class="nav-link actif" onclick="allerPage('overview')" id="nav-overview">
+      <span class="nav-link-icon">📊</span> Vue d'ensemble
+    </div>
+    <div class="nav-link" onclick="allerPage('commercants')" id="nav-commercants">
+      <span class="nav-link-icon">🏪</span> Commerçants
+    </div>
+    <div class="nav-link" onclick="allerPage('catalogue')" id="nav-catalogue">
+      <span class="nav-link-icon">🥕</span> Catalogue base
+    </div>
+    <div class="nav-link" onclick="allerPage('commandes')" id="nav-commandes">
+      <span class="nav-link-icon">📦</span> Commandes
+    </div>
+    <div class="nav-link" onclick="allerPage('revenus')" id="nav-revenus">
+      <span class="nav-link-icon">💰</span> Revenus SaaS
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-deco" onclick="seDeconnecterAdmin()">Se déconnecter</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- PAGE OVERVIEW -->
+    <div class="page actif" id="page-overview">
+      <div class="page-titre">Vue d'ensemble</div>
+      <div class="page-sub" id="dateOverview"></div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-val" id="statCommerçants">—</div>
+          <div class="stat-card-lbl">Commerçants actifs</div>
+          <div class="stat-card-delta delta-up" id="deltaCommerçants"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="statMRR" style="color:var(--or)">—</div>
+          <div class="stat-card-lbl">MRR (revenus mensuels)</div>
+          <div class="stat-card-delta delta-up" id="deltaMRR"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="statCommandes">—</div>
+          <div class="stat-card-lbl">Commandes ce mois</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="statClients">—</div>
+          <div class="stat-card-lbl">Clients enregistrés</div>
+        </div>
+      </div>
+
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">MRR par plan</div>
+          <div id="mrrParPlan"></div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Activité récente</div>
+          <div id="activiteRecente"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE COMMERCANTS -->
+    <div class="page" id="page-commercants">
+      <div class="page-titre">Commerçants</div>
+      <div class="page-sub">Gérez vos boutiques clientes</div>
+
+      <div class="search-bar">
+        <input class="search-input" placeholder="🔍 Rechercher un commerçant..." oninput="filtrerCommercants(this.value)">
+        <button class="btn-ajouter" onclick="ajouterCommercant()">+ Nouveau commerçant</button>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Boutique</th>
+              <th>Ville</th>
+              <th>Plan</th>
+              <th>Statut</th>
+              <th>Commandes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableCommercants">
+            <tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAGE CATALOGUE -->
+    <div class="page" id="page-catalogue">
+      <div class="page-titre">Catalogue base</div>
+      <div class="page-sub">121 produits disponibles pour tous les commerçants</div>
+
+      <div class="search-bar">
+        <input class="search-input" placeholder="🔍 Rechercher un produit..." oninput="filtrerProduits(this.value)">
+        <button class="btn-ajouter" onclick="ajouterProduit()">+ Ajouter un produit</button>
+      </div>
+
+      <div class="catalogue-grid" id="catalogueGrid">
+        <div style="color:rgba(255,255,255,0.4);padding:20px;">Chargement...</div>
+      </div>
+    </div>
+
+    <!-- PAGE COMMANDES -->
+    <div class="page" id="page-commandes">
+      <div class="page-titre">Toutes les commandes</div>
+      <div class="page-sub">Vue globale de toutes les boutiques</div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Numéro</th>
+              <th>Boutique</th>
+              <th>Client</th>
+              <th>Montant</th>
+              <th>Statut</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="tableCommandes">
+            <tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAGE REVENUS -->
+    <div class="page" id="page-revenus">
+      <div class="page-titre">Revenus SaaS</div>
+      <div class="page-sub">Abonnements et facturation</div>
+
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:var(--or)" id="revMRR">—</div>
+          <div class="stat-card-lbl">MRR actuel</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="revARR">—</div>
+          <div class="stat-card-lbl">ARR (annuel projeté)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="revActifs">—</div>
+          <div class="stat-card-lbl">Abonnements actifs</div>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <span class="table-titre">Détail par abonnement</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Commerçant</th>
+              <th>Plan</th>
+              <th>Mensuel</th>
+              <th>Depuis</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="tableRevenus">
+            <tr><td colspan="5" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+const ADMIN_PASSWORD = 'admin2026paul';
+
+let tousCommercants = [];
+let tousProduits = [];
+let sessionAdmin = null;
+
+async function sb(table, params='') {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${sessionAdmin || SUPABASE_KEY}`,
+    }
+  });
+  return r.json();
+}
+
+// ── LOGIN ─────────────────────────────────────────────
+async function seConnecterAdmin() {
+  const email = document.getElementById('adminEmail').value;
+  const mdp = document.getElementById('adminMdp').value;
+
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password: mdp })
+  });
+  const data = await r.json();
+
+  if (data.access_token) {
+    sessionAdmin = data.access_token;
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('actif');
+    chargerDashboard();
+  } else {
+    alert('Email ou mot de passe incorrect');
+  }
+}
+
+function seDeconnecterAdmin() {
+  sessionAdmin = null;
+  document.getElementById('dashboard').classList.remove('actif');
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+// ── NAVIGATION ────────────────────────────────────────
+function allerPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('actif'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('actif'));
+  document.getElementById(`page-${id}`)?.classList.add('actif');
+  document.getElementById(`nav-${id}`)?.classList.add('actif');
+
+  if (id === 'commercants') chargerCommercants();
+  if (id === 'catalogue') chargerCatalogue();
+  if (id === 'commandes') chargerCommandes();
+  if (id === 'revenus') chargerRevenus();
+}
+
+// ── DASHBOARD OVERVIEW ────────────────────────────────
+async function chargerDashboard() {
+  const now = new Date();
+  document.getElementById('dateOverview').textContent =
+    now.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  const [commercants, commandes, clients, plans] = await Promise.all([
+    sb('commercants', '?select=*,plans(nom,prix_mensuel)'),
+    sb('commandes', '?select=id,created_at&order=created_at.desc&limit=100'),
+    sb('clients', '?select=id'),
+    sb('plans', '?select=*'),
+  ]);
+
+  tousCommercants = commercants || [];
+
+  // Stats
+  const actifs = tousCommercants.filter(c => c.actif && c.abonnement_actif);
+  document.getElementById('statCommerçants').textContent = actifs.length;
+
+  const mrr = tousCommercants
+    .filter(c => c.abonnement_actif)
+    .reduce((s, c) => s + (c.plans?.prix_mensuel || 0), 0);
+  document.getElementById('statMRR').textContent = mrr.toFixed(0) + ' €';
+
+  // Commandes ce mois
+  const debutMois = new Date(now.getFullYear(), now.getMonth(), 1);
+  const cmdMois = (commandes || []).filter(c => new Date(c.created_at) >= debutMois);
+  document.getElementById('statCommandes').textContent = cmdMois.length;
+  document.getElementById('statClients').textContent = (clients || []).length;
+
+  // MRR par plan
+  const planStats = {};
+  tousCommercants.filter(c => c.abonnement_actif).forEach(c => {
+    const plan = c.plans?.nom || 'starter';
+    const prix = c.plans?.prix_mensuel || 0;
+    planStats[plan] = (planStats[plan] || 0) + prix;
+  });
+
+  document.getElementById('mrrParPlan').innerHTML = Object.entries(planStats).map(([plan, val]) => `
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
+      <span style="color:rgba(255,255,255,0.7);text-transform:capitalize;">${plan}</span>
+      <span style="color:var(--or);font-weight:500;">${val.toFixed(0)} €/mois</span>
+    </div>
+  `).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucun abonnement actif</p>';
+
+  // Activité récente
+  document.getElementById('activiteRecente').innerHTML = (commandes || []).slice(0,5).map(c => {
+    const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+    return `<div style="font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);">📦 Nouvelle commande · ${date}</div>`;
+  }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucune commande récente</p>';
+}
+
+// ── COMMERÇANTS ───────────────────────────────────────
+async function chargerCommercants() {
+  if (tousCommercants.length === 0) {
+    tousCommercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)') || [];
+  }
+  renderTableCommercants(tousCommercants);
+}
+
+function renderTableCommercants(data) {
+  const tbody = document.getElementById('tableCommercants');
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun commerçant</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.map(c => {
+    const plan = c.plans?.nom || 'starter';
+    const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
+    const statutClass = c.actif ? 'badge-actif' : 'badge-inactif';
+    const statutTxt = c.actif ? 'Actif' : 'Inactif';
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:500;">${c.nom_boutique}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${c.email}</div>
+        </td>
+        <td style="color:rgba(255,255,255,0.6);">${c.ville || '—'}</td>
+        <td><span class="badge ${planClass}">${plan}</span></td>
+        <td><span class="badge ${statutClass}">${statutTxt}</span></td>
+        <td style="color:rgba(255,255,255,0.6);">—</td>
+        <td>
+          <button class="action-btn" onclick="voirBoutique('${c.slug}')">Voir</button>
+          <button class="action-btn" onclick="modifierPlan('${c.id}')">Plan</button>
+          <button class="action-btn danger" onclick="toggleActif('${c.id}',${!c.actif})">${c.actif ? 'Suspendre' : 'Réactiver'}</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filtrerCommercants(q) {
+  const filtres = q ? tousCommercants.filter(c =>
+    c.nom_boutique.toLowerCase().includes(q.toLowerCase()) ||
+    c.ville?.toLowerCase().includes(q.toLowerCase())
+  ) : tousCommercants;
+  renderTableCommercants(filtres);
+}
+
+async function toggleActif(id, actif) {
+  if (!confirm(`${actif ? 'Réactiver' : 'Suspendre'} cette boutique ?`)) return;
+  await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${sessionAdmin}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ actif })
+  });
+  tousCommercants = [];
+  chargerCommercants();
+}
+
+function voirBoutique(slug) {
+  window.open(`https://project-8mrfn.vercel.app?shop=${slug}`, '_blank');
+}
+
+function modifierPlan(id) {
+  const plan = prompt('Nouveau plan (starter / pro / premium) :');
+  if (!plan) return;
+  alert(`Plan "${plan}" sera appliqué à la prochaine session. (Stripe Connect à brancher)`);
+}
+
+function ajouterCommercant() {
+  alert('Formulaire d\'ajout commerçant — bientôt disponible avec onboarding automatique');
+}
+
+// ── CATALOGUE ─────────────────────────────────────────
+async function chargerCatalogue() {
+  if (tousProduits.length === 0) {
+    tousProduits = await sb('produits_base', '?select=*,categories(nom,emoji)&order=nom') || [];
+  }
+  renderCatalogue(tousProduits);
+}
+
+function renderCatalogue(produits) {
+  document.getElementById('catalogueGrid').innerHTML = produits.map(p => `
+    <div class="produit-admin-card">
+      <div class="produit-admin-img">
+        ${p.photo_url
+          ? `<img src="${p.photo_url}" alt="${p.nom}" loading="lazy">`
+          : `<span>${p.categories?.emoji || '🌿'}</span>`}
+      </div>
+      <div class="produit-admin-body">
+        <div class="produit-admin-nom">${p.nom}</div>
+        <div class="produit-admin-prix">${(p.prix_marche_indicatif||0).toFixed(2)}€ / ${p.unite}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filtrerProduits(q) {
+  const filtres = q ? tousProduits.filter(p => p.nom.toLowerCase().includes(q.toLowerCase())) : tousProduits;
+  renderCatalogue(filtres);
+}
+
+function ajouterProduit() {
+  alert('Ajout de produit — bientôt disponible');
+}
+
+// ── COMMANDES GLOBALES ────────────────────────────────
+async function chargerCommandes() {
+  const commandes = await sb('commandes', '?select=*,commercants(nom_boutique)&order=created_at.desc&limit=50') || [];
+
+  const tbody = document.getElementById('tableCommandes');
+  const statutLabels = { nouvelle:'En attente', en_preparation:'En prépa', prete:'Prête', remise:'Récupérée', annulee:'Annulée' };
+  const statutColors = { nouvelle:'#2980b9', en_preparation:'#e67e22', prete:'#27ae60', remise:'rgba(255,255,255,0.3)', annulee:'#e74c3c' };
+
+  tbody.innerHTML = commandes.map(c => {
+    const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+    const statut = c.statut || 'nouvelle';
+    const color = statutColors[statut] || '#aaa';
+    return `
+      <tr>
+        <td style="font-weight:500;">${c.numero || '—'}</td>
+        <td style="color:rgba(255,255,255,0.7);">${c.commercants?.nom_boutique || '—'}</td>
+        <td style="color:rgba(255,255,255,0.5);">—</td>
+        <td style="color:var(--or);">${(c.total_ttc||0).toFixed(2)} €</td>
+        <td><span style="color:${color};font-size:12px;">${statutLabels[statut]||statut}</span></td>
+        <td style="color:rgba(255,255,255,0.4);font-size:12px;">${date}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ── REVENUS ───────────────────────────────────────────
+async function chargerRevenus() {
+  const commercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_actif=eq.true') || [];
+
+  const mrr = commercants.reduce((s,c) => s + (c.plans?.prix_mensuel || 0), 0);
+  document.getElementById('revMRR').textContent = mrr.toFixed(0) + ' €';
+  document.getElementById('revARR').textContent = (mrr * 12).toFixed(0) + ' €';
+  document.getElementById('revActifs').textContent = commercants.length;
+
+  document.getElementById('tableRevenus').innerHTML = commercants.map(c => {
+    const plan = c.plans?.nom || '—';
+    const prix = c.plans?.prix_mensuel || 0;
+    const debut = c.abonnement_debut ? new Date(c.abonnement_debut).toLocaleDateString('fr-FR') : '—';
+    const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:500;">${c.nom_boutique}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${c.email}</div>
+        </td>
+        <td><span class="badge ${planClass}">${plan}</span></td>
+        <td style="color:var(--or);font-weight:500;">${prix} €/mois</td>
+        <td style="color:rgba(255,255,255,0.5);font-size:13px;">${debut}</td>
+        <td><span class="badge badge-actif">Actif</span></td>
+      </tr>
+    `;
+  }).join('') || '<tr><td colspan="5" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun abonnement actif</td></tr>';
+}
+
+// Init
+document.getElementById('adminMdp').addEventListener('keypress', e => {
+  if (e.key === 'Enter') seConnecterAdmin();
+});
+</script>
+</body>
+</html>
