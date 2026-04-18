@@ -800,26 +800,79 @@ function renderCommandes() {
     : toutesLesCommandes;
 
   if (filtrees.length === 0) {
-    liste.innerHTML = `<div style="text-align:center;padding:40px;color:var(--texte-doux)">
-      <p style="font-size:32px">✅</p><p style="margin-top:8px">Aucune commande</p></div>`;
+    liste.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">✅</p><p style="margin-top:8px">Aucune commande</p></div>';
     return;
   }
 
-  const now = new Date();
-  const today = `Aujourd'hui — ${JOURS[now.getDay()]} ${now.getDate()} ${MOIS[now.getMonth()]}`;
+  // ── ENCART DERNIÈRE COMMANDE ─────────────────────────
+  const derniere = toutesLesCommandes.filter(c => c.statut === 'nouvelle')[0] || toutesLesCommandes[0];
+  let encart = '';
+  if (derniere) {
+    const drDate = derniere.date_retrait ? new Date(derniere.date_retrait) : null;
+    const drLabel = drDate ? (JOURS[drDate.getDay()] + ' ' + drDate.getDate() + ' ' + MOIS[drDate.getMonth()] + ' · ' + drDate.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})) : '—';
+    const typeIcon = derniere.type === 'livraison' ? '🚚' : '📍';
+    encart = '<div style="background:linear-gradient(135deg,#1a2e26,#2d4a3e);border-radius:14px;padding:14px 16px;margin-bottom:12px;color:white;">'
+      + '<div style="font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">🔔 Dernière commande</div>'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'
+      + '<div>'
+      + '<div style="font-size:15px;font-weight:500;">' + derniere.client + '</div>'
+      + '<div style="font-size:13px;opacity:0.7;margin-top:3px;">' + typeIcon + ' ' + drLabel + '</div>'
+      + '</div>'
+      + '<div style="text-align:right;">'
+      + '<div style="font-size:16px;font-weight:500;color:#c9a84c;">' + derniere.montant + '</div>'
+      + '<div style="font-size:11px;opacity:0.6;margin-top:2px;">' + derniere.articles + ' articles</div>'
+      + '</div></div></div>';
+  }
 
-  const totalCmd = filtrees.reduce((s,c) => {
-    const m = parseFloat(c.montant.replace(',','.').replace('€',''));
-    return s + m;
-  }, 0);
+  // ── GROUPER PAR JOUR DE RETRAIT/LIVRAISON ─────────────
+  const groupes = {};
+  filtrees.forEach(c => {
+    let key, label;
+    if (c.date_retrait) {
+      const d = new Date(c.date_retrait);
+      const now = new Date();
+      const auj = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const dem = new Date(auj); dem.setDate(dem.getDate() + 1);
+      const dateRetrait = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      
+      if (dateRetrait.getTime() === auj.getTime()) {
+        label = "Aujourd'hui — " + JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()];
+      } else if (dateRetrait.getTime() === dem.getTime()) {
+        label = 'Demain — ' + JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()];
+      } else {
+        label = JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()];
+      }
+      // Utiliser la date locale pour la clé (pas UTC)
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      key = yyyy + '-' + mm + '-' + dd;
+    } else {
+      key = 'sans-date';
+      label = 'Date non définie';
+    }
+    if (!groupes[key]) groupes[key] = { label, commandes: [], total: 0 };
+    const montant = parseFloat(c.montant.replace(',','.').replace('€',''));
+    groupes[key].commandes.push(c);
+    groupes[key].total += montant;
+  });
 
-  liste.innerHTML = `
-    <div class="jour-header">
-      <span>${today}</span>
-      <span>${filtrees.length} cmd · ${totalCmd.toFixed(0)}€</span>
-    </div>
-    ${filtrees.map(c => renderCarteCommande(c)).join('')}
-  `;
+  // Trier par date croissante
+  const keysTriees = Object.keys(groupes).sort();
+  
+  let html = encart;
+  keysTriees.forEach(key => {
+    const g = groupes[key];
+    html += '<div class="jour-header">'
+      + '<span>' + g.label + '</span>'
+      + '<span>' + g.commandes.length + ' cmd · ' + g.total.toFixed(0) + '€</span>'
+      + '</div>';
+    html += g.commandes
+      .sort((a,b) => new Date(a.date_retrait) - new Date(b.date_retrait))
+      .map(c => renderCarteCommande(c)).join('');
+  });
+
+  liste.innerHTML = html;
 }
 
 function renderCarteCommande(c) {
@@ -1359,7 +1412,7 @@ async function demarrerRealtime() {
 
 async function chargerCommandesSupabase(commercantId) {
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=created_at.desc&limit=20&select=*,commande_lignes(*)', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=50&select=*,commande_lignes(*),clients(prenom,nom,telephone)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const commandes = await r.json();
@@ -1386,10 +1439,12 @@ async function chargerCommandesSupabase(commercantId) {
     }
 
     // Convertir pour l'affichage
+    console.log('Commandes chargées:', commandes.length);
+
     toutesLesCommandes = commandes.map(c => ({
       id: c.id,
       numero: c.numero,
-      client: c.client_nom || 'Client',
+      client: (c.clients?.prenom && c.clients?.nom) ? c.clients.prenom + ' ' + c.clients.nom[0] + '.' : (c.client_nom || 'Client'),
       heure: c.date_retrait ? new Date(c.date_retrait).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}) : '—',
       montant: (c.total_ttc || 0).toFixed(2).replace('.', ',') + '€',
       articles: c.commande_lignes?.length || 0,
@@ -1397,6 +1452,7 @@ async function chargerCommandesSupabase(commercantId) {
       type: c.type || 'retrait',
       note: c.note_client || null,
       adresse: c.adresse_livraison || null,
+      date_retrait: c.date_retrait || null,
       produits: (c.commande_lignes || []).map(l => ({
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
@@ -1404,7 +1460,16 @@ async function chargerCommandesSupabase(commercantId) {
       }))
     }));
 
+    // Forcer le rendu même si l'onglet n'est pas visible
     renderCommandes();
+    
+    // S'assurer que l'onglet commandes est visible si nouvelles commandes
+    if (nouvelles.length > 0) {
+      const tabCommandes = document.querySelector('[data-tab="commandes"]');
+      if (tabCommandes && !document.getElementById('content-commandes').classList.contains('active')) {
+        // Ne pas changer d'onglet automatiquement mais mettre à jour le badge
+      }
+    }
 
     // Mettre à jour les stats
     const total = commandes.reduce((s, c) => s + (c.total_ttc || 0), 0);
