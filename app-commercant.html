@@ -1246,8 +1246,107 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+
+// ── SUPABASE REALTIME — Nouvelles commandes ───────────────
+async function demarrerRealtime() {
+  try {
+    // Récupérer l'ID du commerçant
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.christophe-frais-caen&select=id', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    const commercantId = data?.[0]?.id;
+    if (!commercantId) return;
+
+    // Charger les vraies commandes depuis Supabase
+    await chargerCommandesSupabase(commercantId);
+
+    // Écouter les nouvelles commandes via polling toutes les 10 secondes
+    setInterval(async () => {
+      await chargerCommandesSupabase(commercantId);
+    }, 10000);
+
+  } catch(e) {
+    console.log('Realtime non disponible:', e);
+  }
+}
+
+async function chargerCommandesSupabase(commercantId) {
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=created_at.desc&limit=20&select=*,commande_lignes(*)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const commandes = await r.json();
+    if (!commandes || commandes.error) return;
+
+    // Vérifier s'il y a de nouvelles commandes
+    const nouvelles = commandes.filter(c => c.statut === 'nouvelle');
+    const ancienNbNouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
+
+    if (nouvelles.length > ancienNbNouvelles && ancienNbNouvelles >= 0 && toutesLesCommandes.length > 0) {
+      // Nouvelle commande détectée !
+      const nouvelle = nouvelles[0];
+      afficherToast('🛒 Nouvelle commande ' + (nouvelle.numero || '') + ' !');
+      
+      // Notification push
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('🛒 Nouvelle commande !', {
+          body: (nouvelle.numero || '') + ' — ' + (nouvelle.total_ttc || '') + '€',
+          icon: '/icon-192.png',
+          vibrate: [300, 100, 300],
+          requireInteraction: true,
+        });
+      }
+    }
+
+    // Convertir pour l'affichage
+    toutesLesCommandes = commandes.map(c => ({
+      id: c.id,
+      numero: c.numero,
+      client: c.client_nom || 'Client',
+      heure: c.date_retrait ? new Date(c.date_retrait).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}) : '—',
+      montant: (c.total_ttc || 0).toFixed(2).replace('.', ',') + '€',
+      articles: c.commande_lignes?.length || 0,
+      statut: c.statut || 'nouvelle',
+      type: c.type || 'retrait',
+      note: c.note_client || null,
+      produits: (c.commande_lignes || []).map(l => ({
+        nom: l.nom_produit,
+        qte: l.quantite + ' ' + l.unite,
+        prix: (l.total_ligne || 0).toFixed(2).replace('.', ',') + '€'
+      }))
+    }));
+
+    renderCommandes();
+
+    // Mettre à jour les stats
+    const total = commandes.reduce((s, c) => s + (c.total_ttc || 0), 0);
+    document.getElementById('statRetraits').textContent = commandes.length;
+    document.getElementById('statCA').textContent = total.toFixed(0) + '€';
+    document.getElementById('statAPreparer').textContent = nouvelles.length;
+
+    // Badge
+    const badge = document.getElementById('badge-commandes');
+    badge.textContent = nouvelles.length;
+    badge.classList.toggle('visible', nouvelles.length > 0);
+
+    // Alerte bar
+    const alerte = document.getElementById('alerteBar');
+    if (nouvelles.length > 0) {
+      alerte.classList.add('visible');
+      document.getElementById('alerteTxt').textContent = '🛒 ' + nouvelles.length + ' nouvelle' + (nouvelles.length > 1 ? 's' : '') + ' commande' + (nouvelles.length > 1 ? 's' : '') + ' en attente';
+    } else {
+      alerte.classList.remove('visible');
+    }
+
+  } catch(e) {
+    console.log('Erreur chargement commandes:', e);
+  }
+}
+
 // Init
 init();
+demarrerRealtime();
 </script>
 </body>
 </html>

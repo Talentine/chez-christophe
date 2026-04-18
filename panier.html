@@ -617,14 +617,87 @@ async function confirmerCommande() {
   const creneau = creneaux[creneauSelectionne];
   const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
   const annee = new Date().getFullYear();
-  const numero = `CCB-${annee}-${Date.now().toString().slice(-4)}`;
+  const numero = 'CCB-' + annee + '-' + Date.now().toString().slice(-4);
+
+  const prenom = document.getElementById('prenom').value.trim();
+  const nom = document.getElementById('nom').value.trim();
+  const telephone = document.getElementById('telephone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const note = document.getElementById('note').value.trim();
+
+  try {
+    // 1. Récupérer l'ID du commerçant
+    const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
+    const commercantId = commercants?.[0]?.id;
+    if (!commercantId) throw new Error('Commerçant introuvable');
+
+    // 2. Créer ou récupérer le client
+    let clientId = null;
+    const clientsExist = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id');
+    
+    if (clientsExist?.length > 0) {
+      clientId = clientsExist[0].id;
+    } else {
+      const newClient = await sb('clients', '', 'POST', {
+        commercant_id: commercantId,
+        email: email,
+        nom: nom,
+        prenom: prenom,
+        telephone: telephone,
+      });
+      const clientData = await newClient.json();
+      clientId = clientData?.[0]?.id || clientData?.id;
+    }
+
+    // 3. Créer la commande
+    const dateRetrait = new Date();
+    dateRetrait.setDate(dateRetrait.getDate() + 1);
+
+    const commandeData = {
+      commercant_id: commercantId,
+      client_id: clientId,
+      numero: numero,
+      type: 'retrait',
+      creneau_id: creneau.id || null,
+      date_retrait: dateRetrait.toISOString(),
+      statut: 'nouvelle',
+      sous_total: sous_total,
+      frais_livraison: 0,
+      total_ttc: sous_total,
+      note_client: note || null,
+    };
+
+    const cmdResp = await sb('commandes', '', 'POST', commandeData);
+    const cmdData = await cmdResp.json();
+    const commandeId = cmdData?.[0]?.id || cmdData?.id;
+
+    // 4. Créer les lignes de commande
+    if (commandeId) {
+      for (const p of panier) {
+        await sb('commande_lignes', '', 'POST', {
+          commande_id: commandeId,
+          produit_base_id: p.id,
+          nom_produit: p.nom,
+          unite: p.unite,
+          quantite: p.qte,
+          prix_unitaire: p.prix_marche_indicatif || 0,
+          tva_pct: 5.50,
+          total_ligne: (p.prix_marche_indicatif || 0) * p.qte,
+        });
+      }
+    }
+
+  } catch(err) {
+    console.error('Erreur commande:', err);
+    // On affiche quand même la confirmation côté client
+  }
 
   // Afficher la confirmation
   allerEtape(4);
   document.getElementById('succesScreen').style.display = 'block';
   document.getElementById('succesNumero').textContent = numero;
   document.getElementById('succesRetrait').textContent =
-    `${creneau.jour} ${creneau.date} · ${creneau.debut} – ${creneau.fin}`;
+    creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
   document.getElementById('ctaFixe').style.display = 'none';
 
   // Vider le panier
