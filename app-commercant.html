@@ -987,57 +987,134 @@ function filtrerStatut(statut, btn) {
 
 // ── PLANNING DEMO ─────────────────────────────────────
 function chargerPlanningDemo() {
-  const now = new Date();
-  const jours_data = [];
+  // Utiliser les vraies commandes
+  chargerPlanningReel();
+}
 
-  for (let i = 0; i < 5; i++) {
+async function chargerPlanningReel() {
+  const grid = document.getElementById('planningGrid');
+  grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
+
+  const now = new Date();
+  const jours = [];
+
+  // Générer les 7 prochains jours ouvrés
+  for (let i = 0; i < 10; i++) {
     const d = new Date(now);
     d.setDate(now.getDate() + i);
-    if (d.getDay() === 0 || d.getDay() === 1) continue;
-
-    jours_data.push({
-      label: i === 0 ? 'Aujourd\'hui' : JOURS[d.getDay()],
-      date: `${d.getDate()} ${MOIS[d.getMonth()]}`,
-      cmds: Math.floor(Math.random() * 8),
-      ca: Math.floor(Math.random() * 150) + 30,
-      creneaux: [
-        {nom:'Matin 8h–11h', places:6, prises: Math.floor(Math.random()*6)},
-        {nom:'Midi 11h–15h', places:6, prises: Math.floor(Math.random()*6)},
-        {nom:'Soir 15h–19h', places:6, prises: Math.floor(Math.random()*6)},
-      ]
-    });
+    if (d.getDay() === 0) continue; // Pas dimanche
+    jours.push(d);
+    if (jours.length >= 7) break;
   }
 
-  document.getElementById('planningGrid').innerHTML = jours_data.map(j => `
-    <div style="margin-bottom:16px;">
-      <div style="background:var(--vert-fonce);color:white;border-radius:12px;padding:10px 16px;display:flex;justify-content:space-between;margin-bottom:8px;">
-        <span style="font-weight:500;">${j.label} ${j.date}</span>
-        <span style="opacity:.7;">${j.cmds} cmd · ${j.ca}€</span>
-      </div>
-      ${j.creneaux.map(c => {
-        const pct = Math.round(c.prises/c.places*100);
-        const couleur = pct >= 100 ? '#e74c3c' : pct >= 70 ? '#e67e22' : '#27ae60';
-        return `
-          <div style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:6px;border:1px solid var(--creme-fonce);">
-            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-              <span style="font-size:13px;font-weight:500;">${c.nom}</span>
-              <span style="font-size:12px;color:var(--texte-doux);">${c.prises}/${c.places}</span>
+  // Grouper les commandes par date
+  const parDate = {};
+  toutesLesCommandes.forEach(c => {
+    if (!c.date_retrait) return;
+    const d = new Date(c.date_retrait);
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const heure = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    if (!parDate[key]) parDate[key] = {};
+    if (!parDate[key][heure]) parDate[key][heure] = [];
+    parDate[key][heure].push(c);
+  });
+
+  // Stats semaine
+  const totalCmd = toutesLesCommandes.filter(c => c.statut !== 'annulee').length;
+  const totalCA = toutesLesCommandes.reduce((s,c) => s + parseFloat(c.montant.replace(',','.').replace('€','')), 0);
+  document.getElementById('planNbCmd').textContent = totalCmd;
+  document.getElementById('planCA').textContent = totalCA.toFixed(0) + '€';
+
+  // Créneau le plus chargé
+  let maxCreneau = 'Aucun';
+  let maxCount = 0;
+  Object.values(parDate).forEach(heures => {
+    Object.entries(heures).forEach(([h, cmds]) => {
+      if (cmds.length > maxCount) { maxCount = cmds.length; maxCreneau = h; }
+    });
+  });
+  document.getElementById('planCreneauTop').textContent = maxCreneau || 'Aucun';
+
+  grid.innerHTML = jours.map(d => {
+    const isAuj = d.toDateString() === now.toDateString();
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const cmdsDuJour = Object.values(parDate[key] || {}).flat();
+    const caJour = cmdsDuJour.reduce((s,c) => s + parseFloat(c.montant.replace(',','.').replace('€','')), 0);
+    const label = isAuj ? "Aujourd'hui" : JOURS[d.getDay()];
+    const dateStr = d.getDate() + ' ' + MOIS[d.getMonth()];
+
+    // Créneaux du jour
+    const heuresMap = parDate[key] || {};
+    const creneauxHtml = Object.entries(heuresMap).sort().map(([heure, cmds]) => {
+      const retrait = cmds.filter(c => c.type === 'retrait').length;
+      const livraison = cmds.filter(c => c.type === 'livraison').length;
+      return `
+        <div onclick="voirCommandesCreneau('${key}','${heure}')" 
+          style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:6px;border:1px solid var(--creme-fonce);cursor:pointer;transition:all .15s;"
+          onmouseenter="this.style.borderColor='var(--vert)'" onmouseleave="this.style.borderColor='var(--creme-fonce)'">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;font-weight:500;">🕐 ${heure}</span>
+            <div style="display:flex;gap:8px;align-items:center;">
+              ${retrait > 0 ? `<span style="font-size:12px;background:#eaf7ee;color:#27ae60;padding:2px 8px;border-radius:20px;">📍 ${retrait}</span>` : ''}
+              ${livraison > 0 ? `<span style="font-size:12px;background:#e8f4fd;color:#185fa5;padding:2px 8px;border-radius:20px;">🚚 ${livraison}</span>` : ''}
+              <span style="font-size:12px;color:var(--texte-doux);">${cmds.length} cmd</span>
             </div>
-            <div style="height:6px;background:var(--creme-fonce);border-radius:3px;">
-              <div style="height:100%;width:${Math.min(pct,100)}%;background:${couleur};border-radius:3px;"></div>
-            </div>
-          </div>`;
-      }).join('')}
-    </div>
-  `).join('');
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div style="margin-bottom:16px;">
+        <div style="background:${isAuj ? 'var(--vert-fonce)' : '#f0ebe0'};color:${isAuj ? 'white' : 'var(--texte)'};border-radius:12px;padding:10px 16px;display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-weight:500;">${label} ${dateStr}</span>
+          <span style="opacity:.7;">${cmdsDuJour.length} cmd · ${caJour.toFixed(0)}€</span>
+        </div>
+        ${creneauxHtml || '<div style="font-size:13px;color:var(--texte-doux);padding:8px 4px;">Aucune commande</div>'}
+      </div>`;
+  }).join('');
 }
 
-// ── PRODUITS ADMIN ────────────────────────────────────
-async function chargerProduitsAdmin() {
-  const data = await sb('produits_base', '?select=*,categories(nom,emoji)&actif=eq.true&order=nom&limit=50');
-  tousLesProduits = data || [];
-  renderProduitsAdmin(tousLesProduits);
+function voirCommandesCreneau(dateKey, heure) {
+  // Filtrer et afficher les commandes de ce créneau
+  const cmds = toutesLesCommandes.filter(c => {
+    if (!c.date_retrait) return false;
+    const d = new Date(c.date_retrait);
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const h = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    return key === dateKey && h === heure;
+  });
+
+  if (cmds.length === 0) { afficherToast('Aucune commande sur ce créneau'); return; }
+
+  // Aller sur l'onglet commandes et filtrer
+  allerOnglet('commandes');
+  
+  // Afficher une modale avec les commandes du créneau
+  const [annee, mois, jour] = dateKey.split('-');
+  const dateLabel = parseInt(jour) + ' ' + MOIS[parseInt(mois)-1];
+  
+  let html = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;display:flex;align-items:flex-end;" onclick="this.remove()">
+    <div style="background:var(--blanc);width:100%;border-radius:20px 20px 0 0;padding:24px;max-height:80vh;overflow-y:auto;" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-size:16px;font-weight:500;">🕐 ${heure} · ${dateLabel}</div>
+        <button onclick="this.closest('[onclick]').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;">✕</button>
+      </div>`;
+  
+  cmds.forEach(c => {
+    const typeIcon = c.type === 'livraison' ? '🚚' : '📍';
+    html += `<div style="border:1px solid var(--creme-fonce);border-radius:12px;padding:12px;margin-bottom:8px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-weight:500;">${c.client}</span>
+        <span style="color:var(--vert);font-weight:500;">${c.montant}</span>
+      </div>
+      <div style="font-size:13px;color:var(--texte-doux);">${typeIcon} ${c.type === 'retrait' ? 'Retrait' : 'Livraison'} · ${c.articles} article${c.articles > 1 ? 's' : ''}</div>
+    </div>`;
+  });
+
+  html += '</div></div>';
+  document.body.insertAdjacentHTML('beforeend', html);
 }
+
 
 function renderProduitsAdmin(produits) {
   const container = document.getElementById('produitsAdmin');
@@ -1508,6 +1585,7 @@ async function chargerCommandesSupabase(commercantId) {
 
     // Forcer le rendu même si l'onglet n'est pas visible
     renderCommandes();
+    if (document.getElementById("content-planning")?.classList.contains("active")) chargerPlanningReel();
     
     // S'assurer que l'onglet commandes est visible si nouvelles commandes
     if (nouvelles.length > 0) {
