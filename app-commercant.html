@@ -805,7 +805,11 @@ function renderCommandes() {
   }
 
   // ── ENCART DERNIÈRE COMMANDE ─────────────────────────
-  const derniere = toutesLesCommandes.filter(c => c.statut === 'nouvelle')[0] || toutesLesCommandes[0];
+  // Dernière commande reçue (tri par date de création desc)
+  const nouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle');
+  const derniere = nouvelles.length > 0 
+    ? nouvelles.reduce((a, b) => new Date(a.created_at || 0) > new Date(b.created_at || 0) ? a : b)
+    : toutesLesCommandes[toutesLesCommandes.length - 1];
   let encart = '';
   if (derniere) {
     const drDate = derniere.date_retrait ? new Date(derniere.date_retrait) : null;
@@ -1453,6 +1457,7 @@ async function chargerCommandesSupabase(commercantId) {
       note: c.note_client || null,
       adresse: c.adresse_livraison || null,
       date_retrait: c.date_retrait || null,
+      created_at: c.created_at || null,
       produits: (c.commande_lignes || []).map(l => ({
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
