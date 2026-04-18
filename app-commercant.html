@@ -1328,12 +1328,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // ── SUPABASE REALTIME — Nouvelles commandes ───────────────
 async function demarrerRealtime() {
   try {
-    // Récupérer l'ID du commerçant
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.christophe-frais-caen&select=id', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const data = await r.json();
-    const commercantId = data?.[0]?.id;
+    // Récupérer l'ID depuis la session
+    const sessionData = localStorage.getItem('session_commercant');
+    const session = sessionData ? JSON.parse(sessionData) : null;
+
+    let commercantId = session?.commercant_id;
+
+    // Fallback : chercher par email si pas dans la session
+    if (!commercantId && session?.email) {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      const data = await r.json();
+      commercantId = data?.[0]?.id;
+    }
     if (!commercantId) return;
 
     // Charger les vraies commandes depuis Supabase
@@ -1445,7 +1453,39 @@ async function seConnecterCommercant() {
   const data = await r.json();
 
   if (data.access_token) {
-    localStorage.setItem('session_commercant', JSON.stringify({ access_token: data.access_token, email }));
+    // Vérifier le rôle
+    const roleCheck = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/roles_utilisateurs?user_id=eq.' + data.user.id + '&select=role,commercant_id,commercants(slug,nom_boutique)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + data.access_token }
+    });
+    const roles = await roleCheck.json();
+    const roleData = roles?.[0];
+
+    if (!roleData || roleData.role === 'client') {
+      erreur.style.display = 'block';
+      erreur.textContent = '❌ Accès non autorisé pour ce compte';
+      btn.textContent = 'Accéder au dashboard';
+      btn.disabled = false;
+      return;
+    }
+
+    localStorage.setItem('session_commercant', JSON.stringify({
+      access_token: data.access_token,
+      email,
+      user_id: data.user.id,
+      role: roleData.role,
+      commercant_id: roleData.commercant_id,
+      slug: roleData.commercants?.slug,
+      nom_boutique: roleData.commercants?.nom_boutique,
+    }));
+
+    // Adapter l'interface selon le rôle
+    if (roleData.role === 'salarie') {
+      // Masquer les onglets non autorisés
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.dataset.tab !== 'produits') btn.style.display = 'none';
+      });
+    }
+
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
     init();
