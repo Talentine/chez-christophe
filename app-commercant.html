@@ -473,6 +473,20 @@
   </div>
 </div>
 
+<!-- BANNIERE NOTIFICATIONS -->
+<div id="banniereNotifs" style="background:#1a2e26;color:white;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:22px;">🔔</span>
+    <div>
+      <div style="font-size:13px;font-weight:500;">Activez les notifications</div>
+      <div style="font-size:11px;opacity:.7;">Recevez une alerte à chaque commande</div>
+    </div>
+  </div>
+  <button onclick="activerNotifications()" style="background:#c9a84c;color:#1a2e26;border:none;border-radius:50px;padding:8px 16px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;">
+    Activer
+  </button>
+</div>
+
 <!-- ALERTE NOUVELLES COMMANDES -->
 <div class="alerte-bar" id="alerteBar" onclick="allerOnglet('commandes')">
   <span id="alerteTxt">🛒 3 nouvelles commandes en attente</span>
@@ -482,6 +496,9 @@
 <!-- STATS DU JOUR -->
 <div class="stats-card">
   <div class="stats-date" id="statsDate">Chargement...</div>
+  <button onclick="testerNotification()" style="background:rgba(255,255,255,0.15);color:white;border:none;border-radius:50px;padding:8px 16px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:14px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;">
+    🔔 Tester une notification
+  </button>
   <div class="stats-grid">
     <div class="stat-item">
       <div class="stat-val" id="statRetraits">—</div>
@@ -1107,12 +1124,37 @@ window.addEventListener('beforeinstallprompt', e => {
 
 // Demander permission notifications
 async function demanderPermissionNotifications(reg) {
-  if ('Notification' in window && Notification.permission === 'default') {
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      afficherToast('🔔 Notifications activées !');
+  // Ne pas demander automatiquement — attendre le clic utilisateur
+  if (Notification.permission === 'granted') {
+    document.getElementById('banniereNotifs').style.display = 'none';
+    abonnerAuxNotifications(reg);
+  }
+}
+
+async function activerNotifications() {
+  if (!('Notification' in window)) {
+    afficherToast('⚠️ Notifications non supportées sur ce navigateur');
+    return;
+  }
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    document.getElementById('banniereNotifs').style.display = 'none';
+    afficherToast('🔔 Notifications activées !');
+    // Envoyer une notif de test
+    new Notification('✅ Notifications actives !', {
+      body: 'Vous recevrez une alerte à chaque nouvelle commande.',
+      icon: '/icon-192.png',
+    });
+    // Enregistrer le SW si pas encore fait
+    if ('serviceWorker' in navigator) {
+      const reg = await navigator.serviceWorker.ready;
       abonnerAuxNotifications(reg);
     }
+  } else if (permission === 'denied') {
+    afficherToast('❌ Notifications bloquées — activez-les dans les paramètres Chrome');
+    document.getElementById('banniereNotifs').innerHTML = `
+      <span style="font-size:13px;">🔕 Notifications bloquées — allez dans Paramètres Chrome → Notifications → project-8mrfn.vercel.app → Autoriser</span>
+    `;
   }
 }
 
