@@ -129,6 +129,14 @@
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
   /* EMPREINTE */
+  .mode-card {
+    border:2px solid var(--creme-fonce); border-radius:14px;
+    padding:16px 12px; text-align:center; cursor:pointer;
+    transition:all .15s; background:var(--blanc);
+  }
+  .mode-card.actif {
+    border-color:var(--vert); background:rgba(45,74,62,0.05);
+  }
   .empreinte-card {
     background:#fff8e7; border:1px solid #e2c97a;
     border-radius:14px; padding:16px; margin-top:4px;
@@ -136,6 +144,31 @@
   .empreinte-titre { font-size:14px; font-weight:500; color:#7a5c1a; margin-bottom:6px; }
   .empreinte-txt { font-size:13px; color:#8a6d20; line-height:1.5; }
   .empreinte-legal { font-size:11px; color:#aaa; margin-top:8px; line-height:1.4; }
+
+  /* MODE RETRAIT/LIVRAISON */
+  .mode-card {
+    border:1.5px solid var(--creme-fonce); border-radius:14px;
+    padding:14px 16px; cursor:pointer; transition:all .15s;
+    background:var(--blanc);
+  }
+  .mode-card.actif { border-color:var(--vert); background:#f0f5f3; }
+  .mode-card:active { transform:scale(0.98); }
+  .mode-check {
+    width:24px; height:24px; border-radius:50%;
+    border:2px solid var(--creme-fonce);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; margin-left:auto; flex-shrink:0;
+    transition:all .15s;
+  }
+  .mode-check.actif { background:var(--vert); border-color:var(--vert); color:white; }
+
+  /* ADRESSE LIVRAISON */
+  .adresse-livraison {
+    background:var(--blanc); margin:0; padding:20px;
+    border-top:1px solid var(--creme-fonce);
+    display:none;
+  }
+  .adresse-livraison.visible { display:block; }
 
   /* RÉCAP */
   .recap-ligne {
@@ -237,17 +270,65 @@
     <div class="section-titre">📊 Récapitulatif</div>
     <div id="recapPanier"></div>
   </div>
+
+  <div class="section">
+    <div class="section-titre">🚚 Mode de réception</div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0;">
+      <div class="mode-card actif" id="modeRetrait" onclick="choisirMode('retrait')">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:28px;">📍</span>
+          <div>
+            <div style="font-size:15px;font-weight:500;">Retrait en boutique</div>
+            <div style="font-size:13px;color:var(--texte-doux);">8 rue Neuve Saint-Jean, Caen · Gratuit</div>
+          </div>
+          <div class="mode-check actif" id="checkRetrait">✓</div>
+        </div>
+      </div>
+      <div class="mode-card" id="modeLivraison" onclick="choisirMode('livraison')">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:28px;">🚚</span>
+          <div>
+            <div style="font-size:15px;font-weight:500;">Livraison à domicile</div>
+            <div style="font-size:13px;color:var(--texte-doux);">Dans un rayon de 10 km · 3,90€</div>
+          </div>
+          <div class="mode-check" id="checkLivraison">✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ÉTAPE 2 : CRÉNEAU -->
 <div id="step2" style="display:none">
-  <div class="section">
-    <div class="section-titre">🕐 Choisissez votre créneau</div>
-    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px">
+  <div class="section" id="sectionCreneaux">
+    <div class="section-titre" id="creneauTitre">🕐 Choisissez votre créneau</div>
+    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px" id="creneauSub">
       Retrait en boutique — 8 rue Neuve Saint-Jean, Caen
     </p>
     <div class="creneaux-grid" id="creneauxGrid">
       <div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement des créneaux...</div>
+    </div>
+  </div>
+
+  <!-- Adresse livraison (visible si mode livraison) -->
+  <div class="adresse-livraison" id="adresseLivraisonSection">
+    <div class="section-titre" style="margin-bottom:14px;">📍 Adresse de livraison</div>
+    <div class="form-group">
+      <label class="form-label">Adresse *</label>
+      <input class="form-input" id="livraisonAdresse" type="text" placeholder="12 rue de la Paix">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Code postal *</label>
+        <input class="form-input" id="livraisonCP" type="text" placeholder="14000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ville *</label>
+        <input class="form-input" id="livraisonVille" type="text" placeholder="Caen">
+      </div>
+    </div>
+    <div style="background:#fff8e7;border:1px solid var(--or-clair);border-radius:10px;padding:12px;font-size:13px;color:#7a5c1a;margin-top:4px;">
+      🚚 Frais de livraison : <strong>3,90€</strong> · Livraison dans un rayon de 10 km
     </div>
   </div>
 </div>
@@ -343,6 +424,15 @@ let stripeClientSecret = null;
 let stripePaymentMethodId = null;
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
+// ── MODE LIVRAISON ───────────────────────────────────
+function choisirMode(mode) {
+  modeLivraison = mode === 'livraison';
+  document.getElementById('modeRetrait').classList.toggle('actif', !modeLivraison);
+  document.getElementById('modeLivraison').classList.toggle('actif', modeLivraison);
+  mettreAJourRecap();
+  mettreAJourCTA();
+}
+
 // Vérifier si le client est connecté
 function getSession() {
   try {
@@ -352,8 +442,11 @@ function getSession() {
 }
 
 let panier = JSON.parse(sessionStorage.getItem('panier') || '[]');
+let modeLivraison = false;
+const FRAIS_LIVRAISON = 3.90;
 let etapeActuelle = 1;
 let creneauSelectionne = null;
+let modeCommande = 'retrait'; // 'retrait' ou 'livraison'
 let creneaux = [];
 
 const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
@@ -449,8 +542,32 @@ function changerQte(idx, delta) {
 }
 
 // ── ÉTAPE 2 : CRENEAUX ───────────────────────────────
+function choisirMode(mode) {
+  modeCommande = mode;
+  
+  // UI
+  document.getElementById('modeRetrait').classList.toggle('actif', mode === 'retrait');
+  document.getElementById('modeLivraison').classList.toggle('actif', mode === 'livraison');
+  document.getElementById('checkRetrait').classList.toggle('actif', mode === 'retrait');
+  document.getElementById('checkLivraison').classList.toggle('actif', mode === 'livraison');
+  
+  // Mettre à jour le récap avec frais livraison
+  renderRecap();
+}
+
 async function chargerCreneaux() {
   const grid = document.getElementById('creneauxGrid');
+
+  // Adapter le titre selon le mode
+  if (modeCommande === 'livraison') {
+    document.getElementById('creneauTitre').textContent = '🕐 Choisissez votre créneau de livraison';
+    document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
+    document.getElementById('adresseLivraisonSection').classList.add('visible');
+  } else {
+    document.getElementById('creneauTitre').textContent = '🕐 Choisissez votre créneau de retrait';
+    document.getElementById('creneauSub').textContent = 'Retrait en boutique — 8 rue Neuve Saint-Jean, Caen';
+    document.getElementById('adresseLivraisonSection').classList.remove('visible');
+  }
   
   // Récupérer l'ID du commerçant Christophe
   const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
@@ -789,13 +906,18 @@ async function confirmerCommande() {
       commercant_id: commercantId,
       client_id: clientId,
       numero: numero,
-      type: 'retrait',
+      type: modeCommande,
       creneau_id: creneau.id || null,
       date_retrait: dateRetrait.toISOString(),
       statut: 'nouvelle',
       sous_total: sous_total,
       frais_livraison: 0,
       total_ttc: sous_total,
+      adresse_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonAdresse').value : null,
+      code_postal_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonCP').value : null,
+      ville_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonVille').value : null,
+      frais_livraison: modeCommande === 'livraison' ? 3.90 : 0,
+      total_ttc: panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0) + (modeCommande === 'livraison' ? 3.90 : 0),
       note_client: note || null,
       empreinte_payment_method_id: stripePaymentMethodId || null,
     };
