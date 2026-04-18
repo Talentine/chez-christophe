@@ -848,6 +848,21 @@ function renderCarteCommande(c) {
         <span class="badge-statut ${badgeClass}">${badgeTxt}</span>
       </div>
       ${c.note ? `<div class="commande-note">💬 ${c.note}</div>` : ''}
+      ${c.type === 'livraison' && c.adresse ? `
+      <div style="margin:8px 0;padding:10px 12px;background:#e8f4fd;border-radius:10px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:18px;">📍</span>
+        <div style="flex:1;font-size:13px;color:#1a5a8a;font-weight:500;">${c.adresse}</div>
+        <div style="display:flex;gap:6px;">
+          <a href="https://maps.google.com/?q=${encodeURIComponent(c.adresse)}" target="_blank" 
+             style="background:#4285F4;color:white;border:none;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">
+            Maps
+          </a>
+          <a href="https://waze.com/ul?q=${encodeURIComponent(c.adresse)}&navigate=yes" target="_blank"
+             style="background:#33CCFF;color:#1a1a1a;border:none;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;">
+            Waze
+          </a>
+        </div>
+      </div>` : ''}
       <div class="commande-detail" id="detail-${c.id}">
         ${produits}
       </div>
@@ -1352,6 +1367,7 @@ async function chargerCommandesSupabase(commercantId) {
       statut: c.statut || 'nouvelle',
       type: c.type || 'retrait',
       note: c.note_client || null,
+      adresse: c.adresse_livraison || null,
       produits: (c.commande_lignes || []).map(l => ({
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
