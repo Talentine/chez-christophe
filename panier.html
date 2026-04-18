@@ -2,309 +2,168 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Mon panier — Chez Christophe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
 <style>
   :root {
-    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
-    --creme: #f5f0e8; --creme-fonce: #ede6d6;
-    --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
-    --rouge: #c0392b;
+    --vert:#2d4a3e;--vert-fonce:#1a2e26;--or:#c9a84c;
+    --creme:#f5f0e8;--creme-fonce:#ede6d6;
+    --blanc:#ffffff;--texte:#1a2e26;--texte-doux:#5a7060;
+    --rouge:#e74c3c;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'DM Sans',sans-serif; background:var(--creme); color:var(--texte); padding-bottom:120px; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--texte);padding-bottom:120px;}
 
-  header {
-    background:var(--vert-fonce); position:sticky; top:0; z-index:100;
-    padding:0 16px; height:60px; display:flex; align-items:center; gap:12px;
-  }
-  .btn-retour {
-    background:rgba(255,255,255,0.12); border:none; color:white;
-    width:38px; height:38px; border-radius:50%; font-size:18px;
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-    text-decoration:none;
-  }
-  .header-titre { flex:1; font-family:'Playfair Display',serif; font-size:18px; color:white; }
+  /* HEADER */
+  header{background:var(--vert-fonce);position:sticky;top:0;z-index:100;padding:0 16px;height:56px;display:flex;align-items:center;gap:12px;}
+  .btn-retour{background:none;border:none;color:white;font-size:22px;cursor:pointer;padding:4px;}
+  .header-titre{flex:1;font-size:16px;font-weight:500;color:white;}
 
-  /* ETAPES */
-  .etapes {
-    background:var(--blanc); border-bottom:1px solid var(--creme-fonce);
-    padding:16px 20px; display:flex; align-items:center; gap:0;
-  }
-  .etape {
-    display:flex; align-items:center; gap:8px; flex:1;
-    font-size:12px; color:var(--texte-doux);
-  }
-  .etape-num {
-    width:24px; height:24px; border-radius:50%;
-    background:var(--creme-fonce); color:var(--texte-doux);
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:500; flex-shrink:0;
-  }
-  .etape.active .etape-num { background:var(--vert); color:white; }
-  .etape.active { color:var(--vert); font-weight:500; }
-  .etape.done .etape-num { background:var(--or); color:var(--vert-fonce); }
-  .etape-sep { width:20px; height:1px; background:var(--creme-fonce); margin:0 4px; flex-shrink:0; }
+  /* PROGRESS */
+  .progress-bar{background:var(--vert-fonce);padding:10px 20px 14px;display:flex;align-items:center;gap:6px;}
+  .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;transition:all .2s;}
+  .step-dot.done{background:var(--or);color:var(--vert-fonce);}
+  .step-dot.actif{background:white;color:var(--vert-fonce);}
+  .step-dot.todo{background:rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);}
+  .step-line{flex:1;height:2px;background:rgba(255,255,255,0.2);border-radius:2px;}
+  .step-line.done{background:var(--or);}
 
   /* SECTIONS */
-  .section { background:var(--blanc); margin:12px 0; padding:20px; }
-  .section:first-of-type { margin-top:0; }
-  .section-titre {
-    font-family:'Playfair Display',serif; font-size:18px;
-    margin-bottom:16px; display:flex; align-items:center; gap:8px;
-  }
+  .section{background:var(--blanc);border-radius:16px;padding:18px;margin:12px 16px;border:1px solid var(--creme-fonce);}
+  .section-titre{font-size:13px;font-weight:500;color:var(--texte-doux);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;}
 
-  /* LIGNES PANIER */
-  .panier-ligne {
-    display:flex; align-items:center; gap:12px;
-    padding:12px 0; border-bottom:1px solid var(--creme-fonce);
-  }
-  .panier-ligne:last-child { border-bottom:none; }
-  .ligne-img {
-    width:52px; height:52px; border-radius:10px;
-    background:var(--creme-fonce); display:flex;
-    align-items:center; justify-content:center; font-size:24px;
-    overflow:hidden; flex-shrink:0;
-  }
-  .ligne-img img { width:100%; height:100%; object-fit:cover; }
-  .ligne-info { flex:1; min-width:0; }
-  .ligne-nom { font-size:14px; font-weight:500; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .ligne-prix-unit { font-size:12px; color:var(--texte-doux); }
-  .ligne-droite { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .qty-ctrl { display:flex; align-items:center; gap:8px; }
-  .qty-btn {
-    width:28px; height:28px; border-radius:50%;
-    border:1px solid var(--creme-fonce); background:var(--creme);
-    cursor:pointer; font-size:16px; display:flex;
-    align-items:center; justify-content:center; transition:all .1s;
-  }
-  .qty-btn:active { transform:scale(0.88); }
-  .qty-num { font-size:15px; font-weight:500; min-width:20px; text-align:center; }
-  .ligne-total { font-size:14px; font-weight:500; min-width:52px; text-align:right; }
+  /* LIGNE PANIER */
+  .ligne-produit{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--creme-fonce);}
+  .ligne-produit:last-child{border-bottom:none;}
+  .ligne-img{width:50px;height:50px;border-radius:10px;object-fit:cover;background:var(--creme);}
+  .ligne-nom{flex:1;font-size:14px;font-weight:500;}
+  .ligne-prix{font-size:14px;color:var(--vert);font-weight:500;}
+  .ligne-qte{display:flex;align-items:center;gap:8px;margin-top:4px;}
+  .qte-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--creme-fonce);background:var(--creme);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .qte-num{font-size:14px;font-weight:500;min-width:20px;text-align:center;}
 
-  /* CRENEAUX */
-  .creneaux-grid { display:flex; flex-direction:column; gap:10px; }
-  .creneau-card {
-    border:1.5px solid var(--creme-fonce); border-radius:14px;
-    padding:14px 16px; cursor:pointer; transition:all .15s;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .creneau-card:active { transform:scale(0.98); }
-  .creneau-card.selectionne { border-color:var(--vert); background:#f0f5f3; }
-  .creneau-card.complet { opacity:0.45; cursor:not-allowed; }
-  .creneau-gauche { display:flex; align-items:center; gap:12px; }
-  .creneau-emoji { font-size:22px; }
-  .creneau-jour { font-size:14px; font-weight:500; }
-  .creneau-heure { font-size:13px; color:var(--texte-doux); }
-  .creneau-droit { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
-  .creneau-dispo {
-    font-size:11px; font-weight:500; padding:3px 10px;
-    border-radius:20px;
-  }
-  .dispo-ok { background:#EAF3DE; color:#27500A; }
-  .dispo-limite { background:#FAEEDA; color:#633806; }
-  .dispo-complet { background:#FCEBEB; color:#791F1F; }
-  .creneau-check {
-    width:22px; height:22px; border-radius:50%;
-    border:2px solid var(--creme-fonce); display:flex;
-    align-items:center; justify-content:center; font-size:12px;
-    transition:all .15s;
-  }
-  .creneau-card.selectionne .creneau-check {
-    background:var(--vert); border-color:var(--vert); color:white;
-  }
+  /* MODE CARDS */
+  .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .mode-card{border:2px solid var(--creme-fonce);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .15s;background:var(--blanc);}
+  .mode-card.actif{border-color:var(--vert);background:rgba(45,74,62,0.05);}
+  .mode-card-icon{font-size:28px;margin-bottom:8px;}
+  .mode-card-titre{font-size:14px;font-weight:500;margin-bottom:4px;}
+  .mode-card-prix{font-size:12px;color:var(--texte-doux);}
 
-  /* FORMULAIRE CLIENT */
-  .form-group { margin-bottom:14px; }
-  .form-label { font-size:13px; color:var(--texte-doux); margin-bottom:6px; display:block; }
-  .form-input {
-    width:100%; padding:12px 14px; border:1.5px solid var(--creme-fonce);
-    border-radius:12px; font-size:15px; font-family:'DM Sans',sans-serif;
-    background:var(--creme); color:var(--texte); outline:none;
-    transition:border-color .15s;
-  }
-  .form-input:focus { border-color:var(--vert); background:white; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  /* FORM */
+  .form-group{margin-bottom:14px;}
+  .form-label{font-size:13px;color:var(--texte-doux);margin-bottom:6px;display:block;}
+  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--texte);outline:none;transition:border-color .15s;}
+  .form-input:focus{border-color:var(--vert);background:white;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .form-erreur{color:var(--rouge);font-size:13px;margin-top:6px;display:none;}
+  .form-erreur.visible{display:block;}
+
+  /* CRÉNEAUX */
+  .creneaux-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .creneau-card{border:2px solid var(--creme-fonce);border-radius:12px;padding:12px;cursor:pointer;transition:all .15s;text-align:center;}
+  .creneau-card.actif{border-color:var(--vert);background:rgba(45,74,62,0.05);}
+  .creneau-jour{font-size:11px;color:var(--texte-doux);text-transform:uppercase;margin-bottom:2px;}
+  .creneau-date{font-size:13px;font-weight:500;margin-bottom:4px;}
+  .creneau-heure{font-size:14px;font-weight:500;color:var(--vert);}
+  .creneau-dispo{font-size:11px;color:var(--texte-doux);margin-top:2px;}
 
   /* EMPREINTE */
-  .mode-card {
-    border:2px solid var(--creme-fonce); border-radius:14px;
-    padding:16px 12px; text-align:center; cursor:pointer;
-    transition:all .15s; background:var(--blanc);
-  }
-  .mode-card.actif {
-    border-color:var(--vert); background:rgba(45,74,62,0.05);
-  }
-  .empreinte-card {
-    background:#fff8e7; border:1px solid #e2c97a;
-    border-radius:14px; padding:16px; margin-top:4px;
-  }
-  .empreinte-titre { font-size:14px; font-weight:500; color:#7a5c1a; margin-bottom:6px; }
-  .empreinte-txt { font-size:13px; color:#8a6d20; line-height:1.5; }
-  .empreinte-legal { font-size:11px; color:#aaa; margin-top:8px; line-height:1.4; }
+  .empreinte-info{background:#fff8e7;border:1px solid #f0d080;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;line-height:1.6;}
 
-  /* MODE RETRAIT/LIVRAISON */
-  .mode-card {
-    border:1.5px solid var(--creme-fonce); border-radius:14px;
-    padding:14px 16px; cursor:pointer; transition:all .15s;
-    background:var(--blanc);
-  }
-  .mode-card.actif { border-color:var(--vert); background:#f0f5f3; }
-  .mode-card:active { transform:scale(0.98); }
-  .mode-check {
-    width:24px; height:24px; border-radius:50%;
-    border:2px solid var(--creme-fonce);
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; margin-left:auto; flex-shrink:0;
-    transition:all .15s;
-  }
-  .mode-check.actif { background:var(--vert); border-color:var(--vert); color:white; }
-
-  /* ADRESSE LIVRAISON */
-  .adresse-livraison {
-    background:var(--blanc); margin:0; padding:20px;
-    border-top:1px solid var(--creme-fonce);
-    display:none;
-  }
-  .adresse-livraison.visible { display:block; }
-
-  /* RÉCAP */
-  .recap-ligne {
-    display:flex; justify-content:space-between;
-    font-size:14px; padding:6px 0;
-    border-bottom:1px solid var(--creme-fonce);
-  }
-  .recap-ligne:last-child { border-bottom:none; }
-  .recap-ligne.total {
-    font-size:16px; font-weight:500; padding-top:12px;
-    border-top:2px solid var(--texte); border-bottom:none; margin-top:4px;
-  }
-  .recap-label { color:var(--texte-doux); }
-
-  /* CTA FIXE */
-  .cta-fixe {
-    position:fixed; bottom:0; left:0; right:0;
-    background:var(--blanc); border-top:1px solid var(--creme-fonce);
-    padding:14px 20px; z-index:100;
-  }
-  .btn-commander {
-    width:100%; background:var(--vert); color:white; border:none;
-    border-radius:50px; padding:16px; font-size:16px; font-weight:500;
-    font-family:'DM Sans',sans-serif; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    transition:all .15s;
-  }
-  .btn-commander:active { transform:scale(0.97); }
-  .btn-commander:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+  /* TOTAL */
+  .total-ligne{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;border-bottom:1px solid var(--creme-fonce);}
+  .total-ligne:last-child{border-bottom:none;font-weight:500;font-size:15px;}
+  .total-livraison{color:var(--or);}
 
   /* SUCCES */
-  .succes-screen {
-    display:none; text-align:center; padding:40px 24px;
-  }
-  .succes-icon { font-size:64px; margin-bottom:16px; }
-  .succes-titre { font-family:'Playfair Display',serif; font-size:26px; margin-bottom:8px; }
-  .succes-sub { font-size:14px; color:var(--texte-doux); line-height:1.6; margin-bottom:24px; }
-  .succes-num {
-    background:var(--creme-fonce); border-radius:12px;
-    padding:14px 20px; font-size:18px; font-weight:500;
-    margin-bottom:24px; display:inline-block;
-  }
+  .succes-screen{text-align:center;padding:32px 20px;}
+  .succes-icon{font-size:56px;margin-bottom:16px;}
+  .succes-titre{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:8px;}
+  .succes-sub{font-size:14px;color:var(--texte-doux);line-height:1.6;margin-bottom:20px;}
+  .succes-badge{background:var(--vert);color:white;border-radius:12px;padding:16px;margin-bottom:12px;}
+  .succes-badge-label{font-size:12px;opacity:0.7;margin-bottom:4px;}
+  .succes-badge-val{font-size:16px;font-weight:500;}
 
-  .panier-vide {
-    text-align:center; padding:60px 20px;
-  }
+  /* NAV MAP */
+  .nav-maps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;}
+  .btn-gmaps{background:#4285F4;color:white;}
+  .btn-waze{background:#33CCFF;color:#1a1a1a;}
+
+  /* CTA */
+  .cta-fixe{position:fixed;bottom:0;left:0;right:0;background:var(--blanc);border-top:1px solid var(--creme-fonce);padding:12px 16px;z-index:99;}
+  .btn-commander{width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;}
+  .btn-commander:active{transform:scale(0.97);}
+  .btn-commander:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+  /* PANIER VIDE */
+  .panier-vide{text-align:center;padding:60px 20px;color:var(--texte-doux);}
+
+  .info-box{background:#f0f7f4;border-radius:10px;padding:12px;font-size:12px;color:var(--texte-doux);margin-top:10px;line-height:1.5;}
 </style>
-
-<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
 <header>
-  <a class="btn-retour" href="catalogue.html">←</a>
-  <span class="header-titre">Mon panier</span>
+  <button class="btn-retour" onclick="history.back()">←</button>
+  <span class="header-titre" id="headerTitre">Mon panier</span>
 </header>
 
-<!-- ÉTAPES -->
-<div class="etapes">
-  <div class="etape active" id="etape1">
-    <div class="etape-num">1</div>
-    <span>Panier</span>
-  </div>
-  <div class="etape-sep"></div>
-  <div class="etape" id="etape2">
-    <div class="etape-num">2</div>
-    <span>Créneau</span>
-  </div>
-  <div class="etape-sep"></div>
-  <div class="etape" id="etape3">
-    <div class="etape-num">3</div>
-    <span>Coordonnées</span>
-  </div>
-  <div class="etape-sep"></div>
-  <div class="etape" id="etape4">
-    <div class="etape-num">4</div>
-    <span>Confirmation</span>
-  </div>
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar">
+  <div class="step-dot actif" id="dot1">1</div>
+  <div class="step-line" id="line1"></div>
+  <div class="step-dot todo" id="dot2">2</div>
+  <div class="step-line" id="line2"></div>
+  <div class="step-dot todo" id="dot3">3</div>
+  <div class="step-line" id="line3"></div>
+  <div class="step-dot todo" id="dot4">4</div>
+  <div class="step-line" id="line4"></div>
+  <div class="step-dot todo" id="dot5">✓</div>
 </div>
 
-<!-- ÉCRAN PANIER VIDE -->
-<div id="panierVide" class="panier-vide" style="display:none">
-  <p style="font-size:48px">🛒</p>
-  <p style="font-size:18px; font-weight:500; margin:12px 0 8px">Panier vide</p>
-  <p style="color:var(--texte-doux); font-size:14px; margin-bottom:24px">Ajoutez des produits depuis le catalogue</p>
-  <a href="catalogue.html" style="background:var(--vert);color:white;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:500;">
-    Voir le catalogue →
-  </a>
-</div>
-
-<!-- ÉTAPE 1 : PANIER -->
+<!-- ÉTAPE 1 : ARTICLES -->
 <div id="step1">
   <div class="section">
     <div class="section-titre">🛒 Vos articles</div>
     <div id="lignesPanier"></div>
   </div>
-
   <div class="section">
     <div class="section-titre">📊 Récapitulatif</div>
-    <div id="recapPanier"></div>
+    <div id="recapStep1"></div>
   </div>
+</div>
 
+<!-- ÉTAPE 2 : MODE -->
+<div id="step2" style="display:none">
   <div class="section">
     <div class="section-titre">🚚 Mode de réception</div>
-    <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0;">
+    <div class="mode-grid">
       <div class="mode-card actif" id="modeRetrait" onclick="choisirMode('retrait')">
-        <div style="display:flex;align-items:center;gap:14px;">
-          <span style="font-size:28px;">📍</span>
-          <div>
-            <div style="font-size:15px;font-weight:500;">Retrait en boutique</div>
-            <div style="font-size:13px;color:var(--texte-doux);">8 rue Neuve Saint-Jean, Caen · Gratuit</div>
-          </div>
-          <div class="mode-check actif" id="checkRetrait">✓</div>
-        </div>
+        <div class="mode-card-icon">🏪</div>
+        <div class="mode-card-titre">Retrait boutique</div>
+        <div class="mode-card-prix">Gratuit</div>
       </div>
       <div class="mode-card" id="modeLivraison" onclick="choisirMode('livraison')">
-        <div style="display:flex;align-items:center;gap:14px;">
-          <span style="font-size:28px;">🚚</span>
-          <div>
-            <div style="font-size:15px;font-weight:500;">Livraison à domicile</div>
-            <div style="font-size:13px;color:var(--texte-doux);">Dans un rayon de 10 km · 3,90€</div>
-          </div>
-          <div class="mode-check" id="checkLivraison">✓</div>
-        </div>
+        <div class="mode-card-icon">🚚</div>
+        <div class="mode-card-titre">Livraison domicile</div>
+        <div class="mode-card-prix">+3,90 €</div>
       </div>
     </div>
   </div>
 
-  <!-- Adresse livraison -->
-  <div id="adresseLivraisonStep1" style="display:none;background:white;border-radius:16px;padding:20px;margin-bottom:12px;border:1px solid var(--creme-fonce);">
-    <div style="font-size:14px;font-weight:500;margin-bottom:14px;">📍 Adresse de livraison</div>
+  <!-- Adresse (visible si livraison) -->
+  <div class="section" id="adresseSection" style="display:none">
+    <div class="section-titre">📍 Adresse de livraison</div>
     <div class="form-group">
       <label class="form-label">Adresse *</label>
       <input class="form-input" id="livraisonAdresse" type="text" placeholder="12 rue de la Paix" autocomplete="street-address">
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div class="form-row">
       <div class="form-group">
         <label class="form-label">Code postal *</label>
         <input class="form-input" id="livraisonCP" type="text" placeholder="14000" maxlength="5">
@@ -314,30 +173,24 @@
         <input class="form-input" id="livraisonVille" type="text" placeholder="Caen">
       </div>
     </div>
-    <div id="adresseErreur" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none;">
-      ⚠️ Veuillez remplir votre adresse complète
-    </div>
-    <div style="background:#f0f7f4;border-radius:10px;padding:10px 12px;font-size:12px;color:var(--texte-doux);margin-top:10px;">
-      🚚 Livraison dans un rayon de 10 km · Frais : 3,90€
-    </div>
+    <div class="form-erreur" id="adresseErreur">⚠️ Veuillez remplir votre adresse complète</div>
+    <div class="info-box">🚚 Livraison dans un rayon de 10 km · Frais : 3,90 €</div>
   </div>
-
 </div>
 
-<!-- ÉTAPE 2 : CRÉNEAU -->
-<div id="step2" style="display:none">
-  <div class="section" id="sectionCreneaux">
+<!-- ÉTAPE 3 : CRÉNEAU -->
+<div id="step3" style="display:none">
+  <div class="section">
     <div class="section-titre" id="creneauTitre">🕐 Choisissez votre créneau</div>
-    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px" id="creneauSub">
-      Retrait en boutique — 8 rue Neuve Saint-Jean, Caen
-    </p>
+    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px" id="creneauSub">Retrait en boutique — 8 rue Neuve Saint-Jean, Caen</p>
     <div class="creneaux-grid" id="creneauxGrid">
-      <div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement des créneaux...</div>
+      <div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Chargement des créneaux...</div>
     </div>
   </div>
+</div>
 
-<!-- ÉTAPE 3 : COORDONNÉES -->
-<div id="step3" style="display:none">
+<!-- ÉTAPE 4 : COORDONNÉES + STRIPE -->
+<div id="step4" style="display:none">
   <div class="section">
     <div class="section-titre">👤 Vos coordonnées</div>
     <div class="form-row">
@@ -359,548 +212,430 @@
       <input class="form-input" id="email" type="email" placeholder="marie@email.fr" autocomplete="email">
     </div>
     <div class="form-group">
-      <label class="form-label">Note pour le primeur (optionnel)</label>
-      <input class="form-input" id="note" type="text" placeholder="Ex: Sonnez au portail...">
+      <label class="form-label">Note pour Christophe</label>
+      <input class="form-input" id="note" type="text" placeholder="Allergies, préférences...">
     </div>
+    <div class="form-erreur" id="coordErreur">⚠️ Veuillez remplir tous les champs obligatoires</div>
   </div>
 
   <div class="section">
     <div class="section-titre">🔒 Garantie anti no-show</div>
-    <div class="empreinte-card">
-      <div class="empreinte-titre">Empreinte bancaire requise</div>
-      <div class="empreinte-txt">
-        Votre carte est enregistrée à titre de garantie uniquement.
-        <strong>Aucun débit ne sera effectué</strong> si vous venez chercher votre commande.
-        En cas d'absence sans annulation, des frais de 5€ pourront être prélevés.
-      </div>
-      <div style="margin-top:12px" id="stripeContainer">
-        <div id="stripeLoading" style="text-align:center;padding:20px;color:var(--texte-doux);font-size:14px;">
-          ⏳ Chargement du formulaire sécurisé...
-        </div>
-        <div id="stripeForm" style="display:none">
-          <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:10px;padding:14px;"></div>
-          <div id="stripe-card-errors" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none"></div>
-        </div>
-        <p style="font-size:11px;color:#aaa;margin-top:8px;line-height:1.4;">
-          🔒 Sécurisé par Stripe — Chez Christophe ne stocke jamais vos données bancaires
-        </p>
-      </div>
+    <div class="empreinte-info">
+      Votre carte est enregistrée à titre de <strong>garantie uniquement</strong>. Aucun débit si vous venez chercher votre commande. En cas d'absence sans annulation, des frais de <strong>5€</strong> pourront être prélevés.
     </div>
+    <div id="stripeLoading" style="text-align:center;padding:16px;color:var(--texte-doux);font-size:14px;">⏳ Chargement du formulaire sécurisé...</div>
+    <div id="stripeForm" style="display:none">
+      <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:12px;padding:14px;"></div>
+      <div id="stripe-card-errors" style="color:var(--rouge);font-size:13px;margin-top:8px;display:none"></div>
+    </div>
+    <p style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.5;">🔒 Sécurisé par Stripe — Chez Christophe ne stocke jamais vos données bancaires</p>
+  </div>
+
+  <div class="section">
+    <div class="section-titre">📊 Total</div>
+    <div id="recapFinal"></div>
   </div>
 </div>
 
-<!-- ÉTAPE 4 : CONFIRMATION -->
-<div id="step4" style="display:none">
-  <div class="succes-screen" id="succesScreen">
+<!-- ÉTAPE 5 : CONFIRMATION -->
+<div id="step5" style="display:none">
+  <div class="succes-screen">
     <div class="succes-icon">🎉</div>
     <div class="succes-titre">Commande confirmée !</div>
-    <div class="succes-sub">
-      Votre commande a bien été enregistrée.<br>
-      Vous recevrez un SMS de confirmation dans quelques instants.
-      <div id="adresseLivraisonConfirm" style="display:none;margin-top:16px;background:#f0f7f4;border-radius:12px;padding:14px;">
-        <div style="font-size:13px;font-weight:500;margin-bottom:10px;">📍 Adresse de livraison</div>
-        <div id="adresseConfirmTxt" style="font-size:14px;color:var(--texte-doux);margin-bottom:12px;"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <a id="lienMaps" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#4285F4;color:white;border-radius:10px;padding:10px;font-size:13px;font-weight:500;text-decoration:none;">
-            🗺️ Google Maps
-          </a>
-          <a id="lienWaze" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#33CCFF;color:#1a1a1a;border-radius:10px;padding:10px;font-size:13px;font-weight:500;text-decoration:none;">
-            🚗 Waze
-          </a>
-        </div>
+    <div class="succes-sub">Votre commande a bien été enregistrée.<br>Un SMS de confirmation vous a été envoyé.</div>
+
+    <div class="succes-badge">
+      <div class="succes-badge-label">Numéro de commande</div>
+      <div class="succes-badge-val" id="succesNumero">—</div>
+    </div>
+
+    <div class="succes-badge" style="background:var(--or);color:var(--vert-fonce);">
+      <div class="succes-badge-label" id="succesRetraitLabel">Retrait</div>
+      <div class="succes-badge-val" id="succesRetrait">—</div>
+    </div>
+
+    <!-- Liens navigation (livraison uniquement) -->
+    <div id="navMaps" style="display:none">
+      <div style="font-size:13px;font-weight:500;margin:16px 0 10px;">🗺️ Naviguer vers l'adresse</div>
+      <div style="font-size:14px;color:var(--texte-doux);margin-bottom:12px;" id="adresseConfirmTxt"></div>
+      <div class="nav-maps">
+        <a id="lienMaps" href="#" target="_blank" class="btn-map btn-gmaps">🗺️ Google Maps</a>
+        <a id="lienWaze" href="#" target="_blank" class="btn-map btn-waze">🚗 Waze</a>
       </div>
     </div>
-    <div class="succes-num" id="succesNumero">CCB-2026-0001</div>
-    <div style="background:var(--creme);border-radius:14px;padding:16px;text-align:left;margin-bottom:24px;">
-      <div style="font-size:13px;color:var(--texte-doux);margin-bottom:4px;">Retrait prévu</div>
-      <div style="font-size:15px;font-weight:500;" id="succesRetrait"></div>
-      <div style="font-size:13px;color:var(--texte-doux);margin-top:8px;">📍 8 rue Neuve Saint-Jean, Caen</div>
-    </div>
-    <a href="index.html" style="display:inline-block;background:var(--vert);color:white;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:500;">
-      Retour à l'accueil
-    </a>
+
+    <button class="btn-commander" style="margin-top:20px;" onclick="window.location='index.html'">
+      Retour à la boutique
+    </button>
   </div>
 </div>
 
 <!-- CTA FIXE -->
 <div class="cta-fixe" id="ctaFixe">
   <button class="btn-commander" id="btnAction" onclick="etapeSuivante()">
-    <span id="btnTxt">Choisir un créneau →</span>
+    <span id="btnTxt">Choisir le mode →</span>
     <span id="btnMontant"></span>
   </button>
 </div>
 
 <script>
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
-const STRIPE_PK = 'pk_test_51TNZXlEH5d5nXfSsSgBj9ZxnbdIa1BiukFetlslrxGUu3u4XuZkISjKN3vBhqNwgLdZhypC0pBt2TwC6r4NKKEes00GaQriPS8';
-let stripe = null;
-let stripeCardElement = null;
-let stripeClientSecret = null;
-let stripePaymentMethodId = null;
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
-
-// ── MODE LIVRAISON ───────────────────────────────────
-function choisirMode(mode) {
-  modeLivraison = mode === 'livraison';
-  modeCommande = mode; // Synchroniser les deux variables
-  document.getElementById('modeRetrait').classList.toggle('actif', !modeLivraison);
-  document.getElementById('modeLivraison').classList.toggle('actif', modeLivraison);
-  // Afficher/masquer le champ adresse
-  const adresseSection = document.getElementById('adresseLivraisonStep1');
-  if (adresseSection) adresseSection.style.display = modeLivraison ? 'block' : 'none';
-  // Vider l'erreur adresse
-  const errDiv = document.getElementById('adresseErreur');
-  if (errDiv) errDiv.style.display = 'none';
-  mettreAJourRecap();
-  mettreAJourCTA();
-}
-
-// Vérifier si le client est connecté
-function getSession() {
-  try {
-    const s = localStorage.getItem('session_client');
-    return s ? JSON.parse(s) : null;
-  } catch(e) { return null; }
-}
+const STRIPE_PK = 'pk_test_51TNZXlEH5d5nXfSsSgBj9ZxnbdIa1BiukFetlslrxGUu3u4XuZkISjKN3vBhqNwgLdZhypC0pBt2TwC6r4NKKEes00GaQriPS8';
+const FRAIS_LIVRAISON = 3.90;
 
 let panier = JSON.parse(sessionStorage.getItem('panier') || '[]');
-let modeLivraison = false;
-const FRAIS_LIVRAISON = 3.90;
-let etapeActuelle = 1;
-let creneauSelectionne = null;
-let modeCommande = 'retrait'; // 'retrait' ou 'livraison'
+let etape = 1;
+let modeCommande = 'retrait';
 let creneaux = [];
+let creneauSelectionne = null;
+let stripe = null;
+let stripeCard = null;
+let stripeSecret = null;
+let stripePaymentMethodId = null;
 
-const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-const EMOJIS_HEURE = { matin: '🌅', midi: '☀️', soir: '🌙' };
-
-async function sb(table, params, method='GET', body=null) {
+async function sb(table, params='', method='GET', body=null) {
   const opts = {
     method,
     headers: {
       'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
       'Content-Type': 'application/json',
       'Prefer': 'return=representation',
     }
   };
   if (body) opts.body = JSON.stringify(body);
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, opts);
-  if (method === 'GET') return r.json();
-  return r;
+  const r = await fetch(SUPABASE_URL + '/rest/v1/' + table + params, opts);
+  return r.json();
+}
+
+function getSession() {
+  try { return JSON.parse(localStorage.getItem('session_client')); } catch(e) { return null; }
 }
 
 // ── INIT ──────────────────────────────────────────────
 function init() {
   if (panier.length === 0) {
-    document.getElementById('panierVide').style.display = 'block';
-    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step1').innerHTML = '<div class="panier-vide"><p style="font-size:48px">🛒</p><p style="margin-top:12px;font-size:16px;font-weight:500;">Votre panier est vide</p><p style="margin-top:8px;font-size:14px;color:var(--texte-doux)">Ajoutez des produits depuis la boutique</p><button class="btn-commander" style="margin-top:20px;max-width:280px;" onclick="window.location=\'catalogue.html\'">Voir la boutique</button></div>';
     document.getElementById('ctaFixe').style.display = 'none';
+    document.getElementById('progressBar').style.display = 'none';
     return;
   }
   renderPanier();
   mettreAJourCTA();
 }
 
-// ── ÉTAPE 1 : PANIER ─────────────────────────────────
+// ── PANIER ────────────────────────────────────────────
 function renderPanier() {
   const container = document.getElementById('lignesPanier');
   container.innerHTML = panier.map((p, i) => `
-    <div class="panier-ligne">
-      <div class="ligne-img">
-        ${p.photo_url
-          ? `<img src="${p.photo_url}" alt="${p.nom}" loading="lazy">`
-          : `<span>${p.categories?.emoji || '🌿'}</span>`}
-      </div>
-      <div class="ligne-info">
+    <div class="ligne-produit">
+      <img class="ligne-img" src="${p.photo_url || ''}" onerror="this.style.display='none'">
+      <div style="flex:1">
         <div class="ligne-nom">${p.nom}</div>
-        <div class="ligne-prix-unit">${(p.prix_marche_indicatif||0).toFixed(2).replace('.',',')}€ / ${p.unite}</div>
-      </div>
-      <div class="ligne-droite">
-        <div class="qty-ctrl">
-          <button class="qty-btn" onclick="changerQte(${i}, -1)">−</button>
-          <span class="qty-num">${p.qte}</span>
-          <button class="qty-btn" onclick="changerQte(${i}, 1)">+</button>
+        <div class="ligne-qte">
+          <button class="qte-btn" onclick="modifierQte(${i}, -1)">−</button>
+          <span class="qte-num">${p.qte}</span>
+          <button class="qte-btn" onclick="modifierQte(${i}, 1)">+</button>
+          <span style="font-size:12px;color:var(--texte-doux)">${p.unite}</span>
         </div>
-        <div class="ligne-total">${((p.prix_marche_indicatif||0)*p.qte).toFixed(2).replace('.',',')}€</div>
       </div>
+      <div class="ligne-prix">${((p.prix_marche_indicatif||0)*p.qte).toFixed(2).replace('.',',')} €</div>
     </div>
   `).join('');
 
   renderRecap();
 }
 
-function renderRecap() {
-  const sous_total = panier.reduce((s,p) => s + (p.prix_marche_indicatif||0)*p.qte, 0);
-  const nb = panier.reduce((s,p) => s + p.qte, 0);
-  document.getElementById('recapPanier').innerHTML = `
-    <div class="recap-ligne">
-      <span class="recap-label">${nb} article${nb>1?'s':''}</span>
-      <span>${sous_total.toFixed(2).replace('.',',')} €</span>
-    </div>
-    <div class="recap-ligne">
-      <span class="recap-label">Livraison</span>
-      <span style="color:#27500A">Gratuite (retrait)</span>
-    </div>
-    <div class="recap-ligne total">
-      <span>Total</span>
-      <span>${sous_total.toFixed(2).replace('.',',')} €</span>
-    </div>
-  `;
-}
-
-function changerQte(idx, delta) {
-  panier[idx].qte += delta;
-  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+function modifierQte(idx, delta) {
+  panier[idx].qte = Math.max(0, panier[idx].qte + delta);
+  if (panier[idx].qte === 0) panier.splice(idx, 1);
   sessionStorage.setItem('panier', JSON.stringify(panier));
-  if (panier.length === 0) {
-    document.getElementById('panierVide').style.display = 'block';
-    document.getElementById('step1').style.display = 'none';
-    document.getElementById('ctaFixe').style.display = 'none';
-    return;
-  }
+  if (panier.length === 0) { init(); return; }
   renderPanier();
   mettreAJourCTA();
 }
 
-// ── ÉTAPE 2 : CRENEAUX ───────────────────────────────
+function renderRecap() {
+  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const total = sous_total + frais;
+
+  const html = `
+    <div class="total-ligne"><span>Sous-total (${panier.length} article${panier.length>1?'s':''})</span><span>${sous_total.toFixed(2).replace('.',',')} €</span></div>
+    ${frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison</span><span class="total-livraison">+${frais.toFixed(2).replace('.',',')} €</span></div>` : ''}
+    <div class="total-ligne" style="font-weight:500;font-size:15px;padding-top:10px;"><span>Total</span><span style="color:var(--vert)">${total.toFixed(2).replace('.',',')} €</span></div>
+  `;
+
+  const r1 = document.getElementById('recapStep1');
+  const r4 = document.getElementById('recapFinal');
+  if (r1) r1.innerHTML = html;
+  if (r4) r4.innerHTML = html;
+}
+
+// ── MODE ──────────────────────────────────────────────
 function choisirMode(mode) {
   modeCommande = mode;
-  
-  // UI
   document.getElementById('modeRetrait').classList.toggle('actif', mode === 'retrait');
   document.getElementById('modeLivraison').classList.toggle('actif', mode === 'livraison');
-  document.getElementById('checkRetrait').classList.toggle('actif', mode === 'retrait');
-  document.getElementById('checkLivraison').classList.toggle('actif', mode === 'livraison');
-  
-  // Mettre à jour le récap avec frais livraison
+  document.getElementById('adresseSection').style.display = mode === 'livraison' ? 'block' : 'none';
+  document.getElementById('adresseErreur').classList.remove('visible');
   renderRecap();
-}
-
-async function chargerCreneaux() {
-  const grid = document.getElementById('creneauxGrid');
-
-  // Adapter le titre selon le mode
-  if (modeCommande === 'livraison') {
-    document.getElementById('creneauTitre').textContent = '🕐 Choisissez votre créneau de livraison';
-    document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
-    document.getElementById('adresseLivraisonSection').classList.add('visible');
-  } else {
-    document.getElementById('creneauTitre').textContent = '🕐 Choisissez votre créneau de retrait';
-    document.getElementById('creneauSub').textContent = 'Retrait en boutique — 8 rue Neuve Saint-Jean, Caen';
-    document.getElementById('adresseLivraisonSection').classList.remove('visible');
-  }
-  
-  // Récupérer l'ID du commerçant Christophe
-  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
-  const commercantId = commercants?.[0]?.id;
-
-  let data = [];
-  if (commercantId) {
-    data = await sb('creneaux', `?actif=eq.true&commercant_id=eq.${commercantId}&order=jour_semaine,heure_debut&select=*`);
-  }
-  
-  if (!data || data.length === 0) {
-    creneaux = creneauxExemple();
-  } else {
-    creneaux = genererCreneauxSemaine(data);
-  }
-
-  grid.innerHTML = creneaux.map((c, i) => {
-    const dispoClass = c.places === 0 ? 'dispo-complet' : c.places <= 2 ? 'dispo-limite' : 'dispo-ok';
-    const dispoTxt = c.places === 0 ? 'Complet' : c.places <= 2 ? `${c.places} place${c.places>1?'s':''}` : 'Disponible';
-    const cardClass = c.places === 0 ? 'complet' : '';
-
-    return `
-      <div class="creneau-card ${cardClass}" id="creneau-${i}"
-        onclick="${c.places > 0 ? `selectionnerCreneau(${i})` : ''}">
-        <div class="creneau-gauche">
-          <span class="creneau-emoji">${c.emoji}</span>
-          <div>
-            <div class="creneau-jour">${c.jour} ${c.date}</div>
-            <div class="creneau-heure">${c.debut} – ${c.fin}</div>
-          </div>
-        </div>
-        <div class="creneau-droit">
-          <span class="creneau-dispo ${dispoClass}">${dispoTxt}</span>
-          <div class="creneau-check" id="check-${i}">✓</div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function genererCreneauxSemaine(data) {
-  const now = new Date();
-  const resultats = [];
-
-  for (let j = 0; j <= 6; j++) {
-    const date = new Date(now);
-    date.setDate(now.getDate() + j);
-    const jourSemaine = date.getDay() === 0 ? 7 : date.getDay(); // 1=lundi...7=dimanche
-
-    const creneauxDuJour = data.filter(c => c.jour_semaine === jourSemaine);
-    for (const c of creneauxDuJour) {
-      const hDebut = parseInt(c.heure_debut.split(':')[0]);
-      const emoji = hDebut < 12 ? '🌅' : hDebut < 16 ? '☀️' : '🌙';
-      resultats.push({
-        id: c.id,
-        jour: JOURS[date.getDay()],
-        date: `${date.getDate()}/${date.getMonth()+1}`,
-        debut: c.heure_debut.slice(0,5),
-        fin: c.heure_fin.slice(0,5),
-        places: c.capacite_max - Math.floor(Math.random() * 3), // simulé
-        emoji,
-        dateObj: date,
-        capacite: c.capacite_max,
-      });
-    }
-  }
-  return resultats;
-}
-
-function creneauxExemple() {
-  const now = new Date();
-  const exemples = [];
-  const configs = [
-    { emoji:'🌅', debut:'08:00', fin:'11:00', places:5 },
-    { emoji:'☀️', debut:'11:00', fin:'15:00', places:2 },
-    { emoji:'🌙', debut:'15:00', fin:'19:00', places:6 },
-  ];
-  for (let j = 1; j <= 4; j++) {
-    const date = new Date(now);
-    date.setDate(now.getDate() + j);
-    if (date.getDay() === 0 || date.getDay() === 1) continue; // fermé dim/lun
-    for (const c of configs) {
-      exemples.push({
-        jour: JOURS[date.getDay()],
-        date: `${date.getDate()}/${date.getMonth()+1}`,
-        ...c, dateObj: date,
-      });
-    }
-  }
-  return exemples;
-}
-
-function selectionnerCreneau(idx) {
-  // Désélectionner l'ancien
-  if (creneauSelectionne !== null) {
-    document.getElementById(`creneau-${creneauSelectionne}`)?.classList.remove('selectionne');
-  }
-  creneauSelectionne = idx;
-  document.getElementById(`creneau-${idx}`)?.classList.add('selectionne');
   mettreAJourCTA();
 }
 
-// ── NAVIGATION ÉTAPES ─────────────────────────────────
+// ── ÉTAPES ────────────────────────────────────────────
+function allerEtape(n) {
+  document.getElementById('step' + etape).style.display = 'none';
+  etape = n;
+  document.getElementById('step' + etape).style.display = 'block';
+
+  // Progress dots
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.getElementById('dot' + i);
+    if (!dot) continue;
+    dot.className = 'step-dot ' + (i < n ? 'done' : i === n ? 'actif' : 'todo');
+    if (i < 5) {
+      const line = document.getElementById('line' + i);
+      if (line) line.className = 'step-line ' + (i < n ? 'done' : '');
+    }
+  }
+
+  const titres = ['Mon panier', 'Mode de réception', 'Créneau', 'Coordonnées', 'Confirmation'];
+  document.getElementById('headerTitre').textContent = titres[n-1];
+  mettreAJourCTA();
+  window.scrollTo(0, 0);
+}
+
 async function etapeSuivante() {
-  if (etapeActuelle === 1) {
-    // Vérifier connexion avant de continuer
-    const session = getSession();
-    if (!session) {
+  if (etape === 1) {
+    // Vérifier connexion
+    if (!getSession()) {
       if (confirm('Vous devez être connecté pour commander.\n\nAller sur la page de connexion ?')) {
         window.location.href = 'compte.html';
       }
       return;
     }
-    // Valider l'adresse si livraison
-    if (modeLivraison) {
-      const adresse = document.getElementById('livraisonAdresse')?.value.trim();
-      const cp = document.getElementById('livraisonCP')?.value.trim();
-      const ville = document.getElementById('livraisonVille')?.value.trim();
-      const errDiv = document.getElementById('adresseErreur');
-      if (!adresse || !cp || !ville || cp.length < 4) {
-        if (errDiv) { errDiv.style.display = 'block'; }
-        document.getElementById('livraisonAdresse')?.scrollIntoView({ behavior: 'smooth' });
+    allerEtape(2);
+
+  } else if (etape === 2) {
+    // Valider adresse si livraison
+    if (modeCommande === 'livraison') {
+      const adresse = document.getElementById('livraisonAdresse').value.trim();
+      const cp = document.getElementById('livraisonCP').value.trim();
+      const ville = document.getElementById('livraisonVille').value.trim();
+      if (!adresse || cp.length < 4 || !ville) {
+        document.getElementById('adresseErreur').classList.add('visible');
+        document.getElementById('livraisonAdresse').focus();
         return;
       }
-      if (errDiv) errDiv.style.display = 'none';
-    }
-    allerEtape(2);
-    await chargerCreneaux();
-  } else if (etapeActuelle === 2) {
-    if (creneauSelectionne === null) {
-      alert('Veuillez choisir un créneau de retrait.');
-      return;
+      document.getElementById('adresseErreur').classList.remove('visible');
     }
     allerEtape(3);
-    // Pré-remplir avec les infos du compte
-    const session = getSession();
-    if (session?.user) {
-      const meta = session.user.user_metadata || {};
-      if (meta.prenom) document.getElementById('prenom').value = meta.prenom;
-      if (meta.nom) document.getElementById('nom').value = meta.nom;
-      if (session.user.email) document.getElementById('email').value = session.user.email;
-      if (meta.telephone) document.getElementById('telephone').value = meta.telephone;
+    await chargerCreneaux();
+
+  } else if (etape === 3) {
+    if (creneauSelectionne === null) {
+      alert('Veuillez choisir un créneau');
+      return;
     }
-    // Initialiser Stripe
+    allerEtape(4);
+    preRemplirCoordonnees();
     await initialiserStripe();
-  } else if (etapeActuelle === 3) {
+
+  } else if (etape === 4) {
     if (!validerFormulaire()) return;
     await confirmerCommande();
   }
 }
 
-function allerEtape(num) {
-  document.getElementById(`step${etapeActuelle}`).style.display = 'none';
-  document.getElementById(`step${num}`).style.display = 'block';
-  etapeActuelle = num;
-  // Mettre à jour les indicateurs d'étapes
-  for (let i = 1; i <= 4; i++) {
-    const el = document.getElementById(`etape${i}`);
-    el.classList.remove('active', 'done');
-    if (i < num) el.classList.add('done');
-    if (i === num) el.classList.add('active');
-  }
-  mettreAJourCTA();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 function mettreAJourCTA() {
-  const total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
-  const btn = document.getElementById('btnTxt');
-  const montant = document.getElementById('btnMontant');
+  const btn = document.getElementById('btnAction');
+  const btnTxt = document.getElementById('btnTxt');
+  const btnMontant = document.getElementById('btnMontant');
+  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const total = (sous_total + frais).toFixed(2).replace('.',',') + ' €';
 
-  if (etapeActuelle === 1) {
-    btn.textContent = 'Choisir un créneau →';
-    montant.textContent = total.toFixed(2).replace('.',',') + ' €';
-  } else if (etapeActuelle === 2) {
-    btn.textContent = creneauSelectionne !== null ? 'Mes coordonnées →' : 'Choisissez un créneau';
-    montant.textContent = '';
-    document.getElementById('btnAction').disabled = creneauSelectionne === null;
-  } else if (etapeActuelle === 3) {
-    btn.textContent = 'Confirmer la commande →';
-    montant.textContent = total.toFixed(2).replace('.',',') + ' €';
-    document.getElementById('btnAction').disabled = false;
+  if (etape === 1) {
+    btnTxt.textContent = 'Choisir le mode →';
+    btnMontant.textContent = total;
+    btn.disabled = false;
+  } else if (etape === 2) {
+    btnTxt.textContent = 'Choisir un créneau →';
+    btnMontant.textContent = total;
+    btn.disabled = false;
+  } else if (etape === 3) {
+    btnTxt.textContent = creneauSelectionne !== null ? 'Mes coordonnées →' : 'Choisissez un créneau';
+    btnMontant.textContent = '';
+    btn.disabled = creneauSelectionne === null;
+  } else if (etape === 4) {
+    btnTxt.textContent = 'Confirmer la commande →';
+    btnMontant.textContent = total;
+    btn.disabled = false;
+  } else if (etape === 5) {
+    document.getElementById('ctaFixe').style.display = 'none';
   }
 }
 
-// ── VALIDATION FORMULAIRE ────────────────────────────
+// ── CRÉNEAUX ──────────────────────────────────────────
+async function chargerCreneaux() {
+  const grid = document.getElementById('creneauxGrid');
+  grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Chargement...</div>';
+  creneauSelectionne = null;
+  mettreAJourCTA();
+
+  if (modeCommande === 'livraison') {
+    document.getElementById('creneauTitre').textContent = '🕐 Créneau de livraison';
+    document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
+  } else {
+    document.getElementById('creneauTitre').textContent = '🕐 Créneau de retrait';
+    document.getElementById('creneauSub').textContent = 'Retrait en boutique — 8 rue Neuve Saint-Jean, Caen';
+  }
+
+  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
+  const commercantId = commercants?.[0]?.id;
+
+  const type = modeCommande === 'livraison' ? 'livraison' : 'retrait';
+  const data = await sb('creneaux', `?actif=eq.true&commercant_id=eq.${commercantId}&type=eq.${type}&order=jour_semaine,heure_debut&select=*`);
+
+  if (!data || data.length === 0) {
+    grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Aucun créneau disponible</div>';
+    return;
+  }
+
+  creneaux = genererCreneauxSemaine(data);
+  renderCreneaux();
+}
+
+function genererCreneauxSemaine(data) {
+  const jours = ['', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+  const now = new Date();
+  const result = [];
+
+  data.forEach(c => {
+    for (let semaine = 0; semaine <= 1; semaine++) {
+      const date = new Date(now);
+      const diff = ((c.jour_semaine - now.getDay() + 7) % 7) + semaine * 7;
+      if (diff === 0 && now.getHours() >= parseInt(c.heure_debut)) continue;
+      date.setDate(now.getDate() + diff);
+      result.push({
+        id: c.id,
+        jour: jours[c.jour_semaine],
+        date: date.toLocaleDateString('fr-FR', {day:'numeric', month:'short'}),
+        debut: c.heure_debut.slice(0,5),
+        fin: c.heure_fin.slice(0,5),
+        emoji: c.emoji || '🕐',
+      });
+    }
+  });
+
+  return result.slice(0, 12);
+}
+
+function renderCreneaux() {
+  const grid = document.getElementById('creneauxGrid');
+  grid.innerHTML = creneaux.map((c, i) => `
+    <div class="creneau-card" id="creneau-${i}" onclick="selectionnerCreneau(${i})">
+      <div class="creneau-jour">${c.jour}</div>
+      <div class="creneau-date">${c.date}</div>
+      <div class="creneau-heure">${c.debut} – ${c.fin}</div>
+    </div>
+  `).join('');
+}
+
+function selectionnerCreneau(i) {
+  creneauSelectionne = i;
+  document.querySelectorAll('.creneau-card').forEach((el, idx) => {
+    el.classList.toggle('actif', idx === i);
+  });
+  mettreAJourCTA();
+}
+
+// ── COORDONNÉES ───────────────────────────────────────
+function preRemplirCoordonnees() {
+  const session = getSession();
+  if (!session?.user) return;
+  const meta = session.user.user_metadata || {};
+  if (meta.prenom) document.getElementById('prenom').value = meta.prenom;
+  if (meta.nom) document.getElementById('nom').value = meta.nom;
+  if (session.user.email) document.getElementById('email').value = session.user.email;
+  if (meta.telephone) document.getElementById('telephone').value = meta.telephone;
+}
+
 function validerFormulaire() {
   const prenom = document.getElementById('prenom').value.trim();
   const nom = document.getElementById('nom').value.trim();
   const tel = document.getElementById('telephone').value.trim();
   const email = document.getElementById('email').value.trim();
-
-  if (!prenom || !nom) { alert('Veuillez entrer votre nom et prénom.'); return false; }
-  if (!tel || tel.length < 10) { alert('Veuillez entrer un numéro de téléphone valide.'); return false; }
-  if (!email || !email.includes('@')) { alert('Veuillez entrer un email valide.'); return false; }
+  const erreur = document.getElementById('coordErreur');
+  if (!prenom || !nom || !tel || !email) {
+    erreur.classList.add('visible');
+    return false;
+  }
+  erreur.classList.remove('visible');
   return true;
 }
 
-
-// ── STRIPE EMPREINTE BANCAIRE ────────────────────────
+// ── STRIPE ────────────────────────────────────────────
 async function initialiserStripe() {
   try {
     stripe = Stripe(STRIPE_PK);
-    
-    // Créer un SetupIntent via Edge Function
     const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
-    
     const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-setup-intent', {
       method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        montant: sous_total,
-        commande_numero: 'EN_COURS',
-        commercant_id: 'christophe-frais-caen',
-      })
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ montant: sous_total, commercant_id: 'christophe-frais-caen', commande_numero: 'EN_COURS' })
     });
-    
     const data = await r.json();
-    
-    if (data.error) {
-      console.log('Stripe error:', data.error);
-      afficherStripeErreur('Impossible de charger le formulaire de paiement');
-      return;
-    }
-    
-    stripeClientSecret = data.client_secret;
-    
-    // Créer le formulaire carte
+    if (data.error) { document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible'; return; }
+    stripeSecret = data.client_secret;
     const elements = stripe.elements();
-    stripeCardElement = elements.create('card', {
-      style: {
-        base: {
-          fontSize: '15px',
-          color: '#1a2e26',
-          fontFamily: 'DM Sans, sans-serif',
-          '::placeholder': { color: '#aaa' },
-        }
-      },
+    stripeCard = elements.create('card', {
+      style: { base: { fontSize: '15px', color: '#1a2e26', fontFamily: 'DM Sans, sans-serif', '::placeholder': { color: '#aaa' } } },
       hidePostalCode: true,
     });
-    
     document.getElementById('stripeLoading').style.display = 'none';
     document.getElementById('stripeForm').style.display = 'block';
-    stripeCardElement.mount('#stripe-card-element');
-    
-    stripeCardElement.on('change', function(event) {
-      const errDiv = document.getElementById('stripe-card-errors');
-      if (event.error) {
-        errDiv.textContent = event.error.message;
-        errDiv.style.display = 'block';
-      } else {
-        errDiv.style.display = 'none';
-      }
+    stripeCard.mount('#stripe-card-element');
+    stripeCard.on('change', e => {
+      const err = document.getElementById('stripe-card-errors');
+      err.textContent = e.error ? e.error.message : '';
+      err.style.display = e.error ? 'block' : 'none';
     });
-    
   } catch(e) {
-    console.log('Stripe init error:', e);
-    document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible — la commande sera validée sans empreinte';
+    document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible — commande sans empreinte';
   }
 }
 
-function afficherStripeErreur(msg) {
-  document.getElementById('stripeLoading').textContent = '⚠️ ' + msg;
-}
-
 async function confirmerEmpreinte() {
-  if (!stripe || !stripeCardElement || !stripeClientSecret) return true; // Skip si Stripe non dispo
-  
-  const { setupIntent, error } = await stripe.confirmCardSetup(stripeClientSecret, {
+  if (!stripe || !stripeCard || !stripeSecret) return true;
+  const { setupIntent, error } = await stripe.confirmCardSetup(stripeSecret, {
     payment_method: {
-      card: stripeCardElement,
+      card: stripeCard,
       billing_details: {
         name: document.getElementById('prenom').value + ' ' + document.getElementById('nom').value,
         email: document.getElementById('email').value,
       }
     }
   });
-  
   if (error) {
-    const errDiv = document.getElementById('stripe-card-errors');
-    errDiv.textContent = error.message;
-    errDiv.style.display = 'block';
+    const err = document.getElementById('stripe-card-errors');
+    err.textContent = error.message;
+    err.style.display = 'block';
     return false;
   }
-  
   stripePaymentMethodId = setupIntent.payment_method;
   return true;
 }
 
-// ── CONFIRMATION COMMANDE ────────────────────────────
+// ── CONFIRMATION ──────────────────────────────────────
 async function confirmerCommande() {
   const btn = document.getElementById('btnAction');
   btn.disabled = true;
   document.getElementById('btnTxt').textContent = 'Envoi en cours...';
 
-  const creneau = creneaux[creneauSelectionne];
-  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
-  const annee = new Date().getFullYear();
-  const numero = 'CCB-' + annee + '-' + Date.now().toString().slice(-4);
-
-  const prenom = document.getElementById('prenom').value.trim();
-  const nom = document.getElementById('nom').value.trim();
-  const telephone = document.getElementById('telephone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const note = document.getElementById('note').value.trim();
-
-  // Confirmer l'empreinte Stripe d'abord
+  // Confirmer empreinte Stripe
   const empreinteOk = await confirmerEmpreinte();
   if (!empreinteOk) {
     btn.disabled = false;
@@ -908,128 +643,86 @@ async function confirmerCommande() {
     return;
   }
 
+  const creneau = creneaux[creneauSelectionne];
+  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const total = sous_total + frais;
+  const numero = 'CCB-' + new Date().getFullYear() + '-' + Date.now().toString().slice(-4);
+  const prenom = document.getElementById('prenom').value.trim();
+  const nom = document.getElementById('nom').value.trim();
+  const telephone = document.getElementById('telephone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const note = document.getElementById('note').value.trim();
+
   try {
-    // 1. Récupérer l'ID du commerçant
     const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
     const commercantId = commercants?.[0]?.id;
-    if (!commercantId) throw new Error('Commerçant introuvable');
 
-    // 2. Créer ou récupérer le client
     let clientId = null;
-    const clientsExist = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id');
-    
-    if (clientsExist?.length > 0) {
-      clientId = clientsExist[0].id;
+    const clients = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id');
+    if (clients?.length > 0) {
+      clientId = clients[0].id;
     } else {
-      const newClient = await sb('clients', '', 'POST', {
-        commercant_id: commercantId,
-        email: email,
-        nom: nom,
-        prenom: prenom,
-        telephone: telephone,
-      });
-      const clientData = await newClient.json();
-      clientId = clientData?.[0]?.id || clientData?.id;
+      const newClient = await sb('clients', '', 'POST', { commercant_id: commercantId, email, nom, prenom, telephone });
+      clientId = newClient?.[0]?.id;
     }
 
-    // 3. Créer la commande
-    const dateRetrait = new Date();
-    dateRetrait.setDate(dateRetrait.getDate() + 1);
+    const adresseLiv = modeCommande === 'livraison' ? (
+      document.getElementById('livraisonAdresse').value.trim() + ', ' +
+      document.getElementById('livraisonCP').value.trim() + ' ' +
+      document.getElementById('livraisonVille').value.trim()
+    ) : null;
 
-    const commandeData = {
+    await sb('commandes', '', 'POST', {
       commercant_id: commercantId,
       client_id: clientId,
-      numero: numero,
+      numero,
       type: modeCommande,
       creneau_id: creneau.id || null,
-      date_retrait: dateRetrait.toISOString(),
       statut: 'nouvelle',
-      sous_total: sous_total,
-      frais_livraison: 0,
-      total_ttc: sous_total,
-      adresse_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonAdresse').value : null,
-      code_postal_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonCP').value : null,
-      ville_livraison: modeCommande === 'livraison' ? document.getElementById('livraisonVille').value : null,
-      frais_livraison: modeCommande === 'livraison' ? 3.90 : 0,
-      total_ttc: panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0) + (modeCommande === 'livraison' ? 3.90 : 0),
+      sous_total,
+      frais_livraison: frais,
+      total_ttc: total,
       note_client: note || null,
+      adresse_livraison: adresseLiv,
       empreinte_payment_method_id: stripePaymentMethodId || null,
-    };
+    });
 
-    const cmdResp = await sb('commandes', '', 'POST', commandeData);
-    const cmdData = await cmdResp.json();
-    const commandeId = cmdData?.[0]?.id || cmdData?.id;
+  } catch(e) { console.log('Erreur commande:', e); }
 
-    // 4. Créer les lignes de commande
-    if (commandeId) {
-      for (const p of panier) {
-        await sb('commande_lignes', '', 'POST', {
-          commande_id: commandeId,
-          produit_base_id: p.id,
-          nom_produit: p.nom,
-          unite: p.unite,
-          quantite: p.qte,
-          prix_unitaire: p.prix_marche_indicatif || 0,
-          tva_pct: 5.50,
-          total_ligne: (p.prix_marche_indicatif || 0) * p.qte,
-        });
-      }
-    }
-
-  } catch(err) {
-    console.error('Erreur commande:', err);
-    // On affiche quand même la confirmation côté client
-  }
-
-  // Envoyer SMS de confirmation
+  // SMS
   const tel = document.getElementById('telephone').value.trim();
-  const prenomClient = document.getElementById('prenom').value.trim();
   if (tel) {
-    const creneau = creneaux[creneauSelectionne];
-    const smsMessage = `Bonjour ${prenomClient} ! Votre commande ${numero} chez Christophe est confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. A bientot !`;
-    
+    const cMsg = modeCommande === 'livraison'
+      ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. A bientôt !`
+      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. A bientôt !`;
     fetch(SUPABASE_URL + '/functions/v1/send-sms', {
       method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ telephone: tel, message: smsMessage })
-    }).catch(e => console.log('SMS error:', e));
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ telephone: tel, message: cMsg })
+    }).catch(() => {});
   }
 
-  // Afficher l'adresse de livraison dans la confirmation
-  if (modeLivraison) {
-    const adresse = document.getElementById('livraisonAdresse')?.value.trim();
-    const cp = document.getElementById('livraisonCP')?.value.trim();
-    const ville = document.getElementById('livraisonVille')?.value.trim();
-    const adresseFull = adresse + ', ' + cp + ' ' + ville;
-    const adresseEncoded = encodeURIComponent(adresseFull);
-    
-    const confirmDiv = document.getElementById('adresseLivraisonConfirm');
-    if (confirmDiv) {
-      confirmDiv.style.display = 'block';
-      document.getElementById('adresseConfirmTxt').textContent = adresseFull;
-      document.getElementById('lienMaps').href = 'https://maps.google.com/?q=' + adresseEncoded;
-      document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + adresseEncoded + '&navigate=yes';
-    }
-  }
-
-  // Afficher la confirmation
-  allerEtape(4);
-  document.getElementById('succesScreen').style.display = 'block';
+  // Afficher confirmation
+  allerEtape(5);
   document.getElementById('succesNumero').textContent = numero;
-  document.getElementById('succesRetrait').textContent =
-    creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
-  document.getElementById('ctaFixe').style.display = 'none';
+  document.getElementById('succesRetrait').textContent = creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
 
-  // Vider le panier
+  if (modeCommande === 'livraison') {
+    document.getElementById('succesRetraitLabel').textContent = 'Livraison';
+    const adresse = document.getElementById('livraisonAdresse').value.trim() + ', ' +
+      document.getElementById('livraisonCP').value.trim() + ' ' +
+      document.getElementById('livraisonVille').value.trim();
+    document.getElementById('navMaps').style.display = 'block';
+    document.getElementById('adresseConfirmTxt').textContent = adresse;
+    document.getElementById('lienMaps').href = 'https://maps.google.com/?q=' + encodeURIComponent(adresse);
+    document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + encodeURIComponent(adresse) + '&navigate=yes';
+  }
+
   sessionStorage.removeItem('panier');
   panier = [];
 }
 
-// Init
 init();
 </script>
 </body>
