@@ -633,19 +633,17 @@ async function chargerCatalogue() {
 }
 
 function renderCatalogue(produits) {
-  document.getElementById('catalogueGrid').innerHTML = produits.map(p => `
-    <div class="produit-admin-card">
-      <div class="produit-admin-img">
-        ${p.photo_url
-          ? `<img src="${p.photo_url}" alt="${p.nom}" loading="lazy">`
-          : `<span>${p.categories?.emoji || '🌿'}</span>`}
-      </div>
-      <div class="produit-admin-body">
-        <div class="produit-admin-nom">${p.nom}</div>
-        <div class="produit-admin-prix">${(p.prix_marche_indicatif||0).toFixed(2)}€ / ${p.unite}</div>
-      </div>
-    </div>
-  `).join('');
+  document.getElementById('catalogueGrid').innerHTML = produits.map(p => {
+    const img = p.photo_url
+      ? '<img src="' + p.photo_url + '" alt="' + p.nom + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">'
+      : '<span style="font-size:36px">' + (p.categories?.emoji || '🌿') + '</span>';
+    return '<div class="produit-admin-card">'
+      + '<div class="produit-admin-img">' + img + '</div>'
+      + '<div class="produit-admin-body">'
+      + '<div class="produit-admin-nom">' + p.nom + '</div>'
+      + '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + p.unite + '</div>'
+      + '</div></div>';
+  }).join('');
 }
 
 function filtrerProduits(q) {
