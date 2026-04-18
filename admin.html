@@ -719,152 +719,71 @@ function genererFacture(id, nom, email, prix, plan) {
   const mois = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
   const dateEmission = now.toLocaleDateString('fr-FR');
   const numFacture = 'FAC-' + now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + id.slice(0,4).toUpperCase();
-  const tva = prix * 0.20;
-  const ht = prix - tva;
+  const tva = (prix * 0.20).toFixed(2);
+  const ht = (prix - prix * 0.20).toFixed(2);
 
-  const html = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Facture ${numFacture}</title>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: Arial, sans-serif; color: #1a2e26; padding: 40px; max-width: 800px; margin: 0 auto; }
-  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #2d4a3e; }
-  .logo { font-size: 24px; font-weight: bold; color: #2d4a3e; }
-  .logo span { color: #c9a84c; }
-  .facture-titre { font-size: 28px; font-weight: bold; color: #2d4a3e; text-align: right; }
-  .facture-num { font-size: 14px; color: #888; text-align: right; margin-top: 4px; }
-  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-  .partie-titre { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; }
-  .partie-nom { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
-  .partie-detail { font-size: 13px; color: #555; line-height: 1.6; }
-  .infos-facture { background: #f5f0e8; border-radius: 8px; padding: 16px; margin-bottom: 30px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .info-item label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; display: block; margin-bottom: 4px; }
-  .info-item span { font-size: 14px; font-weight: 500; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
-  th { background: #2d4a3e; color: white; padding: 12px 16px; text-align: left; font-size: 13px; }
-  td { padding: 14px 16px; border-bottom: 1px solid #ede6d6; font-size: 14px; }
-  tr:last-child td { border-bottom: none; }
-  .totaux { display: flex; justify-content: flex-end; margin-bottom: 30px; }
-  .totaux-table { width: 280px; }
-  .totaux-ligne { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; border-bottom: 1px solid #ede6d6; }
-  .totaux-ligne:last-child { border-bottom: none; font-weight: bold; font-size: 16px; color: #2d4a3e; padding-top: 12px; }
-  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ede6d6; font-size: 12px; color: #888; text-align: center; line-height: 1.6; }
-  .badge-plan { display: inline-block; background: #c9a84c; color: #1a2e26; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
-  @media print {
-    body { padding: 20px; }
-    .btn-print { display: none; }
-  }
-  .btn-print { 
-    display: block; margin: 20px auto; background: #2d4a3e; color: white; 
-    border: none; border-radius: 50px; padding: 12px 32px; font-size: 15px; 
-    cursor: pointer; font-family: Arial, sans-serif;
-  }
-</style>
-</head>
-<body>
+  const html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">'
+    + '<title>Facture ' + numFacture + '</title>'
+    + '<style>body{font-family:Arial,sans-serif;color:#1a2e26;padding:40px;max-width:800px;margin:0 auto}'
+    + '.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:20px;border-bottom:2px solid #2d4a3e}'
+    + '.logo{font-size:22px;font-weight:bold;color:#2d4a3e}.logo span{color:#c9a84c}'
+    + '.parties{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:30px}'
+    + '.partie-titre{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px}'
+    + '.partie-nom{font-size:16px;font-weight:bold;margin-bottom:4px}'
+    + '.partie-detail{font-size:13px;color:#555;line-height:1.6}'
+    + '.infos{background:#f5f0e8;border-radius:8px;padding:16px;margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}'
+    + '.infos label{font-size:11px;text-transform:uppercase;color:#888;display:block;margin-bottom:4px}'
+    + '.infos span{font-size:14px;font-weight:500}'
+    + 'table{width:100%;border-collapse:collapse;margin-bottom:20px}'
+    + 'th{background:#2d4a3e;color:white;padding:12px 16px;text-align:left;font-size:13px}'
+    + 'td{padding:14px 16px;border-bottom:1px solid #ede6d6;font-size:14px}'
+    + '.totaux{display:flex;justify-content:flex-end;margin-bottom:30px}'
+    + '.totaux-table{width:280px}'
+    + '.totaux-ligne{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;border-bottom:1px solid #ede6d6}'
+    + '.totaux-total{display:flex;justify-content:space-between;padding:12px 0;font-size:16px;font-weight:bold;color:#2d4a3e}'
+    + '.footer{margin-top:30px;padding-top:20px;border-top:1px solid #ede6d6;font-size:12px;color:#888;text-align:center;line-height:1.6}'
+    + '.btn-print{display:block;margin:20px auto;background:#2d4a3e;color:white;border:none;border-radius:50px;padding:12px 32px;font-size:15px;cursor:pointer}'
+    + '@media print{.btn-print{display:none}}'
+    + '</style></head><body>'
+    + '<div class="header"><div>'
+    + '<div class="logo">🌿 Primeur <span>SaaS</span></div>'
+    + '<div style="font-size:13px;color:#888;margin-top:6px;">Paul Merieult — Éditeur logiciel</div>'
+    + '<div style="font-size:13px;color:#888;">paulmerieultpro14@gmail.com</div>'
+    + '</div><div style="text-align:right">'
+    + '<div style="font-size:28px;font-weight:bold;color:#2d4a3e">FACTURE</div>'
+    + '<div style="font-size:14px;color:#888">' + numFacture + '</div>'
+    + '</div></div>'
+    + '<div class="parties"><div>'
+    + '<div class="partie-titre">Émetteur</div>'
+    + '<div class="partie-nom">Primeur SaaS</div>'
+    + '<div class="partie-detail">Paul Merieult<br>paulmerieultpro14@gmail.com<br>France</div>'
+    + '</div><div>'
+    + '<div class="partie-titre">Facturé à</div>'
+    + '<div class="partie-nom">' + nom + '</div>'
+    + '<div class="partie-detail">' + email + '<br>Plan ' + plan.toUpperCase() + '</div>'
+    + '</div></div>'
+    + '<div class="infos">'
+    + '<div><label>Numéro</label><span>' + numFacture + '</span></div>'
+    + '<div><label>Date</label><span>' + dateEmission + '</span></div>'
+    + '<div><label>Période</label><span>' + mois + '</span></div>'
+    + '</div>'
+    + '<table><thead><tr><th>Description</th><th>Période</th><th>HT</th><th>TVA 20%</th><th>TTC</th></tr></thead><tbody><tr>'
+    + '<td><strong>Abonnement Primeur SaaS — Plan ' + plan.toUpperCase() + '</strong><br><span style="font-size:12px;color:#888">Site click & collect + App commerçant + Notifications push</span></td>'
+    + '<td style="color:#888">' + mois + '</td>'
+    + '<td>' + ht + ' €</td>'
+    + '<td>' + tva + ' €</td>'
+    + '<td><strong>' + prix.toFixed(2) + ' €</strong></td>'
+    + '</tr></tbody></table>'
+    + '<div class="totaux"><div class="totaux-table">'
+    + '<div class="totaux-ligne"><span>Sous-total HT</span><span>' + ht + ' €</span></div>'
+    + '<div class="totaux-ligne"><span>TVA 20%</span><span>' + tva + ' €</span></div>'
+    + '<div class="totaux-total"><span>Total TTC</span><span>' + prix.toFixed(2) + ' €</span></div>'
+    + '</div></div>'
+    + '<div class="footer">Primeur SaaS — Paul Merieult · paulmerieultpro14@gmail.com<br>'
+    + 'Facture émise le ' + dateEmission + ' · Paiement à réception</div>'
+    + '<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>'
+    + '</body></html>';
 
-<div class="header">
-  <div>
-    <div class="logo">🌿 Primeur <span>SaaS</span></div>
-    <div style="font-size:13px;color:#888;margin-top:6px;">Paul Merieult — Éditeur de logiciel</div>
-    <div style="font-size:13px;color:#888;">paulmerieultpro14@gmail.com</div>
-  </div>
-  <div>
-    <div class="facture-titre">FACTURE</div>
-    <div class="facture-num">${numFacture}</div>
-  </div>
-</div>
-
-<div class="parties">
-  <div>
-    <div class="partie-titre">Émetteur</div>
-    <div class="partie-nom">Primeur SaaS</div>
-    <div class="partie-detail">
-      Paul Merieult<br>
-      paulmerieultpro14@gmail.com<br>
-      France
-    </div>
-  </div>
-  <div>
-    <div class="partie-titre">Facturé à</div>
-    <div class="partie-nom">${nom}</div>
-    <div class="partie-detail">
-      ${email}<br>
-      Abonnement <span class="badge-plan">${plan}</span>
-    </div>
-  </div>
-</div>
-
-<div class="infos-facture">
-  <div class="info-item">
-    <label>Numéro de facture</label>
-    <span>${numFacture}</span>
-  </div>
-  <div class="info-item">
-    <label>Date d'émission</label>
-    <span>${dateEmission}</span>
-  </div>
-  <div class="info-item">
-    <label>Période</label>
-    <span>${mois}</span>
-  </div>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Période</th>
-      <th>HT</th>
-      <th>TVA 20%</th>
-      <th>TTC</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <strong>Abonnement Primeur SaaS — Plan ${plan.toUpperCase()}</strong><br>
-        <span style="font-size:12px;color:#888;">Site click & collect + App commerçant + Notifications push</span>
-      </td>
-      <td style="color:#888;">${mois}</td>
-      <td>${ht.toFixed(2)} €</td>
-      <td>${tva.toFixed(2)} €</td>
-      <td><strong>${prix.toFixed(2)} €</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="totaux">
-  <div class="totaux-table">
-    <div class="totaux-ligne">
-      <span>Sous-total HT</span>
-      <span>${ht.toFixed(2)} €</span>
-    </div>
-    <div class="totaux-ligne">
-      <span>TVA 20%</span>
-      <span>${tva.toFixed(2)} €</span>
-    </div>
-    <div class="totaux-ligne">
-      <span>Total TTC</span>
-      <span>${prix.toFixed(2)} €</span>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  Primeur SaaS — Paul Merieult · paulmerieultpro14@gmail.com<br>
-  Facture générée le ${dateEmission} · Paiement à réception<br>
-  Micro-entreprise — TVA non applicable selon l'article 293B du CGI (si applicable)
-</div>
-
-<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>
-
-</body>
-</html>`;
-
-  // Ouvrir dans un nouvel onglet
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   window.open(url, '_blank');
