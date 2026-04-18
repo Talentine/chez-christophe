@@ -519,10 +519,15 @@ function genererCreneauxSemaine(data) {
       const diff = ((c.jour_semaine - now.getDay() + 7) % 7) + semaine * 7;
       if (diff === 0 && now.getHours() >= parseInt(c.heure_debut)) continue;
       date.setDate(now.getDate() + diff);
+      // Construire la date ISO complète avec l'heure de début
+      const [h, m] = c.heure_debut.split(':');
+      const dateAvecHeure = new Date(date);
+      dateAvecHeure.setHours(parseInt(h), parseInt(m), 0, 0);
       result.push({
         id: c.id,
         jour: jours[c.jour_semaine],
         date: date.toLocaleDateString('fr-FR', {day:'numeric', month:'short'}),
+        dateISO: dateAvecHeure.toISOString(),
         debut: c.heure_debut.slice(0,5),
         fin: c.heure_fin.slice(0,5),
         emoji: c.emoji || '🕐',
@@ -679,6 +684,7 @@ async function confirmerCommande() {
       numero,
       type: modeCommande,
       creneau_id: creneau.id || null,
+      date_retrait: creneau.dateISO || null,
       statut: 'nouvelle',
       sous_total,
       frais_livraison: frais,
