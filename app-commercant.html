@@ -993,105 +993,101 @@ function chargerPlanningDemo() {
 
 async function chargerPlanningReel() {
   const grid = document.getElementById('planningGrid');
-  if (!grid) return; // Element pas encore dans le DOM
+  if (!grid) return;
   grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
 
+  // Récupérer le commercant_id depuis la session
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) { grid.innerHTML = '<div style="padding:20px;color:var(--texte-doux)">Non connecté</div>'; return; }
+
+  // Charger les commandes directement
+  let commandes = [];
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&statut=neq.annulee&order=date_retrait.asc&limit=100&select=id,numero,type,date_retrait,total_ttc,statut', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    commandes = await r.json();
+    if (!Array.isArray(commandes)) commandes = [];
+  } catch(e) { console.log('Erreur planning:', e); }
+
+  // Stats
+  const totalCA = commandes.reduce((s,c) => s + (c.total_ttc || 0), 0);
+  document.getElementById('planNbCmd').textContent = commandes.length;
+  document.getElementById('planCA').textContent = totalCA.toFixed(0) + '€';
+
+  // Grouper par date locale
+  const parDate = {};
+  commandes.forEach(c => {
+    if (!c.date_retrait) return;
+    const d = new Date(c.date_retrait);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    const key = yyyy + '-' + mm + '-' + dd;
+    const heure = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    if (!parDate[key]) parDate[key] = {};
+    if (!parDate[key][heure]) parDate[key][heure] = { retrait: 0, livraison: 0, total: 0, ca: 0 };
+    if (c.type === 'livraison') parDate[key][heure].livraison++;
+    else parDate[key][heure].retrait++;
+    parDate[key][heure].total++;
+    parDate[key][heure].ca += c.total_ttc || 0;
+  });
+
+  // Créneau le plus chargé
+  let maxCreneau = '—'; let maxCount = 0;
+  Object.entries(parDate).forEach(([date, heures]) => {
+    Object.entries(heures).forEach(([h, data]) => {
+      if (data.total > maxCount) { maxCount = data.total; maxCreneau = h; }
+    });
+  });
+  document.getElementById('planCreneauTop').textContent = maxCreneau;
+
+  // Générer les 7 prochains jours
   const now = new Date();
   const jours = [];
-
-  // Générer les 7 prochains jours ouvrés
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 14; i++) {
     const d = new Date(now);
     d.setDate(now.getDate() + i);
-    if (d.getDay() === 0) continue; // Pas dimanche
+    if (d.getDay() === 0) continue;
     jours.push(d);
     if (jours.length >= 7) break;
   }
 
-  // Grouper les commandes par date
-  const parDate = {};
-  toutesLesCommandes.forEach(c => {
-    if (!c.date_retrait) return;
-    // Extraire date et heure directement depuis la string ISO
-    const dr = c.date_retrait;
-    let key, heure;
-    if (dr.includes('T')) {
-      // Format ISO : 2026-04-21T08:00:00
-      key = dr.slice(0, 10);
-      const timePart = dr.slice(11, 16);
-      heure = timePart;
-    } else {
-      // Format Postgres : 2026-04-21 08:00:00+00
-      const parts = dr.split(' ');
-      key = parts[0];
-      heure = parts[1] ? parts[1].slice(0, 5) : '00:00';
-      // Ajuster pour timezone FR (UTC+2)
-      const d = new Date(dr);
-      heure = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth()+1).padStart(2,'0');
-      const dd = String(d.getDate()).padStart(2,'0');
-      key = yyyy + '-' + mm + '-' + dd;
-    }
-    if (!parDate[key]) parDate[key] = {};
-    if (!parDate[key][heure]) parDate[key][heure] = [];
-    parDate[key][heure].push(c);
-  });
-
-  // Stats semaine
-  const totalCmd = toutesLesCommandes.filter(c => c.statut !== 'annulee').length;
-  const totalCA = toutesLesCommandes.reduce((s,c) => s + parseFloat(c.montant.replace(',','.').replace('€','')), 0);
-  document.getElementById('planNbCmd').textContent = totalCmd;
-  document.getElementById('planCA').textContent = totalCA.toFixed(0) + '€';
-
-  // Créneau le plus chargé
-  let maxCreneau = 'Aucun';
-  let maxCount = 0;
-  Object.values(parDate).forEach(heures => {
-    Object.entries(heures).forEach(([h, cmds]) => {
-      if (cmds.length > maxCount) { maxCount = cmds.length; maxCreneau = h; }
-    });
-  });
-  document.getElementById('planCreneauTop').textContent = maxCreneau || 'Aucun';
-
   grid.innerHTML = jours.map(d => {
     const isAuj = d.toDateString() === now.toDateString();
-    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-    const cmdsDuJour = Object.values(parDate[key] || {}).flat();
-    const caJour = cmdsDuJour.reduce((s,c) => s + parseFloat(c.montant.replace(',','.').replace('€','')), 0);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    const key = yyyy + '-' + mm + '-' + dd;
+    const heuresMap = parDate[key] || {};
+    const totalJour = Object.values(heuresMap).reduce((s,h) => s + h.total, 0);
+    const caJour = Object.values(heuresMap).reduce((s,h) => s + h.ca, 0);
     const label = isAuj ? "Aujourd'hui" : JOURS[d.getDay()];
     const dateStr = d.getDate() + ' ' + MOIS[d.getMonth()];
 
-    // Créneaux du jour
-    const heuresMap = parDate[key] || {};
-    const creneauxHtml = Object.entries(heuresMap).sort().map(([heure, cmds]) => {
-      const retrait = cmds.filter(c => c.type === 'retrait').length;
-      const livraison = cmds.filter(c => c.type === 'livraison').length;
-      return `
-        <div onclick="voirCommandesCreneau('${key}','${heure}')" 
-          style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:6px;border:1px solid var(--creme-fonce);cursor:pointer;transition:all .15s;"
-          onmouseenter="this.style.borderColor='var(--vert)'" onmouseleave="this.style.borderColor='var(--creme-fonce)'">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:13px;font-weight:500;">🕐 ${heure}</span>
-            <div style="display:flex;gap:8px;align-items:center;">
-              ${retrait > 0 ? `<span style="font-size:12px;background:#eaf7ee;color:#27ae60;padding:2px 8px;border-radius:20px;">📍 ${retrait}</span>` : ''}
-              ${livraison > 0 ? `<span style="font-size:12px;background:#e8f4fd;color:#185fa5;padding:2px 8px;border-radius:20px;">🚚 ${livraison}</span>` : ''}
-              <span style="font-size:12px;color:var(--texte-doux);">${cmds.length} cmd</span>
-            </div>
-          </div>
-        </div>`;
-    }).join('');
+    const creneauxHtml = Object.entries(heuresMap).sort().map(([heure, data]) => `
+      <div onclick="voirCommandesCreneau('${key}','${heure}')"
+        style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:6px;border:1px solid var(--creme-fonce);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:500;">🕐 ${heure}</span>
+        <div style="display:flex;gap:6px;align-items:center;">
+          ${data.retrait > 0 ? `<span style="font-size:12px;background:#eaf7ee;color:#27ae60;padding:2px 8px;border-radius:20px;">📍 ${data.retrait}</span>` : ''}
+          ${data.livraison > 0 ? `<span style="font-size:12px;background:#e8f4fd;color:#185fa5;padding:2px 8px;border-radius:20px;">🚚 ${data.livraison}</span>` : ''}
+          <span style="font-size:12px;color:var(--texte-doux);">${data.ca.toFixed(0)}€</span>
+        </div>
+      </div>`).join('');
 
     return `
       <div style="margin-bottom:16px;">
         <div style="background:${isAuj ? 'var(--vert-fonce)' : '#f0ebe0'};color:${isAuj ? 'white' : 'var(--texte)'};border-radius:12px;padding:10px 16px;display:flex;justify-content:space-between;margin-bottom:8px;">
           <span style="font-weight:500;">${label} ${dateStr}</span>
-          <span style="opacity:.7;">${cmdsDuJour.length} cmd · ${caJour.toFixed(0)}€</span>
+          <span style="opacity:.8;">${totalJour} cmd · ${caJour.toFixed(0)}€</span>
         </div>
-        ${creneauxHtml || '<div style="font-size:13px;color:var(--texte-doux);padding:8px 4px;">Aucune commande</div>'}
+        ${creneauxHtml || '<div style="font-size:13px;color:var(--texte-doux);padding:6px 4px;">Aucune commande</div>'}
       </div>`;
   }).join('');
 }
+
 
 function voirCommandesCreneau(dateKey, heure) {
   // Filtrer et afficher les commandes de ce créneau
