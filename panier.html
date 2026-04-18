@@ -825,6 +825,24 @@ async function confirmerCommande() {
     // On affiche quand même la confirmation côté client
   }
 
+  // Envoyer SMS de confirmation
+  const tel = document.getElementById('telephone').value.trim();
+  const prenomClient = document.getElementById('prenom').value.trim();
+  if (tel) {
+    const creneau = creneaux[creneauSelectionne];
+    const smsMessage = `Bonjour ${prenomClient} ! Votre commande ${numero} chez Christophe est confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. A bientot !`;
+    
+    fetch(SUPABASE_URL + '/functions/v1/send-sms', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ telephone: tel, message: smsMessage })
+    }).catch(e => console.log('SMS error:', e));
+  }
+
   // Afficher la confirmation
   allerEtape(4);
   document.getElementById('succesScreen').style.display = 'block';
