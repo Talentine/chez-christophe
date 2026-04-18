@@ -296,6 +296,32 @@
       </div>
     </div>
   </div>
+
+  <!-- Adresse livraison -->
+  <div id="adresseLivraisonStep1" style="display:none;background:white;border-radius:16px;padding:20px;margin-bottom:12px;border:1px solid var(--creme-fonce);">
+    <div style="font-size:14px;font-weight:500;margin-bottom:14px;">📍 Adresse de livraison</div>
+    <div class="form-group">
+      <label class="form-label">Adresse *</label>
+      <input class="form-input" id="livraisonAdresse" type="text" placeholder="12 rue de la Paix" autocomplete="street-address">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="form-group">
+        <label class="form-label">Code postal *</label>
+        <input class="form-input" id="livraisonCP" type="text" placeholder="14000" maxlength="5">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ville *</label>
+        <input class="form-input" id="livraisonVille" type="text" placeholder="Caen">
+      </div>
+    </div>
+    <div id="adresseErreur" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none;">
+      ⚠️ Veuillez remplir votre adresse complète
+    </div>
+    <div style="background:#f0f7f4;border-radius:10px;padding:10px 12px;font-size:12px;color:var(--texte-doux);margin-top:10px;">
+      🚚 Livraison dans un rayon de 10 km · Frais : 3,90€
+    </div>
+  </div>
+
 </div>
 
 <!-- ÉTAPE 2 : CRÉNEAU -->
@@ -429,6 +455,9 @@ function choisirMode(mode) {
   modeLivraison = mode === 'livraison';
   document.getElementById('modeRetrait').classList.toggle('actif', !modeLivraison);
   document.getElementById('modeLivraison').classList.toggle('actif', modeLivraison);
+  // Afficher/masquer le champ adresse
+  const adresseSection = document.getElementById('adresseLivraisonStep1');
+  if (adresseSection) adresseSection.style.display = modeLivraison ? 'block' : 'none';
   mettreAJourRecap();
   mettreAJourCTA();
 }
@@ -677,10 +706,22 @@ async function etapeSuivante() {
     const session = getSession();
     if (!session) {
       if (confirm('Vous devez être connecté pour commander.\n\nAller sur la page de connexion ?')) {
-        // Sauvegarder le panier avant de rediriger
         window.location.href = 'compte.html';
       }
       return;
+    }
+    // Valider l'adresse si livraison
+    if (modeLivraison) {
+      const adresse = document.getElementById('livraisonAdresse')?.value.trim();
+      const cp = document.getElementById('livraisonCP')?.value.trim();
+      const ville = document.getElementById('livraisonVille')?.value.trim();
+      const errDiv = document.getElementById('adresseErreur');
+      if (!adresse || !cp || !ville || cp.length < 4) {
+        if (errDiv) { errDiv.style.display = 'block'; }
+        document.getElementById('livraisonAdresse')?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      if (errDiv) errDiv.style.display = 'none';
     }
     allerEtape(2);
     await chargerCreneaux();
