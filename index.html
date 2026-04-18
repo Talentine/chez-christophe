@@ -902,21 +902,7 @@
 </div>
 
 
-<script>
-// PROTECTION MOT DE PASSE — à retirer au lancement public
-(function() {
-  const MOT_DE_PASSE = 'primeur2026';
-  const cle = 'acces_autorise';
-  if (sessionStorage.getItem(cle) !== 'oui') {
-    const mdp = prompt('🔒 Site en développement\n\nMot de passe :');
-    if (mdp !== MOT_DE_PASSE) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;flex-direction:column;gap:16px;background:#f5f0e8;"><p style="font-size:20px;">🔒 Accès refusé</p><p style="color:#888;font-size:14px;">Rechargez la page pour réessayer</p></div>';
-      return;
-    }
-    sessionStorage.setItem(cle, 'oui');
-  }
-})();
-</script>
+
 
 <div class="page-content">
 
