@@ -1163,14 +1163,54 @@ function fermerModal() {
   document.getElementById('modalContact').classList.remove('open');
 }
 
-function envoyerMessage(type) {
+async function envoyerMessage(type) {
   fermerModal();
-  const msgs = {
-    prete: '✅ Message "Commande prête" envoyé',
-    annulee: '❌ Message "Annulation" envoyé',
-    substitution: '🔄 Message "Substitution" envoyé',
+
+  const cmd = toutesLesCommandes.find(c => c.id === commandeContactId);
+  if (!cmd) { afficherToast('❌ Commande introuvable'); return; }
+
+  // Récupérer le téléphone du client depuis Supabase
+  let telephone = null;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?commercant_id=eq.' + cmd.commercant_id + '&select=telephone', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const clients = await r.json();
+
+    // Chercher via la commande
+    const cmdR = await fetch(SUPABASE_URL + '/rest/v1/commandes?id=eq.' + commandeContactId + '&select=*,clients(telephone,prenom)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const cmdData = await cmdR.json();
+    telephone = cmdData?.[0]?.clients?.telephone;
+    const prenom = cmdData?.[0]?.clients?.prenom || cmd.client.split(' ')[0];
+
+    const messages = {
+      prete: `Bonjour ${prenom} ! Votre commande ${cmd.numero} est prête. Venez la récupérer dès maintenant au 8 rue Neuve Saint-Jean, Caen. Merci !`,
+      annulee: `Bonjour ${prenom}. Nous sommes désolés, votre commande ${cmd.numero} a dû être annulée. Contactez-nous pour plus d'informations.`,
+      substitution: `Bonjour ${prenom} ! Concernant votre commande ${cmd.numero}, nous avons dû remplacer un article. Contactez-nous si vous avez des questions.`,
+      noshow: `Bonjour ${prenom}. Suite à votre absence pour la commande ${cmd.numero}, des frais de 5€ ont été prélevés. Contactez-nous pour tout renseignement.`,
+    };
+
+    if (telephone) {
+      await fetch(SUPABASE_URL + '/functions/v1/send-sms', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telephone, message: messages[type] || messages.prete })
+      });
+    }
+  } catch(e) {
+    console.log('Erreur envoi SMS:', e);
+  }
+
+  const toasts = {
+    prete: '✅ SMS "Commande prête" envoyé',
+    annulee: '❌ SMS "Annulation" envoyé',
+    substitution: '🔄 SMS "Substitution" envoyé',
+    noshow: '💳 SMS "No-show" envoyé',
   };
-  afficherToast(msgs[type]);
+  afficherToast(telephone ? toasts[type] : '⚠️ SMS non envoyé — téléphone manquant');
+
   if (type === 'prete' && commandeContactId) {
     changerStatut(commandeContactId, 'prete');
   }
@@ -1458,6 +1498,7 @@ async function chargerCommandesSupabase(commercantId) {
       adresse: c.adresse_livraison || null,
       date_retrait: c.date_retrait || null,
       created_at: c.created_at || null,
+      commercant_id: c.commercant_id || null,
       produits: (c.commande_lignes || []).map(l => ({
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
