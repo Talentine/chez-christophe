@@ -407,6 +407,88 @@ function allerEtape(n) {
   window.scrollTo(0, 0);
 }
 
+
+// ── VÉRIFICATION ZONE DE LIVRAISON ────────────────────
+async function geocoderAdresse(adresseComplete) {
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(adresseComplete) + '&countrycodes=fr&limit=1';
+    const r = await fetch(url, { headers: { 'Accept-Language': 'fr' } });
+    const data = await r.json();
+    if (data && data.length > 0) {
+      return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+    }
+    return null;
+  } catch(e) {
+    console.log('Erreur géocodage:', e);
+    return null;
+  }
+}
+
+function distanceKm(lat1, lon1, lat2, lon2) {
+  // Formule haversine
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+async function verifierZoneLivraison(adresse, cp, ville) {
+  try {
+    // Récupérer les paramètres du commerçant via son slug
+    const data = await sb('commercants', '?slug=eq.christophe-frais-caen&select=zone_livraison,rayon_livraison_km,adresse_latitude,adresse_longitude,min_commande_livraison');
+    const c = data?.[0];
+    if (!c) return { ok: true };
+
+    const zones = c.zone_livraison || [];
+    const rayon = c.rayon_livraison_km;
+    const lat0 = c.adresse_latitude;
+    const lon0 = c.adresse_longitude;
+
+    // Si aucune zone n'est définie, autoriser (ancien comportement)
+    if (zones.length === 0 && !rayon) return { ok: true };
+
+    // 1. Vérif codes postaux / villes
+    let matchZone = false;
+    if (zones.length > 0) {
+      const adrComplete = (cp + ' ' + ville).toLowerCase();
+      matchZone = zones.some(z => {
+        const zLower = z.toLowerCase().trim();
+        return adrComplete.includes(zLower) || zLower.includes(cp) || zLower.toLowerCase().includes(ville.toLowerCase());
+      });
+    }
+
+    // 2. Vérif rayon si non trouvé par zone
+    let matchRayon = false;
+    let distance = null;
+    if (!matchZone && rayon && lat0 && lon0) {
+      const adresseComplete = adresse + ', ' + cp + ' ' + ville + ', France';
+      const coords = await geocoderAdresse(adresseComplete);
+      if (coords) {
+        distance = distanceKm(lat0, lon0, coords.lat, coords.lon);
+        if (distance <= rayon) matchRayon = true;
+      } else {
+        return { ok: false, message: "Adresse introuvable. Vérifiez l'orthographe." };
+      }
+    }
+
+    if (matchZone || matchRayon) {
+      return { ok: true, distance };
+    } else {
+      let msg = 'Désolé, nous ne livrons pas à cette adresse.';
+      if (rayon) msg += '\nRayon de livraison : ' + rayon + ' km.';
+      if (distance !== null) msg += '\nVotre adresse est à ' + distance.toFixed(1) + ' km.';
+      if (zones.length > 0) msg += '\nZones desservies : ' + zones.join(', ');
+      return { ok: false, message: msg };
+    }
+  } catch(e) {
+    console.log('Erreur vérif zone:', e);
+    return { ok: true }; // fallback
+  }
+}
+
 async function etapeSuivante() {
   if (etape === 1) {
     // Vérifier connexion
@@ -430,6 +512,21 @@ async function etapeSuivante() {
         return;
       }
       document.getElementById('adresseErreur').classList.remove('visible');
+
+      // Vérification zone de livraison
+      const btn = document.querySelector('.btn-cta, .btn-suivant, [onclick*="etapeSuivante"]');
+      if (btn) { btn.textContent = 'Vérification de l\'adresse...'; btn.disabled = true; }
+      const zoneCheck = await verifierZoneLivraison(adresse, cp, ville);
+      if (btn) { btn.textContent = 'Continuer'; btn.disabled = false; }
+      
+      if (!zoneCheck.ok) {
+        const erreur = document.getElementById('adresseErreur');
+        erreur.textContent = '❌ ' + (zoneCheck.message || 'Adresse hors zone de livraison');
+        erreur.style.whiteSpace = 'pre-line';
+        erreur.classList.add('visible');
+        document.getElementById('livraisonAdresse').focus();
+        return;
+      }
     }
     allerEtape(3);
     await chargerCreneaux();
