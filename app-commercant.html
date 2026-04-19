@@ -1597,11 +1597,11 @@ function renderCatalogueHTML(liste) {
     container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">🔍</p><p style="margin-top:8px">Aucun produit trouvé</p></div>';
     return;
   }
-  container.innerHTML = liste.map((item, idx) => {
+  container.innerHTML = liste.map(item => {
     const toggleBg = item.actif ? 'var(--vert)' : '#ccc';
     const thumbPos = item.actif ? 'right:3px' : 'left:3px';
     return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
-      + '<div onclick="ouvrirEditionProduit(' + idx + ')" style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer;">'
+      + '<div onclick="ouvrirEditionProduit(\'' + item.catalogue_id + '\')" style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer;">'
       + '<img src="' + (item.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
       + '<div style="flex:1;min-width:0;">'
       + '<div style="font-size:15px;font-weight:500;">' + item.nom + '</div>'
@@ -1687,8 +1687,8 @@ async function toggleProduitActif(catalogueId, actif) {
 let produitEnEdition = null;
 let photoFileEdit = null;
 
-function ouvrirEditionProduit(idx) {
-  const p = catalogueCache[idx];
+function ouvrirEditionProduit(catalogueId) {
+  const p = catalogueCache.find(x => x.catalogue_id === catalogueId);
   if (!p) return;
   produitEnEdition = p;
   photoFileEdit = null;
