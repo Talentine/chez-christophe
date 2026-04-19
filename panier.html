@@ -550,6 +550,8 @@ function mettreAJourCTA() {
   const btn = document.getElementById('btnAction');
   const btnTxt = document.getElementById('btnTxt');
   const btnMontant = document.getElementById('btnMontant');
+  if (!btn || !btnTxt || !btnMontant) return; // Protection null
+  
   const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
   const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
   const total = (sous_total + frais).toFixed(2).replace('.',',') + ' €';
@@ -571,7 +573,8 @@ function mettreAJourCTA() {
     btnMontant.textContent = total;
     btn.disabled = false;
   } else if (etape === 5) {
-    document.getElementById('ctaFixe').style.display = 'none';
+    const cta = document.getElementById('ctaFixe');
+    if (cta) cta.style.display = 'none';
   }
 }
 
