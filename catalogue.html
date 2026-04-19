@@ -22,6 +22,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
+    max-width: 480px;
+    margin: 0 auto;
     font-family: 'DM Sans', sans-serif;
     background: var(--creme);
     color: var(--texte);
@@ -560,7 +562,8 @@
   /* NAV BAS */
   .bottom-nav {
     position: fixed;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 480px;
     background: var(--blanc);
     border-top: 1px solid rgba(0,0,0,0.08);
     display: flex;
@@ -694,26 +697,26 @@
 </div>
 
 <nav class="bottom-nav">
-  <button class="nav-item" onclick="window.location='index.html'">
+  <a class="nav-item" href="index.html">
     <span class="nav-icon">🏠</span>
     <span class="nav-label">Accueil</span>
-  </button>
-  <button class="nav-item active">
+  </a>
+  <a class="nav-item active" href="catalogue.html">
     <span class="nav-icon">🛍️</span>
     <span class="nav-label">Boutique</span>
-  </button>
-  <button class="nav-item">
+  </a>
+  <a class="nav-item" href="catalogue.html?cat=paniers">
     <span class="nav-icon">🧺</span>
     <span class="nav-label">Paniers</span>
-  </button>
-  <button class="nav-item" onclick="voirPanier()">
+  </a>
+  <a class="nav-item" onclick="voirPanier()">
     <span class="nav-icon">🛒</span>
     <span class="nav-label">Panier</span>
-  </button>
-  <button class="nav-item" onclick="window.location='compte.html'">
+  </a>
+  <a class="nav-item" href="compte.html">
     <span class="nav-icon">👤</span>
     <span class="nav-label">Compte</span>
-  </button>
+  </a>
 </nav>
 
 <script>
