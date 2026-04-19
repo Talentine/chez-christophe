@@ -525,7 +525,7 @@
   /* PANIER FLOTTANT */
   .panier-flottant {
     position: fixed;
-    bottom: 96px;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     width: calc(100% - 32px);
     max-width: 448px;
@@ -533,17 +533,18 @@
     color: white;
     border-radius: 16px;
     padding: 14px 20px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    transform: translateX(-50%) translateY(120px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
     z-index: 150;
     box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   }
 
-  .panier-flottant.visible { transform: translateX(-50%) translateY(0); }
+  .panier-flottant.visible { display: flex; opacity: 1; transform: translateX(-50%) translateY(0); }
 
   .panier-flottant-gauche { display: flex; align-items: center; gap: 10px; }
   .panier-flottant-badge {
