@@ -2,608 +2,594 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon compte — Chez Christophe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a2e26">
+<title>Mon Compte — Chez Christophe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
+    --vert: #2d4a3e; --vert-fonce: #1a2e26; --vert-clair: #3d6b59;
+    --or: #c9a84c; --or-clair: #e2c97a;
     --creme: #f5f0e8; --creme-fonce: #ede6d6;
     --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
     --rouge: #e74c3c;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'DM Sans',sans-serif; background:var(--creme); color:var(--texte); padding-bottom:100px; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { font-family:'DM Sans',sans-serif; background:var(--creme); color:var(--texte); max-width:480px; margin:0 auto; overflow-x:hidden; padding-bottom:80px; }
 
-  header {
-    background:var(--vert-fonce); position:sticky; top:0; z-index:100;
-    padding:0 16px; height:60px; display:flex; align-items:center; gap:12px;
-  }
-  .header-titre { flex:1; font-family:'Playfair Display',serif; font-size:18px; color:white; }
+  header { background:var(--vert-fonce); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .header-title { font-family:'Playfair Display',serif; font-size:17px; color:white; display:flex; align-items:center; gap:10px; }
+  .header-title span { font-size:20px; }
 
-  /* ÉCRANS */
-  .ecran { display:none; }
-  .ecran.actif { display:block; }
+  /* LOGGED OUT */
+  #loginView, #accountView { display:none; }
+  #loginView.active, #accountView.active { display:block; }
 
-  /* CONNEXION / INSCRIPTION */
-  .auth-container {
-    max-width:420px; margin:40px auto; padding:0 20px;
-  }
+  .login-container { padding:40px 20px; text-align:center; }
+  .login-icon { font-size:56px; margin-bottom:16px; }
+  .login-title { font-family:'Playfair Display',serif; font-size:24px; margin-bottom:8px; }
+  .login-sub { font-size:14px; color:var(--texte-doux); margin-bottom:28px; line-height:1.5; }
 
-  .auth-tabs {
-    display:flex; background:var(--blanc);
-    border-radius:50px; padding:4px;
-    border:1px solid var(--creme-fonce);
-    margin-bottom:24px;
-  }
+  .form-group { margin-bottom:14px; text-align:left; }
+  .form-label { font-size:13px; color:var(--texte-doux); display:block; margin-bottom:6px; }
+  .form-input { width:100%; padding:13px 14px; border:1.5px solid var(--creme-fonce); border-radius:12px; font-size:15px; font-family:'DM Sans',sans-serif; background:var(--creme); outline:none; }
+  .form-input:focus { border-color:var(--vert); }
 
-  .auth-tab {
-    flex:1; padding:10px; border:none; background:none;
-    font-size:14px; font-weight:400; color:var(--texte-doux);
-    cursor:pointer; border-radius:50px; font-family:'DM Sans',sans-serif;
-    transition:all .2s;
-  }
+  .btn-main { width:100%; background:var(--vert); color:white; border:none; border-radius:50px; padding:15px; font-size:16px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; margin-top:8px; transition:all .15s; }
+  .btn-main:active { transform:scale(0.97); }
+  .btn-outline { width:100%; background:transparent; color:var(--vert); border:1.5px solid var(--vert); border-radius:50px; padding:14px; font-size:15px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; margin-top:10px; }
 
-  .auth-tab.actif {
-    background:var(--vert); color:white; font-weight:500;
-  }
+  .form-erreur { color:var(--rouge); font-size:13px; margin-top:10px; display:none; text-align:center; }
+  .form-erreur.visible { display:block; }
 
-  .auth-card {
-    background:var(--blanc); border-radius:20px;
-    padding:28px 24px; border:1px solid var(--creme-fonce);
-  }
+  .toggle-link { font-size:13px; color:var(--or); cursor:pointer; margin-top:16px; display:inline-block; }
 
-  .auth-titre {
-    font-family:'Playfair Display',serif; font-size:22px;
-    margin-bottom:6px;
-  }
+  /* ACCOUNT VIEW */
+  .compte-hero { background:var(--vert-fonce); padding:24px 20px; }
+  .compte-avatar { width:56px; height:56px; border-radius:50%; background:var(--vert-clair); display:flex; align-items:center; justify-content:center; font-size:24px; color:white; margin-bottom:10px; }
+  .compte-nom { font-family:'Playfair Display',serif; font-size:20px; color:white; }
+  .compte-email { font-size:13px; color:rgba(255,255,255,0.6); margin-top:4px; }
 
-  .auth-sub {
-    font-size:13px; color:var(--texte-doux); margin-bottom:24px;
-  }
+  .compte-section { padding:16px 20px; }
+  .compte-section-titre { font-family:'Playfair Display',serif; font-size:18px; margin-bottom:14px; }
 
-  .form-group { margin-bottom:14px; }
-  .form-label { font-size:13px; color:var(--texte-doux); margin-bottom:6px; display:block; }
-  .form-input {
-    width:100%; padding:12px 14px;
-    border:1.5px solid var(--creme-fonce); border-radius:12px;
-    font-size:15px; font-family:'DM Sans',sans-serif;
-    background:var(--creme); color:var(--texte); outline:none;
-    transition:border-color .15s;
-  }
-  .form-input:focus { border-color:var(--vert); background:white; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .compte-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--blanc); border-radius:14px; border:1px solid var(--creme-fonce); margin-bottom:10px; cursor:pointer; transition:all .15s; text-decoration:none; color:var(--texte); }
+  .compte-item:active { transform:scale(0.98); }
+  .compte-item-icon { font-size:22px; width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .compte-item-info { flex:1; }
+  .compte-item-titre { font-size:15px; font-weight:500; }
+  .compte-item-desc { font-size:12px; color:var(--texte-doux); margin-top:2px; }
+  .compte-item-arrow { color:var(--texte-doux); font-size:16px; }
 
-  .btn-principal {
-    width:100%; background:var(--vert); color:white; border:none;
-    border-radius:50px; padding:15px; font-size:16px; font-weight:500;
-    font-family:'DM Sans',sans-serif; cursor:pointer; margin-top:8px;
-    transition:all .15s;
-  }
-  .btn-principal:active { transform:scale(0.97); }
-  .btn-principal:disabled { opacity:0.5; cursor:not-allowed; }
-
-  .auth-erreur {
-    background:#fdf0ef; color:var(--rouge); border-radius:10px;
-    padding:10px 14px; font-size:13px; margin-bottom:14px; display:none;
-  }
-
-  .auth-erreur.visible { display:block; }
-
-  .separateur {
-    text-align:center; color:var(--texte-doux); font-size:13px;
-    margin:16px 0; position:relative;
-  }
-
-  .separateur::before, .separateur::after {
-    content:''; position:absolute; top:50%;
-    width:40%; height:1px; background:var(--creme-fonce);
-  }
-
-  .separateur::before { left:0; }
-  .separateur::after { right:0; }
-
-  /* PROFIL CONNECTÉ */
-  .profil-header {
-    background:var(--vert-fonce); padding:32px 20px 24px;
-    text-align:center;
-  }
-
-  .avatar {
-    width:72px; height:72px; border-radius:50%;
-    background:var(--or); display:flex; align-items:center;
-    justify-content:center; font-size:28px; font-weight:500;
-    color:var(--vert-fonce); margin:0 auto 12px;
-    font-family:'DM Sans',sans-serif;
-  }
-
-  .profil-nom { font-size:20px; font-weight:500; color:white; margin-bottom:4px; }
-  .profil-email { font-size:13px; color:rgba(255,255,255,0.6); }
-
-  .section { background:var(--blanc); margin:12px 0; padding:0; }
-  .section-titre {
-    font-size:13px; font-weight:500; color:var(--texte-doux);
-    text-transform:uppercase; letter-spacing:0.5px;
-    padding:16px 20px 8px;
-  }
-
-  /* COMMANDES */
-  .commande-item {
-    padding:16px 20px; border-bottom:1px solid var(--creme-fonce);
-    cursor:pointer; transition:background .1s;
-  }
-  .commande-item:last-child { border-bottom:none; }
-  .commande-item:active { background:var(--creme); }
-
-  .commande-item-header {
-    display:flex; align-items:center;
-    justify-content:space-between; margin-bottom:4px;
-  }
-
-  .commande-numero { font-size:14px; font-weight:500; }
-  .commande-montant { font-size:14px; font-weight:500; color:var(--vert); }
-
-  .commande-meta {
-    display:flex; align-items:center; gap:8px;
-    font-size:12px; color:var(--texte-doux);
-  }
-
-  .commande-statut {
-    padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500;
-  }
-  .statut-nouvelle { background:#e6f1fb; color:#185fa5; }
-  .statut-en_preparation { background:#fff3e0; color:#e67e22; }
-  .statut-prete { background:#eaf7ee; color:#27ae60; }
-  .statut-remise { background:var(--creme-fonce); color:var(--texte-doux); }
-  .statut-annulee { background:#fdf0ef; color:var(--rouge); }
-
-  /* MENU OPTIONS */
-  .menu-item {
-    display:flex; align-items:center; gap:14px;
-    padding:16px 20px; border-bottom:1px solid var(--creme-fonce);
-    cursor:pointer; transition:background .1s;
-  }
-  .menu-item:last-child { border-bottom:none; }
-  .menu-item:active { background:var(--creme); }
-
-  .menu-icone {
-    width:40px; height:40px; border-radius:12px;
-    background:var(--creme); display:flex;
-    align-items:center; justify-content:center; font-size:18px;
-    flex-shrink:0;
-  }
-
-  .menu-label { font-size:15px; flex:1; }
-  .menu-arrow { color:var(--texte-doux); font-size:18px; }
-
-  .btn-deconnexion {
-    width:calc(100% - 40px); margin:16px 20px;
-    background:var(--creme); color:var(--rouge); border:1.5px solid #fdd;
-    border-radius:50px; padding:14px; font-size:15px; font-weight:500;
-    font-family:'DM Sans',sans-serif; cursor:pointer; transition:all .15s;
-  }
-
+  .btn-deconnexion { width:100%; background:transparent; color:var(--rouge); border:1.5px solid rgba(231,76,60,0.3); border-radius:50px; padding:14px; font-size:15px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; margin-top:10px; }
   .btn-deconnexion:active { transform:scale(0.97); }
 
-  /* VIDE */
-  .vide {
-    text-align:center; padding:40px 20px;
-    color:var(--texte-doux);
-  }
+  /* COMMANDES PAGE */
+  .page-overlay { position:fixed; inset:0; background:var(--creme); z-index:200; display:none; overflow-y:auto; padding-bottom:80px; }
+  .page-overlay.open { display:block; }
+  .page-header { background:var(--vert-fonce); padding:14px 20px; display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:10; }
+  .page-back { background:rgba(255,255,255,0.1); border:none; color:white; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .page-title { font-family:'Playfair Display',serif; font-size:17px; color:white; }
 
-  /* NAV BAS */
-  .bottom-nav {
-    position:fixed; bottom:0; left:0; right:0;
-    background:var(--blanc); border-top:1px solid rgba(0,0,0,0.08);
-    display:flex; z-index:100;
-  }
-  .nav-item {
-    flex:1; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:10px 0 8px; cursor:pointer; border:none;
-    background:none; font-family:'DM Sans',sans-serif; position:relative;
-  }
+  .commande-card { background:var(--blanc); border-radius:14px; border:1px solid var(--creme-fonce); margin:10px 16px; padding:16px; }
+  .commande-numero { font-size:13px; color:var(--or); font-weight:500; margin-bottom:6px; }
+  .commande-date { font-size:14px; font-weight:500; margin-bottom:4px; }
+  .commande-statut { font-size:12px; padding:3px 10px; border-radius:20px; display:inline-block; }
+  .commande-montant { font-size:16px; font-weight:500; margin-top:8px; }
+
+  /* NAV */
+  .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:var(--blanc); border-top:1px solid rgba(0,0,0,0.08); display:flex; z-index:100; padding-bottom:env(safe-area-inset-bottom,0px); }
+  .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 0 8px; cursor:pointer; border:none; background:none; font-family:'DM Sans',sans-serif; text-decoration:none; }
   .nav-icon { font-size:22px; margin-bottom:3px; }
   .nav-label { font-size:10px; color:#aaa; }
   .nav-item.active .nav-label { color:var(--vert); font-weight:500; }
-  .nav-item.active::after {
-    content:''; position:absolute; bottom:0;
-    width:28px; height:2px; background:var(--vert);
-    border-radius:2px 2px 0 0;
-  }
+
+  .empty-state { text-align:center; padding:60px 20px; color:var(--texte-doux); }
+  .empty-state-icon { font-size:48px; margin-bottom:12px; }
+
+  /* TOAST */
+  .toast { position:fixed; top:80px; left:50%; transform:translateX(-50%); background:var(--vert-fonce); color:white; padding:10px 20px; border-radius:50px; font-size:13px; font-weight:500; z-index:999; opacity:0; transition:opacity .3s; }
+  .toast.show { opacity:1; }
 </style>
 </head>
 <body>
 
 <header>
-  <span class="header-titre" id="headerTitre">Mon compte</span>
+  <div class="header-title"><span>👤</span> Mon Compte</div>
 </header>
 
-<!-- ÉCRAN 1 : AUTH -->
-<div class="ecran actif" id="ecranAuth">
-  <div class="auth-container">
+<!-- LOGIN / INSCRIPTION -->
+<div id="loginView">
+  <div class="login-container">
+    <div class="login-icon">🌿</div>
+    <div class="login-title">Bienvenue</div>
+    <div class="login-sub">Connectez-vous pour commander<br>et suivre vos commandes</div>
 
-    <div class="auth-tabs">
-      <button class="auth-tab actif" id="tabConnexion" onclick="basculerAuth('connexion')">
-        Se connecter
-      </button>
-      <button class="auth-tab" id="tabInscription" onclick="basculerAuth('inscription')">
-        Créer un compte
-      </button>
-    </div>
-
-    <!-- CONNEXION -->
-    <div id="formConnexion" class="auth-card">
-      <div class="auth-titre">Bon retour 👋</div>
-      <div class="auth-sub">Connectez-vous pour suivre vos commandes</div>
-      <div class="auth-erreur" id="erreurConnexion"></div>
+    <div id="formConnexion">
       <div class="form-group">
         <label class="form-label">Email</label>
-        <input class="form-input" id="loginEmail" type="email" placeholder="marie@email.fr" autocomplete="email">
+        <input class="form-input" id="loginEmail" type="email" placeholder="votre@email.fr" autocomplete="email">
       </div>
       <div class="form-group">
         <label class="form-label">Mot de passe</label>
         <input class="form-input" id="loginMdp" type="password" placeholder="••••••••" autocomplete="current-password">
       </div>
-      <button class="btn-principal" id="btnConnexion" onclick="seConnecter()">
-        Se connecter
-      </button>
-      <p style="text-align:center;font-size:13px;color:var(--texte-doux);margin-top:16px;cursor:pointer;" onclick="basculerAuth('inscription')">
-        Pas encore de compte ? <span style="color:var(--vert);font-weight:500;">S'inscrire</span>
-      </p>
+      <div class="form-erreur" id="loginErreur"></div>
+      <button class="btn-main" id="btnLogin" onclick="seConnecter()">Se connecter</button>
+      <div class="toggle-link" onclick="toggleInscription(true)">Pas encore de compte ? Créer un compte</div>
     </div>
 
-    <!-- INSCRIPTION -->
-    <div id="formInscription" class="auth-card" style="display:none">
-      <div class="auth-titre">Créer un compte</div>
-      <div class="auth-sub">Commandez et suivez vos achats facilement</div>
-      <div class="auth-erreur" id="erreurInscription"></div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Prénom</label>
-          <input class="form-input" id="regPrenom" type="text" placeholder="Marie" autocomplete="given-name">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Nom</label>
-          <input class="form-input" id="regNom" type="text" placeholder="Dupont" autocomplete="family-name">
-        </div>
+    <div id="formInscription" style="display:none">
+      <div class="form-group">
+        <label class="form-label">Prénom</label>
+        <input class="form-input" id="inscPrenom" type="text" placeholder="Votre prénom" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nom</label>
+        <input class="form-input" id="inscNom" type="text" placeholder="Votre nom" autocomplete="family-name">
       </div>
       <div class="form-group">
         <label class="form-label">Email</label>
-        <input class="form-input" id="regEmail" type="email" placeholder="marie@email.fr" autocomplete="email">
+        <input class="form-input" id="inscEmail" type="email" placeholder="votre@email.fr" autocomplete="email">
       </div>
       <div class="form-group">
         <label class="form-label">Téléphone</label>
-        <input class="form-input" id="regTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+        <input class="form-input" id="inscTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
       </div>
       <div class="form-group">
         <label class="form-label">Mot de passe</label>
-        <input class="form-input" id="regMdp" type="password" placeholder="Minimum 6 caractères" autocomplete="new-password">
+        <input class="form-input" id="inscMdp" type="password" placeholder="6 caractères minimum" autocomplete="new-password">
       </div>
-      <button class="btn-principal" id="btnInscription" onclick="sInscrire()">
-        Créer mon compte
-      </button>
-      <p style="text-align:center;font-size:13px;color:var(--texte-doux);margin-top:16px;cursor:pointer;" onclick="basculerAuth('connexion')">
-        Déjà un compte ? <span style="color:var(--vert);font-weight:500;">Se connecter</span>
-      </p>
+      <div class="form-erreur" id="inscErreur"></div>
+      <button class="btn-main" id="btnInscrire" onclick="sInscrire()">Créer mon compte</button>
+      <div class="toggle-link" onclick="toggleInscription(false)">Déjà un compte ? Se connecter</div>
     </div>
-
   </div>
 </div>
 
-<!-- ÉCRAN 2 : PROFIL -->
-<div class="ecran" id="ecranProfil">
-
-  <div class="profil-header">
-    <div class="avatar" id="profilAvatar">?</div>
-    <div class="profil-nom" id="profilNom">Chargement...</div>
-    <div class="profil-email" id="profilEmail"></div>
+<!-- COMPTE CONNECTÉ -->
+<div id="accountView">
+  <div class="compte-hero">
+    <div class="compte-avatar" id="compteInitiales">?</div>
+    <div class="compte-nom" id="compteNom">—</div>
+    <div class="compte-email" id="compteEmail">—</div>
   </div>
 
-  <div class="section">
-    <div class="section-titre">Mes commandes</div>
-    <div id="mesCommandes">
-      <div class="vide">
-        <p style="font-size:32px">📦</p>
-        <p style="margin-top:8px;font-size:14px;">Chargement...</p>
+  <div class="compte-section">
+    <div class="compte-section-titre">Mon activité</div>
+
+    <div class="compte-item" onclick="ouvrirPage('mesCommandes')">
+      <div class="compte-item-icon" style="background:#eaf7ee;">📦</div>
+      <div class="compte-item-info">
+        <div class="compte-item-titre">Mes commandes</div>
+        <div class="compte-item-desc">Historique et suivi</div>
+      </div>
+      <span class="compte-item-arrow">→</span>
+    </div>
+
+    <div class="compte-item" onclick="ouvrirPage('mesInfos')">
+      <div class="compte-item-icon" style="background:#e6f1fb;">✏️</div>
+      <div class="compte-item-info">
+        <div class="compte-item-titre">Mes informations</div>
+        <div class="compte-item-desc">Modifier mon profil</div>
+      </div>
+      <span class="compte-item-arrow">→</span>
+    </div>
+
+    <div class="compte-item" onclick="ouvrirPage('mesAdresses')">
+      <div class="compte-item-icon" style="background:#fff8e7;">📍</div>
+      <div class="compte-item-info">
+        <div class="compte-item-titre">Mes adresses</div>
+        <div class="compte-item-desc">Adresses de livraison</div>
+      </div>
+      <span class="compte-item-arrow">→</span>
+    </div>
+  </div>
+
+  <div class="compte-section">
+    <div class="compte-section-titre">Aide</div>
+
+    <a class="compte-item" href="notre-histoire.html">
+      <div class="compte-item-icon" style="background:#f0ebe0;">🌿</div>
+      <div class="compte-item-info">
+        <div class="compte-item-titre">Notre histoire</div>
+        <div class="compte-item-desc">Horaires, contact, à propos</div>
+      </div>
+      <span class="compte-item-arrow">→</span>
+    </a>
+
+    <a class="compte-item" href="tel:0231851477">
+      <div class="compte-item-icon" style="background:#eaf7ee;">📞</div>
+      <div class="compte-item-info">
+        <div class="compte-item-titre">Nous contacter</div>
+        <div class="compte-item-desc">02 31 85 14 77</div>
+      </div>
+      <span class="compte-item-arrow">→</span>
+    </a>
+
+    <button class="btn-deconnexion" onclick="seDeconnecter()">🚪 Se déconnecter</button>
+  </div>
+</div>
+
+<!-- PAGE MES COMMANDES -->
+<div class="page-overlay" id="pageMesCommandes">
+  <div class="page-header">
+    <button class="page-back" onclick="fermerPage('mesCommandes')">←</button>
+    <span class="page-title">Mes commandes</span>
+  </div>
+  <div id="mesCommandesListe">
+    <div class="empty-state">
+      <div class="empty-state-icon">📦</div>
+      <p>Chargement...</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE MES INFOS -->
+<div class="page-overlay" id="pageMesInfos">
+  <div class="page-header">
+    <button class="page-back" onclick="fermerPage('mesInfos')">←</button>
+    <span class="page-title">Mes informations</span>
+  </div>
+  <div style="padding:20px;">
+    <div class="form-group">
+      <label class="form-label">Prénom</label>
+      <input class="form-input" id="editPrenom" type="text">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nom</label>
+      <input class="form-input" id="editNom" type="text">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" id="editEmail" type="email" disabled style="opacity:0.6;">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Téléphone</label>
+      <input class="form-input" id="editTel" type="tel">
+    </div>
+    <button class="btn-main" onclick="sauvegarderInfos()">✓ Enregistrer</button>
+  </div>
+</div>
+
+<!-- PAGE MES ADRESSES -->
+<div class="page-overlay" id="pageMesAdresses">
+  <div class="page-header">
+    <button class="page-back" onclick="fermerPage('mesAdresses')">←</button>
+    <span class="page-title">Mes adresses</span>
+  </div>
+  <div style="padding:20px;">
+    <div class="form-group">
+      <label class="form-label">Adresse</label>
+      <input class="form-input" id="editAdresse" type="text" placeholder="12 rue de la Paix">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:10px;">
+      <div class="form-group">
+        <label class="form-label">Code postal</label>
+        <input class="form-input" id="editCP" type="text" placeholder="14000" maxlength="5">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ville</label>
+        <input class="form-input" id="editVille" type="text" placeholder="Caen">
       </div>
     </div>
+    <button class="btn-main" onclick="sauvegarderAdresse()">✓ Enregistrer</button>
   </div>
-
-  <div class="section">
-    <div class="section-titre">Mon compte</div>
-    <div class="menu-item" onclick="voirInfos()">
-      <div class="menu-icone">👤</div>
-      <span class="menu-label">Mes informations</span>
-      <span class="menu-arrow">›</span>
-    </div>
-    <div class="menu-item" onclick="voirAdresses()">
-      <div class="menu-icone">📍</div>
-      <span class="menu-label">Mes adresses</span>
-      <span class="menu-arrow">›</span>
-    </div>
-    <div class="menu-item" onclick="voirNotifs()">
-      <div class="menu-icone">🔔</div>
-      <span class="menu-label">Notifications</span>
-      <span class="menu-arrow">›</span>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-titre">Aide</div>
-    <div class="menu-item">
-      <div class="menu-icone">💬</div>
-      <span class="menu-label">Contacter la boutique</span>
-      <span class="menu-arrow">›</span>
-    </div>
-    <div class="menu-item">
-      <div class="menu-icone">📋</div>
-      <span class="menu-label">Conditions d'utilisation</span>
-      <span class="menu-arrow">›</span>
-    </div>
-  </div>
-
-  <button class="btn-deconnexion" onclick="seDeconnecter()">
-    Se déconnecter
-  </button>
-
 </div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <!-- NAV BAS -->
 <nav class="bottom-nav">
-  <button class="nav-item" onclick="window.location='index.html'">
+  <a href="index.html" class="nav-item">
     <span class="nav-icon">🏠</span>
     <span class="nav-label">Accueil</span>
-  </button>
-  <button class="nav-item" onclick="window.location='catalogue.html'">
+  </a>
+  <a href="catalogue.html" class="nav-item">
     <span class="nav-icon">🛍️</span>
     <span class="nav-label">Boutique</span>
-  </button>
-  <button class="nav-item" onclick="window.location='panier.html'">
+  </a>
+  <a href="catalogue.html?cat=paniers" class="nav-item">
+    <span class="nav-icon">🧺</span>
+    <span class="nav-label">Paniers</span>
+  </a>
+  <a href="panier.html" class="nav-item">
     <span class="nav-icon">🛒</span>
     <span class="nav-label">Panier</span>
-  </button>
-  <button class="nav-item active">
+  </a>
+  <a href="compte.html" class="nav-item active">
     <span class="nav-icon">👤</span>
     <span class="nav-label">Compte</span>
-  </button>
+  </a>
 </nav>
 
 <script>
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
-let sessionToken = null;
-let utilisateur = null;
-
-async function sbAuth(endpoint, body) {
-  const r = await fetch(`${SUPABASE_URL}/auth/v1/${endpoint}`, {
-    method: 'POST',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body)
-  });
-  return r.json();
+function getSession() {
+  return JSON.parse(localStorage.getItem('session_client') || 'null');
 }
 
-async function sb(table, params='', method='GET', body=null) {
-  const headers = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${sessionToken || SUPABASE_KEY}`,
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation',
-  };
-  const opts = { method, headers };
-  if (body) opts.body = JSON.stringify(body);
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, opts);
-  return r.json();
+function saveSession(data) {
+  localStorage.setItem('session_client', JSON.stringify(data));
 }
 
 // ── INIT ──────────────────────────────────────────────
 function init() {
-  const session = localStorage.getItem('session_client');
+  const session = getSession();
   if (session) {
-    try {
-      const data = JSON.parse(session);
-      sessionToken = data.access_token;
-      utilisateur = data.user;
-      afficherProfil();
-    } catch(e) {
-      localStorage.removeItem('session_client');
-    }
+    document.getElementById('loginView').classList.remove('active');
+    document.getElementById('accountView').classList.add('active');
+    document.getElementById('compteNom').textContent = (session.prenom || '') + ' ' + (session.nom || '');
+    document.getElementById('compteEmail').textContent = session.email || '';
+    document.getElementById('compteInitiales').textContent = (session.prenom?.[0] || '?').toUpperCase();
+  } else {
+    document.getElementById('loginView').classList.add('active');
+    document.getElementById('accountView').classList.remove('active');
   }
 }
 
-// ── AUTH ──────────────────────────────────────────────
-function basculerAuth(mode) {
-  document.getElementById('formConnexion').style.display = mode === 'connexion' ? 'block' : 'none';
-  document.getElementById('formInscription').style.display = mode === 'inscription' ? 'block' : 'none';
-  document.getElementById('tabConnexion').classList.toggle('actif', mode === 'connexion');
-  document.getElementById('tabInscription').classList.toggle('actif', mode === 'inscription');
+// ── TOGGLE LOGIN/INSCRIPTION ──────────────────────────
+function toggleInscription(show) {
+  document.getElementById('formConnexion').style.display = show ? 'none' : 'block';
+  document.getElementById('formInscription').style.display = show ? 'block' : 'none';
 }
 
+// ── CONNEXION ─────────────────────────────────────────
 async function seConnecter() {
   const email = document.getElementById('loginEmail').value.trim();
   const mdp = document.getElementById('loginMdp').value;
-  const erreur = document.getElementById('erreurConnexion');
-  const btn = document.getElementById('btnConnexion');
+  const erreur = document.getElementById('loginErreur');
+  const btn = document.getElementById('btnLogin');
 
-  if (!email || !mdp) {
-    afficherErreur(erreur, 'Remplissez tous les champs');
-    return;
-  }
+  if (!email || !mdp) { erreur.textContent = '⚠️ Remplissez tous les champs'; erreur.classList.add('visible'); return; }
 
-  btn.disabled = true;
   btn.textContent = 'Connexion...';
+  btn.disabled = true;
   erreur.classList.remove('visible');
 
-  const data = await sbAuth('token?grant_type=password', { email, password: mdp });
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: mdp })
+    });
+    const data = await r.json();
 
-  if (data.error || data.error_description) {
-    afficherErreur(erreur, 'Email ou mot de passe incorrect');
-    btn.disabled = false;
-    btn.textContent = 'Se connecter';
-    return;
+    if (data.access_token) {
+      // Récupérer les infos client
+      const clientR = await fetch(SUPABASE_URL + '/rest/v1/clients?email=eq.' + encodeURIComponent(email) + '&select=*&limit=1', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      const clients = await clientR.json();
+      const client = clients?.[0] || {};
+
+      saveSession({
+        access_token: data.access_token,
+        user_id: data.user.id,
+        email,
+        prenom: client.prenom || data.user.user_metadata?.prenom || '',
+        nom: client.nom || data.user.user_metadata?.nom || '',
+        telephone: client.telephone || '',
+        client_id: client.id || null,
+        adresse: client.adresse || '',
+        cp: client.code_postal || '',
+        ville: client.ville || '',
+      });
+
+      afficherToast('✅ Connecté !');
+      init();
+    } else {
+      erreur.textContent = '❌ Email ou mot de passe incorrect';
+      erreur.classList.add('visible');
+    }
+  } catch(e) {
+    erreur.textContent = '❌ Erreur de connexion';
+    erreur.classList.add('visible');
   }
 
-  sessionToken = data.access_token;
-  utilisateur = data.user;
-  localStorage.setItem('session_client', JSON.stringify(data));
-  afficherProfil();
+  btn.textContent = 'Se connecter';
+  btn.disabled = false;
 }
 
+// ── INSCRIPTION ───────────────────────────────────────
 async function sInscrire() {
-  const prenom = document.getElementById('regPrenom').value.trim();
-  const nom = document.getElementById('regNom').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const tel = document.getElementById('regTel').value.trim();
-  const mdp = document.getElementById('regMdp').value;
-  const erreur = document.getElementById('erreurInscription');
-  const btn = document.getElementById('btnInscription');
+  const prenom = document.getElementById('inscPrenom').value.trim();
+  const nom = document.getElementById('inscNom').value.trim();
+  const email = document.getElementById('inscEmail').value.trim();
+  const tel = document.getElementById('inscTel').value.trim();
+  const mdp = document.getElementById('inscMdp').value;
+  const erreur = document.getElementById('inscErreur');
+  const btn = document.getElementById('btnInscrire');
 
-  if (!prenom || !nom || !email || !mdp) {
-    afficherErreur(erreur, 'Remplissez tous les champs obligatoires');
-    return;
-  }
+  if (!prenom || !nom || !email || !mdp) { erreur.textContent = '⚠️ Remplissez tous les champs obligatoires'; erreur.classList.add('visible'); return; }
+  if (mdp.length < 6) { erreur.textContent = '⚠️ Le mot de passe doit faire au moins 6 caractères'; erreur.classList.add('visible'); return; }
 
-  if (mdp.length < 6) {
-    afficherErreur(erreur, 'Le mot de passe doit faire au moins 6 caractères');
-    return;
-  }
-
-  btn.disabled = true;
   btn.textContent = 'Création...';
+  btn.disabled = true;
   erreur.classList.remove('visible');
 
-  const data = await sbAuth('signup', {
-    email,
-    password: mdp,
-    data: { prenom, nom, telephone: tel }
-  });
+  try {
+    // Créer le compte Supabase Auth
+    const r = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: mdp, data: { prenom, nom } })
+    });
+    const data = await r.json();
 
-  if (data.error || data.error_description) {
-    afficherErreur(erreur, data.error_description || 'Erreur lors de la création du compte');
-    btn.disabled = false;
-    btn.textContent = 'Créer mon compte';
-    return;
+    if (data.access_token || data.id) {
+      // Créer le client dans la table clients
+      const commercants = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.christophe-frais-caen&select=id', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      }).then(r => r.json());
+      const commercantId = commercants?.[0]?.id;
+
+      if (commercantId) {
+        await fetch(SUPABASE_URL + '/rest/v1/clients', {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ commercant_id: commercantId, email, prenom, nom, telephone: tel })
+        });
+      }
+
+      // Auto-login si le token est fourni
+      if (data.access_token) {
+        saveSession({ access_token: data.access_token, user_id: data.user?.id, email, prenom, nom, telephone: tel });
+        afficherToast('✅ Compte créé !');
+        init();
+      } else {
+        afficherToast('✅ Vérifiez votre email pour confirmer votre compte');
+        toggleInscription(false);
+      }
+    } else {
+      erreur.textContent = '❌ ' + (data.msg || data.message || 'Erreur lors de la création');
+      erreur.classList.add('visible');
+    }
+  } catch(e) {
+    erreur.textContent = '❌ Erreur : ' + e.message;
+    erreur.classList.add('visible');
   }
 
-  // Créer le profil client dans notre table
-  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
-  const commercantId = commercants?.[0]?.id;
+  btn.textContent = 'Créer mon compte';
+  btn.disabled = false;
+}
 
-  if (commercantId) {
-    await sb('clients', '', 'POST', {
-      commercant_id: commercantId,
-      email, nom, prenom, telephone: tel,
+// ── DÉCONNEXION ───────────────────────────────────────
+function seDeconnecter() {
+  if (!confirm('Se déconnecter ?')) return;
+  localStorage.removeItem('session_client');
+  afficherToast('🚪 Déconnecté');
+  init();
+}
+
+// ── PAGES OVERLAY ─────────────────────────────────────
+function ouvrirPage(page) {
+  const el = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
+  if (el) {
+    el.classList.add('open');
+    if (page === 'mesCommandes') chargerMesCommandes();
+    if (page === 'mesInfos') chargerMesInfos();
+    if (page === 'mesAdresses') chargerMesAdresses();
+  }
+}
+
+function fermerPage(page) {
+  const el = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
+  if (el) el.classList.remove('open');
+}
+
+// ── MES COMMANDES ─────────────────────────────────────
+async function chargerMesCommandes() {
+  const session = getSession();
+  const container = document.getElementById('mesCommandesListe');
+  if (!session?.email) { container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Non connecté</p></div>'; return; }
+
+  container.innerHTML = '<div class="empty-state"><p>Chargement...</p></div>';
+
+  try {
+    // Trouver le client
+    const clients = await fetch(SUPABASE_URL + '/rest/v1/clients?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.json());
+    const clientId = clients?.[0]?.id;
+    if (!clientId) { container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Aucune commande</p></div>'; return; }
+
+    const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + '&order=created_at.desc&limit=20&select=*', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.json());
+
+    if (!commandes || commandes.length === 0) {
+      container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Aucune commande pour le moment</p><p style="font-size:13px;margin-top:6px;color:var(--texte-doux)">Vos commandes apparaîtront ici</p></div>';
+      return;
+    }
+
+    const statutColors = { nouvelle:'#e6f1fb', en_preparation:'#fef5ec', prete:'#eaf7ee', remise:'#f0ebe0', annulee:'#fdf0ef' };
+    const statutTexts = { nouvelle:'Nouvelle', en_preparation:'En préparation', prete:'Prête', remise:'Récupérée', annulee:'Annulée' };
+
+    container.innerHTML = commandes.map(c => {
+      const date = c.date_retrait ? new Date(c.date_retrait) : new Date(c.created_at);
+      const dateStr = date.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+      const heure = date.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+      const typeIcon = c.type === 'livraison' ? '🚚' : '📍';
+      return '<div class="commande-card">'
+        + '<div class="commande-numero">' + (c.numero || '—') + '</div>'
+        + '<div class="commande-date">' + typeIcon + ' ' + dateStr + ' à ' + heure + '</div>'
+        + '<span class="commande-statut" style="background:' + (statutColors[c.statut] || '#eee') + ';color:var(--texte);">' + (statutTexts[c.statut] || c.statut) + '</span>'
+        + '<div class="commande-montant">' + (c.total_ttc || 0).toFixed(2).replace('.',',') + ' €</div>'
+        + '</div>';
+    }).join('');
+  } catch(e) {
+    console.log('Erreur commandes:', e);
+    container.innerHTML = '<div class="empty-state"><p>Erreur de chargement</p></div>';
+  }
+}
+
+// ── MES INFOS ─────────────────────────────────────────
+function chargerMesInfos() {
+  const session = getSession();
+  if (!session) return;
+  document.getElementById('editPrenom').value = session.prenom || '';
+  document.getElementById('editNom').value = session.nom || '';
+  document.getElementById('editEmail').value = session.email || '';
+  document.getElementById('editTel').value = session.telephone || '';
+}
+
+async function sauvegarderInfos() {
+  const session = getSession();
+  if (!session) return;
+  const prenom = document.getElementById('editPrenom').value.trim();
+  const nom = document.getElementById('editNom').value.trim();
+  const tel = document.getElementById('editTel').value.trim();
+
+  if (session.client_id) {
+    await fetch(SUPABASE_URL + '/rest/v1/clients?id=eq.' + session.client_id, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prenom, nom, telephone: tel })
     });
   }
 
-  sessionToken = data.access_token || data.session?.access_token;
-  utilisateur = data.user;
-
-  if (sessionToken) {
-    localStorage.setItem('session_client', JSON.stringify({
-      access_token: sessionToken,
-      user: utilisateur
-    }));
-    afficherProfil();
-  } else {
-    afficherErreur(erreur, '✅ Compte créé ! Vérifiez votre email pour confirmer.');
-    btn.disabled = false;
-    btn.textContent = 'Créer mon compte';
-  }
+  session.prenom = prenom;
+  session.nom = nom;
+  session.telephone = tel;
+  saveSession(session);
+  init();
+  afficherToast('✅ Informations mises à jour');
+  fermerPage('mesInfos');
 }
 
-function seDeconnecter() {
-  localStorage.removeItem('session_client');
-  sessionToken = null;
-  utilisateur = null;
-  document.getElementById('ecranProfil').classList.remove('actif');
-  document.getElementById('ecranAuth').classList.add('actif');
+// ── MES ADRESSES ──────────────────────────────────────
+function chargerMesAdresses() {
+  const session = getSession();
+  if (!session) return;
+  document.getElementById('editAdresse').value = session.adresse || '';
+  document.getElementById('editCP').value = session.cp || '';
+  document.getElementById('editVille').value = session.ville || '';
 }
 
-// ── PROFIL ────────────────────────────────────────────
-async function afficherProfil() {
-  document.getElementById('ecranAuth').classList.remove('actif');
-  document.getElementById('ecranProfil').classList.add('actif');
+async function sauvegarderAdresse() {
+  const session = getSession();
+  if (!session) return;
 
-  const meta = utilisateur?.user_metadata || {};
-  const prenom = meta.prenom || '';
-  const nom = meta.nom || '';
-  const email = utilisateur?.email || '';
-  const initiales = ((prenom[0] || '') + (nom[0] || '')).toUpperCase() || email[0].toUpperCase();
-
-  document.getElementById('profilAvatar').textContent = initiales;
-  document.getElementById('profilNom').textContent = prenom && nom ? `${prenom} ${nom}` : email;
-  document.getElementById('profilEmail').textContent = email;
-
-  chargerCommandes();
+  session.adresse = document.getElementById('editAdresse').value.trim();
+  session.cp = document.getElementById('editCP').value.trim();
+  session.ville = document.getElementById('editVille').value.trim();
+  saveSession(session);
+  afficherToast('✅ Adresse enregistrée');
+  fermerPage('mesAdresses');
 }
 
-async function chargerCommandes() {
-  const container = document.getElementById('mesCommandes');
-
-  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
-  const commercantId = commercants?.[0]?.id;
-  if (!commercantId) return;
-
-  const email = utilisateur?.email;
-  const clients = await sb('clients', `?commercant_id=eq.${commercantId}&email=eq.${encodeURIComponent(email)}&select=id`);
-  const clientId = clients?.[0]?.id;
-
-  if (!clientId) {
-    container.innerHTML = `<div class="vide"><p style="font-size:32px">🛒</p><p style="margin-top:8px;font-size:14px;">Aucune commande pour l'instant</p></div>`;
-    return;
-  }
-
-  const commandes = await sb('commandes', `?client_id=eq.${clientId}&order=created_at.desc&limit=10`);
-
-  if (!commandes || commandes.length === 0) {
-    container.innerHTML = `<div class="vide"><p style="font-size:32px">🛒</p><p style="margin-top:8px;font-size:14px;">Aucune commande pour l'instant</p><p style="font-size:13px;color:var(--texte-doux);margin-top:4px;">Vos commandes apparaîtront ici</p></div>`;
-    return;
-  }
-
-  const statutLabels = {
-    nouvelle: 'En attente',
-    en_preparation: 'En préparation',
-    prete: 'Prête à retirer',
-    remise: 'Récupérée',
-    annulee: 'Annulée',
-    noshow: 'No-show',
-  };
-
-  container.innerHTML = commandes.map(c => {
-    const date = new Date(c.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
-    const statut = c.statut || 'nouvelle';
-    const label = statutLabels[statut] || statut;
-    return `
-      <div class="commande-item">
-        <div class="commande-item-header">
-          <span class="commande-numero">${c.numero}</span>
-          <span class="commande-montant">${(c.total_ttc||0).toFixed(2).replace('.',',')} €</span>
-        </div>
-        <div class="commande-meta">
-          <span>${date}</span>
-          <span>·</span>
-          <span class="commande-statut statut-${statut}">${label}</span>
-        </div>
-      </div>
-    `;
-  }).join('');
+// ── TOAST ─────────────────────────────────────────────
+function afficherToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
-
-function afficherErreur(el, msg) {
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function voirInfos() { alert('Modification des informations — bientôt disponible'); }
-function voirAdresses() { alert('Gestion des adresses — bientôt disponible'); }
-function voirNotifs() { alert('Paramètres notifications — bientôt disponible'); }
 
 init();
 </script>

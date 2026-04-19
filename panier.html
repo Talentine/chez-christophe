@@ -316,7 +316,7 @@ function getSession() {
 // ── INIT ──────────────────────────────────────────────
 function init() {
   if (panier.length === 0) {
-    document.getElementById('step1').innerHTML = '<div class="panier-vide"><p style="font-size:48px">🛒</p><p style="margin-top:12px;font-size:16px;font-weight:500;">Votre panier est vide</p><p style="margin-top:8px;font-size:14px;color:var(--texte-doux)">Ajoutez des produits depuis la boutique</p><button class="btn-commander" style="margin-top:20px;max-width:280px;" onclick="window.location=\'catalogue.html\'">Voir la boutique</button></div>';
+    document.getElementById('step1').innerHTML = '<div class="panier-vide" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;"><p style="font-size:48px">🛒</p><p style="margin-top:12px;font-size:16px;font-weight:500;">Votre panier est vide</p><p style="margin-top:8px;font-size:14px;color:var(--texte-doux)">Ajoutez des produits depuis la boutique</p><a href="catalogue.html" class="btn-commander" style="margin-top:20px;display:inline-block;text-align:center;text-decoration:none;">Voir la boutique</a></div>';
     document.getElementById('ctaFixe').style.display = 'none';
     document.getElementById('progressBar').style.display = 'none';
     return;
