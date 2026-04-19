@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a2e26">
+<title>Notre Histoire — Chez Christophe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #2d4a3e;
+    --vert-fonce: #1a2e26;
+    --vert-clair: #3d6b59;
+    --or: #c9a84c;
+    --or-clair: #e2c97a;
+    --creme: #f5f0e8;
+    --creme-fonce: #ede6d6;
+    --blanc: #ffffff;
+    --texte: #1a2e26;
+    --texte-doux: #5a7060;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  body {
+    font-family:'DM Sans',sans-serif;
+    background:var(--creme);
+    color:var(--texte);
+    max-width:480px;
+    margin:0 auto;
+    overflow-x:hidden;
+    padding-bottom:80px;
+  }
+
+  /* HEADER */
+  header {
+    background:var(--vert-fonce);
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky; top:0; z-index:100;
+  }
+
+  .header-back {
+    display:flex;align-items:center;gap:10px;
+    color:white;text-decoration:none;font-size:15px;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  .header-back-arrow {
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,0.1);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;
+  }
+
+  .header-title {
+    font-family:'Playfair Display',serif;
+    font-size:17px;color:white;
+  }
+
+  /* HERO PHOTO */
+  .histoire-hero {
+    position:relative;
+    height:260px;
+    background:linear-gradient(135deg, var(--vert-fonce), var(--vert-clair));
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:24px 20px;
+  }
+
+  .histoire-hero::before {
+    content:'';
+    position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 20% 40%, rgba(201,168,76,0.15), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(61,107,89,0.3), transparent 50%);
+  }
+
+  .histoire-hero-content {
+    position:relative;z-index:1;
+  }
+
+  .histoire-badge {
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(201,168,76,0.2);
+    border:1px solid rgba(201,168,76,0.4);
+    color:var(--or-clair);
+    font-size:12px;font-weight:500;
+    padding:5px 12px;border-radius:50px;
+    margin-bottom:12px;
+  }
+
+  .histoire-hero h2 {
+    font-family:'Playfair Display',serif;
+    font-size:28px;color:white;line-height:1.2;
+    margin-bottom:6px;
+  }
+
+  .histoire-hero h2 span {
+    color:var(--or-clair);
+    font-style:italic;
+  }
+
+  .histoire-hero-sub {
+    font-size:14px;color:rgba(255,255,255,0.7);
+  }
+
+  /* DECORATIVE LEAF */
+  .leaf-deco {
+    position:absolute;top:20px;right:20px;
+    font-size:80px;opacity:0.08;
+    transform:rotate(15deg);
+  }
+
+  /* CONTENU */
+  .histoire-content {
+    padding:28px 20px 20px;
+  }
+
+  .histoire-section {
+    margin-bottom:28px;
+  }
+
+  .histoire-section-title {
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+
+  .histoire-section-title::after {
+    content:'';flex:1;height:1px;
+    background:var(--creme-fonce);
+  }
+
+  .histoire-text {
+    font-size:15px;line-height:1.75;
+    color:var(--texte);
+  }
+
+  .histoire-text p {
+    margin-bottom:16px;
+  }
+
+  .histoire-text p:last-child {
+    margin-bottom:0;
+  }
+
+  /* CITATION */
+  .histoire-quote {
+    background:var(--vert-fonce);
+    color:white;
+    border-radius:16px;
+    padding:24px 20px;
+    margin:28px 0;
+    position:relative;
+  }
+
+  .histoire-quote::before {
+    content:'"';
+    font-family:'Playfair Display',serif;
+    font-size:60px;
+    color:var(--or);
+    position:absolute;
+    top:-5px;left:16px;
+    line-height:1;
+    opacity:0.6;
+  }
+
+  .histoire-quote p {
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:17px;
+    line-height:1.6;
+    padding-left:8px;
+  }
+
+  .histoire-quote-author {
+    font-family:'DM Sans',sans-serif;
+    font-style:normal;
+    font-size:13px;
+    color:var(--or);
+    margin-top:12px;
+    padding-left:8px;
+  }
+
+  /* VALEURS */
+  .valeurs-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:16px;
+  }
+
+  .valeur-card {
+    background:var(--blanc);
+    border:1px solid var(--creme-fonce);
+    border-radius:14px;
+    padding:18px 14px;
+    text-align:center;
+  }
+
+  .valeur-icon {
+    font-size:28px;
+    margin-bottom:8px;
+  }
+
+  .valeur-titre {
+    font-family:'Playfair Display',serif;
+    font-size:15px;
+    margin-bottom:4px;
+  }
+
+  .valeur-desc {
+    font-size:12px;
+    color:var(--texte-doux);
+    line-height:1.4;
+  }
+
+  /* HORAIRES & CONTACT */
+  .info-card {
+    background:var(--blanc);
+    border:1px solid var(--creme-fonce);
+    border-radius:16px;
+    overflow:hidden;
+    margin-bottom:12px;
+  }
+
+  .info-card-header {
+    background:var(--vert);
+    color:white;
+    padding:14px 18px;
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    display:flex;align-items:center;gap:10px;
+  }
+
+  .info-row {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 18px;
+    border-bottom:1px solid var(--creme-fonce);
+    font-size:14px;
+  }
+
+  .info-row:last-child { border-bottom:none; }
+
+  .info-row-label {
+    color:var(--texte-doux);
+  }
+
+  .info-row-value {
+    font-weight:500;
+  }
+
+  .info-row-value.ferme {
+    color:#ccc;
+  }
+
+  .info-row-value.ouvert {
+    color:var(--vert-clair);
+  }
+
+  /* CONTACT BUTTONS */
+  .contact-btns {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:16px;
+  }
+
+  .contact-btn {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px;
+    border-radius:12px;
+    border:none;
+    font-size:14px;
+    font-weight:500;
+    font-family:'DM Sans',sans-serif;
+    cursor:pointer;
+    text-decoration:none;
+    transition:all .15s;
+  }
+
+  .contact-btn:active { transform:scale(0.96); }
+
+  .contact-btn-tel {
+    background:var(--vert);
+    color:white;
+  }
+
+  .contact-btn-maps {
+    background:var(--or);
+    color:var(--vert-fonce);
+  }
+
+  .contact-btn-email {
+    background:var(--blanc);
+    color:var(--texte);
+    border:1.5px solid var(--creme-fonce);
+    grid-column:span 2;
+  }
+
+  /* CTA */
+  .histoire-cta {
+    background:linear-gradient(135deg, var(--vert-fonce), var(--vert));
+    border-radius:16px;
+    padding:28px 20px;
+    text-align:center;
+    margin-top:28px;
+  }
+
+  .histoire-cta h3 {
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    color:white;
+    margin-bottom:8px;
+  }
+
+  .histoire-cta p {
+    font-size:13px;
+    color:rgba(255,255,255,0.7);
+    margin-bottom:16px;
+  }
+
+  .histoire-cta-btn {
+    display:inline-flex;
+    align-items:center;gap:8px;
+    background:var(--or);
+    color:var(--vert-fonce);
+    border:none;
+    border-radius:50px;
+    padding:14px 28px;
+    font-size:15px;
+    font-weight:500;
+    font-family:'DM Sans',sans-serif;
+    cursor:pointer;
+    text-decoration:none;
+    transition:all .15s;
+  }
+
+  .histoire-cta-btn:active { transform:scale(0.96); }
+
+  /* NAV BAS */
+  .bottom-nav {
+    position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+    width:100%;max-width:480px;
+    background:var(--blanc);
+    border-top:1px solid rgba(0,0,0,0.08);
+    display:flex;z-index:100;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+
+  .nav-item {
+    flex:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:10px 0 8px;cursor:pointer;border:none;
+    background:none;font-family:'DM Sans',sans-serif;
+    text-decoration:none;
+  }
+
+  .nav-icon { font-size:22px;margin-bottom:3px; }
+  .nav-label { font-size:10px;color:#aaa; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .anim { animation:fadeUp 0.5s ease forwards; opacity:0; }
+  .anim-d1 { animation-delay:0.1s; }
+  .anim-d2 { animation-delay:0.2s; }
+  .anim-d3 { animation-delay:0.3s; }
+  .anim-d4 { animation-delay:0.4s; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="header-back">
+    <div class="header-back-arrow">←</div>
+    <span class="header-title">Notre Histoire</span>
+  </a>
+</header>
+
+<!-- HERO -->
+<div class="histoire-hero">
+  <div class="leaf-deco">🌿</div>
+  <div class="histoire-hero-content anim">
+    <div class="histoire-badge">🌿 Depuis + de 10 ans</div>
+    <h2>L'histoire de<br><span>Chez Christophe</span></h2>
+    <p class="histoire-hero-sub">Primeur au cœur de Caen</p>
+  </div>
+</div>
+
+<div class="histoire-content">
+
+  <!-- TEXTE PRINCIPAL -->
+  <div class="histoire-section anim anim-d1">
+    <div class="histoire-section-title">Notre histoire</div>
+    <div class="histoire-text">
+      <p>Installée au cœur de Caen, au 8 rue Neuve Saint-Jean, la boutique de Christophe Boucher vous propose chaque jour une sélection rigoureuse de fruits et légumes frais, de saison et de qualité.</p>
+      <p>Entreprise de père en fils, Christophe se rend régulièrement sur les marchés de Rungis, Rouen et Soliès, tout en travaillant également avec des producteurs locaux, afin de sélectionner des produits reconnus pour leur fraîcheur et leur goût.</p>
+    </div>
+  </div>
+
+  <!-- CITATION -->
+  <div class="histoire-quote anim anim-d2">
+    <p>Le plaisir du frais et du goût authentique, tout simplement.</p>
+    <div class="histoire-quote-author">— Christophe Boucher</div>
+  </div>
+
+  <!-- SUITE TEXTE -->
+  <div class="histoire-section anim anim-d2">
+    <div class="histoire-text">
+      <p>Que vous recherchiez des produits du quotidien ou des saveurs plus originales, vous trouverez en boutique un large choix, soigneusement sélectionné pour répondre à toutes vos envies.</p>
+      <p>Conseils personnalisés, accueil chaleureux et produits savoureux font de cette adresse un incontournable pour tous les amateurs de bons produits.</p>
+    </div>
+  </div>
+
+  <!-- VALEURS -->
+  <div class="histoire-section anim anim-d3">
+    <div class="histoire-section-title">Nos engagements</div>
+    <div class="valeurs-grid">
+      <div class="valeur-card">
+        <div class="valeur-icon">🌱</div>
+        <div class="valeur-titre">De saison</div>
+        <div class="valeur-desc">Des produits qui respectent le rythme de la nature</div>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon">🤝</div>
+        <div class="valeur-titre">Local</div>
+        <div class="valeur-desc">Producteurs normands et circuits courts</div>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon">✨</div>
+        <div class="valeur-titre">Fraîcheur</div>
+        <div class="valeur-desc">Approvisionnement quotidien à Rungis et Rouen</div>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon">💬</div>
+        <div class="valeur-titre">Conseil</div>
+        <div class="valeur-desc">Des astuces et recommandations personnalisées</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HORAIRES -->
+  <div class="histoire-section anim anim-d3">
+    <div class="histoire-section-title">Horaires</div>
+    <div class="info-card">
+      <div class="info-card-header">🕐 Nos horaires d'ouverture</div>
+      <div class="info-row">
+        <span class="info-row-label">Lundi</span>
+        <span class="info-row-value ferme">Fermé</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Mardi</span>
+        <span class="info-row-value ouvert">8h00 – 19h00</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Mercredi</span>
+        <span class="info-row-value ouvert">8h00 – 19h00</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Jeudi</span>
+        <span class="info-row-value ouvert">8h00 – 19h00</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Vendredi</span>
+        <span class="info-row-value ouvert">8h00 – 19h00</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Samedi</span>
+        <span class="info-row-value ouvert">8h00 – 19h00</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Dimanche</span>
+        <span class="info-row-value ferme">Fermé</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="histoire-section anim anim-d4">
+    <div class="histoire-section-title">Nous trouver</div>
+    <div class="info-card">
+      <div class="info-card-header">📍 Coordonnées</div>
+      <div class="info-row">
+        <span class="info-row-label">Adresse</span>
+        <span class="info-row-value">8 rue Neuve Saint-Jean, Caen</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Téléphone</span>
+        <span class="info-row-value">02 31 85 14 77</span>
+      </div>
+    </div>
+
+    <div class="contact-btns">
+      <a href="tel:0231851477" class="contact-btn contact-btn-tel">
+        📞 Appeler
+      </a>
+      <a href="https://maps.google.com/?q=8+rue+Neuve+Saint-Jean+Caen" target="_blank" class="contact-btn contact-btn-maps">
+        🗺️ Y aller
+      </a>
+      <a href="mailto:contact@chezchristophe.fr" class="contact-btn contact-btn-email">
+        ✉️ Nous écrire
+      </a>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="histoire-cta anim anim-d4">
+    <h3>Découvrez nos produits 🌿</h3>
+    <p>Commandez en ligne et récupérez en boutique</p>
+    <a href="catalogue.html" class="histoire-cta-btn">🛒 Voir la boutique →</a>
+  </div>
+
+</div>
+
+<!-- NAV BAS -->
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Accueil</span>
+  </a>
+  <a href="catalogue.html" class="nav-item">
+    <span class="nav-icon">🛍️</span>
+    <span class="nav-label">Boutique</span>
+  </a>
+  <a href="catalogue.html?cat=paniers" class="nav-item">
+    <span class="nav-icon">🧺</span>
+    <span class="nav-label">Paniers</span>
+  </a>
+  <a href="panier.html" class="nav-item">
+    <span class="nav-icon">🛒</span>
+    <span class="nav-label">Panier</span>
+  </a>
+  <a href="compte.html" class="nav-item">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Compte</span>
+  </a>
+</nav>
+
+</body>
+</html>
