@@ -1981,12 +1981,18 @@ if (!verifierSessionCommercant()) {
     <div style="margin-bottom:20px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Conditionnement *</label>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-        ${['kg','pièce','part','barquette 125g','barquette 250g','barquette 500g','1 litre','50 cl','25 cl','corbeille','plateau','botte'].map(u => `
-          <button onclick="selectionnerUnite('${u}')" id="unite-${u.replace(/ /g,'-')}"
-            class="btn-unite"
-            style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">
-            ${u}
-          </button>`).join('')}
+        <button onclick="selectionnerUnite('kg')" id="unite-kg" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">kg</button>
+        <button onclick="selectionnerUnite('pièce')" id="unite-pièce" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">pièce</button>
+        <button onclick="selectionnerUnite('part')" id="unite-part" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">part</button>
+        <button onclick="selectionnerUnite('barquette 125g')" id="unite-barquette-125g" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">barquette 125g</button>
+        <button onclick="selectionnerUnite('barquette 250g')" id="unite-barquette-250g" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">barquette 250g</button>
+        <button onclick="selectionnerUnite('barquette 500g')" id="unite-barquette-500g" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">barquette 500g</button>
+        <button onclick="selectionnerUnite('1 litre')" id="unite-1-litre" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">1 litre</button>
+        <button onclick="selectionnerUnite('50 cl')" id="unite-50-cl" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">50 cl</button>
+        <button onclick="selectionnerUnite('25 cl')" id="unite-25-cl" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">25 cl</button>
+        <button onclick="selectionnerUnite('corbeille')" id="unite-corbeille" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">corbeille</button>
+        <button onclick="selectionnerUnite('plateau')" id="unite-plateau" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">plateau</button>
+        <button onclick="selectionnerUnite('botte')" id="unite-botte" class="btn-unite" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;transition:all .15s;">botte</button>
       </div>
     </div>
 
