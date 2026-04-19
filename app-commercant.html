@@ -34,7 +34,6 @@
     margin:0 auto;
   }
 
-  /* HEADER */
   .app-header {
     background:var(--vert-fonce);
     padding:16px 20px 12px;
@@ -72,7 +71,6 @@
   .btn-pause.en-pause { background:#888; }
   .btn-pause:active { transform:scale(0.95); }
 
-  /* ALERTE NOUVELLES COMMANDES */
   .alerte-bar {
     background:var(--or); color:var(--vert-fonce);
     padding:10px 20px; font-size:13px; font-weight:500;
@@ -82,7 +80,6 @@
 
   .alerte-bar.visible { display:flex; }
 
-  /* STATS DU JOUR */
   .stats-card {
     background:var(--vert); margin:12px; border-radius:16px;
     padding:18px 20px;
@@ -102,7 +99,6 @@
   .stat-val { font-size:28px; font-weight:500; color:white; line-height:1; }
   .stat-lbl { font-size:12px; color:rgba(255,255,255,0.6); margin-top:4px; }
 
-  /* ONGLETS */
   .tabs {
     display:flex; background:var(--blanc);
     border-bottom:1px solid var(--creme-fonce);
@@ -130,11 +126,9 @@
 
   .tab-badge.visible { display:block; }
 
-  /* SECTION CONTENU */
   .tab-content { display:none; }
   .tab-content.active { display:block; }
 
-  /* COMMANDES */
   .commandes-filtres {
     display:flex; gap:8px; padding:12px 16px;
     overflow-x:auto; scrollbar-width:none;
@@ -164,7 +158,6 @@
 
   .jour-header:first-child { margin-top:0; }
 
-  /* CARTE COMMANDE */
   .commande-card {
     background:var(--blanc); border-radius:16px;
     border:1.5px solid var(--creme-fonce);
@@ -208,7 +201,6 @@
     display:flex; align-items:center; gap:6px;
   }
 
-  /* ACTIONS COMMANDE — GROS BOUTONS */
   .commande-actions {
     padding:12px 16px 14px;
     display:flex; gap:10px;
@@ -240,7 +232,6 @@
 
   .btn-contact:active { transform:scale(0.97); }
 
-  /* DÉTAIL COMMANDE (expandable) */
   .commande-detail {
     padding:0 16px 14px; display:none;
   }
@@ -257,7 +248,6 @@
   .detail-produit-nom { color:var(--texte); }
   .detail-produit-prix { color:var(--texte-doux); font-weight:500; }
 
-  /* PLANNING SEMAINE */
   .planning-semaine {
     padding:16px;
   }
@@ -275,7 +265,6 @@
   .planning-stat-val { font-size:22px; font-weight:500; color:var(--texte); }
   .planning-stat-lbl { font-size:12px; color:var(--texte-doux); margin-top:2px; }
 
-  /* PRODUITS */
   .produits-section { padding:12px 16px; }
 
   .produit-row {
@@ -302,7 +291,6 @@
     display:flex; align-items:center; gap:10px; flex-shrink:0;
   }
 
-  /* TOGGLE */
   .toggle {
     position:relative; width:48px; height:28px;
     cursor:pointer; flex-shrink:0;
@@ -326,7 +314,6 @@
 
   .toggle input:checked ~ .toggle-thumb { transform:translateX(20px); }
 
-  /* MODAL CONTACT */
   .modal-overlay {
     position:fixed; inset:0; background:rgba(0,0,0,0.5);
     z-index:200; opacity:0; pointer-events:none; transition:opacity .2s;
@@ -370,7 +357,6 @@
   .msg-titre { font-size:15px; font-weight:500; margin-bottom:2px; }
   .msg-desc { font-size:12px; color:var(--texte-doux); }
 
-  /* MODAL NO-SHOW */
   .noshow-modal {
     position:fixed; inset:0; background:rgba(0,0,0,0.6);
     z-index:300; display:none; align-items:center; justify-content:center;
@@ -406,7 +392,6 @@
     font-family:'DM Sans',sans-serif; cursor:pointer;
   }
 
-  /* NAV BAS */
   .bottom-nav {
     position:fixed; bottom:0; left:50%; transform:translateX(-50%);
     width:100%; max-width:480px;
@@ -432,7 +417,6 @@
     border-radius:2px 2px 0 0;
   }
 
-  /* TOAST */
   .toast {
     position:fixed; top:80px; left:50%; transform:translateX(-50%);
     background:var(--vert-fonce); color:white; padding:10px 20px;
@@ -569,7 +553,7 @@
   </button>
 </div>
 
-<!-- ===== ONGLET COMMANDES ===== -->
+<!-- ONGLET COMMANDES -->
 <div class="tab-content active" id="content-commandes">
   <div class="commandes-filtres">
     <button class="filtre-pill actif" onclick="filtrerStatut(null,this)">Toutes</button>
@@ -586,7 +570,7 @@
   </div>
 </div>
 
-<!-- ===== ONGLET PLANNING ===== -->
+<!-- ONGLET PLANNING -->
 <div class="tab-content" id="content-planning">
   <div class="planning-semaine">
     <div class="planning-stats">
@@ -611,7 +595,7 @@
   </div>
 </div>
 
-<!-- ===== ONGLET PRODUITS ===== -->
+<!-- ONGLET PRODUITS -->
 <div class="tab-content" id="content-produits">
   <div class="produits-section">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
@@ -627,7 +611,7 @@
   </div>
 </div>
 
-<!-- ===== ONGLET CRÉNEAUX ===== -->
+<!-- ONGLET CRÉNEAUX -->
 <div class="tab-content" id="content-creneaux">
   <div style="padding:16px;">
     <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Créneaux</div>
@@ -727,7 +711,6 @@ async function sb(table, params='', method='GET', body=null) {
   return r;
 }
 
-// ── INIT ──────────────────────────────────────────────
 function init() {
   const now = new Date();
   const jours = JOURS[now.getDay()];
@@ -740,7 +723,6 @@ function init() {
   chargerPlanningDemo();
 }
 
-// ── STATS DEMO ────────────────────────────────────────
 function chargerStatsDemo() {
   document.getElementById('statRetraits').textContent = '3';
   document.getElementById('statCA').textContent = '56€';
@@ -748,7 +730,6 @@ function chargerStatsDemo() {
   document.getElementById('statDemain').textContent = '1';
   document.getElementById('statutBoutique').textContent = 'Boutique ouverte';
 
-  // Alerte commandes
   const alerte = document.getElementById('alerteBar');
   alerte.classList.add('visible');
   document.getElementById('alerteTxt').textContent = '🛒 3 nouvelles commandes en attente';
@@ -757,7 +738,6 @@ function chargerStatsDemo() {
   badge.classList.add('visible');
 }
 
-// ── COMMANDES DEMO ────────────────────────────────────
 function chargerCommandesDemo() {
   toutesLesCommandes = [
     {
@@ -810,8 +790,6 @@ function renderCommandes() {
     return;
   }
 
-  // ── ENCART DERNIÈRE COMMANDE ─────────────────────────
-  // Dernière commande reçue (tri par date de création desc)
   const nouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle');
   const derniere = nouvelles.length > 0 
     ? nouvelles.reduce((a, b) => new Date(a.created_at || 0) > new Date(b.created_at || 0) ? a : b)
@@ -834,7 +812,6 @@ function renderCommandes() {
       + '</div></div></div>';
   }
 
-  // ── GROUPER PAR JOUR DE RETRAIT/LIVRAISON ─────────────
   const groupes = {};
   filtrees.forEach(c => {
     let key, label;
@@ -852,7 +829,6 @@ function renderCommandes() {
       } else {
         label = JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()];
       }
-      // Utiliser la date locale pour la clé (pas UTC)
       const yyyy = d.getFullYear();
       const mm = String(d.getMonth() + 1).padStart(2, '0');
       const dd = String(d.getDate()).padStart(2, '0');
@@ -867,7 +843,6 @@ function renderCommandes() {
     groupes[key].total += montant;
   });
 
-  // Trier par date croissante
   const keysTriees = Object.keys(groupes).sort();
   
   let html = encart;
@@ -977,7 +952,6 @@ function changerStatut(id, nouveauStatut) {
   };
   afficherToast(msgs[nouveauStatut] || 'Statut mis à jour');
 
-  // Mettre à jour le badge
   const nouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
   const badge = document.getElementById('badge-commandes');
   badge.textContent = nouvelles;
@@ -991,9 +965,7 @@ function filtrerStatut(statut, btn) {
   renderCommandes();
 }
 
-// ── PLANNING DEMO ─────────────────────────────────────
 function chargerPlanningDemo() {
-  // Utiliser les vraies commandes
   chargerPlanningReel();
 }
 
@@ -1002,12 +974,10 @@ async function chargerPlanningReel() {
   if (!grid) return;
   grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
 
-  // Récupérer le commercant_id depuis la session
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
   if (!commercantId) { grid.innerHTML = '<div style="padding:20px;color:var(--texte-doux)">Non connecté</div>'; return; }
 
-  // Charger les commandes directement
   let commandes = [];
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&statut=neq.annulee&order=date_retrait.asc&limit=100&select=id,numero,type,date_retrait,total_ttc,statut', {
@@ -1017,12 +987,10 @@ async function chargerPlanningReel() {
     if (!Array.isArray(commandes)) commandes = [];
   } catch(e) { console.log('Erreur planning:', e); }
 
-  // Stats
   const totalCA = commandes.reduce((s,c) => s + (c.total_ttc || 0), 0);
   document.getElementById('planNbCmd').textContent = commandes.length;
   document.getElementById('planCA').textContent = totalCA.toFixed(0) + '€';
 
-  // Grouper par date locale
   const parDate = {};
   commandes.forEach(c => {
     if (!c.date_retrait) return;
@@ -1040,7 +1008,6 @@ async function chargerPlanningReel() {
     parDate[key][heure].ca += c.total_ttc || 0;
   });
 
-  // Créneau le plus chargé
   let maxCreneau = '—'; let maxCount = 0;
   Object.entries(parDate).forEach(([date, heures]) => {
     Object.entries(heures).forEach(([h, data]) => {
@@ -1049,7 +1016,6 @@ async function chargerPlanningReel() {
   });
   document.getElementById('planCreneauTop').textContent = maxCreneau;
 
-  // Générer les 7 prochains jours
   const now = new Date();
   const jours = [];
   for (let i = 0; i < 14; i++) {
@@ -1096,11 +1062,9 @@ async function chargerPlanningReel() {
 
 
 async function voirCommandesCreneau(dateKey, heure) {
-  // Récupérer le commercant_id depuis la session
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
 
-  // Charger toutes les commandes du commerçant et filtrer en JS (évite pb timezone)
   let toutes = [];
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId 
@@ -1112,8 +1076,6 @@ async function voirCommandesCreneau(dateKey, heure) {
     if (!Array.isArray(toutes)) toutes = [];
   } catch(e) { console.log('Erreur:', e); }
 
-  // Filtrer par heure locale
-  console.log('dateKey:', dateKey, 'heure:', heure, 'total commandes:', toutes.length);
   const cmds = toutes.filter(c => {
     if (!c.date_retrait) return false;
     const d = new Date(c.date_retrait);
@@ -1122,7 +1084,6 @@ async function voirCommandesCreneau(dateKey, heure) {
     const mm = String(d.getMonth()+1).padStart(2,'0');
     const dd = String(d.getDate()).padStart(2,'0');
     const key2 = yyyy + '-' + mm + '-' + dd;
-    console.log('  commande:', c.numero, 'key2:', key2, 'h:', h);
     return h === heure && key2 === dateKey;
   });
 
@@ -1138,7 +1099,7 @@ async function voirCommandesCreneau(dateKey, heure) {
           <div style="font-size:16px;font-weight:500;">🕐 ${heure} · ${dateLabel}</div>
           <div style="font-size:13px;color:var(--texte-doux);">${cmds.length} commande${cmds.length > 1 ? 's' : ''}</div>
         </div>
-        <button onclick="this.closest('div[style*="fixed"]').remove()" style="background:var(--creme);border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;">✕</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="background:var(--creme);border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;">✕</button>
       </div>`;
 
   cmds.forEach(c => {
@@ -1186,13 +1147,11 @@ function allerOnglet(id) {
 
   window.scrollTo({top:0, behavior:'smooth'});
 
-  // Charger les données de l'onglet
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') chargerCreneaux();
 }
 
-// ── PAUSE ─────────────────────────────────────────────
 function togglePause() {
   enPause = !enPause;
   const btn = document.getElementById('btnPause');
@@ -1210,7 +1169,6 @@ function togglePause() {
   }
 }
 
-// ── MODAL CONTACT ─────────────────────────────────────
 function ouvrirContact(id, client, numero) {
   commandeContactId = id;
   document.getElementById('modalTitre').textContent = `Contacter ${client}`;
@@ -1230,15 +1188,8 @@ async function envoyerMessage(type) {
   const cmd = toutesLesCommandes.find(c => c.id === commandeContactId);
   if (!cmd) { afficherToast('❌ Commande introuvable'); return; }
 
-  // Récupérer le téléphone du client depuis Supabase
   let telephone = null;
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?commercant_id=eq.' + cmd.commercant_id + '&select=telephone', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const clients = await r.json();
-
-    // Chercher via la commande
     const cmdR = await fetch(SUPABASE_URL + '/rest/v1/commandes?id=eq.' + commandeContactId + '&select=*,clients(telephone,prenom)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
@@ -1277,7 +1228,6 @@ async function envoyerMessage(type) {
   }
 }
 
-// ── NO-SHOW ───────────────────────────────────────────
 function ouvrirNoShow() {
   fermerModal();
   document.getElementById('noshowModal').classList.add('open');
@@ -1292,7 +1242,6 @@ function confirmerNoShow() {
   afficherToast('💳 5,00€ débités — No-show enregistré');
 }
 
-// ── TOAST ─────────────────────────────────────────────
 function afficherToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1300,11 +1249,8 @@ function afficherToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-
-// ── PWA & NOTIFICATIONS PUSH ──────────────────────────────
 let deferredPrompt = null;
 
-// Enregistrer le Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
     .then(reg => {
@@ -1314,16 +1260,12 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('SW erreur:', err));
 }
 
-// Capturer l'événement d'installation PWA
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
-  document.getElementById('btnInstaller').style.display = 'flex';
 });
 
-// Demander permission notifications
 async function demanderPermissionNotifications(reg) {
-  // Ne pas demander automatiquement — attendre le clic utilisateur
   if (Notification.permission === 'granted') {
     const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     abonnerAuxNotifications(reg);
@@ -1339,12 +1281,10 @@ async function activerNotifications() {
   if (permission === 'granted') {
     const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     afficherToast('🔔 Notifications activées !');
-    // Envoyer une notif de test
     new Notification('✅ Notifications actives !', {
       body: 'Vous recevrez une alerte à chaque nouvelle commande.',
       icon: '/icon-192.png',
     });
-    // Enregistrer le SW si pas encore fait
     if ('serviceWorker' in navigator) {
       const reg = await navigator.serviceWorker.ready;
       abonnerAuxNotifications(reg);
@@ -1360,17 +1300,12 @@ async function activerNotifications() {
 async function abonnerAuxNotifications(reg) {
   try {
     const VAPID_PUBLIC = 'BJuXKoz9jttdTotYgdpzslA_IQhbbKvcsUA00WfnX7Sz7bH8LzAhL6Yiafl3LC0vizJ3xdg9hsjAZgBpTrg_Y-w';
-    
-    // Convertir la clé publique VAPID
     const keyBytes = urlBase64ToUint8Array(VAPID_PUBLIC);
-    
-    // S'abonner aux notifications push
     const sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: keyBytes
     });
 
-    // Récupérer l'ID du commerçant
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.christophe-frais-caen&select=id', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
@@ -1378,7 +1313,6 @@ async function abonnerAuxNotifications(reg) {
     const commercantId = data?.[0]?.id;
 
     if (commercantId) {
-      // Enregistrer la souscription dans Supabase
       const subJson = sub.toJSON();
       await fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
         method: 'POST',
@@ -1397,8 +1331,6 @@ async function abonnerAuxNotifications(reg) {
       });
       afficherToast('🔔 Notifications push activées !');
     }
-
-    console.log('Abonné aux notifications push');
   } catch(e) {
     console.log('Notifications non supportées:', e);
   }
@@ -1411,29 +1343,25 @@ function urlBase64ToUint8Array(base64String) {
   return new Uint8Array([...rawData].map(c => c.charCodeAt(0)));
 }
 
-// Installer l'app
 async function installerApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     const result = await deferredPrompt.userChoice;
     if (result.outcome === 'accepted') {
       afficherToast('✅ App installée sur votre téléphone !');
-      document.getElementById('btnInstaller').style.display = 'none';
     }
     deferredPrompt = null;
   }
 }
 
-// Simuler une notification de test
 function testerNotification() {
-  console.log('Test notif - permission:', Notification.permission);
   if (!('Notification' in window)) {
     afficherToast('⚠️ Notifications non supportées');
     return;
   }
   if (Notification.permission === 'granted') {
     try {
-      const n = new Notification('🛒 Nouvelle commande !', {
+      new Notification('🛒 Nouvelle commande !', {
         body: 'Marie L. — 36,10€ · Retrait 10h–11h',
         icon: '/icon-192.png',
       });
@@ -1450,13 +1378,11 @@ function testerNotification() {
   }
 }
 
-// Masquer bannière si notifs déjà ok
 if ('Notification' in window && Notification.permission === 'granted') {
   const b = document.getElementById('banniereNotifs');
   if (b) b.style.display = 'none';
 }
 
-// Attacher le bouton test directement
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('btnTestNotif');
   if (btn) {
@@ -1482,17 +1408,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-
-// ── SUPABASE REALTIME — Nouvelles commandes ───────────────
 async function demarrerRealtime() {
   try {
-    // Récupérer l'ID depuis la session
     const sessionData = localStorage.getItem('session_commercant');
     const session = sessionData ? JSON.parse(sessionData) : null;
 
     let commercantId = session?.commercant_id;
 
-    // Fallback : chercher par email si pas dans la session
     if (!commercantId && session?.email) {
       const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -1502,10 +1424,8 @@ async function demarrerRealtime() {
     }
     if (!commercantId) return;
 
-    // Charger les vraies commandes depuis Supabase
     await chargerCommandesSupabase(commercantId);
 
-    // Écouter les nouvelles commandes via polling toutes les 10 secondes
     setInterval(async () => {
       await chargerCommandesSupabase(commercantId);
     }, 10000);
@@ -1523,16 +1443,13 @@ async function chargerCommandesSupabase(commercantId) {
     const commandes = await r.json();
     if (!commandes || commandes.error) return;
 
-    // Vérifier s'il y a de nouvelles commandes
     const nouvelles = commandes.filter(c => c.statut === 'nouvelle');
     const ancienNbNouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
 
     if (nouvelles.length > ancienNbNouvelles && ancienNbNouvelles >= 0 && toutesLesCommandes.length > 0) {
-      // Nouvelle commande détectée !
       const nouvelle = nouvelles[0];
       afficherToast('🛒 Nouvelle commande ' + (nouvelle.numero || '') + ' !');
       
-      // Notification push
       if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('🛒 Nouvelle commande !', {
           body: (nouvelle.numero || '') + ' — ' + (nouvelle.total_ttc || '') + '€',
@@ -1542,9 +1459,6 @@ async function chargerCommandesSupabase(commercantId) {
         });
       }
     }
-
-    // Convertir pour l'affichage
-    console.log('Commandes chargées:', commandes.length);
 
     toutesLesCommandes = commandes.map(c => ({
       id: c.id,
@@ -1567,30 +1481,18 @@ async function chargerCommandesSupabase(commercantId) {
       }))
     }));
 
-    // Forcer le rendu même si l'onglet n'est pas visible
     renderCommandes();
     chargerPlanningReel();
-    
-    // S'assurer que l'onglet commandes est visible si nouvelles commandes
-    if (nouvelles.length > 0) {
-      const tabCommandes = document.querySelector('[data-tab="commandes"]');
-      if (tabCommandes && !document.getElementById('content-commandes').classList.contains('active')) {
-        // Ne pas changer d'onglet automatiquement mais mettre à jour le badge
-      }
-    }
 
-    // Mettre à jour les stats
     const total = commandes.reduce((s, c) => s + (c.total_ttc || 0), 0);
     document.getElementById('statRetraits').textContent = commandes.length;
     document.getElementById('statCA').textContent = total.toFixed(0) + '€';
     document.getElementById('statAPreparer').textContent = nouvelles.length;
 
-    // Badge
     const badge = document.getElementById('badge-commandes');
     badge.textContent = nouvelles.length;
     badge.classList.toggle('visible', nouvelles.length > 0);
 
-    // Alerte bar
     const alerte = document.getElementById('alerteBar');
     if (nouvelles.length > 0) {
       alerte.classList.add('visible');
@@ -1604,8 +1506,6 @@ async function chargerCommandesSupabase(commercantId) {
   }
 }
 
-
-// ── AUTHENTIFICATION COMMERÇANT ───────────────────────
 async function seConnecterCommercant() {
   const email = document.getElementById('loginEmail').value.trim();
   const mdp = document.getElementById('loginMdp').value;
@@ -1626,12 +1526,10 @@ async function seConnecterCommercant() {
   const data = await r.json();
 
   if (data.access_token) {
-    // Vérifier le rôle
     const roleCheck = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/roles_utilisateurs?user_id=eq.' + data.user.id + '&select=role,commercant_id,commercants(slug,nom_boutique)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + data.access_token }
     });
     const roles = await roleCheck.json();
-    // Pour l'admin, prendre le rôle admin en priorité
     const roleData = roles?.find(r => r.role === 'admin') 
       || roles?.find(r => r.role === 'commercant')
       || roles?.find(r => r.role === 'salarie')
@@ -1654,14 +1552,6 @@ async function seConnecterCommercant() {
       slug: roleData.commercants?.slug,
       nom_boutique: roleData.commercants?.nom_boutique,
     }));
-
-    // Adapter l'interface selon le rôle
-    if (roleData.role === 'salarie') {
-      // Masquer les onglets non autorisés
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        if (btn.dataset.tab !== 'produits') btn.style.display = 'none';
-      });
-    }
 
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
@@ -1692,13 +1582,9 @@ function verifierSessionCommercant() {
   return false;
 }
 
-
-// ── AJOUT PRODUIT ─────────────────────────────────────
 let uniteSelectionnee = null;
 let photoFile = null;
 
-
-// ── PRODUITS ──────────────────────────────────────────
 async function chargerProduits() {
   chargerProduitsAdmin();
 }
@@ -1713,7 +1599,6 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
-    // Charger le catalogue du commerçant
     const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,en_stock,produit_base_id&limit=200', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
@@ -1723,7 +1608,6 @@ async function chargerProduitsAdmin() {
       return;
     }
 
-    // Charger les infos produits
     const produitIds = catalogue.map(c => c.produit_base_id).filter(Boolean);
     const pr = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=in.(' + produitIds.join(',') + ')&select=id,nom,unite,prix_marche_indicatif,photo_url', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -1735,14 +1619,16 @@ async function chargerProduitsAdmin() {
     container.innerHTML = catalogue.map(c => {
       const p = produitsMap[c.produit_base_id];
       if (!p) return '';
+      const toggleBg = c.actif ? 'var(--vert)' : '#ccc';
+      const thumbPos = c.actif ? 'right:3px' : 'left:3px';
       return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
         + '<img src="' + (p.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
         + '<div style="flex:1;min-width:0;">'
         + '<div style="font-size:15px;font-weight:500;">' + p.nom + '</div>'
         + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + (c.prix_vente || p.prix_marche_indicatif || 0) + '€ / ' + p.unite + '</div>'
         + '</div>'
-        + '<div onclick="toggleProduitActif('' + c.id + '',' + c.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + (c.actif ? 'var(--vert)' : '#ccc') + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
-        + '<div style="position:absolute;top:3px;' + (c.actif ? 'right:3px' : 'left:3px') + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
+        + '<div onclick="toggleProduitActif(\'' + c.id + '\',' + c.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
+        + '<div style="position:absolute;top:3px;' + thumbPos + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
         + '</div>'
         + '</div>';
     }).join('');
@@ -1767,7 +1653,6 @@ async function toggleProduitActif(catalogueId, actif) {
 
 function ajouterProduit() {
   document.getElementById('modalAjoutProduit').style.display = 'flex';
-  // Reset formulaire
   document.getElementById('produitNom').value = '';
   document.getElementById('produitPrix').value = '';
   document.getElementById('photoPreview').style.display = 'none';
@@ -1817,18 +1702,13 @@ async function sauvegarderProduit() {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const commercantId = session.commercant_id;
 
-    // Générer un slug
     const slug = nom.toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
       + '-' + Date.now().toString().slice(-4);
 
-    // Uploader la photo si présente
     let photoUrl = null;
     if (photoFile) {
-      const formData = new FormData();
-      formData.append('file', photoFile, slug + '.webp');
-
       const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/thumb/' + slug + '.webp', {
         method: 'POST',
         headers: {
@@ -1842,7 +1722,6 @@ async function sauvegarderProduit() {
       }
     }
 
-    // Récupérer la catégorie sélectionnée
     const categorieSlug = document.getElementById('produitCategorie')?.value;
     const catsQuery = categorieSlug 
       ? '?slug=eq.' + categorieSlug + '&select=id'
@@ -1852,7 +1731,6 @@ async function sauvegarderProduit() {
     }).then(r => r.json());
     const categorieId = cats?.[0]?.id;
 
-    // Créer le produit dans produits_base
     const produit = await fetch(SUPABASE_URL + '/rest/v1/produits_base', {
       method: 'POST',
       headers: {
@@ -1875,7 +1753,6 @@ async function sauvegarderProduit() {
 
     const produitId = produit?.[0]?.id;
 
-    // Ajouter au catalogue du commerçant
     if (produitId && commercantId) {
       await fetch(SUPABASE_URL + '/rest/v1/catalogue', {
         method: 'POST',
@@ -1908,7 +1785,6 @@ async function sauvegarderProduit() {
   btn.disabled = false;
 }
 
-// Init
 if (!verifierSessionCommercant()) {
   // Afficher login
 } else {
@@ -1927,7 +1803,6 @@ if (!verifierSessionCommercant()) {
       <button onclick="fermerAjoutProduit()" style="background:var(--creme);border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">✕</button>
     </div>
 
-    <!-- PHOTO -->
     <div style="margin-bottom:16px;">
       <div style="font-size:13px;color:var(--texte-doux);margin-bottom:8px;">Photo du produit</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
@@ -1948,7 +1823,6 @@ if (!verifierSessionCommercant()) {
       </div>
     </div>
 
-    <!-- CATÉGORIE -->
     <div style="margin-bottom:14px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Catégorie</label>
       <select id="produitCategorie" style="width:100%;padding:13px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
@@ -1963,14 +1837,12 @@ if (!verifierSessionCommercant()) {
       </select>
     </div>
 
-    <!-- NOM -->
     <div style="margin-bottom:14px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Nom du produit *</label>
       <input id="produitNom" type="text" placeholder="Ex: Tomates cerises bio" autocomplete="off"
         style="width:100%;padding:13px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
     </div>
 
-    <!-- PRIX -->
     <div style="margin-bottom:14px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Prix *</label>
       <div style="position:relative;">
@@ -1980,7 +1852,6 @@ if (!verifierSessionCommercant()) {
       </div>
     </div>
 
-    <!-- CONDITIONNEMENT -->
     <div style="margin-bottom:20px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Conditionnement *</label>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
@@ -1999,10 +1870,8 @@ if (!verifierSessionCommercant()) {
       </div>
     </div>
 
-    <!-- ERREUR -->
     <div id="ajoutErreur" style="color:#e74c3c;font-size:13px;margin-bottom:12px;display:none;"></div>
 
-    <!-- BOUTON -->
     <button onclick="sauvegarderProduit()" id="btnSauvegarder"
       style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">
       ✓ Ajouter le produit
