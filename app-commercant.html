@@ -1714,7 +1714,7 @@ async function chargerProduitsAdmin() {
 
   try {
     // Charger le catalogue du commerçant
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,produit_base_id,produits_base(id,nom,slug,unite,prix_marche_indicatif,photo_url)&order=created_at.desc&limit=100', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,en_stock,produit_base_id&limit=200', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
@@ -1723,24 +1723,28 @@ async function chargerProduitsAdmin() {
       return;
     }
 
+    // Charger les infos produits
+    const produitIds = catalogue.map(c => c.produit_base_id).filter(Boolean);
+    const pr = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=in.(' + produitIds.join(',') + ')&select=id,nom,unite,prix_marche_indicatif,photo_url', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const produits = await pr.json();
+    const produitsMap = {};
+    (Array.isArray(produits) ? produits : []).forEach(p => produitsMap[p.id] = p);
+
     container.innerHTML = catalogue.map(c => {
-      const p = c.produits_base;
+      const p = produitsMap[c.produit_base_id];
       if (!p) return '';
-      return `
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">
-          <img src="${p.photo_url || ''}" onerror="this.style.display='none'" 
-            style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:15px;font-weight:500;">${p.nom}</div>
-            <div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">${c.prix_vente || p.prix_marche_indicatif || 0}€ / ${p.unite}</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-            <div onclick="toggleProduitActif('${c.id}', ${c.actif})"
-              style="width:44px;height:26px;border-radius:13px;background:${c.actif ? 'var(--vert)' : '#ccc'};position:relative;cursor:pointer;transition:background .2s;">
-              <div style="position:absolute;top:3px;${c.actif ? 'right:3px' : 'left:3px'};width:20px;height:20px;border-radius:50%;background:white;transition:all .2s;"></div>
-            </div>
-          </div>
-        </div>`;
+      return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
+        + '<img src="' + (p.photo_url || '') + '" onerror="this.style.display='none'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
+        + '<div style="flex:1;min-width:0;">'
+        + '<div style="font-size:15px;font-weight:500;">' + p.nom + '</div>'
+        + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + (c.prix_vente || p.prix_marche_indicatif || 0) + '€ / ' + p.unite + '</div>'
+        + '</div>'
+        + '<div onclick="toggleProduitActif('' + c.id + '',' + c.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + (c.actif ? 'var(--vert)' : '#ccc') + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
+        + '<div style="position:absolute;top:3px;' + (c.actif ? 'right:3px' : 'left:3px') + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
+        + '</div>'
+        + '</div>';
     }).join('');
 
   } catch(e) {
