@@ -1736,7 +1736,7 @@ async function chargerProduitsAdmin() {
       const p = produitsMap[c.produit_base_id];
       if (!p) return '';
       return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
-        + '<img src="' + (p.photo_url || '') + '" onerror="this.style.display='none'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
+        + '<img src="' + (p.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
         + '<div style="flex:1;min-width:0;">'
         + '<div style="font-size:15px;font-weight:500;">' + p.nom + '</div>'
         + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + (c.prix_vente || p.prix_marche_indicatif || 0) + '€ / ' + p.unite + '</div>'
