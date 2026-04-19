@@ -2349,8 +2349,14 @@ function fermerModalCreneau() {
 }
 
 function selectionnerJourCreneau(btn) {
-  document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
-  btn.classList.add('actif');
+  // En mode édition : 1 seul jour
+  // En mode ajout : plusieurs jours possibles
+  if (creneauEnEdition) {
+    document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
+    btn.classList.add('actif');
+  } else {
+    btn.classList.toggle('actif');
+  }
 }
 
 function selectionnerHeureCreneau(btn) {
@@ -2360,6 +2366,15 @@ function selectionnerHeureCreneau(btn) {
   document.getElementById('horaireLibreSection').style.display = 'none';
   document.getElementById('btnHoraireLibre').style.background = 'transparent';
   document.getElementById('btnHoraireLibre').style.color = 'var(--texte-doux)';
+}
+
+function toggleTousLesJours() {
+  const boutons = document.querySelectorAll('.btn-jour-creneau');
+  const tousActifs = Array.from(boutons).every(b => b.classList.contains('actif'));
+  boutons.forEach(b => {
+    if (tousActifs) b.classList.remove('actif');
+    else b.classList.add('actif');
+  });
 }
 
 function toggleHoraireLibre() {
@@ -2385,13 +2400,13 @@ async function sauvegarderCreneau() {
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
 
-  const jourBtn = document.querySelector('.btn-jour-creneau.actif');
+  const joursBtns = document.querySelectorAll('.btn-jour-creneau.actif');
   const heureBtn = document.querySelector('.btn-heure-creneau.actif');
   const horaireLibreVisible = document.getElementById('horaireLibreSection').style.display === 'block';
   const max = parseInt(document.getElementById('creneauMaxCommandes').value);
   const type = document.getElementById('creneauType').value;
 
-  if (!jourBtn) { erreur.textContent = '⚠️ Choisissez un jour'; erreur.style.display = 'block'; return; }
+  if (joursBtns.length === 0) { erreur.textContent = '⚠️ Choisissez au moins un jour'; erreur.style.display = 'block'; return; }
 
   let heureDebutStr, heureFinStr;
   if (horaireLibreVisible) {
@@ -2430,36 +2445,52 @@ async function sauvegarderCreneau() {
   };
 
   try {
-    let r;
+    let reussis = 0;
+    let erreurs = [];
+    
     if (creneauEnEdition) {
-      r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + creneauEnEdition.id, {
+      // Mode édition : un seul jour
+      const singlePayload = {...payload, jour_semaine: parseInt(joursBtns[0].dataset.jour)};
+      const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + creneauEnEdition.id, {
         method: 'PATCH',
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(singlePayload)
       });
+      const responseText = await r.text();
+      console.log('Créneau modifié:', r.status, responseText);
+      if (r.ok) reussis = 1;
+      else { erreurs.push(responseText || r.status); }
     } else {
-      r = await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
-        method: 'POST',
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
-        body: JSON.stringify(payload)
-      });
+      // Mode ajout : créer un créneau par jour sélectionné
+      for (const jBtn of joursBtns) {
+        const p = {...payload, jour_semaine: parseInt(jBtn.dataset.jour)};
+        const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+          body: JSON.stringify(p)
+        });
+        const responseText = await r.text();
+        console.log('Créneau créé (jour ' + jBtn.dataset.jour + '):', r.status, responseText);
+        if (r.ok) reussis++;
+        else erreurs.push('Jour ' + jBtn.dataset.jour + ': ' + (responseText || r.status));
+      }
     }
 
-    const responseText = await r.text();
-    let data = null;
-    try { data = responseText ? JSON.parse(responseText) : null; } catch(e) {}
-    console.log('Créneau sauvegardé:', r.status, data || responseText);
-
-    if (!r.ok) {
-      erreur.textContent = '❌ Erreur : ' + (data?.message || responseText || r.status);
+    if (reussis === 0) {
+      erreur.textContent = '❌ Erreur : ' + erreurs.join(', ');
       erreur.style.display = 'block';
       btn.textContent = '✓ Enregistrer';
       btn.disabled = false;
       return;
     }
 
+    // Basculer sur le bon type pour voir le créneau
+    if (type !== typeCreneauActif) {
+      switchTypeCreneaux(type);
+    }
     fermerModalCreneau();
-    afficherToast(creneauEnEdition ? '✅ Créneau modifié' : '✅ Créneau ajouté');
+    const msg = creneauEnEdition ? '✅ Créneau modifié' : (reussis > 1 ? '✅ ' + reussis + ' créneaux ajoutés' : '✅ Créneau ajouté');
+    afficherToast(msg);
     await chargerCreneaux();
 
   } catch(e) {
@@ -2736,8 +2767,8 @@ if (!verifierSessionCommercant()) {
 
     <!-- JOURS -->
     <div style="margin-bottom:16px;">
-      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Jour *</label>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Jour(s) * <span style="font-size:11px;">(plusieurs possibles en ajout)</span></label>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px;">
         <button onclick="selectionnerJourCreneau(this)" data-jour="2" class="btn-jour-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Mar</button>
         <button onclick="selectionnerJourCreneau(this)" data-jour="3" class="btn-jour-creneau"
@@ -2749,6 +2780,10 @@ if (!verifierSessionCommercant()) {
         <button onclick="selectionnerJourCreneau(this)" data-jour="6" class="btn-jour-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Sam</button>
       </div>
+      <button onclick="toggleTousLesJours()" type="button" id="btnTousJours"
+        style="width:100%;border:1.5px dashed var(--texte-doux);border-radius:10px;padding:8px;font-size:12px;font-family:'DM Sans',sans-serif;background:transparent;color:var(--texte-doux);cursor:pointer;">
+        📅 Tous les jours d'ouverture
+      </button>
     </div>
 
     <!-- HEURES PRÉDÉFINIES -->
