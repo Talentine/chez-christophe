@@ -615,7 +615,53 @@
 <div class="tab-content" id="content-creneaux">
   <div style="padding:16px;">
     <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Créneaux</div>
+
+    <!-- TOGGLE RETRAIT / LIVRAISON -->
+    <div style="display:flex;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:16px;">
+      <button onclick="switchTypeCreneaux('retrait')" id="btnTypeRetrait"
+        style="flex:1;border:none;border-radius:50px;padding:10px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--vert);color:white;transition:all .2s;">
+        📍 Retrait boutique
+      </button>
+      <button onclick="switchTypeCreneaux('livraison')" id="btnTypeLivraison"
+        style="flex:1;border:none;border-radius:50px;padding:10px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;background:transparent;color:var(--texte-doux);transition:all .2s;">
+        🚚 Livraison
+      </button>
+    </div>
+
+    <!-- GRILLE CRÉNEAUX -->
     <div id="creneauxAdmin"></div>
+
+    <!-- BOUTON AJOUTER -->
+    <button onclick="ouvrirAjoutCreneau()"
+      style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:15px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;">
+      + Ajouter un créneau
+    </button>
+
+    <!-- ZONE DE LIVRAISON -->
+    <div id="zoneLivraisonSection" style="display:none;margin-top:24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:12px;">Zone de livraison</div>
+      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:13px;color:var(--texte-doux);margin-bottom:10px;">Codes postaux ou villes desservis (un par ligne)</div>
+        <textarea id="zonePostaux" placeholder="14390 Cabourg&#10;14160 Dives-sur-Mer&#10;14510 Houlgate" rows="5"
+          style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:none;"></textarea>
+        <div style="font-size:13px;color:var(--texte-doux);margin-top:10px;margin-bottom:6px;">Frais de livraison (€)</div>
+        <div style="position:relative;margin-bottom:10px;">
+          <input id="fraisLivraison" type="number" step="0.50" min="0" placeholder="0.00"
+            style="width:100%;padding:12px 40px 12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+        <div style="font-size:13px;color:var(--texte-doux);margin-bottom:6px;">Montant minimum de commande (€)</div>
+        <div style="position:relative;">
+          <input id="minLivraison" type="number" step="1" min="0" placeholder="0"
+            style="width:100%;padding:12px 40px 12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+        <button onclick="sauvegarderZoneLivraison()"
+          style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:14px;">
+          ✓ Enregistrer la zone
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2083,6 +2129,320 @@ async function sauvegarderProduit() {
   btn.disabled = false;
 }
 
+
+// ── CRÉNEAUX ──────────────────────────────────────────
+const JOURS_OUVERTS = ['Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+const JOURS_IDX = [2,3,4,5,6]; // indices JS (0=dim)
+const HEURE_DEBUT = 8;
+const HEURE_FIN = 19;
+const DUREE_CRENEAU = 2; // heures
+
+let typeCreneauActif = 'retrait';
+let creneauxData = []; // données Supabase
+
+function switchTypeCreneaux(type) {
+  typeCreneauActif = type;
+  const btnRetrait = document.getElementById('btnTypeRetrait');
+  const btnLivraison = document.getElementById('btnTypeLivraison');
+  const zoneSection = document.getElementById('zoneLivraisonSection');
+
+  if (type === 'retrait') {
+    btnRetrait.style.background = 'var(--vert)';
+    btnRetrait.style.color = 'white';
+    btnLivraison.style.background = 'transparent';
+    btnLivraison.style.color = 'var(--texte-doux)';
+    zoneSection.style.display = 'none';
+  } else {
+    btnLivraison.style.background = '#185fa5';
+    btnLivraison.style.color = 'white';
+    btnRetrait.style.background = 'transparent';
+    btnRetrait.style.color = 'var(--texte-doux)';
+    zoneSection.style.display = 'block';
+    chargerZoneLivraison();
+  }
+  renderCreneaux();
+}
+
+async function chargerCreneaux() {
+  const container = document.getElementById('creneauxAdmin');
+  if (!container) return;
+  container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
+
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + commercantId + '&order=jour_semaine.asc,heure_debut.asc', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    creneauxData = Array.isArray(data) ? data : [];
+  } catch(e) {
+    console.log('Erreur créneaux:', e);
+    creneauxData = [];
+  }
+
+  renderCreneaux();
+}
+
+function renderCreneaux() {
+  const container = document.getElementById('creneauxAdmin');
+  if (!container) return;
+
+  const filtres = creneauxData.filter(c => c.type === typeCreneauActif);
+
+  if (filtres.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:30px;color:var(--texte-doux);">'
+      + '<p style="font-size:32px;">📅</p>'
+      + '<p style="margin-top:8px;">Aucun créneau ' + (typeCreneauActif === 'retrait' ? 'de retrait' : 'de livraison') + '</p>'
+      + '<p style="font-size:13px;margin-top:4px;">Cliquez sur "+ Ajouter un créneau"</p>'
+      + '</div>';
+    return;
+  }
+
+  // Grouper par jour
+  const parJour = {};
+  filtres.forEach(c => {
+    const j = c.jour_semaine;
+    if (!parJour[j]) parJour[j] = [];
+    parJour[j].push(c);
+  });
+
+  const jourNoms = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const typeColor = typeCreneauActif === 'retrait' ? 'var(--vert)' : '#185fa5';
+
+  let html = '';
+  JOURS_IDX.forEach(jourIdx => {
+    const nom = jourNoms[jourIdx];
+    const liste = parJour[jourIdx] || [];
+    html += '<div style="margin-bottom:16px;">'
+      + '<div style="background:var(--vert-fonce);color:white;border-radius:12px;padding:10px 16px;font-weight:500;font-size:14px;margin-bottom:8px;">'
+      + nom
+      + '</div>';
+
+    if (liste.length === 0) {
+      html += '<div style="font-size:13px;color:var(--texte-doux);padding:6px 4px;">Aucun créneau</div>';
+    } else {
+      liste.sort((a,b) => a.heure_debut - b.heure_debut).forEach(c => {
+        const heureDebut = String(c.heure_debut).padStart(2,'0') + 'h00';
+        const heureFin = String(c.heure_debut + DUREE_CRENEAU).padStart(2,'0') + 'h00';
+        const actifColor = c.actif ? typeColor : '#ccc';
+        html += '<div style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--creme-fonce);display:flex;align-items:center;justify-content:space-between;">'
+          + '<div>'
+          + '<div style="font-size:14px;font-weight:500;">🕐 ' + heureDebut + ' – ' + heureFin + '</div>'
+          + '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Max ' + (c.max_commandes || '—') + ' commandes</div>'
+          + '</div>'
+          + '<div style="display:flex;align-items:center;gap:10px;">'
+          + '<button onclick="ouvrirEditionCreneau('' + c.id + '')" style="background:var(--creme);border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;">✏️ Modifier</button>'
+          + '<div onclick="toggleCreneau('' + c.id + '',' + c.actif + ')" style="width:40px;height:24px;border-radius:12px;background:' + actifColor + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
+          + '<div style="position:absolute;top:2px;' + (c.actif ? 'right:2px' : 'left:2px') + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
+          + '</div>'
+          + '</div>'
+          + '</div>';
+      });
+    }
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+async function toggleCreneau(id, actif) {
+  try {
+    await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + id, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ actif: !actif })
+    });
+    await chargerCreneaux();
+    afficherToast(actif ? '⏸ Créneau désactivé' : '✅ Créneau activé');
+  } catch(e) { console.log('Erreur toggle créneau:', e); }
+}
+
+// ── MODALE AJOUT/ÉDITION CRÉNEAU ──────────────────────
+let creneauEnEdition = null;
+
+function ouvrirAjoutCreneau() {
+  creneauEnEdition = null;
+  document.getElementById('creneauModalTitre').textContent = 'Ajouter un créneau';
+  document.getElementById('creneauErreur').style.display = 'none';
+  document.getElementById('creneauMaxCommandes').value = '10';
+  document.getElementById('btnSupprimerCreneau').style.display = 'none';
+
+  // Reset jours
+  document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
+  // Reset heures
+  document.querySelectorAll('.btn-heure-creneau').forEach(b => b.classList.remove('actif'));
+
+  // Pré-sélectionner le type actif
+  document.getElementById('creneauType').value = typeCreneauActif;
+
+  document.getElementById('modalCreneau').style.display = 'flex';
+}
+
+function ouvrirEditionCreneau(id) {
+  const c = creneauxData.find(x => x.id === id);
+  if (!c) return;
+  creneauEnEdition = c;
+
+  document.getElementById('creneauModalTitre').textContent = 'Modifier le créneau';
+  document.getElementById('creneauErreur').style.display = 'none';
+  document.getElementById('creneauMaxCommandes').value = c.max_commandes || 10;
+  document.getElementById('creneauType').value = c.type || typeCreneauActif;
+  document.getElementById('btnSupprimerCreneau').style.display = 'block';
+
+  // Sélectionner le jour
+  document.querySelectorAll('.btn-jour-creneau').forEach(b => {
+    b.classList.toggle('actif', parseInt(b.dataset.jour) === c.jour_semaine);
+  });
+
+  // Sélectionner l'heure
+  document.querySelectorAll('.btn-heure-creneau').forEach(b => {
+    b.classList.toggle('actif', parseInt(b.dataset.heure) === c.heure_debut);
+  });
+
+  document.getElementById('modalCreneau').style.display = 'flex';
+}
+
+function fermerModalCreneau() {
+  document.getElementById('modalCreneau').style.display = 'none';
+  creneauEnEdition = null;
+}
+
+function selectionnerJourCreneau(btn) {
+  document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
+  btn.classList.add('actif');
+}
+
+function selectionnerHeureCreneau(btn) {
+  document.querySelectorAll('.btn-heure-creneau').forEach(b => b.classList.remove('actif'));
+  btn.classList.add('actif');
+}
+
+async function sauvegarderCreneau() {
+  const erreur = document.getElementById('creneauErreur');
+  const btn = document.getElementById('btnSauvegarderCreneau');
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+
+  const jourBtn = document.querySelector('.btn-jour-creneau.actif');
+  const heureBtn = document.querySelector('.btn-heure-creneau.actif');
+  const max = parseInt(document.getElementById('creneauMaxCommandes').value);
+  const type = document.getElementById('creneauType').value;
+
+  if (!jourBtn) { erreur.textContent = '⚠️ Choisissez un jour'; erreur.style.display = 'block'; return; }
+  if (!heureBtn) { erreur.textContent = '⚠️ Choisissez une heure'; erreur.style.display = 'block'; return; }
+  if (!max || max < 1) { erreur.textContent = '⚠️ Nombre de commandes invalide'; erreur.style.display = 'block'; return; }
+
+  erreur.style.display = 'none';
+  btn.textContent = 'Enregistrement...';
+  btn.disabled = true;
+
+  const payload = {
+    commercant_id: commercantId,
+    jour_semaine: parseInt(jourBtn.dataset.jour),
+    heure_debut: parseInt(heureBtn.dataset.heure),
+    max_commandes: max,
+    type,
+    actif: true,
+  };
+
+  try {
+    let r;
+    if (creneauEnEdition) {
+      r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + creneauEnEdition.id, {
+        method: 'PATCH',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } else {
+      r = await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    const data = await r.json();
+    console.log('Créneau sauvegardé:', r.status, data);
+
+    if (!r.ok) {
+      erreur.textContent = '❌ Erreur : ' + (data?.message || r.status);
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Enregistrer';
+      btn.disabled = false;
+      return;
+    }
+
+    fermerModalCreneau();
+    afficherToast(creneauEnEdition ? '✅ Créneau modifié' : '✅ Créneau ajouté');
+    await chargerCreneaux();
+
+  } catch(e) {
+    console.log('Erreur créneau:', e);
+    erreur.textContent = '❌ Erreur : ' + e.message;
+    erreur.style.display = 'block';
+  }
+
+  btn.textContent = '✓ Enregistrer';
+  btn.disabled = false;
+}
+
+async function supprimerCreneau() {
+  if (!creneauEnEdition) return;
+  if (!confirm('Supprimer ce créneau ?')) return;
+  try {
+    await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + creneauEnEdition.id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    fermerModalCreneau();
+    afficherToast('🗑 Créneau supprimé');
+    await chargerCreneaux();
+  } catch(e) { console.log('Erreur suppression créneau:', e); }
+}
+
+// ── ZONE DE LIVRAISON ─────────────────────────────────
+async function chargerZoneLivraison() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=zone_livraison,frais_livraison,min_commande_livraison', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    const c = data?.[0];
+    if (c) {
+      document.getElementById('zonePostaux').value = (c.zone_livraison || []).join('\n');
+      document.getElementById('fraisLivraison').value = c.frais_livraison || '';
+      document.getElementById('minLivraison').value = c.min_commande_livraison || '';
+    }
+  } catch(e) { console.log('Erreur zone livraison:', e); }
+}
+
+async function sauvegarderZoneLivraison() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const zones = document.getElementById('zonePostaux').value.split('\n').map(z => z.trim()).filter(Boolean);
+  const frais = parseFloat(document.getElementById('fraisLivraison').value) || 0;
+  const min = parseFloat(document.getElementById('minLivraison').value) || 0;
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ zone_livraison: zones, frais_livraison: frais, min_commande_livraison: min })
+    });
+    if (r.ok) {
+      afficherToast('✅ Zone de livraison enregistrée');
+    } else {
+      const err = await r.json();
+      afficherToast('❌ Erreur : ' + (err?.message || r.status));
+    }
+  } catch(e) { afficherToast('❌ Erreur : ' + e.message); }
+}
+
 if (!verifierSessionCommercant()) {
   // Afficher login
 } else {
@@ -2272,5 +2632,87 @@ if (!verifierSessionCommercant()) {
   }
 </style>
 
+
+<!-- MODALE AJOUT/ÉDITION CRÉNEAU -->
+<div id="modalCreneau" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:flex-end;">
+  <div style="background:var(--blanc);width:100%;max-width:480px;margin:0 auto;border-radius:24px 24px 0 0;padding:24px;max-height:90vh;overflow-y:auto;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div id="creneauModalTitre" style="font-family:'Playfair Display',serif;font-size:20px;">Ajouter un créneau</div>
+      <button onclick="fermerModalCreneau()" style="background:var(--creme);border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">✕</button>
+    </div>
+
+    <!-- TYPE -->
+    <div style="margin-bottom:16px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Type de créneau</label>
+      <select id="creneauType" style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+        <option value="retrait">📍 Retrait boutique</option>
+        <option value="livraison">🚚 Livraison</option>
+      </select>
+    </div>
+
+    <!-- JOURS -->
+    <div style="margin-bottom:16px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Jour *</label>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+        <button onclick="selectionnerJourCreneau(this)" data-jour="2" class="btn-jour-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Mar</button>
+        <button onclick="selectionnerJourCreneau(this)" data-jour="3" class="btn-jour-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Mer</button>
+        <button onclick="selectionnerJourCreneau(this)" data-jour="4" class="btn-jour-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Jeu</button>
+        <button onclick="selectionnerJourCreneau(this)" data-jour="5" class="btn-jour-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Ven</button>
+        <button onclick="selectionnerJourCreneau(this)" data-jour="6" class="btn-jour-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">Sam</button>
+      </div>
+    </div>
+
+    <!-- HEURES -->
+    <div style="margin-bottom:16px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Heure de début *</label>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="8" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">8h–10h</button>
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="10" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">10h–12h</button>
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="12" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">12h–14h</button>
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="14" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">14h–16h</button>
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="16" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">16h–18h</button>
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="17" class="btn-heure-creneau"
+          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">17h–19h</button>
+      </div>
+    </div>
+
+    <!-- MAX COMMANDES -->
+    <div style="margin-bottom:20px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Nombre max de commandes</label>
+      <input id="creneauMaxCommandes" type="number" min="1" max="50" value="10"
+        style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+    </div>
+
+    <div id="creneauErreur" style="color:#e74c3c;font-size:13px;margin-bottom:12px;display:none;"></div>
+
+    <button onclick="sauvegarderCreneau()" id="btnSauvegarderCreneau"
+      style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px;">
+      ✓ Enregistrer
+    </button>
+    <button onclick="supprimerCreneau()" id="btnSupprimerCreneau"
+      style="width:100%;background:var(--rouge-clair);color:var(--rouge);border:none;border-radius:50px;padding:14px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:none;">
+      🗑 Supprimer ce créneau
+    </button>
+  </div>
+</div>
+
+<style>
+  .btn-jour-creneau.actif, .btn-heure-creneau.actif {
+    background: var(--vert) !important;
+    color: white !important;
+    border-color: var(--vert) !important;
+  }
+</style>
 </body>
 </html>
