@@ -1751,16 +1751,8 @@ async function sauvegarderProduit() {
       }
     }
 
-    const categorieSlug = document.getElementById('produitCategorie')?.value;
-    const catsQuery = categorieSlug 
-      ? '?slug=eq.' + categorieSlug + '&select=id'
-      : '?select=id&limit=1';
-    const cats = await fetch(SUPABASE_URL + '/rest/v1/categories' + catsQuery, {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    }).then(r => r.json());
-    const categorieId = cats?.[0]?.id;
-
-    const produit = await fetch(SUPABASE_URL + '/rest/v1/produits_base', {
+    // Étape 1 — Créer le produit dans produits_base
+    const produitRes = await fetch(SUPABASE_URL + '/rest/v1/produits_base', {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
@@ -1769,47 +1761,91 @@ async function sauvegarderProduit() {
         'Prefer': 'return=representation',
       },
       body: JSON.stringify({
-        nom,
-        slug,
+        nom, slug,
         unite: uniteSelectionnee,
         prix_marche_indicatif: prix,
-        categorie_id: categorieId,
         photo_url: photoUrl,
         actif: true,
         saisons_disponibles: [1,2,3,4,5,6,7,8,9,10,11,12],
       })
-    }).then(r => r.json());
+    });
 
-    const produitId = produit?.[0]?.id;
+    const produitData = await produitRes.json();
+    console.log('produits_base réponse:', produitRes.status, produitData);
 
-    if (produitId && commercantId) {
-      await fetch(SUPABASE_URL + '/rest/v1/catalogue', {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          commercant_id: commercantId,
-          produit_base_id: produitId,
-          prix_vente: prix,
-          actif: true,
-          stock_disponible: true,
-        })
-      });
+    if (!produitRes.ok) {
+      erreur.textContent = '❌ Erreur création produit : ' + (produitData?.message || produitRes.status);
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Ajouter le produit';
+      btn.disabled = false;
+      return;
     }
 
+    const produitId = produitData?.[0]?.id;
+    if (!produitId) {
+      erreur.textContent = '❌ Produit créé mais ID manquant';
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Ajouter le produit';
+      btn.disabled = false;
+      return;
+    }
+
+    // Étape 2 — Lier au catalogue du commerçant
+    const catRes = await fetch(SUPABASE_URL + '/rest/v1/catalogue', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      body: JSON.stringify({
+        commercant_id: commercantId,
+        produit_base_id: produitId,
+        prix_vente: prix,
+        actif: true,
+        stock_disponible: true,
+      })
+    });
+
+    const catData = await catRes.json();
+    console.log('catalogue réponse:', catRes.status, catData);
+
+    if (!catRes.ok) {
+      erreur.textContent = '❌ Erreur liaison catalogue : ' + (catData?.message || catRes.status);
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Ajouter le produit';
+      btn.disabled = false;
+      return;
+    }
+
+    const catalogueId = catData?.[0]?.id;
+
+    // Étape 3 — Ajouter immédiatement au cache local pour affichage instantané
+    const nouveauProduit = {
+      catalogue_id: catalogueId,
+      nom,
+      unite: uniteSelectionnee,
+      prix,
+      photo_url: photoUrl || '',
+      actif: true,
+    };
+    catalogueCache.unshift(nouveauProduit);
+
     fermerAjoutProduit();
-    afficherToast('✅ ' + nom + ' ajouté au catalogue !');
-    // Vider la recherche et recharger
+    afficherToast('✅ ' + nom + ' ajouté !');
+
+    // Vider recherche et rafraîchir
     const searchInput = document.querySelector('#content-produits input[type="text"]');
     if (searchInput) searchInput.value = '';
-    await chargerProduitsAdmin();
+    renderCatalogueHTML(catalogueCache);
+
+    // Recharger depuis Supabase en arrière-plan pour synchro complète
+    setTimeout(() => chargerProduitsAdmin(), 1500);
 
   } catch(e) {
     console.log('Erreur ajout produit:', e);
-    erreur.textContent = "❌ Erreur lors de l'enregistrement";
+    erreur.textContent = "❌ Erreur : " + e.message;
     erreur.style.display = 'block';
   }
 
