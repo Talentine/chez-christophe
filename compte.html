@@ -491,14 +491,13 @@ async function chargerMesCommandes() {
   container.innerHTML = '<div class="empty-state"><p>Chargement...</p></div>';
 
   try {
-    // Trouver le client
     const clients = await fetch(SUPABASE_URL + '/rest/v1/clients?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     }).then(r => r.json());
     const clientId = clients?.[0]?.id;
     if (!clientId) { container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Aucune commande</p></div>'; return; }
 
-    const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + '&order=created_at.desc&limit=20&select=*', {
+    const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + '&order=created_at.desc&limit=20&select=*,commande_lignes(nom_produit,quantite,unite,prix_unitaire,total_ligne)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     }).then(r => r.json());
 
@@ -509,23 +508,57 @@ async function chargerMesCommandes() {
 
     const statutColors = { nouvelle:'#e6f1fb', en_preparation:'#fef5ec', prete:'#eaf7ee', remise:'#f0ebe0', annulee:'#fdf0ef' };
     const statutTexts = { nouvelle:'Nouvelle', en_preparation:'En préparation', prete:'Prête', remise:'Récupérée', annulee:'Annulée' };
+    const statutEmojis = { nouvelle:'🔵', en_preparation:'🟡', prete:'🟢', remise:'✅', annulee:'❌' };
 
-    container.innerHTML = commandes.map(c => {
+    container.innerHTML = commandes.map((c, idx) => {
       const date = c.date_retrait ? new Date(c.date_retrait) : new Date(c.created_at);
-      const dateStr = date.toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+      const dateStr = date.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' });
       const heure = date.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
-      const typeIcon = c.type === 'livraison' ? '🚚' : '📍';
-      return '<div class="commande-card">'
+      const typeIcon = c.type === 'livraison' ? '🚚 Livraison' : '📍 Retrait boutique';
+      const lignes = c.commande_lignes || [];
+
+      const detailHtml = lignes.map(l =>
+        '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--creme-fonce);font-size:13px;">'
+        + '<span>' + (l.quantite || 1) + ' ' + (l.unite || '') + ' ' + l.nom_produit + '</span>'
+        + '<span style="font-weight:500;color:var(--texte-doux);">' + (l.total_ligne || 0).toFixed(2).replace('.',',') + '€</span>'
+        + '</div>'
+      ).join('');
+
+      const sousTotal = c.sous_total ? c.sous_total.toFixed(2).replace('.',',') + '€' : '';
+      const fraisLiv = c.frais_livraison ? '+' + c.frais_livraison.toFixed(2).replace('.',',') + '€ livraison' : '';
+
+      return '<div class="commande-card" style="cursor:pointer;" onclick="toggleDetailCommande(' + idx + ')">'
+        + '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'
+        + '<div>'
         + '<div class="commande-numero">' + (c.numero || '—') + '</div>'
-        + '<div class="commande-date">' + typeIcon + ' ' + dateStr + ' à ' + heure + '</div>'
-        + '<span class="commande-statut" style="background:' + (statutColors[c.statut] || '#eee') + ';color:var(--texte);">' + (statutTexts[c.statut] || c.statut) + '</span>'
+        + '<div class="commande-date">' + dateStr + ' · ' + heure + '</div>'
+        + '<div style="font-size:12px;color:var(--texte-doux);margin-top:4px;">' + typeIcon + '</div>'
+        + '</div>'
+        + '<div style="text-align:right;">'
+        + '<span class="commande-statut" style="background:' + (statutColors[c.statut] || '#eee') + ';color:var(--texte);">' + (statutEmojis[c.statut] || '') + ' ' + (statutTexts[c.statut] || c.statut) + '</span>'
         + '<div class="commande-montant">' + (c.total_ttc || 0).toFixed(2).replace('.',',') + ' €</div>'
+        + '</div>'
+        + '</div>'
+        + '<div style="font-size:12px;color:var(--or);margin-top:8px;">Voir le détail ▼</div>'
+        // Détail masqué
+        + '<div id="detailCmd' + idx + '" style="display:none;margin-top:12px;border-top:1px solid var(--creme-fonce);padding-top:10px;">'
+        + (lignes.length > 0 ? detailHtml : '<div style="font-size:13px;color:var(--texte-doux);">Aucun détail disponible</div>')
+        + (sousTotal ? '<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;"><span>Sous-total</span><span>' + sousTotal + '</span></div>' : '')
+        + (fraisLiv ? '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:var(--texte-doux);"><span>Livraison</span><span>' + fraisLiv + '</span></div>' : '')
+        + '<div style="display:flex;justify-content:space-between;padding:10px 0 0;font-size:15px;font-weight:500;border-top:1px solid var(--creme-fonce);margin-top:6px;"><span>Total</span><span>' + (c.total_ttc || 0).toFixed(2).replace('.',',') + ' €</span></div>'
+        + (c.adresse_livraison ? '<div style="margin-top:10px;padding:10px;background:var(--creme);border-radius:10px;font-size:12px;color:var(--texte-doux);">📍 ' + c.adresse_livraison + '</div>' : '')
+        + '</div>'
         + '</div>';
     }).join('');
   } catch(e) {
     console.log('Erreur commandes:', e);
     container.innerHTML = '<div class="empty-state"><p>Erreur de chargement</p></div>';
   }
+}
+
+function toggleDetailCommande(idx) {
+  const el = document.getElementById('detailCmd' + idx);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
 }
 
 // ── MES INFOS ─────────────────────────────────────────
