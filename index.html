@@ -1253,26 +1253,41 @@ async function chargerCoupsDeCoeur() {
 }
 
 // Charger paniers thématiques (exemples statiques si pas encore en base)
-function chargerPaniers() {
-  const exemples = [
-    { emoji: '🍓', nom: 'Panier Fruits Rouges', desc: 'Fraises Gariguette · Framboises · Myrtilles · Cerises...', prix: 18.90 },
-    { emoji: '🥗', nom: 'Panier Salade Composée', desc: 'Laitue · Tomates cerises · Concombre · Carottes...', prix: 14.90 },
-    { emoji: '🍊', nom: 'Panier Agrumes du Soleil', desc: 'Oranges · Citrons · Clémentines · Pamplemousse...', prix: 12.50 },
-  ];
+async function chargerPaniers() {
+  const container = document.getElementById('paniersListe');
+  try {
+    // Charger les produits de catégorie "paniers"
+    const cats = await supabase('categories', '?slug=eq.paniers&select=id');
+    const catId = cats?.[0]?.id;
+    if (!catId) { container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>'; return; }
 
-  document.getElementById('paniersListe').innerHTML = exemples.map(p => `
-    <div class="panier-card">
-      <div class="panier-emoji">${p.emoji}</div>
-      <div class="panier-info">
-        <div class="panier-nom">${p.nom}</div>
-        <div class="panier-desc">${p.desc}</div>
-        <div class="panier-footer">
-          <span class="panier-prix">${p.prix.toFixed(2).replace('.',',')}€</span>
-          <button class="btn-ajouter">+ Ajouter</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
+    const produits = await supabase('produits_base', '?categorie_id=eq.' + catId + '&actif=eq.true&select=*&order=created_at.desc&limit=6');
+    if (!produits || produits.length === 0) {
+      container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible pour le moment</p>';
+      return;
+    }
+
+    container.innerHTML = produits.map(p => {
+      const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
+      const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
+      const imgHtml = hasPhoto
+        ? '<img src="' + p.photo_url + '" style="width:56px;height:56px;border-radius:12px;object-fit:cover;" loading="lazy">'
+        : '<div class="panier-emoji">🧺</div>';
+      const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
+      return '<div class="panier-card">'
+        + imgHtml
+        + '<div class="panier-info">'
+        + '<div class="panier-nom">' + p.nom + '</div>'
+        + '<div class="panier-desc">' + (p.description || p.unite || '') + '</div>'
+        + '<div class="panier-footer">'
+        + '<span class="panier-prix">' + prix + '€</span>'
+        + '<button class="btn-ajouter" onclick="ajouterAuPanier(' + dataStr + ')">+ Ajouter</button>'
+        + '</div></div></div>';
+    }).join('');
+  } catch(e) {
+    console.log('Erreur paniers:', e);
+    container.innerHTML = '<p style="color:#aaa;font-size:13px;">Erreur de chargement</p>';
+  }
 }
 
 // Statut ouverture
