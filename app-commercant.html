@@ -1731,10 +1731,11 @@ async function sauvegarderProduit() {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const commercantId = session.commercant_id;
 
+    // Slug unique avec timestamp complet pour éviter les doublons
     const slug = nom.toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-      + '-' + Date.now().toString().slice(-4);
+      + '-' + Date.now().toString();
 
     let photoUrl = null;
     if (photoFile) {
@@ -1761,10 +1762,11 @@ async function sauvegarderProduit() {
         'Prefer': 'return=representation',
       },
       body: JSON.stringify({
-        nom, slug,
+        nom,
+        slug,
         unite: uniteSelectionnee,
         prix_marche_indicatif: prix,
-        photo_url: photoUrl,
+        photo_url: photoUrl || null,
         actif: true,
       })
     });
