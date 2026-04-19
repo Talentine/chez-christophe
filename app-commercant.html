@@ -2224,14 +2224,16 @@ function renderCreneaux() {
     if (liste.length === 0) {
       html += '<div style="font-size:13px;color:var(--texte-doux);padding:6px 4px;">Aucun créneau</div>';
     } else {
-      liste.sort((a,b) => a.heure_debut - b.heure_debut).forEach(c => {
-        const heureDebut = String(c.heure_debut).padStart(2,'0') + 'h00';
-        const heureFin = String(c.heure_debut + DUREE_CRENEAU).padStart(2,'0') + 'h00';
+      liste.sort((a,b) => (a.heure_debut || '').localeCompare(b.heure_debut || '')).forEach(c => {
+        const hD = typeof c.heure_debut === 'string' ? parseInt(c.heure_debut.split(':')[0]) : c.heure_debut;
+        const hF = typeof c.heure_fin === 'string' ? parseInt(c.heure_fin.split(':')[0]) : (hD + DUREE_CRENEAU);
+        const heureDebut = String(hD).padStart(2,'0') + 'h00';
+        const heureFin = String(hF).padStart(2,'0') + 'h00';
         const actifColor = c.actif ? typeColor : '#ccc';
         html += '<div style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--creme-fonce);display:flex;align-items:center;justify-content:space-between;">'
           + '<div>'
           + '<div style="font-size:14px;font-weight:500;">🕐 ' + heureDebut + ' – ' + heureFin + '</div>'
-          + '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Max ' + (c.max_commandes || '—') + ' commandes</div>'
+          + '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Max ' + (c.capacite_max || '—') + ' commandes</div>'
           + '</div>'
           + '<div style="display:flex;align-items:center;gap:10px;">'
           + '<button onclick="ouvrirEditionCreneau(\'' + c.id + '\')" style="background:var(--creme);border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-family:\'DM Sans\',sans-serif;cursor:pointer;">✏️ Modifier</button>'
@@ -2288,7 +2290,7 @@ function ouvrirEditionCreneau(id) {
 
   document.getElementById('creneauModalTitre').textContent = 'Modifier le créneau';
   document.getElementById('creneauErreur').style.display = 'none';
-  document.getElementById('creneauMaxCommandes').value = c.max_commandes || 10;
+  document.getElementById('creneauMaxCommandes').value = c.capacite_max || 10;
   document.getElementById('creneauType').value = c.type || typeCreneauActif;
   document.getElementById('btnSupprimerCreneau').style.display = 'block';
 
@@ -2297,9 +2299,10 @@ function ouvrirEditionCreneau(id) {
     b.classList.toggle('actif', parseInt(b.dataset.jour) === c.jour_semaine);
   });
 
-  // Sélectionner l'heure
+  // Sélectionner l'heure (heure_debut peut être '08:00:00' ou 8)
+  const cHeureDebut = typeof c.heure_debut === 'string' ? parseInt(c.heure_debut.split(':')[0]) : c.heure_debut;
   document.querySelectorAll('.btn-heure-creneau').forEach(b => {
-    b.classList.toggle('actif', parseInt(b.dataset.heure) === c.heure_debut);
+    b.classList.toggle('actif', parseInt(b.dataset.heure) === cHeureDebut);
   });
 
   document.getElementById('modalCreneau').style.display = 'flex';
@@ -2339,11 +2342,14 @@ async function sauvegarderCreneau() {
   btn.textContent = 'Enregistrement...';
   btn.disabled = true;
 
+  const heureDebutNum = parseInt(heureBtn.dataset.heure);
+  const heureFinNum = heureDebutNum + DUREE_CRENEAU;
   const payload = {
     commercant_id: commercantId,
     jour_semaine: parseInt(jourBtn.dataset.jour),
-    heure_debut: parseInt(heureBtn.dataset.heure),
-    max_commandes: max,
+    heure_debut: String(heureDebutNum).padStart(2,'0') + ':00:00',
+    heure_fin: String(heureFinNum).padStart(2,'0') + ':00:00',
+    capacite_max: max,
     type,
     actif: true,
   };
@@ -2682,8 +2688,7 @@ if (!verifierSessionCommercant()) {
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">14h–16h</button>
         <button onclick="selectionnerHeureCreneau(this)" data-heure="16" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">16h–18h</button>
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="17" class="btn-heure-creneau"
-          style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">17h–19h</button>
+
       </div>
     </div>
 
