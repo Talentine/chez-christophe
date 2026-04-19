@@ -1010,16 +1010,32 @@
     </div>
   </section>
 
-  <!-- ARRIVAGE DU JOUR -->
+  <!-- ARRIVAGE DU JOUR (derniers produits ajoutés) -->
   <div class="arrivage-section" id="arrivage">
     <div class="section-header">
       <div>
-        <div class="arrivage-badge">⭐ Arrivage du jour</div>
-        <h2 class="section-title" style="margin-top:4px">Nos coups de cœur</h2>
+        <div class="arrivage-badge">🌟 Nouveau</div>
+        <h2 class="section-title" style="margin-top:4px">Arrivage du jour</h2>
       </div>
-      <a class="voir-tout">Tout voir →</a>
+      <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
     </div>
     <div class="produits-scroll" id="arrivageScroll">
+      <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
+      <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
+      <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
+    </div>
+  </div>
+
+  <!-- COUP DE CŒUR (les plus vendus) -->
+  <div class="arrivage-section" id="coupsDeCoeur">
+    <div class="section-header">
+      <div>
+        <div class="arrivage-badge" style="background:rgba(201,168,76,0.15);color:var(--or);">⭐ Populaire</div>
+        <h2 class="section-title" style="margin-top:4px">Coups de cœur</h2>
+      </div>
+      <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
+    </div>
+    <div class="produits-scroll" id="coupsScroll">
       <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
       <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
       <div class="produit-card loading-skeleton" style="height:200px; min-width:150px"></div>
@@ -1072,9 +1088,9 @@
   <div class="cta-section">
     <h3>Prêt à commander ?</h3>
     <p>Choisissez votre créneau et récupérez en boutique</p>
-    <button class="btn-primary" style="margin:0 auto;" onclick="scrollVers('rayons')">
-      C'est parti ! →
-    </button>
+    <a href="catalogue.html" class="btn-primary" style="margin:0 auto;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+      🛒 Voir la boutique →
+    </a>
   </div>
 
 </div>
@@ -1172,7 +1188,7 @@ async function chargerRayons() {
 
 // Charger arrivages du jour (produits mis en avant)
 async function chargerArrivages() {
-  const produits = await supabase('produits_base', '?select=*,categories(nom,emoji)&limit=8&actif=eq.true&order=nom');
+  const produits = await supabase('produits_base', '?select=*,categories(nom,emoji)&limit=8&actif=eq.true&order=created_at.desc');
   const scroll = document.getElementById('arrivageScroll');
   if (!produits || produits.error || produits.length === 0) {
     scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>';
@@ -1185,6 +1201,39 @@ async function chargerArrivages() {
       ? `<img src="${p.photo_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">`
       : `<span style="font-size:40px;">${p.categories?.emoji || '🌿'}</span>`;
     const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
+    const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
+    return `
+    <div class="produit-card" onclick="ajouterAuPanier(${dataStr})">
+      <div class="produit-img" style="position:relative;">${imgHtml}</div>
+      <div class="produit-info">
+        <div class="produit-nom">${p.nom}</div>
+        <div class="produit-footer">
+          <div>
+            <span class="produit-prix">${prix}€</span>
+            <span class="produit-unite"> /${p.unite}</span>
+          </div>
+          <button class="btn-add" onclick="event.stopPropagation();ajouterAuPanier(${dataStr})">+</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Charger coups de cœur (les plus populaires / les mieux notés)
+async function chargerCoupsDeCoeur() {
+  const produits = await supabase('produits_base', '?select=*,categories(nom,emoji)&limit=8&actif=eq.true&order=nom');
+  const scroll = document.getElementById('coupsScroll');
+  if (!produits || produits.error || produits.length === 0) {
+    scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>';
+    return;
+  }
+
+  scroll.innerHTML = produits.map(p => {
+    const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
+    const imgHtml = hasPhoto
+      ? `<img src="${p.photo_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">`
+      : `<span style="font-size:40px;">${p.categories?.emoji || '🌿'}</span>`;
+    const dataStr = JSON.stringify(p).replace(/\"/g,'&quot;');
     const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
     return `
     <div class="produit-card" onclick="ajouterAuPanier(${dataStr})">
@@ -1399,6 +1448,7 @@ function uploaderMedia() {
 statutOuverture();
 chargerRayons();
 chargerArrivages();
+chargerCoupsDeCoeur();
 chargerPaniers();
 </script>
 </body>
