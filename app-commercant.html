@@ -1597,14 +1597,16 @@ function renderCatalogueHTML(liste) {
     container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">🔍</p><p style="margin-top:8px">Aucun produit trouvé</p></div>';
     return;
   }
-  container.innerHTML = liste.map(item => {
+  container.innerHTML = liste.map((item, idx) => {
     const toggleBg = item.actif ? 'var(--vert)' : '#ccc';
     const thumbPos = item.actif ? 'right:3px' : 'left:3px';
     return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
+      + '<div onclick="ouvrirEditionProduit(' + idx + ')" style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer;">'
       + '<img src="' + (item.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
       + '<div style="flex:1;min-width:0;">'
       + '<div style="font-size:15px;font-weight:500;">' + item.nom + '</div>'
-      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + '</div>'
+      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + ' · ✏️ Modifier</div>'
+      + '</div>'
       + '</div>'
       + '<div onclick="toggleProduitActif(\'' + item.catalogue_id + '\',' + item.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
       + '<div style="position:absolute;top:3px;' + thumbPos + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
@@ -1652,6 +1654,7 @@ async function chargerProduitsAdmin() {
       const p = produitsMap[c.produit_base_id] || {};
       return {
         catalogue_id: c.id,
+        produit_base_id: c.produit_base_id,
         nom: p.nom || '—',
         unite: p.unite || '—',
         prix: c.prix_vente || p.prix_marche_indicatif || 0,
@@ -1679,6 +1682,173 @@ async function toggleProduitActif(catalogueId, actif) {
     afficherToast(actif ? '⏸ Produit masqué' : '✅ Produit activé');
   } catch(e) { console.log('Erreur toggle:', e); }
 }
+
+// ── ÉDITION PRODUIT ──────────────────────────────────
+let produitEnEdition = null;
+let photoFileEdit = null;
+
+function ouvrirEditionProduit(idx) {
+  const p = catalogueCache[idx];
+  if (!p) return;
+  produitEnEdition = p;
+  photoFileEdit = null;
+
+  document.getElementById('editNom').value = p.nom || '';
+  document.getElementById('editPrix').value = p.prix || '';
+  document.getElementById('editErreur').style.display = 'none';
+  document.getElementById('editPhotoActuelle').src = p.photo_url || '';
+  document.getElementById('editPhotoActuelle').style.display = p.photo_url ? 'block' : 'none';
+  document.getElementById('editPhotoPreview').style.display = 'none';
+
+  // Sélectionner l'unité actuelle
+  document.querySelectorAll('.btn-unite-edit').forEach(b => b.classList.remove('actif'));
+  const unId = 'edit-unite-' + (p.unite || '').replace(/ /g, '-');
+  document.getElementById(unId)?.classList.add('actif');
+
+  document.getElementById('modalEditProduit').style.display = 'flex';
+}
+
+function fermerEditionProduit() {
+  document.getElementById('modalEditProduit').style.display = 'none';
+  produitEnEdition = null;
+  photoFileEdit = null;
+}
+
+function selectionnerUniteEdit(unite) {
+  if (!produitEnEdition) return;
+  produitEnEdition.unite = unite;
+  document.querySelectorAll('.btn-unite-edit').forEach(b => b.classList.remove('actif'));
+  const id = 'edit-unite-' + unite.replace(/ /g, '-');
+  document.getElementById(id)?.classList.add('actif');
+}
+
+function previewPhotoEdit(input) {
+  if (!input.files?.[0]) return;
+  photoFileEdit = input.files[0];
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('editPhotoPreviewImg').src = e.target.result;
+    document.getElementById('editPhotoPreview').style.display = 'block';
+    document.getElementById('editPhotoActuelle').style.display = 'none';
+  };
+  reader.readAsDataURL(photoFileEdit);
+}
+
+async function sauvegarderEdition() {
+  if (!produitEnEdition) return;
+  const nom = document.getElementById('editNom').value.trim();
+  const prix = parseFloat(document.getElementById('editPrix').value);
+  const erreur = document.getElementById('editErreur');
+  const btn = document.getElementById('btnSauvegarderEdit');
+
+  if (!nom) { erreur.textContent = '⚠️ Nom requis'; erreur.style.display = 'block'; return; }
+  if (!prix || prix <= 0) { erreur.textContent = '⚠️ Prix invalide'; erreur.style.display = 'block'; return; }
+
+  erreur.style.display = 'none';
+  btn.textContent = 'Enregistrement...';
+  btn.disabled = true;
+
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    let photoUrl = produitEnEdition.photo_url;
+
+    // Upload nouvelle photo si sélectionnée
+    if (photoFileEdit) {
+      const slug = 'edit-' + Date.now().toString();
+      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/thumb/' + slug + '.webp', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + session.access_token,
+        },
+        body: photoFileEdit,
+      });
+      if (uploadR.ok) {
+        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/thumb/' + slug + '.webp';
+      }
+    }
+
+    // Mettre à jour produits_base (nom, unité, photo)
+    const updateProduit = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=eq.' + produitEnEdition.produit_base_id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      body: JSON.stringify({
+        nom,
+        unite: produitEnEdition.unite,
+        photo_url: photoUrl,
+      })
+    });
+
+    if (!updateProduit.ok) {
+      const err = await updateProduit.json();
+      erreur.textContent = '❌ Erreur produit : ' + (err?.message || updateProduit.status);
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Enregistrer';
+      btn.disabled = false;
+      return;
+    }
+
+    // Mettre à jour catalogue (prix)
+    const updateCat = await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + produitEnEdition.catalogue_id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prix_vente: prix })
+    });
+
+    if (!updateCat.ok) {
+      const err = await updateCat.json();
+      erreur.textContent = '❌ Erreur prix : ' + (err?.message || updateCat.status);
+      erreur.style.display = 'block';
+      btn.textContent = '✓ Enregistrer';
+      btn.disabled = false;
+      return;
+    }
+
+    fermerEditionProduit();
+    afficherToast('✅ ' + nom + ' mis à jour !');
+    await chargerProduitsAdmin();
+
+  } catch(e) {
+    console.log('Erreur édition:', e);
+    erreur.textContent = '❌ Erreur : ' + e.message;
+    erreur.style.display = 'block';
+  }
+
+  btn.textContent = '✓ Enregistrer';
+  btn.disabled = false;
+}
+
+async function supprimerProduit() {
+  if (!produitEnEdition) return;
+  if (!confirm('Supprimer "' + produitEnEdition.nom + '" de votre catalogue ?\n(Le produit reste dans la base mais disparaît de votre boutique)')) return;
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + produitEnEdition.catalogue_id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    if (r.ok) {
+      fermerEditionProduit();
+      afficherToast('🗑 Produit supprimé');
+      await chargerProduitsAdmin();
+    } else {
+      afficherToast('❌ Erreur suppression');
+    }
+  } catch(e) {
+    console.log('Erreur suppression:', e);
+    afficherToast('❌ Erreur : ' + e.message);
+  }
+}
+
 
 function ajouterProduit() {
   document.getElementById('modalAjoutProduit').style.display = 'flex';
@@ -1947,6 +2117,100 @@ if (!verifierSessionCommercant()) {
 
   </div>
 </div>
+
+
+<!-- MODALE ÉDITION PRODUIT -->
+<div id="modalEditProduit" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:flex-end;">
+  <div style="background:var(--blanc);width:100%;max-width:480px;margin:0 auto;border-radius:24px 24px 0 0;padding:24px;max-height:90vh;overflow-y:auto;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;">Modifier le produit</div>
+      <button onclick="fermerEditionProduit()" style="background:var(--creme);border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">✕</button>
+    </div>
+
+    <!-- PHOTO ACTUELLE -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--texte-doux);margin-bottom:8px;">Photo</div>
+      <div style="text-align:center;margin-bottom:10px;">
+        <img id="editPhotoActuelle" style="width:120px;height:120px;object-fit:cover;border-radius:16px;border:2px solid var(--creme-fonce);display:none;">
+        <div id="editPhotoPreview" style="display:none;">
+          <img id="editPhotoPreviewImg" style="width:120px;height:120px;object-fit:cover;border-radius:16px;border:2px solid var(--vert);">
+          <div style="font-size:12px;color:var(--vert);margin-top:4px;">✓ Nouvelle photo</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button onclick="document.getElementById('editPhotoCamera').click()"
+          style="background:var(--vert);color:white;border:none;border-radius:12px;padding:12px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">
+          📷 Appareil photo
+        </button>
+        <button onclick="document.getElementById('editPhotoGalerie').click()"
+          style="background:var(--creme-fonce);color:var(--texte);border:none;border-radius:12px;padding:12px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">
+          🖼️ Galerie
+        </button>
+      </div>
+      <input type="file" id="editPhotoCamera" accept="image/*" capture="environment" style="display:none" onchange="previewPhotoEdit(this)">
+      <input type="file" id="editPhotoGalerie" accept="image/*" style="display:none" onchange="previewPhotoEdit(this)">
+    </div>
+
+    <!-- NOM -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Nom du produit</label>
+      <input id="editNom" type="text"
+        style="width:100%;padding:13px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+    </div>
+
+    <!-- PRIX -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Prix</label>
+      <div style="position:relative;">
+        <input id="editPrix" type="number" step="0.10" min="0"
+          style="width:100%;padding:13px 40px 13px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+        <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+      </div>
+    </div>
+
+    <!-- CONDITIONNEMENT -->
+    <div style="margin-bottom:20px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Conditionnement</label>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <button onclick="selectionnerUniteEdit('kg')" id="edit-unite-kg" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">kg</button>
+        <button onclick="selectionnerUniteEdit('pièce')" id="edit-unite-pièce" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">pièce</button>
+        <button onclick="selectionnerUniteEdit('part')" id="edit-unite-part" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">part</button>
+        <button onclick="selectionnerUniteEdit('barquette 125g')" id="edit-unite-barquette-125g" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">barquette 125g</button>
+        <button onclick="selectionnerUniteEdit('barquette 250g')" id="edit-unite-barquette-250g" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">barquette 250g</button>
+        <button onclick="selectionnerUniteEdit('barquette 500g')" id="edit-unite-barquette-500g" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">barquette 500g</button>
+        <button onclick="selectionnerUniteEdit('1 litre')" id="edit-unite-1-litre" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">1 litre</button>
+        <button onclick="selectionnerUniteEdit('50 cl')" id="edit-unite-50-cl" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">50 cl</button>
+        <button onclick="selectionnerUniteEdit('25 cl')" id="edit-unite-25-cl" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">25 cl</button>
+        <button onclick="selectionnerUniteEdit('corbeille')" id="edit-unite-corbeille" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">corbeille</button>
+        <button onclick="selectionnerUniteEdit('plateau')" id="edit-unite-plateau" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">plateau</button>
+        <button onclick="selectionnerUniteEdit('botte')" id="edit-unite-botte" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">botte</button>
+      </div>
+    </div>
+
+    <!-- ERREUR -->
+    <div id="editErreur" style="color:#e74c3c;font-size:13px;margin-bottom:12px;display:none;"></div>
+
+    <!-- BOUTONS -->
+    <button onclick="sauvegarderEdition()" id="btnSauvegarderEdit"
+      style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px;">
+      ✓ Enregistrer
+    </button>
+    <button onclick="supprimerProduit()"
+      style="width:100%;background:var(--rouge-clair);color:var(--rouge);border:none;border-radius:50px;padding:14px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">
+      🗑 Retirer du catalogue
+    </button>
+
+  </div>
+</div>
+
+<style>
+  .btn-unite-edit.actif {
+    background: var(--vert) !important;
+    color: white !important;
+    border-color: var(--vert) !important;
+  }
+</style>
 
 </body>
 </html>
