@@ -737,7 +737,6 @@ function init() {
   chargerStatsDemo();
   chargerCommandesDemo();
   chargerProduitsAdmin();
-  chargerCreneauxAdmin();
   chargerPlanningDemo();
 }
 
@@ -1326,7 +1325,7 @@ window.addEventListener('beforeinstallprompt', e => {
 async function demanderPermissionNotifications(reg) {
   // Ne pas demander automatiquement — attendre le clic utilisateur
   if (Notification.permission === 'granted') {
-    document.getElementById('banniereNotifs').style.display = 'none';
+    const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     abonnerAuxNotifications(reg);
   }
 }
@@ -1338,7 +1337,7 @@ async function activerNotifications() {
   }
   const permission = await Notification.requestPermission();
   if (permission === 'granted') {
-    document.getElementById('banniereNotifs').style.display = 'none';
+    const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     afficherToast('🔔 Notifications activées !');
     // Envoyer une notif de test
     new Notification('✅ Notifications actives !', {
@@ -1715,7 +1714,7 @@ async function chargerProduitsAdmin() {
 
   try {
     // Charger le catalogue du commerçant
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=*,produits_base(id,nom,slug,unite,prix_marche_indicatif,photo_url,actif)&order=created_at.desc&limit=100', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,produit_base_id,produits_base(id,nom,slug,unite,prix_marche_indicatif,photo_url)&order=created_at.desc&limit=100', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
