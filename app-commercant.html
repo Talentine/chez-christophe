@@ -2278,6 +2278,9 @@ function ouvrirAjoutCreneau() {
   document.getElementById('creneauErreur').style.display = 'none';
   document.getElementById('creneauMaxCommandes').value = '10';
   document.getElementById('btnSupprimerCreneau').style.display = 'none';
+  // Afficher "Tous les jours" en mode ajout
+  const btnTous = document.getElementById('btnTousJours');
+  if (btnTous) btnTous.style.display = 'block';
 
   // Reset jours
   document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
@@ -2306,6 +2309,11 @@ function ouvrirEditionCreneau(id) {
   document.getElementById('creneauMaxCommandes').value = c.capacite_max || 10;
   document.getElementById('creneauType').value = c.type || typeCreneauActif;
   document.getElementById('btnSupprimerCreneau').style.display = 'block';
+  // Masquer "Tous les jours" en mode modification (1 seul jour possible)
+  const btnTous = document.getElementById('btnTousJours');
+  if (btnTous) btnTous.style.display = 'none';
+  // Masquer aussi le label d'aide multi-sélection
+  const labelJours = document.querySelector('label[for-jours]');
 
   // Sélectionner le jour
   document.querySelectorAll('.btn-jour-creneau').forEach(b => {
