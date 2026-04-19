@@ -1798,16 +1798,18 @@ async function sauvegarderEdition() {
     // Upload nouvelle photo si sélectionnée
     if (photoFileEdit) {
       const slug = 'edit-' + Date.now().toString();
-      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/thumb/' + slug + '.webp', {
+      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/' + slug + '.webp', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + session.access_token,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'image/webp',
+          'x-upsert': 'true',
         },
         body: photoFileEdit,
       });
       if (uploadR.ok) {
-        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/thumb/' + slug + '.webp';
+        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/' + slug + '.webp';
       }
     }
 
@@ -1962,16 +1964,21 @@ async function sauvegarderProduit() {
 
     let photoUrl = null;
     if (photoFile) {
-      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/thumb/' + slug + '.webp', {
+      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/' + slug + '.webp', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + session.access_token,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'image/webp',
+          'x-upsert': 'true',
         },
         body: photoFile,
       });
+      const upText = await uploadR.text();
+      console.log('Upload ajout:', uploadR.status, upText);
       if (uploadR.ok) {
-        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/thumb/' + slug + '.webp';
+        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/' + slug + '.webp';
+        console.log('Photo URL:', photoUrl);
       }
     }
 
