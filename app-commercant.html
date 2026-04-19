@@ -2225,10 +2225,17 @@ function renderCreneaux() {
       html += '<div style="font-size:13px;color:var(--texte-doux);padding:6px 4px;">Aucun créneau</div>';
     } else {
       liste.sort((a,b) => (a.heure_debut || '').localeCompare(b.heure_debut || '')).forEach(c => {
-        const hD = typeof c.heure_debut === 'string' ? parseInt(c.heure_debut.split(':')[0]) : c.heure_debut;
-        const hF = typeof c.heure_fin === 'string' ? parseInt(c.heure_fin.split(':')[0]) : (hD + DUREE_CRENEAU);
-        const heureDebut = String(hD).padStart(2,'0') + 'h00';
-        const heureFin = String(hF).padStart(2,'0') + 'h00';
+        const formatHeure = (t) => {
+          if (typeof t === 'string') {
+            const parts = t.split(':');
+            const h = parseInt(parts[0]);
+            const m = parseInt(parts[1] || 0);
+            return String(h).padStart(2,'0') + 'h' + (m > 0 ? String(m).padStart(2,'0') : '00');
+          }
+          return String(t).padStart(2,'0') + 'h00';
+        };
+        const heureDebut = formatHeure(c.heure_debut);
+        const heureFin = formatHeure(c.heure_fin || (parseInt(c.heure_debut) + DUREE_CRENEAU));
         const actifColor = c.actif ? typeColor : '#ccc';
         html += '<div style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--creme-fonce);display:flex;align-items:center;justify-content:space-between;">'
           + '<div>'
@@ -2276,6 +2283,12 @@ function ouvrirAjoutCreneau() {
   document.querySelectorAll('.btn-jour-creneau').forEach(b => b.classList.remove('actif'));
   // Reset heures
   document.querySelectorAll('.btn-heure-creneau').forEach(b => b.classList.remove('actif'));
+  // Reset horaire libre
+  document.getElementById('horaireLibreSection').style.display = 'none';
+  const btnLibre = document.getElementById('btnHoraireLibre');
+  if (btnLibre) { btnLibre.style.background = 'transparent'; btnLibre.style.color = 'var(--texte-doux)'; }
+  document.getElementById('heureDebutLibre').value = '08:00';
+  document.getElementById('heureFinLibre').value = '10:00';
 
   // Pré-sélectionner le type actif
   document.getElementById('creneauType').value = typeCreneauActif;
@@ -2300,10 +2313,32 @@ function ouvrirEditionCreneau(id) {
   });
 
   // Sélectionner l'heure (heure_debut peut être '08:00:00' ou 8)
-  const cHeureDebut = typeof c.heure_debut === 'string' ? parseInt(c.heure_debut.split(':')[0]) : c.heure_debut;
+  const hDStr = typeof c.heure_debut === 'string' ? c.heure_debut.substring(0,5) : String(c.heure_debut).padStart(2,'0') + ':00';
+  const hFStr = typeof c.heure_fin === 'string' ? c.heure_fin.substring(0,5) : String(c.heure_debut + 2).padStart(2,'0') + ':00';
+  const cHD = parseInt(hDStr.split(':')[0]);
+  const cHF = parseInt(hFStr.split(':')[0]);
+  const cMinD = parseInt(hDStr.split(':')[1]);
+  const cMinF = parseInt(hFStr.split(':')[1]);
+  
+  // Chercher un preset correspondant
+  let presetTrouve = false;
   document.querySelectorAll('.btn-heure-creneau').forEach(b => {
-    b.classList.toggle('actif', parseInt(b.dataset.heure) === cHeureDebut);
+    const bH = parseInt(b.dataset.heure);
+    const bF = parseInt(b.dataset.fin || (bH + 2));
+    const match = bH === cHD && bF === cHF && cMinD === 0 && cMinF === 0;
+    b.classList.toggle('actif', match);
+    if (match) presetTrouve = true;
   });
+  
+  // Si pas de preset, activer horaire libre
+  document.getElementById('horaireLibreSection').style.display = presetTrouve ? 'none' : 'block';
+  const btnLibre = document.getElementById('btnHoraireLibre');
+  if (btnLibre) {
+    btnLibre.style.background = presetTrouve ? 'transparent' : 'var(--vert)';
+    btnLibre.style.color = presetTrouve ? 'var(--texte-doux)' : 'white';
+  }
+  document.getElementById('heureDebutLibre').value = hDStr;
+  document.getElementById('heureFinLibre').value = hFStr;
 
   document.getElementById('modalCreneau').style.display = 'flex';
 }
@@ -2321,6 +2356,27 @@ function selectionnerJourCreneau(btn) {
 function selectionnerHeureCreneau(btn) {
   document.querySelectorAll('.btn-heure-creneau').forEach(b => b.classList.remove('actif'));
   btn.classList.add('actif');
+  // Masquer l'horaire libre si un preset est sélectionné
+  document.getElementById('horaireLibreSection').style.display = 'none';
+  document.getElementById('btnHoraireLibre').style.background = 'transparent';
+  document.getElementById('btnHoraireLibre').style.color = 'var(--texte-doux)';
+}
+
+function toggleHoraireLibre() {
+  const section = document.getElementById('horaireLibreSection');
+  const btn = document.getElementById('btnHoraireLibre');
+  const isVisible = section.style.display === 'block';
+  if (isVisible) {
+    section.style.display = 'none';
+    btn.style.background = 'transparent';
+    btn.style.color = 'var(--texte-doux)';
+  } else {
+    section.style.display = 'block';
+    btn.style.background = 'var(--vert)';
+    btn.style.color = 'white';
+    // Désélectionner les presets
+    document.querySelectorAll('.btn-heure-creneau').forEach(b => b.classList.remove('actif'));
+  }
 }
 
 async function sauvegarderCreneau() {
@@ -2331,24 +2387,43 @@ async function sauvegarderCreneau() {
 
   const jourBtn = document.querySelector('.btn-jour-creneau.actif');
   const heureBtn = document.querySelector('.btn-heure-creneau.actif');
+  const horaireLibreVisible = document.getElementById('horaireLibreSection').style.display === 'block';
   const max = parseInt(document.getElementById('creneauMaxCommandes').value);
   const type = document.getElementById('creneauType').value;
 
   if (!jourBtn) { erreur.textContent = '⚠️ Choisissez un jour'; erreur.style.display = 'block'; return; }
-  if (!heureBtn) { erreur.textContent = '⚠️ Choisissez une heure'; erreur.style.display = 'block'; return; }
+
+  let heureDebutStr, heureFinStr;
+  if (horaireLibreVisible) {
+    heureDebutStr = document.getElementById('heureDebutLibre').value;
+    heureFinStr = document.getElementById('heureFinLibre').value;
+    if (!heureDebutStr || !heureFinStr) {
+      erreur.textContent = '⚠️ Renseignez début et fin'; erreur.style.display = 'block'; return;
+    }
+    if (heureFinStr <= heureDebutStr) {
+      erreur.textContent = '⚠️ Heure de fin doit être après début'; erreur.style.display = 'block'; return;
+    }
+    heureDebutStr += ':00';
+    heureFinStr += ':00';
+  } else {
+    if (!heureBtn) { erreur.textContent = '⚠️ Choisissez un horaire'; erreur.style.display = 'block'; return; }
+    const hD = parseInt(heureBtn.dataset.heure);
+    const hF = parseInt(heureBtn.dataset.fin || (hD + 2));
+    heureDebutStr = String(hD).padStart(2,'0') + ':00:00';
+    heureFinStr = String(hF).padStart(2,'0') + ':00:00';
+  }
+
   if (!max || max < 1) { erreur.textContent = '⚠️ Nombre de commandes invalide'; erreur.style.display = 'block'; return; }
 
   erreur.style.display = 'none';
   btn.textContent = 'Enregistrement...';
   btn.disabled = true;
 
-  const heureDebutNum = parseInt(heureBtn.dataset.heure);
-  const heureFinNum = heureDebutNum + DUREE_CRENEAU;
   const payload = {
     commercant_id: commercantId,
     jour_semaine: parseInt(jourBtn.dataset.jour),
-    heure_debut: String(heureDebutNum).padStart(2,'0') + ':00:00',
-    heure_fin: String(heureFinNum).padStart(2,'0') + ':00:00',
+    heure_debut: heureDebutStr,
+    heure_fin: heureFinStr,
     capacite_max: max,
     type,
     actif: true,
@@ -2370,11 +2445,13 @@ async function sauvegarderCreneau() {
       });
     }
 
-    const data = await r.json();
-    console.log('Créneau sauvegardé:', r.status, data);
+    const responseText = await r.text();
+    let data = null;
+    try { data = responseText ? JSON.parse(responseText) : null; } catch(e) {}
+    console.log('Créneau sauvegardé:', r.status, data || responseText);
 
     if (!r.ok) {
-      erreur.textContent = '❌ Erreur : ' + (data?.message || r.status);
+      erreur.textContent = '❌ Erreur : ' + (data?.message || responseText || r.status);
       erreur.style.display = 'block';
       btn.textContent = '✓ Enregistrer';
       btn.disabled = false;
@@ -2674,21 +2751,41 @@ if (!verifierSessionCommercant()) {
       </div>
     </div>
 
-    <!-- HEURES -->
-    <div style="margin-bottom:16px;">
-      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Heure de début *</label>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="8" class="btn-heure-creneau"
+    <!-- HEURES PRÉDÉFINIES -->
+    <div style="margin-bottom:12px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Horaire du créneau *</label>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px;">
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="8" data-fin="10" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">8h–10h</button>
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="10" class="btn-heure-creneau"
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="10" data-fin="12" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">10h–12h</button>
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="12" class="btn-heure-creneau"
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="12" data-fin="14" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">12h–14h</button>
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="14" class="btn-heure-creneau"
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="14" data-fin="16" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">14h–16h</button>
-        <button onclick="selectionnerHeureCreneau(this)" data-heure="16" class="btn-heure-creneau"
+        <button onclick="selectionnerHeureCreneau(this)" data-heure="16" data-fin="18" class="btn-heure-creneau"
           style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 4px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">16h–18h</button>
+      </div>
+      <button onclick="toggleHoraireLibre()" id="btnHoraireLibre" type="button"
+        style="width:100%;border:1.5px dashed var(--texte-doux);border-radius:10px;padding:10px;font-size:12px;font-family:'DM Sans',sans-serif;background:transparent;color:var(--texte-doux);cursor:pointer;">
+        ⚙️ Horaire personnalisé
+      </button>
+    </div>
 
+    <!-- HORAIRE LIBRE -->
+    <div id="horaireLibreSection" style="display:none;margin-bottom:16px;background:var(--creme);border-radius:12px;padding:12px;">
+      <div style="display:flex;gap:10px;align-items:center;">
+        <div style="flex:1;">
+          <div style="font-size:11px;color:var(--texte-doux);margin-bottom:4px;">Début</div>
+          <input type="time" id="heureDebutLibre" value="08:00" step="1800"
+            style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none;">
+        </div>
+        <div style="font-size:18px;margin-top:14px;">→</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;color:var(--texte-doux);margin-bottom:4px;">Fin</div>
+          <input type="time" id="heureFinLibre" value="10:00" step="1800"
+            style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none;">
+        </div>
       </div>
     </div>
 
