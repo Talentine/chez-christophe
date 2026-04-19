@@ -1584,9 +1584,39 @@ function verifierSessionCommercant() {
 
 let uniteSelectionnee = null;
 let photoFile = null;
+let catalogueCache = []; // cache global pour la recherche
 
 async function chargerProduits() {
   chargerProduitsAdmin();
+}
+
+function renderCatalogueHTML(liste) {
+  const container = document.getElementById('produitsAdmin');
+  if (!container) return;
+  if (liste.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">🔍</p><p style="margin-top:8px">Aucun produit trouvé</p></div>';
+    return;
+  }
+  container.innerHTML = liste.map(item => {
+    const toggleBg = item.actif ? 'var(--vert)' : '#ccc';
+    const thumbPos = item.actif ? 'right:3px' : 'left:3px';
+    return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
+      + '<img src="' + (item.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
+      + '<div style="flex:1;min-width:0;">'
+      + '<div style="font-size:15px;font-weight:500;">' + item.nom + '</div>'
+      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + '</div>'
+      + '</div>'
+      + '<div onclick="toggleProduitActif(\'' + item.catalogue_id + '\',' + item.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
+      + '<div style="position:absolute;top:3px;' + thumbPos + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function filtrerProduitsAdmin(recherche) {
+  const q = recherche.toLowerCase().trim();
+  const filtre = q ? catalogueCache.filter(p => p.nom.toLowerCase().includes(q)) : catalogueCache;
+  renderCatalogueHTML(filtre);
 }
 
 async function chargerProduitsAdmin() {
@@ -1599,11 +1629,12 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,en_stock,produit_base_id&limit=200', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,en_stock,produit_base_id&limit=200&order=id.desc', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
     if (!Array.isArray(catalogue) || catalogue.length === 0) {
+      catalogueCache = [];
       container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">🥕</p><p style="margin-top:8px">Aucun produit dans votre catalogue</p><p style="font-size:13px;margin-top:4px">Cliquez sur "+ Ajouter" pour commencer</p></div>';
       return;
     }
@@ -1616,22 +1647,20 @@ async function chargerProduitsAdmin() {
     const produitsMap = {};
     (Array.isArray(produits) ? produits : []).forEach(p => produitsMap[p.id] = p);
 
-    container.innerHTML = catalogue.map(c => {
-      const p = produitsMap[c.produit_base_id];
-      if (!p) return '';
-      const toggleBg = c.actif ? 'var(--vert)' : '#ccc';
-      const thumbPos = c.actif ? 'right:3px' : 'left:3px';
-      return '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);">'
-        + '<img src="' + (p.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
-        + '<div style="flex:1;min-width:0;">'
-        + '<div style="font-size:15px;font-weight:500;">' + p.nom + '</div>'
-        + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + (c.prix_vente || p.prix_marche_indicatif || 0) + '€ / ' + p.unite + '</div>'
-        + '</div>'
-        + '<div onclick="toggleProduitActif(\'' + c.id + '\',' + c.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
-        + '<div style="position:absolute;top:3px;' + thumbPos + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
-        + '</div>'
-        + '</div>';
-    }).join('');
+    // Stocker dans le cache global pour la recherche
+    catalogueCache = catalogue.map(c => {
+      const p = produitsMap[c.produit_base_id] || {};
+      return {
+        catalogue_id: c.id,
+        nom: p.nom || '—',
+        unite: p.unite || '—',
+        prix: c.prix_vente || p.prix_marche_indicatif || 0,
+        photo_url: p.photo_url || '',
+        actif: c.actif,
+      };
+    }).filter(p => p.nom !== '—');
+
+    renderCatalogueHTML(catalogueCache);
 
   } catch(e) {
     console.log('Erreur produits:', e);
@@ -1773,7 +1802,10 @@ async function sauvegarderProduit() {
 
     fermerAjoutProduit();
     afficherToast('✅ ' + nom + ' ajouté au catalogue !');
-    chargerProduits();
+    // Vider la recherche et recharger
+    const searchInput = document.querySelector('#content-produits input[type="text"]');
+    if (searchInput) searchInput.value = '';
+    await chargerProduitsAdmin();
 
   } catch(e) {
     console.log('Erreur ajout produit:', e);
