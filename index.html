@@ -392,6 +392,37 @@
     flex-shrink: 0;
   }
 
+  .qty-mini {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--vert);
+    border-radius: 50px;
+    padding: 2px;
+  }
+  .qty-mini-btn {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .qty-mini-btn:active { background: rgba(255,255,255,0.4); }
+  .qty-mini-num {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 18px;
+    text-align: center;
+  }
+
   .btn-add:active { transform: scale(0.88); background: var(--vert-fonce); }
 
   /* PANIERS THÉMATIQUES */
@@ -1176,7 +1207,7 @@ async function chargerArrivages() {
             <span class="produit-prix">${prix}€</span>
             <span class="produit-unite"> /${p.unite}</span>
           </div>
-          <button class="btn-add" onclick="event.stopPropagation();ajouterAuPanier(${dataStr})">+</button>
+          <button class="btn-add" id="addBtn-${p.id}" onclick="event.stopPropagation();ajouterAuPanierAvecQte(${dataStr})">${panier.find(x=>x.id===p.id) ? panier.find(x=>x.id===p.id).qte : '+'}</button>
         </div>
       </div>
     </div>`;
@@ -1209,7 +1240,7 @@ async function chargerCoupsDeCoeur() {
             <span class="produit-prix">${prix}€</span>
             <span class="produit-unite"> /${p.unite}</span>
           </div>
-          <button class="btn-add" onclick="event.stopPropagation();ajouterAuPanier(${dataStr})">+</button>
+          <button class="btn-add" id="addBtn-${p.id}" onclick="event.stopPropagation();ajouterAuPanierAvecQte(${dataStr})">${panier.find(x=>x.id===p.id) ? panier.find(x=>x.id===p.id).qte : '+'}</button>
         </div>
       </div>
     </div>`;
@@ -1266,6 +1297,20 @@ function statutOuverture() {
 }
 
 // Panier
+function ajouterAuPanierAvecQte(produit) {
+  ajouterAuPanier(produit);
+  // Mettre à jour le bouton pour afficher la quantité
+  const btn = document.getElementById('addBtn-' + produit.id);
+  const ep = panier.find(x => x.id === produit.id);
+  if (btn && ep) {
+    btn.textContent = ep.qte;
+    btn.style.width = 'auto';
+    btn.style.padding = '0 10px';
+    btn.style.borderRadius = '50px';
+    btn.style.fontSize = '14px';
+  }
+}
+
 function ajouterAuPanier(produit) {
   const idx = panier.findIndex(p => p.id === produit.id);
   if (idx >= 0) {

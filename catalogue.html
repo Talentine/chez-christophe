@@ -522,6 +522,42 @@
 
   .btn-ajouter-panier:active { transform: scale(0.97); background: var(--vert-fonce); }
 
+  /* QTY MINI SUR CARTE */
+  .qty-mini {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--vert);
+    border-radius: 50px;
+    padding: 2px;
+  }
+
+  .qty-mini-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .qty-mini-btn:active { background: rgba(255,255,255,0.4); }
+
+  .qty-mini-num {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 20px;
+    text-align: center;
+  }
+
   /* PANIER FLOTTANT */
   .panier-flottant {
     position: fixed;
@@ -873,11 +909,14 @@ function renderProduits() {
               <span class="produit-prix">${prix ? prix.toFixed(2).replace('.',',') + '€' : '—'}</span>
               <span class="produit-unite"> /${p.unite}</span>
             </div>
-            <button class="btn-add ${enPanier ? 'dans-panier' : ''}"
-              onclick="event.stopPropagation(); ajouterRapide('${p.id}')"
-              id="btn-${p.id}">
-              ${enPanier ? '✓' : '+'}
-            </button>
+            ${enPanier
+              ? '<div class="qty-mini" onclick="event.stopPropagation()">'
+                + '<button class="qty-mini-btn" onclick="modifierQteCatalogue(\'' + p.id + '\',-1)">−</button>'
+                + '<span class="qty-mini-num">' + enPanier.qte + '</span>'
+                + '<button class="qty-mini-btn" onclick="modifierQteCatalogue(\'' + p.id + '\',1)">+</button>'
+                + '</div>'
+              : '<button class="btn-add" onclick="event.stopPropagation(); ajouterRapide(\'' + p.id + '\')" id="btn-' + p.id + '">+</button>'
+            }
           </div>
         </div>
       </div>
@@ -968,9 +1007,20 @@ function ajouterRapide(produitId) {
   if (p) {
     ajouterAuPanier(p);
     afficherConfirmation(p.nom, 1);
-    const btn = document.getElementById('btn-' + produitId);
-    if (btn) { btn.textContent = '✓'; btn.classList.add('dans-panier'); }
+    renderProduits(); // Re-render pour afficher le sélecteur de quantité
   }
+}
+
+function modifierQteCatalogue(produitId, delta) {
+  const idx = panier.findIndex(x => x.id === produitId);
+  if (idx === -1) return;
+  panier[idx].qte += delta;
+  if (panier[idx].qte <= 0) {
+    panier.splice(idx, 1);
+  }
+  localStorage.setItem('panier', JSON.stringify(panier));
+  mettreAJourPanier();
+  renderProduits();
 }
 
 function ajouterAuPanier(produit) {
