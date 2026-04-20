@@ -284,7 +284,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const STRIPE_PK = 'pk_test_51TNZXlEH5d5nXfSsSgBj9ZxnbdIa1BiukFetlslrxGUu3u4XuZkISjKN3vBhqNwgLdZhypC0pBt2TwC6r4NKKEes00GaQriPS8';
 const FRAIS_LIVRAISON = 3.90;
 
-let panier = JSON.parse(sessionStorage.getItem('panier') || '[]');
+let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 let etape = 1;
 let modeCommande = 'retrait';
 let creneaux = [];
@@ -350,7 +350,7 @@ function renderPanier() {
 function modifierQte(idx, delta) {
   panier[idx].qte = Math.max(0, panier[idx].qte + delta);
   if (panier[idx].qte === 0) panier.splice(idx, 1);
-  sessionStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem('panier', JSON.stringify(panier));
   if (panier.length === 0) { init(); return; }
   renderPanier();
   mettreAJourCTA();
@@ -876,7 +876,7 @@ async function confirmerCommande() {
     document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + encodeURIComponent(adresse) + '&navigate=yes';
   }
 
-  sessionStorage.removeItem('panier');
+  localStorage.removeItem('panier');
   panier = [];
 }
 

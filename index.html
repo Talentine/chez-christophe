@@ -877,6 +877,7 @@
     border-color: var(--or);
     color: var(--or);
   }
+  @keyframes fadeInOut { 0%{opacity:0;transform:translateX(-50%) translateY(-10px)} 10%{opacity:1;transform:translateX(-50%) translateY(0)} 80%{opacity:1} 100%{opacity:0;transform:translateX(-50%) translateY(-10px)} }
 </style>
 </head>
 <body>
@@ -1110,7 +1111,7 @@ const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 // Panier en mémoire
-let panier = [];
+let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 
 async function supabase(table, params = '') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
@@ -1272,12 +1273,21 @@ function ajouterAuPanier(produit) {
   } else {
     panier.push({ ...produit, qte: 1 });
   }
+  localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourBadge();
 
-  // Feedback visuel
+  // Animation panier
   const badge = document.getElementById('cartBadge');
-  badge.style.transform = 'scale(1.4)';
-  setTimeout(() => badge.style.transform = 'scale(1)', 200);
+  badge.style.transform = 'scale(1.5)';
+  badge.style.background = '#27ae60';
+  setTimeout(() => { badge.style.transform = 'scale(1)'; badge.style.background = ''; }, 300);
+
+  // Toast confirmation
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:72px;left:50%;transform:translateX(-50%);background:var(--vert-fonce);color:white;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:500;z-index:999;white-space:nowrap;animation:fadeInOut 2s ease forwards;';
+  toast.textContent = '✓ ' + produit.nom + ' ajouté au panier';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
 }
 
 function mettreAJourBadge() {
@@ -1334,6 +1344,7 @@ function renderPanier() {
 function changerQte(idx, delta) {
   panier[idx].qte += delta;
   if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourBadge();
   renderPanier();
 }
@@ -1472,6 +1483,7 @@ function uploaderMedia() {
 
 // Init
 statutOuverture();
+mettreAJourBadge();
 chargerGalerieBoutique();
 chargerRayons();
 chargerArrivages();
