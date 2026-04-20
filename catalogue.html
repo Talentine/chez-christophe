@@ -493,11 +493,15 @@
 
   .fiche-cta {
     position: fixed;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%; max-width: 480px;
     padding: 14px 20px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     background: var(--blanc);
     border-top: 1px solid var(--creme-fonce);
     display: none;
+    z-index: 210;
   }
 
   .fiche-cta.visible { display: block; }
