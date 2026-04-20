@@ -105,6 +105,10 @@
 
   .info-box{background:#f0f7f4;border-radius:10px;padding:12px;font-size:12px;color:var(--texte-doux);margin-top:10px;line-height:1.5;}
 </style>
+<link rel="manifest" href="/manifest-client.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -617,29 +621,29 @@ function genererCreneauxSemaine(data) {
     for (let semaine = 0; semaine <= 1; semaine++) {
       let diff = (c.jour_semaine - now.getDay() + 7) % 7 + semaine * 7;
       
-      // Si diff = 0 (aujourd'hui) et l'heure est dépassée → passer à la semaine suivante
-      if (diff === 0) {
-        const heureDebut = parseInt(c.heure_debut.split(':')[0]);
-        const minDebut = parseInt(c.heure_debut.split(':')[1] || 0);
-        const minutesCreneau = heureDebut * 60 + minDebut;
-        const minutesNow = now.getHours() * 60 + now.getMinutes();
-        // Blocage 2h avant retrait, 5h avant livraison
-        const delaiMin = c.type === 'livraison' ? 300 : 120;
-        if (minutesNow + delaiMin >= minutesCreneau) {
-          if (semaine === 0) diff = 7; // Reporter à la semaine suivante
-          else continue;
-        }
-      }
-
       const date = new Date(now);
       date.setDate(now.getDate() + diff);
       date.setHours(0, 0, 0, 0);
 
-      // Date ISO avec l'heure de début (format local sans conversion UTC)
+      // Calculer l'heure du créneau
+      const heureDebut = parseInt(c.heure_debut.split(':')[0]);
+      const minDebut = parseInt(c.heure_debut.split(':')[1] || 0);
+      
+      // Construire la date/heure complète du créneau
+      const dateCreneau = new Date(date);
+      dateCreneau.setHours(heureDebut, minDebut, 0, 0);
+
+      // Délai minimum : 2h retrait, 5h livraison
+      const delaiMs = (c.type === 'livraison' ? 5 : 2) * 60 * 60 * 1000;
+
+      // Bloquer si le créneau est passé ou trop proche
+      if (dateCreneau.getTime() - now.getTime() < delaiMs) {
+        continue; // Créneau passé ou trop proche, on saute
+      }
+
       const [h, m] = c.heure_debut.split(':');
       const hNum = parseInt(h);
       const mNum = parseInt(m || 0);
-      // Construire la date en string locale pour éviter décalage UTC
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, '0');
       const dd = String(date.getDate()).padStart(2, '0');
@@ -881,6 +885,12 @@ async function confirmerCommande() {
 }
 
 init();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
+}
 </script>
 </body>
 </html>

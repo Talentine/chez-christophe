@@ -924,6 +924,10 @@
   }
   @keyframes fadeInOut { 0%{opacity:0;transform:translateX(-50%) translateY(-10px)} 10%{opacity:1;transform:translateX(-50%) translateY(0)} 80%{opacity:1} 100%{opacity:0;transform:translateX(-50%) translateY(-10px)} }
 </style>
+<link rel="manifest" href="/manifest-client.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -1691,5 +1695,11 @@ chargerPaniers();
   }
   .fiche-drawer-accueil.open { transform:translateX(-50%) translateY(0); }
 </style>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
+}
+</script>
 </body>
 </html>

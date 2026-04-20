@@ -92,6 +92,10 @@
   .toast { position:fixed; top:80px; left:50%; transform:translateX(-50%); background:var(--vert-fonce); color:white; padding:10px 20px; border-radius:50px; font-size:13px; font-weight:500; z-index:999; opacity:0; transition:opacity .3s; }
   .toast.show { opacity:1; }
 </style>
+<link rel="manifest" href="/manifest-client.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -625,6 +629,12 @@ function afficherToast(msg) {
 }
 
 init();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
+}
 </script>
 </body>
 </html>
