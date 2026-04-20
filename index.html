@@ -134,8 +134,15 @@
     padding: 40px 20px 48px;
     position: relative;
     overflow: hidden;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg opacity='0.07' stroke='%23c9a84c' fill='none' stroke-width='1.2'%3E%3C!-- Pomme --%3E%3Ccircle cx='80' cy='60' r='22'/%3E%3Cpath d='M80 38 Q82 25 78 20'/%3E%3Cpath d='M75 40 Q65 35 60 38'/%3E%3C!-- Poire --%3E%3Cpath d='M200 80 Q185 60 190 40 Q200 25 210 40 Q215 60 200 80Z'/%3E%3Cpath d='M200 25 Q202 15 198 10'/%3E%3C!-- Carotte --%3E%3Cpath d='M350 30 L340 90 L360 90Z'/%3E%3Cpath d='M345 30 Q340 15 350 10 Q360 15 355 30'/%3E%3C!-- Raisin --%3E%3Ccircle cx='480' cy='55' r='8'/%3E%3Ccircle cx='470' cy='68' r='8'/%3E%3Ccircle cx='490' cy='68' r='8'/%3E%3Ccircle cx='475' cy='82' r='8'/%3E%3Ccircle cx='485' cy='82' r='8'/%3E%3Cpath d='M480 47 Q482 35 478 28'/%3E%3C!-- Citron --%3E%3Cellipse cx='560' cy='60' rx='20' ry='14' transform='rotate(-20 560 60)'/%3E%3C!-- Artichaut --%3E%3Cpath d='M80 180 Q60 160 80 140 Q100 160 80 180Z'/%3E%3Cpath d='M65 175 Q50 155 65 140'/%3E%3Cpath d='M95 175 Q110 155 95 140'/%3E%3Cpath d='M80 140 L80 125'/%3E%3C!-- Tomate --%3E%3Ccircle cx='220' cy='170' r='20'/%3E%3Cpath d='M210 152 Q220 145 230 152'/%3E%3C!-- Cerise --%3E%3Ccircle cx='370' cy='175' r='12'/%3E%3Ccircle cx='390' cy='175' r='12'/%3E%3Cpath d='M370 163 Q375 140 380 135'/%3E%3Cpath d='M390 163 Q385 140 380 135'/%3E%3C!-- Ananas --%3E%3Cellipse cx='510' cy='185' rx='18' ry='26'/%3E%3Cpath d='M500 160 Q510 140 520 160'/%3E%3Cpath d='M495 165 Q510 145 525 165'/%3E%3Cline x1='505' y1='172' x2='515' y2='172'/%3E%3Cline x1='502' y1='182' x2='518' y2='182'/%3E%3Cline x1='505' y1='192' x2='515' y2='192'/%3E%3C!-- Feuille --%3E%3Cpath d='M150 300 Q170 270 190 300 Q170 330 150 300Z'/%3E%3Cline x1='150' y1='300' x2='190' y2='300'/%3E%3C!-- Fraise --%3E%3Cpath d='M320 290 Q310 310 320 330 Q330 310 320 290Z'/%3E%3Cpath d='M312 292 Q320 285 328 292'/%3E%3C!-- Champignon --%3E%3Cpath d='M460 320 Q440 290 460 280 Q480 290 460 320Z'/%3E%3Cline x1='460' y1='320' x2='460' y2='340'/%3E%3C!-- Poivron --%3E%3Cpath d='M70 420 Q55 390 70 370 Q85 390 70 420Z'/%3E%3Cpath d='M70 370 L70 360'/%3E%3C!-- Banane --%3E%3Cpath d='M200 400 Q230 380 250 400 Q230 410 200 400Z'/%3E%3C!-- Oignon --%3E%3Ccircle cx='400' cy='420' r='18'/%3E%3Cpath d='M400 402 L400 388 Q395 385 400 380'/%3E%3C!-- Radis --%3E%3Ccircle cx='540' cy='410' r='14'/%3E%3Cpath d='M540 396 Q535 380 540 370'/%3E%3Cpath d='M535 380 Q530 375 525 378'/%3E%3C!-- Aubergine --%3E%3Cpath d='M160 520 Q145 490 160 470 Q175 490 160 520Z'/%3E%3Cpath d='M155 470 Q160 462 165 470'/%3E%3C!-- Courgette --%3E%3Cellipse cx='320' cy='510' rx='30' ry='12' transform='rotate(-15 320 510)'/%3E%3C!-- Ail --%3E%3Cpath d='M480 500 Q470 480 480 470 Q490 480 480 500Z'/%3E%3Cpath d='M475 475 Q480 465 485 475'/%3E%3C%2Fg%3E%3C/svg%3E");
-    background-size: 300px 300px;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    pointer-events: none;
   }
 
   .hero::before {
@@ -956,6 +963,45 @@
 
   <!-- HERO -->
   <div class="hero">
+    <!-- Motif fruits & légumes -->
+    <svg class="hero-pattern" viewBox="0 0 480 500" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#c9a84c" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Pomme -->
+        <circle cx="60" cy="50" r="20"/><path d="M60 30 Q63 18 58 12"/><path d="M55 33 Q45 28 40 32"/>
+        <!-- Poire -->
+        <path d="M160 70 Q148 52 152 35 Q160 22 168 35 Q172 52 160 70Z"/><path d="M160 22 Q162 12 158 6"/>
+        <!-- Carotte -->
+        <path d="M280 25 L268 82 L292 82Z"/><path d="M274 25 Q268 12 280 6 Q292 12 286 25"/>
+        <!-- Raisin -->
+        <circle cx="380" cy="45" r="9"/><circle cx="370" cy="58" r="9"/><circle cx="390" cy="58" r="9"/><circle cx="375" cy="72" r="9"/><circle cx="385" cy="72" r="9"/><path d="M380 36 Q382 24 378 18"/>
+        <!-- Citron -->
+        <ellipse cx="450" cy="50" rx="22" ry="15" transform="rotate(-20 450 50)"/>
+        <!-- Tomate -->
+        <circle cx="55" cy="160" r="22"/><path d="M42 140 Q55 130 68 140"/>
+        <!-- Cerise -->
+        <circle cx="180" cy="170" r="13"/><circle cx="205" cy="170" r="13"/><path d="M180 157 Q186 132 192 128"/><path d="M205 157 Q199 132 192 128"/><path d="M188 130 Q175 125 170 130"/>
+        <!-- Ananas -->
+        <ellipse cx="330" cy="175" rx="20" ry="30"/><path d="M318 146 Q330 124 342 146"/><path d="M314 152 Q330 130 346 152"/><line x1="324" y1="162" x2="336" y2="162"/><line x1="320" y1="175" x2="340" y2="175"/><line x1="324" y1="188" x2="336" y2="188"/>
+        <!-- Artichaut -->
+        <path d="M440 180 Q418 158 440 135 Q462 158 440 180Z"/><path d="M425 174 Q408 152 425 135"/><path d="M455 174 Q472 152 455 135"/><path d="M440 135 L440 118"/>
+        <!-- Fraise -->
+        <path d="M70 280 Q58 302 70 325 Q82 302 70 280Z"/><path d="M60 282 Q70 273 80 282"/><circle cx="65" cy="298" r="1.5"/><circle cx="75" cy="295" r="1.5"/><circle cx="68" cy="310" r="1.5"/><circle cx="73" cy="305" r="1.5"/>
+        <!-- Champignon -->
+        <path d="M190 310 Q165 278 190 265 Q215 278 190 310Z"/><line x1="190" y1="310" x2="190" y2="335"/><line x1="182" y1="335" x2="198" y2="335"/>
+        <!-- Banane -->
+        <path d="M300 290 Q335 268 360 290 Q335 305 300 290Z"/>
+        <!-- Poivron -->
+        <path d="M430 320 Q412 288 430 265 Q448 288 430 320Z"/><path d="M430 265 L430 252"/><path d="M425 258 Q430 248 435 258"/>
+        <!-- Feuille -->
+        <path d="M70 410 Q95 375 120 410 Q95 445 70 410Z"/><line x1="70" y1="410" x2="120" y2="410"/><path d="M85 410 Q90 398 95 410"/><path d="M100 410 Q105 422 110 410"/>
+        <!-- Oignon -->
+        <circle cx="220" cy="420" r="20"/><path d="M220 400 L220 385 Q215 380 220 374"/>
+        <!-- Radis -->
+        <circle cx="350" cy="415" r="16"/><path d="M350 399 Q344 382 350 370"/><path d="M344 380 Q338 374 332 378"/>
+        <!-- Aubergine -->
+        <path d="M450 435 Q432 400 450 378 Q468 400 450 435Z"/><path d="M444 380 Q450 368 456 380"/>
+      </g>
+    </svg>
     <div style="position:relative;z-index:1;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
         <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:28px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);">🌿</div>
