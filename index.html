@@ -1198,7 +1198,7 @@ async function chargerArrivages() {
     const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
     const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
     return `
-    <div class="produit-card" onclick="ajouterAuPanier(${dataStr})">
+    <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
       <div class="produit-img" style="position:relative;">${imgHtml}</div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
@@ -1207,7 +1207,11 @@ async function chargerArrivages() {
             <span class="produit-prix">${prix}€</span>
             <span class="produit-unite"> /${p.unite}</span>
           </div>
-          <button class="btn-add" id="addBtn-${p.id}" onclick="event.stopPropagation();ajouterAuPanierAvecQte(${dataStr})">${panier.find(x=>x.id===p.id) ? panier.find(x=>x.id===p.id).qte : '+'}</button>
+          ${(() => {
+            const ep = panier.find(x => x.id === p.id);
+            if (ep) return '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>';
+            return '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
+          })()}
         </div>
       </div>
     </div>`;
@@ -1231,7 +1235,7 @@ async function chargerCoupsDeCoeur() {
     const dataStr = JSON.stringify(p).replace(/\"/g,'&quot;');
     const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
     return `
-    <div class="produit-card" onclick="ajouterAuPanier(${dataStr})">
+    <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
       <div class="produit-img" style="position:relative;">${imgHtml}</div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
@@ -1240,7 +1244,11 @@ async function chargerCoupsDeCoeur() {
             <span class="produit-prix">${prix}€</span>
             <span class="produit-unite"> /${p.unite}</span>
           </div>
-          <button class="btn-add" id="addBtn-${p.id}" onclick="event.stopPropagation();ajouterAuPanierAvecQte(${dataStr})">${panier.find(x=>x.id===p.id) ? panier.find(x=>x.id===p.id).qte : '+'}</button>
+          ${(() => {
+            const ep = panier.find(x => x.id === p.id);
+            if (ep) return '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>';
+            return '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
+          })()}
         </div>
       </div>
     </div>`;
@@ -1297,6 +1305,100 @@ function statutOuverture() {
 }
 
 // Panier
+
+function modifierQteAccueil(produitId, delta) {
+  const idx = panier.findIndex(x => x.id === produitId);
+  if (idx === -1) return;
+  panier[idx].qte += delta;
+  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  mettreAJourBadge();
+  // Re-render les sections
+  chargerArrivages();
+  chargerCoupsDeCoeur();
+}
+
+let ficheProduitData = null;
+let ficheProduitQte = 1;
+
+function ouvrirFicheProduit(produit) {
+  ficheProduitData = produit;
+  const ep = panier.find(x => x.id === produit.id);
+  ficheProduitQte = ep ? ep.qte : 1;
+
+  const hasPhoto = produit.photo_url && produit.photo_url.startsWith('http');
+  const prix = produit.prix_marche_indicatif ? produit.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
+  const total = (produit.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',');
+
+  document.getElementById('ficheOverlay').classList.add('open');
+  document.getElementById('ficheDrawer').classList.add('open');
+  document.getElementById('ficheNomAccueil').textContent = produit.nom;
+  document.getElementById('fichePrixAccueil').textContent = prix + '€';
+  document.getElementById('ficheUniteAccueil').textContent = '/' + produit.unite;
+  document.getElementById('ficheDescAccueil').textContent = produit.description || '';
+  document.getElementById('ficheCatAccueil').textContent = produit.categories?.nom || '';
+  document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
+  document.getElementById('ficheTotalAccueil').textContent = total + ' €';
+
+  const imgEl = document.getElementById('ficheImgAccueil');
+  if (hasPhoto) {
+    imgEl.innerHTML = '<img src="' + produit.photo_url + '" style="width:100%;height:100%;object-fit:cover;">';
+  } else {
+    imgEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:64px;">' + (produit.categories?.emoji || '🌿') + '</div>';
+  }
+
+  document.body.style.overflow = 'hidden';
+}
+
+function fermerFicheProduit() {
+  document.getElementById('ficheOverlay').classList.remove('open');
+  document.getElementById('ficheDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+  ficheProduitData = null;
+}
+
+function changerQteFicheAccueil(delta) {
+  ficheProduitQte = Math.max(1, ficheProduitQte + delta);
+  document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
+  if (ficheProduitData) {
+    const total = (ficheProduitData.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',');
+    document.getElementById('ficheTotalAccueil').textContent = total + ' €';
+  }
+}
+
+function ajouterDepuisFicheAccueil() {
+  if (!ficheProduitData) return;
+  const idx = panier.findIndex(x => x.id === ficheProduitData.id);
+  if (idx >= 0) {
+    panier[idx].qte = ficheProduitQte;
+  } else {
+    panier.push({ ...ficheProduitData, qte: ficheProduitQte });
+  }
+  localStorage.setItem('panier', JSON.stringify(panier));
+  mettreAJourBadge();
+
+  // Animation
+  const btn = document.getElementById('btnAjouterFicheAccueil');
+  btn.style.background = '#27ae60';
+  btn.textContent = '✓ Ajouté !';
+  if (navigator.vibrate) navigator.vibrate([50, 30, 50]);
+
+  setTimeout(() => {
+    btn.style.background = '';
+    btn.innerHTML = '🛒 Ajouter au panier — <span id="ficheTotalAccueil">' + (ficheProduitData.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',') + ' €</span>';
+    fermerFicheProduit();
+    chargerArrivages();
+    chargerCoupsDeCoeur();
+  }, 600);
+
+  // Toast
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:72px;left:50%;transform:translateX(-50%);background:var(--vert-fonce);color:white;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:500;z-index:999;white-space:nowrap;animation:fadeInOut 2s ease forwards;';
+  toast.textContent = '✓ ' + ficheProduitData.nom + ' ajouté' + (ficheProduitQte > 1 ? ' ×' + ficheProduitQte : '');
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
+}
+
 function ajouterAuPanierAvecQte(produit) {
   ajouterAuPanier(produit);
   // Mettre à jour le bouton pour afficher la quantité
@@ -1535,5 +1637,49 @@ chargerArrivages();
 chargerCoupsDeCoeur();
 chargerPaniers();
 </script>
+
+<!-- FICHE PRODUIT DRAWER -->
+<div class="fiche-overlay" id="ficheOverlay" onclick="fermerFicheProduit()"></div>
+<div class="fiche-drawer-accueil" id="ficheDrawer">
+  <div id="ficheImgAccueil" style="width:100%;height:220px;background:var(--creme-fonce);position:relative;">
+    <button onclick="fermerFicheProduit()" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.4);color:white;border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">✕</button>
+  </div>
+  <div style="padding:20px;">
+    <div id="ficheCatAccueil" style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--or);margin-bottom:4px;"></div>
+    <div id="ficheNomAccueil" style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:6px;"></div>
+    <div id="ficheDescAccueil" style="font-size:14px;color:var(--texte-doux);line-height:1.5;margin-bottom:16px;"></div>
+    <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:20px;">
+      <span id="fichePrixAccueil" style="font-size:24px;font-weight:500;"></span>
+      <span id="ficheUniteAccueil" style="font-size:14px;color:var(--texte-doux);"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <span style="font-size:14px;color:var(--texte-doux);">Quantité :</span>
+      <div style="display:flex;align-items:center;gap:4px;background:var(--creme-fonce);border-radius:50px;padding:4px;">
+        <button onclick="changerQteFicheAccueil(-1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">−</button>
+        <span id="ficheQteAccueil" style="font-size:18px;font-weight:500;min-width:28px;text-align:center;">1</span>
+        <button onclick="changerQteFicheAccueil(1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">+</button>
+      </div>
+    </div>
+    <button id="btnAjouterFicheAccueil" onclick="ajouterDepuisFicheAccueil()" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s;">
+      🛒 Ajouter au panier — <span id="ficheTotalAccueil">0,00 €</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .fiche-overlay {
+    position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .fiche-overlay.open { opacity:1;pointer-events:all; }
+  .fiche-drawer-accueil {
+    position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);
+    width:100%;max-width:480px;
+    background:var(--blanc);border-radius:24px 24px 0 0;
+    z-index:201;transition:transform .3s cubic-bezier(0.34,1.1,0.64,1);
+    max-height:85vh;overflow-y:auto;
+  }
+  .fiche-drawer-accueil.open { transform:translateX(-50%) translateY(0); }
+</style>
 </body>
 </html>
