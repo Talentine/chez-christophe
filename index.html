@@ -944,46 +944,9 @@
       <a class="voir-tout" onclick="ouvrirLightbox(0)">Voir tout →</a>
     </div>
     <div class="galerie-scroll" id="galerieScroll">
-      <div class="galerie-item galerie-item-grande" onclick="ouvrirLightbox(0)">
-        <div class="galerie-placeholder">
-          <span class="galerie-placeholder-icon">📸</span>
-          <span>Photo boutique</span>
-        </div>
-        <div class="galerie-overlay"></div>
+      <div class="galerie-item galerie-item-grande">
+        <div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Chargement...</span></div>
       </div>
-      <div class="galerie-item galerie-item-petite" onclick="ouvrirLightbox(1)">
-        <div class="galerie-placeholder" style="background:#e8f0ed;">
-          <span class="galerie-placeholder-icon">🎬</span>
-          <span>Vidéo</span>
-        </div>
-        <div class="galerie-video-badge">▶ Vidéo</div>
-        <div class="galerie-overlay"><div class="play-btn">▶</div></div>
-      </div>
-      <div class="galerie-item galerie-item-petite" onclick="ouvrirLightbox(2)">
-        <div class="galerie-placeholder">
-          <span class="galerie-placeholder-icon">🍎</span>
-          <span>Les fruits</span>
-        </div>
-        <div class="galerie-overlay"></div>
-      </div>
-      <div class="galerie-item galerie-item-petite" onclick="ouvrirLightbox(3)">
-        <div class="galerie-placeholder" style="background:#e8f0ed;">
-          <span class="galerie-placeholder-icon">🥕</span>
-          <span>Les légumes</span>
-        </div>
-        <div class="galerie-overlay"></div>
-      </div>
-      <div class="galerie-item galerie-item-petite" onclick="ouvrirLightbox(4)">
-        <div class="galerie-placeholder">
-          <span class="galerie-placeholder-icon">🧺</span>
-          <span>Les paniers</span>
-        </div>
-        <div class="galerie-overlay"></div>
-      </div>
-    </div>
-    <div class="galerie-upload-hint" id="galerieUpload" style="display:none" onclick="uploaderMedia()">
-      <span style="font-size:18px">+</span>
-      <span>Ajouter une photo ou vidéo</span>
     </div>
   </div>
 
@@ -1389,15 +1352,62 @@ function voirCategorie(slug, nom) {
 }
 
 // ── GALERIE & LIGHTBOX ──────────────────────────────────────────
-const galerieItems = [
-  { type: 'photo', label: 'Notre boutique', emoji: '📸', url: null },
-  { type: 'video', label: 'Visite de la boutique', emoji: '🎬', url: null },
-  { type: 'photo', label: 'Les fruits du marché', emoji: '🍎', url: null },
-  { type: 'photo', label: 'Les légumes du jour', emoji: '🥕', url: null },
-  { type: 'photo', label: 'Nos paniers thématiques', emoji: '🧺', url: null },
-];
-
+let galerieItems = [];
 let lightboxIndex = 0;
+
+async function chargerGalerieBoutique() {
+  const scroll = document.getElementById('galerieScroll');
+  try {
+    // Récupérer le commercant_id
+    const commercants = await supabase('commercants', '?slug=eq.christophe-frais-caen&select=id');
+    const commercantId = commercants?.[0]?.id;
+    if (!commercantId) return;
+
+    const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/galerie-boutique', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefix: commercantId + '/', limit: 20, sortBy: { column: 'name', order: 'asc' } })
+    });
+    const files = await r.json();
+
+    if (!files || !Array.isArray(files) || files.length === 0) {
+      scroll.innerHTML = '<div class="galerie-item galerie-item-grande"><div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Photos à venir</span></div></div>';
+      return;
+    }
+
+    // Construire galerieItems dynamiquement
+    galerieItems = files.filter(f => f.name && !f.name.endsWith('/')).map(f => {
+      const url = SUPABASE_URL + '/storage/v1/object/public/galerie-boutique/' + commercantId + '/' + f.name;
+      const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);
+      return {
+        type: isVideo ? 'video' : 'photo',
+        label: f.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+        url,
+      };
+    });
+
+    // Rendu galerie scroll
+    scroll.innerHTML = galerieItems.map((item, idx) => {
+      const sizeClass = idx === 0 ? 'galerie-item-grande' : 'galerie-item-petite';
+      if (item.type === 'video') {
+        return '<div class="galerie-item ' + sizeClass + '" onclick="ouvrirLightbox(' + idx + ')">'
+          + '<video src="' + item.url + '" muted loop autoplay playsinline style="width:100%;height:100%;object-fit:cover;"></video>'
+          + '<div class="galerie-video-badge">▶ Vidéo</div>'
+          + '</div>';
+      } else {
+        return '<div class="galerie-item ' + sizeClass + '" onclick="ouvrirLightbox(' + idx + ')">'
+          + '<img src="' + item.url + '" alt="' + item.label + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy">'
+          + '<div class="galerie-overlay"></div>'
+          + '</div>';
+      }
+    }).join('');
+
+  } catch(e) {
+    console.log('Erreur galerie boutique:', e);
+    scroll.innerHTML = '<div class="galerie-item galerie-item-grande"><div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Photos à venir</span></div></div>';
+  }
+}
+
 
 function ouvrirLightbox(idx) {
   lightboxIndex = idx;
@@ -1417,17 +1427,18 @@ function navLightbox(delta) {
 }
 
 function renderLightbox() {
+  if (galerieItems.length === 0) return;
   const item = galerieItems[lightboxIndex];
-  const content = document.getElementById('lightboxContent');
+  const cont = document.getElementById('lightboxContent');
   const counter = document.getElementById('lightboxCounter');
   if (item.url) {
     if (item.type === 'video') {
-      content.innerHTML = '<video src="' + item.url + '" controls autoplay style="max-width:92vw;max-height:75vh;border-radius:12px;"></video>';
+      cont.innerHTML = '<video src="' + item.url + '" controls autoplay loop playsinline style="max-width:92vw;max-height:75vh;border-radius:12px;"></video>';
     } else {
-      content.innerHTML = '<img src="' + item.url + '" alt="' + item.label + '" style="max-width:92vw;max-height:75vh;border-radius:12px;object-fit:contain;">';
+      cont.innerHTML = '<img src="' + item.url + '" alt="' + item.label + '" style="max-width:92vw;max-height:75vh;border-radius:12px;object-fit:contain;">';
     }
   } else {
-    content.innerHTML = '<div style="width:280px;height:220px;background:#1a2e26;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;"><span style="font-size:48px">' + item.emoji + '</span><p style="color:rgba(255,255,255,0.7);font-size:14px;text-align:center;padding:0 20px;">' + item.label + '</p><p style="color:rgba(255,255,255,0.35);font-size:12px;">Photo à venir</p></div>';
+    cont.innerHTML = '<div style="width:280px;height:220px;background:#1a2e26;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;"><span style="font-size:48px;">📸</span><p style="color:rgba(255,255,255,0.7);font-size:14px;">Photo à venir</p></div>';
   }
   counter.textContent = (lightboxIndex + 1) + ' / ' + galerieItems.length;
 }
@@ -1461,6 +1472,7 @@ function uploaderMedia() {
 
 // Init
 statutOuverture();
+chargerGalerieBoutique();
 chargerRayons();
 chargerArrivages();
 chargerCoupsDeCoeur();

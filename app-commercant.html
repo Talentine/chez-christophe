@@ -2730,13 +2730,17 @@ async function chargerGalerie() {
       return;
     }
 
-    container.innerHTML = files.filter(f => f.name).map(f => {
+    const mediaFiles = files.filter(f => f.name && !f.name.endsWith('/'));
+    container.innerHTML = mediaFiles.length === 0
+      ? '<div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;"><p style="font-size:28px;">📸</p><p style="margin-top:8px;">Aucune photo</p></div>'
+      : mediaFiles.map((f, idx) => {
       const url = SUPABASE_URL + '/storage/v1/object/public/galerie-boutique/' + commercantId + '/' + f.name;
       const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);
       return '<div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--creme-fonce);">'
         + (isVideo
-          ? '<video src="' + url + '" style="width:100%;height:100%;object-fit:cover;"></video><div style="position:absolute;top:4px;left:4px;background:rgba(0,0,0,0.5);color:white;font-size:10px;padding:2px 6px;border-radius:10px;">▶ Vidéo</div>'
+          ? '<video src="' + url + '" muted loop autoplay playsinline style="width:100%;height:100%;object-fit:cover;"></video><div style="position:absolute;top:4px;left:4px;background:rgba(0,0,0,0.5);color:white;font-size:10px;padding:2px 6px;border-radius:10px;">▶ Vidéo</div>'
           : '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy">')
+        + '<div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,0.5);color:white;font-size:11px;padding:2px 8px;border-radius:10px;">' + (idx + 1) + '</div>'
         + '<button onclick="supprimerMedia(\'' + f.name + '\')" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>'
         + '</div>';
     }).join('');
@@ -2765,7 +2769,10 @@ async function uploaderGalerie(files) {
   let ok = 0;
   for (const file of files) {
     const ext = file.name.split('.').pop().toLowerCase();
-    const nom = Date.now() + '-' + Math.random().toString(36).slice(2,6) + '.' + ext;
+    // Préfixer avec un numéro d'ordre (basé sur le nombre de fichiers existants)
+    const existants = document.querySelectorAll('#galerieListe > div').length;
+    const ordre = String(existants + 1 + Array.from(files).indexOf(file)).padStart(3, '0');
+    const nom = ordre + '-' + Date.now().toString().slice(-6) + '.' + ext;
     
     // Compresser si c'est une image
     let body = file;
