@@ -130,28 +130,30 @@
 
   /* HERO */
   .hero {
-    background: var(--vert);
+    background: var(--vert-fonce);
     padding: 40px 20px 48px;
     position: relative;
     overflow: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg opacity='0.07' stroke='%23c9a84c' fill='none' stroke-width='1.2'%3E%3C!-- Pomme --%3E%3Ccircle cx='80' cy='60' r='22'/%3E%3Cpath d='M80 38 Q82 25 78 20'/%3E%3Cpath d='M75 40 Q65 35 60 38'/%3E%3C!-- Poire --%3E%3Cpath d='M200 80 Q185 60 190 40 Q200 25 210 40 Q215 60 200 80Z'/%3E%3Cpath d='M200 25 Q202 15 198 10'/%3E%3C!-- Carotte --%3E%3Cpath d='M350 30 L340 90 L360 90Z'/%3E%3Cpath d='M345 30 Q340 15 350 10 Q360 15 355 30'/%3E%3C!-- Raisin --%3E%3Ccircle cx='480' cy='55' r='8'/%3E%3Ccircle cx='470' cy='68' r='8'/%3E%3Ccircle cx='490' cy='68' r='8'/%3E%3Ccircle cx='475' cy='82' r='8'/%3E%3Ccircle cx='485' cy='82' r='8'/%3E%3Cpath d='M480 47 Q482 35 478 28'/%3E%3C!-- Citron --%3E%3Cellipse cx='560' cy='60' rx='20' ry='14' transform='rotate(-20 560 60)'/%3E%3C!-- Artichaut --%3E%3Cpath d='M80 180 Q60 160 80 140 Q100 160 80 180Z'/%3E%3Cpath d='M65 175 Q50 155 65 140'/%3E%3Cpath d='M95 175 Q110 155 95 140'/%3E%3Cpath d='M80 140 L80 125'/%3E%3C!-- Tomate --%3E%3Ccircle cx='220' cy='170' r='20'/%3E%3Cpath d='M210 152 Q220 145 230 152'/%3E%3C!-- Cerise --%3E%3Ccircle cx='370' cy='175' r='12'/%3E%3Ccircle cx='390' cy='175' r='12'/%3E%3Cpath d='M370 163 Q375 140 380 135'/%3E%3Cpath d='M390 163 Q385 140 380 135'/%3E%3C!-- Ananas --%3E%3Cellipse cx='510' cy='185' rx='18' ry='26'/%3E%3Cpath d='M500 160 Q510 140 520 160'/%3E%3Cpath d='M495 165 Q510 145 525 165'/%3E%3Cline x1='505' y1='172' x2='515' y2='172'/%3E%3Cline x1='502' y1='182' x2='518' y2='182'/%3E%3Cline x1='505' y1='192' x2='515' y2='192'/%3E%3C!-- Feuille --%3E%3Cpath d='M150 300 Q170 270 190 300 Q170 330 150 300Z'/%3E%3Cline x1='150' y1='300' x2='190' y2='300'/%3E%3C!-- Fraise --%3E%3Cpath d='M320 290 Q310 310 320 330 Q330 310 320 290Z'/%3E%3Cpath d='M312 292 Q320 285 328 292'/%3E%3C!-- Champignon --%3E%3Cpath d='M460 320 Q440 290 460 280 Q480 290 460 320Z'/%3E%3Cline x1='460' y1='320' x2='460' y2='340'/%3E%3C!-- Poivron --%3E%3Cpath d='M70 420 Q55 390 70 370 Q85 390 70 420Z'/%3E%3Cpath d='M70 370 L70 360'/%3E%3C!-- Banane --%3E%3Cpath d='M200 400 Q230 380 250 400 Q230 410 200 400Z'/%3E%3C!-- Oignon --%3E%3Ccircle cx='400' cy='420' r='18'/%3E%3Cpath d='M400 402 L400 388 Q395 385 400 380'/%3E%3C!-- Radis --%3E%3Ccircle cx='540' cy='410' r='14'/%3E%3Cpath d='M540 396 Q535 380 540 370'/%3E%3Cpath d='M535 380 Q530 375 525 378'/%3E%3C!-- Aubergine --%3E%3Cpath d='M160 520 Q145 490 160 470 Q175 490 160 520Z'/%3E%3Cpath d='M155 470 Q160 462 165 470'/%3E%3C!-- Courgette --%3E%3Cellipse cx='320' cy='510' rx='30' ry='12' transform='rotate(-15 320 510)'/%3E%3C!-- Ail --%3E%3Cpath d='M480 500 Q470 480 480 470 Q490 480 480 500Z'/%3E%3Cpath d='M475 475 Q480 465 485 475'/%3E%3C%2Fg%3E%3C/svg%3E");
+    background-size: 300px 300px;
   }
 
   .hero::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: rgba(201,168,76,0.08);
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 30%, rgba(201,168,76,0.12), transparent 45%),
+      radial-gradient(circle at 85% 70%, rgba(61,107,89,0.2), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(26,46,38,0.5), transparent 60%);
   }
 
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -40px; left: -40px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(201,168,76,0.06);
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to top, var(--creme), transparent);
   }
 
   .hero-badge {
@@ -954,18 +956,27 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">🌿 Click &amp; Collect</div>
-    <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
-    <p class="hero-sub">Sélectionnés chaque matin.<br>Retrait en boutique au cœur de Caen.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="scrollVers('rayons')">🛒 Commander →</button>
-      <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
-    </div>
-    <div class="hero-infos">
-      <div class="hero-info-pill">📍 8 rue Neuve Saint-Jean</div>
-      <div class="hero-info-pill">📞 02 31 85 14 77</div>
-      <div class="hero-info-pill">🕐 Mar–Sam</div>
-      <div class="hero-info-pill" id="statutOuverture">⏳ Chargement...</div>
+    <div style="position:relative;z-index:1;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+        <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:28px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);">🌿</div>
+        <div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;">Click &amp; Collect</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;">Chez Christophe</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);">Primeur artisanal · Caen</div>
+        </div>
+      </div>
+      <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
+      <p class="hero-sub">Sélectionnés chaque matin.<br>Retrait en boutique au cœur de Caen.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="window.location.href='catalogue.html'">🛒 Commander →</button>
+        <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
+      </div>
+      <div class="hero-infos">
+        <div class="hero-info-pill">📍 8 rue Neuve Saint-Jean, Caen</div>
+        <div class="hero-info-pill">📞 02 31 85 14 77</div>
+        <div class="hero-info-pill">🕐 Mar–Sam</div>
+        <div class="hero-info-pill" id="statutOuverture">⏳ Chargement...</div>
+      </div>
     </div>
   </div>
 
