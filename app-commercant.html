@@ -1831,7 +1831,7 @@ async function chargerProduitsAdmin() {
     }
 
     const produitIds = catalogue.map(c => c.produit_base_id).filter(Boolean);
-    const pr = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=in.(' + produitIds.join(',') + ')&select=id,nom,unite,prix_marche_indicatif,photo_url,categorie_id', {
+    const pr = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=in.(' + produitIds.join(',') + ')&select=id,nom,unite,prix_marche_indicatif,photo_url,categorie_id,description,provenance,saisonnier,badge_local,badge_nouveau,badge_bio', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const produits = await pr.json();
@@ -1850,6 +1850,12 @@ async function chargerProduitsAdmin() {
         photo_url: p.photo_url || '',
         actif: c.actif,
         categorie_id: p.categorie_id || null,
+        description: p.description || '',
+        provenance: p.provenance || '',
+        saisonnier: p.saisonnier || false,
+        badge_local: p.badge_local || false,
+        badge_nouveau: p.badge_nouveau || false,
+        badge_bio: p.badge_bio || false,
       };
     }).filter(p => p.nom !== '—');
 
@@ -1885,9 +1891,15 @@ function ouvrirEditionProduit(catalogueId) {
 
   document.getElementById('editNom').value = p.nom || '';
   document.getElementById('editPrix').value = p.prix || '';
-  // Sélectionner la catégorie
   const editCat = document.getElementById('editCategorie');
   if (editCat) editCat.value = p.categorie_id || '';
+  // Options avancées
+  if (document.getElementById('editDescription')) document.getElementById('editDescription').value = p.description || '';
+  if (document.getElementById('editProvenance')) document.getElementById('editProvenance').value = p.provenance || '';
+  if (document.getElementById('editBadgeSaison')) document.getElementById('editBadgeSaison').checked = !!p.saisonnier;
+  if (document.getElementById('editBadgeLocal')) document.getElementById('editBadgeLocal').checked = !!p.badge_local;
+  if (document.getElementById('editBadgeNouveau')) document.getElementById('editBadgeNouveau').checked = !!p.badge_nouveau;
+  if (document.getElementById('editBadgeBio')) document.getElementById('editBadgeBio').checked = !!p.badge_bio;
   document.getElementById('editErreur').style.display = 'none';
   document.getElementById('editPhotoActuelle').src = p.photo_url || '';
   document.getElementById('editPhotoActuelle').style.display = p.photo_url ? 'block' : 'none';
@@ -1987,6 +1999,12 @@ async function sauvegarderEdition() {
         unite: produitEnEdition.unite,
         photo_url: photoUrl,
         categorie_id: document.getElementById('editCategorie')?.value || null,
+        description: document.getElementById('editDescription')?.value.trim() || null,
+        provenance: document.getElementById('editProvenance')?.value.trim() || null,
+        saisonnier: document.getElementById('editBadgeSaison')?.checked || false,
+        badge_local: document.getElementById('editBadgeLocal')?.checked || false,
+        badge_nouveau: document.getElementById('editBadgeNouveau')?.checked || false,
+        badge_bio: document.getElementById('editBadgeBio')?.checked || false,
       })
     });
 
@@ -2078,6 +2096,21 @@ function selectionnerUnite(unite) {
   document.getElementById(id)?.classList.add('actif');
 }
 
+
+function toggleOptions() {
+  const el = document.getElementById('optionsAvancees');
+  const icon = document.getElementById('toggleOptionsIcon');
+  if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▲'; }
+  else { el.style.display = 'none'; icon.textContent = '▼'; }
+}
+
+function toggleOptionsEdit() {
+  const el = document.getElementById('optionsAvanceesEdit');
+  const icon = document.getElementById('toggleOptionsEditIcon');
+  if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▲'; }
+  else { el.style.display = 'none'; icon.textContent = '▼'; }
+}
+
 async function previewPhoto(input) {
   if (!input.files?.[0]) return;
   const original = input.files[0];
@@ -2159,6 +2192,12 @@ async function sauvegarderProduit() {
         prix_marche_indicatif: prix,
         photo_url: photoUrl || null,
         categorie_id: document.getElementById('produitCategorie')?.value || null,
+        description: document.getElementById('produitDescription')?.value.trim() || null,
+        provenance: document.getElementById('produitProvenance')?.value.trim() || null,
+        saisonnier: document.getElementById('badgeSaison')?.checked || false,
+        badge_local: document.getElementById('badgeLocal')?.checked || false,
+        badge_nouveau: document.getElementById('badgeNouveau')?.checked || false,
+        badge_bio: document.getElementById('badgeBio')?.checked || false,
         actif: true,
       })
     });
@@ -2913,6 +2952,47 @@ if (!verifierSessionCommercant()) {
       </div>
     </div>
 
+    <!-- OPTIONS AVANCÉES (non obligatoires) -->
+    <div style="margin-bottom:20px;">
+      <button type="button" onclick="toggleOptions()" id="btnToggleOptions"
+        style="width:100%;background:var(--creme);border:1.5px dashed var(--creme-fonce);border-radius:12px;padding:12px;font-size:13px;color:var(--texte-doux);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:space-between;">
+        <span>+ Options avancées (description, provenance, badges)</span>
+        <span id="toggleOptionsIcon">▼</span>
+      </button>
+
+      <div id="optionsAvancees" style="display:none;margin-top:14px;">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description</label>
+          <textarea id="produitDescription" rows="3" placeholder="Ex: Gros fruit charnu, orangé pointé de rouge"
+            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur</label>
+          <input id="produitProvenance" type="text" placeholder="Ex: Producteur Leroux · Normandie" autocomplete="off"
+            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges (affichés sur la carte produit)</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="badgeSaison" style="margin:0;"> 🌱 De saison
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="badgeLocal" style="margin:0;"> 📍 Local
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="badgeNouveau" style="margin:0;"> ⚡ Nouveau
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="badgeBio" style="margin:0;"> 🌿 Bio
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="ajoutErreur" style="color:#e74c3c;font-size:13px;margin-bottom:12px;display:none;"></div>
 
     <button onclick="sauvegarderProduit()" id="btnSauvegarder"
@@ -2998,6 +3078,47 @@ if (!verifierSessionCommercant()) {
         <button onclick="selectionnerUniteEdit('corbeille')" id="edit-unite-corbeille" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">corbeille</button>
         <button onclick="selectionnerUniteEdit('plateau')" id="edit-unite-plateau" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">plateau</button>
         <button onclick="selectionnerUniteEdit('botte')" id="edit-unite-botte" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--creme);cursor:pointer;">botte</button>
+      </div>
+    </div>
+
+    <!-- OPTIONS AVANCÉES (édition) -->
+    <div style="margin-bottom:20px;">
+      <button type="button" onclick="toggleOptionsEdit()" id="btnToggleOptionsEdit"
+        style="width:100%;background:var(--creme);border:1.5px dashed var(--creme-fonce);border-radius:12px;padding:12px;font-size:13px;color:var(--texte-doux);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:space-between;">
+        <span>+ Options avancées (description, provenance, badges)</span>
+        <span id="toggleOptionsEditIcon">▼</span>
+      </button>
+
+      <div id="optionsAvanceesEdit" style="display:none;margin-top:14px;">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description</label>
+          <textarea id="editDescription" rows="3"
+            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur</label>
+          <input id="editProvenance" type="text"
+            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="editBadgeSaison" style="margin:0;"> 🌱 De saison
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="editBadgeLocal" style="margin:0;"> 📍 Local
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="editBadgeNouveau" style="margin:0;"> ⚡ Nouveau
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" id="editBadgeBio" style="margin:0;"> 🌿 Bio
+            </label>
+          </div>
+        </div>
       </div>
     </div>
 
