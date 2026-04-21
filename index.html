@@ -8,16 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #2d4a3e;
-    --vert-fonce: #1a2e26;
-    --vert-clair: #3d6b59;
-    --or: #c9a84c;
-    --or-clair: #e2c97a;
-    --creme: #f5f0e8;
+    --vert: #3a5c4a;
+    --vert-fonce: #1f3028;
+    --vert-clair: #7ba286;
+    --or: #d4a84c;
+    --or-clair: #f3d989;
+    --creme: #faf6ee;
     --creme-fonce: #ede6d6;
     --blanc: #ffffff;
     --texte: #1a2e26;
     --texte-doux: #5a7060;
+    --tomate: #c83e3e;
+    --abricot: #e6a460;
+    --aubergine: #6b4e7a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,7 +72,7 @@
   .logo-text p {
     font-size: 11px;
     color: var(--or);
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.5px;
   }
 
@@ -185,7 +188,8 @@
 
   .hero h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 38px;
+    font-size: clamp(28px, 7vw, 36px);
+    letter-spacing: -0.01em;
     color: var(--blanc);
     line-height: 1.15;
     margin-bottom: 6px;
@@ -196,7 +200,7 @@
   .hero-sub {
     font-size: 15px;
     color: rgba(255,255,255,0.7);
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 28px;
     line-height: 1.5;
   }
@@ -387,7 +391,7 @@
   .produit-unite {
     font-size: 11px;
     color: var(--texte-doux);
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .btn-add {
@@ -547,7 +551,7 @@
     font-size: 14px;
     color: rgba(255,255,255,0.65);
     margin-bottom: 24px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* NAV BAS */
@@ -706,6 +710,82 @@
 
   /* Espacement nav bas */
   .page-content { padding-bottom: 80px; }
+
+  
+  /* BARRE FRAÎCHEUR */
+  .barre-fraicheur {
+    background: var(--blanc);
+    border-bottom: 1px solid var(--creme-fonce);
+    padding: 12px 0;
+  }
+  .fraicheur-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+  }
+  .fraicheur-scroll::-webkit-scrollbar { display: none; }
+  .fraicheur-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--creme);
+    border: 1px solid var(--creme-fonce);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--texte);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .fraicheur-pill .fraicheur-icon { font-size: 14px; }
+
+  /* BADGES CONTEXTUELS SUR CARTES */
+  .badge-carte {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: var(--vert);
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .badge-carte.local { background: var(--vert-clair); color: white; }
+  .badge-carte.nouveau { background: var(--abricot); color: white; }
+  .badge-carte.saison { background: var(--or); color: var(--vert-fonce); }
+
+  /* PROVENANCE */
+  .produit-provenance {
+    font-size: 11px;
+    color: var(--texte-doux);
+    margin-top: 2px;
+  }
+
+  
+  /* SPACING AMÉLIORÉ */
+  section, .arrivage-section, .avis-section, .cta-section {
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+  .galerie-section { margin-top: 24px; }
+  .barre-fraicheur { margin-top: 0; }
+
+  /* Cartes produits avec plus d'ombre douce */
+  .produit-card {
+    box-shadow: 0 2px 12px rgba(26,46,38,0.06);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .produit-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px rgba(26,46,38,0.08);
+  }
+
 
   /* GALERIE PHOTO / VIDEO */
   .galerie-section {
@@ -971,7 +1051,7 @@
       <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
       <p class="hero-sub">Sélectionnés chaque matin.<br>Retrait en boutique au cœur de Caen.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="window.location.href='catalogue.html'">🛒 Commander →</button>
+        <button class="btn-primary" onclick="window.location.href='catalogue.html'">🛒 Je commande →</button>
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
       <div class="hero-infos">
@@ -980,6 +1060,17 @@
         <div class="hero-info-pill">🕐 Mar–Sam</div>
         <div class="hero-info-pill" id="statutOuverture">⏳ Chargement...</div>
       </div>
+    </div>
+  </div>
+
+  <!-- BARRE FRAÎCHEUR -->
+  <div class="barre-fraicheur">
+    <div class="fraicheur-scroll">
+      <div class="fraicheur-pill"><span class="fraicheur-icon">🥬</span> Arrivé ce matin</div>
+      <div class="fraicheur-pill"><span class="fraicheur-icon">📍</span> Local &lt; 50km</div>
+      <div class="fraicheur-pill"><span class="fraicheur-icon">🌱</span> De saison</div>
+      <div class="fraicheur-pill"><span class="fraicheur-icon">🚚</span> Livraison offerte dès 25€</div>
+      <div class="fraicheur-pill"><span class="fraicheur-icon">⏰</span> Commandez avant 16h</div>
     </div>
   </div>
 
@@ -1140,14 +1231,31 @@
       <p style="font-size:13px;margin-top:6px;color:#aaa">Ajoutez des produits pour commander</p>
     </div>
   </div>
+  <!-- SUGGESTIONS -->
+  <div id="suggestionsPanier" style="display:none;padding:16px 20px;border-top:1px solid var(--creme-fonce);background:var(--creme);">
+    <div style="font-size:13px;font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+      <span>💡</span> <span>On vous suggère aussi</span>
+    </div>
+    <div id="suggestionsListe" style="display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;"></div>
+  </div>
+
   <div id="panierTotal" style="display:none">
+    <div id="barreProgression" style="padding:0 20px 12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--texte-doux);margin-bottom:6px;">
+        <span id="progressionTxt">Livraison offerte dès 25€</span>
+        <span id="progressionMontant"></span>
+      </div>
+      <div style="height:6px;background:var(--creme-fonce);border-radius:3px;overflow:hidden;">
+        <div id="progressionBarre" style="height:100%;background:linear-gradient(to right, var(--or), var(--or-clair));width:0%;transition:width 0.3s;"></div>
+      </div>
+    </div>
     <div class="drawer-total">
       <span>Total</span>
       <span id="totalMontant">0,00 €</span>
     </div>
-    <button class="btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:16px;">
-      Choisir un créneau →
-    </button>
+    <a href="panier.html" class="btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:16px;text-decoration:none;">
+      Finaliser ma commande →
+    </a>
   </div>
 </div>
 
@@ -1213,9 +1321,13 @@ async function chargerArrivages() {
     const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
     return `
     <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
-      <div class="produit-img" style="position:relative;">${imgHtml}</div>
+      <div class="produit-img" style="position:relative;">
+        ${imgHtml}
+        ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
+      </div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
+        <div class="produit-provenance">${p.categories?.nom || 'Produit du marché'}</div>
         <div class="produit-footer">
           <div>
             <span class="produit-prix">${prix}€</span>
@@ -1250,9 +1362,13 @@ async function chargerCoupsDeCoeur() {
     const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
     return `
     <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
-      <div class="produit-img" style="position:relative;">${imgHtml}</div>
+      <div class="produit-img" style="position:relative;">
+        ${imgHtml}
+        ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
+      </div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
+        <div class="produit-provenance">${p.categories?.nom || 'Produit du marché'}</div>
         <div class="produit-footer">
           <div>
             <span class="produit-prix">${prix}€</span>
@@ -1458,15 +1574,72 @@ function mettreAJourBadge() {
   badge.style.display = total > 0 ? 'flex' : 'none';
 }
 
+async function chargerSuggestions() {
+  if (panier.length === 0) {
+    document.getElementById('suggestionsPanier').style.display = 'none';
+    return;
+  }
+  // Récupérer les IDs des produits dans le panier pour les exclure
+  const idsPanier = panier.map(p => p.id);
+  
+  // Charger 4 produits au hasard qui ne sont pas dans le panier
+  try {
+    const produits = await supabase('produits_base', '?actif=eq.true&select=*,categories(nom,emoji)&limit=8');
+    if (!produits || produits.length === 0) return;
+    
+    const suggestions = produits.filter(p => !idsPanier.includes(p.id)).slice(0, 4);
+    if (suggestions.length === 0) { document.getElementById('suggestionsPanier').style.display = 'none'; return; }
+
+    const liste = document.getElementById('suggestionsListe');
+    liste.innerHTML = suggestions.map(p => {
+      const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
+      const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
+      const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
+      const imgHtml = hasPhoto
+        ? '<img src="' + p.photo_url + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy">'
+        : '<span style="font-size:24px;">' + (p.categories?.emoji || '🌿') + '</span>';
+      return '<div style="min-width:110px;background:white;border-radius:12px;padding:8px;border:1px solid var(--creme-fonce);">'
+        + '<div style="width:100%;height:70px;border-radius:8px;background:var(--creme);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:6px;">' + imgHtml + '</div>'
+        + '<div style="font-size:12px;font-weight:500;line-height:1.2;margin-bottom:2px;">' + p.nom + '</div>'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">'
+        + '<span style="font-size:12px;font-weight:600;">' + prix + '€</span>'
+        + '<button onclick="ajouterAuPanierAvecQte(' + dataStr + ');chargerSuggestions();" style="width:24px;height:24px;border-radius:50%;border:none;background:var(--vert);color:white;font-size:14px;cursor:pointer;">+</button>'
+        + '</div></div>';
+    }).join('');
+    document.getElementById('suggestionsPanier').style.display = 'block';
+  } catch(e) { console.log('Erreur suggestions:', e); }
+}
+
 function ouvrirPanier() {
   document.getElementById('overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
   renderPanier();
+  chargerSuggestions();
 }
 
 function fermerPanier() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('drawer').classList.remove('open');
+}
+
+function mettreAJourProgression(total) {
+  const seuil = 25;
+  const restant = Math.max(0, seuil - total);
+  const pct = Math.min(100, (total / seuil) * 100);
+  const txtEl = document.getElementById('progressionTxt');
+  const montantEl = document.getElementById('progressionMontant');
+  const barreEl = document.getElementById('progressionBarre');
+  if (!txtEl) return;
+  if (total >= seuil) {
+    txtEl.textContent = '🎉 Livraison offerte débloquée !';
+    txtEl.style.color = 'var(--vert-clair)';
+    montantEl.textContent = '';
+  } else {
+    txtEl.textContent = 'Livraison offerte dès 25€';
+    txtEl.style.color = '';
+    montantEl.textContent = 'Plus que ' + restant.toFixed(2).replace('.',',') + '€';
+  }
+  barreEl.style.width = pct + '%';
 }
 
 function renderPanier() {
@@ -1499,6 +1672,7 @@ function renderPanier() {
   `).join('');
 
   document.getElementById('totalMontant').textContent = totalMontant.toFixed(2).replace('.',',') + ' €';
+  mettreAJourProgression(totalMontant);
   totalEl.style.display = 'block';
 }
 

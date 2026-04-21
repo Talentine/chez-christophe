@@ -9,9 +9,9 @@
 <script src="https://js.stripe.com/v3/"></script>
 <style>
   :root {
-    --vert:#2d4a3e;--vert-fonce:#1a2e26;--or:#c9a84c;
-    --creme:#f5f0e8;--creme-fonce:#ede6d6;
-    --blanc:#ffffff;--texte:#1a2e26;--texte-doux:#5a7060;
+    --vert:#3a5c4a;--vert-fonce:#1f3028;--or:#d4a84c;
+    --creme:#faf6ee;--creme-fonce:#ede6d6;
+    --blanc:#ffffff;--texte:#1f3028;--texte-doux:#5a7060;
     --rouge:#e74c3c;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -735,7 +735,7 @@ async function initialiserStripe() {
     stripeSecret = data.client_secret;
     const elements = stripe.elements();
     stripeCard = elements.create('card', {
-      style: { base: { fontSize: '15px', color: '#1a2e26', fontFamily: 'DM Sans, sans-serif', '::placeholder': { color: '#aaa' } } },
+      style: { base: { fontSize: '15px', color: '#1f3028', fontFamily: 'DM Sans, sans-serif', '::placeholder': { color: '#aaa' } } },
       hidePostalCode: true,
     });
     document.getElementById('stripeLoading').style.display = 'none';
