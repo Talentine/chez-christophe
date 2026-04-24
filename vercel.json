@@ -3,7 +3,17 @@
     { "source": "/", "destination": "/index.html" },
     { "source": "/catalogue", "destination": "/catalogue.html" },
     { "source": "/panier", "destination": "/panier.html" },
-    { "source": "/app", "destination": "/app-commercant.html" }
+    { "source": "/compte", "destination": "/compte.html" },
+    { "source": "/notre-histoire", "destination": "/notre-histoire.html" },
+    { "source": "/app", "destination": "/app-commercant.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+
+    { "source": "/:slug", "destination": "/index.html?slug=:slug" },
+    { "source": "/:slug/", "destination": "/index.html?slug=:slug" },
+    { "source": "/:slug/catalogue", "destination": "/catalogue.html?slug=:slug" },
+    { "source": "/:slug/panier", "destination": "/panier.html?slug=:slug" },
+    { "source": "/:slug/compte", "destination": "/compte.html?slug=:slug" },
+    { "source": "/:slug/notre-histoire", "destination": "/notre-histoire.html?slug=:slug" }
   ],
   "cleanUrls": false
 }
