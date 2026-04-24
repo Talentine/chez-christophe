@@ -1081,6 +1081,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="assets/core/init.js"></script>
 </head>
 <body>
 
@@ -1088,8 +1089,8 @@
   <div class="header-logo">
     <div class="logo-circle"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
     <div class="logo-text">
-      <h1>Chez Christophe</h1>
-      <p>Click &amp; Collect · Caen</p>
+      <h1 id="headerNom">Chez Christophe</h1>
+      <p id="headerVille">Click &amp; Collect · Caen</p>
     </div>
   </div>
   <button class="header-cart" onclick="ouvrirPanier()">
@@ -1118,9 +1119,9 @@
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
         <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
         <div>
-          <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;">Click &amp; Collect</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;">Chez Christophe</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.5);">Primeur artisanal · Caen</div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;" id="heroLabel">Click &amp; Collect</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;" id="heroNom">Chez Christophe</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);" id="heroVille">Primeur artisanal · Caen</div>
         </div>
       </div>
       <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
@@ -1130,9 +1131,9 @@
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
       <div class="hero-infos">
-        <div class="hero-info-pill">📍 8 rue Neuve Saint-Jean, Caen</div>
-        <div class="hero-info-pill">📞 02 31 85 14 77</div>
-        <div class="hero-info-pill">🕐 Mar–Sam</div>
+        <div class="hero-info-pill" id="heroAdresse">📍 8 rue Neuve Saint-Jean, Caen</div>
+        <div class="hero-info-pill" id="heroTel">📞 02 31 85 14 77</div>
+        <div class="hero-info-pill" id="heroHoraires">🕐 Mar–Sam</div>
         <div class="hero-info-pill" id="statutOuverture">⏳ Chargement...</div>
       </div>
     </div>
@@ -1162,7 +1163,7 @@
   <!-- RAYONS -->
   <section id="rayons" class="reveal">
     <div class="section-header">
-      <h2 class="section-title">Nos rayons</h2>
+      <h2 class="section-title" id="titreRayons">Nos rayons</h2>
     </div>
     <div class="rayons-grid" id="rayonsGrid">
       <!-- chargé dynamiquement -->
@@ -1177,8 +1178,8 @@
   <div class="arrivage-section reveal" id="arrivage">
     <div class="section-header">
       <div>
-        <div class="arrivage-badge">Arrivage du jour</div>
-        <h2 class="section-title" style="margin-top:4px">Nouveautés</h2>
+        <div class="arrivage-badge" id="badgeArrivage">Arrivage du jour</div>
+        <h2 class="section-title" style="margin-top:4px" id="titreArrivage">Nouveautés</h2>
       </div>
       <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
     </div>
@@ -1193,8 +1194,8 @@
   <div class="arrivage-section reveal" id="coupsDeCoeur">
     <div class="section-header">
       <div>
-        <div class="arrivage-badge" style="background:rgba(184,131,42,0.12);border-color:rgba(184,131,42,0.3);color:var(--or);animation:none;">Coups de cœur</div>
-        <h2 class="section-title" style="margin-top:4px">Nos sélections</h2>
+        <div class="arrivage-badge" style="background:rgba(184,131,42,0.12);border-color:rgba(184,131,42,0.3);color:var(--or);animation:none;" id="badgeCoupsCoeur">Coups de cœur</div>
+        <h2 class="section-title" style="margin-top:4px" id="titreCoupsCoeur">Nos sélections</h2>
       </div>
       <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
     </div>
@@ -1349,133 +1350,126 @@ async function supabase(table, params = '') {
   return r.json();
 }
 
-// Emojis par catégorie
-const categoryEmojis = {
-  'fruits-classiques': '🍎',
-  'fruits-saison': '🍑',
-  'fruits-exotiques': '🥥',
-  'legumes-frais': '🥕',
-  'legumes-anciens': '🥦',
-  'salades-herbes': '🥬',
-  'champignons': '🍄',
-  'epicerie-cremerie': '🥚'
-};
+// ── HELPER : aplatit une ligne catalogue+produits_base ──────────
+function flattenCatalogueRow(row) {
+  const pb = row.produits_base || {};
+  return {
+    id:                    pb.id || row.produit_base_id,
+    catalogue_id:          row.id,
+    nom:                   pb.nom || '',
+    description:           pb.description || '',
+    photo_url:             pb.photo_url || null,
+    prix_marche_indicatif: row.prix_vente || pb.prix_marche_indicatif || 0,
+    unite:                 pb.unite || 'pièce',
+    categories:            pb.categories || null,
+    saisonnier:            pb.saisonnier || false,
+    badge_bio:             pb.badge_bio  || false,
+    badge_local:           pb.badge_local || false,
+    badge_nouveau:         pb.badge_nouveau || false,
+    provenance:            pb.provenance || null,
+    custom_fields:         row.custom_fields || {},
+    en_stock:              row.en_stock !== false,
+  };
+}
 
-// Charger les rayons (catégories)
-async function chargerRayons() {
-  const cats = await supabase('categories', '?order=ordre&select=*');
+// ── HELPER : rendu d'une card produit ───────────────────────────
+function renderProduitCard(p) {
+  const cfg = window.__CONFIG__;
+  const fallback = cfg ? cfg.emoji : '🌿';
+  const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
+  const imgHtml = hasPhoto
+    ? `<img src="${p.photo_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">`
+    : `<span style="font-size:40px;">${p.categories?.emoji || fallback}</span>`;
+  const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
+  const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
+  const ep = panier.find(x => x.id === p.id);
+  const btnHtml = ep
+    ? '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>'
+    : '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
+  const provHtml = p.provenance
+    ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
+    : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || ''}</div>`;
+  return `
+  <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
+    <div class="produit-img" style="position:relative;">
+      ${imgHtml}
+      ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
+    </div>
+    <div class="produit-info">
+      <div class="produit-nom">${p.nom}</div>
+      ${provHtml}
+      <div class="produit-footer">
+        <div>
+          <span class="produit-prix">${prix}€</span>
+          <span class="produit-unite"> /${p.unite}</span>
+        </div>
+        ${btnHtml}
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── RAYONS ──────────────────────────────────────────────────────
+async function chargerRayons(commercantId) {
   const grid = document.getElementById('rayonsGrid');
+  const cats = await supabase('categories', '?order=ordre&select=*');
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
-
+  const cfg = window.__CONFIG__;
   grid.innerHTML = cats.slice(0,6).map(c => `
     <div class="rayon-card" onclick="voirCategorie('${c.slug}','${c.nom}')">
-      <div class="rayon-emoji">${c.emoji || categoryEmojis[c.slug] || '🌿'}</div>
+      <div class="rayon-emoji">${c.emoji || (cfg ? cfg.emoji : '🌿')}</div>
       <div class="rayon-nom">${c.nom}</div>
     </div>
   `).join('');
 }
 
-// Charger arrivages du jour (produits mis en avant)
-async function chargerArrivages() {
-  const produits = await supabase('produits_base', '?select=*,categories(nom,emoji)&limit=8&actif=eq.true&order=created_at.desc');
+// ── ARRIVAGES (derniers ajoutés au catalogue) ────────────────────
+async function chargerArrivages(commercantId) {
   const scroll = document.getElementById('arrivageScroll');
-  if (!produits || produits.error || produits.length === 0) {
-    scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>';
-    return;
+  const rows = await supabase('catalogue',
+    '?commercant_id=eq.' + commercantId
+    + '&actif=eq.true&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categories(nom,emoji))'
+    + '&order=id.desc&limit=8');
+  if (!rows || rows.error || !rows.length) {
+    scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>'; return;
   }
-
-  scroll.innerHTML = produits.map(p => {
-    const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
-    const imgHtml = hasPhoto
-      ? `<img src="${p.photo_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">`
-      : `<span style="font-size:40px;">${p.categories?.emoji || '🌿'}</span>`;
-    const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
-    const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
-    return `
-    <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
-      <div class="produit-img" style="position:relative;">
-        ${imgHtml}
-        ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
-      </div>
-      <div class="produit-info">
-        <div class="produit-nom">${p.nom}</div>
-        ${p.provenance ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>` : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || 'Produit du marché'}</div>`}
-        <div class="produit-footer">
-          <div>
-            <span class="produit-prix">${prix}€</span>
-            <span class="produit-unite"> /${p.unite}</span>
-          </div>
-          ${(() => {
-            const ep = panier.find(x => x.id === p.id);
-            if (ep) return '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>';
-            return '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
-          })()}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  scroll.innerHTML = rows.map(flattenCatalogueRow).map(renderProduitCard).join('');
 }
 
-// Charger coups de cœur (les plus populaires / les mieux notés)
-async function chargerCoupsDeCoeur() {
-  const produits = await supabase('produits_base', '?select=*,categories(nom,emoji)&limit=8&actif=eq.true&order=nom');
+// ── COUPS DE CŒUR (ordre alphabétique = stable) ─────────────────
+async function chargerCoupsDeCoeur(commercantId) {
   const scroll = document.getElementById('coupsScroll');
-  if (!produits || produits.error || produits.length === 0) {
-    scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>';
-    return;
+  const rows = await supabase('catalogue',
+    '?commercant_id=eq.' + commercantId
+    + '&actif=eq.true&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categories(nom,emoji))'
+    + '&order=id.asc&limit=8');
+  if (!rows || rows.error || !rows.length) {
+    scroll.innerHTML = '<p style="color:#aaa;font-size:13px;">Aucun produit disponible</p>'; return;
   }
-
-  scroll.innerHTML = produits.map(p => {
-    const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
-    const imgHtml = hasPhoto
-      ? `<img src="${p.photo_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">`
-      : `<span style="font-size:40px;">${p.categories?.emoji || '🌿'}</span>`;
-    const dataStr = JSON.stringify(p).replace(/\"/g,'&quot;');
-    const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
-    return `
-    <div class="produit-card" onclick="ouvrirFicheProduit(${dataStr})">
-      <div class="produit-img" style="position:relative;">
-        ${imgHtml}
-        ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
-      </div>
-      <div class="produit-info">
-        <div class="produit-nom">${p.nom}</div>
-        ${p.provenance ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>` : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || 'Produit du marché'}</div>`}
-        <div class="produit-footer">
-          <div>
-            <span class="produit-prix">${prix}€</span>
-            <span class="produit-unite"> /${p.unite}</span>
-          </div>
-          ${(() => {
-            const ep = panier.find(x => x.id === p.id);
-            if (ep) return '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>';
-            return '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
-          })()}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  scroll.innerHTML = rows.map(flattenCatalogueRow).map(renderProduitCard).join('');
 }
 
-// Charger paniers thématiques (exemples statiques si pas encore en base)
-async function chargerPaniers() {
+// ── PANIERS THÉMATIQUES ──────────────────────────────────────────
+async function chargerPaniers(commercantId) {
   const container = document.getElementById('paniersListe');
   try {
-    // Charger les produits de catégorie "paniers"
     const cats = await supabase('categories', '?slug=eq.paniers&select=id');
     const catId = cats?.[0]?.id;
     if (!catId) { container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>'; return; }
 
-    const produits = await supabase('produits_base', '?categorie_id=eq.' + catId + '&actif=eq.true&select=*&order=created_at.desc&limit=6');
-    if (!produits || produits.length === 0) {
-      container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible pour le moment</p>';
-      return;
-    }
+    const rows = await supabase('catalogue',
+      '?commercant_id=eq.' + commercantId
+      + '&actif=eq.true&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,categorie_id)'
+      + '&produits_base.categorie_id=eq.' + catId
+      + '&order=id.desc&limit=6');
 
+    const produits = (Array.isArray(rows) ? rows : []).map(flattenCatalogueRow).filter(p => p.nom);
+    if (!produits.length) {
+      container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible pour le moment</p>'; return;
+    }
     container.innerHTML = produits.map(p => {
       const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
-      const hasPhoto = p.photo_url && p.photo_url.startsWith('http');
-      const imgHtml = hasPhoto
+      const imgHtml = p.photo_url
         ? '<img src="' + p.photo_url + '" style="width:56px;height:56px;border-radius:12px;object-fit:cover;" loading="lazy">'
         : '<div class="panier-emoji">🧺</div>';
       const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
@@ -1678,9 +1672,15 @@ async function chargerSuggestions() {
   
   // Charger 4 produits au hasard qui ne sont pas dans le panier
   try {
-    const produits = await supabase('produits_base', '?actif=eq.true&select=*,categories(nom,emoji)&limit=8');
-    if (!produits || produits.length === 0) return;
-    
+    const cfg = window.__CONFIG__;
+    const cid = cfg?.business?.id;
+    if (!cid) return;
+    const rows = await supabase('catalogue',
+      '?commercant_id=eq.' + cid
+      + '&actif=eq.true&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,categories(nom,emoji))&limit=8');
+    const produits = (Array.isArray(rows) ? rows : []).map(flattenCatalogueRow);
+    if (!produits.length) return;
+
     const suggestions = produits.filter(p => !idsPanier.includes(p.id)).slice(0, 4);
     if (suggestions.length === 0) { document.getElementById('suggestionsPanier').style.display = 'none'; return; }
 
@@ -1798,9 +1798,8 @@ let lightboxIndex = 0;
 async function chargerGalerieBoutique() {
   const scroll = document.getElementById('galerieScroll');
   try {
-    // Récupérer le commercant_id
-    const commercants = await supabase('commercants', '?slug=eq.christophe-frais-caen&select=id');
-    const commercantId = commercants?.[0]?.id;
+    const cfg = window.__CONFIG__;
+    const commercantId = cfg?.business?.id;
     if (!commercantId) return;
 
     const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/galerie-boutique', {
@@ -1910,65 +1909,85 @@ function uploaderMedia() {
   input.click();
 }
 
-// ── CONFIG BOUTIQUE (seuil livraison + photo hero) ───────────────
-async function chargerConfigBoutique() {
+// ── BANDEAU DYNAMIQUE ────────────────────────────────────────────
+async function chargerBandeauDerniers(commercantId) {
   try {
-    const r = await supabase('commercants', '?slug=eq.christophe-frais-caen&select=seuil_livraison_gratuite,min_commande_livraison,hero_photo_url');
-    const c = Array.isArray(r) ? r[0] : null;
-    if (!c) return;
-
-    // Seuil livraison gratuite (fallback sur min_commande_livraison puis 25)
-    const seuil = c.seuil_livraison_gratuite || c.min_commande_livraison || 25;
-    const pill = document.getElementById('pillLivraison');
-    if (pill) pill.textContent = 'Livraison offerte dès ' + seuil + '€';
-    window.__seuilLivraison = seuil;
-
-    // Photo de fond hero depuis la galerie commerçant
-    if (c.hero_photo_url && c.hero_photo_url.startsWith('http')) {
-      const bg = document.getElementById('heroBgPhoto');
-      const ov = document.getElementById('heroBgOverlay');
-      if (bg) {
-        const img = new Image();
-        img.onload = () => {
-          bg.style.backgroundImage = 'url("' + c.hero_photo_url + '")';
-          bg.style.opacity = '1';
-          if (ov) ov.style.opacity = '1';
-          // Désactiver le pattern SVG quand une vraie photo est présente
-          const pat = document.querySelector('#heroPrincipal .hero-pattern');
-          if (pat) pat.style.opacity = '0.15';
-        };
-        img.src = c.hero_photo_url;
-      }
-    }
-  } catch(e) { console.log('Config boutique:', e); }
-}
-
-// ── BANDEAU DYNAMIQUE : derniers produits ajoutés ────────────────
-async function chargerBandeauDerniers() {
-  try {
-    const produits = await supabase('produits_base', '?actif=eq.true&select=nom,categories(emoji)&order=created_at.desc&limit=8');
+    const cfg = window.__CONFIG__;
+    const fallback = cfg ? cfg.emoji : '🌿';
+    const rows = await supabase('catalogue',
+      '?commercant_id=eq.' + commercantId
+      + '&actif=eq.true&select=produits_base(nom,categories(emoji))&order=id.desc&limit=8');
     const el = document.getElementById('bandeauTexte');
-    if (!el || !produits || !produits.length) return;
-    const items = produits.map(p => {
-      const emoji = p.categories?.emoji || '🌿';
-      return emoji + ' <b>' + p.nom + '</b> — Nouvel arrivage';
-    });
-    // Dupliquer pour un marquee continu
+    if (!el || !rows || !rows.length) return;
+    const items = rows.map(r => {
+      const pb = r.produits_base || {};
+      const emoji = pb.categories?.emoji || fallback;
+      return emoji + ' <b>' + (pb.nom || '') + '</b> — Nouvel arrivage';
+    }).filter(s => s.includes('<b></b>') === false);
+    if (!items.length) return;
     const sep = '&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;';
     el.innerHTML = items.join(sep) + sep + items.join(sep);
-  } catch(e) { console.log('Bandeau derniers:', e); }
+  } catch(e) { console.log('Bandeau:', e); }
 }
 
-// Init
-statutOuverture();
-mettreAJourBadge();
-chargerConfigBoutique();
-chargerBandeauDerniers();
-chargerGalerieBoutique();
-chargerRayons();
-chargerArrivages();
-chargerCoupsDeCoeur();
-chargerPaniers();
+// ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
+function appliquerConfigUI(cfg) {
+  const b = cfg.business;
+
+  // Header
+  const el = id => document.getElementById(id);
+  if (el('headerNom'))    el('headerNom').textContent    = b.nom || 'Chez Christophe';
+  if (el('headerVille'))  el('headerVille').textContent  = (b.ville ? 'Click & Collect · ' + b.ville : 'Click & Collect');
+  if (el('heroNom'))      el('heroNom').textContent      = b.nom || 'Chez Christophe';
+  if (el('heroVille'))    el('heroVille').textContent    = (cfg.label || '') + (b.ville ? ' · ' + b.ville : '');
+  if (el('heroAdresse') && b.adresse) el('heroAdresse').textContent = '📍 ' + b.adresse;
+  if (el('heroTel')     && b.telephone) el('heroTel').textContent   = '📞 ' + b.telephone;
+
+  // Labels sections
+  if (el('titreRayons'))    el('titreRayons').textContent    = cfg.labels.produits    || 'Nos rayons';
+  if (el('titreArrivage'))  el('titreArrivage').textContent  = cfg.labels.arrivage    || 'Nouveautés';
+  if (el('titreCoupsCoeur')) el('titreCoupsCoeur').textContent = cfg.labels.coups_coeur || 'Nos sélections';
+  if (el('badgeArrivage'))  el('badgeArrivage').textContent  = cfg.labels.arrivage    || 'Arrivage du jour';
+
+  // Seuil livraison
+  const seuil = b.seuil_livraison_gratuite || b.min_commande_livraison || 25;
+  window.__seuilLivraison = seuil;
+  const pill = el('pillLivraison');
+  if (pill) pill.textContent = 'Livraison offerte dès ' + seuil + '€';
+
+  // Hero photo
+  if (b.hero_photo_url && b.hero_photo_url.startsWith('http')) {
+    const bg = el('heroBgPhoto'), ov = el('heroBgOverlay');
+    if (bg) {
+      const img = new Image();
+      img.onload = () => {
+        bg.style.backgroundImage = 'url("' + b.hero_photo_url + '")';
+        bg.style.opacity = '1';
+        if (ov) ov.style.opacity = '1';
+      };
+      img.src = b.hero_photo_url;
+    }
+  }
+}
+
+// ── INIT PRINCIPAL (async) ────────────────────────────────────────
+(async () => {
+  statutOuverture();
+  mettreAJourBadge();
+
+  const cfg = await window.CC.initBusiness();
+  if (!cfg) return;
+
+  appliquerConfigUI(cfg);
+
+  const cid = cfg.business.id;
+  chargerBandeauDerniers(cid);
+  chargerGalerieBoutique();   // lit window.__CONFIG__ en interne
+  chargerRayons(cid);
+  chargerArrivages(cid);
+  chargerCoupsDeCoeur(cid);
+  chargerPaniers(cid);
+})();
 
 // Scroll reveal
 const _revealEls = document.querySelectorAll('.reveal');
