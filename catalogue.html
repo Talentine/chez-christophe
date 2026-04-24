@@ -690,6 +690,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="assets/core/init.js"></script>
 </head>
 <body>
 
@@ -817,8 +818,38 @@ async function sb(table, params) {
   return r.json();
 }
 
+function flattenCatalogueRow(row) {
+  const pb = row.produits_base || {};
+  return {
+    id: pb.id || row.produit_base_id,
+    catalogue_id: row.id,
+    nom: pb.nom || '',
+    unite: pb.unite || 'pièce',
+    prix_marche_indicatif: row.prix_vente ?? pb.prix_marche_indicatif,
+    photo_url: pb.photo_url,
+    description: pb.description,
+    provenance: pb.provenance,
+    saisonnier: pb.saisonnier,
+    badge_bio: pb.badge_bio,
+    badge_local: pb.badge_local,
+    badge_nouveau: pb.badge_nouveau,
+    categorie_id: pb.categorie_id,
+    categories: pb.categories
+  };
+}
+
+let __CID__ = null;
+
 // ── CHARGEMENT ────────────────────────────────────────
 async function init() {
+  const cfg = await window.CC.initBusiness();
+  if (!cfg) return;
+  __CID__ = cfg.business.id;
+
+  // Titre page via handler
+  const labels = cfg.labels || {};
+  document.getElementById('titrePage').textContent = labels.produits || 'Catalogue';
+
   // Lire catégorie depuis URL si arrivée depuis accueil
   const params = new URLSearchParams(location.search);
   const catSlug = params.get('cat');
@@ -828,7 +859,11 @@ async function init() {
 }
 
 async function chargerCategories(catSlugActif) {
-  const cats = await sb('categories', '?order=ordre&select=*');
+  let cats = [];
+  try {
+    cats = await sb('categories', '?commercant_id=eq.' + __CID__ + '&order=ordre&select=*');
+    if (!cats.length) cats = await sb('categories', '?order=ordre&select=*');
+  } catch { cats = await sb('categories', '?order=ordre&select=*'); }
   const scroll = document.getElementById('filtresScroll');
 
   const btns = cats.map(c => `
@@ -854,8 +889,11 @@ async function chargerCategories(catSlugActif) {
 }
 
 async function chargerProduits() {
-  const data = await sb('produits_base', '?select=*,categories(nom,slug,emoji)&actif=eq.true&order=nom');
-  tousProduits = data || [];
+  const rows = await sb('catalogue',
+    '?commercant_id=eq.' + __CID__ + '&actif=eq.true'
+    + '&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categorie_id,categories(nom,slug,emoji))'
+    + '&order=id.desc');
+  tousProduits = (rows || []).map(flattenCatalogueRow).filter(p => p.id);
   appliquerFiltres();
 }
 
@@ -1122,7 +1160,6 @@ function voirPanier() {
 
 // Init
 init();
-mettreAJourPanier();
 </script>
 
 <script>

@@ -710,6 +710,38 @@
       </div>
     </div>
 
+    <!-- TYPE DE COMMERCE & PERSONNALISATION -->
+    <div id="businessTypeSection" style="margin-top:24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:12px;">Type de commerce</div>
+      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Métier</label>
+          <select id="businessType" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+            <option value="primeur">🌿 Primeur</option>
+            <option value="boucherie">🥩 Boucherie</option>
+            <option value="boulangerie">🥖 Boulangerie</option>
+            <option value="poissonnerie">🐟 Poissonnerie</option>
+            <option value="traiteur">🍽️ Traiteur</option>
+            <option value="fromagerie">🧀 Fromagerie</option>
+          </select>
+          <div style="font-size:11px;color:var(--texte-doux);margin-top:6px;">Définit la palette, les polices, les libellés et les fonctionnalités activées.</div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Personnalisation avancée (JSON)</label>
+          <textarea id="businessConfig" rows="8" placeholder='{"palette":{"primary":"#2A4535"},"labels":{"arrivage":"Frais du matin"}}'
+            style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:12px;font-family:'SF Mono',Menlo,Consolas,monospace;background:var(--creme);outline:none;resize:vertical;"></textarea>
+          <div style="font-size:11px;color:var(--texte-doux);margin-top:6px;line-height:1.4;">Surcharge optionnelle : <code>palette</code>, <code>fonts</code>, <code>labels</code>, <code>features</code>. Laisser <code>{}</code> pour tout hériter du métier.</div>
+          <div id="businessConfigErr" style="font-size:11px;color:var(--terracotta);margin-top:6px;display:none;"></div>
+        </div>
+
+        <button onclick="sauvegarderBusinessConfig()"
+          style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">
+          ✓ Enregistrer
+        </button>
+      </div>
+    </div>
+
     <style>
       input[type="checkbox"]:checked + .toggle-slider { background: var(--vert); }
       .toggle-slider::before {
@@ -1295,7 +1327,7 @@ function allerOnglet(id) {
 
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
-  if (id === 'creneaux') chargerCreneaux();
+  if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
   if (id === 'galerie') chargerGalerie();
 }
 
@@ -2697,6 +2729,56 @@ async function supprimerCreneau() {
 function toggleRayonLivraison() {
   const checked = document.getElementById('rayonActif').checked;
   document.getElementById('rayonSection').style.display = checked ? 'block' : 'none';
+}
+
+async function chargerBusinessConfig() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_config', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    const c = data?.[0];
+    if (!c) return;
+    const sel = document.getElementById('businessType');
+    const txt = document.getElementById('businessConfig');
+    if (sel) sel.value = c.business_type || 'primeur';
+    if (txt) txt.value = JSON.stringify(c.business_config || {}, null, 2);
+  } catch(e) { console.log('Erreur business config:', e); }
+}
+
+async function sauvegarderBusinessConfig() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const type = document.getElementById('businessType').value;
+  const raw = document.getElementById('businessConfig').value.trim();
+  const errEl = document.getElementById('businessConfigErr');
+  errEl.style.display = 'none';
+
+  let cfg = {};
+  if (raw) {
+    try { cfg = JSON.parse(raw); }
+    catch(e) {
+      errEl.textContent = '❌ JSON invalide : ' + e.message;
+      errEl.style.display = 'block';
+      return;
+    }
+  }
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ business_type: type, business_config: cfg })
+    });
+    if (r.ok) afficherToast('✅ Type & personnalisation enregistrés');
+    else {
+      const t = await r.text();
+      afficherToast('❌ ' + t);
+    }
+  } catch(e) { afficherToast('❌ ' + e.message); }
 }
 
 async function chargerZoneLivraison() {

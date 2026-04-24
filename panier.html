@@ -109,6 +109,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="assets/core/init.js"></script>
 </head>
 <body>
 
@@ -318,6 +319,17 @@ function getSession() {
 }
 
 // ── INIT ──────────────────────────────────────────────
+let __CID__ = null;
+let __BIZ__ = null;
+
+async function bootCommerce() {
+  const cfg = await window.CC.initBusiness();
+  if (!cfg) return null;
+  __CID__ = cfg.business.id;
+  __BIZ__ = cfg.business;
+  return cfg;
+}
+
 function init() {
   if (panier.length === 0) {
     document.getElementById('step1').innerHTML = '<div class="panier-vide" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;"><p style="font-size:48px">🛒</p><p style="margin-top:12px;font-size:16px;font-weight:500;">Votre panier est vide</p><p style="margin-top:8px;font-size:14px;color:var(--texte-doux)">Ajoutez des produits depuis la boutique</p><a href="catalogue.html" class="btn-commander" style="margin-top:20px;display:inline-block;text-align:center;text-decoration:none;">Voir la boutique</a></div>';
@@ -442,8 +454,7 @@ function distanceKm(lat1, lon1, lat2, lon2) {
 async function verifierZoneLivraison(adresse, cp, ville) {
   try {
     // Récupérer les paramètres du commerçant via son slug
-    const data = await sb('commercants', '?slug=eq.christophe-frais-caen&select=zone_livraison,rayon_livraison_km,adresse_latitude,adresse_longitude,min_commande_livraison');
-    const c = data?.[0];
+    const c = __BIZ__ || {};
     if (!c) return { ok: true };
 
     const zones = c.zone_livraison || [];
@@ -597,8 +608,7 @@ async function chargerCreneaux() {
     document.getElementById('creneauSub').textContent = 'Retrait en boutique — 8 rue Neuve Saint-Jean, Caen';
   }
 
-  const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
-  const commercantId = commercants?.[0]?.id;
+  const commercantId = __CID__;
 
   const type = modeCommande === 'livraison' ? 'livraison' : 'retrait';
   const data = await sb('creneaux', `?actif=eq.true&commercant_id=eq.${commercantId}&type=eq.${type}&order=jour_semaine,heure_debut&select=*`);
@@ -728,7 +738,7 @@ async function initialiserStripe() {
     const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-setup-intent', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ montant: sous_total, commercant_id: 'christophe-frais-caen', commande_numero: 'EN_COURS' })
+      body: JSON.stringify({ montant: sous_total, commercant_id: __CID__, commande_numero: 'EN_COURS' })
     });
     const data = await r.json();
     if (data.error) { document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible'; return; }
@@ -798,8 +808,7 @@ async function confirmerCommande() {
   const note = document.getElementById('note').value.trim();
 
   try {
-    const commercants = await sb('commercants', '?slug=eq.christophe-frais-caen&select=id');
-    const commercantId = commercants?.[0]?.id;
+    const commercantId = __CID__;
 
     let clientId = null;
     const clients = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id');
@@ -884,7 +893,7 @@ async function confirmerCommande() {
   panier = [];
 }
 
-init();
+bootCommerce().then(() => init());
 </script>
 
 <script>
