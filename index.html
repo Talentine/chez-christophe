@@ -125,7 +125,7 @@
 
   .bandeau-inner {
     display: inline-block;
-    animation: defile 20s linear infinite;
+    animation: defile 55s linear infinite;
   }
 
   @keyframes defile {
@@ -142,27 +142,16 @@
   }
 
   .hero-pattern {
-    position: absolute;
-    inset: -20px;
-    width: calc(100% + 40px);
-    height: calc(100% + 40px);
-    background-image: url('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/galerie-boutique/assets/hero-pattern.png');
-    background-size: 320px;
-    background-repeat: repeat;
-    opacity: 0.12;
-    filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg) brightness(1.8);
-    pointer-events: none;
-    mix-blend-mode: soft-light;
+    display: none;
   }
 
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(circle at 15% 30%, rgba(201,168,76,0.12), transparent 45%),
-      radial-gradient(circle at 85% 70%, rgba(61,107,89,0.2), transparent 45%),
-      radial-gradient(circle at 50% 100%, rgba(26,46,38,0.5), transparent 60%);
+    background: linear-gradient(180deg, rgba(28,48,40,0.15) 0%, rgba(28,48,40,0.55) 70%, rgba(28,48,40,0.85) 100%);
+    z-index: 1;
+    pointer-events: none;
   }
 
   .hero::after {
@@ -171,6 +160,17 @@
     bottom: 0; left: 0; right: 0;
     height: 80px;
     background: linear-gradient(to top, var(--creme), transparent);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero > div[style*="position:relative"] { z-index: 2 !important; }
+  .hero h2, .hero-sub, .hero-btns, .hero-infos { text-shadow: 0 2px 16px rgba(0,0,0,0.35); }
+  .hero-info-pill {
+    background: rgba(0,0,0,0.28) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.12);
   }
 
   .hero-badge {
@@ -728,28 +728,32 @@
     padding: 12px 0;
   }
   .fraicheur-scroll {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding: 0 20px;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px;
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
   }
-  .fraicheur-scroll::-webkit-scrollbar { display: none; }
   .fraicheur-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     background: var(--creme);
     border: 1px solid var(--creme-fonce);
     border-radius: 50px;
-    padding: 6px 14px;
-    font-size: 12px;
+    padding: 5px 10px;
+    font-size: 10.5px;
     color: var(--texte);
-    white-space: nowrap;
-    flex-shrink: 0;
     font-weight: 500;
+    line-height: 1.25;
+    white-space: normal;
+    min-width: 0;
   }
-  .fraicheur-pill .fraicheur-icon { font-size: 14px; }
+  .fraicheur-pill .fraicheur-icon { font-size: 12px; flex-shrink: 0; }
+  @media (min-width: 420px) {
+    .fraicheur-pill { font-size: 12px; padding: 6px 14px; }
+  }
 
   /* BADGES CONTEXTUELS SUR CARTES */
   .badge-carte {
@@ -771,8 +775,15 @@
   /* PROVENANCE */
   .produit-provenance {
     font-size: 11px;
-    color: var(--texte-doux);
+    color: #1F6FB2;
+    font-weight: 500;
     margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .produit-provenance-icon {
+    width: 10px; height: 10px; flex-shrink: 0;
   }
 
   
@@ -1388,7 +1399,7 @@ async function chargerArrivages() {
       </div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
-        <div class="produit-provenance">${p.categories?.nom || 'Produit du marché'}</div>
+        ${p.provenance ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>` : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || 'Produit du marché'}</div>`}
         <div class="produit-footer">
           <div>
             <span class="produit-prix">${prix}€</span>
@@ -1429,7 +1440,7 @@ async function chargerCoupsDeCoeur() {
       </div>
       <div class="produit-info">
         <div class="produit-nom">${p.nom}</div>
-        <div class="produit-provenance">${p.categories?.nom || 'Produit du marché'}</div>
+        ${p.provenance ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>` : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || 'Produit du marché'}</div>`}
         <div class="produit-footer">
           <div>
             <span class="produit-prix">${prix}€</span>
