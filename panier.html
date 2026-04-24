@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Mon panier — Chez Christophe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://js.stripe.com/v3/"></script>
 <style>
   :root {
-    --vert:#3a5c4a;--vert-fonce:#1f3028;--or:#d4a84c;
-    --creme:#faf6ee;--creme-fonce:#ede6d6;
-    --blanc:#ffffff;--texte:#1f3028;--texte-doux:#5a7060;
-    --rouge:#e74c3c;
+    --vert:#2A4535;--vert-fonce:#1C3028;--or:#B8832A;
+    --terracotta:#C4614A;--creme:#FAF7F0;--creme-fonce:#F0EAD8;
+    --blanc:#ffffff;--texte:#18271E;--texte-doux:#3D5446;
+    --rouge:#B83232;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--texte);padding-bottom:120px;}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--creme);color:var(--texte);padding-bottom:120px;}
 
   /* HEADER */
   header{background:var(--vert-fonce);position:sticky;top:0;z-index:100;padding:0 16px;height:56px;display:flex;align-items:center;gap:12px;}
@@ -56,7 +56,7 @@
   /* FORM */
   .form-group{margin-bottom:14px;}
   .form-label{font-size:13px;color:var(--texte-doux);margin-bottom:6px;display:block;}
-  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--texte);outline:none;transition:border-color .15s;}
+  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--creme);color:var(--texte);outline:none;transition:border-color .15s;}
   .form-input:focus{border-color:var(--vert);background:white;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   .form-erreur{color:var(--rouge);font-size:13px;margin-top:6px;display:none;}
@@ -90,13 +90,13 @@
 
   /* NAV MAP */
   .nav-maps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-  .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;font-family:'DM Sans',sans-serif;}
+  .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;}
   .btn-gmaps{background:#4285F4;color:white;}
   .btn-waze{background:#33CCFF;color:#1a1a1a;}
 
   /* CTA */
   .cta-fixe{position:fixed;bottom:0;left:0;right:0;background:var(--blanc);border-top:1px solid var(--creme-fonce);padding:12px 16px;z-index:99;}
-  .btn-commander{width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;}
+  .btn-commander{width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;}
   .btn-commander:active{transform:scale(0.97);}
   .btn-commander:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
 

@@ -5,18 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catalogue — Chez Christophe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #3a5c4a;
-    --vert-fonce: #1f3028;
-    --or: #d4a84c;
-    --or-clair: #f3d989;
-    --creme: #faf6ee;
-    --creme-fonce: #ede6d6;
+    --vert: #2A4535;
+    --vert-fonce: #1C3028;
+    --vert-clair: #5C8A6E;
+    --or: #B8832A;
+    --or-clair: #F0D690;
+    --terracotta: #C4614A;
+    --creme: #FAF7F0;
+    --creme-fonce: #F0EAD8;
     --blanc: #ffffff;
-    --texte: #1f3028;
-    --texte-doux: #5a7060;
+    --texte: #18271E;
+    --texte-doux: #3D5446;
+    --texte-leger: #7A9080;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +27,7 @@
   body {
     max-width: 480px;
     margin: 0 auto;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--creme);
     color: var(--texte);
     overflow-x: hidden;
@@ -129,7 +132,7 @@
     border: 1.5px solid var(--creme-fonce);
     border-radius: 50px;
     font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--creme);
     color: var(--texte);
     outline: none;
@@ -176,7 +179,7 @@
     background: var(--creme);
     font-size: 13px;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     color: var(--texte-doux);
     cursor: pointer;
     white-space: nowrap;
@@ -215,7 +218,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   /* GRILLE PRODUITS */
@@ -262,12 +265,13 @@
     position: absolute;
     top: 8px;
     left: 8px;
-    background: var(--or);
-    color: var(--vert-fonce);
+    background: var(--terracotta);
+    color: white;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 3px 8px;
     border-radius: 20px;
+    letter-spacing: 0.3px;
   }
 
   .badge-rupture {
@@ -312,14 +316,14 @@
   .produit-prix-bloc {}
 
   .produit-prix {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--texte);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--or);
   }
 
   .produit-unite {
     font-size: 11px;
-    color: var(--texte-doux);
+    color: var(--texte-leger);
   }
 
   .btn-add {
@@ -515,7 +519,7 @@
     padding: 16px;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -548,7 +552,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     transition: all 0.15s;
   }
 
@@ -624,13 +628,29 @@
     cursor: pointer;
     border: none;
     background: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     position: relative;
   }
 
-  .nav-icon { font-size: 22px; margin-bottom: 3px; }
-  .nav-label { font-size: 10px; color: #aaa; }
-  .nav-item.active .nav-label { color: var(--vert); font-weight: 500; }
+  .nav-icon {
+    width: 22px; height: 22px;
+    margin-bottom: 3px;
+    display: flex; align-items: center; justify-content: center;
+    color: #999;
+    transition: color 0.15s;
+  }
+  .nav-label { font-size: 11px; color: #999; font-weight: 400; }
+  .nav-item.active .nav-label { color: var(--vert); font-weight: 600; }
+  .nav-item.active .nav-icon { color: var(--vert); }
+
+  /* HOVER LIFT */
+  @media (hover: hover) {
+    .produit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(26,46,30,0.12);
+      transition: all 0.25s cubic-bezier(0.34,1.2,0.64,1);
+    }
+  }
 
   /* LOADING */
   .skeleton {
@@ -664,23 +684,23 @@
 <header>
   <a class="btn-retour" href="index.html">←</a>
   <span class="header-titre" id="titrePage">Catalogue</span>
-  <button class="header-search-btn" onclick="toggleRecherche()">🔍</button>
+  <button class="header-search-btn" onclick="toggleRecherche()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
   <button class="header-cart" onclick="voirPanier()">
-    🛒
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
     <span class="cart-badge" id="cartBadge"></span>
   </button>
 </header>
 
 <div class="search-bar" id="searchBar">
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
     <input class="search-input" id="searchInput" type="text" placeholder="Rechercher un produit..." oninput="filtrerProduits()" autocomplete="off">
   </div>
 </div>
 
 <div class="filtres-wrap">
   <div class="filtres-scroll" id="filtresScroll">
-    <button class="filtre-btn actif" onclick="filtrerCategorie(null, this)">🌿 Tous</button>
+    <button class="filtre-btn actif" onclick="filtrerCategorie(null, this)">Tous</button>
     <!-- catégories chargées dynamiquement -->
   </div>
 </div>
@@ -730,7 +750,7 @@
 
 <div class="fiche-cta" id="ficheCta">
   <button class="btn-ajouter-panier" id="btnAjouterPanier" onclick="ajouterDepuisFiche()">
-    🛒 Ajouter au panier — <span id="ficheTotal">0,00 €</span>
+    Ajouter au panier — <span id="ficheTotal">0,00 €</span>
   </button>
 </div>
 
@@ -745,23 +765,23 @@
 
 <nav class="bottom-nav">
   <a class="nav-item" href="index.html">
-    <span class="nav-icon">🏠</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
     <span class="nav-label">Accueil</span>
   </a>
   <a class="nav-item active" href="catalogue.html">
-    <span class="nav-icon">🛍️</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
     <span class="nav-label">Boutique</span>
   </a>
   <a class="nav-item" href="catalogue.html?cat=paniers">
-    <span class="nav-icon">🧺</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 11 4-7"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/></svg></span>
     <span class="nav-label">Paniers</span>
   </a>
   <a class="nav-item" onclick="voirPanier()">
-    <span class="nav-icon">🛒</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
     <span class="nav-label">Panier</span>
   </a>
   <a class="nav-item" href="compte.html">
-    <span class="nav-icon">👤</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
     <span class="nav-label">Compte</span>
   </a>
 </nav>

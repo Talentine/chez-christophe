@@ -5,28 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chez Christophe — Primeur artisanal · Caen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #3a5c4a;
-    --vert-fonce: #1f3028;
-    --vert-clair: #7ba286;
-    --or: #d4a84c;
-    --or-clair: #f3d989;
-    --creme: #faf6ee;
-    --creme-fonce: #ede6d6;
+    --vert: #2A4535;
+    --vert-fonce: #1C3028;
+    --vert-clair: #5C8A6E;
+    --or: #B8832A;
+    --or-clair: #F0D690;
+    --terracotta: #C4614A;
+    --creme: #FAF7F0;
+    --creme-fonce: #F0EAD8;
     --blanc: #ffffff;
-    --texte: #1a2e26;
-    --texte-doux: #5a7060;
-    --tomate: #c83e3e;
-    --abricot: #e6a460;
+    --texte: #18271E;
+    --texte-doux: #3D5446;
+    --texte-leger: #7A9080;
+    --tomate: #B83232;
+    --abricot: #C4614A;
     --aubergine: #6b4e7a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--creme);
     color: var(--texte);
     overflow-x: hidden;
@@ -112,8 +114,8 @@
 
   /* BANDEAU DÉFILANT */
   .bandeau {
-    background: var(--or);
-    color: var(--vert-fonce);
+    background: var(--terracotta);
+    color: var(--blanc);
     font-size: 13px;
     font-weight: 500;
     padding: 8px 0;
@@ -220,7 +222,7 @@
     padding: 14px 24px;
     font-size: 15px;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -237,7 +239,7 @@
     border-radius: 50px;
     padding: 14px 24px;
     font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
     transition: all 0.15s;
   }
@@ -260,7 +262,7 @@
   }
 
   /* SECTION COMMUNE */
-  section { padding: 28px 20px; }
+  section { padding: 32px 20px; }
 
   .section-header {
     display: flex;
@@ -317,14 +319,15 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #fff8e7;
-    border: 1px solid var(--or-clair);
+    background: rgba(196,97,74,0.1);
+    border: 1px solid rgba(196,97,74,0.35);
     border-radius: 20px;
     padding: 4px 12px;
     font-size: 12px;
-    color: #8a6d20;
-    font-weight: 500;
+    color: var(--terracotta);
+    font-weight: 600;
     margin-bottom: 4px;
+    animation: pulse-terra 3s ease-in-out infinite;
   }
 
   .produits-scroll {
@@ -383,14 +386,14 @@
   }
 
   .produit-prix {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--texte);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--or);
   }
 
   .produit-unite {
     font-size: 11px;
-    color: var(--texte-doux);
+    color: var(--texte-leger);
     font-weight: 400;
   }
 
@@ -430,7 +433,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
   .qty-mini-btn:active { background: rgba(255,255,255,0.4); }
   .qty-mini-num {
@@ -501,7 +504,7 @@
     padding: 8px 16px;
     font-size: 13px;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -578,19 +581,25 @@
     transition: all 0.15s;
     border: none;
     background: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  .nav-icon { font-size: 22px; margin-bottom: 3px; }
+  .nav-icon {
+    width: 22px; height: 22px;
+    margin-bottom: 3px;
+    display: flex; align-items: center; justify-content: center;
+    color: #999;
+    transition: color 0.15s;
+  }
 
   .nav-label {
-    font-size: 10px;
-    color: #aaa;
+    font-size: 11px;
+    color: #999;
     font-weight: 400;
   }
 
-  .nav-item.active .nav-label { color: var(--vert); font-weight: 500; }
-  .nav-item.active .nav-icon { filter: none; }
+  .nav-item.active .nav-label { color: var(--vert); font-weight: 600; }
+  .nav-item.active .nav-icon { color: var(--vert); }
 
   .nav-item.active::after {
     content: '';
@@ -769,10 +778,10 @@
   
   /* SPACING AMÉLIORÉ */
   section, .arrivage-section, .avis-section, .cta-section {
-    margin-top: 36px;
-    margin-bottom: 12px;
+    margin-top: 48px;
+    margin-bottom: 0;
   }
-  .galerie-section { margin-top: 24px; }
+  .galerie-section { margin-top: 48px; }
   .barre-fraicheur { margin-top: 0; }
 
   /* Cartes produits avec plus d'ombre douce */
@@ -1003,6 +1012,59 @@
     color: var(--or);
   }
   @keyframes fadeInOut { 0%{opacity:0;transform:translateX(-50%) translateY(-10px)} 10%{opacity:1;transform:translateX(-50%) translateY(0)} 80%{opacity:1} 100%{opacity:0;transform:translateX(-50%) translateY(-10px)} }
+
+  /* HOVER LIFT — desktop uniquement */
+  @media (hover: hover) {
+    .produit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(26,46,30,0.14);
+      transition: all 0.25s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    .rayon-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(26,46,30,0.10);
+      background: var(--creme);
+    }
+    .panier-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(26,46,30,0.10);
+    }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* PULSE TERRACOTTA */
+  @keyframes pulse-terra {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(196,97,74,0.35); }
+    50%       { box-shadow: 0 0 0 5px rgba(196,97,74,0); }
+  }
+
+  /* LOGO CIRCLE — couleur SVG */
+  .logo-circle { color: var(--vert-fonce); }
+
+  /* GRILLE PRODUITS — gap augmenté */
+  .rayons-grid { gap: 14px; }
+
+  /* PRODUIT NOM — meilleure lisibilité */
+  .produit-nom { font-size: 13px; font-weight: 600; color: var(--texte); }
+
+  /* VOIR TOUT — poids augmenté */
+  .voir-tout { font-weight: 600; font-size: 13px; }
+
+  /* SECTION TITLE — taille cohérente */
+  .section-title { font-size: 21px; }
 </style>
 <link rel="manifest" href="/manifest-client.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1013,14 +1075,14 @@
 
 <header>
   <div class="header-logo">
-    <div class="logo-circle">🌿</div>
+    <div class="logo-circle"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
     <div class="logo-text">
       <h1>Chez Christophe</h1>
       <p>Click &amp; Collect · Caen</p>
     </div>
   </div>
   <button class="header-cart" onclick="ouvrirPanier()">
-    🛒
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
     <span class="cart-badge" id="cartBadge">0</span>
   </button>
 </header>
@@ -1041,7 +1103,7 @@
     <div class="hero-pattern"></div>
     <div style="position:relative;z-index:1;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-        <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:28px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);">🌿</div>
+        <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
         <div>
           <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;">Click &amp; Collect</div>
           <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;">Chez Christophe</div>
@@ -1051,7 +1113,7 @@
       <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
       <p class="hero-sub">Sélectionnés chaque matin.<br>Retrait en boutique au cœur de Caen.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="window.location.href='catalogue.html'">🛒 Je commande →</button>
+        <button class="btn-primary" onclick="window.location.href='catalogue.html'">Commander →</button>
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
       <div class="hero-infos">
@@ -1074,30 +1136,8 @@
     </div>
   </div>
 
-  <!-- GALERIE PHOTO / VIDEO -->
-  <div class="galerie-section" id="galerie">
-    <div class="galerie-header">
-      <h2 class="section-title">Notre boutique 🌿</h2>
-      <a class="voir-tout" onclick="ouvrirLightbox(0)">Voir tout →</a>
-    </div>
-    <div class="galerie-scroll" id="galerieScroll">
-      <div class="galerie-item galerie-item-grande">
-        <div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Chargement...</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="fermerLightbox()">
-    <button class="lightbox-close" onclick="fermerLightbox()">✕</button>
-    <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
-    <div class="lightbox-content" onclick="event.stopPropagation()" id="lightboxContent"></div>
-    <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
-    <div class="lightbox-counter" id="lightboxCounter"></div>
-  </div>
-
   <!-- RAYONS -->
-  <section id="rayons">
+  <section id="rayons" class="reveal">
     <div class="section-header">
       <h2 class="section-title">Nos rayons</h2>
     </div>
@@ -1111,11 +1151,11 @@
   </section>
 
   <!-- ARRIVAGE DU JOUR (derniers produits ajoutés) -->
-  <div class="arrivage-section" id="arrivage">
+  <div class="arrivage-section reveal" id="arrivage">
     <div class="section-header">
       <div>
-        <div class="arrivage-badge">🌟 Nouveau</div>
-        <h2 class="section-title" style="margin-top:4px">Arrivage du jour</h2>
+        <div class="arrivage-badge">Arrivage du jour</div>
+        <h2 class="section-title" style="margin-top:4px">Nouveautés</h2>
       </div>
       <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
     </div>
@@ -1127,11 +1167,11 @@
   </div>
 
   <!-- COUP DE CŒUR (les plus vendus) -->
-  <div class="arrivage-section" id="coupsDeCoeur">
+  <div class="arrivage-section reveal" id="coupsDeCoeur">
     <div class="section-header">
       <div>
-        <div class="arrivage-badge" style="background:rgba(201,168,76,0.15);color:var(--or);">⭐ Populaire</div>
-        <h2 class="section-title" style="margin-top:4px">Coups de cœur</h2>
+        <div class="arrivage-badge" style="background:rgba(184,131,42,0.12);border-color:rgba(184,131,42,0.3);color:var(--or);animation:none;">Coups de cœur</div>
+        <h2 class="section-title" style="margin-top:4px">Nos sélections</h2>
       </div>
       <a class="voir-tout" onclick="window.location.href='catalogue.html'">Tout voir →</a>
     </div>
@@ -1143,9 +1183,9 @@
   </div>
 
   <!-- PANIERS -->
-  <section id="paniers">
+  <section id="paniers" class="reveal">
     <div class="section-header">
-      <h2 class="section-title">Nos paniers 🧺</h2>
+      <h2 class="section-title">Nos paniers</h2>
       <a class="voir-tout">Tout voir →</a>
     </div>
     <div id="paniersListe">
@@ -1155,9 +1195,9 @@
   </section>
 
   <!-- AVIS -->
-  <div class="avis-section">
+  <div class="avis-section reveal">
     <div class="section-header">
-      <h2 class="section-title">Avis clients ⭐</h2>
+      <h2 class="section-title">Avis clients</h2>
     </div>
     <div id="avisListe">
       <div class="avis-card">
@@ -1184,12 +1224,34 @@
     </div>
   </div>
 
+  <!-- GALERIE PHOTO / VIDEO -->
+  <div class="galerie-section reveal" id="galerie">
+    <div class="galerie-header">
+      <h2 class="section-title">Notre boutique</h2>
+      <a class="voir-tout" onclick="ouvrirLightbox(0)">Voir tout →</a>
+    </div>
+    <div class="galerie-scroll" id="galerieScroll">
+      <div class="galerie-item galerie-item-grande">
+        <div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Chargement...</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="fermerLightbox()">
+    <button class="lightbox-close" onclick="fermerLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()" id="lightboxContent"></div>
+    <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
   <!-- CTA FINAL -->
   <div class="cta-section">
     <h3>Prêt à commander ?</h3>
     <p>Choisissez votre créneau et récupérez en boutique</p>
     <a href="catalogue.html" class="btn-primary" style="margin:0 auto;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
-      🛒 Voir la boutique →
+      Voir la boutique →
     </a>
   </div>
 
@@ -1198,23 +1260,23 @@
 <!-- NAV BAS -->
 <nav class="bottom-nav">
   <a class="nav-item active" href="index.html">
-    <span class="nav-icon">🏠</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
     <span class="nav-label">Accueil</span>
   </a>
   <a class="nav-item" href="catalogue.html">
-    <span class="nav-icon">🛍️</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
     <span class="nav-label">Boutique</span>
   </a>
   <a class="nav-item" href="catalogue.html?cat=paniers">
-    <span class="nav-icon">🧺</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 11 4-7"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/></svg></span>
     <span class="nav-label">Paniers</span>
   </a>
   <a class="nav-item" onclick="ouvrirPanier()">
-    <span class="nav-icon">🛒</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
     <span class="nav-label">Panier</span>
   </a>
   <a class="nav-item" href="compte.html">
-    <span class="nav-icon">👤</span>
+    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
     <span class="nav-label">Compte</span>
   </a>
 </nav>
@@ -1824,6 +1886,15 @@ chargerRayons();
 chargerArrivages();
 chargerCoupsDeCoeur();
 chargerPaniers();
+
+// Scroll reveal
+const _revealEls = document.querySelectorAll('.reveal');
+const _revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); _revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+_revealEls.forEach(el => _revealObs.observe(el));
 </script>
 
 <!-- FICHE PRODUIT DRAWER -->
@@ -1843,12 +1914,12 @@ chargerPaniers();
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
       <span style="font-size:14px;color:var(--texte-doux);">Quantité :</span>
       <div style="display:flex;align-items:center;gap:4px;background:var(--creme-fonce);border-radius:50px;padding:4px;">
-        <button onclick="changerQteFicheAccueil(-1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">−</button>
+        <button onclick="changerQteFicheAccueil(-1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;">−</button>
         <span id="ficheQteAccueil" style="font-size:18px;font-weight:500;min-width:28px;text-align:center;">1</span>
-        <button onclick="changerQteFicheAccueil(1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">+</button>
+        <button onclick="changerQteFicheAccueil(1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;">+</button>
       </div>
     </div>
-    <button id="btnAjouterFicheAccueil" onclick="ajouterDepuisFicheAccueil()" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s;">
+    <button id="btnAjouterFicheAccueil" onclick="ajouterDepuisFicheAccueil()" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s;">
       🛒 Ajouter au panier — <span id="ficheTotalAccueil">0,00 €</span>
     </button>
   </div>
