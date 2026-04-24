@@ -30,21 +30,34 @@ export async function fetchAllBusinesses() {
 }
 
 // ── PRODUITS ─────────────────────────────────────────────
+// Architecture réelle :
+//   catalogue      → table par marchand (commercant_id, produit_base_id, prix_vente, actif, en_stock, custom_fields)
+//   produits_base  → catalogue global partagé (PAS de commercant_id)
+//   Joint via PostgREST : catalogue?select=*,produits_base(*)
+
 export async function fetchProducts(commercantId, opts={}) {
-  let q = `?commercant_id=eq.${commercantId}&actif=eq.true&select=*,categories(nom,slug,emoji)`;
-  if (opts.categorieSlug) q += `&categories.slug=eq.${opts.categorieSlug}`;
+  let q = `?commercant_id=eq.${commercantId}&actif=eq.true`
+        + `&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categorie_id,categories(nom,slug,emoji))`;
   if (opts.limit) q += `&limit=${opts.limit}`;
-  q += opts.order ? `&order=${opts.order}` : '&order=nom';
-  return sb('produits_base', q);
+  q += opts.order ? `&order=${opts.order}` : '&order=id.desc';
+  return sb('catalogue', q);
 }
 
 export async function fetchLatestProducts(commercantId, limit=8) {
-  return sb('produits_base',
-    `?commercant_id=eq.${commercantId}&actif=eq.true&select=*,categories(nom,emoji)&order=created_at.desc&limit=${limit}`);
+  return sb('catalogue',
+    `?commercant_id=eq.${commercantId}&actif=eq.true`
+    + `&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categorie_id,categories(nom,emoji))`
+    + `&order=id.desc&limit=${limit}`);
 }
 
 export async function fetchCategories(commercantId) {
-  return sb('categories', `?commercant_id=eq.${commercantId}&select=*&order=ordre`);
+  // Les catégories peuvent être globales OU par marchand selon la config Supabase
+  // Tenter d'abord par commercant_id, fallback global
+  try {
+    const rows = await sb('categories', `?commercant_id=eq.${commercantId}&select=*&order=ordre`);
+    if (rows.length) return rows;
+  } catch {}
+  return sb('categories', '?select=*&order=ordre');
 }
 
 // ── CRÉNEAUX ─────────────────────────────────────────────
