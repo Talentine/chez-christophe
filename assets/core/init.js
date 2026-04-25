@@ -18,18 +18,33 @@
   };
 
   // ── SLUG ─────────────────────────────────────────────────
+  // Hôtes "plateforme" pour lesquels on ignore le sous-domaine et on
+  // privilégie le routage par sous-chemin (vercel preview, netlify, github).
+  var PLATFORM_HOSTS = ['vercel.app', 'netlify.app', 'github.io', 'pages.dev'];
+
   function resolveSlug() {
     // 1. Param ?slug= prioritaire (utile en local file:// et tests)
     var p = new URLSearchParams(location.search).get('slug');
     if (p) return p;
-    // 2. Sous-domaine en prod (slug.tondomaine.com)
-    var host = location.hostname.split('.');
-    if (host.length >= 3 && host[0] !== 'www' && host[0] !== 'localhost') return host[0];
-    // 3. Sous-chemin en prod (tondomaine.com/slug/)
+
+    var hostname = location.hostname;
+    var isPlatform = PLATFORM_HOSTS.some(function(h) {
+      return hostname === h || hostname.endsWith('.' + h);
+    });
+
+    // 2. Sous-chemin (prioritaire sur plateformes type vercel.app)
+    //    tondomaine.com/slug/  ou  app.vercel.app/slug/
     if (location.protocol !== 'file:') {
       var seg = location.pathname.split('/').filter(Boolean)[0];
       if (seg && !seg.endsWith('.html')) return seg;
     }
+
+    // 3. Sous-domaine en prod (slug.tondomaine.com), uniquement si pas une plateforme
+    if (!isPlatform) {
+      var host = hostname.split('.');
+      if (host.length >= 3 && host[0] !== 'www' && host[0] !== 'localhost') return host[0];
+    }
+
     // 4. Fallback
     return 'christophe-frais-caen';
   }
