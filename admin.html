@@ -751,7 +751,9 @@ async function creerCommerce() {
     }
 
     const payload = {
-      slug, nom, business_type,
+      slug,
+      nom_boutique: nom,
+      business_type,
       ville: ville || null,
       adresse: adresse || null,
       telephone: telephone || null,
