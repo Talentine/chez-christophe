@@ -443,9 +443,9 @@
 <div id="loginScreen" style="position:fixed;inset:0;background:#1a2e26;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#243d32;border-radius:24px;padding:36px 28px;width:100%;max-width:380px;border:1px solid rgba(255,255,255,0.1);">
     <div style="text-align:center;margin-bottom:28px;">
-      <div style="font-size:40px;margin-bottom:10px;">🌿</div>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;color:white;margin-bottom:4px;">Espace Primeur</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.5);">Connexion commerçant</div>
+      <div style="font-size:40px;margin-bottom:10px;">🛍️</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:white;margin-bottom:4px;">Espace commerçant</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);">Click & Collect</div>
     </div>
     <div style="margin-bottom:14px;">
       <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:6px;">Email</div>
@@ -473,9 +473,9 @@
 <div class="app-header">
   <div class="header-top">
     <div class="header-logo">
-      <div class="logo-icon">🌿</div>
+      <div class="logo-icon" id="dashLogoEmoji">🛍️</div>
       <div class="logo-info">
-        <h1>Espace Primeur</h1>
+        <h1 id="dashTitre">Espace commerçant</h1>
         <p id="statutBoutique">Chargement...</p>
       </div>
     </div>
@@ -1753,12 +1753,12 @@ function seDeconnecterCommercant() {
   document.getElementById('loginScreen').style.display = 'flex';
 }
 
-function verifierSessionCommercant() {
+async function verifierSessionCommercant() {
   const session = localStorage.getItem('session_commercant');
   if (session) {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
-    appliquerThemeMonCommerce();
+    await appliquerThemeMonCommerce();
     return true;
   }
   return false;
@@ -1770,7 +1770,11 @@ async function appliquerThemeMonCommerce() {
     if (!s.slug || !window.CC) return;
     const cfg = await window.CC.initBusiness(s.slug);
     if (cfg) {
-      document.title = (s.nom_boutique || 'Espace') + ' · ' + cfg.label;
+      document.title = 'Espace ' + cfg.label + ' — ' + (s.nom_boutique || cfg.business?.nom_boutique || '');
+      const tEl = document.getElementById('dashTitre');
+      const eEl = document.getElementById('dashLogoEmoji');
+      if (tEl) tEl.textContent = 'Espace ' + cfg.label;
+      if (eEl) eEl.textContent = cfg.emoji || '🛍️';
     }
   } catch(e) { console.log('theme dashboard:', e); }
 }
@@ -1818,10 +1822,17 @@ let categoriesCache = [];
 
 async function chargerCategories() {
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/categories?select=id,nom,slug,emoji&order=nom', {
+    const bt = window.__CONFIG__?.business?.business_type || 'primeur';
+    let r = await fetch(SUPABASE_URL + '/rest/v1/categories?business_type=eq.' + bt + '&select=id,nom,slug,emoji&order=ordre', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     categoriesCache = await r.json();
+    if (!Array.isArray(categoriesCache) || !categoriesCache.length) {
+      r = await fetch(SUPABASE_URL + '/rest/v1/categories?select=id,nom,slug,emoji&order=nom', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      categoriesCache = await r.json();
+    }
     if (!Array.isArray(categoriesCache)) categoriesCache = [];
   } catch(e) { console.log('Erreur catégories:', e); categoriesCache = []; }
   
@@ -3036,12 +3047,9 @@ async function sauvegarderHistoire() {
   } catch(e) { afficherToast('❌ Erreur : ' + e.message); }
 }
 
-if (!verifierSessionCommercant()) {
-  // Afficher login
-} else {
-  init();
-  demarrerRealtime();
-}
+verifierSessionCommercant().then(function(ok) {
+  if (ok) { init(); demarrerRealtime(); }
+});
 </script>
 </div>
 

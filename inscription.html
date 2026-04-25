@@ -257,10 +257,15 @@ async function creerBoutique() {
       body: JSON.stringify({ email: state.email, password: state.mdp })
     });
     const supData = await sup.json();
-    if (!sup.ok || !supData.user) throw new Error(supData.msg || supData.error_description || 'Erreur création compte');
+    console.log('[signup response]', sup.status, supData);
+    if (!sup.ok) {
+      const m = supData.msg || supData.message || supData.error_description || supData.error || ('HTTP ' + sup.status);
+      throw new Error('Signup: ' + m);
+    }
+    const userId = supData.user?.id || supData.id;
+    if (!userId) throw new Error('Signup: réponse sans user id — ' + JSON.stringify(supData).slice(0, 200));
 
-    state.accessToken = supData.access_token || null;
-    const userId = supData.user.id;
+    state.accessToken = supData.access_token || supData.session?.access_token || null;
 
     const authHeader = state.accessToken
       ? { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + state.accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' }
@@ -306,7 +311,12 @@ async function creerBoutique() {
       }));
     }
 
-    document.getElementById('successUrl').textContent = state.slug + '.click-collect.fr';
+    const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
+    const url = isLocal
+      ? location.href.replace(/inscription\.html.*$/, 'index.html?slug=' + state.slug)
+      : (location.protocol + '//' + state.slug + '.' + location.host.replace(/^[^.]+\./, ''));
+    document.getElementById('successUrl').innerHTML =
+      '<a href="' + url + '" target="_blank" style="color:#5c8a6e;text-decoration:none;word-break:break-all;">' + url + '</a>';
     etape(4);
 
   } catch (e) {

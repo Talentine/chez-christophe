@@ -860,8 +860,9 @@ async function init() {
 
 async function chargerCategories(catSlugActif) {
   let cats = [];
+  const bt = window.__CONFIG__?.business?.business_type || 'primeur';
   try {
-    cats = await sb('categories', '?commercant_id=eq.' + __CID__ + '&order=ordre&select=*');
+    cats = await sb('categories', '?business_type=eq.' + bt + '&order=ordre&select=*');
     if (!cats.length) cats = await sb('categories', '?order=ordre&select=*');
   } catch { cats = await sb('categories', '?order=ordre&select=*'); }
   const scroll = document.getElementById('filtresScroll');

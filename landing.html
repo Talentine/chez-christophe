@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChezChristophe · Click & Collect pour artisans & commerçants</title>
+  <meta name="description" content="Créez votre boutique en ligne et gérez vos commandes click & collect en quelques minutes. Pour primeurs, bouchers, boulangers, poissonniers, traiteurs et fromagers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #1C3D2E;
+      --brand-dark: #122A1F;
+      --brand-light: #2A5442;
+      --gold: #C9A54B;
+      --gold-light: #F0D690;
+      --cream: #FAF7F0;
+      --cream-dark: #F0EAD8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B63;
+      --white: #FFFFFF;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      transition: box-shadow .2s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+      color: var(--brand);
+    }
+    .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: 500;
+      color: var(--text-muted); cursor: pointer; transition: all .15s;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--cream); }
+
+    .nav-cta {
+      padding: 10px 24px; background: var(--brand); color: #fff;
+      border-radius: 50px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .2s; border: none;
+    }
+    .nav-cta:hover { background: var(--brand-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(28,61,46,.3); }
+
+    .nav-mobile-cta { display: none; }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(160deg, var(--cream) 0%, #fff 60%, #F0F7F3 100%);
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,165,75,.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(28,61,46,.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      max-width: 760px; text-align: center; position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 50px;
+      background: rgba(201,165,75,.15); border: 1px solid rgba(201,165,75,.3);
+      font-size: 13px; font-weight: 600; color: #8B6E1A;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 68px);
+      color: var(--brand); margin-bottom: 24px; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px); color: var(--text-muted);
+      max-width: 560px; margin: 0 auto 48px; line-height: 1.65;
+    }
+
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; background: var(--brand); color: #fff;
+      border-radius: 50px; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: all .2s; border: none;
+      box-shadow: 0 4px 20px rgba(28,61,46,.25);
+    }
+    .btn-primary:hover { background: var(--brand-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(28,61,46,.3); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; background: transparent; color: var(--brand);
+      border-radius: 50px; font-size: 16px; font-weight: 600;
+      border: 2px solid var(--brand); cursor: pointer; transition: all .2s;
+    }
+    .btn-secondary:hover { background: var(--cream); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+      margin-top: 64px; padding-top: 48px;
+      border-top: 1px solid var(--cream-dark);
+    }
+    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--brand); }
+    .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── METIERS ────────────────────────────────────────── */
+    .section { padding: 96px 24px; }
+    .section-center { text-align: center; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .section h2 { font-size: clamp(28px, 4vw, 48px); color: var(--brand); margin-bottom: 16px; }
+    .section-sub { font-size: 18px; color: var(--text-muted); max-width: 560px; margin: 0 auto 64px; line-height: 1.65; }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .metiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .metier-card {
+      border-radius: 20px; padding: 32px 28px;
+      border: 1px solid var(--cream-dark);
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden;
+      background: var(--white);
+    }
+    .metier-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--mc-bg, var(--cream));
+      opacity: 0; transition: opacity .25s;
+    }
+    .metier-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .metier-card:hover::before { opacity: 1; }
+
+    .metier-card-inner { position: relative; z-index: 1; }
+
+    .metier-emoji { font-size: 40px; margin-bottom: 20px; display: block; }
+    .metier-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .metier-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+
+    .metier-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .metier-tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 50px;
+      background: rgba(0,0,0,.05); color: var(--text-muted);
+    }
+
+    .metier-card[data-type="primeur"] { --mc-bg: rgba(42,69,53,.04); }
+    .metier-card[data-type="boucherie"] { --mc-bg: rgba(139,26,26,.04); }
+    .metier-card[data-type="boulangerie"] { --mc-bg: rgba(107,68,35,.04); }
+    .metier-card[data-type="poissonnerie"] { --mc-bg: rgba(27,73,101,.04); }
+    .metier-card[data-type="traiteur"] { --mc-bg: rgba(43,43,43,.04); }
+    .metier-card[data-type="fromagerie"] { --mc-bg: rgba(61,84,70,.04); }
+
+    /* ── HOW IT WORKS ───────────────────────────────────── */
+    .how-bg { background: var(--brand); }
+    .how-bg .section-label { color: var(--gold-light); }
+    .how-bg h2 { color: #fff; }
+    .how-bg .section-sub { color: rgba(255,255,255,.7); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .step {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px; padding: 36px 28px;
+      transition: all .25s;
+    }
+    .step:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gold); color: var(--brand-dark);
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .step h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
+    .step p { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.65; }
+
+    .step-arrow {
+      display: none;
+      align-self: center; color: rgba(255,255,255,.3); font-size: 24px;
+    }
+
+    /* ── FEATURES ───────────────────────────────────────── */
+    .features-bg { background: var(--cream); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white); border-radius: 16px; padding: 28px 24px;
+      border: 1px solid var(--cream-dark); transition: all .2s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--brand); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feature-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .feature-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PRICING ────────────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 900px; margin: 0 auto;
+    }
+
+    .pricing-card {
+      border-radius: 20px; padding: 36px 32px;
+      border: 2px solid var(--cream-dark);
+      background: var(--white);
+      transition: all .25s;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-lg); }
+
+    .pricing-card.popular {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+      transform: scale(1.03);
+    }
+    .pricing-card.popular:hover { transform: scale(1.05); }
+
+    .pricing-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 50px;
+      background: var(--gold); color: var(--brand-dark);
+      font-size: 12px; font-weight: 700; margin-bottom: 20px;
+    }
+
+    .pricing-name { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: 8px; }
+    .pricing-card.popular .pricing-name { color: rgba(255,255,255,.7); }
+
+    .pricing-price {
+      font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700;
+      color: var(--brand); line-height: 1; margin-bottom: 4px;
+    }
+    .pricing-card.popular .pricing-price { color: #fff; }
+
+    .pricing-period { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+    .pricing-card.popular .pricing-period { color: rgba(255,255,255,.6); }
+
+    .pricing-features { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px;
+    }
+    .pricing-features li::before {
+      content: '';
+      width: 18px; height: 18px; flex-shrink: 0;
+      border-radius: 50%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C3D2E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/14px no-repeat;
+      background-color: rgba(28,61,46,.1);
+    }
+    .pricing-card.popular .pricing-features li::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C3D2E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-color: rgba(255,255,255,.2);
+    }
+
+    .btn-pricing {
+      width: 100%; padding: 14px; border-radius: 50px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      border: 2px solid var(--brand); color: var(--brand);
+      background: transparent; transition: all .2s;
+    }
+    .btn-pricing:hover { background: var(--brand); color: #fff; }
+
+    .pricing-card.popular .btn-pricing {
+      background: var(--gold); border-color: var(--gold); color: var(--brand-dark);
+    }
+    .pricing-card.popular .btn-pricing:hover { background: var(--gold-light); }
+
+    /* ── TESTIMONIALS ───────────────────────────────────── */
+    .testimonials-bg { background: var(--cream); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--white); border-radius: 16px; padding: 28px 24px;
+      border: 1px solid var(--cream-dark);
+    }
+
+    .testimonial-stars { color: var(--gold); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--brand); display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .testimonial-name { font-weight: 700; font-size: 14px; }
+    .testimonial-role { font-size: 12px; color: var(--text-muted); }
+
+    /* ── CTA FINAL ──────────────────────────────────────── */
+    .cta-final {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+      padding: 96px 24px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,165,75,.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-final h2 { color: #fff; font-size: clamp(28px, 4vw, 48px); margin-bottom: 16px; }
+    .cta-final p { color: rgba(255,255,255,.75); font-size: 18px; margin-bottom: 48px; }
+    .cta-final .btn-primary { background: var(--gold); color: var(--brand-dark); box-shadow: 0 4px 20px rgba(201,165,75,.4); }
+    .cta-final .btn-primary:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    .footer {
+      background: var(--brand-dark); color: rgba(255,255,255,.6);
+      padding: 48px 24px; text-align: center; font-size: 14px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      color: #fff; margin-bottom: 16px;
+    }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-link { color: rgba(255,255,255,.5); transition: color .15s; }
+    .footer-link:hover { color: #fff; }
+
+    /* ── ANIMATIONS ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-badge-dot { animation: none; }
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-cta {
+        display: inline-flex; padding: 9px 20px;
+        background: var(--brand); color: #fff;
+        border-radius: 50px; font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+      }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 64px 20px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+      .hero-stats { gap: 24px; }
+      .pricing-card.popular { transform: scale(1); }
+    }
+
+    @media (min-width: 1024px) {
+      .step-arrow { display: flex; }
+      .steps-grid { grid-template-columns: 1fr auto 1fr auto 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
+  <div class="nav-logo" aria-label="ChezChristophe">
+    <div class="nav-logo-dot" aria-hidden="true"></div>
+    ChezChristophe
+  </div>
+  <div class="nav-links">
+    <a href="#metiers" class="nav-link">Nos métiers</a>
+    <a href="#fonctionnement" class="nav-link">Comment ça marche</a>
+    <a href="#tarifs" class="nav-link">Tarifs</a>
+    <a href="admin.html" class="nav-link">Admin</a>
+  </div>
+  <a href="inscription.html" class="nav-cta" role="button">Commencer gratuitement</a>
+  <a href="inscription.html" class="nav-mobile-cta" role="button">S'inscrire</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot" aria-hidden="true"></span>
+      Nouveau · Click &amp; Collect pour artisans
+    </div>
+    <h1 id="hero-title" class="reveal reveal-delay-1">
+      Votre boutique en ligne,<br><em>en quelques minutes</em>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Créez votre site vitrine click &amp; collect personnalisé selon votre métier. Gérez vos commandes, vos produits et vos clients depuis un dashboard simple.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="inscription.html" class="btn-primary" role="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Créer ma boutique gratuitement
+      </a>
+      <a href="#fonctionnement" class="btn-secondary" role="button">Voir comment ça marche</a>
+    </div>
+    <div class="hero-stats reveal reveal-delay-4">
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">Métiers supportés</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5 min</div>
+        <div class="hero-stat-label">Pour créer votre boutique</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">0€</div>
+        <div class="hero-stat-label">Pour démarrer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTIERS -->
+<section class="section section-center" id="metiers" aria-labelledby="metiers-title">
+  <div class="container">
+    <p class="section-label reveal">Nos métiers</p>
+    <h2 id="metiers-title" class="reveal reveal-delay-1">Une solution adaptée<br>à chaque artisan</h2>
+    <p class="section-sub reveal reveal-delay-2">Chaque métier a son propre thème, ses propres catégories et ses propres fonctionnalités. Votre boutique ressemble à votre univers.</p>
+
+    <div class="metiers-grid">
+      <div class="metier-card reveal" data-type="primeur">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🌿</span>
+          <div class="metier-name">Primeur</div>
+          <p class="metier-desc">Fruits, légumes de saison, produits bio. Mettez en avant vos arrivages du jour et vos producteurs locaux.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Saisonnier</span>
+            <span class="metier-tag">Bio</span>
+            <span class="metier-tag">Provenance</span>
+          </div>
+        </div>
+      </div>
+      <div class="metier-card reveal reveal-delay-1" data-type="boucherie">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🥩</span>
+          <div class="metier-name">Boucherie</div>
+          <p class="metier-desc">Viandes, charcuterie, plats préparés. Gérez les demandes de découpe et les commandes personnalisées.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Découpe</span>
+            <span class="metier-tag">Cuisson</span>
+            <span class="metier-tag">Programmation</span>
+          </div>
+        </div>
+      </div>
+      <div class="metier-card reveal reveal-delay-2" data-type="boulangerie">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🥖</span>
+          <div class="metier-name">Boulangerie</div>
+          <p class="metier-desc">Pains, viennoiseries, pâtisseries. Programmez vos fournées et gérez les réservations à l'avance.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">DLC</span>
+            <span class="metier-tag">Programmation</span>
+            <span class="metier-tag">Bio</span>
+          </div>
+        </div>
+      </div>
+      <div class="metier-card reveal" data-type="poissonnerie">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🐟</span>
+          <div class="metier-name">Poissonnerie</div>
+          <p class="metier-desc">Poissons frais, crustacés, plateaux de fruits de mer. Afficher les arrivages du matin en temps réel.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Arrivages</span>
+            <span class="metier-tag">Découpe</span>
+            <span class="metier-tag">DLC</span>
+          </div>
+        </div>
+      </div>
+      <div class="metier-card reveal reveal-delay-1" data-type="traiteur">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🍽️</span>
+          <div class="metier-name">Traiteur</div>
+          <p class="metier-desc">Plats chauds, buffets, cocktails, menus événementiels. Prenez des commandes à l'avance pour vos événements.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Plats du jour</span>
+            <span class="metier-tag">Buffets</span>
+            <span class="metier-tag">Cocktails</span>
+          </div>
+        </div>
+      </div>
+      <div class="metier-card reveal reveal-delay-2" data-type="fromagerie">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">🧀</span>
+          <div class="metier-name">Fromagerie</div>
+          <p class="metier-desc">Pâtes molles, pressées, chèvres, AOP. Valorisez vos affinages et proposez vos plateaux sur-mesure.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Affinage</span>
+            <span class="metier-tag">AOP</span>
+            <span class="metier-tag">Plateaux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-center how-bg" id="fonctionnement" aria-labelledby="how-title">
+  <div class="container">
+    <p class="section-label reveal">Simple &amp; rapide</p>
+    <h2 id="how-title" class="reveal reveal-delay-1">Lancez-vous en 3 étapes</h2>
+    <p class="section-sub reveal reveal-delay-2">Pas besoin de développeur, ni de compétences techniques. Votre boutique est en ligne en moins de 5 minutes.</p>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num" aria-hidden="true">1</div>
+        <h3>Choisissez votre métier</h3>
+        <p>Sélectionnez parmi nos 6 profils artisans. Le thème, les catégories et les fonctionnalités s'adaptent automatiquement.</p>
+      </div>
+      <div class="step-arrow reveal" aria-hidden="true">→</div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num" aria-hidden="true">2</div>
+        <h3>Créez votre compte</h3>
+        <p>Renseignez le nom de votre boutique, votre ville et votre email. Votre adresse personnalisée est générée instantanément.</p>
+      </div>
+      <div class="step-arrow reveal reveal-delay-2" aria-hidden="true">→</div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num" aria-hidden="true">3</div>
+        <h3>Ajoutez vos produits</h3>
+        <p>Depuis votre dashboard, ajoutez vos produits, gérez vos stocks et recevez vos premières commandes click &amp; collect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-center features-bg" id="fonctionnalites" aria-labelledby="features-title">
+  <div class="container">
+    <p class="section-label reveal">Fonctionnalités</p>
+    <h2 id="features-title" class="reveal reveal-delay-1">Tout ce dont vous avez besoin</h2>
+    <p class="section-sub reveal reveal-delay-2">Un outil complet, pensé pour les artisans du quotidien.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Vitrine personnalisée</h3>
+        <p>Un site dédié à votre adresse, avec votre thème, vos couleurs et vos produits. Sans code.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3>Click &amp; Collect</h3>
+        <p>Vos clients commandent en ligne, viennent retirer leur commande en boutique. Simple pour eux, simple pour vous.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3>Dashboard complet</h3>
+        <p>Gérez vos produits, suivez vos commandes et consultez vos statistiques depuis un seul endroit.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.67 4.93 2 2 0 0 1 3.64 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Notifications clients</h3>
+        <p>Vos clients reçoivent une confirmation de commande et un rappel quand leur colis est prêt.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Statistiques</h3>
+        <p>Suivez vos ventes, vos produits les plus commandés et vos créneaux de retrait préférés.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 15.54a5 5 0 0 1 0-7.07"/></svg>
+        </div>
+        <h3>Thème par métier</h3>
+        <p>Chaque profession a son identité visuelle : couleurs, typographies, catégories et labels adaptés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-center testimonials-bg" aria-labelledby="temoignages-title">
+  <div class="container">
+    <p class="section-label reveal">Ils nous font confiance</p>
+    <h2 id="temoignages-title" class="reveal reveal-delay-1">Ce qu'ils en disent</h2>
+    <p class="section-sub reveal reveal-delay-2">Des artisans comme vous ont déjà sauté le pas.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 étoiles">★★★★★</div>
+        <p class="testimonial-text">"J'ai créé ma boutique boucher en 10 minutes. Mes clients adorent pouvoir commander leurs pièces à l'avance, et moi j'ai moins de gâchis en fin de journée."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">🥩</div>
+          <div>
+            <div class="testimonial-name">Michel D.</div>
+            <div class="testimonial-role">Boucher, Lyon</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 étoiles">★★★★★</div>
+        <p class="testimonial-text">"Parfait pour ma boulangerie. Je programme mes fournées à l'avance et mes clients réservent leurs pains en croûte dès la veille. Zéro invendu le soir."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">🥖</div>
+          <div>
+            <div class="testimonial-name">Sophie L.</div>
+            <div class="testimonial-role">Boulangère, Bordeaux</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 étoiles">★★★★★</div>
+        <p class="testimonial-text">"Mes arrivages de la marée sont publiés dès 7h, et les commandes tombent avant que j'ouvre. Je n'aurais jamais cru qu'un site click & collect puisse être si simple à gérer."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">🐟</div>
+          <div>
+            <div class="testimonial-name">Jean-Pierre M.</div>
+            <div class="testimonial-role">Poissonnier, Nantes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section-center" id="tarifs" aria-labelledby="tarifs-title">
+  <div class="container">
+    <p class="section-label reveal">Tarifs</p>
+    <h2 id="tarifs-title" class="reveal reveal-delay-1">Simple et transparent</h2>
+    <p class="section-sub reveal reveal-delay-2">Commencez gratuitement, évoluez quand vous le souhaitez.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-name">Découverte</div>
+        <div class="pricing-price">0€</div>
+        <div class="pricing-period">Pour toujours, sans carte bancaire</div>
+        <ul class="pricing-features" aria-label="Fonctionnalités incluses">
+          <li>Boutique vitrine en ligne</li>
+          <li>Jusqu'à 20 produits</li>
+          <li>Click &amp; Collect basique</li>
+          <li>Dashboard commerçant</li>
+          <li>Support par email</li>
+        </ul>
+        <a href="inscription.html" class="btn-pricing" role="button">Commencer gratuitement</a>
+      </div>
+      <div class="pricing-card popular reveal reveal-delay-1">
+        <div class="pricing-badge">Le plus populaire</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">29€</div>
+        <div class="pricing-period">par mois · sans engagement</div>
+        <ul class="pricing-features" aria-label="Fonctionnalités incluses">
+          <li>Produits illimités</li>
+          <li>Commandes illimitées</li>
+          <li>Notifications SMS clients</li>
+          <li>Statistiques avancées</li>
+          <li>Sous-domaine personnalisé</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <a href="inscription.html" class="btn-pricing" role="button">Démarrer l'essai gratuit</a>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-name">Entreprise</div>
+        <div class="pricing-price">Sur devis</div>
+        <div class="pricing-period">Pour les chaînes et groupements</div>
+        <ul class="pricing-features" aria-label="Fonctionnalités incluses">
+          <li>Plusieurs boutiques</li>
+          <li>Tableau de bord multi-sites</li>
+          <li>API &amp; intégrations</li>
+          <li>Onboarding personnalisé</li>
+          <li>SLA garanti</li>
+        </ul>
+        <a href="mailto:contact@chezchristophe.fr" class="btn-pricing" role="button">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" aria-labelledby="cta-title">
+  <div style="position:relative;z-index:1">
+    <h2 id="cta-title" class="reveal">Prêt à lancer votre boutique ?</h2>
+    <p class="reveal reveal-delay-1">Rejoignez les artisans qui ont digitalisé leur commerce en quelques minutes.</p>
+    <a href="inscription.html" class="btn-primary reveal reveal-delay-2" role="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Créer ma boutique maintenant — C'est gratuit
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">ChezChristophe</div>
+  <nav class="footer-links" aria-label="Liens du pied de page">
+    <a href="inscription.html" class="footer-link">S'inscrire</a>
+    <a href="app-commercant.html" class="footer-link">Dashboard</a>
+    <a href="admin.html" class="footer-link">Admin</a>
+  </nav>
+  <p>© 2026 ChezChristophe · Click &amp; Collect pour artisans de proximité</p>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>

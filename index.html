@@ -1412,7 +1412,9 @@ function renderProduitCard(p) {
 // ── RAYONS ──────────────────────────────────────────────────────
 async function chargerRayons(commercantId) {
   const grid = document.getElementById('rayonsGrid');
-  const cats = await supabase('categories', '?order=ordre&select=*');
+  const bt = window.__CONFIG__?.business?.business_type || 'primeur';
+  let cats = await supabase('categories', '?business_type=eq.' + bt + '&order=ordre&select=*');
+  if (!cats || cats.error || !cats.length) cats = await supabase('categories', '?order=ordre&select=*');
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
   const cfg = window.__CONFIG__;
   grid.innerHTML = cats.slice(0,6).map(c => `
