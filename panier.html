@@ -217,7 +217,7 @@
       <input class="form-input" id="email" type="email" placeholder="marie@email.fr" autocomplete="email">
     </div>
     <div class="form-group">
-      <label class="form-label">Note pour Christophe</label>
+      <label class="form-label form-label-note">Note pour le commerçant</label>
       <input class="form-input" id="note" type="text" placeholder="Allergies, préférences...">
     </div>
     <div class="form-erreur" id="coordErreur">⚠️ Veuillez remplir tous les champs obligatoires</div>
@@ -233,7 +233,7 @@
       <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:12px;padding:14px;"></div>
       <div id="stripe-card-errors" style="color:var(--rouge);font-size:13px;margin-top:8px;display:none"></div>
     </div>
-    <p style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.5;">🔒 Sécurisé par Stripe — Chez Christophe ne stocke jamais vos données bancaires</p>
+    <p style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.5;">🔒 Sécurisé par Stripe — vos données bancaires ne sont jamais stockées</p>
   </div>
 
   <div class="section">
@@ -327,6 +327,14 @@ async function bootCommerce() {
   if (!cfg) return null;
   __CID__ = cfg.business.id;
   __BIZ__ = cfg.business;
+  // Titres dynamiques selon métier
+  const labelPanier = (cfg.labels && cfg.labels.panier) || 'Mon panier';
+  const headerEl = document.getElementById('headerTitre');
+  if (headerEl) headerEl.textContent = labelPanier;
+  document.title = labelPanier + ' — ' + (cfg.business.nom_boutique || 'Boutique');
+  // Note pour le commerçant
+  const noteLabel = document.querySelector('.form-label-note');
+  if (noteLabel) noteLabel.textContent = 'Note pour ' + (cfg.business.nom_boutique || 'le commerçant');
   return cfg;
 }
 

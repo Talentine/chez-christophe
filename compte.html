@@ -626,7 +626,12 @@ function afficherToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-window.CC.initBusiness().then(() => init());
+window.CC.initBusiness().then(function(cfg) {
+  if (cfg) {
+    document.title = 'Mon Compte — ' + (cfg.business.nom_boutique || 'Boutique');
+  }
+  init();
+});
 </script>
 
 <script>
