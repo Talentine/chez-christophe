@@ -315,6 +315,10 @@
           <div id="mrrParPlan"></div>
         </div>
         <div class="mrr-card">
+          <div class="mrr-titre">Répartition par métier</div>
+          <div id="repartitionMetiers"></div>
+        </div>
+        <div class="mrr-card">
           <div class="mrr-titre">Activité récente</div>
           <div id="activiteRecente"></div>
         </div>
@@ -603,6 +607,34 @@ async function chargerDashboard() {
     </div>
   `).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucun abonnement actif</p>';
 
+  // Répartition par métier
+  const metierStats = {};
+  tousCommercants.forEach(c => {
+    const t = c.business_type || 'primeur';
+    metierStats[t] = (metierStats[t] || 0) + 1;
+  });
+  const METIERS_DASH = {
+    primeur:{emoji:'🌿',label:'Primeur'}, boucherie:{emoji:'🥩',label:'Boucherie'},
+    boulangerie:{emoji:'🥖',label:'Boulangerie'}, poissonnerie:{emoji:'🐟',label:'Poissonnerie'},
+    traiteur:{emoji:'🍽️',label:'Traiteur'}, fromagerie:{emoji:'🧀',label:'Fromagerie'}
+  };
+  const total = tousCommercants.length || 1;
+  document.getElementById('repartitionMetiers').innerHTML = Object.entries(metierStats)
+    .sort((a,b) => b[1]-a[1])
+    .map(([t, n]) => {
+      const m = METIERS_DASH[t] || { emoji:'🏪', label:t };
+      const pct = Math.round((n/total)*100);
+      return `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="color:rgba(255,255,255,0.85);">${m.emoji} ${m.label}</span>
+          <span style="color:var(--or);font-weight:500;">${n} · ${pct}%</span>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:var(--or);"></div>
+        </div>
+      </div>`;
+    }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucun commerce</p>';
+
   // Activité récente
   document.getElementById('activiteRecente').innerHTML = (commandes || []).slice(0,5).map(c => {
     const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
@@ -611,9 +643,18 @@ async function chargerDashboard() {
 }
 
 // ── COMMERÇANTS ───────────────────────────────────────
+const METIERS = {
+  primeur:      { emoji:'🌿', label:'Primeur' },
+  boucherie:    { emoji:'🥩', label:'Boucherie' },
+  boulangerie:  { emoji:'🥖', label:'Boulangerie' },
+  poissonnerie: { emoji:'🐟', label:'Poissonnerie' },
+  traiteur:     { emoji:'🍽️', label:'Traiteur' },
+  fromagerie:   { emoji:'🧀', label:'Fromagerie' }
+};
+
 async function chargerCommercants() {
   if (tousCommercants.length === 0) {
-    tousCommercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)') || [];
+    tousCommercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&order=created_at.desc') || [];
   }
   renderTableCommercants(tousCommercants);
 }
@@ -630,17 +671,22 @@ function renderTableCommercants(data) {
     const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
     const statutClass = c.actif ? 'badge-actif' : 'badge-inactif';
     const statutTxt = c.actif ? 'Actif' : 'Inactif';
+    const m = METIERS[c.business_type] || METIERS.primeur;
+    const dt = c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' }) : '—';
 
     return `
       <tr>
         <td>
-          <div style="font-weight:500;">${c.nom_boutique}</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${c.email}</div>
+          <div style="font-weight:500;display:flex;align-items:center;gap:8px;">
+            <span style="font-size:18px;">${m.emoji}</span>
+            <span>${c.nom_boutique}</span>
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:26px;">${c.email || ''} · ${m.label}</div>
         </td>
         <td style="color:rgba(255,255,255,0.6);">${c.ville || '—'}</td>
         <td><span class="badge ${planClass}">${plan}</span></td>
         <td><span class="badge ${statutClass}">${statutTxt}</span></td>
-        <td style="color:rgba(255,255,255,0.6);">—</td>
+        <td style="color:rgba(255,255,255,0.6);font-size:13px;">${dt}</td>
         <td>
           <button class="action-btn" onclick="voirBoutique('${c.slug}')">Voir</button>
           <button class="action-btn" onclick="modifierPlan('${c.id}')">Plan</button>
@@ -675,7 +721,13 @@ async function toggleActif(id, actif) {
 }
 
 function voirBoutique(slug) {
-  window.open(`https://project-8mrfn.vercel.app?shop=${slug}`, '_blank');
+  // Local file:// → ouvre index.html avec ?slug=
+  // Production → utilise sous-chemin /<slug>
+  if (location.protocol === 'file:') {
+    window.open('index.html?slug=' + encodeURIComponent(slug), '_blank');
+  } else {
+    window.open('/' + encodeURIComponent(slug), '_blank');
+  }
 }
 
 function modifierPlan(id) {
