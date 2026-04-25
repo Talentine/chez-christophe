@@ -19,12 +19,18 @@
 
   // ── SLUG ─────────────────────────────────────────────────
   function resolveSlug() {
-    var host = location.hostname.split('.');
-    if (host.length >= 3 && host[0] !== 'www' && host[0] !== 'localhost') return host[0];
-    var seg = location.pathname.split('/').filter(Boolean)[0];
-    if (seg && !seg.endsWith('.html')) return seg;
+    // 1. Param ?slug= prioritaire (utile en local file:// et tests)
     var p = new URLSearchParams(location.search).get('slug');
     if (p) return p;
+    // 2. Sous-domaine en prod (slug.tondomaine.com)
+    var host = location.hostname.split('.');
+    if (host.length >= 3 && host[0] !== 'www' && host[0] !== 'localhost') return host[0];
+    // 3. Sous-chemin en prod (tondomaine.com/slug/)
+    if (location.protocol !== 'file:') {
+      var seg = location.pathname.split('/').filter(Boolean)[0];
+      if (seg && !seg.endsWith('.html')) return seg;
+    }
+    // 4. Fallback
     return 'christophe-frais-caen';
   }
 
