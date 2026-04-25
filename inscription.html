@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer ma boutique · Click & Collect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html,body{font-family:'Inter',sans-serif;background:#0e0f1c;color:#fff;min-height:100vh;}
+  .wrap{max-width:560px;margin:0 auto;padding:40px 24px 80px;}
+  .logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#5c8a6e;margin-bottom:8px;}
+  h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;line-height:1.15;margin-bottom:10px;}
+  .sub{color:rgba(255,255,255,0.6);font-size:15px;line-height:1.5;margin-bottom:32px;}
+  .step-bar{display:flex;gap:6px;margin-bottom:28px;}
+  .step-bar > div{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,0.08);transition:.25s;}
+  .step-bar > div.actif{background:#5c8a6e;}
+  .card{background:#1a1c2e;border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:28px;}
+  .step{display:none;}
+  .step.actif{display:block;animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .step-title{font-size:18px;font-weight:600;margin-bottom:6px;}
+  .step-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:22px;}
+  label{display:block;font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:6px;font-weight:500;}
+  input,select{width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:#fff;font-size:14px;font-family:inherit;outline:none;transition:.15s;}
+  input:focus,select:focus{border-color:#5c8a6e;background:rgba(255,255,255,0.06);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .field{margin-bottom:16px;}
+  .hint{font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px;line-height:1.4;}
+  .metiers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .metier{padding:18px 14px;border-radius:14px;border:1.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);text-align:center;cursor:pointer;transition:.15s;}
+  .metier:hover{background:rgba(255,255,255,0.05);}
+  .metier.actif{border-color:#5c8a6e;background:rgba(92,138,110,0.12);}
+  .metier-emoji{font-size:30px;margin-bottom:6px;}
+  .metier-nom{font-size:13px;font-weight:500;}
+  .actions{display:flex;gap:10px;margin-top:24px;}
+  .btn{flex:1;padding:14px;border-radius:50px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;}
+  .btn-primary{background:linear-gradient(135deg,#5c8a6e,#3d5446);color:#fff;}
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-primary:disabled{opacity:0.5;cursor:wait;transform:none;}
+  .btn-secondary{background:rgba(255,255,255,0.06);color:#fff;}
+  .err{display:none;background:rgba(196,97,74,0.15);border:1px solid rgba(196,97,74,0.4);border-radius:10px;padding:11px 14px;font-size:13px;color:#ffaa9a;margin-top:14px;}
+  .recap{background:rgba(92,138,110,0.08);border:1px dashed rgba(92,138,110,0.3);border-radius:12px;padding:14px;margin-bottom:16px;font-size:13px;line-height:1.7;}
+  .recap-label{color:rgba(255,255,255,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;}
+  .footer-link{margin-top:24px;text-align:center;font-size:13px;color:rgba(255,255,255,0.5);}
+  .footer-link a{color:#5c8a6e;text-decoration:none;}
+  .success{text-align:center;padding:20px 0;}
+  .success-emoji{font-size:56px;margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="logo">Click & Collect</div>
+  <h1>Créez votre boutique en ligne</h1>
+  <p class="sub">Lancez votre site click & collect en 3 minutes — sans technique, sans abonnement contraignant.</p>
+
+  <div class="step-bar">
+    <div class="bar1 actif"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
+
+  <div class="card">
+
+    <!-- ÉTAPE 1 — MÉTIER -->
+    <div class="step actif" id="step1">
+      <div class="step-title">Quel est votre métier ?</div>
+      <div class="step-sub">On adapte automatiquement design, couleurs et fonctionnalités.</div>
+      <div class="metiers" id="metiersList">
+        <div class="metier" data-type="primeur"><div class="metier-emoji">🌿</div><div class="metier-nom">Primeur</div></div>
+        <div class="metier" data-type="boucherie"><div class="metier-emoji">🥩</div><div class="metier-nom">Boucherie</div></div>
+        <div class="metier" data-type="boulangerie"><div class="metier-emoji">🥖</div><div class="metier-nom">Boulangerie</div></div>
+        <div class="metier" data-type="poissonnerie"><div class="metier-emoji">🐟</div><div class="metier-nom">Poissonnerie</div></div>
+        <div class="metier" data-type="traiteur"><div class="metier-emoji">🍽️</div><div class="metier-nom">Traiteur</div></div>
+        <div class="metier" data-type="fromagerie"><div class="metier-emoji">🧀</div><div class="metier-nom">Fromagerie</div></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="etape(2)" id="btnNext1" disabled>Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 — BOUTIQUE -->
+    <div class="step" id="step2">
+      <div class="step-title">Votre boutique</div>
+      <div class="step-sub">Ces infos s'afficheront sur votre site vitrine.</div>
+
+      <div class="field">
+        <label>Nom de la boutique *</label>
+        <input id="iNom" placeholder="Paul Primeur" oninput="slugAuto()">
+      </div>
+
+      <div class="field">
+        <label>Adresse de votre site *</label>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input id="iSlug" placeholder="paul-primeur" style="font-family:monospace;flex:1;">
+          <span style="color:rgba(255,255,255,0.4);font-size:13px;">.click-collect.fr</span>
+        </div>
+        <div class="hint">Lettres minuscules, chiffres et tirets uniquement.</div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Ville</label>
+          <input id="iVille" placeholder="Caen">
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input id="iTel" placeholder="02 31 00 00 00">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Adresse</label>
+        <input id="iAdresse" placeholder="2 rue de la Mer, 14000 Caen">
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="etape(1)">← Retour</button>
+        <button class="btn btn-primary" onclick="etape(3)" id="btnNext2">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 — COMPTE -->
+    <div class="step" id="step3">
+      <div class="step-title">Votre compte</div>
+      <div class="step-sub">Vous l'utiliserez pour gérer votre boutique.</div>
+
+      <div class="recap" id="recap"></div>
+
+      <div class="field">
+        <label>Email *</label>
+        <input id="iEmail" type="email" placeholder="paul@boutique.fr">
+      </div>
+
+      <div class="field">
+        <label>Mot de passe *</label>
+        <input id="iMdp" type="password" placeholder="6 caractères minimum">
+        <div class="hint">Vous pourrez le changer ensuite depuis votre dashboard.</div>
+      </div>
+
+      <div class="err" id="err"></div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="etape(2)">← Retour</button>
+        <button class="btn btn-primary" onclick="creerBoutique()" id="btnSubmit">Créer ma boutique</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 4 — SUCCÈS -->
+    <div class="step" id="step4">
+      <div class="success">
+        <div class="success-emoji">🎉</div>
+        <div class="step-title" style="font-size:22px;">Boutique créée !</div>
+        <div class="step-sub" style="margin-top:10px;font-size:14px;">Vous allez être redirigé vers votre dashboard pour ajouter vos premiers produits.</div>
+        <div class="recap" style="text-align:left;margin-top:18px;">
+          <div class="recap-label">Adresse de votre site</div>
+          <div id="successUrl" style="font-family:monospace;font-size:14px;"></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:20px;" onclick="redirigerDashboard()">Aller au dashboard →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-link">
+    Vous avez déjà un compte ? <a href="app-commercant.html">Se connecter</a>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', commercantId:null, accessToken:null };
+
+// ── Sélection métier
+document.getElementById('metiersList').addEventListener('click', e => {
+  const m = e.target.closest('.metier'); if (!m) return;
+  document.querySelectorAll('.metier').forEach(x => x.classList.remove('actif'));
+  m.classList.add('actif');
+  state.type = m.dataset.type;
+  document.getElementById('btnNext1').disabled = false;
+});
+
+// ── Slugify auto
+function slugify(s) {
+  return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60);
+}
+function slugAuto() {
+  const slugEl = document.getElementById('iSlug');
+  if (slugEl.dataset.touched === '1') return;
+  slugEl.value = slugify(document.getElementById('iNom').value);
+}
+document.getElementById('iSlug').addEventListener('input', () => {
+  document.getElementById('iSlug').dataset.touched = '1';
+});
+
+// ── Navigation étapes
+function etape(n) {
+  if (n === 2 && !state.type) return;
+  if (n === 3) {
+    state.nom = document.getElementById('iNom').value.trim();
+    state.slug = slugify(document.getElementById('iSlug').value);
+    state.ville = document.getElementById('iVille').value.trim();
+    state.tel = document.getElementById('iTel').value.trim();
+    state.adresse = document.getElementById('iAdresse').value.trim();
+    if (!state.nom || !state.slug) {
+      alert('Nom et adresse du site obligatoires.');
+      return;
+    }
+    document.getElementById('recap').innerHTML =
+      `<div class="recap-label">Métier</div><div>${state.type}</div>` +
+      `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
+      `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">${state.slug}.click-collect.fr</div>`;
+  }
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
+  document.getElementById('step' + n).classList.add('actif');
+  for (let i=1;i<=3;i++) document.querySelector('.bar'+i)?.classList.toggle('actif', i <= n);
+}
+
+// ── Création
+async function creerBoutique() {
+  const err = document.getElementById('err');
+  const btn = document.getElementById('btnSubmit');
+  err.style.display = 'none';
+
+  state.email = document.getElementById('iEmail').value.trim();
+  state.mdp = document.getElementById('iMdp').value;
+
+  if (!state.email || !state.mdp) {
+    err.textContent = 'Email et mot de passe obligatoires.';
+    err.style.display = 'block';
+    return;
+  }
+  if (state.mdp.length < 6) {
+    err.textContent = 'Mot de passe : 6 caractères minimum.';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Création…';
+
+  try {
+    // 1. Vérif slug libre
+    const exist = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(state.slug) + '&select=id', {
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.json());
+    if (exist?.length) throw new Error('Cette adresse de site est déjà prise. Choisissez-en une autre.');
+
+    // 2. Signup auth
+    const sup = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: state.email, password: state.mdp })
+    });
+    const supData = await sup.json();
+    if (!sup.ok || !supData.user) throw new Error(supData.msg || supData.error_description || 'Erreur création compte');
+
+    state.accessToken = supData.access_token || null;
+    const userId = supData.user.id;
+
+    const authHeader = state.accessToken
+      ? { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + state.accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' }
+      : { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=representation' };
+
+    // 3. Création commercant
+    const cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
+      method: 'POST',
+      headers: authHeader,
+      body: JSON.stringify({
+        slug: state.slug,
+        nom_boutique: state.nom,
+        business_type: state.type,
+        ville: state.ville || null,
+        adresse: state.adresse || null,
+        telephone: state.tel || null,
+        email: state.email,
+        actif: true,
+        business_config: {}
+      })
+    });
+    const cData = await cRes.json();
+    if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData)) + ' — vérifiez la config RLS de commercants');
+    state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
+
+    // 4. Lien rôle commerçant
+    await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
+      method: 'POST',
+      headers: authHeader,
+      body: JSON.stringify({ user_id: userId, commercant_id: state.commercantId, role: 'commercant' })
+    });
+
+    // 5. Persister la session pour le dashboard
+    if (state.accessToken) {
+      localStorage.setItem('session_commercant', JSON.stringify({
+        access_token: state.accessToken,
+        email: state.email,
+        user_id: userId,
+        role: 'commercant',
+        commercant_id: state.commercantId,
+        slug: state.slug,
+        nom_boutique: state.nom
+      }));
+    }
+
+    document.getElementById('successUrl').textContent = state.slug + '.click-collect.fr';
+    etape(4);
+
+  } catch (e) {
+    err.textContent = '❌ ' + e.message;
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Créer ma boutique';
+  }
+}
+
+function redirigerDashboard() {
+  if (state.accessToken) {
+    location.href = 'app-commercant.html';
+  } else {
+    location.href = 'app-commercant.html?email=' + encodeURIComponent(state.email);
+  }
+}
+</script>
+</body>
+</html>
