@@ -76,8 +76,8 @@
   }
 
   // ── INIT ─────────────────────────────────────────────────
-  async function initBusiness() {
-    var slug = resolveSlug();
+  async function initBusiness(explicitSlug) {
+    var slug = explicitSlug || resolveSlug();
     try {
       var r = await fetch(SB_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(slug) + '&select=*', {
         headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }

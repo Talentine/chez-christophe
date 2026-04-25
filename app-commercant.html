@@ -435,6 +435,7 @@
 
 </style>
 
+<script src="assets/core/init.js"></script>
 </head>
 <body>
 
@@ -1734,6 +1735,7 @@ async function seConnecterCommercant() {
 
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
+    appliquerThemeMonCommerce();
     init();
     demarrerRealtime();
   } else {
@@ -1756,9 +1758,21 @@ function verifierSessionCommercant() {
   if (session) {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
+    appliquerThemeMonCommerce();
     return true;
   }
   return false;
+}
+
+async function appliquerThemeMonCommerce() {
+  try {
+    const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    if (!s.slug || !window.CC) return;
+    const cfg = await window.CC.initBusiness(s.slug);
+    if (cfg) {
+      document.title = (s.nom_boutique || 'Espace') + ' · ' + cfg.label;
+    }
+  } catch(e) { console.log('theme dashboard:', e); }
 }
 
 let uniteSelectionnee = null;
