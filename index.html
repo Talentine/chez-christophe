@@ -1790,7 +1790,8 @@ function setNav(el) {
 }
 
 function voirCategorie(slug, nom) {
-  window.location.href = `catalogue.html?cat=${slug}`;
+  const u = `catalogue.html?cat=${slug}`;
+  window.location.href = (window.CC && window.CC.url) ? window.CC.url(u) : u;
 }
 
 // ── GALERIE & LIGHTBOX ──────────────────────────────────────────

@@ -1156,7 +1156,7 @@ function afficherConfirmation(nom, qte) {
 }
 
 function voirPanier() {
-  window.location.href = 'panier.html';
+  window.location.href = (window.CC && window.CC.url) ? window.CC.url('panier.html') : 'panier.html';
 }
 
 // Init

@@ -75,6 +75,84 @@
     }
   }
 
+  // ── PRESERVE SLUG ────────────────────────────────────────
+  // Réécrit tous les liens internes <a href="*.html"> pour conserver
+  // le ?slug=... courant. Indispensable en local (file://) où le slug
+  // ne se déduit pas du path. En prod (Vercel), inoffensif : le path
+  // gère déjà le routage par slug.
+  function injectSlug(url, slug) {
+    if (!url || !slug) return url;
+    if (/^(https?:|mailto:|tel:|javascript:|#)/i.test(url)) return url;
+    if (!/\.html(\?|$|#)/i.test(url)) return url;
+    if (/[?&]slug=/.test(url)) return url;
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    var hashIdx = url.indexOf('#');
+    if (hashIdx >= 0) return url.slice(0, hashIdx) + sep + 'slug=' + encodeURIComponent(slug) + url.slice(hashIdx);
+    return url + sep + 'slug=' + encodeURIComponent(slug);
+  }
+
+  function preserveSlugOnLinks(slug) {
+    if (!slug) return;
+    // Helper public : window.CC.url('panier.html') → 'panier.html?slug=xxx'
+    if (window.CC) window.CC.url = function(path) { return injectSlug(path, slug); };
+
+    // Patch des redirections JS (onclick="location.href='x.html'")
+    // On surcharge window.location.assign / replace + setter href.
+    try {
+      var origAssign = window.location.assign.bind(window.location);
+      var origReplace = window.location.replace.bind(window.location);
+      window.location.assign = function(u) { return origAssign(injectSlug(String(u), slug)); };
+      window.location.replace = function(u) { return origReplace(injectSlug(String(u), slug)); };
+    } catch(_) {}
+
+    // Intercepte location.href = '...' via un click handler global
+    document.addEventListener('click', function(ev) {
+      var t = ev.target;
+      while (t && t.nodeType === 1) {
+        var oc = t.getAttribute && t.getAttribute('onclick');
+        if (oc && /(location|window\.location)(\.href)?\s*=/.test(oc)) {
+          // Rewrite uniquement si pas déjà patché
+          if (!t.dataset.ccSlugged) {
+            var rewritten = oc.replace(/(['"`])([^'"`]+\.html[^'"`]*)\1/g, function(_, q, url) {
+              return q + injectSlug(url, slug) + q;
+            });
+            t.setAttribute('onclick', rewritten);
+            t.dataset.ccSlugged = '1';
+          }
+          break;
+        }
+        t = t.parentNode;
+      }
+    }, true);
+
+    var apply = function() {
+      // Liens <a href>
+      document.querySelectorAll('a[href]').forEach(function(a) {
+        var n = injectSlug(a.getAttribute('href'), slug);
+        if (n !== a.getAttribute('href')) a.setAttribute('href', n);
+      });
+      // onclick inline avec location.href='x.html'
+      document.querySelectorAll('[onclick]').forEach(function(el) {
+        if (el.dataset.ccSlugged) return;
+        var oc = el.getAttribute('onclick');
+        if (!oc || !/\.html/.test(oc)) return;
+        if (!/(location|window\.location)(\.href)?\s*=/.test(oc)) return;
+        var rewritten = oc.replace(/(['"`])([^'"`]+\.html[^'"`]*)\1/g, function(_, q, url) {
+          return q + injectSlug(url, slug) + q;
+        });
+        if (rewritten !== oc) {
+          el.setAttribute('onclick', rewritten);
+          el.dataset.ccSlugged = '1';
+        }
+      });
+    };
+    apply();
+    if (window.MutationObserver) {
+      var obs = new MutationObserver(apply);
+      obs.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    }
+  }
+
   // ── INIT ─────────────────────────────────────────────────
   async function initBusiness(explicitSlug) {
     var slug = explicitSlug || resolveSlug();
@@ -99,6 +177,7 @@
       });
       window.__CONFIG__ = cfg;
       applyTheme(cfg);
+      preserveSlugOnLinks(slug);
       return cfg;
     } catch(e) {
       console.error('[CC] init failed:', slug, e.message);

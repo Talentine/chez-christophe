@@ -223,10 +223,10 @@
     <div class="form-erreur" id="coordErreur">⚠️ Veuillez remplir tous les champs obligatoires</div>
   </div>
 
-  <div class="section">
+  <div class="section" id="empreinteSection" style="display:none">
     <div class="section-titre">🔒 Garantie anti no-show</div>
     <div class="empreinte-info">
-      Votre carte est enregistrée à titre de <strong>garantie uniquement</strong>. Aucun débit si vous venez chercher votre commande. En cas d'absence sans annulation, des frais de <strong>5€</strong> pourront être prélevés.
+      Votre carte est enregistrée à titre d'<strong>empreinte bancaire</strong>. Aucun débit si vous venez chercher votre commande — empreinte automatiquement libérée 24h après la date de retrait. En cas d'absence non signalée, <strong id="empreinteFee">75% du panier</strong> pourra être prélevé.
     </div>
     <div id="stripeLoading" style="text-align:center;padding:16px;color:var(--texte-doux);font-size:14px;">⏳ Chargement du formulaire sécurisé...</div>
     <div id="stripeForm" style="display:none">
@@ -517,7 +517,7 @@ async function etapeSuivante() {
     // Vérifier connexion
     if (!getSession()) {
       if (confirm('Vous devez être connecté pour commander.\n\nAller sur la page de connexion ?')) {
-        window.location.href = 'compte.html';
+        window.location.href = (window.CC && window.CC.url) ? window.CC.url('compte.html') : 'compte.html';
       }
       return;
     }
@@ -739,18 +739,24 @@ function validerFormulaire() {
 }
 
 // ── STRIPE ────────────────────────────────────────────
+// L'empreinte est OPTIONNELLE : pilotée par __BIZ__.empreinte_obligatoire.
+// Si false → section masquée, aucun appel Stripe.
+// Si true  → on monte le card element. La PaymentIntent (capture_method=manual)
+//            est créée APRÈS la commande, dans confirmerCommande.
 async function initialiserStripe() {
+  const section = document.getElementById('empreinteSection');
+  if (!__BIZ__ || !__BIZ__.empreinte_obligatoire) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+  // Maj affichage % no-show
+  const pct = __BIZ__.no_show_pct || 75;
+  const feeEl = document.getElementById('empreinteFee');
+  if (feeEl) feeEl.textContent = pct + '% du panier';
+
   try {
     stripe = Stripe(STRIPE_PK);
-    const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
-    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-setup-intent', {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ montant: sous_total, commercant_id: __CID__, commande_numero: 'EN_COURS' })
-    });
-    const data = await r.json();
-    if (data.error) { document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible'; return; }
-    stripeSecret = data.client_secret;
     const elements = stripe.elements();
     stripeCard = elements.create('card', {
       style: { base: { fontSize: '15px', color: '#1f3028', fontFamily: 'DM Sans, sans-serif', '::placeholder': { color: '#aaa' } } },
@@ -765,29 +771,31 @@ async function initialiserStripe() {
       err.style.display = e.error ? 'block' : 'none';
     });
   } catch(e) {
-    document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible — commande sans empreinte';
+    document.getElementById('stripeLoading').textContent = '⚠️ Formulaire non disponible';
   }
 }
 
-async function confirmerEmpreinte() {
-  if (!stripe || !stripeCard || !stripeSecret) return true;
-  const { setupIntent, error } = await stripe.confirmCardSetup(stripeSecret, {
-    payment_method: {
-      card: stripeCard,
-      billing_details: {
-        name: document.getElementById('prenom').value + ' ' + document.getElementById('nom').value,
-        email: document.getElementById('email').value,
-      }
-    }
+// Crée le PaymentIntent côté Edge Function PUIS confirme la carte côté client.
+// Renvoie { ok, error?, payment_intent_id? }
+async function creerEtConfirmerEmpreinte(commande_id, montant_cents, billing) {
+  // 1) Edge Function : crée PaymentIntent capture_method=manual
+  const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-empreinte', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'create', commande_id, montant_cents, email: billing.email, nom: billing.name })
   });
-  if (error) {
-    const err = document.getElementById('stripe-card-errors');
-    err.textContent = error.message;
-    err.style.display = 'block';
-    return false;
+  const data = await r.json();
+  if (data.error || !data.client_secret) return { ok: false, error: data.error || 'Empreinte indisponible' };
+
+  // 2) Stripe.js : confirme la carte → l'auth passe en 'requires_capture'
+  const { paymentIntent, error } = await stripe.confirmCardPayment(data.client_secret, {
+    payment_method: { card: stripeCard, billing_details: billing }
+  });
+  if (error) return { ok: false, error: error.message };
+  if (paymentIntent.status !== 'requires_capture') {
+    return { ok: false, error: 'Empreinte non autorisée (statut ' + paymentIntent.status + ')' };
   }
-  stripePaymentMethodId = setupIntent.payment_method;
-  return true;
+  return { ok: true, payment_intent_id: paymentIntent.id };
 }
 
 // ── CONFIRMATION ──────────────────────────────────────
@@ -795,14 +803,6 @@ async function confirmerCommande() {
   const btn = document.getElementById('btnAction');
   btn.disabled = true;
   document.getElementById('btnTxt').textContent = 'Envoi en cours...';
-
-  // Confirmer empreinte Stripe
-  const empreinteOk = await confirmerEmpreinte();
-  if (!empreinteOk) {
-    btn.disabled = false;
-    document.getElementById('btnTxt').textContent = 'Confirmer la commande →';
-    return;
-  }
 
   const creneau = creneaux[creneauSelectionne];
   const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
@@ -814,6 +814,8 @@ async function confirmerCommande() {
   const telephone = document.getElementById('telephone').value.trim();
   const email = document.getElementById('email').value.trim();
   const note = document.getElementById('note').value.trim();
+
+  const empreinteRequise = !!(__BIZ__ && __BIZ__.empreinte_obligatoire);
 
   try {
     const commercantId = __CID__;
@@ -840,13 +842,14 @@ async function confirmerCommande() {
       type: modeCommande,
       creneau_id: creneau.id || null,
       date_retrait: creneau.dateISO || null,
-      statut: 'nouvelle',
+      retrait_date: creneau.dateISO || null,
+      statut: empreinteRequise ? 'empreinte_pending' : 'nouvelle',
       sous_total,
       frais_livraison: frais,
       total_ttc: total,
       note_client: note || null,
       adresse_livraison: adresseLiv,
-      empreinte_payment_method_id: stripePaymentMethodId || null,
+      empreinte_status: empreinteRequise ? 'pending' : 'none',
     });
 
     // Insérer les lignes de commande
@@ -863,6 +866,31 @@ async function confirmerCommande() {
           tva_pct: 5.50,
           total_ligne: (p.prix_marche_indicatif || 0) * p.qte,
         });
+      }
+
+      // Empreinte bancaire (si activée par le commerçant)
+      if (empreinteRequise && commandeId && stripeCard) {
+        const pct = __BIZ__.no_show_pct || 75;
+        const montantCents = Math.round(total * 100 * pct / 100);
+        const res = await creerEtConfirmerEmpreinte(commandeId, montantCents, {
+          name: prenom + ' ' + nom,
+          email,
+        });
+        if (!res.ok) {
+          // Échec empreinte → on annule la commande
+          await sb('commandes', '?id=eq.' + commandeId, 'PATCH', {
+            statut: 'annulee',
+            empreinte_status: 'failed',
+          });
+          const err = document.getElementById('stripe-card-errors');
+          err.textContent = res.error || 'Empreinte refusée';
+          err.style.display = 'block';
+          btn.disabled = false;
+          document.getElementById('btnTxt').textContent = 'Confirmer la commande →';
+          return;
+        }
+        // Empreinte OK → la commande passe à "nouvelle"
+        await sb('commandes', '?id=eq.' + commandeId, 'PATCH', { statut: 'nouvelle' });
       }
     }
 

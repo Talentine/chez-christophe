@@ -555,6 +555,9 @@
   <button class="tab-btn" onclick="allerOnglet('galerie')" id="tab-galerie">
     Galerie
   </button>
+  <button class="tab-btn" onclick="allerOnglet('reglages')" id="tab-reglages">
+    Réglages
+  </button>
 </div>
 
 <!-- ONGLET COMMANDES -->
@@ -793,6 +796,45 @@
   </div>
 </div>
 
+<!-- ===== ONGLET RÉGLAGES ===== -->
+<div class="tab-content" id="content-reglages">
+  <div style="padding:16px;">
+    <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Réglages</div>
+
+    <!-- EMPREINTE BANCAIRE -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">💳 Empreinte bancaire</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Protection contre les no-show</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
+          <input type="checkbox" id="toggleEmpreinte" onchange="sauverReglages()" style="opacity:0;width:0;height:0;">
+          <span id="toggleEmpreinteSlider" style="position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:50px;transition:.2s;"></span>
+        </label>
+      </div>
+      <div style="font-size:13px;color:var(--texte-doux);line-height:1.5;background:rgba(184,131,42,0.06);border-radius:10px;padding:10px 12px;margin-top:10px;">
+        Si activée, le client devra fournir une carte bancaire au moment de la commande. Aucun débit n'est effectué — l'empreinte est <b>libérée automatiquement 24h</b> après la date de retrait. En cas de no-show, vous pouvez déclencher un débit via le bouton "Litige" sur la commande.
+      </div>
+
+      <div id="empreintePctWrap" style="margin-top:14px;display:none;">
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
+          Pourcentage prélevé en cas de no-show : <b id="empreintePctVal">75</b>%
+        </label>
+        <input type="range" id="empreintePctRange" min="10" max="100" step="5" value="75"
+          oninput="document.getElementById('empreintePctVal').textContent=this.value"
+          onchange="sauverReglages()"
+          style="width:100%;">
+        <div style="font-size:12px;color:var(--texte-doux);margin-top:6px;">
+          Recommandé : 75 % du panier. L'empreinte est calculée sur ce pourcentage et n'est débitée qu'en cas de no-show confirmé.
+        </div>
+      </div>
+    </div>
+
+    <div id="reglagesStatus" style="font-size:12px;color:var(--texte-doux);text-align:center;"></div>
+  </div>
+</div>
+
 <!-- MODAL CONTACT CLIENT -->
 <div class="modal-overlay" id="modalOverlay" onclick="fermerModal()"></div>
 <div class="modal" id="modalContact">
@@ -826,8 +868,8 @@
       Le client ne s'est pas présenté sans annulation.<br>
       Vous allez débiter les frais de no-show.
     </div>
-    <div class="noshow-montant">5,00 €</div>
-    <button class="btn-debiter" onclick="confirmerNoShow()">💳 Débiter 5,00 €</button>
+    <div class="noshow-montant">—</div>
+    <button class="btn-debiter" onclick="confirmerNoShow()">💳 Débiter</button>
     <button class="btn-annuler-noshow" onclick="fermerNoShow()">Annuler</button>
   </div>
 </div>
@@ -1104,14 +1146,43 @@ function renderCarteCommande(c) {
       <div class="commande-detail" id="detail-${c.id}">
         ${produits}
       </div>
+      ${renderEmpreinteBadge(c)}
       <div class="commande-actions">
         ${btnPrincipal}
         <button class="btn-contact" onclick="ouvrirContact('${c.id}','${c.client}','${c.numero}')">
           ✉️ Contact
         </button>
       </div>
+      ${renderEmpreinteActions(c)}
     </div>
   `;
+}
+
+function renderEmpreinteBadge(c) {
+  if (!c.empreinte_status || c.empreinte_status === 'none') return '';
+  const eur = (c.empreinte_montant_cents/100).toFixed(2).replace('.', ',') + '€';
+  const map = {
+    pending:  { bg:'#fff8e7', col:'#8a6d1c', icon:'🔒', txt:'Empreinte ' + eur + ' bloquée' },
+    released: { bg:'#eaf7ee', col:'#2d6a3e', icon:'✅', txt:'Empreinte libérée' },
+    captured: { bg:'#fdf0ef', col:'#9a2d24', icon:'💳', txt:'Empreinte débitée ' + eur },
+    failed:   { bg:'#f3f3f3', col:'#666',    icon:'⚠️', txt:'Empreinte échec' },
+  };
+  const m = map[c.empreinte_status] || map.failed;
+  return '<div style="margin:8px 0;padding:8px 12px;background:' + m.bg + ';color:' + m.col + ';border-radius:10px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;">'
+    + '<span>' + m.icon + '</span><span>' + m.txt + '</span></div>';
+}
+
+function renderEmpreinteActions(c) {
+  if (c.empreinte_status !== 'pending') return '';
+  return '<div style="display:flex;gap:8px;margin-top:8px;">'
+    + '<button onclick="ouvrirLitige(\'' + c.id + '\')" style="flex:1;background:#fdf0ef;color:#9a2d24;border:1px solid #f3c8c4;border-radius:10px;padding:10px;font-size:13px;font-weight:500;font-family:\'DM Sans\',sans-serif;cursor:pointer;">⚠️ Litige (no-show)</button>'
+    + '<button onclick="libererEmpreinte(\'' + c.id + '\')" style="flex:1;background:#eaf7ee;color:#2d6a3e;border:1px solid #c8e6cf;border-radius:10px;padding:10px;font-size:13px;font-weight:500;font-family:\'DM Sans\',sans-serif;cursor:pointer;">✅ Libérer</button>'
+    + '</div>';
+}
+
+function ouvrirLitige(id) {
+  commandeContactId = id;
+  ouvrirNoShow();
 }
 
 function toggleDetail(id) {
@@ -1330,6 +1401,74 @@ function allerOnglet(id) {
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
   if (id === 'galerie') chargerGalerie();
+  if (id === 'reglages') chargerReglages();
+}
+
+async function chargerReglages() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    if (!commercantId) return;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    const c = data?.[0] || {};
+    const obligatoire = !!c.empreinte_obligatoire;
+    const pct = c.no_show_pct ?? 75;
+    const tg = document.getElementById('toggleEmpreinte');
+    const sl = document.getElementById('toggleEmpreinteSlider');
+    const wrap = document.getElementById('empreintePctWrap');
+    const range = document.getElementById('empreintePctRange');
+    const pctVal = document.getElementById('empreintePctVal');
+    if (tg) tg.checked = obligatoire;
+    if (sl) {
+      sl.style.background = obligatoire ? 'var(--vert)' : '#ccc';
+      sl.innerHTML = '<span style="position:absolute;height:22px;width:22px;left:' + (obligatoire ? '23px' : '3px') + ';top:3px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>';
+    }
+    if (wrap) wrap.style.display = obligatoire ? 'block' : 'none';
+    if (range) range.value = pct;
+    if (pctVal) pctVal.textContent = pct;
+  } catch (e) {
+    console.log('chargerReglages:', e);
+  }
+}
+
+let _saveReglagesTimer = null;
+async function sauverReglages() {
+  clearTimeout(_saveReglagesTimer);
+  _saveReglagesTimer = setTimeout(async () => {
+    try {
+      const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+      const commercantId = session.commercant_id;
+      if (!commercantId) return;
+      const obligatoire = document.getElementById('toggleEmpreinte').checked;
+      const pct = parseInt(document.getElementById('empreintePctRange').value, 10) || 75;
+      const status = document.getElementById('reglagesStatus');
+      const sl = document.getElementById('toggleEmpreinteSlider');
+      const wrap = document.getElementById('empreintePctWrap');
+      if (sl) {
+        sl.style.background = obligatoire ? 'var(--vert)' : '#ccc';
+        sl.innerHTML = '<span style="position:absolute;height:22px;width:22px;left:' + (obligatoire ? '23px' : '3px') + ';top:3px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>';
+      }
+      if (wrap) wrap.style.display = obligatoire ? 'block' : 'none';
+      if (status) status.textContent = '⏳ Sauvegarde...';
+      const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+        method: 'PATCH',
+        headers: {
+          'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json', 'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ empreinte_obligatoire: obligatoire, no_show_pct: pct })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (status) status.textContent = '✓ Réglages enregistrés';
+      setTimeout(() => { if (status) status.textContent = ''; }, 1500);
+    } catch (e) {
+      const status = document.getElementById('reglagesStatus');
+      if (status) status.textContent = '❌ ' + (e.message || 'Erreur');
+    }
+  }, 250);
 }
 
 function togglePause() {
@@ -1410,16 +1549,77 @@ async function envoyerMessage(type) {
 
 function ouvrirNoShow() {
   fermerModal();
-  document.getElementById('noshowModal').classList.add('open');
+  const cmd = toutesLesCommandes.find(c => c.id === commandeContactId);
+  const cents = cmd?.empreinte_montant_cents || 0;
+  const eur = (cents / 100).toFixed(2).replace('.', ',') + ' €';
+  const modal = document.getElementById('noshowModal');
+  const montantEl = modal.querySelector('.noshow-montant');
+  const btnDeb = modal.querySelector('.btn-debiter');
+  if (cents > 0) {
+    if (montantEl) montantEl.textContent = eur;
+    if (btnDeb) btnDeb.textContent = '💳 Débiter ' + eur;
+  } else {
+    if (montantEl) montantEl.textContent = '—';
+    if (btnDeb) btnDeb.textContent = 'Aucune empreinte enregistrée';
+  }
+  modal.classList.add('open');
 }
 
 function fermerNoShow() {
   document.getElementById('noshowModal').classList.remove('open');
 }
 
-function confirmerNoShow() {
-  fermerNoShow();
-  afficherToast('💳 5,00€ débités — No-show enregistré');
+async function confirmerNoShow() {
+  const id = commandeContactId;
+  const cmd = toutesLesCommandes.find(c => c.id === id);
+  if (!cmd || !cmd.empreinte_montant_cents) {
+    fermerNoShow();
+    afficherToast('⚠️ Aucune empreinte sur cette commande');
+    return;
+  }
+  if (cmd.empreinte_status !== 'pending') {
+    fermerNoShow();
+    afficherToast('⚠️ Empreinte déjà ' + cmd.empreinte_status);
+    return;
+  }
+  const btn = document.querySelector('#noshowModal .btn-debiter');
+  if (btn) { btn.disabled = true; btn.textContent = 'Débit en cours...'; }
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-empreinte', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'capture', commande_id: id })
+    });
+    const data = await r.json();
+    if (!r.ok || data.error) throw new Error(data.error || 'Erreur capture');
+    cmd.empreinte_status = 'captured';
+    fermerNoShow();
+    afficherToast('💳 ' + (cmd.empreinte_montant_cents/100).toFixed(2).replace('.', ',') + '€ débités');
+    renderCommandes();
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = '💳 Réessayer'; }
+    afficherToast('❌ ' + (e.message || 'Échec du débit'));
+  }
+}
+
+async function libererEmpreinte(id) {
+  const cmd = toutesLesCommandes.find(c => c.id === id);
+  if (!cmd || cmd.empreinte_status !== 'pending') return;
+  if (!confirm('Libérer l\'empreinte bancaire de cette commande ?')) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-empreinte', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'release', commande_id: id })
+    });
+    const data = await r.json();
+    if (!r.ok || data.error) throw new Error(data.error || 'Erreur');
+    cmd.empreinte_status = 'released';
+    afficherToast('✅ Empreinte libérée');
+    renderCommandes();
+  } catch (e) {
+    afficherToast('❌ ' + (e.message || 'Échec'));
+  }
 }
 
 function afficherToast(msg) {
@@ -1654,6 +1854,8 @@ async function chargerCommandesSupabase(commercantId) {
       date_retrait: c.date_retrait || null,
       created_at: c.created_at || null,
       commercant_id: c.commercant_id || null,
+      empreinte_status: c.empreinte_status || 'none',
+      empreinte_montant_cents: c.empreinte_montant_cents || 0,
       produits: (c.commande_lignes || []).map(l => ({
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
