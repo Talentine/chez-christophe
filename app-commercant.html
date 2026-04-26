@@ -580,27 +580,74 @@
 <!-- ONGLET PLANNING -->
 <div class="tab-content" id="content-planning">
   <div class="planning-semaine">
-    <div class="planning-stats">
+
+    <!-- Sélecteur période -->
+    <div style="display:flex;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:14px;font-size:12px;">
+      <button onclick="setStatsPeriode('jour')"    id="statsP-jour"    class="stats-pill">Aujourd'hui</button>
+      <button onclick="setStatsPeriode('semaine')" id="statsP-semaine" class="stats-pill actif">Semaine</button>
+      <button onclick="setStatsPeriode('mois')"    id="statsP-mois"    class="stats-pill">Mois</button>
+      <button onclick="setStatsPeriode('30j')"     id="statsP-30j"     class="stats-pill">30 j</button>
+    </div>
+
+    <!-- 6 KPIs -->
+    <div class="planning-stats" style="grid-template-columns:1fr 1fr 1fr;display:grid;gap:8px;">
       <div class="planning-stat">
-        <div class="planning-stat-val" id="planCA">280€</div>
-        <div class="planning-stat-lbl">CA semaine</div>
+        <div class="planning-stat-val" id="planCA">—</div>
+        <div class="planning-stat-lbl" id="planCALbl">CA semaine</div>
       </div>
       <div class="planning-stat">
-        <div class="planning-stat-val" id="planNbCmd">17</div>
+        <div class="planning-stat-val" id="planNbCmd">—</div>
         <div class="planning-stat-lbl">Commandes</div>
       </div>
       <div class="planning-stat">
-        <div class="planning-stat-val" id="planCreneauTop">Mardi midi</div>
+        <div class="planning-stat-val" id="planPanierMoy">—</div>
+        <div class="planning-stat-lbl">Panier moyen</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planCreneauTop" style="font-size:14px;">—</div>
         <div class="planning-stat-lbl">Créneau le + chargé</div>
       </div>
       <div class="planning-stat">
-        <div class="planning-stat-val" id="planProdTop">Bananes</div>
+        <div class="planning-stat-val" id="planProdTop" style="font-size:14px;">—</div>
         <div class="planning-stat-lbl">Top produit</div>
       </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planNoShow">—</div>
+        <div class="planning-stat-lbl">Taux no-show</div>
+      </div>
     </div>
+
+    <!-- Graphique CA 30 jours -->
+    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+        <div style="font-size:13px;font-weight:500;">CA sur 30 jours</div>
+        <div style="font-size:11px;color:var(--texte-doux);" id="ca30jTotal">—</div>
+      </div>
+      <div id="caChart" style="height:80px;"></div>
+    </div>
+
+    <!-- Top 5 produits -->
+    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;">
+      <div style="font-size:13px;font-weight:500;margin-bottom:10px;">Top 5 produits</div>
+      <div id="topProduitsListe">
+        <div style="font-size:12px;color:var(--texte-doux);">Chargement…</div>
+      </div>
+    </div>
+
+    <!-- Planning grille -->
+    <div style="font-size:13px;font-weight:500;margin:18px 0 10px;">Planning des retraits</div>
     <div id="planningGrid"></div>
   </div>
 </div>
+
+<style>
+  .stats-pill {
+    flex:1; border:none; border-radius:50px; padding:8px;
+    font-size:12px; font-weight:500; font-family:'DM Sans',sans-serif;
+    cursor:pointer; background:transparent; color:var(--texte-doux); transition:all .2s;
+  }
+  .stats-pill.actif { background:var(--vert); color:white; }
+</style>
 
 <!-- ONGLET PRODUITS -->
 <div class="tab-content" id="content-produits">
@@ -1219,6 +1266,36 @@ function chargerPlanningDemo() {
   chargerPlanningReel();
 }
 
+let __statsPeriode = 'semaine';
+
+function setStatsPeriode(p) {
+  __statsPeriode = p;
+  ['jour','semaine','mois','30j'].forEach(x => {
+    const el = document.getElementById('statsP-' + x);
+    if (el) el.classList.toggle('actif', x === p);
+  });
+  const lbl = { jour:"CA aujourd'hui", semaine:"CA semaine", mois:"CA mois", '30j':"CA 30 jours" }[p];
+  const lblEl = document.getElementById('planCALbl');
+  if (lblEl) lblEl.textContent = lbl;
+  chargerPlanningReel();
+}
+
+function bornesPeriode(p) {
+  const now = new Date();
+  let debut;
+  if (p === 'jour') {
+    debut = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  } else if (p === 'semaine') {
+    const j = now.getDay() === 0 ? 6 : now.getDay() - 1; // lundi
+    debut = new Date(now.getFullYear(), now.getMonth(), now.getDate() - j);
+  } else if (p === 'mois') {
+    debut = new Date(now.getFullYear(), now.getMonth(), 1);
+  } else { // 30j
+    debut = new Date(now.getTime() - 30 * 86400_000);
+  }
+  return { debut, fin: now };
+}
+
 async function chargerPlanningReel() {
   const grid = document.getElementById('planningGrid');
   if (!grid) return;
@@ -1228,18 +1305,122 @@ async function chargerPlanningReel() {
   const commercantId = session.commercant_id;
   if (!commercantId) { grid.innerHTML = '<div style="padding:20px;color:var(--texte-doux)">Non connecté</div>'; return; }
 
-  let commandes = [];
+  // On charge largement pour pouvoir calculer 30j + planning futur, puis on filtre côté JS
+  let toutes = [];
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&statut=neq.annulee&order=date_retrait.asc&limit=100&select=id,numero,type,date_retrait,total_ttc,statut', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=500&select=id,numero,type,date_retrait,total_ttc,statut,empreinte_status,commande_lignes(nom_produit,quantite,unite,total_ligne)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
-    commandes = await r.json();
-    if (!Array.isArray(commandes)) commandes = [];
+    toutes = await r.json();
+    if (!Array.isArray(toutes)) toutes = [];
   } catch(e) { console.log('Erreur planning:', e); }
 
-  const totalCA = commandes.reduce((s,c) => s + (c.total_ttc || 0), 0);
-  document.getElementById('planNbCmd').textContent = commandes.length;
+  // Filtre commandes valides (non annulées) pour les KPIs
+  const valides = toutes.filter(c => c.statut !== 'annulee');
+
+  // Filtre selon la période sélectionnée
+  const { debut, fin } = bornesPeriode(__statsPeriode);
+  const periodeCmds = valides.filter(c => {
+    if (!c.date_retrait) return false;
+    const d = new Date(c.date_retrait);
+    return d >= debut && d <= fin;
+  });
+
+  // KPIs principaux
+  const totalCA = periodeCmds.reduce((s,c) => s + (c.total_ttc || 0), 0);
+  document.getElementById('planNbCmd').textContent = periodeCmds.length;
   document.getElementById('planCA').textContent = totalCA.toFixed(0) + '€';
+
+  const panierMoy = periodeCmds.length > 0 ? totalCA / periodeCmds.length : 0;
+  document.getElementById('planPanierMoy').textContent = panierMoy.toFixed(0) + '€';
+
+  // Taux no-show = commandes capturées / (capturées + retirées)
+  const periodeAvecEmpreinte = toutes.filter(c => {
+    if (!c.date_retrait) return false;
+    const d = new Date(c.date_retrait);
+    return d >= debut && d <= fin && ['captured','released'].includes(c.empreinte_status);
+  });
+  const noShows = periodeAvecEmpreinte.filter(c => c.empreinte_status === 'captured').length;
+  const noShowPct = periodeAvecEmpreinte.length > 0
+    ? Math.round(100 * noShows / periodeAvecEmpreinte.length)
+    : 0;
+  document.getElementById('planNoShow').textContent =
+    periodeAvecEmpreinte.length > 0 ? noShowPct + '%' : '—';
+
+  // Top produit (sur la période)
+  const tally = {};
+  periodeCmds.forEach(c => {
+    (c.commande_lignes || []).forEach(l => {
+      if (!l.nom_produit) return;
+      tally[l.nom_produit] = (tally[l.nom_produit] || 0) + (l.quantite || 1);
+    });
+  });
+  const topProduits = Object.entries(tally)
+    .sort((a,b) => b[1] - a[1])
+    .slice(0, 5);
+  document.getElementById('planProdTop').textContent = topProduits[0]?.[0] || '—';
+
+  const topListe = document.getElementById('topProduitsListe');
+  if (topListe) {
+    if (topProduits.length === 0) {
+      topListe.innerHTML = '<div style="font-size:12px;color:var(--texte-doux);">Aucune vente sur la période</div>';
+    } else {
+      const max = topProduits[0][1];
+      topListe.innerHTML = topProduits.map(([nom, qte], i) => {
+        const pct = Math.round(100 * qte / max);
+        return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px;">'
+          + '<span style="width:18px;color:var(--texte-doux);font-weight:500;">' + (i+1) + '</span>'
+          + '<div style="flex:1;">'
+          + '<div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>' + nom + '</span><span style="color:var(--texte-doux);">' + qte.toFixed(0) + ' vendus</span></div>'
+          + '<div style="height:6px;background:var(--creme);border-radius:3px;overflow:hidden;"><div style="height:100%;background:var(--vert);width:' + pct + '%;"></div></div>'
+          + '</div></div>';
+      }).join('');
+    }
+  }
+
+  // Mini-graphique CA 30 jours
+  const now = new Date();
+  const jour30 = new Date(now.getTime() - 30 * 86400_000);
+  const par30j = {};
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(jour30); d.setDate(jour30.getDate() + i);
+    const k = d.toISOString().slice(0, 10);
+    par30j[k] = 0;
+  }
+  let total30j = 0;
+  valides.forEach(c => {
+    if (!c.date_retrait) return;
+    const k = new Date(c.date_retrait).toISOString().slice(0, 10);
+    if (par30j[k] !== undefined) {
+      par30j[k] += (c.total_ttc || 0);
+      total30j += (c.total_ttc || 0);
+    }
+  });
+  const totalEl = document.getElementById('ca30jTotal');
+  if (totalEl) totalEl.textContent = total30j.toFixed(0) + '€ total';
+
+  const chart = document.getElementById('caChart');
+  if (chart) {
+    const vals = Object.values(par30j);
+    const maxV = Math.max(...vals, 1);
+    const labels = Object.keys(par30j);
+    const w = 100, h = 60;
+    const stepX = w / (vals.length - 1 || 1);
+    const points = vals.map((v, i) => (i * stepX).toFixed(2) + ',' + (h - (v / maxV) * h).toFixed(2)).join(' ');
+    const area = '0,' + h + ' ' + points + ' ' + w + ',' + h;
+    chart.innerHTML =
+      '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" style="width:100%;height:100%;">'
+      + '<polygon points="' + area + '" fill="var(--vert)" opacity="0.15"/>'
+      + '<polyline points="' + points + '" fill="none" stroke="var(--vert)" stroke-width="1.4" stroke-linejoin="round"/>'
+      + '</svg>';
+  }
+
+  // ─── Planning futur (commandes à venir) ───
+  // On garde l'affichage planning, mais sur les commandes futures uniquement
+  const commandes = valides.filter(c => {
+    if (!c.date_retrait) return false;
+    return new Date(c.date_retrait) >= new Date(new Date().setHours(0,0,0,0));
+  });
 
   const parDate = {};
   commandes.forEach(c => {
@@ -1258,15 +1439,21 @@ async function chargerPlanningReel() {
     parDate[key][heure].ca += c.total_ttc || 0;
   });
 
-  let maxCreneau = '—'; let maxCount = 0;
-  Object.entries(parDate).forEach(([date, heures]) => {
-    Object.entries(heures).forEach(([h, data]) => {
-      if (data.total > maxCount) { maxCount = data.total; maxCreneau = h; }
-    });
+  // Le créneau "le plus chargé" se calcule sur la PÉRIODE sélectionnée
+  // (en utilisant periodeCmds, pas commandes futures)
+  const parDatePeriode = {};
+  periodeCmds.forEach(c => {
+    if (!c.date_retrait) return;
+    const dd = new Date(c.date_retrait);
+    const heure = String(dd.getHours()).padStart(2,'0') + ':' + String(dd.getMinutes()).padStart(2,'0');
+    parDatePeriode[heure] = (parDatePeriode[heure] || 0) + 1;
   });
-  document.getElementById('planCreneauTop').textContent = maxCreneau;
+  let topCreneauP = '—', topCreneauN = 0;
+  Object.entries(parDatePeriode).forEach(([h, n]) => {
+    if (n > topCreneauN) { topCreneauN = n; topCreneauP = h; }
+  });
+  document.getElementById('planCreneauTop').textContent = topCreneauP;
 
-  const now = new Date();
   const jours = [];
   for (let i = 0; i < 14; i++) {
     const d = new Date(now);
@@ -1596,6 +1783,12 @@ async function confirmerNoShow() {
     fermerNoShow();
     afficherToast('💳 ' + (cmd.empreinte_montant_cents/100).toFixed(2).replace('.', ',') + '€ débités');
     renderCommandes();
+    // Email de transparence au client
+    fetch(SUPABASE_URL + '/functions/v1/send-email', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'empreinte-capturee', commande_id: id })
+    }).catch(() => {});
   } catch (e) {
     if (btn) { btn.disabled = false; btn.textContent = '💳 Réessayer'; }
     afficherToast('❌ ' + (e.message || 'Échec du débit'));
