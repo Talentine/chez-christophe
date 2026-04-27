@@ -476,20 +476,144 @@
       .hero-badge-dot { animation: none; }
     }
 
+    /* ── EXAMPLES ───────────────────────────────────────────── */
+    .examples-bg { background: var(--cream); }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px; margin-top: 16px;
+    }
+
+    .example-card {
+      background: var(--white); border-radius: 24px;
+      border: 1px solid var(--cream-dark);
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: all .25s;
+    }
+    .example-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+    .example-bar {
+      background: var(--cream-dark); padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .example-dots { display: flex; gap: 5px; }
+    .example-dots span { width: 9px; height: 9px; border-radius: 50%; }
+    .example-dots span:nth-child(1) { background: #FF5F57; }
+    .example-dots span:nth-child(2) { background: #FFBD2E; }
+    .example-dots span:nth-child(3) { background: #28C840; }
+    .example-url {
+      flex: 1; background: rgba(0,0,0,.06); border-radius: 20px;
+      padding: 4px 12px; font-size: 11px; color: var(--text-muted);
+      font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .example-preview {
+      padding: 20px 18px; min-height: 188px; position: relative; overflow: hidden;
+    }
+    .example-hero-bar {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .example-logo-box {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+    }
+    .example-shop-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.2; }
+    .example-shop-city { font-size: 11px; color: var(--text-muted); }
+
+    .example-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .example-product { border-radius: 10px; overflow: hidden; border: 1px solid var(--cream-dark); }
+    .example-product-img { height: 52px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .example-product-label { padding: 5px 6px; font-size: 10px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .example-product-price { padding: 0 6px 6px; font-size: 11px; font-weight: 700; color: var(--brand); }
+
+    .example-live-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: #22c55e; color: #fff;
+      font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .example-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulse 2s infinite; }
+
+    .example-info { padding: 20px 22px; border-top: 1px solid var(--cream-dark); }
+    .example-shop-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .example-location { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+
+    .example-stats {
+      display: flex; gap: 20px; margin-bottom: 18px;
+      padding: 12px 14px; background: var(--cream); border-radius: 12px;
+    }
+    .example-stat-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--brand); }
+    .example-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .example-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--brand);
+      background: var(--cream); border-radius: 50px; padding: 9px 18px;
+      border: 1.5px solid var(--cream-dark); transition: all .15s;
+    }
+    .example-link:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+
     /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-mobile-cta {
-        display: inline-flex; padding: 9px 20px;
+        display: inline-flex; padding: 10px 20px; min-height: 44px;
         background: var(--brand); color: #fff;
         border-radius: 50px; font-size: 13px; font-weight: 600; border: none; cursor: pointer;
       }
-      .hero { padding: 100px 20px 60px; }
-      .section { padding: 64px 20px; }
+      .nav { padding: 12px 16px; }
+
+      /* Hero */
+      .hero { padding: 100px 16px 56px; }
+      .hero h1 { font-size: clamp(28px, 8vw, 44px); margin-bottom: 18px; }
+      .hero-sub { font-size: 15px; margin-bottom: 36px; }
       .hero-actions { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
-      .hero-stats { gap: 24px; }
-      .pricing-card.popular { transform: scale(1); }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; min-height: 52px; padding: 14px 28px; }
+      .hero-stats { gap: 16px; margin-top: 40px; padding-top: 32px; }
+      .hero-stat-num { font-size: 26px; }
+
+      /* Sections */
+      .section { padding: 56px 16px; }
+      .section h2 { font-size: clamp(24px, 6vw, 36px); }
+      .section-sub { font-size: 15px; margin-bottom: 40px; }
+
+      /* Métiers : 2 colonnes × 3 rangées */
+      .metiers-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .metier-card { padding: 22px 16px; border-radius: 16px; }
+      .metier-emoji { font-size: 32px; margin-bottom: 12px; }
+      .metier-name { font-size: 18px; }
+      .metier-desc { font-size: 13px; margin-bottom: 14px; }
+
+      /* Features */
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card { padding: 22px 18px; }
+
+      /* Steps */
+      .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+      .step { padding: 28px 22px; }
+
+      /* Pricing */
+      .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+      .pricing-card.popular { transform: none; }
+      .pricing-card { padding: 28px 22px; }
+      .pricing-setup-amount { font-size: 36px; }
+
+      /* Témoignages */
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      /* Exemples */
+      .examples-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-badge { font-size: 11px; padding: 5px 12px; }
+      .hero h1 { font-size: 26px; }
+      .hero-stats { gap: 0; justify-content: space-around; }
+      .hero-stat-num { font-size: 22px; }
+      .hero-stat-label { font-size: 11px; }
+      .metier-tags { display: none; }
     }
 
     @media (min-width: 1024px) {
@@ -508,7 +632,7 @@
   </div>
   <div class="nav-links">
     <a href="#metiers" class="nav-link">Métiers</a>
-    <a href="#modes" class="nav-link">Retrait &amp; Livraison</a>
+    <a href="#exemples" class="nav-link">Exemples</a>
     <a href="#fonctionnement" class="nav-link">Comment ça marche</a>
     <a href="#tarifs" class="nav-link">Tarifs</a>
   </div>
@@ -673,7 +797,7 @@
     <h2 id="modes-title" class="reveal reveal-delay-1">Retrait <em>ou</em> livraison,<br>vos clients choisissent</h2>
     <p class="section-sub reveal reveal-delay-2">Activez l'un, l'autre, ou les deux. Marchéo s'adapte à votre commerce.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;max-width:980px;margin-left:auto;margin-right:auto;text-align:left;">
+    <div class="modes-grid" style="max-width:980px;margin-left:auto;margin-right:auto;text-align:left;">
       <!-- RETRAIT -->
       <div class="reveal" style="background:#fff;border-radius:24px;padding:32px;box-shadow:var(--shadow);border:1px solid var(--cream-dark);position:relative;">
         <div style="display:inline-flex;align-items:center;gap:8px;background:#eaf7ee;color:#1a5a3a;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:16px;">
@@ -711,10 +835,14 @@
 </section>
 
 <style>
+  .modes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
   @media (max-width: 720px) {
-    #modes div[style*="grid-template-columns: 1fr 1fr"] {
-      grid-template-columns: 1fr !important;
-    }
+    .modes-grid { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -813,6 +941,134 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXEMPLES DE SITES EN FONCTIONNEMENT -->
+<section class="section section-center examples-bg" id="exemples" aria-labelledby="exemples-title">
+  <div class="container">
+    <p class="section-label reveal">En direct</p>
+    <h2 id="exemples-title" class="reveal reveal-delay-1">Exemples de sites<br>en fonctionnement</h2>
+    <p class="section-sub reveal reveal-delay-2">Voici à quoi ressemble une boutique Marchéo. Créée en moins de 10 minutes, en ligne 24h/24.</p>
+
+    <div class="examples-grid">
+
+      <!-- Exemple 1 — Boulangerie -->
+      <div class="example-card reveal">
+        <!-- Barre navigateur simulée -->
+        <div class="example-bar">
+          <div class="example-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="example-url">marcheo.fr/boulangerie-martin</div>
+        </div>
+        <!-- Aperçu du site -->
+        <div class="example-preview" style="background:linear-gradient(145deg,#fdf6e8 0%,#fff8ed 100%);">
+          <div class="example-live-badge">
+            <span class="example-live-dot" aria-hidden="true"></span> En ligne
+          </div>
+          <div class="example-hero-bar">
+            <div class="example-logo-box" style="background:#f5e2b0;">🥖</div>
+            <div>
+              <div class="example-shop-name" style="color:#5c3a1e;">Boulangerie Martin</div>
+              <div class="example-shop-city">Rennes · Bretagne</div>
+            </div>
+          </div>
+          <div class="example-products">
+            <div class="example-product">
+              <div class="example-product-img" style="background:#f5e6c8;">🍞</div>
+              <div class="example-product-label">Pain de campagne</div>
+              <div class="example-product-price">3,50€</div>
+            </div>
+            <div class="example-product">
+              <div class="example-product-img" style="background:#f0d4a0;">🥐</div>
+              <div class="example-product-label">Croissant beurre</div>
+              <div class="example-product-price">1,20€</div>
+            </div>
+            <div class="example-product">
+              <div class="example-product-img" style="background:#e8c99a;">🍰</div>
+              <div class="example-product-label">Tarte aux fraises</div>
+              <div class="example-product-price">4,80€</div>
+            </div>
+          </div>
+        </div>
+        <!-- Infos -->
+        <div class="example-info">
+          <div class="example-shop-title">Boulangerie Martin</div>
+          <div class="example-location">📍 Rennes, Ille-et-Vilaine</div>
+          <div class="example-stats">
+            <div class="example-stat">
+              <div class="example-stat-num">52</div>
+              <div class="example-stat-label">commandes / semaine</div>
+            </div>
+            <div class="example-stat">
+              <div class="example-stat-num">0€</div>
+              <div class="example-stat-label">perdu en no-show</div>
+            </div>
+          </div>
+          <a href="inscription.html" class="example-link" role="button">
+            Créer ma boutique →
+          </a>
+        </div>
+      </div>
+
+      <!-- Exemple 2 — Fromagerie -->
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-bar">
+          <div class="example-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="example-url">marcheo.fr/fromagerie-des-alpes</div>
+        </div>
+        <div class="example-preview" style="background:linear-gradient(145deg,#f0f5ee 0%,#f7fbf5 100%);">
+          <div class="example-live-badge">
+            <span class="example-live-dot" aria-hidden="true"></span> En ligne
+          </div>
+          <div class="example-hero-bar">
+            <div class="example-logo-box" style="background:#ddeedd;">🧀</div>
+            <div>
+              <div class="example-shop-name" style="color:#1a3d28;">Fromagerie des Alpes</div>
+              <div class="example-shop-city">Grenoble · Isère</div>
+            </div>
+          </div>
+          <div class="example-products">
+            <div class="example-product">
+              <div class="example-product-img" style="background:#f2eed6;">🧀</div>
+              <div class="example-product-label">Beaufort AOP</div>
+              <div class="example-product-price">6,90€/200g</div>
+            </div>
+            <div class="example-product">
+              <div class="example-product-img" style="background:#e8f0e4;">🐐</div>
+              <div class="example-product-label">Chèvre frais</div>
+              <div class="example-product-price">3,20€</div>
+            </div>
+            <div class="example-product">
+              <div class="example-product-img" style="background:#f5f0de;">🫙</div>
+              <div class="example-product-label">Plateau sur-mesure</div>
+              <div class="example-product-price">dès 18€</div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <div class="example-shop-title">Fromagerie des Alpes</div>
+          <div class="example-location">📍 Grenoble, Isère</div>
+          <div class="example-stats">
+            <div class="example-stat">
+              <div class="example-stat-num">38</div>
+              <div class="example-stat-label">commandes / semaine</div>
+            </div>
+            <div class="example-stat">
+              <div class="example-stat-num">+28%</div>
+              <div class="example-stat-label">de CA en 3 mois</div>
+            </div>
+          </div>
+          <a href="inscription.html" class="example-link" role="button">
+            Créer ma boutique →
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

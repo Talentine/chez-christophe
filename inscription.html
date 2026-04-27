@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Créer ma boutique · Click & Collect</title>
+<title>Créer ma boutique · Marchéo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -65,6 +65,57 @@
   .offre-mensuel strong{color:rgba(255,255,255,.65);}
   .offre-change{font-size:11px;color:rgba(255,255,255,.3);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:6px;display:block;text-align:left;}
   .offre-change:hover{color:rgba(255,255,255,.6);}
+
+  /* ── MEDIA UPLOAD STEP ── */
+  .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+  .media-slot{
+    border:1.5px dashed rgba(255,255,255,0.15);border-radius:14px;
+    background:rgba(255,255,255,0.03);padding:20px 14px;
+    text-align:center;cursor:pointer;transition:.15s;position:relative;
+    min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  }
+  .media-slot:hover{border-color:rgba(92,138,110,0.5);background:rgba(92,138,110,0.05);}
+  .media-slot.filled{border-style:solid;border-color:rgba(92,138,110,0.4);padding:0;overflow:hidden;}
+  .media-slot-icon{font-size:26px;line-height:1;}
+  .media-slot-title{font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);}
+  .media-slot-sub{font-size:11px;color:rgba(255,255,255,0.38);line-height:1.4;}
+  .req-badge{
+    background:rgba(92,138,110,0.25);color:#7dc9a0;
+    font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    padding:2px 6px;border-radius:10px;vertical-align:middle;margin-left:4px;
+  }
+  .media-slot img,.media-slot video{width:100%;height:100%;object-fit:cover;border-radius:12px;}
+  .media-remove{
+    position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.55);
+    border:none;border-radius:50%;width:22px;height:22px;color:#fff;
+    font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    z-index:2;
+  }
+  .media-add-row{margin-bottom:14px;}
+  .media-add-btn{
+    width:100%;padding:12px;border-radius:12px;border:1.5px dashed rgba(255,255,255,0.12);
+    background:transparent;color:rgba(255,255,255,0.45);font-size:13px;font-weight:500;
+    font-family:inherit;cursor:pointer;transition:.15s;text-align:center;
+  }
+  .media-add-btn:hover{border-color:rgba(92,138,110,0.4);color:rgba(255,255,255,0.7);}
+  .tips-panel{border-radius:12px;overflow:hidden;margin-bottom:8px;}
+  .tips-toggle{
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(201,165,75,0.08);border:1px solid rgba(201,165,75,0.2);
+    border-radius:12px;padding:11px 14px;font-size:13px;color:rgba(255,255,255,0.65);
+    cursor:pointer;transition:.15s;
+  }
+  .tips-toggle:hover{background:rgba(201,165,75,0.12);}
+  .tips-toggle.open{border-bottom-left-radius:0;border-bottom-right-radius:0;}
+  .tips-content{
+    background:rgba(201,165,75,0.05);border:1px solid rgba(201,165,75,0.15);
+    border-top:none;border-radius:0 0 12px 12px;padding:14px;display:none;
+  }
+  .tips-content.open{display:block;}
+  .tips-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .tips-list li{font-size:12.5px;color:rgba(255,255,255,0.6);line-height:1.5;padding-left:2px;}
+  .media-count{font-size:12px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:10px;}
+  .media-count strong{color:#7dc9a0;}
 </style>
 </head>
 <body>
@@ -91,6 +142,7 @@
     <div class="bar1 actif"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
+    <div class="bar4"></div>
   </div>
 
   <div class="card">
@@ -153,8 +205,68 @@
       </div>
     </div>
 
-    <!-- ÉTAPE 3 — COMPTE -->
+    <!-- ÉTAPE 3 — PHOTOS & VIDÉOS -->
     <div class="step" id="step3">
+      <div class="step-title">Photos de votre boutique</div>
+      <div class="step-sub">2 photos minimum · Plus vous en ajoutez, plus votre boutique donne envie.</div>
+
+      <div class="media-grid" id="mediaRequired">
+        <!-- Slot 0 : hero -->
+        <div class="media-slot" id="slot0" onclick="triggerMedia(0)">
+          <div class="media-slot-icon">🏪</div>
+          <div class="media-slot-title">Photo hero<span class="req-badge">requis</span></div>
+          <div class="media-slot-sub">Façade ou intérieur de la boutique</div>
+          <input type="file" id="mediaInput0" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(0,this)">
+        </div>
+        <!-- Slot 1 : produits -->
+        <div class="media-slot" id="slot1" onclick="triggerMedia(1)">
+          <div class="media-slot-icon">🛍️</div>
+          <div class="media-slot-title">Photo produits<span class="req-badge">requis</span></div>
+          <div class="media-slot-sub">Vos produits mis en valeur</div>
+          <input type="file" id="mediaInput1" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(1,this)">
+        </div>
+      </div>
+
+      <div class="media-count" id="mediaCount">
+        <strong>0 / 2</strong> photo(s) ajoutée(s) — minimum 2 requis
+      </div>
+
+      <!-- Slots additionnels -->
+      <div class="media-add-row" id="mediaExtraGrid"></div>
+
+      <div class="media-add-row">
+        <button class="media-add-btn" onclick="addExtraSlot()">+ Ajouter une photo ou vidéo supplémentaire</button>
+      </div>
+
+      <!-- Conseils photo -->
+      <div class="tips-panel" style="margin-bottom:18px;">
+        <div class="tips-toggle" id="tipsTog" onclick="toggleTips()">
+          <span>💡 Conseils pour de belles photos</span>
+          <span id="tipsArrow">▼</span>
+        </div>
+        <div class="tips-content" id="tipsContent">
+          <ul class="tips-list">
+            <li>☀️ <b>Lumière naturelle</b> — photographiez le matin près d'une fenêtre, évitez le flash direct</li>
+            <li>🎯 <b>Cadrage serré</b> sur les produits — ils doivent « donner envie » à 10 cm d'écran</li>
+            <li>🪵 <b>Fond épuré</b> — planche en bois, ardoise, marbre ou torchon artisan</li>
+            <li>📱 <b>Format portrait</b> recommandé pour le hero (ratio 4:5 idéal)</li>
+            <li>🎬 <b>Vidéo possible</b> — 15 à 30 secondes montrant le savoir-faire (pétrissage, découpe…)</li>
+            <li>✨ <b>Vos vraies photos vendent mieux</b> que les photos stock — l'authenticité rassure vos clients</li>
+            <li>🔆 <b>Évitez le contre-jour</b> — ne vous placez pas dos à la fenêtre lors de la prise de vue</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="err" id="errMedia"></div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="etape(2)">← Retour</button>
+        <button class="btn btn-primary" id="btnNext3" onclick="validerPhotos()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 4 — COMPTE -->
+    <div class="step" id="step4">
       <div class="step-title">Votre compte</div>
       <div class="step-sub">Vous l'utiliserez pour gérer votre boutique.</div>
 
@@ -190,13 +302,13 @@
       <div class="err" id="err"></div>
 
       <div class="actions">
-        <button class="btn btn-secondary" onclick="etape(2)">← Retour</button>
+        <button class="btn btn-secondary" onclick="etape(3)">← Retour</button>
         <button class="btn btn-primary" onclick="creerBoutique()" id="btnSubmit">Créer ma boutique</button>
       </div>
     </div>
 
-    <!-- ÉTAPE 4 — SUCCÈS -->
-    <div class="step" id="step4">
+    <!-- ÉTAPE 5 — SUCCÈS -->
+    <div class="step" id="step5">
       <div class="success">
         <div class="success-emoji">🎉</div>
         <div class="step-title" style="font-size:22px;">Boutique créée !</div>
@@ -227,6 +339,7 @@ const OFFRES = {
 };
 
 const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null };
+const mediaFiles = [null, null]; // index 0 = hero, 1 = produits, 2+ = extras
 
 // ── Lire l'offre depuis l'URL
 (function() {
@@ -272,6 +385,7 @@ document.getElementById('iSlug').addEventListener('input', () => {
 function etape(n) {
   if (n === 2 && !state.type) return;
   if (n === 3) {
+    // Validation boutique avant d'aller aux photos
     state.nom = document.getElementById('iNom').value.trim();
     state.slug = slugify(document.getElementById('iSlug').value);
     state.ville = document.getElementById('iVille').value.trim();
@@ -281,6 +395,9 @@ function etape(n) {
       alert('Nom et adresse du site obligatoires.');
       return;
     }
+  }
+  if (n === 4) {
+    // Recap avant création du compte
     document.getElementById('recap').innerHTML =
       `<div class="recap-label">Métier</div><div>${state.type}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
@@ -289,7 +406,107 @@ function etape(n) {
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
   document.getElementById('step' + n).classList.add('actif');
-  for (let i=1;i<=3;i++) document.querySelector('.bar'+i)?.classList.toggle('actif', i <= n);
+  for (let i=1;i<=4;i++) document.querySelector('.bar'+i)?.classList.toggle('actif', i <= n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Gestion médias
+function triggerMedia(index) {
+  document.getElementById('mediaInput' + index).click();
+}
+
+function onMediaSelected(index, input) {
+  const file = input.files[0];
+  if (!file) return;
+  mediaFiles[index] = file;
+  renderSlot(index, file);
+  refreshMediaCount();
+}
+
+function renderSlot(index, file) {
+  const slot = document.getElementById('slot' + index);
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const media = file.type.startsWith('video/')
+      ? `<video src="${e.target.result}" style="width:100%;height:140px;object-fit:cover;" muted playsinline></video>`
+      : `<img src="${e.target.result}" style="width:100%;height:140px;object-fit:cover;" alt="Aperçu">`;
+    slot.classList.add('filled');
+    slot.innerHTML = media + `<button class="media-remove" onclick="removeMedia(${index},event)" title="Supprimer">✕</button>`;
+    // Re-attacher le file input pour pouvoir rechanger
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = 'image/*,video/*';
+    inp.id = 'mediaInput' + index;
+    inp.style.display = 'none';
+    inp.onchange = (ev) => onMediaSelected(index, ev.target);
+    slot.appendChild(inp);
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeMedia(index, e) {
+  e.stopPropagation();
+  mediaFiles[index] = null;
+  const slot = document.getElementById('slot' + index);
+  slot.classList.remove('filled');
+  // Restore original content
+  if (index === 0) {
+    slot.innerHTML = `<div class="media-slot-icon">🏪</div><div class="media-slot-title">Photo hero<span class="req-badge">requis</span></div><div class="media-slot-sub">Façade ou intérieur de la boutique</div><input type="file" id="mediaInput0" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(0,this)">`;
+    slot.onclick = () => triggerMedia(0);
+  } else if (index === 1) {
+    slot.innerHTML = `<div class="media-slot-icon">🛍️</div><div class="media-slot-title">Photo produits<span class="req-badge">requis</span></div><div class="media-slot-sub">Vos produits mis en valeur</div><input type="file" id="mediaInput1" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(1,this)">`;
+    slot.onclick = () => triggerMedia(1);
+  } else {
+    slot.innerHTML = `<div class="media-slot-icon">📸</div><div class="media-slot-title">Photo supplémentaire</div><div class="media-slot-sub">Ambiance, équipe, savoir-faire…</div><input type="file" id="mediaInput${index}" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(${index},this)">`;
+    slot.onclick = () => triggerMedia(index);
+  }
+  refreshMediaCount();
+}
+
+let extraSlotCount = 2;
+function addExtraSlot() {
+  const idx = extraSlotCount++;
+  mediaFiles.push(null);
+  const grid = document.getElementById('mediaExtraGrid');
+  if (!grid.querySelector('.media-grid-extra')) {
+    const g = document.createElement('div');
+    g.className = 'media-grid media-grid-extra';
+    g.id = 'mediaExtraContainer';
+    grid.appendChild(g);
+  }
+  const container = document.getElementById('mediaExtraContainer');
+  const slotDiv = document.createElement('div');
+  slotDiv.className = 'media-slot';
+  slotDiv.id = 'slot' + idx;
+  slotDiv.innerHTML = `<div class="media-slot-icon">📸</div><div class="media-slot-title">Photo supplémentaire</div><div class="media-slot-sub">Ambiance, équipe, savoir-faire…</div><input type="file" id="mediaInput${idx}" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(${idx},this)">`;
+  slotDiv.onclick = () => triggerMedia(idx);
+  container.appendChild(slotDiv);
+}
+
+function refreshMediaCount() {
+  const filled = mediaFiles.filter(Boolean).length;
+  document.getElementById('mediaCount').innerHTML =
+    `<strong>${filled} / ${Math.max(2, mediaFiles.length)}</strong> photo(s) — minimum 2 requises`;
+}
+
+function toggleTips() {
+  const tog = document.getElementById('tipsTog');
+  const content = document.getElementById('tipsContent');
+  const arrow = document.getElementById('tipsArrow');
+  const open = content.classList.toggle('open');
+  tog.classList.toggle('open', open);
+  arrow.textContent = open ? '▲' : '▼';
+}
+
+function validerPhotos() {
+  const filled = mediaFiles.filter(Boolean).length;
+  const err = document.getElementById('errMedia');
+  if (filled < 2) {
+    err.textContent = '⚠️ Ajoutez au moins 2 photos pour continuer.';
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  etape(4);
 }
 
 // ── Création
@@ -393,13 +610,26 @@ async function creerBoutique() {
       }));
     }
 
+    // 5b. Upload des photos vers Supabase Storage (boutiques-media)
+    if (state.accessToken && mediaFiles.some(Boolean)) {
+      btn.textContent = 'Upload photos…';
+      const mediaUrls = await uploadMedia(state.accessToken, state.slug);
+      if (mediaUrls.length > 0) {
+        await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + state.commercantId, {
+          method: 'PATCH',
+          headers: { ...authHeader },
+          body: JSON.stringify({ media_urls: mediaUrls }),
+        });
+      }
+    }
+
     const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
     const url = isLocal
       ? location.href.replace(/inscription\.html.*$/, 'index.html?slug=' + state.slug)
       : (location.protocol + '//' + state.slug + '.' + location.host.replace(/^[^.]+\./, ''));
     document.getElementById('successUrl').innerHTML =
       '<a href="' + url + '" target="_blank" style="color:#5c8a6e;text-decoration:none;word-break:break-all;">' + url + '</a>';
-    etape(4);
+    etape(5);
 
   } catch (e) {
     err.textContent = '❌ ' + e.message;
@@ -407,6 +637,38 @@ async function creerBoutique() {
   } finally {
     btn.disabled = false; btn.textContent = 'Créer ma boutique';
   }
+}
+
+// ── Upload media vers Supabase Storage
+async function uploadMedia(accessToken, slug) {
+  const BUCKET = 'boutiques-media';
+  const uploaded = [];
+  const names = ['hero', 'produits'];
+  for (let i = 0; i < mediaFiles.length; i++) {
+    const file = mediaFiles[i];
+    if (!file) continue;
+    const ext = file.name.split('.').pop().toLowerCase();
+    const filename = (names[i] || ('extra-' + (i - 2))) + '.' + ext;
+    const path = slug + '/' + filename;
+    try {
+      const res = await fetch(SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': file.type,
+          'x-upsert': 'true',
+        },
+        body: file,
+      });
+      if (res.ok) {
+        uploaded.push(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
+      }
+    } catch (e) {
+      console.warn('[uploadMedia] échec', filename, e.message);
+    }
+  }
+  return uploaded;
 }
 
 function redirigerDashboard() {
