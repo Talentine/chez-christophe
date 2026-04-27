@@ -878,6 +878,23 @@
       </div>
     </div>
 
+    <!-- STRIPE CONNECT -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="stripeConnectCard">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">💳 Paiements — Stripe Connect</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Recevez les paiements directement sur votre compte bancaire</div>
+        </div>
+        <div id="stripeConnectBadge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:#f0f0f0;color:#888;">
+          Chargement…
+        </div>
+      </div>
+
+      <div id="stripeConnectContent">
+        <!-- Rempli par JS -->
+      </div>
+    </div>
+
     <div id="reglagesStatus" style="font-size:12px;color:var(--texte-doux);text-align:center;"></div>
   </div>
 </div>
@@ -1596,6 +1613,10 @@ async function chargerReglages() {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const commercantId = session.commercant_id;
     if (!commercantId) return;
+
+    // Charger Stripe Connect en parallèle
+    chargerStripeConnect(commercantId);
+
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
@@ -1620,6 +1641,142 @@ async function chargerReglages() {
     console.log('chargerReglages:', e);
   }
 }
+
+// ── STRIPE CONNECT ──────────────────────────────────────────
+async function chargerStripeConnect(commercantId) {
+  const badge = document.getElementById('stripeConnectBadge');
+  const content = document.getElementById('stripeConnectContent');
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-connect', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'status', commercant_id: commercantId })
+    });
+    const d = await r.json();
+
+    if (d.actif) {
+      // Compte actif et vérifié
+      badge.style.background = '#e6f7ee';
+      badge.style.color = '#1a7a3d';
+      badge.textContent = '✓ Actif';
+      content.innerHTML = `
+        <div style="background:#e6f7ee;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:13px;line-height:1.5;">
+          ✅ Votre compte Stripe est actif. Les paiements clients arrivent directement sur votre compte bancaire.
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button onclick="ouvrirDashboardStripe('${commercantId}')"
+            style="flex:1;padding:11px;border-radius:50px;background:var(--vert);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer;">
+            📊 Mon dashboard Stripe
+          </button>
+          <button onclick="lancerOnboardingStripe('${commercantId}')"
+            style="flex:1;padding:11px;border-radius:50px;background:transparent;color:var(--vert);border:1.5px solid var(--vert);font-size:13px;font-weight:600;cursor:pointer;">
+            ✏️ Modifier mes infos
+          </button>
+        </div>`;
+    } else if (d.details_submitted) {
+      // Soumis mais en cours de vérification
+      badge.style.background = '#fff8e7';
+      badge.style.color = '#b07c00';
+      badge.textContent = '⏳ En cours';
+      content.innerHTML = `
+        <div style="background:#fff8e7;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:13px;line-height:1.5;">
+          ⏳ Votre dossier est en cours de vérification par Stripe. Cela prend généralement quelques minutes à 24h.
+        </div>
+        <button onclick="lancerOnboardingStripe('${commercantId}')"
+          style="width:100%;padding:12px;border-radius:50px;background:var(--or);color:#fff;border:none;font-size:14px;font-weight:600;cursor:pointer;">
+          Vérifier l'avancement →
+        </button>`;
+    } else {
+      // Pas encore connecté
+      badge.style.background = '#fdf0ef';
+      badge.style.color = '#c0392b';
+      badge.textContent = '⚠ Non configuré';
+      content.innerHTML = `
+        <div style="font-size:13px;color:var(--texte-doux);line-height:1.6;margin-bottom:14px;">
+          Pour recevoir les paiements de vos clients, connectez votre compte bancaire via Stripe.
+          C'est <b>rapide</b> (5 min), <b>sécurisé</b> et <b>obligatoire</b> pour activer les commandes en ligne.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;text-align:center;">
+          <div style="background:rgba(92,138,110,0.08);border-radius:10px;padding:10px 8px;font-size:12px;">
+            <div style="font-size:18px;margin-bottom:4px;">🏦</div>Compte bancaire FR
+          </div>
+          <div style="background:rgba(92,138,110,0.08);border-radius:10px;padding:10px 8px;font-size:12px;">
+            <div style="font-size:18px;margin-bottom:4px;">🪪</div>Pièce d'identité
+          </div>
+          <div style="background:rgba(92,138,110,0.08);border-radius:10px;padding:10px 8px;font-size:12px;">
+            <div style="font-size:18px;margin-bottom:4px;">⏱️</div>~5 minutes
+          </div>
+        </div>
+        <button onclick="lancerOnboardingStripe('${commercantId}')"
+          id="btnStripeOnboarding"
+          style="width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg,#5c8a6e,#3d5446);color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;">
+          Connecter mon compte bancaire →
+        </button>
+        <div style="font-size:11px;color:var(--texte-doux);text-align:center;margin-top:8px;">
+          Vous serez redirigé vers Stripe — vos données bancaires ne transitent jamais par Marchéo
+        </div>`;
+    }
+  } catch (e) {
+    if (badge) badge.textContent = 'Erreur';
+    if (content) content.innerHTML = '<div style="font-size:13px;color:#c0392b;">Impossible de charger le statut Stripe.</div>';
+    console.error('chargerStripeConnect:', e);
+  }
+}
+
+async function lancerOnboardingStripe(commercantId) {
+  const btn = document.getElementById('btnStripeOnboarding');
+  if (btn) { btn.disabled = true; btn.textContent = 'Chargement…'; }
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-connect', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'onboarding', commercant_id: commercantId })
+    });
+    const d = await r.json();
+    if (d.url) {
+      window.location.href = d.url;
+    } else {
+      throw new Error(d.error || 'Lien non reçu');
+    }
+  } catch (e) {
+    alert('Erreur Stripe : ' + e.message);
+    if (btn) { btn.disabled = false; btn.textContent = 'Connecter mon compte bancaire →'; }
+  }
+}
+
+async function ouvrirDashboardStripe(commercantId) {
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-connect', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'dashboard-link', commercant_id: commercantId })
+    });
+    const d = await r.json();
+    if (d.url) window.open(d.url, '_blank');
+    else throw new Error(d.error || 'Lien non reçu');
+  } catch (e) {
+    alert('Erreur : ' + e.message);
+  }
+}
+
+// Gérer le retour depuis Stripe Connect (paramètre URL)
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const stripe = params.get('stripe');
+  if (stripe === 'success') {
+    // Retour OK → afficher message et recharger
+    setTimeout(() => {
+      const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+      if (session.commercant_id) chargerStripeConnect(session.commercant_id);
+      allerOnglet('reglages');
+    }, 500);
+  } else if (stripe === 'refresh') {
+    // Lien expiré → relancer
+    setTimeout(() => {
+      allerOnglet('reglages');
+    }, 300);
+  }
+})();
 
 let _saveReglagesTimer = null;
 async function sauverReglages() {
@@ -1879,11 +2036,9 @@ async function abonnerAuxNotifications(reg) {
       applicationServerKey: keyBytes
     });
 
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.christophe-frais-caen&select=id', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const data = await r.json();
-    const commercantId = data?.[0]?.id;
+    // Récupère le commercant_id de la session active (corrige le slug hardcodé)
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
 
     if (commercantId) {
       const subJson = sub.toJSON();

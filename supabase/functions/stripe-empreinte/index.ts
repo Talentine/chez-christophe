@@ -68,13 +68,30 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   if (!commande_id || !montant_cents) return json({ error: 'Missing params' }, 400);
   if (montant_cents < 50) return json({ error: 'Montant trop faible (min 0.50€)' }, 400);
 
+  // Récupérer le stripe_connect_id du commerçant
+  const { data: cmd } = await supabase
+    .from('commandes')
+    .select('commercant_id, commercants(stripe_connect_id, stripe_connect_actif)')
+    .eq('id', commande_id)
+    .single();
+
+  const connectId = (cmd?.commercants as any)?.stripe_connect_id;
+  const connectActif = (cmd?.commercants as any)?.stripe_connect_actif;
+
   // Find or create Stripe customer
+  // Si Connect actif → customer sur le compte connecté, sinon sur le compte plateforme
   let customer;
-  const existing = await stripe.customers.list({ email, limit: 1 });
-  customer = existing.data[0] ?? await stripe.customers.create({ email, name: nom });
+  if (connectId && connectActif) {
+    const existing = await stripe.customers.list({ email, limit: 1 }, { stripeAccount: connectId });
+    customer = existing.data[0] ?? await stripe.customers.create({ email, name: nom }, { stripeAccount: connectId });
+  } else {
+    const existing = await stripe.customers.list({ email, limit: 1 });
+    customer = existing.data[0] ?? await stripe.customers.create({ email, name: nom });
+  }
 
   // PaymentIntent with manual capture
-  const intent = await stripe.paymentIntents.create({
+  // Si le commerçant a un compte Connect actif → on_behalf_of pour router les fonds
+  const intentParams: any = {
     amount: montant_cents,
     currency: 'eur',
     customer: customer.id,
@@ -82,7 +99,15 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
     automatic_payment_methods: { enabled: true },
     metadata: { commande_id: String(commande_id) },
     description: `Empreinte commande ${commande_id}`,
-  });
+  };
+
+  if (connectId && connectActif) {
+    intentParams.on_behalf_of = connectId;
+    intentParams.transfer_data = { destination: connectId };
+    // 0% commission — application_fee_amount non défini
+  }
+
+  const intent = await stripe.paymentIntents.create(intentParams);
 
   // Save on commande
   await supabase.from('commandes').update({
