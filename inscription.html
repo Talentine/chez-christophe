@@ -47,14 +47,45 @@
   .footer-link a{color:#5c8a6e;text-decoration:none;}
   .success{text-align:center;padding:20px 0;}
   .success-emoji{font-size:56px;margin-bottom:14px;}
+
+  /* Offre banner */
+  .offre-banner{border-radius:14px;padding:16px 18px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .offre-banner.vitrine{background:rgba(92,138,110,0.1);border:1.5px solid rgba(92,138,110,0.25);}
+  .offre-banner.clickcollect{background:rgba(201,165,75,0.1);border:1.5px solid rgba(201,165,75,0.35);}
+  .offre-banner.livraison{background:rgba(100,149,200,0.1);border:1.5px solid rgba(100,149,200,0.3);}
+  .offre-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:20px;}
+  .vitrine .offre-badge{background:rgba(92,138,110,0.25);color:#7dc9a0;}
+  .clickcollect .offre-badge{background:rgba(201,165,75,0.25);color:#C9A54B;}
+  .livraison .offre-badge{background:rgba(100,149,200,0.25);color:#7ab3e0;}
+  .offre-nom{font-size:14px;font-weight:600;color:#fff;margin:4px 0 2px;}
+  .offre-prix-bloc{text-align:right;flex-shrink:0;}
+  .offre-setup{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:2px;}
+  .offre-setup strong{color:rgba(255,255,255,.75);font-size:13px;}
+  .offre-mensuel{font-size:12px;color:rgba(255,255,255,.4);}
+  .offre-mensuel strong{color:rgba(255,255,255,.65);}
+  .offre-change{font-size:11px;color:rgba(255,255,255,.3);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;margin-top:6px;display:block;text-align:left;}
+  .offre-change:hover{color:rgba(255,255,255,.6);}
 </style>
 </head>
 <body>
 
 <div class="wrap">
-  <div class="logo">Click & Collect</div>
+  <div class="logo">Marchéo</div>
   <h1>Créez votre boutique en ligne</h1>
-  <p class="sub">Lancez votre site click & collect en 3 minutes — sans technique, sans abonnement contraignant.</p>
+  <p class="sub">Configurez votre site en 3 minutes — sans technique, sans engagement.</p>
+
+  <!-- Bannière offre sélectionnée -->
+  <div id="offreBanner" class="offre-banner" style="display:none;">
+    <div>
+      <div id="offreBadge" class="offre-badge"></div>
+      <div id="offreNom" class="offre-nom"></div>
+      <button class="offre-change" onclick="window.location.href='landing.html#tarifs'">← Changer d'offre</button>
+    </div>
+    <div class="offre-prix-bloc">
+      <div class="offre-setup">Installation : <strong id="offreSetup"></strong></div>
+      <div class="offre-mensuel">puis <strong id="offreMensuel"></strong>/mois · sans engagement</div>
+    </div>
+  </div>
 
   <div class="step-bar">
     <div class="bar1 actif"></div>
@@ -95,7 +126,7 @@
         <label>Adresse de votre site *</label>
         <div style="display:flex;align-items:center;gap:6px;">
           <input id="iSlug" placeholder="paul-primeur" style="font-family:monospace;flex:1;">
-          <span style="color:rgba(255,255,255,0.4);font-size:13px;">.click-collect.fr</span>
+          <span style="color:rgba(255,255,255,0.4);font-size:13px;">.marcheo.fr</span>
         </div>
         <div class="hint">Lettres minuscules, chiffres et tirets uniquement.</div>
       </div>
@@ -189,7 +220,30 @@
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
-const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', commercantId:null, accessToken:null };
+const OFFRES = {
+  vitrine:      { nom:'Vitrine',                  setup:'249€', mensuel:'19€', label:'VITRINE',          cls:'vitrine' },
+  clickcollect: { nom:'Click & Collect',           setup:'399€', mensuel:'39€', label:'CLICK & COLLECT',  cls:'clickcollect' },
+  livraison:    { nom:'Click & Collect + Livraison', setup:'549€', mensuel:'59€', label:'LIVRAISON',      cls:'livraison' },
+};
+
+const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null };
+
+// ── Lire l'offre depuis l'URL
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const offre = params.get('offre');
+  if (offre && OFFRES[offre]) {
+    state.offre = offre;
+    const o = OFFRES[offre];
+    const banner = document.getElementById('offreBanner');
+    banner.classList.add(o.cls);
+    banner.style.display = 'flex';
+    document.getElementById('offreBadge').textContent = o.label;
+    document.getElementById('offreNom').textContent = o.nom;
+    document.getElementById('offreSetup').textContent = o.setup;
+    document.getElementById('offreMensuel').textContent = o.mensuel;
+  }
+})();
 
 // ── Sélection métier
 document.getElementById('metiersList').addEventListener('click', e => {
@@ -230,7 +284,8 @@ function etape(n) {
     document.getElementById('recap').innerHTML =
       `<div class="recap-label">Métier</div><div>${state.type}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
-      `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">${state.slug}.click-collect.fr</div>`;
+      `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marcheo.fr/${state.slug}</div>` +
+      `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
   document.getElementById('step' + n).classList.add('actif');
@@ -305,7 +360,8 @@ async function creerBoutique() {
         telephone: state.tel || null,
         email: state.email,
         actif: true,
-        business_config: {},
+        offre: state.offre || 'clickcollect',
+        business_config: { offre: state.offre || 'clickcollect' },
         cgv_plateforme_acceptees: true,
         cgv_plateforme_version: '2026-04',
         cgv_plateforme_acceptees_at: new Date().toISOString(),
