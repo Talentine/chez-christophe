@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conditions Générales de Vente · Marchéo</title>
+  <meta name="description" content="Conditions Générales de Vente de la plateforme Marchéo, click & collect et livraison pour artisans.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1C3D2E;
+      --brand-dark: #122A1F;
+      --gold: #C9A54B;
+      --cream: #FAF7F0;
+      --cream-dark: #F0EAD8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B63;
+      --border: #E5DFD0;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 16px; line-height: 1.7;
+      color: var(--text); background: var(--cream);
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.3; color: var(--brand); }
+    a { color: var(--brand); }
+    a:hover { color: var(--gold); }
+
+    /* HEADER */
+    .top {
+      background: var(--brand); color: #fff;
+      padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    .top a { color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; opacity: .85; }
+    .top a:hover { opacity: 1; color: var(--gold); }
+    .logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-weight:700; font-size:18px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%; background: var(--gold); }
+
+    /* CONTAINER */
+    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .header-doc {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      margin-bottom: 28px; border: 1px solid var(--border);
+    }
+    .doc-label {
+      display: inline-block; font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px;
+    }
+    h1 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 12px; }
+    .meta { color: var(--text-muted); font-size: 14px; }
+
+    /* SOMMAIRE */
+    .toc {
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .toc-titre { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--brand); }
+    .toc ol { margin-left: 18px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* CONTENU */
+    .content {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 1px solid var(--border);
+    }
+    .content h2 {
+      font-size: 22px; margin-top: 36px; margin-bottom: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .content h2:first-of-type { margin-top: 8px; padding-top: 0; border-top: none; }
+    .content h3 { font-size: 17px; margin-top: 22px; margin-bottom: 8px; color: var(--brand-dark); }
+    .content p { margin-bottom: 14px; }
+    .content ul, .content ol { margin: 12px 0 16px 24px; }
+    .content li { margin-bottom: 8px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .content th, .content td { padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    .content th { background: var(--cream); font-weight: 600; }
+    .content strong, .content b { color: var(--brand-dark); }
+
+    .placeholder {
+      display: inline-block; background: #FFF4D9; color: #8a6d1c;
+      padding: 1px 8px; border-radius: 4px; font-family: monospace;
+      font-size: 13px; border: 1px dashed #d4a44c;
+    }
+
+    .alerte {
+      background: #FFF8E7; border: 1px solid #F0D690;
+      border-left: 4px solid var(--gold); border-radius: 8px;
+      padding: 14px 18px; margin: 18px 0; font-size: 14px;
+    }
+
+    /* FOOTER docs */
+    .footer-docs {
+      margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      font-size: 13px;
+    }
+    .footer-docs a {
+      padding: 8px 16px; background: var(--cream); border-radius: 50px;
+      text-decoration: none; color: var(--brand); border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .footer-docs a:hover { background: var(--brand); color: #fff; }
+
+    @media (max-width: 600px) {
+      .header-doc, .content { padding: 24px 18px; }
+      .wrap { padding: 24px 14px 60px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .top, .toc, .footer-docs { display: none; }
+      .wrap { max-width: none; padding: 0; }
+      .content, .header-doc { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <a href="landing.html" class="logo">
+    <span class="logo-dot"></span> Marchéo
+  </a>
+  <a href="landing.html">← Retour au site</a>
+</header>
+
+<div class="wrap">
+  <div class="header-doc">
+    <div class="doc-label">Document juridique</div>
+    <h1>Conditions Générales de Vente — Plateforme Marchéo</h1>
+    <p class="meta">Version 1.0 · Dernière mise à jour : <span class="placeholder">[À COMPLÉTER]</span></p>
+  </div>
+
+  <div class="alerte">
+    ⚠️ <b>Document en cours de finalisation.</b> Les zones <span class="placeholder">[À COMPLÉTER]</span> seront remplies avec les informations légales définitives lors de la mise en production.
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <div class="toc-titre">📋 Sommaire</div>
+    <ol>
+      <li><a href="#a1">Objet et champ d'application</a></li>
+      <li><a href="#a2">Définitions</a></li>
+      <li><a href="#a3">Inscription et compte commerçant</a></li>
+      <li><a href="#a4">Services inclus</a></li>
+      <li><a href="#a5">Tarifs et abonnement</a></li>
+      <li><a href="#a6">Flux financiers et reversement</a></li>
+      <li><a href="#a7">Obligations du commerçant</a></li>
+      <li><a href="#a8">Obligations de Marchéo</a></li>
+      <li><a href="#a9">Propriété intellectuelle</a></li>
+      <li><a href="#a10">Durée et résiliation</a></li>
+      <li><a href="#a11">Données personnelles</a></li>
+      <li><a href="#a12">Responsabilité</a></li>
+      <li><a href="#a13">Modification des CGV</a></li>
+      <li><a href="#a14">Droit applicable et litiges</a></li>
+    </ol>
+  </nav>
+
+  <article class="content">
+
+    <h2 id="a1">Article 1 — Objet et champ d'application</h2>
+    <p>Les présentes Conditions Générales de Vente (« <strong>CGV</strong> ») régissent l'utilisation de la plateforme <strong>Marchéo</strong> (la « <strong>Plateforme</strong> »), accessible à l'adresse <strong>https://marcheo.fr</strong>, exploitée par :</p>
+    <ul>
+      <li><strong>Raison sociale :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>Forme juridique :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>SIRET :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>Siège social :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>Email :</strong> contact@marcheo.fr</li>
+      <li><strong>Directeur de publication :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+    </ul>
+    <p>Marchéo édite une solution logicielle (SaaS) permettant à des artisans et commerçants de proximité (« <strong>Commerçants</strong> ») de proposer un service de <strong>click & collect</strong> et de <strong>livraison à domicile</strong> à leurs clients (« <strong>Clients Finaux</strong> »).</p>
+    <p>L'utilisation de la Plateforme implique l'acceptation <strong>pleine et entière</strong> des présentes CGV par le Commerçant lors de son inscription.</p>
+
+    <h2 id="a2">Article 2 — Définitions</h2>
+    <ul>
+      <li><strong>Plateforme</strong> : l'ensemble des services en ligne accessibles depuis marcheo.fr.</li>
+      <li><strong>Commerçant</strong> : artisan ou commerçant disposant d'un compte actif sur la Plateforme.</li>
+      <li><strong>Client Final</strong> : personne physique passant commande sur la boutique en ligne d'un Commerçant.</li>
+      <li><strong>Commande</strong> : transaction validée par un Client Final sur une boutique.</li>
+      <li><strong>Empreinte bancaire</strong> : pré-autorisation Stripe permettant de bloquer un montant sur la carte du Client Final sans débit immédiat.</li>
+      <li><strong>No-show</strong> : absence d'un Client Final au moment du retrait ou de la livraison.</li>
+    </ul>
+
+    <h2 id="a3">Article 3 — Inscription et compte commerçant</h2>
+    <h3>3.1 Conditions d'inscription</h3>
+    <p>L'inscription est ouverte à toute personne morale ou physique exerçant une activité de commerce de proximité dans les domaines suivants : primeur, boucherie, boulangerie, poissonnerie, traiteur, fromagerie, ou toute activité similaire validée par Marchéo.</p>
+    <p>Le Commerçant doit :</p>
+    <ul>
+      <li>Disposer d'un numéro <strong>SIRET valide</strong> ;</li>
+      <li>Être majeur et juridiquement capable ;</li>
+      <li>Fournir des informations exactes et à jour ;</li>
+      <li>Disposer d'un point de vente physique.</li>
+    </ul>
+    <h3>3.2 Validation du compte</h3>
+    <p>Marchéo se réserve le droit de <strong>refuser ou suspendre</strong> une inscription qui ne respecterait pas les présentes CGV ou pour tout motif légitime (fraude, contrefaçon, atteinte à l'image…).</p>
+    <h3>3.3 Données de connexion</h3>
+    <p>Le Commerçant est seul responsable de la confidentialité de ses identifiants. Toute utilisation du compte est réputée effectuée par le Commerçant.</p>
+
+    <h2 id="a4">Article 4 — Services inclus</h2>
+    <p>Marchéo met à disposition du Commerçant :</p>
+    <ul>
+      <li>Une <strong>boutique en ligne personnalisée</strong> (URL dédiée) adaptée à son métier ;</li>
+      <li>Un <strong>dashboard de gestion</strong> des produits, créneaux et commandes ;</li>
+      <li>Un <strong>système de paiement intégré</strong> via Stripe Connect ;</li>
+      <li>Un système d'<strong>empreinte bancaire anti no-show</strong> (75 % du panier) ;</li>
+      <li>Des <strong>notifications SMS</strong> aux clients (confirmation, prêt à retirer) ;</li>
+      <li>Des <strong>emails transactionnels</strong> (confirmation, rappel J-1) ;</li>
+      <li>Des <strong>statistiques</strong> de ventes et performance ;</li>
+      <li>Un <strong>support technique</strong> par email.</li>
+    </ul>
+
+    <h2 id="a5">Article 5 — Tarifs et abonnement</h2>
+    <h3>5.1 Plans d'abonnement</h3>
+    <table>
+      <thead><tr><th>Plan</th><th>Tarif</th><th>Engagement</th></tr></thead>
+      <tbody>
+        <tr><td>Découverte</td><td>0 € / mois</td><td>Sans engagement</td></tr>
+        <tr><td>Pro</td><td>29 € HT / mois</td><td>Sans engagement, mensuel</td></tr>
+        <tr><td>Entreprise</td><td>Sur devis</td><td>Selon contrat spécifique</td></tr>
+      </tbody>
+    </table>
+    <h3>5.2 Commission sur les transactions</h3>
+    <p>En complément de l'abonnement, Marchéo prélève une <strong>commission de <span class="placeholder">[X]</span> %</strong> sur chaque transaction réalisée via la Plateforme (frais Stripe inclus). Cette commission est automatiquement déduite du montant reversé au Commerçant.</p>
+    <h3>5.3 Modalités de facturation</h3>
+    <ul>
+      <li>L'abonnement est facturé <strong>mensuellement</strong>, à terme à échoir ;</li>
+      <li>Le paiement s'effectue par carte bancaire via Stripe ;</li>
+      <li>Les commissions sont déduites au fil de l'eau lors des virements ;</li>
+      <li>Les factures sont disponibles dans le dashboard.</li>
+    </ul>
+    <h3>5.4 Modification des tarifs</h3>
+    <p>Marchéo peut modifier ses tarifs avec un préavis de <strong>30 jours</strong> notifié par email. Le Commerçant peut résilier sans frais avant l'application du nouveau tarif.</p>
+
+    <h2 id="a6">Article 6 — Flux financiers et reversement</h2>
+    <h3>6.1 Encaissement</h3>
+    <p>Les paiements des Clients Finaux sont encaissés via <strong>Stripe Connect</strong>. Marchéo agit en tant que plateforme technique facilitant la transaction.</p>
+    <h3>6.2 Empreinte bancaire</h3>
+    <p>Sur option du Commerçant (paramètre activable dans le dashboard), une <strong>empreinte bancaire de 75 % du panier</strong> est pré-autorisée sur la carte du Client Final lors de la commande.</p>
+    <ul>
+      <li>Aucun débit n'est effectué tant que la commande est en attente ;</li>
+      <li>L'empreinte est <strong>automatiquement libérée 24 heures après la date prévue</strong> de retrait/livraison ;</li>
+      <li>En cas de no-show avéré, le Commerçant peut déclencher la <strong>capture</strong> des fonds via le bouton « Litige » de son dashboard.</li>
+    </ul>
+    <h3>6.3 Reversement au Commerçant</h3>
+    <p>Les fonds sont reversés sur le compte bancaire associé via Stripe :</p>
+    <ul>
+      <li><strong>Délai standard :</strong> sous 7 jours après chaque commande honorée ;</li>
+      <li><strong>Calendrier :</strong> <span class="placeholder">[À COMPLÉTER : hebdomadaire / quotidien]</span> ;</li>
+      <li>Le détail des virements est consultable dans le dashboard.</li>
+    </ul>
+    <h3>6.4 Litiges et chargebacks</h3>
+    <p>En cas de chargeback initié par un Client Final, Marchéo informe le Commerçant et coordonne la défense. Si le chargeback est validé contre le Commerçant, le montant est imputé sur les futurs virements.</p>
+
+    <h2 id="a7">Article 7 — Obligations du commerçant</h2>
+    <h3>7.1 Engagements généraux</h3>
+    <p>Le Commerçant s'engage à :</p>
+    <ul>
+      <li>Fournir des informations <strong>exactes et à jour</strong> sur sa boutique ;</li>
+      <li><strong>Honorer les commandes</strong> dans les délais annoncés ;</li>
+      <li>Respecter la <strong>réglementation applicable</strong> à son activité (hygiène, étiquetage, prix, allergènes…) ;</li>
+      <li>Ne pas vendre de produits <strong>illicites, contrefaits ou prohibés</strong> ;</li>
+      <li>Maintenir un <strong>niveau de service de qualité</strong> ;</li>
+      <li>Utiliser le bouton « Litige » uniquement en cas de <strong>no-show avéré</strong> ;</li>
+      <li>Ne pas contourner la Plateforme pour des transactions générées par celle-ci.</li>
+    </ul>
+    <p>Tout manquement peut entraîner la suspension du compte, sans préjudice de poursuites éventuelles.</p>
+
+    <h3>7.2 Médiation de la consommation</h3>
+    <p>Conformément aux articles <strong>L.611-1 et suivants</strong> et <strong>L.612-1</strong> du Code de la consommation, le Commerçant, en sa qualité de <strong>vendeur</strong> auprès du Client Final, est seul responsable de l'adhésion à un dispositif de <strong>médiation de la consommation</strong> agréé par la CECMC.</p>
+    <p>Le Commerçant reconnaît expressément que :</p>
+    <ul>
+      <li>Marchéo agit en qualité de <strong>prestataire technique</strong> et <strong>d'intermédiaire facilitateur de paiement</strong> via Stripe Connect, sans être partie au contrat de vente ;</li>
+      <li>Il appartient au Commerçant de <strong>souscrire personnellement</strong> une adhésion auprès d'un médiateur agréé, et d'en mentionner les coordonnées dans ses CGV Boutique ;</li>
+      <li>Marchéo met à disposition un <strong>modèle de CGV Boutique</strong> dans lequel le Commerçant doit renseigner les coordonnées de son médiateur ;</li>
+      <li>Le défaut d'adhésion à un médiateur reste la <strong>responsabilité exclusive</strong> du Commerçant.</li>
+    </ul>
+
+    <h3>7.3 Conformité fiscale et déclarative</h3>
+    <p>Le Commerçant déclare et garantit être à jour de ses obligations fiscales, sociales et déclaratives liées à son activité, et reconnaît être seul responsable de la <strong>déclaration et du paiement</strong> de la TVA, des cotisations sociales et de l'impôt sur les bénéfices au titre des ventes réalisées via la Plateforme.</p>
+
+    <h2 id="a8">Article 8 — Obligations de Marchéo</h2>
+    <p>Marchéo s'engage à :</p>
+    <ul>
+      <li>Maintenir la Plateforme <strong>disponible 24h/24</strong> (hors maintenance, force majeure) ;</li>
+      <li>Sécuriser les <strong>données personnelles</strong> conformément au RGPD ;</li>
+      <li>Reverser les fonds collectés dans les <strong>délais annoncés</strong> ;</li>
+      <li>Apporter un <strong>support technique</strong> sous 48h ouvrées.</li>
+    </ul>
+    <p><strong>Marchéo n'est pas responsable</strong> de la qualité des produits vendus, des retards ou défauts de préparation, des litiges commerciaux, ou des interruptions des prestataires tiers (Stripe, Twilio, Resend, Supabase, hébergeur).</p>
+
+    <h2 id="a9">Article 9 — Propriété intellectuelle</h2>
+    <h3>9.1 Marchéo</h3>
+    <p>Tous les éléments de la Plateforme (code, design, marque, logos, textes) sont la propriété exclusive de Marchéo et protégés par le droit d'auteur.</p>
+    <h3>9.2 Commerçant</h3>
+    <p>Le Commerçant conserve la propriété de ses contenus (photos, textes, logo). Il accorde à Marchéo une <strong>licence non exclusive</strong> d'utilisation, de reproduction et de diffusion dans le cadre du fonctionnement de la Plateforme.</p>
+
+    <h2 id="a10">Article 10 — Durée et résiliation</h2>
+    <h3>10.1 Durée</h3>
+    <p>Le contrat est conclu pour une <strong>durée indéterminée</strong> dès l'activation du compte.</p>
+    <h3>10.2 Résiliation par le Commerçant</h3>
+    <p>Le Commerçant peut résilier à tout moment depuis son dashboard. La résiliation prend effet <strong>à la fin du mois en cours</strong>. Aucun remboursement prorata n'est dû.</p>
+    <h3>10.3 Résiliation par Marchéo</h3>
+    <p>Marchéo peut suspendre ou résilier le compte en cas de non-paiement, violation des CGV, pratiques frauduleuses, ou atteinte à la réputation. Préavis de 7 jours par email, sauf cas de gravité immédiate.</p>
+    <h3>10.4 Conséquences</h3>
+    <ul>
+      <li>Le compte et la boutique sont désactivés ;</li>
+      <li>Les commandes en cours sont honorées ;</li>
+      <li>Les fonds en attente sont reversés sous 30 jours ;</li>
+      <li>Les données peuvent être conservées jusqu'à 5 ans à des fins légales.</li>
+    </ul>
+
+    <h2 id="a11">Article 11 — Données personnelles</h2>
+    <p>Le traitement des données personnelles est régi par notre <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+    <p>Marchéo agit en qualité de :</p>
+    <ul>
+      <li><strong>Sous-traitant</strong> au sens du RGPD pour les données des Clients Finaux (le Commerçant en est le responsable de traitement) ;</li>
+      <li><strong>Responsable de traitement</strong> pour les données des Commerçants.</li>
+    </ul>
+
+    <h2 id="a12">Article 12 — Responsabilité</h2>
+    <h3>12.1 Limitation</h3>
+    <p>Sauf en cas de faute lourde ou intentionnelle, la responsabilité de Marchéo est plafonnée au <strong>montant total payé par le Commerçant au cours des 12 derniers mois</strong> précédant le fait générateur.</p>
+    <h3>12.2 Force majeure</h3>
+    <p>Aucune partie ne pourra être tenue responsable d'un manquement causé par un cas de force majeure au sens de l'article 1218 du Code civil.</p>
+
+    <h2 id="a13">Article 13 — Modification des CGV</h2>
+    <p>Marchéo se réserve le droit de modifier les présentes CGV. Les modifications prennent effet <strong>30 jours après notification</strong> par email. Le Commerçant peut résilier sans frais s'il refuse les modifications.</p>
+
+    <h2 id="a14">Article 14 — Droit applicable et litiges</h2>
+    <p>Les présentes CGV sont soumises au <strong>droit français</strong>.</p>
+    <p>En cas de litige, les parties s'efforceront de trouver une solution amiable. À défaut, le litige sera porté devant les tribunaux compétents du <strong>ressort du siège social de Marchéo</strong> (<span class="placeholder">[À COMPLÉTER]</span>).</p>
+    <p>Conformément à l'article L.612-1 du Code de la consommation, le Commerçant peut recourir gratuitement au médiateur de la consommation : <span class="placeholder">[À COMPLÉTER]</span>.</p>
+
+    <div class="footer-docs">
+      <a href="confidentialite.html">📜 Politique de confidentialité</a>
+      <a href="charte.html">⭐ Charte qualité</a>
+      <a href="mentions-legales.html">⚖️ Mentions légales</a>
+      <a href="landing.html">← Retour au site</a>
+    </div>
+  </article>
+</div>
+
+</body>
+</html>

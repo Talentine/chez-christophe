@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charte qualité commerçants · Marchéo</title>
+  <meta name="description" content="Charte qualité que s'engagent à respecter les commerçants partenaires de la plateforme Marchéo.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1C3D2E;
+      --brand-dark: #122A1F;
+      --gold: #C9A54B;
+      --cream: #FAF7F0;
+      --cream-dark: #F0EAD8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B63;
+      --border: #E5DFD0;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 16px; line-height: 1.7;
+      color: var(--text); background: var(--cream);
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.3; color: var(--brand); }
+    a { color: var(--brand); }
+    a:hover { color: var(--gold); }
+
+    .top {
+      background: var(--brand); color: #fff;
+      padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    .top a { color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; opacity: .85; }
+    .top a:hover { opacity: 1; color: var(--gold); }
+    .logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-weight:700; font-size:18px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%; background: var(--gold); }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .header-doc {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      margin-bottom: 28px; border: 1px solid var(--border);
+    }
+    .doc-label {
+      display: inline-block; font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px;
+    }
+    h1 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 12px; }
+    .meta { color: var(--text-muted); font-size: 14px; }
+
+    .toc {
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .toc-titre { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--brand); }
+    .toc ol { margin-left: 18px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .content {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 1px solid var(--border);
+    }
+    .content h2 {
+      font-size: 22px; margin-top: 36px; margin-bottom: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .content h2:first-of-type { margin-top: 8px; padding-top: 0; border-top: none; }
+    .content h3 { font-size: 17px; margin-top: 22px; margin-bottom: 8px; color: var(--brand-dark); }
+    .content p { margin-bottom: 14px; }
+    .content ul, .content ol { margin: 12px 0 16px 24px; }
+    .content li { margin-bottom: 8px; }
+    .content strong, .content b { color: var(--brand-dark); }
+
+    .engagement-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin: 22px 0;
+    }
+    .engagement-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px;
+    }
+    .engagement-card .e-icon { font-size: 26px; margin-bottom: 10px; }
+    .engagement-card .e-title { font-weight: 700; font-size: 15px; color: var(--brand); margin-bottom: 6px; }
+    .engagement-card .e-list { list-style: none; padding: 0; margin: 0; }
+    .engagement-card .e-list li { font-size: 13.5px; color: var(--text-muted); padding: 3px 0; }
+    .engagement-card .e-list li::before { content: "✓ "; color: var(--brand); font-weight: 700; }
+
+    .alerte {
+      background: #FFF8E7; border: 1px solid #F0D690;
+      border-left: 4px solid var(--gold); border-radius: 8px;
+      padding: 14px 18px; margin: 18px 0; font-size: 14px;
+    }
+
+    .sanction-card {
+      background: #FFF0F0; border: 1px solid #F5C6C6;
+      border-left: 4px solid #E05252; border-radius: 8px;
+      padding: 14px 18px; margin: 10px 0; font-size: 14px;
+    }
+    .sanction-card strong { color: #C0392B; }
+
+    .label-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--brand), #2d5a3e);
+      color: #fff; border-radius: 50px; padding: 8px 18px;
+      font-size: 14px; font-weight: 600; margin: 16px 0;
+    }
+    .label-badge .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    .footer-docs {
+      margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      font-size: 13px;
+    }
+    .footer-docs a {
+      padding: 8px 16px; background: var(--cream); border-radius: 50px;
+      text-decoration: none; color: var(--brand); border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .footer-docs a:hover { background: var(--brand); color: #fff; }
+
+    @media (max-width: 600px) {
+      .header-doc, .content { padding: 24px 18px; }
+      .wrap { padding: 24px 14px 60px; }
+      .engagement-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .top, .toc, .footer-docs { display: none; }
+      .wrap { max-width: none; padding: 0; }
+      .content, .header-doc { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <a href="landing.html" class="logo">
+    <span class="logo-dot"></span> Marchéo
+  </a>
+  <a href="landing.html">← Retour au site</a>
+</header>
+
+<div class="wrap">
+
+  <div class="header-doc">
+    <span class="doc-label">Commerçants partenaires</span>
+    <h1>Charte qualité Marchéo</h1>
+    <p class="meta">
+      Version 1.0 &nbsp;·&nbsp; Entrée en vigueur : <strong>avril 2026</strong><br>
+      Document opposable — accepté lors de l'inscription sur la plateforme
+    </p>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <div class="toc-titre">📋 Sommaire</div>
+    <ol>
+      <li><a href="#art1">Préambule et valeurs</a></li>
+      <li><a href="#art2">Engagements qualité produits</a></li>
+      <li><a href="#art3">Engagements service client</a></li>
+      <li><a href="#art4">Engagements opérationnels</a></li>
+      <li><a href="#art5">Engagements légaux et réglementaires</a></li>
+      <li><a href="#art6">Engagements numériques</a></li>
+      <li><a href="#art7">Indicateurs et suivi qualité</a></li>
+      <li><a href="#art8">Procédure de contrôle</a></li>
+      <li><a href="#art9">Sanctions et déréférencement</a></li>
+      <li><a href="#art10">Label Marchéo Certifié</a></li>
+    </ol>
+  </nav>
+
+  <div class="content">
+
+    <h2 id="art1">Article 1 — Préambule et valeurs</h2>
+    <p>
+      La plateforme <strong>Marchéo</strong> est née d'une conviction : les artisans locaux méritent des outils
+      numériques modernes, et les clients méritent de trouver en ligne la même qualité qu'au marché.
+    </p>
+    <p>
+      En rejoignant Marchéo, chaque commerçant s'engage à respecter la présente charte qualité.
+      Elle définit les standards minimaux de qualité, de service et de conformité attendus de tous les
+      vendeurs de la plateforme, quel que soit leur métier.
+    </p>
+    <p><strong>Nos valeurs fondatrices :</strong></p>
+    <ul>
+      <li><strong>Authenticité</strong> — Des produits vrais, des descriptions honnêtes, des origines traçables</li>
+      <li><strong>Fiabilité</strong> — Des commandes honorées, des créneaux respectés, des clients traités avec sérieux</li>
+      <li><strong>Qualité</strong> — Des standards alimentaires et sanitaires irréprochables</li>
+      <li><strong>Proximité</strong> — Un service humain, réactif, ancré dans le territoire local</li>
+    </ul>
+
+    <h2 id="art2">Article 2 — Engagements qualité produits</h2>
+
+    <div class="engagement-grid">
+      <div class="engagement-card">
+        <div class="e-icon">🌿</div>
+        <div class="e-title">Authenticité</div>
+        <ul class="e-list">
+          <li>Descriptions fidèles à la réalité</li>
+          <li>Photos représentatives des produits réels</li>
+          <li>Origines géographiques exactes</li>
+          <li>Pas de fausse allégation (bio, AOP, artisanal…)</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">🔬</div>
+        <div class="e-title">Hygiène & sécurité alimentaire</div>
+        <ul class="e-list">
+          <li>Respect des normes HACCP</li>
+          <li>Températures de conservation respectées</li>
+          <li>DLC / DDM correctement étiquetées</li>
+          <li>Allergènes déclarés (14 allergènes majeurs)</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">📦</div>
+        <div class="e-title">Fraîcheur & conditionnement</div>
+        <ul class="e-list">
+          <li>Produits frais au moment de la remise</li>
+          <li>Emballages propres et adaptés</li>
+          <li>Quantités conformes à la commande</li>
+          <li>Produits non endommagés</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">🏷️</div>
+        <div class="e-title">Prix et étiquetage</div>
+        <ul class="e-list">
+          <li>Prix TTC affichés clairement</li>
+          <li>Prix cohérents avec la boutique physique</li>
+          <li>Pas de surfacturation platform</li>
+          <li>Promotions réelles et non trompeuses</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>2.1 Cas spécifiques par métier</h3>
+    <ul>
+      <li><strong>Boulanger-pâtissier :</strong> pain et viennoiseries préparés le jour même ou la veille ; indiquer clairement si surgélation intermédiaire</li>
+      <li><strong>Fromager :</strong> respect de la chaîne du froid ; affinage déclaré avec précision</li>
+      <li><strong>Charcutier :</strong> DLUO et conditions de conservation visibles ; traçabilité animale disponible sur demande</li>
+      <li><strong>Primeur :</strong> saisonnalité respectée ; provenance locale prioritaire (rayon &lt; 200 km)</li>
+      <li><strong>Traiteur :</strong> plats préparés le jour de la commande ou préciser la date de fabrication</li>
+      <li><strong>Cave à vins :</strong> millésimes, domaines et cépages exacts ; conseils de conservation</li>
+    </ul>
+
+    <h2 id="art3">Article 3 — Engagements service client</h2>
+
+    <div class="engagement-grid">
+      <div class="engagement-card">
+        <div class="e-icon">⚡</div>
+        <div class="e-title">Réactivité</div>
+        <ul class="e-list">
+          <li>Réponse aux messages sous 4h (heures ouvrées)</li>
+          <li>Notifications activées (push, SMS)</li>
+          <li>Commandes validées ou refusées sous 2h</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">📅</div>
+        <div class="e-title">Respect des créneaux</div>
+        <ul class="e-list">
+          <li>Commandes prêtes à l'heure indiquée</li>
+          <li>Avertissement anticipé en cas de retard</li>
+          <li>Créneaux réalistes et maintenus à jour</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">🔄</div>
+        <div class="e-title">Substitutions & ruptures</div>
+        <ul class="e-list">
+          <li>Client informé avant la préparation</li>
+          <li>Accord obligatoire pour toute substitution</li>
+          <li>Remboursement immédiat si rupture non proposée</li>
+        </ul>
+      </div>
+      <div class="engagement-card">
+        <div class="e-icon">💬</div>
+        <div class="e-title">Réclamations</div>
+        <ul class="e-list">
+          <li>Traitement sous 48h ouvrées</li>
+          <li>Solution proposée : remboursement ou avoir</li>
+          <li>Pas de conflit avec le client en public</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 id="art4">Article 4 — Engagements opérationnels</h2>
+
+    <h3>4.1 Disponibilité et horaires</h3>
+    <ul>
+      <li>Les horaires d'ouverture publiés sur la boutique sont exacts et maintenus à jour</li>
+      <li>Les fermetures exceptionnelles (vacances, jours fériés, maladie) sont annoncées au minimum <strong>48 heures à l'avance</strong></li>
+      <li>En cas de fermeture imprévue, les commandes en cours sont remboursées sous <strong>24 heures</strong></li>
+    </ul>
+
+    <h3>4.2 Gestion des stocks</h3>
+    <ul>
+      <li>Les produits affichés en stock sont réellement disponibles</li>
+      <li>Le catalogue est mis à jour régulièrement (au minimum hebdomadairement)</li>
+      <li>Les produits saisonniers sont désactivés hors saison</li>
+    </ul>
+
+    <h3>4.3 Empreinte bancaire (no-show)</h3>
+    <ul>
+      <li>La capture de l'empreinte bancaire en cas de no-show ne peut intervenir que si le client n'a pas annulé dans les délais définis par le commerçant</li>
+      <li>Le commerçant s'engage à utiliser cette fonctionnalité de manière équitable et non abusive</li>
+      <li>Tout litige lié à la capture donne lieu à une procédure de médiation via Marchéo</li>
+    </ul>
+
+    <h2 id="art5">Article 5 — Engagements légaux et réglementaires</h2>
+
+    <div class="alerte">
+      ⚠️ La conformité légale est de la <strong>responsabilité exclusive du commerçant</strong>.
+      Marchéo ne peut pas être tenu responsable du non-respect de ces obligations par le commerçant.
+    </div>
+
+    <h3>5.1 Conformité fiscale et sociale</h3>
+    <ul>
+      <li>Le commerçant est à jour de ses obligations fiscales (TVA, impôt sur les sociétés / IR)</li>
+      <li>Il est déclaré aux organismes sociaux compétents (URSSAF, MSA…)</li>
+      <li>Les revenus perçus via Marchéo sont intégralement déclarés</li>
+    </ul>
+
+    <h3>5.2 Autorisations et licences</h3>
+    <ul>
+      <li>Toutes les autorisations nécessaires à l'exercice du métier sont obtenues et maintenues (registre du commerce, licence alimentaire, diplômes obligatoires…)</li>
+      <li>Pour les vins et spiritueux : respect de la réglementation sur la vente d'alcool (interdiction aux mineurs, licence débit de boissons si applicable)</li>
+    </ul>
+
+    <h3>5.3 Médiation de la consommation</h3>
+    <ul>
+      <li>Conformément à l'article L.612-1 du Code de la consommation, le commerçant doit adhérer à un médiateur de la consommation agréé par la CECMC</li>
+      <li>Les coordonnées de ce médiateur sont renseignées dans le dashboard Marchéo et affichées sur la page de la boutique</li>
+      <li>Le commerçant s'engage à participer à toute médiation initiée par un client</li>
+    </ul>
+
+    <h3>5.4 RGPD</h3>
+    <ul>
+      <li>Le commerçant ne peut utiliser les données clients fournies par Marchéo qu'aux fins de traitement et livraison des commandes</li>
+      <li>Il lui est interdit d'ajouter ces contacts à des listes de diffusion sans consentement explicite</li>
+      <li>Il respecte les demandes d'effacement ou de rectification transmises par Marchéo</li>
+    </ul>
+
+    <h2 id="art6">Article 6 — Engagements numériques</h2>
+    <ul>
+      <li><strong>Authenticité des avis :</strong> Il est interdit de solliciter de faux avis ou de manipuler les notes</li>
+      <li><strong>Photos :</strong> Les visuels utilisés représentent fidèlement les produits réels ; les photos générées par IA sans mention sont interdites</li>
+      <li><strong>Descriptions :</strong> Pas de mentions trompeuses, d'allégations santé non autorisées, ou d'affichage d'origines fausses</li>
+      <li><strong>Exclusivité de catalogue :</strong> Les produits listés sur Marchéo ne peuvent pas être vendus à un prix inférieur sur d'autres plateformes (clause de parité tarifaire)</li>
+    </ul>
+
+    <h2 id="art7">Article 7 — Indicateurs et suivi qualité</h2>
+    <p>Marchéo surveille en continu les indicateurs suivants pour chaque boutique :</p>
+    <ul>
+      <li><strong>Taux de commandes honorées</strong> — objectif &gt; 95%</li>
+      <li><strong>Taux de ponctualité</strong> (commandes prêtes à l'heure) — objectif &gt; 90%</li>
+      <li><strong>Note client moyenne</strong> — objectif ≥ 4,0 / 5</li>
+      <li><strong>Délai de réponse aux messages</strong> — objectif &lt; 4h</li>
+      <li><strong>Taux de réclamations</strong> — objectif &lt; 5%</li>
+    </ul>
+    <p>
+      Ces indicateurs sont visibles par le commerçant dans son dashboard. Un commerçant dont les métriques
+      se dégradent est contacté par l'équipe Marchéo avant toute sanction.
+    </p>
+
+    <h2 id="art8">Article 8 — Procédure de contrôle</h2>
+    <p>Marchéo peut contrôler le respect de la présente charte par les moyens suivants :</p>
+    <ul>
+      <li><strong>Analyse des avis clients</strong> et signalements</li>
+      <li><strong>Mystery shopping</strong> (commandes anonymes de contrôle)</li>
+      <li><strong>Visite de courtoisie</strong> en boutique avec accord préalable</li>
+      <li><strong>Audit documentaire</strong> sur demande (certificats, attestations)</li>
+    </ul>
+    <p>
+      Tout manquement constaté fait l'objet d'un email de mise en demeure avec un délai de rectification
+      (généralement 7 jours ouvrés).
+    </p>
+
+    <h2 id="art9">Article 9 — Sanctions et déréférencement</h2>
+
+    <h3>9.1 Avertissement</h3>
+    <p>Pour un premier manquement non grave : email d'avertissement + demande de correction sous 7 jours.</p>
+
+    <h3>9.2 Suspension temporaire</h3>
+    <div class="sanction-card">
+      <strong>Suspension (7 à 30 jours)</strong> déclenchée en cas de :
+      <ul style="margin: 8px 0 0 20px;">
+        <li>Récidive après avertissement</li>
+        <li>Taux de commandes non honorées &gt; 15%</li>
+        <li>Note client &lt; 3,0 / 5 pendant 30 jours</li>
+        <li>Non-respect grave d'hygiène signalé par un client</li>
+        <li>Utilisation abusive de l'empreinte bancaire</li>
+      </ul>
+    </div>
+
+    <h3>9.3 Déréférencement définitif</h3>
+    <div class="sanction-card">
+      <strong>Déréférencement immédiat et définitif</strong> en cas de :
+      <ul style="margin: 8px 0 0 20px;">
+        <li>Fraude avérée (faux produits, fausses origines)</li>
+        <li>Violation grave de la sécurité alimentaire mettant en danger la santé des clients</li>
+        <li>Fraude fiscale ou travail non déclaré constaté</li>
+        <li>Comportement agressif ou abusif envers les clients</li>
+        <li>Violation du RGPD (revente de données clients)</li>
+        <li>Troisième manquement en 12 mois</li>
+      </ul>
+    </div>
+
+    <p>
+      En cas de déréférencement, le commerçant peut faire appel dans un délai de <strong>15 jours</strong>
+      en adressant une contestation écrite à <a href="mailto:partenaires@marcheo.fr">partenaires@marcheo.fr</a>.
+    </p>
+
+    <h2 id="art10">Article 10 — Label « Marchéo Certifié »</h2>
+    <p>
+      Les commerçants qui maintiennent des indicateurs exemplaires sur une période de 6 mois consécutifs
+      peuvent obtenir le label <strong>Marchéo Certifié</strong> :
+    </p>
+
+    <div class="label-badge">
+      <span class="dot"></span>
+      Marchéo Certifié ✓
+    </div>
+
+    <p><strong>Critères d'obtention :</strong></p>
+    <ul>
+      <li>Taux de commandes honorées ≥ 98%</li>
+      <li>Note client ≥ 4,5 / 5 (minimum 20 avis)</li>
+      <li>Zéro avertissement sur les 6 derniers mois</li>
+      <li>Médiateur de la consommation renseigné</li>
+      <li>Réponse aux messages &lt; 2h en moyenne</li>
+    </ul>
+
+    <p>
+      Ce label est affiché sur la boutique, booste la visibilité dans les résultats de recherche
+      et donne accès à des fonctionnalités premium (mise en avant, promotions croisées).
+    </p>
+
+    <div class="footer-docs">
+      <a href="cgv.html">CGV Plateforme</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="landing.html">Accueil Marchéo</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mentions légales · Marchéo</title>
+  <meta name="description" content="Mentions légales de la plateforme Marchéo — informations sur l'éditeur, l'hébergeur et les conditions d'utilisation.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1C3D2E;
+      --brand-dark: #122A1F;
+      --gold: #C9A54B;
+      --cream: #FAF7F0;
+      --cream-dark: #F0EAD8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B63;
+      --border: #E5DFD0;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 16px; line-height: 1.7;
+      color: var(--text); background: var(--cream);
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.3; color: var(--brand); }
+    a { color: var(--brand); }
+    a:hover { color: var(--gold); }
+
+    .top {
+      background: var(--brand); color: #fff;
+      padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    .top a { color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; opacity: .85; }
+    .top a:hover { opacity: 1; color: var(--gold); }
+    .logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-weight:700; font-size:18px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%; background: var(--gold); }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .header-doc {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      margin-bottom: 28px; border: 1px solid var(--border);
+    }
+    .doc-label {
+      display: inline-block; font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px;
+    }
+    h1 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 12px; }
+    .meta { color: var(--text-muted); font-size: 14px; }
+
+    .toc {
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .toc-titre { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--brand); }
+    .toc ol { margin-left: 18px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .content {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 1px solid var(--border);
+    }
+    .content h2 {
+      font-size: 22px; margin-top: 36px; margin-bottom: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .content h2:first-of-type { margin-top: 8px; padding-top: 0; border-top: none; }
+    .content h3 { font-size: 17px; margin-top: 22px; margin-bottom: 8px; color: var(--brand-dark); }
+    .content p { margin-bottom: 14px; }
+    .content ul, .content ol { margin: 12px 0 16px 24px; }
+    .content li { margin-bottom: 8px; }
+    .content strong, .content b { color: var(--brand-dark); }
+
+    .info-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 24px; margin: 16px 0;
+    }
+    .info-card .info-title { font-weight: 700; font-size: 15px; color: var(--brand); margin-bottom: 12px; }
+    .info-card dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+    .info-card dt { font-weight: 600; font-size: 13.5px; color: var(--text-muted); white-space: nowrap; }
+    .info-card dd { font-size: 13.5px; }
+
+    .placeholder {
+      display: inline-block; background: #FFF4D9; color: #8a6d1c;
+      padding: 1px 8px; border-radius: 4px; font-family: monospace;
+      font-size: 13px; border: 1px dashed #d4a44c;
+    }
+
+    .alerte {
+      background: #FFF8E7; border: 1px solid #F0D690;
+      border-left: 4px solid var(--gold); border-radius: 8px;
+      padding: 14px 18px; margin: 18px 0; font-size: 14px;
+    }
+
+    .footer-docs {
+      margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      font-size: 13px;
+    }
+    .footer-docs a {
+      padding: 8px 16px; background: var(--cream); border-radius: 50px;
+      text-decoration: none; color: var(--brand); border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .footer-docs a:hover { background: var(--brand); color: #fff; }
+
+    @media (max-width: 600px) {
+      .header-doc, .content { padding: 24px 18px; }
+      .wrap { padding: 24px 14px 60px; }
+      .info-card dl { grid-template-columns: 1fr; gap: 2px; }
+      .info-card dt { color: var(--text-muted); font-size: 12px; margin-top: 8px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .top, .toc, .footer-docs { display: none; }
+      .wrap { max-width: none; padding: 0; }
+      .content, .header-doc { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <a href="landing.html" class="logo">
+    <span class="logo-dot"></span> Marchéo
+  </a>
+  <a href="landing.html">← Retour au site</a>
+</header>
+
+<div class="wrap">
+
+  <div class="header-doc">
+    <span class="doc-label">Informations légales</span>
+    <h1>Mentions légales</h1>
+    <p class="meta">
+      Conformément à la <strong>loi n° 2004-575 du 21 juin 2004</strong> pour la confiance dans l'économie numérique (LCEN),
+      voici les informations légales relatives au site <strong>marcheo.fr</strong>.
+    </p>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <div class="toc-titre">📋 Sommaire</div>
+    <ol>
+      <li><a href="#art1">Éditeur du site</a></li>
+      <li><a href="#art2">Directeur de publication</a></li>
+      <li><a href="#art3">Hébergeur</a></li>
+      <li><a href="#art4">Prestataires techniques</a></li>
+      <li><a href="#art5">Propriété intellectuelle</a></li>
+      <li><a href="#art6">Responsabilité</a></li>
+      <li><a href="#art7">Liens hypertextes</a></li>
+      <li><a href="#art8">Droit applicable</a></li>
+      <li><a href="#art9">Contact</a></li>
+    </ol>
+  </nav>
+
+  <div class="content">
+
+    <h2 id="art1">Article 1 — Éditeur du site</h2>
+
+    <div class="alerte">
+      ℹ️ Les zones en <span class="placeholder">[jaune]</span> sont à compléter lors de la création de l'entreprise.
+    </div>
+
+    <div class="info-card">
+      <div class="info-title">Informations sur l'éditeur</div>
+      <dl>
+        <dt>Raison sociale</dt>
+        <dd><span class="placeholder">[NOM SOCIÉTÉ]</span></dd>
+        <dt>Forme juridique</dt>
+        <dd><span class="placeholder">[SAS / SARL / Auto-entrepreneur]</span></dd>
+        <dt>Capital social</dt>
+        <dd><span class="placeholder">[MONTANT]</span> €</dd>
+        <dt>SIRET</dt>
+        <dd><span class="placeholder">[NUMÉRO SIRET — 14 chiffres]</span></dd>
+        <dt>N° TVA intracommunautaire</dt>
+        <dd><span class="placeholder">[FR + 2 chiffres + SIREN]</span></dd>
+        <dt>Siège social</dt>
+        <dd><span class="placeholder">[ADRESSE COMPLÈTE]</span></dd>
+        <dt>Téléphone</dt>
+        <dd><span class="placeholder">[NUMÉRO DE TÉLÉPHONE]</span></dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@marcheo.fr">contact@marcheo.fr</a></dd>
+        <dt>Site web</dt>
+        <dd><a href="https://marcheo.fr">marcheo.fr</a></dd>
+      </dl>
+    </div>
+
+    <h2 id="art2">Article 2 — Directeur de publication</h2>
+    <div class="info-card">
+      <div class="info-title">Directeur de la publication</div>
+      <dl>
+        <dt>Nom</dt>
+        <dd><span class="placeholder">[PRÉNOM NOM]</span></dd>
+        <dt>Qualité</dt>
+        <dd><span class="placeholder">[Gérant / Président]</span></dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:contact@marcheo.fr">contact@marcheo.fr</a></dd>
+      </dl>
+    </div>
+
+    <h2 id="art3">Article 3 — Hébergeur</h2>
+    <div class="info-card">
+      <div class="info-title">Hébergeur du site</div>
+      <dl>
+        <dt>Société</dt>
+        <dd>Vercel Inc.</dd>
+        <dt>Adresse</dt>
+        <dd>340 Pine Street, Suite 401 — San Francisco, CA 94104 — États-Unis</dd>
+        <dt>Site web</dt>
+        <dd><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></dd>
+        <dt>Contact</dt>
+        <dd><a href="https://vercel.com/support" target="_blank" rel="noopener">vercel.com/support</a></dd>
+      </dl>
+    </div>
+    <div class="info-card" style="margin-top: 14px;">
+      <div class="info-title">Hébergeur base de données</div>
+      <dl>
+        <dt>Société</dt>
+        <dd>Supabase Inc.</dd>
+        <dt>Adresse</dt>
+        <dd>970 Toa Payoh North — Singapour 318992</dd>
+        <dt>Région</dt>
+        <dd>eu-west-1 (Frankfurt, Allemagne) — données stockées dans l'UE</dd>
+        <dt>Site web</dt>
+        <dd><a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a></dd>
+      </dl>
+    </div>
+
+    <h2 id="art4">Article 4 — Prestataires techniques</h2>
+    <ul>
+      <li>
+        <strong>Stripe Inc.</strong> — Prestataire de paiement en ligne — 354 Oyster Point Blvd, South San Francisco, CA — USA
+        <br><a href="https://stripe.com/fr" target="_blank" rel="noopener">stripe.com/fr</a> — Certifié PCI-DSS niveau 1
+      </li>
+      <li>
+        <strong>Resend</strong> — Envoi d'emails transactionnels
+        <br><a href="https://resend.com" target="_blank" rel="noopener">resend.com</a>
+      </li>
+      <li>
+        <strong>Google Fonts</strong> — Polices de caractères (Playfair Display, Plus Jakarta Sans)
+        <br>Chargées via les CDN de Google
+      </li>
+    </ul>
+
+    <h2 id="art5">Article 5 — Propriété intellectuelle</h2>
+    <p>
+      L'ensemble des éléments constituant le site <strong>marcheo.fr</strong> — textes, graphismes, logo, icônes,
+      sons, photographies, code source — est la propriété exclusive de Marchéo ou de ses concédants de licence,
+      et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.
+    </p>
+    <p>
+      Toute reproduction, représentation, modification, publication ou transmission, totale ou partielle,
+      du site ou de son contenu, par quelque moyen que ce soit, sans l'autorisation écrite préalable de Marchéo,
+      est strictement interdite et constituerait une contrefaçon sanctionnée par les articles L335-2
+      et suivants du Code de la propriété intellectuelle.
+    </p>
+    <p>
+      Le nom <strong>Marchéo</strong> et son logotype sont des marques en cours de dépôt.
+      Toute utilisation non autorisée engage la responsabilité civile et pénale de son auteur.
+    </p>
+
+    <h3>5.1 Contenus des commerçants</h3>
+    <p>
+      Les photographies, textes et descriptions publiés par les commerçants partenaires sur leurs boutiques
+      restent la propriété de ces derniers. En les publiant sur Marchéo, ils accordent à la plateforme
+      une licence non exclusive d'utilisation à des fins d'affichage et de promotion du service.
+    </p>
+
+    <h2 id="art6">Article 6 — Responsabilité</h2>
+
+    <h3>6.1 Exactitude des informations</h3>
+    <p>
+      Marchéo s'efforce de maintenir les informations du site à jour et exactes.
+      Cependant, Marchéo ne peut garantir l'exactitude, l'exhaustivité ou l'actualité des informations
+      diffusées. L'utilisateur reste responsable de l'utilisation qu'il fait de ces informations.
+    </p>
+
+    <h3>6.2 Contenu des boutiques commerçants</h3>
+    <p>
+      Marchéo agit en qualité d'<strong>hébergeur</strong> au sens de l'article 6-I-2 de la LCEN
+      pour les contenus publiés par les commerçants (fiches produits, photos, descriptions, prix).
+      La responsabilité de Marchéo ne peut être engagée du fait de ces contenus tiers, sauf
+      à défaut de retrait rapide après notification d'un contenu illicite.
+    </p>
+    <p>
+      Pour signaler un contenu illicite :
+      <a href="mailto:signalement@marcheo.fr">signalement@marcheo.fr</a>
+    </p>
+
+    <h3>6.3 Disponibilité du service</h3>
+    <p>
+      Marchéo s'efforce de maintenir le service accessible 24h/24, 7j/7, mais ne peut garantir
+      une disponibilité permanente. Des interruptions de service pour maintenance peuvent intervenir,
+      de préférence pendant les heures creuses, avec un préavis si possible.
+    </p>
+
+    <h2 id="art7">Article 7 — Liens hypertextes</h2>
+
+    <h3>7.1 Liens sortants</h3>
+    <p>
+      Le site marcheo.fr peut contenir des liens vers des sites tiers.
+      Marchéo n'exerce aucun contrôle sur ces sites externes et ne peut être tenu responsable
+      de leur contenu, de leur politique de confidentialité ou de leurs pratiques.
+    </p>
+
+    <h3>7.2 Liens entrants</h3>
+    <p>
+      Tout lien hypertexte pointant vers marcheo.fr est autorisé à condition de ne pas utiliser
+      de technique de framing (affichage dans un cadre) et de ne pas associer le nom Marchéo
+      à des contenus trompeurs, illicites ou inappropriés.
+    </p>
+
+    <h2 id="art8">Article 8 — Droit applicable</h2>
+    <p>
+      Les présentes mentions légales sont soumises au <strong>droit français</strong>.
+      Tout litige relatif à l'utilisation du site marcheo.fr relève de la compétence exclusive des
+      tribunaux compétents du ressort du siège social de Marchéo.
+    </p>
+    <p>
+      Pour les litiges de consommation, les consommateurs de l'UE peuvent utiliser la plateforme
+      de règlement en ligne des litiges : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>
+    </p>
+
+    <h2 id="art9">Article 9 — Contact</h2>
+    <div class="info-card">
+      <div class="info-title">Nous contacter</div>
+      <dl>
+        <dt>Email général</dt>
+        <dd><a href="mailto:contact@marcheo.fr">contact@marcheo.fr</a></dd>
+        <dt>Données personnelles</dt>
+        <dd><a href="mailto:privacy@marcheo.fr">privacy@marcheo.fr</a></dd>
+        <dt>Signalements (LCEN)</dt>
+        <dd><a href="mailto:signalement@marcheo.fr">signalement@marcheo.fr</a></dd>
+        <dt>Partenariats commerçants</dt>
+        <dd><a href="mailto:partenaires@marcheo.fr">partenaires@marcheo.fr</a></dd>
+        <dt>Courrier</dt>
+        <dd>Marchéo — <span class="placeholder">[ADRESSE SIÈGE]</span></dd>
+      </dl>
+    </div>
+
+    <div class="footer-docs">
+      <a href="cgv.html">CGV Plateforme</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <a href="charte.html">Charte qualité</a>
+      <a href="landing.html">Accueil Marchéo</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

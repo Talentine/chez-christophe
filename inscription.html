@@ -140,6 +140,22 @@
         <div class="hint">Vous pourrez le changer ensuite depuis votre dashboard.</div>
       </div>
 
+      <!-- CGV plateforme + charte qualité -->
+      <div class="field" style="background:#FAF7F0;border-radius:12px;padding:14px;margin-top:8px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;line-height:1.5;color:#1f3028;font-weight:normal;">
+          <input type="checkbox" id="iCgv" style="margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:#2A4535;">
+          <span>
+            J'accepte les <a href="cgv.html" target="_blank" style="color:#2A4535;text-decoration:underline;">conditions générales de vente</a> de la plateforme Marchéo et la <a href="charte.html" target="_blank" style="color:#2A4535;text-decoration:underline;">charte qualité commerçant</a>.
+          </span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;line-height:1.5;color:#1f3028;font-weight:normal;margin-top:10px;">
+          <input type="checkbox" id="iRgpd" style="margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:#2A4535;">
+          <span>
+            J'ai pris connaissance de la <a href="confidentialite.html" target="_blank" style="color:#2A4535;text-decoration:underline;">politique de confidentialité</a> (RGPD).
+          </span>
+        </label>
+      </div>
+
       <div class="err" id="err"></div>
 
       <div class="actions">
@@ -240,6 +256,11 @@ async function creerBoutique() {
     err.style.display = 'block';
     return;
   }
+  if (!document.getElementById('iCgv')?.checked || !document.getElementById('iRgpd')?.checked) {
+    err.textContent = '⚠️ Vous devez accepter les CGV, la charte qualité et la politique de confidentialité.';
+    err.style.display = 'block';
+    return;
+  }
 
   btn.disabled = true; btn.textContent = 'Création…';
 
@@ -284,7 +305,12 @@ async function creerBoutique() {
         telephone: state.tel || null,
         email: state.email,
         actif: true,
-        business_config: {}
+        business_config: {},
+        cgv_plateforme_acceptees: true,
+        cgv_plateforme_version: '2026-04',
+        cgv_plateforme_acceptees_at: new Date().toISOString(),
+        charte_acceptee: true,
+        charte_acceptee_at: new Date().toISOString(),
       })
     });
     const cData = await cRes.json();

@@ -240,6 +240,17 @@
     <div class="section-titre">📊 Total</div>
     <div id="recapFinal"></div>
   </div>
+
+  <!-- Acceptation CGV -->
+  <div class="section" style="background:var(--creme);">
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;line-height:1.5;color:var(--texte);">
+      <input type="checkbox" id="cgvCheckbox" style="margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:var(--vert);">
+      <span>
+        J'accepte les <a href="cgv.html" target="_blank" style="color:var(--vert);text-decoration:underline;">conditions générales de vente</a> et la <a href="confidentialite.html" target="_blank" style="color:var(--vert);text-decoration:underline;">politique de confidentialité</a> de la boutique.
+      </span>
+    </label>
+    <div id="cgvErreur" style="display:none;color:var(--rouge);font-size:12px;margin-top:8px;">⚠️ Vous devez accepter les CGV pour continuer</div>
+  </div>
 </div>
 
 <!-- ÉTAPE 5 : CONFIRMATION -->
@@ -800,6 +811,18 @@ async function creerEtConfirmerEmpreinte(commande_id, montant_cents, billing) {
 
 // ── CONFIRMATION ──────────────────────────────────────
 async function confirmerCommande() {
+  // Validation CGV
+  const cgvOk = document.getElementById('cgvCheckbox')?.checked;
+  if (!cgvOk) {
+    const err = document.getElementById('cgvErreur');
+    if (err) err.style.display = 'block';
+    document.getElementById('cgvCheckbox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  } else {
+    const err = document.getElementById('cgvErreur');
+    if (err) err.style.display = 'none';
+  }
+
   const btn = document.getElementById('btnAction');
   btn.disabled = true;
   document.getElementById('btnTxt').textContent = 'Envoi en cours...';
@@ -851,6 +874,9 @@ async function confirmerCommande() {
       note_client: note || null,
       adresse_livraison: adresseLiv,
       empreinte_status: empreinteRequise ? 'pending' : 'none',
+      cgv_acceptees: true,
+      cgv_version: '2026-04',
+      cgv_acceptees_at: new Date().toISOString(),
     });
 
     // Insérer les lignes de commande
@@ -903,6 +929,15 @@ async function confirmerCommande() {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'commande-confirmee', commande_id: commandeId })
+    }).catch(() => {});
+  }
+
+  // PUSH au commerçant (notif "nouvelle commande")
+  if (commandeId) {
+    fetch(SUPABASE_URL + '/functions/v1/send-push', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ commande_id: commandeId })
     }).catch(() => {});
   }
 
