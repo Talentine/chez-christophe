@@ -26,7 +26,7 @@ export async function fetchBusiness(slug) {
 }
 
 export async function fetchAllBusinesses() {
-  return sb('commercants', '?select=id,slug,nom,business_type,actif&order=nom.asc');
+  return sb('commercants', '?select=id,slug,nom_boutique,business_type,actif&order=nom_boutique.asc');
 }
 
 // ── PRODUITS ─────────────────────────────────────────────

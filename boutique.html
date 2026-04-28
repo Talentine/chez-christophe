@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chez Christophe — Primeur artisanal · Caen</title>
+<title id="docTitle">Chargement…</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -1087,10 +1087,10 @@
 
 <header>
   <div class="header-logo">
-    <div class="logo-circle"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+    <div class="logo-circle" id="headerLogoBox"><svg id="headerLogoIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
     <div class="logo-text">
-      <h1 id="headerNom">Chez Christophe</h1>
-      <p id="headerVille">Click &amp; Collect · Caen</p>
+      <h1 id="headerNom">&nbsp;</h1>
+      <p id="headerVille">&nbsp;</p>
     </div>
   </div>
   <button class="header-cart" onclick="ouvrirPanier()">
@@ -1117,24 +1117,26 @@
     <div class="hero-pattern"></div>
     <div style="position:relative;z-index:1;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-        <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+        <div id="heroLogoBox" style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);overflow:hidden;">
+          <svg id="heroLogoIcon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
         <div>
-          <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;" id="heroLabel">Click &amp; Collect</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;" id="heroNom">Chez Christophe</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.5);" id="heroVille">Primeur artisanal · Caen</div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--or);font-weight:500;" id="heroLabel">&nbsp;</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;color:white;" id="heroNom">&nbsp;</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);" id="heroVille">&nbsp;</div>
         </div>
       </div>
-      <h2>Fruits &amp; Légumes<br><span>du marché</span></h2>
-      <p class="hero-sub">Sélectionnés chaque matin.<br>Retrait en boutique au cœur de Caen.</p>
+      <h2 id="heroTitre">&nbsp;</h2>
+      <p class="hero-sub" id="heroSousTitre">&nbsp;</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="window.location.href='catalogue.html'">Commander →</button>
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
-      <div class="hero-infos">
-        <div class="hero-info-pill" id="heroAdresse">📍 8 rue Neuve Saint-Jean, Caen</div>
-        <div class="hero-info-pill" id="heroTel">📞 02 31 85 14 77</div>
-        <div class="hero-info-pill" id="heroHoraires">🕐 Mar–Sam</div>
-        <div class="hero-info-pill" id="statutOuverture">⏳ Chargement...</div>
+      <div class="hero-infos" id="heroInfosWrap">
+        <div class="hero-info-pill" id="heroAdresse" style="display:none">&nbsp;</div>
+        <div class="hero-info-pill" id="heroTel" style="display:none">&nbsp;</div>
+        <div class="hero-info-pill" id="heroHoraires" style="display:none">&nbsp;</div>
+        <div class="hero-info-pill" id="statutOuverture" style="display:none">&nbsp;</div>
       </div>
     </div>
   </div>
@@ -1977,27 +1979,83 @@ function appliquerPalette(key) {
   root.setProperty('--creme', p.bg);
 }
 
+// ── HEROES PAR MÉTIER ─────────────────────────────────────────────
+const HEROES_PAR_METIER = {
+  primeur:      { titre: 'Fruits & Légumes', sousTitre: 'Sélectionnés chaque matin avec soin.', label: 'Primeur' },
+  boucherie:    { titre: 'Viandes &<br>Charcuterie', sousTitre: 'Découpes du jour, qualité artisanale.', label: 'Boucherie' },
+  poissonnerie: { titre: 'Poissons<br>& Coquillages', sousTitre: 'Marée fraîche, arrivages quotidiens.', label: 'Poissonnerie' },
+  fromagerie:   { titre: 'Fromages<br>affinés', sousTitre: 'Sélection d\'artisans, AOP & terroirs.', label: 'Fromagerie' },
+  boulangerie:  { titre: 'Pains<br>& Pâtisseries', sousTitre: 'Cuits au feu de bois, levain naturel.', label: 'Boulangerie' },
+  traiteur:     { titre: 'Plats<br>cuisinés', sousTitre: 'Faits maison, à emporter ou livrer.', label: 'Traiteur' },
+};
+
 // ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
 function appliquerConfigUI(cfg) {
   const b = cfg.business;
+  const el = id => document.getElementById(id);
+  const setText = (id, txt) => { const e = el(id); if (e) e.textContent = txt; };
+  const setHTML = (id, html) => { const e = el(id); if (e) e.innerHTML = html; };
+  const showIf  = (id, cond) => { const e = el(id); if (e) e.style.display = cond ? '' : 'none'; };
 
   // Palette
   if (b.palette) appliquerPalette(b.palette);
 
-  // Header
-  const el = id => document.getElementById(id);
-  if (el('headerNom'))    el('headerNom').textContent    = b.nom || 'Chez Christophe';
-  if (el('headerVille'))  el('headerVille').textContent  = (b.ville ? 'Click & Collect · ' + b.ville : 'Click & Collect');
-  if (el('heroNom'))      el('heroNom').textContent      = b.nom || 'Chez Christophe';
-  if (el('heroVille'))    el('heroVille').textContent    = (cfg.label || '') + (b.ville ? ' · ' + b.ville : '');
-  if (el('heroAdresse') && b.adresse) el('heroAdresse').textContent = '📍 ' + b.adresse;
-  if (el('heroTel')     && b.telephone) el('heroTel').textContent   = '📞 ' + b.telephone;
+  // Hero info par métier
+  const bt = b.business_type || 'primeur';
+  const heroInfo = HEROES_PAR_METIER[bt] || HEROES_PAR_METIER.primeur;
+  const labelMetier = cfg.label || heroInfo.label;
+  const nom = b.nom_boutique || b.nom || 'Boutique';
+
+  // Titre du document (onglet navigateur)
+  document.title = nom + (b.ville ? ' — ' + b.ville : '') + ' · Marchéo';
+
+  // Header (top bar)
+  setText('headerNom', nom);
+  setText('headerVille', labelMetier + (b.ville ? ' · ' + b.ville : ''));
+
+  // Hero
+  setText('heroLabel', labelMetier);
+  setText('heroNom', nom);
+  setText('heroVille', b.ville || '');
+  setHTML('heroTitre', heroInfo.titre);
+  setText('heroSousTitre', heroInfo.sousTitre + (b.ville ? ' Retrait ' + b.ville + '.' : ''));
+
+  // Logo personnalisé (header + hero)
+  const logoUrl = b.logo_url || b.logo_uri;
+  if (logoUrl && logoUrl.startsWith('http')) {
+    const headerBox = el('headerLogoBox');
+    if (headerBox) {
+      headerBox.innerHTML = '<img src="' + logoUrl + '" alt="Logo" style="width:100%;height:100%;object-fit:cover;">';
+    }
+    const heroBox = el('heroLogoBox');
+    if (heroBox) {
+      heroBox.innerHTML = '<img src="' + logoUrl + '" alt="Logo" style="width:100%;height:100%;object-fit:cover;">';
+    }
+  }
+
+  // Pills d'info — n'affiche que ce qui est renseigné
+  if (b.adresse) {
+    setText('heroAdresse', '📍 ' + b.adresse + (b.ville ? ', ' + b.ville : ''));
+    showIf('heroAdresse', true);
+  }
+  if (b.telephone) {
+    setText('heroTel', '📞 ' + b.telephone);
+    showIf('heroTel', true);
+  }
+  if (b.horaires) {
+    const txt = formatHorairesCourt(b.horaires);
+    if (txt) {
+      setText('heroHoraires', '🕐 ' + txt);
+      showIf('heroHoraires', true);
+    }
+  }
+  showIf('statutOuverture', true);
 
   // Labels sections
-  if (el('titreRayons'))    el('titreRayons').textContent    = cfg.labels.produits    || 'Nos rayons';
-  if (el('titreArrivage'))  el('titreArrivage').textContent  = cfg.labels.arrivage    || 'Nouveautés';
-  if (el('titreCoupsCoeur')) el('titreCoupsCoeur').textContent = cfg.labels.coups_coeur || 'Nos sélections';
-  if (el('badgeArrivage'))  el('badgeArrivage').textContent  = cfg.labels.arrivage    || 'Arrivage du jour';
+  setText('titreRayons',    cfg.labels?.produits    || 'Nos rayons');
+  setText('titreArrivage',  cfg.labels?.arrivage    || 'Nouveautés');
+  setText('titreCoupsCoeur', cfg.labels?.coups_coeur || 'Nos sélections');
+  setText('badgeArrivage',  cfg.labels?.arrivage    || 'Arrivage du jour');
 
   // Seuil livraison
   const seuil = b.seuil_livraison_gratuite || b.min_commande_livraison || 25;
@@ -2018,6 +2076,29 @@ function appliquerConfigUI(cfg) {
       img.src = b.hero_photo_url;
     }
   }
+}
+
+// Formate les horaires en texte court : "Mar–Sam" ou "Lun–Ven, Sam matin"
+function formatHorairesCourt(h) {
+  if (!h) return '';
+  // Si c'est déjà une string descriptive
+  if (typeof h === 'string') return h.length > 30 ? h.slice(0, 30) + '…' : h;
+  // Sinon objet { lundi: {ouvert, debut, fin}, ... }
+  if (typeof h === 'object') {
+    const jours = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
+    const courts = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+    const ouverts = jours.map((j, i) => h[j]?.ouvert ? courts[i] : null).filter(Boolean);
+    if (ouverts.length === 0) return '';
+    if (ouverts.length === 7) return '7j/7';
+    // Détecter plage continue
+    const idx = jours.map((j, i) => h[j]?.ouvert ? i : -1).filter(i => i >= 0);
+    const isContiguous = idx.every((v, i) => i === 0 || v === idx[i-1] + 1);
+    if (isContiguous && ouverts.length > 1) {
+      return ouverts[0] + '–' + ouverts[ouverts.length - 1];
+    }
+    return ouverts.join(', ');
+  }
+  return '';
 }
 
 // ── INIT PRINCIPAL (async) ────────────────────────────────────────

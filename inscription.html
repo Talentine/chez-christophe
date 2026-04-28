@@ -199,6 +199,31 @@
         <input id="iAdresse" placeholder="2 rue de la Mer, 14000 Caen">
       </div>
 
+      <!-- LOGO BOUTIQUE (optionnel) -->
+      <div class="field">
+        <label>Logo de la boutique <span style="color:rgba(255,255,255,0.4);font-weight:normal;font-size:12px;">(optionnel)</span></label>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div id="logoPreviewBox" style="width:64px;height:64px;border-radius:14px;background:rgba(255,255,255,0.05);border:1.5px dashed rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
+            <span id="logoPreviewIcon" style="font-size:24px;opacity:0.4;">🏪</span>
+          </div>
+          <div style="flex:1;">
+            <button type="button" onclick="document.getElementById('iLogo').click()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;padding:10px 14px;font-size:13px;font-family:inherit;cursor:pointer;">📷 Choisir un logo</button>
+            <input type="file" id="iLogo" accept="image/*" style="display:none" onchange="prevLogo(this)">
+            <div class="hint" style="margin-top:6px;">PNG ou JPG carré recommandé. Vous pourrez le changer plus tard.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HORAIRES D'OUVERTURE -->
+      <div class="field">
+        <label>Horaires d'ouverture</label>
+        <div class="hint" style="margin-bottom:8px;">Cochez vos jours d'ouverture et précisez les horaires.</div>
+        <div id="horairesBlock" style="display:flex;flex-direction:column;gap:6px;"></div>
+        <div style="margin-top:10px;font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;">
+          💡 Astuce : indiquez vos vrais horaires — ils s'afficheront sur votre site et vos clients sauront quand venir chercher leur commande.
+        </div>
+      </div>
+
       <div class="actions">
         <button class="btn btn-secondary" onclick="etape(1)">← Retour</button>
         <button class="btn btn-primary" onclick="etape(3)" id="btnNext2">Continuer →</button>
@@ -348,8 +373,75 @@ const OFFRES = {
   livraison:    { nom:'Click & Collect + Livraison', setup:'549€', mensuel:'59€', label:'LIVRAISON',      cls:'livraison' },
 };
 
-const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null, codePromo:null };
+const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null, codePromo:null, logoFile:null, horaires:null };
 const mediaFiles = [null, null]; // index 0 = hero, 1 = produits, 2+ = extras
+
+// ── HORAIRES (générés au load + lus à la sauvegarde) ──
+const JOURS = [
+  { key:'lundi',    label:'Lundi' },
+  { key:'mardi',    label:'Mardi' },
+  { key:'mercredi', label:'Mercredi' },
+  { key:'jeudi',    label:'Jeudi' },
+  { key:'vendredi', label:'Vendredi' },
+  { key:'samedi',   label:'Samedi' },
+  { key:'dimanche', label:'Dimanche' },
+];
+
+function genererHorairesUI() {
+  const block = document.getElementById('horairesBlock');
+  if (!block) return;
+  // Par défaut : Mar–Sam 9-19h
+  const defaults = { mardi:1, mercredi:1, jeudi:1, vendredi:1, samedi:1 };
+  block.innerHTML = JOURS.map(j => `
+    <div style="display:grid;grid-template-columns:auto 1fr auto auto auto;gap:8px;align-items:center;background:rgba(255,255,255,0.03);border-radius:10px;padding:8px 10px;">
+      <input type="checkbox" id="hr-${j.key}" ${defaults[j.key] ? 'checked' : ''} onchange="majActifJour('${j.key}')" style="width:16px;height:16px;accent-color:#5c8a6e;cursor:pointer;">
+      <label for="hr-${j.key}" style="font-size:13px;color:rgba(255,255,255,0.85);cursor:pointer;">${j.label}</label>
+      <input type="time" id="hr-${j.key}-debut" value="09:00" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;">
+      <span style="color:rgba(255,255,255,0.3);font-size:12px;">→</span>
+      <input type="time" id="hr-${j.key}-fin" value="19:00" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;">
+    </div>
+  `).join('');
+  // Init disabled state
+  JOURS.forEach(j => majActifJour(j.key));
+}
+
+function majActifJour(key) {
+  const cb = document.getElementById('hr-' + key);
+  const debut = document.getElementById('hr-' + key + '-debut');
+  const fin   = document.getElementById('hr-' + key + '-fin');
+  const ouvert = cb?.checked;
+  if (debut) { debut.disabled = !ouvert; debut.style.opacity = ouvert ? '1' : '0.3'; }
+  if (fin)   { fin.disabled   = !ouvert; fin.style.opacity   = ouvert ? '1' : '0.3'; }
+}
+
+function lireHoraires() {
+  const out = {};
+  JOURS.forEach(j => {
+    const cb = document.getElementById('hr-' + j.key);
+    out[j.key] = {
+      ouvert: !!cb?.checked,
+      debut: document.getElementById('hr-' + j.key + '-debut')?.value || '09:00',
+      fin:   document.getElementById('hr-' + j.key + '-fin')?.value || '19:00',
+    };
+  });
+  return out;
+}
+
+// Logo
+function prevLogo(input) {
+  const file = input.files?.[0];
+  if (!file) return;
+  state.logoFile = file;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const box = document.getElementById('logoPreviewBox');
+    if (box) box.innerHTML = '<img src="' + e.target.result + '" style="width:100%;height:100%;object-fit:cover;">';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Lancer la génération au chargement
+document.addEventListener('DOMContentLoaded', genererHorairesUI);
 
 // ── Vérification code promo (RPC valider_code_promo) ──
 async function verifierCodePromo() {
@@ -673,6 +765,9 @@ async function creerBoutique() {
       }
     }
 
+    // Lire les horaires depuis l'UI
+    state.horaires = lireHoraires();
+
     const cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
       method: 'POST',
       headers: authHeader,
@@ -684,6 +779,7 @@ async function creerBoutique() {
         ville: state.ville || null,
         adresse: state.adresse || null,
         telephone: state.tel || null,
+        horaires: state.horaires,
         email: state.email,
         actif: true,
         offre: state.offre || 'clickcollect',
@@ -727,9 +823,36 @@ async function creerBoutique() {
         await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + state.commercantId, {
           method: 'PATCH',
           headers: { ...authHeader },
-          body: JSON.stringify({ media_urls: mediaUrls }),
+          body: JSON.stringify({ media_urls: mediaUrls, hero_photo_url: mediaUrls[0] || null }),
         });
       }
+    }
+
+    // 5c. Upload du logo si fourni
+    if (state.accessToken && state.logoFile) {
+      btn.textContent = 'Upload logo…';
+      try {
+        const ext = state.logoFile.name.split('.').pop().toLowerCase();
+        const path = state.slug + '/logo.' + ext;
+        const upRes = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + state.accessToken,
+            'Content-Type': state.logoFile.type,
+            'x-upsert': 'true',
+          },
+          body: state.logoFile,
+        });
+        if (upRes.ok) {
+          const logoUrl = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path;
+          await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + state.commercantId, {
+            method: 'PATCH',
+            headers: { ...authHeader },
+            body: JSON.stringify({ logo_url: logoUrl }),
+          });
+        }
+      } catch(e) { console.warn('upload logo échoué', e); }
     }
 
     // Incrémenter compteur d'utilisations du code promo
