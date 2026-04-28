@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marchéo · Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Palette finalisée ── */
+    --vert-foret: #1C3028;
+    --vert-sapin: #2A4535;
+    --vert-mousse: #5C8A6E;
+    --or-doré: #C9A54B;
+    --or-pâle: #F0D690;
+    --terracotta: #C4614A;
+    --crème-lin: #FAF7F0;
+    --crème-kraft: #F0EAD8;
+    --encre: #1A1A1A;
+    --gris-pierre: #6B6B6B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--crème-lin);
+    color: var(--encre);
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER doc */
+  header.brand-header {
+    background: var(--vert-foret);
+    color: var(--crème-lin);
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.brand-header::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(201,165,75,0.15), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(92,138,110,0.15), transparent 50%);
+  }
+  .doc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .doc-sub {
+    font-size: 16px; opacity: .7; letter-spacing: 0.05em;
+    text-transform: uppercase; font-weight: 500;
+    position: relative;
+  }
+  .doc-tag {
+    display: inline-block;
+    background: rgba(201,165,75,0.15);
+    color: var(--or-pâle);
+    border: 1px solid rgba(201,165,75,0.4);
+    padding: 6px 18px; border-radius: 50px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  /* SECTIONS */
+  section.bloc {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--crème-kraft);
+  }
+  .bloc-titre {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: var(--vert-foret);
+  }
+  .bloc-sub {
+    color: var(--gris-pierre);
+    margin-bottom: 40px;
+    font-size: 15px;
+  }
+
+  /* === LOGO PRINCIPAL === */
+  .logo-showcase {
+    background: white;
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+    border: 1px solid var(--crème-kraft);
+    box-shadow: 0 8px 40px rgba(28,48,40,0.06);
+    margin-bottom: 32px;
+  }
+  .logo-svg-wrap { display: inline-block; }
+  .logo-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--vert-sapin);
+    margin-top: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  /* === ICÔNES === */
+  .icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .icon-card {
+    background: white;
+    border-radius: 18px;
+    padding: 24px 16px;
+    text-align: center;
+    border: 1px solid var(--crème-kraft);
+  }
+  .icon-card-img {
+    width: 96px; height: 96px;
+    border-radius: 22px;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(28,48,40,0.10);
+  }
+  .icon-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gris-pierre);
+  }
+  .icon-bg-1 { background: white; border: 2px solid var(--crème-kraft); }
+  .icon-bg-2 { background: var(--vert-foret); }
+  .icon-bg-3 { background: var(--or-doré); }
+  .icon-bg-4 { background: var(--crème-lin); }
+  .icon-bg-5 { background: var(--vert-sapin); }
+  .icon-bg-6 { background: linear-gradient(135deg, var(--vert-foret) 0%, var(--vert-sapin) 100%); }
+
+  /* === PALETTE === */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .swatch {
+    background: white;
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid var(--crème-kraft);
+  }
+  .swatch-color {
+    width: 100%; height: 100px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .swatch-name {
+    font-size: 14px; font-weight: 600;
+    color: var(--encre); margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12px; color: var(--gris-pierre);
+    letter-spacing: 0.04em;
+  }
+  .swatch-role {
+    font-size: 11px; color: var(--vert-sapin);
+    margin-top: 4px; font-style: italic;
+  }
+
+  /* === TYPOGRAPHIE === */
+  .typo-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid var(--crème-kraft);
+    margin-bottom: 14px;
+  }
+  .typo-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--or-doré); margin-bottom: 8px;
+  }
+  .typo-name {
+    font-size: 13px; color: var(--gris-pierre);
+    margin-bottom: 14px;
+  }
+  .typo-display { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; line-height: 1.1; color: var(--vert-foret); }
+  .typo-body    { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.6; color: var(--encre); }
+  .typo-accent  { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 28px; color: var(--vert-sapin); }
+  .typo-weights { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--crème-kraft); font-size: 14px; color: var(--gris-pierre); }
+  .typo-weights span { font-family: inherit; }
+
+  /* === FEATURES STRIP === */
+  .features-strip {
+    background: white;
+    border: 1px solid var(--crème-kraft);
+    border-radius: 18px;
+    padding: 36px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 28px;
+  }
+  .feat {
+    text-align: center;
+  }
+  .feat-icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--crème-kraft);
+  }
+  .feat-icon svg {
+    width: 28px; height: 28px;
+    stroke: var(--vert-sapin);
+    fill: none; stroke-width: 1.8;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .feat-title { font-size: 14px; font-weight: 700; color: var(--vert-foret); margin-bottom: 4px; }
+  .feat-desc  { font-size: 12px; color: var(--gris-pierre); line-height: 1.5; }
+
+  /* === MOCKUPS === */
+  .mocks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 720px) {
+    .mocks-grid { grid-template-columns: 1fr; }
+  }
+
+  .mock {
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid var(--crème-kraft);
+    text-align: center;
+  }
+
+  /* Mock 1 : Vitrine d'enseigne */
+  .mock-enseigne {
+    background: linear-gradient(180deg, #d4a07a 0%, #b88560 100%);
+    border-radius: 16px;
+    padding: 36px 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-enseigne-board {
+    background: var(--vert-foret);
+    border: 4px solid var(--or-doré);
+    border-radius: 12px;
+    padding: 30px 20px;
+    color: var(--crème-lin);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .mock-enseigne-board .logo-svg-wrap svg { width: 200px; height: auto; }
+  .mock-enseigne-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--or-pâle);
+    margin-top: 10px;
+  }
+
+  /* Mock 2 : Sac kraft */
+  .mock-sac {
+    background: linear-gradient(160deg, #d4ae7c 0%, #b48a5a 100%);
+    border-radius: 12px;
+    padding: 50px 20px 40px;
+    position: relative;
+  }
+  .mock-sac::before {
+    content: '';
+    position: absolute; top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 8px;
+    background: rgba(0,0,0,0.15); border-radius: 50%;
+  }
+  .mock-sac-handles {
+    position: absolute; top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 60%; height: 30px;
+    border: 3px solid #8a6238;
+    border-bottom: none;
+    border-radius: 50% 50% 0 0;
+  }
+  .mock-sac-content {
+    background: rgba(255,255,255,0.1);
+    border: 1px dashed rgba(255,255,255,0.4);
+    border-radius: 8px;
+    padding: 24px 12px;
+    color: var(--vert-foret);
+  }
+  .mock-sac-content .logo-svg-wrap svg { width: 130px; height: auto; }
+  .mock-sac-content .mock-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    margin-top: 8px;
+    color: var(--vert-foret);
+  }
+
+  /* === TONE OF VOICE === */
+  .tov-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 720px) { .tov-grid { grid-template-columns: 1fr; } }
+  .tov-card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    border: 1px solid var(--crème-kraft);
+  }
+  .tov-card-titre {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--vert-foret);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tov-yes { color: #2d6e4e; }
+  .tov-no  { color: #c44; }
+  .tov-list {
+    list-style: none;
+    font-size: 14px; color: var(--gris-pierre);
+  }
+  .tov-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--crème-kraft);
+    display: flex; gap: 8px;
+  }
+  .tov-list li:last-child { border-bottom: none; }
+  .tov-list em {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--vert-foret);
+  }
+
+  /* === TAGLINES === */
+  .taglines {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .tagline-pill {
+    background: white;
+    border: 1.5px solid var(--crème-kraft);
+    border-left: 4px solid var(--or-doré);
+    border-radius: 14px;
+    padding: 18px 22px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--vert-foret);
+    line-height: 1.3;
+  }
+  .tagline-pill.principal {
+    border-left-color: var(--terracotta);
+    background: linear-gradient(135deg, white 0%, var(--crème-lin) 100%);
+  }
+  .tagline-pill .badge {
+    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10px; font-weight: 700;
+    background: var(--terracotta); color: white;
+    padding: 3px 8px; border-radius: 50px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    vertical-align: middle; margin-right: 10px;
+  }
+  .tagline-pill .meta {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px; font-style: normal;
+    color: var(--gris-pierre); margin-top: 6px; font-weight: 400;
+  }
+
+  /* AVANT / APRÈS */
+  .vs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  @media (max-width: 720px) { .vs { grid-template-columns: 1fr; } }
+  .vs-card {
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .vs-bad  { background: #f8e8e8; border: 1px solid #e8c8c8; }
+  .vs-good { background: #e6f0e8; border: 1px solid #c8dcc8; }
+  .vs-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    font-weight: 700; margin-bottom: 8px;
+  }
+  .vs-bad .vs-label { color: #c44; }
+  .vs-good .vs-label { color: #2d6e4e; }
+  .vs-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: var(--vert-foret);
+  }
+
+  /* DOWNLOAD assets */
+  .download-strip {
+    background: var(--vert-foret);
+    color: white;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .dl-titre {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; margin-bottom: 8px;
+  }
+  .dl-sub { font-size: 13px; opacity: .7; margin-bottom: 18px; }
+  .dl-btn {
+    display: inline-block;
+    background: var(--or-doré);
+    color: var(--vert-foret);
+    padding: 12px 28px; border-radius: 50px;
+    font-weight: 700; text-decoration: none;
+    font-size: 14px; cursor: pointer;
+    border: none; font-family: inherit;
+  }
+  .dl-btn:hover { background: var(--or-pâle); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MARCHÉO — BRAND GUIDELINES
+═══════════════════════════════════════════════════════════ -->
+<header class="brand-header">
+  <div class="doc-tag">📜 Brand guidelines · v1</div>
+  <h1 class="doc-title">Marchéo</h1>
+  <div class="doc-sub">Le numérique des bons commerçants</div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     1. LOGO PRINCIPAL
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">1 · Logo principal</h2>
+    <p class="bloc-sub">Un monogramme « M » qui évoque trois choses simultanément : <strong>l'auvent du marché</strong>, le <strong>point d'épingle géographique</strong>, et l'<strong>accent du « é »</strong> de Marchéo (la feuille).</p>
+
+    <div class="logo-showcase">
+      <!-- Logo SVG vectoriel principal -->
+      <div class="logo-svg-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140">
+          <!-- Monogramme M-auvent -->
+          <g transform="translate(0, 14)">
+            <!-- Toit / auvent (deux pentes) -->
+            <path d="M 12 90 L 60 14 L 92 70 L 124 14 L 172 90 Z"
+                  fill="#1C3028" stroke="#1C3028" stroke-width="0" stroke-linejoin="round"/>
+            <!-- Frise dorée sous l'auvent (rappel des galons d'une enseigne) -->
+            <line x1="20" y1="98" x2="164" y2="98" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+            <!-- Petite feuille (accent du é) -->
+            <path d="M 130 8 Q 140 0 150 8 Q 145 18 138 16 Q 132 14 130 8 Z"
+                  fill="#C9A54B"/>
+            <line x1="138" y1="16" x2="142" y2="22" stroke="#C9A54B" stroke-width="2" stroke-linecap="round"/>
+          </g>
+
+          <!-- Wordmark "Marchéo" + ".fr" -->
+          <text x="200" y="78" font-family="Playfair Display, serif" font-weight="700" font-size="58" fill="#1C3028" letter-spacing="-1.5">Marchéo</text>
+          <text x="425" y="78" font-family="Plus Jakarta Sans, sans-serif" font-weight="500" font-size="20" fill="#C9A54B" letter-spacing="0.5">.fr</text>
+        </svg>
+      </div>
+      <div class="logo-tagline">« Vendez sans perdre un panier »</div>
+    </div>
+
+    <!-- Variations couleurs -->
+    <div class="icons-grid">
+
+      <!-- 1. Couleur, fond clair -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#1C3028"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#C9A54B"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Couleur · Fond clair</div>
+      </div>
+
+      <!-- 2. Sur fond vert foncé -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#FAF7F0"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#C9A54B"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Sur vert profond</div>
+      </div>
+
+      <!-- 3. Sur fond or -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#1C3028"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#1C3028" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#1C3028"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Sur or</div>
+      </div>
+
+      <!-- 4. Crème lin -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#1C3028"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#C9A54B"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Crème · App icon iOS</div>
+      </div>
+
+      <!-- 5. Monochrome blanc sur vert -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#FAF7F0"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#FAF7F0" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#FAF7F0"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Mono · gravure / tampon</div>
+      </div>
+
+      <!-- 6. Gradient prestige -->
+      <div class="icon-card">
+        <div class="icon-card-img icon-bg-6">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+            <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z" fill="#C9A54B"/>
+            <line x1="14" y1="84" x2="86" y2="84" stroke="#F0D690" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z" fill="#F0D690"/>
+          </svg>
+        </div>
+        <div class="icon-card-label">Premium · or sur vert</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2. PALETTE DE COULEURS
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">2 · Palette de couleurs</h2>
+    <p class="bloc-sub">Inspirée des marchés de Provence, des enseignes parisiennes anciennes et des épiceries fines.</p>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1C3028;"></div>
+        <div class="swatch-name">Vert forêt</div>
+        <div class="swatch-hex">#1C3028</div>
+        <div class="swatch-role">Primary · Texte premium</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2A4535;"></div>
+        <div class="swatch-name">Vert sapin</div>
+        <div class="swatch-hex">#2A4535</div>
+        <div class="swatch-role">CTA · Boutons primaires</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5C8A6E;"></div>
+        <div class="swatch-name">Vert mousse</div>
+        <div class="swatch-hex">#5C8A6E</div>
+        <div class="swatch-role">Hover · Liens · Succès</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C9A54B;"></div>
+        <div class="swatch-name">Or doré</div>
+        <div class="swatch-hex">#C9A54B</div>
+        <div class="swatch-role">Accent · Détails · Frise</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F0D690;"></div>
+        <div class="swatch-name">Or pâle</div>
+        <div class="swatch-hex">#F0D690</div>
+        <div class="swatch-role">Highlight · Halos</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C4614A;"></div>
+        <div class="swatch-name">Terracotta</div>
+        <div class="swatch-hex">#C4614A</div>
+        <div class="swatch-role">Promo · Urgence · Alerte</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FAF7F0;border:1px solid #e8e4d8;"></div>
+        <div class="swatch-name">Crème lin</div>
+        <div class="swatch-hex">#FAF7F0</div>
+        <div class="swatch-role">Background principal</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F0EAD8;"></div>
+        <div class="swatch-name">Crème kraft</div>
+        <div class="swatch-hex">#F0EAD8</div>
+        <div class="swatch-role">Cards · Sections secondaires</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     3. TYPOGRAPHIE
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">3 · Typographie</h2>
+    <p class="bloc-sub">Trois polices, chacune avec un rôle clair.</p>
+
+    <!-- Display -->
+    <div class="typo-card">
+      <div class="typo-label">Display · Titres principaux</div>
+      <div class="typo-name">Playfair Display · serif éditoriale, élégance française</div>
+      <div class="typo-display">Marchéo</div>
+      <div class="typo-weights">
+        <span style="font-weight:400;">Regular 400</span>
+        <span style="font-weight:500;">Medium 500</span>
+        <span style="font-weight:700;">Bold 700</span>
+        <span style="font-weight:800;">Black 800</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="typo-card">
+      <div class="typo-label">Body · Corps de texte, UI</div>
+      <div class="typo-name">Plus Jakarta Sans · sans-serif lisible et moderne</div>
+      <div class="typo-body">
+        Vendez en ligne, retrait en boutique ou livraison à domicile. Vos clients commandent, vous gardez le commerce. La plateforme respectueuse du métier des artisans français.
+      </div>
+      <div class="typo-weights">
+        <span style="font-weight:400;">Regular</span>
+        <span style="font-weight:500;">Medium</span>
+        <span style="font-weight:600;">SemiBold</span>
+        <span style="font-weight:700;">Bold</span>
+      </div>
+    </div>
+
+    <!-- Accent -->
+    <div class="typo-card">
+      <div class="typo-label">Accent · Citations, slogans, signatures</div>
+      <div class="typo-name">Cormorant Garamond Italic · serif raffinée, touche manuscrite</div>
+      <div class="typo-accent">« Le plaisir du frais et du goût authentique. »</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     4. TAGLINE
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">4 · Taglines</h2>
+    <p class="bloc-sub">La tagline principale capture votre USP en 5 mots. Les variantes adaptent le message selon le canal.</p>
+
+    <div class="taglines">
+      <div class="tagline-pill principal">
+        <span class="badge">Principale</span>
+        Vendez sans perdre un panier.
+        <span class="meta">→ Capture l'USP anti no-show. Verbe d'action. Bénéfice clair. Ton direct.</span>
+      </div>
+      <div class="tagline-pill">
+        Le click & collect des bons commerçants.
+        <span class="meta">→ Variant précis · Site landing · Print</span>
+      </div>
+      <div class="tagline-pill">
+        Vos clients commandent. Vous gardez le commerce.
+        <span class="meta">→ Variant rythmé · Pub vidéo · Réseaux sociaux</span>
+      </div>
+      <div class="tagline-pill">
+        Le numérique respectueux de votre métier.
+        <span class="meta">→ Variant institutionnel · Démarchage commerçants · Salon</span>
+      </div>
+      <div class="tagline-pill">
+        Ne perdez plus jamais une commande.
+        <span class="meta">→ Variant urgence · Email cold outreach · Bannière</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--vert-foret);margin-top:40px;font-size:20px;">Avant / Après</h3>
+    <div class="vs">
+      <div class="vs-card vs-bad">
+        <div class="vs-label">❌ Avant (suggéré)</div>
+        <div class="vs-text">« Le digital simple<br>pour vos ventes locales »</div>
+      </div>
+      <div class="vs-card vs-good">
+        <div class="vs-label">✓ Après</div>
+        <div class="vs-text">« Vendez sans perdre<br>un panier. »</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     5. APPLICATION (FEATURES STRIP)
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">5 · Promesses produit</h2>
+    <p class="bloc-sub">5 piliers à mettre en avant sur la landing, dans les pubs, en démarchage.</p>
+
+    <div class="features-strip">
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        </div>
+        <div class="feat-title">Boutique 100 % mobile</div>
+        <div class="feat-desc">Vos clients commandent depuis leur téléphone, en 3 clics.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="feat-title">Anti no-show inclus</div>
+        <div class="feat-desc">Empreinte bancaire libérée 24 h après retrait. Zéro perte.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l4-4h10l4 4M3 9v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9M3 9h18"/></svg>
+        </div>
+        <div class="feat-title">Retrait & livraison</div>
+        <div class="feat-desc">Click & collect en boutique, ou livraison dans votre zone.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="feat-title">Tableau de bord clair</div>
+        <div class="feat-desc">Commandes, créneaux, stocks. Tout en un seul écran.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="feat-title">0 % de commission</div>
+        <div class="feat-desc">Frais d'installation + abonnement. Le panier est à vous.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     6. MOCKUPS
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">6 · Applications visuelles</h2>
+    <p class="bloc-sub">L'identité doit fonctionner sur enseigne, sac kraft, papier d'emballage, sticker, polo, devanture.</p>
+
+    <div class="mocks-grid">
+
+      <!-- Mock enseigne boutique -->
+      <div class="mock">
+        <div class="mock-enseigne">
+          <div class="mock-enseigne-board">
+            <div class="logo-svg-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="200" height="58">
+                <g transform="translate(0, 14)">
+                  <path d="M 12 90 L 60 14 L 92 70 L 124 14 L 172 90 Z" fill="#FAF7F0"/>
+                  <line x1="20" y1="98" x2="164" y2="98" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M 130 8 Q 140 0 150 8 Q 145 18 138 16 Q 132 14 130 8 Z" fill="#C9A54B"/>
+                </g>
+                <text x="200" y="78" font-family="Playfair Display, serif" font-weight="700" font-size="58" fill="#FAF7F0" letter-spacing="-1.5">Marchéo</text>
+                <text x="425" y="78" font-family="Plus Jakarta Sans, sans-serif" font-weight="500" font-size="20" fill="#C9A54B" letter-spacing="0.5">.fr</text>
+              </svg>
+            </div>
+            <div class="mock-enseigne-tagline">— Vendez sans perdre un panier —</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--gris-pierre);text-transform:uppercase;letter-spacing:0.1em;">Enseigne / vitrine boutique</div>
+      </div>
+
+      <!-- Mock sac kraft -->
+      <div class="mock">
+        <div class="mock-sac">
+          <div class="mock-sac-handles"></div>
+          <div class="mock-sac-content">
+            <div class="logo-svg-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="130" height="38">
+                <g transform="translate(0, 14)">
+                  <path d="M 12 90 L 60 14 L 92 70 L 124 14 L 172 90 Z" fill="#1C3028"/>
+                  <line x1="20" y1="98" x2="164" y2="98" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M 130 8 Q 140 0 150 8 Q 145 18 138 16 Q 132 14 130 8 Z" fill="#C9A54B"/>
+                </g>
+                <text x="200" y="78" font-family="Playfair Display, serif" font-weight="700" font-size="58" fill="#1C3028" letter-spacing="-1.5">Marchéo</text>
+                <text x="425" y="78" font-family="Plus Jakarta Sans, sans-serif" font-weight="500" font-size="20" fill="#C9A54B" letter-spacing="0.5">.fr</text>
+              </svg>
+            </div>
+            <div class="mock-tag">« Vendez sans perdre un panier »</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--gris-pierre);text-transform:uppercase;letter-spacing:0.1em;">Sac kraft / packaging client</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     7. TONE OF VOICE
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc">
+  <div class="wrap">
+    <h2 class="bloc-titre">7 · Ton de voix</h2>
+    <p class="bloc-sub">Comment Marchéo parle, à l'oral comme à l'écrit. Indispensable pour les emails, push notifications, copy de l'app.</p>
+
+    <div class="tov-grid">
+      <div class="tov-card">
+        <div class="tov-card-titre tov-yes">✓ On dit</div>
+        <ul class="tov-list">
+          <li>Boutique <em>(pas « shop »)</em></li>
+          <li>Vitrine <em>(pas « page produit »)</em></li>
+          <li>Métier, savoir-faire <em>(pas « expertise »)</em></li>
+          <li>Commande <em>(pas « order »)</em></li>
+          <li>Garantie de réservation <em>(pas « no-show »)</em></li>
+          <li>Vos clients <em>(jamais « users »)</em></li>
+          <li>Le respect du commerçant</li>
+          <li>Authentique, frais, local</li>
+        </ul>
+      </div>
+      <div class="tov-card">
+        <div class="tov-card-titre tov-no">✗ On évite</div>
+        <ul class="tov-list">
+          <li>« Digital » <em>(galvaudé)</em></li>
+          <li>« Plateforme » <em>(froid, corporate)</em></li>
+          <li>« Tech » <em>(repousse les artisans)</em></li>
+          <li>« Disrupter » <em>(jargon startup)</em></li>
+          <li>« Stack », « pipeline » <em>(jargon dev)</em></li>
+          <li>L'anglicisme inutile</li>
+          <li>Le tutoiement familier (« coucou ! »)</li>
+          <li>Les emojis cartoon (🚀💯🔥)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:white;border:1px solid var(--crème-kraft);border-left:4px solid var(--or-doré);border-radius:14px;padding:24px;margin-top:20px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--vert-foret);line-height:1.4;">
+        « Bonjour Christophe, votre commande de tomates Cœur de Bœuf est prête. Vous pouvez passer la chercher quand vous voulez avant 19 h. »
+      </div>
+      <div style="font-size:11px;color:var(--gris-pierre);margin-top:10px;text-transform:uppercase;letter-spacing:0.08em;">Exemple de notification — chaleureux mais respectueux, sans familiarité</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     8. RÉSUMÉ EXÉCUTIF
+═══════════════════════════════════════════════════════════ -->
+<section class="bloc" style="border-bottom:none;">
+  <div class="wrap">
+    <h2 class="bloc-titre">Résumé en 1 ligne</h2>
+    <div style="background:linear-gradient(135deg,var(--vert-foret) 0%, var(--vert-sapin) 100%);color:var(--crème-lin);border-radius:24px;padding:50px 30px;text-align:center;margin-top:14px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--or-pâle);margin-bottom:10px;">Le numérique respectueux des bons commerçants —</div>
+      <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.2;">
+        Vendez sans perdre un panier.
+      </div>
+    </div>
+
+    <div class="download-strip">
+      <div class="dl-titre">📦 Pour mettre en place ce branding</div>
+      <div class="dl-sub">Tous les éléments (couleurs, polices, SVG) sont déjà dans cette page.<br>Le logo en SVG est <em>dans le code source</em> de cette page (clic droit → Voir le code source).</div>
+      <button class="dl-btn" onclick="telechargerLogo()">⬇ Télécharger le logo (SVG)</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function telechargerLogo() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140">
+  <g transform="translate(0, 14)">
+    <path d="M 12 90 L 60 14 L 92 70 L 124 14 L 172 90 Z" fill="#1C3028"/>
+    <line x1="20" y1="98" x2="164" y2="98" stroke="#C9A54B" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 130 8 Q 140 0 150 8 Q 145 18 138 16 Q 132 14 130 8 Z" fill="#C9A54B"/>
+    <line x1="138" y1="16" x2="142" y2="22" stroke="#C9A54B" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="200" y="78" font-family="Playfair Display, serif" font-weight="700" font-size="58" fill="#1C3028" letter-spacing="-1.5">Marchéo</text>
+  <text x="425" y="78" font-family="Plus Jakarta Sans, sans-serif" font-weight="500" font-size="20" fill="#C9A54B" letter-spacing="0.5">.fr</text>
+</svg>`;
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'marcheo-logo.svg';
+  a.click();
+}
+</script>
+
+</body>
+</html>
