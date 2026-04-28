@@ -738,8 +738,26 @@
         </div>
       </div>
 
-      <!-- ─── 2. Boucherie Classique (Boucherie · Toulon) ─── -->
+      <!-- ─── 2. Le pétrin (Boulangerie · Cabourg) ─── -->
       <div class="example-card reveal reveal-delay-1">
+        <div class="example-bar">
+          <div class="example-dots"><span></span><span></span><span></span></div>
+          <div class="example-url">marchéo.fr/le-petrin</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
+        </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/le-petrin" loading="lazy" title="Le pétrin" class="example-iframe"></iframe>
+          <a href="/le-petrin" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Le pétrin"></a>
+        </div>
+        <div class="example-info">
+          <div class="example-shop-title">Le pétrin</div>
+          <div class="example-location">📍 Cabourg · Boulanger 🥖</div>
+          <a href="/le-petrin" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+        </div>
+      </div>
+
+      <!-- ─── 3. Boucherie Classique (Boucherie · Toulon) ─── -->
+      <div class="example-card reveal reveal-delay-2">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/boucherie-classique</div>
@@ -756,8 +774,13 @@
         </div>
       </div>
 
-      <!-- ─── 3. Fromagerie des Conquérants (Fromagerie · Toulon) ─── -->
-      <div class="example-card reveal reveal-delay-2">
+    </div>
+
+    <!-- BOUTIQUES SUPPLÉMENTAIRES (cachées par défaut) -->
+    <div id="examplesPlus" class="examples-grid" style="display:none;margin-top:24px;">
+
+      <!-- 4. Fromagerie des Conquérants -->
+      <div class="example-card reveal">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/fromagerie-conquerant</div>
@@ -774,9 +797,50 @@
         </div>
       </div>
 
+      <!-- 5. Marée d'or -->
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-bar">
+          <div class="example-dots"><span></span><span></span><span></span></div>
+          <div class="example-url">marchéo.fr/maree-d-or</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
+        </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/maree-d-or" loading="lazy" title="Marée d'or" class="example-iframe"></iframe>
+          <a href="/maree-d-or" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Marée d'or"></a>
+        </div>
+        <div class="example-info">
+          <div class="example-shop-title">Marée d'or</div>
+          <div class="example-location">📍 Harfleur · Poissonnier 🐟</div>
+          <a href="/maree-d-or" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+        </div>
+      </div>
+
+      <!-- 6. mb primeur -->
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-bar">
+          <div class="example-dots"><span></span><span></span><span></span></div>
+          <div class="example-url">marchéo.fr/mb-primeur</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
+        </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/mb-primeur" loading="lazy" title="mb primeur" class="example-iframe"></iframe>
+          <a href="/mb-primeur" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir mb primeur"></a>
+        </div>
+        <div class="example-info">
+          <div class="example-shop-title">mb primeur</div>
+          <div class="example-location">📍 Deauville · Primeur 🌿</div>
+          <a href="/mb-primeur" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+        </div>
+      </div>
+
     </div>
 
-    <div style="margin-top:36px;text-align:center;">
+    <div style="margin-top:28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <button id="btnVoirPlusSites" type="button" onclick="afficherPlusDeSites()"
+        style="background:transparent;border:2px solid var(--brand);color:var(--brand);border-radius:50px;padding:12px 30px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s;">
+        <span>+ Voir 3 autres boutiques</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="iconVoirPlus"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
       <a href="inscription.html" class="btn-primary" role="button" style="display:inline-flex;align-items:center;gap:10px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         Créer ma boutique en 5 minutes
@@ -784,6 +848,26 @@
     </div>
   </div>
 </section>
+
+<script>
+function afficherPlusDeSites() {
+  const grid = document.getElementById('examplesPlus');
+  const btn  = document.getElementById('btnVoirPlusSites');
+  const icon = document.getElementById('iconVoirPlus');
+  const visible = grid.style.display !== 'none';
+  if (visible) {
+    grid.style.display = 'none';
+    btn.querySelector('span').textContent = '+ Voir 3 autres boutiques';
+    icon.style.transform = '';
+  } else {
+    grid.style.display = '';
+    btn.querySelector('span').textContent = '− Réduire';
+    icon.style.transform = 'rotate(180deg)';
+    // Scroll smooth jusqu'aux nouveaux exemples
+    setTimeout(() => grid.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  }
+}
+</script>
 <!-- MÉTIERS -->
 <section class="section section-center" id="metiers" aria-labelledby="metiers-title">
   <div class="container">
