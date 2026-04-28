@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#1f3028">
-<title>Notre Histoire — Chez Christophe</title>
+<title id="docTitle">Notre histoire</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -401,64 +401,32 @@
 
 <!-- HERO -->
 <div class="histoire-hero">
-  <div class="leaf-deco">🌿</div>
+  <div class="leaf-deco" id="histoireLeaf">🌿</div>
   <div class="histoire-hero-content anim">
-    <div class="histoire-badge">🌿 Depuis + de 10 ans</div>
-    <h2>L'histoire de<br><span>Chez Christophe</span></h2>
-    <p class="histoire-hero-sub">Primeur au cœur de Caen</p>
+    <div class="histoire-badge" id="histoireBadge">🌿 Boutique artisanale</div>
+    <h2>L'histoire de<br><span id="histoireNom">…</span></h2>
+    <p class="histoire-hero-sub" id="histoireMetierVille">…</p>
   </div>
 </div>
 
 <div class="histoire-content">
 
-  <!-- TEXTE PRINCIPAL -->
+  <!-- TEXTE PRINCIPAL (généré ou personnalisé) -->
   <div class="histoire-section anim anim-d1">
     <div class="histoire-section-title">Notre histoire</div>
-    <div class="histoire-text">
-      <p>Installée au cœur de Caen, au 8 rue Neuve Saint-Jean, la boutique de Christophe Boucher vous propose chaque jour une sélection rigoureuse de fruits et légumes frais, de saison et de qualité.</p>
-      <p>Entreprise de père en fils, Christophe se rend régulièrement sur les marchés de Rungis, Rouen et Soliès, tout en travaillant également avec des producteurs locaux, afin de sélectionner des produits reconnus pour leur fraîcheur et leur goût.</p>
-    </div>
+    <div class="histoire-text" id="histoireTexte"></div>
   </div>
 
   <!-- CITATION -->
   <div class="histoire-quote anim anim-d2">
-    <p>Le plaisir du frais et du goût authentique, tout simplement.</p>
-    <div class="histoire-quote-author">— Christophe Boucher</div>
-  </div>
-
-  <!-- SUITE TEXTE -->
-  <div class="histoire-section anim anim-d2">
-    <div class="histoire-text">
-      <p>Que vous recherchiez des produits du quotidien ou des saveurs plus originales, vous trouverez en boutique un large choix, soigneusement sélectionné pour répondre à toutes vos envies.</p>
-      <p>Conseils personnalisés, accueil chaleureux et produits savoureux font de cette adresse un incontournable pour tous les amateurs de bons produits.</p>
-    </div>
+    <p id="histoireCitation">…</p>
+    <div class="histoire-quote-author" id="histoireSignature">…</div>
   </div>
 
   <!-- VALEURS -->
   <div class="histoire-section anim anim-d3">
     <div class="histoire-section-title">Nos engagements</div>
-    <div class="valeurs-grid">
-      <div class="valeur-card">
-        <div class="valeur-icon">🌱</div>
-        <div class="valeur-titre">De saison</div>
-        <div class="valeur-desc">Des produits qui respectent le rythme de la nature</div>
-      </div>
-      <div class="valeur-card">
-        <div class="valeur-icon">🤝</div>
-        <div class="valeur-titre">Local</div>
-        <div class="valeur-desc">Producteurs normands et circuits courts</div>
-      </div>
-      <div class="valeur-card">
-        <div class="valeur-icon">✨</div>
-        <div class="valeur-titre">Fraîcheur</div>
-        <div class="valeur-desc">Approvisionnement quotidien à Rungis et Rouen</div>
-      </div>
-      <div class="valeur-card">
-        <div class="valeur-icon">💬</div>
-        <div class="valeur-titre">Conseil</div>
-        <div class="valeur-desc">Des astuces et recommandations personnalisées</div>
-      </div>
-    </div>
+    <div class="valeurs-grid" id="histoireValeurs"></div>
   </div>
 
   <!-- HORAIRES -->
@@ -466,34 +434,7 @@
     <div class="histoire-section-title">Horaires</div>
     <div class="info-card">
       <div class="info-card-header">🕐 Nos horaires d'ouverture</div>
-      <div class="info-row">
-        <span class="info-row-label">Lundi</span>
-        <span class="info-row-value ferme">Fermé</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Mardi</span>
-        <span class="info-row-value ouvert">8h00 – 19h00</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Mercredi</span>
-        <span class="info-row-value ouvert">8h00 – 19h00</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Jeudi</span>
-        <span class="info-row-value ouvert">8h00 – 19h00</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Vendredi</span>
-        <span class="info-row-value ouvert">8h00 – 19h00</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Samedi</span>
-        <span class="info-row-value ouvert">8h00 – 19h00</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Dimanche</span>
-        <span class="info-row-value ferme">Fermé</span>
-      </div>
+      <div id="histoireHoraires"></div>
     </div>
   </div>
 
@@ -502,27 +443,10 @@
     <div class="histoire-section-title">Nous trouver</div>
     <div class="info-card">
       <div class="info-card-header">📍 Coordonnées</div>
-      <div class="info-row">
-        <span class="info-row-label">Adresse</span>
-        <span class="info-row-value">8 rue Neuve Saint-Jean, Caen</span>
-      </div>
-      <div class="info-row">
-        <span class="info-row-label">Téléphone</span>
-        <span class="info-row-value">02 31 85 14 77</span>
-      </div>
+      <div id="histoireCoordonnees"></div>
     </div>
 
-    <div class="contact-btns">
-      <a href="tel:0231851477" class="contact-btn contact-btn-tel">
-        📞 Appeler
-      </a>
-      <a href="https://maps.google.com/?q=8+rue+Neuve+Saint-Jean+Caen" target="_blank" class="contact-btn contact-btn-maps">
-        🗺️ Y aller
-      </a>
-      <a href="mailto:contact@chezchristophe.fr" class="contact-btn contact-btn-email">
-        ✉️ Nous écrire
-      </a>
-    </div>
+    <div class="contact-btns" id="histoireBtns"></div>
   </div>
 
   <!-- CTA -->
@@ -563,6 +487,203 @@
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
+
+// ============================================================
+// "NOTRE HISTOIRE" — contenu généré/personnalisé par boutique
+// ============================================================
+const HISTOIRE_PAR_METIER = {
+  primeur: {
+    badge: '🌿 Fruits & légumes du marché',
+    leaf: '🌿',
+    titreDefaut: 'Notre histoire',
+    metier: 'Primeur',
+    valeurs: [
+      { icon:'🌱', titre:'De saison', desc:'Des produits qui respectent le rythme de la nature' },
+      { icon:'🤝', titre:'Local',     desc:'Producteurs locaux et circuits courts privilégiés' },
+      { icon:'✨', titre:'Fraîcheur', desc:'Approvisionnement quotidien au marché de gros' },
+      { icon:'💬', titre:'Conseil',   desc:'Astuces et recommandations personnalisées' },
+    ],
+    citation: 'Le plaisir du frais et du goût authentique, tout simplement.',
+    texteFn: (nom, ville) => [
+      `Installée${ville ? ' au cœur de ' + ville : ''}, notre boutique <strong>${nom}</strong> vous propose chaque jour une sélection rigoureuse de fruits et légumes frais, de saison et de qualité.`,
+      `Nous nous rendons régulièrement chez nos producteurs pour sélectionner des produits reconnus pour leur fraîcheur et leur goût. Que vous recherchiez des produits du quotidien ou des saveurs originales, vous trouverez chez nous un large choix soigneusement choisi pour répondre à toutes vos envies.`,
+    ],
+  },
+  boucherie: {
+    badge: '🥩 Boucherie artisanale',
+    leaf: '🥩',
+    metier: 'Boucher',
+    valeurs: [
+      { icon:'🥩', titre:'Sélection',  desc:'Bêtes choisies chez des éleveurs de confiance' },
+      { icon:'🔪', titre:'Découpe',    desc:'À la commande, selon vos goûts et besoins' },
+      { icon:'🤝', titre:'Local',      desc:'Filière courte, traçabilité totale' },
+      { icon:'💬', titre:'Conseil',    desc:'Cuissons, accords et idées recettes' },
+    ],
+    citation: 'Une viande de qualité, ça commence par le respect de l\'animal et du travail de l\'éleveur.',
+    texteFn: (nom, ville) => [
+      `<strong>${nom}</strong>${ville ? ', boucherie installée à ' + ville : ''}, perpétue le savoir-faire artisanal de la viande. Nous sélectionnons nos bêtes auprès d'éleveurs locaux qui partagent notre exigence : élevage en plein air, alimentation saine, durée d'élevage respectée.`,
+      `Toutes nos découpes sont réalisées à la main, devant vous, à la commande. Boeuf, veau, agneau, porc, volaille, charcuterie maison — chaque pièce est pensée pour révéler le meilleur de nos terroirs. Conseils cuissons et idées recettes inclus.`,
+    ],
+  },
+  poissonnerie: {
+    badge: '🐟 Marée du jour',
+    leaf: '🐟',
+    metier: 'Poissonnier',
+    valeurs: [
+      { icon:'🌊', titre:'Marée',      desc:'Arrivages du matin, ports français privilégiés' },
+      { icon:'🔪', titre:'Préparé',    desc:'Vidé, écaillé, en filet — comme vous voulez' },
+      { icon:'❄️', titre:'Fraîcheur',  desc:'Chaîne du froid maîtrisée du quai à votre table' },
+      { icon:'💬', titre:'Conseil',    desc:'Espèces, saisonnalité, cuissons : on vous guide' },
+    ],
+    citation: 'Du quai à votre assiette, le goût de la mer dans toute sa fraîcheur.',
+    texteFn: (nom, ville) => [
+      `<strong>${nom}</strong>${ville ? ', poissonnerie de ' + ville : ''}, vous propose chaque jour la marée la plus fraîche. Nos arrivages proviennent des ports français — Boulogne, Granville, Saint-Jean-de-Luz — avec une attention particulière à la pêche durable.`,
+      `Nos poissons et coquillages sont travaillés à la commande : préparation à votre goût, conseils sur la cuisson, recommandations selon la saison. Plateaux de fruits de mer sur commande pour vos occasions.`,
+    ],
+  },
+  fromagerie: {
+    badge: '🧀 Affineur passionné',
+    leaf: '🧀',
+    metier: 'Fromager',
+    valeurs: [
+      { icon:'🧀', titre:'Affinage',   desc:'Sélection rigoureuse, affinage dans les règles de l\'art' },
+      { icon:'🇫🇷', titre:'AOP',       desc:'Pâtes molles, pressées, persillées : tous les terroirs' },
+      { icon:'🥛', titre:'Lait cru',   desc:'Petits producteurs fermiers privilégiés' },
+      { icon:'💬', titre:'Plateaux',   desc:'Compositions sur-mesure pour vos occasions' },
+    ],
+    citation: 'Le fromage est un plaisir simple qui demande beaucoup de patience.',
+    texteFn: (nom, ville) => [
+      `Au cœur de <strong>${nom}</strong>${ville ? ' à ' + ville : ''}, nous célébrons le fromage français dans toute sa diversité. Pâtes molles à croûte fleurie, pâtes pressées cuites ou non cuites, persillés, chèvres affinés — chaque pièce est sélectionnée chez de petits producteurs et affinée dans nos caves.`,
+      `Conseils d'accords avec vins et pains, plateaux composés sur-mesure pour vos repas et événements : on vous accompagne pour faire vivre une vraie expérience fromagère.`,
+    ],
+  },
+  boulangerie: {
+    badge: '🥖 Pain & viennoiserie',
+    leaf: '🥖',
+    metier: 'Boulanger',
+    valeurs: [
+      { icon:'🌾', titre:'Farines',    desc:'Locales, bio quand c\'est possible' },
+      { icon:'⏳', titre:'Levain',     desc:'Fermentation longue, méthode traditionnelle' },
+      { icon:'🔥', titre:'Cuisson',    desc:'Au feu de bois ou four à sole, croûte parfaite' },
+      { icon:'🥐', titre:'Pâtisserie', desc:'Viennoiseries pur beurre, gâteaux maison' },
+    ],
+    citation: 'Le pain, c\'est de la patience, de la farine, de l\'eau et de l\'amour.',
+    texteFn: (nom, ville) => [
+      `<strong>${nom}</strong>${ville ? ', boulangerie de ' + ville : ''}, défend chaque jour le savoir-faire du pain artisanal. Levain naturel, fermentation longue, farines de meuniers locaux — nos pains tradition, complets et spéciaux ont du caractère.`,
+      `Croissants, pains au chocolat, brioches : nos viennoiseries sont réalisées au pur beurre, en feuilletage maison. Pâtisseries de saison, gâteaux à commander pour vos événements. Tout est fait sur place, le matin même.`,
+    ],
+  },
+  traiteur: {
+    badge: '🍽️ Traiteur fait maison',
+    leaf: '🍽️',
+    metier: 'Traiteur',
+    valeurs: [
+      { icon:'🍳', titre:'Fait maison', desc:'Tout est cuisiné dans notre laboratoire' },
+      { icon:'🌿', titre:'Frais',       desc:'Produits du marché, recettes de saison' },
+      { icon:'🎉', titre:'Événements',  desc:'Buffets, plateaux, repas de fête sur commande' },
+      { icon:'💬', titre:'Sur-mesure',  desc:'Devis personnalisé selon vos envies' },
+    ],
+    citation: 'La cuisine, c\'est l\'art de transformer instantanément en joie des produits chargés d\'histoire.',
+    texteFn: (nom, ville) => [
+      `<strong>${nom}</strong>${ville ? ', traiteur à ' + ville : ''}, c\'est la promesse d\'une cuisine maison, généreuse et de saison. Plats du jour, salades composées, plats à emporter ou à réchauffer : tout est préparé dans notre laboratoire avec des produits frais.`,
+      `Pour vos événements — repas de famille, mariages, cocktails d\'entreprise — nous concevons des prestations sur-mesure : buffets, plateaux-repas, animations culinaires. Devis et conseils gratuits.`,
+    ],
+  },
+};
+
+const JOURS_LBL = { lundi:'Lundi', mardi:'Mardi', mercredi:'Mercredi', jeudi:'Jeudi', vendredi:'Vendredi', samedi:'Samedi', dimanche:'Dimanche' };
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function appliquerHistoire() {
+  const cfg = window.__CONFIG__;
+  const b = cfg?.business;
+  if (!b) { setTimeout(appliquerHistoire, 200); return; }
+
+  const nom = b.nom_boutique || b.nom || 'Notre boutique';
+  const ville = b.ville || '';
+  const bt = b.business_type || 'primeur';
+  const M = HISTOIRE_PAR_METIER[bt] || HISTOIRE_PAR_METIER.primeur;
+  const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+  const setHTML = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+
+  // Titre + meta
+  document.title = 'Notre histoire — ' + nom;
+  set('docTitle', 'Notre histoire — ' + nom);
+
+  // Hero
+  set('histoireBadge', M.badge);
+  set('histoireLeaf',  M.leaf);
+  set('histoireNom',   nom);
+  set('histoireMetierVille', M.metier + (ville ? ' · ' + ville : ''));
+
+  // Texte principal — utilise texte_histoire si saisi par le commerçant, sinon généré
+  const texteCustom = b.texte_histoire || b.business_config?.texte_histoire;
+  if (texteCustom && texteCustom.trim()) {
+    setHTML('histoireTexte', texteCustom.split('\n\n').map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join(''));
+  } else {
+    setHTML('histoireTexte', M.texteFn(escapeHtml(nom), escapeHtml(ville)).map(p => `<p>${p}</p>`).join(''));
+  }
+
+  // Citation
+  set('histoireCitation', M.citation);
+  set('histoireSignature', '— L\'équipe de ' + nom);
+
+  // Valeurs (4 cartes)
+  setHTML('histoireValeurs', M.valeurs.map(v => `
+    <div class="valeur-card">
+      <div class="valeur-icon">${v.icon}</div>
+      <div class="valeur-titre">${v.titre}</div>
+      <div class="valeur-desc">${v.desc}</div>
+    </div>
+  `).join(''));
+
+  // Horaires
+  const h = b.horaires || {};
+  const jours = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
+  setHTML('histoireHoraires', jours.map(j => {
+    const d = h[j];
+    const ouvert = d?.ouvert && d.debut && d.fin;
+    return `<div class="info-row">
+      <span class="info-row-label">${JOURS_LBL[j]}</span>
+      <span class="info-row-value ${ouvert ? 'ouvert' : 'ferme'}">${ouvert ? d.debut + ' – ' + d.fin : 'Fermé'}</span>
+    </div>`;
+  }).join(''));
+
+  // Coordonnées
+  let coords = '';
+  if (b.adresse) {
+    coords += `<div class="info-row"><span class="info-row-label">Adresse</span><span class="info-row-value">${escapeHtml(b.adresse)}${ville ? ', ' + escapeHtml(ville) : ''}</span></div>`;
+  }
+  if (b.telephone) {
+    coords += `<div class="info-row"><span class="info-row-label">Téléphone</span><span class="info-row-value">${escapeHtml(b.telephone)}</span></div>`;
+  }
+  if (b.email) {
+    coords += `<div class="info-row"><span class="info-row-label">Email</span><span class="info-row-value">${escapeHtml(b.email)}</span></div>`;
+  }
+  setHTML('histoireCoordonnees', coords || '<div style="padding:14px;color:var(--texte-doux);font-size:13px;">Coordonnées à venir</div>');
+
+  // Boutons contact
+  let btns = '';
+  if (b.telephone) {
+    const tel = b.telephone.replace(/\s/g, '');
+    btns += `<a href="tel:${tel}" class="contact-btn contact-btn-tel">📞 Appeler</a>`;
+  }
+  if (b.adresse) {
+    const addr = encodeURIComponent(b.adresse + ' ' + ville);
+    btns += `<a href="https://maps.google.com/?q=${addr}" target="_blank" class="contact-btn contact-btn-maps">🗺️ Y aller</a>`;
+  }
+  if (b.email) {
+    btns += `<a href="mailto:${b.email}" class="contact-btn contact-btn-email">✉️ Nous écrire</a>`;
+  }
+  setHTML('histoireBtns', btns);
+}
+
+// Lancer dès que la config est prête
+document.addEventListener('business:ready', appliquerHistoire);
+window.addEventListener('DOMContentLoaded', () => setTimeout(appliquerHistoire, 100));
 </script>
 </body>
 </html>

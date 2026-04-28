@@ -845,6 +845,15 @@
   <div style="padding:16px;">
     <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Galerie & Notre histoire</div>
 
+    <!-- LOGO BOUTIQUE -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:15px;font-weight:500;margin-bottom:12px;">🏷️ Logo de la boutique <span style="color:var(--texte-doux);font-weight:400;font-size:12px;">(optionnel)</span></div>
+      <div id="logoSection" style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:14px;padding:16px;">
+        <div style="text-align:center;color:var(--texte-doux);font-size:13px;">Chargement…</div>
+      </div>
+      <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="uploaderLogo(this.files[0])">
+    </div>
+
     <!-- PHOTOS / VIDÉOS -->
     <div style="margin-bottom:24px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
@@ -2726,14 +2735,23 @@ async function chargerProduitsAdmin() {
 
 async function toggleProduitActif(catalogueId, actif) {
   try {
-    await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + catalogueId, {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const token = session.access_token || SUPABASE_KEY;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + catalogueId, {
       method: 'PATCH',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
       body: JSON.stringify({ actif: !actif })
     });
-    chargerProduitsAdmin();
+    if (!r.ok) {
+      const txt = await r.text();
+      throw new Error('HTTP ' + r.status + ' — ' + txt);
+    }
     afficherToast(actif ? '⏸ Produit masqué' : '✅ Produit activé');
-  } catch(e) { console.log('Erreur toggle:', e); }
+    chargerProduitsAdmin();
+  } catch(e) {
+    console.error('Erreur toggle:', e);
+    afficherToast('❌ Échec : ' + e.message);
+  }
 }
 
 // ── ÉDITION PRODUIT ──────────────────────────────────
@@ -3747,39 +3765,45 @@ async function chargerGalerie() {
   const container = document.getElementById('galerieListe');
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
-  if (!commercantId) return;
+  const slug = session.slug;
+  if (!commercantId || !slug) return;
 
   container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 3;">Chargement...</div>';
 
   try {
-    // Charger les médias depuis Supabase Storage
-    const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/galerie-boutique', {
+    // Charger les médias depuis Supabase Storage — bucket unifié "boutiques-media"
+    const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/boutiques-media', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prefix: commercantId + '/', limit: 50, sortBy: { column: 'created_at', order: 'desc' } })
+      body: JSON.stringify({ prefix: slug + '/', limit: 50, sortBy: { column: 'created_at', order: 'desc' } })
     });
     const files = await r.json();
 
-    if (!files || files.length === 0 || files.error) {
-      container.innerHTML = '<div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;"><p style="font-size:28px;">📸</p><p style="margin-top:8px;">Aucune photo</p><p style="font-size:12px;margin-top:4px;">Cliquez sur "+ Ajouter"</p></div>';
-      return;
-    }
-
-    // Charger la photo hero actuelle pour l'indicateur
-    let heroActuelle = '';
+    // Charger hero + logo actuels pour les indicateurs
+    let heroActuelle = '', logoActuel = '';
     try {
-      const rH = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=hero_photo_url', {
+      const rH = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=hero_photo_url,logo_url', {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
       });
       const dH = await rH.json();
       heroActuelle = dH?.[0]?.hero_photo_url || '';
+      logoActuel = dH?.[0]?.logo_url || '';
     } catch(e) {}
 
-    const mediaFiles = files.filter(f => f.name && !f.name.endsWith('/'));
+    // Mettre à jour le bouton logo
+    rendreSectionLogo(logoActuel);
+
+    if (!Array.isArray(files) || files.length === 0 || files.error) {
+      container.innerHTML = '<div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;"><p style="font-size:28px;">📸</p><p style="margin-top:8px;">Aucune photo</p><p style="font-size:12px;margin-top:4px;">Cliquez sur "+ Ajouter"</p></div>';
+      return;
+    }
+
+    // Filtrer logo (affiché à part) + dossiers
+    const mediaFiles = files.filter(f => f.name && !f.name.endsWith('/') && !/^logo\./.test(f.name));
     container.innerHTML = mediaFiles.length === 0
       ? '<div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;"><p style="font-size:28px;">📸</p><p style="margin-top:8px;">Aucune photo</p></div>'
       : mediaFiles.map((f, idx) => {
-      const url = SUPABASE_URL + '/storage/v1/object/public/galerie-boutique/' + commercantId + '/' + f.name;
+      const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + slug + '/' + f.name;
       const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);
       const isHero = (url === heroActuelle);
       return '<div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--creme-fonce);' + (isHero ? 'outline:3px solid var(--or);outline-offset:-3px;' : '') + '">'
@@ -3800,40 +3824,113 @@ async function chargerGalerie() {
 
   // Charger le texte histoire
   try {
-    const r2 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=description', {
+    const r2 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=texte_histoire', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const data = await r2.json();
-    const texte = data?.[0]?.description || '';
-    document.getElementById('texteHistoire').value = texte;
+    const texte = data?.[0]?.texte_histoire || '';
+    const ta = document.getElementById('texteHistoire');
+    if (ta) ta.value = texte;
   } catch(e) { console.log('Erreur texte:', e); }
+}
+
+// Section logo dans la galerie
+function rendreSectionLogo(logoUrl) {
+  const wrap = document.getElementById('logoSection');
+  if (!wrap) return;
+  if (logoUrl) {
+    wrap.innerHTML = `
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="${logoUrl}" alt="Logo" style="width:80px;height:80px;border-radius:14px;object-fit:cover;border:1px solid var(--creme-fonce);">
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px;">Logo actuel</div>
+          <div style="font-size:11px;color:var(--texte-doux);margin-bottom:8px;">S'affiche en haut de votre boutique</div>
+          <div style="display:flex;gap:6px;">
+            <button onclick="document.getElementById('logoInput').click()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:8px 14px;font-size:12px;font-family:inherit;cursor:pointer;">Changer</button>
+            <button onclick="supprimerLogo()" style="background:white;color:#c44;border:1px solid #f0c0c0;border-radius:50px;padding:8px 14px;font-size:12px;font-family:inherit;cursor:pointer;">Retirer</button>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    wrap.innerHTML = `
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:80px;height:80px;border-radius:14px;background:var(--creme);border:2px dashed var(--creme-fonce);display:flex;align-items:center;justify-content:center;font-size:28px;opacity:0.5;">🏪</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px;">Aucun logo</div>
+          <div style="font-size:11px;color:var(--texte-doux);margin-bottom:8px;">Optionnel — votre boutique s'affiche très bien sans</div>
+          <button onclick="document.getElementById('logoInput').click()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:8px 14px;font-size:12px;font-family:inherit;cursor:pointer;">📷 Ajouter un logo</button>
+        </div>
+      </div>`;
+  }
+}
+
+async function uploaderLogo(file) {
+  if (!file) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slug = session.slug;
+  const commercantId = session.commercant_id;
+  const token = session.access_token || SUPABASE_KEY;
+  const ext = file.name.split('.').pop().toLowerCase();
+  const path = slug + '/logo.' + ext;
+  try {
+    const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': file.type, 'x-upsert': 'true' },
+      body: file
+    });
+    if (!up.ok) throw new Error(await up.text());
+    const logoUrl = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ logo_url: logoUrl })
+    });
+    afficherToast('✅ Logo enregistré');
+    rendreSectionLogo(logoUrl);
+  } catch (e) {
+    console.error(e);
+    afficherToast('❌ Échec upload logo');
+  }
+}
+
+async function supprimerLogo() {
+  if (!confirm('Retirer le logo de votre boutique ?')) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const token = session.access_token || SUPABASE_KEY;
+  await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + session.commercant_id, {
+    method: 'PATCH',
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+    body: JSON.stringify({ logo_url: null })
+  });
+  afficherToast('Logo retiré');
+  rendreSectionLogo(null);
 }
 
 async function uploaderGalerie(files) {
   if (!files || files.length === 0) return;
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
-  const commercantId = session.commercant_id;
+  const slug = session.slug;
+  const token = session.access_token || SUPABASE_KEY;
+  if (!slug) return afficherToast('❌ Slug introuvable');
 
   let ok = 0;
   for (const file of files) {
     const ext = file.name.split('.').pop().toLowerCase();
-    // Préfixer avec un numéro d'ordre (basé sur le nombre de fichiers existants)
     const existants = document.querySelectorAll('#galerieListe > div').length;
     const ordre = String(existants + 1 + Array.from(files).indexOf(file)).padStart(3, '0');
     const nom = ordre + '-' + Date.now().toString().slice(-6) + '.' + ext;
-    
-    // Compresser si c'est une image
+
     let body = file;
     if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
       try { body = await compresserImage(file, 1200, 0.85); } catch(e) { body = file; }
     }
 
     try {
-      const r = await fetch(SUPABASE_URL + '/storage/v1/object/galerie-boutique/' + commercantId + '/' + nom, {
+      const r = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + slug + '/' + nom, {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Authorization': 'Bearer ' + token,
           'Content-Type': file.type || 'application/octet-stream',
           'x-upsert': 'true',
         },
@@ -3851,12 +3948,13 @@ async function uploaderGalerie(files) {
 async function supprimerMedia(nom) {
   if (!confirm('Supprimer ce média ?')) return;
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
-  const commercantId = session.commercant_id;
+  const slug = session.slug;
+  const token = session.access_token || SUPABASE_KEY;
 
   try {
-    await fetch(SUPABASE_URL + '/storage/v1/object/galerie-boutique/' + commercantId + '/' + nom, {
+    await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + slug + '/' + nom, {
       method: 'DELETE',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
     });
     afficherToast('🗑 Média supprimé');
     chargerGalerie();
@@ -3901,13 +3999,14 @@ async function retirerPhotoHero() {
 async function sauvegarderHistoire() {
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
+  const token = session.access_token || SUPABASE_KEY;
   const texte = document.getElementById('texteHistoire').value.trim();
 
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
       method: 'PATCH',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ description: texte })
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ texte_histoire: texte || null })
     });
     if (r.ok) {
       afficherToast('✅ Texte enregistré');
@@ -3957,8 +4056,7 @@ verifierSessionCommercant().then(function(ok) {
   </div>
 </div>
 
-<!-- QR Code library (CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<!-- QR Code via api.qrserver.com (pas de lib JS nécessaire) -->
 
 <!-- MODALE AJOUT PRODUIT -->
 <div id="modalAjoutProduit" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:flex-end;">
@@ -4346,52 +4444,56 @@ verifierSessionCommercant().then(function(ok) {
 
 <script>
 // ====================================================================
-// QR CODE BOUTIQUE
+// QR CODE BOUTIQUE — via api.qrserver.com (gratuit, sans dépendance JS)
 // ====================================================================
-function genererQRCode() {
+function urlBoutiqueLive() {
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const slug = session.slug;
-  if (!slug) return;
-  const url = location.protocol + '//' + location.host + '/' + slug;
+  if (!slug) return null;
+  return location.protocol + '//' + location.host + '/' + slug;
+}
+
+function qrSrcFor(url, size = 200) {
+  return 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encodeURIComponent(url) + '&color=1A2E26&bgcolor=ffffff&qzone=2&format=png';
+}
+
+function genererQRCode() {
+  const url = urlBoutiqueLive();
   const canvas = document.getElementById('qrcodeCanvas');
   const urlEl  = document.getElementById('qrcodeUrl');
+  if (!url || !canvas) return;
   if (urlEl) urlEl.textContent = url;
-  if (!canvas || typeof QRCode === 'undefined') return;
-  canvas.innerHTML = '<canvas id="qrcodeReal" width="200" height="200"></canvas>';
-  QRCode.toCanvas(document.getElementById('qrcodeReal'), url, { width: 200, margin: 1, color: { dark: '#1A2E26', light: '#ffffff' } });
+  canvas.innerHTML = '<img src="' + qrSrcFor(url, 200) + '" alt="QR code" style="width:200px;height:200px;display:block;" id="qrcodeImg">';
 }
 
 function imprimerQRCode() {
+  const url = urlBoutiqueLive();
+  if (!url) return afficherToast('❌ Slug introuvable');
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
-  const slug = session.slug;
-  const nom  = session.nom_boutique || 'Notre boutique';
-  if (!slug) return afficherToast('❌ Slug introuvable');
-  const url = location.protocol + '//' + location.host + '/' + slug;
+  const nom = session.nom_boutique || 'Notre boutique';
   const printArea = document.getElementById('qrPrintArea');
   document.getElementById('qrPrintNom').textContent = nom;
   document.getElementById('qrPrintUrl').textContent = url;
+  document.getElementById('qrPrintCanvas').outerHTML = '<img id="qrPrintCanvas" class="qr-img" src="' + qrSrcFor(url, 600) + '" alt="QR">';
   printArea.style.display = 'flex';
-  QRCode.toCanvas(document.getElementById('qrPrintCanvas'), url, { width: 320, margin: 2, color: { dark: '#1A2E26', light: '#ffffff' } }, function(err) {
-    if (err) { afficherToast('❌ Erreur QR'); printArea.style.display = 'none'; return; }
-    setTimeout(() => {
-      window.print();
-      setTimeout(() => { printArea.style.display = 'none'; }, 500);
-    }, 200);
-  });
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => { printArea.style.display = 'none'; }, 500);
+  }, 600); // laisser le temps à l'image de charger
 }
 
-function telechargerQRCode() {
-  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
-  const slug = session.slug;
-  if (!slug) return;
-  const url = location.protocol + '//' + location.host + '/' + slug;
-  QRCode.toDataURL(url, { width: 800, margin: 2, color: { dark: '#1A2E26', light: '#ffffff' } }, function(err, dataUrl) {
-    if (err) return afficherToast('❌ Erreur');
+async function telechargerQRCode() {
+  const url = urlBoutiqueLive();
+  if (!url) return;
+  try {
+    const r = await fetch(qrSrcFor(url, 800));
+    const blob = await r.blob();
     const a = document.createElement('a');
-    a.href = dataUrl;
-    a.download = 'qrcode-' + slug + '.png';
+    a.href = URL.createObjectURL(blob);
+    a.download = 'qrcode-' + (urlBoutiqueLive().split('/').pop()) + '.png';
     a.click();
-  });
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  } catch (e) { afficherToast('❌ Erreur téléchargement'); }
 }
 
 // ====================================================================
