@@ -196,7 +196,7 @@ async function sbInsert(table, row) {
   return Array.isArray(r.data) ? r.data[0] : r.data;
 }
 
-async function sbUpsert(table, row, onConflict = 'slug,categorie_id') {
+async function sbUpsert(table, row, onConflict = 'slug') {
   const r = await fetchJson(
     `${SUPABASE_URL}/rest/v1/${table}?on_conflict=${encodeURIComponent(onConflict)}`,
     {
