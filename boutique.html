@@ -1445,16 +1445,30 @@ async function chargerRayons(commercantId) {
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
   const cfg = window.__CONFIG__;
   // Affiche tous les rayons, paniers/plateaux à la fin (déjà ordre=99 en base)
+  const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   grid.innerHTML = cats.map(c => {
-    const img = c.image_url
-      ? `<div class="rayon-img" style="width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--creme-fonce);"><img src="${c.image_url}" alt="${c.nom}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;\\'>${c.emoji || '🌿'}</div>'"></div>`
-      : `<div class="rayon-emoji">${c.emoji || (cfg ? cfg.emoji : '🌿')}</div>`;
-    return `
-    <div class="rayon-card" onclick="voirCategorie('${c.slug}','${c.nom.replace(/'/g, '\\'')}')">
-      ${img}
-      <div class="rayon-nom">${c.nom}</div>
-    </div>`;
+    const emojiFb = c.emoji || (cfg ? cfg.emoji : '🌿');
+    const slugAttr = escAttr(c.slug);
+    const nomAttr = escAttr(c.nom);
+    let img;
+    if (c.image_url) {
+      img = '<div class="rayon-img" style="width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--creme-fonce);">'
+          + '<img src="' + escAttr(c.image_url) + '" alt="' + nomAttr + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" data-fallback="' + escAttr(emojiFb) + '" onerror="rayonImgFallback(this)">'
+          + '</div>';
+    } else {
+      img = '<div class="rayon-emoji">' + emojiFb + '</div>';
+    }
+    return '<div class="rayon-card" onclick="voirCategorie(\'' + slugAttr + '\',\'' + nomAttr + '\')">'
+         + img
+         + '<div class="rayon-nom">' + c.nom + '</div>'
+         + '</div>';
   }).join('');
+}
+
+// Fallback pour les images de rayon qui ne se chargent pas
+function rayonImgFallback(img) {
+  const fb = img.dataset.fallback || '🌿';
+  img.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">' + fb + '</div>';
 }
 
 // ── ARRIVAGES (derniers ajoutés au catalogue) ────────────────────
