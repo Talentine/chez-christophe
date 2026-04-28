@@ -540,53 +540,42 @@
     .example-shop-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
     .example-location { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
 
-    .example-stats {
-      display: flex; gap: 20px; margin-bottom: 18px;
-      padding: 12px 14px; background: var(--cream); border-radius: 12px;
-    }
-    .example-stat-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--brand); }
-    .example-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-    /* APERÇUS ZONES (Arrivages / Coups de cœur dans cards exemples) */
-    .example-zone { margin-bottom: 14px; }
-    .example-zone-titre {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--brand);
-      margin-bottom: 8px;
-    }
-    .example-zone-dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-      animation: pulse 2.4s infinite;
-    }
-    .example-mini-products {
-      display: flex; gap: 8px; overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-    .example-mini-products::-webkit-scrollbar { display: none; }
-    .example-mini-card {
-      flex-shrink: 0;
-      width: 100px;
-      background: var(--white);
-      border: 1px solid var(--cream-dark);
-      border-radius: 10px;
+    /* IFRAME BOUTIQUE EN DIRECT */
+    .example-iframe-wrap {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: var(--cream);
       overflow: hidden;
     }
-    .example-mini-img {
-      width: 100%; height: 50px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
+    .example-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      pointer-events: none; /* on intercepte avec l'overlay pour cliquer */
+      background: var(--cream);
+      display: block;
     }
-    .example-mini-name {
-      font-size: 11px; font-weight: 600; color: var(--text);
-      padding: 6px 7px 2px; line-height: 1.2;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    .example-iframe-overlay {
+      position: absolute; inset: 0;
+      cursor: pointer;
+      background: linear-gradient(180deg, transparent 70%, rgba(28,61,46,.08) 100%);
+      transition: background .2s;
+      z-index: 2;
     }
-    .example-mini-price {
-      font-size: 11px; font-weight: 700; color: var(--brand);
-      padding: 0 7px 6px;
+    .example-iframe-overlay:hover {
+      background: linear-gradient(180deg, rgba(28,61,46,.04) 0%, rgba(28,61,46,.22) 100%);
     }
+
+    .example-live-badge-small {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: #22c55e; color: #fff;
+      font-size: 9px; font-weight: 700;
+      padding: 2px 7px; border-radius: 50px;
+      text-transform: uppercase; letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+    .example-bar { gap: 8px; }
 
     .example-link {
       display: inline-flex; align-items: center; gap: 6px;
@@ -732,142 +721,58 @@
     <div class="examples-grid">
 
       <!-- ─── 1. Chez Christophe (Primeur · Caen) ─── -->
-      <a href="/chez-christophe" target="_blank" rel="noopener" class="example-card reveal" style="text-decoration:none;color:inherit;display:block;">
+      <div class="example-card reveal">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/chez-christophe</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-preview" style="background:#1C3028;height:200px;padding:0;overflow:hidden;position:relative;">
-          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe/hero.png" alt="Chez Christophe" style="width:100%;height:100%;object-fit:cover;display:block;">
-          <div class="example-live-badge"><span class="example-live-dot" aria-hidden="true"></span> En ligne</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.65) 100%);color:white;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe/logo.png" alt="Logo" style="width:40px;height:40px;border-radius:10px;background:white;object-fit:cover;flex-shrink:0;">
-              <div style="min-width:0;">
-                <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.1;">Chez Christophe</div>
-                <div style="font-size:11px;opacity:.8;margin-top:2px;">🌿 Primeur · Caen</div>
-              </div>
-            </div>
-          </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/chez-christophe" loading="lazy" title="Chez Christophe" class="example-iframe"></iframe>
+          <a href="/chez-christophe" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Chez Christophe"></a>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Chez Christophe</div>
-          <div class="example-location">📍 Caen, Calvados · Primeur</div>
-
-          <!-- Aperçu zone Arrivages -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Arrivage du jour</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#fde4b8;">🍎</div><div class="example-mini-name">Pommes Gala</div><div class="example-mini-price">3,20€/kg</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#dde4c8;">🥑</div><div class="example-mini-name">Avocat Hass</div><div class="example-mini-price"><span style="color:#C44616">🔖 2/3€</span></div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5d4a0;">🍑</div><div class="example-mini-name">Pêches</div><div class="example-mini-price">4,50€/kg</div></div>
-            </div>
-          </div>
-
-          <!-- Aperçu zone Coups de cœur -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Coups de cœur</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8c99a;">🍓</div><div class="example-mini-name">Fraises locales</div><div class="example-mini-price">5,90€</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#f0d4a0;">🧺</div><div class="example-mini-name">Panier saison</div><div class="example-mini-price">25€</div></div>
-            </div>
-          </div>
-
-          <span class="example-link" role="button">Visiter la boutique →</span>
+          <div class="example-location">📍 Caen · Primeur 🌿</div>
+          <a href="/chez-christophe" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
         </div>
-      </a>
+      </div>
 
       <!-- ─── 2. Boucherie Classique (Boucherie · Toulon) ─── -->
-      <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;">
+      <div class="example-card reveal reveal-delay-1">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/boucherie-classique</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-preview" style="background:#5A1414;height:200px;padding:0;overflow:hidden;position:relative;">
-          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/boucherie-classique/003-999479.jpg" alt="Boucherie Classique" style="width:100%;height:100%;object-fit:cover;display:block;">
-          <div class="example-live-badge"><span class="example-live-dot" aria-hidden="true"></span> En ligne</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.7) 100%);color:white;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/boucherie-classique/logo.jpg" alt="Logo" style="width:40px;height:40px;border-radius:10px;background:white;object-fit:cover;flex-shrink:0;">
-              <div style="min-width:0;">
-                <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.1;">Boucherie Classique</div>
-                <div style="font-size:11px;opacity:.8;margin-top:2px;">🥩 Boucher · Toulon</div>
-              </div>
-            </div>
-          </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/boucherie-classique" loading="lazy" title="Boucherie Classique" class="example-iframe"></iframe>
+          <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Boucherie Classique"></a>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Boucherie Classique</div>
-          <div class="example-location">📍 Toulon, Var · Boucher artisan</div>
-
-          <!-- Aperçu zone Arrivages -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Pièces du jour</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8b8b0;">🥩</div><div class="example-mini-name">Entrecôte</div><div class="example-mini-price">36€/kg</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#d4a89a;">🐂</div><div class="example-mini-name">Côte de bœuf</div><div class="example-mini-price">42€/kg</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#f0c8a8;">🍗</div><div class="example-mini-name">Poulet fermier</div><div class="example-mini-price">14€/kg</div></div>
-            </div>
-          </div>
-
-          <!-- Aperçu zone Coups de cœur -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Sélection du boucher</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8c8a8;">🌭</div><div class="example-mini-name">Saucisse maison</div><div class="example-mini-price">18€/kg</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#dcb8a0;">🍖</div><div class="example-mini-name">Côtelettes Agneau</div><div class="example-mini-price">28€/kg</div></div>
-            </div>
-          </div>
-
-          <span class="example-link" role="button">Visiter la boutique →</span>
+          <div class="example-location">📍 Toulon · Boucher 🥩</div>
+          <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
         </div>
-      </a>
+      </div>
 
       <!-- ─── 3. Fromagerie des Conquérants (Fromagerie · Toulon) ─── -->
-      <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;">
+      <div class="example-card reveal reveal-delay-2">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/fromagerie-conquerant</div>
+          <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-preview" style="background:#243225;height:200px;padding:0;overflow:hidden;position:relative;">
-          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/fromagerie-conquerant/004-882599.jpg" alt="Fromagerie des Conquérants" style="width:100%;height:100%;object-fit:cover;display:block;">
-          <div class="example-live-badge"><span class="example-live-dot" aria-hidden="true"></span> En ligne</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.7) 100%);color:white;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/fromagerie-conquerant/logo.png" alt="Logo" style="width:40px;height:40px;border-radius:10px;background:white;object-fit:cover;flex-shrink:0;">
-              <div style="min-width:0;">
-                <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.1;">Fromagerie des Conquérants</div>
-                <div style="font-size:11px;opacity:.8;margin-top:2px;">🧀 Fromager · Toulon</div>
-              </div>
-            </div>
-          </div>
+        <div class="example-iframe-wrap">
+          <iframe src="/fromagerie-conquerant" loading="lazy" title="Fromagerie des Conquérants" class="example-iframe"></iframe>
+          <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Fromagerie des Conquérants"></a>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Fromagerie des Conquérants</div>
-          <div class="example-location">📍 Toulon, Var · Fromager affineur</div>
-
-          <!-- Aperçu zone Arrivages -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Affinés du moment</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5e8c8;">🧀</div><div class="example-mini-name">Camembert AOP</div><div class="example-mini-price">5,50€</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#fbe8a8;">🐐</div><div class="example-mini-name">Chèvre cendré</div><div class="example-mini-price">4,80€</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8d4f0;">🫐</div><div class="example-mini-name">Bleu d'Auvergne</div><div class="example-mini-price">6,20€/200g</div></div>
-            </div>
-          </div>
-
-          <!-- Aperçu zone Coups de cœur -->
-          <div class="example-zone">
-            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Sélection de l'affineur</div>
-            <div class="example-mini-products">
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5e0a0;">🥖</div><div class="example-mini-name">Plateau régional</div><div class="example-mini-price">30€</div></div>
-              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8d090;">🎉</div><div class="example-mini-name">Plateau fête</div><div class="example-mini-price">40€</div></div>
-            </div>
-          </div>
-
-          <span class="example-link" role="button">Visiter la boutique →</span>
+          <div class="example-location">📍 Toulon · Fromager 🧀</div>
+          <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
         </div>
-      </a>
+      </div>
 
     </div>
 
