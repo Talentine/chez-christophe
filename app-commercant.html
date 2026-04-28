@@ -437,7 +437,7 @@
 
 </style>
 
-<script src="assets/core/init.js?v=20260428"></script>
+<script src="assets/core/init.js?v=20260428b"></script>
 </head>
 <body>
 
@@ -854,6 +854,18 @@
         <div style="text-align:center;color:var(--texte-doux);font-size:13px;">Chargement…</div>
       </div>
       <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="uploaderLogo(this.files[0])">
+    </div>
+
+    <!-- IMAGES DES RAYONS (catégories) -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:15px;font-weight:500;margin-bottom:6px;">🖼️ Photos des rayons <span style="color:var(--texte-doux);font-weight:400;font-size:12px;">(optionnel)</span></div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">
+        Chaque rayon de votre boutique a une photo par défaut. Vous pouvez la <strong>remplacer par votre propre photo</strong> pour personnaliser votre vitrine.
+      </div>
+      <div id="rayonsImagesGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="text-align:center;padding:20px;color:var(--texte-doux);font-size:13px;grid-column:span 2;">Chargement…</div>
+      </div>
+      <input type="file" id="rayonImageInput" accept="image/*" style="display:none">
     </div>
 
     <!-- PHOTOS / VIDÉOS -->
@@ -1785,7 +1797,7 @@ function allerOnglet(id) {
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
-  if (id === 'galerie') chargerGalerie();
+  if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'reglages') chargerReglages();
 }
 
@@ -2758,7 +2770,7 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,actif,en_stock,produit_base_id&limit=200&order=id.desc', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,produit_base_id&limit=200&order=id.desc', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
@@ -2794,6 +2806,8 @@ async function chargerProduitsAdmin() {
         badge_local: p.badge_local || false,
         badge_nouveau: p.badge_nouveau || false,
         badge_bio: p.badge_bio || false,
+        prix_lot_qte: c.prix_lot_qte || null,
+        prix_lot: c.prix_lot || null,
       };
     }).filter(p => p.nom !== '—');
 
@@ -2887,6 +2901,9 @@ function ouvrirEditionProduit(catalogueId) {
   if (document.getElementById('editBadgeLocal')) document.getElementById('editBadgeLocal').checked = !!p.badge_local;
   if (document.getElementById('editBadgeNouveau')) document.getElementById('editBadgeNouveau').checked = !!p.badge_nouveau;
   if (document.getElementById('editBadgeBio')) document.getElementById('editBadgeBio').checked = !!p.badge_bio;
+  // Offre lot / promo
+  if (document.getElementById('editPrixLotQte')) document.getElementById('editPrixLotQte').value = p.prix_lot_qte || '';
+  if (document.getElementById('editPrixLot')) document.getElementById('editPrixLot').value = p.prix_lot || '';
   document.getElementById('editErreur').style.display = 'none';
   document.getElementById('editPhotoActuelle').src = p.photo_url || '';
   document.getElementById('editPhotoActuelle').style.display = p.photo_url ? 'block' : 'none';
@@ -3004,15 +3021,20 @@ async function sauvegarderEdition() {
       return;
     }
 
-    // Mettre à jour catalogue (prix)
+    // Mettre à jour catalogue (prix + offre lot)
+    const token = await getValidToken();
     const updateCat = await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + produitEnEdition.catalogue_id, {
       method: 'PATCH',
       headers: {
         'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Authorization': 'Bearer ' + (token || SUPABASE_KEY),
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prix_vente: prix })
+      body: JSON.stringify({
+        prix_vente: prix,
+        prix_lot_qte: parseInt(document.getElementById('editPrixLotQte')?.value) || null,
+        prix_lot: parseFloat(document.getElementById('editPrixLot')?.value) || null,
+      })
     });
 
     if (!updateCat.ok) {
@@ -3222,6 +3244,8 @@ async function sauvegarderProduit() {
         commercant_id: commercantId,
         produit_base_id: produitId,
         prix_vente: prix,
+        prix_lot_qte: parseInt(document.getElementById('produitPrixLotQte')?.value) || null,
+        prix_lot: parseFloat(document.getElementById('produitPrixLot')?.value) || null,
         actif: true,
       })
     });
@@ -4006,6 +4030,133 @@ async function uploaderLogo(file) {
   }
 }
 
+// ====================================================================
+// PHOTOS DES RAYONS (override des images de catégories)
+// ====================================================================
+async function chargerRayonsImages() {
+  const grid = document.getElementById('rayonsImagesGrid');
+  if (!grid) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  try {
+    // Récupérer le business_type + types secondaires + custom images
+    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_types_secondaires,rayons_images_custom', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const dC = await r1.json();
+    const c = dC?.[0] || {};
+    const types = [c.business_type, ...(c.business_types_secondaires || [])].filter(Boolean);
+    const custom = c.rayons_images_custom || {};
+    if (!types.length) return;
+
+    const filterIn = '(' + types.map(encodeURIComponent).join(',') + ')';
+    const r2 = await fetch(SUPABASE_URL + '/rest/v1/categories?business_type=in.' + filterIn + '&select=slug,nom,image_url,emoji&order=ordre', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const cats = await r2.json();
+    if (!Array.isArray(cats)) return;
+
+    grid.innerHTML = cats.map(cat => {
+      const customUrl = custom[cat.slug];
+      const displayUrl = customUrl || cat.image_url;
+      const isCustom = !!customUrl;
+      const imgHtml = displayUrl
+        ? '<img src="' + displayUrl + '" alt="' + cat.nom + '" style="width:100%;height:100%;object-fit:cover;display:block;">'
+        : '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:36px;background:var(--creme);">' + (cat.emoji || '🌿') + '</div>';
+      return `
+        <div style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:14px;overflow:hidden;">
+          <div style="aspect-ratio:1;position:relative;">
+            ${imgHtml}
+            ${isCustom ? '<div style="position:absolute;top:6px;right:6px;background:var(--vert);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;">✓ Personnalisée</div>' : ''}
+          </div>
+          <div style="padding:10px 12px;">
+            <div style="font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.2;">${cat.nom}</div>
+            <div style="display:flex;gap:6px;">
+              <button onclick="uploaderImageRayon('${cat.slug}')" style="flex:1;background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">📷 ${isCustom ? 'Changer' : 'Personnaliser'}</button>
+              ${isCustom ? `<button onclick="resetImageRayon('${cat.slug}')" style="background:white;border:1px solid #f0c0c0;color:#c44;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">↺</button>` : ''}
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    console.warn('chargerRayonsImages err', e);
+    grid.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:14px;color:#c44;font-size:13px;">Erreur de chargement</div>';
+  }
+}
+
+let _rayonSlugEnCours = null;
+function uploaderImageRayon(slug) {
+  _rayonSlugEnCours = slug;
+  const inp = document.getElementById('rayonImageInput');
+  // Reset onchange handler
+  inp.value = '';
+  inp.onchange = async (ev) => {
+    const file = ev.target.files?.[0];
+    if (!file || !_rayonSlugEnCours) return;
+    await uploaderImageRayonFile(_rayonSlugEnCours, file);
+  };
+  inp.click();
+}
+
+async function uploaderImageRayonFile(slugCat, file) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slugBoutique = session.slug;
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!token) return;
+  const ext = file.name.split('.').pop().toLowerCase();
+  const path = slugBoutique + '/rayons/' + slugCat + '.' + ext;
+  try {
+    const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': file.type, 'x-upsert': 'true' },
+      body: file
+    });
+    if (!up.ok) throw new Error(await up.text());
+    const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
+    // Mettre à jour rayons_images_custom
+    const cur = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=rayons_images_custom', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+    });
+    const data = await cur.json();
+    const custom = data?.[0]?.rayons_images_custom || {};
+    custom[slugCat] = url;
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ rayons_images_custom: custom })
+    });
+    afficherToast('✅ Photo de rayon mise à jour');
+    chargerRayonsImages();
+  } catch (e) {
+    afficherToast('❌ Échec : ' + e.message);
+  }
+}
+
+async function resetImageRayon(slugCat) {
+  if (!confirm('Restaurer la photo par défaut pour ce rayon ?')) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!token) return;
+  try {
+    const cur = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=rayons_images_custom', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+    });
+    const data = await cur.json();
+    const custom = data?.[0]?.rayons_images_custom || {};
+    delete custom[slugCat];
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ rayons_images_custom: custom })
+    });
+    afficherToast('Photo par défaut restaurée');
+    chargerRayonsImages();
+  } catch (e) { afficherToast('❌ ' + e.message); }
+}
+
 async function supprimerLogo() {
   if (!confirm('Retirer le logo de votre boutique ?')) return;
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -4251,6 +4402,20 @@ verifierSessionCommercant().then(function(ok) {
         style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
     </div>
 
+    <!-- OFFRE LOT / PRIX PROMO (optionnel) -->
+    <div style="margin-bottom:14px;background:#fff8e7;border:1px dashed #f0c060;border-radius:12px;padding:14px;">
+      <label style="font-size:13px;color:#8a6020;display:block;margin-bottom:6px;font-weight:600;">🏷️ Offre lot / promo <span style="color:#a98030;font-weight:400;font-size:11px;">(optionnel)</span></label>
+      <div style="font-size:12px;color:#8a6020;margin-bottom:10px;line-height:1.5;">Ex : avocat 1,80€ pièce, et <strong>2 pour 3€</strong></div>
+      <div style="display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:center;">
+        <input id="produitPrixLotQte" type="number" min="2" step="1" placeholder="2" style="width:70px;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;text-align:center;">
+        <span style="font-size:13px;color:var(--texte-doux);">pour</span>
+        <div style="position:relative;">
+          <input id="produitPrixLot" type="number" min="0" step="0.10" placeholder="3.00" style="width:100%;padding:10px 30px 10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+          <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+      </div>
+    </div>
+
     <!-- PROVENANCE (optionnel) -->
     <div style="margin-bottom:14px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
@@ -4370,6 +4535,20 @@ verifierSessionCommercant().then(function(ok) {
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
       <textarea id="editDescription" rows="3"
         style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
+    </div>
+
+    <!-- OFFRE LOT / PRIX PROMO (optionnel) -->
+    <div style="margin-bottom:14px;background:#fff8e7;border:1px dashed #f0c060;border-radius:12px;padding:14px;">
+      <label style="font-size:13px;color:#8a6020;display:block;margin-bottom:6px;font-weight:600;">🏷️ Offre lot / promo <span style="color:#a98030;font-weight:400;font-size:11px;">(optionnel)</span></label>
+      <div style="font-size:12px;color:#8a6020;margin-bottom:10px;line-height:1.5;">Ex : 2 pour 3€</div>
+      <div style="display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:center;">
+        <input id="editPrixLotQte" type="number" min="2" step="1" placeholder="2" style="width:70px;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;text-align:center;">
+        <span style="font-size:13px;color:var(--texte-doux);">pour</span>
+        <div style="position:relative;">
+          <input id="editPrixLot" type="number" min="0" step="0.10" placeholder="3.00" style="width:100%;padding:10px 30px 10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+          <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+      </div>
     </div>
 
     <!-- PROVENANCE (optionnel) -->

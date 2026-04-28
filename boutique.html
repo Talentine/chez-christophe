@@ -1083,7 +1083,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="assets/core/init.js?v=20260428"></script>
+<script src="assets/core/init.js?v=20260428b"></script>
 </head>
 <body>
 
@@ -1375,7 +1375,16 @@ function flattenCatalogueRow(row) {
     provenance:            pb.provenance || null,
     custom_fields:         row.custom_fields || {},
     en_stock:              row.en_stock !== false,
+    prix_lot_qte:          row.prix_lot_qte || null,
+    prix_lot:              row.prix_lot || null,
   };
+}
+
+// ── HELPER : badge offre lot ─────────────────────
+function badgeOffreLot(p) {
+  if (!p?.prix_lot_qte || !p?.prix_lot) return '';
+  const prix = parseFloat(p.prix_lot).toFixed(2).replace('.', ',').replace(/,00$/, '');
+  return '<div class="offre-lot-badge" style="display:inline-block;background:#ffeec2;color:#8a6020;font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:4px;border:1px solid #f0c060;">🏷️ ' + p.prix_lot_qte + ' pour ' + prix + '€</div>';
 }
 
 // ── HELPER : rendu d'une card produit ───────────────────────────
@@ -1416,6 +1425,7 @@ function renderProduitCard(p) {
     <div class="produit-info">
       <div class="produit-nom">${p.nom}</div>
       ${provHtml}
+      ${badgeOffreLot(p)}
       <div class="produit-footer">
         <div>
           <span class="produit-prix">${prix}€</span>
@@ -1433,22 +1443,24 @@ async function chargerRayons(commercantId) {
   const b = window.__CONFIG__?.business || {};
   const bt = b.business_type || 'primeur';
   const secondaires = b.business_types_secondaires || [];
+  const customImages = b.rayons_images_custom || {};
   const tousTypes = [bt, ...secondaires];
   const filterIn = '(' + tousTypes.map(encodeURIComponent).join(',') + ')';
   let cats = await supabase('categories', '?business_type=in.' + filterIn + '&order=ordre&select=*');
   if (!cats || cats.error || !cats.length) cats = await supabase('categories', '?order=ordre&select=*');
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
   const cfg = window.__CONFIG__;
-  // Affiche tous les rayons, paniers/plateaux à la fin (déjà ordre=99 en base)
   const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   grid.innerHTML = cats.map(c => {
     const emojiFb = c.emoji || (cfg ? cfg.emoji : '🌿');
     const slugAttr = escAttr(c.slug);
     const nomAttr = escAttr(c.nom);
+    // Priorité : image custom commerçant > image catégorie par défaut > emoji
+    const imgUrl = customImages[c.slug] || c.image_url;
     let img;
-    if (c.image_url) {
+    if (imgUrl) {
       img = '<div class="rayon-img" style="width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--creme-fonce);">'
-          + '<img src="' + escAttr(c.image_url) + '" alt="' + nomAttr + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" data-fallback="' + escAttr(emojiFb) + '" onerror="rayonImgFallback(this)">'
+          + '<img src="' + escAttr(imgUrl) + '" alt="' + nomAttr + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" data-fallback="' + escAttr(emojiFb) + '" onerror="rayonImgFallback(this)">'
           + '</div>';
     } else {
       img = '<div class="rayon-emoji">' + emojiFb + '</div>';
@@ -1600,7 +1612,12 @@ function ouvrirFicheProduit(produit) {
   document.getElementById('ficheNomAccueil').textContent = produit.nom;
   document.getElementById('fichePrixAccueil').textContent = prix + '€';
   document.getElementById('ficheUniteAccueil').textContent = '/' + produit.unite;
-  document.getElementById('ficheDescAccueil').textContent = produit.description || '';
+  // Description + offre lot
+  const descBase = produit.description || '';
+  const offreLotTxt = (produit.prix_lot_qte && produit.prix_lot)
+    ? '🏷️ Offre : ' + produit.prix_lot_qte + ' pour ' + parseFloat(produit.prix_lot).toFixed(2).replace('.', ',').replace(/,00$/, '') + '€'
+    : '';
+  document.getElementById('ficheDescAccueil').innerHTML = (offreLotTxt ? '<span style="background:#ffeec2;color:#8a6020;font-size:12px;font-weight:600;padding:4px 10px;border-radius:50px;display:inline-block;margin-bottom:8px;border:1px solid #f0c060;">' + offreLotTxt + '</span><br>' : '') + descBase;
   document.getElementById('ficheCatAccueil').textContent = produit.categories?.nom || '';
 
   // Badges bio / saison / local / nouveau
@@ -1667,11 +1684,23 @@ function fermerFicheProduit() {
   ficheProduitData = null;
 }
 
+// Calcul du total avec offre lot appliquée si applicable
+function calculerTotalAvecLot(p, qte) {
+  const prixUnit = p.prix_marche_indicatif || 0;
+  if (!p.prix_lot_qte || !p.prix_lot || qte < p.prix_lot_qte) {
+    return prixUnit * qte;
+  }
+  // Appliquer l'offre lot
+  const lots = Math.floor(qte / p.prix_lot_qte);
+  const reste = qte % p.prix_lot_qte;
+  return lots * parseFloat(p.prix_lot) + reste * prixUnit;
+}
+
 function changerQteFicheAccueil(delta) {
   ficheProduitQte = Math.max(1, ficheProduitQte + delta);
   document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
   if (ficheProduitData) {
-    const total = (ficheProduitData.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',');
+    const total = calculerTotalAvecLot(ficheProduitData, ficheProduitQte).toFixed(2).replace('.',',');
     document.getElementById('ficheTotalAccueil').textContent = total + ' €';
   }
 }

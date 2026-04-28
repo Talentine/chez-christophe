@@ -309,6 +309,38 @@
         </div>
       </div>
 
+      <!-- BLOC ANTI NO-SHOW (Stripe) -->
+      <div style="background:linear-gradient(135deg,rgba(201,165,75,0.1),rgba(201,165,75,0.02));border:1px solid rgba(201,165,75,0.25);border-radius:16px;padding:20px;margin-top:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div>
+            <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--or);font-weight:600;">🔒 Anti no-show — Stripe</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:2px;">Empreintes bancaires sur la plateforme</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:#ffd47a;" id="empBloquees">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Bloqué actuellement</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empBloqueesNb">—</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:#7fd97f;" id="empLiberees">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Libéré (30j)</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empLibereesNb">—</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:#ff8a76;" id="empCapturees">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Capturé (30j)</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empCaptureesNb">—</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:rgba(255,255,255,0.85);" id="empNoShowPct">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Taux no-show 30j</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;">capturé / total</div>
+          </div>
+        </div>
+      </div>
+
       <div class="mrr-section">
         <div class="mrr-card">
           <div class="mrr-titre">MRR par plan</div>
@@ -343,12 +375,13 @@
               <th>Ville</th>
               <th>Plan</th>
               <th>Statut</th>
-              <th>Commandes</th>
+              <th>Activité 30j</th>
+              <th>Santé</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody id="tableCommercants">
-            <tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
@@ -570,7 +603,7 @@ async function chargerDashboard() {
 
   const [commercants, commandes, clients, plans] = await Promise.all([
     sb('commercants', '?select=*,plans(nom,prix_mensuel)'),
-    sb('commandes', '?select=id,created_at&order=created_at.desc&limit=100'),
+    sb('commandes', '?select=id,created_at,empreinte_status,empreinte_montant_cents,empreinte_capturee_at&order=created_at.desc&limit=500'),
     sb('clients', '?select=id'),
     sb('plans', '?select=*'),
   ]);
@@ -640,6 +673,34 @@ async function chargerDashboard() {
     const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
     return '<div style="font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);">📦 Nouvelle commande · ' + date + '</div>';
   }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucune commande récente</p>';
+
+  // ── ANTI NO-SHOW : empreintes bancaires Stripe ──
+  const j30 = new Date(now.getTime() - 30 * 86400_000);
+  const cmds = commandes || [];
+  const cents = (n) => (n/100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+
+  // Pending = bloqué actuellement (toutes les commandes en cours)
+  const pending = cmds.filter(c => c.empreinte_status === 'pending');
+  const pendingTotal = pending.reduce((s,c) => s + (c.empreinte_montant_cents || 0), 0);
+  document.getElementById('empBloquees').textContent = cents(pendingTotal);
+  document.getElementById('empBloqueesNb').textContent = pending.length + ' commande' + (pending.length>1?'s':'');
+
+  // Released sur 30j (créées dans les 30 derniers jours)
+  const released30 = cmds.filter(c => c.empreinte_status === 'released' && new Date(c.created_at) >= j30);
+  const releasedTotal = released30.reduce((s,c) => s + (c.empreinte_montant_cents || 0), 0);
+  document.getElementById('empLiberees').textContent = cents(releasedTotal);
+  document.getElementById('empLibereesNb').textContent = released30.length + ' libérée' + (released30.length>1?'s':'');
+
+  // Captured sur 30j (basé sur empreinte_capturee_at)
+  const captured30 = cmds.filter(c => c.empreinte_status === 'captured' && c.empreinte_capturee_at && new Date(c.empreinte_capturee_at) >= j30);
+  const capturedTotal = captured30.reduce((s,c) => s + (c.empreinte_montant_cents || 0), 0);
+  document.getElementById('empCapturees').textContent = cents(capturedTotal);
+  document.getElementById('empCaptureesNb').textContent = captured30.length + ' no-show' + (captured30.length>1?'s':'');
+
+  // Taux no-show = capturées / (capturées + libérées) sur 30j
+  const totalRegle = released30.length + captured30.length;
+  const tauxNoShow = totalRegle > 0 ? Math.round(100 * captured30.length / totalRegle) : 0;
+  document.getElementById('empNoShowPct').textContent = totalRegle > 0 ? tauxNoShow + '%' : '—';
 }
 
 // ── COMMERÇANTS ───────────────────────────────────────
@@ -652,9 +713,30 @@ const METIERS = {
   fromagerie:   { emoji:'🧀', label:'Fromagerie' }
 };
 
+let _activite30jParCommercant = null;
+
 async function chargerCommercants() {
   if (tousCommercants.length === 0) {
     tousCommercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&order=created_at.desc') || [];
+  }
+  // Charge l'activité 30j de chaque commerçant en un seul appel
+  if (!_activite30jParCommercant) {
+    const j30iso = new Date(Date.now() - 30 * 86400_000).toISOString();
+    const cmds = await sb('commandes', '?select=commercant_id,total_ttc,statut,empreinte_status,created_at&created_at=gte.' + j30iso + '&limit=2000') || [];
+    _activite30jParCommercant = {};
+    cmds.forEach(c => {
+      if (!c.commercant_id) return;
+      if (!_activite30jParCommercant[c.commercant_id]) {
+        _activite30jParCommercant[c.commercant_id] = { ca: 0, nb: 0, captured: 0, lastDate: null };
+      }
+      const a = _activite30jParCommercant[c.commercant_id];
+      if (c.statut !== 'annulee') {
+        a.ca += (c.total_ttc || 0);
+        a.nb += 1;
+      }
+      if (c.empreinte_status === 'captured') a.captured += 1;
+      if (!a.lastDate || c.created_at > a.lastDate) a.lastDate = c.created_at;
+    });
   }
   renderTableCommercants(tousCommercants);
 }
@@ -662,17 +744,40 @@ async function chargerCommercants() {
 function renderTableCommercants(data) {
   const tbody = document.getElementById('tableCommercants');
   if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun commerçant</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun commerçant</td></tr>';
     return;
   }
 
+  const now = Date.now();
   tbody.innerHTML = data.map(c => {
     const plan = c.plans?.nom || 'starter';
     const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
     const statutClass = c.actif ? 'badge-actif' : 'badge-inactif';
     const statutTxt = c.actif ? 'Actif' : 'Inactif';
     const m = METIERS[c.business_type] || METIERS.primeur;
-    const dt = c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+
+    // Activité 30j
+    const a = (_activite30jParCommercant && _activite30jParCommercant[c.id]) || { ca:0, nb:0, captured:0, lastDate:null };
+    const ageJours = a.lastDate ? Math.floor((now - new Date(a.lastDate).getTime()) / 86400_000) : null;
+
+    // Health : actif récemment ? combien de no-shows ?
+    let healthHtml = '';
+    if (!c.actif) {
+      healthHtml = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">Suspendu</span>';
+    } else if (a.nb === 0) {
+      healthHtml = '<span style="color:#ff8a76;font-size:12px;">⚠️ Aucune commande 30j</span>';
+    } else if (ageJours !== null && ageJours > 7) {
+      healthHtml = '<span style="color:#ffd47a;font-size:12px;">⚠️ Inactif ' + ageJours + 'j</span>';
+    } else if (a.captured > 0) {
+      healthHtml = '<span style="color:#ff8a76;font-size:12px;">' + a.captured + ' no-show' + (a.captured>1?'s':'') + '</span>';
+    } else {
+      healthHtml = '<span style="color:#7fd97f;font-size:12px;">✓ OK</span>';
+    }
+
+    const activiteHtml = a.nb === 0
+      ? '<span style="color:rgba(255,255,255,0.3);font-size:13px;">—</span>'
+      : '<div style="font-size:13px;color:rgba(255,255,255,0.85);">' + a.nb + ' cmd</div>'
+        + '<div style="font-size:11px;color:var(--or);">' + a.ca.toFixed(0) + '€</div>';
 
     return `
       <tr>
@@ -686,7 +791,8 @@ function renderTableCommercants(data) {
         <td style="color:rgba(255,255,255,0.6);">${c.ville || '—'}</td>
         <td><span class="badge ${planClass}">${plan}</span></td>
         <td><span class="badge ${statutClass}">${statutTxt}</span></td>
-        <td style="color:rgba(255,255,255,0.6);font-size:13px;">${dt}</td>
+        <td>${activiteHtml}</td>
+        <td>${healthHtml}</td>
         <td>
           <button class="action-btn" onclick="voirBoutique('${c.slug}')">Voir</button>
           <button class="action-btn" onclick="modifierPlan('${c.id}')">Plan</button>
@@ -717,6 +823,7 @@ async function toggleActif(id, actif) {
     body: JSON.stringify({ actif })
   });
   tousCommercants = [];
+  _activite30jParCommercant = null;
   chargerCommercants();
 }
 

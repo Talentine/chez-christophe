@@ -207,19 +207,32 @@
   function retourAccueilBoutique() {
     var path = location.pathname;
     var slug = (window.__CONFIG__ && window.__CONFIG__.slug) || resolveSlug();
-    // Si on est déjà sur la home (path = / ou /{slug} ou /{slug}/), juste scroll
-    var onHome = path === '/'
-      || /^\/[^\/]+\/?$/.test(path)
-      || /\/boutique\.html$/.test(path)
-      || (path === '/index.html');
+    var segments = path.split('/').filter(Boolean);
+
+    // Détection de la home — uniquement /, /{slug}, /index.html, /boutique.html
+    var onHome = false;
+    if (segments.length === 0) {
+      onHome = true; // /
+    } else if (segments.length === 1) {
+      var s = segments[0];
+      // Si .html → ce n'est home que pour boutique.html/index.html (pas catalogue/panier/compte/notre-histoire)
+      if (s.indexOf('.html') >= 0) {
+        onHome = (s === 'boutique.html' || s === 'index.html');
+      } else {
+        // /{slug} sans .html = home de la boutique
+        onHome = true;
+      }
+    }
+    // segments.length >= 2 → /{slug}/page → PAS home → on redirige
+
     if (onHome) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     // Sinon : revenir à la home de la boutique
     if (slug) {
-      // En local file:// → boutique.html?slug=xxx
-      if (location.protocol === 'file:') {
+      // En local file:// ou si la page actuelle est /catalogue.html?slug=xxx → boutique.html?slug=xxx
+      if (location.protocol === 'file:' || (segments.length === 1 && segments[0].indexOf('.html') >= 0)) {
         location.href = 'boutique.html?slug=' + encodeURIComponent(slug);
       } else {
         location.href = '/' + slug;
