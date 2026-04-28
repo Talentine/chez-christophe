@@ -34,31 +34,34 @@ if (!OPENAI_KEY) {
 }
 
 // Produits de test — un par métier
+// Style : photographie alimentaire RÉELLE (pas packshot CGI)
+const COMMON_STYLE = `Photographie alimentaire professionnelle ultra-réaliste style éditorial food magazine. Lumière naturelle latérale type fenêtre nord, douce avec ombres présentes mais pas écrasées. Profondeur de champ courte f/2.8, mise au point précise sur l'avant du produit, arrière légèrement flou. Tonalités naturelles légèrement chaudes, ni saturées ni ternes. Texture ULTRA détaillée du produit (pores, fibres, grain, peau visibles). Cadrage 3/4 plongeant à 30-45°, produit occupant 50-70% du cadre. Style boutique épicerie fine parisienne, esprit marché de Rungis. Rendu argentique numérique, JAMAIS CGI ou packshot studio plastifié. Aucun texte, aucun logo, aucun emballage industriel.`;
+
 const TESTS = [
   {
     label:   'Primeur — Tomates cerises',
     metier:  'primeur',
-    prompt:  'Photo packshot ultra-réaliste pour e-commerce alimentaire français premium. Tomates cerises rouges brillantes, environ 15 pièces disposées en petit tas naturel harmonieux. Fond blanc pur, ombre portée douce et réaliste. Éclairage studio diffus, couleurs vives et naturelles, netteté maximale sur chaque tomate. Pas de texte, pas d\'emballage. Style minimaliste packshot marché haut de gamme.',
+    prompt:  `${COMMON_STYLE} SUJET : une douzaine de tomates cerises rouges sur la branche verte, posées en petit tas naturel imparfait sur une planche en bois brut clair légèrement patiné. Quelques tomates avec de minuscules gouttes d'eau sur la peau (fraîchement lavées). Couleurs naturelles : rouge mûr avec très légères variations entre les pièces (certaines plus claires, certaines plus foncées). Petite imperfection visible sur une tomate (légère tache verte près de la queue). La branche encore attachée verte avec quelques feuilles. Fond hors-champ flou neutre clair (mur blanc cassé / lin écru).`,
   },
   {
     label:   'Boucherie — Entrecôte',
     metier:  'boucherie',
-    prompt:  'Photo packshot ultra-réaliste pour e-commerce alimentaire français premium. Entrecôte de bœuf persillée, belle pièce d\'environ 350g, posée à plat légèrement de biais. Marbrure visible, couleur rouge franc, texture de la viande détaillée. Fond blanc pur ou gris très léger, ombre portée douce. Éclairage studio diffus, netteté maximale. Pas de texte, pas d\'emballage, aucun accessoire. Style packshot premium boucherie artisanale.',
+    prompt:  `${COMMON_STYLE} SUJET : une entrecôte de bœuf persillée d'environ 350g, posée à plat sur une planche à découper en bois de chêne foncé légèrement marquée par l'usage. Vue 3/4 en plongée. Marbrure (gras intramusculaire) blanc-crème nettement visible dans la chair rouge profond non oxydée. Bord de gras crème naturel sur le côté. Texture de la viande très détaillée : on voit les fibres musculaires. Quelques cristaux de fleur de sel posés sur le dessus. Fond hors-champ : flou sombre type plan de travail boucherie, marbre gris ou bois sombre. Lumière chaude latérale rasante qui révèle la marbrure.`,
   },
   {
     label:   'Poissonnerie — Saumon',
     metier:  'poissonnerie',
-    prompt:  'Photo packshot ultra-réaliste pour e-commerce alimentaire français premium. Pavé de saumon frais atlantique, environ 200g, posé légèrement incliné côté chair vers le haut. Chair rose orangée, peau argentée avec écailles visibles. Fond blanc pur, ombre portée légère. Éclairage studio diffus froid, couleurs naturelles fidèles, netteté très élevée sur la texture de la chair. Aucun texte, aucun emballage. Style packshot poissonnerie haut de gamme.',
+    prompt:  `${COMMON_STYLE} SUJET : un pavé de saumon frais atlantique d'environ 200g posé sur un lit de glace pilée. Vue 3/4 en plongée. Chair rose-orangé naturelle avec stries blanches du gras (motifs typiques du saumon), peau argentée brillante avec écailles visibles sur un côté. Légères gouttes d'eau / brillance de fraîcheur sur la chair. Glace pilée translucide autour, fondante. Fond hors-champ flou bleu-gris froid (étal de poissonnerie). Lumière naturelle froide type matinale. Texture de la chair extrêmement détaillée, on doit pouvoir presque la sentir.`,
   },
   {
     label:   'Fromagerie — Camembert',
     metier:  'fromagerie',
-    prompt:  'Photo packshot ultra-réaliste pour e-commerce alimentaire français premium. Camembert de Normandie entier, croûte blanche fleurie légèrement dorée, posé à plat centré. Texture veloutée de la croûte visible en détail. Fond blanc pur ou crème très léger, ombre portée douce. Éclairage studio diffus chaud, netteté maximale sur la croûte. Aucun emballage, aucun texte. Style packshot fromagerie artisanale premium.',
+    prompt:  `${COMMON_STYLE} SUJET : un camembert de Normandie entier au lait cru, croûte blanche fleurie veloutée avec légères marbrures dorées de l'affinage, posé sur un papier sulfurisé blanc cassé légèrement froissé, lui-même sur une planche en bois brut clair. Vue 3/4 en plongée. Une fine paille de fromager dépasse à côté. Texture de la croûte ULTRA détaillée : on voit les fibres du penicillium, les minuscules irrégularités. Légère trace d'humidité sur le dessus. Fond hors-champ flou crème / lin naturel. Lumière douce chaude type matin de Normandie.`,
   },
   {
     label:   'Boulangerie — Croissant',
     metier:  'boulangerie',
-    prompt:  'Photo packshot ultra-réaliste pour e-commerce alimentaire français premium. Croissant au beurre artisanal doré, feuilletage apparent, posé légèrement de côté pour montrer les couches. Couleur dorée profonde, surface brillante, texture feuilletée très détaillée. Fond blanc pur, ombre portée douce et légère. Éclairage studio diffus chaud, netteté maximale. Aucun texte, aucun emballage, aucun accessoire. Style packshot boulangerie française premium.',
+    prompt:  `${COMMON_STYLE} SUJET : un croissant au beurre artisanal doré-cuivré, feuilletage très visible et marqué (couches multiples), posé légèrement de côté sur un papier sulfurisé blanc cassé. Vue 3/4 rapprochée. Quelques miettes dorées tombées autour, un éclat de feuilletage détaché. Surface brillante mais pas vernie (vrai beurre, pas glaçage). Couleur dorée profonde et inégale (caractéristique d'une vraie cuisson maison : certaines parties plus foncées que d'autres). Fond hors-champ flou : marbre clair de boulangerie ou bois patiné. Lumière chaude latérale, type matin de boulangerie. Texture du feuilletage ULTRA visible, presque tactile.`,
   },
 ];
 

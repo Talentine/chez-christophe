@@ -99,6 +99,7 @@ echo   6  Boulangerie uniquement
 echo   7  Tous -- SANS images  (test gratuit, donnees seules)
 echo   8  Reinitialiser et tout regenerer depuis zero
 echo   9  TEST PHOTO  (genere 1 image DALL-E 3 pour valider la qualite, ~0.04 USD)
+echo   R  Regenerer les prompts photo  (efface .progress.json apres mise a jour du style)
 echo   Q  Quitter
 echo.
 set /p CHOIX="  Votre choix : "
@@ -114,6 +115,7 @@ if "%CHOIX%"=="6" goto :boulangerie
 if "%CHOIX%"=="7" goto :sans_images
 if "%CHOIX%"=="8" goto :reset
 if "%CHOIX%"=="9" goto :test_photo
+if /i "%CHOIX%"=="R" goto :regen_prompts
 
 echo  Choix invalide. Relancez le script.
 goto :fin
@@ -160,6 +162,12 @@ set /p CONFIRM="  Effacer la progression et tout regenerer ? (O/N) : "
 if /i "%CONFIRM%"=="O" (
     %NODE% generate.js --reset
 )
+goto :termine
+
+:regen_prompts
+echo  Suppression de .progress.json (les prompts photo seront regeneres au prochain run)
+if exist ".progress.json" del ".progress.json"
+echo  OK -- relancez maintenant l'option 1 a 6 pour regenerer les prompts.
 goto :termine
 
 :test_photo

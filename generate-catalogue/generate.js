@@ -319,20 +319,28 @@ RÈGLES IMPORTANTES :
 - Minimum 5 produits par catégorie, maximum 12
 - Unités réalistes : "à la pièce", "le kg", "le filet ~200g", "la tranche", "les 6", "la botte"...
 
-PROMPT IMAGE :
-Pour chaque produit, génère un prompt DALL-E 3 précis basé sur ce modèle :
+PROMPT IMAGE — PHOTOGRAPHIE RÉELLE (PAS PACKSHOT CGI) :
+L'objectif est une photo qui ressemble à un VRAI cliché de produit, comme si un photographe avait été chez le commerçant. Pas de rendu plastifié, pas d'aspect CGI, pas de produit "trop parfait".
 
-Photo packshot ultra-réaliste d'alimentaire pour e-commerce français premium.
-[Décrire le produit de façon précise : couleur, texture, aspect]
-[Choisir automatiquement la mise en scène selon le produit :]
-  - Produit unitaire (artichaut, citron, pain...) → 1 seul exemplaire centré
-  - Petite quantité (3-6 pièces) → disposition harmonieuse
-  - Volume/vrac (noix, pommes de terre...) → petit tas naturel généreux
-  - Tranches/filets → disposition soignée sur planche ou ardoise
-Fond blanc pur ou gris très légèrement beige, ombre portée douce.
-Éclairage studio diffus, couleurs naturelles légèrement vibrantes.
-Netteté maximale, pas de texte, pas d'emballage, cadrage centré.
-Style minimaliste packshot marché haut de gamme, rendu photographique professionnel.
+Pour chaque produit, génère un prompt DALL-E 3 inspiré de ce modèle :
+
+"Photographie alimentaire professionnelle ultra-réaliste, style éditorial food magazine (Le Bon Marché, Marie Claire Idées). [Décrire le produit avec précision : couleur exacte, texture détaillée, aspect tangible — peau, grain, marbrure, croûte, écailles, etc. INCLURE des imperfections naturelles : petites taches, irrégularités de forme, légères variations de couleur, traces de terre lavée pour les légumes, gouttes d'eau pour les produits frais].
+
+Mise en scène selon la nature du produit :
+  - Unitaire (artichaut, citron, pain...) → 1 exemplaire posé sur surface naturelle
+  - 3 à 6 pièces → disposition organique, pas alignée militairement
+  - Vrac (noix, pommes de terre, fraises...) → petit tas naturel imparfait
+  - Tranches/filets/découpes → posés sur planche en bois clair, ardoise ou papier kraft
+
+Surface : bois brut clair légèrement patiné, ardoise mate, marbre blanc veiné OU papier sulfurisé blanc cassé. PAS de fond blanc studio pur.
+
+Lumière naturelle latérale type fenêtre nord, douce mais avec ombres présentes (pas écrasées). Légère vignettage. Profondeur de champ courte (f/2.8) avec mise au point sur l'avant du produit, arrière légèrement flou.
+
+Tonalités : couleurs naturelles fidèles, ni saturées ni ternes. Légère teinte chaude. Texture du produit ULTRA détaillée (pores, grain, peau, fibres visibles).
+
+Cadrage : produit occupe 50–70% du cadre, point de vue légèrement plongeant (30°-45°) ou de profil selon le produit. Pas de cadrage frontal symétrique.
+
+Style référence : photographie de produit pour épicerie fine, marché de Rungis, esprit boutique parisienne haut de gamme. Aucun texte, aucun logo, aucun emballage industriel. Rendu argentique numérique, pas CGI."
 
 Retourne UNIQUEMENT un JSON valide avec cette structure :
 {
