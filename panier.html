@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Mon panier — Chez Christophe</title>
+<title>Mon panier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://js.stripe.com/v3/"></script>
@@ -370,23 +370,43 @@ function init() {
 // ── PANIER ────────────────────────────────────────────
 function renderPanier() {
   const container = document.getElementById('lignesPanier');
-  container.innerHTML = panier.map((p, i) => `
-    <div class="ligne-produit">
+  container.innerHTML = panier.map((p, i) => {
+    const totalLigne = ((p.prix_marche_indicatif || 0) * p.qte).toFixed(2).replace('.', ',');
+    let qteSection;
+    if (p.au_poids) {
+      const kg = p.poids_kg || p.qte || 0;
+      const lbl = kg < 1
+        ? (kg * 1000).toFixed(0) + ' g'
+        : (kg % 1 === 0 ? kg + ' kg' : kg.toFixed(2).replace('.', ',') + ' kg');
+      qteSection = `<div class="ligne-qte">
+        <span style="background:rgba(45,74,62,0.08);color:var(--vert);padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">${lbl}</span>
+        <button class="qte-btn" onclick="retirerLigne(${i})" style="border-color:rgba(196,97,74,0.3);color:var(--terracotta);">✕</button>
+      </div>`;
+    } else {
+      qteSection = `<div class="ligne-qte">
+        <button class="qte-btn" onclick="modifierQte(${i}, -1)">−</button>
+        <span class="qte-num">${p.qte}</span>
+        <button class="qte-btn" onclick="modifierQte(${i}, 1)">+</button>
+        <span style="font-size:12px;color:var(--texte-doux)">${p.unite || ''}</span>
+      </div>`;
+    }
+    return `<div class="ligne-produit">
       <img class="ligne-img" src="${p.photo_url || ''}" onerror="this.style.display='none'">
       <div style="flex:1">
         <div class="ligne-nom">${p.nom}</div>
-        <div class="ligne-qte">
-          <button class="qte-btn" onclick="modifierQte(${i}, -1)">−</button>
-          <span class="qte-num">${p.qte}</span>
-          <button class="qte-btn" onclick="modifierQte(${i}, 1)">+</button>
-          <span style="font-size:12px;color:var(--texte-doux)">${p.unite}</span>
-        </div>
+        ${qteSection}
       </div>
-      <div class="ligne-prix">${((p.prix_marche_indicatif||0)*p.qte).toFixed(2).replace('.',',')} €</div>
-    </div>
-  `).join('');
+      <div class="ligne-prix">${totalLigne} €</div>
+    </div>`;
+  }).join('');
 
   renderRecap();
+}
+
+function retirerLigne(idx) {
+  panier.splice(idx, 1);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  renderPanier();
 }
 
 function modifierQte(idx, delta) {

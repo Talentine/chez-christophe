@@ -1390,11 +1390,20 @@ function renderProduitCard(p) {
   const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
   const ep = panier.find(x => x.id === p.id);
   // ⚠️ Conteneur stable avec id pour pouvoir mettre à jour SANS refetch
-  const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${
-    ep
-      ? '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>'
-      : '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>'
-  }</div>`;
+  // Bouton/sélecteur dans la carte
+  let actionHtml;
+  if (ep) {
+    if (ep.au_poids) {
+      // Produit au poids : afficher le poids cliquable pour modifier (ouvre fiche)
+      const poidsLabel = ep.poids_kg < 1 ? (ep.poids_kg*1000).toFixed(0) + 'g' : (ep.poids_kg % 1 === 0 ? ep.poids_kg + 'kg' : ep.poids_kg.toFixed(2).replace('.', ',') + 'kg');
+      actionHtml = '<button class="poids-pill" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">' + poidsLabel + ' ✏️</button>';
+    } else {
+      actionHtml = '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>';
+    }
+  } else {
+    actionHtml = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>';
+  }
+  const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${actionHtml}</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
     : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || ''}</div>`;
@@ -1546,16 +1555,45 @@ function statutOuverture() {
 // Panier
 
 let ficheProduitData = null;
-let ficheProduitQte = 1;
+let ficheProduitQte = 1;          // pour produits à la pièce/unité
+let ficheProduitPoidsKg = 0.5;    // pour produits au kilo (en kg, défaut 500g)
+
+// Détecte si le produit est vendu au poids (kg, g, livre)
+function estProduitAuPoids(produit) {
+  if (!produit?.unite) return false;
+  const u = produit.unite.toLowerCase();
+  return /\b(kg|kilo|gramme)\b/.test(u) || u === 'le kg' || u === 'kg' || u === '/kg';
+}
+
+// Choix de poids proposés pour produits au kilo
+const POIDS_OPTIONS = [
+  { kg: 0.25, label: '250 g' },
+  { kg: 0.5,  label: '500 g' },
+  { kg: 0.75, label: '750 g' },
+  { kg: 1,    label: '1 kg' },
+  { kg: 1.5,  label: '1,5 kg' },
+  { kg: 2,    label: '2 kg' },
+  { kg: 3,    label: '3 kg' },
+  { kg: 5,    label: '5 kg' },
+];
 
 function ouvrirFicheProduit(produit) {
   ficheProduitData = produit;
+  const auPoids = estProduitAuPoids(produit);
   const ep = panier.find(x => x.id === produit.id);
-  ficheProduitQte = ep ? ep.qte : 1;
+  if (auPoids) {
+    ficheProduitPoidsKg = ep?.poids_kg || 0.5;
+    ficheProduitQte = ficheProduitPoidsKg; // qte représente le poids en kg pour ces produits
+  } else {
+    ficheProduitQte = ep ? ep.qte : 1;
+  }
 
   const hasPhoto = produit.photo_url && produit.photo_url.startsWith('http');
   const prix = produit.prix_marche_indicatif ? produit.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
-  const total = (produit.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',');
+  const totalNum = auPoids
+    ? produit.prix_marche_indicatif * ficheProduitPoidsKg
+    : produit.prix_marche_indicatif * ficheProduitQte;
+  const total = totalNum.toFixed(2).replace('.',',');
 
   document.getElementById('ficheOverlay').classList.add('open');
   document.getElementById('ficheDrawer').classList.add('open');
@@ -1583,7 +1621,33 @@ function ouvrirFicheProduit(produit) {
   } else {
     provEl.style.display = 'none';
   }
-  document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
+  // Affichage : sélecteur poids OU sélecteur quantité
+  const selectQte = document.getElementById('ficheSelecteurQte');
+  const selectPoids = document.getElementById('ficheSelecteurPoids');
+  if (auPoids) {
+    if (selectQte) selectQte.style.display = 'none';
+    if (selectPoids) {
+      selectPoids.style.display = 'block';
+      // Boutons poids préfabriqués
+      const btns = document.getElementById('ficheBoutonsPoids');
+      if (btns) {
+        btns.innerHTML = POIDS_OPTIONS.map(opt => {
+          const actif = Math.abs(opt.kg - ficheProduitPoidsKg) < 0.001;
+          return '<button onclick="setPoidsFiche(' + opt.kg + ')" style="background:' + (actif ? 'var(--vert)' : 'white') + ';color:' + (actif ? 'white' : 'var(--texte)') + ';border:1.5px solid ' + (actif ? 'var(--vert)' : 'var(--creme-fonce)') + ';border-radius:50px;padding:8px 14px;font-size:13px;font-family:inherit;cursor:pointer;font-weight:' + (actif ? '600' : '400') + ';">' + opt.label + '</button>';
+        }).join('');
+      }
+      const inputCustom = document.getElementById('fichePoidsCustom');
+      if (inputCustom) {
+        // Si poids ne correspond à aucun preset, afficher dans le custom
+        const isPreset = POIDS_OPTIONS.some(o => Math.abs(o.kg - ficheProduitPoidsKg) < 0.001);
+        inputCustom.value = isPreset ? '' : ficheProduitPoidsKg;
+      }
+    }
+  } else {
+    if (selectQte) selectQte.style.display = 'flex';
+    if (selectPoids) selectPoids.style.display = 'none';
+    document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
+  }
   document.getElementById('ficheTotalAccueil').textContent = total + ' €';
 
   const imgEl = document.getElementById('ficheImgAccueil');
@@ -1612,13 +1676,65 @@ function changerQteFicheAccueil(delta) {
   }
 }
 
+// Sélection d'un preset de poids (250g, 500g, 1kg…)
+function setPoidsFiche(kg) {
+  ficheProduitPoidsKg = kg;
+  ficheProduitQte = kg;
+  // Re-render boutons (état actif)
+  const btns = document.getElementById('ficheBoutonsPoids');
+  if (btns) {
+    btns.innerHTML = POIDS_OPTIONS.map(opt => {
+      const actif = Math.abs(opt.kg - kg) < 0.001;
+      return '<button onclick="setPoidsFiche(' + opt.kg + ')" style="background:' + (actif ? 'var(--vert)' : 'white') + ';color:' + (actif ? 'white' : 'var(--texte)') + ';border:1.5px solid ' + (actif ? 'var(--vert)' : 'var(--creme-fonce)') + ';border-radius:50px;padding:8px 14px;font-size:13px;font-family:inherit;cursor:pointer;font-weight:' + (actif ? '600' : '400') + ';">' + opt.label + '</button>';
+    }).join('');
+  }
+  // Vider l'input custom (un preset est sélectionné)
+  const inputCustom = document.getElementById('fichePoidsCustom');
+  if (inputCustom) inputCustom.value = '';
+  // MAJ total
+  if (ficheProduitData) {
+    const total = (ficheProduitData.prix_marche_indicatif * kg).toFixed(2).replace('.',',');
+    document.getElementById('ficheTotalAccueil').textContent = total + ' €';
+  }
+}
+
+// Saisie manuelle du poids
+function setPoidsPersonnalise(val) {
+  const kg = parseFloat(val);
+  if (!kg || kg < 0.05) return;
+  ficheProduitPoidsKg = kg;
+  ficheProduitQte = kg;
+  // Désactiver les boutons preset
+  const btns = document.getElementById('ficheBoutonsPoids');
+  if (btns) {
+    btns.innerHTML = POIDS_OPTIONS.map(opt => {
+      return '<button onclick="setPoidsFiche(' + opt.kg + ')" style="background:white;color:var(--texte);border:1.5px solid var(--creme-fonce);border-radius:50px;padding:8px 14px;font-size:13px;font-family:inherit;cursor:pointer;">' + opt.label + '</button>';
+    }).join('');
+  }
+  if (ficheProduitData) {
+    const total = (ficheProduitData.prix_marche_indicatif * kg).toFixed(2).replace('.',',');
+    document.getElementById('ficheTotalAccueil').textContent = total + ' €';
+  }
+}
+
 function ajouterDepuisFicheAccueil() {
   if (!ficheProduitData) return;
+  const auPoids = estProduitAuPoids(ficheProduitData);
   const idx = panier.findIndex(x => x.id === ficheProduitData.id);
-  if (idx >= 0) {
-    panier[idx].qte = ficheProduitQte;
+  const ligne = { ...ficheProduitData };
+  if (auPoids) {
+    // qte = poids en kg (pour calcul prix), poids_kg = poids exact pour affichage
+    ligne.qte = ficheProduitPoidsKg;
+    ligne.poids_kg = ficheProduitPoidsKg;
+    ligne.au_poids = true;
   } else {
-    panier.push({ ...ficheProduitData, qte: ficheProduitQte });
+    ligne.qte = ficheProduitQte;
+    ligne.au_poids = false;
+  }
+  if (idx >= 0) {
+    panier[idx] = { ...panier[idx], ...ligne };
+  } else {
+    panier.push(ligne);
   }
   localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourBadge();
@@ -1654,6 +1770,11 @@ function ajouterAuPanierDepuisCard(produitId) {
   if (!wrap) return;
   let produit;
   try { produit = JSON.parse(wrap.dataset.prod); } catch { return; }
+  // Pour les produits au kilo → ouvrir la fiche pour choisir le poids
+  if (estProduitAuPoids(produit)) {
+    ouvrirFicheProduit(produit);
+    return;
+  }
   ajouterAuPanierAvecQte(produit);
 }
 
@@ -1680,7 +1801,14 @@ function rafraichirBoutonsCartes() {
     const id = wrap.id.replace(/^action-/, '');
     const ep = panier.find(x => x.id === id);
     if (ep) {
-      wrap.innerHTML = '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', 1)">+</button></div>';
+      if (ep.au_poids) {
+        const poidsLabel = ep.poids_kg < 1
+          ? (ep.poids_kg*1000).toFixed(0) + 'g'
+          : (ep.poids_kg % 1 === 0 ? ep.poids_kg + 'kg' : ep.poids_kg.toFixed(2).replace('.', ',') + 'kg');
+        wrap.innerHTML = '<button class="poids-pill" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + id + '\')" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">' + poidsLabel + ' ✏️</button>';
+      } else {
+        wrap.innerHTML = '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', 1)">+</button></div>';
+      }
     } else {
       wrap.innerHTML = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + id + '\')">+</button>';
     }
@@ -2186,12 +2314,24 @@ _revealEls.forEach(el => _revealObs.observe(el));
       <span id="fichePrixAccueil" style="font-size:24px;font-weight:500;"></span>
       <span id="ficheUniteAccueil" style="font-size:14px;color:var(--texte-doux);"></span>
     </div>
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+    <!-- Sélecteur quantité (à la pièce) — par défaut visible -->
+    <div id="ficheSelecteurQte" style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
       <span style="font-size:14px;color:var(--texte-doux);">Quantité :</span>
       <div style="display:flex;align-items:center;gap:4px;background:var(--creme-fonce);border-radius:50px;padding:4px;">
         <button onclick="changerQteFicheAccueil(-1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;">−</button>
         <span id="ficheQteAccueil" style="font-size:18px;font-weight:500;min-width:28px;text-align:center;">1</span>
         <button onclick="changerQteFicheAccueil(1)" style="width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;">+</button>
+      </div>
+    </div>
+
+    <!-- Sélecteur poids (au kilo) — caché par défaut, affiché si produit au kilo -->
+    <div id="ficheSelecteurPoids" style="display:none;margin-bottom:20px;">
+      <div style="font-size:14px;color:var(--texte-doux);margin-bottom:10px;">Quel poids souhaitez-vous ?</div>
+      <div id="ficheBoutonsPoids" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--texte-doux);">
+        <span>Ou poids personnalisé :</span>
+        <input id="fichePoidsCustom" type="number" min="0.05" step="0.05" placeholder="kg" style="width:90px;padding:8px 10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;" oninput="setPoidsPersonnalise(this.value)">
+        <span>kg</span>
       </div>
     </div>
     <button id="btnAjouterFicheAccueil" onclick="ajouterDepuisFicheAccueil()" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s;">
