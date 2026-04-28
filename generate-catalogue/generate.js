@@ -177,8 +177,11 @@ const SB_HEADERS = {
 };
 
 async function sbGet(table, params = '') {
+  const getHeaders = Object.fromEntries(
+    Object.entries(SB_HEADERS).filter(([k]) => k !== 'Content-Type' && k !== 'Prefer')
+  );
   const r = await fetchJson(`${SUPABASE_URL}/rest/v1/${table}?${params}`, {
-    headers: { ...SB_HEADERS, 'Content-Type': undefined },
+    headers: getHeaders,
   });
   return r.data;
 }

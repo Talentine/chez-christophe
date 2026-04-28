@@ -98,6 +98,7 @@ echo   5  Fromagerie uniquement
 echo   6  Boulangerie uniquement
 echo   7  Tous -- SANS images  (test gratuit, donnees seules)
 echo   8  Reinitialiser et tout regenerer depuis zero
+echo   9  TEST PHOTO  (genere 1 image DALL-E 3 pour valider la qualite, ~0.04 USD)
 echo   Q  Quitter
 echo.
 set /p CHOIX="  Votre choix : "
@@ -112,6 +113,7 @@ if "%CHOIX%"=="5" goto :fromagerie
 if "%CHOIX%"=="6" goto :boulangerie
 if "%CHOIX%"=="7" goto :sans_images
 if "%CHOIX%"=="8" goto :reset
+if "%CHOIX%"=="9" goto :test_photo
 
 echo  Choix invalide. Relancez le script.
 goto :fin
@@ -158,6 +160,24 @@ set /p CONFIRM="  Effacer la progression et tout regenerer ? (O/N) : "
 if /i "%CONFIRM%"=="O" (
     %NODE% generate.js --reset
 )
+goto :termine
+
+:test_photo
+echo  Choisissez le produit a photographier :
+echo.
+echo   1  Tomates cerises (Primeur)
+echo   2  Entrecote de boeuf (Boucherie)
+echo   3  Pave de saumon (Poissonnerie)
+echo   4  Camembert (Fromagerie)
+echo   5  Croissant au beurre (Boulangerie)
+echo.
+set /p PHOTO_CHOIX="  Votre choix (1-5, Entree = tomates) : "
+echo.
+if "%PHOTO_CHOIX%"=="" set PHOTO_CHOIX=1
+echo  Generation de la photo test...
+echo  L'image sera sauvegardee dans ce dossier : generate-catalogue\
+echo.
+%NODE% test-photo.js %PHOTO_CHOIX%
 goto :termine
 
 :termine
