@@ -2024,12 +2024,12 @@ function renderPanier() {
     return;
   }
 
-  const totalMontant = panier.reduce((s, p) => s + (p.prix_marche_indicatif * p.qte), 0);
+  const totalMontant = panier.reduce((s, p) => s + calculerTotalAvecLot(p, p.qte), 0);
 
   contenu.innerHTML = panier.map((p, i) => `
     <div class="panier-ligne">
-      <span class="panier-ligne-nom">${p.nom}</span>
-      <span class="panier-ligne-prix">${(p.prix_marche_indicatif * p.qte).toFixed(2).replace('.',',')}€</span>
+      <span class="panier-ligne-nom">${p.nom}${(p.prix_lot_qte && p.prix_lot && p.qte >= p.prix_lot_qte) ? ' <span style="color:#C44616;font-size:11px;font-weight:700;">🔖</span>' : ''}</span>
+      <span class="panier-ligne-prix">${calculerTotalAvecLot(p, p.qte).toFixed(2).replace('.',',')}€</span>
       <div class="qty-ctrl">
         <button class="qty-btn" onclick="changerQte(${i}, -1)">−</button>
         <span class="qty-num">${p.qte}</span>

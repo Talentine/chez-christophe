@@ -1132,9 +1132,21 @@ function ajouterAuPanier(produit) {
   if (navigator.vibrate) navigator.vibrate(50);
 }
 
+// Calcul total avec offre lot appliquée
+function calcLignePromo(p) {
+  const prixUnit = p.prix_marche_indicatif || 0;
+  const qte = p.qte || 0;
+  if (!p.prix_lot_qte || !p.prix_lot || qte < p.prix_lot_qte || p.au_poids) {
+    return prixUnit * qte;
+  }
+  const lots = Math.floor(qte / p.prix_lot_qte);
+  const reste = qte % p.prix_lot_qte;
+  return lots * parseFloat(p.prix_lot) + reste * prixUnit;
+}
+
 function mettreAJourPanier() {
-  const total = panier.reduce((s, p) => s + p.qte, 0);
-  const montant = panier.reduce((s, p) => s + (p.prix_marche_indicatif || 0) * p.qte, 0);
+  const total = panier.reduce((s, p) => s + (p.au_poids ? 1 : p.qte), 0);
+  const montant = panier.reduce((s, p) => s + calcLignePromo(p), 0);
 
   const badge = document.getElementById('cartBadge');
   badge.textContent = total;
