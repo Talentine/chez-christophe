@@ -1383,9 +1383,12 @@ function renderProduitCard(p) {
   const dataStr = JSON.stringify(p).replace(/"/g,'&quot;');
   const prix = p.prix_marche_indicatif ? p.prix_marche_indicatif.toFixed(2).replace('.',',') : '—';
   const ep = panier.find(x => x.id === p.id);
-  const btnHtml = ep
-    ? '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>'
-    : '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierAvecQte(' + dataStr + ')">+</button>';
+  // ⚠️ Conteneur stable avec id pour pouvoir mettre à jour SANS refetch
+  const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${
+    ep
+      ? '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + p.id + '\', 1)">+</button></div>'
+      : '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>'
+  }</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
     : `<div class="produit-provenance" style="color:var(--texte-doux);font-weight:400;">${p.categories?.nom || ''}</div>`;
@@ -1509,18 +1512,6 @@ function statutOuverture() {
 
 // Panier
 
-function modifierQteAccueil(produitId, delta) {
-  const idx = panier.findIndex(x => x.id === produitId);
-  if (idx === -1) return;
-  panier[idx].qte += delta;
-  if (panier[idx].qte <= 0) panier.splice(idx, 1);
-  localStorage.setItem('panier', JSON.stringify(panier));
-  mettreAJourBadge();
-  // Re-render les sections
-  chargerArrivages();
-  chargerCoupsDeCoeur();
-}
-
 let ficheProduitData = null;
 let ficheProduitQte = 1;
 
@@ -1624,24 +1615,43 @@ function ajouterDepuisFicheAccueil() {
   setTimeout(() => toast.remove(), 2200);
 }
 
+// Wrapper appelé depuis les cartes (lit le data-prod du conteneur)
+function ajouterAuPanierDepuisCard(produitId) {
+  const wrap = document.getElementById('action-' + produitId);
+  if (!wrap) return;
+  let produit;
+  try { produit = JSON.parse(wrap.dataset.prod); } catch { return; }
+  ajouterAuPanierAvecQte(produit);
+}
+
 function ajouterAuPanierAvecQte(produit) {
   ajouterAuPanier(produit);
-  // Re-render immédiat pour faire apparaître le sélecteur +/-
-  const cid = window.__CONFIG__?.business?.id;
-  if (cid) {
-    chargerArrivages(cid);
-    chargerCoupsDeCoeur(cid);
-  }
-  // Legacy : mise à jour d'un éventuel bouton par id
-  const btn = document.getElementById('addBtn-' + produit.id);
-  const ep = panier.find(x => x.id === produit.id);
-  if (btn && ep) {
-    btn.textContent = ep.qte;
-    btn.style.width = 'auto';
-    btn.style.padding = '0 10px';
-    btn.style.borderRadius = '50px';
-    btn.style.fontSize = '14px';
-  }
+  // Mise à jour locale du DOM sans refetch (évite que les produits "disparaissent")
+  rafraichirBoutonsCartes();
+}
+
+function modifierQteAccueil(produitId, delta) {
+  const idx = panier.findIndex(p => p.id === produitId);
+  if (idx < 0) return;
+  panier[idx].qte += delta;
+  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  mettreAJourBadge();
+  rafraichirBoutonsCartes();
+}
+
+// Met à jour TOUS les boutons des cartes produits visibles selon l'état du panier
+// — sans refetch, sans rerender complet : modifie juste les conteneurs .produit-action
+function rafraichirBoutonsCartes() {
+  document.querySelectorAll('.produit-action').forEach(wrap => {
+    const id = wrap.id.replace(/^action-/, '');
+    const ep = panier.find(x => x.id === id);
+    if (ep) {
+      wrap.innerHTML = '<div class="qty-mini" onclick="event.stopPropagation()"><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', -1)">−</button><span class="qty-mini-num">' + ep.qte + '</span><button class="qty-mini-btn" onclick="modifierQteAccueil(\'' + id + '\', 1)">+</button></div>';
+    } else {
+      wrap.innerHTML = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + id + '\')">+</button>';
+    }
+  });
 }
 
 function ajouterAuPanier(produit) {

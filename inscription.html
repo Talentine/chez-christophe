@@ -287,7 +287,7 @@
       <div class="field">
         <label>Code promo <span style="color:rgba(255,255,255,0.4);font-weight:normal;font-size:12px;">(optionnel)</span></label>
         <div style="display:flex;gap:8px;">
-          <input id="iCodePromo" type="text" placeholder="LANCEMENT10, TEST_ADMIN…" style="flex:1;text-transform:uppercase;letter-spacing:0.5px;">
+          <input id="iCodePromo" type="text" placeholder="" style="flex:1;text-transform:uppercase;letter-spacing:0.5px;">
           <button type="button" onclick="verifierCodePromo()" id="btnCodePromo" style="background:rgba(201,165,75,0.2);color:#E5CB82;border:1px solid rgba(201,165,75,0.4);border-radius:10px;padding:0 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Vérifier</button>
         </div>
         <div id="codePromoFeedback" style="font-size:12px;margin-top:6px;line-height:1.4;display:none;"></div>
@@ -391,7 +391,7 @@ async function verifierCodePromo() {
   }
 }
 
-// ── Lire l'offre depuis l'URL
+// ── Lire l'offre + email existant depuis l'URL
 (function() {
   const params = new URLSearchParams(window.location.search);
   const offre = params.get('offre');
@@ -405,6 +405,22 @@ async function verifierCodePromo() {
     document.getElementById('offreNom').textContent = o.nom;
     document.getElementById('offreSetup').textContent = o.setup;
     document.getElementById('offreMensuel').textContent = o.mensuel;
+  }
+  const emailExistant = params.get('email_existant');
+  if (emailExistant) {
+    setTimeout(() => {
+      const inp = document.getElementById('iEmail');
+      if (inp) {
+        inp.value = decodeURIComponent(emailExistant);
+        inp.readOnly = true;
+        inp.style.opacity = '0.7';
+        const hint = inp.parentElement?.querySelector('.hint');
+        if (hint) hint.textContent = 'Email du compte existant — connectez-vous avec ce compte pour ajouter cette boutique';
+        // Afficher un bandeau d'info
+        const step1 = document.querySelector('#step1 .step-sub');
+        if (step1) step1.innerHTML = '🆕 <strong>Création d\'une boutique supplémentaire</strong> — votre compte existant est conservé.';
+      }
+    }, 100);
   }
 })();
 
@@ -593,7 +609,8 @@ async function creerBoutique() {
     }).then(r => r.json());
     if (exist?.length) throw new Error('Cette adresse de site est déjà prise. Choisissez-en une autre.');
 
-    // 2. Signup auth
+    // 2. Signup auth — si l'email existe déjà, on tente un signin pour récupérer le user_id
+    let userId, accessToken;
     const sup = await fetch(SUPABASE_URL + '/auth/v1/signup', {
       method: 'POST',
       headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
@@ -601,14 +618,36 @@ async function creerBoutique() {
     });
     const supData = await sup.json();
     console.log('[signup response]', sup.status, supData);
-    if (!sup.ok) {
-      const m = supData.msg || supData.message || supData.error_description || supData.error || ('HTTP ' + sup.status);
-      throw new Error('Signup: ' + m);
-    }
-    const userId = supData.user?.id || supData.id;
-    if (!userId) throw new Error('Signup: réponse sans user id — ' + JSON.stringify(supData).slice(0, 200));
 
-    state.accessToken = supData.access_token || supData.session?.access_token || null;
+    if (sup.ok) {
+      userId = supData.user?.id || supData.id;
+      accessToken = supData.access_token || supData.session?.access_token || null;
+    } else {
+      // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
+      const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
+      if (!isExisting) {
+        throw new Error('Signup: ' + (supData.msg || supData.message || supData.error_description || supData.error || ('HTTP ' + sup.status)));
+      }
+      // Tenter signin
+      const signin = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+        method: 'POST',
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: state.email, password: state.mdp })
+      });
+      const siData = await signin.json();
+      if (!signin.ok || !siData.access_token) {
+        throw new Error('Cet email a déjà un compte. Connectez-vous au dashboard avec votre mot de passe habituel pour ajouter une boutique.');
+      }
+      userId = siData.user.id;
+      accessToken = siData.access_token;
+      btn.textContent = 'Boutique additionnelle…';
+    }
+
+    if (!userId) throw new Error('Signup: réponse sans user id — ' + JSON.stringify(supData).slice(0, 200));
+    state.accessToken = accessToken;
+
+    // Pré-remplir l'email si fourni en URL (création de boutique additionnelle)
+    // (déjà géré au chargement initial)
 
     const authHeader = state.accessToken
       ? { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + state.accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' }
