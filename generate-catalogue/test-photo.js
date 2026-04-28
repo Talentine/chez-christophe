@@ -34,34 +34,34 @@ if (!OPENAI_KEY) {
 }
 
 // Produits de test — un par métier
-// Style : photographie alimentaire RÉELLE (pas packshot CGI)
-const COMMON_STYLE = `Photographie alimentaire professionnelle ultra-réaliste style éditorial food magazine. Lumière naturelle latérale type fenêtre nord, douce avec ombres présentes mais pas écrasées. Profondeur de champ courte f/2.8, mise au point précise sur l'avant du produit, arrière légèrement flou. Tonalités naturelles légèrement chaudes, ni saturées ni ternes. Texture ULTRA détaillée du produit (pores, fibres, grain, peau visibles). Cadrage 3/4 plongeant à 30-45°, produit occupant 50-70% du cadre. Style boutique épicerie fine parisienne, esprit marché de Rungis. Rendu argentique numérique, JAMAIS CGI ou packshot studio plastifié. Aucun texte, aucun logo, aucun emballage industriel.`;
+// Style HYBRIDE : packshot e-commerce propre + food photography authentique
+const COMMON_STYLE = `Photo de produit alimentaire premium pour e-commerce. Style hybride : packshot studio propre ET food photography authentique. Éclairage studio softbox doux avec une touche de chaleur naturelle, ombres portées douces et présentes mais pas dramatiques. Fond clair épuré — blanc cassé très légèrement crème — pas pur clinique, pas trop texturé. Produit entièrement net, fond très légèrement flou. Couleurs naturelles fidèles, légèrement vibrantes sans être saturées. Texture du produit nette et détaillée (pores, grain, peau, fibres visibles) sans imperfections marquées. Cadrage 3/4 légèrement plongeant 15-30°, produit occupant 60-75% du cadre. Composition lisible immédiatement. Style référence : sites e-commerce premium La Grande Épicerie de Paris, boucheries artisanales haut de gamme. Mi-chemin entre packshot pro et food magazine. Aucun texte, aucun logo, aucun emballage.`;
 
 const TESTS = [
   {
     label:   'Primeur — Tomates cerises',
     metier:  'primeur',
-    prompt:  `${COMMON_STYLE} SUJET : une douzaine de tomates cerises rouges sur la branche verte, posées en petit tas naturel imparfait sur une planche en bois brut clair légèrement patiné. Quelques tomates avec de minuscules gouttes d'eau sur la peau (fraîchement lavées). Couleurs naturelles : rouge mûr avec très légères variations entre les pièces (certaines plus claires, certaines plus foncées). Petite imperfection visible sur une tomate (légère tache verte près de la queue). La branche encore attachée verte avec quelques feuilles. Fond hors-champ flou neutre clair (mur blanc cassé / lin écru).`,
+    prompt:  `${COMMON_STYLE} SUJET : une douzaine de tomates cerises rouge mûr sur la branche verte avec quelques feuilles, disposition harmonieuse légèrement asymétrique sur fond blanc cassé crème. Tomates brillantes avec micro-reflets de lumière, peau lisse et ferme, tiges vertes encore attachées. Très légères variations de teinte entre les pièces (rouge plus clair / plus foncé) pour rendre l'aspect naturel. Une ou deux gouttes d'eau subtiles sur la peau (fraîcheur). Pas d'imperfections marquées.`,
   },
   {
     label:   'Boucherie — Entrecôte',
     metier:  'boucherie',
-    prompt:  `${COMMON_STYLE} SUJET : une entrecôte de bœuf persillée d'environ 350g, posée à plat sur une planche à découper en bois de chêne foncé légèrement marquée par l'usage. Vue 3/4 en plongée. Marbrure (gras intramusculaire) blanc-crème nettement visible dans la chair rouge profond non oxydée. Bord de gras crème naturel sur le côté. Texture de la viande très détaillée : on voit les fibres musculaires. Quelques cristaux de fleur de sel posés sur le dessus. Fond hors-champ : flou sombre type plan de travail boucherie, marbre gris ou bois sombre. Lumière chaude latérale rasante qui révèle la marbrure.`,
+    prompt:  `${COMMON_STYLE} SUJET : une entrecôte de bœuf persillée d'environ 350g posée à plat sur fond blanc cassé crème (ou très légère planche en bois clair à peine visible). Vue 3/4 légèrement plongeante. Marbrure (gras intramusculaire) blanc-crème nettement visible dans la chair rouge profond fraîche non oxydée. Bord de gras crème naturel propre sur le côté. Texture de la viande nette : fibres musculaires détaillées. La pièce doit donner envie : couleur rouge appétissante, marbrure régulière, présentation soignée. Aucun élément distrayant.`,
   },
   {
     label:   'Poissonnerie — Saumon',
     metier:  'poissonnerie',
-    prompt:  `${COMMON_STYLE} SUJET : un pavé de saumon frais atlantique d'environ 200g posé sur un lit de glace pilée. Vue 3/4 en plongée. Chair rose-orangé naturelle avec stries blanches du gras (motifs typiques du saumon), peau argentée brillante avec écailles visibles sur un côté. Légères gouttes d'eau / brillance de fraîcheur sur la chair. Glace pilée translucide autour, fondante. Fond hors-champ flou bleu-gris froid (étal de poissonnerie). Lumière naturelle froide type matinale. Texture de la chair extrêmement détaillée, on doit pouvoir presque la sentir.`,
+    prompt:  `${COMMON_STYLE} SUJET : un pavé de saumon frais atlantique d'environ 200g posé sur fond blanc cassé légèrement froid avec subtiles paillettes de glace pilée propre autour (juste quelques cristaux). Vue 3/4 légèrement plongeante. Chair rose-orangé naturelle avec stries blanches du gras nettement visibles (motifs caractéristiques), peau argentée brillante propre avec écailles visibles sur un côté. Aspect frais et brillant, légères micro-gouttes d'eau pour la fraîcheur. Pas de glace excessive qui distrait. Présentation premium, lisible.`,
   },
   {
     label:   'Fromagerie — Camembert',
     metier:  'fromagerie',
-    prompt:  `${COMMON_STYLE} SUJET : un camembert de Normandie entier au lait cru, croûte blanche fleurie veloutée avec légères marbrures dorées de l'affinage, posé sur un papier sulfurisé blanc cassé légèrement froissé, lui-même sur une planche en bois brut clair. Vue 3/4 en plongée. Une fine paille de fromager dépasse à côté. Texture de la croûte ULTRA détaillée : on voit les fibres du penicillium, les minuscules irrégularités. Légère trace d'humidité sur le dessus. Fond hors-champ flou crème / lin naturel. Lumière douce chaude type matin de Normandie.`,
+    prompt:  `${COMMON_STYLE} SUJET : un camembert de Normandie entier au lait cru, croûte blanche fleurie veloutée avec très légères marbrures dorées subtiles de l'affinage. Posé directement sur fond blanc cassé crème, ou sur papier sulfurisé blanc à peine visible. Vue 3/4 légèrement plongeante. Texture de la croûte nette et détaillée (fibres du penicillium visibles) mais propre, sans coulures, sans taches sombres. Couleur ivoire chaud appétissante. Présentation premium type fromagerie d'épicerie fine.`,
   },
   {
     label:   'Boulangerie — Croissant',
     metier:  'boulangerie',
-    prompt:  `${COMMON_STYLE} SUJET : un croissant au beurre artisanal doré-cuivré, feuilletage très visible et marqué (couches multiples), posé légèrement de côté sur un papier sulfurisé blanc cassé. Vue 3/4 rapprochée. Quelques miettes dorées tombées autour, un éclat de feuilletage détaché. Surface brillante mais pas vernie (vrai beurre, pas glaçage). Couleur dorée profonde et inégale (caractéristique d'une vraie cuisson maison : certaines parties plus foncées que d'autres). Fond hors-champ flou : marbre clair de boulangerie ou bois patiné. Lumière chaude latérale, type matin de boulangerie. Texture du feuilletage ULTRA visible, presque tactile.`,
+    prompt:  `${COMMON_STYLE} SUJET : un croissant au beurre artisanal doré-cuivré, feuilletage très visible avec couches multiples bien marquées, posé légèrement de biais sur fond blanc cassé crème. Vue 3/4 rapprochée. Surface brillante mais pas vernie (vrai beurre). Couleur dorée riche et profonde, légèrement inégale aux extrémités (caractéristique d'une vraie cuisson). Texture du feuilletage nette, presque tactile. Quelques très petites miettes dorées subtilement présentes pour l'authenticité. Pas de désordre, présentation premium type boulangerie haut de gamme.`,
   },
 ];
 

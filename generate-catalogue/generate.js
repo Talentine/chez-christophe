@@ -319,28 +319,30 @@ RÈGLES IMPORTANTES :
 - Minimum 5 produits par catégorie, maximum 12
 - Unités réalistes : "à la pièce", "le kg", "le filet ~200g", "la tranche", "les 6", "la botte"...
 
-PROMPT IMAGE — PHOTOGRAPHIE RÉELLE (PAS PACKSHOT CGI) :
-L'objectif est une photo qui ressemble à un VRAI cliché de produit, comme si un photographe avait été chez le commerçant. Pas de rendu plastifié, pas d'aspect CGI, pas de produit "trop parfait".
+PROMPT IMAGE — STYLE HYBRIDE PACKSHOT + FOOD PHOTO :
+L'objectif est un compromis entre le packshot e-commerce propre (lisible, clean, professionnel) et la photo alimentaire authentique (texture réelle, appétissant, pas plastifié). PROPRE mais PAS aseptisé. RÉEL mais PAS brouillon.
 
 Pour chaque produit, génère un prompt DALL-E 3 inspiré de ce modèle :
 
-"Photographie alimentaire professionnelle ultra-réaliste, style éditorial food magazine (Le Bon Marché, Marie Claire Idées). [Décrire le produit avec précision : couleur exacte, texture détaillée, aspect tangible — peau, grain, marbrure, croûte, écailles, etc. INCLURE des imperfections naturelles : petites taches, irrégularités de forme, légères variations de couleur, traces de terre lavée pour les légumes, gouttes d'eau pour les produits frais].
+"Photo de produit alimentaire premium pour e-commerce, style hybride packshot studio + food photography éditoriale. [Décrire le produit avec précision : couleur exacte, texture détaillée, aspect tangible — peau, grain, marbrure, croûte, écailles, etc. Le produit doit avoir SES caractéristiques naturelles visibles (texture, micro-irrégularités) MAIS rester appétissant et premium, pas abîmé].
 
 Mise en scène selon la nature du produit :
-  - Unitaire (artichaut, citron, pain...) → 1 exemplaire posé sur surface naturelle
-  - 3 à 6 pièces → disposition organique, pas alignée militairement
-  - Vrac (noix, pommes de terre, fraises...) → petit tas naturel imparfait
-  - Tranches/filets/découpes → posés sur planche en bois clair, ardoise ou papier kraft
+  - Unitaire (artichaut, citron, pain...) → 1 exemplaire bien centré
+  - 3 à 6 pièces → disposition harmonieuse, légèrement asymétrique
+  - Vrac (noix, pommes de terre, fraises...) → petit tas naturel propre
+  - Tranches/filets/découpes → posés à plat ou légèrement de biais
 
-Surface : bois brut clair légèrement patiné, ardoise mate, marbre blanc veiné OU papier sulfurisé blanc cassé. PAS de fond blanc studio pur.
+Surface : fond clair épuré — blanc cassé légèrement crème, gris très pâle, ou bois clair très subtil. NI blanc studio clinique pur, NI surface trop texturée qui distrait du produit. La surface doit servir de cadre neutre.
 
-Lumière naturelle latérale type fenêtre nord, douce mais avec ombres présentes (pas écrasées). Légère vignettage. Profondeur de champ courte (f/2.8) avec mise au point sur l'avant du produit, arrière légèrement flou.
+Lumière : éclairage studio doux et propre AVEC une touche de chaleur naturelle (comme une softbox + lumière du jour mélangées). Ombres portées douces et présentes (pas écrasées, pas dramatiques). Aucune ombre dure.
 
-Tonalités : couleurs naturelles fidèles, ni saturées ni ternes. Légère teinte chaude. Texture du produit ULTRA détaillée (pores, grain, peau, fibres visibles).
+Profondeur de champ : produit entièrement net, arrière-plan légèrement flou (pas trop). On veut voir tous les détails du produit clairement.
 
-Cadrage : produit occupe 50–70% du cadre, point de vue légèrement plongeant (30°-45°) ou de profil selon le produit. Pas de cadrage frontal symétrique.
+Tonalités : couleurs naturelles fidèles, légèrement vibrantes mais pas saturées. Texture du produit nette et détaillée (pores, grain, peau, fibres visibles), MAIS sans imperfections marquées (pas de taches noires, pas de pourriture, pas de moisissures).
 
-Style référence : photographie de produit pour épicerie fine, marché de Rungis, esprit boutique parisienne haut de gamme. Aucun texte, aucun logo, aucun emballage industriel. Rendu argentique numérique, pas CGI."
+Cadrage : produit occupe 60-75% du cadre. Vue légèrement de 3/4 (15°-30° de plongée selon le produit) pour donner du volume. Composition claire, lisible immédiatement.
+
+Style référence : sites e-commerce premium type La Grande Épicerie, La Fromagerie de Paris, sites de boucheries artisanales haut de gamme. Look professionnel ET authentique. Aucun texte, aucun logo, aucun emballage industriel. Rendu photographique professionnel, mi-chemin entre packshot et food magazine."
 
 Retourne UNIQUEMENT un JSON valide avec cette structure :
 {
