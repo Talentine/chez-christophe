@@ -2712,6 +2712,8 @@ async function chargerProduits() {
 function renderCatalogueHTML(liste) {
   const container = document.getElementById('produitsAdmin');
   if (!container) return;
+  // Sauvegarder la position de scroll AVANT de toucher au DOM
+  const scrollY = window.scrollY || window.pageYOffset || 0;
   if (liste.length === 0) {
     container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">🔍</p><p style="margin-top:8px">Aucun produit trouvé</p></div>';
     return;
@@ -2732,6 +2734,8 @@ function renderCatalogueHTML(liste) {
       + '</div>'
       + '</div>';
   }).join('');
+  // Restaurer la position de scroll après le re-render (instantané, sans animation)
+  requestAnimationFrame(() => window.scrollTo(0, scrollY));
 }
 
 function filtrerProduitsAdmin(recherche) {
@@ -2743,7 +2747,11 @@ function filtrerProduitsAdmin(recherche) {
 async function chargerProduitsAdmin() {
   const container = document.getElementById('produitsAdmin');
   if (!container) return;
-  container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
+  // Afficher "Chargement..." uniquement au premier chargement (pas lors d'un refresh)
+  const isPremierChargement = !catalogueCache || catalogueCache.length === 0;
+  if (isPremierChargement) {
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement...</div>';
+  }
 
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
@@ -4357,44 +4365,36 @@ verifierSessionCommercant().then(function(ok) {
       </div>
     </div>
 
-    <!-- OPTIONS AVANCÉES (édition) -->
+    <!-- DESCRIPTION (optionnel) -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
+      <textarea id="editDescription" rows="3"
+        style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
+    </div>
+
+    <!-- PROVENANCE (optionnel) -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
+      <input id="editProvenance" type="text"
+        style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+    </div>
+
+    <!-- BADGES (optionnel) -->
     <div style="margin-bottom:20px;">
-      <button type="button" onclick="toggleOptionsEdit()" id="btnToggleOptionsEdit"
-        style="width:100%;background:var(--creme);border:1.5px dashed var(--creme-fonce);border-radius:12px;padding:12px;font-size:13px;color:var(--texte-doux);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:space-between;">
-        <span>+ Options avancées (description, provenance, badges)</span>
-        <span id="toggleOptionsEditIcon">▼</span>
-      </button>
-
-      <div id="optionsAvanceesEdit" style="display:none;margin-top:14px;">
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description</label>
-          <textarea id="editDescription" rows="3"
-            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
-        </div>
-
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur</label>
-          <input id="editProvenance" type="text"
-            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
-        </div>
-
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges</label>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="editBadgeSaison" style="margin:0;"> 🌱 De saison
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="editBadgeLocal" style="margin:0;"> 📍 Local
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="editBadgeNouveau" style="margin:0;"> ⚡ Nouveau
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="editBadgeBio" style="margin:0;"> 🌿 Bio
-            </label>
-          </div>
-        </div>
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges <span style="color:#aaa;font-size:12px;">(optionnel — affichés sur la carte produit)</span></label>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="editBadgeSaison" style="margin:0;"> 🌱 De saison
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="editBadgeLocal" style="margin:0;"> 📍 Local
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="editBadgeNouveau" style="margin:0;"> ⚡ Nouveau
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="editBadgeBio" style="margin:0;"> 🌿 Bio
+        </label>
       </div>
     </div>
 

@@ -1487,15 +1487,24 @@ async function chargerCoupsDeCoeur(commercantId) {
 async function chargerPaniers(commercantId) {
   const container = document.getElementById('paniersListe');
   try {
-    const cats = await supabase('categories', '?slug=eq.paniers&select=id');
-    const catId = cats?.[0]?.id;
-    if (!catId) { container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>'; return; }
+    // Trouver toutes les catégories "paniers" / "plateaux" du business_type courant
+    const b = window.__CONFIG__?.business || {};
+    const types = [b.business_type || 'primeur', ...(b.business_types_secondaires || [])];
+    const filterTypes = '(' + types.map(encodeURIComponent).join(',') + ')';
+    const cats = await supabase('categories', '?slug=in.(paniers,plateaux,plateaux-fromage,plats-cuisines-bouch,buffets)&business_type=in.' + filterTypes + '&select=id,nom,slug');
+    if (!cats || cats.error || !cats.length) {
+      container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>';
+      return;
+    }
+    const catIds = cats.map(c => c.id);
+    const filterCats = '(' + catIds.join(',') + ')';
 
+    // INNER JOIN sur produits_base (avec !inner) pour que le filtre fonctionne
     const rows = await supabase('catalogue',
       '?commercant_id=eq.' + commercantId
-      + '&actif=eq.true&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,categorie_id)'
-      + '&produits_base.categorie_id=eq.' + catId
-      + '&order=id.desc&limit=6');
+      + '&actif=eq.true&select=*,produits_base!inner(id,nom,unite,prix_marche_indicatif,photo_url,description,categorie_id)'
+      + '&produits_base.categorie_id=in.' + filterCats
+      + '&order=id.desc&limit=8');
 
     const produits = (Array.isArray(rows) ? rows : []).map(flattenCatalogueRow).filter(p => p.nom);
     if (!produits.length) {
