@@ -63,7 +63,8 @@
   .sidebar {
     position:fixed; left:0; top:0; bottom:0; width:220px;
     background:#1a2e26; border-right:1px solid rgba(255,255,255,0.08);
-    padding:24px 0; z-index:100;
+    padding:24px 0; z-index:200;
+    overflow-y:auto;
   }
 
   .sidebar-logo {
@@ -83,6 +84,9 @@
     padding:10px 20px; font-size:14px; color:rgba(255,255,255,0.6);
     cursor:pointer; transition:all .15s; border-radius:0;
     border-left:3px solid transparent;
+    -webkit-tap-highlight-color:rgba(201,168,76,0.3);
+    user-select:none;
+    position:relative; z-index:1;
   }
 
   .nav-link:hover { background:rgba(255,255,255,0.05); color:white; }
@@ -263,10 +267,10 @@
   }
   .burger-btn:active { transform:scale(0.94); }
 
-  /* Drawer overlay */
+  /* Drawer overlay (DOIT être sous la sidebar) */
   .nav-overlay {
     display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.6); z-index:150;
+    background:rgba(0,0,0,0.6); z-index:180;
   }
   .nav-overlay.open { display:block; }
 
