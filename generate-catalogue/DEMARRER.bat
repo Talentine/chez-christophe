@@ -1,117 +1,173 @@
 @echo off
-chcp 65001 >nul 2>&1
-title Marchéo — Générateur de catalogues IA
+title Marcheo - Generateur de catalogues IA
+cls
 
-echo.
-echo  ╔══════════════════════════════════════════════╗
-echo  ║   Marchéo — Générateur de catalogues IA     ║
-echo  ╚══════════════════════════════════════════════╝
-echo.
+:: Chemin Node.js (ajuste si different sur votre machine)
+set NODE="C:\Program Files\nodejs\node.exe"
+set NPM="C:\Program Files\nodejs\npm.cmd"
 
-:: Vérifier que Node.js est installé
-where node >nul 2>&1
+:: Fallback : essayer sans chemin complet si les precedents echouent
+%NODE% --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo  [ERREUR] Node.js n'est pas installe.
-    echo  Telechargez-le sur : https://nodejs.org
+    set NODE=node
+    set NPM=npm
+)
+
+echo.
+echo  ================================================
+echo   Marcheo -- Generateur de catalogues produits
+echo  ================================================
+echo.
+
+:: Verifier que Node.js est accessible
+%NODE% --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo  ERREUR : Node.js introuvable.
+    echo  Verifiez que le chemin est correct dans DEMARRER.bat
+    echo  Chemin actuel : %NODE%
+    echo  Telechargez Node.js sur : https://nodejs.org
+    echo.
     pause
     exit /b 1
 )
 
-:: Vérifier que les modules sont installés
-if not exist "node_modules" (
-    echo  [INFO] Installation des modules Node.js...
-    call npm install
+for /f "tokens=*" %%v in ('%NODE% --version') do set NODEVER=%%v
+echo  Node.js %NODEVER% detecte.
+echo.
+
+:: Installer les modules si besoin
+if not exist "node_modules\" (
+    echo  Installation des modules Node.js...
+    call %NPM% install
     if %errorlevel% neq 0 (
-        echo  [ERREUR] Echec de l'installation des modules.
+        echo  ERREUR : echec npm install
         pause
         exit /b 1
     )
+    echo.
 )
 
-:: Créer le .env s'il n'existe pas
+:: Creer le .env s'il n'existe pas
 if not exist ".env" (
-    echo  [CONFIG] Fichier .env non trouve. Configuration initiale...
+    echo  CONFIGURATION INITIALE
+    echo  ------------------------------------------------
+    echo  Vous avez besoin de 2 cles API :
     echo.
-    echo  ┌─────────────────────────────────────────────────┐
-    echo  │  Vous avez besoin de 2 cles API :               │
-    echo  │                                                  │
-    echo  │  1. OpenAI API Key                               │
-    echo  │     https://platform.openai.com/api-keys        │
-    echo  │     Commencez par : sk-...                       │
-    echo  │                                                  │
-    echo  │  2. Supabase Service Role Key                    │
-    echo  │     https://supabase.com/dashboard/project/     │
-    echo  │     epvdzhzwfmtnioedyfgm/settings/api           │
-    echo  │     Section "Project API keys" ^> service_role   │
-    echo  └─────────────────────────────────────────────────┘
+    echo  1. OpenAI API Key
+    echo     https://platform.openai.com/api-keys
+    echo     Elle commence par : sk-...
     echo.
-    set /p OPENAI_KEY="  Entrez votre cle OpenAI (sk-...) : "
-    set /p SUPA_KEY="  Entrez votre Supabase Service Role Key : "
+    echo  2. Supabase Service Role Key
+    echo     https://supabase.com/dashboard/project/
+    echo     epvdzhzwfmtnioedyfgm/settings/api
+    echo     Section "Project API keys" puis "service_role"
     echo.
-    echo OPENAI_API_KEY=%OPENAI_KEY%> .env
-    echo SUPABASE_SERVICE_KEY=%SUPA_KEY%>> .env
-    echo SUPABASE_URL=https://epvdzhzwfmtnioedyfgm.supabase.co>> .env
-    echo  [OK] Fichier .env cree avec succes !
+    echo  ------------------------------------------------
+    echo.
+    set /p OPENAI_KEY="  Cle OpenAI (sk-...) : "
+    set /p SUPA_KEY="  Supabase Service Role Key : "
+    echo.
+    %NODE% -e "require('fs').writeFileSync('.env', 'OPENAI_API_KEY=' + process.argv[1] + '\nSUPABASE_SERVICE_KEY=' + process.argv[2] + '\nSUPABASE_URL=https://epvdzhzwfmtnioedyfgm.supabase.co\n')" "%OPENAI_KEY%" "%SUPA_KEY%"
+    echo  Fichier .env cree !
     echo.
 )
 
-:: Test de connexion automatique
-echo  [INFO] Verification des connexions...
-node test-connexion.js
+:: Test de connexion
+echo  Verification des connexions...
+echo.
+%NODE% test-connexion.js
 if %errorlevel% neq 0 (
     echo.
-    echo  [ERREUR] La configuration est incomplete. Corrigez le fichier .env
+    echo  ERREUR : La configuration est incomplete.
+    echo  Verifiez votre fichier .env
+    echo.
     pause
     exit /b 1
 )
-echo.
-
-:: Menu de sélection
-echo  Quel catalogue voulez-vous generer ?
-echo.
-echo   [1] Tous les metiers (primeur + boucherie + poissonnerie + fromagerie + boulangerie)
-echo   [2] Primeur uniquement
-echo   [3] Boucherie uniquement
-echo   [4] Poissonnerie uniquement
-echo   [5] Fromagerie uniquement
-echo   [6] Boulangerie uniquement
-echo   [7] Tous — SANS images (test rapide, pas de cout OpenAI image)
-echo   [8] Reinitialiser et tout regenerer depuis zero
-echo   [Q] Quitter
-echo.
-set /p CHOIX="  Votre choix [1-8 ou Q] : "
-
-if /i "%CHOIX%"=="Q" exit /b 0
-if "%CHOIX%"=="1" (
-    echo.
-    echo  [INFO] Generation de TOUS les catalogues...
-    echo  [INFO] Duree estimee : 60-90 min (images IA incluses)
-    echo  [INFO] Couts estimes : ~5-8 euros (DALL-E 3 par produit)
-    echo.
-    pause
-    node generate.js
-)
-if "%CHOIX%"=="2" node generate.js primeur
-if "%CHOIX%"=="3" node generate.js boucherie
-if "%CHOIX%"=="4" node generate.js poissonnerie
-if "%CHOIX%"=="5" node generate.js fromagerie
-if "%CHOIX%"=="6" node generate.js boulangerie
-if "%CHOIX%"=="7" (
-    echo.
-    echo  [INFO] Generation SANS images...
-    node generate.js --skip-images
-)
-if "%CHOIX%"=="8" (
-    echo.
-    echo  [ATTENTION] Cela va effacer la progression et reinserrer tous les produits.
-    set /p CONFIRM="  Confirmer ? [O/N] : "
-    if /i "%CONFIRM%"=="O" node generate.js --reset
-)
 
 echo.
-echo  ════════════════════════════════════════════════
+echo  ================================================
+echo   Que voulez-vous generer ?
+echo  ================================================
+echo.
+echo   1  Tous les metiers  (duree : ~60-90 min, cout : ~8-10 USD)
+echo   2  Primeur uniquement
+echo   3  Boucherie uniquement
+echo   4  Poissonnerie uniquement
+echo   5  Fromagerie uniquement
+echo   6  Boulangerie uniquement
+echo   7  Tous -- SANS images  (test gratuit, donnees seules)
+echo   8  Reinitialiser et tout regenerer depuis zero
+echo   Q  Quitter
+echo.
+set /p CHOIX="  Votre choix : "
+echo.
+
+if /i "%CHOIX%"=="Q" goto :fin
+if "%CHOIX%"=="1" goto :tous
+if "%CHOIX%"=="2" goto :primeur
+if "%CHOIX%"=="3" goto :boucherie
+if "%CHOIX%"=="4" goto :poissonnerie
+if "%CHOIX%"=="5" goto :fromagerie
+if "%CHOIX%"=="6" goto :boulangerie
+if "%CHOIX%"=="7" goto :sans_images
+if "%CHOIX%"=="8" goto :reset
+
+echo  Choix invalide. Relancez le script.
+goto :fin
+
+:tous
+echo  Generation de TOUS les catalogues...
+echo  Appuyez sur une touche pour confirmer (fermez pour annuler)
+pause
+%NODE% generate.js
+goto :termine
+
+:primeur
+echo  Generation du catalogue Primeur...
+%NODE% generate.js primeur
+goto :termine
+
+:boucherie
+echo  Generation du catalogue Boucherie...
+%NODE% generate.js boucherie
+goto :termine
+
+:poissonnerie
+echo  Generation du catalogue Poissonnerie...
+%NODE% generate.js poissonnerie
+goto :termine
+
+:fromagerie
+echo  Generation du catalogue Fromagerie...
+%NODE% generate.js fromagerie
+goto :termine
+
+:boulangerie
+echo  Generation du catalogue Boulangerie...
+%NODE% generate.js boulangerie
+goto :termine
+
+:sans_images
+echo  Generation SANS images (donnees seules, gratuit)...
+%NODE% generate.js --skip-images
+goto :termine
+
+:reset
+set /p CONFIRM="  Effacer la progression et tout regenerer ? (O/N) : "
+if /i "%CONFIRM%"=="O" (
+    %NODE% generate.js --reset
+)
+goto :termine
+
+:termine
+echo.
+echo  ================================================
 echo   Termine ! Verifiez votre base Supabase :
-echo   https://supabase.com/dashboard/project/epvdzhzwfmtnioedyfgm/editor
-echo  ════════════════════════════════════════════════
+echo   https://supabase.com/dashboard/project/
+echo   epvdzhzwfmtnioedyfgm/editor
+echo  ================================================
 echo.
+
+:fin
 pause

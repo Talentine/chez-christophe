@@ -28,10 +28,13 @@ const path    = require('path');
 // ── Charger .env si présent ──────────────────────────────────────
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
-  fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
-    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
-    if (m) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
-  });
+  fs.readFileSync(envPath, 'utf8')
+    .replace(/^﻿/, '')   // supprimer BOM éventuel
+    .split('\n')
+    .forEach(line => {
+      const m = line.trim().match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
+      if (m) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '').trim();
+    });
 }
 
 // ── Config ───────────────────────────────────────────────────────
