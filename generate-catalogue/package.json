@@ -1,0 +1,18 @@
+{
+  "name": "marcheo-generate-catalogue",
+  "version": "1.0.0",
+  "description": "Génère les catalogues produits Marchéo avec photos IA (DALL-E 3)",
+  "main": "generate.js",
+  "scripts": {
+    "start": "node generate.js",
+    "primeur":      "node generate.js primeur",
+    "boucherie":    "node generate.js boucherie",
+    "poissonnerie": "node generate.js poissonnerie",
+    "fromagerie":   "node generate.js fromagerie",
+    "boulangerie":  "node generate.js boulangerie"
+  },
+  "dependencies": {
+    "openai": "^4.47.0",
+    "@supabase/supabase-js": "^2.43.0"
+  }
+}
