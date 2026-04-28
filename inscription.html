@@ -283,6 +283,16 @@
         <div class="hint">Vous pourrez le changer ensuite depuis votre dashboard.</div>
       </div>
 
+      <!-- CODE PROMO -->
+      <div class="field">
+        <label>Code promo <span style="color:rgba(255,255,255,0.4);font-weight:normal;font-size:12px;">(optionnel)</span></label>
+        <div style="display:flex;gap:8px;">
+          <input id="iCodePromo" type="text" placeholder="LANCEMENT10, TEST_ADMIN…" style="flex:1;text-transform:uppercase;letter-spacing:0.5px;">
+          <button type="button" onclick="verifierCodePromo()" id="btnCodePromo" style="background:rgba(201,165,75,0.2);color:#E5CB82;border:1px solid rgba(201,165,75,0.4);border-radius:10px;padding:0 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Vérifier</button>
+        </div>
+        <div id="codePromoFeedback" style="font-size:12px;margin-top:6px;line-height:1.4;display:none;"></div>
+      </div>
+
       <!-- CGV plateforme + charte qualité -->
       <div class="field" style="background:#FAF7F0;border-radius:12px;padding:14px;margin-top:8px;">
         <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;line-height:1.5;color:#1f3028;font-weight:normal;">
@@ -338,8 +348,48 @@ const OFFRES = {
   livraison:    { nom:'Click & Collect + Livraison', setup:'549€', mensuel:'59€', label:'LIVRAISON',      cls:'livraison' },
 };
 
-const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null };
+const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null, codePromo:null };
 const mediaFiles = [null, null]; // index 0 = hero, 1 = produits, 2+ = extras
+
+// ── Vérification code promo (RPC valider_code_promo) ──
+async function verifierCodePromo() {
+  const inp = document.getElementById('iCodePromo');
+  const fb = document.getElementById('codePromoFeedback');
+  const btn = document.getElementById('btnCodePromo');
+  const code = (inp.value || '').trim().toUpperCase();
+  if (!code) {
+    fb.style.display = 'none';
+    state.codePromo = null;
+    return;
+  }
+  btn.textContent = '…';
+  btn.disabled = true;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/valider_code_promo', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_code: code })
+    });
+    const data = await r.json();
+    const result = Array.isArray(data) ? data[0] : data;
+    fb.style.display = 'block';
+    if (result?.valide) {
+      state.codePromo = { code, ...result };
+      fb.innerHTML = `<span style="color:#7dc9a0;">✓ Code valide — <b>${result.description || 'Réduction appliquée'}</b></span>`;
+      inp.style.borderColor = 'rgba(125,201,160,0.6)';
+    } else {
+      state.codePromo = null;
+      fb.innerHTML = `<span style="color:#e88080;">✗ ${result?.description || 'Code invalide'}</span>`;
+      inp.style.borderColor = 'rgba(232,128,128,0.5)';
+    }
+  } catch (e) {
+    fb.style.display = 'block';
+    fb.innerHTML = `<span style="color:#e88080;">⚠ Erreur de vérification</span>`;
+  } finally {
+    btn.textContent = 'Vérifier';
+    btn.disabled = false;
+  }
+}
 
 // ── Lire l'offre depuis l'URL
 (function() {
@@ -564,11 +614,31 @@ async function creerBoutique() {
       ? { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + state.accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' }
       : { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=representation' };
 
-    // 3. Création commercant
+    // 3. Création commercant — avec code promo si fourni
+    const promoPayload = {};
+    if (state.codePromo?.valide) {
+      promoPayload.code_promo_utilise = state.codePromo.code;
+      promoPayload.code_promo_id = state.codePromo.code_id;
+      if (state.codePromo.type === 'mois_offert') {
+        promoPayload.mois_offerts = parseInt(state.codePromo.valeur || 0);
+      }
+      if (state.codePromo.type === 'frais_acquisition_pct') {
+        const offresMontant = { vitrine: 249, clickcollect: 399, livraison: 549 };
+        const baseMontant = offresMontant[state.offre || 'clickcollect'] || 399;
+        const reduction = (baseMontant * (state.codePromo.valeur || 0)) / 100;
+        promoPayload.frais_acquisition_paye = Math.round((baseMontant - reduction) * 100) / 100;
+      }
+      if (state.codePromo.type === 'test_gratuit') {
+        promoPayload.frais_acquisition_paye = 0;
+        promoPayload.mois_offerts = 999; // illimité de fait
+      }
+    }
+
     const cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
       method: 'POST',
       headers: authHeader,
       body: JSON.stringify({
+        ...promoPayload,
         slug: state.slug,
         nom_boutique: state.nom,
         business_type: state.type,
@@ -623,12 +693,38 @@ async function creerBoutique() {
       }
     }
 
+    // Incrémenter compteur d'utilisations du code promo
+    if (state.codePromo?.code_id) {
+      fetch(SUPABASE_URL + '/rest/v1/rpc/incrementer_utilisation_code', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_code_id: state.codePromo.code_id })
+      }).catch(()=>{});
+    }
+
     const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
-    const url = isLocal
-      ? location.href.replace(/inscription\.html.*$/, 'index.html?slug=' + state.slug)
-      : (location.protocol + '//' + state.slug + '.' + location.host.replace(/^[^.]+\./, ''));
-    document.getElementById('successUrl').innerHTML =
-      '<a href="' + url + '" target="_blank" style="color:#5c8a6e;text-decoration:none;word-break:break-all;">' + url + '</a>';
+    const baseHost = isLocal
+      ? location.origin.replace(/\/inscription\.html.*$/, '')
+      : (location.protocol + '//' + location.host);
+    const urlBoutique = isLocal
+      ? `${baseHost}/?slug=${state.slug}`
+      : `${baseHost}/${state.slug}`;
+    const urlDashboard = `${baseHost}/app-commercant.html`;
+
+    document.getElementById('successUrl').innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:6px;">🌐 Lien de votre boutique (à partager)</div>
+          <a href="${urlBoutique}" target="_blank" style="color:#7dc9a0;text-decoration:none;word-break:break-all;font-family:monospace;font-size:13px;">${urlBoutique}</a>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:6px;">🛠 Votre dashboard (pour gérer la boutique)</div>
+          <a href="${urlDashboard}" target="_blank" style="color:#E5CB82;text-decoration:none;word-break:break-all;font-family:monospace;font-size:13px;">${urlDashboard}</a>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.04);border-radius:10px;padding:10px 12px;margin-top:4px;">
+          💡 <b>Conseil :</b> ajoutez ces 2 liens en favoris dans votre navigateur. Le QR code de votre boutique sera disponible dans le dashboard pour l'imprimer et le coller en vitrine.
+        </div>
+      </div>`;
     etape(5);
 
   } catch (e) {

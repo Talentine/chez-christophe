@@ -882,6 +882,54 @@
   <div style="padding:16px;">
     <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Réglages</div>
 
+    <!-- QR CODE BOUTIQUE -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">📱 QR Code de votre boutique</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">À imprimer et coller en vitrine ou sur le comptoir</div>
+        </div>
+      </div>
+      <div id="qrcodeWrap" style="text-align:center;padding:20px;background:var(--creme);border-radius:12px;">
+        <div id="qrcodeCanvas" style="display:inline-block;background:white;padding:14px;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div style="width:200px;height:200px;display:flex;align-items:center;justify-content:center;color:var(--texte-doux);font-size:13px;">Génération…</div>
+        </div>
+        <div id="qrcodeUrl" style="margin-top:12px;font-family:monospace;font-size:12px;color:var(--texte-doux);word-break:break-all;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+        <button onclick="imprimerQRCode()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:12px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">🖨️ Imprimer</button>
+        <button onclick="telechargerQRCode()" style="background:var(--creme-fonce);color:var(--texte);border:none;border-radius:50px;padding:12px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">⬇️ Télécharger</button>
+      </div>
+    </div>
+
+    <!-- LIENS UTILES -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🔗 Vos liens</div>
+      <div id="liensListe" style="display:flex;flex-direction:column;gap:8px;font-size:13px;"></div>
+    </div>
+
+    <!-- MOT DE PASSE -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🔑 Mot de passe</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">Modifiez votre mot de passe pour accéder au dashboard.</div>
+      <input type="password" id="newPwd1" placeholder="Nouveau mot de passe (6 caractères min)" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;margin-bottom:8px;">
+      <input type="password" id="newPwd2" placeholder="Confirmer le nouveau mot de passe" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;margin-bottom:10px;">
+      <div id="pwdFeedback" style="font-size:12px;margin-bottom:10px;display:none;"></div>
+      <button onclick="changerMotDePasse()" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:12px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">Modifier le mot de passe</button>
+    </div>
+
+    <!-- COMPTES SALARIÉS -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <div style="font-size:15px;font-weight:600;">👥 Comptes salariés</div>
+        <button onclick="ouvrirModalSalarie()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">+ Ajouter</button>
+      </div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">
+        Créez des comptes pour vos employés. Ils auront accès aux <strong>commandes</strong> et au catalogue <strong>produits</strong> uniquement (pas aux réglages, ni aux paiements).
+      </div>
+      <div id="salariesListe" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
     <!-- AVERTISSEMENT MÉTIERS À POIDS VARIABLE -->
     <div id="warnPoidsVariable" style="display:none;background:#fff8e7;border:1px solid #f0c060;border-radius:14px;padding:14px 16px;margin-bottom:16px;">
       <div style="font-size:14px;font-weight:600;color:#8a6020;margin-bottom:6px;">⚠️ Recommandation pour votre métier</div>
@@ -2394,6 +2442,7 @@ async function seConnecterCommercant() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
     appliquerThemeMonCommerce();
+    appliquerRestrictionsRole(roleData.role);
     init();
     demarrerRealtime();
   } else {
@@ -2417,6 +2466,10 @@ async function verifierSessionCommercant() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appPrincipal').style.display = 'block';
     await appliquerThemeMonCommerce();
+    try {
+      const s = JSON.parse(session);
+      if (typeof appliquerRestrictionsRole === 'function') appliquerRestrictionsRole(s.role || 'commercant');
+    } catch {}
     return true;
   }
   return false;
@@ -3796,6 +3849,42 @@ verifierSessionCommercant().then(function(ok) {
 </script>
 </div>
 
+<!-- MODALE AJOUT SALARIÉ -->
+<div id="modalSalarie" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:flex-end;">
+  <div style="background:var(--blanc);width:100%;max-width:480px;margin:0 auto;border-radius:24px 24px 0 0;padding:24px;max-height:90vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;">Ajouter un salarié</div>
+      <button onclick="fermerModalSalarie()" style="background:var(--creme);border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+      <input id="salPrenom" placeholder="Prénom" style="padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+      <input id="salNom" placeholder="Nom" style="padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+    </div>
+    <input id="salEmail" type="email" placeholder="Email du salarié" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;margin-bottom:12px;">
+    <input id="salMdp" type="text" placeholder="Mot de passe initial (le salarié pourra le changer)" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;margin-bottom:12px;">
+    <div style="font-size:13px;color:var(--texte-doux);margin-bottom:8px;">Permissions accordées :</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);font-size:13px;cursor:not-allowed;opacity:0.8;">
+        <input type="checkbox" checked disabled> 📦 Commandes
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);font-size:13px;cursor:not-allowed;opacity:0.8;">
+        <input type="checkbox" checked disabled> 🛍️ Produits
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);font-size:13px;cursor:pointer;">
+        <input type="checkbox" id="permCreneaux"> 🕒 Créneaux
+      </label>
+    </div>
+    <div id="salErr" style="color:#e74c3c;font-size:13px;margin-bottom:10px;display:none;"></div>
+    <button onclick="creerSalarie()" id="btnCreerSal" style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">Créer le compte salarié</button>
+    <div style="font-size:11px;color:var(--texte-doux);text-align:center;margin-top:10px;line-height:1.4;">
+      ⓘ Le salarié pourra se connecter sur le dashboard avec son email et le mot de passe que vous lui communiquerez. Il n'aura accès qu'aux commandes et au catalogue produits.
+    </div>
+  </div>
+</div>
+
+<!-- QR Code library (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
 <!-- MODALE AJOUT PRODUIT -->
 <div id="modalAjoutProduit" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:flex-end;">
   <div style="background:var(--blanc);width:100%;border-radius:24px 24px 0 0;padding:24px;max-height:90vh;overflow-y:auto;">
@@ -4155,6 +4244,288 @@ verifierSessionCommercant().then(function(ok) {
     color: white !important;
     border-color: var(--vert) !important;
   }
+  @media print {
+    body * { visibility: hidden; }
+    #qrPrintArea, #qrPrintArea * { visibility: visible; }
+    #qrPrintArea {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: white; padding: 40px;
+    }
+    #qrPrintArea h1 { font-size: 32px; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+    #qrPrintArea h2 { font-size: 22px; color: var(--vert-fonce); margin-bottom: 24px; font-weight: 400; }
+    #qrPrintArea .qr-img { width: 320px; height: 320px; }
+    #qrPrintArea .qr-url { font-family: monospace; font-size: 14px; margin-top: 18px; color: #555; }
+    #qrPrintArea .qr-tagline { font-size: 16px; margin-top: 24px; color: #888; max-width: 500px; text-align: center; }
+  }
 </style>
+
+<!-- Zone d'impression QR (cachée hors impression) -->
+<div id="qrPrintArea" style="display:none;">
+  <h1 id="qrPrintNom">Boutique</h1>
+  <h2>Commandez en ligne — retrait & livraison</h2>
+  <canvas id="qrPrintCanvas" class="qr-img"></canvas>
+  <div class="qr-url" id="qrPrintUrl"></div>
+  <div class="qr-tagline">Scannez avec votre téléphone pour accéder à notre boutique en ligne</div>
+</div>
+
+<script>
+// ====================================================================
+// QR CODE BOUTIQUE
+// ====================================================================
+function genererQRCode() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slug = session.slug;
+  if (!slug) return;
+  const url = location.protocol + '//' + location.host + '/' + slug;
+  const canvas = document.getElementById('qrcodeCanvas');
+  const urlEl  = document.getElementById('qrcodeUrl');
+  if (urlEl) urlEl.textContent = url;
+  if (!canvas || typeof QRCode === 'undefined') return;
+  canvas.innerHTML = '<canvas id="qrcodeReal" width="200" height="200"></canvas>';
+  QRCode.toCanvas(document.getElementById('qrcodeReal'), url, { width: 200, margin: 1, color: { dark: '#1A2E26', light: '#ffffff' } });
+}
+
+function imprimerQRCode() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slug = session.slug;
+  const nom  = session.nom_boutique || 'Notre boutique';
+  if (!slug) return afficherToast('❌ Slug introuvable');
+  const url = location.protocol + '//' + location.host + '/' + slug;
+  const printArea = document.getElementById('qrPrintArea');
+  document.getElementById('qrPrintNom').textContent = nom;
+  document.getElementById('qrPrintUrl').textContent = url;
+  printArea.style.display = 'flex';
+  QRCode.toCanvas(document.getElementById('qrPrintCanvas'), url, { width: 320, margin: 2, color: { dark: '#1A2E26', light: '#ffffff' } }, function(err) {
+    if (err) { afficherToast('❌ Erreur QR'); printArea.style.display = 'none'; return; }
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => { printArea.style.display = 'none'; }, 500);
+    }, 200);
+  });
+}
+
+function telechargerQRCode() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slug = session.slug;
+  if (!slug) return;
+  const url = location.protocol + '//' + location.host + '/' + slug;
+  QRCode.toDataURL(url, { width: 800, margin: 2, color: { dark: '#1A2E26', light: '#ffffff' } }, function(err, dataUrl) {
+    if (err) return afficherToast('❌ Erreur');
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = 'qrcode-' + slug + '.png';
+    a.click();
+  });
+}
+
+// ====================================================================
+// LIENS UTILES
+// ====================================================================
+function rendreLiens() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const slug = session.slug;
+  if (!slug) return;
+  const base = location.protocol + '//' + location.host;
+  const liens = [
+    { label: '🌐 Lien public de votre boutique', url: base + '/' + slug, color: 'var(--vert)' },
+    { label: '🛠 Dashboard (cette page)',        url: base + '/app-commercant.html', color: 'var(--or)' },
+    { label: '📋 Page panier client',            url: base + '/panier.html?slug=' + slug, color: '#888' },
+  ];
+  document.getElementById('liensListe').innerHTML = liens.map(l => `
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--creme);border-radius:10px;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:11px;color:var(--texte-doux);font-weight:600;">${l.label}</div>
+        <a href="${l.url}" target="_blank" style="color:${l.color};text-decoration:none;font-family:monospace;font-size:12px;word-break:break-all;">${l.url}</a>
+      </div>
+      <button onclick="copierLien('${l.url}', this)" style="background:white;border:1px solid var(--creme-fonce);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">Copier</button>
+    </div>`).join('');
+}
+
+function copierLien(url, btn) {
+  navigator.clipboard?.writeText(url);
+  const old = btn.textContent;
+  btn.textContent = '✓ Copié';
+  setTimeout(() => btn.textContent = old, 1500);
+}
+
+// ====================================================================
+// CHANGEMENT MOT DE PASSE
+// ====================================================================
+async function changerMotDePasse() {
+  const p1 = document.getElementById('newPwd1').value;
+  const p2 = document.getElementById('newPwd2').value;
+  const fb = document.getElementById('pwdFeedback');
+  fb.style.display = 'block';
+  if (p1.length < 6) { fb.textContent = '✗ Mot de passe trop court (6 minimum)'; fb.style.color = '#e74c3c'; return; }
+  if (p1 !== p2)     { fb.textContent = '✗ Les deux mots de passe ne correspondent pas'; fb.style.color = '#e74c3c'; return; }
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const token = session.access_token;
+  if (!token) { fb.textContent = '✗ Session expirée — reconnectez-vous'; fb.style.color = '#e74c3c'; return; }
+  fb.textContent = '⏳ Mise à jour…'; fb.style.color = 'var(--texte-doux)';
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/user', {
+      method: 'PUT',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: p1 })
+    });
+    if (!r.ok) {
+      const err = await r.json();
+      fb.textContent = '✗ ' + (err.msg || err.message || 'Erreur'); fb.style.color = '#e74c3c'; return;
+    }
+    fb.textContent = '✓ Mot de passe modifié avec succès'; fb.style.color = '#27ae60';
+    document.getElementById('newPwd1').value = '';
+    document.getElementById('newPwd2').value = '';
+    setTimeout(() => { fb.style.display = 'none'; }, 3000);
+  } catch (e) {
+    fb.textContent = '✗ ' + e.message; fb.style.color = '#e74c3c';
+  }
+}
+
+// ====================================================================
+// COMPTES SALARIÉS
+// ====================================================================
+function ouvrirModalSalarie() {
+  document.getElementById('modalSalarie').style.display = 'flex';
+  document.getElementById('salPrenom').value = '';
+  document.getElementById('salNom').value = '';
+  document.getElementById('salEmail').value = '';
+  document.getElementById('salMdp').value = Math.random().toString(36).slice(2, 10) + 'A1';
+  document.getElementById('permCreneaux').checked = false;
+  document.getElementById('salErr').style.display = 'none';
+}
+function fermerModalSalarie() {
+  document.getElementById('modalSalarie').style.display = 'none';
+}
+
+async function creerSalarie() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const prenom = document.getElementById('salPrenom').value.trim();
+  const nom    = document.getElementById('salNom').value.trim();
+  const email  = document.getElementById('salEmail').value.trim();
+  const mdp    = document.getElementById('salMdp').value;
+  const err    = document.getElementById('salErr');
+  const btn    = document.getElementById('btnCreerSal');
+  err.style.display = 'none';
+
+  if (!email || !mdp || mdp.length < 6) {
+    err.textContent = '⚠️ Email + mot de passe (6 caractères min) obligatoires';
+    err.style.display = 'block';
+    return;
+  }
+  const permissions = ['commandes','produits'];
+  if (document.getElementById('permCreneaux').checked) permissions.push('creneaux');
+
+  btn.disabled = true; btn.textContent = 'Création…';
+  try {
+    // 1. Créer le compte auth Supabase
+    const sup = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: mdp })
+    });
+    const supData = await sup.json();
+    if (!sup.ok) throw new Error(supData.msg || supData.message || 'Échec création compte');
+    const userId = supData.user?.id || supData.id;
+    if (!userId) throw new Error('Pas d\'user_id en retour');
+
+    // 2. Insérer dans la table salaries
+    const r = await fetch(SUPABASE_URL + '/rest/v1/salaries', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ commercant_id: commercantId, user_id: userId, prenom, nom, email, permissions })
+    });
+    if (!r.ok) throw new Error('Erreur DB: ' + (await r.text()));
+
+    // 3. Créer le rôle salarié dans roles_utilisateurs
+    await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ user_id: userId, commercant_id: commercantId, role: 'salarie' })
+    });
+
+    fermerModalSalarie();
+    afficherToast('✅ Compte salarié créé');
+    chargerSalaries();
+  } catch (e) {
+    err.textContent = '❌ ' + e.message;
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Créer le compte salarié';
+  }
+}
+
+async function chargerSalaries() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const liste = document.getElementById('salariesListe');
+  if (!commercantId || !liste) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/salaries?commercant_id=eq.' + commercantId + '&select=*&order=created_at.desc', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const rows = await r.json();
+    if (!Array.isArray(rows) || rows.length === 0) {
+      liste.innerHTML = '<div style="font-size:13px;color:var(--texte-doux);text-align:center;padding:14px;">Aucun salarié — cliquez sur « + Ajouter » pour en créer un</div>';
+      return;
+    }
+    liste.innerHTML = rows.map(s => `
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--creme);border-radius:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--vert);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;">
+          ${(s.prenom || s.email).charAt(0).toUpperCase()}
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:14px;font-weight:500;">${(s.prenom || '') + ' ' + (s.nom || '')}</div>
+          <div style="font-size:11px;color:var(--texte-doux);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.email}</div>
+          <div style="font-size:10px;color:var(--texte-doux);margin-top:2px;">${(s.permissions || []).join(' · ')}</div>
+        </div>
+        <button onclick="supprimerSalarie('${s.id}', '${(s.prenom || s.email).replace(/'/g,'')}')" style="background:white;border:1px solid #f0c0c0;color:#c44;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">Supprimer</button>
+      </div>`).join('');
+  } catch (e) {
+    liste.innerHTML = '<div style="font-size:13px;color:#c44;">Erreur de chargement</div>';
+  }
+}
+
+async function supprimerSalarie(id, nom) {
+  if (!confirm('Supprimer le compte salarié de ' + nom + ' ?')) return;
+  try {
+    await fetch(SUPABASE_URL + '/rest/v1/salaries?id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    afficherToast('✅ Compte salarié supprimé');
+    chargerSalaries();
+  } catch (e) { afficherToast('❌ ' + e.message); }
+}
+
+// Auto-charge au passage sur l'onglet Réglages
+const _origChargerReglages = window.chargerReglages;
+window.chargerReglages = async function() {
+  if (typeof _origChargerReglages === 'function') await _origChargerReglages();
+  genererQRCode();
+  rendreLiens();
+  chargerSalaries();
+};
+
+// ====================================================================
+// RESTRICTIONS PAR RÔLE (salarié = commandes + produits seulement)
+// ====================================================================
+function appliquerRestrictionsRole(role) {
+  if (role !== 'salarie') return; // commerçant + admin = accès complet
+  // Masquer les onglets nav non autorisés (créneaux, planning, réglages, galerie)
+  const ongletsAutorises = ['commandes', 'produits'];
+  document.querySelectorAll('.bottom-nav button[onclick*="allerOnglet"]').forEach(btn => {
+    const m = btn.getAttribute('onclick')?.match(/allerOnglet\('(\w+)'/);
+    const onglet = m?.[1];
+    if (onglet && !ongletsAutorises.includes(onglet)) {
+      btn.style.display = 'none';
+    }
+  });
+  // Cacher aussi les sections/cartes premium (Stripe Connect, Réglages avancés…)
+  document.querySelectorAll('#stripeConnectCard, #businessTypeSection').forEach(el => el && (el.style.display = 'none'));
+}
+</script>
+
 </body>
 </html>
