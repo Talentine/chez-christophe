@@ -547,6 +547,47 @@
     .example-stat-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--brand); }
     .example-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
+    /* APERÇUS ZONES (Arrivages / Coups de cœur dans cards exemples) */
+    .example-zone { margin-bottom: 14px; }
+    .example-zone-titre {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--brand);
+      margin-bottom: 8px;
+    }
+    .example-zone-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      animation: pulse 2.4s infinite;
+    }
+    .example-mini-products {
+      display: flex; gap: 8px; overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .example-mini-products::-webkit-scrollbar { display: none; }
+    .example-mini-card {
+      flex-shrink: 0;
+      width: 100px;
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .example-mini-img {
+      width: 100%; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .example-mini-name {
+      font-size: 11px; font-weight: 600; color: var(--text);
+      padding: 6px 7px 2px; line-height: 1.2;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .example-mini-price {
+      font-size: 11px; font-weight: 700; color: var(--brand);
+      padding: 0 7px 6px;
+    }
+
     .example-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 13px; font-weight: 700; color: var(--brand);
@@ -712,16 +753,26 @@
         <div class="example-info">
           <div class="example-shop-title">Chez Christophe</div>
           <div class="example-location">📍 Caen, Calvados · Primeur</div>
-          <div class="example-stats">
-            <div class="example-stat">
-              <div class="example-stat-num">175</div>
-              <div class="example-stat-label">produits au catalogue</div>
-            </div>
-            <div class="example-stat">
-              <div class="example-stat-num">🌿</div>
-              <div class="example-stat-label">fruits & légumes du marché</div>
+
+          <!-- Aperçu zone Arrivages -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Arrivage du jour</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#fde4b8;">🍎</div><div class="example-mini-name">Pommes Gala</div><div class="example-mini-price">3,20€/kg</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#dde4c8;">🥑</div><div class="example-mini-name">Avocat Hass</div><div class="example-mini-price"><span style="color:#C44616">🔖 2/3€</span></div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5d4a0;">🍑</div><div class="example-mini-name">Pêches</div><div class="example-mini-price">4,50€/kg</div></div>
             </div>
           </div>
+
+          <!-- Aperçu zone Coups de cœur -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Coups de cœur</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8c99a;">🍓</div><div class="example-mini-name">Fraises locales</div><div class="example-mini-price">5,90€</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#f0d4a0;">🧺</div><div class="example-mini-name">Panier saison</div><div class="example-mini-price">25€</div></div>
+            </div>
+          </div>
+
           <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
       </a>
@@ -748,16 +799,26 @@
         <div class="example-info">
           <div class="example-shop-title">Boucherie Classique</div>
           <div class="example-location">📍 Toulon, Var · Boucher artisan</div>
-          <div class="example-stats">
-            <div class="example-stat">
-              <div class="example-stat-num">38</div>
-              <div class="example-stat-label">découpes au catalogue</div>
-            </div>
-            <div class="example-stat">
-              <div class="example-stat-num">🥩</div>
-              <div class="example-stat-label">pièces sur commande</div>
+
+          <!-- Aperçu zone Arrivages -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Pièces du jour</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8b8b0;">🥩</div><div class="example-mini-name">Entrecôte</div><div class="example-mini-price">36€/kg</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#d4a89a;">🐂</div><div class="example-mini-name">Côte de bœuf</div><div class="example-mini-price">42€/kg</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#f0c8a8;">🍗</div><div class="example-mini-name">Poulet fermier</div><div class="example-mini-price">14€/kg</div></div>
             </div>
           </div>
+
+          <!-- Aperçu zone Coups de cœur -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Sélection du boucher</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8c8a8;">🌭</div><div class="example-mini-name">Saucisse maison</div><div class="example-mini-price">18€/kg</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#dcb8a0;">🍖</div><div class="example-mini-name">Côtelettes Agneau</div><div class="example-mini-price">28€/kg</div></div>
+            </div>
+          </div>
+
           <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
       </a>
@@ -784,16 +845,26 @@
         <div class="example-info">
           <div class="example-shop-title">Fromagerie des Conquérants</div>
           <div class="example-location">📍 Toulon, Var · Fromager affineur</div>
-          <div class="example-stats">
-            <div class="example-stat">
-              <div class="example-stat-num">31</div>
-              <div class="example-stat-label">fromages affinés</div>
-            </div>
-            <div class="example-stat">
-              <div class="example-stat-num">🧀</div>
-              <div class="example-stat-label">plateaux sur-mesure</div>
+
+          <!-- Aperçu zone Arrivages -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:var(--gold);"></span> Affinés du moment</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5e8c8;">🧀</div><div class="example-mini-name">Camembert AOP</div><div class="example-mini-price">5,50€</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#fbe8a8;">🐐</div><div class="example-mini-name">Chèvre cendré</div><div class="example-mini-price">4,80€</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8d4f0;">🫐</div><div class="example-mini-name">Bleu d'Auvergne</div><div class="example-mini-price">6,20€/200g</div></div>
             </div>
           </div>
+
+          <!-- Aperçu zone Coups de cœur -->
+          <div class="example-zone">
+            <div class="example-zone-titre"><span class="example-zone-dot" style="background:#C4614A;"></span> Sélection de l'affineur</div>
+            <div class="example-mini-products">
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#f5e0a0;">🥖</div><div class="example-mini-name">Plateau régional</div><div class="example-mini-price">30€</div></div>
+              <div class="example-mini-card"><div class="example-mini-img" style="background:#e8d090;">🎉</div><div class="example-mini-name">Plateau fête</div><div class="example-mini-price">40€</div></div>
+            </div>
+          </div>
+
           <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
       </a>

@@ -890,10 +890,20 @@ async function chargerCategories(catSlugActif) {
   `;
 
   if (catSlugActif) {
-    const cat = cats.find(c => c.slug === catSlugActif);
+    let cat = cats.find(c => c.slug === catSlugActif);
+    // Alias : "paniers" → trouver la catégorie panier-équivalente du métier courant
+    if (!cat && catSlugActif === 'paniers') {
+      cat = cats.find(c => ['paniers','plateaux','plateaux-fromage','plats-cuisines-bouch','buffets'].includes(c.slug));
+    }
     if (cat) {
       categorieActive = cat.id;
       document.getElementById('titrePage').textContent = cat.nom;
+      // Marquer comme actif le bon bouton
+      setTimeout(() => {
+        document.querySelectorAll('.filtre-btn').forEach(b => {
+          if (b.textContent.trim().endsWith(cat.nom)) b.classList.add('actif');
+        });
+      }, 0);
     }
   }
 }
