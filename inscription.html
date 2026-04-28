@@ -711,9 +711,11 @@ async function creerBoutique() {
     const supData = await sup.json();
     console.log('[signup response]', sup.status, supData);
 
+    let refreshToken = null;
     if (sup.ok) {
       userId = supData.user?.id || supData.id;
       accessToken = supData.access_token || supData.session?.access_token || null;
+      refreshToken = supData.refresh_token || supData.session?.refresh_token || null;
     } else {
       // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
       const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
@@ -732,11 +734,13 @@ async function creerBoutique() {
       }
       userId = siData.user.id;
       accessToken = siData.access_token;
+      refreshToken = siData.refresh_token;
       btn.textContent = 'Boutique additionnelle…';
     }
 
     if (!userId) throw new Error('Signup: réponse sans user id — ' + JSON.stringify(supData).slice(0, 200));
     state.accessToken = accessToken;
+    state.refreshToken = refreshToken;
 
     // Pré-remplir l'email si fourni en URL (création de boutique additionnelle)
     // (déjà géré au chargement initial)
@@ -806,6 +810,7 @@ async function creerBoutique() {
     if (state.accessToken) {
       localStorage.setItem('session_commercant', JSON.stringify({
         access_token: state.accessToken,
+        refresh_token: state.refreshToken || null,
         email: state.email,
         user_id: userId,
         role: 'commercant',

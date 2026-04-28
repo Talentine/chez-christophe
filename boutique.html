@@ -1112,8 +1112,8 @@
 
   <!-- HERO -->
   <div class="hero" id="heroPrincipal">
-    <div class="hero-bg-photo" id="heroBgPhoto" style="position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .6s ease;z-index:0;"></div>
-    <div class="hero-bg-overlay" id="heroBgOverlay" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(28,48,40,.78),rgba(28,48,40,.55));z-index:0;opacity:0;transition:opacity .6s ease;"></div>
+    <div class="hero-bg-photo" id="heroBgPhoto" style="position:absolute;inset:0;background-size:cover;background-position:center center;background-repeat:no-repeat;opacity:0;transition:opacity .6s ease;z-index:0;"></div>
+    <div class="hero-bg-overlay" id="heroBgOverlay" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,48,40,.35) 0%,rgba(28,48,40,.55) 100%);z-index:0;opacity:0;transition:opacity .6s ease;"></div>
     <div class="hero-pattern"></div>
     <div style="position:relative;z-index:1;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
@@ -1272,7 +1272,7 @@
 
 <!-- NAV BAS -->
 <nav class="bottom-nav">
-  <a class="nav-item active" href="index.html">
+  <a class="nav-item active" href="javascript:void(0)" onclick="retourAccueilBoutique()">
     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
     <span class="nav-label">Accueil</span>
   </a>
@@ -1340,6 +1340,24 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 // Panier en mémoire
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+
+// Retour à l'accueil de LA BOUTIQUE (pas la landing Marchéo)
+function retourAccueilBoutique() {
+  // Si déjà sur la home (boutique.html ou /), juste scroll
+  const path = location.pathname;
+  const onHome = path === '/' || /^\/[^\/]+\/?$/.test(path) || /boutique\.html$/.test(path);
+  if (onHome) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+  // Sinon revenir au slug
+  const slug = window.__CONFIG__?.slug || (path.split('/').filter(Boolean)[0]);
+  if (slug) location.href = '/' + slug;
+  else location.href = '/';
+}
+
+// Idem côté autres pages (catalogue, panier, compte, notre-histoire)
+window.retourAccueilBoutique = retourAccueilBoutique;
 
 async function supabase(table, params = '') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
@@ -1420,19 +1438,23 @@ async function chargerRayons(commercantId) {
   const b = window.__CONFIG__?.business || {};
   const bt = b.business_type || 'primeur';
   const secondaires = b.business_types_secondaires || [];
-  // Inclure le type principal + les types secondaires (PostgREST in.( ))
   const tousTypes = [bt, ...secondaires];
   const filterIn = '(' + tousTypes.map(encodeURIComponent).join(',') + ')';
   let cats = await supabase('categories', '?business_type=in.' + filterIn + '&order=ordre&select=*');
   if (!cats || cats.error || !cats.length) cats = await supabase('categories', '?order=ordre&select=*');
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
   const cfg = window.__CONFIG__;
-  grid.innerHTML = cats.slice(0,6).map(c => `
-    <div class="rayon-card" onclick="voirCategorie('${c.slug}','${c.nom}')">
-      <div class="rayon-emoji">${c.emoji || (cfg ? cfg.emoji : '🌿')}</div>
+  // Affiche tous les rayons, paniers/plateaux à la fin (déjà ordre=99 en base)
+  grid.innerHTML = cats.map(c => {
+    const img = c.image_url
+      ? `<div class="rayon-img" style="width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--creme-fonce);"><img src="${c.image_url}" alt="${c.nom}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;\\'>${c.emoji || '🌿'}</div>'"></div>`
+      : `<div class="rayon-emoji">${c.emoji || (cfg ? cfg.emoji : '🌿')}</div>`;
+    return `
+    <div class="rayon-card" onclick="voirCategorie('${c.slug}','${c.nom.replace(/'/g, '\\'')}')">
+      ${img}
       <div class="rayon-nom">${c.nom}</div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 // ── ARRIVAGES (derniers ajoutés au catalogue) ────────────────────
@@ -1825,13 +1847,15 @@ async function chargerGalerieBoutique() {
   const scroll = document.getElementById('galerieScroll');
   try {
     const cfg = window.__CONFIG__;
-    const commercantId = cfg?.business?.id;
-    if (!commercantId) return;
+    const slug = cfg?.business?.slug || cfg?.slug;
+    const heroUrl = cfg?.business?.hero_photo_url;
+    if (!slug) return;
 
-    const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/galerie-boutique', {
+    // Bucket unifié "boutiques-media" / dossier {slug}/
+    const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/boutiques-media', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prefix: commercantId + '/', limit: 20, sortBy: { column: 'name', order: 'asc' } })
+      body: JSON.stringify({ prefix: slug + '/', limit: 30, sortBy: { column: 'name', order: 'asc' } })
     });
     const files = await r.json();
 
@@ -1840,16 +1864,23 @@ async function chargerGalerieBoutique() {
       return;
     }
 
-    // Construire galerieItems dynamiquement
-    galerieItems = files.filter(f => f.name && !f.name.endsWith('/')).map(f => {
-      const url = SUPABASE_URL + '/storage/v1/object/public/galerie-boutique/' + commercantId + '/' + f.name;
-      const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);
-      return {
-        type: isVideo ? 'video' : 'photo',
-        label: f.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
-        url,
-      };
-    });
+    // Filtrer le logo (commence par "logo.") + dossiers
+    galerieItems = files
+      .filter(f => f.name && !f.name.endsWith('/') && !/^logo\./.test(f.name))
+      .map(f => {
+        const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + slug + '/' + f.name;
+        const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);
+        return {
+          type: isVideo ? 'video' : 'photo',
+          label: f.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+          url,
+        };
+      });
+
+    if (galerieItems.length === 0) {
+      scroll.innerHTML = '<div class="galerie-item galerie-item-grande"><div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Photos à venir</span></div></div>';
+      return;
+    }
 
     // Rendu galerie scroll
     scroll.innerHTML = galerieItems.map((item, idx) => {
