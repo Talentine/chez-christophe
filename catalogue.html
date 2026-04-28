@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catalogue — Chez Christophe</title>
+<title>Catalogue</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -690,7 +690,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="assets/core/init.js?v=20260428b"></script>
+<script src="assets/core/init.js?v=20260428c"></script>
 </head>
 <body>
 
@@ -834,8 +834,17 @@ function flattenCatalogueRow(row) {
     badge_local: pb.badge_local,
     badge_nouveau: pb.badge_nouveau,
     categorie_id: pb.categorie_id,
-    categories: pb.categories
+    categories: pb.categories,
+    prix_lot_qte: row.prix_lot_qte || null,
+    prix_lot: row.prix_lot || null,
   };
+}
+
+// Badge promo / lot (rouge orangé voyant)
+function badgeOffreLotCatalogue(p) {
+  if (!p?.prix_lot_qte || !p?.prix_lot) return '';
+  const prix = parseFloat(p.prix_lot).toFixed(2).replace('.', ',').replace(/,00$/, '');
+  return '<div style="color:#C44616;font-size:13px;font-weight:700;line-height:1.1;margin-top:2px;">🔖 ' + p.prix_lot_qte + ' pour ' + prix + '€</div>';
 }
 
 let __CID__ = null;
@@ -988,6 +997,7 @@ function renderProduits() {
             <div class="produit-prix-bloc">
               <span class="produit-prix">${prix ? prix.toFixed(2).replace('.',',') + '€' : '—'}</span>
               <span class="produit-unite"> /${p.unite}</span>
+              ${badgeOffreLotCatalogue(p)}
             </div>
             ${enPanier
               ? '<div class="qty-mini" onclick="event.stopPropagation()">'

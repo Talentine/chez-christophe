@@ -1083,7 +1083,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="assets/core/init.js?v=20260428b"></script>
+<script src="assets/core/init.js?v=20260428c"></script>
 </head>
 <body>
 
@@ -1176,6 +1176,14 @@
       <div class="rayon-card loading-skeleton" style="height:100px"></div>
       <div class="rayon-card loading-skeleton" style="height:100px"></div>
     </div>
+  </section>
+
+  <!-- PROMOTIONS — masqué si aucune promo -->
+  <section id="promotionsSection" class="reveal" style="display:none">
+    <div class="section-header">
+      <h2 class="section-title" style="color:#C44616;">🔖 Promotions du moment</h2>
+    </div>
+    <div class="arrivage-scroll" id="promotionsScroll" style="overflow-x:auto;display:flex;gap:12px;padding-bottom:6px;scrollbar-width:none;"></div>
   </section>
 
   <!-- ARRIVAGE DU JOUR (derniers produits ajoutés) -->
@@ -1480,6 +1488,30 @@ function rayonImgFallback(img) {
 }
 
 // ── ARRIVAGES (derniers ajoutés au catalogue) ────────────────────
+// ── PROMOTIONS (produits avec offre lot active) ─────────
+async function chargerPromotions(commercantId) {
+  const section = document.getElementById('promotionsSection');
+  const scroll = document.getElementById('promotionsScroll');
+  if (!section || !scroll) return;
+  try {
+    const rows = await supabase('catalogue',
+      '?commercant_id=eq.' + commercantId
+      + '&actif=eq.true&prix_lot=not.is.null&prix_lot_qte=not.is.null'
+      + '&select=*,produits_base(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categories(nom,emoji))'
+      + '&order=id.desc&limit=10');
+    const produits = (Array.isArray(rows) ? rows : []).map(flattenCatalogueRow).filter(p => p.nom && p.prix_lot);
+    if (!produits.length) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = 'block';
+    scroll.innerHTML = produits.map(renderProduitCard).join('');
+  } catch(e) {
+    console.warn('Erreur promotions:', e);
+    section.style.display = 'none';
+  }
+}
+
 async function chargerArrivages(commercantId) {
   const scroll = document.getElementById('arrivageScroll');
   const rows = await supabase('catalogue',
@@ -2343,6 +2375,7 @@ function formatHorairesCourt(h) {
   chargerArrivages(cid);
   chargerCoupsDeCoeur(cid);
   chargerPaniers(cid);
+  chargerPromotions(cid);
 })();
 
 // Scroll reveal
