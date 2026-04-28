@@ -1,12 +1,14 @@
 {
-  "name": "Chez Christophe — Espace Primeur",
-  "short_name": "Primeur",
-  "description": "Gestion des commandes click & collect",
+  "name": "Marchéo — Gérer ma boutique",
+  "short_name": "Marchéo",
+  "description": "Espace commerçant Marchéo : commandes, produits, créneaux, paramètres",
   "start_url": "/app-commercant.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#1a2e26",
   "theme_color": "#1a2e26",
   "orientation": "portrait",
+  "lang": "fr",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Marchéo">
+<meta name="application-name" content="Marchéo">
 <meta name="theme-color" content="#1a2e26">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
-<title>Espace commerçant — Marchéo</title>
+<title>Marchéo — Gérer ma boutique</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -915,6 +917,17 @@
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🔗 Vos liens</div>
       <div id="liensListe" style="display:flex;flex-direction:column;gap:8px;font-size:13px;"></div>
+    </div>
+
+    <!-- CHANGER DE BOUTIQUE (visible uniquement si plusieurs boutiques) -->
+    <div id="switchBoutiqueCard" style="display:none;background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:15px;font-weight:600;margin-bottom:2px;">🏪 Changer de boutique</div>
+          <div style="font-size:12px;color:var(--texte-doux);" id="switchBoutiqueInfo">Vous gérez <strong id="switchNbBoutiques">2</strong> boutiques avec ce compte.</div>
+        </div>
+        <button onclick="switchBoutique()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:10px 16px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;flex-shrink:0;">Changer</button>
+      </div>
     </div>
 
     <!-- MOT DE PASSE -->
@@ -2494,31 +2507,31 @@ function seDeconnecterCommercant() {
 function afficherSelecteurBoutique(roles, sessionBase) {
   const emojis = { primeur:'🌿', boucherie:'🥩', boulangerie:'🥖', poissonnerie:'🐟', traiteur:'🍽️', fromagerie:'🧀' };
   const html = `
-    <div id="selecteurBoutiqueOverlay" style="position:fixed;inset:0;background:#1a2e26;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;">
-      <div style="background:#243d32;border-radius:24px;padding:32px 24px;width:100%;max-width:420px;border:1px solid rgba(255,255,255,0.1);">
-        <div style="text-align:center;margin-bottom:24px;">
-          <div style="font-size:36px;margin-bottom:10px;">🏪</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;color:white;margin-bottom:6px;">Choisissez une boutique</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Vous gérez plusieurs commerces — sélectionnez celui que vous souhaitez ouvrir.</div>
+    <div id="selecteurBoutiqueOverlay" style="position:fixed;inset:0;background:#1a2e26;z-index:99999;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;display:flex;align-items:flex-start;justify-content:center;">
+      <div style="background:#243d32;border-radius:24px;padding:28px 22px;width:100%;max-width:420px;border:1px solid rgba(255,255,255,0.1);margin:auto 0;">
+        <div style="text-align:center;margin-bottom:22px;">
+          <div style="font-size:36px;margin-bottom:8px;">🏪</div>
+          <div style="font-family:'Playfair Display',serif;font-size:21px;color:white;margin-bottom:6px;">Choisissez une boutique</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5;">Vous gérez plusieurs commerces — sélectionnez celui que vous souhaitez ouvrir.</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
           ${roles.map((r,i) => `
-            <button onclick="choisirBoutique(${i})" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);color:white;border-radius:14px;padding:16px;text-align:left;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .15s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='var(--or)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)'">
-              <div style="font-size:28px;">${emojis[r.commercants?.business_type] || '🏪'}</div>
+            <button type="button" onclick="choisirBoutique(${i})" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);color:white;border-radius:14px;padding:16px;text-align:left;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .15s;-webkit-tap-highlight-color:rgba(201,165,75,0.3);min-height:64px;">
+              <div style="font-size:28px;flex-shrink:0;">${emojis[r.commercants?.business_type] || '🏪'}</div>
               <div style="flex:1;min-width:0;">
-                <div style="font-weight:500;font-size:15px;">${r.commercants?.nom_boutique || 'Boutique'}</div>
-                <div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:monospace;">marchéo.fr/${r.commercants?.slug}</div>
+                <div style="font-weight:500;font-size:15px;color:white;">${r.commercants?.nom_boutique || 'Boutique'}</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:monospace;overflow:hidden;text-overflow:ellipsis;">marchéo.fr/${r.commercants?.slug}</div>
                 <div style="font-size:10px;color:#E5CB82;text-transform:uppercase;margin-top:2px;letter-spacing:0.05em;">${r.role}</div>
               </div>
-              <div style="color:rgba(255,255,255,0.4);">→</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:18px;flex-shrink:0;">→</div>
             </button>
           `).join('')}
         </div>
-        <button onclick="ouvrirCreationNouvelleBoutique()" style="width:100%;background:transparent;border:1.5px dashed rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);border-radius:14px;padding:14px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">
+        <button type="button" onclick="ouvrirCreationNouvelleBoutique()" style="width:100%;background:transparent;border:1.5px dashed rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);border-radius:14px;padding:14px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;">
           + Créer une nouvelle boutique avec ce compte
         </button>
         <div style="text-align:center;margin-top:14px;">
-          <button onclick="document.getElementById('selecteurBoutiqueOverlay').remove();document.getElementById('loginScreen').style.display='flex';" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Se déconnecter</button>
+          <button type="button" onclick="document.getElementById('selecteurBoutiqueOverlay').remove();document.getElementById('loginScreen').style.display='flex';" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px;">← Se déconnecter</button>
         </div>
       </div>
     </div>`;
@@ -2545,6 +2558,47 @@ function choisirBoutique(index) {
   appliquerRestrictionsRole(r.role);
   init();
   demarrerRealtime();
+}
+
+// Recharge la liste des boutiques du user et affiche le sélecteur (sans relogin)
+async function switchBoutique() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const userId = session.user_id;
+  if (!userId) return afficherToast('❌ Session invalide');
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs?user_id=eq.' + userId + '&select=role,commercant_id,commercants(slug,nom_boutique,business_type)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (session.access_token || SUPABASE_KEY) }
+    });
+    const roles = await r.json();
+    const valides = (roles || []).filter(x => x.role && x.role !== 'client' && x.commercant_id);
+    if (valides.length === 0) return afficherToast('Aucune boutique trouvée');
+    afficherSelecteurBoutique(valides, {
+      access_token: session.access_token,
+      refresh_token: session.refresh_token,
+      email: session.email,
+      user_id: session.user_id,
+    });
+  } catch(e) { afficherToast('❌ ' + e.message); }
+}
+
+// Affiche la card "Changer de boutique" si user a >1 boutique
+async function afficherCardSwitchBoutique() {
+  const card = document.getElementById('switchBoutiqueCard');
+  if (!card) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  if (!session.user_id) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs?user_id=eq.' + session.user_id + '&select=commercant_id', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (session.access_token || SUPABASE_KEY) }
+    });
+    const rows = await r.json();
+    const nb = (rows || []).filter(x => x.commercant_id).length;
+    if (nb > 1) {
+      card.style.display = 'block';
+      const infoEl = document.getElementById('switchNbBoutiques');
+      if (infoEl) infoEl.textContent = nb;
+    }
+  } catch(e) { console.warn('switchBoutiqueCard err', e); }
 }
 
 function ouvrirCreationNouvelleBoutique() {
@@ -4813,6 +4867,7 @@ window.chargerReglages = async function() {
   rendreLiens();
   chargerSalaries();
   chargerHorairesEditor();
+  afficherCardSwitchBoutique();
 };
 
 // ====================================================================
