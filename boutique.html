@@ -1412,8 +1412,13 @@ function renderProduitCard(p) {
 // ── RAYONS ──────────────────────────────────────────────────────
 async function chargerRayons(commercantId) {
   const grid = document.getElementById('rayonsGrid');
-  const bt = window.__CONFIG__?.business?.business_type || 'primeur';
-  let cats = await supabase('categories', '?business_type=eq.' + bt + '&order=ordre&select=*');
+  const b = window.__CONFIG__?.business || {};
+  const bt = b.business_type || 'primeur';
+  const secondaires = b.business_types_secondaires || [];
+  // Inclure le type principal + les types secondaires (PostgREST in.( ))
+  const tousTypes = [bt, ...secondaires];
+  const filterIn = '(' + tousTypes.map(encodeURIComponent).join(',') + ')';
+  let cats = await supabase('categories', '?business_type=in.' + filterIn + '&order=ordre&select=*');
   if (!cats || cats.error || !cats.length) cats = await supabase('categories', '?order=ordre&select=*');
   if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
   const cfg = window.__CONFIG__;
@@ -1939,9 +1944,35 @@ async function chargerBandeauDerniers(commercantId) {
   } catch(e) { console.log('Bandeau:', e); }
 }
 
+// ── PALETTES DE COULEURS (synchro avec app-commercant) ────────
+const PALETTES_BOUTIQUE = {
+  'classique':  { primary:'#2A4535', primaryDark:'#1A2E26', accent:'#C9A54B', bg:'#FAF7F0' },
+  'rouge':      { primary:'#7A1F1F', primaryDark:'#5A1414', accent:'#D4A574', bg:'#FAF5F0' },
+  'mer':        { primary:'#1B4965', primaryDark:'#0F2E42', accent:'#62B6CB', bg:'#F1F7F9' },
+  'pain':       { primary:'#6B4423', primaryDark:'#4A2F18', accent:'#E8B65A', bg:'#FBF6EC' },
+  'champagne':  { primary:'#8B7355', primaryDark:'#5C4D3A', accent:'#D4AF37', bg:'#FBF9F4' },
+  'noir':       { primary:'#1A1A1A', primaryDark:'#000000', accent:'#C9A54B', bg:'#F5F4F1' },
+  'vert-frais': { primary:'#2D6E4E', primaryDark:'#1E4A35', accent:'#A8D5BA', bg:'#FFFFFF' },
+  'terre':      { primary:'#A0522D', primaryDark:'#6F361D', accent:'#E8B98F', bg:'#FAF3EB' },
+};
+
+function appliquerPalette(key) {
+  const p = PALETTES_BOUTIQUE[key] || PALETTES_BOUTIQUE['classique'];
+  const root = document.documentElement.style;
+  root.setProperty('--vert', p.primary);
+  root.setProperty('--vert-fonce', p.primaryDark);
+  root.setProperty('--vert-clair', p.primary);
+  root.setProperty('--or', p.accent);
+  root.setProperty('--or-clair', p.accent);
+  root.setProperty('--creme', p.bg);
+}
+
 // ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
 function appliquerConfigUI(cfg) {
   const b = cfg.business;
+
+  // Palette
+  if (b.palette) appliquerPalette(b.palette);
 
   // Header
   const el = id => document.getElementById(id);
