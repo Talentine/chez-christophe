@@ -1604,8 +1604,11 @@ function ajouterDepuisFicheAccueil() {
     btn.style.background = '';
     btn.innerHTML = '🛒 Ajouter au panier — <span id="ficheTotalAccueil">' + (ficheProduitData.prix_marche_indicatif * ficheProduitQte).toFixed(2).replace('.',',') + ' €</span>';
     fermerFicheProduit();
-    chargerArrivages();
-    chargerCoupsDeCoeur();
+    const cid = window.__CONFIG__?.business?.id;
+    if (cid) {
+      chargerArrivages(cid);
+      chargerCoupsDeCoeur(cid);
+    }
   }, 600);
 
   // Toast
@@ -1619,8 +1622,11 @@ function ajouterDepuisFicheAccueil() {
 function ajouterAuPanierAvecQte(produit) {
   ajouterAuPanier(produit);
   // Re-render immédiat pour faire apparaître le sélecteur +/-
-  chargerArrivages();
-  chargerCoupsDeCoeur();
+  const cid = window.__CONFIG__?.business?.id;
+  if (cid) {
+    chargerArrivages(cid);
+    chargerCoupsDeCoeur(cid);
+  }
   // Legacy : mise à jour d'un éventuel bouton par id
   const btn = document.getElementById('addBtn-' + produit.id);
   const ep = panier.find(x => x.id === produit.id);

@@ -848,12 +848,22 @@
   <div style="padding:16px;">
     <div style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;">Réglages</div>
 
-    <!-- EMPREINTE BANCAIRE -->
+    <!-- AVERTISSEMENT MÉTIERS À POIDS VARIABLE -->
+    <div id="warnPoidsVariable" style="display:none;background:#fff8e7;border:1px solid #f0c060;border-radius:14px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:14px;font-weight:600;color:#8a6020;margin-bottom:6px;">⚠️ Recommandation pour votre métier</div>
+      <div style="font-size:13px;color:#6a4818;line-height:1.55;">
+        Vos produits (viande, poisson, fruits/légumes au poids) ont des <strong>prix variables</strong> selon la pesée réelle. Le paiement en ligne avant retrait n'est <strong>pas recommandé</strong> pour vous : le client risque de payer trop ou trop peu.
+        <br><br>
+        <strong>Solution conseillée :</strong> activez la <strong>garantie de réservation</strong> (empreinte bancaire) ci-dessous, et faites payer le client en boutique au moment du retrait, avec le poids exact.
+      </div>
+    </div>
+
+    <!-- EMPREINTE BANCAIRE = GARANTIE DE RÉSERVATION -->
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
         <div>
-          <div style="font-size:15px;font-weight:600;">💳 Empreinte bancaire</div>
-          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Protection contre les no-show</div>
+          <div style="font-size:15px;font-weight:600;">🔒 Garantie de réservation</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Empreinte bancaire — protège contre les absences clients</div>
         </div>
         <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
           <input type="checkbox" id="toggleEmpreinte" onchange="sauverReglages()" style="opacity:0;width:0;height:0;">
@@ -861,19 +871,19 @@
         </label>
       </div>
       <div style="font-size:13px;color:var(--texte-doux);line-height:1.5;background:rgba(184,131,42,0.06);border-radius:10px;padding:10px 12px;margin-top:10px;">
-        Si activée, le client devra fournir une carte bancaire au moment de la commande. Aucun débit n'est effectué — l'empreinte est <b>libérée automatiquement 24h</b> après la date de retrait. En cas de no-show, vous pouvez déclencher un débit via le bouton "Litige" sur la commande.
+        Si activée, le client enregistre sa carte au moment de la commande — <strong>aucun débit n'est effectué</strong>. La pré-autorisation est <strong>libérée automatiquement</strong> dès que vous marquez la commande comme remise/livrée. En cas d'<strong>absence client non signalée</strong>, vous pouvez déclencher un débit via le bouton "Litige" sur la commande.
       </div>
 
       <div id="empreintePctWrap" style="margin-top:14px;display:none;">
         <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
-          Pourcentage prélevé en cas de no-show : <b id="empreintePctVal">75</b>%
+          Pourcentage prélevé en cas d'absence client : <b id="empreintePctVal">75</b>%
         </label>
         <input type="range" id="empreintePctRange" min="10" max="100" step="5" value="75"
           oninput="document.getElementById('empreintePctVal').textContent=this.value"
           onchange="sauverReglages()"
           style="width:100%;">
         <div style="font-size:12px;color:var(--texte-doux);margin-top:6px;">
-          Recommandé : 75 % du panier. L'empreinte est calculée sur ce pourcentage et n'est débitée qu'en cas de no-show confirmé.
+          Recommandé : 75 % du panier. L'empreinte est calculée sur ce pourcentage et n'est débitée qu'en cas d'absence client confirmée.
         </div>
       </div>
     </div>
@@ -882,12 +892,16 @@
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="stripeConnectCard">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
         <div>
-          <div style="font-size:15px;font-weight:600;">💳 Paiements — Stripe Connect</div>
-          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Recevez les paiements directement sur votre compte bancaire</div>
+          <div style="font-size:15px;font-weight:600;">💳 Stripe Connect — Compte de réception</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Indispensable pour <b>recevoir les paiements en ligne ET les empreintes en cas d'absence</b></div>
         </div>
         <div id="stripeConnectBadge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:#f0f0f0;color:#888;">
           Chargement…
         </div>
+      </div>
+
+      <div style="font-size:12px;color:var(--texte-doux);line-height:1.55;background:#f4f8f5;border-left:3px solid var(--vert);border-radius:6px;padding:10px 12px;margin-bottom:10px;">
+        <strong>Pourquoi c'est obligatoire :</strong> Stripe Connect est le compte qui reçoit l'argent. Sans lui, vous ne pouvez ni encaisser un paiement en ligne, ni récupérer les empreintes débitées en cas d'absence client. C'est gratuit, l'inscription prend 5 minutes (RIB + pièce d'identité).
       </div>
 
       <div id="stripeConnectContent">
@@ -919,21 +933,21 @@
   </div>
   <div class="message-option" onclick="ouvrirNoShow()">
     <div class="msg-icon" style="background:#fff8e7;">💳</div>
-    <div><div class="msg-titre">No-show — Débiter</div><div class="msg-desc">Client absent sans annulation</div></div>
+    <div><div class="msg-titre">Absence client — Débiter</div><div class="msg-desc">Client absent sans annulation</div></div>
   </div>
 </div>
 
-<!-- MODAL NO-SHOW -->
+<!-- MODAL ABSENCE CLIENT -->
 <div class="noshow-modal" id="noshowModal">
   <div class="noshow-card">
     <div class="noshow-icon">⚠️</div>
-    <div class="noshow-titre">Confirmer le no-show</div>
+    <div class="noshow-titre">Confirmer l'absence client</div>
     <div class="noshow-desc">
-      Le client ne s'est pas présenté sans annulation.<br>
-      Vous allez débiter les frais de no-show.
+      Le client ne s'est pas présenté à la date de retrait sans annulation préalable.<br>
+      Vous allez débiter la garantie de réservation.
     </div>
     <div class="noshow-montant">—</div>
-    <button class="btn-debiter" onclick="confirmerNoShow()">💳 Débiter</button>
+    <button class="btn-debiter" onclick="confirmerNoShow()">💳 Débiter la garantie</button>
     <button class="btn-annuler-noshow" onclick="fermerNoShow()">Annuler</button>
   </div>
 </div>
@@ -1253,9 +1267,12 @@ function toggleDetail(id) {
   document.getElementById(`detail-${id}`)?.classList.toggle('open');
 }
 
-function changerStatut(id, nouveauStatut) {
+async function changerStatut(id, nouveauStatut) {
   const cmd = toutesLesCommandes.find(c => c.id === id);
   if (!cmd) return;
+  const ancienStatut = cmd.statut;
+
+  // Optimistic update local + persistance Supabase
   cmd.statut = nouveauStatut;
   renderCommandes();
 
@@ -1263,13 +1280,64 @@ function changerStatut(id, nouveauStatut) {
     en_preparation: '👨‍🍳 Préparation lancée',
     prete: '✅ Commande marquée prête',
     remise: '🤝 Commande remise au client',
+    livree: '🚚 Commande livrée',
   };
   afficherToast(msgs[nouveauStatut] || 'Statut mis à jour');
 
   const nouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
   const badge = document.getElementById('badge-commandes');
-  badge.textContent = nouvelles;
-  badge.classList.toggle('visible', nouvelles > 0);
+  if (badge) {
+    badge.textContent = nouvelles;
+    badge.classList.toggle('visible', nouvelles > 0);
+  }
+
+  // Persistance Supabase
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const token = session.access_token || SUPABASE_KEY;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?id=eq.' + id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({ statut: nouveauStatut }),
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+
+    // Auto-libération empreinte quand commande terminée (remise ou livrée)
+    // Le commerçant n'a plus à la libérer manuellement
+    if ((nouveauStatut === 'remise' || nouveauStatut === 'livree') && cmd.empreinte_status === 'pending') {
+      libererEmpreinteAuto(id);
+    }
+  } catch (e) {
+    console.error('[changerStatut] erreur DB', e);
+    // Rollback
+    cmd.statut = ancienStatut;
+    renderCommandes();
+    afficherToast('❌ Échec de mise à jour — réessayez');
+  }
+}
+
+// Libération silencieuse de l'empreinte (pas de confirm, pas de toast d'erreur visible)
+async function libererEmpreinteAuto(id) {
+  const cmd = toutesLesCommandes.find(c => c.id === id);
+  if (!cmd || cmd.empreinte_status !== 'pending') return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-empreinte', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'release', commande_id: id })
+    });
+    if (r.ok) {
+      cmd.empreinte_status = 'released';
+      renderCommandes();
+    }
+  } catch (e) {
+    console.warn('[libererEmpreinteAuto] échec silencieux', e);
+  }
 }
 
 function filtrerStatut(statut, btn) {
@@ -1616,6 +1684,12 @@ async function chargerReglages() {
 
     // Charger Stripe Connect en parallèle
     chargerStripeConnect(commercantId);
+
+    // Avertissement poids variable selon métier
+    const bt = window.__CONFIG__?.business?.business_type;
+    const metiersPoidsVariable = ['primeur', 'boucherie', 'poissonnerie', 'fromagerie'];
+    const warn = document.getElementById('warnPoidsVariable');
+    if (warn) warn.style.display = metiersPoidsVariable.includes(bt) ? 'block' : 'none';
 
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -3672,44 +3746,36 @@ verifierSessionCommercant().then(function(ok) {
       </div>
     </div>
 
-    <!-- OPTIONS AVANCÉES (non obligatoires) -->
+    <!-- DESCRIPTION (optionnel) -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
+      <textarea id="produitDescription" rows="3" placeholder="Ex: Gros fruit charnu, orangé pointé de rouge"
+        style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
+    </div>
+
+    <!-- PROVENANCE (optionnel) -->
+    <div style="margin-bottom:14px;">
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
+      <input id="produitProvenance" type="text" placeholder="Ex: Producteur Leroux · Normandie" autocomplete="off"
+        style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
+    </div>
+
+    <!-- BADGES (optionnel) -->
     <div style="margin-bottom:20px;">
-      <button type="button" onclick="toggleOptions()" id="btnToggleOptions"
-        style="width:100%;background:var(--creme);border:1.5px dashed var(--creme-fonce);border-radius:12px;padding:12px;font-size:13px;color:var(--texte-doux);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:space-between;">
-        <span>+ Options avancées (description, provenance, badges)</span>
-        <span id="toggleOptionsIcon">▼</span>
-      </button>
-
-      <div id="optionsAvancees" style="display:none;margin-top:14px;">
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description</label>
-          <textarea id="produitDescription" rows="3" placeholder="Ex: Gros fruit charnu, orangé pointé de rouge"
-            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;resize:vertical;"></textarea>
-        </div>
-
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Provenance / producteur</label>
-          <input id="produitProvenance" type="text" placeholder="Ex: Producteur Leroux · Normandie" autocomplete="off"
-            style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;background:var(--creme);outline:none;">
-        </div>
-
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges (affichés sur la carte produit)</label>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="badgeSaison" style="margin:0;"> 🌱 De saison
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="badgeLocal" style="margin:0;"> 📍 Local
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="badgeNouveau" style="margin:0;"> ⚡ Nouveau
-            </label>
-            <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" id="badgeBio" style="margin:0;"> 🌿 Bio
-            </label>
-          </div>
-        </div>
+      <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:8px;">Badges <span style="color:#aaa;font-size:12px;">(optionnel — affichés sur la carte produit)</span></label>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="badgeSaison" style="margin:0;"> 🌱 De saison
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="badgeLocal" style="margin:0;"> 📍 Local
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="badgeNouveau" style="margin:0;"> ⚡ Nouveau
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+          <input type="checkbox" id="badgeBio" style="margin:0;"> 🌿 Bio
+        </label>
       </div>
     </div>
 

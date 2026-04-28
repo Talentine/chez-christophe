@@ -224,16 +224,23 @@
   </div>
 
   <div class="section" id="empreinteSection" style="display:none">
-    <div class="section-titre">🔒 Garantie anti no-show</div>
-    <div class="empreinte-info">
-      Votre carte est enregistrée à titre d'<strong>empreinte bancaire</strong>. Aucun débit si vous venez chercher votre commande — empreinte automatiquement libérée 24h après la date de retrait. En cas d'absence non signalée, <strong id="empreinteFee">75% du panier</strong> pourra être prélevé.
+    <div class="section-titre">🔒 Garantie de réservation</div>
+    <div class="empreinte-info" style="background:#f0f7f3;border-left:3px solid var(--vert);padding:14px 16px;border-radius:8px;line-height:1.6;font-size:14px;">
+      <p style="margin-bottom:10px;"><strong>Aucun débit si vous venez chercher votre commande.</strong></p>
+      <p style="margin-bottom:10px;">Votre carte est simplement enregistrée comme <strong>garantie</strong> — comme à l'hôtel ou à la location de voiture. La pré-autorisation est <strong>libérée automatiquement 24h après la date de retrait</strong>.</p>
+      <p style="margin-bottom:10px;">Cette garantie nous permet de réserver vos produits frais sans risque pour le commerçant. Si vous ne pouvez pas venir, prévenez simplement la boutique avant la date — c'est gratuit.</p>
+      <p style="margin:0;font-size:13px;color:var(--texte-doux);">En cas d'absence non signalée à la date de retrait, <strong id="empreinteFee">75% du panier</strong> pourra être prélevé pour compenser les produits frais préparés.</p>
     </div>
-    <div id="stripeLoading" style="text-align:center;padding:16px;color:var(--texte-doux);font-size:14px;">⏳ Chargement du formulaire sécurisé...</div>
-    <div id="stripeForm" style="display:none">
+    <div style="margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--texte-doux);">
+      <span>✓ Aucun débit immédiat</span>
+      <span>✓ Données bancaires non stockées</span>
+      <span>✓ Paiement sécurisé Stripe</span>
+    </div>
+    <div id="stripeLoading" style="text-align:center;padding:16px;color:var(--texte-doux);font-size:14px;margin-top:10px;">⏳ Chargement du formulaire sécurisé...</div>
+    <div id="stripeForm" style="display:none;margin-top:10px;">
       <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:12px;padding:14px;"></div>
       <div id="stripe-card-errors" style="color:var(--rouge);font-size:13px;margin-top:8px;display:none"></div>
     </div>
-    <p style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.5;">🔒 Sécurisé par Stripe — vos données bancaires ne sont jamais stockées</p>
   </div>
 
   <div class="section">
