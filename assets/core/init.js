@@ -203,5 +203,32 @@
     }
   }
 
-  window.CC = { resolveSlug: resolveSlug, initBusiness: initBusiness, cfg: function(){ return window.__CONFIG__; }, TYPES: TYPES };
+  // ── BOUTON ACCUEIL : retour à la home boutique (jamais marchéo.fr) ──
+  function retourAccueilBoutique() {
+    var path = location.pathname;
+    var slug = (window.__CONFIG__ && window.__CONFIG__.slug) || resolveSlug();
+    // Si on est déjà sur la home (path = / ou /{slug} ou /{slug}/), juste scroll
+    var onHome = path === '/'
+      || /^\/[^\/]+\/?$/.test(path)
+      || /\/boutique\.html$/.test(path)
+      || (path === '/index.html');
+    if (onHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    // Sinon : revenir à la home de la boutique
+    if (slug) {
+      // En local file:// → boutique.html?slug=xxx
+      if (location.protocol === 'file:') {
+        location.href = 'boutique.html?slug=' + encodeURIComponent(slug);
+      } else {
+        location.href = '/' + slug;
+      }
+    } else {
+      window.history.back();
+    }
+  }
+  window.retourAccueilBoutique = retourAccueilBoutique;
+
+  window.CC = { resolveSlug: resolveSlug, initBusiness: initBusiness, cfg: function(){ return window.__CONFIG__; }, TYPES: TYPES, retourAccueilBoutique: retourAccueilBoutique };
 })();

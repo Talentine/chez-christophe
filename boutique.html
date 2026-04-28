@@ -158,10 +158,11 @@
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 80px;
+    height: 30px;
     background: linear-gradient(to top, var(--creme), transparent);
     z-index: 1;
     pointer-events: none;
+    opacity: 0.5;
   }
 
   .hero > div[style*="position:relative"] { z-index: 2 !important; }
@@ -789,10 +790,10 @@
   
   /* SPACING AMÉLIORÉ */
   section, .arrivage-section, .avis-section, .cta-section {
-    margin-top: 48px;
+    margin-top: 28px;
     margin-bottom: 0;
   }
-  .galerie-section { margin-top: 48px; }
+  .galerie-section { margin-top: 16px; }
   .barre-fraicheur { margin-top: 0; }
 
   /* Cartes produits avec plus d'ombre douce */
@@ -810,7 +811,8 @@
   /* GALERIE PHOTO / VIDEO */
   .galerie-section {
     background: var(--blanc);
-    padding: 24px 0 28px;
+    padding: 16px 0 20px;
+    margin-top: 16px;
   }
 
   .galerie-header {
@@ -1341,23 +1343,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 // Panier en mémoire
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 
-// Retour à l'accueil de LA BOUTIQUE (pas la landing Marchéo)
-function retourAccueilBoutique() {
-  // Si déjà sur la home (boutique.html ou /), juste scroll
-  const path = location.pathname;
-  const onHome = path === '/' || /^\/[^\/]+\/?$/.test(path) || /boutique\.html$/.test(path);
-  if (onHome) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  }
-  // Sinon revenir au slug
-  const slug = window.__CONFIG__?.slug || (path.split('/').filter(Boolean)[0]);
-  if (slug) location.href = '/' + slug;
-  else location.href = '/';
-}
-
-// Idem côté autres pages (catalogue, panier, compte, notre-histoire)
-window.retourAccueilBoutique = retourAccueilBoutique;
+// retourAccueilBoutique() est définie globalement dans assets/core/init.js
 
 async function supabase(table, params = '') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
