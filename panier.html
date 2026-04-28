@@ -308,6 +308,18 @@ const STRIPE_PK = 'pk_test_51TNZXlEH5d5nXfSsSgBj9ZxnbdIa1BiukFetlslrxGUu3u4XuZkI
 const FRAIS_LIVRAISON = 3.90;
 
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+
+// Calcul du total d'une ligne avec offre lot appliquée si applicable
+function calcTotalLignePanier(p) {
+  const prixUnit = p.prix_marche_indicatif || 0;
+  const qte = p.qte || 0;
+  if (!p.prix_lot_qte || !p.prix_lot || qte < p.prix_lot_qte || p.au_poids) {
+    return prixUnit * qte;
+  }
+  const lots = Math.floor(qte / p.prix_lot_qte);
+  const reste = qte % p.prix_lot_qte;
+  return lots * parseFloat(p.prix_lot) + reste * prixUnit;
+}
 let etape = 1;
 let modeCommande = 'retrait';
 let creneaux = [];
@@ -371,7 +383,8 @@ function init() {
 function renderPanier() {
   const container = document.getElementById('lignesPanier');
   container.innerHTML = panier.map((p, i) => {
-    const totalLigne = ((p.prix_marche_indicatif || 0) * p.qte).toFixed(2).replace('.', ',');
+    const totalLigne = calcTotalLignePanier(p).toFixed(2).replace('.', ',');
+    const promoApplique = p.prix_lot_qte && p.prix_lot && p.qte >= p.prix_lot_qte && !p.au_poids;
     let qteSection;
     if (p.au_poids) {
       const kg = p.poids_kg || p.qte || 0;
@@ -390,11 +403,15 @@ function renderPanier() {
         <span style="font-size:12px;color:var(--texte-doux)">${p.unite || ''}</span>
       </div>`;
     }
+    const promoBadge = promoApplique
+      ? `<div style="font-size:11px;color:#C44616;font-weight:700;margin-top:2px;">🔖 Promo lot appliquée</div>`
+      : '';
     return `<div class="ligne-produit">
       <img class="ligne-img" src="${p.photo_url || ''}" onerror="this.style.display='none'">
       <div style="flex:1">
         <div class="ligne-nom">${p.nom}</div>
         ${qteSection}
+        ${promoBadge}
       </div>
       <div class="ligne-prix">${totalLigne} €</div>
     </div>`;
@@ -419,7 +436,7 @@ function modifierQte(idx, delta) {
 }
 
 function renderRecap() {
-  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
   const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
   const total = sous_total + frais;
 
@@ -613,7 +630,7 @@ function mettreAJourCTA() {
   const btnMontant = document.getElementById('btnMontant');
   if (!btn || !btnTxt || !btnMontant) return; // Protection null
   
-  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
   const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
   const total = (sous_total + frais).toFixed(2).replace('.',',') + ' €';
 
@@ -855,7 +872,7 @@ async function confirmerCommande() {
   document.getElementById('btnTxt').textContent = 'Envoi en cours...';
 
   const creneau = creneaux[creneauSelectionne];
-  const sous_total = panier.reduce((s,p) => s+(p.prix_marche_indicatif||0)*p.qte, 0);
+  const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
   const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
   const total = sous_total + frais;
   const numero = 'CCB-' + new Date().getFullYear() + '-' + Date.now().toString().slice(-4);
@@ -918,7 +935,7 @@ async function confirmerCommande() {
           quantite: p.qte,
           prix_unitaire: p.prix_marche_indicatif || 0,
           tva_pct: 5.50,
-          total_ligne: (p.prix_marche_indicatif || 0) * p.qte,
+          total_ligne: calcTotalLignePanier(p),
         });
       }
 

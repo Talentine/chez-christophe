@@ -1380,11 +1380,12 @@ function flattenCatalogueRow(row) {
   };
 }
 
-// ── HELPER : badge offre lot ─────────────────────
+// ── HELPER : badge offre lot/promo ──────────────────
+// Couleur "promo" rouge orangé voyant — affiché sous le prix
 function badgeOffreLot(p) {
   if (!p?.prix_lot_qte || !p?.prix_lot) return '';
   const prix = parseFloat(p.prix_lot).toFixed(2).replace('.', ',').replace(/,00$/, '');
-  return '<div class="offre-lot-badge" style="display:inline-block;background:#ffeec2;color:#8a6020;font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:4px;border:1px solid #f0c060;">🏷️ ' + p.prix_lot_qte + ' pour ' + prix + '€</div>';
+  return '<div class="offre-lot-badge" style="color:#C44616;font-size:13px;font-weight:700;line-height:1.1;display:flex;align-items:center;gap:4px;margin-top:1px;">🔖 ' + p.prix_lot_qte + ' pour ' + prix + '€</div>';
 }
 
 // ── HELPER : rendu d'une card produit ───────────────────────────
@@ -1425,11 +1426,11 @@ function renderProduitCard(p) {
     <div class="produit-info">
       <div class="produit-nom">${p.nom}</div>
       ${provHtml}
-      ${badgeOffreLot(p)}
       <div class="produit-footer">
         <div>
           <span class="produit-prix">${prix}€</span>
           <span class="produit-unite"> /${p.unite}</span>
+          ${badgeOffreLot(p)}
         </div>
         ${btnHtml}
       </div>
@@ -1508,7 +1509,7 @@ async function chargerCoupsDeCoeur(commercantId) {
 async function chargerPaniers(commercantId) {
   const container = document.getElementById('paniersListe');
   try {
-    // Trouver toutes les catégories "paniers" / "plateaux" du business_type courant
+    // 1. Catégories "paniers/plateaux" du métier courant + secondaires
     const b = window.__CONFIG__?.business || {};
     const types = [b.business_type || 'primeur', ...(b.business_types_secondaires || [])];
     const filterTypes = '(' + types.map(encodeURIComponent).join(',') + ')';
@@ -1518,16 +1519,43 @@ async function chargerPaniers(commercantId) {
       return;
     }
     const catIds = cats.map(c => c.id);
-    const filterCats = '(' + catIds.join(',') + ')';
 
-    // INNER JOIN sur produits_base (avec !inner) pour que le filtre fonctionne
+    // 2. produits_base de ces catégories
+    const filterCats = '(' + catIds.join(',') + ')';
+    const produitsBase = await supabase('produits_base',
+      '?categorie_id=in.' + filterCats
+      + '&select=id,nom,unite,prix_marche_indicatif,photo_url,description,categorie_id&limit=50');
+    if (!produitsBase || produitsBase.error || !produitsBase.length) {
+      container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>';
+      return;
+    }
+    const pbMap = {}; produitsBase.forEach(p => pbMap[p.id] = p);
+    const pbIds = produitsBase.map(p => p.id);
+    const filterPbIds = '(' + pbIds.join(',') + ')';
+
+    // 3. Lignes catalogue actives du commerçant pour ces produits
     const rows = await supabase('catalogue',
       '?commercant_id=eq.' + commercantId
-      + '&actif=eq.true&select=*,produits_base!inner(id,nom,unite,prix_marche_indicatif,photo_url,description,categorie_id)'
-      + '&produits_base.categorie_id=in.' + filterCats
-      + '&order=id.desc&limit=8');
+      + '&actif=eq.true&produit_base_id=in.' + filterPbIds
+      + '&select=id,prix_vente,prix_lot,prix_lot_qte,produit_base_id,custom_fields,en_stock'
+      + '&order=id.desc&limit=12');
 
-    const produits = (Array.isArray(rows) ? rows : []).map(flattenCatalogueRow).filter(p => p.nom);
+    // Reconstruire l'objet produit complet en fusionnant catalogue + produits_base mappé
+    const produits = (Array.isArray(rows) ? rows : []).map(row => {
+      const pb = pbMap[row.produit_base_id] || {};
+      return {
+        id: pb.id || row.produit_base_id,
+        catalogue_id: row.id,
+        nom: pb.nom || '',
+        description: pb.description || '',
+        photo_url: pb.photo_url || null,
+        prix_marche_indicatif: row.prix_vente || pb.prix_marche_indicatif || 0,
+        unite: pb.unite || 'pièce',
+        prix_lot_qte: row.prix_lot_qte || null,
+        prix_lot: row.prix_lot || null,
+        en_stock: row.en_stock !== false,
+      };
+    }).filter(p => p.nom);
     if (!produits.length) {
       container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible pour le moment</p>'; return;
     }
