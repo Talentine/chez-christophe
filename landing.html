@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
@@ -39,7 +39,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'Inter', 'Manrope', system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       color: var(--text);
@@ -47,7 +47,7 @@
       overflow-x: hidden;
     }
 
-    h1,h2,h3 { font-family: 'Manrope', 'Playfair Display', Georgia, serif; line-height: 1.2; letter-spacing: -0.01em; }
+    h1,h2,h3 { font-family: 'Manrope', 'Manrope', system-ui, sans-serif; line-height: 1.2; letter-spacing: -0.01em; }
 
     a { color: inherit; text-decoration: none; }
 
@@ -68,7 +68,7 @@
 
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
-      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 20px; font-weight: 700;
       color: var(--brand);
     }
     .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
@@ -167,7 +167,7 @@
       margin-top: 64px; padding-top: 48px;
       border-top: 1px solid var(--cream-dark);
     }
-    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--brand); }
+    .hero-stat-num { font-family: 'Manrope', system-ui, sans-serif; font-size: 32px; font-weight: 700; color: var(--brand); }
     .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
     /* ── METIERS ────────────────────────────────────────── */
@@ -206,7 +206,7 @@
     .metier-card-inner { position: relative; z-index: 1; }
 
     .metier-emoji { font-size: 40px; margin-bottom: 20px; display: block; }
-    .metier-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .metier-name { font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     .metier-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
 
     .metier-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -244,11 +244,11 @@
     .step-num {
       width: 48px; height: 48px; border-radius: 50%;
       background: var(--gold); color: var(--brand-dark);
-      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 24px;
     }
-    .step h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
+    .step h3 { font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
     .step p { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.65; }
 
     .step-arrow {
@@ -278,7 +278,7 @@
     }
     .feature-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    .feature-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card h3 { font-family: 'Manrope', system-ui, sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
     /* ── PRICING ────────────────────────────────────────── */
@@ -322,7 +322,7 @@
     .pricing-card.popular .pricing-name { color: rgba(255,255,255,.6); }
 
     .pricing-headline {
-      font-family: 'Playfair Display', serif; font-size: 20px;
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 20px;
       font-weight: 700; color: var(--brand); margin-bottom: 24px; line-height: 1.3;
     }
     .pricing-card.popular .pricing-headline { color: #fff; }
@@ -341,7 +341,7 @@
     }
     .pricing-card.popular .pricing-setup-label { color: rgba(255,255,255,.55); }
     .pricing-setup-amount {
-      font-family: 'Playfair Display', serif; font-size: 42px;
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 42px;
       font-weight: 700; color: var(--brand); line-height: 1;
     }
     .pricing-card.popular .pricing-setup-amount { color: #fff; }
@@ -458,7 +458,7 @@
       padding: 48px 24px; text-align: center; font-size: 14px;
     }
     .footer-logo {
-      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; font-weight: 700;
       color: #fff; margin-bottom: 16px;
     }
     .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
@@ -525,7 +525,7 @@
       width: 44px; height: 44px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
     }
-    .example-shop-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.2; }
+    .example-shop-name { font-family: 'Manrope', system-ui, sans-serif; font-size: 16px; font-weight: 700; line-height: 1.2; }
     .example-shop-city { font-size: 11px; color: var(--text-muted); }
 
     .example-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -543,7 +543,7 @@
     .example-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulse 2s infinite; }
 
     .example-info { padding: 20px 22px; border-top: 1px solid var(--cream-dark); }
-    .example-shop-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .example-shop-title { font-family: 'Manrope', system-ui, sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
     .example-location { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
 
     /* IFRAME BOUTIQUE EN DIRECT */

@@ -3,6 +3,29 @@
 // Résout le slug, charge le commerce, applique le thème.
 // Expose window.CC pour toutes les pages HTML.
 // ============================================================
+
+// ── DEBUG MODE — désactive console.log/warn en production ──
+// console.error reste actif pour traquer les vrais bugs.
+(function setupDebugMode() {
+  var host = location.hostname;
+  var isDev = host === 'localhost'
+    || host === '127.0.0.1'
+    || host === ''
+    || /\.vercel\.app$/.test(host)        // previews Vercel
+    || location.search.indexOf('debug=1') >= 0; // ?debug=1 force en prod
+  if (isDev) {
+    window.__MARCHEO_DEBUG__ = true;
+    return;
+  }
+  // En prod : silence log/warn (mais pas error)
+  window.__MARCHEO_DEBUG__ = false;
+  var noop = function(){};
+  console.log = noop;
+  console.warn = noop;
+  console.info = noop;
+  console.debug = noop;
+})();
+
 (function () {
   const SB_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
   const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';

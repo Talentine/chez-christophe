@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Mon panier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://js.stripe.com/v3/"></script>
 <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
@@ -19,7 +19,7 @@
     --rouge:#E65533;--vert-clair:#5BBE3A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter','Plus Jakarta Sans',sans-serif;background:var(--creme);color:var(--texte);padding-bottom:120px;}
+  body{font-family:'Inter','Manrope', system-ui, sans-serif;background:var(--creme);color:var(--texte);padding-bottom:120px;}
 
   /* HEADER */
   header{background:var(--vert-fonce);position:sticky;top:0;z-index:100;padding:0 16px;height:56px;display:flex;align-items:center;gap:12px;}
@@ -60,7 +60,7 @@
   /* FORM */
   .form-group{margin-bottom:14px;}
   .form-label{font-size:13px;color:var(--texte-doux);margin-bottom:6px;display:block;}
-  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--creme);color:var(--texte);outline:none;transition:border-color .15s;}
+  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:15px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);color:var(--texte);outline:none;transition:border-color .15s;}
   .form-input:focus{border-color:var(--vert);background:white;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   .form-erreur{color:var(--rouge);font-size:13px;margin-top:6px;display:none;}
@@ -86,7 +86,7 @@
   /* SUCCES */
   .succes-screen{text-align:center;padding:32px 20px;}
   .succes-icon{font-size:56px;margin-bottom:16px;}
-  .succes-titre{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:8px;}
+  .succes-titre{font-family:'Manrope', system-ui, sans-serif;font-size:26px;margin-bottom:8px;}
   .succes-sub{font-size:14px;color:var(--texte-doux);line-height:1.6;margin-bottom:20px;}
   .succes-badge{background:var(--vert);color:white;border-radius:12px;padding:16px;margin-bottom:12px;}
   .succes-badge-label{font-size:12px;opacity:0.7;margin-bottom:4px;}
@@ -94,13 +94,13 @@
 
   /* NAV MAP */
   .nav-maps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-  .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;}
+  .btn-map{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;font-size:14px;font-weight:500;text-decoration:none;font-family:'Manrope', system-ui, sans-serif;}
   .btn-gmaps{background:#4285F4;color:white;}
   .btn-waze{background:#33CCFF;color:#1a1a1a;}
 
   /* CTA */
   .cta-fixe{position:fixed;bottom:0;left:0;right:0;background:var(--blanc);border-top:1px solid var(--creme-fonce);padding:12px 16px;z-index:99;}
-  .btn-commander{width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;}
+  .btn-commander{width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;}
   .btn-commander:active{transform:scale(0.97);}
   .btn-commander:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
 
