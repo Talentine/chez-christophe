@@ -376,8 +376,9 @@
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 24px;
       max-width: 1060px; margin: 0 auto;
-      align-items: start;
+      align-items: stretch;
     }
+    .pricing-card { height: 100%; }
 
     .pricing-card {
       border-radius: 24px; padding: 36px 30px;
@@ -392,9 +393,9 @@
       border-color: var(--brand);
       background: var(--brand);
       color: #fff;
-      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(15,44,82,.18);
     }
-    .pricing-card.popular:hover { transform: translateY(-10px); }
+    .pricing-card.popular:hover { transform: translateY(-2px); }
 
     .pricing-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -778,8 +779,12 @@
 
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
-  <a href="/" class="nav-logo" aria-label="Marchéo.fr — Accueil" style="text-decoration:none;">
-    <img src="/assets/brand/logo.svg" alt="Marchéo.fr" width="148" height="37" style="display:block;height:32px;width:auto;" decoding="async">
+  <a href="/" class="nav-logo" aria-label="Marchéo.fr — Accueil" style="text-decoration:none;display:inline-flex;align-items:center;gap:10px;">
+    <img src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo" width="44" height="44"
+         style="display:block;height:44px;width:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"
+         decoding="async"
+         onerror="this.onerror=null;this.src='/assets/brand/monogram.svg?v=brandv3';">
+    <span style="font-family:'Manrope',system-ui,sans-serif;font-weight:800;font-size:22px;color:var(--brand);letter-spacing:-.5px;line-height:1;">Marchéo<span style="color:var(--gold);font-weight:700;">.fr</span></span>
   </a>
   <div class="nav-links">
     <a href="#metiers" class="nav-link">Métiers</a>
@@ -787,6 +792,7 @@
     <a href="#fonctionnement" class="nav-link">Comment ça marche</a>
     <a href="#tarifs" class="nav-link">Tarifs</a>
     <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#contact" class="nav-link">Contact</a>
   </div>
   <a href="#tarifs" class="nav-cta" role="button">Voir les offres</a>
   <a href="inscription.html" class="nav-mobile-cta" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"nav-mobile-cta"}\'>S'inscrire</a>
@@ -817,16 +823,16 @@
     </p>
     <div class="hero-stats reveal reveal-delay-4">
       <div class="hero-stat">
-        <div class="hero-stat-num" id="statBoutiquesActives">—</div>
-        <div class="hero-stat-label">Boutiques en ligne</div>
-      </div>
-      <div class="hero-stat">
         <div class="hero-stat-num">5 min</div>
         <div class="hero-stat-label">Pour créer la vôtre</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">0%</div>
         <div class="hero-stat-label">de commission</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">75%</div>
+        <div class="hero-stat-label">anti no-show</div>
       </div>
     </div>
 
@@ -993,11 +999,14 @@
           <div class="example-url">marchéo.fr/mb-primeur</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-screenshot" style="background:linear-gradient(135deg,#0F2C52,#1B3F6E);min-height:280px;display:flex;align-items:center;justify-content:center;">
-          <div style="text-align:center;color:white;padding:24px;">
-            <div style="font-size:48px;margin-bottom:8px;">🌿</div>
-            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:22px;">mb primeur</div>
-            <div style="font-size:13px;opacity:0.7;margin-top:4px;">Primeur · Deauville</div>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/mb-primeur/002-958534.png" loading="lazy" alt="mb primeur" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/mb-primeur/logo.webp" alt="" loading="lazy" class="example-shop-logo" decoding="async" onerror="this.style.display='none'">
+            <div>
+              <div class="example-shop-name">mb primeur</div>
+              <div class="example-shop-meta">🌿 Primeur · Deauville</div>
+            </div>
           </div>
         </div>
         <div class="example-info">
@@ -1311,8 +1320,8 @@ function afficherPlusDeSites() {
 </section>
 
 
-<!-- CALCULATEUR ROI — combien vous perdez en no-show -->
-<section class="section section-center" id="calculateur" style="background:linear-gradient(180deg, var(--brand-dark) 0%, var(--brand) 100%); color: white;">
+<!-- CALCULATEUR ROI — supprimé sur demande -->
+<section class="section section-center" id="calculateur" style="display:none;background:linear-gradient(180deg, var(--brand-dark) 0%, var(--brand) 100%); color: white;">
   <div class="container" style="max-width: 760px;">
     <p class="section-label reveal" style="color: var(--gold);">Combien ça vous coûte vraiment ?</p>
     <h2 class="reveal reveal-delay-1" style="color: white;">Calculez ce que vous perdez<br>chaque mois en absences clients</h2>
@@ -1672,6 +1681,7 @@ function afficherPlusDeSites() {
         <ul class="pricing-features" aria-label="Fonctionnalités incluses">
           <li>Tout l'offre Vitrine +</li>
           <li>Catalogue produits illimité</li>
+          <li><strong>Catalogue de base déjà fourni</strong><br><small style="opacity:.75">selon votre métier (primeur, boucher…)</small></li>
           <li>Commandes en ligne (retrait boutique)</li>
           <li>Paiement carte, Apple Pay, Google Pay</li>
           <li>Empreinte bancaire anti no-show <span class="tag-highlight">75%</span></li>
@@ -1679,6 +1689,7 @@ function afficherPlusDeSites() {
           <li>Dashboard gestion des commandes</li>
           <li>Créneaux de retrait configurables</li>
           <li>Gestion des stocks</li>
+          <li><strong>Assistance incluse</strong><br><small style="opacity:.75">e-mail, réponse sous 24h ouvrées</small></li>
           <li><strong>0% de commission</strong> sur vos ventes</li>
         </ul>
         <a href="inscription.html?offre=clickcollect" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-pricing"}\'>Commencer à vendre</a>
@@ -1701,12 +1712,14 @@ function afficherPlusDeSites() {
         </div>
         <ul class="pricing-features" aria-label="Fonctionnalités incluses">
           <li>Tout l'offre Click &amp; Collect +</li>
+          <li><strong>Catalogue de base déjà fourni</strong><br><small style="opacity:.75">selon votre métier</small></li>
           <li>Livraison à domicile dans votre zone</li>
           <li>Zone de livraison configurable</li>
           <li>Frais de livraison paramétrables</li>
           <li>Montant minimum de commande</li>
           <li>Créneaux livraison séparés du retrait</li>
           <li>Zone visible côté client sur la carte</li>
+          <li><strong>Assistance prioritaire</strong> <span class="tag-highlight">VIP</span><br><small style="opacity:.75">téléphone direct + WhatsApp · réponse &lt; 2h</small></li>
           <li><strong>0% de commission</strong> sur vos ventes</li>
         </ul>
         <a href="inscription.html?offre=livraison" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-pricing"}\'>Livrer mes clients</a>
@@ -1724,6 +1737,193 @@ function afficherPlusDeSites() {
   </div>
 </section>
 
+<!-- ── NOUS CONTACTER — demandes particulières / devis / fonctionnalités sur mesure ── -->
+<section class="section section-center" id="contact" aria-labelledby="contact-title" style="background:var(--cream);">
+  <div class="container" style="max-width:760px;">
+    <p class="section-label reveal">Nous contacter</p>
+    <h2 id="contact-title" class="reveal reveal-delay-1">Une demande particulière ?<br>Parlons-en directement.</h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Devis sur mesure, fonctionnalité spécifique à votre métier, intégration personnalisée, accompagnement —
+      écrivez-nous, on vous répond sous 24h ouvrées.
+    </p>
+
+    <div class="contact-grid reveal reveal-delay-3">
+      <a href="mailto:contact@xn--marcho-fva.fr?subject=Demande%20particuli%C3%A8re%20-%20March%C3%A9o" class="contact-card" data-track="contact_email">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-title">E-mail</div>
+          <div class="contact-detail">contact@marchéo.fr</div>
+          <div class="contact-meta">Réponse sous 24h ouvrées</div>
+        </div>
+      </a>
+
+      <a href="#contactForm" class="contact-card" data-track="contact_form_scroll">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-title">Demander un devis</div>
+          <div class="contact-detail">Fonctionnalité sur mesure</div>
+          <div class="contact-meta">Catalogue spécifique, intégration, etc.</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/33000000000?text=Bonjour%20March%C3%A9o" target="_blank" rel="noopener" class="contact-card" data-track="contact_whatsapp">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-title">WhatsApp / Téléphone</div>
+          <div class="contact-detail">Discussion rapide</div>
+          <div class="contact-meta">Pour les clients Offre 3 (VIP)</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Mini formulaire intégré -->
+    <form id="contactForm" class="contact-form reveal reveal-delay-3" onsubmit="return envoyerContact(event)" aria-labelledby="contactForm-title">
+      <h3 id="contactForm-title" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;color:var(--brand);margin-bottom:18px;text-align:left;">Décrivez-nous votre besoin</h3>
+      <div class="contact-row">
+        <label class="contact-field">
+          <span class="contact-label">Votre nom *</span>
+          <input type="text" name="nom" required autocomplete="name" placeholder="Jean Dupont">
+        </label>
+        <label class="contact-field">
+          <span class="contact-label">E-mail *</span>
+          <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="vous@exemple.fr">
+        </label>
+      </div>
+      <div class="contact-row">
+        <label class="contact-field">
+          <span class="contact-label">Téléphone</span>
+          <input type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="06 00 00 00 00">
+        </label>
+        <label class="contact-field">
+          <span class="contact-label">Type de demande</span>
+          <select name="type">
+            <option value="devis">Demande de devis</option>
+            <option value="fonctionnalite">Fonctionnalité sur mesure</option>
+            <option value="integration">Intégration / API</option>
+            <option value="formation">Formation / accompagnement</option>
+            <option value="autre">Autre</option>
+          </select>
+        </label>
+      </div>
+      <label class="contact-field">
+        <span class="contact-label">Votre message *</span>
+        <textarea name="message" rows="5" required placeholder="Décrivez votre boutique, votre métier et votre besoin spécifique…"></textarea>
+      </label>
+      <button type="submit" class="btn-primary contact-submit" id="contactSubmitBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Envoyer ma demande
+      </button>
+      <p id="contactStatus" role="status" aria-live="polite" style="margin-top:14px;font-size:13.5px;text-align:center;min-height:20px;"></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 32px 0 28px;
+    text-align: left;
+  }
+  .contact-card {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: #fff; border: 2px solid var(--cream-dark);
+    border-radius: 18px; padding: 18px;
+    text-decoration: none; color: inherit;
+    transition: all .2s;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 84px;
+  }
+  .contact-card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-md, 0 6px 20px rgba(0,0,0,.06)); }
+  .contact-icon {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(91,190,58,.12); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-info { flex: 1; min-width: 0; }
+  .contact-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; color: var(--brand); margin-bottom: 2px; }
+  .contact-detail { font-size: 13.5px; color: var(--text); margin-bottom: 2px; }
+  .contact-meta { font-size: 12px; color: var(--text-muted); }
+
+  .contact-form {
+    background: #fff; border: 2px solid var(--cream-dark);
+    border-radius: 24px; padding: 28px 24px;
+    margin-top: 28px; text-align: left;
+  }
+  .contact-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+  }
+  @media (max-width: 540px) { .contact-row { grid-template-columns: 1fr; } }
+  .contact-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .contact-label { font-size: 13px; font-weight: 600; color: var(--brand); }
+  .contact-field input,
+  .contact-field select,
+  .contact-field textarea {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 12px;
+    font-size: 16px; /* Anti-zoom iOS */
+    font-family: inherit;
+    background: #fff; color: var(--text);
+    transition: border-color .2s;
+    min-height: 44px;
+  }
+  .contact-field textarea { min-height: 110px; resize: vertical; }
+  .contact-field input:focus,
+  .contact-field select:focus,
+  .contact-field textarea:focus {
+    outline: none; border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(91,190,58,.15);
+  }
+  .contact-submit {
+    margin-top: 8px; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+</style>
+
+<script>
+  function envoyerContact(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById('contactSubmitBtn');
+    var statusEl = document.getElementById('contactStatus');
+    var data = Object.fromEntries(new FormData(form).entries());
+
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    statusEl.style.color = 'var(--text-muted)';
+    statusEl.textContent = 'Envoi en cours…';
+
+    // Fallback simple : ouvre le client mail avec les infos pré-remplies
+    var subject = '[Marchéo] ' + (data.type || 'Demande') + ' — ' + (data.nom || '');
+    var body = 'Nom : ' + (data.nom || '') + '\n'
+             + 'E-mail : ' + (data.email || '') + '\n'
+             + 'Téléphone : ' + (data.tel || '—') + '\n'
+             + 'Type : ' + (data.type || '—') + '\n\n'
+             + 'Message :\n' + (data.message || '');
+    var mailto = 'mailto:contact@xn--marcho-fva.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    // Tracking analytics si dispo
+    try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track('contact_form_submit', { type: data.type }); } catch(e) {}
+
+    setTimeout(function(){
+      window.location.href = mailto;
+      statusEl.style.color = 'var(--gold-dark, #2D7B1A)';
+      statusEl.textContent = '✓ Votre client mail va s\'ouvrir. Si rien ne se passe, écrivez-nous à contact@marchéo.fr';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }, 300);
+    return false;
+  }
+</script>
+
 <!-- CTA FINAL -->
 <section class="cta-final" aria-labelledby="cta-title">
   <div style="position:relative;z-index:1">
@@ -1739,11 +1939,18 @@ function afficherPlusDeSites() {
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">
-    <img src="/assets/brand/logo-light.svg" alt="Marchéo.fr" style="height:36px;width:auto;display:inline-block;vertical-align:middle;" decoding="async">
+    <span style="display:inline-flex;align-items:center;gap:10px;vertical-align:middle;">
+      <img src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo" width="44" height="44"
+           style="display:block;height:44px;width:44px;border-radius:50%;object-fit:cover;flex-shrink:0;"
+           decoding="async"
+           onerror="this.onerror=null;this.src='/assets/brand/monogram.svg?v=brandv3';">
+      <span style="font-family:'Manrope',system-ui,sans-serif;font-weight:800;font-size:24px;color:#fff;letter-spacing:-.5px;">Marchéo<span style="color:var(--gold);font-weight:700;">.fr</span></span>
+    </span>
   </div>
   <nav class="footer-links" aria-label="Liens du pied de page">
     <a href="inscription.html" class="footer-link">S'inscrire</a>
     <a href="#tarifs" class="footer-link">Tarifs</a>
+    <a href="#contact" class="footer-link">Contact</a>
     <a href="cgv.html" class="footer-link">CGV</a>
     <a href="confidentialite.html" class="footer-link">Confidentialité</a>
     <a href="charte.html" class="footer-link">Charte qualité</a>
@@ -1856,30 +2063,6 @@ function afficherPlusDeSites() {
     });
   });
 
-  // ── Compteur live de boutiques actives (avec animation) ──
-  (function() {
-    var SB_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
-    var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
-    var statEl = document.getElementById('statBoutiquesActives');
-    if (!statEl) return;
-    fetch(SB_URL + '/rest/v1/commercants?actif=eq.true&select=id', {
-      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' }
-    }).then(function(r) {
-      var range = r.headers.get('content-range') || '';
-      var total = parseInt(range.split('/')[1]) || 0;
-      // Animation incrémentale
-      var duration = 1200, start = performance.now(), from = 0;
-      function tick(t) {
-        var p = Math.min(1, (t - start) / duration);
-        var eased = 1 - Math.pow(1 - p, 3);
-        statEl.textContent = Math.round(from + (total - from) * eased).toString();
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }).catch(function() {
-      statEl.textContent = '6+';
-    });
-  })();
 </script>
 </body>
 </html>

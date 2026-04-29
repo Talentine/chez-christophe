@@ -5072,5 +5072,196 @@ function appliquerRestrictionsRole(role) {
 }
 </script>
 
+<!-- ============================================================
+     ONBOARDING GUIDÉ — Phase 14
+     Affiché 1× après inscription. Stocke avancement dans localStorage.
+     ============================================================ -->
+<style>
+#mOnboarding{position:fixed;inset:0;z-index:9998;background:rgba(15,44,82,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;padding:0;animation:mOnbFade .3s ease}
+@keyframes mOnbFade{from{opacity:0}to{opacity:1}}
+#mOnboarding.active{display:flex}
+.m-onb-card{background:#fff;width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.18);max-height:92vh;overflow-y:auto;animation:mOnbSlide .35s cubic-bezier(.4,0,.2,1)}
+@keyframes mOnbSlide{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@media(min-width:640px){#mOnboarding{align-items:center;padding:20px}.m-onb-card{border-radius:24px;animation:mOnbPop .3s cubic-bezier(.4,0,.2,1)}@keyframes mOnbPop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}}
+.m-onb-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.m-onb-title{font-family:Manrope,system-ui,sans-serif;font-weight:800;font-size:22px;color:#0F2C52;line-height:1.2}
+.m-onb-sub{font-family:Manrope,system-ui,sans-serif;font-size:14px;color:#6B7785;margin-bottom:18px}
+.m-onb-skip{background:none;border:none;color:#6B7785;font-family:Manrope,system-ui,sans-serif;font-size:13px;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent;min-height:44px;min-width:44px}
+.m-onb-prog{height:6px;background:#EEF2F6;border-radius:3px;overflow:hidden;margin-bottom:20px}
+.m-onb-prog-fill{height:100%;background:linear-gradient(90deg,#5BBE3A,#7DD960);border-radius:3px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.m-onb-step{display:flex;align-items:center;gap:14px;padding:14px;border:1.5px solid #EEF2F6;border-radius:14px;margin-bottom:10px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;min-height:44px}
+.m-onb-step:hover{border-color:#5BBE3A;background:#F7FBF4}
+.m-onb-step:active{transform:scale(.98)}
+.m-onb-step.done{background:#F7FBF4;border-color:#C8E6BC;opacity:.75}
+.m-onb-step.done .m-onb-check{background:#5BBE3A;border-color:#5BBE3A;color:#fff}
+.m-onb-check{flex-shrink:0;width:32px;height:32px;border:2px solid #D5DCE3;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:transparent;transition:all .2s;font-weight:700}
+.m-onb-step.done .m-onb-check::before{content:"✓"}
+.m-onb-body{flex:1;min-width:0}
+.m-onb-step-title{font-family:Manrope,system-ui,sans-serif;font-weight:700;font-size:15px;color:#0F2C52;margin-bottom:2px}
+.m-onb-step.done .m-onb-step-title{text-decoration:line-through;color:#6B7785}
+.m-onb-step-desc{font-family:Manrope,system-ui,sans-serif;font-size:12px;color:#6B7785;line-height:1.4}
+.m-onb-arrow{flex-shrink:0;color:#5BBE3A;font-size:20px;font-weight:700}
+.m-onb-step.done .m-onb-arrow{display:none}
+.m-onb-cta{width:100%;background:#5BBE3A;color:#fff;border:none;border-radius:14px;padding:14px;font-family:Manrope,system-ui,sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;-webkit-tap-highlight-color:transparent;min-height:48px;transition:transform .15s}
+.m-onb-cta:active{transform:scale(.98)}
+.m-onb-celebrate{text-align:center;padding:20px 10px}
+.m-onb-celebrate .m-onb-emoji{font-size:56px;margin-bottom:10px;animation:mOnbBounce .6s ease}
+@keyframes mOnbBounce{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+</style>
+
+<div id="mOnboarding" role="dialog" aria-labelledby="mOnbTitle" aria-modal="true">
+  <div class="m-onb-card">
+    <div class="m-onb-head">
+      <div>
+        <div class="m-onb-title" id="mOnbTitle">🎉 Bienvenue sur Marchéo !</div>
+        <div class="m-onb-sub">4 étapes pour lancer ta boutique en 5 minutes</div>
+      </div>
+      <button class="m-onb-skip" onclick="onboardingSkip()" aria-label="Passer pour l'instant">Passer</button>
+    </div>
+    <div class="m-onb-prog" aria-hidden="true"><div class="m-onb-prog-fill" id="mOnbProgFill" style="width:0%"></div></div>
+    <div id="mOnbSteps">
+      <div class="m-onb-step" data-step="produit" onclick="onboardingGo('produit')">
+        <div class="m-onb-check" aria-hidden="true"></div>
+        <div class="m-onb-body">
+          <div class="m-onb-step-title">🥕 Ajouter ton 1er produit</div>
+          <div class="m-onb-step-desc">Pomme, baguette, steak… c'est parti en 30s</div>
+        </div>
+        <div class="m-onb-arrow" aria-hidden="true">›</div>
+      </div>
+      <div class="m-onb-step" data-step="creneau" onclick="onboardingGo('creneau')">
+        <div class="m-onb-check" aria-hidden="true"></div>
+        <div class="m-onb-body">
+          <div class="m-onb-step-title">🕒 Configurer tes créneaux de retrait</div>
+          <div class="m-onb-step-desc">Quand tes clients peuvent venir chercher</div>
+        </div>
+        <div class="m-onb-arrow" aria-hidden="true">›</div>
+      </div>
+      <div class="m-onb-step" data-step="banniere" onclick="onboardingGo('banniere')">
+        <div class="m-onb-check" aria-hidden="true"></div>
+        <div class="m-onb-body">
+          <div class="m-onb-step-title">📸 Personnaliser ta photo de bannière</div>
+          <div class="m-onb-step-desc">Ta vitrine, ton équipe, ton univers</div>
+        </div>
+        <div class="m-onb-arrow" aria-hidden="true">›</div>
+      </div>
+      <div class="m-onb-step" data-step="partage" onclick="onboardingGo('partage')">
+        <div class="m-onb-check" aria-hidden="true"></div>
+        <div class="m-onb-body">
+          <div class="m-onb-step-title">📲 Partager ta boutique</div>
+          <div class="m-onb-step-desc">QR code à imprimer + lien à envoyer</div>
+        </div>
+        <div class="m-onb-arrow" aria-hidden="true">›</div>
+      </div>
+    </div>
+    <div id="mOnbDone" style="display:none" class="m-onb-celebrate">
+      <div class="m-onb-emoji">🎊</div>
+      <div class="m-onb-title" style="margin-bottom:6px">Ta boutique est prête !</div>
+      <div class="m-onb-sub" style="margin-bottom:0">Tu peux maintenant recevoir tes premières commandes.</div>
+    </div>
+    <button class="m-onb-cta" onclick="onboardingClose()" id="mOnbCta">Continuer plus tard</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY='marcheo_onboarding_v1';
+  var STEPS=['produit','creneau','banniere','partage'];
+
+  function getState(){
+    try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}
+  }
+  function saveState(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+
+  function render(){
+    var st=getState();
+    var done=0;
+    STEPS.forEach(function(k){
+      var el=document.querySelector('.m-onb-step[data-step="'+k+'"]');
+      if(!el) return;
+      if(st[k]){el.classList.add('done');done++} else {el.classList.remove('done')}
+    });
+    var pct=Math.round(done/STEPS.length*100);
+    var fill=document.getElementById('mOnbProgFill');
+    if(fill) fill.style.width=pct+'%';
+    var cta=document.getElementById('mOnbCta');
+    var stepsBox=document.getElementById('mOnbSteps');
+    var doneBox=document.getElementById('mOnbDone');
+    if(done===STEPS.length){
+      if(stepsBox) stepsBox.style.display='none';
+      if(doneBox) doneBox.style.display='block';
+      if(cta){cta.textContent='Terminer 🚀';cta.style.background='#0F2C52'}
+    } else {
+      if(stepsBox) stepsBox.style.display='block';
+      if(doneBox) doneBox.style.display='none';
+      if(cta){cta.textContent=done>0?'Continuer plus tard':'Plus tard';cta.style.background='#5BBE3A'}
+    }
+  }
+
+  window.onboardingMarkDone=function(step){
+    var st=getState(); st[step]=true; saveState(st); render();
+  };
+
+  window.onboardingGo=function(step){
+    onboardingMarkDone(step);
+    onboardingClose();
+    setTimeout(function(){
+      try{
+        if(step==='produit'){
+          if(typeof allerOnglet==='function') allerOnglet('produits');
+          setTimeout(function(){if(typeof ajouterProduit==='function') ajouterProduit()},250);
+        } else if(step==='creneau'){
+          if(typeof allerOnglet==='function') allerOnglet('creneaux');
+          setTimeout(function(){if(typeof ouvrirAjoutCreneau==='function') ouvrirAjoutCreneau()},250);
+        } else if(step==='banniere'){
+          if(typeof allerOnglet==='function') allerOnglet('galerie');
+        } else if(step==='partage'){
+          if(typeof allerOnglet==='function') allerOnglet('reglages');
+          setTimeout(function(){
+            var el=document.getElementById('qrcodeWrap');
+            if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+          },300);
+        }
+      }catch(e){}
+    },220);
+  };
+
+  window.onboardingClose=function(){
+    var ov=document.getElementById('mOnboarding');
+    if(ov) ov.classList.remove('active');
+    var st=getState();
+    var allDone=STEPS.every(function(k){return st[k]});
+    if(allDone){st._completed=true;saveState(st)}
+  };
+
+  window.onboardingSkip=function(){
+    var st=getState(); st._skipped=true; saveState(st);
+    onboardingClose();
+  };
+
+  window.onboardingOpen=function(){
+    render();
+    var ov=document.getElementById('mOnboarding');
+    if(ov) ov.classList.add('active');
+  };
+
+  window.onboardingMaybeShow=function(){
+    var st=getState();
+    if(st._completed||st._skipped) return;
+    // Affiche après un court délai pour laisser l'app se rendre
+    setTimeout(function(){onboardingOpen()},700);
+  };
+
+  // Auto-trigger si session active
+  document.addEventListener('DOMContentLoaded',function(){
+    setTimeout(function(){
+      try{
+        var s=localStorage.getItem('session_commercant');
+        if(s) onboardingMaybeShow();
+      }catch(e){}
+    },1200);
+  });
+})();
+</script>
+
 </body>
 </html>

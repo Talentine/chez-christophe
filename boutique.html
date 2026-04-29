@@ -1615,7 +1615,7 @@ async function chargerPaniers(commercantId) {
         + '<div class="panier-desc">' + (p.description || p.unite || '') + '</div>'
         + '<div class="panier-footer">'
         + '<span class="panier-prix">' + prix + '€</span>'
-        + '<button class="btn-ajouter" onclick="ajouterAuPanier(' + dataStr + ')">+ Ajouter</button>'
+        + '<button class="btn-ajouter" onclick="ajouterAuPanierAvecQte(' + dataStr + ')">+ Ajouter</button>'
         + '</div></div></div>';
     }).join('');
   } catch(e) {
@@ -1641,11 +1641,21 @@ let ficheProduitData = null;
 let ficheProduitQte = 1;          // pour produits à la pièce/unité
 let ficheProduitPoidsKg = 0.5;    // pour produits au kilo (en kg, défaut 500g)
 
-// Détecte si le produit est vendu au poids (kg, g, livre)
+// Détecte si le produit est vendu au poids (kg, g, livre).
+// Regarde plusieurs champs possibles (unite, unite_vente, label) pour être robuste
+// quel que soit le format de données stocké en base.
 function estProduitAuPoids(produit) {
-  if (!produit?.unite) return false;
-  const u = produit.unite.toLowerCase();
-  return /\b(kg|kilo|gramme)\b/.test(u) || u === 'le kg' || u === 'kg' || u === '/kg';
+  if (!produit) return false;
+  const sources = [
+    produit.unite,
+    produit.unite_vente,
+    produit.unite_label,
+    produit.unite_affichage,
+    produit.au_poids === true ? 'kg' : null
+  ].filter(Boolean).join(' ').toLowerCase();
+  if (!sources) return false;
+  // Matche : kg, kilo, kilos, kilogramme, gramme(s), grammes, /kg, le kg, au kilo, livre, kilogr
+  return /\b(kg|kilo|kilos|kilogramme|gramme|grammes|livre|le\s*kg|au\s*kilo)\b|\/\s*kg/i.test(sources);
 }
 
 // Choix de poids proposés pour produits au kilo
@@ -1879,6 +1889,12 @@ function ajouterAuPanierDepuisCard(produitId) {
 }
 
 function ajouterAuPanierAvecQte(produit) {
+  // Pour les produits au kilo → toujours ouvrir la fiche pour choisir le poids,
+  // quel que soit l'onglet (accueil, catalogue, suggestions panier, etc.)
+  if (estProduitAuPoids(produit)) {
+    ouvrirFicheProduit(produit);
+    return;
+  }
   ajouterAuPanier(produit);
   // Mise à jour locale du DOM sans refetch (évite que les produits "disparaissent")
   rafraichirBoutonsCartes();
@@ -1916,6 +1932,15 @@ function rafraichirBoutonsCartes() {
 }
 
 function ajouterAuPanier(produit) {
+  // ── GARDE FINALE : produits au poids → ouvrir la fiche pour choisir 250g / 500g / 1kg / etc.
+  // Évite les ajouts directs "1 kg par défaut" depuis n'importe quel onglet ou call site.
+  // (sauf si la ligne contient déjà poids_kg, signifiant que le poids a déjà été choisi via la fiche)
+  if (produit && produit.poids_kg == null && estProduitAuPoids(produit)) {
+    if (typeof ouvrirFicheProduit === 'function') {
+      ouvrirFicheProduit(produit);
+      return;
+    }
+  }
   const idx = panier.findIndex(p => p.id === produit.id);
   if (idx >= 0) {
     panier[idx].qte++;
