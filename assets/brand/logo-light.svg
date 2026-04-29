@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" role="img" aria-label="Marchéo.fr">
+  <g transform="translate(0, 14)">
+    <path d="M 6 54 L 30 6 L 46 38 L 62 6 L 86 54 Z"
+          fill="#FFFFFF"/>
+    <line x1="10" y1="60" x2="82" y2="60"
+          stroke="#5BBE3A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 64 4 Q 70 0 76 4 Q 73 10 68 9 Q 65 8 64 4 Z"
+          fill="#5BBE3A"/>
+  </g>
+  <text x="100" y="48"
+        font-family="Manrope, system-ui, sans-serif"
+        font-weight="800" font-size="36"
+        fill="#FFFFFF" letter-spacing="-1">Marchéo</text>
+  <text x="252" y="48"
+        font-family="Manrope, system-ui, sans-serif"
+        font-weight="700" font-size="36"
+        fill="#5BBE3A" letter-spacing="-0.5">.fr</text>
+</svg>

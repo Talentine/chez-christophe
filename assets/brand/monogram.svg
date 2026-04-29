@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Marchéo">
+  <g transform="translate(2, 14)">
+    <path d="M 8 78 L 32 14 L 50 60 L 68 14 L 92 78 Z"
+          fill="#0F2C52"/>
+    <line x1="14" y1="84" x2="86" y2="84"
+          stroke="#5BBE3A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 70 8 Q 78 2 86 8 Q 82 16 76 14 Q 72 12 70 8 Z"
+          fill="#5BBE3A"/>
+  </g>
+</svg>
