@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="docTitle">Chargement…</title>
+<meta name="description" content="Boutique en ligne · Click & collect et livraison · Plateforme Marchéo">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marchéo">
+<meta property="og:image" content="https://www.xn--marcho-fva.fr/assets/brand/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
@@ -2251,6 +2257,81 @@ const HEROES_PAR_METIER = {
 };
 
 // ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
+// ── SEO : meta og: + Schema.org LocalBusiness pour chaque boutique ──
+function injecterSEOBoutique(b, nom, labelMetier, heroInfo) {
+  const ville = b.ville || '';
+  const url = location.protocol + '//' + location.host + location.pathname;
+  const photo = b.hero_photo_url || b.logo_url || (location.protocol + '//' + location.host + '/assets/brand/logo.svg');
+  const description = (b.texte_histoire || '').trim().split('\n')[0]
+    || `${labelMetier} ${ville ? 'à ' + ville : ''} · Commandez en ligne ${nom} en click & collect ou livraison.`;
+
+  // Helper : update ou crée un meta tag
+  const setMeta = (selector, attr, value) => {
+    let m = document.querySelector(selector);
+    if (!m) {
+      m = document.createElement('meta');
+      const [k, v] = selector.replace(/[\[\]"=]/g, '|').split('|').filter(Boolean);
+      m.setAttribute(k, v);
+      document.head.appendChild(m);
+    }
+    m.setAttribute(attr, value);
+  };
+
+  setMeta('meta[name="description"]', 'content', description.slice(0, 160));
+  setMeta('meta[property="og:title"]', 'content', nom + ' · ' + labelMetier);
+  setMeta('meta[property="og:description"]', 'content', description.slice(0, 200));
+  setMeta('meta[property="og:image"]', 'content', photo);
+  setMeta('meta[property="og:url"]', 'content', url);
+  setMeta('meta[property="og:type"]', 'content', 'website');
+  setMeta('meta[property="og:site_name"]', 'content', 'Marchéo');
+  setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
+  setMeta('meta[name="twitter:title"]', 'content', nom);
+  setMeta('meta[name="twitter:description"]', 'content', description.slice(0, 200));
+  setMeta('meta[name="twitter:image"]', 'content', photo);
+
+  // Schema.org JSON-LD : LocalBusiness avec horaires + adresse + tel
+  const horaires = b.horaires || {};
+  const joursOrdre = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
+  const joursEN = { lundi:'Mo', mardi:'Tu', mercredi:'We', jeudi:'Th', vendredi:'Fr', samedi:'Sa', dimanche:'Su' };
+  const openingHours = joursOrdre
+    .filter(j => horaires[j]?.ouvert && horaires[j]?.debut && horaires[j]?.fin)
+    .map(j => `${joursEN[j]} ${horaires[j].debut}-${horaires[j].fin}`);
+
+  const ldData = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": nom,
+    "url": url,
+    "image": photo,
+    "description": description.slice(0, 400),
+    "telephone": b.telephone || undefined,
+    "address": (b.adresse || ville) ? {
+      "@type": "PostalAddress",
+      "streetAddress": b.adresse || undefined,
+      "addressLocality": ville || undefined,
+      "addressCountry": "FR"
+    } : undefined,
+    "openingHours": openingHours.length ? openingHours : undefined,
+    "priceRange": "€€"
+  };
+
+  // Retirer les champs undefined (Schema.org n'aime pas)
+  Object.keys(ldData).forEach(k => ldData[k] === undefined && delete ldData[k]);
+  if (ldData.address) {
+    Object.keys(ldData.address).forEach(k => ldData.address[k] === undefined && delete ldData.address[k]);
+  }
+
+  // Injecter / mettre à jour le script JSON-LD
+  let ldScript = document.getElementById('schema-localbusiness');
+  if (!ldScript) {
+    ldScript = document.createElement('script');
+    ldScript.id = 'schema-localbusiness';
+    ldScript.type = 'application/ld+json';
+    document.head.appendChild(ldScript);
+  }
+  ldScript.textContent = JSON.stringify(ldData, null, 2);
+}
+
 function appliquerConfigUI(cfg) {
   const b = cfg.business;
   const el = id => document.getElementById(id);
@@ -2269,6 +2350,9 @@ function appliquerConfigUI(cfg) {
 
   // Titre du document (onglet navigateur)
   document.title = nom + (b.ville ? ' — ' + b.ville : '') + ' · Marchéo';
+
+  // ── SEO : meta tags og: + Schema.org LocalBusiness ──
+  injecterSEOBoutique(b, nom, labelMetier, heroInfo);
 
   // Header (top bar)
   setText('headerNom', nom);
