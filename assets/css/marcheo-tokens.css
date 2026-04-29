@@ -1,0 +1,155 @@
+/* ============================================================
+   MARCHÉO — DESIGN TOKENS
+   Source unique des variables de design.
+   À charger en premier dans toutes les pages.
+   ============================================================ */
+
+:root {
+  /* ── PALETTE BRAND v2 ────────────────────────────── */
+  --m-bleu-nuit:      #0F2C52;   /* Primary, ancrage, confiance */
+  --m-bleu-fonce:     #0A1428;   /* Texte courant, encre */
+  --m-bleu-clair:     #1B3F6E;   /* Hover bleu, variante */
+  --m-bleu-100:       #DCE5F0;   /* Surfaces très claires */
+
+  --m-vert:           #5BBE3A;   /* Secondary, action, succès */
+  --m-vert-fonce:     #46A02A;   /* Hover vert */
+  --m-vert-100:       #DDF3D2;   /* Surfaces succès */
+
+  --m-soleil:         #F4B942;   /* Highlight, badge promo, étoiles */
+  --m-soleil-100:     #FDF2D8;   /* Surfaces highlight */
+
+  --m-tomate:         #E65533;   /* Alerte, urgence, suppression */
+  --m-tomate-100:     #FDE9E3;   /* Surfaces alerte */
+
+  --m-creme:          #F7F2E8;   /* Background principal */
+  --m-creme-fonce:    #E5E2D8;   /* Bordures, lignes */
+  --m-blanc:          #FFFFFF;
+  --m-noir:           #0A1428;
+
+  --m-gris-1:         #5A6478;   /* Texte secondaire */
+  --m-gris-2:         #8492A6;   /* Texte tertiaire, placeholder */
+  --m-gris-3:         #C4CCD9;   /* Disabled */
+
+  /* ── ALIAS RÉTRO-COMPAT (pour ne rien casser) ─────── */
+  --vert:           var(--m-bleu-nuit);
+  --vert-fonce:     var(--m-bleu-fonce);
+  --vert-clair:     var(--m-vert);
+  --or:             var(--m-soleil);
+  --or-clair:       var(--m-soleil);
+  --terracotta:     var(--m-tomate);
+  --rouge:          var(--m-tomate);
+  --creme:          var(--m-creme);
+  --creme-fonce:    var(--m-creme-fonce);
+  --blanc:          var(--m-blanc);
+  --texte:          var(--m-bleu-fonce);
+  --texte-doux:     var(--m-gris-1);
+  --texte-leger:    var(--m-gris-2);
+
+  /* Anciennes variables landing */
+  --brand:          var(--m-bleu-nuit);
+  --brand-dark:     var(--m-bleu-fonce);
+  --brand-light:    var(--m-bleu-clair);
+  --gold:           var(--m-vert);
+  --gold-light:     var(--m-vert-100);
+  --cream:          var(--m-creme);
+  --cream-dark:     var(--m-creme-fonce);
+  --text:           var(--m-bleu-fonce);
+  --text-muted:     var(--m-gris-1);
+  --white:          var(--m-blanc);
+
+  /* ── TYPOGRAPHIE ─────────────────────────────────── */
+  --m-font-display:  'Manrope', system-ui, -apple-system, sans-serif;
+  --m-font-body:     'Inter', system-ui, -apple-system, sans-serif;
+  --m-font-mono:     ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Tailles fluides : font-size: clamp(min, viewport-based, max) */
+  --m-text-xs:    clamp(11px, 0.7rem + 0.2vw, 12px);
+  --m-text-sm:    clamp(13px, 0.8rem + 0.2vw, 14px);
+  --m-text-base:  clamp(15px, 0.9rem + 0.3vw, 16px);
+  --m-text-lg:    clamp(17px, 1rem + 0.4vw, 18px);
+  --m-text-xl:    clamp(20px, 1.1rem + 0.6vw, 22px);
+  --m-text-2xl:   clamp(24px, 1.3rem + 0.8vw, 28px);
+  --m-text-3xl:   clamp(30px, 1.5rem + 1.5vw, 38px);
+  --m-text-4xl:   clamp(36px, 2rem + 2vw, 56px);
+  --m-text-5xl:   clamp(44px, 2.5rem + 3vw, 72px);
+
+  --m-leading-tight:  1.15;
+  --m-leading-snug:   1.4;
+  --m-leading-base:   1.6;
+  --m-leading-relax:  1.75;
+
+  /* ── SPACING (échelle 4px) ───────────────────────── */
+  --m-space-1:  4px;
+  --m-space-2:  8px;
+  --m-space-3:  12px;
+  --m-space-4:  16px;
+  --m-space-5:  20px;
+  --m-space-6:  24px;
+  --m-space-8:  32px;
+  --m-space-10: 40px;
+  --m-space-12: 48px;
+  --m-space-16: 64px;
+  --m-space-20: 80px;
+
+  /* ── RADIUS ──────────────────────────────────────── */
+  --m-radius-sm:   8px;
+  --m-radius-md:   12px;
+  --m-radius-lg:   16px;
+  --m-radius-xl:   20px;
+  --m-radius-2xl:  24px;
+  --m-radius-full: 9999px;
+
+  /* ── SHADOWS (subtiles, premium) ─────────────────── */
+  --m-shadow-xs:  0 1px 2px rgba(15,44,82,.04);
+  --m-shadow-sm:  0 2px 8px rgba(15,44,82,.06);
+  --m-shadow-md:  0 4px 16px rgba(15,44,82,.08);
+  --m-shadow-lg:  0 8px 32px rgba(15,44,82,.10);
+  --m-shadow-xl:  0 12px 48px rgba(15,44,82,.14);
+
+  /* ── DURATIONS ───────────────────────────────────── */
+  --m-duration-fast:   .15s;
+  --m-duration-base:   .25s;
+  --m-duration-slow:   .4s;
+  --m-ease:            cubic-bezier(.4,0,.2,1);
+
+  /* ── Z-INDEX ─────────────────────────────────────── */
+  --m-z-sticky:    100;
+  --m-z-overlay:   200;
+  --m-z-drawer:    300;
+  --m-z-modal:     400;
+  --m-z-toast:     500;
+  --m-z-max:       9999;
+
+  /* ── BREAKPOINTS (référence — utiliser min-width) ── */
+  /* sm:  640px   md: 768px   lg: 1024px   xl: 1280px */
+
+  /* ── CONTAINER ───────────────────────────────────── */
+  --m-container-sm:  640px;
+  --m-container-md:  768px;
+  --m-container-lg:  1024px;
+  --m-container-xl:  1280px;
+
+  /* ── TOUCH TARGETS (Apple HIG = 44, Material = 48) ── */
+  --m-touch-min: 44px;
+
+  /* ── SAFE AREAS (iPhone) ─────────────────────────── */
+  --m-safe-top:    env(safe-area-inset-top, 0px);
+  --m-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --m-safe-left:   env(safe-area-inset-left, 0px);
+  --m-safe-right:  env(safe-area-inset-right, 0px);
+}
+
+/* ── REDUCED MOTION : respect des préférences user ─── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-duration-fast: 0s;
+    --m-duration-base: 0s;
+    --m-duration-slow: 0s;
+  }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
