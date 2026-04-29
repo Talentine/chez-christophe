@@ -916,9 +916,17 @@ async function chargerDashboard() {
 
   tousCommercants = commercants || [];
 
-  // Stats
-  const actifs = tousCommercants.filter(c => c.actif && c.abonnement_actif);
+  // Stats : "actifs" = boutiques en ligne (peu importe l'abonnement)
+  const actifs = tousCommercants.filter(c => c.actif);
+  const payants = tousCommercants.filter(c => c.actif && c.abonnement_actif);
   document.getElementById('statCommerçants').textContent = actifs.length;
+  // Si delta DOM existe, montrer combien sont en abonnement payant
+  const delta = document.getElementById('deltaCommerçants');
+  if (delta) {
+    delta.textContent = payants.length > 0
+      ? '✓ ' + payants.length + ' avec abonnement actif'
+      : (actifs.length > 0 ? actifs.length + ' boutique(s) en démo' : '');
+  }
 
   const mrr = tousCommercants
     .filter(c => c.abonnement_actif)

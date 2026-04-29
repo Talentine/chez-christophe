@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   let boutiques = [];
   try {
     const r = await fetch(
-      SUPABASE_URL + '/rest/v1/commercants?actif=eq.true&select=slug,updated_at',
+      SUPABASE_URL + '/rest/v1/commercants?actif=eq.true&select=slug,created_at',
       { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
     );
     if (r.ok) boutiques = await r.json();
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     <priority>${p.priority}</priority>
   </url>`),
     ...boutiques.map(b => {
-      const lastmod = (b.updated_at || today).split('T')[0];
+      const lastmod = (b.created_at || today).split('T')[0];
       return `
   <url>
     <loc>${HOST}/${b.slug}</loc>
