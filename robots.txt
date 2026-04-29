@@ -1,0 +1,10 @@
+# https://marchéo.fr — robots.txt
+User-agent: *
+Allow: /
+Disallow: /app-commercant.html
+Disallow: /admin.html
+Disallow: /admin
+Disallow: /app
+Disallow: /branding.html
+
+Sitemap: https://www.xn--marcho-fva.fr/sitemap.xml

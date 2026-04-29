@@ -11,6 +11,53 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ── Schema.org : Organization + WebSite (rich snippets Google) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://marchéo.fr/#org",
+        "name": "Marchéo",
+        "alternateName": "Marchéo.fr",
+        "url": "https://marchéo.fr/",
+        "logo": "https://marchéo.fr/assets/brand/logo.svg",
+        "description": "Plateforme de click & collect et livraison pour les artisans français : primeurs, bouchers, boulangers, poissonniers, fromagers, traiteurs.",
+        "sameAs": [],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@marchéo.fr",
+          "contactType": "customer support",
+          "availableLanguage": ["French"]
+        },
+        "areaServed": "FR"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://marchéo.fr/#website",
+        "url": "https://marchéo.fr/",
+        "name": "Marchéo",
+        "publisher": { "@id": "https://marchéo.fr/#org" },
+        "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Marchéo",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "19",
+          "highPrice": "59",
+          "offerCount": "3"
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
