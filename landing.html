@@ -546,31 +546,57 @@
     .example-shop-title { font-family: 'Manrope', system-ui, sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
     .example-location { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
 
-    /* IFRAME BOUTIQUE EN DIRECT */
-    .example-iframe-wrap {
+    /* SCREENSHOT BOUTIQUE — image statique optimisée (remplace iframe) */
+    .example-screenshot {
       position: relative;
       width: 100%;
-      height: 480px;
+      aspect-ratio: 4 / 3;
       background: var(--cream);
       overflow: hidden;
     }
-    .example-iframe {
+    .example-screenshot > img {
       width: 100%;
       height: 100%;
-      border: 0;
-      pointer-events: none; /* on intercepte avec l'overlay pour cliquer */
-      background: var(--cream);
+      object-fit: cover;
       display: block;
+      transition: transform .4s var(--m-ease, ease);
     }
-    .example-iframe-overlay {
-      position: absolute; inset: 0;
-      cursor: pointer;
-      background: linear-gradient(180deg, transparent 70%, rgba(28,61,46,.08) 100%);
-      transition: background .2s;
-      z-index: 2;
+    .example-card:hover .example-screenshot > img {
+      transform: scale(1.04);
     }
-    .example-iframe-overlay:hover {
-      background: linear-gradient(180deg, rgba(28,61,46,.04) 0%, rgba(28,61,46,.22) 100%);
+    .example-shop-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 18px 18px 16px;
+      background: linear-gradient(180deg, transparent 0%, rgba(10,20,40,0.80) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .example-shop-logo {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: white;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .example-shop-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+    .example-shop-meta {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .example-card { transition: all .25s var(--m-ease, ease); }
+    .example-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(15,44,82,0.16);
     }
 
     .example-live-badge-small {
@@ -726,58 +752,76 @@
     <div class="examples-grid">
 
       <!-- ─── 1. Chez Christophe (Primeur · Caen) ─── -->
-      <div class="example-card reveal">
+      <a href="/chez-christophe" target="_blank" rel="noopener" class="example-card reveal" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/chez-christophe</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/chez-christophe" loading="lazy" title="Chez Christophe" class="example-iframe"></iframe>
-          <a href="/chez-christophe" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Chez Christophe"></a>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe/hero.png" loading="lazy" alt="Boutique Chez Christophe" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe/logo.png" alt="" loading="lazy" class="example-shop-logo">
+            <div>
+              <div class="example-shop-name">Chez Christophe</div>
+              <div class="example-shop-meta">🌿 Primeur · Caen</div>
+            </div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Chez Christophe</div>
           <div class="example-location">📍 Caen · Primeur 🌿</div>
-          <a href="/chez-christophe" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
       <!-- ─── 2. Le pétrin (Boulangerie · Cabourg) ─── -->
-      <div class="example-card reveal reveal-delay-1">
+      <a href="/le-petrin" target="_blank" rel="noopener" class="example-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/le-petrin</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/le-petrin" loading="lazy" title="Le pétrin" class="example-iframe"></iframe>
-          <a href="/le-petrin" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Le pétrin"></a>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/le-petrin/hero.jpg" loading="lazy" alt="Boutique Le pétrin" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/le-petrin/logo.png" alt="" loading="lazy" class="example-shop-logo">
+            <div>
+              <div class="example-shop-name">Le pétrin</div>
+              <div class="example-shop-meta">🥖 Boulanger · Cabourg</div>
+            </div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Le pétrin</div>
           <div class="example-location">📍 Cabourg · Boulanger 🥖</div>
-          <a href="/le-petrin" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
       <!-- ─── 3. Boucherie Classique (Boucherie · Toulon) ─── -->
-      <div class="example-card reveal reveal-delay-2">
+      <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/boucherie-classique</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/boucherie-classique" loading="lazy" title="Boucherie Classique" class="example-iframe"></iframe>
-          <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Boucherie Classique"></a>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/boucherie-classique/003-999479.jpg" loading="lazy" alt="Boucherie Classique" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/boucherie-classique/logo.jpg" alt="" loading="lazy" class="example-shop-logo">
+            <div>
+              <div class="example-shop-name">Boucherie Classique</div>
+              <div class="example-shop-meta">🥩 Boucher · Toulon</div>
+            </div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Boucherie Classique</div>
           <div class="example-location">📍 Toulon · Boucher 🥩</div>
-          <a href="/boucherie-classique" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
     </div>
 
@@ -785,58 +829,73 @@
     <div id="examplesPlus" class="examples-grid" style="display:none;margin-top:24px;">
 
       <!-- 4. Fromagerie des Conquérants -->
-      <div class="example-card reveal">
+      <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-card reveal" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/fromagerie-conquerant</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/fromagerie-conquerant" loading="lazy" title="Fromagerie des Conquérants" class="example-iframe"></iframe>
-          <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Fromagerie des Conquérants"></a>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/fromagerie-conquerant/004-882599.jpg" loading="lazy" alt="Fromagerie des Conquérants" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/fromagerie-conquerant/logo.png" alt="" loading="lazy" class="example-shop-logo">
+            <div>
+              <div class="example-shop-name">Fromagerie des Conquérants</div>
+              <div class="example-shop-meta">🧀 Fromager · Toulon</div>
+            </div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Fromagerie des Conquérants</div>
           <div class="example-location">📍 Toulon · Fromager 🧀</div>
-          <a href="/fromagerie-conquerant" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
       <!-- 5. Marée d'or -->
-      <div class="example-card reveal reveal-delay-1">
+      <a href="/maree-d-or" target="_blank" rel="noopener" class="example-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/maree-d-or</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/maree-d-or" loading="lazy" title="Marée d'or" class="example-iframe"></iframe>
-          <a href="/maree-d-or" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir Marée d'or"></a>
+        <div class="example-screenshot">
+          <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/maree-d-or/hero.jpg" loading="lazy" alt="Marée d'or" decoding="async">
+          <div class="example-shop-overlay">
+            <img src="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/maree-d-or/logo.png" alt="" loading="lazy" class="example-shop-logo">
+            <div>
+              <div class="example-shop-name">Marée d'or</div>
+              <div class="example-shop-meta">🐟 Poissonnier · Harfleur</div>
+            </div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">Marée d'or</div>
           <div class="example-location">📍 Harfleur · Poissonnier 🐟</div>
-          <a href="/maree-d-or" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
       <!-- 6. mb primeur -->
-      <div class="example-card reveal reveal-delay-2">
+      <a href="/mb-primeur" target="_blank" rel="noopener" class="example-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;">
         <div class="example-bar">
           <div class="example-dots"><span></span><span></span><span></span></div>
           <div class="example-url">marchéo.fr/mb-primeur</div>
           <span class="example-live-badge-small"><span class="example-live-dot" aria-hidden="true"></span> Live</span>
         </div>
-        <div class="example-iframe-wrap">
-          <iframe src="/mb-primeur" loading="lazy" title="mb primeur" class="example-iframe"></iframe>
-          <a href="/mb-primeur" target="_blank" rel="noopener" class="example-iframe-overlay" aria-label="Ouvrir mb primeur"></a>
+        <div class="example-screenshot" style="background:linear-gradient(135deg,#0F2C52,#1B3F6E);min-height:280px;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;color:white;padding:24px;">
+            <div style="font-size:48px;margin-bottom:8px;">🌿</div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:22px;">mb primeur</div>
+            <div style="font-size:13px;opacity:0.7;margin-top:4px;">Primeur · Deauville</div>
+          </div>
         </div>
         <div class="example-info">
           <div class="example-shop-title">mb primeur</div>
           <div class="example-location">📍 Deauville · Primeur 🌿</div>
-          <a href="/mb-primeur" target="_blank" rel="noopener" class="example-link" role="button">Visiter la boutique →</a>
+          <span class="example-link" role="button">Visiter la boutique →</span>
         </div>
-      </div>
+      </a>
 
     </div>
 
