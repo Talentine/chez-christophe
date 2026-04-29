@@ -853,12 +853,15 @@ function formaterPoids(kg) {
 
 function setPoidsFiche(kg) {
   poidsKgFiche = Math.max(0.1, Math.round(kg * 10) / 10);
-  document.getElementById('fichePoids').textContent = formaterPoids(poidsKgFiche);
+  const fp = document.getElementById('fichePoids');
+  if (fp) fp.textContent = formaterPoids(poidsKgFiche);
   // Surligner le preset actif
   document.querySelectorAll('#fichePoidsBtns button').forEach(b => {
     const k = parseFloat(b.dataset.kg);
-    b.style.background = (Math.abs(k - poidsKgFiche) < 0.001) ? 'var(--vert,#5BBE3A)' : 'white';
-    b.style.color = (Math.abs(k - poidsKgFiche) < 0.001) ? '#fff' : 'var(--texte,#222)';
+    const actif = Math.abs(k - poidsKgFiche) < 0.001;
+    b.style.background = actif ? 'var(--vert,#5BBE3A)' : 'white';
+    b.style.color = actif ? '#fff' : 'var(--texte,#222)';
+    b.style.borderColor = actif ? 'var(--vert,#5BBE3A)' : 'var(--creme-fonce,#e3dccd)';
   });
   mettreAJourTotalFiche();
 }
@@ -1083,74 +1086,88 @@ function renderProduits() {
 
 // ── FICHE PRODUIT ─────────────────────────────────────
 function ouvrirFiche(produitId) {
-  produitEnCours = tousProduits.find(p => p.id === produitId);
-  if (!produitEnCours) return;
+  const trouve = tousProduits.find(p => p.id === produitId);
+  if (!trouve) return;
 
+  // Helper sûr pour set textContent / style
+  const setText  = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  const setStyle = (id, prop, v) => { const e = document.getElementById(id); if (e) e.style[prop] = v; };
+  const setHTML  = (id, v) => { const e = document.getElementById(id); if (e) e.innerHTML = v; };
+
+  produitEnCours = trouve;
   qteFiche = 1;
   const auPoids = estProduitAuPoids(produitEnCours);
 
   // Si déjà dans le panier : pré-remplir le poids/qte
   const dejaPresent = panier.find(x => x.id === produitEnCours.id);
   if (auPoids) {
-    poidsKgFiche = dejaPresent?.poids_kg || 0.5;
+    poidsKgFiche = (dejaPresent && dejaPresent.poids_kg) ? dejaPresent.poids_kg : 0.5;
   } else if (dejaPresent) {
     qteFiche = dejaPresent.qte || 1;
   }
 
   // Image
-  const ficheImg = document.getElementById('ficheImg');
-  ficheImg.innerHTML = `
-    <button class="fiche-close" onclick="fermerFiche()">✕</button>
-    ${produitEnCours.photo_url
-      ? `<img src="${produitEnCours.photo_url}" alt="${produitEnCours.nom}">`
-      : `<span style="font-size:80px">${produitEnCours.categories?.emoji || '🌿'}</span>`
-    }
-  `;
+  setHTML('ficheImg',
+    '<button class="fiche-close" onclick="fermerFiche()" aria-label="Fermer">✕</button>' +
+    (produitEnCours.photo_url
+      ? '<img src="' + produitEnCours.photo_url + '" alt="' + (produitEnCours.nom || '') + '">'
+      : '<span style="font-size:80px">' + (produitEnCours.categories?.emoji || '🌿') + '</span>')
+  );
 
-  document.getElementById('ficheCat').textContent = produitEnCours.categories?.nom || '';
-  document.getElementById('ficheNom').textContent = produitEnCours.nom;
-  document.getElementById('ficheDesc').textContent = produitEnCours.description || 'Produit frais sélectionné avec soin.';
+  setText('ficheCat',  produitEnCours.categories?.nom || '');
+  setText('ficheNom',  produitEnCours.nom || '');
+  setText('ficheDesc', produitEnCours.description || 'Produit frais sélectionné avec soin.');
 
   const prix = produitEnCours.prix_marche_indicatif;
-  document.getElementById('fichePrix').textContent = prix ? prix.toFixed(2).replace('.',',') + ' €' : '—';
-  document.getElementById('ficheUnite').textContent = '/ ' + produitEnCours.unite;
-  document.getElementById('ficheQty').textContent = qteFiche;
-  document.getElementById('ficheSaison').style.display = produitEnCours.saisonnier ? 'block' : 'none';
+  setText('fichePrix',  prix ? prix.toFixed(2).replace('.',',') + ' €' : '—');
+  setText('ficheUnite', '/ ' + (produitEnCours.unite || ''));
+  setText('ficheQty',   qteFiche);
+  setStyle('ficheSaison', 'display', produitEnCours.saisonnier ? 'block' : 'none');
 
   // Bascule UI : mode poids ou mode quantité
-  const modeQte    = document.getElementById('ficheModeQte');
-  const modePoids  = document.getElementById('ficheModePoids');
+  const modeQte   = document.getElementById('ficheModeQte');
+  const modePoids = document.getElementById('ficheModePoids');
   if (auPoids) {
-    modeQte.style.display    = 'none';
-    modePoids.style.display  = 'flex';
-    // Render presets
-    const btnsWrap = document.getElementById('fichePoidsBtns');
-    btnsWrap.innerHTML = POIDS_OPTIONS.map(opt =>
+    if (modeQte)   modeQte.style.display   = 'none';
+    if (modePoids) modePoids.style.display = 'flex';
+    setHTML('fichePoidsBtns', POIDS_OPTIONS.map(opt =>
       '<button type="button" data-kg="' + opt.kg + '" onclick="setPoidsFiche(' + opt.kg + ')" '
       + 'style="background:white;color:var(--texte,#222);border:1.5px solid var(--creme-fonce,#e3dccd);'
       + 'border-radius:50px;padding:8px 14px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;'
       + '-webkit-tap-highlight-color:transparent;min-height:36px;">' + opt.label + '</button>'
-    ).join('');
+    ).join(''));
     setPoidsFiche(poidsKgFiche);
   } else {
-    modeQte.style.display    = 'flex';
-    modePoids.style.display  = 'none';
+    if (modeQte)   modeQte.style.display   = 'flex';
+    if (modePoids) modePoids.style.display = 'none';
     mettreAJourTotalFiche();
   }
 
-  document.getElementById('ficheOverlay').classList.add('open');
-  document.getElementById('ficheDrawer').classList.add('open');
-  document.getElementById('ficheCta').classList.add('visible');
+  const overlay = document.getElementById('ficheOverlay');
+  const drawer  = document.getElementById('ficheDrawer');
+  const cta     = document.getElementById('ficheCta');
+  if (overlay) overlay.classList.add('open');
+  if (drawer)  drawer.classList.add('open');
+  if (cta)     cta.classList.add('visible');
   document.body.style.overflow = 'hidden';
 }
 
 function fermerFiche() {
-  document.getElementById('ficheOverlay').classList.remove('open');
-  document.getElementById('ficheDrawer').classList.remove('open');
-  document.getElementById('ficheCta').classList.remove('visible');
+  const overlay = document.getElementById('ficheOverlay');
+  const drawer  = document.getElementById('ficheDrawer');
+  const cta     = document.getElementById('ficheCta');
+  if (overlay) overlay.classList.remove('open');
+  if (drawer)  drawer.classList.remove('open');
+  if (cta)     cta.classList.remove('visible');
   document.body.style.overflow = '';
   produitEnCours = null;
 }
+
+// Filet de sécurité : si pour une raison X la fiche se ferme mal, l'utilisateur
+// peut taper Échap ou cliquer en dehors pour récupérer le contrôle.
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') fermerFiche();
+});
 
 function changerQteFiche(delta) {
   qteFiche = Math.max(1, qteFiche + delta);
@@ -1163,7 +1180,8 @@ function mettreAJourTotalFiche() {
   const auPoids = estProduitAuPoids(produitEnCours);
   const prixUnit = produitEnCours.prix_marche_indicatif || 0;
   const total = auPoids ? prixUnit * poidsKgFiche : prixUnit * qteFiche;
-  document.getElementById('ficheTotal').textContent = total.toFixed(2).replace('.',',') + ' €';
+  const el = document.getElementById('ficheTotal');
+  if (el) el.textContent = total.toFixed(2).replace('.',',') + ' €';
 }
 
 function ajouterDepuisFiche() {
