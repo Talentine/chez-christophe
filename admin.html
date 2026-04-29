@@ -504,6 +504,9 @@
     <div class="nav-link" onclick="allerPage('revenus')" id="nav-revenus">
       <span class="nav-link-icon">💰</span> Revenus SaaS
     </div>
+    <div class="nav-link" onclick="allerPage('analytics')" id="nav-analytics">
+      <span class="nav-link-icon">📈</span> Analytics
+    </div>
 
     <div class="sidebar-footer">
       <button class="btn-deco" onclick="seDeconnecterAdmin()">Se déconnecter</button>
@@ -698,6 +701,46 @@
       </div>
     </div>
 
+    <!-- PAGE ANALYTICS -->
+    <div class="page" id="page-analytics">
+      <div class="page-titre">Analytics</div>
+      <div class="page-sub">Trafic anonyme · 30 derniers jours</div>
+
+      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="stat-card">
+          <div class="stat-card-val" id="anaPageViews">—</div>
+          <div class="stat-card-lbl">Pages vues</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:var(--or)" id="anaInscClicks">—</div>
+          <div class="stat-card-lbl">Clics « S'inscrire »</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="anaConversion">—</div>
+          <div class="stat-card-lbl">Taux conversion</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" id="anaMobile">—</div>
+          <div class="stat-card-lbl">% Mobile</div>
+        </div>
+      </div>
+
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">Top 10 pages</div>
+          <div id="anaTopPages" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Top boutiques (vues)</div>
+          <div id="anaTopBoutiques" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Sources</div>
+          <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -828,6 +871,7 @@ function allerPage(id) {
   document.getElementById(`nav-${id}`)?.classList.add('actif');
 
   if (id === 'commercants') chargerCommercants();
+  if (id === 'analytics') chargerAnalytics();
   if (id === 'catalogue') chargerCatalogue();
   if (id === 'commandes') chargerCommandes();
   if (id === 'revenus') chargerRevenus();
@@ -1375,6 +1419,67 @@ async function chargerCommandes() {
 }
 
 // ── REVENUS ───────────────────────────────────────────
+// ── ANALYTICS DASHBOARD ───────────────────────────────
+async function chargerAnalytics() {
+  try {
+    // 30 derniers jours
+    const since = new Date(Date.now() - 30*86400000).toISOString();
+    const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(since) + '&select=event,page,slug,referrer,device&limit=10000';
+    const r = await fetch(url, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY) }
+    });
+    const events = await r.json();
+    if (!Array.isArray(events)) {
+      document.getElementById('anaPageViews').textContent = '—';
+      return;
+    }
+
+    // Compteurs
+    const pageViews = events.filter(e => e.event === 'page_view').length;
+    const inscClicks = events.filter(e => e.event === 'cta_inscription').length;
+    const conversion = pageViews > 0 ? ((inscClicks / pageViews) * 100).toFixed(1) + '%' : '—';
+    const mobile = events.filter(e => e.device === 'mobile').length;
+    const mobilePct = events.length > 0 ? Math.round((mobile / events.length) * 100) + '%' : '—';
+
+    document.getElementById('anaPageViews').textContent = pageViews.toLocaleString('fr-FR');
+    document.getElementById('anaInscClicks').textContent = inscClicks.toLocaleString('fr-FR');
+    document.getElementById('anaConversion').textContent = conversion;
+    document.getElementById('anaMobile').textContent = mobilePct;
+
+    // Top 10 pages
+    const pageCounts = {};
+    events.filter(e => e.event === 'page_view' && e.page).forEach(e => {
+      pageCounts[e.page] = (pageCounts[e.page] || 0) + 1;
+    });
+    const topPages = Object.entries(pageCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
+    document.getElementById('anaTopPages').innerHTML = topPages.length
+      ? topPages.map(([p,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-family:monospace;font-size:12px;">${p}</span><strong>${n}</strong></div>`).join('')
+      : '<div style="opacity:.5">Aucune donnée</div>';
+
+    // Top boutiques (par slug)
+    const slugCounts = {};
+    events.filter(e => e.event === 'page_view' && e.slug).forEach(e => {
+      slugCounts[e.slug] = (slugCounts[e.slug] || 0) + 1;
+    });
+    const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
+    document.getElementById('anaTopBoutiques').innerHTML = topSlugs.length
+      ? topSlugs.map(([s,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${s}</span><strong>${n}</strong></div>`).join('')
+      : '<div style="opacity:.5">Aucune visite de boutique</div>';
+
+    // Top referrers
+    const refCounts = {};
+    events.filter(e => e.referrer).forEach(e => {
+      refCounts[e.referrer] = (refCounts[e.referrer] || 0) + 1;
+    });
+    const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
+    document.getElementById('anaReferrers').innerHTML = topRefs.length
+      ? topRefs.map(([r,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${r}</span><strong>${n}</strong></div>`).join('')
+      : '<div style="opacity:.5">Trafic direct uniquement</div>';
+  } catch (e) {
+    document.getElementById('anaPageViews').textContent = '⚠️';
+  }
+}
+
 async function chargerRevenus() {
   const commercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_actif=eq.true') || [];
 

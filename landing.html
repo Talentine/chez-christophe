@@ -730,6 +730,7 @@
       .steps-grid { grid-template-columns: 1fr auto 1fr auto 1fr; }
     }
   </style>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
 </head>
 <body>
 
@@ -745,7 +746,7 @@
     <a href="#tarifs" class="nav-link">Tarifs</a>
   </div>
   <a href="#tarifs" class="nav-cta" role="button">Voir les offres</a>
-  <a href="inscription.html" class="nav-mobile-cta" role="button">S'inscrire</a>
+  <a href="inscription.html" class="nav-mobile-cta" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"nav-mobile-cta"}\'>S'inscrire</a>
 </nav>
 
 <!-- HERO -->
@@ -762,7 +763,7 @@
       Une boutique en ligne adaptée à votre métier en 5 minutes. <b>Click &amp; collect</b> en boutique <b>et livraison à domicile</b> dans votre zone — vos clients choisissent. Une <b>empreinte bancaire</b> protège chaque commande : zéro no-show.
     </p>
     <div class="hero-actions reveal reveal-delay-3">
-      <a href="inscription.html" class="btn-primary" role="button">
+      <a href="inscription.html" class="btn-primary" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-primary"}\'>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         Voir une démo gratuite
       </a>
@@ -952,7 +953,7 @@
         <span>+ Voir 3 autres boutiques</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="iconVoirPlus"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <a href="inscription.html" class="btn-primary" role="button" style="display:inline-flex;align-items:center;gap:10px;">
+      <a href="inscription.html" class="btn-primary" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-primary"}\' style="display:inline-flex;align-items:center;gap:10px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         Créer ma boutique en 5 minutes
       </a>
@@ -1282,7 +1283,7 @@ function afficherPlusDeSites() {
           <li>QR code imprimable</li>
           <li>SEO local Google</li>
         </ul>
-        <a href="inscription.html?offre=vitrine" class="btn-pricing" role="button">Créer ma vitrine</a>
+        <a href="inscription.html?offre=vitrine" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-pricing"}\'>Créer ma vitrine</a>
       </div>
 
       <!-- CLICK & COLLECT -->
@@ -1313,7 +1314,7 @@ function afficherPlusDeSites() {
           <li>Gestion des stocks</li>
           <li><strong>0% de commission</strong> sur vos ventes</li>
         </ul>
-        <a href="inscription.html?offre=clickcollect" class="btn-pricing" role="button">Commencer à vendre</a>
+        <a href="inscription.html?offre=clickcollect" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-pricing"}\'>Commencer à vendre</a>
       </div>
 
       <!-- LIVRAISON -->
@@ -1341,7 +1342,7 @@ function afficherPlusDeSites() {
           <li>Zone visible côté client sur la carte</li>
           <li><strong>0% de commission</strong> sur vos ventes</li>
         </ul>
-        <a href="inscription.html?offre=livraison" class="btn-pricing" role="button">Livrer mes clients</a>
+        <a href="inscription.html?offre=livraison" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-pricing"}\'>Livrer mes clients</a>
       </div>
 
     </div>
@@ -1361,7 +1362,7 @@ function afficherPlusDeSites() {
   <div style="position:relative;z-index:1">
     <h2 id="cta-title" class="reveal">Prêt à lancer votre boutique ?</h2>
     <p class="reveal reveal-delay-1">Rejoignez les artisans qui encaissent en ligne sans perdre un centime en commission.</p>
-    <a href="inscription.html" class="btn-primary reveal reveal-delay-2" role="button">
+    <a href="inscription.html" class="btn-primary reveal reveal-delay-2" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"btn-primary reveal reveal-delay-2"}\'>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       Choisir mon offre et créer ma boutique
     </a>
