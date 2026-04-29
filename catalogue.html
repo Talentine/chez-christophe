@@ -755,13 +755,24 @@
     <div class="fiche-saison" id="ficheSaison" style="display:none">
       🌱 Produit de saison — disponible aux meilleures périodes de l'année
     </div>
-    <div class="qty-selector">
+    <div class="qty-selector" id="ficheModeQte">
       <span class="qty-label">Quantité :</span>
       <div class="qty-ctrl">
         <button class="qty-btn" onclick="changerQteFiche(-1)">−</button>
         <span class="qty-num" id="ficheQty">1</span>
         <button class="qty-btn" onclick="changerQteFiche(1)">+</button>
       </div>
+    </div>
+    <!-- Sélecteur de POIDS pour produits au kilo -->
+    <div class="qty-selector" id="ficheModePoids" style="display:none;flex-direction:column;align-items:stretch;gap:12px;">
+      <span class="qty-label" style="text-align:left;">Quel poids ?</span>
+      <div id="fichePoidsBtns" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+      <div class="qty-ctrl" style="margin-top:4px;">
+        <button class="qty-btn" onclick="changerPoidsFiche(-0.1)" aria-label="Diminuer de 100g">−</button>
+        <span class="qty-num" id="fichePoids">500 g</span>
+        <button class="qty-btn" onclick="changerPoidsFiche(0.1)" aria-label="Augmenter de 100g">+</button>
+      </div>
+      <div style="font-size:12px;color:var(--texte-doux,#888);text-align:center;">Le commerçant ajustera selon le poids exact à la pesée.</div>
     </div>
   </div>
 </div>
@@ -814,6 +825,47 @@ let categorieActive = null;
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 let produitEnCours = null;
 let qteFiche = 1;
+let poidsKgFiche = 0.5; // poids choisi (en kg) pour les produits au kilo
+
+// Détecte si un produit est vendu au poids (kg, gramme, livre, /kg…)
+function estProduitAuPoids(produit) {
+  if (!produit) return false;
+  const sources = [
+    produit.unite, produit.unite_vente, produit.unite_label, produit.unite_affichage,
+    produit.au_poids === true ? 'kg' : null
+  ].filter(Boolean).join(' ').toLowerCase();
+  if (!sources) return false;
+  return /\b(kg|kilo|kilos|kilogramme|gramme|grammes|livre|le\s*kg|au\s*kilo)\b|\/\s*kg/i.test(sources);
+}
+
+const POIDS_OPTIONS = [
+  { kg: 0.25, label: '250 g' },
+  { kg: 0.5,  label: '500 g' },
+  { kg: 1,    label: '1 kg'  },
+  { kg: 1.5,  label: '1,5 kg' },
+  { kg: 2,    label: '2 kg'  },
+];
+
+function formaterPoids(kg) {
+  if (kg < 1) return Math.round(kg * 1000) + ' g';
+  return (kg % 1 === 0 ? kg : kg.toFixed(2).replace('.', ',')) + ' kg';
+}
+
+function setPoidsFiche(kg) {
+  poidsKgFiche = Math.max(0.1, Math.round(kg * 10) / 10);
+  document.getElementById('fichePoids').textContent = formaterPoids(poidsKgFiche);
+  // Surligner le preset actif
+  document.querySelectorAll('#fichePoidsBtns button').forEach(b => {
+    const k = parseFloat(b.dataset.kg);
+    b.style.background = (Math.abs(k - poidsKgFiche) < 0.001) ? 'var(--vert,#5BBE3A)' : 'white';
+    b.style.color = (Math.abs(k - poidsKgFiche) < 0.001) ? '#fff' : 'var(--texte,#222)';
+  });
+  mettreAJourTotalFiche();
+}
+
+function changerPoidsFiche(delta) {
+  setPoidsFiche(poidsKgFiche + delta);
+}
 let triActif = 'nom'; // nom | prix_asc | prix_desc
 
 async function sb(table, params) {
@@ -1035,6 +1087,15 @@ function ouvrirFiche(produitId) {
   if (!produitEnCours) return;
 
   qteFiche = 1;
+  const auPoids = estProduitAuPoids(produitEnCours);
+
+  // Si déjà dans le panier : pré-remplir le poids/qte
+  const dejaPresent = panier.find(x => x.id === produitEnCours.id);
+  if (auPoids) {
+    poidsKgFiche = dejaPresent?.poids_kg || 0.5;
+  } else if (dejaPresent) {
+    qteFiche = dejaPresent.qte || 1;
+  }
 
   // Image
   const ficheImg = document.getElementById('ficheImg');
@@ -1053,9 +1114,29 @@ function ouvrirFiche(produitId) {
   const prix = produitEnCours.prix_marche_indicatif;
   document.getElementById('fichePrix').textContent = prix ? prix.toFixed(2).replace('.',',') + ' €' : '—';
   document.getElementById('ficheUnite').textContent = '/ ' + produitEnCours.unite;
-  document.getElementById('ficheQty').textContent = '1';
+  document.getElementById('ficheQty').textContent = qteFiche;
   document.getElementById('ficheSaison').style.display = produitEnCours.saisonnier ? 'block' : 'none';
-  mettreAJourTotalFiche();
+
+  // Bascule UI : mode poids ou mode quantité
+  const modeQte    = document.getElementById('ficheModeQte');
+  const modePoids  = document.getElementById('ficheModePoids');
+  if (auPoids) {
+    modeQte.style.display    = 'none';
+    modePoids.style.display  = 'flex';
+    // Render presets
+    const btnsWrap = document.getElementById('fichePoidsBtns');
+    btnsWrap.innerHTML = POIDS_OPTIONS.map(opt =>
+      '<button type="button" data-kg="' + opt.kg + '" onclick="setPoidsFiche(' + opt.kg + ')" '
+      + 'style="background:white;color:var(--texte,#222);border:1.5px solid var(--creme-fonce,#e3dccd);'
+      + 'border-radius:50px;padding:8px 14px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;'
+      + '-webkit-tap-highlight-color:transparent;min-height:36px;">' + opt.label + '</button>'
+    ).join('');
+    setPoidsFiche(poidsKgFiche);
+  } else {
+    modeQte.style.display    = 'flex';
+    modePoids.style.display  = 'none';
+    mettreAJourTotalFiche();
+  }
 
   document.getElementById('ficheOverlay').classList.add('open');
   document.getElementById('ficheDrawer').classList.add('open');
@@ -1079,17 +1160,28 @@ function changerQteFiche(delta) {
 
 function mettreAJourTotalFiche() {
   if (!produitEnCours) return;
-  const total = (produitEnCours.prix_marche_indicatif || 0) * qteFiche;
+  const auPoids = estProduitAuPoids(produitEnCours);
+  const prixUnit = produitEnCours.prix_marche_indicatif || 0;
+  const total = auPoids ? prixUnit * poidsKgFiche : prixUnit * qteFiche;
   document.getElementById('ficheTotal').textContent = total.toFixed(2).replace('.',',') + ' €';
 }
 
 function ajouterDepuisFiche() {
   if (!produitEnCours) return;
-  
-  // Ajouter la bonne quantité d'un coup
+
+  const auPoids = estProduitAuPoids(produitEnCours);
   const idx = panier.findIndex(x => x.id === produitEnCours.id);
-  if (idx >= 0) panier[idx].qte += qteFiche;
-  else panier.push({ ...produitEnCours, qte: qteFiche });
+  const ligne = { ...produitEnCours };
+  if (auPoids) {
+    ligne.qte      = poidsKgFiche;       // qte = poids en kg pour le calcul
+    ligne.poids_kg = poidsKgFiche;       // poids exact pour affichage
+    ligne.au_poids = true;
+    if (idx >= 0) panier[idx] = { ...panier[idx], ...ligne };
+    else panier.push(ligne);
+  } else {
+    if (idx >= 0) panier[idx].qte += qteFiche;
+    else panier.push({ ...produitEnCours, qte: qteFiche });
+  }
   localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourPanier();
 
@@ -1109,11 +1201,15 @@ function ajouterDepuisFiche() {
 // ── PANIER ────────────────────────────────────────────
 function ajouterRapide(produitId) {
   const p = tousProduits.find(x => x.id === produitId);
-  if (p) {
-    ajouterAuPanier(p);
-    afficherConfirmation(p.nom, 1);
-    renderProduits(); // Re-render pour afficher le sélecteur de quantité
+  if (!p) return;
+  // Produits au kilo → ouvrir la fiche pour choisir 250g / 500g / 1kg / etc.
+  if (estProduitAuPoids(p)) {
+    ouvrirFiche(produitId);
+    return;
   }
+  ajouterAuPanier(p);
+  afficherConfirmation(p.nom, 1);
+  renderProduits(); // Re-render pour afficher le sélecteur de quantité
 }
 
 function modifierQteCatalogue(produitId, delta) {
@@ -1129,6 +1225,13 @@ function modifierQteCatalogue(produitId, delta) {
 }
 
 function ajouterAuPanier(produit) {
+  // Garde finale : produits au poids → ouvrir la fiche pour choisir le poids exact
+  if (produit && produit.poids_kg == null && estProduitAuPoids(produit)) {
+    if (typeof ouvrirFiche === 'function') {
+      ouvrirFiche(produit.id);
+      return;
+    }
+  }
   const idx = panier.findIndex(x => x.id === produit.id);
   if (idx >= 0) panier[idx].qte++;
   else panier.push({ ...produit, qte: 1 });
