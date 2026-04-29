@@ -744,6 +744,7 @@
     <a href="#exemples" class="nav-link">Exemples</a>
     <a href="#fonctionnement" class="nav-link">Comment ça marche</a>
     <a href="#tarifs" class="nav-link">Tarifs</a>
+    <a href="#faq" class="nav-link">FAQ</a>
   </div>
   <a href="#tarifs" class="nav-cta" role="button">Voir les offres</a>
   <a href="inscription.html" class="nav-mobile-cta" role="button" data-track="cta_inscription" data-track-meta=\'{"placement":"nav-mobile-cta"}\'>S'inscrire</a>
@@ -1249,6 +1250,116 @@ function afficherPlusDeSites() {
 </section>
 
 
+<!-- FAQ — lève les objections avant le pricing -->
+<section class="section section-center" id="faq" aria-labelledby="faq-title" style="background:var(--cream);">
+  <div class="container" style="max-width:760px;">
+    <p class="section-label reveal">Questions fréquentes</p>
+    <h2 id="faq-title" class="reveal reveal-delay-1">Tout ce qu'il faut savoir<br>avant de se lancer</h2>
+    <p class="section-sub reveal reveal-delay-2">Les réponses aux 8 questions qu'on nous pose le plus.</p>
+
+    <div class="faq-list reveal reveal-delay-3" style="text-align:left;">
+      <details class="faq-item">
+        <summary>Comment fonctionne la « garantie de réservation » (anti-absence client) ?</summary>
+        <div class="faq-answer">
+          Quand un client commande, sa carte est <strong>enregistrée comme garantie</strong> — comme à l'hôtel. <strong>Aucun débit immédiat</strong>. Si le client vient chercher sa commande, la garantie est libérée automatiquement 24 h après. Si le client ne vient pas sans prévenir, vous pouvez débiter 75 % du panier en 1 clic pour compenser les produits frais préparés.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Combien de temps pour mettre ma boutique en ligne ?</summary>
+        <div class="faq-answer">
+          <strong>Moins de 10 minutes.</strong> Vous choisissez votre métier, le nom de votre boutique, vos horaires et 2 photos. Le catalogue de votre métier est <strong>pré-rempli automatiquement</strong> (pommes pour primeur, entrecôte pour boucher, etc.). Vous ajustez les prix et vous êtes en ligne.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Combien ça coûte vraiment ?</summary>
+        <div class="faq-answer">
+          Frais d'installation unique entre <strong>249 € et 549 €</strong> selon votre offre, puis <strong>19 à 59 € par mois</strong> sans engagement. <strong>0 % de commission</strong> sur vos ventes — vous gardez 100 % du panier. Pas de frais cachés, pas d'augmentation surprise.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment est-ce que je récupère l'argent des ventes ?</summary>
+        <div class="faq-answer">
+          Les paiements vont <strong>directement sur votre compte bancaire</strong> via Stripe Connect (l'intégration prend 5 minutes avec votre RIB et une pièce d'identité). Marchéo ne touche jamais à votre argent, c'est Stripe qui le verse chaque semaine.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Et si mon métier n'est pas dans la liste ?</summary>
+        <div class="faq-answer">
+          Marchéo gère <strong>6 métiers : primeur, boucher, boulanger, poissonnier, fromager, traiteur</strong>. Vous pouvez aussi cocher des <strong>métiers complémentaires</strong> (ex : un primeur qui propose aussi du fromage). Si votre activité n'est pas listée, contactez-nous.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Suis-je engagé ? Puis-je arrêter quand je veux ?</summary>
+        <div class="faq-answer">
+          <strong>Aucun engagement.</strong> Vous arrêtez quand vous voulez depuis votre dashboard. Les frais d'installation ne sont pas remboursables, mais vous gardez l'accès à vos données.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Mes clients peuvent-ils payer en boutique au retrait ?</summary>
+        <div class="faq-answer">
+          Oui, <strong>recommandé pour les métiers au poids</strong> (boucher, primeur, poissonnier, fromager). La garantie de réservation enregistre la carte sans débit, vos clients viennent et règlent au comptoir avec le poids exact. Pour les produits à prix fixe (boulangerie, traiteur), le paiement en ligne est possible.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Mes données et celles de mes clients sont-elles protégées ?</summary>
+        <div class="faq-answer">
+          <strong>Conforme RGPD.</strong> Hébergement en Europe (Supabase EU-West), données bancaires <strong>jamais stockées</strong> chez nous (Stripe certifié PCI-DSS), aucune donnée revendue. Vous restez propriétaire de votre catalogue et de votre fichier client.
+        </div>
+      </details>
+    </div>
+
+    <div class="reveal reveal-delay-4" style="margin-top:36px;font-size:14px;color:var(--text-muted);">
+      Une autre question ? <a href="mailto:contact@marchéo.fr" style="color:var(--brand);font-weight:600;">contact@marchéo.fr</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all .2s;
+  }
+  .faq-item[open] { border-color: var(--brand); box-shadow: 0 4px 16px rgba(15,44,82,.06); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--brand-dark);
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    -webkit-tap-highlight-color: rgba(91,190,58,0.15);
+    min-height: 44px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 24px;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform .2s;
+    line-height: 1;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-answer {
+    padding: 0 22px 18px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+</style>
+
 <!-- PRICING -->
 <section class="section section-center" id="tarifs" aria-labelledby="tarifs-title">
   <div class="container">
@@ -1384,6 +1495,80 @@ function afficherPlusDeSites() {
   </nav>
   <p>© 2026 Marchéo · Click &amp; Collect pour artisans de proximité · 0% de commission</p>
 </footer>
+
+<!-- ── STICKY CTA MOBILE — visible après scroll, masqué sur desktop ── -->
+<div id="stickyCta" class="sticky-cta" aria-hidden="true">
+  <a href="inscription.html" data-track="cta_inscription" data-track-meta='{"placement":"sticky_mobile"}' class="sticky-cta-btn" role="button">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <span>Voir une démo gratuite</span>
+  </a>
+</div>
+
+<style>
+  /* Sticky CTA mobile uniquement, apparaît après scroll */
+  .sticky-cta {
+    position: fixed;
+    bottom: -80px; left: 0; right: 0;
+    z-index: 50;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(180deg, transparent 0%, rgba(247,242,232,0.95) 30%, rgba(247,242,232,1) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: bottom .3s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+    display: none;
+  }
+  .sticky-cta.visible {
+    bottom: 0;
+    pointer-events: auto;
+  }
+  .sticky-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--m-bleu-nuit);
+    color: var(--m-blanc);
+    padding: 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(15,44,82,.30);
+    min-height: 52px;
+  }
+  .sticky-cta-btn:active { transform: scale(0.97); }
+
+  /* Visible uniquement sur mobile + tablet */
+  @media (max-width: 900px) {
+    .sticky-cta { display: block; }
+  }
+</style>
+
+<script>
+  // Afficher le sticky CTA après que l'user a scrollé d'1 viewport
+  (function() {
+    const cta = document.getElementById('stickyCta');
+    if (!cta) return;
+    let visible = false;
+    function check() {
+      const scrolled = window.scrollY;
+      const vh = window.innerHeight;
+      const total = document.documentElement.scrollHeight;
+      // Visible entre 1×vh et avant le footer
+      const shouldShow = scrolled > vh * 0.6 && scrolled < (total - vh * 1.5);
+      if (shouldShow !== visible) {
+        visible = shouldShow;
+        cta.classList.toggle('visible', visible);
+        cta.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+  })();
+</script>
 
 <script>
   // Nav scroll shadow
