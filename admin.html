@@ -8,17 +8,18 @@
 <meta name="theme-color" content="#0f1a14">
 <title>Admin — Marchéo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #2d4a3e; --vert-fonce: #1a2e26; --or: #c9a84c;
-    --creme: #f5f0e8; --creme-fonce: #ede6d6;
-    --blanc: #ffffff; --texte: #1a2e26; --texte-doux: #5a7060;
-    --rouge: #e74c3c; --bleu: #2980b9; --orange: #e67e22;
-    --vert-ok: #27ae60;
+    /* Marchéo brand v2 — admin foncé */
+    --vert: #0F2C52; --vert-fonce: #0A1428; --or: #F4B942;
+    --creme: #F7F2E8; --creme-fonce: #E5E2D8;
+    --blanc: #ffffff; --texte: #0A1428; --texte-doux: #8492A6;
+    --rouge: #E65533; --bleu: #1B3F6E; --orange: #F4B942;
+    --vert-ok: #5BBE3A; --vert-clair: #5BBE3A;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'DM Sans',sans-serif; background:#0f1a14; color:white; min-height:100vh; }
+  body { font-family:'Inter','DM Sans',sans-serif; background:#080F1F; color:white; min-height:100vh; }
 
   /* LOGIN */
   .login-screen {
@@ -27,7 +28,7 @@
   }
 
   .login-card {
-    background:#1a2e26; border-radius:20px; padding:40px 32px;
+    background:#102441; border-radius:20px; padding:40px 32px;
     width:100%; max-width:380px; border:1px solid rgba(255,255,255,0.1);
   }
 
@@ -62,7 +63,7 @@
   /* SIDEBAR */
   .sidebar {
     position:fixed; left:0; top:0; bottom:0; width:220px;
-    background:#1a2e26; border-right:1px solid rgba(255,255,255,0.08);
+    background:#102441; border-right:1px solid rgba(255,255,255,0.08);
     padding:24px 0; z-index:200;
     overflow-y:auto;
   }
@@ -90,7 +91,7 @@
   }
 
   .nav-link:hover { background:rgba(255,255,255,0.05); color:white; }
-  .nav-link.actif { color:white; border-left-color:var(--or); background:rgba(201,168,76,0.1); }
+  .nav-link.actif { color:white; border-left-color:var(--or); background:rgba(244,185,66,0.1); }
   .nav-link-icon { font-size:18px; }
 
   .sidebar-footer {
@@ -121,7 +122,7 @@
   }
 
   .stat-card {
-    background:#1a2e26; border-radius:16px; padding:20px;
+    background:#102441; border-radius:16px; padding:20px;
     border:1px solid rgba(255,255,255,0.08);
   }
 
@@ -133,7 +134,7 @@
 
   /* TABLE COMMERCANTS */
   .table-card {
-    background:#1a2e26; border-radius:16px;
+    background:#102441; border-radius:16px;
     border:1px solid rgba(255,255,255,0.08); overflow:hidden;
     margin-bottom:20px;
   }
@@ -174,7 +175,7 @@
   .badge-actif { background:rgba(39,174,96,0.2); color:#27ae60; }
   .badge-inactif { background:rgba(231,76,60,0.2); color:#e74c3c; }
   .badge-starter { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); }
-  .badge-pro { background:rgba(201,168,76,0.2); color:var(--or); }
+  .badge-pro { background:rgba(244,185,66,0.2); color:var(--or); }
   .badge-premium { background:rgba(155,89,182,0.2); color:#9b59b6; }
 
   .action-btn {
@@ -192,7 +193,7 @@
   }
 
   .mrr-card {
-    background:#1a2e26; border-radius:16px; padding:20px;
+    background:#102441; border-radius:16px; padding:20px;
     border:1px solid rgba(255,255,255,0.08);
   }
 
@@ -211,7 +212,7 @@
   }
 
   .produit-admin-card {
-    background:#1a2e26; border-radius:12px; overflow:hidden;
+    background:#102441; border-radius:12px; overflow:hidden;
     border:1px solid rgba(255,255,255,0.08);
   }
 
@@ -248,7 +249,7 @@
   .mobile-header {
     display:none;
     position:sticky; top:0; z-index:200;
-    background:#1a2e26; padding:12px 16px;
+    background:#102441; padding:12px 16px;
     border-bottom:1px solid rgba(255,255,255,0.08);
     align-items:center; justify-content:space-between;
   }
@@ -419,7 +420,7 @@
   }
   .modal-edit-overlay.open { display:flex; }
   .modal-edit-card {
-    background:#1a2e26; border-radius:18px; padding:24px;
+    background:#102441; border-radius:18px; padding:24px;
     width:100%; max-width:420px;
     border:1px solid rgba(255,255,255,0.1);
     max-height:90vh; overflow-y:auto;

@@ -5,8 +5,8 @@
   "start_url": "/app-commercant.html",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#1a2e26",
-  "theme_color": "#1a2e26",
+  "background_color": "#0F2C52",
+  "theme_color": "#0F2C52",
   "orientation": "portrait",
   "lang": "fr",
   "icons": [

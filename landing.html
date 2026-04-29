@@ -10,30 +10,33 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brand: #1C3D2E;
-      --brand-dark: #122A1F;
-      --brand-light: #2A5442;
-      --gold: #C9A54B;
-      --gold-light: #F0D690;
-      --cream: #FAF7F0;
-      --cream-dark: #F0EAD8;
-      --text: #1A1A1A;
-      --text-muted: #5C6B63;
-      --white: #FFFFFF;
+      /* ── Marchéo brand v2 — Bleu Nuit & Vert Frais ── */
+      --brand:        #0F2C52;   /* Bleu Nuit — primary, ancrage */
+      --brand-dark:   #0A1428;   /* Encre — texte courant */
+      --brand-light:  #1B3F6E;   /* variante hover/clair du bleu */
+      --gold:         #5BBE3A;   /* Vert Frais — secondary, action */
+      --gold-light:   #DDF3D2;   /* Vert 100 — surfaces vert pâle */
+      --cream:        #F7F2E8;   /* Crème — fond chaleureux */
+      --cream-dark:   #E5E2D8;   /* Ligne — bordures */
+      --text:         #0A1428;   /* Encre */
+      --text-muted:   #5A6478;   /* gris bleuté */
+      --white:        #FFFFFF;
+      --accent-soleil: #F4B942;  /* highlight, badge promo, étoile */
+      --accent-tomate: #E65533;  /* alerte, urgence */
       --radius: 16px;
-      --shadow: 0 4px 24px rgba(0,0,0,.08);
-      --shadow-lg: 0 8px 48px rgba(0,0,0,.12);
+      --shadow: 0 4px 24px rgba(15,44,82,.08);
+      --shadow-lg: 0 8px 48px rgba(15,44,82,.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       color: var(--text);
@@ -41,7 +44,7 @@
       overflow-x: hidden;
     }
 
-    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; }
+    h1,h2,h3 { font-family: 'Manrope', 'Playfair Display', Georgia, serif; line-height: 1.2; letter-spacing: -0.01em; }
 
     a { color: inherit; text-decoration: none; }
 
@@ -656,9 +659,9 @@
 
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
-  <div class="nav-logo" aria-label="Marchéo">
+  <div class="nav-logo" aria-label="Marchéo.fr">
     <div class="nav-logo-dot" aria-hidden="true"></div>
-    Marchéo
+    Marchéo<span style="color:var(--gold);font-weight:800;">.fr</span>
   </div>
   <div class="nav-links">
     <a href="#metiers" class="nav-link">Métiers</a>
