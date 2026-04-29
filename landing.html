@@ -217,6 +217,24 @@
     .hero-stat-num { font-family: 'Manrope', system-ui, sans-serif; font-size: 32px; font-weight: 700; color: var(--brand); }
     .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
+    /* ── TRUST BADGES ──────────────────────── */
+    .trust-badges {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-top: 28px;
+    }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 12px; border-radius: 50px;
+      background: rgba(91,190,58,0.08);
+      border: 1px solid rgba(91,190,58,0.2);
+      color: var(--brand-dark); font-size: 12px; font-weight: 600;
+      white-space: nowrap;
+    }
+    .trust-badge svg { color: var(--gold); }
+    @media (max-width: 480px) {
+      .trust-badge { font-size: 11px; padding: 5px 10px; }
+    }
+
     /* ── METIERS ────────────────────────────────────────── */
     .section { padding: 96px 24px; }
     .section-center { text-align: center; }
@@ -775,17 +793,36 @@
     </p>
     <div class="hero-stats reveal reveal-delay-4">
       <div class="hero-stat">
-        <div class="hero-stat-num">75%</div>
-        <div class="hero-stat-label">Couverture anti no-show</div>
+        <div class="hero-stat-num" id="statBoutiquesActives">—</div>
+        <div class="hero-stat-label">Boutiques en ligne</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">5 min</div>
-        <div class="hero-stat-label">Pour créer votre boutique</div>
+        <div class="hero-stat-label">Pour créer la vôtre</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">0€</div>
-        <div class="hero-stat-label">Pour démarrer</div>
+        <div class="hero-stat-num">0%</div>
+        <div class="hero-stat-label">de commission</div>
       </div>
+    </div>
+
+    <!-- Badges de confiance -->
+    <div class="trust-badges reveal reveal-delay-4">
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z"/></svg>
+        Conforme RGPD
+      </span>
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><line x1="2" y1="11" x2="22" y2="11"/></svg>
+        Paiements Stripe
+      </span>
+      <span class="trust-badge">
+        🇫🇷 Hébergé en France
+      </span>
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Support humain inclus
+      </span>
     </div>
   </div>
 </section>
@@ -1599,6 +1636,31 @@ function afficherPlusDeSites() {
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // ── Compteur live de boutiques actives (avec animation) ──
+  (function() {
+    var SB_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+    var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+    var statEl = document.getElementById('statBoutiquesActives');
+    if (!statEl) return;
+    fetch(SB_URL + '/rest/v1/commercants?actif=eq.true&select=id', {
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' }
+    }).then(function(r) {
+      var range = r.headers.get('content-range') || '';
+      var total = parseInt(range.split('/')[1]) || 0;
+      // Animation incrémentale
+      var duration = 1200, start = performance.now(), from = 0;
+      function tick(t) {
+        var p = Math.min(1, (t - start) / duration);
+        var eased = 1 - Math.pow(1 - p, 3);
+        statEl.textContent = Math.round(from + (total - from) * eased).toString();
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }).catch(function() {
+      statEl.textContent = '6+';
+    });
+  })();
 </script>
 </body>
 </html>
