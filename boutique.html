@@ -2278,17 +2278,21 @@ function injecterSEOBoutique(b, nom, labelMetier, heroInfo) {
     m.setAttribute(attr, value);
   };
 
+  // OG image dynamique : photo boutique en priorité, sinon image générée /api/og?slug=xxx
+  const slug = (window.__CONFIG__?.slug) || (location.pathname.split('/').filter(Boolean)[0]) || '';
+  const ogImage = photo || (location.protocol + '//' + location.host + '/api/og?slug=' + encodeURIComponent(slug));
+
   setMeta('meta[name="description"]', 'content', description.slice(0, 160));
   setMeta('meta[property="og:title"]', 'content', nom + ' · ' + labelMetier);
   setMeta('meta[property="og:description"]', 'content', description.slice(0, 200));
-  setMeta('meta[property="og:image"]', 'content', photo);
+  setMeta('meta[property="og:image"]', 'content', ogImage);
   setMeta('meta[property="og:url"]', 'content', url);
   setMeta('meta[property="og:type"]', 'content', 'website');
   setMeta('meta[property="og:site_name"]', 'content', 'Marchéo');
   setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
   setMeta('meta[name="twitter:title"]', 'content', nom);
   setMeta('meta[name="twitter:description"]', 'content', description.slice(0, 200));
-  setMeta('meta[name="twitter:image"]', 'content', photo);
+  setMeta('meta[name="twitter:image"]', 'content', ogImage);
 
   // Schema.org JSON-LD : LocalBusiness avec horaires + adresse + tel
   const horaires = b.horaires || {};
