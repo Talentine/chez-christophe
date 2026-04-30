@@ -2569,5 +2569,384 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
 </script>
+
+<!-- ============================================================
+     MODE DÉMO + CHOIX D'OFFRE — Active sur boutique non payée
+     Déclencheur : commercants.abonnement_actif = false
+     ============================================================ -->
+<style>
+body.mode-demo { padding-top: 56px; }
+@media(max-width:540px){ body.mode-demo { padding-top: 64px; } }
+
+#m-demo-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #0F2C52 0%, #1B3F6E 100%);
+  color: #fff;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 13px; font-weight: 600;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  padding-top: calc(10px + env(safe-area-inset-top));
+}
+#m-demo-banner .m-demo-text { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+#m-demo-banner .m-demo-pin { font-size: 16px; flex-shrink: 0; }
+#m-demo-banner .m-demo-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#m-demo-banner .m-demo-label small { display: block; opacity: .7; font-weight: 500; font-size: 11px; }
+#m-demo-banner button.m-demo-cta {
+  background: #5BBE3A; color: #fff; border: none;
+  border-radius: 50px; padding: 8px 14px;
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 36px;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 2px 8px rgba(91,190,58,.4);
+}
+#m-demo-banner button.m-demo-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(91,190,58,.5); }
+#m-demo-banner button.m-demo-cta:active { transform: scale(.97); }
+@media(max-width:540px){
+  #m-demo-banner { font-size: 12px; padding: 8px 12px; }
+  #m-demo-banner .m-demo-label small { display: none; }
+  #m-demo-banner button.m-demo-cta { padding: 7px 12px; font-size: 12px; }
+}
+
+/* Watermark DÉMO en filigrane sur les images de produits */
+body.mode-demo .produit-img::after,
+body.mode-demo .rayon-img::after {
+  content: 'DÉMO';
+  position: absolute; top: 8px; left: 8px;
+  background: rgba(15,44,82,.85); color: #F4B942;
+  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 10px;
+  padding: 3px 8px; border-radius: 4px;
+  letter-spacing: 1px;
+  z-index: 5;
+  pointer-events: none;
+}
+body.mode-demo .produit-img,
+body.mode-demo .rayon-img { position: relative; }
+
+/* Boutons "Ajouter au panier" désactivés en démo */
+body.mode-demo .btn-add,
+body.mode-demo .btn-ajouter,
+body.mode-demo .btn-ajouter-panier,
+body.mode-demo #btnAjouterFicheAccueil {
+  pointer-events: none !important;
+  opacity: .5 !important;
+  cursor: not-allowed !important;
+}
+body.mode-demo #cartBtn,
+body.mode-demo #btn-panier { display: none !important; }
+
+/* Modal Choix d'offre */
+#m-offre-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(15,44,82,.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 16px; padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  animation: mOffreFade .25s ease;
+}
+@keyframes mOffreFade { from{opacity:0} to{opacity:1} }
+#m-offre-modal.open { display: flex; }
+.m-offre-card-wrap {
+  background: #F7F2E8; border-radius: 24px;
+  padding: 24px; max-width: 1000px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  animation: mOffreSlide .35s cubic-bezier(.4,0,.2,1);
+}
+@keyframes mOffreSlide { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
+.m-offre-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.m-offre-title { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; color: #0F2C52; line-height: 1.2; }
+.m-offre-sub { font-size: 13.5px; color: #6B7785; margin-top: 4px; }
+.m-offre-close {
+  background: rgba(15,44,82,.08); border: none; border-radius: 50%;
+  width: 36px; height: 36px; flex-shrink: 0;
+  cursor: pointer; font-size: 18px; color: #0F2C52;
+  -webkit-tap-highlight-color: transparent;
+}
+.m-offre-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.m-offre-item {
+  background: #fff; border-radius: 18px; padding: 22px 20px;
+  border: 2px solid #EEE6D7; cursor: pointer;
+  transition: all .2s; display: flex; flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+}
+.m-offre-item:hover { border-color: #5BBE3A; transform: translateY(-3px); box-shadow: 0 12px 24px rgba(15,44,82,.1); }
+.m-offre-item.popular {
+  background: #0F2C52; color: #fff; border-color: #0F2C52;
+  box-shadow: 0 12px 32px rgba(15,44,82,.18);
+}
+.m-offre-item.popular .m-offre-name,
+.m-offre-item.popular .m-offre-headline,
+.m-offre-item.popular .m-offre-amount,
+.m-offre-item.popular .m-offre-monthly { color: #fff; }
+.m-offre-badge {
+  display: inline-block; background: #F4B942; color: #0F2C52;
+  font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 50px;
+  margin-bottom: 10px; letter-spacing: .8px;
+}
+.m-offre-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .12em; color: #6B7785; margin-bottom: 6px;
+}
+.m-offre-headline {
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px;
+  color: #0F2C52; margin-bottom: 14px; line-height: 1.25;
+}
+.m-offre-pricebox {
+  background: #F7F2E8; border-radius: 12px; padding: 14px;
+  margin-bottom: 16px;
+}
+.m-offre-item.popular .m-offre-pricebox { background: rgba(255,255,255,.1); }
+.m-offre-amount-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: #6B7785; margin-bottom: 2px;
+}
+.m-offre-item.popular .m-offre-amount-label { color: rgba(255,255,255,.6); }
+.m-offre-amount {
+  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 32px;
+  color: #0F2C52; line-height: 1;
+}
+.m-offre-amount-note { font-size: 11px; color: #6B7785; margin-top: 2px; }
+.m-offre-item.popular .m-offre-amount-note { color: rgba(255,255,255,.6); }
+.m-offre-divider { height: 1px; background: rgba(15,44,82,.1); margin: 10px 0; }
+.m-offre-item.popular .m-offre-divider { background: rgba(255,255,255,.15); }
+.m-offre-monthly { font-size: 13px; color: #0F2C52; }
+.m-offre-monthly strong { font-size: 18px; font-weight: 800; }
+.m-offre-features {
+  list-style: none; padding: 0; margin: 0 0 18px;
+  display: flex; flex-direction: column; gap: 7px;
+  font-size: 12.5px; line-height: 1.4; flex: 1;
+}
+.m-offre-features li::before {
+  content: '✓'; color: #5BBE3A; font-weight: 800; margin-right: 6px;
+}
+.m-offre-item.popular .m-offre-features li::before { color: #F4B942; }
+.m-offre-cta {
+  width: 100%; padding: 12px; border: none; border-radius: 50px;
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px;
+  cursor: pointer; min-height: 44px;
+  background: #5BBE3A; color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .15s;
+}
+.m-offre-cta:active { transform: scale(.97); }
+.m-offre-item.popular .m-offre-cta { background: #F4B942; color: #0F2C52; }
+.m-offre-foot {
+  text-align: center; font-size: 12px; color: #6B7785; margin-top: 16px;
+}
+</style>
+
+<div id="m-demo-banner" hidden>
+  <div class="m-demo-text">
+    <span class="m-demo-pin">📌</span>
+    <div class="m-demo-label">
+      <strong>Mode démo</strong>
+      <small>Cette boutique n'est pas encore active</small>
+    </div>
+  </div>
+  <button class="m-demo-cta" onclick="ouvrirChoixOffre()">
+    Choisir mon offre
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<div id="m-offre-modal" role="dialog" aria-labelledby="mOffreTitle" aria-modal="true">
+  <div class="m-offre-card-wrap">
+    <div class="m-offre-head">
+      <div>
+        <div class="m-offre-title" id="mOffreTitle">Active ta boutique 🚀</div>
+        <div class="m-offre-sub">Choisis l'offre adaptée à ton commerce. Sans engagement.</div>
+      </div>
+      <button class="m-offre-close" onclick="fermerChoixOffre()" aria-label="Fermer">✕</button>
+    </div>
+
+    <div class="m-offre-grid">
+      <!-- VITRINE -->
+      <div class="m-offre-item" onclick="choisirOffre('vitrine')">
+        <div class="m-offre-name">Offre 1</div>
+        <div class="m-offre-headline">Vitrine</div>
+        <div class="m-offre-pricebox">
+          <div class="m-offre-amount-label">Frais d'installation</div>
+          <div class="m-offre-amount">249€</div>
+          <div class="m-offre-amount-note">paiement unique</div>
+          <div class="m-offre-divider"></div>
+          <div class="m-offre-monthly"><strong>19€</strong> /mois · sans engagement</div>
+        </div>
+        <ul class="m-offre-features">
+          <li>Page boutique personnalisée</li>
+          <li>Galerie photos &amp; histoire</li>
+          <li>Horaires &amp; contact</li>
+          <li>QR code imprimable</li>
+          <li>SEO local Google</li>
+        </ul>
+        <button class="m-offre-cta">Choisir Vitrine</button>
+      </div>
+
+      <!-- CLICK & COLLECT (POPULAR) -->
+      <div class="m-offre-item popular" onclick="choisirOffre('clickcollect')">
+        <div class="m-offre-badge">★ Le plus populaire</div>
+        <div class="m-offre-name">Offre 2</div>
+        <div class="m-offre-headline">Click &amp; Collect</div>
+        <div class="m-offre-pricebox">
+          <div class="m-offre-amount-label">Frais d'installation</div>
+          <div class="m-offre-amount">399€</div>
+          <div class="m-offre-amount-note">paiement unique</div>
+          <div class="m-offre-divider"></div>
+          <div class="m-offre-monthly"><strong>39€</strong> /mois · sans engagement</div>
+        </div>
+        <ul class="m-offre-features">
+          <li>Tout l'offre Vitrine</li>
+          <li>Catalogue produits illimité + base fournie</li>
+          <li>Commandes en ligne (retrait boutique)</li>
+          <li>Empreinte bancaire anti no-show 75%</li>
+          <li>Notifications SMS &amp; email</li>
+          <li>Assistance e-mail incluse</li>
+          <li><strong>0% de commission</strong></li>
+        </ul>
+        <button class="m-offre-cta">Choisir Click &amp; Collect</button>
+      </div>
+
+      <!-- LIVRAISON -->
+      <div class="m-offre-item" onclick="choisirOffre('livraison')">
+        <div class="m-offre-name">Offre 3</div>
+        <div class="m-offre-headline">Click &amp; Collect<br>+ Livraison</div>
+        <div class="m-offre-pricebox">
+          <div class="m-offre-amount-label">Frais d'installation</div>
+          <div class="m-offre-amount">549€</div>
+          <div class="m-offre-amount-note">paiement unique</div>
+          <div class="m-offre-divider"></div>
+          <div class="m-offre-monthly"><strong>59€</strong> /mois · sans engagement</div>
+        </div>
+        <ul class="m-offre-features">
+          <li>Tout l'offre Click &amp; Collect</li>
+          <li>Livraison à domicile dans votre zone</li>
+          <li>Zone &amp; frais paramétrables</li>
+          <li>Créneaux livraison séparés</li>
+          <li>Assistance prioritaire VIP &lt; 2h</li>
+          <li><strong>0% de commission</strong></li>
+        </ul>
+        <button class="m-offre-cta">Choisir Livraison</button>
+      </div>
+    </div>
+
+    <p class="m-offre-foot">
+      💳 Paiement sécurisé via Stripe · Sans engagement · Résiliation à tout moment
+    </p>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ── Helper : extraire l'état abonnement_actif depuis __CONFIG__
+  function isAbonnementActif() {
+    var b = (window.__CONFIG__ && window.__CONFIG__.business) || null;
+    return b ? b.abonnement_actif === true : true; // si pas chargé → on n'active pas la démo
+  }
+
+  // ── Activer le mode démo : banner + masquage textes + désactivation panier
+  function activerModeDemo() {
+    if (document.body.classList.contains('mode-demo')) return;
+    document.body.classList.add('mode-demo');
+    var banner = document.getElementById('m-demo-banner');
+    if (banner) banner.hidden = false;
+    masquerTextesProduits();
+
+    // Observer les nouveaux éléments ajoutés dynamiquement (chargement asynchrone des produits)
+    var obs = new MutationObserver(function() { masquerTextesProduits(); });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // ── Remplace les textes des produits par "demo" (sauf nom_boutique)
+  function masquerTextesProduits() {
+    // Noms de produits, descriptions, catégories de produits → "demo"
+    document.querySelectorAll('.produit-nom:not([data-demo-done])').forEach(function(el) {
+      el.textContent = 'Demo produit';
+      el.dataset.demoDone = '1';
+    });
+    document.querySelectorAll('.produit-provenance:not([data-demo-done]), .produit-desc:not([data-demo-done]), .panier-nom:not([data-demo-done]), .panier-desc:not([data-demo-done])').forEach(function(el) {
+      el.textContent = 'demo';
+      el.dataset.demoDone = '1';
+    });
+    // Description de la boutique / notre histoire (si visible sur boutique.html) → demo
+    document.querySelectorAll('.boutique-desc:not([data-demo-done]), [data-demo-text]:not([data-demo-done])').forEach(function(el) {
+      el.textContent = 'demo';
+      el.dataset.demoDone = '1';
+    });
+  }
+
+  // ── Listener de l'événement business:ready déclenché par config.js
+  document.addEventListener('business:ready', function(e) {
+    var b = (e.detail && e.detail.business) || {};
+    if (b.abonnement_actif !== true) activerModeDemo();
+  });
+
+  // ── Fallback : si __CONFIG__ déjà défini au moment de l'exécution
+  setTimeout(function() {
+    if (!isAbonnementActif() && !document.body.classList.contains('mode-demo')) {
+      activerModeDemo();
+    }
+  }, 1500);
+
+  // ── API publique : modal de choix d'offre
+  window.ouvrirChoixOffre = function() {
+    var m = document.getElementById('m-offre-modal');
+    if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  };
+  window.fermerChoixOffre = function() {
+    var m = document.getElementById('m-offre-modal');
+    if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+  };
+  // Clic sur backdrop → fermer
+  document.getElementById('m-offre-modal').addEventListener('click', function(e) {
+    if (e.target === this) fermerChoixOffre();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') fermerChoixOffre();
+  });
+
+  // ── Choix de l'offre → Stripe Checkout (Phase 3)
+  window.choisirOffre = function(offre) {
+    var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    if (!b.id) {
+      alert('Erreur : impossible de retrouver ton compte boutique. Reconnecte-toi.');
+      return;
+    }
+    // Désactiver les boutons pendant le chargement
+    document.querySelectorAll('.m-offre-cta').forEach(function(btn) { btn.disabled = true; btn.textContent = 'Préparation du paiement…'; });
+
+    // Appel à l'edge function stripe-setup-fee
+    fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-setup-fee', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        commercant_id: b.id,
+        offre: offre,
+        return_url: location.origin + '/' + (b.slug || '') + '?paiement=success',
+        cancel_url: location.href
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.url) {
+        location.href = data.url; // Redirection vers Stripe Checkout
+      } else {
+        throw new Error(data.error || 'Erreur création paiement');
+      }
+    })
+    .catch(function(err) {
+      console.error('Erreur Stripe:', err);
+      alert('⚠️ Le système de paiement n\'est pas encore activé. Contacte-nous : contact@marchéo.fr');
+      document.querySelectorAll('.m-offre-cta').forEach(function(btn, i) {
+        btn.disabled = false;
+        btn.textContent = ['Choisir Vitrine','Choisir Click & Collect','Choisir Livraison'][i];
+      });
+    });
+  };
+})();
+</script>
 </body>
 </html>
