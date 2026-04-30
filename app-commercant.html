@@ -5152,6 +5152,14 @@ function appliquerRestrictionsRole(role) {
         </div>
         <div class="m-onb-arrow" aria-hidden="true">›</div>
       </div>
+      <div class="m-onb-step" data-step="install" onclick="onboardingGo('install')">
+        <div class="m-onb-check" aria-hidden="true"></div>
+        <div class="m-onb-body">
+          <div class="m-onb-step-title">🔔 Installer le dashboard + notifications</div>
+          <div class="m-onb-step-desc">Sur ton écran d'accueil, comme une appli, et sois alerté à chaque commande</div>
+        </div>
+        <div class="m-onb-arrow" aria-hidden="true">›</div>
+      </div>
     </div>
     <div id="mOnbDone" style="display:none" class="m-onb-celebrate">
       <div class="m-onb-emoji">🎊</div>
@@ -5165,7 +5173,7 @@ function appliquerRestrictionsRole(role) {
 <script>
 (function(){
   var KEY='marcheo_onboarding_v1';
-  var STEPS=['produit','creneau','banniere','partage'];
+  var STEPS=['produit','creneau','banniere','partage','install'];
 
   function getState(){
     try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}
@@ -5220,10 +5228,139 @@ function appliquerRestrictionsRole(role) {
             var el=document.getElementById('qrcodeWrap');
             if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
           },300);
+        } else if(step==='install'){
+          ouvrirInstallPwa();
         }
       }catch(e){}
     },220);
   };
+
+  // ── Étape 5 : Installer comme PWA + activer les notifications push
+  // Détecte iOS / Android / Desktop et propose la méthode adaptée
+  var deferredPwaPrompt=null;
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPwaPrompt=e;});
+
+  function ouvrirInstallPwa(){
+    var ua=navigator.userAgent;
+    var isIOS=/iPad|iPhone|iPod/i.test(ua) && !window.MSStream;
+    var isAndroid=/Android/i.test(ua);
+    var isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+
+    var d=document.createElement('div');
+    d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(15,44,82,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;animation:mOnbFade .25s ease';
+    var content;
+
+    if(isStandalone){
+      content='<div style="font-size:54px;margin-bottom:8px">✅</div>'
+        +'<h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0F2C52;margin:0 0 6px">Déjà installé !</h3>'
+        +'<p style="font-size:13.5px;color:#6B7785;margin:0 0 18px">Marchéo est déjà sur ton écran d\'accueil.</p>'
+        +'<button onclick="activerNotifications()" style="background:#5BBE3A;color:#fff;border:none;border-radius:50px;padding:12px 22px;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;width:100%">🔔 Activer les notifications</button>';
+    } else if(isIOS){
+      content='<div style="font-size:54px;margin-bottom:8px">📲</div>'
+        +'<h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0F2C52;margin:0 0 12px">Installer sur iPhone / iPad</h3>'
+        +'<ol style="text-align:left;font-size:13.5px;color:#0F2C52;line-height:1.7;padding-left:22px;margin:0 0 18px">'
+        +'<li>Appuie sur l\'icône <strong>Partager</strong> en bas de Safari (carré avec flèche ↑)</li>'
+        +'<li>Fais défiler et choisis <strong>"Sur l\'écran d\'accueil"</strong></li>'
+        +'<li>Appuie sur <strong>Ajouter</strong> en haut à droite</li>'
+        +'</ol>'
+        +'<p style="font-size:12px;color:#6B7785;margin:0 0 14px;background:#F7F2E8;padding:10px;border-radius:10px">⚠️ iOS n\'autorise les notifications push qu\'après installation sur l\'écran d\'accueil. Une fois installé, ouvre l\'app et active les notifications.</p>';
+    } else if(isAndroid){
+      content='<div style="font-size:54px;margin-bottom:8px">📲</div>'
+        +'<h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0F2C52;margin:0 0 12px">Installer sur Android</h3>'
+        +(deferredPwaPrompt?'<button onclick="installPwaNow()" style="background:#5BBE3A;color:#fff;border:none;border-radius:50px;padding:14px;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;width:100%;margin-bottom:14px">📥 Installer Marchéo maintenant</button>'
+        :'<ol style="text-align:left;font-size:13.5px;color:#0F2C52;line-height:1.7;padding-left:22px;margin:0 0 14px"><li>Ouvre le menu Chrome (⋮ en haut à droite)</li><li>Choisis <strong>"Ajouter à l\'écran d\'accueil"</strong> ou <strong>"Installer l\'application"</strong></li><li>Confirme l\'installation</li></ol>')
+        +'<button onclick="activerNotifications()" style="background:#0F2C52;color:#fff;border:none;border-radius:50px;padding:12px;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;width:100%">🔔 Activer les notifications</button>';
+    } else {
+      content='<div style="font-size:54px;margin-bottom:8px">💻</div>'
+        +'<h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0F2C52;margin:0 0 12px">Installer sur Desktop</h3>'
+        +(deferredPwaPrompt?'<button onclick="installPwaNow()" style="background:#5BBE3A;color:#fff;border:none;border-radius:50px;padding:14px;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;width:100%;margin-bottom:14px">📥 Installer Marchéo</button>'
+        :'<p style="font-size:13.5px;color:#0F2C52;margin:0 0 14px">Clique sur l\'icône d\'installation dans la barre d\'adresse de ton navigateur (Chrome, Edge, Brave) — généralement à droite de l\'URL.</p>')
+        +'<button onclick="activerNotifications()" style="background:#0F2C52;color:#fff;border:none;border-radius:50px;padding:12px;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;width:100%">🔔 Activer les notifications</button>';
+    }
+
+    d.innerHTML='<div style="background:#fff;border-radius:24px;max-width:420px;width:100%;padding:28px 24px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative">'
+      +'<button onclick="this.closest(\'.m-pwa-modal\').remove()" style="position:absolute;top:12px;right:12px;background:rgba(15,44,82,.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;color:#0F2C52">✕</button>'
+      +content+'</div>';
+    d.className='m-pwa-modal';
+    d.addEventListener('click',function(e){if(e.target===this)this.remove();});
+    document.body.appendChild(d);
+  }
+
+  window.installPwaNow=function(){
+    if(!deferredPwaPrompt) return;
+    deferredPwaPrompt.prompt();
+    deferredPwaPrompt.userChoice.then(function(choice){
+      deferredPwaPrompt=null;
+      if(choice.outcome==='accepted'){
+        var modal=document.querySelector('.m-pwa-modal');
+        if(modal) modal.remove();
+        setTimeout(activerNotifications,800);
+      }
+    });
+  };
+
+  window.activerNotifications=function(){
+    if(!('Notification' in window)){
+      alert('Ton navigateur ne supporte pas les notifications.');
+      return;
+    }
+    if(Notification.permission==='granted'){
+      alert('✅ Notifications déjà activées !');
+      var modal=document.querySelector('.m-pwa-modal');
+      if(modal) modal.remove();
+      return;
+    }
+    Notification.requestPermission().then(function(perm){
+      if(perm==='granted'){
+        // Souscription push si Service Worker dispo
+        if('serviceWorker' in navigator && 'PushManager' in window){
+          navigator.serviceWorker.ready.then(function(reg){
+            return reg.pushManager.getSubscription().then(function(sub){
+              if(sub) return sub;
+              // Si tu as une VAPID public key configurée, on l'utilise pour souscrire
+              var vapidKey=window.MARCHEO_VAPID_PUBLIC_KEY;
+              if(!vapidKey) return null;
+              return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(vapidKey)});
+            });
+          }).then(function(sub){
+            if(sub){
+              // POST vers ta function send-push pour stocker la subscription
+              try{
+                var s=JSON.parse(localStorage.getItem('session_commercant')||'{}');
+                fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/push_subscriptions',{
+                  method:'POST',
+                  headers:{
+                    'Content-Type':'application/json',
+                    'apikey':SUPABASE_KEY,
+                    'Authorization':'Bearer '+SUPABASE_KEY,
+                    'Prefer':'return=minimal'
+                  },
+                  body:JSON.stringify({commercant_id:s.id,subscription:sub})
+                });
+              }catch(e){}
+            }
+            // Test notif
+            new Notification('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.',icon:'/icon-192.png'});
+          });
+        } else {
+          new Notification('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.'});
+        }
+        var modal=document.querySelector('.m-pwa-modal');
+        if(modal) modal.remove();
+      } else {
+        alert('⚠️ Notifications refusées. Tu peux les réactiver depuis les paramètres de ton navigateur.');
+      }
+    });
+  };
+
+  function urlBase64ToUint8Array(base64String){
+    var padding='='.repeat((4-base64String.length%4)%4);
+    var base64=(base64String+padding).replace(/-/g,'+').replace(/_/g,'/');
+    var raw=window.atob(base64);
+    var out=new Uint8Array(raw.length);
+    for(var i=0;i<raw.length;++i) out[i]=raw.charCodeAt(i);
+    return out;
+  }
 
   window.onboardingClose=function(){
     var ov=document.getElementById('mOnboarding');
