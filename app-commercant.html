@@ -5323,20 +5323,25 @@ function appliquerRestrictionsRole(role) {
             });
           }).then(function(sub){
             if(sub){
-              // POST vers ta function send-push pour stocker la subscription
               try{
                 var s=JSON.parse(localStorage.getItem('session_commercant')||'{}');
-                fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/push_subscriptions',{
+                var subJson=sub.toJSON();
+                fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/push_subscriptions?on_conflict=endpoint',{
                   method:'POST',
                   headers:{
                     'Content-Type':'application/json',
                     'apikey':SUPABASE_KEY,
                     'Authorization':'Bearer '+SUPABASE_KEY,
-                    'Prefer':'return=minimal'
+                    'Prefer':'resolution=merge-duplicates,return=minimal'
                   },
-                  body:JSON.stringify({commercant_id:s.id,subscription:sub})
+                  body:JSON.stringify({
+                    commercant_id:s.id,
+                    endpoint:subJson.endpoint,
+                    p256dh:subJson.keys.p256dh,
+                    auth:subJson.keys.auth
+                  })
                 });
-              }catch(e){}
+              }catch(e){console.warn('Push sub save failed:',e);}
             }
             // Test notif
             new Notification('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.',icon:'/icon-192.png'});
