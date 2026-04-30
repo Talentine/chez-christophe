@@ -2853,7 +2853,8 @@ body.mode-demo #btn-panier { display: none !important; }
       var s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
       var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
       if (!b.id) return false;
-      return s && (s.id === b.id || (s.slug && s.slug === b.slug));
+      var sessionCid = s.commercant_id || s.id;
+      return s && (sessionCid === b.id || (s.slug && s.slug === b.slug));
     } catch (e) { return false; }
   }
 

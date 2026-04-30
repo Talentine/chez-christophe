@@ -5325,6 +5325,8 @@ function appliquerRestrictionsRole(role) {
             if(sub){
               try{
                 var s=JSON.parse(localStorage.getItem('session_commercant')||'{}');
+                var commercantId=s.commercant_id||s.id;
+                if(!commercantId){console.warn('Push: pas de commercant_id en session');return;}
                 var subJson=sub.toJSON();
                 fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/rest/v1/push_subscriptions?on_conflict=endpoint',{
                   method:'POST',
@@ -5335,12 +5337,13 @@ function appliquerRestrictionsRole(role) {
                     'Prefer':'resolution=merge-duplicates,return=minimal'
                   },
                   body:JSON.stringify({
-                    commercant_id:s.id,
+                    commercant_id:commercantId,
                     endpoint:subJson.endpoint,
                     p256dh:subJson.keys.p256dh,
                     auth:subJson.keys.auth
                   })
-                });
+                }).then(function(r){console.log('Push sub saved:',r.status);})
+                  .catch(function(e){console.warn('Push sub save failed:',e);});
               }catch(e){console.warn('Push sub save failed:',e);}
             }
             // Test notif
