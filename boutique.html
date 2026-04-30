@@ -2918,10 +2918,19 @@ body.mode-demo #btn-panier { display: none !important; }
     // Désactiver les boutons pendant le chargement
     document.querySelectorAll('.m-offre-cta').forEach(function(btn) { btn.disabled = true; btn.textContent = 'Préparation du paiement…'; });
 
+    // Récupère la clé Supabase anon pour l'auth de la function
+    var anonKey = (typeof SUPABASE_KEY !== 'undefined' && SUPABASE_KEY)
+      || (window.__CONFIG__ && window.__CONFIG__.supabase_key)
+      || '';
+
     // Appel à l'edge function stripe-setup-fee
     fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-setup-fee', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + anonKey,
+        'apikey': anonKey
+      },
       body: JSON.stringify({
         commercant_id: b.id,
         offre: offre,
@@ -2929,17 +2938,23 @@ body.mode-demo #btn-panier { display: none !important; }
         cancel_url: location.href
       })
     })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.url) {
-        location.href = data.url; // Redirection vers Stripe Checkout
-      } else {
-        throw new Error(data.error || 'Erreur création paiement');
+    .then(function(r) {
+      return r.json().then(function(data) { return { status: r.status, data: data }; });
+    })
+    .then(function(res) {
+      if (res.status >= 200 && res.status < 300 && res.data.url) {
+        location.href = res.data.url;
+        return;
       }
+      // Erreur explicite de la function
+      var msg = res.data && res.data.error
+        ? res.data.error
+        : ('Erreur HTTP ' + res.status);
+      throw new Error(msg);
     })
     .catch(function(err) {
       console.error('Erreur Stripe:', err);
-      alert('⚠️ Le système de paiement n\'est pas encore activé. Contacte-nous : contact@marchéo.fr');
+      alert('⚠️ Erreur paiement : ' + (err.message || err) + '\n\nContact : contact@marchéo.fr');
       document.querySelectorAll('.m-offre-cta').forEach(function(btn, i) {
         btn.disabled = false;
         btn.textContent = ['Choisir Vitrine','Choisir Click & Collect','Choisir Livraison'][i];
