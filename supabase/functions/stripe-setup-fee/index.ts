@@ -1,19 +1,23 @@
 // ============================================================
 // Edge Function: stripe-setup-fee
 //
-// Gère le paiement des FRAIS D'ACQUISITION (setup fee) lorsqu'un
-// commerçant choisit son offre depuis le mode démo de sa boutique.
+// Combine en UNE SEULE session Stripe Checkout :
+//   - Frais d'installation one-shot (249/399/549€)
+//   - Abonnement mensuel récurrent (19/39/59€/mois)
+//
+// Le 1er paiement = setup fee + 1er mois (ex: 399 + 39 = 438€)
+// Les paiements suivants = abonnement mensuel uniquement
 //
 // Endpoints (POST) :
-//   /                  → crée une session Stripe Checkout (one-shot payment)
-//                        body: { commercant_id, offre, return_url, cancel_url }
-//                        return: { url }
-//   /webhook           → reçoit les events Stripe (checkout.session.completed)
-//                        → active l'abonnement du commerçant
+//   /                  → crée la session Checkout subscription + invoice item
+//   /webhook           → reçoit les events Stripe :
+//                        - checkout.session.completed → active abonnement
+//                        - customer.subscription.deleted → désactive
+//                        - invoice.payment_failed → log (Stripe retry auto)
 //
 // Variables d'environnement requises :
 //   STRIPE_SECRET_KEY                (sk_test_... ou sk_live_...)
-//   STRIPE_WEBHOOK_SECRET_SETUP_FEE  (whsec_... du endpoint webhook configuré)
+//   STRIPE_WEBHOOK_SECRET_SETUP_FEE  (whsec_... du endpoint webhook)
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_ROLE_KEY
 // ============================================================
@@ -33,24 +37,33 @@ const supabase = createClient(
 );
 
 // ── Tarifs par offre (en centimes) ──────────────────────────────
-const OFFRES: Record<string, { name: string; setup_fee: number; monthly_fee: number; description: string }> = {
+const OFFRES: Record<string, {
+  name: string;
+  setup_fee: number;
+  monthly_fee: number;
+  setup_description: string;
+  monthly_description: string;
+}> = {
   vitrine: {
     name: 'Marchéo · Vitrine',
-    setup_fee: 24900,    // 249€
-    monthly_fee: 1900,   // 19€/mois (info, créé séparément)
-    description: 'Frais d\'installation Marchéo Vitrine — Page boutique, galerie, QR code, SEO local.',
+    setup_fee: 24900,    // 249€ one-shot
+    monthly_fee: 1900,   // 19€/mois
+    setup_description: 'Frais d\'installation — Page boutique, galerie, QR code, SEO local.',
+    monthly_description: 'Abonnement Marchéo Vitrine — Sans engagement, résiliable à tout moment.',
   },
   clickcollect: {
     name: 'Marchéo · Click & Collect',
-    setup_fee: 39900,    // 399€
+    setup_fee: 39900,    // 399€ one-shot
     monthly_fee: 3900,   // 39€/mois
-    description: 'Frais d\'installation Marchéo Click & Collect — Catalogue, commandes, anti no-show, paiement en ligne.',
+    setup_description: 'Frais d\'installation — Catalogue, commandes, anti no-show 75%, paiements.',
+    monthly_description: 'Abonnement Marchéo Click & Collect — Sans engagement, 0% de commission.',
   },
   livraison: {
     name: 'Marchéo · Click & Collect + Livraison',
-    setup_fee: 54900,    // 549€
+    setup_fee: 54900,    // 549€ one-shot
     monthly_fee: 5900,   // 59€/mois
-    description: 'Frais d\'installation Marchéo Livraison — Tout Click & Collect + livraison à domicile + assistance VIP.',
+    setup_description: 'Frais d\'installation — Click & Collect + livraison à domicile + assistance VIP.',
+    monthly_description: 'Abonnement Marchéo Livraison — Sans engagement, 0% de commission.',
   },
 };
 
@@ -61,10 +74,7 @@ const cors = {
 };
 
 const json = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { ...cors, 'Content-Type': 'application/json' },
-  });
+  new Response(JSON.stringify(body), { status, headers: { ...cors, 'Content-Type': 'application/json' } });
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
@@ -72,39 +82,28 @@ serve(async (req) => {
   const url = new URL(req.url);
   const path = url.pathname.split('/').filter(Boolean).pop() || '';
 
-  // ── Webhook Stripe : checkout.session.completed → activer l'abonnement ──
-  if (path === 'webhook') {
-    return handleWebhook(req);
-  }
+  if (path === 'webhook') return handleWebhook(req);
 
-  // ── Création de la session Checkout pour les setup fees ──
+  // ── Création de la session Checkout : setup + subscription combinés ──
   try {
     const body = await req.json();
     const { commercant_id, offre, return_url, cancel_url } = body || {};
 
-    if (!commercant_id || !offre) {
-      return json({ error: 'commercant_id et offre requis' }, 400);
-    }
+    if (!commercant_id || !offre) return json({ error: 'commercant_id et offre requis' }, 400);
     const config = OFFRES[offre];
-    if (!config) {
-      return json({ error: 'Offre invalide. Utilisez : vitrine, clickcollect, livraison' }, 400);
-    }
+    if (!config) return json({ error: 'Offre invalide' }, 400);
 
-    // Récupérer le commerçant pour pré-remplir e-mail + nom
-    const { data: commercant, error: errCommercant } = await supabase
+    const { data: commercant, error: errC } = await supabase
       .from('commercants')
-      .select('id, slug, nom_boutique, email, stripe_customer_id, abonnement_actif')
-      .eq('id', commercant_id)
-      .single();
+      .select('id, slug, nom_boutique, email, stripe_customer_id, stripe_subscription_id, abonnement_actif')
+      .eq('id', commercant_id).single();
 
-    if (errCommercant || !commercant) {
-      return json({ error: 'Commerçant introuvable' }, 404);
-    }
-    if (commercant.abonnement_actif === true) {
-      return json({ error: 'Cette boutique est déjà active. Connecte-toi à ton dashboard.' }, 409);
+    if (errC || !commercant) return json({ error: 'Commerçant introuvable' }, 404);
+    if (commercant.abonnement_actif === true && commercant.stripe_subscription_id) {
+      return json({ error: 'Tu as déjà un abonnement actif. Connecte-toi à ton dashboard.' }, 409);
     }
 
-    // Réutiliser le customer Stripe s'il existe, sinon en créer un
+    // ── 1. Customer Stripe : réutiliser ou créer ──
     let customerId = commercant.stripe_customer_id;
     if (!customerId && commercant.email) {
       const customer = await stripe.customers.create({
@@ -115,41 +114,66 @@ serve(async (req) => {
       customerId = customer.id;
       await supabase.from('commercants').update({ stripe_customer_id: customerId }).eq('id', commercant_id);
     }
+    if (!customerId) {
+      return json({ error: 'Impossible de créer le client Stripe (email manquant)' }, 400);
+    }
 
-    // Créer la session Checkout (mode payment = one-shot pour les frais d'installation)
+    // ── 2. Ajouter le setup fee comme InvoiceItem (sera facturé sur la 1re facture) ──
+    await stripe.invoiceItems.create({
+      customer: customerId,
+      amount: config.setup_fee,
+      currency: 'eur',
+      description: config.name + ' — ' + config.setup_description,
+      metadata: { commercant_id, offre, type: 'setup_fee' },
+    });
+
+    // ── 3. Créer la Checkout Session en mode subscription ──
     const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      customer: customerId || undefined,
-      customer_email: !customerId ? commercant.email : undefined,
+      mode: 'subscription',
+      customer: customerId,
       payment_method_types: ['card'],
       line_items: [
         {
+          // L'abonnement mensuel récurrent
           price_data: {
             currency: 'eur',
             product_data: {
-              name: config.name + ' — Frais d\'installation',
-              description: config.description,
+              name: config.name + ' — Abonnement mensuel',
+              description: config.monthly_description,
             },
-            unit_amount: config.setup_fee,
+            unit_amount: config.monthly_fee,
+            recurring: { interval: 'month' },
           },
           quantity: 1,
         },
       ],
-      success_url: (return_url || 'https://www.xn--marcho-fva.fr/' + (commercant.slug || '')) + '&session_id={CHECKOUT_SESSION_ID}',
+      subscription_data: {
+        description: config.name + ' — Abonnement sans engagement',
+        metadata: {
+          commercant_id,
+          offre,
+          slug: commercant.slug || '',
+          type: 'subscription',
+        },
+      },
+      success_url: (return_url || 'https://www.xn--marcho-fva.fr/' + (commercant.slug || ''))
+                 + (return_url && return_url.includes('?') ? '&' : '?')
+                 + 'session_id={CHECKOUT_SESSION_ID}',
       cancel_url: cancel_url || ('https://www.xn--marcho-fva.fr/' + (commercant.slug || '')),
       metadata: {
         commercant_id,
         offre,
         slug: commercant.slug || '',
-        type: 'setup_fee',
+        type: 'setup_and_subscription',
       },
-      // Activer la création automatique d'une facture pour le commerçant
-      invoice_creation: { enabled: true },
-      // CGV + lien vers les CGV Marchéo
+      // Le client doit accepter les CGV
       consent_collection: { terms_of_service: 'required' },
       custom_text: {
         terms_of_service_acceptance: {
-          message: 'En cochant cette case, vous acceptez les [CGV Marchéo](https://www.xn--marcho-fva.fr/cgv) et reconnaissez que les frais d\'installation sont non remboursables après mise en ligne de la boutique.',
+          message:
+            'En cochant cette case, j\'accepte les [CGV Marchéo](https://www.xn--marcho-fva.fr/cgv). ' +
+            'Le 1er paiement = frais d\'installation + 1er mois d\'abonnement. ' +
+            'Ensuite, l\'abonnement se prélève chaque mois et reste résiliable à tout moment depuis le dashboard.',
         },
       },
     });
@@ -167,9 +191,7 @@ async function handleWebhook(req: Request): Promise<Response> {
   const body = await req.text();
   const webhookSecret = Deno.env.get('STRIPE_WEBHOOK_SECRET_SETUP_FEE');
 
-  if (!sig || !webhookSecret) {
-    return json({ error: 'Signature ou secret manquant' }, 400);
-  }
+  if (!sig || !webhookSecret) return json({ error: 'Signature ou secret manquant' }, 400);
 
   let event: Stripe.Event;
   try {
@@ -179,16 +201,18 @@ async function handleWebhook(req: Request): Promise<Response> {
     return json({ error: 'Signature invalide' }, 400);
   }
 
-  // Seul l'event qui nous intéresse : paiement réussi
+  // ── checkout.session.completed → activer l'abonnement ──
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
     const meta = session.metadata || {};
+    const subscriptionId = typeof session.subscription === 'string'
+      ? session.subscription
+      : session.subscription?.id;
 
-    if (meta.type !== 'setup_fee' || !meta.commercant_id || !meta.offre) {
-      return json({ ok: true, ignored: 'Pas un paiement setup_fee' });
+    if (meta.type !== 'setup_and_subscription' || !meta.commercant_id || !meta.offre) {
+      return json({ ok: true, ignored: 'Pas un paiement Marchéo' });
     }
 
-    // Activer l'abonnement du commerçant
     const today = new Date().toISOString().slice(0, 10);
     const { error } = await supabase
       .from('commercants')
@@ -196,8 +220,9 @@ async function handleWebhook(req: Request): Promise<Response> {
         abonnement_actif: true,
         offre: meta.offre,
         abonnement_debut: today,
-        // Stocker la session pour traçabilité
+        abonnement_fin: null,
         stripe_setup_session_id: session.id,
+        stripe_subscription_id: subscriptionId || null,
       })
       .eq('id', meta.commercant_id);
 
@@ -206,8 +231,40 @@ async function handleWebhook(req: Request): Promise<Response> {
       return json({ error: 'Erreur DB' }, 500);
     }
 
-    console.log('[webhook] abonnement activé pour', meta.slug || meta.commercant_id);
-    return json({ ok: true, activated: meta.slug || meta.commercant_id });
+    console.log('[webhook] abonnement activé pour', meta.slug || meta.commercant_id, '| sub:', subscriptionId);
+    return json({ ok: true, activated: meta.slug || meta.commercant_id, subscription_id: subscriptionId });
+  }
+
+  // ── customer.subscription.deleted → désactiver l'abonnement ──
+  if (event.type === 'customer.subscription.deleted') {
+    const sub = event.data.object as Stripe.Subscription;
+    const meta = sub.metadata || {};
+    if (!meta.commercant_id) {
+      return json({ ok: true, ignored: 'Pas de commercant_id dans metadata' });
+    }
+    const today = new Date().toISOString().slice(0, 10);
+    const { error } = await supabase
+      .from('commercants')
+      .update({
+        abonnement_actif: false,
+        abonnement_fin: today,
+      })
+      .eq('id', meta.commercant_id);
+
+    if (error) {
+      console.error('[webhook] erreur unsubscribe:', error);
+      return json({ error: 'Erreur DB' }, 500);
+    }
+    console.log('[webhook] abonnement résilié pour', meta.commercant_id);
+    return json({ ok: true, deactivated: meta.commercant_id });
+  }
+
+  // ── invoice.payment_failed → log (Stripe retentera automatiquement) ──
+  if (event.type === 'invoice.payment_failed') {
+    const inv = event.data.object as Stripe.Invoice;
+    console.warn('[webhook] paiement échoué pour customer', inv.customer, 'subscription', inv.subscription);
+    // TODO: notifier le commerçant par email/push
+    return json({ ok: true, payment_failed: inv.id });
   }
 
   // Autres events ignorés
