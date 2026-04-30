@@ -5317,9 +5317,8 @@ function appliquerRestrictionsRole(role) {
           navigator.serviceWorker.ready.then(function(reg){
             return reg.pushManager.getSubscription().then(function(sub){
               if(sub) return sub;
-              // Si tu as une VAPID public key configurée, on l'utilise pour souscrire
-              var vapidKey=window.MARCHEO_VAPID_PUBLIC_KEY;
-              if(!vapidKey) return null;
+              // Clé VAPID publique Marchéo (même que celle utilisée par send-push edge function)
+              var vapidKey=(window.MARCHEO_VAPID_PUBLIC_KEY)||'BJuXKoz9jttdTotYgdpzslA_IQhbbKvcsUA00WfnX7Sz7bH8LzAhL6Yiafl3LC0vizJ3xdg9hsjAZgBpTrg_Y-w';
               return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(vapidKey)});
             });
           }).then(function(sub){
