@@ -1016,6 +1016,20 @@
       </div>
     </div>
 
+    <!-- ABONNEMENT MARCHÉO -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="abonnementMarcheoCard">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">💼 Mon abonnement Marchéo</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;" id="abonnementSubLabel">Chargement…</div>
+        </div>
+        <div id="abonnementBadge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:#f0f0f0;color:#888;">—</div>
+      </div>
+      <div id="abonnementContent" style="display:flex;flex-direction:column;gap:8px;">
+        <!-- Rempli par JS -->
+      </div>
+    </div>
+
     <!-- STRIPE CONNECT -->
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="stripeConnectCard">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
@@ -1805,6 +1819,88 @@ function allerOnglet(id) {
   if (id === 'reglages') chargerReglages();
 }
 
+// ── ABONNEMENT MARCHÉO : état + bouton Customer Portal ───────────
+async function chargerAbonnementMarcheo(commercantId) {
+  const badge = document.getElementById('abonnementBadge');
+  const content = document.getElementById('abonnementContent');
+  const subLabel = document.getElementById('abonnementSubLabel');
+  if (!badge || !content) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=abonnement_actif,offre,abonnement_debut,abonnement_fin,stripe_subscription_id,stripe_customer_id', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const arr = await r.json();
+    const c = (arr && arr[0]) || {};
+    const offresLabel = { vitrine: 'Vitrine', clickcollect: 'Click & Collect', livraison: 'Click & Collect + Livraison' };
+    const offresPrix = { vitrine: '19€/mois', clickcollect: '39€/mois', livraison: '59€/mois' };
+    const label = offresLabel[c.offre] || 'Aucune offre';
+    const prix = offresPrix[c.offre] || '—';
+
+    if (c.abonnement_actif) {
+      badge.style.background = '#eaf7ee';
+      badge.style.color = '#207d4a';
+      badge.textContent = '✓ Actif';
+      if (subLabel) subLabel.textContent = `Offre ${label} · ${prix} · Démarré le ${c.abonnement_debut || '—'}`;
+      content.innerHTML =
+        '<button onclick="ouvrirPortalAbonnement()" style="background:var(--bleu-nuit,#0F2C52);color:#fff;border:none;border-radius:50px;padding:11px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;">⚙️ Gérer mon abonnement (factures, RIB, résiliation)</button>'
+        + '<div style="font-size:11.5px;color:var(--texte-doux);text-align:center;line-height:1.5;">Le portail Stripe te permet de mettre à jour ta carte, télécharger tes factures et résilier à tout moment.</div>';
+    } else if (c.abonnement_fin) {
+      // Résilié
+      badge.style.background = '#fdf0ef';
+      badge.style.color = '#9a2d24';
+      badge.textContent = '✕ Résilié';
+      if (subLabel) subLabel.textContent = `Abonnement résilié le ${c.abonnement_fin}`;
+      content.innerHTML =
+        '<div style="font-size:13px;color:var(--texte-doux);">Tu peux te ré-abonner à tout moment depuis ta boutique publique → bouton "Choisir mon offre".</div>'
+        + (c.stripe_customer_id ? '<button onclick="ouvrirPortalAbonnement()" style="background:transparent;color:var(--bleu-nuit,#0F2C52);border:1.5px solid var(--bleu-nuit,#0F2C52);border-radius:50px;padding:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;">📄 Voir mes anciennes factures</button>' : '');
+    } else {
+      // Aucune souscription (mode démo)
+      badge.style.background = '#fff5e1';
+      badge.style.color = '#9a6a00';
+      badge.textContent = '⚠️ Démo';
+      if (subLabel) subLabel.textContent = 'Ta boutique est en mode démo, personne ne peut commander';
+      const slug = (window.__CONFIG__?.business?.slug) || (JSON.parse(localStorage.getItem('session_commercant')||'{}').slug) || '';
+      content.innerHTML =
+        '<a href="/' + slug + '" style="background:var(--vert,#5BBE3A);color:#fff;text-align:center;border:none;border-radius:50px;padding:11px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:block;">🚀 Choisir mon offre &amp; activer ma boutique</a>'
+        + '<div style="font-size:11.5px;color:var(--texte-doux);text-align:center;line-height:1.5;">À partir de 249€ d\'installation. Click &amp; Collect et Livraison : <strong>1er mois OFFERT 🎁</strong></div>';
+    }
+  } catch (e) {
+    badge.textContent = 'Erreur';
+    console.warn('chargerAbonnementMarcheo:', e);
+  }
+}
+
+window.ouvrirPortalAbonnement = async function() {
+  const btn = event && event.target;
+  if (btn) { btn.disabled = true; btn.textContent = 'Ouverture du portail…'; }
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    if (!commercantId) throw new Error('Non connecté');
+    const r = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-portal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      },
+      body: JSON.stringify({
+        commercant_id: commercantId,
+        return_url: location.href
+      })
+    });
+    const data = await r.json();
+    if (data.url) {
+      location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Erreur HTTP ' + r.status);
+    }
+  } catch (e) {
+    alert('⚠️ Impossible d\'ouvrir le portail : ' + (e.message || e) + '\n\nContact : contact@marchéo.fr');
+    if (btn) { btn.disabled = false; btn.textContent = '⚙️ Gérer mon abonnement (factures, RIB, résiliation)'; }
+  }
+};
+
 async function chargerReglages() {
   try {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -1813,6 +1909,9 @@ async function chargerReglages() {
 
     // Charger Stripe Connect en parallèle
     chargerStripeConnect(commercantId);
+
+    // Charger le bloc Abonnement Marchéo en parallèle
+    chargerAbonnementMarcheo(commercantId);
 
     // Avertissement poids variable selon métier
     const bt = window.__CONFIG__?.business?.business_type;
