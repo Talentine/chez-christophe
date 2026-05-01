@@ -75,6 +75,52 @@ export const BUSINESS_TYPES = {
     product_extra_fields: ['lait','affinage_mois','region','aop','croute','poids_g','decoupe_possible'],
     cart_modes: ['retrait','livraison'],
     labels: { produits:'Nos fromages', panier:'Mon panier', arrivage:'Affinés du moment', coups_coeur:'Sélection de l\'affineur' }
+  },
+
+  // ============================================================
+  // RESTAURATION : 3 sous-styles (pizzeria / restaurant / fastfood)
+  // Caractéristique commune : reservation_table activable
+  // ============================================================
+  pizzeria: {
+    label: 'Pizzeria',
+    palette: { primary:'#9F1B1F', primary_dark:'#5C0E10', accent:'#1B7A3E', accent_light:'#7DCC95', danger:'#9F1B1F', cream:'#FFF8E7', cream_dark:'#F4E5C2' },
+    fonts:   { display:'"Lobster"', body:'"Inter"' },
+    emoji_fallback: '🍕',
+    features: { saison:false, bio:false, provenance:false, decoupe:false, cuisson:true, programmation:true, dlc:false, poids_variable:false, reservation_table:true },
+    filters: ['vegetarienne','epicee','signature'],
+    product_extra_fields: ['allergenes','temps_cuisson_min','epicee','vegetarienne'],
+    cart_modes: ['retrait','livraison','sur-place'],
+    labels: { produits:'Nos pizzas', panier:'Ma commande', arrivage:'Spéciale du jour', coups_coeur:'Pizzas signatures' },
+    is_restauration: true,
+    style_resto: 'pizzeria'
+  },
+
+  restaurant: {
+    label: 'Restaurant',
+    palette: { primary:'#1F1F1F', primary_dark:'#0A0A0A', accent:'#A8825D', accent_light:'#D4B8A0', danger:'#7C2D2D', cream:'#F8F5F0', cream_dark:'#E8E0D5' },
+    fonts:   { display:'"Playfair Display"', body:'"Inter"' },
+    emoji_fallback: '🍽️',
+    features: { saison:false, bio:false, provenance:false, decoupe:false, cuisson:true, programmation:true, dlc:false, poids_variable:false, reservation_table:true },
+    filters: ['signature','vegetarienne','sans-gluten'],
+    product_extra_fields: ['allergenes','temps_prepa_min','vegetarienne','sans_gluten'],
+    cart_modes: ['retrait','livraison','sur-place'],
+    labels: { produits:'Notre carte', panier:'Ma commande', arrivage:'Suggestion du chef', coups_coeur:'Plats signatures' },
+    is_restauration: true,
+    style_resto: 'restaurant'
+  },
+
+  fastfood: {
+    label: 'Fast-food',
+    palette: { primary:'#FFCC00', primary_dark:'#CC9900', accent:'#E63946', accent_light:'#F4A4AA', danger:'#1A1A1A', cream:'#FFF9E6', cream_dark:'#F0E5B8' },
+    fonts:   { display:'"Bebas Neue"', body:'"Inter"' },
+    emoji_fallback: '🍔',
+    features: { saison:false, bio:false, provenance:false, decoupe:false, cuisson:true, programmation:false, dlc:false, poids_variable:false, reservation_table:false },
+    filters: ['burger','vegetarien','epice'],
+    product_extra_fields: ['allergenes','temps_prepa_min','sauce','calories'],
+    cart_modes: ['retrait','livraison','sur-place'],
+    labels: { produits:'Notre carte', panier:'Ma commande', arrivage:'Édition limitée', coups_coeur:'Best-sellers' },
+    is_restauration: true,
+    style_resto: 'fastfood'
   }
 };
 
