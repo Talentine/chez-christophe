@@ -3373,6 +3373,22 @@ body.mode-demo #btn-panier { display: none !important; }
     }
   });
 
+  // Montant par couvert (récupéré du commerçant, fallback 10€)
+  var couvertEur = 10;
+  document.addEventListener('business:ready', function(e) {
+    var b = (e.detail && e.detail.business) || {};
+    if (b.empreinte_couvert_cents) {
+      couvertEur = Math.round(b.empreinte_couvert_cents / 100);
+      // Mettre à jour les montants affichés
+      var nbActif = document.querySelector('.m-resa-couvre-btn.active');
+      var n = nbActif ? parseInt(nbActif.dataset.nb) : 2;
+      var m1 = document.getElementById('m-resa-montant');
+      var m2 = document.getElementById('m-resa-montant2');
+      if (m1) m1.textContent = (couvertEur * n) + '€';
+      if (m2) m2.textContent = (couvertEur * n) + '€';
+    }
+  });
+
   // Initialiser les boutons couverts (1-12)
   var couvertsBtns = document.getElementById('m-resa-couverts-grid');
   if (couvertsBtns) {
@@ -3386,8 +3402,8 @@ body.mode-demo #btn-panier { display: none !important; }
         document.querySelectorAll('.m-resa-couvre-btn').forEach(function(b){b.classList.remove('active')});
         this.classList.add('active');
         var n = parseInt(this.dataset.nb);
-        document.getElementById('m-resa-montant').textContent = (15 * n) + '€';
-        document.getElementById('m-resa-montant2').textContent = (15 * n) + '€';
+        document.getElementById('m-resa-montant').textContent = (couvertEur * n) + '€';
+        document.getElementById('m-resa-montant2').textContent = (couvertEur * n) + '€';
       };
       couvertsBtns.appendChild(btn);
     }
