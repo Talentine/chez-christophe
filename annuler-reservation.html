@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annuler ma réservation — Marchéo</title>
+<link rel="icon" type="image/svg+xml" href="/assets/brand/monogram.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#F7F2E8;color:#0F2C52;line-height:1.5;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{background:#fff;border-radius:24px;padding:32px 28px;max-width:480px;width:100%;box-shadow:0 12px 40px rgba(15,44,82,.1)}
+  .logo{text-align:center;margin-bottom:18px}
+  .logo img{width:60px;height:60px;border-radius:50%}
+  h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:6px;line-height:1.2}
+  .sub{text-align:center;color:#6B7785;font-size:14px;margin-bottom:22px}
+  .info-box{background:#F7F2E8;border-radius:12px;padding:14px;margin:18px 0;font-size:13.5px;line-height:1.55}
+  .info-row{display:flex;justify-content:space-between;padding:5px 0}
+  .info-row strong{color:#0F2C52}
+  .deadline-ok{background:#eaf7ee;border-left:3px solid #5BBE3A;padding:12px 14px;border-radius:8px;font-size:13px;margin:14px 0;color:#1f5230}
+  .deadline-late{background:#fdf0ef;border-left:3px solid #E65533;padding:12px 14px;border-radius:8px;font-size:13px;margin:14px 0;color:#7a2820}
+  .btn{width:100%;padding:14px;border:none;border-radius:50px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;margin-top:8px;min-height:48px}
+  .btn-cancel{background:#E65533;color:#fff}
+  .btn-keep{background:transparent;color:#6B7785;border:1.5px solid #E8E0D5;margin-top:10px}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  .err{color:#E65533;text-align:center;font-size:14px;padding:14px;background:#fdf0ef;border-radius:10px}
+  .ok{color:#1f5230;text-align:center;font-size:14px;padding:14px;background:#eaf7ee;border-radius:10px;line-height:1.5}
+  #loadingState,#successState,#errorState{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <img src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo" onerror="this.src='/assets/brand/monogram.svg'">
+  </div>
+  <h1>Annuler ma réservation</h1>
+  <p class="sub">Marchéo — anti no-show</p>
+
+  <div id="loadingState" style="text-align:center;padding:30px 0">
+    <p>Vérification de ta réservation…</p>
+  </div>
+
+  <div id="formState">
+    <div class="info-box">
+      <div class="info-row"><span>Établissement</span><strong id="r-shop">—</strong></div>
+      <div class="info-row"><span>Date</span><strong id="r-date">—</strong></div>
+      <div class="info-row"><span>Heure</span><strong id="r-heure">—</strong></div>
+      <div class="info-row"><span>Couverts</span><strong id="r-couverts">—</strong></div>
+      <div class="info-row"><span>Empreinte bloquée</span><strong id="r-montant">—</strong></div>
+    </div>
+
+    <div id="deadlineBox"></div>
+
+    <button class="btn btn-cancel" id="btnCancel" onclick="annulerReservation()">❌ Annuler ma réservation</button>
+    <button class="btn btn-keep" onclick="window.close()">Garder ma réservation</button>
+  </div>
+
+  <div id="successState"></div>
+  <div id="errorState"></div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+const params = new URLSearchParams(location.search);
+const token = params.get('t');
+
+async function init() {
+  if (!token) { showError('Lien invalide ou incomplet.'); return; }
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('formState').style.display = 'none';
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/reservations_avec_deadline?cancel_token=eq.' + encodeURIComponent(token) + '&select=*,commercants(nom_boutique,slug)', {
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
+    });
+    const arr = await r.json();
+    if (!arr || !arr.length) throw new Error('Réservation introuvable');
+    const resa = arr[0];
+
+    document.getElementById('r-shop').textContent = resa.commercants?.nom_boutique || '—';
+    document.getElementById('r-date').textContent = new Date(resa.date_reservation).toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    document.getElementById('r-heure').textContent = resa.heure_reservation.slice(0,5);
+    document.getElementById('r-couverts').textContent = resa.nb_couverts;
+    document.getElementById('r-montant').textContent = ((resa.empreinte_montant_cents||0)/100).toFixed(0) + ' €';
+
+    const peut = resa.peut_annuler_gratuit;
+    const dlBox = document.getElementById('deadlineBox');
+    if (resa.statut === 'annulee') {
+      showError('Cette réservation est déjà annulée.');
+      return;
+    }
+    if (resa.statut === 'arrivee' || resa.statut === 'no_show') {
+      showError('Cette réservation a déjà été traitée par le restaurant.');
+      return;
+    }
+    if (peut) {
+      dlBox.innerHTML = '<div class="deadline-ok">✅ <strong>Annulation gratuite</strong> — Tu es dans les délais. La carte ne sera pas débitée.</div>';
+    } else {
+      const m = ((resa.empreinte_montant_cents||0)/100).toFixed(0);
+      dlBox.innerHTML = '<div class="deadline-late">⚠️ <strong>Hors délai d\'annulation gratuite</strong> ('+ resa.cancellation_policy_hours +'h avant la résa). En annulant maintenant, l\'empreinte de <strong>'+ m +'€</strong> sera débitée.</div>';
+      document.getElementById('btnCancel').textContent = '❌ Annuler quand même (' + m + '€ débités)';
+    }
+
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('formState').style.display = 'block';
+  } catch (e) {
+    showError(e.message || 'Erreur de chargement');
+  }
+}
+
+async function annulerReservation() {
+  const btn = document.getElementById('btnCancel');
+  btn.disabled = true; btn.textContent = 'Annulation en cours…';
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-reservation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+      body: JSON.stringify({ action: 'cancel_by_client', cancel_token: token })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+    showSuccess(data.message || 'Réservation annulée.', data.libere);
+  } catch (e) {
+    btn.disabled = false; btn.textContent = '❌ Annuler ma réservation';
+    document.getElementById('errorState').innerHTML = '<div class="err">⚠️ ' + e.message + '</div>';
+    document.getElementById('errorState').style.display = 'block';
+  }
+}
+
+function showSuccess(msg, libere) {
+  document.getElementById('formState').style.display = 'none';
+  document.getElementById('errorState').style.display = 'none';
+  const ok = document.getElementById('successState');
+  ok.innerHTML = '<div class="ok"><div style="font-size:54px;margin-bottom:8px">'+ (libere ? '✅' : '⚠️') +'</div><strong>' + msg + '</strong></div>';
+  ok.style.display = 'block';
+}
+function showError(msg) {
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('formState').style.display = 'none';
+  const er = document.getElementById('errorState');
+  er.innerHTML = '<div class="err">' + msg + '</div>';
+  er.style.display = 'block';
+}
+
+init();
+</script>
+</body>
+</html>

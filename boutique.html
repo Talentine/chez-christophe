@@ -3178,6 +3178,19 @@ body.mode-demo #btn-panier { display: none !important; }
         <div style="font-size:64px">🎉</div>
         <div style="font-weight:800;font-size:22px;color:#0F2C52;margin-top:8px">Réservation confirmée !</div>
         <div style="font-size:14px;color:#6B7785;margin-top:8px;line-height:1.5" id="m-resa-recap"></div>
+
+        <div style="margin:18px 0;padding:14px;background:#F7F2E8;border-radius:12px;text-align:left;font-size:13px;color:#0F2C52;line-height:1.55;">
+          <strong>📋 Politique d'annulation</strong><br>
+          Annulation gratuite jusqu'à <strong id="m-resa-policy-hours">24</strong> h avant l'horaire.<br>
+          Au-delà : empreinte de <strong id="m-resa-policy-montant">30€</strong> débitée.
+        </div>
+
+        <div style="background:#fff;border:1.5px dashed #E8E0D5;border-radius:12px;padding:12px;margin-bottom:16px;font-size:12.5px;color:#6B7785;line-height:1.5">
+          🔗 <strong>Conserve ce lien pour annuler ou modifier :</strong><br>
+          <a id="m-resa-cancel-link" href="#" target="_blank" style="word-break:break-all;color:#5BBE3A;font-weight:600;text-decoration:underline;">—</a><br>
+          <span style="font-size:11px;opacity:.8;">Un mail de confirmation t'a aussi été envoyé.</span>
+        </div>
+
         <button class="m-resa-cta" onclick="fermerReservation()">Super, merci !</button>
       </div>
     </form>
@@ -3279,6 +3292,9 @@ body.mode-demo #btn-panier { display: none !important; }
       resaCtx.client_secret = data.client_secret;
       resaCtx.setup_intent_id = data.setup_intent_id;
       resaCtx.reservation_id = data.reservation_id;
+      resaCtx.cancel_token = data.cancel_token;
+      resaCtx.policy_hours = data.cancellation_policy_hours || 24;
+      resaCtx.montant_cents = data.montant_cents;
 
       // Switch UI
       document.getElementById('m-resa-step1').style.display = 'none';
@@ -3323,6 +3339,14 @@ body.mode-demo #btn-panier { display: none !important; }
       document.getElementById('m-resa-step3').style.display = 'block';
       document.getElementById('m-resa-recap').textContent =
         resaCtx.nb_couverts + ' couverts · ' + resaCtx.date_reservation + ' à ' + resaCtx.heure_reservation;
+
+      // Politique d'annulation + lien magique
+      document.getElementById('m-resa-policy-hours').textContent = resaCtx.policy_hours;
+      document.getElementById('m-resa-policy-montant').textContent = ((resaCtx.montant_cents || 1500*resaCtx.nb_couverts)/100).toFixed(0) + '€';
+      var cancelUrl = location.origin + '/annuler-reservation.html?t=' + resaCtx.cancel_token;
+      var link = document.getElementById('m-resa-cancel-link');
+      link.href = cancelUrl;
+      link.textContent = cancelUrl;
     } catch (e) {
       btn.disabled = false; btn.textContent = '🔒 Valider ma réservation';
       document.getElementById('m-resa-status').textContent = '⚠️ ' + e.message;

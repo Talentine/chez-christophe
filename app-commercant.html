@@ -1007,12 +1007,38 @@
           Pourcentage prélevé en cas d'absence client : <b id="empreintePctVal">75</b>%
         </label>
         <input type="range" id="empreintePctRange" min="10" max="100" step="5" value="75"
-          oninput="document.getElementById('empreintePctVal').textContent=this.value"
+          oninput="document.getElementById('empreintePctVal').textContent=this.value;majTipPct(this.value)"
           onchange="sauverReglages()"
           style="width:100%;">
         <div style="font-size:12px;color:var(--texte-doux);margin-top:6px;">
-          Recommandé : 75 % du panier. L'empreinte est calculée sur ce pourcentage et n'est débitée qu'en cas d'absence client confirmée.
+          Recommandé : <strong>75 % du panier</strong>. L'empreinte n'est débitée qu'en cas d'absence client confirmée.
         </div>
+        <!-- TIP 20% : conversion -->
+        <div id="empreinteTipBox" style="margin-top:10px;padding:11px 13px;background:linear-gradient(135deg,#eaf7ee,#d4ecdb);border-left:3px solid #5BBE3A;border-radius:10px;font-size:12.5px;color:#1f5230;line-height:1.55;">
+          💡 <strong>Astuce conversion</strong> : descendre à <strong>20 %</strong> peut <strong>déclencher davantage de ventes</strong> 🚀.
+          Plus l'empreinte est basse, moins le client hésite à réserver. Pour les paniers à fort risque de no-show (plateaux frais, traiteur), garde 75 %.
+        </div>
+      </div>
+    </div>
+
+    <!-- POLITIQUE D'ANNULATION RÉSERVATION (resto/pizzeria) -->
+    <div id="cancellationPolicyCard" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;display:none;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Politique d'annulation des réservations</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;">Délai pendant lequel le client peut annuler gratuitement avant son arrivée.</div>
+
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
+        Annulation gratuite jusqu'à <b id="cancelHoursVal">24</b> h avant
+      </label>
+      <input type="range" id="cancelHoursRange" min="0" max="72" step="1" value="24"
+        oninput="document.getElementById('cancelHoursVal').textContent=this.value"
+        onchange="sauverCancellationPolicy()"
+        style="width:100%;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--texte-doux);margin-top:4px;">
+        <span>0 h (aucune annulation gratuite)</span>
+        <span>72 h (3 jours)</span>
+      </div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-top:8px;line-height:1.5;background:#fff8e7;border-radius:8px;padding:10px 12px;">
+        💡 <strong>Recommandé : 24 h</strong>. Si le client annule après ce délai (ou ne vient pas), tu pourras encaisser l'empreinte de 15 €/couvert.
       </div>
     </div>
 
@@ -1825,6 +1851,33 @@ function allerOnglet(id) {
   if (id === 'reglages') chargerReglages();
 }
 
+// ── Sauvegarde de la politique d'annulation (restos)
+async function sauverCancellationPolicy() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    const token = await getValidToken();
+    if (!commercantId || !token) return;
+    const hours = parseInt(document.getElementById('cancelHoursRange').value);
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ cancellation_policy_hours: hours })
+    });
+    afficherToast('✅ Politique d\'annulation : ' + hours + 'h');
+  } catch (e) { afficherToast('❌ Échec sauvegarde'); }
+}
+
+// Met à jour le tip dynamiquement selon le pct (helper)
+function majTipPct(pct) {
+  const tip = document.getElementById('empreinteTipBox');
+  if (!tip) return;
+  const n = parseInt(pct);
+  if (n <= 25) tip.innerHTML = '✨ <strong>Excellent pour la conversion</strong> ! À ' + n + ' %, le frein psychologique est minimal — tu vas voir tes réservations augmenter 🚀';
+  else if (n <= 50) tip.innerHTML = '👍 <strong>Bon équilibre</strong> entre protection et conversion à ' + n + ' %.';
+  else tip.innerHTML = '💡 <strong>Astuce conversion</strong> : descendre à <strong>20 %</strong> peut <strong>déclencher davantage de ventes</strong> 🚀. Plus l\'empreinte est basse, moins le client hésite à réserver.';
+}
+
 // ── ABONNEMENT MARCHÉO : état + bouton Customer Portal ───────────
 async function chargerAbonnementMarcheo(commercantId) {
   const badge = document.getElementById('abonnementBadge');
@@ -1925,7 +1978,13 @@ async function chargerReglages() {
     const warn = document.getElementById('warnPoidsVariable');
     if (warn) warn.style.display = metiersPoidsVariable.includes(bt) ? 'block' : 'none';
 
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct', {
+    // Afficher la card "Politique d'annulation" pour les restos
+    const btMetier = window.__CONFIG__?.business?.business_type;
+    const isResto = ['pizzeria','restaurant','fastfood'].includes(btMetier);
+    const cancelCard = document.getElementById('cancellationPolicyCard');
+    if (cancelCard) cancelCard.style.display = isResto ? 'block' : 'none';
+
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const data = await r.json();
@@ -1945,6 +2004,15 @@ async function chargerReglages() {
     if (wrap) wrap.style.display = obligatoire ? 'block' : 'none';
     if (range) range.value = pct;
     if (pctVal) pctVal.textContent = pct;
+
+    // Politique d'annulation (restos uniquement)
+    if (isResto) {
+      const cancelHours = c.cancellation_policy_hours ?? 24;
+      const chRange = document.getElementById('cancelHoursRange');
+      const chVal = document.getElementById('cancelHoursVal');
+      if (chRange) chRange.value = cancelHours;
+      if (chVal) chVal.textContent = cancelHours;
+    }
   } catch (e) {
     console.log('chargerReglages:', e);
   }
