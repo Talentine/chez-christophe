@@ -3127,10 +3127,14 @@ body.mode-demo #btn-panier { display: none !important; }
   }
 
   window.majBadgeMesResas = function() {
-    var resas = getMesResas();
     var fab = document.getElementById('m-fab-mes-resas');
-    var badge = document.getElementById('m-mes-resas-badge');
     if (!fab) return;
+    // Bloque pour non-resto
+    var bt = (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.business_type) || '';
+    var isResto = (bt === 'pizzeria' || bt === 'restaurant' || bt === 'fastfood');
+    if (!isResto) { fab.style.display = 'none'; return; }
+    var resas = getMesResas();
+    var badge = document.getElementById('m-mes-resas-badge');
     if (resas.length === 0) { fab.style.display = 'none'; return; }
     fab.style.display = 'inline-flex';
     if (badge) badge.textContent = resas.length;
@@ -3341,35 +3345,28 @@ body.mode-demo #btn-panier { display: none !important; }
 
 <script>
 (function(){
-  // Activation : pour TOUS les métiers
-  // Pizzeria/Restaurant → "Réserver une table" (+ bouton hero principal)
-  // Autres métiers → "Réserver un créneau" (FAB seulement)
+  // Activation : RESTAURATION uniquement (pizzeria / restaurant / fastfood)
+  // Pour tous les autres métiers, aucun bouton/FAB de réservation n'est affiché.
   document.addEventListener('business:ready', function(e) {
     var b = (e.detail && e.detail.business) || {};
     var bt = b.business_type;
-    var fab = document.getElementById('m-fab-reservation');
-    if (!fab) return;
-    fab.classList.add('show');
     var isResto = (bt === 'pizzeria' || bt === 'restaurant' || bt === 'fastfood');
-    // Bouton hero "Réserver une table" : afficher pour resto/pizzeria, cacher sinon
+
+    var fab = document.getElementById('m-fab-reservation');
     var heroBtn = document.getElementById('heroBtnReservation');
-    if (heroBtn) {
-      heroBtn.style.display = (bt === 'pizzeria' || bt === 'restaurant') ? 'inline-flex' : 'none';
-    }
+    var fabMesResas = document.getElementById('m-fab-mes-resas');
+
     if (!isResto) {
-      // Adapter le label pour les non-restos
-      fab.innerHTML = '📅 Réserver un créneau';
-      var modalTitle = document.querySelector('.m-resa-title');
-      if (modalTitle) modalTitle.textContent = '📅 Réserver un créneau';
-      // Cacher le champ "Combien de couverts ?" pour non-restos (1 par défaut)
-      var couvertsLabel = document.querySelector('.m-resa-form > #m-resa-step1 > label:first-of-type');
-      if (couvertsLabel) couvertsLabel.style.display = 'none';
-      var couvertsGrid = document.getElementById('m-resa-couverts-grid');
-      if (couvertsGrid) couvertsGrid.style.display = 'none';
-      // Adapter le texte de l'empreinte info
-      var infoBox = document.querySelector('.m-resa-info');
-      if (infoBox) infoBox.innerHTML = '🔒 <strong>Empreinte bancaire anti no-show</strong> : <span id="m-resa-montant">15€</span>.<br>Aucun débit si tu viens. Carte demandée juste après.';
+      // Hard-hide tous les éléments de réservation pour non-resto
+      if (fab) { fab.classList.remove('show'); fab.style.display = 'none'; }
+      if (heroBtn) heroBtn.style.display = 'none';
+      if (fabMesResas) fabMesResas.style.display = 'none';
+      return;
     }
+
+    // Resto : afficher tous les boutons
+    if (fab) fab.classList.add('show');
+    if (heroBtn) heroBtn.style.display = 'inline-flex';
   });
 
   // Montant par couvert (récupéré du commerçant, fallback 10€)
