@@ -2116,6 +2116,8 @@ async function voirCommandesCreneau(dateKey, heure) {
   cmds.forEach(c => {
     const typeIcon = c.type === 'livraison' ? '🚚' : '📍';
     const client = c.clients ? (c.clients.prenom + ' ' + c.clients.nom) : 'Client';
+    const tel = (c.clients && c.clients.telephone) ? c.clients.telephone : (c.telephone_client || c.client_telephone || '');
+    const telDigits = tel ? tel.replace(/[^0-9+]/g, '') : '';
     const produits = (c.commande_lignes || []).map(l => l.quantite + ' ' + l.unite + ' ' + l.nom_produit).join(', ');
     const statut = { nouvelle: '🔵 Nouvelle', en_preparation: '🟡 En prépa', prete: '🟢 Prête', remise: '⚪ Remise' }[c.statut] || c.statut;
     html += `
@@ -2124,6 +2126,7 @@ async function voirCommandesCreneau(dateKey, heure) {
           <div>
             <div style="font-weight:500;font-size:15px;">${client}</div>
             <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">${typeIcon} ${c.type === 'retrait' ? 'Retrait' : 'Livraison'} · ${c.numero}</div>
+            ${tel ? `<div style="font-size:13px;color:var(--bleu-nuit,#0F2C52);margin-top:4px;font-weight:600;">📞 ${tel}</div>` : '<div style="font-size:11px;color:#a55;margin-top:4px;">⚠ Pas de téléphone renseigné</div>'}
           </div>
           <div style="text-align:right;">
             <div style="font-weight:500;color:var(--vert);">${(c.total_ttc||0).toFixed(2).replace('.',',')}€</div>
@@ -2131,6 +2134,13 @@ async function voirCommandesCreneau(dateKey, heure) {
           </div>
         </div>
         ${produits ? `<div style="font-size:12px;color:var(--texte-doux);background:var(--creme);border-radius:8px;padding:8px;">${produits}</div>` : ''}
+        ${tel ? `
+          <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <a href="tel:${telDigits}"
+              style="background:#5BBE3A;color:white;border-radius:8px;padding:9px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;">📞 Appeler</a>
+            <a href="sms:${telDigits}"
+              style="background:#0F2C52;color:white;border-radius:8px;padding:9px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;">💬 SMS</a>
+          </div>` : ''}
         ${c.type === 'livraison' && c.adresse_livraison ? `
           <div style="margin-top:8px;display:flex;gap:8px;">
             <a href="https://maps.google.com/?q=${encodeURIComponent(c.adresse_livraison)}" target="_blank"
