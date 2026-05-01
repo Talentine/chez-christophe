@@ -558,6 +558,9 @@
   <button class="tab-btn" onclick="allerOnglet('creneaux')" id="tab-creneaux">
     Créneaux
   </button>
+  <button class="tab-btn" onclick="allerOnglet('reservations')" id="tab-reservations">
+    Réservations
+  </button>
   <button class="tab-btn" onclick="allerOnglet('galerie')" id="tab-galerie">
     Galerie
   </button>
@@ -845,6 +848,29 @@
   </div>
 </div>
 
+
+<!-- ===== ONGLET RÉSERVATIONS ===== -->
+<div class="tab-content" id="content-reservations">
+  <div style="padding:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-family:'Manrope',sans-serif;font-size:20px;font-weight:700;">Réservations</div>
+      <button onclick="chargerReservations()" style="background:transparent;border:1.5px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;font-size:12px;font-family:inherit;cursor:pointer;">🔄 Rafraîchir</button>
+    </div>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <button class="resa-filtre filtre-pill actif" data-statut="tous" onclick="filtrerResa('tous',this)">Toutes <span id="resa-count-tous">0</span></button>
+      <button class="resa-filtre filtre-pill" data-statut="confirmee" onclick="filtrerResa('confirmee',this)">✅ Confirmées <span id="resa-count-confirmee">0</span></button>
+      <button class="resa-filtre filtre-pill" data-statut="nouvelle" onclick="filtrerResa('nouvelle',this)">🔵 En attente <span id="resa-count-nouvelle">0</span></button>
+      <button class="resa-filtre filtre-pill" data-statut="arrivee" onclick="filtrerResa('arrivee',this)">🟢 Arrivées <span id="resa-count-arrivee">0</span></button>
+      <button class="resa-filtre filtre-pill" data-statut="no_show" onclick="filtrerResa('no_show',this)">❌ No-show <span id="resa-count-no_show">0</span></button>
+      <button class="resa-filtre filtre-pill" data-statut="annulee" onclick="filtrerResa('annulee',this)">⚪ Annulées <span id="resa-count-annulee">0</span></button>
+    </div>
+
+    <div id="resaListe" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="text-align:center;color:var(--texte-doux);padding:40px 0;">Chargement…</div>
+    </div>
+  </div>
+</div>
 
 <!-- ===== ONGLET GALERIE ===== -->
 <div class="tab-content" id="content-galerie">
@@ -1847,8 +1873,141 @@ function allerOnglet(id) {
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
+  if (id === 'reservations') chargerReservations();
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'reglages') chargerReglages();
+}
+
+// ── ONGLET RÉSERVATIONS ────────────────────────────────────────
+let toutesResas = [];
+let resaFilterStatut = 'tous';
+
+async function chargerReservations() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    if (!commercantId) return;
+    const liste = document.getElementById('resaListe');
+    if (liste) liste.innerHTML = '<div style="text-align:center;color:var(--texte-doux);padding:40px 0;">Chargement…</div>';
+
+    const r = await fetch(SUPABASE_URL + '/rest/v1/reservations_avec_deadline?commercant_id=eq.' + commercantId + '&order=reservation_at.desc&limit=100', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    toutesResas = Array.isArray(data) ? data : [];
+    renderResas();
+  } catch (e) {
+    console.error('chargerReservations:', e);
+    document.getElementById('resaListe').innerHTML = '<div style="text-align:center;color:var(--terracotta);padding:30px 0;">Erreur: ' + e.message + '</div>';
+  }
+}
+
+function filtrerResa(statut, btn) {
+  resaFilterStatut = statut;
+  document.querySelectorAll('.resa-filtre').forEach(b => b.classList.remove('actif'));
+  if (btn) btn.classList.add('actif');
+  renderResas();
+}
+
+function renderResas() {
+  const liste = document.getElementById('resaListe');
+  if (!liste) return;
+
+  // Compteurs par statut
+  const stats = { tous: toutesResas.length, nouvelle: 0, confirmee: 0, arrivee: 0, no_show: 0, annulee: 0 };
+  toutesResas.forEach(r => { if (stats[r.statut] !== undefined) stats[r.statut]++; });
+  Object.keys(stats).forEach(k => {
+    const el = document.getElementById('resa-count-' + k);
+    if (el) el.textContent = stats[k];
+  });
+
+  const filtered = resaFilterStatut === 'tous' ? toutesResas : toutesResas.filter(r => r.statut === resaFilterStatut);
+  if (filtered.length === 0) {
+    liste.innerHTML = '<div style="text-align:center;color:var(--texte-doux);padding:40px 0;">Aucune réservation' + (resaFilterStatut !== 'tous' ? ' avec ce statut' : '') + '.</div>';
+    return;
+  }
+
+  liste.innerHTML = filtered.map(renderResaCard).join('');
+}
+
+function renderResaCard(r) {
+  const statutMap = {
+    nouvelle:  { bg:'#e0f0ff', col:'#185fa5', label:'🔵 En attente carte' },
+    confirmee: { bg:'#fff8e7', col:'#8a6d1c', label:'✅ Confirmée' },
+    arrivee:   { bg:'#eaf7ee', col:'#207d4a', label:'🟢 Arrivée' },
+    no_show:   { bg:'#fdf0ef', col:'#9a2d24', label:'❌ No-show (débitée)' },
+    annulee:   { bg:'#f3f3f3', col:'#666',    label:'⚪ Annulée' },
+  }[r.statut] || { bg:'#f3f3f3', col:'#666', label:r.statut };
+
+  const eur = ((r.empreinte_montant_cents||0)/100).toFixed(0);
+  const dateStr = new Date(r.date_reservation).toLocaleDateString('fr-FR', { weekday:'short', day:'numeric', month:'short' });
+  const heureStr = (r.heure_reservation || '').slice(0,5);
+  const isPast = r.peut_annuler_gratuit === false;
+
+  // Boutons selon statut
+  let actions = '';
+  if (r.statut === 'confirmee' || r.statut === 'nouvelle') {
+    actions = ''
+      + '<button onclick="resaValiderPresence(\'' + r.id + '\')" style="flex:1;background:#5BBE3A;color:#fff;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">✅ Valider la présence</button>'
+      + '<button onclick="resaEncaisserNoShow(\'' + r.id + '\',' + r.empreinte_montant_cents + ')" style="flex:1;background:#fdf0ef;color:#9a2d24;border:1px solid #f3c8c4;border-radius:10px;padding:10px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">❌ Encaisser No-show</button>'
+      + '<button onclick="resaGesteCommercial(\'' + r.id + '\')" style="background:transparent;color:var(--texte-doux);border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;" title="Geste commercial : annuler sans débit">🤝</button>';
+  }
+
+  const occasionMap = { anniversaire:'🎂', business:'💼', romantique:'💑', familial:'👨‍👩‍👧' };
+  const occ = r.occasion ? '<span style="font-size:11px;background:rgba(255,255,255,0.6);padding:2px 7px;border-radius:50px;margin-left:6px;">' + (occasionMap[r.occasion]||'') + ' ' + r.occasion + '</span>' : '';
+
+  return ''
+    + '<div style="background:#fff;border-radius:14px;padding:14px;border:1px solid var(--creme-fonce);box-shadow:0 1px 4px rgba(0,0,0,0.03);">'
+    +   '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">'
+    +     '<div style="flex:1;min-width:0;">'
+    +       '<div style="font-weight:700;font-size:15px;">' + (r.prenom_client ? r.prenom_client + ' ' : '') + r.nom_client + occ + '</div>'
+    +       '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">📞 ' + r.telephone + (r.email ? ' · ✉️ ' + r.email : '') + '</div>'
+    +     '</div>'
+    +     '<span style="background:' + statutMap.bg + ';color:' + statutMap.col + ';padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;flex-shrink:0;">' + statutMap.label + '</span>'
+    +   '</div>'
+    +   '<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--texte);margin:8px 0;">'
+    +     '<span>📅 <strong>' + dateStr + '</strong></span>'
+    +     '<span>⏰ <strong>' + heureStr + '</strong></span>'
+    +     '<span>👥 <strong>' + r.nb_couverts + '</strong> couverts</span>'
+    +     '<span>💳 <strong>' + eur + '€</strong> empreinte</span>'
+    +   '</div>'
+    +   (r.notes ? '<div style="font-size:12.5px;color:var(--texte-doux);background:#fff8e7;border-radius:8px;padding:8px 10px;margin-top:6px;">💬 ' + r.notes + '</div>' : '')
+    +   (isPast && r.statut === 'confirmee' ? '<div style="font-size:11.5px;color:#9a2d24;margin-top:6px;background:#fdf0ef;padding:6px 10px;border-radius:8px;">⚠️ Hors délai d\'annulation gratuite</div>' : '')
+    +   (actions ? '<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">' + actions + '</div>' : '')
+    + '</div>';
+}
+
+window.resaValiderPresence = async function(id) {
+  if (!confirm('Confirmer l\'arrivée du client ? L\'empreinte sera libérée.')) return;
+  await callResaAction({ action: 'release', reservation_id: id }, '✅ Présence validée — empreinte libérée');
+};
+
+window.resaEncaisserNoShow = async function(id, montant_cents) {
+  const eur = ((montant_cents||0)/100).toFixed(0);
+  if (!confirm('⚠️ ENCAISSER NO-SHOW\n\nLe montant de ' + eur + '€ sera DÉBITÉ de la carte du client.\n\nCette action est définitive. Confirmer ?')) return;
+  await callResaAction({ action: 'capture', reservation_id: id }, '❌ ' + eur + '€ débités au client');
+};
+
+window.resaGesteCommercial = async function(id) {
+  const raison = prompt('Raison du geste commercial (optionnel) :');
+  if (raison === null) return; // Cancel
+  await callResaAction({ action: 'commercial_gesture', reservation_id: id, raison: raison || null }, '🤝 Geste commercial appliqué — empreinte libérée');
+};
+
+async function callResaAction(payload, successMsg) {
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/stripe-reservation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+      body: JSON.stringify(payload)
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+    afficherToast(successMsg);
+    chargerReservations();
+  } catch (e) {
+    afficherToast('❌ ' + e.message);
+  }
 }
 
 // ── Sauvegarde de la politique d'annulation (restos)
@@ -2172,15 +2331,20 @@ async function sauverReglages() {
       }
       if (wrap) wrap.style.display = obligatoire ? 'block' : 'none';
       if (status) status.textContent = '⏳ Sauvegarde...';
+      const token = await getValidToken();
+      if (!token) { if (status) status.textContent = '🔒 Reconnecte-toi'; return; }
       const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
         method: 'PATCH',
         headers: {
-          'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json', 'Prefer': 'return=minimal'
         },
         body: JSON.stringify({ empreinte_obligatoire: obligatoire, no_show_pct: pct })
       });
-      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (!r.ok) {
+        const txt = await r.text().catch(() => '');
+        throw new Error('HTTP ' + r.status + ' ' + txt);
+      }
       if (status) status.textContent = '✓ Réglages enregistrés';
       setTimeout(() => { if (status) status.textContent = ''; }, 1500);
     } catch (e) {
