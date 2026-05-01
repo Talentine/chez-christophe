@@ -3034,5 +3034,301 @@ body.mode-demo #btn-panier { display: none !important; }
   };
 })();
 </script>
+
+<!-- ============================================================
+     RÉSERVATION DE TABLE — pizzeria / restaurant uniquement
+     ============================================================ -->
+<style>
+#m-fab-reservation {
+  position: fixed; bottom: 90px; right: 16px; z-index: 95;
+  background: linear-gradient(135deg, #5BBE3A, #2A6F3F);
+  color: #fff; border: none; border-radius: 50px;
+  padding: 14px 22px; font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(91,190,58,.4);
+  display: none; align-items: center; gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}
+#m-fab-reservation.show { display: inline-flex; }
+@media (max-width: 540px) { #m-fab-reservation { bottom: 76px; padding: 12px 18px; font-size: 13px; } }
+
+#m-resa-overlay {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(15,44,82,.7); backdrop-filter: blur(8px);
+  display: none; align-items: flex-end; justify-content: center;
+}
+@media(min-width:640px){#m-resa-overlay{align-items:center;padding:20px}}
+#m-resa-overlay.open { display: flex; }
+.m-resa-card {
+  background: #fff; border-radius: 24px 24px 0 0;
+  width: 100%; max-width: 540px;
+  max-height: 92vh; overflow-y: auto;
+  padding: 24px 22px calc(24px + env(safe-area-inset-bottom));
+  font-family: 'Manrope', sans-serif;
+}
+@media(min-width:640px){.m-resa-card{border-radius:24px}}
+.m-resa-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.m-resa-title { font-weight: 800; font-size: 22px; color: #0F2C52; }
+.m-resa-close { background: rgba(15,44,82,.08); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-size: 18px; }
+.m-resa-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+@media(max-width:480px){.m-resa-form .row{grid-template-columns:1fr}}
+.m-resa-form label { display: block; font-size: 12.5px; font-weight: 600; color: #0F2C52; margin-bottom: 6px; }
+.m-resa-form input, .m-resa-form select, .m-resa-form textarea {
+  width: 100%; padding: 11px 12px; border: 1.5px solid #E8E0D5;
+  border-radius: 12px; font-size: 16px; font-family: inherit;
+  min-height: 44px; box-sizing: border-box;
+}
+.m-resa-form textarea { resize: vertical; min-height: 70px; }
+.m-resa-couvre-btns { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.m-resa-couvre-btn { padding: 10px; border: 1.5px solid #E8E0D5; background: #fff; border-radius: 10px; font-weight: 700; font-family: inherit; cursor: pointer; }
+.m-resa-couvre-btn.active { background: #0F2C52; color: #fff; border-color: #0F2C52; }
+.m-resa-info {
+  background: #FFF8E7; border-left: 3px solid #F4B942;
+  padding: 12px 14px; border-radius: 8px; margin: 14px 0;
+  font-size: 12.5px; color: #6B5B1F; line-height: 1.5;
+}
+.m-resa-cta {
+  width: 100%; padding: 14px; border: none; border-radius: 50px;
+  background: linear-gradient(135deg,#5BBE3A,#2A6F3F); color: #fff;
+  font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer;
+  margin-top: 8px; min-height: 48px;
+}
+.m-resa-cta:disabled { opacity: .6; cursor: not-allowed; }
+#m-resa-stripe { padding: 12px; border: 1.5px solid #E8E0D5; border-radius: 12px; }
+#m-resa-status { font-size: 13px; text-align: center; margin-top: 10px; min-height: 20px; }
+</style>
+
+<button id="m-fab-reservation" onclick="ouvrirReservation()">
+  📅 Réserver une table
+</button>
+
+<div id="m-resa-overlay">
+  <div class="m-resa-card">
+    <div class="m-resa-head">
+      <div class="m-resa-title">📅 Réserver une table</div>
+      <button class="m-resa-close" onclick="fermerReservation()" aria-label="Fermer">✕</button>
+    </div>
+
+    <form id="m-resa-form" class="m-resa-form" onsubmit="return false;">
+      <!-- Étape 1 : infos -->
+      <div id="m-resa-step1">
+        <label>Combien de couverts ?</label>
+        <div class="m-resa-couvre-btns" id="m-resa-couverts-grid"></div>
+
+        <div class="row" style="margin-top:14px">
+          <div><label>Date</label><input type="date" id="m-resa-date" required></div>
+          <div><label>Heure</label>
+            <select id="m-resa-heure" required>
+              <option value="">—</option>
+              <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+              <option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div><label>Prénom</label><input id="m-resa-prenom" placeholder="Jean"></div>
+          <div><label>Nom *</label><input id="m-resa-nom" placeholder="Dupont" required></div>
+        </div>
+
+        <div class="row">
+          <div><label>Téléphone *</label><input type="tel" id="m-resa-tel" inputmode="tel" placeholder="06 …" required></div>
+          <div><label>E-mail</label><input type="email" id="m-resa-email" inputmode="email" placeholder="vous@…"></div>
+        </div>
+
+        <label>Occasion (optionnel)</label>
+        <select id="m-resa-occasion">
+          <option value="">— Aucune —</option>
+          <option value="anniversaire">🎂 Anniversaire</option>
+          <option value="business">💼 Repas d'affaires</option>
+          <option value="romantique">💑 Romantique</option>
+          <option value="familial">👨‍👩‍👧 Familial</option>
+        </select>
+
+        <label style="margin-top:14px">Demandes spéciales / allergies</label>
+        <textarea id="m-resa-notes" placeholder="Allergies, accès PMR, table calme…"></textarea>
+
+        <div class="m-resa-info">
+          🔒 <strong>Empreinte bancaire anti no-show</strong> : <span id="m-resa-montant">15€</span> par couvert.
+          <br>Aucun débit si tu viens. Carte demandée juste après.
+        </div>
+
+        <button type="button" class="m-resa-cta" onclick="passerEtapeCarte()">Continuer →</button>
+      </div>
+
+      <!-- Étape 2 : carte -->
+      <div id="m-resa-step2" style="display:none">
+        <div style="font-size:13.5px;color:#6B7785;margin-bottom:14px;line-height:1.5;">
+          Saisis ta carte pour valider ta réservation.<br>
+          <strong style="color:#0F2C52">Empreinte de <span id="m-resa-montant2">15€</span></strong> — débitée uniquement en cas de no-show.
+        </div>
+
+        <label>Numéro de carte</label>
+        <div id="m-resa-stripe"></div>
+        <div id="m-resa-status"></div>
+
+        <button type="button" class="m-resa-cta" id="m-resa-confirm-btn" onclick="confirmerReservation()">
+          🔒 Valider ma réservation
+        </button>
+      </div>
+
+      <!-- Étape 3 : succès -->
+      <div id="m-resa-step3" style="display:none;text-align:center;padding:20px 10px">
+        <div style="font-size:64px">🎉</div>
+        <div style="font-weight:800;font-size:22px;color:#0F2C52;margin-top:8px">Réservation confirmée !</div>
+        <div style="font-size:14px;color:#6B7785;margin-top:8px;line-height:1.5" id="m-resa-recap"></div>
+        <button class="m-resa-cta" onclick="fermerReservation()">Super, merci !</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Activation : seulement pour pizzeria + restaurant (pas fastfood)
+  document.addEventListener('business:ready', function(e) {
+    var b = (e.detail && e.detail.business) || {};
+    var bt = b.business_type;
+    var enable = (bt === 'pizzeria' || bt === 'restaurant');
+    if (enable) {
+      document.getElementById('m-fab-reservation').classList.add('show');
+    }
+  });
+
+  // Initialiser les boutons couverts (1-12)
+  var couvertsBtns = document.getElementById('m-resa-couverts-grid');
+  if (couvertsBtns) {
+    for (var i = 1; i <= 12; i++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'm-resa-couvre-btn' + (i === 2 ? ' active' : '');
+      btn.dataset.nb = i;
+      btn.textContent = i;
+      btn.onclick = function() {
+        document.querySelectorAll('.m-resa-couvre-btn').forEach(function(b){b.classList.remove('active')});
+        this.classList.add('active');
+        var n = parseInt(this.dataset.nb);
+        document.getElementById('m-resa-montant').textContent = (15 * n) + '€';
+        document.getElementById('m-resa-montant2').textContent = (15 * n) + '€';
+      };
+      couvertsBtns.appendChild(btn);
+    }
+  }
+
+  // Date min = aujourd'hui
+  var dateInput = document.getElementById('m-resa-date');
+  if (dateInput) dateInput.min = new Date().toISOString().slice(0,10);
+
+  var stripe, elements, cardElement;
+  var resaCtx = {};
+
+  window.ouvrirReservation = function() {
+    document.getElementById('m-resa-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.fermerReservation = function() {
+    document.getElementById('m-resa-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset
+    document.getElementById('m-resa-step1').style.display = 'block';
+    document.getElementById('m-resa-step2').style.display = 'none';
+    document.getElementById('m-resa-step3').style.display = 'none';
+  };
+
+  window.passerEtapeCarte = async function() {
+    var couvertsActif = document.querySelector('.m-resa-couvre-btn.active');
+    var nb_couverts = couvertsActif ? parseInt(couvertsActif.dataset.nb) : 2;
+    var date = document.getElementById('m-resa-date').value;
+    var heure = document.getElementById('m-resa-heure').value;
+    var nom = document.getElementById('m-resa-nom').value.trim();
+    var tel = document.getElementById('m-resa-tel').value.trim();
+
+    if (!date || !heure || !nom || !tel) {
+      alert('Remplis au minimum date, heure, nom et téléphone.');
+      return;
+    }
+
+    var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    if (!b.id) { alert('Boutique non trouvée'); return; }
+
+    resaCtx = {
+      commercant_id: b.id,
+      nb_couverts: nb_couverts,
+      date_reservation: date,
+      heure_reservation: heure,
+      nom_client: nom,
+      prenom_client: document.getElementById('m-resa-prenom').value.trim(),
+      telephone: tel,
+      email: document.getElementById('m-resa-email').value.trim(),
+      occasion: document.getElementById('m-resa-occasion').value,
+      notes: document.getElementById('m-resa-notes').value.trim(),
+    };
+
+    document.getElementById('m-resa-status').textContent = 'Création de la réservation…';
+
+    try {
+      var r = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+        body: JSON.stringify(Object.assign({ action: 'create' }, resaCtx))
+      });
+      var data = await r.json();
+      if (!r.ok || !data.client_secret) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+
+      resaCtx.client_secret = data.client_secret;
+      resaCtx.setup_intent_id = data.setup_intent_id;
+      resaCtx.reservation_id = data.reservation_id;
+
+      // Switch UI
+      document.getElementById('m-resa-step1').style.display = 'none';
+      document.getElementById('m-resa-step2').style.display = 'block';
+
+      // Charger Stripe.js si pas déjà
+      if (!window.Stripe) {
+        await new Promise(function(res, rej){
+          var s = document.createElement('script');
+          s.src = 'https://js.stripe.com/v3/'; s.onload = res; s.onerror = rej;
+          document.head.appendChild(s);
+        });
+      }
+      // Init Stripe (clé publishable Marchéo - mode test)
+      stripe = Stripe('pk_test_51TNZXIEH5d5nXfSsZcoWoSj4ZzIklnGU4RBFRvWZ95mdL8LjQ8d73oQwuxTqyuItkCl5iMAxX4OG6F9RYzM3kBl700vZRqylUI');
+      elements = stripe.elements({ clientSecret: data.client_secret });
+      cardElement = elements.create('payment');
+      cardElement.mount('#m-resa-stripe');
+      document.getElementById('m-resa-status').textContent = '';
+    } catch (e) {
+      document.getElementById('m-resa-status').textContent = '⚠️ ' + e.message;
+    }
+  };
+
+  window.confirmerReservation = async function() {
+    var btn = document.getElementById('m-resa-confirm-btn');
+    btn.disabled = true; btn.textContent = 'Vérification carte…';
+    document.getElementById('m-resa-status').textContent = '';
+
+    try {
+      var result = await stripe.confirmSetup({ elements: elements, redirect: 'if_required' });
+      if (result.error) throw new Error(result.error.message);
+
+      // Confirmer la résa côté serveur
+      await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+        body: JSON.stringify({ action: 'confirm', reservation_id: resaCtx.reservation_id, setup_intent_id: resaCtx.setup_intent_id })
+      });
+
+      document.getElementById('m-resa-step2').style.display = 'none';
+      document.getElementById('m-resa-step3').style.display = 'block';
+      document.getElementById('m-resa-recap').textContent =
+        resaCtx.nb_couverts + ' couverts · ' + resaCtx.date_reservation + ' à ' + resaCtx.heure_reservation;
+    } catch (e) {
+      btn.disabled = false; btn.textContent = '🔒 Valider ma réservation';
+      document.getElementById('m-resa-status').textContent = '⚠️ ' + e.message;
+    }
+  };
+})();
+</script>
 </body>
 </html>
