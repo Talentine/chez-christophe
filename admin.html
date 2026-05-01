@@ -928,9 +928,11 @@ async function chargerDashboard() {
       : (actifs.length > 0 ? actifs.length + ' boutique(s) en démo' : '');
   }
 
+  // Prix mensuel par offre (basé sur commercants.offre)
+  const PRIX_OFFRE = { vitrine: 19, clickcollect: 39, livraison: 59 };
   const mrr = tousCommercants
     .filter(c => c.abonnement_actif)
-    .reduce((s, c) => s + (c.plans?.prix_mensuel || 0), 0);
+    .reduce((s, c) => s + (PRIX_OFFRE[c.offre] || c.plans?.prix_mensuel || 0), 0);
   document.getElementById('statMRR').textContent = mrr.toFixed(0) + ' €';
 
   // Commandes ce mois
@@ -939,11 +941,12 @@ async function chargerDashboard() {
   document.getElementById('statCommandes').textContent = cmdMois.length;
   document.getElementById('statClients').textContent = (clients || []).length;
 
-  // MRR par plan
+  // MRR par offre
   const planStats = {};
+  const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
   tousCommercants.filter(c => c.abonnement_actif).forEach(c => {
-    const plan = c.plans?.nom || 'starter';
-    const prix = c.plans?.prix_mensuel || 0;
+    const plan = offreLabels[c.offre] || c.plans?.nom || '—';
+    const prix = PRIX_OFFRE[c.offre] || c.plans?.prix_mensuel || 0;
     planStats[plan] = (planStats[plan] || 0) + prix;
   });
 
@@ -1064,8 +1067,11 @@ function renderTableCommercants(data) {
 
   const now = Date.now();
   tbody.innerHTML = data.map(c => {
-    const plan = c.plans?.nom || 'starter';
-    const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
+    // Affichage du plan: lit commercants.offre (vitrine/clickcollect/livraison)
+    // Fallback sur l'ancienne table plans (plan_id) si offre est vide
+    const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
+    const plan = offreLabels[c.offre] || c.plans?.nom || '—';
+    const planClass = { vitrine:'badge-starter', clickcollect:'badge-pro', livraison:'badge-premium' }[c.offre] || 'badge-starter';
     const statutClass = c.actif ? 'badge-actif' : 'badge-inactif';
     const statutTxt = c.actif ? 'Actif' : 'Inactif';
     const m = METIERS[c.business_type] || METIERS.primeur;
@@ -1547,15 +1553,17 @@ async function chargerAnalytics() {
 
 async function chargerRevenus() {
   const commercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_actif=eq.true') || [];
+  const PRIX_OFFRE_REV = { vitrine: 19, clickcollect: 39, livraison: 59 };
+  const offreLabelsRev = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
 
-  const mrr = commercants.reduce((s,c) => s + (c.plans?.prix_mensuel || 0), 0);
+  const mrr = commercants.reduce((s,c) => s + (PRIX_OFFRE_REV[c.offre] || c.plans?.prix_mensuel || 0), 0);
   document.getElementById('revMRR').textContent = mrr.toFixed(0) + ' €';
   document.getElementById('revARR').textContent = (mrr * 12).toFixed(0) + ' €';
   document.getElementById('revActifs').textContent = commercants.length;
 
   document.getElementById('tableRevenus').innerHTML = commercants.map(c => {
-    const plan = c.plans?.nom || '—';
-    const prix = c.plans?.prix_mensuel || 0;
+    const plan = offreLabelsRev[c.offre] || c.plans?.nom || '—';
+    const prix = PRIX_OFFRE_REV[c.offre] || c.plans?.prix_mensuel || 0;
     const debut = c.abonnement_debut ? new Date(c.abonnement_debut).toLocaleDateString('fr-FR') : '—';
     const planClass = { starter:'badge-starter', pro:'badge-pro', premium:'badge-premium' }[plan] || 'badge-starter';
     return `

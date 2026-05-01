@@ -3587,10 +3587,34 @@ body.mode-demo #btn-panier { display: none !important; }
         });
       }
       // Init Stripe (clé publishable Marchéo - mode test)
-      stripe = Stripe('pk_test_51TNZXIEH5d5nXfSsZcoWoSj4ZzIklnGU4RBFRvWZ95mdL8LjQ8d73oQwuxTqyuItkCl5iMAxX4OG6F9RYzM3kBl700vZRqylUI');
-      elements = stripe.elements({ clientSecret: data.client_secret });
-      cardElement = elements.create('payment');
+      var pk = window.MARCHEO_STRIPE_PK || 'pk_test_51TNZXIEH5d5nXfSsZcoWoSj4ZzIklnGU4RBFRvWZ95mdL8LjQ8d73oQwuxTqyuItkCl5iMAxX4OG6F9RYzM3kBl700vZRqylUI';
+      stripe = Stripe(pk);
+      // Card Element (plus simple et plus fiable que Payment Element pour SetupIntent)
+      elements = stripe.elements();
+      cardElement = elements.create('card', {
+        style: {
+          base: {
+            fontSize: '16px',
+            fontFamily: 'Manrope, system-ui, sans-serif',
+            color: '#0F2C52',
+            '::placeholder': { color: '#9a8a6a' },
+          },
+          invalid: { color: '#E65533' }
+        },
+        hidePostalCode: true,
+      });
+      // Vide le container avant de monter (au cas où réouverture)
+      var container = document.getElementById('m-resa-stripe');
+      if (container) container.innerHTML = '';
       cardElement.mount('#m-resa-stripe');
+      cardElement.on('ready', function() {
+        console.log('[Stripe] Card element ready');
+      });
+      cardElement.on('change', function(event) {
+        var status = document.getElementById('m-resa-status');
+        if (event.error) status.textContent = '⚠️ ' + event.error.message;
+        else status.textContent = '';
+      });
       document.getElementById('m-resa-status').textContent = '';
     } catch (e) {
       document.getElementById('m-resa-status').textContent = '⚠️ ' + e.message;
@@ -3603,7 +3627,7 @@ body.mode-demo #btn-panier { display: none !important; }
     document.getElementById('m-resa-status').textContent = '';
 
     try {
-      var result = await stripe.confirmSetup({ elements: elements, redirect: 'if_required' });
+      var result = await stripe.confirmCardSetup(resaCtx.client_secret, { payment_method: { card: cardElement } });
       if (result.error) throw new Error(result.error.message);
 
       // Confirmer la résa côté serveur

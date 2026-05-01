@@ -1136,6 +1136,31 @@
       </div>
     </div>
 
+    <!-- DÉLAIS D'ATTENTE MIN AVANT COMMANDE / RÉSERVATION -->
+    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Délais minimum avant commande</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Empêche les clients de réserver/commander à un horaire trop proche.</div>
+
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">📍 Retrait : <b id="delaiRetraitVal">30</b> min minimum</label>
+      <input type="range" id="delaiRetraitRange" min="0" max="240" step="15" value="30"
+        oninput="document.getElementById('delaiRetraitVal').textContent=this.value"
+        onchange="sauverDelaisMin()" style="width:100%;margin-bottom:12px;">
+
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🚚 Livraison : <b id="delaiLivraisonVal">60</b> min minimum</label>
+      <input type="range" id="delaiLivraisonRange" min="0" max="240" step="15" value="60"
+        oninput="document.getElementById('delaiLivraisonVal').textContent=this.value"
+        onchange="sauverDelaisMin()" style="width:100%;margin-bottom:12px;">
+
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🍽️ Réservation table : <b id="delaiReservationVal">60</b> min minimum</label>
+      <input type="range" id="delaiReservationRange" min="0" max="240" step="15" value="60"
+        oninput="document.getElementById('delaiReservationVal').textContent=this.value"
+        onchange="sauverDelaisMin()" style="width:100%;">
+
+      <div style="font-size:12px;color:var(--texte-doux);margin-top:10px;background:#fff8e7;border-radius:8px;padding:10px 12px;line-height:1.5;">
+        💡 <strong>Recommandé</strong> : 30 min retrait, 60 min livraison, 60 min réservation. Plus le délai est court, plus le client peut réagir vite — mais ça te laisse moins de temps pour préparer.
+      </div>
+    </div>
+
     <!-- POLITIQUE D'ANNULATION RÉSERVATION -->
     <div id="cancellationPolicyCard" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;display:none;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Politique d'annulation des réservations</div>
@@ -2341,6 +2366,24 @@ async function sauverCancellationPolicy() {
   } catch (e) { afficherToast('❌ Échec sauvegarde'); }
 }
 
+async function sauverDelaisMin() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    const token = await getValidToken();
+    if (!commercantId || !token) return;
+    const dRet = parseInt(document.getElementById('delaiRetraitRange').value);
+    const dLiv = parseInt(document.getElementById('delaiLivraisonRange').value);
+    const dRes = parseInt(document.getElementById('delaiReservationRange').value);
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ delai_min_retrait_min: dRet, delai_min_livraison_min: dLiv, delai_min_reservation_min: dRes })
+    });
+    afficherToast('✅ Délais sauvegardés');
+  } catch (e) { afficherToast('❌ Échec'); }
+}
+
 function majTipCouvert(eur) {
   const tip = document.getElementById('couvertTipBox');
   if (!tip) return;
@@ -2468,7 +2511,7 @@ async function chargerReglages() {
     const cancelCard = document.getElementById('cancellationPolicyCard');
     if (cancelCard) cancelCard.style.display = 'block';
 
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours,empreinte_couvert_cents', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours,empreinte_couvert_cents,delai_min_retrait_min,delai_min_livraison_min,delai_min_reservation_min', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const data = await r.json();
@@ -2503,6 +2546,23 @@ async function chargerReglages() {
     const cuVal = document.getElementById('couvertEurVal');
     if (cuRange) cuRange.value = couvertEur;
     if (cuVal) cuVal.textContent = couvertEur;
+
+    // Délais minimum avant commande
+    const dRet = c.delai_min_retrait_min ?? 30;
+    const dLiv = c.delai_min_livraison_min ?? 60;
+    const dRes = c.delai_min_reservation_min ?? 60;
+    if (document.getElementById('delaiRetraitRange')) {
+      document.getElementById('delaiRetraitRange').value = dRet;
+      document.getElementById('delaiRetraitVal').textContent = dRet;
+    }
+    if (document.getElementById('delaiLivraisonRange')) {
+      document.getElementById('delaiLivraisonRange').value = dLiv;
+      document.getElementById('delaiLivraisonVal').textContent = dLiv;
+    }
+    if (document.getElementById('delaiReservationRange')) {
+      document.getElementById('delaiReservationRange').value = dRes;
+      document.getElementById('delaiReservationVal').textContent = dRes;
+    }
   } catch (e) {
     console.log('chargerReglages:', e);
   }
@@ -5380,6 +5440,7 @@ verifierSessionCommercant().then(function(ok) {
       <select id="creneauType" style="width:100%;padding:12px 14px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);outline:none;">
         <option value="retrait">📍 Retrait boutique</option>
         <option value="livraison">🚚 Livraison</option>
+        <option value="reservation">🍽️ Réservation table</option>
       </select>
     </div>
 
