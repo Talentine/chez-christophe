@@ -853,72 +853,6 @@
       </div>
     </div>
 
-    <!-- TYPE DE COMMERCE PRINCIPAL + SECONDAIRES -->
-    <div id="businessTypeSection" style="margin-top:24px;">
-      <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Type de commerce</div>
-      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Métier principal</label>
-          <select id="businessType" onchange="onBusinessTypeChange()" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);outline:none;">
-            <option value="primeur">🌿 Primeur</option>
-            <option value="boucherie">🥩 Boucherie</option>
-            <option value="boulangerie">🥖 Boulangerie</option>
-            <option value="poissonnerie">🐟 Poissonnerie</option>
-            <option value="traiteur">🍽️ Traiteur</option>
-            <option value="fromagerie">🧀 Fromagerie</option>
-          </select>
-          <div style="font-size:11px;color:var(--texte-doux);margin-top:6px;">Définit l'ADN principal de votre boutique : design, libellés, fonctionnalités.</div>
-        </div>
-
-        <div style="margin-bottom:14px;">
-          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">
-            Activités complémentaires <span style="color:#aaa;font-size:11px;">(optionnel)</span>
-          </label>
-          <div style="font-size:12px;color:var(--texte-doux);margin-bottom:10px;line-height:1.5;">
-            Cochez les types de produits que vous vendez en plus. Les catalogues correspondants seront ajoutés à votre boutique.
-            <br><em>Ex : un primeur qui propose aussi du fromage et des œufs frais.</em>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;" id="businessTypesSecondairesList">
-            <label class="bt-chip" data-type="primeur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="primeur" style="margin:0;"> 🌿 Primeur
-            </label>
-            <label class="bt-chip" data-type="boucherie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="boucherie" style="margin:0;"> 🥩 Boucherie
-            </label>
-            <label class="bt-chip" data-type="boulangerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="boulangerie" style="margin:0;"> 🥖 Boulangerie
-            </label>
-            <label class="bt-chip" data-type="poissonnerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="poissonnerie" style="margin:0;"> 🐟 Poissonnerie
-            </label>
-            <label class="bt-chip" data-type="fromagerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="fromagerie" style="margin:0;"> 🧀 Fromagerie
-            </label>
-            <label class="bt-chip" data-type="traiteur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
-              <input type="checkbox" value="traiteur" style="margin:0;"> 🍽️ Traiteur
-            </label>
-          </div>
-        </div>
-
-        <button onclick="sauvegarderBusinessConfig()"
-          style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;">
-          ✓ Enregistrer le type de commerce
-        </button>
-      </div>
-
-      <!-- PALETTE DE COULEURS -->
-      <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Palette de couleurs</div>
-      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
-        <div style="font-size:13px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">
-          Choisissez l'ambiance visuelle de votre boutique. Chaque palette change l'ADN du site (couleurs, ambiance, ressenti).
-        </div>
-        <div id="paletteList" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <!-- Rempli par JS -->
-        </div>
-        <div id="paletteSavedHint" style="font-size:11px;color:#888;margin-top:8px;text-align:center;display:none;">✓ Palette enregistrée</div>
-      </div>
-    </div>
-
     <style>
       input[type="checkbox"]:checked + .toggle-slider { background: var(--vert); }
       .toggle-slider::before {
@@ -1023,6 +957,75 @@
 <div class="tab-content" id="content-reglages">
   <div style="padding:16px;">
     <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Réglages</div>
+
+    <!-- TYPE DE COMMERCE PRINCIPAL + SECONDAIRES -->
+    <div id="businessTypeSection" style="margin-bottom:16px;">
+      <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Type de commerce</div>
+      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Métier principal</label>
+          <select id="businessType" onchange="onBusinessTypeChange()" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);outline:none;">
+            <option value="primeur">🌿 Primeur</option>
+            <option value="boucherie">🥩 Boucherie</option>
+            <option value="boulangerie">🥖 Boulangerie</option>
+            <option value="poissonnerie">🐟 Poissonnerie</option>
+            <option value="traiteur">🍽️ Traiteur</option>
+            <option value="fromagerie">🧀 Fromagerie</option>
+            <option value="pizzeria">🍕 Pizzeria</option>
+            <option value="restaurant">🍴 Restaurant</option>
+            <option value="fastfood">🍔 Fast-food</option>
+          </select>
+          <div style="font-size:11px;color:var(--texte-doux);margin-top:6px;">Définit l'ADN principal de votre boutique : design, libellés, fonctionnalités.</div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">
+            Activités complémentaires <span style="color:#aaa;font-size:11px;">(optionnel)</span>
+          </label>
+          <div style="font-size:12px;color:var(--texte-doux);margin-bottom:10px;line-height:1.5;">
+            Cochez les types de produits que vous vendez en plus. Les catalogues correspondants seront ajoutés à votre boutique.
+            <br><em>Ex : un primeur qui propose aussi du fromage et des œufs frais.</em>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;" id="businessTypesSecondairesList">
+            <label class="bt-chip" data-type="primeur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="primeur" style="margin:0;"> 🌿 Primeur
+            </label>
+            <label class="bt-chip" data-type="boucherie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="boucherie" style="margin:0;"> 🥩 Boucherie
+            </label>
+            <label class="bt-chip" data-type="boulangerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="boulangerie" style="margin:0;"> 🥖 Boulangerie
+            </label>
+            <label class="bt-chip" data-type="poissonnerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="poissonnerie" style="margin:0;"> 🐟 Poissonnerie
+            </label>
+            <label class="bt-chip" data-type="fromagerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="fromagerie" style="margin:0;"> 🧀 Fromagerie
+            </label>
+            <label class="bt-chip" data-type="traiteur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="traiteur" style="margin:0;"> 🍽️ Traiteur
+            </label>
+          </div>
+        </div>
+
+        <button onclick="sauvegarderBusinessConfig()"
+          style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;">
+          ✓ Enregistrer le type de commerce
+        </button>
+      </div>
+
+      <!-- PALETTE DE COULEURS -->
+      <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Palette de couleurs</div>
+      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:13px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">
+          Choisissez l'ambiance visuelle de votre boutique. Chaque palette change l'ADN du site (couleurs, ambiance, ressenti).
+        </div>
+        <div id="paletteList" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <!-- Rempli par JS -->
+        </div>
+        <div id="paletteSavedHint" style="font-size:11px;color:#888;margin-top:8px;text-align:center;display:none;">✓ Palette enregistrée</div>
+      </div>
+    </div>
 
     <!-- QR CODE BOUTIQUE -->
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
@@ -1141,24 +1144,102 @@
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Délais minimum avant commande</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Empêche les clients de réserver/commander à un horaire trop proche.</div>
 
-      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">📍 Retrait : <b id="delaiRetraitVal">30</b> min minimum</label>
-      <input type="range" id="delaiRetraitRange" min="0" max="240" step="15" value="30"
-        oninput="document.getElementById('delaiRetraitVal').textContent=this.value"
-        onchange="sauverDelaisMin()" style="width:100%;margin-bottom:12px;">
+      <style>
+        .delai-presets { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+        .delai-presets button {
+          flex:1; min-width:60px; padding:10px 8px;
+          background:var(--creme); border:1.5px solid var(--creme-fonce);
+          border-radius:10px; font-size:13px; font-weight:600; font-family:inherit;
+          color:var(--texte); cursor:pointer; transition:all .15s;
+        }
+        .delai-presets button.actif {
+          background:var(--vert); border-color:var(--vert); color:white;
+        }
+      </style>
 
-      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🚚 Livraison : <b id="delaiLivraisonVal">60</b> min minimum</label>
-      <input type="range" id="delaiLivraisonRange" min="0" max="240" step="15" value="60"
-        oninput="document.getElementById('delaiLivraisonVal').textContent=this.value"
-        onchange="sauverDelaisMin()" style="width:100%;margin-bottom:12px;">
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">📍 Retrait : délai minimum</label>
+      <div class="delai-presets" data-target="delaiRetraitRange">
+        <button type="button" data-min="30">30 min</button>
+        <button type="button" data-min="60">1 h</button>
+        <button type="button" data-min="120">2 h</button>
+        <button type="button" data-min="360">6 h</button>
+        <button type="button" data-min="720">12 h</button>
+        <button type="button" data-min="1440">24 h</button>
+      </div>
+      <input type="hidden" id="delaiRetraitRange" value="30">
+      <span id="delaiRetraitVal" style="display:none;">30</span>
 
-      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🍽️ Réservation table : <b id="delaiReservationVal">60</b> min minimum</label>
-      <input type="range" id="delaiReservationRange" min="0" max="240" step="15" value="60"
-        oninput="document.getElementById('delaiReservationVal').textContent=this.value"
-        onchange="sauverDelaisMin()" style="width:100%;">
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🚚 Livraison : délai minimum</label>
+      <div class="delai-presets" data-target="delaiLivraisonRange">
+        <button type="button" data-min="30">30 min</button>
+        <button type="button" data-min="60">1 h</button>
+        <button type="button" data-min="120">2 h</button>
+        <button type="button" data-min="360">6 h</button>
+        <button type="button" data-min="720">12 h</button>
+        <button type="button" data-min="1440">24 h</button>
+      </div>
+      <input type="hidden" id="delaiLivraisonRange" value="60">
+      <span id="delaiLivraisonVal" style="display:none;">60</span>
+
+      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">🍽️ Réservation table : délai minimum</label>
+      <div class="delai-presets" data-target="delaiReservationRange">
+        <button type="button" data-min="30">30 min</button>
+        <button type="button" data-min="60">1 h</button>
+        <button type="button" data-min="120">2 h</button>
+        <button type="button" data-min="360">6 h</button>
+        <button type="button" data-min="720">12 h</button>
+        <button type="button" data-min="1440">24 h</button>
+      </div>
+      <input type="hidden" id="delaiReservationRange" value="60">
+      <span id="delaiReservationVal" style="display:none;">60</span>
 
       <div style="font-size:12px;color:var(--texte-doux);margin-top:10px;background:#fff8e7;border-radius:8px;padding:10px 12px;line-height:1.5;">
-        💡 <strong>Recommandé</strong> : 30 min retrait, 60 min livraison, 60 min réservation. Plus le délai est court, plus le client peut réagir vite — mais ça te laisse moins de temps pour préparer.
+        💡 <strong>Recommandé</strong> : 30 min retrait, 1 h livraison, 1 h réservation. Pour des préparations longues (traiteur, plateaux), choisis <strong>6 h, 12 h ou 24 h</strong>.
       </div>
+
+      <script>
+        // Wire delai presets to hidden input + sauverDelaisMin
+        (function(){
+          function bind() {
+            document.querySelectorAll('.delai-presets').forEach(function(group){
+              if (group.dataset.bound) return;
+              group.dataset.bound = '1';
+              var targetId = group.dataset.target;
+              var input = document.getElementById(targetId);
+              group.querySelectorAll('button').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                  group.querySelectorAll('button').forEach(function(b){ b.classList.remove('actif'); });
+                  btn.classList.add('actif');
+                  if (input) input.value = btn.dataset.min;
+                  var lbl = document.getElementById(targetId.replace('Range','Val'));
+                  if (lbl) lbl.textContent = btn.dataset.min;
+                  if (typeof sauverDelaisMin === 'function') sauverDelaisMin();
+                });
+              });
+            });
+          }
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind);
+          else bind();
+          // Helper exposé pour synchroniser quand on charge les valeurs depuis la BDD
+          window.syncDelaiPresets = function(targetId, value) {
+            var group = document.querySelector('.delai-presets[data-target="'+targetId+'"]');
+            if (!group) return;
+            var match = group.querySelector('button[data-min="'+value+'"]');
+            group.querySelectorAll('button').forEach(function(b){ b.classList.remove('actif'); });
+            if (match) match.classList.add('actif');
+            else {
+              // Pas de preset exact — on prend le plus proche supérieur ou égal
+              var btns = Array.from(group.querySelectorAll('button'));
+              var v = parseInt(value);
+              var closest = btns.reduce(function(acc, b){
+                var d = Math.abs(parseInt(b.dataset.min) - v);
+                return (acc === null || d < acc.d) ? {b:b, d:d} : acc;
+              }, null);
+              if (closest) closest.b.classList.add('actif');
+            }
+          };
+        })();
+      </script>
     </div>
 
     <!-- POLITIQUE D'ANNULATION RÉSERVATION -->
@@ -2094,10 +2175,10 @@ function allerOnglet(id) {
 
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
-  if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
+  if (id === 'creneaux') chargerCreneaux();
   if (id === 'reservations') { chargerReservations(); chargerCreneauxResa(); }
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
-  if (id === 'reglages') chargerReglages();
+  if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); }
 }
 
 // ── ONGLET RÉSERVATIONS ────────────────────────────────────────
@@ -2554,14 +2635,17 @@ async function chargerReglages() {
     if (document.getElementById('delaiRetraitRange')) {
       document.getElementById('delaiRetraitRange').value = dRet;
       document.getElementById('delaiRetraitVal').textContent = dRet;
+      if (typeof window.syncDelaiPresets === 'function') window.syncDelaiPresets('delaiRetraitRange', dRet);
     }
     if (document.getElementById('delaiLivraisonRange')) {
       document.getElementById('delaiLivraisonRange').value = dLiv;
       document.getElementById('delaiLivraisonVal').textContent = dLiv;
+      if (typeof window.syncDelaiPresets === 'function') window.syncDelaiPresets('delaiLivraisonRange', dLiv);
     }
     if (document.getElementById('delaiReservationRange')) {
       document.getElementById('delaiReservationRange').value = dRes;
       document.getElementById('delaiReservationVal').textContent = dRes;
+      if (typeof window.syncDelaiPresets === 'function') window.syncDelaiPresets('delaiReservationRange', dRes);
     }
   } catch (e) {
     console.log('chargerReglages:', e);
@@ -3379,8 +3463,147 @@ async function appliquerThemeMonCommerce() {
       if (tEl) tEl.textContent = 'Espace ' + cfg.label;
       if (eEl) eEl.textContent = cfg.emoji || '🛍️';
     }
+    // Applique restrictions selon métier + offre du plan
+    appliquerVisibiliteFeatures();
   } catch(e) { console.log('theme dashboard:', e); }
 }
+
+// ── GATING FEATURES selon métier (resto/non-resto) + plan (vitrine/clickcollect/livraison)
+function appliquerVisibiliteFeatures() {
+  try {
+    const biz = window.__CONFIG__?.business || {};
+    const bt = biz.business_type || 'primeur';
+    const offre = biz.offre || 'clickcollect';
+    const isResto = ['pizzeria','restaurant','fastfood'].includes(bt);
+
+    // Capacités par plan
+    const caps = {
+      vitrine:      { commandes:false, livraison:false, reservation:false, label:'Vitrine' },
+      clickcollect: { commandes:true,  livraison:false, reservation:false, label:'Click & Collect' },
+      livraison:    { commandes:true,  livraison:true,  reservation:true,  label:'Livraison + Réservation' }
+    };
+    const cap = caps[offre] || caps.clickcollect;
+
+    // Réservation = uniquement si métier resto ET plan livraison
+    const peutResa = isResto && cap.reservation;
+
+    // ── 1. Onglet Réservations
+    const tabResa = document.getElementById('tab-reservations');
+    if (tabResa) {
+      if (!isResto) {
+        tabResa.style.display = 'none';
+      } else if (!cap.reservation) {
+        tabResa.style.display = '';
+        tabResa.classList.add('feature-locked');
+        tabResa.title = 'Disponible avec l\'offre Livraison';
+      } else {
+        tabResa.style.display = '';
+        tabResa.classList.remove('feature-locked');
+      }
+    }
+
+    // ── 2. Bouton Réservation dans toggle créneaux (Retrait/Livraison/Résa)
+    const btnTypeResa = document.getElementById('btnTypeReservation');
+    if (btnTypeResa) btnTypeResa.style.display = peutResa ? '' : 'none';
+    const btnTypeLiv = document.getElementById('btnTypeLivraison');
+    if (btnTypeLiv) btnTypeLiv.style.display = cap.livraison ? '' : 'none';
+
+    // ── 3. Délai réservation dans Réglages (cacher si pas resto/résa)
+    const presetResa = document.querySelector('.delai-presets[data-target="delaiReservationRange"]');
+    if (presetResa) {
+      const labelResa = presetResa.previousElementSibling;
+      presetResa.style.display = peutResa ? '' : 'none';
+      if (labelResa && labelResa.tagName === 'LABEL') labelResa.style.display = peutResa ? '' : 'none';
+    }
+    const presetLiv = document.querySelector('.delai-presets[data-target="delaiLivraisonRange"]');
+    if (presetLiv) {
+      const labelLiv = presetLiv.previousElementSibling;
+      presetLiv.style.display = cap.livraison ? '' : 'none';
+      if (labelLiv && labelLiv.tagName === 'LABEL') labelLiv.style.display = cap.livraison ? '' : 'none';
+    }
+
+    // ── 4. Politique d'annulation : visible pour tous (commandes anti no-show + résa)
+    const cancelCard = document.getElementById('cancellationPolicyCard');
+    if (cancelCard) cancelCard.style.display = (cap.commandes || peutResa) ? 'block' : 'none';
+
+    // ── 5. Plan VITRINE : grise commandes/planning/produits/créneaux + overlay upgrade
+    const plansLockTabs = {
+      vitrine: ['tab-commandes','tab-planning','tab-produits','tab-creneaux','tab-reservations'],
+      clickcollect: [], // resa déjà gérée via isResto/peutResa
+      livraison: []
+    };
+    const tabsToLock = plansLockTabs[offre] || [];
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('plan-locked'));
+    tabsToLock.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.style.display !== 'none') el.classList.add('plan-locked');
+    });
+
+    // ── 6. Bandeau upgrade au-dessus des contenus verrouillés
+    const lockMessages = {
+      vitrine: 'Cette fonctionnalité nécessite l\'offre <strong>Click & Collect</strong> ou supérieure. Passez à un plan supérieur dans <strong>Réglages → Abonnement</strong> pour l\'activer.',
+      clickcollect: 'Cette fonctionnalité nécessite l\'offre <strong>Livraison + Réservation</strong>. Passez au plan supérieur dans <strong>Réglages → Abonnement</strong>.'
+    };
+
+    function poseLockOverlay(contentId, message) {
+      const content = document.getElementById(contentId);
+      if (!content) return;
+      let ov = content.querySelector('.feature-lock-overlay');
+      if (!ov) {
+        ov = document.createElement('div');
+        ov.className = 'feature-lock-overlay';
+        ov.style.cssText = 'position:sticky;top:0;z-index:5;background:linear-gradient(135deg,#fff8e7,#f9e9c4);border:1px solid #f0c060;border-radius:14px;padding:14px 16px;margin:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 4px 16px rgba(0,0,0,0.04);';
+        ov.innerHTML = '<div style="font-size:24px;flex-shrink:0;">🔒</div><div style="flex:1;font-size:13px;line-height:1.55;color:#5a4017;"><div style="font-weight:700;margin-bottom:4px;font-size:14px;">Fonctionnalité verrouillée</div><div class="lock-msg"></div><button onclick="allerOnglet(\'reglages\');setTimeout(function(){var el=document.getElementById(\'abonnementContent\');if(el)el.scrollIntoView({behavior:\'smooth\',block:\'center\'});},250)" style="margin-top:10px;background:#0F2C52;color:white;border:none;border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;">⬆ Passer à un plan supérieur</button></div>';
+        content.insertBefore(ov, content.firstChild);
+      }
+      ov.querySelector('.lock-msg').innerHTML = message;
+      ov.style.display = '';
+      // Grise + bloque pointer-events sur le reste
+      Array.from(content.children).forEach(ch => {
+        if (ch === ov) return;
+        ch.style.opacity = '0.45';
+        ch.style.pointerEvents = 'none';
+        ch.style.filter = 'saturate(0.5)';
+      });
+    }
+    function retireLockOverlay(contentId) {
+      const content = document.getElementById(contentId);
+      if (!content) return;
+      const ov = content.querySelector('.feature-lock-overlay');
+      if (ov) ov.style.display = 'none';
+      Array.from(content.children).forEach(ch => {
+        if (ch && ch.classList && ch.classList.contains('feature-lock-overlay')) return;
+        ch.style.opacity = '';
+        ch.style.pointerEvents = '';
+        ch.style.filter = '';
+      });
+    }
+
+    if (offre === 'vitrine') {
+      ['content-commandes','content-planning','content-produits','content-creneaux'].forEach(id => poseLockOverlay(id, lockMessages.vitrine));
+    } else {
+      ['content-commandes','content-planning','content-produits','content-creneaux'].forEach(retireLockOverlay);
+    }
+    // Réservations : verrouillé si métier resto MAIS plan != livraison
+    if (isResto && offre !== 'livraison') {
+      poseLockOverlay('content-reservations', lockMessages.clickcollect);
+    } else {
+      retireLockOverlay('content-reservations');
+    }
+
+    // ── 7. Hero "Réserver une table" (boutique côté client) — pas concerné ici, géré dans boutique.html
+
+  } catch(e) { console.warn('appliquerVisibiliteFeatures:', e); }
+}
+
+// Style pour onglets verrouillés
+(function injectLockStyles(){
+  if (document.getElementById('lockStyles')) return;
+  const s = document.createElement('style');
+  s.id = 'lockStyles';
+  s.textContent = '.tab-btn.plan-locked{opacity:0.5;position:relative;}.tab-btn.plan-locked::after{content:"🔒";position:absolute;top:4px;right:6px;font-size:11px;}.tab-btn.feature-locked{opacity:0.55;}';
+  document.head.appendChild(s);
+})();
 
 let uniteSelectionnee = null;
 let photoFile = null;
