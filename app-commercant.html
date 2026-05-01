@@ -1258,20 +1258,22 @@
         <span>0 h</span><span>72 h</span>
       </div>
 
-      <!-- Montant empreinte par couvert -->
-      <div style="height:1px;background:var(--creme-fonce);margin:18px 0;"></div>
-      <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
-        💳 Empreinte par couvert : <b id="couvertEurVal">10</b> €
-      </label>
-      <input type="range" id="couvertEurRange" min="2" max="50" step="1" value="10"
-        oninput="document.getElementById('couvertEurVal').textContent=this.value;majTipCouvert(this.value)"
-        onchange="sauverCancellationPolicy()"
-        style="width:100%;">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--texte-doux);margin-top:4px;">
-        <span>2 € (faible)</span><span>50 € (haut de gamme)</span>
-      </div>
-      <div id="couvertTipBox" style="font-size:12px;color:var(--texte-doux);margin-top:10px;line-height:1.5;background:#fff8e7;border-radius:8px;padding:10px 12px;">
-        💡 <strong>Recommandé : 10 €/couvert</strong>. Plus le montant est faible, plus les clients réservent (moins de friction). Pour un resto gastronomique, 20-30 € est cohérent.
+      <!-- Montant empreinte par couvert (RESTAURATION uniquement) -->
+      <div id="empreinteCouvertBloc" style="display:none;">
+        <div style="height:1px;background:var(--creme-fonce);margin:18px 0;"></div>
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
+          💳 Empreinte par couvert : <b id="couvertEurVal">10</b> €
+        </label>
+        <input type="range" id="couvertEurRange" min="2" max="50" step="1" value="10"
+          oninput="document.getElementById('couvertEurVal').textContent=this.value;majTipCouvert(this.value)"
+          onchange="sauverCancellationPolicy()"
+          style="width:100%;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--texte-doux);margin-top:4px;">
+          <span>2 € (faible)</span><span>50 € (haut de gamme)</span>
+        </div>
+        <div id="couvertTipBox" style="font-size:12px;color:var(--texte-doux);margin-top:10px;line-height:1.5;background:#fff8e7;border-radius:8px;padding:10px 12px;">
+          💡 <strong>Recommandé : 10 €/couvert</strong>. Plus le montant est faible, plus les clients réservent (moins de friction). Pour un resto gastronomique, 20-30 € est cohérent.
+        </div>
       </div>
     </div>
 
@@ -2585,12 +2587,9 @@ async function chargerReglages() {
     const warn = document.getElementById('warnPoidsVariable');
     if (warn) warn.style.display = metiersPoidsVariable.includes(bt) ? 'block' : 'none';
 
-    // Politique d'annulation visible pour TOUS les métiers
-    // (utile pour les commandes anti no-show et les réservations resto)
-    const btMetier = window.__CONFIG__?.business?.business_type;
-    const isResto = ['pizzeria','restaurant','fastfood'].includes(btMetier);
-    const cancelCard = document.getElementById('cancellationPolicyCard');
-    if (cancelCard) cancelCard.style.display = 'block';
+    // Politique d'annulation : visible si commandes (anti no-show) ou résa.
+    // Pour vitrine pure : masquée. La logique fine est dans appliquerVisibiliteFeatures().
+    if (typeof appliquerVisibiliteFeatures === 'function') appliquerVisibiliteFeatures();
 
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours,empreinte_couvert_cents,delai_min_retrait_min,delai_min_livraison_min,delai_min_reservation_min', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -3522,9 +3521,13 @@ function appliquerVisibiliteFeatures() {
       if (labelLiv && labelLiv.tagName === 'LABEL') labelLiv.style.display = cap.livraison ? '' : 'none';
     }
 
-    // ── 4. Politique d'annulation : visible pour tous (commandes anti no-show + résa)
+    // ── 4. Politique d'annulation : visible si commandes OU résa
     const cancelCard = document.getElementById('cancellationPolicyCard');
     if (cancelCard) cancelCard.style.display = (cap.commandes || peutResa) ? 'block' : 'none';
+
+    // Empreinte par couvert : RESTAURATION + plan résa uniquement
+    const empCouvert = document.getElementById('empreinteCouvertBloc');
+    if (empCouvert) empCouvert.style.display = peutResa ? '' : 'none';
 
     // ── 5. Plan VITRINE : grise commandes/planning/produits/créneaux + overlay upgrade
     const plansLockTabs = {

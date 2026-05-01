@@ -504,7 +504,11 @@ async function chargerMesCommandes() {
     const clientId = clients?.[0]?.id;
     if (!clientId) { container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Aucune commande</p></div>'; return; }
 
-    const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + '&order=created_at.desc&limit=20&select=*,commande_lignes(nom_produit,quantite,unite,prix_unitaire,total_ligne)', {
+    // SCOPE par boutique : ne montrer QUE les commandes du commerçant courant
+    const commercantId = (window.CC && window.CC.cfg() && window.CC.cfg().business?.id) || null;
+    const filtreCommercant = commercantId ? '&commercant_id=eq.' + commercantId : '';
+
+    const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + filtreCommercant + '&order=created_at.desc&limit=20&select=*,commande_lignes(nom_produit,quantite,unite,prix_unitaire,total_ligne)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     }).then(r => r.json());
 
