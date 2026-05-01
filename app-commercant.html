@@ -1978,11 +1978,12 @@ async function chargerReglages() {
     const warn = document.getElementById('warnPoidsVariable');
     if (warn) warn.style.display = metiersPoidsVariable.includes(bt) ? 'block' : 'none';
 
-    // Afficher la card "Politique d'annulation" pour les restos
+    // Politique d'annulation visible pour TOUS les métiers
+    // (utile pour les commandes anti no-show et les réservations resto)
     const btMetier = window.__CONFIG__?.business?.business_type;
     const isResto = ['pizzeria','restaurant','fastfood'].includes(btMetier);
     const cancelCard = document.getElementById('cancellationPolicyCard');
-    if (cancelCard) cancelCard.style.display = isResto ? 'block' : 'none';
+    if (cancelCard) cancelCard.style.display = 'block';
 
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -2005,14 +2006,12 @@ async function chargerReglages() {
     if (range) range.value = pct;
     if (pctVal) pctVal.textContent = pct;
 
-    // Politique d'annulation (restos uniquement)
-    if (isResto) {
-      const cancelHours = c.cancellation_policy_hours ?? 24;
-      const chRange = document.getElementById('cancelHoursRange');
-      const chVal = document.getElementById('cancelHoursVal');
-      if (chRange) chRange.value = cancelHours;
-      if (chVal) chVal.textContent = cancelHours;
-    }
+    // Politique d'annulation (tous métiers)
+    const cancelHours = c.cancellation_policy_hours ?? 24;
+    const chRange = document.getElementById('cancelHoursRange');
+    const chVal = document.getElementById('cancelHoursVal');
+    if (chRange) chRange.value = cancelHours;
+    if (chVal) chVal.textContent = cancelHours;
   } catch (e) {
     console.log('chargerReglages:', e);
   }
