@@ -1302,28 +1302,33 @@ function renderCommandes() {
 }
 
 function renderCarteCommande(c) {
+  // Normalisation : workflow simplifié à 3 statuts (nouvelle → prete → terminee)
+  // empreinte_pending, en_preparation = traités comme "nouvelle"
+  // remise, livree, terminee = traités comme "terminee" (uniformiser le vocabulaire)
+  const statutBrut = c.statut;
+  const statutAffiche =
+    (statutBrut === 'prete')                                            ? 'prete'
+    : (statutBrut === 'remise' || statutBrut === 'livree' || statutBrut === 'terminee') ? 'terminee'
+    : 'nouvelle';
+
   const badgeClass = {
     nouvelle: 'badge-nouvelle',
-    en_preparation: 'badge-preparation',
     prete: 'badge-prete',
-    remise: 'badge-remise',
-  }[c.statut] || 'badge-nouvelle';
+    terminee: 'badge-remise',
+  }[statutAffiche];
 
   const badgeTxt = {
     nouvelle: 'Nouvelle',
-    en_preparation: 'En préparation',
     prete: 'Prête',
-    remise: 'Remise',
-  }[c.statut] || 'Nouvelle';
+    terminee: 'Terminée',
+  }[statutAffiche];
 
   const typeIcon = c.type === 'livraison' ? '🚚 Livraison' : '📍 Retrait';
 
-  const btnPrincipal = c.statut === 'nouvelle'
-    ? `<button class="btn-preparer" onclick="changerStatut('${c.id}','en_preparation')">👨‍🍳 PRÉPARER</button>`
-    : c.statut === 'en_preparation'
+  const btnPrincipal = statutAffiche === 'nouvelle'
     ? `<button class="btn-preparer vert" onclick="changerStatut('${c.id}','prete')">✅ MARQUER PRÊTE</button>`
-    : c.statut === 'prete'
-    ? `<button class="btn-preparer" style="background:var(--vert-fonce);color:white;" onclick="changerStatut('${c.id}','remise')">🤝 REMISE CLIENT</button>`
+    : statutAffiche === 'prete'
+    ? `<button class="btn-preparer" style="background:var(--vert-fonce);color:white;" onclick="changerStatut('${c.id}','terminee')">🤝 TERMINER ${c.empreinte_status === 'pending' ? '(libère empreinte)' : ''}</button>`
     : `<button class="btn-preparer" style="background:var(--creme);color:var(--texte-doux);cursor:default;">✓ Terminée</button>`;
 
   const produits = c.produits.map(p =>
@@ -1421,8 +1426,9 @@ async function changerStatut(id, nouveauStatut) {
   const msgs = {
     en_preparation: '👨‍🍳 Préparation lancée',
     prete: '✅ Commande marquée prête',
-    remise: '🤝 Commande remise au client',
+    remise: '🤝 Commande terminée',
     livree: '🚚 Commande livrée',
+    terminee: '✓ Commande terminée',
   };
   afficherToast(msgs[nouveauStatut] || 'Statut mis à jour');
 
@@ -1450,9 +1456,9 @@ async function changerStatut(id, nouveauStatut) {
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);
 
-    // Auto-libération empreinte quand commande terminée (remise ou livrée)
+    // Auto-libération empreinte quand commande terminée (remise / livree / terminee)
     // Le commerçant n'a plus à la libérer manuellement
-    if ((nouveauStatut === 'remise' || nouveauStatut === 'livree') && cmd.empreinte_status === 'pending') {
+    if ((nouveauStatut === 'remise' || nouveauStatut === 'livree' || nouveauStatut === 'terminee') && cmd.empreinte_status === 'pending') {
       libererEmpreinteAuto(id);
     }
   } catch (e) {
