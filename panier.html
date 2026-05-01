@@ -596,11 +596,16 @@ async function etapeSuivante() {
       }
       document.getElementById('adresseErreur').classList.remove('visible');
 
-      // Vérification zone de livraison
-      const btn = document.querySelector('.btn-cta, .btn-suivant, [onclick*="etapeSuivante"]');
-      if (btn) { btn.textContent = 'Vérification de l\'adresse...'; btn.disabled = true; }
+      // Vérification zone de livraison — ne pas écraser innerHTML du btnAction (sinon btnTxt/btnMontant disparaissent)
+      const btn = document.getElementById('btnAction');
+      const btnTxtEl = document.getElementById('btnTxt');
+      const btnMontantEl = document.getElementById('btnMontant');
+      if (btn) btn.disabled = true;
+      if (btnTxtEl) btnTxtEl.textContent = 'Vérification de l\'adresse...';
+      if (btnMontantEl) btnMontantEl.textContent = '';
       const zoneCheck = await verifierZoneLivraison(adresse, cp, ville);
-      if (btn) { btn.textContent = 'Continuer'; btn.disabled = false; }
+      if (btn) btn.disabled = false;
+      if (btnTxtEl) btnTxtEl.textContent = 'Continuer';
       
       if (!zoneCheck.ok) {
         const erreur = document.getElementById('adresseErreur');
@@ -873,8 +878,9 @@ async function confirmerCommande() {
   }
 
   const btn = document.getElementById('btnAction');
-  btn.disabled = true;
-  document.getElementById('btnTxt').textContent = 'Envoi en cours...';
+  if (btn) btn.disabled = true;
+  const btnTxtEl = document.getElementById('btnTxt');
+  if (btnTxtEl) btnTxtEl.textContent = 'Envoi en cours...';
 
   const creneau = creneaux[creneauSelectionne];
   const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
