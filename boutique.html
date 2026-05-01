@@ -3259,16 +3259,15 @@ body.mode-demo #btn-panier { display: none !important; }
         <label>Combien de couverts ?</label>
         <div class="m-resa-couvre-btns" id="m-resa-couverts-grid"></div>
 
-        <div class="row" style="margin-top:14px">
-          <div><label>Date</label><input type="date" id="m-resa-date" required></div>
-          <div><label>Heure</label>
-            <select id="m-resa-heure" required>
-              <option value="">—</option>
-              <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
-              <option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
-            </select>
-          </div>
+        <label style="margin-top:14px">Date disponible</label>
+        <div id="m-resa-jours-grid" style="display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0;margin-bottom:14px;"></div>
+        <input type="hidden" id="m-resa-date">
+
+        <label>Heure disponible</label>
+        <div id="m-resa-heures-grid" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+          <div style="font-size:12px;color:#9a8a6a;padding:8px 0;">Sélectionne d'abord une date</div>
         </div>
+        <input type="hidden" id="m-resa-heure">
 
         <div class="row">
           <div><label>Prénom</label><input id="m-resa-prenom" placeholder="Jean"></div>
@@ -3416,9 +3415,108 @@ body.mode-demo #btn-panier { display: none !important; }
   var stripe, elements, cardElement;
   var resaCtx = {};
 
+  // Charger les créneaux résa du commerçant (jour_semaine + heure_debut + heure_fin)
+  var creneauxResaCache = null;
+  async function chargerCreneauxResa() {
+    if (creneauxResaCache) return creneauxResaCache;
+    var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    if (!b.id) return [];
+    try {
+      var r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + b.id + '&type=eq.reservation&actif=eq.true&order=jour_semaine.asc,heure_debut.asc', {
+        headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
+      });
+      creneauxResaCache = await r.json();
+      return Array.isArray(creneauxResaCache) ? creneauxResaCache : [];
+    } catch(e) { return []; }
+  }
+
+  // Génère la liste des 14 prochains jours dispos (basé sur jour_semaine des créneaux)
+  async function rendrJoursDispos() {
+    var creneaux = await chargerCreneauxResa();
+    var grid = document.getElementById('m-resa-jours-grid');
+    if (!grid) return;
+    if (creneaux.length === 0) {
+      grid.innerHTML = '<div style="font-size:12px;color:#9a8a6a;padding:8px 12px;">Le commerçant n\'a pas encore défini ses créneaux.</div>';
+      return;
+    }
+    var joursActifs = {};
+    creneaux.forEach(function(c) { joursActifs[c.jour_semaine] = true; });
+
+    var jourNoms = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+    var moisNoms = ['Jan','Fév','Mars','Avr','Mai','Juin','Juil','Août','Sept','Oct','Nov','Déc'];
+    var html = '';
+    var found = 0;
+    var today = new Date(); today.setHours(0,0,0,0);
+    for (var i = 0; i < 21 && found < 14; i++) {
+      var d = new Date(today.getTime() + i * 86400000);
+      var wd = d.getDay();
+      if (!joursActifs[wd]) continue;
+      var iso = d.toISOString().slice(0,10);
+      html += '<button type="button" class="m-resa-jour-btn" data-date="' + iso + '" data-wd="' + wd + '" onclick="selectionnerJour(this)" '
+        + 'style="flex-shrink:0;background:#fff;border:1.5px solid #E8E0D5;border-radius:14px;padding:10px 12px;font-family:inherit;cursor:pointer;text-align:center;min-width:64px;-webkit-tap-highlight-color:transparent;">'
+        + '<div style="font-size:10px;color:#6B7785;">' + jourNoms[wd] + '</div>'
+        + '<div style="font-size:18px;font-weight:800;color:#0F2C52;line-height:1.1;margin:2px 0;">' + d.getDate() + '</div>'
+        + '<div style="font-size:10px;color:#6B7785;">' + moisNoms[d.getMonth()] + '</div>'
+        + '</button>';
+      found++;
+    }
+    grid.innerHTML = html;
+  }
+
+  window.selectionnerJour = async function(btn) {
+    document.querySelectorAll('.m-resa-jour-btn').forEach(function(b){
+      b.style.background = '#fff'; b.style.borderColor = '#E8E0D5';
+      b.querySelectorAll('div').forEach(function(d){ d.style.color = ''; });
+    });
+    btn.style.background = '#0F2C52'; btn.style.borderColor = '#0F2C52';
+    btn.querySelectorAll('div').forEach(function(d){ d.style.color = '#fff'; });
+    document.getElementById('m-resa-date').value = btn.dataset.date;
+    rendrHeuresDispos(parseInt(btn.dataset.wd));
+  };
+
+  // Génère les heures par tranches de 30 min selon les créneaux du jour choisi
+  async function rendrHeuresDispos(weekDay) {
+    var creneaux = await chargerCreneauxResa();
+    var heures = document.getElementById('m-resa-heures-grid');
+    if (!heures) return;
+    var dispos = creneaux.filter(function(c){ return c.jour_semaine === weekDay; });
+    if (dispos.length === 0) {
+      heures.innerHTML = '<div style="font-size:12px;color:#9a8a6a;padding:8px 0;">Aucun créneau ce jour.</div>';
+      return;
+    }
+    // Générer les slots de 30 min entre heure_debut et heure_fin
+    var slots = [];
+    dispos.forEach(function(c){
+      var deb = c.heure_debut.split(':');
+      var fin = c.heure_fin.split(':');
+      var h = parseInt(deb[0]); var m = parseInt(deb[1]);
+      var hf = parseInt(fin[0]); var mf = parseInt(fin[1]);
+      while (h < hf || (h === hf && m < mf)) {
+        slots.push(String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0'));
+        m += 30;
+        if (m >= 60) { m -= 60; h++; }
+      }
+    });
+    var uniq = [].concat(slots).filter(function(s,i){ return slots.indexOf(s) === i; }).sort();
+    heures.innerHTML = uniq.map(function(s){
+      return '<button type="button" class="m-resa-heure-btn" data-heure="' + s + '" onclick="selectionnerHeure(this)" '
+        + 'style="background:#fff;border:1.5px solid #E8E0D5;border-radius:50px;padding:8px 14px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:40px;">' + s + '</button>';
+    }).join('');
+  }
+
+  window.selectionnerHeure = function(btn) {
+    document.querySelectorAll('.m-resa-heure-btn').forEach(function(b){
+      b.style.background = '#fff'; b.style.color = '';
+    });
+    btn.style.background = '#5BBE3A'; btn.style.color = '#fff';
+    document.getElementById('m-resa-heure').value = btn.dataset.heure;
+  };
+
   window.ouvrirReservation = function() {
     document.getElementById('m-resa-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    creneauxResaCache = null; // Force reload
+    rendrJoursDispos();
   };
   window.fermerReservation = function() {
     document.getElementById('m-resa-overlay').classList.remove('open');
