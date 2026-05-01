@@ -543,6 +543,53 @@
   </div>
 </div>
 
+<!-- ☰ BOUTON MENU SLIDE (mobile + desktop) -->
+<button id="m-menu-btn" onclick="ouvrirMenuSlide()" aria-label="Menu" style="position:fixed;top:14px;left:14px;z-index:90;background:rgba(255,255,255,0.95);border:1px solid var(--creme-fonce);border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:20px;box-shadow:0 4px 14px rgba(0,0,0,.08);-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;">☰</button>
+
+<!-- DRAWER SLIDE-OUT -->
+<div id="m-menu-overlay" onclick="if(event.target===this)fermerMenuSlide()" style="position:fixed;inset:0;z-index:9990;background:rgba(15,44,82,.55);backdrop-filter:blur(6px);display:none;">
+  <aside id="m-menu-drawer" style="position:absolute;top:0;left:0;bottom:0;width:280px;max-width:85vw;background:#fff;box-shadow:8px 0 28px rgba(0,0,0,.18);overflow-y:auto;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);padding:20px 16px calc(20px + env(safe-area-inset-bottom));">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="/assets/brand/logo-marcheo.png?v=1" onerror="this.src='/assets/brand/monogram.svg'" style="width:40px;height:40px;border-radius:50%;" alt="">
+        <div style="font-family:'Manrope',sans-serif;">
+          <div style="font-weight:800;font-size:14px;color:#0F2C52;line-height:1.1;" id="m-menu-shop-nom">—</div>
+          <div style="font-size:11px;color:#6B7785;line-height:1.1;margin-top:2px;" id="m-menu-shop-metier">—</div>
+        </div>
+      </div>
+      <button onclick="fermerMenuSlide()" style="background:rgba(15,44,82,.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;">✕</button>
+    </div>
+
+    <nav id="m-menu-nav" style="display:flex;flex-direction:column;gap:4px;">
+      <button class="m-menu-item" data-onglet="commandes" onclick="goOnglet('commandes')"><span class="m-menu-icon">🛒</span><span class="m-menu-label">Commandes</span><span class="m-menu-badge" id="m-menu-badge-commandes" hidden>0</span></button>
+      <button class="m-menu-item" data-onglet="planning" onclick="goOnglet('planning')"><span class="m-menu-icon">📅</span><span class="m-menu-label">Planning</span></button>
+      <button class="m-menu-item" data-onglet="produits" onclick="goOnglet('produits')"><span class="m-menu-icon">🥕</span><span class="m-menu-label">Produits</span></button>
+      <button class="m-menu-item" data-onglet="creneaux" onclick="goOnglet('creneaux')"><span class="m-menu-icon">🕐</span><span class="m-menu-label">Créneaux</span></button>
+      <button class="m-menu-item" data-onglet="reservations" onclick="goOnglet('reservations')"><span class="m-menu-icon">📋</span><span class="m-menu-label">Réservations</span><span class="m-menu-badge" id="m-menu-badge-reservations" hidden>0</span></button>
+      <button class="m-menu-item" data-onglet="galerie" onclick="goOnglet('galerie')"><span class="m-menu-icon">📸</span><span class="m-menu-label">Galerie</span></button>
+      <button class="m-menu-item" data-onglet="reglages" onclick="goOnglet('reglages')"><span class="m-menu-icon">⚙️</span><span class="m-menu-label">Réglages</span></button>
+    </nav>
+
+    <div style="height:1px;background:var(--creme-fonce);margin:14px 0;"></div>
+
+    <button onclick="window.location.href='/' + (JSON.parse(localStorage.getItem('session_commercant')||'{}').slug || '')" class="m-menu-item"><span class="m-menu-icon">🌐</span><span class="m-menu-label">Voir ma boutique</span></button>
+    <button onclick="if(confirm('Se déconnecter ?')){localStorage.removeItem('session_commercant');location.reload();}" class="m-menu-item" style="color:#9a2d24;"><span class="m-menu-icon">🚪</span><span class="m-menu-label">Déconnexion</span></button>
+  </aside>
+</div>
+
+<style>
+.m-menu-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:none;background:transparent;border-radius:12px;font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:600;color:#0F2C52;cursor:pointer;text-align:left;width:100%;-webkit-tap-highlight-color:transparent;min-height:44px;transition:background .15s;}
+.m-menu-item:hover{background:#F7F2E8;}
+.m-menu-item.active{background:linear-gradient(90deg,#5BBE3A22,transparent);color:#0F2C52;}
+.m-menu-item.active::before{content:'';width:3px;height:18px;background:#5BBE3A;border-radius:3px;margin-right:-3px;margin-left:-14px;}
+.m-menu-icon{font-size:18px;flex-shrink:0;width:24px;text-align:center;}
+.m-menu-label{flex:1;}
+.m-menu-badge{background:#E65533;color:#fff;border-radius:50px;padding:2px 8px;font-size:11px;font-weight:800;}
+@media(min-width:1024px){
+  #m-menu-btn{top:18px;left:18px;}
+}
+</style>
+
 <!-- ONGLETS -->
 <div class="tabs">
   <button class="tab-btn active" onclick="allerOnglet('commandes')" id="tab-commandes">
@@ -1858,11 +1905,59 @@ async function voirCommandesCreneau(dateKey, heure) {
 }
 
 
+// ── DRAWER MENU SLIDE-OUT ──────────────────────────────────────
+window.ouvrirMenuSlide = function() {
+  const ov = document.getElementById('m-menu-overlay');
+  const dr = document.getElementById('m-menu-drawer');
+  if (!ov || !dr) return;
+  ov.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  // Mettre à jour les infos shop + onglet actif
+  try {
+    const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    document.getElementById('m-menu-shop-nom').textContent = s.nom_boutique || s.slug || '—';
+    const cfg = window.__CONFIG__;
+    document.getElementById('m-menu-shop-metier').textContent = (cfg && cfg.label) || s.business_type || '';
+  } catch(e) {}
+  // Active item courant
+  document.querySelectorAll('.m-menu-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.onglet === ongletActif);
+  });
+  // Badges (commandes nouvelles + réservations confirmees)
+  try {
+    const nbCmd = (typeof toutesLesCommandes !== 'undefined' ? toutesLesCommandes : []).filter(c => c.statut === 'nouvelle' || c.statut === 'empreinte_pending').length;
+    const bcmd = document.getElementById('m-menu-badge-commandes');
+    if (bcmd) { bcmd.textContent = nbCmd; bcmd.hidden = nbCmd === 0; }
+    const nbResa = (typeof toutesResas !== 'undefined' ? toutesResas : []).filter(r => r.statut === 'confirmee' || r.statut === 'nouvelle').length;
+    const bres = document.getElementById('m-menu-badge-reservations');
+    if (bres) { bres.textContent = nbResa; bres.hidden = nbResa === 0; }
+  } catch(e) {}
+  setTimeout(() => { dr.style.transform = 'translateX(0)'; }, 10);
+};
+
+window.fermerMenuSlide = function() {
+  const ov = document.getElementById('m-menu-overlay');
+  const dr = document.getElementById('m-menu-drawer');
+  if (dr) dr.style.transform = 'translateX(-100%)';
+  setTimeout(() => { if (ov) ov.style.display = 'none'; document.body.style.overflow = ''; }, 280);
+};
+
+window.goOnglet = function(id) {
+  if (typeof allerOnglet === 'function') allerOnglet(id);
+  fermerMenuSlide();
+};
+
+// Échap ferme le menu
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('m-menu-overlay')?.style.display === 'block') fermerMenuSlide();
+});
+
 function allerOnglet(id) {
   ongletActif = id;
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.m-menu-item').forEach(el => el.classList.toggle('active', el.dataset.onglet === id));
 
   document.getElementById(`content-${id}`)?.classList.add('active');
   document.getElementById(`tab-${id}`)?.classList.add('active');
