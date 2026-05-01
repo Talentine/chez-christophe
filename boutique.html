@@ -3586,8 +3586,18 @@ body.mode-demo #btn-panier { display: none !important; }
           document.head.appendChild(s);
         });
       }
-      // Init Stripe (clé publishable Marchéo - mode test)
-      var pk = window.MARCHEO_STRIPE_PK || 'pk_test_51TNZXIEH5d5nXfSsZcoWoSj4ZzIklnGU4RBFRvWZ95mdL8LjQ8d73oQwuxTqyuItkCl5iMAxX4OG6F9RYzM3kBl700vZRqylUI';
+      // Init Stripe — clé publishable récupérée dynamiquement depuis l'API (sécurisé)
+      var pk = data.publishable_key || window.MARCHEO_STRIPE_PK;
+      if (!pk) {
+        try {
+          var rpk = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-reservation/pk', {
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+          });
+          var dpk = await rpk.json();
+          pk = dpk.publishable_key;
+        } catch(e) { /* ignore */ }
+      }
+      if (!pk) throw new Error('Clé Stripe manquante (contacter le support)');
       stripe = Stripe(pk);
       // Card Element (plus simple et plus fiable que Payment Element pour SetupIntent)
       elements = stripe.elements();
