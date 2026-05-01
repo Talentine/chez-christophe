@@ -1110,6 +1110,7 @@ function renderTableCommercants(data) {
         <td>
           <button class="action-btn" onclick="voirBoutique('${c.slug}')">Voir</button>
           <button class="action-btn" onclick="modifierPlan('${c.id}')">Plan</button>
+          <button class="action-btn" onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif})">${c.abonnement_actif ? '⏸ Mode démo' : '✅ Activer'}</button>
           <button class="action-btn danger" onclick="toggleActif('${c.id}',${!c.actif})">${c.actif ? 'Suspendre' : 'Réactiver'}</button>
         </td>
       </tr>
@@ -1151,10 +1152,66 @@ function voirBoutique(slug) {
   }
 }
 
-function modifierPlan(id) {
-  const plan = prompt('Nouveau plan (starter / pro / premium) :');
+async function modifierPlan(id) {
+  const plan = prompt('Nouvelle offre :\n\n• vitrine    (249€ + 19€/mois)\n• clickcollect (399€ + 39€/mois) ★\n• livraison  (549€ + 59€/mois)\n\nTape : vitrine | clickcollect | livraison');
   if (!plan) return;
-  alert(`Plan "${plan}" sera appliqué à la prochaine session. (Stripe Connect à brancher)`);
+  const valid = ['vitrine','clickcollect','livraison'];
+  if (!valid.includes(plan)) {
+    alert('❌ Offre invalide. Tape exactement : vitrine, clickcollect ou livraison');
+    return;
+  }
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${sessionAdmin || SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ offre: plan })
+    });
+    if (!r.ok) {
+      const txt = await r.text().catch(() => '');
+      throw new Error('HTTP ' + r.status + ' ' + txt);
+    }
+    alert('✅ Offre mise à jour : ' + plan);
+    tousCommercants = [];
+    chargerCommercants();
+  } catch (e) {
+    alert('❌ Erreur : ' + e.message);
+  }
+}
+
+// Toggle abonnement_actif (mode démo ↔ actif)
+async function toggleAbonnement(id, currentlyActive) {
+  const action = currentlyActive ? 'DÉSACTIVER (passer en mode démo)' : 'ACTIVER manuellement (sortir du mode démo)';
+  if (!confirm(action + ' cette boutique ?\n\nUtile pour débloquer une boutique dont le webhook Stripe a échoué.')) return;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const body = currentlyActive
+      ? { abonnement_actif: false, abonnement_fin: today }
+      : { abonnement_actif: true, abonnement_debut: today, abonnement_fin: null };
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${sessionAdmin || SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) {
+      const txt = await r.text().catch(() => '');
+      throw new Error('HTTP ' + r.status + ' ' + txt);
+    }
+    alert(currentlyActive ? '⏸ Boutique remise en démo' : '✅ Boutique activée');
+    tousCommercants = [];
+    chargerCommercants();
+  } catch (e) {
+    alert('❌ Erreur : ' + e.message);
+  }
 }
 
 function slugify(s) {
