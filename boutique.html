@@ -1143,7 +1143,7 @@
       <p class="hero-sub" id="heroSousTitre">&nbsp;</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="window.location.href='catalogue.html'">Commander →</button>
-        <button class="btn-secondary hero-btn-resa" id="heroBtnReservation" onclick="ouvrirReservation()" style="display:none;">📅 Réserver une table</button>
+        <button class="btn-secondary hero-btn-resa" id="heroBtnReservation" onclick="ouvrirReservation()" style="display:inline-flex;align-items:center;gap:6px;">📅 Réserver une table</button>
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
       <div class="hero-infos" id="heroInfosWrap">
@@ -3352,10 +3352,10 @@ body.mode-demo #btn-panier { display: none !important; }
     if (!fab) return;
     fab.classList.add('show');
     var isResto = (bt === 'pizzeria' || bt === 'restaurant' || bt === 'fastfood');
-    // Pour les restos : afficher aussi un gros bouton dans le hero
+    // Bouton hero "Réserver une table" : afficher pour resto/pizzeria, cacher sinon
     var heroBtn = document.getElementById('heroBtnReservation');
-    if (heroBtn && (bt === 'pizzeria' || bt === 'restaurant')) {
-      heroBtn.style.display = 'inline-flex';
+    if (heroBtn) {
+      heroBtn.style.display = (bt === 'pizzeria' || bt === 'restaurant') ? 'inline-flex' : 'none';
     }
     if (!isResto) {
       // Adapter le label pour les non-restos

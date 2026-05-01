@@ -250,6 +250,21 @@
           <td>Acceptation CGV (date, heure, version, IP)</td>
           <td>Généré lors de la commande</td>
         </tr>
+        <tr>
+          <td>Réservation de table</td>
+          <td>Date/heure de réservation, nombre de couverts, occasion (anniversaire, business…), allergies, demandes spéciales</td>
+          <td>Saisie lors de la réservation (restauration uniquement)</td>
+        </tr>
+        <tr>
+          <td>Empreinte bancaire</td>
+          <td>SetupIntent Stripe, payment_method_id, customer_id Stripe (la carte est tokenisée et stockée chez Stripe, pas chez Marchéo)</td>
+          <td>Stripe (prestataire PCI-DSS Niveau 1)</td>
+        </tr>
+        <tr>
+          <td>Token d'annulation</td>
+          <td>Token aléatoire 32 caractères généré pour permettre l'annulation par lien magique sans mot de passe</td>
+          <td>Généré automatiquement à la création de la réservation</td>
+        </tr>
       </tbody>
     </table>
 
@@ -367,6 +382,21 @@
           <td>Données de paiement (tokens Stripe)</td>
           <td>13 mois (délai de rétrofacturation)</td>
           <td>Selon politique Stripe</td>
+        </tr>
+        <tr>
+          <td>Réservations de table</td>
+          <td>3 ans après la résa (statistiques + preuve)</td>
+          <td>10 ans (obligation comptable si empreinte capturée)</td>
+        </tr>
+        <tr>
+          <td>Empreinte bancaire (SetupIntent)</td>
+          <td>Active jusqu'à libération ou capture (max 30 jours)</td>
+          <td>Selon politique Stripe (token PaymentMethod)</td>
+        </tr>
+        <tr>
+          <td>Token d'annulation réservation</td>
+          <td>Tant que la réservation est active (avant son traitement)</td>
+          <td>Supprimé après traitement final</td>
         </tr>
         <tr>
           <td>Logs techniques (IP, connexions)</td>
