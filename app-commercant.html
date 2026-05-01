@@ -109,14 +109,24 @@
     display:flex; background:var(--blanc);
     border-bottom:1px solid var(--creme-fonce);
     position:sticky; top:72px; z-index:90;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
   }
+  .tabs::-webkit-scrollbar { display:none; }
 
   .tab-btn {
-    flex:1; padding:12px 8px; border:none; background:none;
+    flex:1 0 auto; min-width:90px;
+    padding:12px 14px; border:none; background:none;
     font-size:13px; font-weight:400; color:var(--texte-doux);
     cursor:pointer; border-bottom:2px solid transparent;
     font-family:'Manrope', system-ui, sans-serif; transition:all .15s;
     display:flex; flex-direction:column; align-items:center; gap:3px;
+    scroll-snap-align:start;
+    white-space:nowrap;
+  }
+  @media (max-width: 540px) {
+    .tab-btn { min-width:80px; padding:11px 10px; font-size:12px; }
   }
 
   .tab-btn.active {
@@ -899,8 +909,24 @@
 <!-- ===== ONGLET RÉSERVATIONS ===== -->
 <div class="tab-content" id="content-reservations">
   <div style="padding:16px;">
+
+    <!-- ── SECTION 1: CRÉNEAUX DE RÉSERVATION (resto/pizzeria) ── -->
+    <div id="resaCreneauxSection" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:18px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;">⏰ Créneaux de réservation</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Plages horaires où tu acceptes les réservations</div>
+        </div>
+        <button onclick="ouvrirAjoutCreneauResa()" style="background:var(--vert);color:#fff;border:none;border-radius:50px;padding:8px 14px;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;">+ Ajouter</button>
+      </div>
+      <div id="resaCreneauxListe" style="display:flex;flex-direction:column;gap:8px;">
+        <div style="text-align:center;color:var(--texte-doux);font-size:13px;padding:14px 0;">Chargement…</div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: LISTE DES RÉSERVATIONS ── -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-family:'Manrope',sans-serif;font-size:20px;font-weight:700;">Réservations</div>
+      <div style="font-family:'Manrope',sans-serif;font-size:20px;font-weight:700;">Réservations reçues</div>
       <button onclick="chargerReservations()" style="background:transparent;border:1.5px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;font-size:12px;font-family:inherit;cursor:pointer;">🔄 Rafraîchir</button>
     </div>
 
@@ -1968,7 +1994,7 @@ function allerOnglet(id) {
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') { chargerCreneaux(); chargerBusinessConfig(); }
-  if (id === 'reservations') chargerReservations();
+  if (id === 'reservations') { chargerReservations(); chargerCreneauxResa(); }
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'reglages') chargerReglages();
 }
@@ -1976,6 +2002,122 @@ function allerOnglet(id) {
 // ── ONGLET RÉSERVATIONS ────────────────────────────────────────
 let toutesResas = [];
 let resaFilterStatut = 'tous';
+
+// ── CRÉNEAUX DE RÉSERVATION (table creneaux avec type='reservation')
+async function chargerCreneauxResa() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    if (!commercantId) return;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + commercantId + '&type=eq.reservation&order=jour_semaine.asc,heure_debut.asc', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    renderCreneauxResa(Array.isArray(data) ? data : []);
+  } catch (e) {
+    console.warn('chargerCreneauxResa:', e);
+  }
+}
+
+const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+
+function renderCreneauxResa(creneaux) {
+  const liste = document.getElementById('resaCreneauxListe');
+  if (!liste) return;
+  if (creneaux.length === 0) {
+    liste.innerHTML = '<div style="text-align:center;color:var(--texte-doux);font-size:13px;padding:18px 0;">Aucun créneau défini. Clique <strong>+ Ajouter</strong> pour commencer.</div>';
+    return;
+  }
+  liste.innerHTML = creneaux.map(c => {
+    const heureDeb = (c.heure_debut || '').slice(0,5);
+    const heureFin = (c.heure_fin || '').slice(0,5);
+    const cap = c.capacite_max || '∞';
+    return ''
+      + '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--creme);border-radius:10px;">'
+      +   '<span style="font-size:18px;">' + (c.emoji || '🍽️') + '</span>'
+      +   '<div style="flex:1;min-width:0;">'
+      +     '<div style="font-weight:600;font-size:13.5px;">' + JOURS[c.jour_semaine] + ' · ' + heureDeb + '–' + heureFin + '</div>'
+      +     '<div style="font-size:11.5px;color:var(--texte-doux);">Capacité max : ' + cap + ' couverts</div>'
+      +   '</div>'
+      +   '<button onclick="supprimerCreneauResa(\'' + c.id + '\')" style="background:transparent;border:none;color:#9a2d24;cursor:pointer;font-size:18px;padding:6px;">✕</button>'
+      + '</div>';
+  }).join('');
+}
+
+window.ouvrirAjoutCreneauResa = function() {
+  // Modal simple inline
+  const html = ''
+    + '<div id="m-creneau-resa-modal" style="position:fixed;inset:0;z-index:9998;background:rgba(15,44,82,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;">'
+    +   '<div style="background:#fff;border-radius:18px;padding:24px;max-width:420px;width:100%;font-family:Manrope,sans-serif;">'
+    +     '<div style="font-weight:800;font-size:18px;margin-bottom:16px;">⏰ Nouveau créneau de réservation</div>'
+    +     '<label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Jour</label>'
+    +     '<select id="cr-jour" style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:15px;margin-bottom:12px;">'
+    +       JOURS.map((j,i) => '<option value="' + i + '">' + j + '</option>').join('')
+    +     '</select>'
+    +     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">'
+    +       '<div><label style="font-size:13px;font-weight:600;">Début</label><input type="time" id="cr-deb" value="19:00" style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:15px;"></div>'
+    +       '<div><label style="font-size:13px;font-weight:600;">Fin</label><input type="time" id="cr-fin" value="22:30" style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:15px;"></div>'
+    +     '</div>'
+    +     '<label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Capacité max (couverts)</label>'
+    +     '<input type="number" id="cr-cap" value="30" min="1" max="500" style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:15px;margin-bottom:18px;">'
+    +     '<div style="display:flex;gap:10px;">'
+    +       '<button onclick="document.getElementById(\'m-creneau-resa-modal\').remove()" style="flex:1;background:transparent;color:var(--texte-doux);border:1.5px solid var(--creme-fonce);border-radius:50px;padding:11px;font-family:inherit;font-weight:600;cursor:pointer;">Annuler</button>'
+    +       '<button onclick="enregistrerCreneauResa()" style="flex:1;background:var(--vert);color:#fff;border:none;border-radius:50px;padding:11px;font-family:inherit;font-weight:700;cursor:pointer;">Enregistrer</button>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>';
+  document.body.insertAdjacentHTML('beforeend', html);
+};
+
+window.enregistrerCreneauResa = async function() {
+  const jour = parseInt(document.getElementById('cr-jour').value);
+  const deb = document.getElementById('cr-deb').value;
+  const fin = document.getElementById('cr-fin').value;
+  const cap = parseInt(document.getElementById('cr-cap').value) || 30;
+  if (!deb || !fin) { alert('Remplis les heures.'); return; }
+  if (deb >= fin) { alert('Heure de fin doit être après début.'); return; }
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    const token = await getValidToken();
+    const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY), 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({
+        commercant_id: commercantId,
+        type: 'reservation',
+        jour_semaine: jour,
+        heure_debut: deb + ':00',
+        heure_fin: fin + ':00',
+        capacite_max: cap,
+        actif: true,
+        emoji: '🍽️'
+      })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    document.getElementById('m-creneau-resa-modal')?.remove();
+    afficherToast('✅ Créneau ajouté');
+    chargerCreneauxResa();
+  } catch (e) {
+    alert('❌ ' + e.message);
+  }
+};
+
+window.supprimerCreneauResa = async function(id) {
+  if (!confirm('Supprimer ce créneau ?')) return;
+  try {
+    const token = await getValidToken();
+    const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    afficherToast('🗑 Créneau supprimé');
+    chargerCreneauxResa();
+  } catch (e) {
+    alert('❌ ' + e.message);
+  }
+};
 
 async function chargerReservations() {
   try {
