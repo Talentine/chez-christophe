@@ -1143,7 +1143,7 @@
       <p class="hero-sub" id="heroSousTitre">&nbsp;</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="window.location.href='catalogue.html'">Commander →</button>
-        <button class="btn-secondary hero-btn-resa" id="heroBtnReservation" onclick="ouvrirReservation()" style="display:inline-flex;align-items:center;gap:6px;">📅 Réserver une table</button>
+        <button class="btn-secondary hero-btn-resa" id="heroBtnReservation" onclick="ouvrirReservation()" style="display:none;align-items:center;gap:6px;">📅 Réserver une table</button>
         <button class="btn-secondary" onclick="window.location.href='notre-histoire.html'">Notre histoire</button>
       </div>
       <div class="hero-infos" id="heroInfosWrap">
@@ -3347,8 +3347,8 @@ body.mode-demo #btn-panier { display: none !important; }
 (function(){
   // Activation : RESTAURATION uniquement (pizzeria / restaurant / fastfood)
   // Pour tous les autres métiers, aucun bouton/FAB de réservation n'est affiché.
-  document.addEventListener('business:ready', function(e) {
-    var b = (e.detail && e.detail.business) || {};
+  function applyResaVisibility(b) {
+    b = b || {};
     var bt = b.business_type;
     var isResto = (bt === 'pizzeria' || bt === 'restaurant' || bt === 'fastfood');
 
@@ -3357,16 +3357,36 @@ body.mode-demo #btn-panier { display: none !important; }
     var fabMesResas = document.getElementById('m-fab-mes-resas');
 
     if (!isResto) {
-      // Hard-hide tous les éléments de réservation pour non-resto
-      if (fab) { fab.classList.remove('show'); fab.style.display = 'none'; }
-      if (heroBtn) heroBtn.style.display = 'none';
-      if (fabMesResas) fabMesResas.style.display = 'none';
+      // Hard-hide TOUS les éléments de réservation pour non-resto (avec !important via setProperty)
+      if (fab) {
+        fab.classList.remove('show');
+        fab.style.setProperty('display', 'none', 'important');
+      }
+      if (heroBtn) heroBtn.style.setProperty('display', 'none', 'important');
+      if (fabMesResas) fabMesResas.style.setProperty('display', 'none', 'important');
       return;
     }
-
-    // Resto : afficher tous les boutons
+    // Resto : afficher
     if (fab) fab.classList.add('show');
     if (heroBtn) heroBtn.style.display = 'inline-flex';
+  }
+
+  // 1. Si __CONFIG__ déjà chargé, applique immédiatement
+  if (window.__CONFIG__ && window.__CONFIG__.business) {
+    applyResaVisibility(window.__CONFIG__.business);
+  }
+  // 2. Écouteur classique pour le cas normal
+  document.addEventListener('business:ready', function(e) {
+    var b = (e.detail && e.detail.business) || {};
+    applyResaVisibility(b);
+  });
+  // 3. Filet de sécurité : retry à plusieurs intervalles tant que __CONFIG__ pas dispo
+  [200, 600, 1500, 3000].forEach(function(ms){
+    setTimeout(function(){
+      if (window.__CONFIG__ && window.__CONFIG__.business) {
+        applyResaVisibility(window.__CONFIG__.business);
+      }
+    }, ms);
   });
 
   // Montant par couvert (récupéré du commerçant, fallback 10€)
