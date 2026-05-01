@@ -125,7 +125,13 @@ export const BUSINESS_TYPES = {
 };
 
 export function getHandler(type) {
-  return BUSINESS_TYPES[type] || BUSINESS_TYPES.primeur;
+  if (BUSINESS_TYPES[type]) return BUSINESS_TYPES[type];
+  // Fallback : si type inconnu (ex: cache), warn et essaie traiteur (le plus générique)
+  if (type) {
+    console.warn('[business-types] Type non trouvé:', type, '— utilisation traiteur par défaut. Vide le cache (Ctrl+Shift+R).');
+    return BUSINESS_TYPES.traiteur || BUSINESS_TYPES.primeur;
+  }
+  return BUSINESS_TYPES.primeur;
 }
 
 export function listTypes() {
