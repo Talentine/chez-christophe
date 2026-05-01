@@ -247,21 +247,33 @@
     <h2 id="a6">Article 6 — Flux financiers et reversement</h2>
     <h3>6.1 Encaissement</h3>
     <p>Les paiements des Clients Finaux sont encaissés via <strong>Stripe Connect</strong>. Marchéo agit en tant que plateforme technique facilitant la transaction.</p>
-    <h3>6.2 Empreinte bancaire</h3>
-    <p>Sur option du Commerçant (paramètre activable dans le dashboard), une <strong>empreinte bancaire de 75 % du panier</strong> est pré-autorisée sur la carte du Client Final lors de la commande.</p>
+    <h3>6.2 Empreinte bancaire — Commandes click &amp; collect</h3>
+    <p>Sur option du Commerçant (paramètre activable dans le dashboard avec un pourcentage paramétrable de <strong>10 % à 100 %</strong>, recommandé <strong>75 %</strong>), une <strong>empreinte bancaire</strong> est pré-autorisée sur la carte du Client Final lors de la commande.</p>
     <ul>
       <li>Aucun débit n'est effectué tant que la commande est en attente ;</li>
-      <li>L'empreinte est <strong>automatiquement libérée 24 heures après la date prévue</strong> de retrait/livraison ;</li>
+      <li>L'empreinte est <strong>automatiquement libérée</strong> dès que le Commerçant marque la commande comme « Terminée » (présence du client validée), au plus tard 24 heures après la date prévue de retrait/livraison ;</li>
       <li>En cas de no-show avéré, le Commerçant peut déclencher la <strong>capture</strong> des fonds via le bouton « Litige » de son dashboard.</li>
     </ul>
-    <h3>6.3 Reversement au Commerçant</h3>
+
+    <h3>6.3 Réservation de table — Restauration (pizzeria, restaurant, fast-food)</h3>
+    <p>Pour les Commerçants exerçant une activité de restauration, une <strong>empreinte bancaire de 15 € par couvert</strong> est pré-autorisée sur la carte du Client Final lors de la confirmation de réservation.</p>
+    <p>Cette empreinte est régie par une <strong>politique d'annulation paramétrable</strong> par le Commerçant (de 0 à 168 heures avant l'horaire prévu, recommandé 24 heures) :</p>
+    <ul>
+      <li><strong>Annulation par le Client dans les délais</strong> (avant la deadline configurée) → empreinte libérée intégralement, aucun débit ;</li>
+      <li><strong>Annulation tardive ou no-show</strong> (après la deadline ou client absent) → empreinte capturée par le Commerçant ;</li>
+      <li><strong>Geste commercial</strong> : le Commerçant peut, à sa discrétion, libérer l'empreinte même en cas d'annulation tardive ou no-show ;</li>
+      <li>Le Client Final reçoit un <strong>lien d'annulation unique</strong> lui permettant de gérer sa réservation à tout moment.</li>
+    </ul>
+    <p>Le Client Final est <strong>informé de manière claire</strong> de la politique d'annulation avant la confirmation de la réservation et de la prise d'empreinte. La saisie de la carte vaut acceptation de cette politique.</p>
+
+    <h3>6.4 Reversement au Commerçant</h3>
     <p>Les fonds sont reversés sur le compte bancaire associé via Stripe :</p>
     <ul>
       <li><strong>Délai standard :</strong> sous 7 jours après chaque commande honorée ;</li>
       <li><strong>Calendrier :</strong> <span class="placeholder">[À COMPLÉTER : hebdomadaire / quotidien]</span> ;</li>
       <li>Le détail des virements est consultable dans le dashboard.</li>
     </ul>
-    <h3>6.4 Litiges et chargebacks</h3>
+    <h3>6.5 Litiges et chargebacks</h3>
     <p>En cas de chargeback initié par un Client Final, Marchéo informe le Commerçant et coordonne la défense. Si le chargeback est validé contre le Commerçant, le montant est imputé sur les futurs virements.</p>
 
     <h2 id="a7">Article 7 — Obligations du commerçant</h2>
