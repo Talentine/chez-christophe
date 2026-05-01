@@ -522,7 +522,7 @@
 </div>
 
 <!-- ALERTE NOUVELLES COMMANDES -->
-<div class="alerte-bar" id="alerteBar" onclick="allerOnglet('commandes')">
+<div class="alerte-bar" id="alerteBar" onclick="voirPremiereNouvelle()">
   <span id="alerteTxt">🛒 3 nouvelles commandes en attente</span>
   <span>Voir maintenant →</span>
 </div>
@@ -1549,8 +1549,8 @@ function renderCommandes() {
     const drDate = derniere.date_retrait ? new Date(derniere.date_retrait) : null;
     const drLabel = drDate ? (JOURS[drDate.getDay()] + ' ' + drDate.getDate() + ' ' + MOIS[drDate.getMonth()] + ' · ' + drDate.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})) : '—';
     const typeIcon = derniere.type === 'livraison' ? '🚚' : '📍';
-    encart = '<div style="background:linear-gradient(135deg,#1a2e26,#2d4a3e);border-radius:14px;padding:14px 16px;margin-bottom:12px;color:white;">'
-      + '<div style="font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">🔔 Dernière commande</div>'
+    encart = '<div onclick="voirCommande(\'' + derniere.id + '\')" style="background:linear-gradient(135deg,#1a2e26,#2d4a3e);border-radius:14px;padding:14px 16px;margin-bottom:12px;color:white;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s;" onmousedown="this.style.transform=\'scale(0.98)\'" onmouseup="this.style.transform=\'\'" ontouchstart="this.style.transform=\'scale(0.98)\'" ontouchend="this.style.transform=\'\'">'
+      + '<div style="font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">🔔 Dernière commande · cliquez pour voir</div>'
       + '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'
       + '<div>'
       + '<div style="font-size:15px;font-weight:500;">' + derniere.client + '</div>'
@@ -1722,6 +1722,37 @@ function ouvrirLitige(id) {
 function toggleDetail(id) {
   document.getElementById(`detail-${id}`)?.classList.toggle('open');
 }
+
+// Bandeau jaune → ouvrir la première commande "nouvelle"
+window.voirPremiereNouvelle = function() {
+  if (typeof allerOnglet === 'function') allerOnglet('commandes');
+  setTimeout(function(){
+    const nouvelles = (toutesLesCommandes || []).filter(c => c.statut === 'nouvelle');
+    if (nouvelles.length === 0) return;
+    // La plus ancienne (à traiter en priorité)
+    const cible = nouvelles.reduce((a, b) => new Date(a.created_at || 0) < new Date(b.created_at || 0) ? a : b);
+    if (cible) window.voirCommande(cible.id);
+  }, 250);
+};
+
+// Aller à l'onglet Commandes + scroller vers la carte + ouvrir le détail
+window.voirCommande = function(id) {
+  if (typeof allerOnglet === 'function') allerOnglet('commandes');
+  setTimeout(function(){
+    const card = document.getElementById('card-' + id);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const detail = document.getElementById('detail-' + id);
+      if (detail && !detail.classList.contains('open')) {
+        detail.classList.add('open');
+      }
+      // flash visuel
+      card.style.transition = 'box-shadow .3s';
+      card.style.boxShadow = '0 0 0 3px #5BBE3A';
+      setTimeout(function(){ card.style.boxShadow = ''; }, 1400);
+    }
+  }, 250);
+};
 
 async function changerStatut(id, nouveauStatut) {
   const cmd = toutesLesCommandes.find(c => c.id === id);
@@ -3168,9 +3199,14 @@ async function demarrerRealtime() {
 
     await chargerCommandesSupabase(commercantId);
 
+    // Poll toutes les 5s pour réactivité
     setInterval(async () => {
       await chargerCommandesSupabase(commercantId);
-    }, 10000);
+    }, 5000);
+    // Rafraîchit immédiatement quand l'onglet redevient visible
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) chargerCommandesSupabase(commercantId);
+    });
 
   } catch(e) {
     console.log('Realtime non disponible:', e);
