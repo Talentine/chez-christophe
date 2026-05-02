@@ -1139,6 +1139,40 @@
     <div style="font-family:'Manrope', system-ui, sans-serif;font-size:24px;font-weight:800;margin-bottom:6px;letter-spacing:-.5px;">Réglages</div>
     <div style="font-size:13px;color:var(--texte-doux);margin-bottom:16px;">Choisissez une catégorie pour modifier vos paramètres.</div>
 
+    <!-- BOUTON MON SITE — accès rapide à la vitrine -->
+    <button onclick="ouvrirMonSite()"
+      style="width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;margin-bottom:20px;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;border:none;border-radius:16px;cursor:pointer;font-family:'Manrope',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;box-shadow:0 8px 22px rgba(15,44,82,.18);transition:transform .12s;text-align:left;"
+      onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform=''" ontouchstart="this.style.transform='scale(0.98)'" ontouchend="this.style.transform=''">
+      <div style="flex-shrink:0;width:42px;height:42px;border-radius:12px;background:#5BBE3A;display:flex;align-items:center;justify-content:center;font-size:22px;">🌐</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:15px;font-weight:700;line-height:1.2;">Voir mon site</div>
+        <div style="font-size:12px;opacity:.75;margin-top:2px;line-height:1.35;" id="monSiteUrl">marchéo.fr/…</div>
+      </div>
+      <div style="flex-shrink:0;background:#F4B942;color:#0F2C52;font-size:12px;font-weight:700;padding:6px 12px;border-radius:50px;white-space:nowrap;">Ouvrir →</div>
+    </button>
+    <script>
+      window.ouvrirMonSite = function(){
+        const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+        const slug = s.slug || (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.slug);
+        if (!slug) { alert('Slug boutique introuvable'); return; }
+        window.open('/' + slug + '/', '_blank', 'noopener');
+      };
+      // Affiche l'URL réelle dans le sous-titre quand __CONFIG__ est dispo
+      (function(){
+        function maj(){
+          const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+          const slug = s.slug || (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.slug);
+          const el = document.getElementById('monSiteUrl');
+          if (el && slug) el.textContent = 'marchéo.fr/' + slug;
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', maj);
+        else maj();
+        // retry quand __CONFIG__ arrive
+        document.addEventListener('business:ready', maj);
+        setTimeout(maj, 1500);
+      })();
+    </script>
+
     <!-- ============================================================
          MENU DE NAVIGATION STYLE iOS — clic = scroll vers la section
          ============================================================ -->
