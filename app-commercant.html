@@ -4670,13 +4670,42 @@ async function appliquerThemeMonCommerce() {
   } catch(e) { console.log('theme dashboard:', e); }
 }
 
+// ── BANDEAU MODE DÉMO (dashboard commerçant)
+function afficherBandeauDemoDashboard() {
+  if (document.getElementById('demo-dash-banner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'demo-dash-banner';
+  banner.innerHTML = `
+    <span style="font-size:18px;flex-shrink:0;">🎯</span>
+    <div style="flex:1;min-width:0;line-height:1.35;">
+      <div style="font-weight:700;font-size:13px;">Mode démo · toutes les fonctionnalités débloquées</div>
+      <div style="font-size:11.5px;opacity:.85;">Testez tout avant de choisir votre plan d'abonnement.</div>
+    </div>
+    <button onclick="scrollToReg('reg-abonnement')" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">Activer →</button>
+  `;
+  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:97;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
+  document.body.appendChild(banner);
+  // Décale le contenu sous le bandeau
+  document.body.style.paddingTop = '52px';
+}
+function retirerBandeauDemoDashboard() {
+  const b = document.getElementById('demo-dash-banner');
+  if (b) b.remove();
+  document.body.style.paddingTop = '';
+}
+
 // ── GATING FEATURES selon métier (resto/non-resto) + plan (vitrine/clickcollect/livraison)
 function appliquerVisibiliteFeatures() {
   try {
     const biz = window.__CONFIG__?.business || {};
     const bt = biz.business_type || 'primeur';
-    const offre = biz.offre || 'clickcollect';
     const isResto = ['pizzeria','restaurant','fastfood'].includes(bt);
+
+    // ── MODE DÉMO : si abonnement pas encore actif, débloque TOUT
+    // pour que le commerçant puisse essayer toutes les fonctionnalités
+    // avant de choisir son plan. Si abonnement actif → on respecte l'offre choisie.
+    const enDemo = biz.abonnement_actif !== true;
+    const offre = enDemo ? 'livraison' : (biz.offre || 'clickcollect');
 
     // Capacités par plan
     const caps = {
@@ -4685,6 +4714,10 @@ function appliquerVisibiliteFeatures() {
       livraison:    { commandes:true,  livraison:true,  reservation:true,  label:'Livraison + Réservation' }
     };
     const cap = caps[offre] || caps.clickcollect;
+
+    // Affiche un bandeau démo dans le dashboard si pas d'abonnement actif
+    if (enDemo) afficherBandeauDemoDashboard();
+    else retirerBandeauDemoDashboard();
 
     // Réservation = uniquement si métier resto ET plan livraison
     const peutResa = isResto && cap.reservation;
