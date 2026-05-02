@@ -618,7 +618,7 @@
   <button class="tab-btn" data-icon="🍽️" onclick="allerOnglet('reservations')" id="tab-reservations" style="display:none;">
     Résa
   </button>
-  <button class="tab-btn" data-icon="📸" onclick="allerOnglet('galerie')" id="tab-galerie">
+  <button class="tab-btn" data-icon="📸" onclick="allerOnglet('galerie')" id="tab-galerie" style="display:none;">
     Galerie
   </button>
   <button class="tab-btn" data-icon="💬" onclick="allerOnglet('crm')" id="tab-crm">
@@ -764,15 +764,26 @@
     <style>
       .vue-pill { background:transparent; border:1.5px solid var(--creme-fonce); border-radius:50px; padding:7px 14px; font-size:12.5px; font-weight:600; font-family:inherit; cursor:pointer; color:var(--texte-doux); }
       .vue-pill.actif { background:var(--bleu-nuit, #0F2C52); color:#fff; border-color:var(--bleu-nuit, #0F2C52); }
-      .cal-day { aspect-ratio:1; border-radius:8px; padding:6px 4px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; font-size:11px; min-height:52px; }
-      .cal-day.empty { background:transparent; }
-      .cal-day.has-creneaux { cursor:pointer; }
-      .cal-day .cal-num { font-weight:700; font-size:13px; }
+      .cal-day {
+        aspect-ratio:1; border-radius:8px; padding:4px 3px;
+        display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+        font-size:11px; min-height:54px;
+        text-align:center; box-sizing:border-box; overflow:hidden;
+      }
+      .cal-day.empty { background:transparent; border:none !important; }
+      .cal-day.has-creneaux, .cal-day.has-activity { cursor:pointer; }
+      .cal-day .cal-num { font-weight:700; font-size:13px; line-height:1; }
       .cal-day .cal-dots { display:flex; gap:2px; margin-top:3px; flex-wrap:wrap; justify-content:center; }
       .cal-day .cal-dot { width:5px; height:5px; border-radius:50%; }
       .cal-day .cal-dot.retrait { background:#5BBE3A; }
       .cal-day .cal-dot.livraison { background:#185fa5; }
       .cal-day .cal-dot.reservation { background:#9F1B1F; }
+      /* Mobile : on évite le débordement et on resserre */
+      @media (max-width:540px) {
+        .cal-day { aspect-ratio:auto; min-height:50px; padding:3px 2px; font-size:10px; }
+        .cal-day .cal-num { font-size:12px; }
+        #vueCalendrier { padding:8px !important; }
+      }
     </style>
 
     <div id="vueCalendrier" style="display:none;background:var(--blanc);border-radius:14px;padding:14px;border:1px solid var(--creme-fonce);"></div>
@@ -977,8 +988,11 @@
         <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">Panier moyen</div>
         <div style="font-size:18px;font-weight:700;" id="crmStatPanier">—</div>
       </div>
-      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);">
-        <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">SMS quota mois</div>
+      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);cursor:pointer;" onclick="ouvrirAchatSmsPack()">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">SMS restants</div>
+          <div style="font-size:11px;color:#5BBE3A;font-weight:700;">+ Acheter</div>
+        </div>
         <div style="font-size:18px;font-weight:700;" id="crmStatQuota">—</div>
       </div>
     </div>
@@ -1201,6 +1215,11 @@
           <div class="reg-row" onclick="scrollToReg('reg-horaires')">
             <div class="reg-icon" style="background:#F4B942;">🕐</div>
             <div class="reg-label">Horaires d'ouverture<div class="reg-sub">Visibles sur la boutique</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="allerOnglet('galerie')">
+            <div class="reg-icon" style="background:#E65533;">📸</div>
+            <div class="reg-label">Galerie photos<div class="reg-sub">Hero, ambiance, rayons de la boutique</div></div>
             <div class="reg-chevron">›</div>
           </div>
         </div>
@@ -2548,6 +2567,89 @@ async function voirCommandesCreneau(dateKey, heure) {
 }
 
 
+// ── ACHAT DE PACKS SMS ────────────────────────────────────────
+window.ouvrirAchatSmsPack = function() {
+  if (document.getElementById('sms-pack-overlay')) return;
+  const html = '<div id="sms-pack-overlay" style="position:fixed;inset:0;background:rgba(15,44,82,.7);backdrop-filter:blur(6px);z-index:9999;display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .2s;" onclick="if(event.target===this)this.remove()">'
+    + '<div style="background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:26px 22px calc(26px + env(safe-area-inset-bottom));font-family:Manrope,system-ui,sans-serif;color:#0F2C52;max-height:88vh;overflow-y:auto;">'
+    +   '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">'
+    +     '<div><div style="font-size:20px;font-weight:800;">📱 Acheter des SMS</div><div style="font-size:13px;color:#64748b;margin-top:4px;">Pack à usage unique, ajouté à votre quota du mois en cours.</div></div>'
+    +     '<button onclick="document.getElementById(\'sms-pack-overlay\').remove()" style="background:#F7F2E8;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;flex-shrink:0;">✕</button>'
+    +   '</div>'
+    +   '<div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">'
+
+    +     '<div onclick="acheterPackSms(\'pack_100\')" style="border:1.5px solid #e8dfc9;border-radius:14px;padding:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s;" onmouseover="this.style.borderColor=\'#5BBE3A\'" onmouseout="this.style.borderColor=\'#e8dfc9\'">'
+    +       '<div><div style="font-weight:700;font-size:16px;">100 SMS</div><div style="font-size:12px;color:#64748b;margin-top:2px;">0,08 €/SMS · idéal pour un dépassement ponctuel</div></div>'
+    +       '<div style="font-size:20px;font-weight:800;color:#0F2C52;">8 €</div>'
+    +     '</div>'
+
+    +     '<div onclick="acheterPackSms(\'pack_300\')" style="border:2px solid #5BBE3A;border-radius:14px;padding:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#f3fcef;position:relative;">'
+    +       '<div style="position:absolute;top:-10px;right:14px;background:#5BBE3A;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">RECOMMANDÉ</div>'
+    +       '<div><div style="font-weight:700;font-size:16px;">300 SMS</div><div style="font-size:12px;color:#475569;margin-top:2px;">0,07 €/SMS · 12 % d\'économie</div></div>'
+    +       '<div style="font-size:20px;font-weight:800;color:#0F2C52;">21 €</div>'
+    +     '</div>'
+
+    +     '<div onclick="acheterPackSms(\'pack_1000\')" style="border:1.5px solid #e8dfc9;border-radius:14px;padding:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s;" onmouseover="this.style.borderColor=\'#0F2C52\'" onmouseout="this.style.borderColor=\'#e8dfc9\'">'
+    +       '<div><div style="font-weight:700;font-size:16px;">1 000 SMS</div><div style="font-size:12px;color:#64748b;margin-top:2px;">0,065 €/SMS · 19 % d\'économie</div></div>'
+    +       '<div style="font-size:20px;font-weight:800;color:#0F2C52;">65 €</div>'
+    +     '</div>'
+
+    +   '</div>'
+    +   '<div style="margin-top:16px;padding:12px;background:#fff8e7;border-radius:10px;font-size:12px;color:#5a4017;line-height:1.55;">'
+    +     '💡 Les SMS achetés s\'ajoutent à votre quota mensuel et sont consommés en priorité par rapport aux SMS payants au-delà du quota. Non remboursable, non reportable.'
+    +   '</div>'
+    + '</div>'
+    + '</div>'
+    + '<style>@keyframes fadeIn{from{opacity:0}to{opacity:1}}</style>';
+  document.body.insertAdjacentHTML('beforeend', html);
+};
+
+window.acheterPackSms = async function(packKey) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) { alert('Session expirée'); return; }
+  // Spinner sur la card cliquée
+  const overlay = document.getElementById('sms-pack-overlay');
+  if (overlay) overlay.querySelector('div[style*="max-width:480px"]').innerHTML = '<div style="text-align:center;padding:60px 20px;font-family:Manrope;color:#0F2C52;"><div style="font-size:40px;margin-bottom:14px;">⏳</div><div style="font-size:15px;font-weight:600;">Création du paiement…</div><div style="font-size:12px;color:#64748b;margin-top:6px;">Tu seras redirigé vers Stripe.</div></div>';
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/sms-pack-purchase', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ commercant_id: commercantId, pack_key: packKey, return_url: location.origin + '/app-commercant.html' }),
+    });
+    const data = await r.json();
+    if (!r.ok || !data.url) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+    location.href = data.url;
+  } catch (e) {
+    alert('⚠️ ' + e.message);
+    if (overlay) overlay.remove();
+  }
+};
+
+// Toast de retour Stripe (?sms_purchase=success)
+(function checkSmsReturn(){
+  const params = new URLSearchParams(location.search);
+  if (params.get('sms_purchase') === 'success') {
+    setTimeout(() => {
+      if (typeof afficherToast === 'function') afficherToast('✅ Pack SMS ajouté à votre quota !');
+      // Nettoyer l'URL
+      const url = new URL(location.href);
+      url.searchParams.delete('sms_purchase');
+      history.replaceState(null, '', url.toString());
+      // Rafraîchir le quota
+      if (typeof chargerCRM === 'function') setTimeout(chargerCRM, 1500);
+    }, 600);
+  } else if (params.get('sms_purchase') === 'cancel') {
+    setTimeout(() => {
+      if (typeof afficherToast === 'function') afficherToast('Achat annulé');
+      const url = new URL(location.href);
+      url.searchParams.delete('sms_purchase');
+      history.replaceState(null, '', url.toString());
+    }, 600);
+  }
+})();
+
 // ============================================================
 // ── CRM & FIDÉLISATION ───────────────────────────────────────
 // ============================================================
@@ -2578,17 +2680,29 @@ async function chargerCRM() {
   document.getElementById('crmStatCA').textContent = (totalCA / 100).toFixed(0) + '€';
   document.getElementById('crmStatPanier').textContent = (panierMoyen / 100).toFixed(1).replace('.',',') + '€';
 
-  // 2. Quota mois
+  // 2. Quota mois — RLS exige le JWT user pour lire quotas_notifications
   try {
+    const token = await getValidToken();
     const mois = new Date().toISOString().slice(0, 7);
     const rq = await fetch(SUPABASE_URL + '/rest/v1/quotas_notifications?commercant_id=eq.' + commercantId + '&mois=eq.' + mois, {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const qd = await rq.json();
-    const q = (qd && qd[0]) || { sms_envoyes: 0, sms_quota: 50 };
+    // Si pas encore de ligne pour ce mois → quota par défaut selon l'offre
+    let q = (qd && qd[0]);
+    if (!q) {
+      const offre = (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.offre) || 'clickcollect';
+      const defaultQuota = offre === 'livraison' ? 100 : (offre === 'clickcollect' ? 50 : 0);
+      q = { sms_envoyes: 0, sms_quota: defaultQuota };
+    }
     const restant = Math.max(0, (q.sms_quota || 0) - (q.sms_envoyes || 0));
-    document.getElementById('crmStatQuota').innerHTML = restant + '<span style="font-size:12px;color:var(--texte-doux);">/' + (q.sms_quota || 0) + '</span>';
-  } catch(e) { document.getElementById('crmStatQuota').textContent = '—'; }
+    const el = document.getElementById('crmStatQuota');
+    if (el) el.innerHTML = restant + '<span style="font-size:12px;color:var(--texte-doux);">/' + (q.sms_quota || 0) + '</span>';
+  } catch(e) {
+    console.warn('quota:', e);
+    const el = document.getElementById('crmStatQuota');
+    if (el) el.textContent = '—';
+  }
 
   filtrerClientsCRM();
   if (crmCurrentTab === 'segments') renderSegmentsCRM();
@@ -5280,13 +5394,13 @@ async function renderCalendrierCreneaux() {
 
     html += '<div class="cal-day' + (hasActivite ? ' has-activity' : '') + (isToday ? ' is-today' : '') + '"'
       + ' onclick="voirJourCalendrier(\'' + dateKey + '\')"'
-      + ' style="background:' + bg + ';border:' + border + ';cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:62px;padding:4px 5px;display:flex;flex-direction:column;justify-content:space-between;">';
-    html += '<div style="font-size:13px;font-weight:700;color:' + numColor + ';line-height:1;">' + d + '</div>';
+      + ' style="background:' + bg + ';border:' + border + ';-webkit-tap-highlight-color:transparent;justify-content:space-between;">';
+    html += '<div class="cal-num" style="color:' + numColor + ';">' + d + '</div>';
 
     if (hasActivite) {
-      html += '<div style="display:flex;flex-direction:column;gap:2px;font-size:10.5px;font-weight:700;color:' + numColor + ';line-height:1.1;">';
-      if (data.commandes > 0) html += '<div>📦 ' + data.commandes + '</div>';
-      if (data.reservations > 0) html += '<div>🍽️ ' + data.reservations + '</div>';
+      html += '<div style="display:flex;flex-direction:column;gap:1px;font-size:10px;font-weight:700;color:' + numColor + ';line-height:1.1;width:100%;">';
+      if (data.commandes > 0) html += '<div style="white-space:nowrap;">📦 ' + data.commandes + '</div>';
+      if (data.reservations > 0) html += '<div style="white-space:nowrap;">🍽 ' + data.reservations + '</div>';
       html += '</div>';
     }
     html += '</div>';
