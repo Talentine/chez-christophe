@@ -1271,6 +1271,11 @@
             <div class="reg-label">Changer de boutique<div class="reg-sub">Plusieurs boutiques sur ce compte</div></div>
             <div class="reg-chevron">›</div>
           </div>
+          <div class="reg-row" onclick="demarrerTour()">
+            <div class="reg-icon" style="background:#F4B942;">🎓</div>
+            <div class="reg-label">Refaire le tour de l'app<div class="reg-sub">Visite guidée des fonctionnalités</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
         </div>
       </div>
 
@@ -4433,6 +4438,182 @@ async function verifierSessionCommercant() {
   return false;
 }
 
+// ============================================================
+// ── TOUR INTERACTIF (onboarding 1er login) ───────────────────
+// ============================================================
+const TOUR_STEPS = [
+  {
+    titre: '👋 Bienvenue sur Marchéo !',
+    desc: 'Je vais te montrer ton dashboard en 7 étapes. Ça prend 1 minute, et après tu pourras gérer ta boutique les yeux fermés.',
+    cible: null, // intro
+    position: 'center',
+    cta: 'Commencer le tour →'
+  },
+  {
+    titre: '📦 Tes commandes en direct',
+    desc: 'Toutes les commandes en cours arrivent ici. Tu vois le client, le créneau, le total. Clique sur une commande pour voir les détails.',
+    cible: '#tab-commandes',
+    position: 'top'
+  },
+  {
+    titre: '📅 Planning & créneaux',
+    desc: 'Visualise tes journées chargées en un coup d\'œil. Clique sur un jour pour voir les commandes et résa du jour avec les téléphones clients.',
+    cible: '#tab-creneaux',
+    position: 'top'
+  },
+  {
+    titre: '🥕 Tes produits',
+    desc: 'Ajoute un produit en 10 secondes : photo, nom, prix, c\'est en ligne. Tu peux aussi gérer les stocks.',
+    cible: '#tab-produits',
+    position: 'top'
+  },
+  {
+    titre: '💬 Carnet client (CRM)',
+    desc: 'Tous tes clients regroupés par segment : VIP, fidèles, inactifs. Envoie un SMS ou une notification pour les faire revenir.',
+    cible: '#tab-crm',
+    position: 'top'
+  },
+  {
+    titre: '⚙️ Réglages',
+    desc: 'Identité boutique, palette, horaires, abonnement Marchéo, paiements Stripe : tout est centralisé ici, organisé par catégories.',
+    cible: '#tab-reglages',
+    position: 'top'
+  },
+  {
+    titre: '🔔 Notifications',
+    desc: 'Tu recevras une notification push à chaque nouvelle commande. Va dans Réglages pour activer les notifs sur ce téléphone.',
+    cible: null,
+    position: 'center'
+  },
+  {
+    titre: '🎉 C\'est parti !',
+    desc: 'Tu sais tout. Commence par configurer ton identité de boutique et ajouter tes premiers produits. Bonne aventure !',
+    cible: null,
+    position: 'center',
+    cta: 'Lancer ma boutique 🚀',
+    final: true
+  }
+];
+
+let tourCurrentStep = 0;
+
+function tourDoitDemarrer() {
+  return localStorage.getItem('marcheo_tour_done') !== '1';
+}
+
+function marquerTourFait() {
+  localStorage.setItem('marcheo_tour_done', '1');
+}
+
+window.demarrerTour = function() {
+  tourCurrentStep = 0;
+  localStorage.removeItem('marcheo_tour_done');
+  afficherEtapeTour();
+};
+
+function afficherEtapeTour() {
+  // Nettoie l'overlay précédent
+  const old = document.getElementById('tour-overlay');
+  if (old) old.remove();
+
+  if (tourCurrentStep >= TOUR_STEPS.length) {
+    marquerTourFait();
+    return;
+  }
+
+  const step = TOUR_STEPS[tourCurrentStep];
+  const cible = step.cible ? document.querySelector(step.cible) : null;
+  const isCenter = !cible || step.position === 'center';
+
+  // Position du highlight
+  let rect = null;
+  if (cible) rect = cible.getBoundingClientRect();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'tour-overlay';
+  overlay.innerHTML = `
+    <div class="tour-backdrop"></div>
+    ${rect ? `<div class="tour-spotlight" style="top:${rect.top - 6}px;left:${rect.left - 6}px;width:${rect.width + 12}px;height:${rect.height + 12}px;"></div>` : ''}
+    <div class="tour-card ${isCenter ? 'tour-center' : 'tour-bottom'}">
+      <div class="tour-progress">
+        ${TOUR_STEPS.map((_, i) => `<div class="tour-dot ${i === tourCurrentStep ? 'actif' : (i < tourCurrentStep ? 'done' : '')}"></div>`).join('')}
+      </div>
+      <div class="tour-titre">${step.titre}</div>
+      <div class="tour-desc">${step.desc}</div>
+      <div class="tour-actions">
+        ${tourCurrentStep > 0 ? '<button class="tour-btn-back" onclick="tourPrev()">← Retour</button>' : '<button class="tour-btn-skip" onclick="tourSkip()">Passer</button>'}
+        <button class="tour-btn-next" onclick="${step.final ? 'tourFinish()' : 'tourNext()'}">${step.cta || 'Suivant →'}</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+window.tourNext = function() { tourCurrentStep++; afficherEtapeTour(); };
+window.tourPrev = function() { tourCurrentStep = Math.max(0, tourCurrentStep - 1); afficherEtapeTour(); };
+window.tourSkip = function() {
+  document.getElementById('tour-overlay')?.remove();
+  marquerTourFait();
+};
+window.tourFinish = function() {
+  document.getElementById('tour-overlay')?.remove();
+  marquerTourFait();
+  if (typeof afficherToast === 'function') afficherToast('🎉 Bonne aventure !');
+};
+
+// Lancement auto à la connexion
+function lancerTourSiPremiereVisite() {
+  if (tourDoitDemarrer()) {
+    setTimeout(() => afficherEtapeTour(), 1200);
+  }
+}
+
+// Style du tour (injecté une fois)
+(function injectTourStyles(){
+  if (document.getElementById('tour-styles')) return;
+  const css = `
+    #tour-overlay { position: fixed; inset: 0; z-index: 100000; pointer-events: none; font-family: 'Manrope', system-ui, sans-serif; }
+    .tour-backdrop { position: absolute; inset: 0; background: rgba(15,44,82,.78); backdrop-filter: blur(3px); pointer-events: auto; animation: tourFade .25s ease; }
+    .tour-spotlight {
+      position: absolute; border-radius: 14px;
+      box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 4px #5BBE3A;
+      animation: tourPulse 1.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes tourPulse { 0%,100% { box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 4px #5BBE3A; } 50% { box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 8px rgba(91,190,58,.5); } }
+    @keyframes tourFade { from { opacity: 0; } to { opacity: 1; } }
+    .tour-card {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      background: #fff; border-radius: 20px; padding: 22px 22px 20px;
+      max-width: 360px; width: calc(100% - 32px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.3);
+      pointer-events: auto;
+      animation: tourSlideUp .35s cubic-bezier(.22,.61,.36,1);
+    }
+    .tour-card.tour-center { top: 50%; transform: translate(-50%,-50%); }
+    .tour-card.tour-bottom { bottom: 110px; }
+    @keyframes tourSlideUp { from { transform: translate(-50%,30px); opacity: 0; } to { opacity: 1; } }
+    .tour-progress { display: flex; gap: 5px; justify-content: center; margin-bottom: 14px; }
+    .tour-dot { width: 7px; height: 7px; border-radius: 50%; background: #e0e0e0; transition: .2s; }
+    .tour-dot.actif { background: #5BBE3A; width: 22px; border-radius: 5px; }
+    .tour-dot.done { background: #5BBE3A; opacity: .5; }
+    .tour-titre { font-size: 19px; font-weight: 800; color: #0F2C52; margin-bottom: 8px; line-height: 1.3; }
+    .tour-desc { font-size: 13.5px; color: #475569; line-height: 1.55; margin-bottom: 18px; }
+    .tour-actions { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    .tour-btn-skip, .tour-btn-back { background: transparent; border: none; color: #64748b; font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 4px; font-family: inherit; }
+    .tour-btn-next { background: linear-gradient(135deg,#5BBE3A,#2A6F3F); color: #fff; border: none; border-radius: 50px; padding: 10px 22px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 6px 16px rgba(91,190,58,.3); }
+    .tour-btn-next:hover { transform: translateY(-1px); }
+    @media (max-width: 540px) {
+      .tour-card.tour-bottom { bottom: 90px; }
+      .tour-titre { font-size: 17px; }
+    }
+  `;
+  const style = document.createElement('style');
+  style.id = 'tour-styles';
+  style.textContent = css;
+  document.head.appendChild(style);
+})();
+
 async function appliquerThemeMonCommerce() {
   try {
     const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -4447,6 +4628,8 @@ async function appliquerThemeMonCommerce() {
     }
     // Applique restrictions selon métier + offre du plan
     appliquerVisibiliteFeatures();
+    // Lance le tour interactif si 1ère connexion
+    if (typeof lancerTourSiPremiereVisite === 'function') lancerTourSiPremiereVisite();
   } catch(e) { console.log('theme dashboard:', e); }
 }
 
