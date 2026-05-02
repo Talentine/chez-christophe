@@ -1089,10 +1089,11 @@
   /* SECTION TITLE — taille cohérente */
   .section-title { font-size: 21px; }
 </style>
-<link rel="manifest" href="/manifest-client.json">
+<link id="m-manifest-link" rel="manifest" href="/manifest-client.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta id="m-apple-title" name="apple-mobile-web-app-title" content="Marchéo">
 <script src="assets/core/init.js?v=resto3"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 </head>
@@ -2569,6 +2570,49 @@ _revealEls.forEach(el => _revealObs.observe(el));
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
+
+// ─── MANIFEST PWA DYNAMIQUE par boutique (pour iOS "Ajouter à l'écran d'accueil") ───
+// Sans ça, iOS épingle la racine /index.html et ouvre marchéo.fr au lieu de la boutique.
+(function injectDynamicManifest(){
+  function build(business) {
+    if (!business) return;
+    var slug = business.slug || (location.pathname.split('/').filter(Boolean)[0] || '');
+    var startUrl = '/' + slug + '/';
+    var nom = business.nom_boutique || 'Boutique';
+    var theme = (window.__CONFIG__ && window.__CONFIG__.palette && window.__CONFIG__.palette.primary) || '#0F2C52';
+    var bg = (window.__CONFIG__ && window.__CONFIG__.palette && window.__CONFIG__.palette.bg) || '#F7F2E8';
+    var manifest = {
+      name: nom,
+      short_name: nom.length > 18 ? nom.slice(0,18) : nom,
+      description: 'Boutique ' + nom + ' sur Marchéo',
+      start_url: startUrl,
+      scope: startUrl,
+      display: 'standalone',
+      background_color: bg,
+      theme_color: theme,
+      orientation: 'portrait',
+      lang: 'fr',
+      icons: [
+        { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+        { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+      ]
+    };
+    try {
+      var blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+      var url  = URL.createObjectURL(blob);
+      var link = document.getElementById('m-manifest-link');
+      if (link) link.href = url;
+      var apple = document.getElementById('m-apple-title');
+      if (apple) apple.setAttribute('content', manifest.short_name);
+      document.title = nom + ' — Marchéo';
+    } catch(e) { console.warn('[manifest]', e); }
+  }
+  document.addEventListener('business:ready', function(e){
+    build(e.detail && e.detail.business);
+  });
+  // Si déjà chargé
+  if (window.__CONFIG__ && window.__CONFIG__.business) build(window.__CONFIG__.business);
+})();
 
 // ─── PUSH CLIENT : enregistre la subscription du client connecté ───
 (function clientPushSetup(){
