@@ -829,8 +829,8 @@
         <div class="hero-stat-label">de commission</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">75%</div>
-        <div class="hero-stat-label">anti no-show</div>
+        <div class="hero-stat-num">Réglable</div>
+        <div class="hero-stat-label">% anti no-show paramétrable</div>
       </div>
     </div>
 
@@ -1169,52 +1169,92 @@ function afficherPlusDeSites() {
   </div>
 </section>
 
-<!-- NOUVEAUTÉS : CRM, fidélisation, notifications -->
+<!-- NOUVEAUTÉS : Carnet client, fidélisation, notifications -->
 <section class="section section-center" style="background:linear-gradient(135deg,#0F2C52 0%,#1a3a6d 100%);color:#fff;">
   <div class="container">
     <p class="section-label reveal" style="color:#F4B942;">Nouveautés 2026</p>
-    <h2 class="reveal reveal-delay-1" style="color:#fff;">Plus qu'une boutique : <em style="color:#5BBE3A;">votre CRM intégré</em></h2>
+    <h2 class="reveal reveal-delay-1" style="color:#fff;">Votre <em style="color:#5BBE3A;">carnet client complet</em>,<br>avec notifications &amp; SMS</h2>
     <p class="section-sub reveal reveal-delay-2" style="color:rgba(255,255,255,.85);max-width:720px;margin-left:auto;margin-right:auto;">
-      Marchéo est désormais votre outil complet de fidélisation. Segmentez automatiquement vos clients,
-      relancez les inactifs avec un code promo, prévenez d'une absence du marché en 1 clic.
+      Marchéo garde la trace de tous vos clients : qui sont-ils, ce qu'ils achètent, depuis quand
+      ils ne sont pas venus. Vous pouvez leur envoyer un message en 30 secondes — par notification
+      gratuite ou par SMS — pour les faire revenir, ou les prévenir d'une absence sur le marché.
     </p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:36px;">
       <div class="reveal" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
-        <div style="font-size:36px;margin-bottom:10px;">🎯</div>
-        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Segmentation auto</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">VIP, Fidèles, Inactifs 14j/30j/60j, Nouveaux, Gros panier — calculé en temps réel à chaque commande.</p>
+        <div style="font-size:36px;margin-bottom:10px;">📒</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Carnet client complet</h3>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Pour chaque client : son nom, son téléphone, ce qu'il commande le plus souvent, son total dépensé, sa dernière visite.</p>
       </div>
       <div class="reveal reveal-delay-1" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
         <div style="font-size:36px;margin-bottom:10px;">🔔</div>
-        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Push gratuits illimités</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Vos clients qui ont installé l'app reçoivent les notifs instantanément, sans coût pour vous.</p>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Notifications gratuites</h3>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Quand vos clients ont installé votre boutique sur leur téléphone, vous leur envoyez des messages instantanés <strong>sans rien payer</strong>.</p>
       </div>
       <div class="reveal reveal-delay-2" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
         <div style="font-size:36px;margin-bottom:10px;">📱</div>
-        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">SMS de relance</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">50 SMS/mois inclus (Click & Collect) ou 100/mois (Livraison). Variables dynamiques : <code style="color:#5BBE3A;">{{prenom}}</code>, <code style="color:#5BBE3A;">{{produit_prefere}}</code>.</p>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">SMS inclus chaque mois</h3>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">50 SMS/mois inclus (Click &amp; Collect) ou 100/mois (Livraison). Pour les clients qui n'ont pas l'app, ils reçoivent un vrai SMS.</p>
       </div>
       <div class="reveal" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
         <div style="font-size:36px;margin-bottom:10px;">📊</div>
-        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Calendrier d'activité</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Visualisez en heatmap vos jours chargés vs vides. Clic sur un jour : commandes + résa + téléphones clients.</p>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Calendrier des ventes</h3>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">D'un coup d'œil, voyez vos jours chargés et vos jours calmes. Cliquez sur une journée : la liste des commandes apparaît.</p>
       </div>
       <div class="reveal reveal-delay-1" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
         <div style="font-size:36px;margin-bottom:10px;">⚠️</div>
         <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Alerte absence marché</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Une commande imprévue, un congé ? Prévenez tous vos clients en 30 secondes pour qu'ils ne se déplacent pas pour rien.</p>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Vous êtes malade ou en congés ? Prévenez tous vos clients en 30 secondes pour qu'ils ne se déplacent pas pour rien.</p>
       </div>
       <div class="reveal reveal-delay-2" style="background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;">
         <div style="font-size:36px;margin-bottom:10px;">🛡️</div>
-        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">100% RGPD</h3>
-        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Désinscription en 1 clic, hébergement européen, aucune revente de données. Vos clients sont en confiance.</p>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#fff;">Données protégées</h3>
+        <p style="margin:0;font-size:13.5px;color:rgba(255,255,255,.78);line-height:1.5;">Conforme RGPD, hébergement européen, désinscription en 1 clic. Vos clients sont en confiance.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <div style="margin-top:38px;text-align:center;">
-      <a href="/blog" style="display:inline-block;background:#F4B942;color:#0F2C52;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:14px;margin-right:10px;">📝 Lire le blog</a>
-      <a href="/faq" style="display:inline-block;background:transparent;color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.3);font-size:14px;">❓ Voir la FAQ</a>
+<!-- SIMPLICITÉ D'UTILISATION -->
+<section class="section section-center" style="background:#fff;">
+  <div class="container">
+    <p class="section-label reveal">Simple à utiliser</p>
+    <h2 class="reveal reveal-delay-1">Pas besoin d'être informaticien</h2>
+    <p class="section-sub reveal reveal-delay-2" style="max-width:680px;margin:0 auto;">
+      Marchéo a été pensé pour les commerçants — pas pour les développeurs. Tout se fait en quelques clics, depuis votre téléphone.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:36px;">
+      <div class="reveal" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">⚡</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Ajout d'un produit en 10 secondes</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Photo, nom, prix, c'est en ligne. Pas de fiche compliquée, pas de paramètres techniques.</p>
+      </div>
+      <div class="reveal reveal-delay-1" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">📷</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Photos prises depuis le téléphone</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Vous photographiez vos produits avec votre smartphone, l'app les optimise automatiquement.</p>
+      </div>
+      <div class="reveal reveal-delay-2" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">👥</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Comptes pour vos salariés</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Donnez à vos employés un accès limité (commandes + produits uniquement) sans qu'ils voient vos paramètres et vos paiements.</p>
+      </div>
+      <div class="reveal" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">📲</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Tout depuis le téléphone</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Pas besoin d'ordinateur. Vous gérez vos commandes, vos prix et vos clients depuis l'écran de votre poche.</p>
+      </div>
+      <div class="reveal reveal-delay-1" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">🚨</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Alerte nouvelle commande</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Une notification s'affiche sur votre téléphone à chaque nouvelle commande. Plus besoin de surveiller votre site.</p>
+      </div>
+      <div class="reveal reveal-delay-2" style="background:#F7F2E8;border:1px solid #e8dfc9;border-radius:16px;padding:22px;text-align:left;">
+        <div style="font-size:38px;margin-bottom:10px;">🆘</div>
+        <h3 style="margin:0 0 6px;font-size:17px;color:#0F2C52;">Support humain</h3>
+        <p style="margin:0;font-size:13.5px;color:#475569;line-height:1.55;">Une question ? On répond sous 24h. Pas de robot, pas de ticket sans fin — juste une vraie aide.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -2020,6 +2060,19 @@ function afficherPlusDeSites() {
   </div>
 </section>
 
+<!-- BLOG + FAQ BAS DE PAGE -->
+<section class="section section-center" style="background:#F7F2E8;padding:50px 24px;">
+  <div class="container" style="text-align:center;">
+    <p class="section-label reveal">Pour aller plus loin</p>
+    <h2 class="reveal reveal-delay-1" style="font-size:28px;">Découvrez nos guides</h2>
+    <p class="section-sub reveal reveal-delay-2" style="max-width:580px;margin:0 auto 28px;">Conseils pour digitaliser votre commerce, fidéliser vos clients, et toutes les réponses aux questions fréquentes.</p>
+    <div class="reveal reveal-delay-2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/blog" style="display:inline-block;background:#F4B942;color:#0F2C52;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:14px;">📝 Lire le blog</a>
+      <a href="/faq" style="display:inline-block;background:#0F2C52;color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:14px;">❓ Voir la FAQ</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">
@@ -2034,6 +2087,8 @@ function afficherPlusDeSites() {
   <nav class="footer-links" aria-label="Liens du pied de page">
     <a href="inscription.html" class="footer-link">S'inscrire</a>
     <a href="#tarifs" class="footer-link">Tarifs</a>
+    <a href="/blog" class="footer-link">Blog</a>
+    <a href="/faq" class="footer-link">FAQ</a>
     <a href="#contact" class="footer-link">Contact</a>
     <a href="cgv.html" class="footer-link">CGV</a>
     <a href="confidentialite.html" class="footer-link">Confidentialité</a>

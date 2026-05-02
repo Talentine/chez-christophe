@@ -1125,10 +1125,167 @@
 
 <div class="tab-content" id="content-reglages">
   <div style="padding:16px;">
-    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Réglages</div>
+    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:24px;font-weight:800;margin-bottom:6px;letter-spacing:-.5px;">Réglages</div>
+    <div style="font-size:13px;color:var(--texte-doux);margin-bottom:16px;">Choisissez une catégorie pour modifier vos paramètres.</div>
 
+    <!-- ============================================================
+         MENU DE NAVIGATION STYLE iOS — clic = scroll vers la section
+         ============================================================ -->
+    <style>
+      .reg-group { margin-bottom: 22px; }
+      .reg-group-titre {
+        font-size: 12px; font-weight: 700; color: #6b7280;
+        text-transform: uppercase; letter-spacing: .8px;
+        margin: 0 6px 8px; padding-left: 4px;
+      }
+      .reg-list {
+        background: var(--blanc); border-radius: 14px; overflow: hidden;
+        border: 1px solid var(--creme-fonce);
+      }
+      .reg-row {
+        display: flex; align-items: center; gap: 14px;
+        padding: 13px 14px; cursor: pointer;
+        background: var(--blanc); transition: background .12s;
+        border-bottom: 1px solid #f0e7d8;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .reg-row:last-child { border-bottom: none; }
+      .reg-row:active { background: #f7f2e8; }
+      .reg-row:hover { background: #fafaf6; }
+      .reg-icon {
+        flex-shrink: 0; width: 32px; height: 32px;
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 17px; color: #fff;
+      }
+      .reg-label { flex: 1; font-size: 15px; font-weight: 500; color: #0F2C52; min-width: 0; }
+      .reg-sub { font-size: 11.5px; color: #94a3b8; margin-top: 2px; font-weight: 400; }
+      .reg-chevron { color: #c0c0c0; font-size: 18px; flex-shrink: 0; }
+      .reg-section-anchor { scroll-margin-top: 80px; }
+      .reg-section-titre {
+        font-size: 13px; font-weight: 700; color: #6b7280;
+        text-transform: uppercase; letter-spacing: .8px;
+        margin: 26px 6px 10px; padding-left: 4px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .reg-section-titre::before {
+        content: ''; flex: 1; height: 1px; background: #e8dfc9; margin-left: 8px;
+      }
+    </style>
+
+    <div id="reglagesMenu">
+
+      <div class="reg-group">
+        <div class="reg-group-titre">🏪 Boutique</div>
+        <div class="reg-list">
+          <div class="reg-row" onclick="scrollToReg('reg-identite')">
+            <div class="reg-icon" style="background:#0F2C52;">🆔</div>
+            <div class="reg-label">Identité de la boutique<div class="reg-sub">Nom, adresse, téléphone</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-businesstype')">
+            <div class="reg-icon" style="background:#5BBE3A;">🛍</div>
+            <div class="reg-label">Type de commerce<div class="reg-sub">Métier principal et activités</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-palette')">
+            <div class="reg-icon" style="background:#E65533;">🎨</div>
+            <div class="reg-label">Palette de couleurs<div class="reg-sub">Ambiance visuelle</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-qr')">
+            <div class="reg-icon" style="background:#1f4980;">📱</div>
+            <div class="reg-label">QR Code &amp; liens<div class="reg-sub">À afficher en boutique</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-horaires')">
+            <div class="reg-icon" style="background:#F4B942;">🕐</div>
+            <div class="reg-label">Horaires d'ouverture<div class="reg-sub">Visibles sur la boutique</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-group">
+        <div class="reg-group-titre">💰 Ventes</div>
+        <div class="reg-list">
+          <div class="reg-row" onclick="scrollToReg('reg-livraison')">
+            <div class="reg-icon" style="background:#5BBE3A;">🚚</div>
+            <div class="reg-label">Zone de livraison<div class="reg-sub">Rayon, frais, seuil gratuité</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-empreinte')">
+            <div class="reg-icon" style="background:#9F1B1F;">🔒</div>
+            <div class="reg-label">Garantie de réservation<div class="reg-sub">Empreinte bancaire anti no-show</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-delais')">
+            <div class="reg-icon" style="background:#F4B942;">⏱</div>
+            <div class="reg-label">Délais minimum<div class="reg-sub">Avant commande / livraison / résa</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-annulation')">
+            <div class="reg-icon" style="background:#E65533;">📅</div>
+            <div class="reg-label">Politique d'annulation<div class="reg-sub">Délai gratuit, pourcentage no-show</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-group">
+        <div class="reg-group-titre">👤 Compte</div>
+        <div class="reg-list">
+          <div class="reg-row" onclick="scrollToReg('reg-mdp')">
+            <div class="reg-icon" style="background:#6b7280;">🔑</div>
+            <div class="reg-label">Mot de passe<div class="reg-sub">Modifier votre mot de passe</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-salaries')">
+            <div class="reg-icon" style="background:#0F2C52;">👥</div>
+            <div class="reg-label">Comptes salariés<div class="reg-sub">Accès limité pour vos employés</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" id="regRowSwitch" onclick="scrollToReg('reg-switch')" style="display:none;">
+            <div class="reg-icon" style="background:#5BBE3A;">🔁</div>
+            <div class="reg-label">Changer de boutique<div class="reg-sub">Plusieurs boutiques sur ce compte</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-group">
+        <div class="reg-group-titre">💼 Abonnement &amp; paiements</div>
+        <div class="reg-list">
+          <div class="reg-row" onclick="scrollToReg('reg-abonnement')">
+            <div class="reg-icon" style="background:#F4B942;">💼</div>
+            <div class="reg-label">Mon abonnement Marchéo<div class="reg-sub">Plan, factures, résiliation</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="scrollToReg('reg-stripe')">
+            <div class="reg-icon" style="background:#635bff;">💳</div>
+            <div class="reg-label">Paiements clients (Stripe)<div class="reg-sub">Compte Stripe Connect</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      window.scrollToReg = function(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Petit highlight visuel
+        el.style.transition = 'box-shadow .25s, transform .15s';
+        el.style.boxShadow = '0 0 0 3px #5BBE3A';
+        setTimeout(function(){ el.style.boxShadow = ''; }, 1200);
+      };
+    </script>
+
+    <div class="reg-section-titre">🏪 Boutique</div>
     <!-- QR CODE BOUTIQUE -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-qr" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
         <div>
           <div style="font-size:15px;font-weight:600;">📱 QR Code de votre boutique</div>
@@ -1148,12 +1305,13 @@
     </div>
 
     <!-- LIENS UTILES -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-liens" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🔗 Vos liens</div>
       <div id="liensListe" style="display:flex;flex-direction:column;gap:8px;font-size:13px;"></div>
     </div>
 
     <!-- TYPE DE COMMERCE PRINCIPAL + SECONDAIRES -->
+    <div id="reg-businesstype" class="reg-section-anchor"></div>
     <div id="businessTypeSection" style="margin-bottom:16px;">
       <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Type de commerce</div>
       <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
@@ -1210,7 +1368,7 @@
       </div>
 
       <!-- PALETTE DE COULEURS -->
-      <div style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Palette de couleurs</div>
+      <div id="reg-palette" class="reg-section-anchor" style="font-family:'Manrope', system-ui, sans-serif;font-size:18px;margin-bottom:12px;">Palette de couleurs</div>
       <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
         <div style="font-size:13px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">
           Choisissez l'ambiance visuelle de votre boutique. Chaque palette change l'ADN du site (couleurs, ambiance, ressenti).
@@ -1223,7 +1381,7 @@
     </div>
 
     <!-- IDENTITÉ DE LA BOUTIQUE (nom, adresse, téléphone) -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-identite" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🏪 Identité de la boutique</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">Modifiez le nom, l'adresse et le téléphone visibles par vos clients sur la boutique en ligne.</div>
 
@@ -1263,8 +1421,10 @@
       <div id="identStatus" style="font-size:12px;text-align:center;margin-top:8px;display:none;"></div>
     </div>
 
+    <div class="reg-section-titre">👤 Compte</div>
     <!-- CHANGER DE BOUTIQUE (visible uniquement si plusieurs boutiques) -->
-    <div id="switchBoutiqueCard" style="display:none;background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="switchBoutiqueCard" class="reg-section-anchor" style="display:none;background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-switch" style="position:relative;top:-12px;height:0;"></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <div style="flex:1;min-width:0;">
           <div style="font-size:15px;font-weight:600;margin-bottom:2px;">🏪 Changer de boutique</div>
@@ -1275,7 +1435,7 @@
     </div>
 
     <!-- MOT DE PASSE -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-mdp" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🔑 Mot de passe</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">Modifiez votre mot de passe pour accéder au dashboard.</div>
       <input type="password" id="newPwd1" placeholder="Nouveau mot de passe (6 caractères min)" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);outline:none;margin-bottom:8px;">
@@ -1285,7 +1445,7 @@
     </div>
 
     <!-- COMPTES SALARIÉS -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-salaries" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
         <div style="font-size:15px;font-weight:600;">👥 Comptes salariés</div>
         <button onclick="ouvrirModalSalarie()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;">+ Ajouter</button>
@@ -1297,7 +1457,7 @@
     </div>
 
     <!-- HORAIRES D'OUVERTURE -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-horaires" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:10px;">🕐 Horaires d'ouverture</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">Modifiez vos horaires — ils s'affichent sur votre boutique et la page « Notre histoire ».</div>
       <div id="horairesEditor" style="display:flex;flex-direction:column;gap:6px;"></div>
@@ -1314,8 +1474,9 @@
       </div>
     </div>
 
+    <div class="reg-section-titre">💰 Ventes &amp; commandes</div>
     <!-- EMPREINTE BANCAIRE = GARANTIE DE RÉSERVATION -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-empreinte" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
         <div>
           <div style="font-size:15px;font-weight:600;">🔒 Garantie de réservation</div>
@@ -1350,7 +1511,7 @@
     </div>
 
     <!-- DÉLAIS D'ATTENTE MIN AVANT COMMANDE / RÉSERVATION -->
-    <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-delais" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Délais minimum avant commande</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Empêche les clients de réserver/commander à un horaire trop proche.</div>
 
@@ -1453,6 +1614,7 @@
     </div>
 
     <!-- POLITIQUE D'ANNULATION RÉSERVATION -->
+    <div id="reg-annulation" class="reg-section-anchor"></div>
     <div id="cancellationPolicyCard" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;display:none;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Politique d'annulation des réservations</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;">Délai pendant lequel le client peut annuler gratuitement avant son arrivée.</div>
@@ -1487,7 +1649,9 @@
       </div>
     </div>
 
+    <div class="reg-section-titre">💼 Abonnement &amp; paiements</div>
     <!-- ABONNEMENT MARCHÉO -->
+    <div id="reg-abonnement" class="reg-section-anchor"></div>
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="abonnementMarcheoCard">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
         <div>
@@ -1502,6 +1666,7 @@
     </div>
 
     <!-- STRIPE CONNECT -->
+    <div id="reg-stripe" class="reg-section-anchor"></div>
     <div style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;" id="stripeConnectCard">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
         <div>
@@ -4106,6 +4271,7 @@ async function switchBoutique() {
 
 // Affiche la card "Changer de boutique" si user a >1 boutique
 async function afficherCardSwitchBoutique() {
+  const switchRow = document.getElementById('regRowSwitch');
   const card = document.getElementById('switchBoutiqueCard');
   if (!card) return;
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -4118,6 +4284,7 @@ async function afficherCardSwitchBoutique() {
     const nb = (rows || []).filter(x => x.commercant_id).length;
     if (nb > 1) {
       card.style.display = 'block';
+      if (switchRow) switchRow.style.display = '';
       const infoEl = document.getElementById('switchNbBoutiques');
       if (infoEl) infoEl.textContent = nb;
     }
