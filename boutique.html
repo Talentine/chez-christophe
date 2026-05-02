@@ -2314,6 +2314,9 @@ const HEROES_PAR_METIER = {
   fromagerie:   { titre: 'Fromages<br>affinés', sousTitre: 'Sélection d\'artisans, AOP & terroirs.', label: 'Fromagerie' },
   boulangerie:  { titre: 'Pains<br>& Pâtisseries', sousTitre: 'Cuits au feu de bois, levain naturel.', label: 'Boulangerie' },
   traiteur:     { titre: 'Plats<br>cuisinés', sousTitre: 'Faits maison, à emporter ou livrer.', label: 'Traiteur' },
+  pizzeria:     { titre: 'Pizzas<br>artisanales', sousTitre: 'Pâte fraîche, four à bois, ingrédients italiens.', label: 'Pizzeria' },
+  restaurant:   { titre: 'Notre<br>carte', sousTitre: 'Cuisine maison, produits frais &amp; de saison.', label: 'Restaurant' },
+  fastfood:     { titre: 'Burgers<br>& spécialités', sousTitre: 'Préparé minute, à emporter ou livraison rapide.', label: 'Fast-food' },
 };
 
 // ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
@@ -2427,7 +2430,10 @@ function appliquerConfigUI(cfg) {
   setText('heroNom', nom);
   setText('heroVille', b.ville || '');
   setHTML('heroTitre', heroInfo.titre);
-  setText('heroSousTitre', heroInfo.sousTitre + (b.ville ? ' Retrait ' + b.ville + '.' : ''));
+  // Suffixe ville adapté au métier (resto = "À Toulon" plutôt que "Retrait Toulon")
+  const isResto = ['pizzeria','restaurant','fastfood'].includes(bt);
+  const villeSuffixe = b.ville ? (isResto ? ' À ' + b.ville + '.' : ' Retrait ' + b.ville + '.') : '';
+  setText('heroSousTitre', heroInfo.sousTitre + villeSuffixe);
 
   // Logo personnalisé (header + hero)
   const logoUrl = b.logo_url || b.logo_uri;
