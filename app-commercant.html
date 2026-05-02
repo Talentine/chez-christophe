@@ -4724,13 +4724,16 @@ function appliquerVisibiliteFeatures() {
       if (labelLiv && labelLiv.tagName === 'LABEL') labelLiv.style.display = cap.livraison ? '' : 'none';
     }
 
-    // ── 4. Politique d'annulation : visible si commandes OU résa
+    // ── 4. Politique d'annulation : visible si commandes OU résa OU métier resto
+    // (un resto doit toujours pouvoir paramétrer son empreinte par couvert,
+    // même s'il n'est pas encore sur le plan livraison/résa)
     const cancelCard = document.getElementById('cancellationPolicyCard');
-    if (cancelCard) cancelCard.style.display = (cap.commandes || peutResa) ? 'block' : 'none';
+    if (cancelCard) cancelCard.style.display = (cap.commandes || peutResa || isResto) ? 'block' : 'none';
 
-    // Empreinte par couvert : RESTAURATION + plan résa uniquement
+    // Empreinte par couvert : tout métier de RESTAURATION (peu importe le plan)
+    // → permet au commerçant de configurer son montant même avant d'avoir le plan résa
     const empCouvert = document.getElementById('empreinteCouvertBloc');
-    if (empCouvert) empCouvert.style.display = peutResa ? '' : 'none';
+    if (empCouvert) empCouvert.style.display = isResto ? '' : 'none';
 
     // ── 5. Plan VITRINE : grise commandes/planning/produits/créneaux + overlay upgrade
     const plansLockTabs = {
