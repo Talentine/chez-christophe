@@ -2569,6 +2569,91 @@ _revealEls.forEach(el => _revealObs.observe(el));
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
+
+// ─── PUSH CLIENT : enregistre la subscription du client connecté ───
+(function clientPushSetup(){
+  function urlBase64ToUint8Array(b64) {
+    var pad = '='.repeat((4 - b64.length % 4) % 4);
+    var b = (b64 + pad).replace(/-/g,'+').replace(/_/g,'/');
+    var raw = atob(b);
+    var arr = new Uint8Array(raw.length);
+    for (var i=0; i<raw.length; i++) arr[i] = raw.charCodeAt(i);
+    return arr;
+  }
+
+  async function registerClientPush() {
+    try {
+      var session = JSON.parse(localStorage.getItem('session_client') || 'null');
+      if (!session || !session.client_id) return;            // pas connecté
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+      if (Notification.permission !== 'granted') return;     // l'user n'a pas accepté
+
+      var reg = await navigator.serviceWorker.ready;
+      var sub = await reg.pushManager.getSubscription();
+      if (!sub) {
+        var vapid = 'BJuXKoz9jttdTotYgdpzslA_IQhbbKvcsUA00WfnX7Sz7bH8LzAhL6Yiafl3LC0vizJ3xdg9hsjAZgBpTrg_Y-w';
+        sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(vapid) });
+      }
+      if (!sub) return;
+
+      var subJson = sub.toJSON();
+      var SB_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+      var SB_KEY = (typeof SUPABASE_KEY !== 'undefined') ? SUPABASE_KEY : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+      // UPSERT par endpoint
+      await fetch(SB_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'apikey': SB_KEY,
+          'Authorization': 'Bearer ' + SB_KEY,
+          'Prefer': 'resolution=merge-duplicates,return=minimal',
+        },
+        body: JSON.stringify({
+          client_id: session.client_id,
+          endpoint: subJson.endpoint,
+          p256dh: subJson.keys?.p256dh,
+          auth: subJson.keys?.auth,
+          actif: true,
+          user_agent: navigator.userAgent.slice(0, 200),
+        }),
+      });
+    } catch(e) { console.warn('[ClientPush]', e); }
+  }
+
+  // Bouton flottant pour proposer l'activation à un client connecté qui n'a pas encore accepté
+  function maybeShowPushPrompt() {
+    var session = JSON.parse(localStorage.getItem('session_client') || 'null');
+    if (!session || !session.client_id) return;
+    if (!('Notification' in window)) return;
+    if (Notification.permission === 'granted') { registerClientPush(); return; }
+    if (Notification.permission === 'denied') return;
+    if (localStorage.getItem('marcheo_push_prompt_dismissed') === '1') return;
+
+    var btn = document.createElement('button');
+    btn.id = 'm-push-opt-in';
+    btn.innerHTML = '🔔 Activer les notifs';
+    btn.style.cssText = 'position:fixed;bottom:90px;left:16px;z-index:96;background:#0F2C52;color:#fff;border:none;border-radius:50px;padding:10px 16px;font-family:Manrope,sans-serif;font-weight:600;font-size:13px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.2);';
+    btn.onclick = async function(){
+      var perm = await Notification.requestPermission();
+      if (perm === 'granted') {
+        await registerClientPush();
+        btn.remove();
+        if (typeof afficherToast === 'function') afficherToast('🔔 Notifications activées !');
+      } else {
+        localStorage.setItem('marcheo_push_prompt_dismissed','1');
+        btn.remove();
+      }
+    };
+    // Bouton ✕ pour dismiss
+    btn.oncontextmenu = function(e){ e.preventDefault(); localStorage.setItem('marcheo_push_prompt_dismissed','1'); btn.remove(); };
+    setTimeout(function(){ document.body.appendChild(btn); }, 4000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', maybeShowPushPrompt);
+  } else maybeShowPushPrompt();
+})();
 </script>
 
 <!-- ============================================================
