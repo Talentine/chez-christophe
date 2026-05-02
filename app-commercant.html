@@ -4351,22 +4351,10 @@ function switchVueCreneaux(vue) {
 let creneauxAllByType = { retrait: [], livraison: [], reservation: [] };
 
 async function renderCalendrierCreneaux() {
-  // Charger TOUS les créneaux du commerçant (les 3 types) pour vue d'ensemble
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
   if (!commercantId) return;
-  try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + commercantId + '&actif=eq.true&order=jour_semaine.asc', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const all = await r.json();
-    creneauxAllByType = { retrait: [], livraison: [], reservation: [] };
-    (all || []).forEach(c => {
-      if (creneauxAllByType[c.type]) creneauxAllByType[c.type].push(c);
-    });
-  } catch(e) { console.warn('cal err', e); }
 
-  // Construire la grille mensuelle
   const cal = document.getElementById('vueCalendrier');
   const today = new Date();
   const year = today.getFullYear();
@@ -4374,12 +4362,67 @@ async function renderCalendrierCreneaux() {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const daysInMonth = lastDay.getDate();
-  const startWeekDay = (firstDay.getDay() + 6) % 7; // Lundi = 0
+  const startWeekDay = (firstDay.getDay() + 6) % 7;
   const moisNoms = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const isResto = ['pizzeria','restaurant','fastfood'].includes(window.__CONFIG__?.business?.business_type);
 
+  // Loader visuel pendant le chargement
+  cal.innerHTML = '<div style="text-align:center;padding:30px;color:var(--texte-doux);">⏳ Chargement…</div>';
+
+  // ── Récupère les vraies commandes + réservations du mois en cours
+  const monthStart = `${year}-${String(month+1).padStart(2,'0')}-01T00:00:00`;
+  const monthEnd   = `${year}-${String(month+1).padStart(2,'0')}-${String(daysInMonth).padStart(2,'0')}T23:59:59`;
+
+  // Map : dateKey → { commandes:N, reservations:N, total_eur }
+  const dayData = {};
+  function getOrInit(key) {
+    if (!dayData[key]) dayData[key] = { commandes: 0, reservations: 0, total: 0 };
+    return dayData[key];
+  }
+
+  try {
+    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId
+      + '&date_retrait=gte.' + encodeURIComponent(monthStart)
+      + '&date_retrait=lte.' + encodeURIComponent(monthEnd)
+      + '&select=date_retrait,total_ttc,statut', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const cmds = await r1.json();
+    if (Array.isArray(cmds)) {
+      cmds.forEach(c => {
+        if (!c.date_retrait || c.statut === 'annulee') return;
+        const d = new Date(c.date_retrait);
+        const k = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        const e = getOrInit(k);
+        e.commandes += 1;
+        e.total += (c.total_ttc || 0);
+      });
+    }
+  } catch(e) { console.warn('cal cmds err', e); }
+
+  if (isResto) {
+    try {
+      const r2 = await fetch(SUPABASE_URL + '/rest/v1/reservations?commercant_id=eq.' + commercantId
+        + '&date_reservation=gte.' + `${year}-${String(month+1).padStart(2,'0')}-01`
+        + '&date_reservation=lte.' + `${year}-${String(month+1).padStart(2,'0')}-${String(daysInMonth).padStart(2,'0')}`
+        + '&select=date_reservation,statut', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      const resas = await r2.json();
+      if (Array.isArray(resas)) {
+        resas.forEach(r => {
+          if (!r.date_reservation || ['annulee_client','annulee_commercant','no_show'].includes(r.statut)) return;
+          const e = getOrInit(r.date_reservation);
+          e.reservations += 1;
+        });
+      }
+    } catch(e) { /* table peut-être absente */ }
+  }
+
+  // ── Build grid
   let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">';
   html += '<div style="font-weight:700;font-size:15px;">📅 ' + moisNoms[month] + ' ' + year + '</div>';
-  html += '<div style="display:flex;gap:8px;font-size:11px;color:var(--texte-doux);"><span>● <span style="color:#5BBE3A">Retrait</span></span><span>● <span style="color:#185fa5">Livr.</span></span><span>● <span style="color:#9F1B1F">Résa</span></span></div>';
+  html += '<div style="font-size:11px;color:var(--texte-doux);">📦 Cmd · 🍽️ Résa</div>';
   html += '</div>';
 
   html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:11px;color:var(--texte-doux);text-align:center;margin-bottom:6px;">';
@@ -4388,36 +4431,63 @@ async function renderCalendrierCreneaux() {
 
   html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;">';
   for (let i = 0; i < startWeekDay; i++) html += '<div class="cal-day empty"></div>';
+
+  let totalCmd = 0, totalResa = 0, totalCA = 0;
+
   for (let d = 1; d <= daysInMonth; d++) {
-    const date = new Date(year, month, d);
-    const weekDay = date.getDay(); // 0=dim, 1=lun...
-    const has = {
-      retrait: creneauxAllByType.retrait.some(c => c.jour_semaine === weekDay),
-      livraison: creneauxAllByType.livraison.some(c => c.jour_semaine === weekDay),
-      reservation: creneauxAllByType.reservation.some(c => c.jour_semaine === weekDay),
-    };
-    const total = has.retrait + has.livraison + has.reservation;
-    const isToday = (d === today.getDate() && month === today.getMonth() && year === today.getFullYear());
-    const bg = total === 0 ? '#f3f3f3' : (isToday ? '#fff8e7' : '#eaf7ee');
-    const border = isToday ? '2px solid #F4B942' : '1px solid var(--creme-fonce)';
     const dateKey = year + '-' + String(month+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-    html += '<div class="cal-day' + (total > 0 ? ' has-creneaux' : '') + '" onclick="voirJourCalendrier(\'' + dateKey + '\')" style="background:' + bg + ';border:' + border + ';cursor:pointer;-webkit-tap-highlight-color:transparent;">';
-    html += '<div class="cal-num">' + d + '</div>';
-    html += '<div class="cal-dots">';
-    if (has.retrait) html += '<span class="cal-dot retrait" title="Retrait"></span>';
-    if (has.livraison) html += '<span class="cal-dot livraison" title="Livraison"></span>';
-    if (has.reservation) html += '<span class="cal-dot reservation" title="Réservation"></span>';
-    html += '</div></div>';
+    const data = dayData[dateKey] || { commandes: 0, reservations: 0, total: 0 };
+    const hasActivite = data.commandes > 0 || data.reservations > 0;
+    totalCmd += data.commandes;
+    totalResa += data.reservations;
+    totalCA += data.total;
+
+    const isToday = (d === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+    const isPast = (new Date(year, month, d) < new Date(year, today.getMonth(), today.getDate()));
+
+    // Couleur de fond selon activité
+    let bg, border, numColor;
+    if (hasActivite) {
+      // Plus d'activité = plus saturé
+      const total = data.commandes + data.reservations;
+      if (total >= 5) bg = '#5BBE3A';      // vert vif
+      else if (total >= 3) bg = '#9ed987';  // vert moyen
+      else bg = '#d4ecdb';                  // vert clair
+      numColor = total >= 3 ? '#fff' : '#0F2C52';
+      border = isToday ? '2px solid #F4B942' : '1px solid #5BBE3A';
+    } else {
+      bg = isPast ? '#fafafa' : '#fff';
+      border = isToday ? '2px solid #F4B942' : '1px solid var(--creme-fonce)';
+      numColor = isPast ? '#bbb' : 'var(--texte-doux)';
+    }
+
+    html += '<div class="cal-day' + (hasActivite ? ' has-activity' : '') + (isToday ? ' is-today' : '') + '"'
+      + ' onclick="voirJourCalendrier(\'' + dateKey + '\')"'
+      + ' style="background:' + bg + ';border:' + border + ';cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:62px;padding:4px 5px;display:flex;flex-direction:column;justify-content:space-between;">';
+    html += '<div style="font-size:13px;font-weight:700;color:' + numColor + ';line-height:1;">' + d + '</div>';
+
+    if (hasActivite) {
+      html += '<div style="display:flex;flex-direction:column;gap:2px;font-size:10.5px;font-weight:700;color:' + numColor + ';line-height:1.1;">';
+      if (data.commandes > 0) html += '<div>📦 ' + data.commandes + '</div>';
+      if (data.reservations > 0) html += '<div>🍽️ ' + data.reservations + '</div>';
+      html += '</div>';
+    }
+    html += '</div>';
   }
   html += '</div>';
 
-  // Légende détaillée
-  html += '<div style="margin-top:14px;font-size:12px;color:var(--texte-doux);line-height:1.6;">';
-  html += '<strong>Total créneaux configurés :</strong> ';
-  html += creneauxAllByType.retrait.length + ' retrait, ';
-  html += creneauxAllByType.livraison.length + ' livraison, ';
-  html += creneauxAllByType.reservation.length + ' réservation';
-  html += '<br>Pour modifier, repasse en <strong>vue Liste</strong> et choisis le type.';
+  // Récap mensuel
+  html += '<div style="margin-top:14px;padding:12px 14px;background:linear-gradient(135deg,#eaf7ee,#d4ecdb);border-radius:12px;font-size:13px;color:#1f5230;line-height:1.6;">';
+  if (totalCmd === 0 && totalResa === 0) {
+    html += '<strong>Aucune activité ce mois</strong><br><span style="color:var(--texte-doux);">Les commandes et réservations apparaîtront ici dès la première vente.</span>';
+  } else {
+    html += '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
+    html += '<div><strong>📦 ' + totalCmd + '</strong> commande' + (totalCmd>1?'s':'') + '</div>';
+    if (isResto) html += '<div><strong>🍽️ ' + totalResa + '</strong> réservation' + (totalResa>1?'s':'') + '</div>';
+    html += '<div><strong>💰 ' + totalCA.toFixed(0) + ' €</strong> CA prévu</div>';
+    html += '</div>';
+    html += '<div style="font-size:11px;color:#3a6f48;margin-top:6px;">Cliquez sur une case pour voir le détail. Plus la couleur est foncée, plus le jour est chargé.</div>';
+  }
   html += '</div>';
 
   cal.innerHTML = html;
