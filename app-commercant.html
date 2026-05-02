@@ -1658,11 +1658,22 @@ function chargerStatsDemo() {
 }
 
 function chargerCommandesDemo() {
+  // Dates dynamiques : demain pour les nouvelles, après-demain pour la livraison,
+  // dans 3 jours pour la prête (pour qu'elles apparaissent dans le planning + calendrier)
+  function dateAt(daysAhead, hours, minutes) {
+    const d = new Date();
+    d.setDate(d.getDate() + daysAhead);
+    d.setHours(hours, minutes || 0, 0, 0);
+    return d.toISOString();
+  }
+
   toutesLesCommandes = [
     {
       id: '1', numero: 'CCB-2026-0042', client: 'Marie L.',
-      heure: '10h00–11h00', montant: '36,10€', articles: 9,
+      heure: '10:00', montant: '36,10€', articles: 9,
       statut: 'nouvelle', type: 'retrait', note: 'Allergie aux noix',
+      date_retrait: dateAt(1, 10, 0),
+      created_at: new Date().toISOString(),
       produits: [
         {nom:'Fraises Gariguette',qte:'2 barquettes',prix:'9,00€'},
         {nom:'Tomates Cœur de Bœuf',qte:'1 kg',prix:'4,50€'},
@@ -1671,14 +1682,18 @@ function chargerCommandesDemo() {
     },
     {
       id: '2', numero: 'CCB-2026-0041', client: 'Jean-Paul R.',
-      heure: '11h00–15h00', montant: '14,00€', articles: 1,
+      heure: '11:00', montant: '14,00€', articles: 1,
       statut: 'nouvelle', type: 'retrait', note: null,
+      date_retrait: dateAt(1, 11, 0),
+      created_at: new Date().toISOString(),
       produits: [{nom:'Panier Fruits Rouges',qte:'1 panier',prix:'14,00€'}]
     },
     {
       id: '3', numero: 'CCB-2026-0040', client: 'Sophie M.',
-      heure: '08h00–11h00', montant: '5,50€', articles: 2,
+      heure: '08:00', montant: '5,50€', articles: 2,
       statut: 'en_preparation', type: 'livraison', note: null,
+      date_retrait: dateAt(2, 8, 0),
+      created_at: new Date().toISOString(),
       produits: [
         {nom:'Citrons Jaune Sicile',qte:'3 pièces',prix:'1,80€'},
         {nom:'Avocat Hass',qte:'2 pièces',prix:'3,00€'},
@@ -1686,8 +1701,10 @@ function chargerCommandesDemo() {
     },
     {
       id: '4', numero: 'CCB-2026-0039', client: 'Pierre D.',
-      heure: '15h00–19h00', montant: '22,40€', articles: 4,
+      heure: '15:00', montant: '22,40€', articles: 4,
       statut: 'prete', type: 'retrait', note: null,
+      date_retrait: dateAt(3, 15, 0),
+      created_at: new Date().toISOString(),
       produits: [
         {nom:'Pommes Gala',qte:'2 kg',prix:'4,40€'},
         {nom:'Poires Conférence',qte:'1 kg',prix:'2,40€'},
