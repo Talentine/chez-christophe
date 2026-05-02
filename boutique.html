@@ -3126,10 +3126,40 @@ body.mode-demo #btn-panier { display: none !important; }
     } catch (e) { return false; }
   }
 
+  // ── Bandeau bas "Voir le côté commerçant" (mode démo uniquement)
+  function afficherBandeauDashboardBas() {
+    if (document.getElementById('m-demo-bottom-bar')) return;
+    var bar = document.createElement('a');
+    bar.id = 'm-demo-bottom-bar';
+    bar.href = '/app-commercant.html';
+    bar.innerHTML = '<span style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;">'
+      + '<span style="flex-shrink:0;width:36px;height:36px;border-radius:10px;background:#F4B942;display:flex;align-items:center;justify-content:center;font-size:18px;">🛠</span>'
+      + '<span style="display:flex;flex-direction:column;line-height:1.25;min-width:0;">'
+      +   '<span style="font-weight:700;font-size:14px;">Voir le côté commerçant</span>'
+      +   '<span style="font-size:11.5px;opacity:.8;">Découvrez le dashboard de gestion</span>'
+      + '</span>'
+      + '</span>'
+      + '<span style="flex-shrink:0;background:rgba(255,255,255,.18);border-radius:50px;padding:8px 14px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>';
+    bar.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:96;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;border-radius:16px;padding:12px 14px;font-family:Manrope,system-ui,sans-serif;text-decoration:none;display:flex;align-items:center;gap:12px;box-shadow:0 14px 32px rgba(15,44,82,.32);transition:transform .12s;-webkit-tap-highlight-color:transparent;';
+    bar.addEventListener('mousedown', function(){ bar.style.transform='scale(0.98)'; });
+    bar.addEventListener('mouseup', function(){ bar.style.transform=''; });
+    bar.addEventListener('touchstart', function(){ bar.style.transform='scale(0.98)'; }, { passive: true });
+    bar.addEventListener('touchend', function(){ bar.style.transform=''; }, { passive: true });
+    document.body.appendChild(bar);
+    // Réserve de l'espace en bas du body pour ne pas masquer le contenu
+    document.body.style.paddingBottom = 'calc(86px + env(safe-area-inset-bottom))';
+  }
+  function masquerBandeauDashboardBas() {
+    var b = document.getElementById('m-demo-bottom-bar');
+    if (b) b.remove();
+    document.body.style.paddingBottom = '';
+  }
+
   // ── Activer le mode démo : banner + masquage textes + désactivation panier
   function activerModeDemo() {
     if (document.body.classList.contains('mode-demo')) return;
     document.body.classList.add('mode-demo');
+    afficherBandeauDashboardBas();
     var banner = document.getElementById('m-demo-banner');
     if (banner) {
       banner.hidden = false;
