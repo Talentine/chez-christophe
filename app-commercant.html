@@ -1867,26 +1867,29 @@ function init() {
   const date = `${now.getDate()} ${MOIS[now.getMonth()]}`;
   document.getElementById('statsDate').textContent = `${jours} ${date}`;
 
-  chargerStatsDemo();
-  chargerCommandesDemo();
+  // État vide initial — les vraies données arrivent depuis Supabase via chargerCommandesSupabase()
+  toutesLesCommandes = [];
+  initialiserStatsVides();
   chargerCategories();
   chargerProduitsAdmin();
-  chargerPlanningDemo();
+  // chargerPlanningDemo désactivé : le vrai planning est rempli par chargerPlanningReel()
 }
 
-function chargerStatsDemo() {
-  document.getElementById('statRetraits').textContent = '3';
-  document.getElementById('statCA').textContent = '56€';
-  document.getElementById('statAPreparer').textContent = '3';
-  document.getElementById('statDemain').textContent = '1';
-  document.getElementById('statutBoutique').textContent = 'Boutique ouverte';
-
+function initialiserStatsVides() {
+  // Affichage initial avant le chargement Supabase (évite que les chiffres "saute" depuis le démo)
+  ['statRetraits','statCA','statAPreparer','statDemain'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '—';
+  });
+  const statut = document.getElementById('statutBoutique');
+  if (statut) statut.textContent = 'Chargement…';
   const alerte = document.getElementById('alerteBar');
-  alerte.classList.add('visible');
-  document.getElementById('alerteTxt').textContent = '🛒 3 nouvelles commandes en attente';
+  if (alerte) alerte.classList.remove('visible');
   const badge = document.getElementById('badge-commandes');
-  badge.textContent = '3';
-  badge.classList.add('visible');
+  if (badge) { badge.textContent = '0'; badge.classList.remove('visible'); }
+  // Liste : message d'attente (sera remplacée par les vraies commandes)
+  const liste = document.getElementById('commandesListe');
+  if (liste) liste.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux);"><p style="font-size:32px">⏳</p><p style="margin-top:8px">Chargement de vos commandes…</p></div>';
 }
 
 function chargerCommandesDemo() {
