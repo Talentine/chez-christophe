@@ -4400,7 +4400,8 @@ async function renderCalendrierCreneaux() {
     const isToday = (d === today.getDate() && month === today.getMonth() && year === today.getFullYear());
     const bg = total === 0 ? '#f3f3f3' : (isToday ? '#fff8e7' : '#eaf7ee');
     const border = isToday ? '2px solid #F4B942' : '1px solid var(--creme-fonce)';
-    html += '<div class="cal-day' + (total > 0 ? ' has-creneaux' : '') + '" style="background:' + bg + ';border:' + border + ';">';
+    const dateKey = year + '-' + String(month+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    html += '<div class="cal-day' + (total > 0 ? ' has-creneaux' : '') + '" onclick="voirJourCalendrier(\'' + dateKey + '\')" style="background:' + bg + ';border:' + border + ';cursor:pointer;-webkit-tap-highlight-color:transparent;">';
     html += '<div class="cal-num">' + d + '</div>';
     html += '<div class="cal-dots">';
     if (has.retrait) html += '<span class="cal-dot retrait" title="Retrait"></span>';
@@ -4421,6 +4422,138 @@ async function renderCalendrierCreneaux() {
 
   cal.innerHTML = html;
 }
+
+// ── CLIC SUR UNE CASE DU CALENDRIER : voir commandes + réservations du jour
+window.voirJourCalendrier = async function(dateKey) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+
+  const [yyyy, mm, dd] = dateKey.split('-').map(Number);
+  const dayLabel = dd + ' ' + MOIS[mm-1] + ' ' + yyyy;
+  const dateStart = `${yyyy}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}T00:00:00`;
+  const dateEnd   = `${yyyy}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}T23:59:59`;
+
+  // Loader modale
+  const overlayId = 'cal-day-modal-' + Date.now();
+  const skeleton = `<div id="${overlayId}" style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.remove()">
+    <div style="background:var(--blanc);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:22px;max-height:85vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div>
+          <div style="font-size:18px;font-weight:700;color:#0F2C52;">📅 ${dayLabel}</div>
+          <div id="cal-day-summary" style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Chargement…</div>
+        </div>
+        <button onclick="document.getElementById('${overlayId}').remove()" style="background:var(--creme);border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;">✕</button>
+      </div>
+      <div id="cal-day-content"><div style="text-align:center;padding:30px;color:var(--texte-doux);">⏳ Chargement…</div></div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', skeleton);
+
+  try {
+    const isResto = ['pizzeria','restaurant','fastfood'].includes(window.__CONFIG__?.business?.business_type);
+
+    // Commandes du jour
+    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId
+      + '&date_retrait=gte.' + encodeURIComponent(dateStart)
+      + '&date_retrait=lte.' + encodeURIComponent(dateEnd)
+      + '&order=date_retrait.asc&select=*,clients(prenom,nom,telephone),commande_lignes(nom_produit,quantite,unite,total_ligne)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const commandes = (await r1.json()) || [];
+
+    // Réservations du jour (si métier resto)
+    let reservations = [];
+    if (isResto) {
+      try {
+        const r2 = await fetch(SUPABASE_URL + '/rest/v1/reservations?commercant_id=eq.' + commercantId
+          + '&date_reservation=eq.' + dateKey
+          + '&order=heure_reservation.asc', {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        });
+        reservations = (await r2.json()) || [];
+        if (!Array.isArray(reservations)) reservations = [];
+      } catch(e) { /* table peut-être absente */ }
+    }
+
+    const total = (Array.isArray(commandes) ? commandes.length : 0) + reservations.length;
+    const sum = document.getElementById('cal-day-summary');
+    if (sum) sum.textContent = total === 0
+      ? 'Aucune commande ni réservation'
+      : commandes.length + ' commande' + (commandes.length>1?'s':'') + (isResto ? ' · ' + reservations.length + ' réservation' + (reservations.length>1?'s':'') : '');
+
+    let html = '';
+    if (total === 0) {
+      html = '<div style="text-align:center;padding:40px 20px;color:var(--texte-doux);"><div style="font-size:42px;">📭</div><div style="margin-top:10px;font-size:14px;">Aucune activité ce jour-là</div></div>';
+    } else {
+      // ─ Commandes
+      if (commandes.length > 0) {
+        html += '<div style="font-size:13px;font-weight:700;color:#0F2C52;margin:14px 0 8px;">📦 Commandes (' + commandes.length + ')</div>';
+        commandes.forEach(c => {
+          const heure = c.date_retrait ? new Date(c.date_retrait).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}) : '—';
+          const typeIcon = c.type === 'livraison' ? '🚚' : '📍';
+          const client = c.clients ? (c.clients.prenom + ' ' + c.clients.nom) : (c.client_nom || 'Client');
+          const tel = c.clients?.telephone || '';
+          const telDigits = tel.replace(/[^0-9+]/g,'');
+          const statut = { nouvelle:'🔵 Nouvelle', en_preparation:'🟡 En prépa', prete:'🟢 Prête', remise:'⚪ Remise', livree:'✅ Livrée', terminee:'✓ Terminée' }[c.statut] || c.statut;
+          const produits = (c.commande_lignes || []).map(l => l.quantite + ' ' + (l.unite||'') + ' ' + l.nom_produit).join(', ');
+          html += `
+            <div style="border:1px solid var(--creme-fonce);border-radius:12px;padding:12px;margin-bottom:8px;background:var(--blanc);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:600;">🕐 ${heure} · ${client}</div>
+                  <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">${typeIcon} ${c.type==='retrait'?'Retrait':'Livraison'} · ${c.numero||''}</div>
+                  ${tel ? `<div style="font-size:13px;color:#0F2C52;margin-top:4px;font-weight:600;">📞 ${tel}</div>` : ''}
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-weight:600;color:var(--vert);">${(c.total_ttc||0).toFixed(2).replace('.',',')}€</div>
+                  <div style="font-size:11px;color:var(--texte-doux);margin-top:2px;">${statut}</div>
+                </div>
+              </div>
+              ${produits ? `<div style="font-size:12px;color:var(--texte-doux);background:var(--creme);border-radius:8px;padding:7px 9px;margin-top:8px;">${produits}</div>` : ''}
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                ${tel ? `<a href="tel:${telDigits}" style="flex:1;background:#5BBE3A;color:white;border-radius:8px;padding:7px;text-align:center;font-size:12px;font-weight:600;text-decoration:none;">📞 Appel</a><a href="sms:${telDigits}" style="flex:1;background:#0F2C52;color:white;border-radius:8px;padding:7px;text-align:center;font-size:12px;font-weight:600;text-decoration:none;">💬 SMS</a>` : ''}
+                <button onclick="document.getElementById('${overlayId}').remove();voirCommande('${c.id}')" style="flex:1;background:#F4B942;color:#1a1a1a;border:none;border-radius:8px;padding:7px;font-size:12px;font-weight:600;cursor:pointer;">Voir →</button>
+              </div>
+            </div>`;
+        });
+      }
+      // ─ Réservations (resto)
+      if (reservations.length > 0) {
+        html += '<div style="font-size:13px;font-weight:700;color:#9F1B1F;margin:14px 0 8px;">🍽️ Réservations (' + reservations.length + ')</div>';
+        reservations.forEach(r => {
+          const heure = (r.heure_reservation || '').slice(0,5);
+          const tel = r.telephone || '';
+          const telDigits = tel.replace(/[^0-9+]/g,'');
+          const statut = { confirmee:'🟢 Confirmée', en_attente:'🟡 En attente', annulee_client:'❌ Annulée client', annulee_commercant:'❌ Annulée', no_show:'⚠️ No-show', honoree:'✅ Honorée' }[r.statut] || r.statut || '—';
+          html += `
+            <div style="border:1px solid #f0c8c8;border-radius:12px;padding:12px;margin-bottom:8px;background:#fff8f8;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:600;">🕐 ${heure} · ${r.prenom_client||''} ${r.nom_client||''}</div>
+                  <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">👥 ${r.nb_couverts||1} couvert${r.nb_couverts>1?'s':''} ${r.occasion ? '· '+r.occasion : ''}</div>
+                  ${tel ? `<div style="font-size:13px;color:#0F2C52;margin-top:4px;font-weight:600;">📞 ${tel}</div>` : ''}
+                  ${r.notes ? `<div style="font-size:12px;color:var(--texte-doux);margin-top:6px;font-style:italic;">"${r.notes}"</div>` : ''}
+                </div>
+                <div style="text-align:right;font-size:11px;color:var(--texte-doux);">${statut}</div>
+              </div>
+              ${tel ? `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
+                  <a href="tel:${telDigits}" style="background:#5BBE3A;color:white;border-radius:8px;padding:7px;text-align:center;font-size:12px;font-weight:600;text-decoration:none;">📞 Appel</a>
+                  <a href="sms:${telDigits}" style="background:#0F2C52;color:white;border-radius:8px;padding:7px;text-align:center;font-size:12px;font-weight:600;text-decoration:none;">💬 SMS</a>
+                </div>` : ''}
+            </div>`;
+        });
+      }
+    }
+
+    const cont = document.getElementById('cal-day-content');
+    if (cont) cont.innerHTML = html;
+  } catch(e) {
+    const cont = document.getElementById('cal-day-content');
+    if (cont) cont.innerHTML = '<div style="color:#9a2d24;text-align:center;padding:30px;">⚠️ Erreur chargement : ' + e.message + '</div>';
+  }
+};
 
 async function chargerCreneaux() {
   const container = document.getElementById('creneauxAdmin');
