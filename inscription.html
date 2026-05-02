@@ -737,7 +737,19 @@ async function creerBoutique() {
       });
       const siData = await signin.json();
       if (!signin.ok || !siData.access_token) {
-        throw new Error('Cet email a déjà un compte. Connectez-vous au dashboard avec votre mot de passe habituel pour ajouter une boutique.');
+        // Ce mail a déjà un compte mais le mot de passe ne correspond pas.
+        // Propose : se connecter au dashboard OU réinitialiser le mdp
+        const useExisting = confirm(
+          "📧 Cet email (" + state.email + ") a DÉJÀ un compte Marchéo, mais le mot de passe ne correspond pas.\n\n" +
+          "Veux-tu te connecter avec ton mot de passe HABITUEL pour ajouter cette nouvelle boutique à ton compte existant ?\n\n" +
+          "OK → Aller à la connexion du dashboard\n" +
+          "Annuler → Rester ici (utiliser un autre email)"
+        );
+        if (useExisting) {
+          window.location.href = '/app-commercant.html?email=' + encodeURIComponent(state.email) + '&from=inscription';
+          return;
+        }
+        throw new Error('Mot de passe incorrect pour ' + state.email + '. Soit utilise un AUTRE email, soit retourne au dashboard pour te connecter avec ton mdp habituel.');
       }
       userId = siData.user.id;
       accessToken = siData.access_token;
