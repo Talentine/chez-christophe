@@ -448,6 +448,8 @@ async function sInscrire() {
         saveSession({ access_token: data.access_token, user_id: data.user?.id, email, prenom, nom, telephone: tel });
         afficherToast('✅ Compte créé !');
         init();
+        // Pop-up onboarding (notifs + ajout écran d'accueil)
+        setTimeout(ouvrirOnboardingClient, 600);
       } else {
         afficherToast('✅ Vérifiez votre email pour confirmer votre compte');
         toggleInscription(false);
@@ -626,6 +628,171 @@ async function sauvegarderAdresse() {
   afficherToast('✅ Adresse enregistrée');
   fermerPage('mesAdresses');
 }
+
+// ── ONBOARDING POST-INSCRIPTION ──────────────────────────
+function urlBase64ToUint8Array(b64) {
+  var pad = '='.repeat((4 - b64.length % 4) % 4);
+  var b = (b64 + pad).replace(/-/g,'+').replace(/_/g,'/');
+  var raw = atob(b);
+  var arr = new Uint8Array(raw.length);
+  for (var i=0; i<raw.length; i++) arr[i] = raw.charCodeAt(i);
+  return arr;
+}
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+function isStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+window.ouvrirOnboardingClient = function() {
+  if (document.getElementById('onb-overlay')) return;
+  const session = getSession() || {};
+  const cfg = (window.CC && window.CC.cfg && window.CC.cfg()) || {};
+  const nomBoutique = cfg.business?.nom_boutique || 'la boutique';
+  const ios = isIOS();
+  const html = `
+    <div id="onb-overlay" style="position:fixed;inset:0;background:rgba(15,44,82,.7);backdrop-filter:blur(6px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;animation:onbFadeIn .25s ease;">
+      <div style="background:#fff;border-radius:24px;max-width:440px;width:100%;max-height:90vh;overflow-y:auto;padding:28px 24px;font-family:Manrope,system-ui,sans-serif;color:#0F2C52;box-shadow:0 24px 60px rgba(0,0,0,.25);">
+        <div style="text-align:center;margin-bottom:14px;">
+          <div style="font-size:48px;line-height:1;">🎉</div>
+          <h2 style="margin:10px 0 4px;font-size:22px;font-weight:800;">Bienvenue ${session.prenom || ''} !</h2>
+          <p style="margin:0;font-size:13px;color:#64748b;">Ton compte est créé. Avant de commencer, on te conseille deux petites étapes :</p>
+        </div>
+
+        <!-- Étape 1 : notifications -->
+        <div id="onb-step-notif" style="background:#f7faff;border:1.5px solid #dde7f5;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="font-size:32px;flex-shrink:0;">🔔</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:15px;margin-bottom:4px;">1. Active les notifications</div>
+              <div style="font-size:12.5px;color:#64748b;line-height:1.5;margin-bottom:10px;">
+                Reçois directement sur ton téléphone :
+                <br>• Confirmation de tes commandes
+                <br>• Statut "prête à retirer" en temps réel
+                <br>• Bons plans &amp; nouveaux arrivages
+              </div>
+              <button onclick="onbActiverNotifs()" id="onbBtnNotifs" style="width:100%;background:#0F2C52;color:#fff;border:none;border-radius:50px;padding:12px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">
+                Activer les notifications
+              </button>
+              <div id="onbNotifStatus" style="font-size:12px;text-align:center;margin-top:6px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 2 : ajout écran d'accueil -->
+        <div style="background:#fff8e7;border:1.5px solid #f0d480;border-radius:16px;padding:16px;margin-bottom:14px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="font-size:32px;flex-shrink:0;">📱</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:15px;margin-bottom:4px;">2. Ajoute ${nomBoutique} sur ton écran d'accueil</div>
+              <div style="font-size:12.5px;color:#5a4017;line-height:1.55;margin-bottom:10px;">
+                Tu y accèdes en 1 clic, comme une vraie app — sans télécharger sur l'App Store.
+              </div>
+              ${ios ? `
+                <div style="background:#fff;border-radius:10px;padding:12px;font-size:12.5px;line-height:1.6;color:#0F2C52;">
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+                    <span style="background:#0F2C52;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">1</span>
+                    <span>Touche le bouton <strong>Partager</strong> 􀈂 en bas</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+                    <span style="background:#0F2C52;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">2</span>
+                    <span>Sélectionne <strong>"Sur l'écran d'accueil"</strong></span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="background:#0F2C52;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">3</span>
+                    <span>Tape <strong>"Ajouter"</strong> en haut à droite ✓</span>
+                  </div>
+                </div>
+              ` : `
+                <div style="background:#fff;border-radius:10px;padding:12px;font-size:12.5px;line-height:1.6;color:#5a4017;">
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+                    <span style="background:#5a4017;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">1</span>
+                    <span>Touche le menu <strong>⋮</strong> en haut à droite</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+                    <span style="background:#5a4017;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">2</span>
+                    <span>Sélectionne <strong>"Installer l'application"</strong> ou <strong>"Ajouter à l'écran d'accueil"</strong></span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="background:#5a4017;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">3</span>
+                    <span>Confirme <strong>"Installer"</strong> ✓</span>
+                  </div>
+                </div>
+              `}
+            </div>
+          </div>
+        </div>
+
+        <button onclick="onbFermer()" style="width:100%;background:transparent;color:#64748b;border:none;padding:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;">
+          Plus tard, je continue
+        </button>
+      </div>
+    </div>
+    <style>@keyframes onbFadeIn { from { opacity: 0; } to { opacity: 1; } }</style>
+  `;
+  document.body.insertAdjacentHTML('beforeend', html);
+};
+
+window.onbFermer = function() {
+  const ov = document.getElementById('onb-overlay');
+  if (ov) ov.remove();
+};
+
+window.onbActiverNotifs = async function() {
+  const status = document.getElementById('onbNotifStatus');
+  const btn = document.getElementById('onbBtnNotifs');
+  if (!('Notification' in window)) {
+    status.textContent = '⚠️ Ton navigateur ne supporte pas les notifications.';
+    status.style.color = '#9a2d24';
+    return;
+  }
+  btn.disabled = true; btn.textContent = '⏳ Demande en cours…';
+  try {
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') {
+      status.textContent = '❌ Permission refusée. Tu peux la réactiver dans les paramètres du navigateur.';
+      status.style.color = '#9a2d24';
+      btn.disabled = false; btn.textContent = 'Activer les notifications';
+      return;
+    }
+    // Subscribe + save in DB
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      const vapid = 'BJuXKoz9jttdTotYgdpzslA_IQhbbKvcsUA00WfnX7Sz7bH8LzAhL6Yiafl3LC0vizJ3xdg9hsjAZgBpTrg_Y-w';
+      sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(vapid) });
+    }
+    const session = getSession() || {};
+    const subJson = sub.toJSON();
+    await fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'resolution=merge-duplicates,return=minimal',
+      },
+      body: JSON.stringify({
+        client_id: session.client_id || null,
+        endpoint: subJson.endpoint,
+        p256dh: subJson.keys?.p256dh,
+        auth: subJson.keys?.auth,
+        actif: true,
+        user_agent: navigator.userAgent.slice(0, 200),
+      }),
+    });
+    status.textContent = '✅ Notifications activées !';
+    status.style.color = '#207d4a';
+    btn.style.background = '#5BBE3A';
+    btn.textContent = '✓ Activées';
+  } catch(e) {
+    status.textContent = '⚠️ ' + e.message;
+    status.style.color = '#9a2d24';
+    btn.disabled = false; btn.textContent = 'Activer les notifications';
+  }
+};
 
 // ── TOAST ─────────────────────────────────────────────
 function afficherToast(msg) {

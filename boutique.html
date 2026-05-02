@@ -2594,14 +2594,140 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
 
-// ─── PWA : titre app + apple-touch-icon dynamiques par boutique ───
+// ─── PWA + SEO : meta tags + JSON-LD LocalBusiness dynamiques par boutique ───
 (function setPwaMeta(){
+  var METIER_LABELS = {
+    primeur: 'Primeur', boucherie: 'Boucher Artisanal', boulangerie: 'Boulanger Artisan',
+    poissonnerie: 'Poissonnier', traiteur: 'Traiteur', fromagerie: 'Fromagerie Artisanale',
+    pizzeria: 'Pizzeria', restaurant: 'Restaurant', fastfood: 'Fast-food'
+  };
+  var METIER_TYPES_SCHEMA = {
+    primeur: 'GroceryStore', boucherie: 'Store', boulangerie: 'Bakery',
+    poissonnerie: 'Store', traiteur: 'Restaurant', fromagerie: 'Store',
+    pizzeria: 'Restaurant', restaurant: 'Restaurant', fastfood: 'FastFoodRestaurant'
+  };
+
+  function setMeta(name, content, attr) {
+    if (!content) return;
+    attr = attr || 'name';
+    var el = document.querySelector('meta[' + attr + '="' + name + '"]');
+    if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
+    el.setAttribute('content', content);
+  }
+
   function update(business) {
     if (!business) return;
     var nom = business.nom_boutique || 'Boutique';
+    var bt = business.business_type || 'primeur';
+    var metier = METIER_LABELS[bt] || 'Commerce';
+    var ville = business.ville || business.adresse_ville || '';
+    var adresse = business.adresse || '';
+    var cp = business.code_postal || business.cp || '';
+    var tel = business.telephone || '';
+    var slug = business.slug || '';
+    var url = 'https://www.xn--marcho-fva.fr/' + slug + '/';
+
+    // ── Apple PWA
     var apple = document.getElementById('m-apple-title');
     if (apple) apple.setAttribute('content', nom.length > 18 ? nom.slice(0,18) : nom);
-    document.title = nom + ' — Marchéo';
+
+    // ── Title optimisé : "Nom : Métier à Ville | Commande en ligne sur Marchéo"
+    var title = nom + ' : ' + metier + (ville ? ' à ' + ville : '') + ' | Commande en ligne sur Marchéo';
+    document.title = title;
+
+    // ── Meta description optimisée
+    var description = 'Commandez vos produits frais chez ' + nom
+      + (ville ? ' (' + metier.toLowerCase() + ' à ' + ville + ')' : '')
+      + '. Click & collect, livraison rapide. Réservez en ligne en 2 clics avec Marchéo.';
+    setMeta('description', description);
+
+    // ── Open Graph
+    setMeta('og:title', title, 'property');
+    setMeta('og:description', description, 'property');
+    setMeta('og:url', url, 'property');
+    setMeta('og:type', 'website', 'property');
+    setMeta('og:locale', 'fr_FR', 'property');
+    setMeta('twitter:title', title);
+    setMeta('twitter:description', description);
+
+    // ── Mots-clés
+    var keywords = [
+      nom, metier.toLowerCase(),
+      ville ? metier.toLowerCase() + ' ' + ville : null,
+      ville ? 'commander ' + bt + ' ' + ville : null,
+      'click and collect ' + (ville || ''),
+      'producteur local ' + (ville || ''),
+      'commande en ligne ' + bt,
+      'marché local',
+      'marcheo',
+    ].filter(Boolean).join(', ');
+    setMeta('keywords', keywords);
+
+    // ── Canonical
+    var canon = document.querySelector('link[rel="canonical"]');
+    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+    canon.href = url;
+
+    // ── JSON-LD LocalBusiness
+    try {
+      var oldLd = document.getElementById('m-localbusiness-ld');
+      if (oldLd) oldLd.remove();
+      var schema = {
+        '@context': 'https://schema.org',
+        '@type': METIER_TYPES_SCHEMA[bt] || 'LocalBusiness',
+        '@id': url + '#business',
+        name: nom,
+        url: url,
+        image: business.logo_url || business.image_couverture || 'https://www.xn--marcho-fva.fr/assets/brand/logo.svg',
+        description: description,
+        priceRange: '€€',
+      };
+      if (adresse || cp || ville) {
+        schema.address = {
+          '@type': 'PostalAddress',
+          streetAddress: adresse || undefined,
+          postalCode: cp || undefined,
+          addressLocality: ville || undefined,
+          addressCountry: 'FR'
+        };
+      }
+      if (tel) schema.telephone = tel;
+      if (business.email) schema.email = business.email;
+      if (business.lat && business.lng) {
+        schema.geo = { '@type': 'GeoCoordinates', latitude: business.lat, longitude: business.lng };
+      }
+      // Horaires ouverture (si disponibles)
+      if (business.horaires && typeof business.horaires === 'object') {
+        var jours = ['Su','Mo','Tu','We','Th','Fr','Sa']; // schema uses Mo-Su
+        var openings = [];
+        for (var k in business.horaires) {
+          var h = business.horaires[k];
+          if (h && h.ouvert && h.debut && h.fin) {
+            var idx = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'].indexOf(k.toLowerCase());
+            if (idx >= 0) openings.push({
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: 'https://schema.org/' + ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][idx],
+              opens: h.debut, closes: h.fin
+            });
+          }
+        }
+        if (openings.length) schema.openingHoursSpecification = openings;
+      }
+      schema.acceptsReservations = (bt === 'pizzeria' || bt === 'restaurant' || bt === 'fastfood');
+      schema.servesCuisine = bt === 'pizzeria' ? 'Italian, Pizza' :
+                            bt === 'fastfood' ? 'Fast Food' :
+                            bt === 'restaurant' ? 'French' : undefined;
+      schema.makesOffer = {
+        '@type': 'Offer',
+        availableDeliveryMethod: ['https://schema.org/OnSitePickup', 'https://schema.org/ParcelService'],
+        url: url
+      };
+      var ld = document.createElement('script');
+      ld.id = 'm-localbusiness-ld';
+      ld.type = 'application/ld+json';
+      ld.textContent = JSON.stringify(schema);
+      document.head.appendChild(ld);
+    } catch(e) { console.warn('[ld+json]', e); }
   }
   document.addEventListener('business:ready', function(e){ update(e.detail && e.detail.business); });
   if (window.__CONFIG__ && window.__CONFIG__.business) update(window.__CONFIG__.business);

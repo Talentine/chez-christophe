@@ -15,6 +15,9 @@
     { "source": "/confidentialite", "destination": "/confidentialite.html" },
     { "source": "/charte", "destination": "/charte.html" },
     { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/unsubscribe", "destination": "/unsubscribe.html" },
 
     { "source": "/:slug", "destination": "/boutique.html?slug=:slug" },
     { "source": "/:slug/", "destination": "/boutique.html?slug=:slug" },

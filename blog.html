@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog Marchéo : Manger Local, Digitaliser son Commerce de Bouche, Marchés en France</title>
+<meta name="description" content="Conseils, guides et inspirations pour les commerçants de marché et les amateurs de produits locaux. Comment digitaliser son étal, fidéliser, choisir son producteur, top des marchés en France.">
+<meta name="keywords" content="manger local, digitaliser commerce de bouche, application commerçant marché, fidéliser clients marché local, marché horaires, food-truck, producteurs locaux vente directe, panier primeur, alerter clients absence marché">
+<link rel="canonical" href="https://www.xn--marcho-fva.fr/blog">
+<meta property="og:title" content="Blog Marchéo · Manger Local et Digitaliser son commerce">
+<meta property="og:description" content="Le média des commerçants de marché et amateurs de produits locaux.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.xn--marcho-fva.fr/blog">
+<meta property="og:image" content="https://www.xn--marcho-fva.fr/assets/brand/logo.svg">
+<meta name="theme-color" content="#0F2C52">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog Marchéo",
+  "url": "https://www.xn--marcho-fva.fr/blog",
+  "description": "Conseils et guides pour les commerçants de marché et les amateurs de manger local.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Marchéo",
+    "logo": { "@type": "ImageObject", "url": "https://www.xn--marcho-fva.fr/assets/brand/logo.svg" }
+  }
+}
+</script>
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Manrope', system-ui, sans-serif;
+    background: #F7F2E8; color: #0F2C52; line-height: 1.55;
+  }
+  a { color: #0F2C52; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  .header {
+    background: #0F2C52; color: #fff; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  }
+  .header-logo { font-weight: 800; font-size: 20px; color: #fff; }
+  .header-logo:hover { text-decoration: none; }
+  .header-nav { display: flex; gap: 22px; font-size: 14px; font-weight: 600; }
+  .header-nav a { color: rgba(255,255,255,.85); }
+  .header-nav a:hover { color: #fff; }
+  @media (max-width: 700px) { .header-nav { gap: 14px; font-size: 13px; } .header-nav .hide-mobile { display:none; } }
+
+  .hero {
+    background: linear-gradient(135deg, #0F2C52 0%, #1a3a6d 100%);
+    color: #fff; padding: 70px 24px 50px; text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: 42px; line-height: 1.15;
+    margin: 0 0 14px; font-weight: 800;
+  }
+  .hero p { font-size: 17px; max-width: 660px; margin: 0 auto; opacity: .9; }
+  @media (max-width: 700px) { .hero h1 { font-size: 30px; } }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .categories {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 12px; justify-content: center;
+  }
+  .cat-pill {
+    background: #fff; border: 1.5px solid #e8dfc9; border-radius: 50px;
+    padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+    color: #64748b;
+  }
+  .cat-pill.actif, .cat-pill:hover { background: #0F2C52; color: #fff; border-color: #0F2C52; }
+
+  .articles {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 22px; padding: 30px 0 60px;
+  }
+  .article {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 18px rgba(15,44,82,.06);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .article:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(15,44,82,.12); }
+  .article-image {
+    aspect-ratio: 16/10; background: linear-gradient(135deg, #5BBE3A 0%, #2A6F3F 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+  }
+  .article-image.cat-conseil { background: linear-gradient(135deg, #F4B942, #E69015); }
+  .article-image.cat-marche { background: linear-gradient(135deg, #5BBE3A, #2A6F3F); }
+  .article-image.cat-faq { background: linear-gradient(135deg, #0F2C52, #1a3a6d); }
+  .article-image.cat-resto { background: linear-gradient(135deg, #E65533, #9F1B1F); }
+  .article-image.cat-foodtruck { background: linear-gradient(135deg, #F4B942, #E65533); }
+  .article-content { padding: 18px 20px 22px; }
+  .article-cat { display: inline-block; background: #F7F2E8; color: #64748b; padding: 3px 10px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .article-titre { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; color: #0F2C52; }
+  .article-extrait { font-size: 13.5px; color: #64748b; margin: 0 0 12px; }
+  .article-meta { font-size: 12px; color: #94a3b8; }
+  .article-link { color: #0F2C52; }
+  .article-link:hover { text-decoration: none; }
+
+  .cta-section {
+    background: #0F2C52; color: #fff; padding: 50px 24px; text-align: center; margin-top: 40px;
+  }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin: 0 0 8px; }
+  .cta-section p { opacity: .85; margin: 0 0 22px; }
+  .cta-btn {
+    display: inline-block; background: #5BBE3A; color: #fff; padding: 14px 30px;
+    border-radius: 50px; font-weight: 700; font-size: 14px;
+  }
+  .cta-btn:hover { background: #4ca831; text-decoration: none; }
+
+  footer {
+    background: #0A1428; color: rgba(255,255,255,.6); padding: 30px 24px;
+    text-align: center; font-size: 12.5px;
+  }
+  footer a { color: rgba(255,255,255,.85); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="/" class="header-logo">🌿 Marchéo</a>
+  <nav class="header-nav">
+    <a href="/" class="hide-mobile">Accueil</a>
+    <a href="/blog">Blog</a>
+    <a href="/faq">FAQ</a>
+    <a href="/inscription" style="background:#5BBE3A;color:#fff;padding:7px 14px;border-radius:50px;">Inscription commerçant</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Le média du Manger Local</h1>
+  <p>Conseils, guides et inspirations pour les commerçants de marché et les amateurs de produits locaux. Découvrez comment digitaliser votre commerce, fidéliser vos clients, et trouver les meilleurs producteurs près de chez vous.</p>
+</section>
+
+<div class="container">
+  <div class="categories">
+    <button class="cat-pill actif" onclick="filtrer('tous', this)">Tous</button>
+    <button class="cat-pill" onclick="filtrer('conseil', this)">💡 Conseils commerçants</button>
+    <button class="cat-pill" onclick="filtrer('marche', this)">🛒 Marchés locaux</button>
+    <button class="cat-pill" onclick="filtrer('foodtruck', this)">🚚 Food-trucks</button>
+    <button class="cat-pill" onclick="filtrer('resto', this)">🍴 Restauration</button>
+    <button class="cat-pill" onclick="filtrer('faq', this)">❓ FAQ commerçants</button>
+  </div>
+
+  <div class="articles" id="articlesList">
+
+    <a href="/blog/digitaliser-commerce-bouche.html" class="article-link">
+      <div class="article" data-cat="conseil">
+        <div class="article-image cat-conseil">📱</div>
+        <div class="article-content">
+          <div class="article-cat">Conseils</div>
+          <h2 class="article-titre">Comment digitaliser son commerce de bouche en 2026 ?</h2>
+          <p class="article-extrait">Le guide complet pour passer du papier à la commande en ligne sans perdre votre âme artisanale. Outils, méthodes, retours d'expérience.</p>
+          <div class="article-meta">8 min de lecture · Conseils commerçants</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/application-commercant-marche.html" class="article-link">
+      <div class="article" data-cat="conseil">
+        <div class="article-image cat-conseil">🛍️</div>
+        <div class="article-content">
+          <div class="article-cat">Conseils</div>
+          <h2 class="article-titre">L'application pour commerçant de marché : ce qu'elle doit faire</h2>
+          <p class="article-extrait">Caisse, click & collect, fidélité, alerte d'absence : voici les fonctionnalités indispensables d'une bonne app pour les commerces de marché.</p>
+          <div class="article-meta">6 min · Outils &amp; logiciels</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/logiciel-gestion-food-truck.html" class="article-link">
+      <div class="article" data-cat="foodtruck">
+        <div class="article-image cat-foodtruck">🚚</div>
+        <div class="article-content">
+          <div class="article-cat">Food-truck</div>
+          <h2 class="article-titre">Logiciel de gestion food-truck : comparatif 2026</h2>
+          <p class="article-extrait">Réservation de table itinérante, planning des emplacements, fidélisation : on compare les meilleurs logiciels dédiés aux food-trucks.</p>
+          <div class="article-meta">10 min · Outils food-truck</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/fideliser-clients-marche-local.html" class="article-link">
+      <div class="article" data-cat="conseil">
+        <div class="article-image cat-conseil">💚</div>
+        <div class="article-content">
+          <div class="article-cat">Fidélisation</div>
+          <h2 class="article-titre">Comment fidéliser ses clients sur un marché local ?</h2>
+          <p class="article-extrait">5 stratégies concrètes pour transformer un client de passage en ambassadeur. SMS, push, programme fidélité, segmentation.</p>
+          <div class="article-meta">7 min · Marketing local</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/alerter-clients-absence-marche.html" class="article-link">
+      <div class="article" data-cat="conseil">
+        <div class="article-image cat-conseil">🔔</div>
+        <div class="article-content">
+          <div class="article-cat">Astuces</div>
+          <h2 class="article-titre">Alerter ses clients en cas d'absence sur le marché : le guide</h2>
+          <p class="article-extrait">Vous êtes malade ou en congés ? Comment prévenir vos clients en quelques secondes pour ne pas les laisser faire le déplacement pour rien.</p>
+          <div class="article-meta">4 min · Communication client</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/top-marches-france.html" class="article-link">
+      <div class="article" data-cat="marche">
+        <div class="article-image cat-marche">🛒</div>
+        <div class="article-content">
+          <div class="article-cat">Marchés</div>
+          <h2 class="article-titre">Top des marchés à visiter en France : notre sélection 2026</h2>
+          <p class="article-extrait">De Sanary-sur-Mer à Sarlat en passant par Aligre à Paris : les marchés les plus authentiques de France.</p>
+          <div class="article-meta">12 min · Voyage &amp; gastronomie</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/producteurs-locaux-vente-directe.html" class="article-link">
+      <div class="article" data-cat="marche">
+        <div class="article-image cat-marche">🌿</div>
+        <div class="article-content">
+          <div class="article-cat">Producteurs</div>
+          <h2 class="article-titre">Producteurs locaux et vente directe : où en sommes-nous en 2026 ?</h2>
+          <p class="article-extrait">Tour d'horizon des circuits courts, AMAP et plateformes qui mettent en relation producteurs et consommateurs.</p>
+          <div class="article-meta">9 min · Manger local</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/commander-panier-primeur.html" class="article-link">
+      <div class="article" data-cat="marche">
+        <div class="article-image cat-marche">🥕</div>
+        <div class="article-content">
+          <div class="article-cat">Click &amp; collect</div>
+          <h2 class="article-titre">Commander un panier de primeur en ligne : mode d'emploi</h2>
+          <p class="article-extrait">Comment réserver vos fruits et légumes de saison sans faire la queue. Étape par étape.</p>
+          <div class="article-meta">5 min · Guide consommateur</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/ou-trouver-food-truck.html" class="article-link">
+      <div class="article" data-cat="foodtruck">
+        <div class="article-image cat-foodtruck">🍔</div>
+        <div class="article-content">
+          <div class="article-cat">Food-truck</div>
+          <h2 class="article-titre">Où trouver un food-truck près de chez moi ?</h2>
+          <p class="article-extrait">L'application qui géolocalise les food-trucks, leurs horaires et leurs menus du jour, en temps réel.</p>
+          <div class="article-meta">4 min · Découverte</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/meilleur-boucher-marche.html" class="article-link">
+      <div class="article" data-cat="marche">
+        <div class="article-image cat-marche">🥩</div>
+        <div class="article-content">
+          <div class="article-cat">Bonnes adresses</div>
+          <h2 class="article-titre">Meilleur boucher du marché : comment le reconnaître ?</h2>
+          <p class="article-extrait">Origine, traçabilité, conseil, vitrine : 7 critères pour identifier un boucher artisan de qualité.</p>
+          <div class="article-meta">6 min · Guide consommateur</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/restaurant-reservation-en-ligne.html" class="article-link">
+      <div class="article" data-cat="resto">
+        <div class="article-image cat-resto">🍴</div>
+        <div class="article-content">
+          <div class="article-cat">Restauration</div>
+          <h2 class="article-titre">Pourquoi votre restaurant doit accepter les réservations en ligne</h2>
+          <p class="article-extrait">Empreinte bancaire anti no-show, automatisation, données clients : ce que vous gagnez à digitaliser vos résas.</p>
+          <div class="article-meta">7 min · Restauration</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blog/pizzeria-click-collect.html" class="article-link">
+      <div class="article" data-cat="resto">
+        <div class="article-image cat-resto">🍕</div>
+        <div class="article-content">
+          <div class="article-cat">Pizzeria</div>
+          <h2 class="article-titre">Pizzeria : pourquoi le click &amp; collect change tout</h2>
+          <p class="article-extrait">Augmentez votre panier moyen de 30% et libérez votre téléphone aux heures de pointe.</p>
+          <div class="article-meta">5 min · Restauration</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/faq" class="article-link">
+      <div class="article" data-cat="faq">
+        <div class="article-image cat-faq">❓</div>
+        <div class="article-content">
+          <div class="article-cat">FAQ</div>
+          <h2 class="article-titre">Toutes les questions des commerçants &amp; clients</h2>
+          <p class="article-extrait">Tarifs, fonctionnalités, RGPD, intégrations : retrouvez nos réponses à plus de 30 questions fréquentes.</p>
+          <div class="article-meta">FAQ Marchéo</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<section class="cta-section">
+  <h2>Prêt à digitaliser votre commerce ?</h2>
+  <p>Rejoignez les commerçants de marché qui modernisent leur étal avec Marchéo. Sans engagement, à partir de 19€/mois.</p>
+  <a href="/inscription" class="cta-btn">Créer ma boutique gratuitement →</a>
+</section>
+
+<footer>
+  © 2026 Marchéo · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/charte">Charte</a> · <a href="/mentions-legales">Mentions légales</a>
+</footer>
+
+<script>
+function filtrer(cat, btn) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('actif'));
+  btn.classList.add('actif');
+  document.querySelectorAll('.article').forEach(a => {
+    if (cat === 'tous' || a.dataset.cat === cat) a.parentElement.style.display = '';
+    else a.parentElement.style.display = 'none';
+  });
+}
+</script>
+
+</body>
+</html>
