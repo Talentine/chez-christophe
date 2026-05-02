@@ -576,7 +576,6 @@
       <button class="m-menu-item" data-onglet="produits" onclick="goOnglet('produits')"><span class="m-menu-icon">🥕</span><span class="m-menu-label">Produits</span></button>
       <button class="m-menu-item" data-onglet="creneaux" onclick="goOnglet('creneaux')"><span class="m-menu-icon">🕐</span><span class="m-menu-label">Créneaux</span></button>
       <button class="m-menu-item" data-onglet="reservations" onclick="goOnglet('reservations')"><span class="m-menu-icon">📋</span><span class="m-menu-label">Réservations</span><span class="m-menu-badge" id="m-menu-badge-reservations" hidden>0</span></button>
-      <button class="m-menu-item" data-onglet="galerie" onclick="goOnglet('galerie')"><span class="m-menu-icon">📸</span><span class="m-menu-label">Galerie</span></button>
       <button class="m-menu-item" data-onglet="reglages" onclick="goOnglet('reglages')"><span class="m-menu-icon">⚙️</span><span class="m-menu-label">Réglages</span></button>
     </nav>
 
@@ -617,9 +616,6 @@
   </button>
   <button class="tab-btn" data-icon="🍽️" onclick="allerOnglet('reservations')" id="tab-reservations" style="display:none;">
     Résa
-  </button>
-  <button class="tab-btn" data-icon="📸" onclick="allerOnglet('galerie')" id="tab-galerie" style="display:none;">
-    Galerie
   </button>
   <button class="tab-btn" data-icon="💬" onclick="allerOnglet('crm')" id="tab-crm">
     CRM
@@ -739,8 +735,8 @@
   <div style="padding:16px;">
     <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Créneaux</div>
 
-    <!-- TOGGLE RETRAIT / LIVRAISON / RÉSERVATION -->
-    <div style="display:flex;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:16px;overflow-x:auto;">
+    <!-- TOGGLE RETRAIT / LIVRAISON / RÉSERVATION (uniquement en mode édition) -->
+    <div id="creneauxTypeToggle" style="display:none;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:16px;overflow-x:auto;">
       <button onclick="switchTypeCreneaux('retrait')" id="btnTypeRetrait"
         style="flex:1;min-width:100px;border:none;border-radius:50px;padding:10px;font-size:13px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;background:var(--vert);color:white;transition:all .2s;white-space:nowrap;">
         📍 Retrait
@@ -755,10 +751,10 @@
       </button>
     </div>
 
-    <!-- VUE CALENDRIER MENSUEL (toggle) -->
-    <div style="display:flex;gap:6px;margin-bottom:14px;">
-      <button onclick="switchVueCreneaux('liste')" id="btnVueListe" class="vue-pill actif">📋 Liste</button>
-      <button onclick="switchVueCreneaux('calendrier')" id="btnVueCalendrier" class="vue-pill">📅 Calendrier</button>
+    <!-- BANDEAU MODE ÉDITION (visible uniquement quand on arrive depuis Réglages) -->
+    <div id="creneauxModeBanner" style="display:none;background:#fff8e7;border-left:3px solid #F4B942;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:12.5px;color:#5a4017;">
+      ✏️ Mode édition · vous gérez vos créneaux récurrents.
+      <button onclick="creneauxRetourCalendrier()" style="background:transparent;border:none;color:#0F2C52;font-weight:700;text-decoration:underline;cursor:pointer;font-family:inherit;font-size:12.5px;padding:0;margin-left:6px;">← Retour au calendrier</button>
     </div>
 
     <style>
@@ -786,14 +782,15 @@
       }
     </style>
 
-    <div id="vueCalendrier" style="display:none;background:var(--blanc);border-radius:14px;padding:14px;border:1px solid var(--creme-fonce);"></div>
+    <!-- CALENDRIER (vue par défaut) -->
+    <div id="vueCalendrier" style="display:block;background:var(--blanc);border-radius:14px;padding:14px;border:1px solid var(--creme-fonce);"></div>
 
-    <!-- GRILLE CRÉNEAUX -->
-    <div id="creneauxAdmin"></div>
+    <!-- GRILLE CRÉNEAUX (mode édition uniquement) -->
+    <div id="creneauxAdmin" style="display:none;"></div>
 
-    <!-- BOUTON AJOUTER -->
-    <button onclick="ouvrirAjoutCreneau()"
-      style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:15px;font-size:15px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;">
+    <!-- BOUTON AJOUTER (mode édition uniquement) -->
+    <button id="btnAjouterCreneau" onclick="ouvrirAjoutCreneau()"
+      style="display:none;width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:15px;font-size:15px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;margin-top:16px;align-items:center;justify-content:center;gap:8px;">
       + Ajouter un créneau
     </button>
 
@@ -1215,6 +1212,11 @@
           <div class="reg-row" onclick="scrollToReg('reg-horaires')">
             <div class="reg-icon" style="background:#F4B942;">🕐</div>
             <div class="reg-label">Horaires d'ouverture<div class="reg-sub">Visibles sur la boutique</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="ouvrirEditeurCreneaux()">
+            <div class="reg-icon" style="background:#5BBE3A;">📅</div>
+            <div class="reg-label">Mes créneaux récurrents<div class="reg-sub">Ajouter / modifier retrait, livraison, résa</div></div>
             <div class="reg-chevron">›</div>
           </div>
           <div class="reg-row" onclick="allerOnglet('galerie')">
@@ -3067,7 +3069,11 @@ function allerOnglet(id) {
 
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
-  if (id === 'creneaux') chargerCreneaux();
+  if (id === 'creneaux') {
+    chargerCreneaux();
+    // Par défaut : afficher uniquement le calendrier (la liste/édition se lance depuis Réglages)
+    if (vueCreneauxActive !== 'liste') switchVueCreneaux('calendrier');
+  }
   if (id === 'reservations') { chargerReservations(); chargerCreneauxResa(); }
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'crm') chargerCRM();
@@ -5269,15 +5275,37 @@ function switchTypeCreneaux(type) {
   renderCreneaux();
 }
 
-let vueCreneauxActive = 'liste';
+let vueCreneauxActive = 'calendrier';
 function switchVueCreneaux(vue) {
+  // Bascule entre 'calendrier' (vue par défaut) et 'liste' (édition récurrents)
   vueCreneauxActive = vue;
-  document.getElementById('btnVueListe').classList.toggle('actif', vue === 'liste');
-  document.getElementById('btnVueCalendrier').classList.toggle('actif', vue === 'calendrier');
-  document.getElementById('creneauxAdmin').style.display = (vue === 'liste') ? 'block' : 'none';
-  document.getElementById('vueCalendrier').style.display = (vue === 'calendrier') ? 'block' : 'none';
-  if (vue === 'calendrier') renderCalendrierCreneaux();
+  const banner = document.getElementById('creneauxModeBanner');
+  const typeToggle = document.getElementById('creneauxTypeToggle');
+  const cal = document.getElementById('vueCalendrier');
+  const liste = document.getElementById('creneauxAdmin');
+  const btnAdd = document.getElementById('btnAjouterCreneau');
+
+  if (vue === 'liste') {
+    if (banner) banner.style.display = 'block';
+    if (typeToggle) typeToggle.style.display = 'flex';
+    if (cal) cal.style.display = 'none';
+    if (liste) liste.style.display = 'block';
+    if (btnAdd) btnAdd.style.display = 'flex';
+  } else {
+    if (banner) banner.style.display = 'none';
+    if (typeToggle) typeToggle.style.display = 'none';
+    if (cal) cal.style.display = 'block';
+    if (liste) liste.style.display = 'none';
+    if (btnAdd) btnAdd.style.display = 'none';
+    renderCalendrierCreneaux();
+  }
 }
+window.switchVueCreneaux = switchVueCreneaux;
+window.creneauxRetourCalendrier = function() { switchVueCreneaux('calendrier'); };
+window.ouvrirEditeurCreneaux = function() {
+  if (typeof allerOnglet === 'function') allerOnglet('creneaux');
+  setTimeout(() => switchVueCreneaux('liste'), 200);
+};
 
 let creneauxAllByType = { retrait: [], livraison: [], reservation: [] };
 
