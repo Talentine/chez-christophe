@@ -18,6 +18,7 @@
 
     { "source": "/:slug", "destination": "/boutique.html?slug=:slug" },
     { "source": "/:slug/", "destination": "/boutique.html?slug=:slug" },
+    { "source": "/:slug/manifest.json", "destination": "/manifest-client.json" },
     { "source": "/:slug/catalogue", "destination": "/catalogue.html?slug=:slug" },
     { "source": "/:slug/panier", "destination": "/panier.html?slug=:slug" },
     { "source": "/:slug/compte", "destination": "/compte.html?slug=:slug" },

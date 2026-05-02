@@ -1,12 +1,14 @@
 {
-  "name": "Chez Christophe — Primeur Caen",
-  "short_name": "Chez Christophe",
-  "description": "Fruits & légumes frais — Click & Collect à Caen",
-  "start_url": "/index.html",
+  "name": "Marchéo · Boutique",
+  "short_name": "Boutique",
+  "description": "Boutique en ligne sur Marchéo",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f0e8",
-  "theme_color": "#1a2e26",
+  "background_color": "#F7F2E8",
+  "theme_color": "#0F2C52",
   "orientation": "portrait",
+  "lang": "fr",
   "icons": [
     {
       "src": "/icon-192.png",

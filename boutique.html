@@ -1089,7 +1089,30 @@
   /* SECTION TITLE — taille cohérente */
   .section-title { font-size: 21px; }
 </style>
-<link id="m-manifest-link" rel="manifest" href="/manifest-client.json">
+<script>
+  // Pose le lien manifest sur /:slug/manifest.json (URL absolue) pour qu'iOS,
+  // au moment d'"Ajouter à l'écran d'accueil", utilise le bon manifest avec
+  // start_url = ./  (resolved → la racine de la boutique).
+  (function(){
+    var slug = '';
+    var qs = new URLSearchParams(location.search);
+    if (qs.get('slug')) slug = qs.get('slug');
+    else {
+      var seg = location.pathname.split('/').filter(Boolean)[0];
+      if (seg && !seg.endsWith('.html')) slug = seg;
+    }
+    var href = slug ? '/' + slug + '/manifest.json' : '/manifest-client.json';
+    var l = document.createElement('link');
+    l.id = 'm-manifest-link'; l.rel = 'manifest'; l.href = href;
+    document.head.appendChild(l);
+    // Lien canonique avec slash final (pour que start_url="./" = la racine boutique)
+    if (slug && !location.pathname.endsWith('/' + slug + '/') && !location.pathname.includes('.html')) {
+      var c = document.createElement('link');
+      c.rel = 'canonical'; c.href = location.origin + '/' + slug + '/';
+      document.head.appendChild(c);
+    }
+  })();
+</script>
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -2571,47 +2594,17 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-client.js').catch(e => console.log('SW:', e));
 }
 
-// ─── MANIFEST PWA DYNAMIQUE par boutique (pour iOS "Ajouter à l'écran d'accueil") ───
-// Sans ça, iOS épingle la racine /index.html et ouvre marchéo.fr au lieu de la boutique.
-(function injectDynamicManifest(){
-  function build(business) {
+// ─── PWA : titre app + apple-touch-icon dynamiques par boutique ───
+(function setPwaMeta(){
+  function update(business) {
     if (!business) return;
-    var slug = business.slug || (location.pathname.split('/').filter(Boolean)[0] || '');
-    var startUrl = '/' + slug + '/';
     var nom = business.nom_boutique || 'Boutique';
-    var theme = (window.__CONFIG__ && window.__CONFIG__.palette && window.__CONFIG__.palette.primary) || '#0F2C52';
-    var bg = (window.__CONFIG__ && window.__CONFIG__.palette && window.__CONFIG__.palette.bg) || '#F7F2E8';
-    var manifest = {
-      name: nom,
-      short_name: nom.length > 18 ? nom.slice(0,18) : nom,
-      description: 'Boutique ' + nom + ' sur Marchéo',
-      start_url: startUrl,
-      scope: startUrl,
-      display: 'standalone',
-      background_color: bg,
-      theme_color: theme,
-      orientation: 'portrait',
-      lang: 'fr',
-      icons: [
-        { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-        { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
-      ]
-    };
-    try {
-      var blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-      var url  = URL.createObjectURL(blob);
-      var link = document.getElementById('m-manifest-link');
-      if (link) link.href = url;
-      var apple = document.getElementById('m-apple-title');
-      if (apple) apple.setAttribute('content', manifest.short_name);
-      document.title = nom + ' — Marchéo';
-    } catch(e) { console.warn('[manifest]', e); }
+    var apple = document.getElementById('m-apple-title');
+    if (apple) apple.setAttribute('content', nom.length > 18 ? nom.slice(0,18) : nom);
+    document.title = nom + ' — Marchéo';
   }
-  document.addEventListener('business:ready', function(e){
-    build(e.detail && e.detail.business);
-  });
-  // Si déjà chargé
-  if (window.__CONFIG__ && window.__CONFIG__.business) build(window.__CONFIG__.business);
+  document.addEventListener('business:ready', function(e){ update(e.detail && e.detail.business); });
+  if (window.__CONFIG__ && window.__CONFIG__.business) update(window.__CONFIG__.business);
 })();
 
 // ─── PUSH CLIENT : enregistre la subscription du client connecté ───
