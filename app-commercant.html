@@ -621,6 +621,9 @@
   <button class="tab-btn" data-icon="📸" onclick="allerOnglet('galerie')" id="tab-galerie">
     Galerie
   </button>
+  <button class="tab-btn" data-icon="💬" onclick="allerOnglet('crm')" id="tab-crm">
+    CRM
+  </button>
   <button class="tab-btn" data-icon="⚙️" onclick="allerOnglet('reglages')" id="tab-reglages">
     Réglages
   </button>
@@ -954,6 +957,172 @@
 </div>
 
 <!-- ===== ONGLET RÉGLAGES ===== -->
+<!-- ===== ONGLET CRM ===== -->
+<div class="tab-content" id="content-crm">
+  <div style="padding:16px;">
+    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:6px;">💬 CRM &amp; Fidélisation</div>
+    <div style="font-size:13px;color:var(--texte-doux);margin-bottom:16px;">Connais tes clients · segmente · relance avec un message personnalisé.</div>
+
+    <!-- KPIs -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">Clients</div>
+        <div style="font-size:22px;font-weight:700;" id="crmStatClients">—</div>
+      </div>
+      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">CA total</div>
+        <div style="font-size:22px;font-weight:700;color:var(--vert);" id="crmStatCA">—</div>
+      </div>
+      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">Panier moyen</div>
+        <div style="font-size:18px;font-weight:700;" id="crmStatPanier">—</div>
+      </div>
+      <div style="background:var(--blanc);border-radius:12px;padding:12px;border:1px solid var(--creme-fonce);">
+        <div style="font-size:11px;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.5px;">SMS quota mois</div>
+        <div style="font-size:18px;font-weight:700;" id="crmStatQuota">—</div>
+      </div>
+    </div>
+
+    <!-- Onglets internes : Clients / Segments / Envoyer -->
+    <div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;">
+      <button onclick="crmSwitch('clients')" id="crmTabClients" class="crm-tab actif">👥 Clients</button>
+      <button onclick="crmSwitch('segments')" id="crmTabSegments" class="crm-tab">🎯 Segments</button>
+      <button onclick="crmSwitch('envoyer')" id="crmTabEnvoyer" class="crm-tab">📤 Envoyer</button>
+      <button onclick="crmSwitch('historique')" id="crmTabHistorique" class="crm-tab">📊 Historique</button>
+    </div>
+
+    <style>
+      .crm-tab {
+        flex-shrink: 0; padding: 9px 14px; border: 1.5px solid var(--creme-fonce);
+        background: var(--blanc); border-radius: 50px; font-family: inherit;
+        font-size: 13px; font-weight: 600; cursor: pointer; color: var(--texte-doux);
+      }
+      .crm-tab.actif { background: var(--vert); color: white; border-color: var(--vert); }
+      .crm-client-card {
+        background: var(--blanc); border: 1px solid var(--creme-fonce);
+        border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer;
+        transition: border-color .15s;
+      }
+      .crm-client-card:hover { border-color: var(--vert); }
+      .crm-segment-pill {
+        display: inline-block; padding: 2px 8px; border-radius: 50px;
+        font-size: 10px; font-weight: 700; margin-right: 4px; margin-top: 4px;
+      }
+      .crm-seg-vip { background: #fff8e7; color: #8a6020; }
+      .crm-seg-fidele { background: #eaf7ee; color: #1f5230; }
+      .crm-seg-actif { background: #e6f1fb; color: #1f4980; }
+      .crm-seg-prospect { background: #f3f3f3; color: #666; }
+      .crm-seg-inactif_14j { background: #fef5ec; color: #8a4d20; }
+      .crm-seg-inactif_30j { background: #fdf0ef; color: #9a2d24; }
+      .crm-seg-inactif_60j { background: #fdf0ef; color: #6b1818; }
+      .crm-seg-nouveau { background: #d4ecdb; color: #1f5230; }
+      .crm-seg-gros_panier { background: #0F2C52; color: white; }
+      .crm-seg-a_risque_noshow { background: #9F1B1F; color: white; }
+    </style>
+
+    <!-- ONGLET CLIENTS -->
+    <div id="crmPaneClients">
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+        <input type="search" id="crmSearch" placeholder="🔍 Rechercher (nom, email, tél)…"
+          oninput="filtrerClientsCRM()"
+          style="flex:1;min-width:200px;padding:10px 12px;border:1.5px solid var(--creme-fonce);border-radius:50px;font-size:13px;font-family:inherit;background:var(--blanc);outline:none;">
+        <select id="crmFilterSegment" onchange="filtrerClientsCRM()"
+          style="padding:10px 12px;border:1.5px solid var(--creme-fonce);border-radius:50px;font-size:13px;font-family:inherit;background:var(--blanc);">
+          <option value="">Tous les segments</option>
+          <option value="vip">👑 VIP</option>
+          <option value="fidele">🟢 Fidèles</option>
+          <option value="actif">🔵 Actifs</option>
+          <option value="prospect">⚪ Prospects</option>
+          <option value="nouveau">✨ Nouveaux</option>
+          <option value="inactif_14j">😴 Inactifs 14j</option>
+          <option value="inactif_30j">💤 Inactifs 30j</option>
+          <option value="inactif_60j">🪦 Inactifs 60j</option>
+          <option value="gros_panier">💰 Gros panier</option>
+          <option value="a_risque_noshow">⚠️ Risque no-show</option>
+        </select>
+      </div>
+      <div id="crmListeClients" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- ONGLET SEGMENTS -->
+    <div id="crmPaneSegments" style="display:none;">
+      <div style="font-size:13px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">
+        Les segments sont calculés automatiquement à chaque commande. Cliquez sur un segment pour voir les clients concernés et les contacter.
+      </div>
+      <div id="crmListeSegments"></div>
+    </div>
+
+    <!-- ONGLET ENVOYER -->
+    <div id="crmPaneEnvoyer" style="display:none;">
+      <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);">
+        <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">🎯 Cible</label>
+        <select id="crmEnvoiSegment" onchange="majPreviewCRM()"
+          style="width:100%;padding:10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:13px;font-family:inherit;background:var(--creme);margin-bottom:14px;">
+          <option value="all">Tous mes clients</option>
+          <option value="vip">👑 VIP (10+ commandes)</option>
+          <option value="fidele">🟢 Fidèles (3-9 commandes)</option>
+          <option value="actif">🔵 Actifs (1-2 commandes)</option>
+          <option value="nouveau">✨ Nouveaux (< 7 jours)</option>
+          <option value="inactif_14j">😴 Inactifs 14j</option>
+          <option value="inactif_30j">💤 Inactifs 30j</option>
+          <option value="inactif_60j">🪦 Inactifs 60j</option>
+          <option value="gros_panier">💰 Gros panier (50€+)</option>
+        </select>
+
+        <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">📡 Canal</label>
+        <select id="crmEnvoiCanal" onchange="majPreviewCRM()"
+          style="width:100%;padding:10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:13px;font-family:inherit;background:var(--creme);margin-bottom:14px;">
+          <option value="auto">🔔 Auto (push prioritaire, SMS si pas de push)</option>
+          <option value="push">🔔 Push uniquement (gratuit, illimité)</option>
+          <option value="sms">📱 SMS uniquement (payant au-delà du quota)</option>
+        </select>
+
+        <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">✉️ Message</label>
+        <div style="font-size:11px;color:var(--texte-doux);margin-bottom:6px;">
+          Variables : <code>{{prenom}}</code> · <code>{{nom_boutique}}</code> · <code>{{produit_prefere}}</code> · <code>{{nb_commandes}}</code>
+        </div>
+        <textarea id="crmMessage" rows="5" oninput="majPreviewCRM()"
+          placeholder="Ex: Bonjour {{prenom}} ! On a reçu vos {{produit_prefere}} préférés frais ce matin. À bientôt à la boutique 🌿"
+          style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:13px;font-family:inherit;background:var(--blanc);resize:vertical;outline:none;"></textarea>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--texte-doux);margin-top:4px;">
+          <span><span id="crmMsgChars">0</span>/160 caractères (1 SMS)</span>
+          <span id="crmMsgSegments"></span>
+        </div>
+
+        <!-- Modèles rapides -->
+        <div style="margin-top:14px;">
+          <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:var(--texte-doux);">⚡ Modèles rapides</label>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <button onclick="appliquerTemplate('inactif')" style="background:var(--creme);border:1px solid var(--creme-fonce);border-radius:50px;padding:6px 12px;font-size:12px;font-family:inherit;cursor:pointer;">Relance inactif</button>
+            <button onclick="appliquerTemplate('vip')" style="background:var(--creme);border:1px solid var(--creme-fonce);border-radius:50px;padding:6px 12px;font-size:12px;font-family:inherit;cursor:pointer;">Récompense VIP</button>
+            <button onclick="appliquerTemplate('arrivage')" style="background:var(--creme);border:1px solid var(--creme-fonce);border-radius:50px;padding:6px 12px;font-size:12px;font-family:inherit;cursor:pointer;">Nouvel arrivage</button>
+            <button onclick="appliquerTemplate('promo')" style="background:var(--creme);border:1px solid var(--creme-fonce);border-radius:50px;padding:6px 12px;font-size:12px;font-family:inherit;cursor:pointer;">Code promo</button>
+          </div>
+        </div>
+
+        <!-- Preview / coût -->
+        <div id="crmPreview" style="margin-top:14px;padding:14px;background:#f7faff;border-left:3px solid #0F2C52;border-radius:10px;font-size:13px;line-height:1.55;">
+          <div style="font-weight:600;margin-bottom:6px;">👁️ Aperçu &amp; coût</div>
+          <div id="crmPreviewContent" style="color:var(--texte-doux);">Saisis un message…</div>
+        </div>
+
+        <button onclick="envoyerCRM()" id="crmBtnEnvoyer"
+          style="margin-top:14px;width:100%;background:linear-gradient(135deg,#5BBE3A,#2A6F3F);color:white;border:none;border-radius:50px;padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;">
+          🚀 Envoyer le message
+        </button>
+
+        <div id="crmEnvoiResult" style="margin-top:10px;font-size:13px;"></div>
+      </div>
+    </div>
+
+    <!-- ONGLET HISTORIQUE -->
+    <div id="crmPaneHistorique" style="display:none;">
+      <div id="crmHistoriqueListe"></div>
+    </div>
+
+  </div>
+</div>
+
 <div class="tab-content" id="content-reglages">
   <div style="padding:16px;">
     <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Réglages</div>
@@ -2156,6 +2325,349 @@ async function voirCommandesCreneau(dateKey, heure) {
 }
 
 
+// ============================================================
+// ── CRM & FIDÉLISATION ───────────────────────────────────────
+// ============================================================
+let crmClients = [];
+let crmCurrentTab = 'clients';
+
+async function chargerCRM() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+
+  // 1. Stats globales + clients
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/clients_crm?commercant_id=eq.' + commercantId + '&order=derniere_commande_at.desc.nullslast&limit=500', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    crmClients = await r.json();
+    if (!Array.isArray(crmClients)) crmClients = [];
+  } catch(e) { console.warn('CRM clients err', e); crmClients = []; }
+
+  // KPIs
+  const totalClients = crmClients.length;
+  const totalCA = crmClients.reduce((s, c) => s + (c.total_depense_cents || 0), 0);
+  const cmdsTotal = crmClients.reduce((s, c) => s + (c.nb_commandes || 0), 0);
+  const panierMoyen = cmdsTotal > 0 ? (totalCA / cmdsTotal) : 0;
+
+  document.getElementById('crmStatClients').textContent = totalClients;
+  document.getElementById('crmStatCA').textContent = (totalCA / 100).toFixed(0) + '€';
+  document.getElementById('crmStatPanier').textContent = (panierMoyen / 100).toFixed(1).replace('.',',') + '€';
+
+  // 2. Quota mois
+  try {
+    const mois = new Date().toISOString().slice(0, 7);
+    const rq = await fetch(SUPABASE_URL + '/rest/v1/quotas_notifications?commercant_id=eq.' + commercantId + '&mois=eq.' + mois, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const qd = await rq.json();
+    const q = (qd && qd[0]) || { sms_envoyes: 0, sms_quota: 50 };
+    const restant = Math.max(0, (q.sms_quota || 0) - (q.sms_envoyes || 0));
+    document.getElementById('crmStatQuota').innerHTML = restant + '<span style="font-size:12px;color:var(--texte-doux);">/' + (q.sms_quota || 0) + '</span>';
+  } catch(e) { document.getElementById('crmStatQuota').textContent = '—'; }
+
+  filtrerClientsCRM();
+  if (crmCurrentTab === 'segments') renderSegmentsCRM();
+  if (crmCurrentTab === 'historique') renderHistoriqueCRM();
+}
+
+function crmSwitch(tab) {
+  crmCurrentTab = tab;
+  ['clients','segments','envoyer','historique'].forEach(t => {
+    document.getElementById('crmTab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('actif', t === tab);
+    document.getElementById('crmPane' + t.charAt(0).toUpperCase() + t.slice(1)).style.display = (t === tab) ? 'block' : 'none';
+  });
+  if (tab === 'segments') renderSegmentsCRM();
+  if (tab === 'historique') renderHistoriqueCRM();
+  if (tab === 'envoyer') majPreviewCRM();
+}
+window.crmSwitch = crmSwitch;
+
+function filtrerClientsCRM() {
+  const q = (document.getElementById('crmSearch')?.value || '').trim().toLowerCase();
+  const seg = document.getElementById('crmFilterSegment')?.value || '';
+  const cont = document.getElementById('crmListeClients');
+  if (!cont) return;
+
+  const filtres = crmClients.filter(c => {
+    if (seg && !(c.segments || []).includes(seg)) return false;
+    if (!q) return true;
+    const blob = ((c.prenom||'') + ' ' + (c.nom||'') + ' ' + (c.email||'') + ' ' + (c.telephone||'')).toLowerCase();
+    return blob.includes(q);
+  });
+
+  if (filtres.length === 0) {
+    cont.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux);"><div style="font-size:36px">👥</div><div style="margin-top:8px">Aucun client trouvé</div></div>';
+    return;
+  }
+
+  cont.innerHTML = filtres.map(c => {
+    const segs = (c.segments || []).map(s => '<span class="crm-segment-pill crm-seg-' + s + '">' + libelleSegment(s) + '</span>').join('');
+    const tel = c.telephone || '';
+    const telDigits = tel.replace(/[^0-9+]/g,'');
+    const derniere = c.derniere_commande_at ? new Date(c.derniere_commande_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'}) : 'Jamais';
+    const optOuts = [];
+    if (c.opt_out_sms) optOuts.push('SMS ❌');
+    if (c.opt_out_push) optOuts.push('Push ❌');
+    return '<div class="crm-client-card" onclick="ouvrirFicheClient(\'' + c.id + '\')">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">'
+      + '<div style="flex:1;min-width:0;">'
+      +   '<div style="font-weight:600;font-size:14.5px;">' + (c.prenom || '') + ' ' + (c.nom || '') + '</div>'
+      +   '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">' + (c.email || '—') + (tel ? ' · 📞 ' + tel : '') + '</div>'
+      +   '<div style="margin-top:4px;">' + segs + '</div>'
+      +   (optOuts.length ? '<div style="font-size:10px;color:#9a2d24;margin-top:4px;">' + optOuts.join(' · ') + '</div>' : '')
+      + '</div>'
+      + '<div style="text-align:right;flex-shrink:0;">'
+      +   '<div style="font-size:14px;font-weight:700;color:var(--vert);">' + ((c.total_depense_cents || 0)/100).toFixed(0) + '€</div>'
+      +   '<div style="font-size:11px;color:var(--texte-doux);">' + (c.nb_commandes || 0) + ' cmd</div>'
+      +   '<div style="font-size:10px;color:var(--texte-doux);margin-top:2px;">' + derniere + '</div>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+window.filtrerClientsCRM = filtrerClientsCRM;
+
+function libelleSegment(s) {
+  return ({
+    vip:'👑 VIP', fidele:'🟢 Fidèle', actif:'🔵 Actif', prospect:'⚪ Prospect',
+    nouveau:'✨ Nouveau', inactif_14j:'😴 14j', inactif_30j:'💤 30j', inactif_60j:'🪦 60j',
+    gros_panier:'💰 Gros panier', a_risque_noshow:'⚠️ No-show'
+  })[s] || s;
+}
+
+function renderSegmentsCRM() {
+  const cont = document.getElementById('crmListeSegments');
+  if (!cont) return;
+  const segs = ['vip','fidele','actif','prospect','nouveau','inactif_14j','inactif_30j','inactif_60j','gros_panier','a_risque_noshow'];
+  const counts = {};
+  crmClients.forEach(c => (c.segments || []).forEach(s => counts[s] = (counts[s] || 0) + 1));
+  cont.innerHTML = segs.filter(s => counts[s]).map(s => {
+    const n = counts[s];
+    return '<div onclick="cibleSegmentEnvoi(\'' + s + '\')" style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:12px;padding:14px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">'
+      + '<div>'
+      +   '<div style="font-weight:700;font-size:15px;">' + libelleSegment(s) + '</div>'
+      +   '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">' + n + ' client' + (n>1?'s':'') + '</div>'
+      + '</div>'
+      + '<div style="background:var(--vert);color:white;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:600;">📤 Contacter</div>'
+      + '</div>';
+  }).join('') || '<div style="text-align:center;padding:30px;color:var(--texte-doux);">Aucun segment actif. Les segments s\'activent dès la première commande.</div>';
+}
+window.renderSegmentsCRM = renderSegmentsCRM;
+
+window.cibleSegmentEnvoi = function(seg) {
+  crmSwitch('envoyer');
+  const sel = document.getElementById('crmEnvoiSegment');
+  if (sel) {
+    if (Array.from(sel.options).some(o => o.value === seg)) sel.value = seg;
+  }
+  majPreviewCRM();
+};
+
+window.ouvrirFicheClient = function(id) {
+  const c = crmClients.find(x => x.id === id);
+  if (!c) return;
+  const tel = c.telephone || '';
+  const telDigits = tel.replace(/[^0-9+]/g,'');
+  const segs = (c.segments || []).map(s => '<span class="crm-segment-pill crm-seg-' + s + '">' + libelleSegment(s) + '</span>').join('');
+  const produits = (c.produits_preferes || []).map(p => '<li>' + (p.nom || '') + ' <span style="color:var(--texte-doux);">(×' + (p.qte_totale || p.nb_fois || 1) + ')</span></li>').join('');
+  const html = '<div id="fiche-client-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.remove()">'
+    + '<div style="background:var(--blanc);width:100%;max-width:540px;border-radius:20px 20px 0 0;padding:24px;max-height:85vh;overflow-y:auto;">'
+    +   '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px;">'
+    +     '<div><div style="font-size:20px;font-weight:700;">' + (c.prenom || '') + ' ' + (c.nom || '') + '</div>'
+    +     '<div style="font-size:13px;color:var(--texte-doux);margin-top:4px;">' + (c.email || '—') + (tel ? ' · 📞 ' + tel : '') + '</div>'
+    +     '<div style="margin-top:6px;">' + segs + '</div></div>'
+    +     '<button onclick="document.getElementById(\'fiche-client-overlay\').remove()" style="background:var(--creme);border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;">✕</button>'
+    +   '</div>'
+    +   '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">'
+    +     '<div style="background:var(--creme);border-radius:10px;padding:10px;"><div style="font-size:11px;color:var(--texte-doux);">Total dépensé</div><div style="font-size:18px;font-weight:700;color:var(--vert);">' + ((c.total_depense_cents||0)/100).toFixed(2).replace('.',',') + '€</div></div>'
+    +     '<div style="background:var(--creme);border-radius:10px;padding:10px;"><div style="font-size:11px;color:var(--texte-doux);">Commandes</div><div style="font-size:18px;font-weight:700;">' + (c.nb_commandes || 0) + '</div></div>'
+    +     '<div style="background:var(--creme);border-radius:10px;padding:10px;"><div style="font-size:11px;color:var(--texte-doux);">Panier moyen</div><div style="font-size:16px;font-weight:700;">' + ((c.panier_moyen_cents||0)/100).toFixed(2).replace('.',',') + '€</div></div>'
+    +     '<div style="background:var(--creme);border-radius:10px;padding:10px;"><div style="font-size:11px;color:var(--texte-doux);">Inactif depuis</div><div style="font-size:16px;font-weight:700;">' + (c.jours_depuis_derniere_cmd != null ? c.jours_depuis_derniere_cmd + ' j' : '—') + '</div></div>'
+    +   '</div>'
+    +   (produits ? '<div style="margin-bottom:14px;"><div style="font-size:13px;font-weight:700;margin-bottom:6px;">⭐ Produits préférés</div><ul style="margin:0;padding-left:20px;font-size:13px;color:var(--texte);">' + produits + '</ul></div>' : '')
+    +   (tel ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">'
+    +     '<a href="tel:' + telDigits + '" style="background:#5BBE3A;color:white;text-align:center;padding:11px;border-radius:50px;font-weight:600;font-size:13px;text-decoration:none;">📞 Appeler</a>'
+    +     '<a href="sms:' + telDigits + '" style="background:#0F2C52;color:white;text-align:center;padding:11px;border-radius:50px;font-weight:600;font-size:13px;text-decoration:none;">💬 SMS</a>'
+    +   '</div>' : '')
+    +   '<button onclick="document.getElementById(\'fiche-client-overlay\').remove();envoyerNotifClientUnique(\'' + c.id + '\')" style="width:100%;background:linear-gradient(135deg,#5BBE3A,#2A6F3F);color:white;border:none;border-radius:50px;padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;">📤 Envoyer un message ciblé</button>'
+    + '</div>'
+    + '</div>';
+  document.body.insertAdjacentHTML('beforeend', html);
+};
+
+window.envoyerNotifClientUnique = function(clientId) {
+  const c = crmClients.find(x => x.id === clientId);
+  if (!c) return;
+  crmSwitch('envoyer');
+  // Stocke le client cible dans une variable globale pour envoi unique
+  window.__crmClientCible = clientId;
+  document.getElementById('crmEnvoiSegment').value = 'all';
+  document.getElementById('crmMessage').value = 'Bonjour ' + (c.prenom || '') + ' ! ';
+  document.getElementById('crmMessage').focus();
+  majPreviewCRM();
+};
+
+const CRM_TEMPLATES = {
+  inactif: 'Bonjour {{prenom}} ! On ne t\'a pas vu depuis un moment 🥺 On a tes {{produit_prefere}} préférés ! Code -10% : RETOUR10',
+  vip: '{{prenom}}, en tant que client fidèle ({{nb_commandes}} commandes !), profite de -15% avec le code VIP15. Merci d\'être là 🙏',
+  arrivage: 'Nouvel arrivage chez {{nom_boutique}} ! Viens voir nos produits frais du jour 🌿',
+  promo: 'Promo flash chez {{nom_boutique}} : -20% sur tout aujourd\'hui avec le code FLASH20 ⚡',
+};
+window.appliquerTemplate = function(t) {
+  const ta = document.getElementById('crmMessage');
+  ta.value = CRM_TEMPLATES[t] || '';
+  majPreviewCRM();
+};
+
+function majPreviewCRM() {
+  const msg = document.getElementById('crmMessage')?.value || '';
+  const seg = document.getElementById('crmEnvoiSegment')?.value || 'all';
+  const canal = document.getElementById('crmEnvoiCanal')?.value || 'auto';
+  const charsEl = document.getElementById('crmMsgChars');
+  const segsEl = document.getElementById('crmMsgSegments');
+  const prev = document.getElementById('crmPreviewContent');
+  if (charsEl) charsEl.textContent = msg.length;
+  // Le SMS standard = 160 chars (GSM-7) ou 70 (UCS-2 pour emojis)
+  const hasSpecial = /[^\x00-\x7F]/.test(msg);
+  const limit = hasSpecial ? 70 : 160;
+  const nbSegs = msg.length === 0 ? 0 : Math.ceil(msg.length / limit);
+  if (segsEl) segsEl.textContent = nbSegs > 0 ? (nbSegs + ' segment' + (nbSegs>1?'s':'') + ' SMS' + (hasSpecial ? ' (emoji)' : '')) : '';
+
+  // Cible
+  const ciblesAll = crmClients.length;
+  let cibles = ciblesAll;
+  if (seg !== 'all') {
+    cibles = crmClients.filter(c => (c.segments || []).includes(seg)).length;
+  }
+
+  // Estimation push vs sms
+  const cibleClientsArr = seg === 'all' ? crmClients : crmClients.filter(c => (c.segments || []).includes(seg));
+  const sansOptOutSms = cibleClientsArr.filter(c => !c.opt_out_sms && c.telephone).length;
+  const sansOptOutPush = cibleClientsArr.filter(c => !c.opt_out_push).length;
+
+  let estPush = 0, estSms = 0;
+  if (canal === 'push') { estPush = sansOptOutPush; }
+  else if (canal === 'sms') { estSms = sansOptOutSms; }
+  else { estPush = sansOptOutPush; estSms = Math.max(0, sansOptOutSms - sansOptOutPush); }
+
+  // Coût SMS
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const offre = (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.offre) || 'clickcollect';
+  const quotaSMS = offre === 'livraison' ? 100 : (offre === 'clickcollect' ? 50 : 0);
+  const tarifOverage = offre === 'livraison' ? 10 : 12; // cents/SMS au-delà
+  const totalSMS = estSms * nbSegs;
+  const overage = Math.max(0, totalSMS - quotaSMS);
+  const coutEur = (overage * tarifOverage / 100).toFixed(2);
+
+  if (!prev) return;
+  if (msg.length === 0) { prev.textContent = 'Saisis un message…'; return; }
+
+  prev.innerHTML =
+      '<div><strong>👥 Cible :</strong> ' + cibles + ' client' + (cibles>1?'s':'') + '</div>'
+    + '<div><strong>🔔 Push estimés :</strong> ' + estPush + ' (gratuit)</div>'
+    + '<div><strong>📱 SMS estimés :</strong> ' + estSms + (nbSegs>1 ? ' × ' + nbSegs + ' segment' + (nbSegs>1?'s':'') + ' = ' + totalSMS : '') + '</div>'
+    + '<div><strong>📦 Quota mensuel :</strong> ' + quotaSMS + ' SMS · <strong>Dépassement :</strong> ' + overage + ' SMS</div>'
+    + '<div style="margin-top:6px;color:' + (overage > 0 ? '#9a2d24' : '#207d4a') + ';font-weight:600;">'
+    +   '💰 Coût estimé : ' + coutEur + ' €'
+    +   (overage === 0 ? ' (entièrement dans le quota)' : ' (au tarif ' + tarifOverage + ' c/SMS hors quota)')
+    + '</div>';
+}
+window.majPreviewCRM = majPreviewCRM;
+
+window.envoyerCRM = async function() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!commercantId || !token) { alert('Session expirée'); return; }
+
+  const message = (document.getElementById('crmMessage').value || '').trim();
+  const segment = document.getElementById('crmEnvoiSegment').value;
+  const canal = document.getElementById('crmEnvoiCanal').value;
+  const result = document.getElementById('crmEnvoiResult');
+  const btn = document.getElementById('crmBtnEnvoyer');
+
+  if (message.length < 5) { alert('Message trop court'); return; }
+
+  // Confirmation si > 10 destinataires ou coût > 1 €
+  const nbCibles = segment === 'all'
+    ? crmClients.length
+    : crmClients.filter(c => (c.segments || []).includes(segment)).length;
+  if (nbCibles > 10) {
+    if (!confirm('Envoyer ce message à ' + nbCibles + ' clients ? Cette action est irréversible.')) return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Envoi en cours…';
+  result.innerHTML = '';
+
+  try {
+    let endpoint, body;
+    if (window.__crmClientCible) {
+      endpoint = '/functions/v1/notify-client';
+      body = { commercant_id: commercantId, client_id: window.__crmClientCible, message, canal_prefere: canal };
+      window.__crmClientCible = null;
+    } else {
+      endpoint = '/functions/v1/notify-segment';
+      body = { commercant_id: commercantId, segment, message, canal_prefere: canal };
+    }
+
+    const r = await fetch(SUPABASE_URL + endpoint, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+
+    if (data.success && data.sent != null) {
+      result.innerHTML = '<div style="background:#eaf7ee;border-left:3px solid #5BBE3A;padding:10px 12px;border-radius:8px;color:#1f5230;">✅ <strong>Envoyé !</strong> ' + data.sent + ' destinataires · 🔔 ' + (data.push||0) + ' push · 📱 ' + (data.sms||0) + ' SMS · 💰 ' + ((data.total_cost_cents||0)/100).toFixed(2) + ' €' + (data.skipped ? ' · ' + data.skipped + ' opt-out' : '') + '</div>';
+    } else if (data.success) {
+      result.innerHTML = '<div style="background:#eaf7ee;border-left:3px solid #5BBE3A;padding:10px 12px;border-radius:8px;color:#1f5230;">✅ Envoyé via <strong>' + (data.canal || '?') + '</strong>' + (data.cost_cents ? ' · 💰 ' + (data.cost_cents/100).toFixed(2) + ' €' : '') + '</div>';
+    } else {
+      result.innerHTML = '<div style="background:#fdf0ef;border-left:3px solid #9a2d24;padding:10px 12px;border-radius:8px;color:#9a2d24;">⚠️ ' + (data.erreur || data.error || 'Erreur inconnue') + '</div>';
+    }
+    document.getElementById('crmMessage').value = '';
+    chargerCRM();
+  } catch (e) {
+    result.innerHTML = '<div style="background:#fdf0ef;border-left:3px solid #9a2d24;padding:10px 12px;border-radius:8px;color:#9a2d24;">⚠️ ' + e.message + '</div>';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 Envoyer le message';
+  }
+};
+
+async function renderHistoriqueCRM() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const cont = document.getElementById('crmHistoriqueListe');
+  if (!cont || !commercantId) return;
+  cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);">Chargement…</div>';
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/notifications_envoyees?commercant_id=eq.' + commercantId + '&order=sent_at.desc&limit=100&select=*,clients(prenom,nom)', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) {
+      cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--texte-doux);"><div style="font-size:36px">📭</div><div style="margin-top:8px">Aucun envoi pour le moment</div></div>';
+      return;
+    }
+    cont.innerHTML = data.map(n => {
+      const client = n.clients ? (n.clients.prenom || '') + ' ' + (n.clients.nom || '') : 'Tous';
+      const date = new Date(n.sent_at).toLocaleString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+      const icon = n.canal === 'push' ? '🔔' : (n.canal === 'sms' ? '📱' : '✉️');
+      const statutColor = n.statut === 'envoyee' ? '#207d4a' : (n.statut === 'echec' ? '#9a2d24' : '#666');
+      return '<div style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:10px;padding:10px 12px;margin-bottom:8px;">'
+        + '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--texte-doux);"><span>' + icon + ' ' + n.canal.toUpperCase() + ' → ' + client + '</span><span>' + date + '</span></div>'
+        + '<div style="font-size:13px;margin-top:4px;line-height:1.4;">' + (n.message || '').slice(0, 200) + (n.message && n.message.length > 200 ? '…' : '') + '</div>'
+        + '<div style="font-size:11px;color:' + statutColor + ';margin-top:4px;">' + n.statut + (n.cost_cents ? ' · ' + (n.cost_cents/100).toFixed(2) + ' €' : '') + (n.erreur ? ' · ' + n.erreur : '') + '</div>'
+        + '</div>';
+    }).join('');
+  } catch (e) { cont.innerHTML = '<div style="color:#9a2d24;text-align:center;padding:20px;">Erreur : ' + e.message + '</div>'; }
+}
+window.renderHistoriqueCRM = renderHistoriqueCRM;
+
 // ── DRAWER MENU SLIDE-OUT ──────────────────────────────────────
 window.ouvrirMenuSlide = function() {
   const ov = document.getElementById('m-menu-overlay');
@@ -2221,6 +2733,7 @@ function allerOnglet(id) {
   if (id === 'creneaux') chargerCreneaux();
   if (id === 'reservations') { chargerReservations(); chargerCreneauxResa(); }
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
+  if (id === 'crm') chargerCRM();
   if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); }
 }
 

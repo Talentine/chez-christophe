@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Désinscription · Marchéo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: linear-gradient(135deg, #F7F2E8 0%, #fff 100%);
+    color: #0F2C52; padding: 20px;
+  }
+  .card {
+    max-width: 500px; width: 100%;
+    background: #fff; border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 12px 40px rgba(15,44,82,.08);
+  }
+  .icon { font-size: 48px; margin-bottom: 12px; text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 8px; text-align: center; }
+  p { font-size: 14px; line-height: 1.55; color: #475569; }
+  .options { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border: 1.5px solid #E8E0D5;
+    border-radius: 12px; cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .option:hover { border-color: #0F2C52; background: #F7F2E8; }
+  .option input { width: 18px; height: 18px; accent-color: #E65533; cursor: pointer; }
+  .option-label { flex: 1; }
+  .option-title { font-weight: 600; font-size: 14px; }
+  .option-desc { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .actions { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+  button {
+    width: 100%; padding: 14px;
+    border: none; border-radius: 50px;
+    font-family: inherit; font-size: 15px; font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-primary { background: #E65533; color: white; }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary { background: transparent; color: #64748b; }
+  .status { margin-top: 16px; padding: 12px; border-radius: 12px; font-size: 13px; text-align: center; display: none; }
+  .status.ok { background: #eaf7ee; color: #207d4a; display: block; }
+  .status.err { background: #fdf0ef; color: #9a2d24; display: block; }
+  .footer { margin-top: 24px; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">📨</div>
+    <h1 id="title">Gérer mes préférences</h1>
+    <p id="hello" style="text-align:center;">Chargement…</p>
+
+    <div id="form" style="display:none;">
+      <div class="options">
+        <label class="option">
+          <input type="checkbox" id="optSms">
+          <div class="option-label">
+            <div class="option-title">📱 Ne plus recevoir de SMS promotionnels</div>
+            <div class="option-desc">Tu continueras à recevoir les SMS de confirmation de tes commandes.</div>
+          </div>
+        </label>
+        <label class="option">
+          <input type="checkbox" id="optPush">
+          <div class="option-label">
+            <div class="option-title">🔔 Ne plus recevoir de notifications push</div>
+            <div class="option-desc">Tu peux aussi désactiver dans les paramètres de ton navigateur.</div>
+          </div>
+        </label>
+        <label class="option">
+          <input type="checkbox" id="optEmail">
+          <div class="option-label">
+            <div class="option-title">✉️ Ne plus recevoir d'emails marketing</div>
+            <div class="option-desc">Les emails transactionnels (confirmation, facture) restent.</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" id="btnSave">Enregistrer mes choix</button>
+        <button class="btn-secondary" id="btnAll">Me désinscrire de TOUT</button>
+      </div>
+
+      <div class="status" id="status"></div>
+    </div>
+
+    <div class="footer">
+      Conformément au RGPD, ta demande est traitée immédiatement.<br>
+      Marchéo · <a href="https://www.xn--marcho-fva.fr/" style="color:#94a3b8;">marchéo.fr</a>
+    </div>
+  </div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+const params = new URLSearchParams(location.search);
+const token = params.get('t');
+let clientId = null;
+
+const helloEl = document.getElementById('hello');
+const formEl = document.getElementById('form');
+const statusEl = document.getElementById('status');
+
+async function init() {
+  if (!token) {
+    helloEl.textContent = '⚠️ Lien invalide ou expiré.';
+    return;
+  }
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?unsubscribe_token=eq.' + encodeURIComponent(token) + '&select=id,prenom,opt_out_sms,opt_out_push,opt_out_email', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await r.json();
+    if (!data || !data.length) {
+      helloEl.textContent = '⚠️ Lien invalide ou expiré.';
+      return;
+    }
+    const c = data[0];
+    clientId = c.id;
+    helloEl.innerHTML = (c.prenom ? 'Bonjour <strong>' + c.prenom + '</strong>, ' : '') + 'choisis comment tu souhaites être contacté(e).';
+    document.getElementById('optSms').checked = !!c.opt_out_sms;
+    document.getElementById('optPush').checked = !!c.opt_out_push;
+    document.getElementById('optEmail').checked = !!c.opt_out_email;
+    formEl.style.display = 'block';
+  } catch (e) {
+    helloEl.textContent = '⚠️ Erreur de chargement.';
+  }
+}
+
+async function save(allOut) {
+  const btn = document.getElementById('btnSave');
+  btn.disabled = true;
+  statusEl.className = 'status';
+  statusEl.style.display = 'none';
+
+  const body = allOut
+    ? { opt_out_sms: true, opt_out_push: true, opt_out_email: true, opt_out_at: new Date().toISOString() }
+    : {
+        opt_out_sms: document.getElementById('optSms').checked,
+        opt_out_push: document.getElementById('optPush').checked,
+        opt_out_email: document.getElementById('optEmail').checked,
+        opt_out_at: new Date().toISOString(),
+      };
+
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?unsubscribe_token=eq.' + encodeURIComponent(token), {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    statusEl.textContent = '✓ Tes préférences ont été enregistrées.';
+    statusEl.className = 'status ok';
+    if (allOut) {
+      document.getElementById('optSms').checked = true;
+      document.getElementById('optPush').checked = true;
+      document.getElementById('optEmail').checked = true;
+    }
+  } catch (e) {
+    statusEl.textContent = '⚠️ Erreur : ' + e.message;
+    statusEl.className = 'status err';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('btnSave').addEventListener('click', () => save(false));
+document.getElementById('btnAll').addEventListener('click', () => {
+  if (confirm('Confirmer la désinscription de TOUS les canaux (SMS, push, email) ?')) save(true);
+});
+
+init();
+</script>
+</body>
+</html>
