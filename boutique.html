@@ -3015,6 +3015,12 @@ body.mode-vitrine [class*="prix"]:not(.hero-info-pill):not(.btn-primary):not(.bt
 body.mode-vitrine .vitrine-section-vide {
   display: none !important;
 }
+/* SÉCURITÉ : si on est en mode vitrine, force-hide le banner démo
+   (au cas où les deux modes se déclencheraient ensemble - race condition) */
+body.mode-vitrine #m-demo-banner,
+body.mode-vitrine #m-demo-bottom-bar { display: none !important; }
+/* Idem mode-demo NE doit PAS s'afficher si on est en vitrine */
+body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
 
 /* Modal Choix d'offre */
 #m-offre-modal {
