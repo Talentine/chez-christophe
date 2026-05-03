@@ -2956,6 +2956,52 @@ body.mode-demo #btnAjouterFicheAccueil {
 body.mode-demo #cartBtn,
 body.mode-demo #btn-panier { display: none !important; }
 
+/* ============================================================
+   MODE VITRINE (offre = 'vitrine')
+   Cache toutes les fonctions de commerce : panier, +, commander, paniers
+   Garde : photos, hero, infos, produits (vitrine), notre histoire, compte
+   ============================================================ */
+body.mode-vitrine #cartBtn,
+body.mode-vitrine #btn-panier,
+body.mode-vitrine .btn-add,
+body.mode-vitrine .btn-ajouter,
+body.mode-vitrine .btn-ajouter-panier,
+body.mode-vitrine .poids-pill,
+body.mode-vitrine #btnAjouterFicheAccueil,
+body.mode-vitrine .qte-controls,
+body.mode-vitrine #m-fab-reservation,
+body.mode-vitrine #m-fab-mes-resas,
+body.mode-vitrine .hero-btn-resa,
+body.mode-vitrine [data-nav="boutique"],
+body.mode-vitrine [data-nav="paniers"],
+body.mode-vitrine [data-nav="panier"] {
+  display: none !important;
+}
+/* Le bouton "Commander →" du hero devient "Découvrir nos produits ↓" */
+body.mode-vitrine .hero-btns .btn-primary[onclick*="catalogue"]::after {
+  content: '';
+}
+body.mode-vitrine .produit-action,
+body.mode-vitrine .panier-action {
+  display: none !important;
+}
+/* Petite étiquette "Vitrine" sur les produits affichés */
+body.mode-vitrine .produit-card::after {
+  content: 'En vitrine';
+  position: absolute;
+  bottom: 8px; right: 8px;
+  background: rgba(15,44,82,.85);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 50px;
+  letter-spacing: .3px;
+  z-index: 2;
+  pointer-events: none;
+}
+body.mode-vitrine .produit-card { position: relative; }
+
 /* Modal Choix d'offre */
 #m-offre-modal {
   position: fixed; inset: 0; z-index: 9999;
@@ -3305,18 +3351,47 @@ body.mode-demo #btn-panier { display: none !important; }
     });
   }
 
+  // ── Activer le mode VITRINE (offre = vitrine, abonnement actif)
+  function activerModeVitrine() {
+    if (document.body.classList.contains('mode-vitrine')) return;
+    document.body.classList.add('mode-vitrine');
+    // Remplace le bouton "Commander →" du hero par "Découvrir ↓" qui scrolle vers les produits
+    var btnCmd = document.querySelector('.hero-btns .btn-primary');
+    if (btnCmd) {
+      btnCmd.textContent = 'Découvrir nos produits ↓';
+      btnCmd.setAttribute('onclick', "document.querySelector('#produitsSection,#produitsList,#produits-en-vitrine,.produits-grid')?.scrollIntoView({behavior:'smooth',block:'start'});");
+    }
+    // Bandeau d'info en haut (fixé)
+    if (!document.getElementById('m-vitrine-banner')) {
+      var banner = document.createElement('div');
+      banner.id = 'm-vitrine-banner';
+      banner.style.cssText = 'background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:9px 14px;text-align:center;font-family:Manrope,system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1.3;';
+      banner.innerHTML = '🪟 <strong>Site vitrine</strong> · Cette boutique présente ses produits sans vente en ligne. Contactez-la directement.';
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+    console.log('[mode-vitrine] activé');
+  }
+
   // ── Listener de l'événement business:ready déclenché par config.js
   document.addEventListener('business:ready', function(e) {
     var b = (e.detail && e.detail.business) || {};
-    if (b.abonnement_actif !== true) activerModeDemo();
+    if (b.abonnement_actif !== true) {
+      activerModeDemo();
+    } else if (b.offre === 'vitrine') {
+      // Abonnement actif ET plan vitrine : on cache toutes les fonctions de commerce
+      activerModeVitrine();
+    }
     // Si on revient d'un paiement réussi → afficher la modal de bienvenue
     setTimeout(checkPaiementSuccess, 400);
   });
 
   // ── Fallback : si __CONFIG__ déjà défini au moment de l'exécution
   setTimeout(function() {
+    var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
     if (!isAbonnementActif() && !document.body.classList.contains('mode-demo')) {
       activerModeDemo();
+    } else if (b.offre === 'vitrine' && !document.body.classList.contains('mode-vitrine')) {
+      activerModeVitrine();
     }
     checkPaiementSuccess();
   }, 1500);
