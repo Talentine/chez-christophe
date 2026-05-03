@@ -4208,6 +4208,15 @@ async function chargerCommandesSupabase(commercantId) {
     const commandes = await r.json();
     if (!commandes || commandes.error) return;
 
+    // En mode démo (abonnement_actif=false) ET aucune vraie commande en BDD :
+    // on garde les commandes démo pour que le dashboard reste vivant.
+    // Dès qu'une vraie commande arrive, on bascule automatiquement.
+    const enDemoMode = window.__CONFIG__?.business?.abonnement_actif !== true;
+    if (enDemoMode && commandes.length === 0 && __demoDataInjected) {
+      // ne pas écraser les commandes démo
+      return;
+    }
+
     const nouvelles = commandes.filter(c => c.statut === 'nouvelle');
     const ancienNbNouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
 
@@ -4670,6 +4679,206 @@ async function appliquerThemeMonCommerce() {
   } catch(e) { console.log('theme dashboard:', e); }
 }
 
+// ── DONNÉES DÉMO DASHBOARD : commandes + produits + créneaux fictifs
+// Affichés uniquement quand abonnement_actif !== true, pour que le commerçant
+// puisse voir le dashboard "en fonctionnement" avant de payer.
+let __demoDataInjected = false;
+function injecterDonneesDemoDashboard() {
+  if (__demoDataInjected) return;
+  __demoDataInjected = true;
+
+  const bt = (window.__CONFIG__?.business?.business_type) || 'primeur';
+  const isResto = ['pizzeria','restaurant','fastfood'].includes(bt);
+
+  // Helper date
+  function dateAt(daysAhead, hours, minutes) {
+    const d = new Date();
+    d.setDate(d.getDate() + daysAhead);
+    d.setHours(hours, minutes || 0, 0, 0);
+    return d.toISOString();
+  }
+
+  // Catalogues fictifs adaptés au métier
+  const PRODUITS_DEMO = {
+    primeur: [
+      { nom:'Fraises Gariguette', qte:'2 barquettes', prix:9.00 },
+      { nom:'Tomates Cœur de Bœuf', qte:'1 kg', prix:4.50 },
+      { nom:'Bananes Cavendish', qte:'1,5 kg', prix:2.70 },
+    ],
+    boucherie: [
+      { nom:'Côte de bœuf maturée', qte:'1,2 kg', prix:42.00 },
+      { nom:'Filet mignon de porc', qte:'600 g', prix:14.40 },
+      { nom:'Saucisses de Toulouse', qte:'500 g', prix:8.50 },
+    ],
+    boulangerie: [
+      { nom:'Baguette tradition', qte:'2 pcs', prix:2.40 },
+      { nom:'Pain au levain', qte:'1 pc', prix:5.50 },
+      { nom:'Croissants beurre', qte:'4 pcs', prix:5.20 },
+    ],
+    fromagerie: [
+      { nom:'Comté 18 mois', qte:'400 g', prix:18.00 },
+      { nom:'Camembert AOP', qte:'1 pc', prix:6.50 },
+      { nom:'Bûche de chèvre', qte:'1 pc', prix:7.20 },
+    ],
+    poissonnerie: [
+      { nom:'Saumon frais entier', qte:'1,5 kg', prix:36.00 },
+      { nom:'Coquilles Saint-Jacques', qte:'500 g', prix:24.50 },
+      { nom:'Cabillaud filet', qte:'600 g', prix:18.00 },
+    ],
+    traiteur: [
+      { nom:'Plateau apéro 6 pers.', qte:'1', prix:48.00 },
+      { nom:'Lasagnes maison', qte:'4 parts', prix:22.00 },
+      { nom:'Salade composée', qte:'2 parts', prix:12.50 },
+    ],
+    pizzeria: [
+      { nom:'Margherita', qte:'2', prix:24.00 },
+      { nom:'Quattro formaggi', qte:'1', prix:14.50 },
+      { nom:'Pizza Diavola', qte:'1', prix:13.50 },
+    ],
+    restaurant: [
+      { nom:'Menu du jour', qte:'2 couverts', prix:36.00 },
+      { nom:'Plat unique', qte:'1', prix:18.00 },
+      { nom:'Carte des vins', qte:'1 bouteille', prix:24.00 },
+    ],
+    fastfood: [
+      { nom:'Menu Burger', qte:'2', prix:24.00 },
+      { nom:'Tacos XL', qte:'1', prix:9.50 },
+      { nom:'Frites + soda', qte:'1', prix:6.00 },
+    ],
+  };
+  const produits = PRODUITS_DEMO[bt] || PRODUITS_DEMO.primeur;
+  const total1 = produits.reduce((s,p) => s + p.prix, 0);
+  const total2 = produits[0].prix;
+  const total3 = produits[0].prix + produits[1].prix;
+
+  // Commandes fictives
+  toutesLesCommandes = [
+    {
+      id: 'demo-1', numero: 'DEMO-2026-0042',
+      client: 'Marie L.', heure: '10:00',
+      montant: total1.toFixed(2).replace('.',',') + '€',
+      articles: 3, statut: 'nouvelle',
+      type: isResto ? 'livraison' : 'retrait',
+      note: 'Démo : commande fictive',
+      date_retrait: dateAt(1, 10, 0),
+      created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+      total_ttc: total1,
+      isDemo: true,
+      produits: produits.map(p => ({ nom:p.nom, qte:p.qte, prix:p.prix.toFixed(2).replace('.',',') + '€' })),
+    },
+    {
+      id: 'demo-2', numero: 'DEMO-2026-0041',
+      client: 'Jean-Paul R.', heure: '11:30',
+      montant: total2.toFixed(2).replace('.',',') + '€',
+      articles: 1, statut: 'nouvelle',
+      type: 'retrait', note: null,
+      date_retrait: dateAt(1, 11, 30),
+      created_at: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
+      total_ttc: total2,
+      isDemo: true,
+      produits: [{ nom:produits[0].nom, qte:produits[0].qte, prix:produits[0].prix.toFixed(2).replace('.',',') + '€' }],
+    },
+    {
+      id: 'demo-3', numero: 'DEMO-2026-0040',
+      client: 'Sophie M.', heure: '14:00',
+      montant: total3.toFixed(2).replace('.',',') + '€',
+      articles: 2, statut: 'en_preparation',
+      type: isResto ? 'livraison' : 'retrait', note: null,
+      date_retrait: dateAt(2, 14, 0),
+      created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+      total_ttc: total3,
+      isDemo: true,
+      produits: [
+        { nom:produits[0].nom, qte:produits[0].qte, prix:produits[0].prix.toFixed(2).replace('.',',') + '€' },
+        { nom:produits[1].nom, qte:produits[1].qte, prix:produits[1].prix.toFixed(2).replace('.',',') + '€' },
+      ],
+    },
+    {
+      id: 'demo-4', numero: 'DEMO-2026-0039',
+      client: 'Pierre D.', heure: '15:00',
+      montant: total1.toFixed(2).replace('.',',') + '€',
+      articles: 3, statut: 'prete',
+      type: 'retrait', note: null,
+      date_retrait: dateAt(0, 15, 0),
+      created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+      total_ttc: total1,
+      isDemo: true,
+      produits: produits.map(p => ({ nom:p.nom, qte:p.qte, prix:p.prix.toFixed(2).replace('.',',') + '€' })),
+    },
+  ];
+  if (typeof renderCommandes === 'function') renderCommandes();
+
+  // Stats fictives
+  const setText = (id, txt) => { const e = document.getElementById(id); if (e) e.textContent = txt; };
+  const totalCA = (total1 * 2 + total2 + total3).toFixed(0);
+  setText('statRetraits', '4');
+  setText('statCA', totalCA + '€');
+  setText('statAPreparer', '2');
+  setText('statDemain', '2');
+  setText('statutBoutique', 'Mode démo · Boutique d\'exemple');
+
+  const alerte = document.getElementById('alerteBar');
+  if (alerte) {
+    alerte.classList.add('visible');
+    const txt = document.getElementById('alerteTxt');
+    if (txt) txt.textContent = '🛒 2 nouvelles commandes (démo) en attente';
+  }
+  const badge = document.getElementById('badge-commandes');
+  if (badge) { badge.textContent = '2'; badge.classList.add('visible'); }
+
+  // Produits fictifs dans l'onglet Produits
+  const produitsAdmin = document.getElementById('produitsAdmin');
+  if (produitsAdmin && !produitsAdmin.querySelector('.demo-produit')) {
+    produitsAdmin.innerHTML =
+      '<div style="background:#fff8e7;border:1px dashed #f0c060;border-radius:12px;padding:12px;margin-bottom:14px;font-size:12.5px;color:#5a4017;line-height:1.5;">'
+      + '🎯 <strong>Mode démo</strong> · Voici à quoi ressemble votre catalogue. Ajoutez vos vrais produits via le bouton "+ Ajouter un produit". Les exemples disparaissent dès la première vraie création.'
+      + '</div>'
+      + produits.map((p, i) => {
+          const colors = ['#5BBE3A', '#F4B942', '#E65533'];
+          return '<div class="demo-produit" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--creme-fonce);opacity:0.85;">'
+            + '<div style="width:54px;height:54px;border-radius:12px;background:' + colors[i % 3] + ';display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📦</div>'
+            + '<div style="flex:1;min-width:0;">'
+            +   '<div style="font-size:15px;font-weight:500;">' + p.nom + ' <span style="background:#F4B942;color:#0F2C52;font-size:9px;font-weight:700;padding:2px 7px;border-radius:50px;margin-left:6px;letter-spacing:.5px;">DEMO</span></div>'
+            +   '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + p.prix.toFixed(2) + '€ / ' + p.qte + '</div>'
+            + '</div>'
+            + '<div style="width:44px;height:26px;border-radius:13px;background:var(--vert);position:relative;flex-shrink:0;opacity:.5;">'
+            +   '<div style="position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:white;"></div>'
+            + '</div>'
+            + '</div>';
+        }).join('');
+  }
+
+  // Créneaux fictifs (planning hebdomadaire classique)
+  const creneauxAdmin = document.getElementById('creneauxAdmin');
+  if (creneauxAdmin && !creneauxAdmin.querySelector('.demo-creneau')) {
+    const JOURS_LABELS = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+    const creneauxDemo = [
+      { jour:'Mar', heure:'09h00 – 12h00', emoji:'☀️', cap:8 },
+      { jour:'Mar', heure:'14h00 – 18h00', emoji:'🌤️', cap:12 },
+      { jour:'Mer', heure:'09h00 – 12h00', emoji:'☀️', cap:8 },
+      { jour:'Mer', heure:'14h00 – 18h00', emoji:'🌤️', cap:12 },
+      { jour:'Jeu', heure:'09h00 – 12h00', emoji:'☀️', cap:8 },
+      { jour:'Ven', heure:'14h00 – 19h00', emoji:'🌅', cap:15 },
+      { jour:'Sam', heure:'08h00 – 13h00', emoji:'🛍️', cap:20 },
+    ];
+    creneauxAdmin.innerHTML =
+      '<div style="background:#fff8e7;border:1px dashed #f0c060;border-radius:12px;padding:12px;margin-bottom:14px;font-size:12.5px;color:#5a4017;line-height:1.5;">'
+      + '🎯 <strong>Mode démo</strong> · Exemple de planning hebdomadaire. Personnalisez vos créneaux via "+ Ajouter un créneau".'
+      + '</div>'
+      + creneauxDemo.map(c =>
+          '<div class="demo-creneau" style="display:flex;align-items:center;gap:12px;padding:11px;background:var(--creme);border-radius:10px;margin-bottom:8px;opacity:0.85;">'
+          + '<span style="font-size:22px;flex-shrink:0;">' + c.emoji + '</span>'
+          + '<div style="flex:1;min-width:0;">'
+          +   '<div style="font-weight:600;font-size:14px;">' + c.jour + ' · ' + c.heure + ' <span style="background:#F4B942;color:#0F2C52;font-size:9px;font-weight:700;padding:2px 7px;border-radius:50px;margin-left:6px;">DEMO</span></div>'
+          +   '<div style="font-size:11.5px;color:var(--texte-doux);margin-top:2px;">Capacité : ' + c.cap + ' commandes</div>'
+          + '</div>'
+          + '</div>'
+        ).join('');
+  }
+
+  console.log('[demo-dashboard] Données démo injectées (commandes, produits, créneaux)');
+}
+
 // ── BANDEAU MODE DÉMO (dashboard commerçant)
 function afficherBandeauDemoDashboard() {
   if (document.getElementById('demo-dash-banner')) return;
@@ -4716,7 +4925,11 @@ function appliquerVisibiliteFeatures() {
     const cap = caps[offre] || caps.clickcollect;
 
     // Affiche un bandeau démo dans le dashboard si pas d'abonnement actif
-    if (enDemo) afficherBandeauDemoDashboard();
+    if (enDemo) {
+      afficherBandeauDemoDashboard();
+      // Injecte commandes / produits / créneaux fictifs (laisse 800ms pour que le DOM soit prêt)
+      setTimeout(() => { try { injecterDonneesDemoDashboard(); } catch(e) { console.warn('demo data:', e); } }, 800);
+    }
     else retirerBandeauDemoDashboard();
 
     // Réservation = uniquement si métier resto ET plan livraison
