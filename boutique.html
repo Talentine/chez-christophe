@@ -1934,11 +1934,55 @@ function ajouterAuPanierAvecQte(produit) {
   rafraichirBoutonsCartes();
 }
 
+// Toast réutilisable + mécanisme d'annulation pour les retraits du panier
+function afficherToastPanierBoutique(msg, type) {
+  let toast = document.getElementById('panier-toast-boutique');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'panier-toast-boutique';
+    toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%) translateY(100px);bottom:calc(110px + env(safe-area-inset-bottom));z-index:9999;color:#fff;padding:12px 18px;border-radius:50px;font-family:Manrope,system-ui,sans-serif;font-size:13.5px;font-weight:600;box-shadow:0 12px 30px rgba(15,44,82,.32);display:flex;align-items:center;gap:10px;max-width:calc(100% - 40px);transition:transform .25s cubic-bezier(.22,.61,.36,1), opacity .25s;opacity:0;background:#0F2C52;';
+    document.body.appendChild(toast);
+  }
+  toast.style.background = type === 'remove' ? '#9F1B1F' : (type === 'undo-ok' ? '#2A6F3F' : '#0F2C52');
+  toast.innerHTML = msg;
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+  });
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.opacity = '0';
+  }, 4000);
+}
+
+let __dernierProduitSupprimePanier = null;
+window.annulerSuppressionPanier = function() {
+  if (!__dernierProduitSupprimePanier) return;
+  const it = __dernierProduitSupprimePanier;
+  panier.splice(Math.min(it.idx, panier.length), 0, it.produit);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  __dernierProduitSupprimePanier = null;
+  afficherToastPanierBoutique('✓ Produit restauré', 'undo-ok');
+  mettreAJourBadge();
+  if (typeof renderPanier === 'function') renderPanier();
+  if (typeof rafraichirBoutonsCartes === 'function') rafraichirBoutonsCartes();
+};
+
 function modifierQteAccueil(produitId, delta) {
   const idx = panier.findIndex(p => p.id === produitId);
   if (idx < 0) return;
+  const produit = panier[idx];
   panier[idx].qte += delta;
-  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  if (panier[idx].qte <= 0) {
+    __dernierProduitSupprimePanier = { produit: { ...produit, qte: 1 }, idx: idx };
+    panier.splice(idx, 1);
+    afficherToastPanierBoutique(
+      '🗑 <span><b>' + (produit.nom || 'Produit') + '</b> retiré du panier</span>'
+      + '<button onclick="annulerSuppressionPanier()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 12px;border-radius:50px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-left:6px;-webkit-tap-highlight-color:transparent;">↶ Annuler</button>',
+      'remove'
+    );
+  }
   localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourBadge();
   rafraichirBoutonsCartes();
@@ -2114,8 +2158,17 @@ function renderPanier() {
 }
 
 function changerQte(idx, delta) {
+  const produit = panier[idx];
   panier[idx].qte += delta;
-  if (panier[idx].qte <= 0) panier.splice(idx, 1);
+  if (panier[idx].qte <= 0) {
+    __dernierProduitSupprimePanier = { produit: { ...produit, qte: 1 }, idx: idx };
+    panier.splice(idx, 1);
+    afficherToastPanierBoutique(
+      '🗑 <span><b>' + (produit.nom || 'Produit') + '</b> retiré du panier</span>'
+      + '<button onclick="annulerSuppressionPanier()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 12px;border-radius:50px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-left:6px;-webkit-tap-highlight-color:transparent;">↶ Annuler</button>',
+      'remove'
+    );
+  }
   localStorage.setItem('panier', JSON.stringify(panier));
   mettreAJourBadge();
   renderPanier();

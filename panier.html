@@ -425,15 +425,73 @@ function renderPanier() {
   renderRecap();
 }
 
+function afficherToastPanier(msg, type) {
+  // type : 'remove' (rouge), 'undo-ok' (vert), 'info' (neutre)
+  let toast = document.getElementById('panier-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'panier-toast';
+    toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%) translateY(100px);bottom:calc(100px + env(safe-area-inset-bottom));z-index:9999;background:#0F2C52;color:#fff;padding:12px 18px;border-radius:50px;font-family:Manrope,system-ui,sans-serif;font-size:13.5px;font-weight:600;box-shadow:0 12px 30px rgba(15,44,82,.32);display:flex;align-items:center;gap:10px;max-width:calc(100% - 40px);transition:transform .25s cubic-bezier(.22,.61,.36,1);pointer-events:auto;opacity:0;';
+    document.body.appendChild(toast);
+  }
+  // Couleur selon type
+  if (type === 'remove') toast.style.background = '#9F1B1F';
+  else if (type === 'undo-ok') toast.style.background = '#2A6F3F';
+  else toast.style.background = '#0F2C52';
+  toast.innerHTML = msg;
+  // Animation d'entrée
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+  });
+  // Auto-hide après 4s (laisse le temps de cliquer "Annuler")
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.opacity = '0';
+  }, 4000);
+}
+
+let __dernierProduitSupprime = null;
+
 function retirerLigne(idx) {
+  const produitSupprime = panier[idx];
+  __dernierProduitSupprime = { produit: { ...produitSupprime }, idx: idx };
   panier.splice(idx, 1);
   localStorage.setItem('panier', JSON.stringify(panier));
+  // Bandeau avec bouton Annuler
+  afficherToastPanier(
+    '🗑 <span><b>' + (produitSupprime.nom || 'Produit') + '</b> retiré</span>'
+    + '<button onclick="annulerSuppressionPanier()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 12px;border-radius:50px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-left:6px;">↶ Annuler</button>',
+    'remove'
+  );
+  if (panier.length === 0) { init(); return; }
   renderPanier();
 }
 
+function annulerSuppressionPanier() {
+  if (!__dernierProduitSupprime) return;
+  panier.splice(__dernierProduitSupprime.idx, 0, __dernierProduitSupprime.produit);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  __dernierProduitSupprime = null;
+  afficherToastPanier('✓ Produit restauré dans le panier', 'undo-ok');
+  renderPanier();
+  mettreAJourCTA();
+}
+window.annulerSuppressionPanier = annulerSuppressionPanier;
+
 function modifierQte(idx, delta) {
+  const produit = panier[idx];
   panier[idx].qte = Math.max(0, panier[idx].qte + delta);
-  if (panier[idx].qte === 0) panier.splice(idx, 1);
+  if (panier[idx].qte === 0) {
+    __dernierProduitSupprime = { produit: { ...produit, qte: 1 }, idx: idx };
+    panier.splice(idx, 1);
+    afficherToastPanier(
+      '🗑 <span><b>' + (produit.nom || 'Produit') + '</b> retiré</span>'
+      + '<button onclick="annulerSuppressionPanier()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:5px 12px;border-radius:50px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-left:6px;">↶ Annuler</button>',
+      'remove'
+    );
+  }
   localStorage.setItem('panier', JSON.stringify(panier));
   if (panier.length === 0) { init(); return; }
   renderPanier();
