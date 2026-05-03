@@ -3001,6 +3001,20 @@ body.mode-vitrine .produit-card::after {
   pointer-events: none;
 }
 body.mode-vitrine .produit-card { position: relative; }
+/* MASQUE TOUS LES PRIX en mode vitrine (présentation seule) */
+body.mode-vitrine .produit-prix,
+body.mode-vitrine .panier-prix,
+body.mode-vitrine .produit-prix-unitaire,
+body.mode-vitrine .ligne-prix,
+body.mode-vitrine .produit-promo,
+body.mode-vitrine .badge-prix,
+body.mode-vitrine [class*="prix"]:not(.hero-info-pill):not(.btn-primary):not(.btn-secondary) {
+  display: none !important;
+}
+/* Sections cachées si pas de produits (classe ajoutée par JS) */
+body.mode-vitrine .vitrine-section-vide {
+  display: none !important;
+}
 
 /* Modal Choix d'offre */
 #m-offre-modal {
@@ -3355,6 +3369,15 @@ body.mode-vitrine .produit-card { position: relative; }
   function activerModeVitrine() {
     if (document.body.classList.contains('mode-vitrine')) return;
     document.body.classList.add('mode-vitrine');
+    // ⚠️ Désactive le mode démo si activé par erreur (race condition / cache)
+    if (document.body.classList.contains('mode-demo')) {
+      document.body.classList.remove('mode-demo');
+    }
+    var demoBanner = document.getElementById('m-demo-banner');
+    if (demoBanner) demoBanner.hidden = true;
+    var demoBottom = document.getElementById('m-demo-bottom-bar');
+    if (demoBottom) demoBottom.remove();
+
     // Remplace le bouton "Commander →" du hero par "Découvrir ↓" qui scrolle vers les produits
     var btnCmd = document.querySelector('.hero-btns .btn-primary');
     if (btnCmd) {
@@ -3369,7 +3392,49 @@ body.mode-vitrine .produit-card { position: relative; }
       banner.innerHTML = '🪟 <strong>Site vitrine</strong> · Cette boutique présente ses produits sans vente en ligne. Contactez-la directement.';
       document.body.insertBefore(banner, document.body.firstChild);
     }
-    console.log('[mode-vitrine] activé');
+    console.log('[mode-vitrine] activé · démo désactivé');
+
+    // ── Si aucun produit n'est mis en avant : on cache toutes les sections produits
+    // et on laisse juste "Notre histoire / Notre carte" sur le hero.
+    function verifierProduitsVitrine() {
+      // Cherche tous les containers de produits
+      var sectionsProduits = document.querySelectorAll(
+        '#produitsSection, #produitsList, #produits-en-vitrine, ' +
+        '#nouveautes-section, #plats-section, #paniers-section, #plateaux-section, ' +
+        '.section-produits, .section-nouveautes, .section-paniers, .section-plateaux'
+      );
+      var auMoinsUnProduitVisible = false;
+      sectionsProduits.forEach(function(sec){
+        // Compte les cartes produits réellement visibles dans la section
+        var cards = sec.querySelectorAll('.produit-card, .panier-card, .plateau-card');
+        if (cards.length > 0) {
+          auMoinsUnProduitVisible = true;
+        } else {
+          sec.classList.add('vitrine-section-vide');
+        }
+      });
+      // Sur le hero : si pas de produits, on cache aussi le bouton "Découvrir nos produits"
+      var btnCmd = document.querySelector('.hero-btns .btn-primary');
+      if (btnCmd && !auMoinsUnProduitVisible) {
+        btnCmd.style.display = 'none';
+      } else if (btnCmd) {
+        btnCmd.style.display = '';
+      }
+    }
+    // Premier check + retry car les produits sont chargés en async
+    setTimeout(verifierProduitsVitrine, 1500);
+    setTimeout(verifierProduitsVitrine, 3500);
+    setTimeout(verifierProduitsVitrine, 6000);
+    // Observer les changements DOM (au cas où le contenu se rafraîchirait)
+    if (window.MutationObserver) {
+      var obs = new MutationObserver(function(){
+        clearTimeout(window.__vitrineCheckTimer);
+        window.__vitrineCheckTimer = setTimeout(verifierProduitsVitrine, 600);
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+      // Stoppe l'observer après 15s pour éviter de tourner indéfiniment
+      setTimeout(function(){ obs.disconnect(); }, 15000);
+    }
   }
 
   // ── Listener de l'événement business:ready déclenché par config.js
