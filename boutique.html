@@ -2507,8 +2507,14 @@ function appliquerConfigUI(cfg) {
     showIf('heroAdresse', true);
   }
   if (b.telephone) {
-    setText('heroTel', '📞 ' + b.telephone);
-    showIf('heroTel', true);
+    // Téléphone cliquable : tap pour appeler (mobile = lance l'app téléphone)
+    const telDigits = String(b.telephone).replace(/[^0-9+]/g, '');
+    const heroTelEl = document.getElementById('heroTel');
+    if (heroTelEl) {
+      heroTelEl.innerHTML = '<a href="tel:' + telDigits + '" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">📞 ' + b.telephone + '</a>';
+      heroTelEl.style.cursor = 'pointer';
+      showIf('heroTel', true);
+    }
   }
   if (b.horaires) {
     const txt = formatHorairesCourt(b.horaires);
@@ -2963,6 +2969,7 @@ body.mode-demo #btn-panier { display: none !important; }
    ============================================================ */
 body.mode-vitrine #cartBtn,
 body.mode-vitrine #btn-panier,
+body.mode-vitrine .header-cart,
 body.mode-vitrine .btn-add,
 body.mode-vitrine .btn-ajouter,
 body.mode-vitrine .btn-ajouter-panier,
@@ -2974,7 +2981,16 @@ body.mode-vitrine #m-fab-mes-resas,
 body.mode-vitrine .hero-btn-resa,
 body.mode-vitrine [data-nav="boutique"],
 body.mode-vitrine [data-nav="paniers"],
-body.mode-vitrine [data-nav="panier"] {
+body.mode-vitrine [data-nav="panier"],
+/* Cible nav-items par href (Boutique = catalogue.html, Paniers = catalogue?cat=paniers, Panier = onclick=ouvrirPanier) */
+body.mode-vitrine .bottom-nav .nav-item[href="catalogue.html"],
+body.mode-vitrine .bottom-nav .nav-item[href*="cat=paniers"],
+body.mode-vitrine .bottom-nav .nav-item[onclick*="ouvrirPanier"],
+/* Drawer panier complet */
+body.mode-vitrine #drawer,
+body.mode-vitrine #overlay,
+body.mode-vitrine .drawer,
+body.mode-vitrine .drawer-overlay {
   display: none !important;
 }
 /* Le bouton "Commander →" du hero devient "Découvrir nos produits ↓" */

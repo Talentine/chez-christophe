@@ -5102,9 +5102,11 @@ function appliquerVisibiliteFeatures() {
     const empCouvert = document.getElementById('empreinteCouvertBloc');
     if (empCouvert) empCouvert.style.display = isResto ? '' : 'none';
 
-    // ── 5. Plan VITRINE : grise commandes/planning/produits/créneaux + overlay upgrade
+    // ── 5. Plan VITRINE : grise commandes/planning/créneaux (PAS produits)
+    // Le commerçant DOIT pouvoir gérer son catalogue même en vitrine
+    // (ses produits s'affichent sans prix sur le site → il a besoin de les éditer)
     const plansLockTabs = {
-      vitrine: ['tab-commandes','tab-planning','tab-produits','tab-creneaux','tab-reservations'],
+      vitrine: ['tab-commandes','tab-planning','tab-creneaux','tab-reservations'],
       clickcollect: [], // resa déjà gérée via isResto/peutResa
       livraison: []
     };
@@ -5156,7 +5158,9 @@ function appliquerVisibiliteFeatures() {
     }
 
     if (offre === 'vitrine') {
-      ['content-commandes','content-planning','content-produits','content-creneaux'].forEach(id => poseLockOverlay(id, lockMessages.vitrine));
+      // Produits accessible même en vitrine (catalogue à présenter)
+      ['content-commandes','content-planning','content-creneaux'].forEach(id => poseLockOverlay(id, lockMessages.vitrine));
+      retireLockOverlay('content-produits');
     } else {
       ['content-commandes','content-planning','content-produits','content-creneaux'].forEach(retireLockOverlay);
     }
