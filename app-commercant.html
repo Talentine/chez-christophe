@@ -5411,18 +5411,16 @@ function appliquerVisibiliteFeatures() {
     }
     else retirerBandeauDemoDashboard();
 
-    // Réservation = uniquement si métier resto ET plan livraison
-    const peutResa = isResto && cap.reservation;
+    // Réservation = dès le plan Click&Collect (offre 2) ou supérieur
+    // (la fonctionnalité existe pour tous les métiers — un primeur peut aussi
+    // accepter des réservations s'il le souhaite)
+    const peutResa = cap.reservation;
 
-    // ── 1. Onglet Réservations — caché par défaut, ré-affiché uniquement pour resto
+    // ── 1. Onglet Réservations — visible si le plan inclut la résa
     const tabResa = document.getElementById('tab-reservations');
     if (tabResa) {
-      if (!isResto) {
+      if (!cap.reservation) {
         tabResa.style.setProperty('display', 'none', 'important');
-      } else if (!cap.reservation) {
-        tabResa.style.display = 'inline-flex';
-        tabResa.classList.add('feature-locked');
-        tabResa.title = 'Disponible avec l\'offre Livraison';
       } else {
         tabResa.style.display = 'inline-flex';
         tabResa.classList.remove('feature-locked');

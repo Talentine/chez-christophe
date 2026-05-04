@@ -1206,27 +1206,37 @@ function renderTableCommercants(data) {
 window.toggleMenuActions = function(id) {
   // Ferme tous les autres menus ouverts
   document.querySelectorAll('.action-menu').forEach(m => {
-    if (m.id !== 'menu-actions-' + id) m.style.display = 'none';
+    if (m.id !== 'menu-actions-' + id) {
+      m.style.display = 'none';
+      m.style.top = '42px';
+      m.style.bottom = 'auto';
+    }
   });
   const menu = document.getElementById('menu-actions-' + id);
   if (!menu) return;
   const isOpening = menu.style.display !== 'block';
-  menu.style.display = isOpening ? 'block' : 'none';
 
-  // Si on ouvre, on s'assure que le menu est entièrement visible :
-  // - calcul du dépassement bas → scroll fluide vers le haut juste ce qu'il faut
-  // - sinon ouverture vers le haut (drop-up) si vraiment pas la place
-  if (isOpening) {
-    requestAnimationFrame(() => {
-      const rect = menu.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const overflowBottom = rect.bottom - vh + 16; // marge 16px
-      if (overflowBottom > 0) {
-        // Scroll juste assez pour que le menu rentre dans le viewport
-        window.scrollBy({ top: overflowBottom, behavior: 'smooth' });
-      }
-    });
+  if (!isOpening) {
+    menu.style.display = 'none';
+    return;
   }
+
+  // Affiche d'abord pour pouvoir mesurer
+  menu.style.display = 'block';
+  // Reset position
+  menu.style.top = '42px';
+  menu.style.bottom = 'auto';
+
+  requestAnimationFrame(() => {
+    const rect = menu.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const overflowBottom = rect.bottom - vh;
+    // Si le menu dépasse en bas → bascule en drop-up (au-dessus du bouton)
+    if (overflowBottom > 0) {
+      menu.style.top = 'auto';
+      menu.style.bottom = '42px';
+    }
+  });
 };
 window.fermerMenuActions = function(id) {
   const menu = document.getElementById('menu-actions-' + id);
