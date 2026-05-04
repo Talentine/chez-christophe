@@ -638,11 +638,11 @@
 <!-- ONGLET COMMANDES -->
 <div class="tab-content active" id="content-commandes">
   <div class="commandes-filtres">
-    <button class="filtre-pill actif" onclick="filtrerStatut(null,this)">Toutes</button>
-    <button class="filtre-pill" onclick="filtrerStatut('nouvelle',this)">🔵 Nouvelles</button>
-    <button class="filtre-pill" onclick="filtrerStatut('en_preparation',this)">🟡 En prépa</button>
+    <button class="filtre-pill actif" onclick="filtrerStatut('nouvelle',this)">🔵 Nouvelles</button>
+    <button class="filtre-pill" onclick="filtrerStatut('a_preparer',this)">🟡 À préparer</button>
     <button class="filtre-pill" onclick="filtrerStatut('prete',this)">🟢 Prêtes</button>
     <button class="filtre-pill" onclick="filtrerStatut('remise',this)">✅ Remises</button>
+    <button class="filtre-pill" onclick="filtrerStatut(null,this)">Toutes</button>
   </div>
   <div class="commandes-liste" id="commandesListe">
     <div style="text-align:center;padding:40px;color:var(--texte-doux)">
@@ -1977,7 +1977,7 @@ const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'
 const MOIS = ['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'];
 
 let ongletActif = 'commandes';
-let statutFiltre = null;
+let statutFiltre = 'nouvelle'; // par défaut : commandes nouvelles d'aujourd'hui + à venir
 let enPause = false;
 let commandeContactId = null;
 let tousLesProduits = [];
@@ -2090,9 +2090,37 @@ function chargerCommandesDemo() {
 
 function renderCommandes() {
   const liste = document.getElementById('commandesListe');
-  const filtrees = statutFiltre
-    ? toutesLesCommandes.filter(c => c.statut === statutFiltre)
-    : toutesLesCommandes;
+
+  // Filtre selon onglet actif
+  // - 'nouvelle'   → statut nouvelle ET date_retrait >= aujourd'hui (jour J et suivants)
+  // - 'a_preparer' → statut en_preparation ET date_retrait = aujourd'hui uniquement
+  // - 'prete'      → statut prete
+  // - 'remise'     → statut remise / livree / terminee
+  // - null         → toutes
+  const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+  const tomorrowStart = new Date(todayStart); tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+
+  let filtrees;
+  if (statutFiltre === 'nouvelle') {
+    filtrees = toutesLesCommandes.filter(c => {
+      if (c.statut !== 'nouvelle') return false;
+      if (!c.date_retrait) return true;
+      return new Date(c.date_retrait) >= todayStart;
+    });
+  } else if (statutFiltre === 'a_preparer') {
+    filtrees = toutesLesCommandes.filter(c => {
+      if (c.statut !== 'en_preparation') return false;
+      if (!c.date_retrait) return true;
+      const d = new Date(c.date_retrait);
+      return d >= todayStart && d < tomorrowStart;
+    });
+  } else if (statutFiltre === 'remise') {
+    filtrees = toutesLesCommandes.filter(c => ['remise','livree','terminee'].includes(c.statut));
+  } else if (statutFiltre) {
+    filtrees = toutesLesCommandes.filter(c => c.statut === statutFiltre);
+  } else {
+    filtrees = toutesLesCommandes;
+  }
 
   if (filtrees.length === 0) {
     liste.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">✅</p><p style="margin-top:8px">Aucune commande</p></div>';
@@ -3218,6 +3246,12 @@ function allerOnglet(id) {
 
   window.scrollTo({top:0, behavior:'smooth'});
 
+  // Quand on revient sur Commandes : reset filtre sur "Nouvelles" par défaut
+  if (id === 'commandes') {
+    statutFiltre = 'nouvelle';
+    document.querySelectorAll('.filtre-pill').forEach((b, i) => b.classList.toggle('actif', i === 0));
+    if (typeof renderCommandes === 'function') renderCommandes();
+  }
   if (id === 'planning') chargerPlanningReel();
   if (id === 'produits') chargerProduits();
   if (id === 'creneaux') {
