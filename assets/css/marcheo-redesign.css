@@ -236,10 +236,10 @@ button[onclick*="seDeconnecter"] {
   transition: transform .2s ease;
 }
 
-/* Tab actif : pas de chip, juste icône tomate + label ink (style proto) */
+/* Tab actif STYLE PROTO : tomate accent (icône + label), zéro chip */
 .tab-btn.active {
   background: transparent !important;
-  color: var(--texte) !important;
+  color: var(--accent) !important;        /* tomate #C5462A */
   border-bottom: none !important;
   font-weight: 700 !important;
   box-shadow: none !important;
@@ -251,17 +251,20 @@ button[onclick*="seDeconnecter"] {
   font-size: 22px !important;
   line-height: 1 !important;
   margin-bottom: 4px !important;
-  opacity: 0.62 !important;          /* inactive : ink2 */
-  filter: none !important;
+  opacity: 0.78 !important;
+  filter: grayscale(0.3);                  /* léger désaturation pour matcher style outline */
   display: block !important;
-  transition: opacity .15s, transform .15s;
+  transition: opacity .15s, transform .15s, filter .15s;
 }
 
 .tab-btn.active[data-icon]::before {
   opacity: 1 !important;
-  filter: hue-rotate(0deg) saturate(1.6);
+  filter: grayscale(0) saturate(1.4) hue-rotate(-5deg);
   transform: scale(1.05);
 }
+
+/* Cache l'icône si emoji absent et garde uniquement la version SVG (futur) */
+.tab-btn:not([data-icon])::before { display: none !important; }
 
 .tab-badge {
   background: var(--accent) !important;
