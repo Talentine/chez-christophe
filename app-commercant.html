@@ -5838,6 +5838,29 @@ async function supprimerProduit() {
 
 
 function ajouterProduit() {
+  // ── LIMITE OFFRE VITRINE : max 20 produits
+  const offre = (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.offre);
+  if (offre === 'vitrine') {
+    const nbProduits = (catalogueCache || []).length;
+    if (nbProduits >= 20) {
+      const upgrade = confirm(
+        '🪟 Limite Vitrine atteinte\n\n' +
+        'L\'offre Vitrine permet d\'afficher jusqu\'à 20 produits en présentation.\n' +
+        'Vous avez actuellement ' + nbProduits + ' produits.\n\n' +
+        'Pour un catalogue illimité + vente en ligne, passez à Click & Collect (39€/mois).\n\n' +
+        'OK pour aller voir l\'abonnement, Annuler pour rester ici.'
+      );
+      if (upgrade && typeof allerOnglet === 'function') {
+        allerOnglet('reglages');
+        setTimeout(() => {
+          const el = document.getElementById('reg-abonnement');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 250);
+      }
+      return;
+    }
+  }
+
   document.getElementById('modalAjoutProduit').style.display = 'flex';
   document.getElementById('produitNom').value = '';
   document.getElementById('produitPrix').value = '';

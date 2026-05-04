@@ -522,10 +522,15 @@
       <div class="page-sub" id="dateOverview"></div>
 
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-card-val" id="statCommerçants">—</div>
-          <div class="stat-card-lbl">Commerçants actifs</div>
+        <div class="stat-card" style="cursor:pointer;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('actif'),100)">
+          <div class="stat-card-val" id="statCommerçants" style="color:#7fd97f;">—</div>
+          <div class="stat-card-lbl">✅ Boutiques actives (payantes)</div>
           <div class="stat-card-delta delta-up" id="deltaCommerçants"></div>
+        </div>
+        <div class="stat-card" style="cursor:pointer;border-left:3px solid #ffd47a;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('demo'),100)">
+          <div class="stat-card-val" id="statDemos" style="color:#ffd47a;">—</div>
+          <div class="stat-card-lbl">🎯 En mode démo (pas encore activées)</div>
+          <div class="stat-card-delta" id="conversionDemo" style="color:rgba(255,255,255,0.5);"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="statMRR" style="color:var(--or)">—</div>
@@ -596,9 +601,28 @@
       <div class="page-sub">Gérez vos boutiques clientes</div>
 
       <div class="search-bar">
-        <input class="search-input" placeholder="🔍 Rechercher un commerçant..." oninput="filtrerCommercants(this.value)">
+        <input class="search-input" id="searchCommercants" placeholder="🔍 Rechercher (nom, ville, email)..." oninput="filtrerCommercants(this.value)">
         <button class="btn-ajouter" onclick="ajouterCommercant()">+ Nouveau commerçant</button>
       </div>
+
+      <!-- FILTRE STATUT (Tous / Démo / Payants) -->
+      <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
+        <button id="filter-tous" class="filter-pill actif" onclick="filtrerStatutDemo('tous')"
+          style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit;">
+          Tous <span id="count-tous" style="opacity:.5;margin-left:4px;"></span>
+        </button>
+        <button id="filter-demo" class="filter-pill" onclick="filtrerStatutDemo('demo')"
+          style="background:rgba(255,212,122,.12);border:1.5px solid rgba(255,212,122,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#ffd47a;cursor:pointer;font-family:inherit;">
+          🎯 En démo <span id="count-demo" style="opacity:.7;margin-left:4px;"></span>
+        </button>
+        <button id="filter-actif" class="filter-pill" onclick="filtrerStatutDemo('actif')"
+          style="background:rgba(127,217,127,.12);border:1.5px solid rgba(127,217,127,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#7fd97f;cursor:pointer;font-family:inherit;">
+          ✅ Payantes <span id="count-actif" style="opacity:.7;margin-left:4px;"></span>
+        </button>
+      </div>
+      <style>
+        .filter-pill.actif { background:rgba(201,165,75,.18) !important; border-color:var(--or,#c9a54b) !important; color:var(--or,#c9a54b) !important; }
+      </style>
 
       <div class="table-card">
         <table>
@@ -917,15 +941,27 @@ async function chargerDashboard() {
   tousCommercants = commercants || [];
 
   // Stats : "actifs" = boutiques en ligne (peu importe l'abonnement)
-  const actifs = tousCommercants.filter(c => c.actif);
-  const payants = tousCommercants.filter(c => c.actif && c.abonnement_actif);
-  document.getElementById('statCommerçants').textContent = actifs.length;
-  // Si delta DOM existe, montrer combien sont en abonnement payant
+  const actifs = tousCommercants.filter(c => c.actif && !c.supprime_at);
+  const payants = actifs.filter(c => c.abonnement_actif === true);
+  const demos = actifs.filter(c => c.abonnement_actif !== true);
+
+  // KPI : payantes
+  document.getElementById('statCommerçants').textContent = payants.length;
   const delta = document.getElementById('deltaCommerçants');
   if (delta) {
-    delta.textContent = payants.length > 0
-      ? '✓ ' + payants.length + ' avec abonnement actif'
-      : (actifs.length > 0 ? actifs.length + ' boutique(s) en démo' : '');
+    delta.textContent = payants.length === 0 ? '—' : 'sur ' + actifs.length + ' total';
+  }
+
+  // KPI : démos
+  document.getElementById('statDemos').textContent = demos.length;
+  const conv = document.getElementById('conversionDemo');
+  if (conv) {
+    if (actifs.length > 0) {
+      const tauxConv = ((payants.length / actifs.length) * 100).toFixed(0);
+      conv.textContent = 'Conversion : ' + tauxConv + '% activés';
+    } else {
+      conv.textContent = 'Aucune boutique encore';
+    }
   }
 
   // Prix mensuel par offre (basé sur commercants.offre)
@@ -1055,7 +1091,15 @@ async function chargerCommercants() {
       if (!a.lastDate || c.created_at > a.lastDate) a.lastDate = c.created_at;
     });
   }
-  renderTableCommercants(tousCommercants);
+  // MAJ counters des pills filtre
+  const actifs = tousCommercants.filter(c => !c.supprime_at);
+  const enDemo = actifs.filter(c => !c.abonnement_actif).length;
+  const payants = actifs.filter(c => c.abonnement_actif === true).length;
+  if (document.getElementById('count-tous')) document.getElementById('count-tous').textContent = '(' + actifs.length + ')';
+  if (document.getElementById('count-demo')) document.getElementById('count-demo').textContent = '(' + enDemo + ')';
+  if (document.getElementById('count-actif')) document.getElementById('count-actif').textContent = '(' + payants + ')';
+
+  filtrerCommercants(''); // applique le filtre actuel
 }
 
 function renderTableCommercants(data) {
@@ -1072,8 +1116,16 @@ function renderTableCommercants(data) {
     const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
     const plan = offreLabels[c.offre] || c.plans?.nom || '—';
     const planClass = { vitrine:'badge-starter', clickcollect:'badge-pro', livraison:'badge-premium' }[c.offre] || 'badge-starter';
-    const statutClass = c.actif ? 'badge-actif' : 'badge-inactif';
-    const statutTxt = c.actif ? 'Actif' : 'Inactif';
+
+    // STATUT MODE DÉMO vs PAYANT — très visible
+    let statutHtml = '';
+    if (!c.actif) {
+      statutHtml = '<span class="badge badge-inactif">⛔ Suspendu</span>';
+    } else if (!c.abonnement_actif) {
+      statutHtml = '<span class="badge" style="background:rgba(255,212,122,.18);color:#ffd47a;border:1px solid rgba(255,212,122,.4);font-weight:700;">🎯 DÉMO</span>';
+    } else {
+      statutHtml = '<span class="badge" style="background:rgba(127,217,127,.18);color:#7fd97f;border:1px solid rgba(127,217,127,.4);font-weight:700;">✅ Payant</span>';
+    }
     const m = METIERS[c.business_type] || METIERS.primeur;
 
     // Activité 30j
@@ -1112,7 +1164,7 @@ function renderTableCommercants(data) {
         </td>
         <td style="color:rgba(255,255,255,0.7);font-size:13px;">${c.ville || '—'}</td>
         <td><span class="badge ${planClass}">${plan}</span></td>
-        <td><span class="badge ${statutClass}">${statutTxt}</span></td>
+        <td>${statutHtml}</td>
         <td>${activiteHtml}</td>
         <td>${healthHtml}</td>
         <td style="text-align:right;position:relative;">
@@ -1198,11 +1250,36 @@ window.supprimerCommercant = async function(id, nom) {
   }
 };
 
+// ── FILTRE PAR STATUT (Tous / Démo / Payants)
+let _filtreStatut = 'tous'; // 'tous' | 'demo' | 'actif'
+window.filtrerStatutDemo = function(statut) {
+  _filtreStatut = statut;
+  // MAJ UI des pills
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('actif'));
+  const btn = document.getElementById('filter-' + statut);
+  if (btn) btn.classList.add('actif');
+  // Filtre + recherche combinée
+  const q = (document.getElementById('searchCommercants')||{}).value || '';
+  filtrerCommercants(q);
+};
+
 function filtrerCommercants(q) {
-  const filtres = q ? tousCommercants.filter(c =>
-    c.nom_boutique.toLowerCase().includes(q.toLowerCase()) ||
-    c.ville?.toLowerCase().includes(q.toLowerCase())
-  ) : tousCommercants;
+  let filtres = tousCommercants.filter(c => !c.supprime_at);
+  // Filtre statut
+  if (_filtreStatut === 'demo') {
+    filtres = filtres.filter(c => !c.abonnement_actif);
+  } else if (_filtreStatut === 'actif') {
+    filtres = filtres.filter(c => c.abonnement_actif === true);
+  }
+  // Recherche
+  if (q) {
+    const ql = q.toLowerCase();
+    filtres = filtres.filter(c =>
+      c.nom_boutique.toLowerCase().includes(ql) ||
+      (c.ville || '').toLowerCase().includes(ql) ||
+      (c.email || '').toLowerCase().includes(ql)
+    );
+  }
   renderTableCommercants(filtres);
 }
 
