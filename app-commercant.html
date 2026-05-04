@@ -1314,7 +1314,7 @@
           </div>
           <div class="reg-row" onclick="scrollToReg('reg-alarme')">
             <div class="reg-icon" style="background:#9F1B1F;">🚨</div>
-            <div class="reg-label">Son nouvelle commande<div class="reg-sub">Cloche, alarme, sirène · réglable</div></div>
+            <div class="reg-label">Son nouvelle commande<div class="reg-sub">💰 Ka-ching, cloche, sirène · réglable</div></div>
             <div class="reg-chevron">›</div>
           </div>
         </div>
@@ -1511,16 +1511,17 @@
       <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Type de son</label>
       <select id="alarmSon" onchange="majAlarmeReglages()"
         style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:var(--creme);margin-bottom:14px;">
-        <option value="off">🔕 Silence (aucun son)</option>
+        <option value="cash" selected>💰 Caisse enregistreuse · Ka-ching ! (par défaut)</option>
         <option value="bell">🔔 Cloche douce</option>
         <option value="ding">🛎️ Ding-Dong</option>
         <option value="chime">🎵 Carillon</option>
         <option value="alarm">🚨 Alarme (bip répétitif)</option>
         <option value="siren">🚓 Sirène (max attention)</option>
+        <option value="off">🔕 Silence (aucun son)</option>
       </select>
 
-      <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Volume : <b id="alarmVolVal">60</b>%</label>
-      <input type="range" id="alarmVol" min="10" max="100" step="5" value="60"
+      <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Volume : <b id="alarmVolVal">100</b>%</label>
+      <input type="range" id="alarmVol" min="10" max="100" step="5" value="100"
         oninput="document.getElementById('alarmVolVal').textContent=this.value;majAlarmeReglages()"
         style="width:100%;margin-bottom:14px;">
 
@@ -5060,6 +5061,7 @@ function injecterDonneesDemoDashboard() {
 // ============================================================
 const ALARM_SOUNDS = {
   off:    { label: '🔕 Silence', desc: 'Aucun son' },
+  cash:   { label: '💰 Caisse enregistreuse', desc: 'Ka-ching ! Vous venez d\'encaisser' },
   bell:   { label: '🔔 Cloche douce', desc: 'Notification discrète, 1 seule fois' },
   ding:   { label: '🛎️ Ding-Dong', desc: 'Carillon, idéal en boutique' },
   chime:  { label: '🎵 Carillon', desc: 'Plus mélodique, moyennement insistant' },
@@ -5070,11 +5072,11 @@ const ALARM_SOUNDS = {
 function getAlarmSettings() {
   try {
     return Object.assign(
-      { son: 'bell', volume: 0.6, repetitions: 1 },
+      { son: 'cash', volume: 1.0, repetitions: 1 },        // défaut : caisse au max
       JSON.parse(localStorage.getItem('marcheo_alarm_settings') || '{}')
     );
   } catch (e) {
-    return { son: 'bell', volume: 0.6, repetitions: 1 };
+    return { son: 'cash', volume: 1.0, repetitions: 1 };
   }
 }
 
@@ -5118,6 +5120,20 @@ function playTone(freq, duration, type, volume, delay) {
 
 // Patterns de chaque son
 const SOUND_PATTERNS = {
+  cash: function(vol) {
+    // 💰 Ka-ching ! Caisse enregistreuse classique
+    // 1. Bell ding aigu (clochette du tiroir qui s'ouvre)
+    playTone(2400, 0.08, 'square', vol * 0.45, 0);
+    playTone(1200, 0.16, 'sine',   vol * 0.55, 0.02);
+    // 2. Rattle (tiroir qui glisse) — 4 clics métalliques rapides
+    playTone(380, 0.04, 'square', vol * 0.30, 0.18);
+    playTone(420, 0.04, 'square', vol * 0.30, 0.22);
+    playTone(360, 0.04, 'square', vol * 0.30, 0.26);
+    playTone(440, 0.04, 'square', vol * 0.30, 0.30);
+    // 3. Ring final (note tenue qui résonne — c'est ça qui dit "argent !")
+    playTone(1800, 0.50, 'triangle', vol * 0.55, 0.34);
+    playTone(900,  0.55, 'sine',     vol * 0.40, 0.36);
+  },
   bell: function(vol) {
     // Cloche : 880Hz aigu + 440Hz grave qui se chevauchent (effet harmonique)
     playTone(880, 0.5, 'sine', vol, 0);
