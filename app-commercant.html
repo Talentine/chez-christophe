@@ -1310,6 +1310,11 @@
             <div class="reg-label">Refaire le tour de l'app<div class="reg-sub">Visite guidée des fonctionnalités</div></div>
             <div class="reg-chevron">›</div>
           </div>
+          <div class="reg-row" onclick="scrollToReg('reg-alarme')">
+            <div class="reg-icon" style="background:#9F1B1F;">🚨</div>
+            <div class="reg-label">Son nouvelle commande<div class="reg-sub">Cloche, alarme, sirène · réglable</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
         </div>
       </div>
 
@@ -1491,6 +1496,44 @@
           <div style="font-size:12px;color:var(--texte-doux);" id="switchBoutiqueInfo">Vous gérez <strong id="switchNbBoutiques">2</strong> boutiques avec ce compte.</div>
         </div>
         <button onclick="switchBoutique()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:10px 16px;font-size:13px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;flex-shrink:0;">Changer</button>
+      </div>
+    </div>
+
+    <!-- 🔔 SON D'ALARME NOUVELLE COMMANDE -->
+    <div id="reg-alarme" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🚨 Son à chaque nouvelle commande</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">
+        Choisissez le bruit qui retentit sur votre dashboard quand un client passe commande. Idéal en boutique pour ne rien rater.
+      </div>
+
+      <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Type de son</label>
+      <select id="alarmSon" onchange="majAlarmeReglages()"
+        style="width:100%;padding:11px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:var(--creme);margin-bottom:14px;">
+        <option value="off">🔕 Silence (aucun son)</option>
+        <option value="bell">🔔 Cloche douce</option>
+        <option value="ding">🛎️ Ding-Dong</option>
+        <option value="chime">🎵 Carillon</option>
+        <option value="alarm">🚨 Alarme (bip répétitif)</option>
+        <option value="siren">🚓 Sirène (max attention)</option>
+      </select>
+
+      <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Volume : <b id="alarmVolVal">60</b>%</label>
+      <input type="range" id="alarmVol" min="10" max="100" step="5" value="60"
+        oninput="document.getElementById('alarmVolVal').textContent=this.value;majAlarmeReglages()"
+        style="width:100%;margin-bottom:14px;">
+
+      <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Répéter le son : <b id="alarmRepVal">1</b> fois</label>
+      <input type="range" id="alarmRep" min="1" max="5" step="1" value="1"
+        oninput="document.getElementById('alarmRepVal').textContent=this.value;majAlarmeReglages()"
+        style="width:100%;margin-bottom:14px;">
+
+      <button onclick="testerAlarmeReglages()"
+        style="width:100%;background:var(--vert);color:white;border:none;border-radius:50px;padding:12px;font-size:14px;font-weight:600;font-family:'Manrope',system-ui,sans-serif;cursor:pointer;">
+        🔊 Tester le son
+      </button>
+
+      <div style="font-size:11.5px;color:var(--texte-doux);margin-top:10px;line-height:1.5;background:#fff8e7;border-radius:8px;padding:10px 12px;">
+        💡 Le son se déclenche <strong>uniquement quand le dashboard est ouvert</strong>. Pour être alerté quand l'app est fermée, active aussi les <strong>notifications push</strong>.
       </div>
     </div>
 
@@ -4344,7 +4387,12 @@ async function chargerCommandesSupabase(commercantId) {
     if (nouvelles.length > ancienNbNouvelles && ancienNbNouvelles >= 0 && toutesLesCommandes.length > 0) {
       const nouvelle = nouvelles[0];
       afficherToast('🛒 Nouvelle commande ' + (nouvelle.numero || '') + ' !');
-      
+
+      // 🚨 Joue le son d'alarme (paramétrable dans Réglages)
+      if (typeof jouerAlarmeNouvelleCommande === 'function') {
+        jouerAlarmeNouvelleCommande();
+      }
+
       if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('🛒 Nouvelle commande !', {
           body: (nouvelle.numero || '') + ' — ' + (nouvelle.total_ttc || '') + '€',
@@ -4999,6 +5047,177 @@ function injecterDonneesDemoDashboard() {
 
   console.log('[demo-dashboard] Données démo injectées (commandes, produits, créneaux)');
 }
+
+// ============================================================
+// ── SON D'ALARME NOUVELLE COMMANDE (WebAudio, sans fichier audio)
+// 5 sons au choix · activable · volume · stoppable
+// Stocké dans localStorage : marcheo_alarm_settings
+// ============================================================
+const ALARM_SOUNDS = {
+  off:    { label: '🔕 Silence', desc: 'Aucun son' },
+  bell:   { label: '🔔 Cloche douce', desc: 'Notification discrète, 1 seule fois' },
+  ding:   { label: '🛎️ Ding-Dong', desc: 'Carillon, idéal en boutique' },
+  chime:  { label: '🎵 Carillon', desc: 'Plus mélodique, moyennement insistant' },
+  alarm:  { label: '🚨 Alarme', desc: 'Bip répétitif, impossible à rater' },
+  siren:  { label: '🚓 Sirène', desc: 'Maximum d\'attention (use sparingly)' },
+};
+
+function getAlarmSettings() {
+  try {
+    return Object.assign(
+      { son: 'bell', volume: 0.6, repetitions: 1 },
+      JSON.parse(localStorage.getItem('marcheo_alarm_settings') || '{}')
+    );
+  } catch (e) {
+    return { son: 'bell', volume: 0.6, repetitions: 1 };
+  }
+}
+
+function setAlarmSettings(settings) {
+  localStorage.setItem('marcheo_alarm_settings', JSON.stringify(settings));
+}
+
+let __alarmAudioCtx = null;
+let __alarmStopFlag = false;
+
+function getAudioContext() {
+  if (!__alarmAudioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    __alarmAudioCtx = new AC();
+  }
+  // Reprend si suspendu (politique navigateur autoplay)
+  if (__alarmAudioCtx.state === 'suspended') __alarmAudioCtx.resume();
+  return __alarmAudioCtx;
+}
+
+// Génère une seule note
+function playTone(freq, duration, type, volume, delay) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  const t0 = ctx.currentTime + (delay || 0);
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type || 'sine';
+  osc.frequency.value = freq;
+  // Fade in/out pour éviter clic
+  gain.gain.setValueAtTime(0, t0);
+  gain.gain.linearRampToValueAtTime(volume, t0 + 0.01);
+  gain.gain.linearRampToValueAtTime(volume, t0 + duration - 0.05);
+  gain.gain.linearRampToValueAtTime(0, t0 + duration);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(t0);
+  osc.stop(t0 + duration + 0.05);
+}
+
+// Patterns de chaque son
+const SOUND_PATTERNS = {
+  bell: function(vol) {
+    // Cloche : 880Hz aigu + 440Hz grave qui se chevauchent (effet harmonique)
+    playTone(880, 0.5, 'sine', vol, 0);
+    playTone(440, 0.7, 'sine', vol * 0.5, 0.05);
+  },
+  ding: function(vol) {
+    // Ding-Dong : deux notes successives
+    playTone(880, 0.4, 'sine', vol, 0);
+    playTone(659, 0.6, 'sine', vol, 0.4);
+  },
+  chime: function(vol) {
+    // Mélodie courte : mi-do-sol
+    playTone(659, 0.25, 'sine', vol, 0);
+    playTone(523, 0.25, 'sine', vol, 0.25);
+    playTone(784, 0.4, 'sine', vol, 0.5);
+  },
+  alarm: function(vol) {
+    // Alarme : bip-bip-bip-bip rapides en alternance
+    for (let i = 0; i < 4; i++) {
+      playTone(1000, 0.12, 'square', vol * 0.7, i * 0.18);
+    }
+  },
+  siren: function(vol) {
+    // Sirène : sweep up-down × 2
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(600, t0);
+    osc.frequency.linearRampToValueAtTime(1200, t0 + 0.5);
+    osc.frequency.linearRampToValueAtTime(600, t0 + 1.0);
+    osc.frequency.linearRampToValueAtTime(1200, t0 + 1.5);
+    osc.frequency.linearRampToValueAtTime(600, t0 + 2.0);
+    gain.gain.setValueAtTime(0, t0);
+    gain.gain.linearRampToValueAtTime(vol * 0.6, t0 + 0.05);
+    gain.gain.linearRampToValueAtTime(vol * 0.6, t0 + 1.95);
+    gain.gain.linearRampToValueAtTime(0, t0 + 2.05);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + 2.1);
+  },
+};
+
+window.jouerAlarmeNouvelleCommande = function(testForce) {
+  const s = getAlarmSettings();
+  if (s.son === 'off' && !testForce) return;
+  const pattern = SOUND_PATTERNS[s.son] || SOUND_PATTERNS.bell;
+  const vol = Math.max(0, Math.min(1, s.volume || 0.6));
+  const repetitions = Math.max(1, Math.min(10, s.repetitions || 1));
+  __alarmStopFlag = false;
+  for (let i = 0; i < repetitions && !__alarmStopFlag; i++) {
+    setTimeout(() => {
+      if (!__alarmStopFlag) pattern(vol);
+    }, i * 2200); // 2.2s entre chaque répétition
+  }
+};
+
+window.stopperAlarme = function() {
+  __alarmStopFlag = true;
+};
+
+// Test rapide depuis les réglages
+window.tester_alarme = function(son) {
+  const s = getAlarmSettings();
+  const pattern = SOUND_PATTERNS[son] || SOUND_PATTERNS.bell;
+  pattern(s.volume || 0.6);
+};
+
+// ── Sync UI réglages → settings
+window.majAlarmeReglages = function() {
+  const son = document.getElementById('alarmSon')?.value || 'bell';
+  const vol = parseInt(document.getElementById('alarmVol')?.value || '60') / 100;
+  const rep = parseInt(document.getElementById('alarmRep')?.value || '1');
+  setAlarmSettings({ son, volume: vol, repetitions: rep });
+};
+
+window.testerAlarmeReglages = function() {
+  majAlarmeReglages();
+  const s = getAlarmSettings();
+  if (s.son === 'off') {
+    if (typeof afficherToast === 'function') afficherToast('🔕 Mode silence activé');
+    return;
+  }
+  jouerAlarmeNouvelleCommande(true);
+};
+
+// ── Charge les valeurs sauvées dans les sliders au chargement
+function chargerAlarmeReglages() {
+  const s = getAlarmSettings();
+  const sonEl = document.getElementById('alarmSon');
+  const volEl = document.getElementById('alarmVol');
+  const repEl = document.getElementById('alarmRep');
+  const volLbl = document.getElementById('alarmVolVal');
+  const repLbl = document.getElementById('alarmRepVal');
+  if (sonEl) sonEl.value = s.son;
+  if (volEl) volEl.value = Math.round((s.volume || 0.6) * 100);
+  if (volLbl) volLbl.textContent = Math.round((s.volume || 0.6) * 100);
+  if (repEl) repEl.value = s.repetitions || 1;
+  if (repLbl) repLbl.textContent = s.repetitions || 1;
+}
+// Charge à l'ouverture du tab réglages + au démarrage
+document.addEventListener('DOMContentLoaded', () => setTimeout(chargerAlarmeReglages, 500));
 
 // ── BANDEAU MODE DÉMO (dashboard commerçant)
 function afficherBandeauDemoDashboard() {
