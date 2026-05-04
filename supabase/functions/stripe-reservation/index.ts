@@ -33,7 +33,8 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
 );
 
-const MONTANT_PAR_COUVERT_CENTS = 1500; // 15€/couvert
+// Fallback si le commerçant n'a rien configuré (commercants.empreinte_couvert_cents IS NULL)
+const MONTANT_PAR_COUVERT_CENTS_FALLBACK = 1000; // 10€/couvert
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -55,7 +56,22 @@ serve(async (req) => {
         return json({ error: 'Champs requis manquants' }, 400);
       }
 
-      const montant_cents = MONTANT_PAR_COUVERT_CENTS * Number(nb_couverts);
+      // ── Lit les paramètres du commerçant : montant par couvert + politique d'annulation
+      const { data: biz, error: bizErr } = await supabase
+        .from('commercants')
+        .select('empreinte_couvert_cents, cancellation_policy_hours')
+        .eq('id', commercant_id)
+        .single();
+      if (bizErr || !biz) {
+        console.error('[reservation] biz lookup err:', bizErr);
+        return json({ error: 'Commerçant introuvable' }, 404);
+      }
+      const montantParCouvertCents = Number(biz.empreinte_couvert_cents) > 0
+        ? Number(biz.empreinte_couvert_cents)
+        : MONTANT_PAR_COUVERT_CENTS_FALLBACK;
+      const cancellation_policy_hours = Number(biz.cancellation_policy_hours) || 24;
+
+      const montant_cents = montantParCouvertCents * Number(nb_couverts);
 
       const customer = await stripe.customers.create({
         email: email || undefined,
@@ -94,6 +110,8 @@ serve(async (req) => {
         setup_intent_id: setupIntent.id,
         reservation_id: reservation.id,
         montant_cents,
+        montant_par_couvert_cents: montantParCouvertCents,
+        cancellation_policy_hours,
       });
     }
 
