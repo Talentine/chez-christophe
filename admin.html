@@ -1210,7 +1210,23 @@ window.toggleMenuActions = function(id) {
   });
   const menu = document.getElementById('menu-actions-' + id);
   if (!menu) return;
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  const isOpening = menu.style.display !== 'block';
+  menu.style.display = isOpening ? 'block' : 'none';
+
+  // Si on ouvre, on s'assure que le menu est entièrement visible :
+  // - calcul du dépassement bas → scroll fluide vers le haut juste ce qu'il faut
+  // - sinon ouverture vers le haut (drop-up) si vraiment pas la place
+  if (isOpening) {
+    requestAnimationFrame(() => {
+      const rect = menu.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const overflowBottom = rect.bottom - vh + 16; // marge 16px
+      if (overflowBottom > 0) {
+        // Scroll juste assez pour que le menu rentre dans le viewport
+        window.scrollBy({ top: overflowBottom, behavior: 'smooth' });
+      }
+    });
+  }
 };
 window.fermerMenuActions = function(id) {
   const menu = document.getElementById('menu-actions-' + id);

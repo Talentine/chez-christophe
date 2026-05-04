@@ -5398,7 +5398,7 @@ function appliquerVisibiliteFeatures() {
     // Capacités par plan
     const caps = {
       vitrine:      { commandes:false, livraison:false, reservation:false, label:'Vitrine' },
-      clickcollect: { commandes:true,  livraison:false, reservation:false, label:'Click & Collect' },
+      clickcollect: { commandes:true,  livraison:false, reservation:true,  label:'Click & Collect + Réservation' },
       livraison:    { commandes:true,  livraison:true,  reservation:true,  label:'Livraison + Réservation' }
     };
     const cap = caps[offre] || caps.clickcollect;

@@ -6,7 +6,7 @@
 //  - Stale while revalidate : images Storage Supabase
 // ============================================================
 
-const CACHE_VERSION = 'marcheo-v64-2026-05-fix-push-409';
+const CACHE_VERSION = 'marcheo-v65-2026-05-resa-clickcollect-menu-scroll';
 const CACHE_STATIC  = `${CACHE_VERSION}-static`;
 const CACHE_RUNTIME = `${CACHE_VERSION}-runtime`;
 const CACHE_IMAGES  = `${CACHE_VERSION}-images`;
