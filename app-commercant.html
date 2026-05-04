@@ -575,7 +575,7 @@
 
     <nav id="m-menu-nav" style="display:flex;flex-direction:column;gap:4px;">
       <button class="m-menu-item" data-onglet="commandes" onclick="goOnglet('commandes')"><span class="m-menu-icon">🛒</span><span class="m-menu-label">Commandes</span><span class="m-menu-badge" id="m-menu-badge-commandes" hidden>0</span></button>
-      <button class="m-menu-item" data-onglet="planning" onclick="goOnglet('planning')"><span class="m-menu-icon">📅</span><span class="m-menu-label">Planning</span></button>
+      <button class="m-menu-item" data-onglet="planning" onclick="goOnglet('planning')" style="display:none;"><span class="m-menu-icon">📅</span><span class="m-menu-label">Planning</span></button>
       <button class="m-menu-item" data-onglet="produits" onclick="goOnglet('produits')"><span class="m-menu-icon">🥕</span><span class="m-menu-label">Produits</span></button>
       <button class="m-menu-item" data-onglet="creneaux" onclick="goOnglet('creneaux')"><span class="m-menu-icon">🗓</span><span class="m-menu-label">Agenda</span></button>
       <button class="m-menu-item" data-onglet="reservations" onclick="goOnglet('reservations')"><span class="m-menu-icon">📋</span><span class="m-menu-label">Réservations</span><span class="m-menu-badge" id="m-menu-badge-reservations" hidden>0</span></button>
@@ -609,7 +609,7 @@
     <span>Commandes</span>
     <span class="tab-badge" id="badge-commandes">0</span>
   </button>
-  <button class="tab-btn" onclick="allerOnglet('planning')" id="tab-planning">
+  <button class="tab-btn" onclick="allerOnglet('planning')" id="tab-planning" style="display:none;">
     <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
     <span>Planning</span>
   </button>
@@ -617,8 +617,8 @@
     <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
     <span>Produits</span>
   </button>
-  <button class="tab-btn" onclick="allerOnglet('creneaux')" id="tab-creneaux" style="display:none;">
-    <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+  <button class="tab-btn" onclick="allerOnglet('creneaux')" id="tab-creneaux">
+    <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
     <span>Agenda</span>
   </button>
   <button class="tab-btn" onclick="allerOnglet('reservations')" id="tab-reservations" style="display:none;">
