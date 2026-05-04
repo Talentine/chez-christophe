@@ -3911,19 +3911,29 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
 
   // Montant par couvert (récupéré du commerçant, fallback 10€)
   var couvertEur = 10;
+  function majMontantsResa() {
+    var nbActif = document.querySelector('.m-resa-couvre-btn.active');
+    var n = nbActif ? parseInt(nbActif.dataset.nb) : 2;
+    // m-resa-montant = libellé "X€ par couvert" → afficher le PRIX UNITAIRE
+    var m1 = document.getElementById('m-resa-montant');
+    if (m1) m1.textContent = couvertEur + '€';
+    // m-resa-montant2 = "Empreinte de X€" sur l'écran carte → afficher le TOTAL
+    var m2 = document.getElementById('m-resa-montant2');
+    if (m2) m2.textContent = (couvertEur * n) + '€';
+  }
   document.addEventListener('business:ready', function(e) {
     var b = (e.detail && e.detail.business) || {};
-    if (b.empreinte_couvert_cents) {
-      couvertEur = Math.round(b.empreinte_couvert_cents / 100);
-      // Mettre à jour les montants affichés
-      var nbActif = document.querySelector('.m-resa-couvre-btn.active');
-      var n = nbActif ? parseInt(nbActif.dataset.nb) : 2;
-      var m1 = document.getElementById('m-resa-montant');
-      var m2 = document.getElementById('m-resa-montant2');
-      if (m1) m1.textContent = (couvertEur * n) + '€';
-      if (m2) m2.textContent = (couvertEur * n) + '€';
+    // Toujours mettre à jour, même si la valeur DB est null (utilise le fallback 10€)
+    if (b.empreinte_couvert_cents != null) {
+      couvertEur = Math.round(b.empreinte_couvert_cents / 100) || 10;
     }
+    majMontantsResa();
   });
+  // Si __CONFIG__ déjà chargé au moment de l'exécution (race condition)
+  if (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.empreinte_couvert_cents != null) {
+    couvertEur = Math.round(window.__CONFIG__.business.empreinte_couvert_cents / 100) || 10;
+    majMontantsResa();
+  }
 
   // Initialiser les boutons couverts (1-12)
   var couvertsBtns = document.getElementById('m-resa-couverts-grid');
@@ -3937,9 +3947,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       btn.onclick = function() {
         document.querySelectorAll('.m-resa-couvre-btn').forEach(function(b){b.classList.remove('active')});
         this.classList.add('active');
-        var n = parseInt(this.dataset.nb);
-        document.getElementById('m-resa-montant').textContent = (couvertEur * n) + '€';
-        document.getElementById('m-resa-montant2').textContent = (couvertEur * n) + '€';
+        majMontantsResa();
       };
       couvertsBtns.appendChild(btn);
     }
@@ -4021,6 +4029,16 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       heures.innerHTML = '<div style="font-size:12px;color:#9a8a6a;padding:8px 0;">Aucun créneau ce jour.</div>';
       return;
     }
+    // Délai minimum avant réservation (en minutes) — paramétré par le commerçant
+    var biz = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    var delaiMin = biz.delai_min_reservation_min != null ? Number(biz.delai_min_reservation_min) : 60;
+    // Date sélectionnée (au cas où c'est aujourd'hui : on bloque les slots trop proches)
+    var dateStr = document.getElementById('m-resa-date').value; // YYYY-MM-DD
+    var selectedDate = dateStr ? new Date(dateStr + 'T00:00:00') : null;
+    var now = new Date();
+    var todayKey = now.toISOString().slice(0,10);
+    var seuilMs = now.getTime() + delaiMin * 60 * 1000;
+
     // Générer les slots de 30 min entre heure_debut et heure_fin
     var slots = [];
     dispos.forEach(function(c){
@@ -4035,6 +4053,25 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       }
     });
     var uniq = [].concat(slots).filter(function(s,i){ return slots.indexOf(s) === i; }).sort();
+
+    // Filtre les slots passés ou trop proches (< délai min) si la date sélectionnée est aujourd'hui
+    if (dateStr === todayKey) {
+      uniq = uniq.filter(function(s){
+        var hh = parseInt(s.slice(0,2));
+        var mm = parseInt(s.slice(3,5));
+        var slotDate = new Date();
+        slotDate.setHours(hh, mm, 0, 0);
+        return slotDate.getTime() >= seuilMs;
+      });
+    }
+
+    if (uniq.length === 0) {
+      var hMsg = Math.round(delaiMin / 60 * 10) / 10;
+      heures.innerHTML = '<div style="font-size:12px;color:#9a8a6a;padding:8px 0;">'
+        + 'Plus de créneau disponible aujourd\'hui (réservation au moins ' + (delaiMin >= 60 ? hMsg + 'h' : delaiMin + ' min') + ' à l\'avance). Choisissez une autre date.'
+        + '</div>';
+      return;
+    }
     heures.innerHTML = uniq.map(function(s){
       return '<button type="button" class="m-resa-heure-btn" data-heure="' + s + '" onclick="selectionnerHeure(this)" '
         + 'style="background:#fff;border:1.5px solid #E8E0D5;border-radius:50px;padding:8px 14px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:40px;">' + s + '</button>';

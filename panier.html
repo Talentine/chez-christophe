@@ -775,8 +775,13 @@ function genererCreneauxSemaine(data) {
       const dateCreneau = new Date(date);
       dateCreneau.setHours(heureDebut, minDebut, 0, 0);
 
-      // Délai minimum : 2h retrait, 5h livraison
-      const delaiMs = (c.type === 'livraison' ? 5 : 2) * 60 * 60 * 1000;
+      // Délai minimum paramétré par le commerçant (en minutes)
+      // Fallback : 30 min retrait, 60 min livraison
+      const biz = __BIZ__ || {};
+      const delaiMin = c.type === 'livraison'
+        ? (biz.delai_min_livraison_min != null ? Number(biz.delai_min_livraison_min) : 60)
+        : (biz.delai_min_retrait_min   != null ? Number(biz.delai_min_retrait_min)   : 30);
+      const delaiMs = delaiMin * 60 * 1000;
 
       // Bloquer si le créneau est passé ou trop proche
       if (dateCreneau.getTime() - now.getTime() < delaiMs) {

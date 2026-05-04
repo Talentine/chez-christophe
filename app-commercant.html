@@ -5520,9 +5520,10 @@ function appliquerVisibiliteFeatures() {
     } else {
       ['content-commandes','content-planning','content-produits','content-creneaux'].forEach(retireLockOverlay);
     }
-    // Réservations : verrouillé si métier resto MAIS plan != livraison
-    if (isResto && offre !== 'livraison') {
-      poseLockOverlay('content-reservations', lockMessages.clickcollect);
+    // Réservations : verrouillé uniquement sur le plan vitrine (où cap.reservation === false)
+    // Sur clickcollect et livraison, la résa est disponible pour tous les métiers.
+    if (!cap.reservation) {
+      poseLockOverlay('content-reservations', lockMessages.vitrine);
     } else {
       retireLockOverlay('content-reservations');
     }
