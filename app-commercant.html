@@ -4314,13 +4314,13 @@ async function abonnerAuxNotifications(reg) {
 
     if (commercantId) {
       const subJson = sub.toJSON();
-      await fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
+      await fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_KEY,
           'Authorization': 'Bearer ' + SUPABASE_KEY,
           'Content-Type': 'application/json',
-          'Prefer': 'resolution=merge-duplicates',
+          'Prefer': 'resolution=merge-duplicates,return=minimal',
         },
         body: JSON.stringify({
           commercant_id: commercantId,
