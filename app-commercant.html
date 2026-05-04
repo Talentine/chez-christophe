@@ -655,62 +655,8 @@
 <!-- ONGLET PLANNING -->
 <div class="tab-content" id="content-planning">
   <div class="planning-semaine">
-
-    <!-- Sélecteur période -->
-    <div style="display:flex;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:14px;font-size:12px;">
-      <button onclick="setStatsPeriode('jour')"    id="statsP-jour"    class="stats-pill">Aujourd'hui</button>
-      <button onclick="setStatsPeriode('semaine')" id="statsP-semaine" class="stats-pill actif">Semaine</button>
-      <button onclick="setStatsPeriode('mois')"    id="statsP-mois"    class="stats-pill">Mois</button>
-      <button onclick="setStatsPeriode('30j')"     id="statsP-30j"     class="stats-pill">30 j</button>
-    </div>
-
-    <!-- 6 KPIs -->
-    <div class="planning-stats" style="grid-template-columns:1fr 1fr 1fr;display:grid;gap:8px;">
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planCA">—</div>
-        <div class="planning-stat-lbl" id="planCALbl">CA semaine</div>
-      </div>
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planNbCmd">—</div>
-        <div class="planning-stat-lbl">Commandes</div>
-      </div>
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planPanierMoy">—</div>
-        <div class="planning-stat-lbl">Panier moyen</div>
-      </div>
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planCreneauTop" style="font-size:14px;">—</div>
-        <div class="planning-stat-lbl">Créneau le + chargé</div>
-      </div>
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planProdTop" style="font-size:14px;">—</div>
-        <div class="planning-stat-lbl">Top produit</div>
-      </div>
-      <div class="planning-stat">
-        <div class="planning-stat-val" id="planNoShow">—</div>
-        <div class="planning-stat-lbl">Taux no-show</div>
-      </div>
-    </div>
-
-    <!-- Graphique CA 30 jours -->
-    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
-        <div style="font-size:13px;font-weight:500;">CA sur 30 jours</div>
-        <div style="font-size:11px;color:var(--texte-doux);" id="ca30jTotal">—</div>
-      </div>
-      <div id="caChart" style="height:80px;"></div>
-    </div>
-
-    <!-- Top 5 produits -->
-    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;">
-      <div style="font-size:13px;font-weight:500;margin-bottom:10px;">Top 5 produits</div>
-      <div id="topProduitsListe">
-        <div style="font-size:12px;color:var(--texte-doux);">Chargement…</div>
-      </div>
-    </div>
-
     <!-- Planning grille -->
-    <div style="font-size:13px;font-weight:500;margin:18px 0 10px;">Planning des retraits</div>
+    <div style="font-size:13px;font-weight:500;margin:6px 0 10px;">Planning des retraits</div>
     <div id="planningGrid"></div>
   </div>
 </div>
@@ -980,6 +926,59 @@
   <div style="padding:16px;">
     <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:6px;">💬 CRM &amp; Fidélisation</div>
     <div style="font-size:13px;color:var(--texte-doux);margin-bottom:16px;">Connais tes clients · segmente · relance avec un message personnalisé.</div>
+
+    <!-- Sélecteur période (analytics business) -->
+    <div style="display:flex;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:14px;font-size:12px;">
+      <button onclick="setStatsPeriode('jour')"    id="statsP-jour"    class="stats-pill">Aujourd'hui</button>
+      <button onclick="setStatsPeriode('semaine')" id="statsP-semaine" class="stats-pill actif">Semaine</button>
+      <button onclick="setStatsPeriode('mois')"    id="statsP-mois"    class="stats-pill">Mois</button>
+      <button onclick="setStatsPeriode('30j')"     id="statsP-30j"     class="stats-pill">30 j</button>
+    </div>
+
+    <!-- 6 KPIs business -->
+    <div class="planning-stats" style="grid-template-columns:1fr 1fr 1fr;display:grid;gap:8px;">
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planCA">—</div>
+        <div class="planning-stat-lbl" id="planCALbl">CA semaine</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planNbCmd">—</div>
+        <div class="planning-stat-lbl">Commandes</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planPanierMoy">—</div>
+        <div class="planning-stat-lbl">Panier moyen</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planCreneauTop" style="font-size:14px;">—</div>
+        <div class="planning-stat-lbl">Créneau le + chargé</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planProdTop" style="font-size:14px;">—</div>
+        <div class="planning-stat-lbl">Top produit</div>
+      </div>
+      <div class="planning-stat">
+        <div class="planning-stat-val" id="planNoShow">—</div>
+        <div class="planning-stat-lbl">Taux no-show</div>
+      </div>
+    </div>
+
+    <!-- Graphique CA 30 jours -->
+    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+        <div style="font-size:13px;font-weight:500;">CA sur 30 jours</div>
+        <div style="font-size:11px;color:var(--texte-doux);" id="ca30jTotal">—</div>
+      </div>
+      <div id="caChart" style="height:80px;"></div>
+    </div>
+
+    <!-- Top 5 produits -->
+    <div style="background:var(--blanc);border-radius:14px;padding:16px;border:1px solid var(--creme-fonce);margin-top:14px;margin-bottom:18px;">
+      <div style="font-size:13px;font-weight:500;margin-bottom:10px;">Top 5 produits</div>
+      <div id="topProduitsListe">
+        <div style="font-size:12px;color:var(--texte-doux);">Chargement…</div>
+      </div>
+    </div>
 
     <!-- KPIs -->
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;">
