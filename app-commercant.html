@@ -1926,6 +1926,8 @@
   color: var(--texte-doux) !important;
   transition: all .15s !important;
 }
+/* Planning fusionné dans Agenda — toujours masqué */
+#tab-planning { display: none !important; }
 .tab-btn .tab-ico {
   display: inline-flex;
   align-items: center;
@@ -2335,6 +2337,11 @@ async function changerStatut(id, nouveauStatut) {
     badge.textContent = nouvelles;
     badge.classList.toggle('visible', nouvelles > 0);
   }
+
+  // Si commande démo (id non-UUID, ex: '1','2','3','4') → pas de persistance DB,
+  // l'update local suffit pour la démonstration
+  const isDemo = !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(id));
+  if (isDemo) return;
 
   // Persistance Supabase
   try {
