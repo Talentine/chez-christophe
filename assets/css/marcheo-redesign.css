@@ -1,62 +1,51 @@
 /* ============================================================
-   MARCHÉO — REDESIGN ÉDITORIAL (App Commerçant)
-   Inspiration : Apple (structure) + Uber Eats (énergie) + Dish (chaleur)
-   Senior-friendly : texte 17px+, hit targets 56-64px, contraste élevé
-   Typo : Fraunces (display serif) + Inter (UI sans)
-   Palette : crème chaude #F7F1E6, terracotta #C5462A, sage #4A6F4F
+   MARCHÉO — REDESIGN ÉDITORIAL v2 (App Commerçant)
+   Match du proto Claude Design (zjzOpUYy3Nws827EtW5wdQ)
+   Inspiration : Apple (structure) + UberEats (énergie) + Dish (chaleur)
+   Senior-friendly : 17px+ base, hit targets 56-64px, contraste élevé
+   Typo : Fraunces (display serif) + Inter (UI)
+   Palette : crème chaude #F7F1E6 + ink coffee #1C1814 + tomate #C5462A
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* ── Couleurs (override du brand v2) ── */
-  --bg:           #F7F1E6;   /* crème chaude */
+  /* ── Couleurs ── */
+  --bg:           #F7F1E6;
   --creme:        #F7F1E6;
-  --creme-fonce:  #EDE3CF;   /* tint */
-  --blanc:        #FFFCF6;   /* surface cartes */
-  --surface-2:    #F0E9DA;   /* subtle */
-  --texte:        #1C1814;   /* ink (coffee) */
+  --creme-fonce:  #EDE3CF;
+  --blanc:        #FFFCF6;
+  --surface-2:    #F0E9DA;
+  --texte:        #1C1814;
   --texte-doux:   rgba(28,24,20,0.62);
   --texte-leger:  rgba(28,24,20,0.42);
-
-  /* Bordures douces */
   --border:       rgba(28,24,20,0.08);
   --divider:      rgba(28,24,20,0.05);
 
-  /* Accents — terracotta + sage */
-  --accent:       #C5462A;   /* tomate Dish — primary action */
+  /* Accents */
+  --accent:       #C5462A;          /* tomate Dish */
   --accent-deep:  #8E2F18;
-  --accent-soft:  rgba(197,70,42,0.10);
+  --accent-soft:  rgba(197,70,42,0.12);
 
-  /* Vert (succès, valider) */
-  --vert:         #4A6F4F;   /* sage marché */
+  --vert:         #4A6F4F;          /* sage marché */
   --vert-fonce:   #2F4F35;
   --vert-clair:   #4A6F4F;
-  --vert-soft:    rgba(74,111,79,0.10);
+  --vert-soft:    rgba(74,111,79,0.12);
   --vert-ok:      #4A6F4F;
-  --vert-ok-clair:#E8F0E8;
-
-  /* Or / mustard (highlight) */
+  --vert-ok-clair:#E7EFE6;
   --or:           #B8862B;
   --or-clair:     #B8862B;
-  --mustard-soft: rgba(184,134,43,0.12);
-
-  /* Tomate (alerte) */
   --terracotta:   #C5462A;
   --tomate:       #C5462A;
-  --aubergine:    #5A357E;
-  --abricot:      #B8862B;
+  --bleu-nuit:    #1C1814;
 
   /* Fonts */
   --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
   --font-ui:      'Inter', -apple-system, system-ui, sans-serif;
-
-  /* Bleu nuit conservé pour quelques éléments brand mais tomate prend la priorité */
-  --bleu-nuit:    #1C1814;
 }
 
 /* ============================================================
-   APPLICATION GLOBALE — uniquement sur l'app commerçant
+   GLOBAL
    ============================================================ */
 body {
   font-family: var(--font-ui), 'Manrope', system-ui, sans-serif !important;
@@ -66,116 +55,209 @@ body {
   font-feature-settings: 'cv11' 1, 'ss01' 1;
 }
 
-/* ── Titres en serif Fraunces (chaleur éditoriale) ── */
-h1, h2, h3, .dash-titre, #dashTitre,
-.commande-client, .reg-section-titre,
-.modal-titre, .empty-state-titre,
+/* Reset des styles inline qui forcent Manrope */
 [style*="font-family:'Manrope'"],
-[style*='font-family:"Manrope"'] {
-  font-family: var(--font-display) !important;
-  letter-spacing: -0.4px;
-  font-weight: 500 !important;
-}
-
-/* Manrope reste pour le UI (tabs, boutons, listes) — on contre les inline styles */
-button, .tab-btn, .nav-item, input, select, textarea,
-.tab-badge, .filtre-pill, .meta-pill,
-.commande-meta, .commande-statut,
-.crm-tab, .reg-row {
+[style*='font-family:"Manrope"'],
+[style*="font-family: 'Manrope'"],
+[style*='font-family: "Manrope"'] {
   font-family: var(--font-ui) !important;
 }
 
 /* ============================================================
-   HEADER & DASH
+   HEADER BANDEAU "Espace Primeur"
    ============================================================ */
-.dash-header,
-[class*="dash-header"],
-header.dash-header {
+.dash-header {
   background: var(--texte) !important;
-  color: var(--blanc) !important;
+  color: #fff !important;
+  padding: 16px 18px !important;
+  border-radius: 16px !important;
+  margin: 12px !important;
+  box-shadow: 0 4px 16px rgba(28,24,20,0.12);
 }
 
-#dashTitre {
+.dash-header h1, #dashTitre {
   font-family: var(--font-display) !important;
   font-weight: 500 !important;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.5px !important;
   font-size: 22px !important;
-}
-
-/* ============================================================
-   CARDS — surfaces papier chaud
-   ============================================================ */
-.card,
-[style*="background:var(--blanc)"][style*="border-radius"],
-[style*="background: var(--blanc)"][style*="border-radius"] {
-  background: var(--blanc) !important;
-  border-color: var(--border) !important;
-  box-shadow: 0 1px 3px rgba(28,24,20,0.04), 0 4px 12px rgba(28,24,20,0.03);
-}
-
-/* ============================================================
-   BOUTONS — primaire en terracotta, hit target 56px+
-   ============================================================ */
-button {
-  font-weight: 600;
-  letter-spacing: -0.1px;
-  transition: transform .12s ease, opacity .12s ease, background .15s ease;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Boutons primaires verts (CTA principaux) → terracotta */
-button[style*="background:var(--vert)"],
-button[style*="background: var(--vert)"],
-button[style*="background:#5BBE3A"],
-button[style*="background: #5BBE3A"] {
-  background: var(--accent) !important;
   color: #fff !important;
 }
 
-button[style*="background:var(--vert)"]:hover,
-button[style*="background:#5BBE3A"]:hover {
-  background: var(--accent-deep) !important;
+.dash-header [id*="statutBoutique"],
+#statutBoutique {
+  font-family: var(--font-ui) !important;
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.6) !important;
+  font-weight: 500 !important;
 }
 
-/* Bouton "marquer prête" / actions secondaires en sage */
-button[style*="background:var(--or)"] {
-  background: var(--or) !important;
+/* PAUSE button orange */
+button[onclick*="togglePause"], #btnPause {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 8px 16px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  font-family: var(--font-ui) !important;
+  letter-spacing: 0.3px;
+}
+
+/* Déco button outline */
+button[onclick*="seDeconnecter"] {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  font-family: var(--font-ui) !important;
 }
 
 /* ============================================================
-   TAB BAR (bottom-nav senior friendly)
+   STATS CARD (Retraits / CA / À préparer / Demain)
+   ============================================================ */
+.stats-card {
+  background: var(--texte) !important;
+  margin: 0 12px 12px !important;
+  border-radius: 16px !important;
+  padding: 18px 20px !important;
+  box-shadow: 0 4px 16px rgba(28,24,20,0.08);
+}
+
+.stats-date {
+  font-size: 13px !important;
+  color: rgba(255,255,255,0.55) !important;
+  margin-bottom: 14px !important;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+#btnTestNotif {
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-ui) !important;
+}
+
+/* CHIFFRES KPI ÉNORMES en Fraunces */
+.stat-val {
+  font-family: var(--font-display) !important;
+  font-size: 56px !important;
+  font-weight: 400 !important;
+  letter-spacing: -2px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+  font-feature-settings: 'tnum' 1;
+}
+
+.stat-lbl {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.55) !important;
+  margin-top: 6px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1px;
+  font-family: var(--font-ui) !important;
+}
+
+.stats-grid {
+  gap: 18px !important;
+}
+
+/* ============================================================
+   ALERTE BAR
+   ============================================================ */
+.alerte-bar {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  margin: 0 12px 10px !important;
+  padding: 14px 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.1px;
+}
+
+/* ============================================================
+   FILTRES PILLS COMMANDES (Toutes / Nouvelles / En prépa / Prêtes)
+   ============================================================ */
+.commandes-filtres {
+  padding: 12px 16px !important;
+  background: var(--blanc) !important;
+  border-bottom: 1px solid var(--border) !important;
+  gap: 8px !important;
+}
+
+.filtre-pill {
+  background: var(--surface-2) !important;
+  color: var(--texte-doux) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-ui) !important;
+  min-height: 40px;
+}
+
+.filtre-pill.actif {
+  background: var(--texte) !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   TAB BAR — bottom nav style iOS 17 (chip arrondi sur l'actif)
    ============================================================ */
 .tabs {
   background: var(--blanc) !important;
   border-top: 1px solid var(--border) !important;
-  box-shadow: 0 -2px 12px rgba(28,24,20,0.04) !important;
+  border-bottom: none !important;
+  box-shadow: 0 -4px 16px rgba(28,24,20,0.06) !important;
+  padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
 }
 
 .tab-btn {
-  font-weight: 500 !important;
-  font-size: 11px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
   color: var(--texte-doux) !important;
   font-family: var(--font-ui) !important;
-}
-
-.tab-btn.active {
-  color: var(--accent) !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  border-radius: 16px !important;
+  padding: 10px 8px !important;
+  margin: 0 2px !important;
+  transition: all .2s ease !important;
 }
 
 .tab-btn[data-icon]::before {
-  filter: none;
+  font-size: 22px !important;
+  margin-bottom: 4px !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transition: transform .2s ease;
+}
+
+.tab-btn.active {
+  background: var(--texte) !important;
+  color: #fff !important;
+  border-bottom: none !important;
+  font-weight: 700 !important;
+}
+
+.tab-btn.active[data-icon]::before {
+  transform: scale(1.05);
 }
 
 .tab-badge {
   background: var(--accent) !important;
   color: #fff !important;
-  font-weight: 700;
-  border: 2px solid var(--blanc);
+  font-weight: 700 !important;
+  border: 2px solid var(--blanc) !important;
   font-family: var(--font-ui) !important;
+  font-size: 10px !important;
+}
+
+.tab-btn.active .tab-badge {
+  border-color: var(--texte) !important;
 }
 
 /* ============================================================
@@ -185,20 +267,17 @@ button[style*="background:var(--or)"] {
   background: var(--blanc) !important;
   border: 1px solid var(--border) !important;
   border-radius: 18px !important;
-  margin-bottom: 12px !important;
+  margin: 0 12px 12px !important;
   box-shadow: 0 1px 3px rgba(28,24,20,0.03), 0 6px 16px rgba(28,24,20,0.04);
-  transition: transform .15s ease, box-shadow .15s ease;
+  padding: 14px !important;
 }
 
 .commande-card.nouvelle {
   border-left: 4px solid var(--accent) !important;
-  background: var(--blanc) !important;
 }
-
 .commande-card.en-preparation {
   border-left: 4px solid var(--or) !important;
 }
-
 .commande-card.prete {
   border-left: 4px solid var(--vert-ok) !important;
   background: var(--vert-ok-clair) !important;
@@ -212,133 +291,142 @@ button[style*="background:var(--or)"] {
   color: var(--texte) !important;
 }
 
-.commande-montant,
-[class*="montant"] {
-  font-family: var(--font-display);
-  font-feature-settings: 'tnum' 1;  /* tabular nums pour les prix */
-  font-weight: 600;
+.commande-montant {
+  font-family: var(--font-display) !important;
+  font-feature-settings: 'tnum' 1;
+  font-weight: 500 !important;
+  letter-spacing: -0.5px;
+  color: var(--accent) !important;
+  font-size: 20px;
 }
+
+.commande-meta { color: var(--texte-doux); }
 
 .meta-pill {
   background: var(--surface-2) !important;
   color: var(--texte) !important;
-  border-radius: 20px;
-  font-size: 12.5px;
-  padding: 5px 11px;
-  font-weight: 500;
+  border-radius: 999px !important;
+  font-size: 12.5px !important;
+  padding: 5px 12px !important;
+  font-weight: 600;
+  border: none !important;
 }
 
 /* ============================================================
-   FILTRES PILLS
+   RÉGLAGES — sections iOS-style éditoriales
    ============================================================ */
-.filtre-pill {
-  background: var(--surface-2) !important;
+.reg-section-titre,
+.reg-group-titre {
   color: var(--texte-doux) !important;
-  border: none !important;
-  border-radius: 999px !important;
-  padding: 9px 16px !important;
-  font-size: 13px !important;
+  font-family: var(--font-ui) !important;
+  font-size: 11px !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  margin-top: 24px !important;
+  margin-bottom: 10px !important;
+  padding-left: 14px !important;
+}
+
+.reg-list {
+  background: var(--blanc) !important;
+  border-radius: 18px !important;
+  border: 1px solid var(--border) !important;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(28,24,20,0.03);
+}
+
+.reg-row {
+  padding: 16px 14px !important;
+  border-bottom: 1px solid var(--divider) !important;
+  background: transparent !important;
+  transition: background .15s ease;
+}
+.reg-row:last-child { border-bottom: none !important; }
+
+.reg-row:hover, .reg-row:active {
+  background: var(--surface-2) !important;
+}
+
+.reg-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 999px !important;     /* circle pour matcher la maquette */
+  font-size: 18px !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+}
+
+/* Variantes de couleur pour différentes catégories */
+.reg-row[onclick*="reg-stripe"] .reg-icon { background: #635bff !important; }
+.reg-row[onclick*="reg-livraison"] .reg-icon { background: var(--vert) !important; }
+.reg-row[onclick*="reg-empreinte"] .reg-icon { background: var(--accent-deep) !important; }
+.reg-row[onclick*="reg-abonnement"] .reg-icon { background: var(--or) !important; }
+.reg-row[onclick*="reg-mdp"] .reg-icon { background: var(--texte-doux) !important; }
+.reg-row[onclick*="reg-salaries"] .reg-icon { background: var(--vert) !important; }
+.reg-row[onclick*="reg-horaires"] .reg-icon { background: var(--or) !important; }
+.reg-row[onclick*="galerie"] .reg-icon { background: var(--accent) !important; }
+.reg-row[onclick*="reg-businesstype"] .reg-icon { background: var(--accent-deep) !important; }
+.reg-row[onclick*="reg-palette"] .reg-icon { background: var(--accent) !important; }
+
+.reg-label {
+  font-size: 16px !important;
   font-weight: 600 !important;
+  color: var(--texte) !important;
   font-family: var(--font-ui) !important;
 }
 
-.filtre-pill.actif {
-  background: var(--texte) !important;
-  color: var(--blanc) !important;
+.reg-sub {
+  color: var(--texte-doux) !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  margin-top: 3px !important;
+}
+
+.reg-chevron {
+  color: var(--texte-leger) !important;
+  font-size: 22px !important;
 }
 
 /* ============================================================
-   ALERTE BAR
+   BOUTONS PRIMAIRES (override des inline vert→tomate)
    ============================================================ */
-.alerte-bar {
+button[style*="background:var(--vert)"]:not([style*="rgba"]),
+button[style*="background: var(--vert)"]:not([style*="rgba"]),
+button[style*="background:#5BBE3A"],
+button[style*="background: #5BBE3A"],
+button[style*="background:linear-gradient(135deg,#5BBE3A"],
+button[style*="background: linear-gradient(135deg,#5BBE3A"] {
   background: var(--accent) !important;
+  background-image: none !important;
   color: #fff !important;
-  font-weight: 600;
+  font-family: var(--font-ui) !important;
+  font-weight: 600 !important;
+  border-radius: 14px !important;
   letter-spacing: -0.1px;
 }
 
-/* ============================================================
-   BADGES & STATUTS
-   ============================================================ */
-.badge,
-[class*="badge-"] {
-  font-family: var(--font-ui);
-  font-weight: 600;
-  letter-spacing: 0.1px;
-  border-radius: 999px;
+button[style*="background:var(--vert)"]:hover {
+  background: var(--accent-deep) !important;
 }
 
 /* ============================================================
    MODALES & DRAWER
    ============================================================ */
-.modal,
-[id*="overlay"],
-.drawer {
-  border-radius: 24px 24px 0 0;
-}
-
-.modal-titre,
-[class*="modal-titre"] {
+.modal-titre {
   font-family: var(--font-display) !important;
   font-weight: 500 !important;
   letter-spacing: -0.4px;
   font-size: 22px !important;
 }
 
-/* ============================================================
-   STATS CARDS (KPI dashboard)
-   ============================================================ */
-[id*="statRetraits"],
-[id*="statCA"],
-[id*="statAPreparer"],
-[id*="statDemain"],
-.stat-num {
-  font-family: var(--font-display) !important;
-  font-feature-settings: 'tnum' 1;
-  font-weight: 500 !important;
-  letter-spacing: -1px;
-  color: var(--texte) !important;
-}
-
-/* ============================================================
-   RÉGLAGES — sections iOS-style
-   ============================================================ */
-.reg-section-titre {
-  color: var(--texte-doux) !important;
-  font-family: var(--font-ui) !important;
-  font-size: 11.5px !important;
-  letter-spacing: 0.8px !important;
-  text-transform: uppercase;
-  font-weight: 700 !important;
-}
-
-.reg-list {
+.modal {
   background: var(--blanc) !important;
-  border-radius: 16px !important;
-  border: 1px solid var(--border) !important;
-}
-
-.reg-row {
-  padding: 14px !important;
-}
-
-.reg-row:hover {
-  background: var(--surface-2) !important;
-}
-
-.reg-icon {
-  border-radius: 10px !important;
-}
-
-.reg-label {
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  color: var(--texte) !important;
-}
-
-.reg-sub {
-  color: var(--texte-doux) !important;
-  font-size: 12px !important;
+  border-radius: 24px 24px 0 0 !important;
 }
 
 /* ============================================================
@@ -346,17 +434,17 @@ button[style*="background:var(--or)"] {
    ============================================================ */
 input, select, textarea {
   font-family: var(--font-ui) !important;
-  border-radius: 12px;
-  border-color: var(--border);
-  background: var(--blanc);
-  color: var(--texte);
-  font-size: 16px;
+  border-radius: 12px !important;
+  border-color: var(--border) !important;
+  background: var(--blanc) !important;
+  color: var(--texte) !important;
+  font-size: 16px !important;
 }
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--accent) !important;
-  box-shadow: 0 0 0 3px var(--accent-soft);
-  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
+  outline: none !important;
 }
 
 /* ============================================================
@@ -367,8 +455,8 @@ input:focus, select:focus, textarea:focus {
   color: var(--blanc) !important;
   border-radius: 999px !important;
   font-family: var(--font-ui) !important;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 600 !important;
+  font-size: 14px !important;
   box-shadow: 0 12px 40px rgba(28,24,20,0.25);
 }
 
@@ -380,62 +468,106 @@ input:focus, select:focus, textarea:focus {
   background: var(--surface-2) !important;
   border: none !important;
   color: var(--texte-doux) !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
 }
 
 .crm-tab.actif {
   background: var(--accent) !important;
   color: #fff !important;
-  border-color: var(--accent) !important;
+}
+
+/* CRM : couleurs des segments */
+.crm-segment-pill { font-family: var(--font-ui) !important; }
+.crm-seg-vip { background: var(--or-soft, #FFF1D7) !important; color: var(--or) !important; }
+.crm-seg-fidele { background: var(--vert-soft) !important; color: var(--vert) !important; }
+.crm-seg-actif { background: var(--accent-soft) !important; color: var(--accent) !important; }
+.crm-seg-nouveau { background: var(--vert-soft) !important; color: var(--vert) !important; }
+.crm-seg-inactif_14j, .crm-seg-inactif_30j, .crm-seg-inactif_60j {
+  background: rgba(184,134,43,0.12) !important; color: var(--or) !important;
+}
+.crm-seg-gros_panier { background: var(--accent-soft) !important; color: var(--accent) !important; }
+
+/* ============================================================
+   KPI CARDS (admin / autres pages dashboard)
+   ============================================================ */
+[id*="crmStat"],
+[id*="statRet"], [id*="statCA"], [id*="statAPrep"], [id*="statDem"] {
+  font-family: var(--font-display) !important;
+  font-feature-settings: 'tnum' 1;
+  font-weight: 400 !important;
+  letter-spacing: -1px !important;
 }
 
 /* ============================================================
-   SENIOR-FRIENDLY : taille de touche minimale
+   CALENDRIER
    ============================================================ */
-@media (max-width: 540px) {
-  button:not(.action-btn):not(.tab-btn):not(.filtre-pill):not(.crm-tab):not(.reg-row):not(.btn-contact):not(.crm-client-card *):not(.feature-locked *) {
-    min-height: 44px;
-  }
-  .tab-btn {
-    min-height: 56px;
-  }
+.cal-day { font-family: var(--font-ui) !important; }
+.cal-day .cal-num { font-family: var(--font-display) !important; font-weight: 500; }
+.cal-day.has-activity {
+  background: var(--accent-soft) !important;
+  color: var(--accent-deep) !important;
+}
+.cal-day.is-today {
+  border: 2px solid var(--accent) !important;
 }
 
 /* ============================================================
-   ANIMATIONS DOUCES
+   BANDEAU DEMO
    ============================================================ */
-@keyframes mFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+#demo-dash-banner {
+  background: var(--texte) !important;
+  font-family: var(--font-ui) !important;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  font-family: var(--font-ui) !important;
+  font-weight: 600 !important;
+  border-radius: 999px !important;
+  letter-spacing: 0.2px;
+}
+
+/* ============================================================
+   PRODUITS LIST
+   ============================================================ */
+[id*="produitsAdmin"] > div, .demo-produit {
+  background: var(--blanc) !important;
+  border-bottom-color: var(--divider) !important;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes mFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .tab-content.active {
   animation: mFadeIn .25s ease;
 }
 
 /* ============================================================
-   CALENDRIER — couleurs adaptées
+   SENIOR-FRIENDLY : taille de touche minimale
    ============================================================ */
-.cal-day.has-activity {
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-}
-.cal-day.is-today {
-  border-color: var(--accent) !important;
-}
-
-/* ============================================================
-   STATUT PILLS DES COMMANDES (couleur conservée mais radius arrondi)
-   ============================================================ */
-[class*="badge-actif"], [class*="badge-pro"], [class*="badge-premium"] {
-  border-radius: 999px;
-  font-family: var(--font-ui);
+@media (max-width: 540px) {
+  button:not(.tab-btn):not(.filtre-pill):not(.crm-tab):not(.reg-row) {
+    min-height: 44px;
+  }
+  .tab-btn {
+    min-height: 60px;
+  }
 }
 
 /* ============================================================
-   BOUTONS GROS — plus chaleureux, plus accueillants
+   COMPTE / PROFIL bandeau bleu nuit → ink coffee
    ============================================================ */
-button[onclick*="ouvrir"][style*="padding:14px"],
-button[onclick*="ouvrir"][style*="padding: 14px"],
-button[style*="padding:14px"][style*="border-radius:50px"],
-button[style*="padding: 14px"][style*="border-radius:50px"] {
-  border-radius: 16px !important;
-  letter-spacing: -0.1px;
-  font-weight: 600;
+[style*="background:linear-gradient(135deg,#0F2C52,#1a3a6d)"],
+[style*="background: linear-gradient(135deg,#0F2C52,#1a3a6d)"],
+[style*="background:linear-gradient(135deg,#0F2C52"],
+[style*="background: linear-gradient(135deg, #0F2C52"] {
+  background: linear-gradient(135deg, var(--texte), #2A241D) !important;
 }
