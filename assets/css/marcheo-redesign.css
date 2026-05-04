@@ -236,32 +236,31 @@ button[onclick*="seDeconnecter"] {
   transition: transform .2s ease;
 }
 
+/* Tab actif : pas de chip, juste icône tomate + label ink (style proto) */
 .tab-btn.active {
-  background: var(--texte) !important;
-  color: #fff !important;
+  background: transparent !important;
+  color: var(--texte) !important;
   border-bottom: none !important;
   font-weight: 700 !important;
-  /* Override de l'ancien box-shadow vert + transform */
-  box-shadow: 0 4px 14px rgba(28,24,20,0.25) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
-.tab-btn.active[data-icon]::before {
-  transform: scale(1.05);
-}
-
-/* Emojis : taille uniforme, opacité pleine, anti-aliasing propre */
+/* Emojis : taille uniforme, anti-aliasing propre */
 .tab-btn[data-icon]::before {
   font-size: 22px !important;
   line-height: 1 !important;
   margin-bottom: 4px !important;
-  opacity: 1 !important;
+  opacity: 0.62 !important;          /* inactive : ink2 */
   filter: none !important;
   display: block !important;
+  transition: opacity .15s, transform .15s;
 }
 
 .tab-btn.active[data-icon]::before {
-  filter: none !important;
+  opacity: 1 !important;
+  filter: hue-rotate(0deg) saturate(1.6);
+  transform: scale(1.05);
 }
 
 .tab-badge {
@@ -347,10 +346,10 @@ button[onclick*="seDeconnecter"] {
 
 .reg-list {
   background: var(--blanc) !important;
-  border-radius: 18px !important;
+  border-radius: 16px !important;
   border: 1px solid var(--border) !important;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(28,24,20,0.03);
+  margin: 0 !important;
 }
 
 .reg-row {
@@ -365,30 +364,26 @@ button[onclick*="seDeconnecter"] {
   background: var(--surface-2) !important;
 }
 
+/* reg-icon style proto : carré arrondi beige tint avec emoji ink coffee */
 .reg-icon {
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 999px !important;     /* circle pour matcher la maquette */
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;       /* carré arrondi (PAS cercle) */
   font-size: 18px !important;
-  background: var(--accent) !important;
-  color: #fff !important;
+  background: var(--creme-fonce) !important;  /* tint beige #EDE3CF */
+  color: var(--texte) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0;
+  filter: grayscale(0.15);              /* emoji légèrement désaturé pour rester sobre */
 }
 
-/* Variantes de couleur pour différentes catégories */
-.reg-row[onclick*="reg-stripe"] .reg-icon { background: #635bff !important; }
-.reg-row[onclick*="reg-livraison"] .reg-icon { background: var(--vert) !important; }
-.reg-row[onclick*="reg-empreinte"] .reg-icon { background: var(--accent-deep) !important; }
-.reg-row[onclick*="reg-abonnement"] .reg-icon { background: var(--or) !important; }
-.reg-row[onclick*="reg-mdp"] .reg-icon { background: var(--texte-doux) !important; }
-.reg-row[onclick*="reg-salaries"] .reg-icon { background: var(--vert) !important; }
-.reg-row[onclick*="reg-horaires"] .reg-icon { background: var(--or) !important; }
-.reg-row[onclick*="galerie"] .reg-icon { background: var(--accent) !important; }
-.reg-row[onclick*="reg-businesstype"] .reg-icon { background: var(--accent-deep) !important; }
-.reg-row[onclick*="reg-palette"] .reg-icon { background: var(--accent) !important; }
+/* TOUTES les variantes de couleur sont annulées : fond uniforme tint beige */
+.reg-row .reg-icon {
+  background: var(--creme-fonce) !important;
+  color: var(--texte) !important;
+}
 
 .reg-label {
   font-size: 16px !important;
