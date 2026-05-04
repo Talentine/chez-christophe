@@ -537,6 +537,11 @@
           <div class="stat-card-lbl">MRR (revenus mensuels)</div>
           <div class="stat-card-delta delta-up" id="deltaMRR"></div>
         </div>
+        <div class="stat-card" style="border-left:3px solid #c9a54b;">
+          <div class="stat-card-val" id="statAcquisition" style="color:#c9a54b;">—</div>
+          <div class="stat-card-lbl">💼 Frais d'acquisition encaissés</div>
+          <div class="stat-card-delta" id="deltaAcquisition" style="color:rgba(255,255,255,0.5);"></div>
+        </div>
         <div class="stat-card">
           <div class="stat-card-val" id="statCommandes">—</div>
           <div class="stat-card-lbl">Commandes ce mois</div>
@@ -966,10 +971,23 @@ async function chargerDashboard() {
 
   // Prix mensuel par offre (basé sur commercants.offre)
   const PRIX_OFFRE = { vitrine: 19, clickcollect: 39, livraison: 59 };
+  // Frais d'acquisition uniques (one-time setup fees)
+  const SETUP_FEES = { vitrine: 249, clickcollect: 399, livraison: 549 };
   const mrr = tousCommercants
     .filter(c => c.abonnement_actif)
     .reduce((s, c) => s + (PRIX_OFFRE[c.offre] || c.plans?.prix_mensuel || 0), 0);
   document.getElementById('statMRR').textContent = mrr.toFixed(0) + ' €';
+
+  // Frais d'acquisition encaissés : somme frais_acquisition_paye OU SETUP_FEES par offre pour les payants
+  const payants = tousCommercants.filter(c => c.abonnement_actif);
+  const totalAcquisition = payants.reduce((s, c) => {
+    const paye = Number(c.frais_acquisition_paye || 0);
+    return s + (paye > 0 ? paye : (SETUP_FEES[c.offre] || 0));
+  }, 0);
+  const elAcq = document.getElementById('statAcquisition');
+  if (elAcq) elAcq.textContent = totalAcquisition.toLocaleString('fr-FR') + ' €';
+  const elDeltaAcq = document.getElementById('deltaAcquisition');
+  if (elDeltaAcq) elDeltaAcq.textContent = payants.length + ' boutique' + (payants.length > 1 ? 's' : '') + ' activée' + (payants.length > 1 ? 's' : '');
 
   // Commandes ce mois
   const debutMois = new Date(now.getFullYear(), now.getMonth(), 1);

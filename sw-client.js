@@ -6,7 +6,7 @@
 //  - Stale while revalidate : images Storage Supabase
 // ============================================================
 
-const CACHE_VERSION = 'marcheo-v57-2026-05-svg-icons-hero';
+const CACHE_VERSION = 'marcheo-v58-2026-05-cash-acquisition-nav-svg';
 const CACHE_STATIC  = `${CACHE_VERSION}-static`;
 const CACHE_RUNTIME = `${CACHE_VERSION}-runtime`;
 const CACHE_IMAGES  = `${CACHE_VERSION}-images`;
