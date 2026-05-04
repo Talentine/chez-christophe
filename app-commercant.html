@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
 <!-- Redesign éditorial (Apple + UberEats + Dish) — surcouche colors/typo -->
-<link rel="stylesheet" href="/assets/css/marcheo-redesign.css?v=editorial2">
+<link rel="stylesheet" href="/assets/css/marcheo-redesign.css?v=editorial3">
 <style>
   :root {
     /* Marchéo brand v2 */
@@ -576,7 +576,7 @@
       <button class="m-menu-item" data-onglet="commandes" onclick="goOnglet('commandes')"><span class="m-menu-icon">🛒</span><span class="m-menu-label">Commandes</span><span class="m-menu-badge" id="m-menu-badge-commandes" hidden>0</span></button>
       <button class="m-menu-item" data-onglet="planning" onclick="goOnglet('planning')"><span class="m-menu-icon">📅</span><span class="m-menu-label">Planning</span></button>
       <button class="m-menu-item" data-onglet="produits" onclick="goOnglet('produits')"><span class="m-menu-icon">🥕</span><span class="m-menu-label">Produits</span></button>
-      <button class="m-menu-item" data-onglet="creneaux" onclick="goOnglet('creneaux')"><span class="m-menu-icon">🕐</span><span class="m-menu-label">Créneaux</span></button>
+      <button class="m-menu-item" data-onglet="creneaux" onclick="goOnglet('creneaux')"><span class="m-menu-icon">🗓</span><span class="m-menu-label">Agenda</span></button>
       <button class="m-menu-item" data-onglet="reservations" onclick="goOnglet('reservations')"><span class="m-menu-icon">📋</span><span class="m-menu-label">Réservations</span><span class="m-menu-badge" id="m-menu-badge-reservations" hidden>0</span></button>
       <button class="m-menu-item" data-onglet="reglages" onclick="goOnglet('reglages')"><span class="m-menu-icon">⚙️</span><span class="m-menu-label">Réglages</span></button>
     </nav>
@@ -613,8 +613,8 @@
   <button class="tab-btn" data-icon="🥕" onclick="allerOnglet('produits')" id="tab-produits">
     Produits
   </button>
-  <button class="tab-btn" data-icon="🕐" onclick="allerOnglet('creneaux')" id="tab-creneaux">
-    Créneaux
+  <button class="tab-btn" data-icon="🗓" onclick="allerOnglet('creneaux')" id="tab-creneaux">
+    Agenda
   </button>
   <button class="tab-btn" data-icon="🍽️" onclick="allerOnglet('reservations')" id="tab-reservations" style="display:none;">
     Résa
@@ -735,7 +735,7 @@
 <!-- ONGLET CRÉNEAUX -->
 <div class="tab-content" id="content-creneaux">
   <div style="padding:16px;">
-    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Créneaux</div>
+    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:20px;margin-bottom:16px;">Agenda</div>
 
     <!-- TOGGLE RETRAIT / LIVRAISON / RÉSERVATION (uniquement en mode édition) -->
     <div id="creneauxTypeToggle" style="display:none;background:var(--creme-fonce);border-radius:50px;padding:4px;margin-bottom:16px;overflow-x:auto;">
@@ -885,7 +885,7 @@
 
     <!-- Info: gestion des créneaux dans l'onglet Créneaux -->
     <div style="background:#fff8e7;border-left:3px solid #F4B942;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12.5px;line-height:1.5;color:#6B5B1F;">
-      💡 Pour <strong>ajouter ou modifier tes créneaux de réservation</strong>, va dans l'onglet <strong>Créneaux</strong> et choisis le type <strong>🍽️ Réservation</strong>.
+      💡 Pour <strong>ajouter ou modifier tes créneaux de réservation</strong>, va dans <strong>Réglages → Mes créneaux récurrents</strong>.
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">

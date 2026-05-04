@@ -241,10 +241,27 @@ button[onclick*="seDeconnecter"] {
   color: #fff !important;
   border-bottom: none !important;
   font-weight: 700 !important;
+  /* Override de l'ancien box-shadow vert + transform */
+  box-shadow: 0 4px 14px rgba(28,24,20,0.25) !important;
+  transform: translateY(-2px) !important;
 }
 
 .tab-btn.active[data-icon]::before {
   transform: scale(1.05);
+}
+
+/* Emojis : taille uniforme, opacité pleine, anti-aliasing propre */
+.tab-btn[data-icon]::before {
+  font-size: 22px !important;
+  line-height: 1 !important;
+  margin-bottom: 4px !important;
+  opacity: 1 !important;
+  filter: none !important;
+  display: block !important;
+}
+
+.tab-btn.active[data-icon]::before {
+  filter: none !important;
 }
 
 .tab-badge {
@@ -570,4 +587,122 @@ input:focus, select:focus, textarea:focus {
 [style*="background:linear-gradient(135deg,#0F2C52"],
 [style*="background: linear-gradient(135deg, #0F2C52"] {
   background: linear-gradient(135deg, var(--texte), #2A241D) !important;
+}
+
+/* ============================================================
+   OVERRIDES INLINE — couleurs vertes vives → tomate
+   (CTA, gradients verts, headers, etc.)
+   ============================================================ */
+[style*="background:linear-gradient(135deg,#5BBE3A,#2A6F3F)"],
+[style*="background: linear-gradient(135deg,#5BBE3A,#2A6F3F)"],
+[style*="background:linear-gradient(135deg,#5BBE3A"],
+[style*="background: linear-gradient(135deg, #5BBE3A"],
+[style*="background:linear-gradient(135deg,#1a2e26"],
+[style*="background: linear-gradient(135deg, #1a2e26"] {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep)) !important;
+}
+
+/* Couleurs vertes inline (color:#5BBE3A, var(--vert)) → tomate sage selon contexte */
+[style*="color:#5BBE3A"],
+[style*="color: #5BBE3A"] {
+  color: var(--vert) !important;     /* sage marché */
+}
+[style*="color:#207d4a"],
+[style*="color: #207d4a"] {
+  color: var(--vert) !important;
+}
+
+/* Pause button orange sur fond noir : adouci */
+[style*="background:#E65533"],
+[style*="background: #E65533"] {
+  background: var(--accent) !important;
+}
+
+/* Bandeaux verts soft → sage soft */
+[style*="background:#eaf7ee"],
+[style*="background: #eaf7ee"] {
+  background: var(--vert-ok-clair) !important;
+}
+[style*="background:#d4ecdb"],
+[style*="background: #d4ecdb"] {
+  background: var(--vert-soft) !important;
+}
+
+/* Bordure verte → sage */
+[style*="border:2px solid #5BBE3A"],
+[style*="border: 2px solid #5BBE3A"],
+[style*="border-color:#5BBE3A"],
+[style*="border-color: #5BBE3A"] {
+  border-color: var(--vert) !important;
+}
+
+/* ============================================================
+   EMOJIS : améliore le rendu (Apple Color Emoji propre)
+   ============================================================ */
+.tab-btn[data-icon]::before,
+.m-menu-icon,
+.reg-icon,
+button[data-icon]::before {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif !important;
+  font-feature-settings: normal !important;
+  font-variant-emoji: emoji;
+  text-rendering: optimizeQuality;
+}
+
+/* ============================================================
+   SECTION DU BAS — agenda/planning header polish
+   ============================================================ */
+#content-creneaux > div > div:first-child,
+#content-planning > div > div:first-child,
+.content-titre,
+.tab-content > div > div:first-child[style*="font-size:20px"] {
+  font-family: var(--font-display) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.5px !important;
+  font-size: 28px !important;
+  color: var(--texte) !important;
+}
+
+/* Bandeau "Mode édition" sur Agenda */
+#creneauxModeBanner {
+  background: var(--mustard-soft, rgba(184,134,43,0.12)) !important;
+  border-left-color: var(--or) !important;
+  color: var(--accent-deep) !important;
+  border-radius: 12px !important;
+}
+
+/* Agenda toggle Type (Retrait / Livraison / Résa) */
+#creneauxTypeToggle {
+  background: var(--surface-2) !important;
+  padding: 4px !important;
+  border-radius: 999px !important;
+}
+#creneauxTypeToggle button {
+  font-family: var(--font-ui) !important;
+  border-radius: 999px !important;
+}
+#creneauxTypeToggle button[style*="background:var(--vert)"] {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* Vue pills (Liste / Calendrier) */
+.vue-pill {
+  background: var(--surface-2) !important;
+  color: var(--texte-doux) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-family: var(--font-ui) !important;
+  font-weight: 600 !important;
+}
+.vue-pill.actif {
+  background: var(--texte) !important;
+  color: #fff !important;
+}
+
+/* Calendrier mensuel : harmoniser */
+#vueCalendrier {
+  background: var(--blanc) !important;
+  border-color: var(--border) !important;
+  border-radius: 18px !important;
 }
