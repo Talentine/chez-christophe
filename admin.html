@@ -979,15 +979,15 @@ async function chargerDashboard() {
   document.getElementById('statMRR').textContent = mrr.toFixed(0) + ' €';
 
   // Frais d'acquisition encaissés : somme frais_acquisition_paye OU SETUP_FEES par offre pour les payants
-  const payants = tousCommercants.filter(c => c.abonnement_actif);
-  const totalAcquisition = payants.reduce((s, c) => {
+  const payantsAcq = tousCommercants.filter(c => c.abonnement_actif);
+  const totalAcquisition = payantsAcq.reduce((s, c) => {
     const paye = Number(c.frais_acquisition_paye || 0);
     return s + (paye > 0 ? paye : (SETUP_FEES[c.offre] || 0));
   }, 0);
   const elAcq = document.getElementById('statAcquisition');
   if (elAcq) elAcq.textContent = totalAcquisition.toLocaleString('fr-FR') + ' €';
   const elDeltaAcq = document.getElementById('deltaAcquisition');
-  if (elDeltaAcq) elDeltaAcq.textContent = payants.length + ' boutique' + (payants.length > 1 ? 's' : '') + ' activée' + (payants.length > 1 ? 's' : '');
+  if (elDeltaAcq) elDeltaAcq.textContent = payantsAcq.length + ' boutique' + (payantsAcq.length > 1 ? 's' : '') + ' activée' + (payantsAcq.length > 1 ? 's' : '');
 
   // Commandes ce mois
   const debutMois = new Date(now.getFullYear(), now.getMonth(), 1);
