@@ -57,7 +57,7 @@
         "sameAs": [],
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "contact@marchéo.fr",
+          "email": "marcheo.contact@gmail.com",
           "contactType": "customer support",
           "availableLanguage": ["French"]
         },
@@ -1755,7 +1755,7 @@ function afficherPlusDeSites() {
     </div>
 
     <div class="reveal reveal-delay-4" style="margin-top:36px;font-size:14px;color:var(--text-muted);">
-      Une autre question ? <a href="mailto:contact@marchéo.fr" style="color:var(--brand);font-weight:600;">contact@marchéo.fr</a>
+      Une autre question ? <a href="mailto:marcheo.contact@gmail.com" style="color:var(--brand);font-weight:600;">marcheo.contact@gmail.com</a>
     </div>
   </div>
 </section>
@@ -1917,13 +1917,13 @@ function afficherPlusDeSites() {
     </p>
 
     <div class="contact-grid reveal reveal-delay-3">
-      <a href="mailto:contact@xn--marcho-fva.fr?subject=Demande%20particuli%C3%A8re%20-%20March%C3%A9o" class="contact-card" data-track="contact_email">
+      <a href="mailto:marcheo.contact@gmail.com?subject=Demande%20particuli%C3%A8re%20-%20March%C3%A9o" class="contact-card" data-track="contact_email">
         <div class="contact-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
         </div>
         <div class="contact-info">
           <div class="contact-title">E-mail</div>
-          <div class="contact-detail">contact@marchéo.fr</div>
+          <div class="contact-detail">marcheo.contact@gmail.com</div>
           <div class="contact-meta">Réponse sous 24h ouvrées</div>
         </div>
       </a>
@@ -2077,7 +2077,7 @@ function afficherPlusDeSites() {
              + 'Téléphone : ' + (data.tel || '—') + '\n'
              + 'Type : ' + (data.type || '—') + '\n\n'
              + 'Message :\n' + (data.message || '');
-    var mailto = 'mailto:contact@xn--marcho-fva.fr?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    var mailto = 'mailto:marcheo.contact@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
     // Tracking analytics si dispo
     try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track('contact_form_submit', { type: data.type }); } catch(e) {}
@@ -2085,7 +2085,7 @@ function afficherPlusDeSites() {
     setTimeout(function(){
       window.location.href = mailto;
       statusEl.style.color = 'var(--gold-dark, #2D7B1A)';
-      statusEl.textContent = '✓ Votre client mail va s\'ouvrir. Si rien ne se passe, écrivez-nous à contact@marchéo.fr';
+      statusEl.textContent = '✓ Votre client mail va s\'ouvrir. Si rien ne se passe, écrivez-nous à marcheo.contact@gmail.com';
       btn.disabled = false;
       btn.style.opacity = '1';
     }, 300);

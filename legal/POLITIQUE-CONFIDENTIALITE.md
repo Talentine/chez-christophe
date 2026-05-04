@@ -13,7 +13,7 @@ La présente politique de confidentialité décrit la manière dont **Marchéo**
 ## 2. RESPONSABLE DU TRAITEMENT
 
 - **Marchéo** — [À COMPLÉTER : raison sociale, SIRET, adresse]
-- **Email :** contact@marcheo.fr
+- **Email :** marcheo.contact@gmail.com
 - **Délégué à la protection des données (DPO) :** [À COMPLÉTER si désigné]
 
 ---
@@ -113,7 +113,7 @@ Conformément au RGPD, vous disposez des droits suivants :
 - **Droit de définir des directives post-mortem**
 
 ### Exercer vos droits
-Pour exercer vos droits, écrivez à : **contact@marcheo.fr**  
+Pour exercer vos droits, écrivez à : **marcheo.contact@gmail.com**  
 Une réponse vous sera apportée dans un délai maximal d'**un mois**.
 
 ### Réclamation auprès de la CNIL
@@ -140,5 +140,5 @@ Cette politique peut être modifiée à tout moment. La version applicable est c
 
 Pour toute question relative à vos données personnelles :
 
-- **Email :** contact@marcheo.fr
+- **Email :** marcheo.contact@gmail.com
 - **Adresse :** [À COMPLÉTER]

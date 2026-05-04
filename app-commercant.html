@@ -3743,7 +3743,7 @@ window.ouvrirPortalAbonnement = async function() {
       throw new Error(data.error || 'Erreur HTTP ' + r.status);
     }
   } catch (e) {
-    alert('⚠️ Impossible d\'ouvrir le portail : ' + (e.message || e) + '\n\nContact : contact@marchéo.fr');
+    alert('⚠️ Impossible d\'ouvrir le portail : ' + (e.message || e) + '\n\nContact : marcheo.contact@gmail.com');
     if (btn) { btn.disabled = false; btn.textContent = '⚙️ Gérer mon abonnement (factures, RIB, résiliation)'; }
   }
 };

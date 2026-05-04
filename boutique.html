@@ -3546,7 +3546,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
     })
     .catch(function(err) {
       console.error('Erreur Stripe:', err);
-      alert('⚠️ Erreur paiement : ' + (err.message || err) + '\n\nContact : contact@marchéo.fr');
+      alert('⚠️ Erreur paiement : ' + (err.message || err) + '\n\nContact : marcheo.contact@gmail.com');
       document.querySelectorAll('.m-offre-cta').forEach(function(btn, i) {
         btn.disabled = false;
         btn.textContent = ['Choisir Vitrine','Choisir Click & Collect','Choisir Livraison'][i];

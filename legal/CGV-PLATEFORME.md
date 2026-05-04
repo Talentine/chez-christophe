@@ -14,7 +14,7 @@ Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent 
 - **Forme juridique :** [À COMPLÉTER — Auto-entrepreneur / SASU / SAS / EI]
 - **SIRET :** [À COMPLÉTER]
 - **Siège social :** [À COMPLÉTER — adresse complète]
-- **Email :** contact@marcheo.fr
+- **Email :** marcheo.contact@gmail.com
 - **Directeur de publication :** [À COMPLÉTER — nom du gérant/dirigeant]
 
 Marchéo édite une solution logicielle (SaaS) permettant à des artisans et commerçants de proximité (ci-après « Commerçants ») de proposer un service de **click & collect** et de **livraison à domicile** à leurs clients (ci-après « Clients Finaux »).

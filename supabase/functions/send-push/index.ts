@@ -10,7 +10,7 @@
 // Variables d'env requises :
 //   VAPID_PUBLIC_KEY
 //   VAPID_PRIVATE_KEY
-//   VAPID_SUBJECT (optionnel, ex: "mailto:contact@marcheo.fr")
+//   VAPID_SUBJECT (optionnel, ex: "mailto:marcheo.contact@gmail.com")
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_ROLE_KEY
 // ============================================================
@@ -21,7 +21,7 @@ import webpush from 'https://esm.sh/web-push@3.6.7?target=denonext';
 
 const VAPID_PUBLIC = Deno.env.get('VAPID_PUBLIC_KEY')!;
 const VAPID_PRIVATE = Deno.env.get('VAPID_PRIVATE_KEY')!;
-const VAPID_SUBJECT = Deno.env.get('VAPID_SUBJECT') || 'mailto:contact@marcheo.fr';
+const VAPID_SUBJECT = Deno.env.get('VAPID_SUBJECT') || 'mailto:marcheo.contact@gmail.com';
 
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 

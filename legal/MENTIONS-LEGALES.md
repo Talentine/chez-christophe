@@ -16,7 +16,7 @@ Le site **marcheo.fr** (ci-après le « Site ») est édité par :
 - **N° TVA intracommunautaire :** [À COMPLÉTER si applicable]
 - **Siège social :** [À COMPLÉTER — adresse complète]
 - **Téléphone :** [À COMPLÉTER]
-- **Email :** contact@marcheo.fr
+- **Email :** marcheo.contact@gmail.com
 - **Directeur de la publication :** [À COMPLÉTER — Nom Prénom]
 
 ---
@@ -52,7 +52,7 @@ La marque **Marchéo** est protégée. Toute utilisation non autorisée est pass
 Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés modifiée :
 
 - Vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition concernant vos données personnelles.
-- Vous pouvez exercer ces droits à l'adresse : **contact@marcheo.fr**
+- Vous pouvez exercer ces droits à l'adresse : **marcheo.contact@gmail.com**
 - Délégué à la Protection des Données (DPO) : [À COMPLÉTER si désigné]
 
 Pour plus d'informations, consultez notre [Politique de confidentialité](/confidentialite).
@@ -79,5 +79,5 @@ Vous pouvez gérer vos préférences via la bannière cookies ou les paramètres
 
 Pour toute question relative au Site :
 
-- **Email :** contact@marcheo.fr
+- **Email :** marcheo.contact@gmail.com
 - **Adresse :** [À COMPLÉTER]
