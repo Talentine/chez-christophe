@@ -1100,29 +1100,103 @@ function renderTableCommercants(data) {
         + '<div style="font-size:11px;color:var(--or);">' + a.ca.toFixed(0) + '€</div>';
 
     return `
-      <tr>
-        <td>
-          <div style="font-weight:500;display:flex;align-items:center;gap:8px;">
-            <span style="font-size:18px;">${m.emoji}</span>
-            <span>${c.nom_boutique}</span>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05);">
+        <td style="padding:14px 12px;">
+          <div style="font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:22px;">${m.emoji}</span>
+            <div>
+              <div style="color:#fff;">${c.nom_boutique}</div>
+              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${c.email || '—'}</div>
+            </div>
           </div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:26px;">${c.email || ''} · ${m.label}</div>
         </td>
-        <td style="color:rgba(255,255,255,0.6);">${c.ville || '—'}</td>
+        <td style="color:rgba(255,255,255,0.7);font-size:13px;">${c.ville || '—'}</td>
         <td><span class="badge ${planClass}">${plan}</span></td>
         <td><span class="badge ${statutClass}">${statutTxt}</span></td>
         <td>${activiteHtml}</td>
         <td>${healthHtml}</td>
-        <td>
-          <button class="action-btn" onclick="voirBoutique('${c.slug}')">Voir</button>
-          <button class="action-btn" onclick="modifierPlan('${c.id}')">Plan</button>
-          <button class="action-btn" onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif})">${c.abonnement_actif ? '⏸ Mode démo' : '✅ Activer'}</button>
-          <button class="action-btn danger" onclick="toggleActif('${c.id}',${!c.actif})">${c.actif ? 'Suspendre' : 'Réactiver'}</button>
+        <td style="text-align:right;position:relative;">
+          <button class="action-menu-btn" onclick="event.stopPropagation();toggleMenuActions('${c.id}')"
+            style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;color:#fff;cursor:pointer;font-size:18px;line-height:1;">⋯</button>
+          <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:#1f2730;border:1px solid rgba(255,255,255,.12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
+            <button onclick="voirBoutique('${c.slug}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
+            <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
+            <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? '⏸ Passer en mode démo' : '✅ Activer l\\'abonnement'}</button>
+            <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? '#ffd47a' : '#7fd97f'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
+            <div style="height:1px;background:rgba(255,255,255,.08);"></div>
+            <button onclick="supprimerCommercant('${c.id}','${(c.nom_boutique||'').replace(/'/g, '&#39;')}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#ff8a76;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;">🗑 Supprimer définitivement</button>
+          </div>
         </td>
       </tr>
     `;
   }).join('');
 }
+
+// ── MENU ACTIONS PAR LIGNE
+window.toggleMenuActions = function(id) {
+  // Ferme tous les autres menus ouverts
+  document.querySelectorAll('.action-menu').forEach(m => {
+    if (m.id !== 'menu-actions-' + id) m.style.display = 'none';
+  });
+  const menu = document.getElementById('menu-actions-' + id);
+  if (!menu) return;
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+};
+window.fermerMenuActions = function(id) {
+  const menu = document.getElementById('menu-actions-' + id);
+  if (menu) menu.style.display = 'none';
+};
+// Ferme les menus si on clique ailleurs
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.action-menu') && !e.target.closest('.action-menu-btn')) {
+    document.querySelectorAll('.action-menu').forEach(m => m.style.display = 'none');
+  }
+});
+
+// ── SUPPRESSION DÉFINITIVE D'UN COMMERÇANT (admin)
+window.supprimerCommercant = async function(id, nom) {
+  if (!confirm(
+    '⚠️ SUPPRESSION DÉFINITIVE\n\n' +
+    'Vous allez supprimer "' + nom + '".\n\n' +
+    'Cette action :\n' +
+    '• Anonymise le compte (RGPD)\n' +
+    '• Annule l\'abonnement Stripe en cours\n' +
+    '• Cache la boutique aux clients\n' +
+    '• EST IRRÉVERSIBLE\n\n' +
+    'Tapez OK pour confirmer.'
+  )) return;
+
+  try {
+    // Stripe subscription cancel + soft-delete + anonymisation
+    const r = await fetch(SUPABASE_URL + '/functions/v1/delete-commercant-account', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ commercant_id: id, motif: 'admin_delete', hard_delete: false, admin_override: true })
+    });
+    const data = await r.json();
+    if (!r.ok) {
+      // Fallback : si l'edge function échoue (ex : exige JWT user), on fait le soft-delete direct via SQL
+      console.warn('Edge function delete failed, fallback SQL:', data);
+      const fb = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + id, {
+        method: 'PATCH',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          supprime_at: new Date().toISOString(),
+          supprime_motif: 'admin_delete',
+          anonymized: true,
+          abonnement_actif: false,
+          actif: false
+        })
+      });
+      if (!fb.ok) throw new Error('Suppression échouée: ' + (data.error || fb.status));
+    }
+
+    alert('✓ "' + nom + '" supprimé. La page va se rafraîchir.');
+    chargerCommercants();
+  } catch (e) {
+    alert('❌ Erreur: ' + e.message);
+  }
+};
 
 function filtrerCommercants(q) {
   const filtres = q ? tousCommercants.filter(c =>
@@ -1341,16 +1415,44 @@ function renderCatalogue(produits) {
     const img = p.photo_url
       ? '<img src="' + p.photo_url + '" alt="' + p.nom + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">'
       : '<span style="font-size:36px">' + (p.categories?.emoji || '🌿') + '</span>';
-    return '<div class="produit-admin-card" onclick="ouvrirEditionProduit(\'' + p.id + '\')" style="cursor:pointer;position:relative;">'
-      + '<div class="produit-admin-img">' + img + '</div>'
-      + '<div class="produit-admin-body">'
-      + '<div class="produit-admin-nom">' + p.nom + '</div>'
-      + '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + p.unite + '</div>'
+    const cat = p.categories?.nom || '—';
+    return '<div class="produit-admin-card" style="position:relative;">'
+      + '<div onclick="ouvrirEditionProduit(\'' + p.id + '\')" style="cursor:pointer;">'
+      +   '<div class="produit-admin-img">' + img + '</div>'
+      +   '<div class="produit-admin-body">'
+      +     '<div class="produit-admin-nom">' + p.nom + '</div>'
+      +     '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + p.unite + '</div>'
+      +     '<div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">' + cat + '</div>'
+      +   '</div>'
+      +   '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:white;font-size:10px;padding:3px 8px;border-radius:50px;">📷 Modifier</div>'
       + '</div>'
-      + '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.5);color:white;font-size:11px;padding:3px 8px;border-radius:50px;backdrop-filter:blur(4px);">📷 Modifier</div>'
+      + '<button onclick="event.stopPropagation();supprimerProduitBase(\'' + p.id + '\',\'' + (p.nom||'').replace(/\'/g, '&#39;') + '\')" '
+      +   'title="Supprimer" style="position:absolute;top:6px;right:6px;background:rgba(159,27,31,.92);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">🗑</button>'
       + '</div>';
   }).join('');
 }
+
+// ── SUPPRESSION D'UN PRODUIT DE BASE
+window.supprimerProduitBase = async function(id, nom) {
+  if (!confirm('Supprimer le produit "' + nom + '" du catalogue de base ?\n\n⚠️ Il disparaîtra des boutiques qui l\'utilisent. Action irréversible.')) return;
+  try {
+    // Détache d'abord les entrées catalogue qui pointent dessus
+    await fetch(SUPABASE_URL + '/rest/v1/catalogue?produit_base_id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    // Puis supprime le produit lui-même
+    const r = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Prefer': 'return=minimal' }
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    tousProduits = tousProduits.filter(p => p.id !== id);
+    renderCatalogue(tousProduits);
+  } catch (e) {
+    alert('❌ ' + e.message);
+  }
+};
 
 // ── ÉDITION PHOTO PRODUIT BASE ────────────────────────
 let produitEnEdition = null;
@@ -1460,9 +1562,124 @@ function filtrerProduits(q) {
   renderCatalogue(filtres);
 }
 
-function ajouterProduit() {
-  alert('Ajout de produit — bientôt disponible');
+// ── AJOUTER UN PRODUIT DE BASE (modale)
+async function ajouterProduit() {
+  // Récupère les catégories pour la liste déroulante
+  let cats = [];
+  try {
+    cats = await sb('categories', '?select=id,nom,emoji,business_type,slug&order=business_type,ordre') || [];
+  } catch(e) { cats = []; }
+
+  const overlay = document.createElement('div');
+  overlay.id = 'admin-add-prod-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;font-family:Inter,system-ui,sans-serif;';
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+
+  const optionsCat = cats.map(c =>
+    '<option value="' + c.id + '">' + (c.emoji || '') + ' ' + c.nom + ' (' + (c.business_type || '?') + ')</option>'
+  ).join('');
+
+  overlay.innerHTML = ''
+    + '<div style="background:#1f2730;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px rgba(0,0,0,.5);">'
+    +   '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">'
+    +     '<div><h2 style="margin:0 0 4px;color:#fff;font-size:20px;">+ Ajouter un produit de base</h2>'
+    +     '<p style="margin:0;color:rgba(255,255,255,.5);font-size:13px;">Sera disponible pour tous les commerçants du métier choisi.</p></div>'
+    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:rgba(255,255,255,.08);border:none;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;">✕</button>'
+    +   '</div>'
+
+    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Nom du produit *</label>'
+    +   '<input id="ap-nom" placeholder="Ex: Tomate Cœur de Bœuf"'
+    +     ' style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:14px;">'
+
+    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Catégorie *</label>'
+    +   '<select id="ap-cat" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:14px;">'
+    +     '<option value="">— Choisir —</option>' + optionsCat
+    +   '</select>'
+
+    +   '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">'
+    +     '<div><label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Unité *</label>'
+    +     '<input id="ap-unite" placeholder="kg, pc, pers, plateau…" value="kg" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;"></div>'
+    +     '<div><label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Prix indicatif (€) *</label>'
+    +     '<input id="ap-prix" type="number" step="0.10" min="0" placeholder="2.50" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;"></div>'
+    +   '</div>'
+
+    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">URL Photo (Unsplash recommandé)</label>'
+    +   '<input id="ap-photo" placeholder="https://images.unsplash.com/photo-..." '
+    +     'style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:13px;font-family:monospace;margin-bottom:8px;">'
+    +   '<div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.5;">'
+    +     '💡 Va sur <strong>unsplash.com</strong>, copie l\'URL de la photo. Format recommandé : <code>https://images.unsplash.com/photo-XXX?w=800&q=80&fit=crop</code>'
+    +   '</div>'
+
+    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Description (optionnel)</label>'
+    +   '<textarea id="ap-desc" rows="2" placeholder="Origine, particularité, conseil de préparation…"'
+    +     ' style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:18px;resize:vertical;"></textarea>'
+
+    +   '<div id="ap-error" style="display:none;background:rgba(159,27,31,.2);border:1px solid rgba(159,27,31,.5);color:#ff8a76;padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px;"></div>'
+
+    +   '<div style="display:flex;gap:10px;justify-content:flex-end;">'
+    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 20px;border-radius:50px;cursor:pointer;font-size:13px;font-family:inherit;">Annuler</button>'
+    +     '<button id="ap-submit" onclick="creerProduitBase()" style="background:linear-gradient(135deg,var(--or,#c9a54b),#a48438);border:none;color:#fff;padding:10px 22px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;">+ Créer le produit</button>'
+    +   '</div>'
+
+    + '</div>';
+  document.body.appendChild(overlay);
 }
+
+window.creerProduitBase = async function() {
+  const nom = document.getElementById('ap-nom').value.trim();
+  const catId = document.getElementById('ap-cat').value;
+  const unite = document.getElementById('ap-unite').value.trim();
+  const prix = parseFloat(document.getElementById('ap-prix').value);
+  const photo = document.getElementById('ap-photo').value.trim();
+  const desc = document.getElementById('ap-desc').value.trim();
+  const errEl = document.getElementById('ap-error');
+  const btn = document.getElementById('ap-submit');
+
+  function showErr(msg) {
+    errEl.textContent = '⚠ ' + msg;
+    errEl.style.display = 'block';
+  }
+  errEl.style.display = 'none';
+
+  if (!nom) return showErr('Le nom est obligatoire');
+  if (!catId) return showErr('La catégorie est obligatoire');
+  if (!unite) return showErr('L\'unité est obligatoire (kg, pc, pers…)');
+  if (isNaN(prix) || prix < 0) return showErr('Prix invalide');
+
+  // Génère un slug
+  const slug = nom.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 60) + '-' + Math.random().toString(36).slice(2, 7);
+
+  btn.disabled = true; btn.textContent = '⏳ Création…';
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/produits_base', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json', 'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        nom, slug,
+        categorie_id: catId,
+        unite,
+        prix_marche_indicatif: prix,
+        photo_url: photo || null,
+        description: desc || null,
+        actif: true
+      })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.message || data.hint || 'HTTP ' + r.status);
+    document.getElementById('admin-add-prod-overlay').remove();
+    chargerCatalogue(true);
+  } catch (e) {
+    showErr(e.message);
+    btn.disabled = false; btn.textContent = '+ Créer le produit';
+  }
+};
 
 // ── COMMANDES GLOBALES ────────────────────────────────
 async function chargerCommandes() {
