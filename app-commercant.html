@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
 <!-- Redesign éditorial (Apple + UberEats + Dish) — surcouche colors/typo -->
-<link rel="stylesheet" href="/assets/css/marcheo-redesign.css?v=editorial5">
+<link rel="stylesheet" href="/assets/css/marcheo-redesign.css?v=editorial6">
+<script src="/assets/core/svg-icons.js?v=1" defer></script>
 <style>
   :root {
     /* Marchéo brand v2 */
@@ -1138,20 +1139,29 @@
 
 <div class="tab-content" id="content-reglages">
   <div style="padding:16px;">
-    <div style="font-family:'Manrope', system-ui, sans-serif;font-size:24px;font-weight:800;margin-bottom:6px;letter-spacing:-.5px;">Réglages</div>
-    <div style="font-size:13px;color:var(--texte-doux);margin-bottom:16px;">Choisissez une catégorie pour modifier vos paramètres.</div>
+    <!-- Eyebrow + titre serif (style proto) -->
+    <div style="font-size:11px;font-weight:700;color:var(--texte-doux);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px;">Paramètres</div>
+    <div style="font-family:'Fraunces','Playfair Display',Georgia,serif;font-size:34px;font-weight:500;letter-spacing:-1px;margin-bottom:18px;line-height:1;">Réglages</div>
 
-    <!-- BOUTON MON SITE — accès rapide à la vitrine -->
-    <button onclick="ouvrirMonSite()"
-      style="width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;margin-bottom:20px;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;border:none;border-radius:16px;cursor:pointer;font-family:'Manrope',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;box-shadow:0 8px 22px rgba(15,44,82,.18);transition:transform .12s;text-align:left;"
-      onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform=''" ontouchstart="this.style.transform='scale(0.98)'" ontouchend="this.style.transform=''">
-      <div style="flex-shrink:0;width:42px;height:42px;border-radius:12px;background:#5BBE3A;display:flex;align-items:center;justify-content:center;font-size:22px;">🌐</div>
-      <div style="flex:1;min-width:0;">
-        <div style="font-size:15px;font-weight:700;line-height:1.2;">Voir mon site</div>
-        <div style="font-size:12px;opacity:.75;margin-top:2px;line-height:1.35;" id="monSiteUrl">marchéo.fr/…</div>
+    <!-- HERO BOUTIQUE EN LIGNE — coffee card style proto -->
+    <div style="position:relative;overflow:hidden;background:#1C1814;border-radius:22px;padding:22px 22px;margin-bottom:24px;color:#F4ECDD;">
+      <div style="position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(244,236,221,0.05);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="font-size:11px;font-weight:700;color:rgba(244,236,221,0.55);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;">Boutique en ligne</div>
+        <div style="font-family:'Fraunces','Playfair Display',Georgia,serif;font-size:24px;font-weight:500;letter-spacing:-0.4px;line-height:1.15;margin-bottom:6px;" id="heroNomBoutique">Chez Christophe</div>
+        <div style="font-size:13px;color:rgba(244,236,221,0.55);font-family:ui-monospace,'SF Mono',Consolas,monospace;letter-spacing:-0.2px;margin-bottom:18px;" id="heroUrlBoutique">marchéo.fr/...</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button onclick="ouvrirMonSite()"
+            style="height:40px;padding:0 18px;border-radius:20px;background:#F4ECDD;color:#1C1814;border:none;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit;">
+            Ouvrir <span style="font-size:14px;">→</span>
+          </button>
+          <button onclick="afficherQRCodeBoutique()"
+            style="height:40px;padding:0 18px;border-radius:20px;background:rgba(244,236,221,0.1);color:#F4ECDD;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
+            QR code
+          </button>
+        </div>
       </div>
-      <div style="flex-shrink:0;background:#F4B942;color:#0F2C52;font-size:12px;font-weight:700;padding:6px 12px;border-radius:50px;white-space:nowrap;">Ouvrir →</div>
-    </button>
+    </div>
     <script>
       window.ouvrirMonSite = function(){
         const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -1159,17 +1169,21 @@
         if (!slug) { alert('Slug boutique introuvable'); return; }
         window.open('/' + slug + '/', '_blank', 'noopener');
       };
-      // Affiche l'URL réelle dans le sous-titre quand __CONFIG__ est dispo
+      window.afficherQRCodeBoutique = function(){
+        if (typeof scrollToReg === 'function') scrollToReg('reg-qr');
+      };
       (function(){
         function maj(){
           const s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
           const slug = s.slug || (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.slug);
-          const el = document.getElementById('monSiteUrl');
-          if (el && slug) el.textContent = 'marchéo.fr/' + slug;
+          const nom = (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.nom_boutique) || s.nom_boutique || '';
+          const elNom = document.getElementById('heroNomBoutique');
+          const elUrl = document.getElementById('heroUrlBoutique');
+          if (elNom && nom) elNom.textContent = nom;
+          if (elUrl && slug) elUrl.textContent = 'marchéo.fr/' + slug;
         }
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', maj);
         else maj();
-        // retry quand __CONFIG__ arrive
         document.addEventListener('business:ready', maj);
         setTimeout(maj, 1500);
       })();

@@ -367,25 +367,59 @@ button[onclick*="seDeconnecter"] {
   background: var(--surface-2) !important;
 }
 
-/* reg-icon style proto : carré arrondi beige tint avec emoji ink coffee */
+/* reg-icon style proto : carré arrondi beige tint, SVG outline ink coffee */
 .reg-icon {
   width: 36px !important;
   height: 36px !important;
-  border-radius: 10px !important;       /* carré arrondi (PAS cercle) */
+  border-radius: 10px !important;
   font-size: 18px !important;
-  background: var(--creme-fonce) !important;  /* tint beige #EDE3CF */
+  background: var(--creme-fonce) !important;
   color: var(--texte) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0;
-  filter: grayscale(0.15);              /* emoji légèrement désaturé pour rester sobre */
+  filter: none !important;
+}
+.reg-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
 }
 
 /* TOUTES les variantes de couleur sont annulées : fond uniforme tint beige */
 .reg-row .reg-icon {
   background: var(--creme-fonce) !important;
   color: var(--texte) !important;
+}
+
+/* Cadres : on retire les borders cosmétiques sur les sections proto-style */
+.reg-list,
+[id^="reg-"][class~="reg-section-anchor"] {
+  border: 1px solid rgba(28,24,20,0.06) !important;
+  background: var(--blanc) !important;
+}
+
+/* Chevron en SVG (injecté par svg-icons.js) */
+.reg-chevron {
+  font-size: 0 !important;
+  color: var(--texte-doux) !important;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.reg-chevron svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 .reg-label {
