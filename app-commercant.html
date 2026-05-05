@@ -1601,12 +1601,12 @@
     </div>
 
     <div class="reg-section-titre">💰 Ventes &amp; commandes</div>
-    <!-- EMPREINTE BANCAIRE = GARANTIE DE RÉSERVATION -->
+    <!-- EMPREINTE BANCAIRE = ANTI NO-SHOW POUR COMMANDES (retrait + livraison) -->
     <div id="reg-empreinte" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
         <div>
-          <div style="font-size:15px;font-weight:600;">🔒 Garantie de réservation</div>
-          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Empreinte bancaire — protège contre les absences clients</div>
+          <div style="font-size:15px;font-weight:600;">🔒 Empreinte bancaire — Commandes</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Pour les commandes en <strong>retrait</strong> ou <strong>livraison</strong> · protège contre les absences clients</div>
         </div>
         <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
           <input type="checkbox" id="toggleEmpreinte" onchange="sauverReglages()" style="opacity:0;width:0;height:0;">
@@ -1614,7 +1614,9 @@
         </label>
       </div>
       <div style="font-size:13px;color:var(--texte-doux);line-height:1.5;background:rgba(184,131,42,0.06);border-radius:10px;padding:10px 12px;margin-top:10px;">
-        Si activée, le client enregistre sa carte au moment de la commande — <strong>aucun débit n'est effectué</strong>. La pré-autorisation est <strong>libérée automatiquement</strong> dès que vous marquez la commande comme remise/livrée. En cas d'<strong>absence client non signalée</strong>, vous pouvez déclencher un débit via le bouton "Litige" sur la commande.
+        Si activée, le client enregistre sa carte au moment de <strong>la commande retrait/livraison</strong> — <strong>aucun débit n'est effectué</strong>. La pré-autorisation est <strong>libérée automatiquement</strong> dès que vous marquez la commande comme remise/livrée. En cas d'<strong>absence client non signalée</strong>, vous pouvez déclencher un débit via le bouton "Litige" sur la commande.
+        <br><br>
+        ℹ️ Ne s'applique pas aux <strong>réservations de table</strong> — celles-ci ont leur propre frais de couvert (ci-dessous).
       </div>
 
       <div id="empreintePctWrap" style="margin-top:14px;display:none;">
@@ -1739,14 +1741,14 @@
       </script>
     </div>
 
-    <!-- POLITIQUE D'ANNULATION RÉSERVATION -->
+    <!-- POLITIQUE D'ANNULATION + FRAIS DE COUVERT (RÉSERVATION DE TABLE) -->
     <div id="reg-annulation" class="reg-section-anchor"></div>
     <div id="cancellationPolicyCard" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;display:none;">
-      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Politique d'annulation des réservations</div>
-      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;">Délai pendant lequel le client peut annuler gratuitement avant son arrivée.</div>
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🍽️ Réservation de table — Politique &amp; frais de couvert</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Concerne uniquement les <strong>réservations de table</strong> (pas les commandes retrait/livraison).</div>
 
       <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
-        Annulation gratuite jusqu'à <b id="cancelHoursVal">24</b> h avant
+        ⏱ Annulation gratuite jusqu'à <b id="cancelHoursVal">24</b> h avant
       </label>
       <input type="range" id="cancelHoursRange" min="0" max="72" step="1" value="24"
         oninput="document.getElementById('cancelHoursVal').textContent=this.value"
@@ -1755,12 +1757,15 @@
       <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--texte-doux);margin-top:4px;">
         <span>0 h</span><span>72 h</span>
       </div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-top:8px;line-height:1.5;">
+        Délai pendant lequel le client peut annuler sa réservation gratuitement.
+      </div>
 
-      <!-- Montant empreinte par couvert (RESTAURATION uniquement) -->
+      <!-- Montant frais de couvert (RESTAURATION uniquement) -->
       <div id="empreinteCouvertBloc" style="display:none;">
         <div style="height:1px;background:var(--creme-fonce);margin:18px 0;"></div>
         <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
-          💳 Empreinte par couvert : <b id="couvertEurVal">10</b> €
+          💳 Frais de couvert (empreinte par personne) : <b id="couvertEurVal">10</b> €
         </label>
         <input type="range" id="couvertEurRange" min="2" max="50" step="1" value="10"
           oninput="document.getElementById('couvertEurVal').textContent=this.value;majTipCouvert(this.value)"
@@ -1770,7 +1775,7 @@
           <span>2 € (faible)</span><span>50 € (haut de gamme)</span>
         </div>
         <div id="couvertTipBox" style="font-size:12px;color:var(--texte-doux);margin-top:10px;line-height:1.5;background:#fff8e7;border-radius:8px;padding:10px 12px;">
-          💡 <strong>Recommandé : 10 €/couvert</strong>. Plus le montant est faible, plus les clients réservent (moins de friction). Pour un resto gastronomique, 20-30 € est cohérent.
+          💡 <strong>Recommandé : 10 €/couvert</strong>. Empreinte prise <strong>au moment de la réservation</strong>, débitée uniquement <strong>en cas de no-show</strong>. Plus le montant est faible, plus les clients réservent (moins de friction). Pour un resto gastronomique, 20-30 € est cohérent.
         </div>
       </div>
     </div>
@@ -5447,16 +5452,15 @@ function appliquerVisibiliteFeatures() {
       if (labelLiv && labelLiv.tagName === 'LABEL') labelLiv.style.display = cap.livraison ? '' : 'none';
     }
 
-    // ── 4. Politique d'annulation : visible si commandes OU résa OU métier resto
-    // (un resto doit toujours pouvoir paramétrer son empreinte par couvert,
-    // même s'il n'est pas encore sur le plan livraison/résa)
+    // ── 4. Réservation de table — politique d'annulation + frais de couvert :
+    // visible UNIQUEMENT si métier resto ET plan inclut la résa.
+    // (un primeur ne voit jamais ce bloc, et un resto en plan vitrine non plus)
     const cancelCard = document.getElementById('cancellationPolicyCard');
-    if (cancelCard) cancelCard.style.display = (cap.commandes || peutResa || isResto) ? 'block' : 'none';
+    if (cancelCard) cancelCard.style.display = peutResa ? 'block' : 'none';
 
-    // Empreinte par couvert : tout métier de RESTAURATION (peu importe le plan)
-    // → permet au commerçant de configurer son montant même avant d'avoir le plan résa
+    // Frais de couvert (empreinte par personne pour la résa) : même condition
     const empCouvert = document.getElementById('empreinteCouvertBloc');
-    if (empCouvert) empCouvert.style.display = isResto ? '' : 'none';
+    if (empCouvert) empCouvert.style.display = peutResa ? '' : 'none';
 
     // ── 5. Plan VITRINE : grise commandes/planning/créneaux (PAS produits)
     // Le commerçant DOIT pouvoir gérer son catalogue même en vitrine
