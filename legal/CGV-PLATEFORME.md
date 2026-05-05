@@ -37,7 +37,7 @@ L'utilisation de la Plateforme implique l'acceptation **pleine et entière** des
 ## ARTICLE 3 — INSCRIPTION ET COMPTE COMMERÇANT
 
 ### 3.1 Conditions d'inscription
-L'inscription est ouverte à toute personne morale ou physique exerçant une activité de commerce de proximité dans les domaines suivants : primeur, boucherie, boulangerie, poissonnerie, traiteur, fromagerie, ou toute activité similaire validée par Marchéo.
+L'inscription est ouverte à toute personne morale ou physique exerçant une activité de commerce de proximité dans les domaines suivants : primeur, boucherie, boulangerie, poissonnerie, traiteur, fromagerie, fleuriste, pizzeria, restaurant, fast-food / food-truck, ou toute activité similaire validée par Marchéo.
 
 Le Commerçant doit :
 - Disposer d'un numéro **SIRET valide**

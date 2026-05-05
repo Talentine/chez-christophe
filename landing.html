@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marchéo · Digitalisez votre commerce de bouche · Click & Collect, Livraison, Réservation</title>
-  <meta name="description" content="L'app qui digitalise votre commerce de bouche : primeur, boucher, boulanger, fromager, poissonnier, traiteur, pizzeria, restaurant, food-truck. Click & collect, livraison, réservation table, fidélisation par SMS et notifications. Sans commission, à partir de 19€/mois.">
-  <meta name="keywords" content="digitaliser son commerce de bouche, application commerçant marché, logiciel gestion food-truck, fidéliser clients marché local, click and collect marché, alerter clients absence marché, producteurs locaux vente directe, manger local, panier primeur, réservation pizzeria en ligne, marché horaires, où trouver un food-truck">
+  <meta name="description" content="L'app qui digitalise votre commerce de proximité : primeur, boucher, boulanger, fromager, poissonnier, traiteur, fleuriste, pizzeria, restaurant, food-truck. Click & collect, livraison, réservation table, fidélisation par SMS et notifications. Sans commission, à partir de 19€/mois.">
+  <meta name="keywords" content="digitaliser son commerce de bouche, application commerçant marché, logiciel gestion food-truck, fidéliser clients marché local, click and collect marché, alerter clients absence marché, producteurs locaux vente directe, manger local, panier primeur, réservation pizzeria en ligne, fleuriste en ligne, bouquet livraison, marché horaires, où trouver un food-truck">
   <meta property="og:title" content="Marchéo · Le retrait & livraison des artisans">
   <meta property="og:description" content="Boutique en ligne avec retrait boutique et livraison à domicile. Protection anti no-show incluse. À partir de 249€ · 19€/mois sans engagement.">
   <meta property="og:image" content="https://www.xn--marcho-fva.fr/api/og">
@@ -53,7 +53,7 @@
         "alternateName": "Marchéo.fr",
         "url": "https://marchéo.fr/",
         "logo": "https://marchéo.fr/assets/brand/logo.svg",
-        "description": "Plateforme de click & collect et livraison pour les artisans français : primeurs, bouchers, boulangers, poissonniers, fromagers, traiteurs.",
+        "description": "Plateforme de click & collect et livraison pour les artisans français : primeurs, bouchers, boulangers, poissonniers, fromagers, traiteurs, fleuristes, pizzerias, restaurants.",
         "sameAs": [],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -312,6 +312,7 @@
     .metier-card[data-type="primeur"] { --mc-bg: rgba(42,69,53,.04); }
     .metier-card[data-type="boucherie"] { --mc-bg: rgba(139,26,26,.04); }
     .metier-card[data-type="boulangerie"] { --mc-bg: rgba(107,68,35,.04); }
+    .metier-card[data-type="fleuriste"] { --mc-bg: rgba(74,103,65,.04); }
     .metier-card[data-type="poissonnerie"] { --mc-bg: rgba(27,73,101,.04); }
     .metier-card[data-type="traiteur"] { --mc-bg: rgba(43,43,43,.04); }
     .metier-card[data-type="fromagerie"] { --mc-bg: rgba(61,84,70,.04); }
@@ -1133,6 +1134,18 @@ function afficherPlusDeSites() {
           </div>
         </div>
       </div>
+      <div class="metier-card reveal" data-type="fleuriste">
+        <div class="metier-card-inner">
+          <span class="metier-emoji" aria-hidden="true">💐</span>
+          <div class="metier-name">Fleuriste</div>
+          <p class="metier-desc">Bouquets, plantes, compositions sur mesure. Réservez les bouquets d'un mariage ou les fleurs d'un deuil en quelques clics.</p>
+          <div class="metier-tags">
+            <span class="metier-tag">Bouquets</span>
+            <span class="metier-tag">Mariages</span>
+            <span class="metier-tag">Livraison</span>
+          </div>
+        </div>
+      </div>
       <div class="metier-card reveal" data-type="pizzeria">
         <div class="metier-card-inner">
           <span class="metier-emoji" aria-hidden="true">🍕</span>
@@ -1728,7 +1741,7 @@ function afficherPlusDeSites() {
       <details class="faq-item">
         <summary>Et si mon métier n'est pas dans la liste ?</summary>
         <div class="faq-answer">
-          Marchéo gère <strong>6 métiers : primeur, boucher, boulanger, poissonnier, fromager, traiteur</strong>. Vous pouvez aussi cocher des <strong>métiers complémentaires</strong> (ex : un primeur qui propose aussi du fromage). Si votre activité n'est pas listée, contactez-nous.
+          Marchéo gère <strong>10 métiers : primeur, boucher, boulanger, poissonnier, fromager, traiteur, fleuriste, pizzeria, restaurant et fast-food / food-truck</strong>. Vous pouvez aussi cocher des <strong>métiers complémentaires</strong> (ex : un primeur qui propose aussi du fromage). Si votre activité n'est pas listée, contactez-nous.
         </div>
       </details>
 
@@ -1742,7 +1755,7 @@ function afficherPlusDeSites() {
       <details class="faq-item">
         <summary>Mes clients peuvent-ils payer en boutique au retrait ?</summary>
         <div class="faq-answer">
-          Oui, <strong>recommandé pour les métiers au poids</strong> (boucher, primeur, poissonnier, fromager). La garantie de réservation enregistre la carte sans débit, vos clients viennent et règlent au comptoir avec le poids exact. Pour les produits à prix fixe (boulangerie, traiteur), le paiement en ligne est possible.
+          Oui, <strong>recommandé pour les métiers au poids</strong> (boucher, primeur, poissonnier, fromager). La garantie de réservation enregistre la carte sans débit, vos clients viennent et règlent au comptoir avec le poids exact. Pour les produits à prix fixe (boulangerie, traiteur, fleuriste), le paiement en ligne est possible.
         </div>
       </details>
 
