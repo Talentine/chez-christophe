@@ -14,6 +14,10 @@ const METIERS = {
   poissonnerie: { emoji: '🐟', label: 'Poissonnerie' },
   fromagerie:   { emoji: '🧀', label: 'Fromagerie' },
   traiteur:     { emoji: '🍽️', label: 'Traiteur' },
+  fleuriste:    { emoji: '💐', label: 'Fleuriste' },
+  restaurant:   { emoji: '🍽️', label: 'Restaurant' },
+  pizzeria:     { emoji: '🍕', label: 'Pizzeria' },
+  fastfood:     { emoji: '🍔', label: 'Fast-food' },
 };
 
 function escapeXml(s) {

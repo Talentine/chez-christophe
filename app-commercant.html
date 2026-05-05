@@ -1411,6 +1411,7 @@
             <option value="poissonnerie">🐟 Poissonnerie</option>
             <option value="traiteur">🍽️ Traiteur</option>
             <option value="fromagerie">🧀 Fromagerie</option>
+            <option value="fleuriste">💐 Fleuriste</option>
             <option value="pizzeria">🍕 Pizzeria</option>
             <option value="restaurant">🍴 Restaurant</option>
             <option value="fastfood">🍔 Fast-food</option>
@@ -1444,6 +1445,9 @@
             </label>
             <label class="bt-chip" data-type="traiteur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
               <input type="checkbox" value="traiteur" style="margin:0;"> 🍽️ Traiteur
+            </label>
+            <label class="bt-chip" data-type="fleuriste" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="fleuriste" style="margin:0;"> 💐 Fleuriste
             </label>
           </div>
         </div>
@@ -4616,7 +4620,7 @@ function seDeconnecterCommercant() {
 // SÉLECTEUR DE BOUTIQUE (multi-comptes pour un même email)
 // ====================================================================
 function afficherSelecteurBoutique(roles, sessionBase) {
-  const emojis = { primeur:'🌿', boucherie:'🥩', boulangerie:'🥖', poissonnerie:'🐟', traiteur:'🍽️', fromagerie:'🧀' };
+  const emojis = { primeur:'🌿', boucherie:'🥩', boulangerie:'🥖', poissonnerie:'🐟', traiteur:'🍽️', fromagerie:'🧀', fleuriste:'💐', restaurant:'🍽️', pizzeria:'🍕', fastfood:'🍔' };
   const html = `
     <div id="selecteurBoutiqueOverlay" style="position:fixed;inset:0;background:#1a2e26;z-index:99999;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;display:flex;align-items:flex-start;justify-content:center;">
       <div style="background:#243d32;border-radius:24px;padding:28px 22px;width:100%;max-width:420px;border:1px solid rgba(255,255,255,0.1);margin:auto 0;">

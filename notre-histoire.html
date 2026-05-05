@@ -595,6 +595,22 @@ const HISTOIRE_PAR_METIER = {
       `Pour vos événements — repas de famille, mariages, cocktails d\'entreprise — nous concevons des prestations sur-mesure : buffets, plateaux-repas, animations culinaires. Devis et conseils gratuits.`,
     ],
   },
+  fleuriste: {
+    badge: '💐 Fleuriste artisanal',
+    leaf: '💐',
+    metier: 'Fleuriste',
+    valeurs: [
+      { icon:'🌸', titre:'Frais',        desc:'Arrivages quotidiens, fleurs sélectionnées avec soin' },
+      { icon:'🎨', titre:'Sur-mesure',   desc:'Bouquets composés selon vos envies et l\'occasion' },
+      { icon:'🤝', titre:'Local',        desc:'Producteurs français privilégiés quand la saison le permet' },
+      { icon:'🎁', titre:'Événements',   desc:'Mariages, deuils, anniversaires : compositions personnalisées' },
+    ],
+    citation: 'Offrir des fleurs, c\'est offrir un instant de beauté pure et de pure beauté.',
+    texteFn: (nom, ville) => [
+      `<strong>${nom}</strong>${ville ? ', fleuriste à ' + ville : ''}, c\'est l\'art floral à la française : bouquets composés sur mesure, plantes d\'intérieur sélectionnées et compositions originales pour toutes vos occasions.`,
+      `Mariage, baptême, anniversaire ou simple attention : nous mettons notre savoir-faire au service de vos émotions. Des fleurs fraîches du jour aux compositions séchées tendance, en passant par les plantes d\'intérieur, nous accompagnons chaque moment de votre vie avec délicatesse.`,
+    ],
+  },
 };
 
 const JOURS_LBL = { lundi:'Lundi', mardi:'Mardi', mercredi:'Mercredi', jeudi:'Jeudi', vendredi:'Vendredi', samedi:'Samedi', dimanche:'Dimanche' };

@@ -77,6 +77,18 @@ export const BUSINESS_TYPES = {
     labels: { produits:'Nos fromages', panier:'Mon panier', arrivage:'Affinés du moment', coups_coeur:'Sélection de l\'affineur' }
   },
 
+  fleuriste: {
+    label: 'Fleuriste',
+    palette: { primary:'#4A6741', primary_dark:'#2F4A28', accent:'#E89BAE', accent_light:'#F4C4D2', danger:'#C84B4B', cream:'#FAF5F2', cream_dark:'#EFE3DC' },
+    fonts:   { display:'"Playfair Display"', body:'"Plus Jakarta Sans"' },
+    emoji_fallback: '💐',
+    features: { saison:true, bio:true, provenance:true, decoupe:false, cuisson:false, programmation:true, dlc:true, poids_variable:false },
+    filters: ['saison','local','occasion','duree-vie'],
+    product_extra_fields: ['saisonnier','occasion','duree_vie_jours','entretien','provenance'],
+    cart_modes: ['retrait','livraison','programme'],
+    labels: { produits:'Notre boutique', panier:'Mon bouquet', arrivage:'Arrivage du jour', coups_coeur:'Coups de cœur du fleuriste' }
+  },
+
   // ============================================================
   // RESTAURATION : 3 sous-styles (pizzeria / restaurant / fastfood)
   // Caractéristique commune : reservation_table activable

@@ -2370,6 +2370,7 @@ const HEROES_PAR_METIER = {
   pizzeria:     { titre: 'Pizzas<br>artisanales', sousTitre: 'Pâte fraîche, four à bois, ingrédients italiens.', label: 'Pizzeria' },
   restaurant:   { titre: 'Notre<br>carte', sousTitre: 'Cuisine maison, produits frais &amp; de saison.', label: 'Restaurant' },
   fastfood:     { titre: 'Burgers<br>& spécialités', sousTitre: 'Préparé minute, à emporter ou livraison rapide.', label: 'Fast-food' },
+  fleuriste:    { titre: 'Bouquets<br>& plantes', sousTitre: 'Fleurs fraîches, compositions sur mesure.', label: 'Fleuriste' },
 };
 
 // ── APPLIQUER CONFIG DEPUIS __CONFIG__ ────────────────────────────
@@ -2673,12 +2674,14 @@ if ('serviceWorker' in navigator) {
   var METIER_LABELS = {
     primeur: 'Primeur', boucherie: 'Boucher Artisanal', boulangerie: 'Boulanger Artisan',
     poissonnerie: 'Poissonnier', traiteur: 'Traiteur', fromagerie: 'Fromagerie Artisanale',
-    pizzeria: 'Pizzeria', restaurant: 'Restaurant', fastfood: 'Fast-food'
+    pizzeria: 'Pizzeria', restaurant: 'Restaurant', fastfood: 'Fast-food',
+    fleuriste: 'Fleuriste Artisanal'
   };
   var METIER_TYPES_SCHEMA = {
     primeur: 'GroceryStore', boucherie: 'Store', boulangerie: 'Bakery',
     poissonnerie: 'Store', traiteur: 'Restaurant', fromagerie: 'Store',
-    pizzeria: 'Restaurant', restaurant: 'Restaurant', fastfood: 'FastFoodRestaurant'
+    pizzeria: 'Restaurant', restaurant: 'Restaurant', fastfood: 'FastFoodRestaurant',
+    fleuriste: 'Florist'
   };
 
   function setMeta(name, content, attr) {
