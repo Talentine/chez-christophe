@@ -6,7 +6,7 @@
 //  - Stale while revalidate : images Storage Supabase
 // ============================================================
 
-const CACHE_VERSION = 'marcheo-v68-2026-05-rls-hardening-icones-agenda';
+const CACHE_VERSION = 'marcheo-v69-2026-05-fix-views-metiers-resto';
 const CACHE_STATIC  = `${CACHE_VERSION}-static`;
 const CACHE_RUNTIME = `${CACHE_VERSION}-runtime`;
 const CACHE_IMAGES  = `${CACHE_VERSION}-images`;

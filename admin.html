@@ -1020,7 +1020,9 @@ async function chargerDashboard() {
   const METIERS_DASH = {
     primeur:{emoji:'🌿',label:'Primeur'}, boucherie:{emoji:'🥩',label:'Boucherie'},
     boulangerie:{emoji:'🥖',label:'Boulangerie'}, poissonnerie:{emoji:'🐟',label:'Poissonnerie'},
-    traiteur:{emoji:'🍽️',label:'Traiteur'}, fromagerie:{emoji:'🧀',label:'Fromagerie'}
+    traiteur:{emoji:'🍽️',label:'Traiteur'}, fromagerie:{emoji:'🧀',label:'Fromagerie'},
+    restaurant:{emoji:'🍽️',label:'Restaurant'}, pizzeria:{emoji:'🍕',label:'Pizzeria'},
+    fastfood:{emoji:'🍔',label:'Fast-food'}
   };
   const total = tousCommercants.length || 1;
   document.getElementById('repartitionMetiers').innerHTML = Object.entries(metierStats)
@@ -1081,7 +1083,10 @@ const METIERS = {
   boulangerie:  { emoji:'🥖', label:'Boulangerie' },
   poissonnerie: { emoji:'🐟', label:'Poissonnerie' },
   traiteur:     { emoji:'🍽️', label:'Traiteur' },
-  fromagerie:   { emoji:'🧀', label:'Fromagerie' }
+  fromagerie:   { emoji:'🧀', label:'Fromagerie' },
+  restaurant:   { emoji:'🍽️', label:'Restaurant' },
+  pizzeria:     { emoji:'🍕', label:'Pizzeria' },
+  fastfood:     { emoji:'🍔', label:'Fast-food' }
 };
 
 let _activite30jParCommercant = null;
