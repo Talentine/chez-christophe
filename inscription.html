@@ -797,6 +797,7 @@ async function creerBoutique() {
       headers: authHeader,
       body: JSON.stringify({
         ...promoPayload,
+        auth_user_id: userId, // requis par la RLS commercants_insert_self
         slug: state.slug,
         nom_boutique: state.nom,
         business_type: state.type,
