@@ -876,11 +876,14 @@
       <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="uploaderLogo(this.files[0])">
     </div>
 
-    <!-- IMAGES DES RAYONS (catégories) -->
+    <!-- GESTION DES RAYONS (catégories) -->
     <div style="margin-bottom:24px;">
-      <div style="font-size:15px;font-weight:500;margin-bottom:6px;">🖼️ Photos des rayons <span style="color:var(--texte-doux);font-weight:400;font-size:12px;">(optionnel)</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px;">
+        <div style="font-size:15px;font-weight:500;">🗂️ Mes rayons</div>
+        <button onclick="ajouterRayon()" style="background:var(--vert);color:white;border:none;border-radius:50px;padding:8px 14px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;">+ Ajouter</button>
+      </div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:12px;line-height:1.5;">
-        Chaque rayon de votre boutique a une photo par défaut. Vous pouvez la <strong>remplacer par votre propre photo</strong> pour personnaliser votre vitrine.
+        Organisez votre boutique en <strong>ajoutant</strong>, <strong>renommant</strong> ou <strong>masquant</strong> des rayons. Personnalisez aussi la photo de chaque rayon.
       </div>
       <div id="rayonsImagesGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div style="text-align:center;padding:20px;color:var(--texte-doux);font-size:13px;grid-column:span 2;">Chargement…</div>
@@ -7285,42 +7288,85 @@ async function chargerRayonsImages() {
   const commercantId = session.commercant_id;
   if (!commercantId) return;
   try {
-    // Récupérer le business_type + types secondaires + custom images
-    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_types_secondaires,rayons_images_custom', {
+    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_types_secondaires,rayons_images_custom,rayons_config', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const dC = await r1.json();
     const c = dC?.[0] || {};
     const types = [c.business_type, ...(c.business_types_secondaires || [])].filter(Boolean);
-    const custom = c.rayons_images_custom || {};
+    const customImages = c.rayons_images_custom || {};
+    const cfg = c.rayons_config || {};
+    const hidden = new Set(cfg.hidden || []);
     if (!types.length) return;
 
+    // 1. Catégories globales (commercant_id IS NULL) du métier + types secondaires
     const filterIn = '(' + types.map(encodeURIComponent).join(',') + ')';
-    const r2 = await fetch(SUPABASE_URL + '/rest/v1/categories?business_type=in.' + filterIn + '&select=slug,nom,image_url,emoji&order=ordre', {
+    const r2 = await fetch(SUPABASE_URL + '/rest/v1/categories?business_type=in.' + filterIn + '&commercant_id=is.null&select=id,slug,nom,image_url,emoji,ordre&order=ordre', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
-    const cats = await r2.json();
-    if (!Array.isArray(cats)) return;
+    const globalCats = (await r2.json()) || [];
 
-    grid.innerHTML = cats.map(cat => {
-      const customUrl = custom[cat.slug];
+    // 2. Catégories custom de ce commerçant
+    const r3 = await fetch(SUPABASE_URL + '/rest/v1/categories?commercant_id=eq.' + commercantId + '&select=id,slug,nom,image_url,emoji,ordre&order=ordre', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const customCats = (await r3.json()) || [];
+
+    // Marquage type
+    const all = [
+      ...globalCats.map(c => ({ ...c, _type: 'global' })),
+      ...customCats.map(c => ({ ...c, _type: 'custom' })),
+    ];
+
+    if (all.length === 0) {
+      grid.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:20px;color:var(--texte-doux);font-size:13px;">Aucun rayon. Cliquez sur <strong>+ Ajouter</strong> pour créer le premier.</div>';
+      return;
+    }
+
+    grid.innerHTML = all.map(cat => {
+      const customUrl = customImages[cat.slug];
       const displayUrl = customUrl || cat.image_url;
-      const isCustom = !!customUrl;
+      const isHidden = hidden.has(cat.slug);
+      const isCustomCat = cat._type === 'custom';
+      const isCustomImg = !!customUrl;
       const imgHtml = displayUrl
-        ? '<img src="' + displayUrl + '" alt="' + cat.nom + '" style="width:100%;height:100%;object-fit:cover;display:block;">'
-        : '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:36px;background:var(--creme);">' + (cat.emoji || '🌿') + '</div>';
+        ? '<img src="' + displayUrl + '" alt="' + (cat.nom||'').replace(/"/g,'&quot;') + '" style="width:100%;height:100%;object-fit:cover;display:block;' + (isHidden?'opacity:0.4;filter:grayscale(0.6);':'') + '">'
+        : '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:36px;background:var(--creme);' + (isHidden?'opacity:0.4;':'') + '">' + (cat.emoji || '🗂️') + '</div>';
+      const nomEsc = (cat.nom||'').replace(/'/g,'&#39;').replace(/"/g,'&quot;');
+      const slugEsc = (cat.slug||'').replace(/'/g,'&#39;');
+      const idEsc = cat.id;
+
+      // Boutons selon type (custom = full CRUD, global = masquer/photo)
+      let btns;
+      if (isHidden) {
+        btns = `<button onclick="reafficherRayon('${slugEsc}')" style="flex:1;background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">👁 Réafficher</button>`;
+      } else if (isCustomCat) {
+        btns = `
+          <button onclick="renommerRayon('${idEsc}','${nomEsc}')" style="flex:1;background:var(--blanc);color:var(--vert-fonce);border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">✏️</button>
+          <button onclick="uploaderImageRayon('${slugEsc}')" style="flex:1;background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">📷</button>
+          <button onclick="supprimerRayon('${idEsc}','${nomEsc}')" style="background:white;border:1px solid #f0c0c0;color:#c44;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">🗑️</button>`;
+      } else {
+        btns = `
+          <button onclick="uploaderImageRayon('${slugEsc}')" style="flex:1;background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">📷 ${isCustomImg ? 'Changer' : 'Photo'}</button>
+          ${isCustomImg ? `<button onclick="resetImageRayon('${slugEsc}')" title="Restaurer la photo par défaut" style="background:white;border:1px solid #ccc;color:#666;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">↺</button>` : ''}
+          <button onclick="masquerRayon('${slugEsc}')" title="Masquer ce rayon" style="background:white;border:1px solid #f0c0c0;color:#c44;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">🚫</button>`;
+      }
+
+      const tag = isCustomCat
+        ? '<div style="position:absolute;top:6px;left:6px;background:#0F2C52;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;">✨ Custom</div>'
+        : (isCustomImg ? '<div style="position:absolute;top:6px;right:6px;background:var(--vert);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;">✓ Photo perso</div>' : '');
+      const hiddenTag = isHidden ? '<div style="position:absolute;top:6px;right:6px;background:#c44;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;">🚫 Masqué</div>' : '';
+
       return `
-        <div style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:14px;overflow:hidden;">
+        <div style="background:var(--blanc);border:1px solid var(--creme-fonce);border-radius:14px;overflow:hidden;${isHidden?'opacity:0.7;':''}">
           <div style="aspect-ratio:1;position:relative;">
             ${imgHtml}
-            ${isCustom ? '<div style="position:absolute;top:6px;right:6px;background:var(--vert);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;">✓ Personnalisée</div>' : ''}
+            ${tag}
+            ${hiddenTag}
           </div>
           <div style="padding:10px 12px;">
             <div style="font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.2;">${cat.nom}</div>
-            <div style="display:flex;gap:6px;">
-              <button onclick="uploaderImageRayon('${cat.slug}')" style="flex:1;background:var(--vert);color:white;border:none;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">📷 ${isCustom ? 'Changer' : 'Personnaliser'}</button>
-              ${isCustom ? `<button onclick="resetImageRayon('${cat.slug}')" style="background:white;border:1px solid #f0c0c0;color:#c44;border-radius:50px;padding:7px 10px;font-size:11px;font-family:inherit;cursor:pointer;">↺</button>` : ''}
-            </div>
+            <div style="display:flex;gap:6px;">${btns}</div>
           </div>
         </div>`;
     }).join('');
@@ -7328,6 +7374,119 @@ async function chargerRayonsImages() {
     console.warn('chargerRayonsImages err', e);
     grid.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:14px;color:#c44;font-size:13px;">Erreur de chargement</div>';
   }
+}
+
+// ── CRUD RAYONS ────────────────────────────────────────────────
+function _slugify(s) {
+  return (s || '').toString().toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+}
+
+async function ajouterRayon() {
+  const nom = (prompt('Nom du nouveau rayon :', '') || '').trim();
+  if (!nom) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!token || !commercantId) return;
+  try {
+    // Récupérer business_type pour categoriser
+    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+    });
+    const data = await r1.json();
+    const businessType = data?.[0]?.business_type || 'primeur';
+    const slug = _slugify(nom) + '-' + Math.random().toString(36).slice(2, 6);
+    const r = await fetch(SUPABASE_URL + '/rest/v1/categories', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ commercant_id: commercantId, business_type: businessType, nom, slug, ordre: 999, emoji: '🗂️' })
+    });
+    if (!r.ok) throw new Error(await r.text());
+    afficherToast('✅ Rayon "' + nom + '" ajouté');
+    chargerRayonsImages();
+  } catch (e) {
+    afficherToast('❌ ' + (e.message || 'Échec'));
+  }
+}
+
+async function renommerRayon(id, ancienNom) {
+  const nom = (prompt('Nouveau nom du rayon :', ancienNom) || '').trim();
+  if (!nom || nom === ancienNom) return;
+  const token = await getValidToken();
+  if (!token) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/categories?id=eq.' + id, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ nom })
+    });
+    if (!r.ok) throw new Error(await r.text());
+    afficherToast('✅ Rayon renommé');
+    chargerRayonsImages();
+  } catch (e) { afficherToast('❌ ' + e.message); }
+}
+
+async function supprimerRayon(id, nom) {
+  if (!confirm('Supprimer définitivement le rayon "' + nom + '" ?\n\nLes produits qu\'il contient ne seront plus catégorisés.')) return;
+  const token = await getValidToken();
+  if (!token) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/categories?id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Prefer': 'return=minimal' }
+    });
+    if (!r.ok) throw new Error(await r.text());
+    afficherToast('🗑️ Rayon supprimé');
+    chargerRayonsImages();
+  } catch (e) { afficherToast('❌ ' + e.message); }
+}
+
+async function masquerRayon(slug) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!token) return;
+  try {
+    const cur = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=rayons_config', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+    });
+    const data = await cur.json();
+    const cfg = data?.[0]?.rayons_config || {};
+    const hidden = new Set(cfg.hidden || []);
+    hidden.add(slug);
+    cfg.hidden = Array.from(hidden);
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ rayons_config: cfg })
+    });
+    afficherToast('🚫 Rayon masqué');
+    chargerRayonsImages();
+  } catch (e) { afficherToast('❌ ' + e.message); }
+}
+
+async function reafficherRayon(slug) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  const token = await getValidToken();
+  if (!token) return;
+  try {
+    const cur = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=rayons_config', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+    });
+    const data = await cur.json();
+    const cfg = data?.[0]?.rayons_config || {};
+    cfg.hidden = (cfg.hidden || []).filter(s => s !== slug);
+    await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ rayons_config: cfg })
+    });
+    afficherToast('👁 Rayon réaffiché');
+    chargerRayonsImages();
+  } catch (e) { afficherToast('❌ ' + e.message); }
 }
 
 let _rayonSlugEnCours = null;

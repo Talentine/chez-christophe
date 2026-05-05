@@ -1498,11 +1498,27 @@ async function chargerRayons(commercantId) {
   const bt = b.business_type || 'primeur';
   const secondaires = b.business_types_secondaires || [];
   const customImages = b.rayons_images_custom || {};
+  const rayonsCfg = b.rayons_config || {};
+  const hidden = new Set(rayonsCfg.hidden || []);
   const tousTypes = [bt, ...secondaires];
   const filterIn = '(' + tousTypes.map(encodeURIComponent).join(',') + ')';
-  let cats = await supabase('categories', '?business_type=in.' + filterIn + '&order=ordre&select=*');
-  if (!cats || cats.error || !cats.length) cats = await supabase('categories', '?order=ordre&select=*');
-  if (!cats || cats.error) { grid.innerHTML = '<p>Erreur de chargement</p>'; return; }
+
+  // Globaux du métier (commercant_id IS NULL)
+  let globaux = await supabase('categories', '?business_type=in.' + filterIn + '&commercant_id=is.null&order=ordre&select=*') || [];
+  // Custom du commerçant
+  let custom = commercantId ? (await supabase('categories', '?commercant_id=eq.' + commercantId + '&order=ordre&select=*') || []) : [];
+  if (globaux.error) globaux = [];
+  if (custom.error) custom = [];
+
+  // Fallback : rien trouvé → on charge tous les globaux pour ne pas avoir un site vide
+  if (globaux.length === 0 && custom.length === 0) {
+    const fallback = await supabase('categories', '?commercant_id=is.null&order=ordre&select=*');
+    if (Array.isArray(fallback)) globaux = fallback;
+  }
+
+  // Merger + filtrer les masqués (par slug)
+  let cats = [...globaux, ...custom].filter(c => !hidden.has(c.slug));
+  if (!cats.length) { grid.innerHTML = '<p style="text-align:center;color:var(--texte-doux);grid-column:span 2;">Aucun rayon à afficher.</p>'; return; }
   const cfg = window.__CONFIG__;
   const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   grid.innerHTML = cats.map(c => {
