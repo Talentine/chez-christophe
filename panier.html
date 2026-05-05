@@ -254,6 +254,25 @@
     <div id="recapFinal"></div>
   </div>
 
+  <!-- Opt-in marketing (RGPD - décoché par défaut, OPTIONNEL) -->
+  <div class="section" style="background:var(--creme);">
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12.5px;line-height:1.5;color:var(--texte-doux);margin-bottom:10px;">
+      <input type="checkbox" id="smsMarketingOptIn" style="margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:var(--vert);">
+      <span>
+        📱 J'accepte de recevoir <strong>par SMS</strong> les actualités, offres et nouveautés du commerçant. <em>(facultatif — désinscription en répondant STOP)</em>
+      </span>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12.5px;line-height:1.5;color:var(--texte-doux);">
+      <input type="checkbox" id="emailMarketingOptIn" style="margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:var(--vert);">
+      <span>
+        ✉️ J'accepte de recevoir <strong>par email</strong> la newsletter du commerçant. <em>(facultatif — désinscription en 1 clic)</em>
+      </span>
+    </label>
+    <div style="font-size:11px;color:var(--texte-doux);margin-top:10px;padding-top:10px;border-top:1px solid var(--creme-fonce);line-height:1.5;">
+      ℹ️ Vous recevrez de toute façon les <strong>SMS de confirmation et de retrait</strong> de votre commande (nécessaires à l'exécution du service).
+    </div>
+  </div>
+
   <!-- Acceptation CGV -->
   <div class="section" style="background:var(--creme);">
     <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;line-height:1.5;color:var(--texte);">
@@ -963,12 +982,36 @@ async function confirmerCommande() {
   try {
     const commercantId = __CID__;
 
+    // Opt-in marketing RGPD (case décochée par défaut, opt-in EXPLICITE requis)
+    const smsOptIn = !!document.getElementById('smsMarketingOptIn')?.checked;
+    const emailOptIn = !!document.getElementById('emailMarketingOptIn')?.checked;
+    const nowIso = new Date().toISOString();
+
     let clientId = null;
-    const clients = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id');
+    const clients = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id,sms_marketing_consent,email_marketing_consent');
     if (clients?.length > 0) {
       clientId = clients[0].id;
+      // Si le client coche le consent (et n'avait pas déjà consenti) → on met à jour avec horodatage
+      const patch = {};
+      if (smsOptIn && !clients[0].sms_marketing_consent) {
+        patch.sms_marketing_consent = true;
+        patch.sms_marketing_consent_at = nowIso;
+      }
+      if (emailOptIn && !clients[0].email_marketing_consent) {
+        patch.email_marketing_consent = true;
+        patch.email_marketing_consent_at = nowIso;
+      }
+      if (Object.keys(patch).length > 0) {
+        await sb('clients', '?id=eq.' + clientId, 'PATCH', patch);
+      }
     } else {
-      const newClient = await sb('clients', '', 'POST', { commercant_id: commercantId, email, nom, prenom, telephone });
+      const newClient = await sb('clients', '', 'POST', {
+        commercant_id: commercantId, email, nom, prenom, telephone,
+        sms_marketing_consent: smsOptIn,
+        sms_marketing_consent_at: smsOptIn ? nowIso : null,
+        email_marketing_consent: emailOptIn,
+        email_marketing_consent_at: emailOptIn ? nowIso : null,
+      });
       clientId = newClient?.[0]?.id;
     }
 

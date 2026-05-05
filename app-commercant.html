@@ -3066,8 +3066,10 @@ function majPreviewCRM() {
   }
 
   // Estimation push vs sms
+  // Pour SMS/email marketing : opt-in EXPLICITE requis (RGPD/LCEN), pas seulement absence d'opt-out
+  // Pour push : opt-in implicite via abonnement Web Push (le client a cliqué Autoriser dans le navigateur)
   const cibleClientsArr = seg === 'all' ? crmClients : crmClients.filter(c => (c.segments || []).includes(seg));
-  const sansOptOutSms = cibleClientsArr.filter(c => !c.opt_out_sms && c.telephone).length;
+  const sansOptOutSms = cibleClientsArr.filter(c => c.sms_marketing_consent === true && !c.opt_out_sms && c.telephone).length;
   const sansOptOutPush = cibleClientsArr.filter(c => !c.opt_out_push).length;
 
   let estPush = 0, estSms = 0;
