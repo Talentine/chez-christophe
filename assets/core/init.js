@@ -221,6 +221,12 @@
       window.__CONFIG__ = cfg;
       applyTheme(cfg);
       preserveSlugOnLinks(slug);
+      // ── Dispatch event 'business:ready' pour que les autres scripts
+      // (réservation, modale couverts, ...) appliquent les paramètres
+      // dynamiques du commerçant (empreinte_couvert_cents, etc.).
+      try {
+        document.dispatchEvent(new CustomEvent('business:ready', { detail: cfg }));
+      } catch(e) { console.error('business:ready dispatch failed', e); }
       return cfg;
     } catch(e) {
       console.error('[CC] init failed:', slug, e.message);

@@ -3816,7 +3816,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         <textarea id="m-resa-notes" placeholder="Allergies, accès PMR, table calme…"></textarea>
 
         <div class="m-resa-info">
-          🔒 <strong>Empreinte bancaire anti no-show</strong> : <span id="m-resa-montant">15€</span> par couvert.
+          🔒 <strong>Empreinte bancaire anti no-show</strong> : <span id="m-resa-montant">10€</span> par couvert.
           <br>Aucun débit si tu viens. Carte demandée juste après.
         </div>
 
@@ -3827,7 +3827,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       <div id="m-resa-step2" style="display:none">
         <div style="font-size:13.5px;color:#6B7785;margin-bottom:14px;line-height:1.5;">
           Saisis ta carte pour valider ta réservation.<br>
-          <strong style="color:#0F2C52">Empreinte de <span id="m-resa-montant2">15€</span></strong> — débitée uniquement en cas de no-show.
+          <strong style="color:#0F2C52">Empreinte de <span id="m-resa-montant2">20€</span></strong> — débitée uniquement en cas de no-show.
         </div>
 
         <label>Numéro de carte</label>
@@ -3921,19 +3921,30 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
     var m2 = document.getElementById('m-resa-montant2');
     if (m2) m2.textContent = (couvertEur * n) + '€';
   }
-  document.addEventListener('business:ready', function(e) {
-    var b = (e.detail && e.detail.business) || {};
-    // Toujours mettre à jour, même si la valeur DB est null (utilise le fallback 10€)
+  function appliquerCouvertDepuisBiz(b) {
+    b = b || {};
     if (b.empreinte_couvert_cents != null) {
-      couvertEur = Math.round(b.empreinte_couvert_cents / 100) || 10;
+      var v = Math.round(b.empreinte_couvert_cents / 100);
+      couvertEur = v > 0 ? v : 10;
     }
     majMontantsResa();
-  });
-  // Si __CONFIG__ déjà chargé au moment de l'exécution (race condition)
-  if (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.empreinte_couvert_cents != null) {
-    couvertEur = Math.round(window.__CONFIG__.business.empreinte_couvert_cents / 100) || 10;
-    majMontantsResa();
   }
+  // 1. Listener business:ready (pour le 1er load)
+  document.addEventListener('business:ready', function(e) {
+    appliquerCouvertDepuisBiz(e.detail && e.detail.business);
+  });
+  // 2. Si __CONFIG__ déjà chargé au moment de l'exécution
+  if (window.__CONFIG__ && window.__CONFIG__.business) {
+    appliquerCouvertDepuisBiz(window.__CONFIG__.business);
+  }
+  // 3. Filet de sécurité : retry à plusieurs intervalles tant que __CONFIG__ pas dispo
+  [200, 600, 1500, 3000].forEach(function(ms){
+    setTimeout(function(){
+      if (window.__CONFIG__ && window.__CONFIG__.business) {
+        appliquerCouvertDepuisBiz(window.__CONFIG__.business);
+      }
+    }, ms);
+  });
 
   // Initialiser les boutons couverts (1-12)
   var couvertsBtns = document.getElementById('m-resa-couverts-grid');
