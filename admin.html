@@ -1257,44 +1257,46 @@ document.addEventListener('click', function(e) {
 });
 
 // ── SUPPRESSION DÉFINITIVE D'UN COMMERÇANT (admin)
+// Soft-delete via PATCH avec le token admin. RLS commercants_admin_all autorise.
 window.supprimerCommercant = async function(id, nom) {
   if (!confirm(
     '⚠️ SUPPRESSION DÉFINITIVE\n\n' +
     'Vous allez supprimer "' + nom + '".\n\n' +
     'Cette action :\n' +
-    '• Anonymise le compte (RGPD)\n' +
-    '• Annule l\'abonnement Stripe en cours\n' +
+    '• Marque le compte comme supprimé (RGPD)\n' +
     '• Cache la boutique aux clients\n' +
     '• EST IRRÉVERSIBLE\n\n' +
     'Tapez OK pour confirmer.'
   )) return;
 
   try {
-    // Stripe subscription cancel + soft-delete + anonymisation
-    const r = await fetch(SUPABASE_URL + '/functions/v1/delete-commercant-account', {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ commercant_id: id, motif: 'admin_delete', hard_delete: false, admin_override: true })
+    if (!sessionAdmin) throw new Error('Vous n\'êtes pas connecté en tant qu\'admin. Reconnectez-vous.');
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + id + '&select=id,supprime_at', {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + sessionAdmin,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        supprime_at: new Date().toISOString(),
+        supprime_motif: 'admin_delete',
+        anonymized: true,
+        abonnement_actif: false,
+        actif: false
+      })
     });
-    const data = await r.json();
     if (!r.ok) {
-      // Fallback : si l'edge function échoue (ex : exige JWT user), on fait le soft-delete direct via SQL
-      console.warn('Edge function delete failed, fallback SQL:', data);
-      const fb = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + id, {
-        method: 'PATCH',
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          supprime_at: new Date().toISOString(),
-          supprime_motif: 'admin_delete',
-          anonymized: true,
-          abonnement_actif: false,
-          actif: false
-        })
-      });
-      if (!fb.ok) throw new Error('Suppression échouée: ' + (data.error || fb.status));
+      const txt = await r.text().catch(() => '');
+      throw new Error('HTTP ' + r.status + ' ' + txt);
     }
-
+    const rows = await r.json().catch(() => []);
+    if (!Array.isArray(rows) || rows.length === 0) {
+      throw new Error('RLS a bloqué la suppression : 0 ligne modifiée. Votre user n\'a pas le rôle "admin" dans roles_utilisateurs.');
+    }
     alert('✓ "' + nom + '" supprimé. La page va se rafraîchir.');
+    tousCommercants = [];
     chargerCommercants();
   } catch (e) {
     alert('❌ Erreur: ' + e.message);
