@@ -938,15 +938,20 @@ async function chargerDashboard() {
 
   const [commercants, commandes, clients, plans] = await Promise.all([
     sb('commercants', '?select=*,plans(nom,prix_mensuel)'),
-    sb('commandes', '?select=id,created_at,empreinte_status,empreinte_montant_cents,empreinte_capturee_at&order=created_at.desc&limit=500'),
-    sb('clients', '?select=id'),
+    sb('commandes', '?select=id,created_at,commercant_id,empreinte_status,empreinte_montant_cents,empreinte_capturee_at&order=created_at.desc&limit=500'),
+    sb('clients', '?select=id,commercant_id'),
     sb('plans', '?select=*'),
   ]);
 
   tousCommercants = commercants || [];
 
-  // Stats : "actifs" = boutiques en ligne (peu importe l'abonnement)
-  const actifs = tousCommercants.filter(c => c.actif && !c.supprime_at);
+  // Les boutiques fixtures (demos commerciales) sont exclues des analytiques
+  // mais affichees normalement dans la liste pour le demarchage
+  const fixtureIds = new Set(tousCommercants.filter(c => c.is_fixture).map(c => c.id));
+  const reels = tousCommercants.filter(c => !c.is_fixture);
+
+  // Stats : "actifs" = boutiques en ligne reelles (hors fixtures)
+  const actifs = reels.filter(c => c.actif && !c.supprime_at);
   const payants = actifs.filter(c => c.abonnement_actif === true);
   const demos = actifs.filter(c => c.abonnement_actif !== true);
 
@@ -973,13 +978,13 @@ async function chargerDashboard() {
   const PRIX_OFFRE = { vitrine: 19, clickcollect: 39, livraison: 59 };
   // Frais d'acquisition uniques (one-time setup fees)
   const SETUP_FEES = { vitrine: 249, clickcollect: 399, livraison: 549 };
-  const mrr = tousCommercants
+  const mrr = reels
     .filter(c => c.abonnement_actif)
     .reduce((s, c) => s + (PRIX_OFFRE[c.offre] || c.plans?.prix_mensuel || 0), 0);
   document.getElementById('statMRR').textContent = mrr.toFixed(0) + ' €';
 
-  // Frais d'acquisition encaissés : somme frais_acquisition_paye OU SETUP_FEES par offre pour les payants
-  const payantsAcq = tousCommercants.filter(c => c.abonnement_actif);
+  // Frais d'acquisition encaissés : somme frais_acquisition_paye OU SETUP_FEES par offre pour les payants reels
+  const payantsAcq = reels.filter(c => c.abonnement_actif);
   const totalAcquisition = payantsAcq.reduce((s, c) => {
     const paye = Number(c.frais_acquisition_paye || 0);
     return s + (paye > 0 ? paye : (SETUP_FEES[c.offre] || 0));
@@ -989,16 +994,18 @@ async function chargerDashboard() {
   const elDeltaAcq = document.getElementById('deltaAcquisition');
   if (elDeltaAcq) elDeltaAcq.textContent = payantsAcq.length + ' boutique' + (payantsAcq.length > 1 ? 's' : '') + ' activée' + (payantsAcq.length > 1 ? 's' : '');
 
-  // Commandes ce mois
+  // Commandes ce mois (hors fixtures)
   const debutMois = new Date(now.getFullYear(), now.getMonth(), 1);
-  const cmdMois = (commandes || []).filter(c => new Date(c.created_at) >= debutMois);
+  const cmdMois = (commandes || []).filter(c => new Date(c.created_at) >= debutMois && !fixtureIds.has(c.commercant_id));
   document.getElementById('statCommandes').textContent = cmdMois.length;
-  document.getElementById('statClients').textContent = (clients || []).length;
+  // Clients reels uniquement
+  const clientsReels = (clients || []).filter(c => !fixtureIds.has(c.commercant_id));
+  document.getElementById('statClients').textContent = clientsReels.length;
 
-  // MRR par offre
+  // MRR par offre (reels uniquement)
   const planStats = {};
   const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
-  tousCommercants.filter(c => c.abonnement_actif).forEach(c => {
+  reels.filter(c => c.abonnement_actif).forEach(c => {
     const plan = offreLabels[c.offre] || c.plans?.nom || '—';
     const prix = PRIX_OFFRE[c.offre] || c.plans?.prix_mensuel || 0;
     planStats[plan] = (planStats[plan] || 0) + prix;
@@ -1914,7 +1921,8 @@ async function chargerAnalytics() {
 }
 
 async function chargerRevenus() {
-  const commercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_actif=eq.true') || [];
+  // Hors fixtures : ne compter que les vraies boutiques payantes
+  const commercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_actif=eq.true&is_fixture=eq.false') || [];
   const PRIX_OFFRE_REV = { vitrine: 19, clickcollect: 39, livraison: 59 };
   const offreLabelsRev = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
 
