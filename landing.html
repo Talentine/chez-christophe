@@ -284,38 +284,63 @@
 
     .metier-card {
       border-radius: 20px; padding: 32px 28px;
-      border: 1px solid var(--cream-dark);
-      cursor: pointer; transition: all .25s;
-      position: relative; overflow: hidden;
-      background: var(--white);
+      border: 1px solid rgba(255,255,255,.08);
+      cursor: pointer; transition: transform .25s, box-shadow .25s;
+      position: relative; overflow: hidden; isolation: isolate;
+      background: #1a2e26;
+      min-height: 280px;
+      color: #fff;
     }
+    /* Photo de fond métier (couvre toute la card) */
+    .metier-card::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: var(--metier-img); background-size: cover; background-position: center;
+      z-index: -2; transition: transform .35s ease;
+    }
+    /* Voile sombre dégradé pour lisibilité du texte */
     .metier-card::before {
       content: ''; position: absolute; inset: 0;
-      background: var(--mc-bg, var(--cream));
-      opacity: 0; transition: opacity .25s;
+      background: linear-gradient(180deg, rgba(15,44,82,.30) 0%, rgba(15,44,82,.55) 45%, rgba(15,44,82,.92) 100%);
+      z-index: -1; transition: opacity .25s;
     }
     .metier-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .metier-card:hover::before { opacity: 1; }
+    .metier-card:hover::after { transform: scale(1.04); }
 
     .metier-card-inner { position: relative; z-index: 1; }
 
-    .metier-emoji { font-size: 40px; margin-bottom: 20px; display: block; }
-    .metier-name { font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-    .metier-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+    .metier-emoji {
+      font-size: 40px; margin-bottom: 20px; display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.4));
+    }
+    .metier-name {
+      font-family: 'Manrope', system-ui, sans-serif; font-size: 22px; font-weight: 700;
+      margin-bottom: 8px; color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .metier-desc {
+      font-size: 14px; color: rgba(255,255,255,.92); line-height: 1.6;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 4px rgba(0,0,0,.4);
+    }
 
     .metier-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .metier-tag {
       font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 50px;
-      background: rgba(0,0,0,.05); color: var(--text-muted);
+      background: rgba(255,255,255,.18); color: #fff;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.15);
     }
 
-    .metier-card[data-type="primeur"] { --mc-bg: rgba(42,69,53,.04); }
-    .metier-card[data-type="boucherie"] { --mc-bg: rgba(139,26,26,.04); }
-    .metier-card[data-type="boulangerie"] { --mc-bg: rgba(107,68,35,.04); }
-    .metier-card[data-type="fleuriste"] { --mc-bg: rgba(74,103,65,.04); }
-    .metier-card[data-type="poissonnerie"] { --mc-bg: rgba(27,73,101,.04); }
-    .metier-card[data-type="traiteur"] { --mc-bg: rgba(43,43,43,.04); }
-    .metier-card[data-type="fromagerie"] { --mc-bg: rgba(61,84,70,.04); }
+    .metier-card[data-type="primeur"]      { --metier-img: url('/assets/metiers/primeur.webp'); }
+    .metier-card[data-type="boucherie"]    { --metier-img: url('/assets/metiers/boucherie.webp'); }
+    .metier-card[data-type="boulangerie"]  { --metier-img: url('/assets/metiers/boulangerie.webp'); }
+    .metier-card[data-type="fleuriste"]    { --metier-img: url('/assets/metiers/fleuriste.webp'); }
+    .metier-card[data-type="poissonnerie"] { --metier-img: url('/assets/metiers/poissonnerie.webp'); }
+    .metier-card[data-type="traiteur"]     { --metier-img: url('/assets/metiers/traiteur.webp'); }
+    .metier-card[data-type="fromagerie"]   { --metier-img: url('/assets/metiers/fromagerie.webp'); }
+    .metier-card[data-type="pizzeria"]     { --metier-img: url('/assets/metiers/pizzeria.webp'); }
+    .metier-card[data-type="restaurant"]   { --metier-img: url('/assets/metiers/restaurant.webp'); }
+    .metier-card[data-type="fastfood"]     { --metier-img: url('/assets/metiers/fastfood.webp'); }
 
     /* ── HOW IT WORKS ───────────────────────────────────── */
     .how-bg { background: var(--brand); }
