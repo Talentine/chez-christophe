@@ -5383,9 +5383,9 @@ function afficherBandeauDemoDashboard() {
       <div style="font-weight:700;font-size:13px;">Mode démo · toutes les fonctionnalités débloquées</div>
       <div style="font-size:11.5px;opacity:.85;">Testez tout avant de choisir votre plan d'abonnement.</div>
     </div>
-    <button onclick="scrollToReg('reg-abonnement')" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">Activer →</button>
+    <button onclick="ouvrirAbonnementDepuisBandeau()" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Activer →</button>
   `;
-  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:97;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
+  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:101;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
   document.body.appendChild(banner);
   // Décale le contenu sous le bandeau
   document.body.style.paddingTop = '52px';
@@ -5395,6 +5395,20 @@ function retirerBandeauDemoDashboard() {
   if (b) b.remove();
   document.body.style.paddingTop = '';
 }
+window.ouvrirAbonnementDepuisBandeau = function() {
+  try { if (typeof allerOnglet === 'function') allerOnglet('reglages'); } catch(e){}
+  setTimeout(function(){
+    var el = document.getElementById('reg-abonnement');
+    if (!el) return;
+    el.scrollIntoView({ behavior:'smooth', block:'start' });
+    var card = document.getElementById('abonnementMarcheoCard');
+    if (card) {
+      card.style.transition = 'box-shadow .25s';
+      card.style.boxShadow = '0 0 0 3px #5BBE3A';
+      setTimeout(function(){ card.style.boxShadow = ''; }, 1400);
+    }
+  }, 180);
+};
 
 // ── GATING FEATURES selon métier (resto/non-resto) + plan (vitrine/clickcollect/livraison)
 function appliquerVisibiliteFeatures() {

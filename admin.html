@@ -1400,19 +1400,24 @@ async function toggleAbonnement(id, currentlyActive) {
     const body = currentlyActive
       ? { abonnement_actif: false, abonnement_fin: today }
       : { abonnement_actif: true, abonnement_debut: today, abonnement_fin: null };
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}`, {
+    if (!sessionAdmin) throw new Error('Vous n\'êtes pas connecté en tant qu\'admin. Reconnectez-vous.');
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}&select=id,abonnement_actif`, {
       method: 'PATCH',
       headers: {
         'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${sessionAdmin || SUPABASE_KEY}`,
+        'Authorization': `Bearer ${sessionAdmin}`,
         'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Prefer': 'return=representation'
       },
       body: JSON.stringify(body)
     });
     if (!r.ok) {
       const txt = await r.text().catch(() => '');
       throw new Error('HTTP ' + r.status + ' ' + txt);
+    }
+    const rows = await r.json().catch(() => []);
+    if (!Array.isArray(rows) || rows.length === 0) {
+      throw new Error('RLS a bloqué la mise à jour : 0 ligne modifiée. Votre user n\'a pas le rôle "admin" dans roles_utilisateurs (policy commercants_admin_all).');
     }
     alert(currentlyActive ? '⏸ Boutique remise en démo' : '✅ Boutique activée');
     tousCommercants = [];
