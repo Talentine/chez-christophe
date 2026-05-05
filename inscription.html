@@ -512,13 +512,12 @@ async function verifierCodePromo() {
       const inp = document.getElementById('iEmail');
       if (inp) {
         inp.value = decodeURIComponent(emailExistant);
-        inp.readOnly = true;
-        inp.style.opacity = '0.7';
+        // Email éditable : le commerçant peut soit garder cet email pour
+        // ajouter une boutique au compte existant, soit en saisir un autre.
         const hint = inp.parentElement?.querySelector('.hint');
-        if (hint) hint.textContent = 'Email du compte existant — connectez-vous avec ce compte pour ajouter cette boutique';
-        // Afficher un bandeau d'info
+        if (hint) hint.innerHTML = '💡 Cet email a déjà un compte Marchéo. Garde-le pour <strong>ajouter cette boutique au compte existant</strong>, ou change-le pour créer un nouveau compte.';
         const step1 = document.querySelector('#step1 .step-sub');
-        if (step1) step1.innerHTML = '🆕 <strong>Création d\'une boutique supplémentaire</strong> — votre compte existant est conservé.';
+        if (step1) step1.innerHTML = '🆕 <strong>Création de boutique</strong> — utilise un email existant pour ajouter à un compte, ou un nouveau pour créer un compte séparé.';
       }
     }, 100);
   }
