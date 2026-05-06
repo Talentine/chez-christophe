@@ -107,6 +107,21 @@
     </div>
   </div>
 
+  <!-- Toggle Inscription / Connexion -->
+  <div style="display:flex;gap:8px;background:#fff;border-radius:50px;padding:6px;border:1px solid var(--cream-dark);margin:24px 0 0;max-width:380px;">
+    <button id="tabSignup" onclick="afficher('signup')" style="flex:1;padding:10px;border:none;border-radius:50px;font-family:inherit;font-weight:600;cursor:pointer;background:var(--brand);color:#fff;">Inscription</button>
+    <button id="tabLogin" onclick="afficher('login')" style="flex:1;padding:10px;border:none;border-radius:50px;font-family:inherit;font-weight:600;cursor:pointer;background:transparent;color:var(--texte-doux);">Déjà ambassadeur ? Connexion</button>
+  </div>
+
+  <!-- Formulaire de CONNEXION -->
+  <form id="formLogin" style="display:none;" onsubmit="event.preventDefault(); seConnecter();">
+    <h2>Connexion ambassadeur</h2>
+    <div class="field"><label>Email *</label><input id="lEmail" type="email" required placeholder="vous@exemple.fr"></div>
+    <div class="field"><label>Mot de passe *</label><input id="lMdp" type="password" required placeholder="••••••••"></div>
+    <button class="cta" id="btnLogin" type="submit">Se connecter →</button>
+    <div class="err" id="errLogin"></div>
+  </form>
+
   <form id="formSignup" onsubmit="event.preventDefault(); inscrire();">
     <h2>Inscription ambassadeur</h2>
     <div class="row">
@@ -150,6 +165,62 @@ function showErr(msg) {
   const e = document.getElementById('err');
   e.textContent = msg;
   e.style.display = 'block';
+}
+
+function showErrLogin(msg) {
+  const e = document.getElementById('errLogin');
+  e.textContent = msg;
+  e.style.display = 'block';
+}
+
+function afficher(mode) {
+  const isSignup = mode === 'signup';
+  document.getElementById('formSignup').style.display = isSignup ? 'block' : 'none';
+  document.getElementById('formLogin').style.display = isSignup ? 'none' : 'block';
+  // styles tabs
+  const tS = document.getElementById('tabSignup');
+  const tL = document.getElementById('tabLogin');
+  tS.style.background = isSignup ? '#0F2C52' : 'transparent';
+  tS.style.color = isSignup ? '#fff' : '#64748b';
+  tL.style.background = isSignup ? 'transparent' : '#0F2C52';
+  tL.style.color = isSignup ? '#64748b' : '#fff';
+}
+
+async function seConnecter() {
+  const btn = document.getElementById('btnLogin');
+  document.getElementById('errLogin').style.display = 'none';
+  const email = document.getElementById('lEmail').value.trim();
+  const mdp = document.getElementById('lMdp').value;
+  if (!email || !mdp) return showErrLogin('Email et mot de passe obligatoires.');
+  btn.disabled = true; btn.textContent = 'Connexion…';
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: mdp })
+    });
+    const d = await r.json();
+    if (!r.ok || !d.access_token) {
+      throw new Error(d.error_description || d.msg || 'Email ou mot de passe incorrect.');
+    }
+    // Verifie que l'user a un profil ambassadeur
+    const ambR = await fetch(SUPABASE_URL + '/rest/v1/ambassadeurs?user_id=eq.' + d.user.id + '&select=code_referral,prenom,nom', {
+      headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + d.access_token }
+    });
+    const amb = await ambR.json();
+    if (!Array.isArray(amb) || amb.length === 0) {
+      throw new Error('Ce compte n\'a pas de profil ambassadeur. Inscrivez-vous d\'abord.');
+    }
+    localStorage.setItem('session_ambassadeur', JSON.stringify({
+      access_token: d.access_token, refresh_token: d.refresh_token,
+      user_id: d.user.id, email: d.user.email,
+      prenom: amb[0].prenom, nom: amb[0].nom, code: amb[0].code_referral
+    }));
+    location.href = '/ambassadeur/dashboard';
+  } catch (e) {
+    showErrLogin(e.message || 'Erreur de connexion');
+    btn.disabled = false; btn.textContent = 'Se connecter →';
+  }
 }
 
 async function inscrire() {
