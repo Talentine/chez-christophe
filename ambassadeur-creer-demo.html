@@ -63,11 +63,11 @@
 
   <div class="step">
     <h2>1. Le commerçant prospect</h2>
-    <p class="hint">Ces infos seront pré-remplies si le commerçant active la boutique. L'email/téléphone restent optionnels.</p>
-    <div class="field"><label>Nom du commerce *</label><input id="iNom" type="text" required maxlength="60" placeholder="Boucherie du Marché"></div>
+    <p class="hint">Seul le nom de la boutique est obligatoire. L'email et le téléphone du commerçant sont optionnels — utiles seulement pour pré-remplir son inscription s'il décide d'activer la boutique.</p>
+    <div class="field"><label>Nom de la boutique du commerçant *</label><input id="iNom" type="text" required maxlength="60" placeholder="Boucherie du Marché"></div>
     <div class="row">
-      <div class="field"><label>Email du prospect</label><input id="iEmail" type="email" placeholder="contact@boucherie.fr"></div>
-      <div class="field"><label>Téléphone</label><input id="iTel" type="tel" placeholder="06 12 34 56 78"></div>
+      <div class="field"><label>Email du commerçant <span style="color:var(--texte-doux);font-weight:400">(optionnel)</span></label><input id="iEmail" type="email" placeholder="contact@boucherie.fr"></div>
+      <div class="field"><label>Téléphone du commerçant <span style="color:var(--texte-doux);font-weight:400">(optionnel)</span></label><input id="iTel" type="tel" placeholder="06 12 34 56 78"></div>
     </div>
   </div>
 
@@ -113,10 +113,8 @@
   </div>
 
   <div class="step">
-    <h2>7. Produits exemple</h2>
-    <p class="hint">Ajoutez quelques produits avec photo et prix pour rendre la démo crédible (3 à 8 produits suffisent).</p>
-    <div class="produits" id="produits"></div>
-    <button type="button" class="add-produit" onclick="ajouterProduit()">+ Ajouter un produit</button>
+    <h2>7. Catalogue produits</h2>
+    <p class="hint">✨ <strong>Génération automatique</strong> : 12 produits du métier sélectionné seront ajoutés au catalogue de la démo, dont 4 affichés en promotion (-20%). Vous n'avez rien à faire de plus.</p>
   </div>
 
   <button class="cta" id="btnSubmit" type="submit">🚀 Générer la démo</button>
@@ -347,24 +345,17 @@ async function creerDemo() {
       body: JSON.stringify({ hero_url: heroUrl, logo_url: logoUrl, galerie_urls: galerieUrls })
     });
 
-    // 5) Upload + insert produits
-    for (let i = 0; i < state.produits.length; i++) {
-      const p = state.produits[i];
-      if (!p.nom) continue;
-      btn.textContent = 'Produit ' + (i+1) + '/' + state.produits.length + '…';
-      let photoUrl = null;
-      if (p.photo) {
-        photoUrl = await uploadVersStorage(token, demoId, 'products/' + i, p.photo);
-      }
-      const prixCents = p.prix ? Math.round(parseFloat(p.prix) * 100) : null;
-      await fetch(SUPABASE_URL + '/rest/v1/demo_produits', {
-        method: 'POST',
-        headers: {
-          apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json', Prefer: 'return=minimal'
-        },
-        body: JSON.stringify({ demo_site_id: demoId, nom: p.nom, prix_cents: prixCents, photo_url: photoUrl, ordre: i })
-      });
+    // 5) Génération automatique de 12 produits du métier (dont 4 en promo) via fonction SQL
+    btn.textContent = 'Génération du catalogue…';
+    const genR = await fetch(SUPABASE_URL + '/rest/v1/rpc/fn_generer_produits_demo', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_demo_site_id: demoId, p_business_type: state.metier })
+    });
+    if (!genR.ok) {
+      const t = await genR.text();
+      console.warn('Generation produits :', genR.status, t);
+      // Non bloquant : la démo existe sans produits, l'ambassadeur peut quand même partager le lien
     }
 
     // SUCCESS
@@ -378,11 +369,10 @@ async function creerDemo() {
   }
 }
 
-// Initialisation : 3 produits vides par défaut + check auth
+// Initialisation : check auth uniquement (les produits sont générés auto)
 (async function() {
   const token = await getValidToken();
   if (!token) { location.href = '/ambassadeur'; return; }
-  ajouterProduit(); ajouterProduit(); ajouterProduit();
 })();
 </script>
 </body>

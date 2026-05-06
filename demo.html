@@ -29,9 +29,12 @@
   .produit { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--cream-dark); }
   .produit-img { width: 100%; aspect-ratio: 4/3; background: var(--cream); }
   .produit-img img { width: 100%; height: 100%; object-fit: cover; }
+  .produit-img { position: relative; }
   .produit-info { padding: 12px 14px; }
   .produit-nom { font-weight: 600; font-size: 14px; }
   .produit-prix { color: var(--brand); font-weight: 700; font-size: 14px; margin-top: 4px; }
+  .produit-prix-orig { color: var(--texte-doux); text-decoration: line-through; font-size: 12px; font-weight: 400; margin-right: 6px; }
+  .badge-promo { position: absolute; top: 8px; left: 8px; background: var(--rouge); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
   .cta-block { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); color: #fff; padding: 30px 24px; border-radius: 18px; margin: 30px 0; text-align: center; }
   .cta-block h3 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; margin-bottom: 8px; }
   .cta-block p { font-size: 14px; opacity: .9; margin-bottom: 18px; }
@@ -151,13 +154,20 @@ function showErr(titre, msg) {
   const produits = await pR.json();
   if (Array.isArray(produits) && produits.length > 0) {
     document.getElementById('titreProduits').style.display = 'block';
-    document.getElementById('produits').innerHTML = produits.map(p =>
-      '<div class="produit">'
-      + '<div class="produit-img">' + (p.photo_url ? '<img src="' + p.photo_url + '" loading="lazy">' : '') + '</div>'
-      + '<div class="produit-info"><div class="produit-nom">' + (p.nom || '—') + '</div>'
-      + (p.prix_cents ? '<div class="produit-prix">' + (p.prix_cents/100).toFixed(2) + ' €</div>' : '')
-      + '</div></div>'
-    ).join('');
+    document.getElementById('produits').innerHTML = produits.map(p => {
+      const enPromo = p.prix_promo_cents && p.prix_cents && p.prix_promo_cents < p.prix_cents;
+      const prixHtml = enPromo
+        ? '<div class="produit-prix"><span class="produit-prix-orig">' + (p.prix_cents/100).toFixed(2) + ' €</span>' + (p.prix_promo_cents/100).toFixed(2) + ' €</div>'
+        : (p.prix_cents ? '<div class="produit-prix">' + (p.prix_cents/100).toFixed(2) + ' €</div>' : '');
+      return '<div class="produit">'
+        + '<div class="produit-img">'
+        + (enPromo ? '<span class="badge-promo">PROMO -20%</span>' : '')
+        + (p.photo_url ? '<img src="' + p.photo_url + '" loading="lazy">' : '')
+        + '</div>'
+        + '<div class="produit-info"><div class="produit-nom">' + (p.nom || '—') + '</div>'
+        + prixHtml
+        + '</div></div>';
+    }).join('');
   }
 })();
 </script>
