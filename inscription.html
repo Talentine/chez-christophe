@@ -491,9 +491,33 @@ async function verifierCodePromo() {
   }
 }
 
-// ── Lire l'offre + email existant depuis l'URL
+// ── Lire l'offre + email existant + code de parrainage (ambassadeur) depuis l'URL
 (function() {
   const params = new URLSearchParams(window.location.search);
+
+  // ── Code de parrainage : capture + stockage local pour le checkout futur
+  // Format attendu : MARCHEO-PRENOM-NNN (ex: MARCHEO-PAUL-468)
+  const refRaw = params.get('ref');
+  if (refRaw) {
+    const refClean = refRaw.toUpperCase().trim();
+    if (/^MARCHEO-[A-Z0-9]{1,12}-\d{3}$/.test(refClean)) {
+      try {
+        localStorage.setItem('marcheo_referral_code', refClean);
+        localStorage.setItem('marcheo_referral_capture_at', new Date().toISOString());
+        // Affichage discret : "✨ Parrainé par <code>"
+        setTimeout(() => {
+          const banner = document.getElementById('offreBanner');
+          if (banner && banner.style.display !== 'none') {
+            const span = document.createElement('div');
+            span.style.cssText = 'font-size:11px;opacity:.85;margin-top:6px;';
+            span.innerHTML = '✨ Parrainé par <strong>' + refClean + '</strong>';
+            banner.appendChild(span);
+          }
+        }, 200);
+      } catch(e) { /* localStorage indisponible : ignore */ }
+    }
+  }
+
   const offre = params.get('offre');
   if (offre && OFFRES[offre]) {
     state.offre = offre;

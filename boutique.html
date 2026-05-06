@@ -3534,6 +3534,19 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       || (window.__CONFIG__ && window.__CONFIG__.supabase_key)
       || '';
 
+    // Code de parrainage : capture depuis localStorage (set par inscription.html?ref=…)
+    // Et capture d'un fingerprint léger côté client (anti-fraude)
+    var referralCode = '';
+    try { referralCode = localStorage.getItem('marcheo_referral_code') || ''; } catch(_) {}
+    var simpleFingerprint = '';
+    try {
+      var fpRaw = (navigator.userAgent || '') + '|' + (screen.width + 'x' + screen.height) + '|' + (navigator.language || '') + '|' + (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+      // Hash simple djb2 — pas crypto, juste un identifiant stable client
+      var h = 5381;
+      for (var i = 0; i < fpRaw.length; i++) { h = ((h << 5) + h + fpRaw.charCodeAt(i)) | 0; }
+      simpleFingerprint = (h >>> 0).toString(16);
+    } catch(_) {}
+
     // Appel à l'edge function stripe-setup-fee
     fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-setup-fee', {
       method: 'POST',
@@ -3546,7 +3559,10 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         commercant_id: b.id,
         offre: offre,
         return_url: location.origin + '/' + (b.slug || '') + '?paiement=success',
-        cancel_url: location.href
+        cancel_url: location.href,
+        referral_code: referralCode || undefined,
+        fingerprint: simpleFingerprint || undefined,
+        user_agent: (navigator.userAgent || '').slice(0, 200)
       })
     })
     .then(function(r) {
