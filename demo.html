@@ -100,7 +100,13 @@ function showErr(titre, msg) {
 }
 
 (async function() {
-  const slug = (new URLSearchParams(location.search).get('slug') || '').trim();
+  // Le slug peut venir de 2 sources :
+  //  - /demo/<slug> (URL publique, rewrite Vercel) -> location.pathname
+  //  - /demo.html?slug=<slug> (acces direct au fichier) -> location.search
+  let slug = '';
+  const m = location.pathname.match(/^\/demo\/([^/?]+)/);
+  if (m) slug = decodeURIComponent(m[1]);
+  if (!slug) slug = (new URLSearchParams(location.search).get('slug') || '').trim();
   if (!slug) { showErr('Démo introuvable', 'Aucun identifiant de démo dans l\'URL.'); return; }
 
   const auth = { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY };
