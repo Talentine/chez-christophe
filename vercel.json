@@ -19,6 +19,11 @@
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/unsubscribe", "destination": "/unsubscribe.html" },
 
+    { "source": "/ambassadeur", "destination": "/ambassadeur.html" },
+    { "source": "/ambassadeur/dashboard", "destination": "/ambassadeur-dashboard.html" },
+    { "source": "/ambassadeur/creer-demo", "destination": "/ambassadeur-creer-demo.html" },
+    { "source": "/demo/:demo_slug", "destination": "/demo.html?slug=:demo_slug" },
+
     { "source": "/:slug", "destination": "/boutique.html?slug=:slug" },
     { "source": "/:slug/", "destination": "/boutique.html?slug=:slug" },
     { "source": "/:slug/manifest.json", "destination": "/manifest-client.json" },

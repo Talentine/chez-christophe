@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Démo boutique — Marchéo</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --brand: #0F2C52; --brand-dark: #08182f; --gold: #F4B942; --vert: #5BBE3A; --cream: #F7F2E8; --cream-dark: #E8DFC9; --texte: #1f2937; --texte-doux: #64748b; --rouge: #c44; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Manrope', system-ui, sans-serif; background: var(--cream); color: var(--texte); line-height: 1.5; }
+  .demo-bandeau { background: linear-gradient(135deg, var(--gold), #d99928); color: var(--brand-dark); padding: 10px 16px; text-align: center; font-size: 13px; font-weight: 600; }
+  .demo-bandeau strong { font-weight: 800; }
+  .hero { position: relative; height: 280px; background: var(--brand); overflow: hidden; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,44,82,0) 0%, rgba(15,44,82,.7) 100%); }
+  .hero-content { position: absolute; left: 0; right: 0; bottom: 16px; padding: 0 20px; color: #fff; z-index: 1; display: flex; align-items: end; gap: 14px; }
+  .hero-content .logo { width: 64px; height: 64px; border-radius: 50%; background: #fff; flex-shrink: 0; overflow: hidden; }
+  .hero-content .logo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-content h1 { font-family: 'Fraunces', Georgia, serif; font-size: 28px; line-height: 1.1; }
+  .hero-content .meta { font-size: 13px; opacity: .9; margin-top: 4px; }
+  .container { max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+  h2 { font-family: 'Fraunces', Georgia, serif; font-size: 20px; color: var(--brand); margin-bottom: 12px; }
+  .galerie { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 24px; }
+  .galerie img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+  .produits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .produit { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--cream-dark); }
+  .produit-img { width: 100%; aspect-ratio: 4/3; background: var(--cream); }
+  .produit-img img { width: 100%; height: 100%; object-fit: cover; }
+  .produit-info { padding: 12px 14px; }
+  .produit-nom { font-weight: 600; font-size: 14px; }
+  .produit-prix { color: var(--brand); font-weight: 700; font-size: 14px; margin-top: 4px; }
+  .cta-block { background: linear-gradient(135deg, var(--brand), var(--brand-dark)); color: #fff; padding: 30px 24px; border-radius: 18px; margin: 30px 0; text-align: center; }
+  .cta-block h3 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; margin-bottom: 8px; }
+  .cta-block p { font-size: 14px; opacity: .9; margin-bottom: 18px; }
+  .cta-block a { display: inline-block; background: var(--gold); color: var(--brand-dark); padding: 14px 28px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 15px; }
+  .erreur { padding: 60px 24px; text-align: center; }
+  .erreur h1 { font-family: 'Fraunces', Georgia, serif; font-size: 28px; color: var(--brand); margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<div class="demo-bandeau">
+  ✨ <strong>Aperçu démo</strong> — Cette boutique n'est pas encore active. Le commerçant peut l'activer en quelques clics.
+</div>
+
+<div id="contenu" style="display:none;">
+  <div class="hero" id="hero">
+    <img id="heroImg" src="" alt="">
+    <div class="hero-content">
+      <div class="logo"><img id="logoImg" src="" alt="" onerror="this.style.display='none'"></div>
+      <div>
+        <h1 id="nomBoutique">—</h1>
+        <div class="meta" id="meta">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 id="titreGalerie" style="display:none;">Galerie</h2>
+    <div class="galerie" id="galerie"></div>
+
+    <h2 id="titreProduits" style="display:none;">Quelques produits</h2>
+    <div class="produits" id="produits"></div>
+
+    <div class="cta-block">
+      <h3>Vous êtes <span id="ctaNom">le commerçant</span> ?</h3>
+      <p>Activez votre vraie boutique en ligne en 3 minutes.<br>3 offres au choix dès 19€/mois.</p>
+      <a id="ctaActiver" href="#">Activer ma boutique →</a>
+    </div>
+  </div>
+</div>
+
+<div id="errBlock" class="erreur" style="display:none;">
+  <h1 id="errTitre">Démo introuvable</h1>
+  <p id="errMsg" style="color:var(--texte-doux);"></p>
+  <p style="margin-top:20px;"><a href="/" style="color:var(--brand);font-weight:600;">← Retour à Marchéo</a></p>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+const METIERS_LABELS = {
+  primeur: '🌿 Primeur', boucherie: '🥩 Boucherie', boulangerie: '🥖 Boulangerie',
+  poissonnerie: '🐟 Poissonnerie', fromagerie: '🧀 Fromagerie', traiteur: '🍽️ Traiteur',
+  fleuriste: '💐 Fleuriste', pizzeria: '🍕 Pizzeria', restaurant: '🍴 Restaurant', fastfood: '🍔 Fast-food',
+};
+
+function showErr(titre, msg) {
+  document.getElementById('contenu').style.display = 'none';
+  document.getElementById('errBlock').style.display = 'block';
+  document.getElementById('errTitre').textContent = titre;
+  document.getElementById('errMsg').textContent = msg || '';
+}
+
+(async function() {
+  const slug = (new URLSearchParams(location.search).get('slug') || '').trim();
+  if (!slug) { showErr('Démo introuvable', 'Aucun identifiant de démo dans l\'URL.'); return; }
+
+  const auth = { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY };
+
+  // 1) Charger demo_sites + ambassadeur (pour code referral)
+  const dR = await fetch(SUPABASE_URL + '/rest/v1/demo_sites?slug_demo=eq.' + encodeURIComponent(slug) + '&select=*,ambassadeurs(code_referral,prenom)', { headers: auth });
+  const demos = await dR.json();
+  if (!Array.isArray(demos) || demos.length === 0) {
+    showErr('Démo introuvable', 'Cette démo n\'existe pas ou a expiré.');
+    return;
+  }
+  const d = demos[0];
+  if (d.converti_en_commercant_id) {
+    showErr('Démo convertie', 'Cette démo a été convertie en boutique active. Rendez-vous sur la vraie boutique.');
+    return;
+  }
+  if (d.expires_at && new Date(d.expires_at) < new Date()) {
+    showErr('Démo expirée', 'Cette démo a expiré. Demandez à votre ambassadeur d\'en créer une nouvelle.');
+    return;
+  }
+
+  document.title = d.nom_prospect + ' — Aperçu démo Marchéo';
+
+  document.getElementById('contenu').style.display = 'block';
+  document.getElementById('nomBoutique').textContent = d.nom_prospect;
+  document.getElementById('meta').textContent = (METIERS_LABELS[d.business_type] || d.business_type) + (d.ville ? ' · ' + d.ville : '');
+  document.getElementById('ctaNom').textContent = d.nom_prospect;
+
+  if (d.hero_url) document.getElementById('heroImg').src = d.hero_url;
+  if (d.logo_url) document.getElementById('logoImg').src = d.logo_url;
+  else document.getElementById('logoImg').parentElement.style.display = 'none';
+
+  // CTA d'activation : pré-remplit ?ref=... pour tracker le parrainage
+  const code = d.ambassadeurs && d.ambassadeurs.code_referral;
+  const params = new URLSearchParams();
+  if (code) params.set('ref', code);
+  params.set('demo_id', d.id);
+  document.getElementById('ctaActiver').href = '/inscription?' + params.toString();
+
+  // 2) Galerie
+  const gal = (d.galerie_urls || []).filter(Boolean);
+  if (gal.length) {
+    document.getElementById('titreGalerie').style.display = 'block';
+    document.getElementById('galerie').innerHTML = gal.map(u =>
+      '<a href="' + u + '" target="_blank"><img src="' + u + '" loading="lazy"></a>'
+    ).join('');
+  }
+
+  // 3) Produits
+  const pR = await fetch(SUPABASE_URL + '/rest/v1/demo_produits?demo_site_id=eq.' + d.id + '&select=*&order=ordre.asc,created_at.asc', { headers: auth });
+  const produits = await pR.json();
+  if (Array.isArray(produits) && produits.length > 0) {
+    document.getElementById('titreProduits').style.display = 'block';
+    document.getElementById('produits').innerHTML = produits.map(p =>
+      '<div class="produit">'
+      + '<div class="produit-img">' + (p.photo_url ? '<img src="' + p.photo_url + '" loading="lazy">' : '') + '</div>'
+      + '<div class="produit-info"><div class="produit-nom">' + (p.nom || '—') + '</div>'
+      + (p.prix_cents ? '<div class="produit-prix">' + (p.prix_cents/100).toFixed(2) + ' €</div>' : '')
+      + '</div></div>'
+    ).join('');
+  }
+})();
+</script>
+</body>
+</html>

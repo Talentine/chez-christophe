@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon espace ambassadeur — Marchéo</title>
+<link rel="icon" href="/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --brand: #0F2C52; --brand-dark: #08182f; --gold: #F4B942; --vert: #5BBE3A; --cream: #F7F2E8; --cream-dark: #E8DFC9; --texte: #1f2937; --texte-doux: #64748b; --rouge: #c44; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Manrope', system-ui, sans-serif; background: var(--cream); color: var(--texte); line-height: 1.5; }
+  header { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  header h1 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; }
+  header h1 span { opacity: .7; }
+  header .right { font-size: 13px; opacity: .85; }
+  header .right a { color: var(--gold); text-decoration: none; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px 20px; }
+  .code-card { background: linear-gradient(135deg, var(--gold), #d99928); padding: 24px; border-radius: 18px; text-align: center; margin-bottom: 28px; color: var(--brand-dark); }
+  .code-card .lbl { font-size: 13px; font-weight: 600; opacity: .8; }
+  .code-card .code { font-family: 'Fraunces', Georgia, serif; font-size: 32px; font-weight: 700; margin: 8px 0 12px; letter-spacing: 1px; }
+  .code-card .lien { background: rgba(15,44,82,.12); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-family: monospace; display: inline-block; word-break: break-all; }
+  .code-card button { margin-top: 14px; background: var(--brand); color: #fff; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .stat { background: #fff; border-radius: 14px; padding: 18px 16px; border: 1px solid var(--cream-dark); }
+  .stat .lbl { font-size: 12px; color: var(--texte-doux); margin-bottom: 6px; }
+  .stat .val { font-family: 'Fraunces', Georgia, serif; font-size: 28px; font-weight: 700; }
+  .stat.pending .val { color: var(--gold); }
+  .stat.locked .val { color: var(--texte-doux); }
+  .stat.approved .val { color: var(--vert); }
+  .stat.paid .val { color: var(--brand); }
+  .row-actions { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--vert), #2A6F3F); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; font-size: 14px; }
+  .btn-secondary { background: #fff; border: 1.5px solid var(--cream-dark); padding: 12px 22px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: inherit; color: var(--brand); text-decoration: none; display: inline-block; font-size: 14px; }
+  h2 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; margin: 24px 0 14px; color: var(--brand); }
+  .demos-table { background: #fff; border-radius: 14px; border: 1px solid var(--cream-dark); overflow: hidden; }
+  .demos-table .demo { padding: 14px 18px; border-bottom: 1px solid var(--cream-dark); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .demos-table .demo:last-child { border-bottom: none; }
+  .demo .nom { font-weight: 600; }
+  .demo .meta { font-size: 12px; color: var(--texte-doux); }
+  .demo a { color: var(--brand); font-size: 13px; text-decoration: none; font-weight: 600; }
+  .demo .badge { font-size: 11px; padding: 4px 10px; border-radius: 50px; font-weight: 700; }
+  .badge-pending { background: rgba(244,185,66,.2); color: #8a5a00; }
+  .badge-converti { background: rgba(91,190,58,.2); color: #2A6F3F; }
+  .empty { padding: 30px; text-align: center; color: var(--texte-doux); font-size: 14px; }
+  .kyc-banner { background: rgba(244,185,66,.15); border: 1.5px solid var(--gold); padding: 16px 18px; border-radius: 14px; margin-bottom: 24px; }
+  .kyc-banner h3 { color: #8a5a00; margin-bottom: 6px; font-size: 15px; }
+  .kyc-banner p { font-size: 13.5px; color: var(--texte); }
+  .bloque-banner { background: rgba(196,68,68,.1); border: 1.5px solid var(--rouge); padding: 16px 18px; border-radius: 14px; margin-bottom: 24px; }
+  .bloque-banner h3 { color: var(--rouge); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Marchéo · <span>Espace ambassadeur</span></h1>
+  <div class="right">
+    <span id="welcomeName">Chargement…</span> ·
+    <a href="#" onclick="event.preventDefault();seDeconnecter()">Se déconnecter</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <div id="kycBanner" class="kyc-banner" style="display:none;">
+    <h3>📄 Documents requis</h3>
+    <p>Vos gains cumulés ont atteint 300€. Pour débloquer vos prochaines récompenses, merci d'envoyer une copie de votre pièce d'identité et un justificatif de domicile à <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a>. Sujet : "KYC - <span id="kycCode"></span>".</p>
+  </div>
+
+  <div id="bloqueBanner" class="bloque-banner" style="display:none;">
+    <h3>⚠️ Compte bloqué</h3>
+    <p id="bloqueMotif"></p>
+  </div>
+
+  <div class="code-card">
+    <div class="lbl">Votre code de parrainage</div>
+    <div class="code" id="codeRef">—</div>
+    <div class="lien" id="lienRef">—</div>
+    <br>
+    <button onclick="copierLien()">📋 Copier le lien</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat pending"><div class="lbl">En attente (30j)</div><div class="val" id="statPending">— €</div></div>
+    <div class="stat locked"><div class="lbl">À valider (admin)</div><div class="val" id="statLocked">— €</div></div>
+    <div class="stat approved"><div class="lbl">Validés</div><div class="val" id="statApproved">— €</div></div>
+    <div class="stat paid"><div class="lbl">Versés</div><div class="val" id="statPaid">— €</div></div>
+  </div>
+
+  <div class="row-actions">
+    <a href="/ambassadeur/creer-demo" class="btn-primary">+ Créer une démo prospect</a>
+    <a href="/ambassadeur" class="btn-secondary">Voir les conditions</a>
+  </div>
+
+  <h2>Mes démos créées</h2>
+  <div class="demos-table" id="listeDemos">
+    <div class="empty">Chargement…</div>
+  </div>
+
+</main>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+let session = null;
+
+function seDeconnecter() {
+  localStorage.removeItem('session_ambassadeur');
+  location.href = '/ambassadeur';
+}
+
+function fmt(cents) {
+  return (cents / 100).toFixed(0) + ' €';
+}
+
+async function getValidToken() {
+  const s = JSON.parse(localStorage.getItem('session_ambassadeur') || '{}');
+  if (!s.access_token) return null;
+  try {
+    const payload = JSON.parse(atob(s.access_token.split('.')[1]));
+    if ((payload.exp || 0) * 1000 > Date.now() + 60000) return s.access_token;
+  } catch {}
+  // Refresh
+  if (s.refresh_token) {
+    try {
+      const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+        method: 'POST', headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh_token: s.refresh_token })
+      });
+      if (r.ok) {
+        const d = await r.json();
+        s.access_token = d.access_token;
+        s.refresh_token = d.refresh_token || s.refresh_token;
+        localStorage.setItem('session_ambassadeur', JSON.stringify(s));
+        return d.access_token;
+      }
+    } catch {}
+  }
+  return null;
+}
+
+async function chargerDashboard() {
+  const token = await getValidToken();
+  if (!token) { location.href = '/ambassadeur'; return; }
+  session = JSON.parse(localStorage.getItem('session_ambassadeur') || '{}');
+
+  document.getElementById('welcomeName').textContent = session.prenom || session.email || '';
+
+  // 1) Lire la vue dashboard (cumul gains + nb démos)
+  const dashR = await fetch(SUPABASE_URL + '/rest/v1/v_ambassadeur_dashboard?user_id=eq.' + session.user_id + '&select=*', {
+    headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+  });
+  const dashRows = await dashR.json();
+  const d = (dashRows && dashRows[0]) || {};
+
+  document.getElementById('codeRef').textContent = d.code_referral || session.code || '—';
+  document.getElementById('kycCode').textContent = d.code_referral || '';
+  const url = location.origin + '/inscription?ref=' + encodeURIComponent(d.code_referral || '');
+  document.getElementById('lienRef').textContent = url;
+
+  document.getElementById('statPending').textContent = fmt(d.gains_pending_cents || 0);
+  document.getElementById('statLocked').textContent = fmt(d.gains_locked_cents || 0);
+  document.getElementById('statApproved').textContent = fmt(d.gains_approved_cents || 0);
+  document.getElementById('statPaid').textContent = fmt(d.gains_paid_cents || 0);
+
+  // 2) Si bloqué ou KYC required
+  const ambR = await fetch(SUPABASE_URL + '/rest/v1/ambassadeurs?user_id=eq.' + session.user_id + '&select=bloque_at,bloque_motif,kyc_statut', {
+    headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+  });
+  const ambRows = await ambR.json();
+  const a = (ambRows && ambRows[0]) || {};
+  if (a.bloque_at) {
+    document.getElementById('bloqueBanner').style.display = 'block';
+    document.getElementById('bloqueMotif').textContent = a.bloque_motif || 'Compte bloqué — contactez le support.';
+  }
+  if (a.kyc_statut === 'required' || a.kyc_statut === 'submitted') {
+    document.getElementById('kycBanner').style.display = 'block';
+  }
+
+  // 3) Liste des démos
+  const demosR = await fetch(SUPABASE_URL + '/rest/v1/demo_sites?ambassadeur_id=eq.' + session.user_id + '&select=*&order=created_at.desc', {
+    headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+  });
+  const demos = await demosR.json();
+  const liste = document.getElementById('listeDemos');
+  if (!demos || demos.length === 0) {
+    liste.innerHTML = '<div class="empty">Aucune démo créée pour l\'instant. <a href="/ambassadeur/creer-demo" style="color:var(--brand);font-weight:600;">Créez la première →</a></div>';
+  } else {
+    liste.innerHTML = demos.map(d => {
+      const converti = !!d.converti_en_commercant_id;
+      return '<div class="demo">'
+        + '<div><div class="nom">' + (d.nom_prospect || '—') + '</div>'
+        + '<div class="meta">' + (d.business_type || '') + ' · ' + (d.ville || '') + ' · créée le ' + new Date(d.created_at).toLocaleDateString('fr-FR') + '</div></div>'
+        + (converti
+            ? '<span class="badge badge-converti">✓ Converti</span>'
+            : '<span class="badge badge-pending">Démo active</span>')
+        + '<a href="/demo/' + d.slug_demo + '" target="_blank">Voir →</a>'
+        + '</div>';
+    }).join('');
+  }
+}
+
+function copierLien() {
+  const code = document.getElementById('codeRef').textContent;
+  const url = location.origin + '/inscription?ref=' + encodeURIComponent(code);
+  navigator.clipboard.writeText(url).then(() => {
+    alert('✓ Lien copié — partagez-le aux commerçants !');
+  }).catch(() => {
+    prompt('Copiez ce lien :', url);
+  });
+}
+
+chargerDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer une démo prospect — Marchéo Ambassadeur</title>
+<link rel="icon" href="/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --brand: #0F2C52; --brand-dark: #08182f; --gold: #F4B942; --vert: #5BBE3A; --cream: #F7F2E8; --cream-dark: #E8DFC9; --texte: #1f2937; --texte-doux: #64748b; --rouge: #c44; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Manrope', system-ui, sans-serif; background: var(--cream); color: var(--texte); line-height: 1.5; }
+  header { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; padding: 22px 20px; }
+  header a { color: var(--gold); text-decoration: none; font-size: 13px; }
+  header h1 { font-family: 'Fraunces', Georgia, serif; font-size: 24px; margin-top: 6px; }
+  .container { max-width: 760px; margin: 0 auto; padding: 24px 20px; }
+  .step { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--cream-dark); }
+  .step h2 { font-family: 'Fraunces', Georgia, serif; font-size: 18px; margin-bottom: 6px; color: var(--brand); }
+  .step .hint { font-size: 12px; color: var(--texte-doux); margin-bottom: 14px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .field input, .field select, .field textarea { width: 100%; padding: 11px 13px; border: 1.5px solid var(--cream-dark); border-radius: 11px; font-size: 14px; font-family: inherit; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--brand); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 540px) { .row { grid-template-columns: 1fr; } }
+  .metiers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .metier-btn { padding: 14px 8px; border: 2px solid var(--cream-dark); border-radius: 12px; background: #fff; cursor: pointer; text-align: center; font-family: inherit; font-size: 13px; }
+  .metier-btn.actif { border-color: var(--vert); background: rgba(91,190,58,.1); }
+  .metier-btn .emoji { font-size: 24px; display: block; margin-bottom: 4px; }
+  .photo-upload { border: 2px dashed var(--cream-dark); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; background: #fafaf6; }
+  .photo-upload input { display: none; }
+  .photo-upload.has-image { padding: 0; border: 2px solid var(--vert); }
+  .photo-upload img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; }
+  .galerie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; margin-top: 10px; }
+  .galerie-thumb { position: relative; aspect-ratio: 1; }
+  .galerie-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+  .galerie-thumb .del { position: absolute; top: 4px; right: 4px; background: rgba(196,68,68,.92); color: #fff; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; }
+  .produits { display: flex; flex-direction: column; gap: 10px; }
+  .produit-row { display: grid; grid-template-columns: 64px 1fr 100px 32px; gap: 8px; align-items: center; padding: 8px; background: var(--cream); border-radius: 10px; }
+  .produit-photo { width: 64px; height: 64px; border-radius: 8px; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; overflow: hidden; }
+  .produit-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .produit-row input { width: 100%; padding: 8px; border: 1px solid var(--cream-dark); border-radius: 8px; font-size: 13px; }
+  .produit-row .del { background: var(--rouge); color: #fff; border: none; border-radius: 8px; cursor: pointer; height: 32px; }
+  .add-produit { margin-top: 10px; background: var(--brand); color: #fff; border: none; padding: 10px 18px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 13px; }
+  button.cta { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--vert), #2A6F3F); color: #fff; border: none; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 6px 18px rgba(91,190,58,.3); margin-top: 16px; }
+  button.cta:disabled { opacity: .5; cursor: not-allowed; }
+  .err { color: var(--rouge); font-size: 13px; margin-top: 10px; display: none; }
+  .ok { background: rgba(91,190,58,.1); border: 1.5px solid var(--vert); padding: 18px; border-radius: 14px; margin-top: 16px; display: none; }
+  .ok h3 { color: #2A6F3F; margin-bottom: 8px; }
+  .ok input { width: 100%; padding: 10px; border: 1px solid var(--cream-dark); border-radius: 8px; font-family: monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/ambassadeur/dashboard">← Retour au dashboard</a>
+  <h1>Créer une démo prospect</h1>
+</header>
+
+<main class="container">
+
+<form onsubmit="event.preventDefault();creerDemo();">
+
+  <div class="step">
+    <h2>1. Le commerçant prospect</h2>
+    <p class="hint">Ces infos seront pré-remplies si le commerçant active la boutique. L'email/téléphone restent optionnels.</p>
+    <div class="field"><label>Nom du commerce *</label><input id="iNom" type="text" required maxlength="60" placeholder="Boucherie du Marché"></div>
+    <div class="row">
+      <div class="field"><label>Email du prospect</label><input id="iEmail" type="email" placeholder="contact@boucherie.fr"></div>
+      <div class="field"><label>Téléphone</label><input id="iTel" type="tel" placeholder="06 12 34 56 78"></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2>2. Métier</h2>
+    <div class="metiers-grid" id="metiers"></div>
+  </div>
+
+  <div class="step">
+    <h2>3. Adresse de la boutique</h2>
+    <div class="field"><label>Adresse</label><input id="iAdresse" type="text" placeholder="12 rue de la République"></div>
+    <div class="row">
+      <div class="field"><label>Code postal</label><input id="iCP" type="text" maxlength="5" placeholder="14000"></div>
+      <div class="field"><label>Ville *</label><input id="iVille" type="text" required maxlength="60" placeholder="Caen"></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2>4. Photo principale (hero)</h2>
+    <p class="hint">L'image qui s'affiche en grand sur la démo. Une photo de la devanture, de l'étalage, etc.</p>
+    <label class="photo-upload" id="upHero">
+      <input type="file" accept="image/*" onchange="handleHero(this)">
+      <span id="upHeroLbl">📷 Cliquez pour ajouter une photo</span>
+    </label>
+  </div>
+
+  <div class="step">
+    <h2>5. Logo (optionnel)</h2>
+    <label class="photo-upload" id="upLogo">
+      <input type="file" accept="image/*" onchange="handleLogo(this)">
+      <span id="upLogoLbl">🎨 Cliquez pour ajouter un logo</span>
+    </label>
+  </div>
+
+  <div class="step">
+    <h2>6. Galerie (jusqu'à 6 photos)</h2>
+    <p class="hint">Photos d'ambiance, du commerçant au travail, des produits, etc.</p>
+    <label class="photo-upload">
+      <input type="file" accept="image/*" multiple onchange="handleGalerie(this)">
+      <span>+ Ajouter des photos</span>
+    </label>
+    <div class="galerie-grid" id="galerieGrid"></div>
+  </div>
+
+  <div class="step">
+    <h2>7. Produits exemple</h2>
+    <p class="hint">Ajoutez quelques produits avec photo et prix pour rendre la démo crédible (3 à 8 produits suffisent).</p>
+    <div class="produits" id="produits"></div>
+    <button type="button" class="add-produit" onclick="ajouterProduit()">+ Ajouter un produit</button>
+  </div>
+
+  <button class="cta" id="btnSubmit" type="submit">🚀 Générer la démo</button>
+  <div class="err" id="err"></div>
+
+</form>
+
+<div class="ok" id="okBlock">
+  <h3>✓ Démo créée avec succès</h3>
+  <p style="font-size:13.5px;margin-bottom:10px;">Voici le lien à partager au prospect :</p>
+  <input id="okLien" readonly onclick="this.select()">
+  <p style="font-size:12px;color:var(--texte-doux);margin-top:10px;">S'il s'abonne, votre récompense (30/50/80€) sera créditée 30 jours après son paiement.</p>
+  <a href="/ambassadeur/dashboard" style="display:inline-block;margin-top:12px;color:var(--brand);font-weight:600;text-decoration:none;">← Retour au dashboard</a>
+</div>
+
+</main>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+const METIERS = [
+  { type: 'primeur', emoji: '🌿', label: 'Primeur' },
+  { type: 'boucherie', emoji: '🥩', label: 'Boucherie' },
+  { type: 'boulangerie', emoji: '🥖', label: 'Boulangerie' },
+  { type: 'poissonnerie', emoji: '🐟', label: 'Poissonnerie' },
+  { type: 'fromagerie', emoji: '🧀', label: 'Fromagerie' },
+  { type: 'traiteur', emoji: '🍽️', label: 'Traiteur' },
+  { type: 'fleuriste', emoji: '💐', label: 'Fleuriste' },
+  { type: 'pizzeria', emoji: '🍕', label: 'Pizzeria' },
+  { type: 'restaurant', emoji: '🍴', label: 'Restaurant' },
+  { type: 'fastfood', emoji: '🍔', label: 'Fast-food' },
+];
+
+const state = {
+  metier: null,
+  heroFile: null,
+  logoFile: null,
+  galerieFiles: [],
+  produits: [], // {nom, prix, photo: File|null, photo_url}
+};
+
+document.getElementById('metiers').innerHTML = METIERS.map(m =>
+  '<button type="button" class="metier-btn" data-type="' + m.type + '" onclick="choisirMetier(\'' + m.type + '\')">'
+  + '<span class="emoji">' + m.emoji + '</span>' + m.label + '</button>'
+).join('');
+
+function choisirMetier(t) {
+  state.metier = t;
+  document.querySelectorAll('.metier-btn').forEach(b => b.classList.toggle('actif', b.dataset.type === t));
+}
+
+function handleHero(input) {
+  const f = input.files[0]; if (!f) return;
+  state.heroFile = f;
+  const url = URL.createObjectURL(f);
+  document.getElementById('upHero').classList.add('has-image');
+  document.getElementById('upHeroLbl').outerHTML = '<img src="' + url + '">';
+}
+function handleLogo(input) {
+  const f = input.files[0]; if (!f) return;
+  state.logoFile = f;
+  const url = URL.createObjectURL(f);
+  document.getElementById('upLogo').classList.add('has-image');
+  document.getElementById('upLogoLbl').outerHTML = '<img src="' + url + '">';
+}
+function handleGalerie(input) {
+  const files = Array.from(input.files || []);
+  for (const f of files) {
+    if (state.galerieFiles.length >= 6) break;
+    state.galerieFiles.push(f);
+  }
+  renderGalerie();
+}
+function renderGalerie() {
+  const grid = document.getElementById('galerieGrid');
+  grid.innerHTML = state.galerieFiles.map((f, i) =>
+    '<div class="galerie-thumb"><img src="' + URL.createObjectURL(f) + '">'
+    + '<button type="button" class="del" onclick="retirerGalerie(' + i + ')">✕</button></div>'
+  ).join('');
+}
+function retirerGalerie(i) { state.galerieFiles.splice(i, 1); renderGalerie(); }
+
+function ajouterProduit() {
+  state.produits.push({ nom: '', prix: '', photo: null, photo_url: null });
+  renderProduits();
+}
+function renderProduits() {
+  const c = document.getElementById('produits');
+  c.innerHTML = state.produits.map((p, i) =>
+    '<div class="produit-row">'
+    + '<label class="produit-photo">'
+    + (p.photo ? '<img src="' + URL.createObjectURL(p.photo) + '">' : '📷')
+    + '<input type="file" accept="image/*" style="display:none;" onchange="handleProduitPhoto(' + i + ', this)">'
+    + '</label>'
+    + '<input type="text" placeholder="Nom du produit" value="' + (p.nom || '').replace(/"/g, '&quot;') + '" oninput="state.produits[' + i + '].nom = this.value">'
+    + '<input type="number" step="0.01" min="0" placeholder="Prix €" value="' + (p.prix || '') + '" oninput="state.produits[' + i + '].prix = this.value">'
+    + '<button type="button" class="del" onclick="state.produits.splice(' + i + ',1);renderProduits()">✕</button>'
+    + '</div>'
+  ).join('');
+}
+function handleProduitPhoto(i, input) {
+  const f = input.files[0];
+  if (f) { state.produits[i].photo = f; renderProduits(); }
+}
+
+async function getValidToken() {
+  const s = JSON.parse(localStorage.getItem('session_ambassadeur') || '{}');
+  if (!s.access_token) return null;
+  try {
+    const p = JSON.parse(atob(s.access_token.split('.')[1]));
+    if ((p.exp || 0) * 1000 > Date.now() + 60000) return s.access_token;
+  } catch {}
+  if (s.refresh_token) {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST', headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: s.refresh_token })
+    });
+    if (r.ok) {
+      const d = await r.json();
+      s.access_token = d.access_token; s.refresh_token = d.refresh_token || s.refresh_token;
+      localStorage.setItem('session_ambassadeur', JSON.stringify(s));
+      return d.access_token;
+    }
+  }
+  return null;
+}
+
+async function uploadVersStorage(token, demoId, sousChemin, file) {
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = demoId + '/' + sousChemin + '.' + ext;
+  const r = await fetch(SUPABASE_URL + '/storage/v1/object/demos-media/' + path, {
+    method: 'POST',
+    headers: {
+      apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
+      'Content-Type': file.type || 'image/jpeg', 'x-upsert': 'true',
+    },
+    body: file,
+  });
+  if (!r.ok) throw new Error('Upload échoué : ' + r.status);
+  return SUPABASE_URL + '/storage/v1/object/public/demos-media/' + path;
+}
+
+function showErr(msg) { const e = document.getElementById('err'); e.textContent = msg; e.style.display = 'block'; }
+
+async function creerDemo() {
+  const err = document.getElementById('err');
+  err.style.display = 'none';
+  const btn = document.getElementById('btnSubmit');
+
+  const nom = document.getElementById('iNom').value.trim();
+  const ville = document.getElementById('iVille').value.trim();
+  if (!nom) return showErr('Nom du commerce obligatoire.');
+  if (!state.metier) return showErr('Choisissez un métier.');
+  if (!ville) return showErr('Ville obligatoire.');
+  if (!state.heroFile) return showErr('Une photo principale est requise.');
+
+  btn.disabled = true; btn.textContent = 'Création de la démo…';
+
+  try {
+    const token = await getValidToken();
+    if (!token) { location.href = '/ambassadeur'; return; }
+    const session = JSON.parse(localStorage.getItem('session_ambassadeur') || '{}');
+
+    // Slug court basé sur le nom + random
+    const slugBase = nom.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30);
+    const slugDemo = (slugBase || 'demo') + '-' + Math.random().toString(36).slice(2, 7);
+
+    // Fingerprint léger
+    let fp = '';
+    try {
+      const raw = (navigator.userAgent || '') + '|' + screen.width + 'x' + screen.height + '|' + (navigator.language || '');
+      let h = 5381; for (let i = 0; i < raw.length; i++) h = ((h << 5) + h + raw.charCodeAt(i)) | 0;
+      fp = (h >>> 0).toString(16);
+    } catch {}
+
+    // 1) Insert demo_sites (sans urls photo, on les met à jour après upload)
+    btn.textContent = 'Enregistrement…';
+    const dR = await fetch(SUPABASE_URL + '/rest/v1/demo_sites', {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json', Prefer: 'return=representation'
+      },
+      body: JSON.stringify({
+        ambassadeur_id: session.user_id,
+        slug_demo: slugDemo,
+        nom_prospect: nom,
+        email_prospect: document.getElementById('iEmail').value.trim() || null,
+        telephone_prospect: document.getElementById('iTel').value.trim() || null,
+        business_type: state.metier,
+        ville,
+        adresse: document.getElementById('iAdresse').value.trim() || null,
+        code_postal: document.getElementById('iCP').value.trim() || null,
+        user_agent_creation: (navigator.userAgent || '').slice(0, 200),
+        fingerprint: fp,
+      })
+    });
+    if (!dR.ok) { const t = await dR.text(); throw new Error('Demo creation : ' + t); }
+    const demoArr = await dR.json();
+    const demo = Array.isArray(demoArr) ? demoArr[0] : demoArr;
+    const demoId = demo.id;
+
+    // 2) Upload hero
+    btn.textContent = 'Upload photo principale…';
+    const heroUrl = await uploadVersStorage(token, demoId, 'hero', state.heroFile);
+    let logoUrl = null;
+    if (state.logoFile) {
+      btn.textContent = 'Upload logo…';
+      logoUrl = await uploadVersStorage(token, demoId, 'logo', state.logoFile);
+    }
+
+    // 3) Upload galerie
+    const galerieUrls = [];
+    for (let i = 0; i < state.galerieFiles.length; i++) {
+      btn.textContent = 'Upload galerie ' + (i+1) + '/' + state.galerieFiles.length + '…';
+      const u = await uploadVersStorage(token, demoId, 'galerie/' + i, state.galerieFiles[i]);
+      galerieUrls.push(u);
+    }
+
+    // 4) MAJ demo_sites avec les urls
+    await fetch(SUPABASE_URL + '/rest/v1/demo_sites?id=eq.' + demoId, {
+      method: 'PATCH',
+      headers: {
+        apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json', Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({ hero_url: heroUrl, logo_url: logoUrl, galerie_urls: galerieUrls })
+    });
+
+    // 5) Upload + insert produits
+    for (let i = 0; i < state.produits.length; i++) {
+      const p = state.produits[i];
+      if (!p.nom) continue;
+      btn.textContent = 'Produit ' + (i+1) + '/' + state.produits.length + '…';
+      let photoUrl = null;
+      if (p.photo) {
+        photoUrl = await uploadVersStorage(token, demoId, 'products/' + i, p.photo);
+      }
+      const prixCents = p.prix ? Math.round(parseFloat(p.prix) * 100) : null;
+      await fetch(SUPABASE_URL + '/rest/v1/demo_produits', {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json', Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({ demo_site_id: demoId, nom: p.nom, prix_cents: prixCents, photo_url: photoUrl, ordre: i })
+      });
+    }
+
+    // SUCCESS
+    document.querySelector('form').style.display = 'none';
+    document.getElementById('okBlock').style.display = 'block';
+    document.getElementById('okLien').value = location.origin + '/demo/' + slugDemo;
+
+  } catch (e) {
+    showErr(e.message || 'Erreur inconnue');
+    btn.disabled = false; btn.textContent = '🚀 Générer la démo';
+  }
+}
+
+// Initialisation : 3 produits vides par défaut + check auth
+(async function() {
+  const token = await getValidToken();
+  if (!token) { location.href = '/ambassadeur'; return; }
+  ajouterProduit(); ajouterProduit(); ajouterProduit();
+})();
+</script>
+</body>
+</html>
