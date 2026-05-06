@@ -4460,10 +4460,11 @@ async function chargerCommandesSupabase(commercantId) {
     const commandes = await r.json();
     if (!commandes || commandes.error) return;
 
-    // En mode démo (abonnement_actif=false) ET aucune vraie commande en BDD :
+    // En mode démo (abonnement_actif=false ET pas une fixture) ET aucune vraie commande en BDD :
     // on garde les commandes démo pour que le dashboard reste vivant.
     // Dès qu'une vraie commande arrive, on bascule automatiquement.
-    const enDemoMode = window.__CONFIG__?.business?.abonnement_actif !== true;
+    const _bizDemo = window.__CONFIG__?.business;
+    const enDemoMode = !!_bizDemo?.id && _bizDemo.is_fixture !== true && _bizDemo.abonnement_actif !== true;
     if (enDemoMode && commandes.length === 0 && __demoDataInjected) {
       // ne pas écraser les commandes démo
       return;
@@ -4942,6 +4943,11 @@ async function appliquerThemeMonCommerce() {
 let __demoDataInjected = false;
 function injecterDonneesDemoDashboard() {
   if (__demoDataInjected) return;
+  // Garde-fou : ne JAMAIS injecter de donnees fictives si la boutique
+  // est une fixture (demo commerciale) ou si l'abonnement est actif,
+  // ou si la config n'est pas encore chargee.
+  const biz = window.__CONFIG__?.business;
+  if (!biz?.id || biz.is_fixture === true || biz.abonnement_actif === true) return;
   __demoDataInjected = true;
 
   const bt = (window.__CONFIG__?.business?.business_type) || 'primeur';
@@ -5418,7 +5424,12 @@ function appliquerVisibiliteFeatures() {
     // ── MODE DÉMO : si abonnement pas encore actif, débloque TOUT
     // pour que le commerçant puisse essayer toutes les fonctionnalités
     // avant de choisir son plan. Si abonnement actif → on respecte l'offre choisie.
-    const enDemo = biz.abonnement_actif !== true;
+    // Garde-fous :
+    //  - si biz.id manquant (config pas encore chargée) → traite comme non-demo
+    //    pour eviter d'injecter des donnees fictives qui seront ecrasees
+    //  - si is_fixture=true (boutique de demonstration commerciale) →
+    //    jamais en mode demo, doit s'afficher comme une boutique normale
+    const enDemo = !!biz.id && biz.is_fixture !== true && biz.abonnement_actif !== true;
     const offre = enDemo ? 'livraison' : (biz.offre || 'clickcollect');
 
     // Capacités par plan
