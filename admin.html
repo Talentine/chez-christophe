@@ -1906,10 +1906,37 @@ async function chargerAnalytics() {
       ? topSlugs.map(([s,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${s}</span><strong>${n}</strong></div>`).join('')
       : '<div style="opacity:.5">Aucune visite de boutique</div>';
 
-    // Top referrers
+    // Top referrers — normalisation des sources
+    function normaliserSource(host) {
+      if (!host) return 'Direct';
+      const h = String(host).toLowerCase().replace(/^www\./, '');
+      // Marchéo (toutes variantes : punycode, sous-domaines, www)
+      if (h === 'marchéo.fr' || h === 'xn--marcho-cta.fr' || h.endsWith('.marchéo.fr') || h.endsWith('.xn--marcho-cta.fr')) return 'marchéo.fr';
+      if (h === 'marcheo.fr' || h.endsWith('.marcheo.fr')) return 'marchéo.fr';
+      // Google (google.fr, google.com, google.co.uk, etc.)
+      if (h === 'google' || h.startsWith('google.') || h.includes('.google.')) return 'Google';
+      // Facebook & Meta (m.facebook.com, l.facebook.com, lm.facebook.com)
+      if (h === 'facebook.com' || h.endsWith('.facebook.com') || h === 'fb.com' || h.endsWith('.fb.com')) return 'Facebook';
+      // Instagram (l.instagram.com)
+      if (h === 'instagram.com' || h.endsWith('.instagram.com')) return 'Instagram';
+      // TikTok
+      if (h === 'tiktok.com' || h.endsWith('.tiktok.com')) return 'TikTok';
+      // LinkedIn
+      if (h === 'linkedin.com' || h.endsWith('.linkedin.com') || h === 'lnkd.in') return 'LinkedIn';
+      // YouTube
+      if (h === 'youtube.com' || h.endsWith('.youtube.com') || h === 'youtu.be') return 'YouTube';
+      // Twitter / X
+      if (h === 'twitter.com' || h.endsWith('.twitter.com') || h === 'x.com' || h.endsWith('.x.com') || h === 't.co') return 'X (Twitter)';
+      // Bing, Yahoo, DuckDuckGo
+      if (h === 'bing.com' || h.endsWith('.bing.com')) return 'Bing';
+      if (h.includes('yahoo.')) return 'Yahoo';
+      if (h === 'duckduckgo.com' || h.endsWith('.duckduckgo.com')) return 'DuckDuckGo';
+      return h;
+    }
     const refCounts = {};
     events.filter(e => e.referrer).forEach(e => {
-      refCounts[e.referrer] = (refCounts[e.referrer] || 0) + 1;
+      const src = normaliserSource(e.referrer);
+      refCounts[src] = (refCounts[src] || 0) + 1;
     });
     const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaReferrers').innerHTML = topRefs.length

@@ -142,11 +142,7 @@
   <div class="header-doc">
     <div class="doc-label">Document juridique</div>
     <h1>Conditions Générales de Vente — Plateforme Marchéo</h1>
-    <p class="meta">Version 1.0 · Dernière mise à jour : <span class="placeholder">[À COMPLÉTER]</span></p>
-  </div>
-
-  <div class="alerte">
-    ⚠️ <b>Document en cours de finalisation.</b> Les zones <span class="placeholder">[À COMPLÉTER]</span> seront remplies avec les informations légales définitives lors de la mise en production.
+    <p class="meta">Version 1.0 · Dernière mise à jour : 7 mai 2026 · En vigueur à compter du 7 mai 2026</p>
   </div>
 
   <nav class="toc" aria-label="Sommaire">
@@ -163,6 +159,7 @@
       <li><a href="#a9">Propriété intellectuelle</a></li>
       <li><a href="#a10">Durée et résiliation</a></li>
       <li><a href="#a11">Données personnelles</a></li>
+      <li><a href="#a11bis">Sous-traitance des données (DPA)</a></li>
       <li><a href="#a12">Responsabilité</a></li>
       <li><a href="#a13">Modification des CGV</a></li>
       <li><a href="#a14">Droit applicable et litiges</a></li>
@@ -174,12 +171,14 @@
     <h2 id="a1">Article 1 — Objet et champ d'application</h2>
     <p>Les présentes Conditions Générales de Vente (« <strong>CGV</strong> ») régissent l'utilisation de la plateforme <strong>Marchéo</strong> (la « <strong>Plateforme</strong> »), accessible à l'adresse <strong>https://marcheo.fr</strong>, exploitée par :</p>
     <ul>
-      <li><strong>Raison sociale :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
-      <li><strong>Forme juridique :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
-      <li><strong>SIRET :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
-      <li><strong>Siège social :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>Raison sociale :</strong> MERIEULT Paul (entreprise individuelle exerçant sous le nom commercial « Marchéo »)</li>
+      <li><strong>Forme juridique :</strong> Entrepreneur individuel</li>
+      <li><strong>SIRET :</strong> 104 533 849 00014</li>
+      <li><strong>SIREN :</strong> 104 533 849</li>
+      <li><strong>Code APE :</strong> 6201Z — Programmation informatique</li>
+      <li><strong>Siège social :</strong> 14 rue de la Planquette, 14640 Villers-sur-Mer, France</li>
       <li><strong>Email :</strong> marcheo.contact@gmail.com</li>
-      <li><strong>Directeur de publication :</strong> <span class="placeholder">[À COMPLÉTER]</span></li>
+      <li><strong>Directeur de publication :</strong> Paul Merieult</li>
     </ul>
     <p>Marchéo édite une solution logicielle (SaaS) permettant à des artisans et commerçants de proximité (« <strong>Commerçants</strong> ») de proposer un service de <strong>click & collect</strong> et de <strong>livraison à domicile</strong> à leurs clients (« <strong>Clients Finaux</strong> »).</p>
     <p>L'utilisation de la Plateforme implique l'acceptation <strong>pleine et entière</strong> des présentes CGV par le Commerçant lors de son inscription.</p>
@@ -233,7 +232,9 @@
       </tbody>
     </table>
     <h3>5.2 Commission sur les transactions</h3>
-    <p>En complément de l'abonnement, Marchéo prélève une <strong>commission de <span class="placeholder">[X]</span> %</strong> sur chaque transaction réalisée via la Plateforme (frais Stripe inclus). Cette commission est automatiquement déduite du montant reversé au Commerçant.</p>
+    <p>Marchéo <strong>ne prélève aucune commission</strong> sur les transactions réalisées via la Plateforme. L'intégralité du montant payé par le Client Final (hors frais Stripe propres au prestataire de paiement) est reversée au Commerçant.</p>
+    <p>Seuls les frais Stripe applicables aux transactions par carte bancaire restent à la charge du Commerçant et sont prélevés directement par Stripe lors du virement, conformément aux conditions tarifaires de Stripe Inc. (consultables sur <a href="https://stripe.com/fr/pricing" target="_blank" rel="noopener">stripe.com/fr/pricing</a>).</p>
+    <p>Marchéo se réserve le droit d'introduire ultérieurement une commission. Une telle modification ferait l'objet d'un préavis de 30 jours notifié par email, ouvrant droit à résiliation sans frais (cf. article 5.4).</p>
     <h3>5.3 Modalités de facturation</h3>
     <ul>
       <li>L'abonnement est facturé <strong>mensuellement</strong>, à terme à échoir ;</li>
@@ -267,11 +268,12 @@
     <p>Le Client Final est <strong>informé de manière claire</strong> de la politique d'annulation avant la confirmation de la réservation et de la prise d'empreinte. La saisie de la carte vaut acceptation de cette politique.</p>
 
     <h3>6.4 Reversement au Commerçant</h3>
-    <p>Les fonds sont reversés sur le compte bancaire associé via Stripe :</p>
+    <p>Les fonds sont reversés sur le compte bancaire associé via Stripe Connect :</p>
     <ul>
-      <li><strong>Délai standard :</strong> sous 7 jours après chaque commande honorée ;</li>
-      <li><strong>Calendrier :</strong> <span class="placeholder">[À COMPLÉTER : hebdomadaire / quotidien]</span> ;</li>
-      <li>Le détail des virements est consultable dans le dashboard.</li>
+      <li><strong>Calendrier :</strong> virement <strong>hebdomadaire</strong> (chaque semaine, sous réserve de l'atteinte du montant minimum de virement défini par Stripe) ;</li>
+      <li><strong>Délai standard :</strong> les fonds d'une commande honorée sont disponibles pour virement entre 2 et 7 jours après la date de retrait ou de livraison, conformément aux délais de compensation Stripe ;</li>
+      <li><strong>Compte bancaire :</strong> le Commerçant choisit librement son compte bancaire de réception lors de l'onboarding Stripe Connect. Tout changement s'effectue depuis son dashboard Stripe ;</li>
+      <li><strong>Détail des virements :</strong> consultable à tout moment dans le dashboard Marchéo et dans le dashboard Stripe associé.</li>
     </ul>
     <h3>6.5 Litiges et chargebacks</h3>
     <p>En cas de chargeback initié par un Client Final, Marchéo informe le Commerçant et coordonne la défense. Si le chargeback est validé contre le Commerçant, le montant est imputé sur les futurs virements.</p>
@@ -302,6 +304,29 @@
 
     <h3>7.3 Conformité fiscale et déclarative</h3>
     <p>Le Commerçant déclare et garantit être à jour de ses obligations fiscales, sociales et déclaratives liées à son activité, et reconnaît être seul responsable de la <strong>déclaration et du paiement</strong> de la TVA, des cotisations sociales et de l'impôt sur les bénéfices au titre des ventes réalisées via la Plateforme.</p>
+
+    <h3>7.4 Usage légitime du bouton « Litige » et des empreintes bancaires</h3>
+    <p>Le bouton « Litige » (commandes click &amp; collect) et le bouton « Encaisser No-show » (réservations) permettant la capture d'une empreinte bancaire constituent des <strong>outils de protection contre le no-show et la mauvaise foi avérée</strong>. Le Commerçant s'engage à ne les utiliser que dans les cas suivants :</p>
+    <ul>
+      <li>Absence avérée du Client Final à la date et au créneau convenus pour le retrait, la livraison ou la réservation ;</li>
+      <li>Refus du Client Final, sans motif légitime, de prendre possession de la commande préparée et conforme ;</li>
+      <li>Tentative manifeste de fraude (commande fictive, fausse identité, carte volée).</li>
+    </ul>
+    <p>Le Commerçant <strong>s'interdit expressément</strong> de capturer une empreinte dans les cas suivants :</p>
+    <ul>
+      <li>Pour insatisfaction client réglable autrement (geste commercial, remboursement partiel, avoir) ;</li>
+      <li>Lorsque l'absence du Client Final résulte d'une cause imputable au Commerçant (rupture de stock, fermeture imprévue, retard de préparation supérieur à 30 minutes par rapport au créneau annoncé) ;</li>
+      <li>En cas d'annulation effectuée par le Client Final dans les délais autorisés par la politique d'annulation paramétrée (cf. article 6.3) ;</li>
+      <li>Sans avoir tenté un contact préalable du Client Final via téléphone, SMS ou email permettant de constater l'absence ou le refus ;</li>
+      <li>Pour majorer artificiellement le panier, ajouter des frais non prévus, ou faire pression sur le Client Final.</li>
+    </ul>
+    <p><strong>Sanctions en cas d'abus avéré</strong> (taux de capture supérieur à 5 % des commandes ou réservations honorées sur une période glissante de 30 jours, ou réclamations clients récurrentes documentées) :</p>
+    <ul>
+      <li><strong>Premier signalement :</strong> avertissement écrit par email, demande d'explications sous 7 jours ;</li>
+      <li><strong>Récidive ou défaut de réponse :</strong> suspension temporaire du compte (15 jours), période durant laquelle aucune nouvelle empreinte ne peut être capturée ;</li>
+      <li><strong>Abus caractérisé ou répété :</strong> résiliation immédiate du compte sans préavis et signalement éventuel à la <strong>DGCCRF</strong> et aux autorités compétentes.</li>
+    </ul>
+    <p>Marchéo se réserve le droit, en cas de capture manifestement abusive et après examen contradictoire, de procéder au <strong>remboursement direct du Client Final</strong>, le montant correspondant étant alors imputé sur les futurs virements dus au Commerçant. Le Commerçant peut contester cette décision dans un délai de 14 jours par écrit motivé.</p>
 
     <h2 id="a8">Article 8 — Obligations de Marchéo</h2>
     <p>Marchéo s'engage à :</p>
@@ -342,6 +367,61 @@
       <li><strong>Responsable de traitement</strong> pour les données des Commerçants.</li>
     </ul>
 
+    <h2 id="a11bis">Article 11 bis — Convention de sous-traitance des données (DPA)</h2>
+    <p>Conformément à l'article 28 du Règlement Général sur la Protection des Données (RGPD — UE 2016/679), lorsque Marchéo agit en qualité de sous-traitant pour les données des Clients Finaux du Commerçant, les conditions suivantes s'appliquent et constituent une convention de sous-traitance opposable.</p>
+
+    <h3>11 bis.1 Nature, finalité et durée du traitement</h3>
+    <ul>
+      <li><strong>Nature :</strong> hébergement, stockage, transmission de commandes et réservations, envoi de notifications SMS et emails transactionnels, génération de statistiques agrégées.</li>
+      <li><strong>Finalité :</strong> permettre au Commerçant d'exécuter le contrat de vente ou de prestation de service avec le Client Final.</li>
+      <li><strong>Durée :</strong> durée du contrat entre Marchéo et le Commerçant, augmentée des obligations légales de conservation (10 ans pour les pièces comptables, 5 ans pour les commandes / données client final, 3 ans pour les données marketing).</li>
+    </ul>
+
+    <h3>11 bis.2 Catégories de données traitées</h3>
+    <ul>
+      <li><strong>Identité Client Final :</strong> prénom, nom, email, téléphone ;</li>
+      <li><strong>Données de commande :</strong> produits commandés, montants, créneaux, adresse de livraison le cas échéant ;</li>
+      <li><strong>Données de réservation :</strong> date, heure, nombre de couverts, occasion, notes éventuelles ;</li>
+      <li><strong>Données techniques :</strong> adresse IP, user agent, logs de connexion (conservés 1 an pour des finalités de sécurité).</li>
+    </ul>
+    <p>Marchéo <strong>ne traite pas et ne stocke pas</strong> les données bancaires des Clients Finaux. Celles-ci sont exclusivement collectées, traitées et stockées par <strong>Stripe Inc.</strong>, prestataire certifié PCI-DSS niveau 1.</p>
+
+    <h3>11 bis.3 Sous-traitants ultérieurs autorisés</h3>
+    <p>Le Commerçant autorise Marchéo à recourir aux sous-traitants ultérieurs suivants :</p>
+    <table>
+      <thead><tr><th>Prestataire</th><th>Rôle</th><th>Localisation</th><th>Garanties</th></tr></thead>
+      <tbody>
+        <tr><td>Stripe Inc.</td><td>Traitement des paiements, gestion empreintes</td><td>États-Unis / Irlande</td><td>Clauses contractuelles types CE 2021, certification PCI-DSS</td></tr>
+        <tr><td>Supabase Inc.</td><td>Base de données PostgreSQL, Edge Functions, authentification</td><td>Union européenne (Francfort)</td><td>RGPD natif, hébergement UE</td></tr>
+        <tr><td>Vercel Inc.</td><td>Hébergement frontend, CDN</td><td>Union européenne (Paris) + États-Unis</td><td>Clauses contractuelles types CE 2021</td></tr>
+        <tr><td>Twilio Inc.</td><td>Envoi de SMS transactionnels</td><td>États-Unis</td><td>Clauses contractuelles types CE 2021</td></tr>
+        <tr><td>Resend Inc.</td><td>Envoi d'emails transactionnels</td><td>Union européenne</td><td>RGPD natif</td></tr>
+      </tbody>
+    </table>
+    <p>Toute modification substantielle de la liste des sous-traitants ultérieurs fait l'objet d'une notification au Commerçant au moins 30 jours avant son entrée en vigueur. Le Commerçant peut s'opposer à cette modification en résiliant le contrat sans frais avant la date d'effet.</p>
+
+    <h3>11 bis.4 Engagements de Marchéo en tant que sous-traitant</h3>
+    <p>Marchéo s'engage à :</p>
+    <ul>
+      <li>Traiter les données uniquement sur instructions documentées du Commerçant et pour les finalités mentionnées au 11 bis.1 ;</li>
+      <li>Garantir la confidentialité des personnes ayant accès aux données (engagement écrit) ;</li>
+      <li>Mettre en œuvre les mesures de sécurité techniques et organisationnelles appropriées : chiffrement TLS 1.2+, RLS PostgreSQL, secrets chiffrés au repos, sauvegardes quotidiennes, contrôle d'accès par JWT, audit logs ;</li>
+      <li><strong>Notifier toute violation de données personnelles au Commerçant sous 72 heures</strong> à compter de sa connaissance, accompagnée de toutes les informations utiles à l'analyse d'impact ;</li>
+      <li>Assister le Commerçant pour répondre aux demandes des personnes concernées au titre des articles 15 à 22 RGPD (droit d'accès, rectification, effacement, portabilité, opposition) ;</li>
+      <li>Restituer ou supprimer les données à la fin du contrat, au choix du Commerçant, sous réserve des obligations légales de conservation ;</li>
+      <li>Mettre à disposition du Commerçant toutes les informations nécessaires aux audits, sur préavis raisonnable de 30 jours et dans la limite d'un audit par an.</li>
+    </ul>
+
+    <h3>11 bis.5 Obligations du Commerçant en tant que responsable de traitement</h3>
+    <p>Le Commerçant s'engage à :</p>
+    <ul>
+      <li>Disposer d'une <strong>base légale valable</strong> pour chaque traitement (exécution du contrat, consentement, intérêt légitime) ;</li>
+      <li>Informer ses Clients Finaux du traitement de leurs données conformément aux articles 12 à 14 RGPD (mention dans ses CGV Boutique, lien vers une politique de confidentialité) ;</li>
+      <li>Recueillir le consentement explicite pour tout traitement marketing ultérieur (newsletter, prospection) ;</li>
+      <li>Documenter ses traitements dans un <strong>registre RGPD</strong> conforme à l'article 30 RGPD ;</li>
+      <li>Répondre aux demandes des personnes concernées dans le délai légal de 30 jours, en sollicitant Marchéo si nécessaire.</li>
+    </ul>
+
     <h2 id="a12">Article 12 — Responsabilité</h2>
     <h3>12.1 Limitation</h3>
     <p>Sauf en cas de faute lourde ou intentionnelle, la responsabilité de Marchéo est plafonnée au <strong>montant total payé par le Commerçant au cours des 12 derniers mois</strong> précédant le fait générateur.</p>
@@ -353,10 +433,12 @@
 
     <h2 id="a14">Article 14 — Droit applicable et litiges</h2>
     <p>Les présentes CGV sont soumises au <strong>droit français</strong>.</p>
-    <p>En cas de litige, les parties s'efforceront de trouver une solution amiable. À défaut, le litige sera porté devant les tribunaux compétents du <strong>ressort du siège social de Marchéo</strong> (<span class="placeholder">[À COMPLÉTER]</span>).</p>
-    <p>Conformément à l'article L.612-1 du Code de la consommation, le Commerçant peut recourir gratuitement au médiateur de la consommation : <span class="placeholder">[À COMPLÉTER]</span>.</p>
+    <p>En cas de litige, les parties s'efforceront de trouver une solution amiable par échange écrit (email à marcheo.contact@gmail.com) dans un délai de 30 jours. À défaut d'accord, et sous réserve des règles impératives de compétence territoriale en matière de protection des consommateurs, le litige sera porté devant les <strong>tribunaux compétents du ressort de Caen</strong> (siège social de Marchéo situé à Villers-sur-Mer, Calvados).</p>
+    <p>Conformément à l'article L.612-1 du Code de la consommation, en cas de litige avec un Client Final, le Commerçant — en sa qualité de vendeur — doit proposer à celui-ci le recours à un médiateur de la consommation qu'il aura préalablement désigné dans ses propres CGV Boutique. Marchéo n'intervient pas dans cette désignation.</p>
+    <p>Pour les litiges éventuels entre le Commerçant et Marchéo eux-mêmes (relation B2B), les parties peuvent recourir, à leurs frais partagés, à une procédure de médiation conventionnelle avant toute action contentieuse.</p>
 
     <div class="footer-docs">
+      <a href="politique-annulation.html">🚪 Politique d'annulation</a>
       <a href="confidentialite.html">📜 Politique de confidentialité</a>
       <a href="charte.html">⭐ Charte qualité</a>
       <a href="mentions-legales.html">⚖️ Mentions légales</a>

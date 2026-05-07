@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Politique d'annulation et de résiliation · Marchéo</title>
+  <meta name="description" content="Politique d'annulation et de résiliation de l'abonnement commerçant à la plateforme Marchéo : modalités, délais, remboursement, sort des données et des fonds.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
+  <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
+  <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #1C3D2E;
+      --brand-dark: #122A1F;
+      --gold: #C9A54B;
+      --cream: #FAF7F0;
+      --cream-dark: #F0EAD8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B63;
+      --border: #E5DFD0;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 16px; line-height: 1.7;
+      color: var(--text); background: var(--cream);
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.3; color: var(--brand); }
+    a { color: var(--brand); }
+    a:hover { color: var(--gold); }
+    .top {
+      background: var(--brand); color: #fff;
+      padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    .top a { color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; opacity: .85; }
+    .top a:hover { opacity: 1; color: var(--gold); }
+    .logo { display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-weight:700; font-size:18px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%; background: var(--gold); }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .header-doc {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      margin-bottom: 28px; border: 1px solid var(--border);
+    }
+    .doc-label {
+      display: inline-block; font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px;
+    }
+    h1 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 12px; }
+    .meta { color: var(--text-muted); font-size: 14px; }
+    .toc {
+      background: #fff; border-radius: 14px; padding: 22px 26px;
+      border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .toc-titre { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--brand); }
+    .toc ol { margin-left: 18px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .content {
+      background: #fff; border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 1px solid var(--border);
+    }
+    .content h2 {
+      font-size: 22px; margin-top: 36px; margin-bottom: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .content h2:first-of-type { margin-top: 8px; padding-top: 0; border-top: none; }
+    .content h3 { font-size: 17px; margin-top: 22px; margin-bottom: 8px; color: var(--brand-dark); }
+    .content p { margin-bottom: 14px; }
+    .content ul, .content ol { margin: 12px 0 16px 24px; }
+    .content li { margin-bottom: 8px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .content th, .content td { padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    .content th { background: var(--cream); font-weight: 600; }
+    .content strong, .content b { color: var(--brand-dark); }
+    .alerte {
+      background: #FFF8E7; border: 1px solid #F0D690;
+      border-left: 4px solid var(--gold); border-radius: 8px;
+      padding: 14px 18px; margin: 18px 0; font-size: 14px;
+    }
+    .info-box {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 20px; margin: 16px 0;
+    }
+    .footer-docs {
+      margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      font-size: 13px;
+    }
+    .footer-docs a {
+      padding: 8px 16px; background: var(--cream); border-radius: 50px;
+      text-decoration: none; color: var(--brand); border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .footer-docs a:hover { background: var(--brand); color: #fff; }
+    @media (max-width: 600px) {
+      .header-doc, .content { padding: 24px 18px; }
+      .wrap { padding: 24px 14px 60px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .top, .toc, .footer-docs { display: none; }
+      .wrap { max-width: none; padding: 0; }
+      .content, .header-doc { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <a href="landing.html" class="logo">
+    <span class="logo-dot"></span> Marchéo
+  </a>
+  <a href="landing.html">← Retour au site</a>
+</header>
+
+<div class="wrap">
+  <div class="header-doc">
+    <div class="doc-label">Document juridique</div>
+    <h1>Politique d'annulation et de résiliation — Commerçants</h1>
+    <p class="meta">Version 1.0 · Dernière mise à jour : 7 mai 2026 · En vigueur à compter du 7 mai 2026</p>
+  </div>
+
+  <div class="alerte">
+    📌 <b>Document complémentaire aux <a href="cgv.html">CGV Plateforme</a>.</b> Cette politique précise les modalités pratiques de résiliation et d'annulation pour les Commerçants abonnés à Marchéo. En cas de contradiction, les CGV prévalent.
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <div class="toc-titre">📋 Sommaire</div>
+    <ol>
+      <li><a href="#s1">Comment résilier votre abonnement</a></li>
+      <li><a href="#s2">Date d'effet de la résiliation</a></li>
+      <li><a href="#s3">Remboursement et facturation</a></li>
+      <li><a href="#s4">Sort des commandes et réservations en cours</a></li>
+      <li><a href="#s5">Reversement des fonds restants</a></li>
+      <li><a href="#s6">Conservation et export des données</a></li>
+      <li><a href="#s7">Réinscription après résiliation</a></li>
+      <li><a href="#s8">Résiliation à l'initiative de Marchéo</a></li>
+      <li><a href="#s9">Litiges et contestation</a></li>
+    </ol>
+  </nav>
+
+  <article class="content">
+
+    <h2 id="s1">1. Comment résilier votre abonnement</h2>
+    <p>Le Commerçant peut résilier sa souscription Marchéo <strong>à tout moment, sans motif et sans pénalité</strong>, via l'un des trois canaux suivants :</p>
+    <table>
+      <thead><tr><th>Canal</th><th>Modalités</th><th>Délai de prise en compte</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Dashboard Marchéo</strong></td>
+          <td>Réglages → Abonnement → bouton « Résilier mon abonnement »</td>
+          <td>Immédiat (confirmation par email automatique)</td>
+        </tr>
+        <tr>
+          <td><strong>Email</strong></td>
+          <td>Envoi à <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a> avec pour objet « Résiliation — [nom de votre boutique] »</td>
+          <td>Sous 48 heures ouvrées</td>
+        </tr>
+        <tr>
+          <td><strong>Courrier recommandé</strong></td>
+          <td>Marchéo — 14 rue de la Planquette, 14640 Villers-sur-Mer</td>
+          <td>7 jours après réception (cachet de la Poste faisant foi)</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <strong>Aucun motif n'est demandé.</strong> Le Commerçant n'a pas à justifier sa décision de résilier. Aucun délai de réflexion ni période de blocage n'est appliqué.
+    </div>
+
+    <h2 id="s2">2. Date d'effet de la résiliation</h2>
+    <table>
+      <thead><tr><th>Plan</th><th>Tarif</th><th>Date d'effet</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Découverte</strong></td><td>0 € / mois</td><td>Immédiate, dès la demande</td></tr>
+        <tr><td><strong>Pro</strong></td><td>29 € HT / mois</td><td>Fin du mois en cours déjà payé</td></tr>
+        <tr><td><strong>Entreprise</strong></td><td>Sur devis</td><td>Selon le préavis défini au contrat (généralement 30 jours)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Exemple concret (plan Pro)</strong> : un Commerçant qui résilie le 14 mai conserve l'accès à la Plateforme jusqu'au 31 mai inclus. Aucun prélèvement n'est effectué le 1er juin, ni les mois suivants.</p>
+
+    <h2 id="s3">3. Remboursement et facturation</h2>
+    <h3>3.1 Aucun remboursement au prorata</h3>
+    <p>Le mois en cours déjà facturé n'est <strong>pas remboursé au prorata</strong> à compter de la date de demande de résiliation. Le Commerçant conserve l'accès complet à la Plateforme jusqu'au terme du mois facturé.</p>
+    <p>Cette absence de remboursement est conforme à l'article L.221-28 8° du Code de la consommation, le Commerçant agissant dans le cadre de son activité professionnelle et ayant donné son accord exprès au démarrage de l'exécution du service avant la fin du délai de rétractation.</p>
+
+    <h3>3.2 Erreur de prélèvement post-résiliation</h3>
+    <p>Si Marchéo prélève par erreur un mois d'abonnement après la date d'effet de la résiliation, <strong>le remboursement intégral est effectué sous 14 jours</strong> sur la carte bancaire d'origine ou par virement, après simple signalement à <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a>.</p>
+
+    <h3>3.3 Aucune indemnité de rupture</h3>
+    <p>Aucune des deux parties ne peut réclamer d'indemnité de rupture, de pénalité ou de dommages-intérêts du seul fait de la résiliation, sauf en cas de manquement contractuel grave et préalablement constaté.</p>
+
+    <h2 id="s4">4. Sort des commandes et réservations en cours</h2>
+    <p>Pour préserver les droits des Clients Finaux, <strong>les commandes et réservations déjà enregistrées au moment de la résiliation continuent d'être traitées normalement</strong> jusqu'à leur échéance.</p>
+    <table>
+      <thead><tr><th>Type</th><th>Traitement après résiliation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Commande payée d'avance</td>
+          <td>Préparée et remise normalement par le Commerçant à la date prévue. Aucun remboursement client si la commande est honorée.</td>
+        </tr>
+        <tr>
+          <td>Empreinte click &amp; collect en cours (statut « Non capturée »)</td>
+          <td>Auto-libérée 24 heures après la date de retrait, conformément au flux normal. Le Commerçant peut aussi la libérer manuellement.</td>
+        </tr>
+        <tr>
+          <td>Réservation avec empreinte (SetupIntent)</td>
+          <td>L'empreinte est marquée comme libérée 24h après la date de réservation, sans capture possible.</td>
+        </tr>
+        <tr>
+          <td>Commande non honorée par le Commerçant après résiliation</td>
+          <td>Marchéo se réserve le droit de rembourser intégralement le Client Final, le montant étant alors imputé sur le solde dû au Commerçant.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Le Commerçant s'engage à <strong>honorer toutes les commandes acceptées</strong> avant la date d'effet de la résiliation, conformément à l'article 7 des CGV.</p>
+
+    <h2 id="s5">5. Reversement des fonds restants</h2>
+    <ul>
+      <li>Les soldes Stripe Connect en attente sont <strong>virés sur le compte bancaire associé sous 30 jours maximum</strong> après la date d'effet de la résiliation.</li>
+      <li>Aucune commission n'est prélevée sur ce solde de sortie (Marchéo applique 0 % de commission, cf. article 5.2 des CGV).</li>
+      <li>Les éventuels chargebacks (contestations de paiement par les Clients Finaux) postérieurs à la résiliation restent <strong>imputables au Commerçant pendant 120 jours</strong> (durée légale de contestation Visa / Mastercard). À ce titre, Marchéo conserve la possibilité de retenir une provision raisonnable sur le solde de sortie pendant cette période.</li>
+      <li>Le Commerçant peut consulter à tout moment ses soldes et virements via son <a href="https://dashboard.stripe.com" target="_blank" rel="noopener">dashboard Stripe</a>, indépendamment de Marchéo.</li>
+    </ul>
+
+    <h2 id="s6">6. Conservation et export des données</h2>
+    <h3>6.1 Durées légales de conservation</h3>
+    <table>
+      <thead><tr><th>Catégorie de données</th><th>Durée après résiliation</th><th>Base légale</th></tr></thead>
+      <tbody>
+        <tr><td>Pièces comptables, factures Marchéo</td><td>10 ans</td><td>Article L.123-22 Code de commerce</td></tr>
+        <tr><td>Historique des commandes (anonymisé après 5 ans)</td><td>10 ans</td><td>Obligation comptable</td></tr>
+        <tr><td>Données des Clients Finaux du Commerçant</td><td>5 ans puis suppression automatique</td><td>RGPD — durée nécessaire</td></tr>
+        <tr><td>Photos produits, catalogue, contenu boutique</td><td>30 jours puis suppression définitive</td><td>Données non comptables</td></tr>
+        <tr><td>Logs techniques (IP, sessions, sécurité)</td><td>1 an</td><td>Sécurité du SI</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.2 Droit à l'export</h3>
+    <p>Pendant <strong>30 jours suivant la résiliation</strong>, le Commerçant peut demander un export complet de :</p>
+    <ul>
+      <li>Ses commandes et chiffre d'affaires (format CSV) ;</li>
+      <li>Sa base clients finaux (Commerçant en est responsable de traitement RGPD) ;</li>
+      <li>Son catalogue produits (textes + URL des photos hébergées).</li>
+    </ul>
+    <p>Demande à effectuer par email à <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a>. Réponse sous 7 jours ouvrés. L'export est gratuit, fourni sous format ouvert (CSV / JSON).</p>
+
+    <h3>6.3 Demande d'effacement anticipé</h3>
+    <p>Le Commerçant peut demander la suppression anticipée des données non soumises à conservation légale (catalogue, photos, profil boutique) à tout moment. Les données comptables resteront conservées pour la durée légale.</p>
+
+    <h2 id="s7">7. Réinscription après résiliation</h2>
+    <p>Le Commerçant peut <strong>se réinscrire à tout moment</strong> sur Marchéo, sous réserve de l'acceptation des CGV en vigueur à la date de la nouvelle inscription.</p>
+    <ul>
+      <li><strong>Réinscription dans les 30 jours suivant la résiliation</strong> : sur simple demande, l'historique de la boutique (slug, fiche produits, photos, paramètres métier) peut être restauré tel qu'il existait au moment de la résiliation.</li>
+      <li><strong>Réinscription au-delà de 30 jours</strong> : compte recréé de zéro. Le slug d'origine peut avoir été réattribué à un autre Commerçant.</li>
+    </ul>
+
+    <h2 id="s8">8. Résiliation à l'initiative de Marchéo</h2>
+    <p>Marchéo se réserve le droit de résilier unilatéralement le compte d'un Commerçant, avec un <strong>préavis de 7 jours</strong> notifié par email, dans les cas suivants :</p>
+    <ul>
+      <li>Non-paiement de l'abonnement Pro ou Entreprise après deux relances espacées de 7 jours minimum ;</li>
+      <li>Violation caractérisée des CGV, notamment de l'article 7.4 sur l'usage légitime du bouton « Litige » ;</li>
+      <li>Pratiques frauduleuses, tentative d'usurpation d'identité, fausses déclarations ;</li>
+      <li>Atteinte persistante à l'image ou à la réputation de Marchéo (note moyenne client &lt; 2/5 sur 30 jours et plus de 10 commandes) ;</li>
+      <li>Comportements illégaux : vente de produits prohibés, contrefaçons, infractions à la réglementation hygiène / étiquetage.</li>
+    </ul>
+    <h3>8.1 Cas de gravité immédiate</h3>
+    <p>En cas de fraude avérée, infraction pénale, atteinte à l'intégrité de la Plateforme ou risque pour les Clients Finaux, Marchéo peut résilier <strong>sans préavis ni indemnité</strong>, et procéder à un signalement aux autorités compétentes (DGCCRF, services de police, Tracfin le cas échéant).</p>
+    <h3>8.2 Conséquences pour le Commerçant</h3>
+    <ul>
+      <li>Suspension immédiate de l'accès au dashboard et de la boutique en ligne ;</li>
+      <li>Notification automatique aux Clients Finaux ayant des commandes en cours ;</li>
+      <li>Reversement des fonds dans les conditions de l'article 5 ci-dessus, sous réserve de provisions pour litiges ou chargebacks ;</li>
+      <li>Aucune indemnité due au Commerçant en cas de résiliation pour faute.</li>
+    </ul>
+
+    <h2 id="s9">9. Litiges et contestation</h2>
+    <p>Toute contestation relative à une résiliation, à un remboursement ou au reversement des fonds doit être adressée par écrit à <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a> dans un délai de <strong>30 jours</strong> à compter de la date d'effet de la résiliation. Au-delà, la résiliation est réputée définitivement acceptée.</p>
+    <p>En cas de désaccord persistant :</p>
+    <ul>
+      <li><strong>Médiation conventionnelle</strong> : les parties peuvent recourir à un médiateur tiers, à frais partagés, avant toute action contentieuse ;</li>
+      <li><strong>Tribunaux compétents</strong> : à défaut d'accord amiable, le litige sera porté devant les tribunaux compétents du ressort de Caen (siège social de Marchéo), sous réserve des règles impératives de protection du consommateur si applicables.</li>
+    </ul>
+    <p>Cette politique d'annulation est régie par le <strong>droit français</strong>. Elle s'applique à tous les Commerçants ayant souscrit à un plan Marchéo, indépendamment de leur lieu d'établissement, dans la limite des règles impératives de leur droit local.</p>
+
+    <div class="footer-docs">
+      <a href="cgv.html">📄 CGV Plateforme</a>
+      <a href="confidentialite.html">📜 Confidentialité</a>
+      <a href="charte.html">⭐ Charte qualité</a>
+      <a href="mentions-legales.html">⚖️ Mentions légales</a>
+      <a href="landing.html">← Retour au site</a>
+    </div>
+  </article>
+</div>
+
+</body>
+</html>
