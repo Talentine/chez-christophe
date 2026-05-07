@@ -4206,17 +4206,8 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
           document.head.appendChild(s);
         });
       }
-      // Init Stripe — clé publishable récupérée dynamiquement depuis l'API (sécurisé)
-      var pk = data.publishable_key || window.MARCHEO_STRIPE_PK;
-      if (!pk) {
-        try {
-          var rpk = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-reservation/pk', {
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-          });
-          var dpk = await rpk.json();
-          pk = dpk.publishable_key;
-        } catch(e) { /* ignore */ }
-      }
+      // Init Stripe — clé publishable LIVE
+      var pk = data.publishable_key || window.MARCHEO_STRIPE_PK || 'pk_live_51TNZXSEFuhD5VmbykaqK1Bwbs7Jhq3mZHPXNazRTK8WqVL1dbIWXnBdRMCL0TzCaRGlex38ZKzhWh0Ke3mTjXOSo00tL0YAlLt';
       if (!pk) throw new Error('Clé Stripe manquante (contacter le support)');
       stripe = Stripe(pk);
       // Card Element (plus simple et plus fiable que Payment Element pour SetupIntent)
