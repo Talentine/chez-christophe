@@ -198,8 +198,13 @@
   }
 
   // ── INIT ─────────────────────────────────────────────────
+  // explicitSlug : si fourni (cas dashboard commerçant), on ne casse
+  //                PAS la page en cas d'échec — on retourne juste null.
+  //                Si non fourni (cas boutique publique), on affiche
+  //                l'écran "Commerce introuvable".
   async function initBusiness(explicitSlug) {
     var slug = explicitSlug || resolveSlug();
+    var isExplicit = !!explicitSlug;
     try {
       var r = await fetch(SB_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(slug) + '&select=*', {
         headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
@@ -231,7 +236,10 @@
       return cfg;
     } catch(e) {
       console.error('[CC] init failed:', slug, e.message);
-      if (e.message === 'COMMERCE_NOT_FOUND') {
+      // N'écrase la page que si on est sur une boutique publique
+      // (slug déduit de l'URL). Pour le dashboard commerçant, on
+      // retourne null silencieusement pour ne pas casser l'UI.
+      if (e.message === 'COMMERCE_NOT_FOUND' && !isExplicit) {
         document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px;font-family:system-ui;text-align:center;background:#FAF7F0;"><div style="font-size:48px">🏪</div><h1 style="margin:16px 0 8px;font-size:22px">Commerce introuvable</h1><p style="color:#3D5446;margin-bottom:24px">Vérifiez l\'URL ou contactez l\'administrateur.</p><a href="/" style="background:#2A4535;color:white;padding:12px 24px;border-radius:50px;text-decoration:none">Retour</a></div>';
       }
       return null;
