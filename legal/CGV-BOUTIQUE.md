@@ -16,7 +16,7 @@
 - **Email :** {{ email_contact }}
 - **Téléphone :** {{ telephone }}
 
-Les présentes CGV régissent les ventes de produits réalisées sur la boutique en ligne `marcheo.fr/{{ slug }}`, exploitée par le Commerçant susnommé via la plateforme **Marchéo**.
+Les présentes CGV régissent les ventes de produits réalisées sur la boutique en ligne `marchéo.fr/{{ slug }}`, exploitée par le Commerçant susnommé via la plateforme **Marchéo**.
 
 ---
 
@@ -122,7 +122,7 @@ Les données personnelles collectées (nom, prénom, email, téléphone, adresse
 
 Le Client dispose des droits d'accès, de rectification, de suppression, de portabilité et d'opposition prévus par le RGPD. Il peut les exercer en écrivant à {{ email_contact }}.
 
-Pour plus d'informations, consultez la politique de confidentialité de Marchéo : https://marcheo.fr/confidentialite
+Pour plus d'informations, consultez la politique de confidentialité de Marchéo : https://marchéo.fr/confidentialite
 
 ---
 

@@ -315,6 +315,11 @@
     <button class="btn-commander" style="margin-top:20px;" onclick="window.location='index.html'">
       Retour à la boutique
     </button>
+
+    <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(0,0,0,.08);text-align:center;font-size:12.5px;color:var(--texte-doux);line-height:1.6;">
+      Un problème avec votre commande ou un débit que vous contestez ?<br>
+      <a id="lienLitige" href="/contester" style="color:var(--vert);font-weight:600;text-decoration:underline;">Contester un débit</a>
+    </div>
   </div>
 </div>
 
@@ -1107,8 +1112,8 @@ async function confirmerCommande() {
   const tel = document.getElementById('telephone').value.trim();
   if (tel) {
     const cMsg = modeCommande === 'livraison'
-      ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. A bientôt !`
-      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. A bientôt !`;
+      ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. À bientôt !`
+      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. À bientôt !`;
     fetch(SUPABASE_URL + '/functions/v1/send-sms', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
@@ -1120,6 +1125,18 @@ async function confirmerCommande() {
   allerEtape(5);
   document.getElementById('succesNumero').textContent = numero;
   document.getElementById('succesRetrait').textContent = creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
+
+  // Pré-remplit le lien "Contester un débit" avec le numéro de commande + slug
+  try {
+    const lienLitige = document.getElementById('lienLitige');
+    if (lienLitige) {
+      const slug = (typeof SLUG !== 'undefined' ? SLUG : '') || (location.pathname.split('/').filter(Boolean)[0] || '');
+      const params = new URLSearchParams();
+      if (numero) params.set('n', numero);
+      if (slug) params.set('slug', slug);
+      lienLitige.href = '/contester?' + params.toString();
+    }
+  } catch (_) {}
 
   if (modeCommande === 'livraison') {
     document.getElementById('succesRetraitLabel').textContent = 'Livraison';

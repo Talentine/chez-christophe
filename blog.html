@@ -6,12 +6,12 @@
 <title>Blog Marchéo : Manger Local, Digitaliser son Commerce de Bouche, Marchés en France</title>
 <meta name="description" content="Conseils, guides et inspirations pour les commerçants de marché et les amateurs de produits locaux. Comment digitaliser son étal, fidéliser, choisir son producteur, top des marchés en France.">
 <meta name="keywords" content="manger local, digitaliser commerce de bouche, application commerçant marché, fidéliser clients marché local, marché horaires, food-truck, producteurs locaux vente directe, panier primeur, alerter clients absence marché">
-<link rel="canonical" href="https://www.xn--marcho-fva.fr/blog">
+<link rel="canonical" href="https://marchéo.fr/blog">
 <meta property="og:title" content="Blog Marchéo · Manger Local et Digitaliser son commerce">
 <meta property="og:description" content="Le média des commerçants de marché et amateurs de produits locaux.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.xn--marcho-fva.fr/blog">
-<meta property="og:image" content="https://www.xn--marcho-fva.fr/assets/brand/logo.svg">
+<meta property="og:url" content="https://marchéo.fr/blog">
+<meta property="og:image" content="https://marchéo.fr/assets/brand/logo.svg">
 <meta name="theme-color" content="#0F2C52">
 <meta name="google-site-verification" content="JAhdBzO4EP6GzzCny__u2h8x8eBPS3I28w5D54ziHyY">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,12 +21,12 @@
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "Blog Marchéo",
-  "url": "https://www.xn--marcho-fva.fr/blog",
+  "url": "https://marchéo.fr/blog",
   "description": "Conseils et guides pour les commerçants de marché et les amateurs de manger local.",
   "publisher": {
     "@type": "Organization",
     "name": "Marchéo",
-    "logo": { "@type": "ImageObject", "url": "https://www.xn--marcho-fva.fr/assets/brand/logo.svg" }
+    "logo": { "@type": "ImageObject", "url": "https://marchéo.fr/assets/brand/logo.svg" }
   }
 }
 </script>
@@ -102,6 +102,17 @@
   .article-meta { font-size: 12px; color: #94a3b8; }
   .article-link { color: #0F2C52; }
   .article-link:hover { text-decoration: none; }
+
+  /* Articles à venir : neutralise les liens vers /blog/*.html non publiés */
+  .article-link[data-coming-soon] { cursor: default; pointer-events: none; }
+  .article-link[data-coming-soon] .article { position: relative; opacity: .92; }
+  .article-link[data-coming-soon] .article::after {
+    content: "Bientôt"; position: absolute; top: 12px; right: 12px;
+    background: rgba(15,44,82,.92); color: #fff; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 50px; letter-spacing: .4px; text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  }
+  .article-link[data-coming-soon] .article:hover { transform: none; box-shadow: 0 4px 18px rgba(15,44,82,.06); }
 
   .cta-section {
     background: #0F2C52; color: #fff; padding: 50px 24px; text-align: center; margin-top: 40px;
@@ -328,6 +339,15 @@ function filtrer(cat, btn) {
     else a.parentElement.style.display = 'none';
   });
 }
+
+// Articles à venir : tant que /blog/*.html n'est pas publié, on désactive le clic
+// pour éviter les 404 visibles. Réactivation = créer le fichier ciblé.
+document.querySelectorAll('a.article-link[href^="/blog/"]').forEach(function(link){
+  link.dataset.comingSoon = 'true';
+  link.removeAttribute('href');
+  link.setAttribute('aria-disabled', 'true');
+  link.setAttribute('role', 'presentation');
+});
 </script>
 
 </body>

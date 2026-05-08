@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Contester un débit — Marchéo</title>
+<meta name="description" content="Vous contestez un débit lié à votre réservation Marchéo ? Remplissez ce formulaire, notre équipe vous répond sous 48h ouvrées.">
+<link rel="canonical" href="https://marchéo.fr/contester">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/monogram.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#F7F2E8;color:#0F2C52;line-height:1.5;min-height:100vh;padding:24px 16px}
+  .wrap{max-width:560px;margin:0 auto}
+  .card{background:#fff;border-radius:24px;padding:32px 28px;box-shadow:0 12px 40px rgba(15,44,82,.08)}
+  .logo{text-align:center;margin-bottom:18px}
+  .logo img{width:60px;height:60px;border-radius:50%}
+  h1{font-size:24px;font-weight:800;text-align:center;margin-bottom:6px;line-height:1.2}
+  .sub{text-align:center;color:#6B7785;font-size:14px;margin-bottom:24px}
+  .help-box{background:#F7F2E8;border-left:3px solid #5BBE3A;border-radius:10px;padding:14px 16px;font-size:13.5px;line-height:1.6;margin-bottom:22px;color:#3a4d5c}
+  .help-box strong{color:#0F2C52}
+  fieldset{border:none;padding:0;margin:0 0 18px}
+  legend{font-size:13px;font-weight:700;color:#0F2C52;margin-bottom:8px;display:block}
+  label{display:block;font-size:13px;font-weight:600;color:#3a4d5c;margin-bottom:6px}
+  input[type=text],input[type=email],input[type=tel],textarea{
+    width:100%;padding:12px 14px;border:1.5px solid #E8E0D5;border-radius:10px;
+    font-family:inherit;font-size:14.5px;color:#0F2C52;background:#fff;
+    transition:border-color .15s
+  }
+  input:focus,textarea:focus{outline:none;border-color:#5BBE3A;box-shadow:0 0 0 3px rgba(91,190,58,.12)}
+  textarea{resize:vertical;min-height:120px;line-height:1.5}
+  .radio-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid #E8E0D5;border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+  .radio-row:hover{border-color:#5BBE3A;background:#FAF9F4}
+  .radio-row input[type=radio]{margin-top:3px;flex-shrink:0;accent-color:#5BBE3A;width:18px;height:18px}
+  .radio-row input[type=radio]:checked + span{color:#0F2C52;font-weight:600}
+  .radio-row span{font-size:14px;color:#3a4d5c;line-height:1.4}
+  .radio-row.selected{border-color:#5BBE3A;background:#F2FAEE}
+  .req{color:#E65533}
+  .btn{width:100%;padding:14px;border:none;border-radius:50px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;min-height:48px;transition:all .15s}
+  .btn-primary{background:#0F2C52;color:#fff}
+  .btn-primary:hover{background:#143b6e}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed}
+  .btn-secondary{background:transparent;color:#6B7785;border:1.5px solid #E8E0D5;margin-top:10px}
+  .err{color:#E65533;background:#fdf0ef;padding:12px 14px;border-radius:10px;font-size:13.5px;margin-bottom:14px;display:none}
+  .ok-state{text-align:center;padding:10px 0}
+  .ok-state .check{font-size:60px;margin-bottom:10px}
+  .ok-state h2{font-size:20px;font-weight:800;margin-bottom:8px;color:#1f5230}
+  .ok-state p{font-size:14px;color:#6B7785;line-height:1.6;margin-bottom:18px}
+  .copy-box{background:#F7F2E8;border:1px dashed #C8BFA8;border-radius:10px;padding:14px;text-align:left;margin:14px 0;font-size:12.5px;line-height:1.6;color:#3a4d5c;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,'SF Mono',Consolas,monospace;max-height:240px;overflow:auto}
+  .footer-note{text-align:center;font-size:12px;color:#94a3b8;margin-top:18px}
+  .footer-note a{color:#6B7785;text-decoration:underline}
+  #successState{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="logo">
+      <img src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo" onerror="this.src='/assets/brand/monogram.svg'">
+    </div>
+    <h1 id="pageTitle">Contester un débit</h1>
+    <p class="sub">Marchéo — service client</p>
+
+    <div id="formState">
+      <div class="help-box">
+        <strong>Vous avez été débité par erreur ?</strong><br>
+        Remplissez ce formulaire. Notre équipe examine votre demande et vous répond sous <strong>48h ouvrées</strong>. En cas de débit injustifié, le remboursement est effectué sous 5 à 10 jours ouvrés selon votre banque.
+      </div>
+
+      <div id="errBox" class="err" role="alert" aria-live="polite"></div>
+
+      <form id="contesterForm" onsubmit="return envoyer(event)" novalidate>
+        <fieldset>
+          <legend>Vos coordonnées</legend>
+          <label for="fEmail">Email <span class="req">*</span></label>
+          <input type="email" id="fEmail" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
+        </fieldset>
+
+        <fieldset>
+          <label for="fTel">Téléphone</label>
+          <input type="tel" id="fTel" name="tel" autocomplete="tel" placeholder="06 12 34 56 78 (optionnel)">
+        </fieldset>
+
+        <fieldset>
+          <label for="fNumero">Numéro de commande / réservation <span class="req">*</span></label>
+          <input type="text" id="fNumero" name="numero" required autocomplete="off" placeholder="MAR-2026-XXXXX" autocapitalize="characters">
+        </fieldset>
+
+        <fieldset>
+          <label for="fBoutique">Nom de la boutique / restaurant <span class="req">*</span></label>
+          <input type="text" id="fBoutique" name="boutique" required placeholder="Ex : Chez Christophe">
+        </fieldset>
+
+        <fieldset>
+          <label for="fMontant">Montant débité (€) <span class="req">*</span></label>
+          <input type="text" id="fMontant" name="montant" required inputmode="decimal" placeholder="Ex : 22.50">
+        </fieldset>
+
+        <fieldset>
+          <legend>Motif de la contestation <span class="req">*</span></legend>
+          <label class="radio-row">
+            <input type="radio" name="motif" value="present" required>
+            <span><strong>J'étais bien présent</strong> au retrait / à la réservation, mais l'empreinte a quand même été débitée.</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="motif" value="annulation">
+            <span><strong>J'avais annulé dans les délais</strong> (avant la limite d'annulation gratuite indiquée par le commerçant).</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="motif" value="force-majeure">
+            <span><strong>Empêchement de force majeure</strong> (accident, hospitalisation, deuil) — justificatif disponible.</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="motif" value="non-conforme">
+            <span><strong>La commande n'était pas conforme</strong> ou le commerçant n'était pas ouvert au créneau prévu.</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="motif" value="autre">
+            <span><strong>Autre motif</strong> — je détaille ci-dessous.</span>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <label for="fDetails">Description détaillée <span class="req">*</span></label>
+          <textarea id="fDetails" name="details" required placeholder="Date du débit, contexte, élément(s) factuel(s)..." minlength="20"></textarea>
+        </fieldset>
+
+        <button class="btn btn-primary" type="submit" id="btnEnvoyer">
+          📧 Envoyer ma contestation
+        </button>
+        <a class="btn btn-secondary" href="/" style="display:block;text-align:center;text-decoration:none;line-height:20px;">Retour à l'accueil</a>
+      </form>
+
+      <div class="footer-note">
+        En soumettant ce formulaire, vous acceptez que votre demande soit transmise au commerçant concerné et au service client Marchéo. <a href="/confidentialite">Politique de confidentialité</a>
+      </div>
+    </div>
+
+    <div id="successState" class="ok-state">
+      <div class="check">✅</div>
+      <h2>Demande prête à envoyer</h2>
+      <p>
+        Votre client mail s'est ouvert avec votre contestation pré-remplie.<br>
+        <strong>Cliquez sur « Envoyer »</strong> dans votre client mail pour finaliser.
+      </p>
+      <p style="font-size:13px">
+        Si rien ne s'est ouvert (ex : navigateur sans client mail), copiez le texte ci-dessous et envoyez-le manuellement à <strong>marcheo.contact@gmail.com</strong>.
+      </p>
+      <div class="copy-box" id="copyBox" aria-label="Texte de contestation à copier"></div>
+      <button class="btn btn-primary" onclick="copierTexte()" id="btnCopier" style="margin-top:8px;">📋 Copier le texte</button>
+      <a class="btn btn-secondary" href="/" style="display:block;text-align:center;text-decoration:none;line-height:20px;">Fermer</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Pré-remplit numero & boutique depuis les query params (lien envoyé par SMS/email)
+  (function preRemplir() {
+    var p = new URLSearchParams(location.search);
+    var num = p.get('n') || p.get('numero');
+    var slug = p.get('slug');
+    var montant = p.get('m') || p.get('montant');
+    if (num) document.getElementById('fNumero').value = num;
+    if (slug) document.getElementById('fBoutique').value = slug.replace(/-/g, ' ').replace(/\b\w/g, function(l){ return l.toUpperCase(); });
+    if (montant) document.getElementById('fMontant').value = montant;
+  })();
+
+  // Highlight radio-row sur sélection
+  document.querySelectorAll('.radio-row input[type=radio]').forEach(function(r){
+    r.addEventListener('change', function(){
+      document.querySelectorAll('.radio-row').forEach(function(row){ row.classList.remove('selected'); });
+      r.closest('.radio-row').classList.add('selected');
+    });
+  });
+
+  function showError(msg) {
+    var box = document.getElementById('errBox');
+    box.textContent = '⚠️ ' + msg;
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+
+  function envoyer(e) {
+    e.preventDefault();
+    var f = document.getElementById('contesterForm');
+    var email = f.email.value.trim();
+    var tel = f.tel.value.trim();
+    var numero = f.numero.value.trim();
+    var boutique = f.boutique.value.trim();
+    var montant = f.montant.value.trim();
+    var motif = (f.motif.value || '').trim();
+    var details = f.details.value.trim();
+
+    if (!email || !numero || !boutique || !montant || !motif || details.length < 20) {
+      showError('Tous les champs marqués * sont obligatoires. La description doit faire au moins 20 caractères.');
+      return false;
+    }
+    document.getElementById('errBox').style.display = 'none';
+
+    var motifLabels = {
+      'present': "J'étais bien présent",
+      'annulation': "Annulation dans les délais",
+      'force-majeure': "Empêchement de force majeure",
+      'non-conforme': "Commande non conforme / commerçant fermé",
+      'autre': "Autre motif"
+    };
+
+    var subject = '[Litige] Contestation ' + numero + ' — ' + boutique;
+    var body =
+      "Bonjour l'équipe Marchéo,\n\n" +
+      "Je conteste un débit lié à ma commande / réservation. Voici les détails :\n\n" +
+      "— Numéro : " + numero + "\n" +
+      "— Boutique : " + boutique + "\n" +
+      "— Montant débité : " + montant + " €\n" +
+      "— Email du client : " + email + "\n" +
+      (tel ? "— Téléphone : " + tel + "\n" : '') +
+      "— Motif : " + (motifLabels[motif] || motif) + "\n\n" +
+      "Description :\n" + details + "\n\n" +
+      "Merci de bien vouloir examiner ma demande.\n\n" +
+      "— Envoyé via marchéo.fr/contester";
+
+    var mailto = 'mailto:marcheo.contact@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    // Tente d'ouvrir le client mail
+    try { window.location.href = mailto; } catch (_) {}
+
+    // Affiche l'écran de succès avec le texte copiable (fallback)
+    document.getElementById('formState').style.display = 'none';
+    document.getElementById('pageTitle').textContent = 'Contestation prête';
+    document.getElementById('copyBox').textContent =
+      'À : marcheo.contact@gmail.com\n' +
+      'Objet : ' + subject + '\n\n' + body;
+    document.getElementById('successState').style.display = 'block';
+
+    // Tracking analytics si dispo (n'envoie aucune donnée perso)
+    try { window.MarcheoAnalytics && window.MarcheoAnalytics.track('litige_client_envoye', { motif: motif }); } catch (_) {}
+
+    return false;
+  }
+
+  function copierTexte() {
+    var txt = document.getElementById('copyBox').textContent;
+    var btn = document.getElementById('btnCopier');
+    function done() { btn.textContent = '✅ Copié !'; setTimeout(function(){ btn.textContent = '📋 Copier le texte'; }, 2200); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done).catch(function(){ fallback(txt); });
+    } else {
+      fallback(txt);
+    }
+    function fallback(s) {
+      var ta = document.createElement('textarea');
+      ta.value = s; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (_) { btn.textContent = '⚠️ Copie impossible'; }
+      document.body.removeChild(ta);
+    }
+  }
+</script>
+</body>
+</html>

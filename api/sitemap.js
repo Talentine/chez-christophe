@@ -7,13 +7,18 @@
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
-const HOST = 'https://www.xn--marcho-fva.fr';
+const HOST = 'https://marchéo.fr';
 const PAGES_STATIQUES = [
   { loc: '/',                    priority: '1.0', changefreq: 'weekly'  },
   { loc: '/inscription',         priority: '0.9', changefreq: 'monthly' },
+  { loc: '/blog',                priority: '0.7', changefreq: 'weekly'  },
+  { loc: '/faq',                 priority: '0.6', changefreq: 'monthly' },
+  { loc: '/ambassadeur',         priority: '0.5', changefreq: 'monthly' },
+  { loc: '/notre-histoire',      priority: '0.4', changefreq: 'yearly'  },
   { loc: '/cgv',                 priority: '0.3', changefreq: 'yearly'  },
   { loc: '/confidentialite',     priority: '0.3', changefreq: 'yearly'  },
   { loc: '/charte',              priority: '0.3', changefreq: 'yearly'  },
+  { loc: '/politique-annulation',priority: '0.3', changefreq: 'yearly'  },
   { loc: '/mentions-legales',    priority: '0.3', changefreq: 'yearly'  },
 ];
 

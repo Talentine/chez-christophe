@@ -1911,7 +1911,7 @@ async function chargerAnalytics() {
       if (!host) return 'Direct';
       const h = String(host).toLowerCase().replace(/^www\./, '');
       // Marchéo (toutes variantes : punycode, sous-domaines, www)
-      if (h === 'marchéo.fr' || h === 'xn--marcho-cta.fr' || h.endsWith('.marchéo.fr') || h.endsWith('.xn--marcho-cta.fr')) return 'marchéo.fr';
+      if (h === 'marchéo.fr' || h === 'xn--marcho-cta.fr' || h === 'xn--marcho-fva.fr' || h.endsWith('.marchéo.fr') || h.endsWith('.xn--marcho-cta.fr') || h.endsWith('.xn--marcho-fva.fr')) return 'marchéo.fr';
       if (h === 'marcheo.fr' || h.endsWith('.marcheo.fr')) return 'marchéo.fr';
       // Google (google.fr, google.com, google.co.uk, etc.)
       if (h === 'google' || h.startsWith('google.') || h.includes('.google.')) return 'Google';

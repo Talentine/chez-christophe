@@ -6,7 +6,7 @@
 
 ## 1. ÉDITEUR DU SITE
 
-Le site **marcheo.fr** (ci-après le « Site ») est édité par :
+Le site **marchéo.fr** (ci-après le « Site ») est édité par :
 
 - **Raison sociale :** [À COMPLÉTER]
 - **Forme juridique :** [À COMPLÉTER — Auto-entrepreneur / EI / SASU / SAS]

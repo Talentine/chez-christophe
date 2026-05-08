@@ -18,12 +18,13 @@
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/unsubscribe", "destination": "/unsubscribe.html" },
+    { "source": "/contester", "destination": "/contester.html" },
+    { "source": "/litige", "destination": "/contester.html" },
 
     { "source": "/ambassadeur", "destination": "/ambassadeur.html" },
     { "source": "/ambassadeur/dashboard", "destination": "/ambassadeur-dashboard.html" },
     { "source": "/ambassadeur/creer-demo", "destination": "/ambassadeur-creer-demo.html" },
     { "source": "/ambassadeur/conditions", "destination": "/ambassadeur-conditions.html" },
-    { "source": "/demo/:demo_slug", "destination": "/demo.html?slug=:demo_slug" },
 
     { "source": "/:slug", "destination": "/boutique.html?slug=:slug" },
     { "source": "/:slug/", "destination": "/boutique.html?slug=:slug" },

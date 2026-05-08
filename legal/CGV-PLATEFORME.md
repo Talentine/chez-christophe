@@ -8,7 +8,7 @@
 
 ## ARTICLE 1 — OBJET ET CHAMP D'APPLICATION
 
-Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent l'utilisation de la plateforme **Marchéo** (ci-après la « Plateforme »), accessible à l'adresse https://marcheo.fr, exploitée par :
+Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent l'utilisation de la plateforme **Marchéo** (ci-après la « Plateforme »), accessible à l'adresse https://marchéo.fr, exploitée par :
 
 - **Raison sociale :** [À COMPLÉTER — votre nom + auto-entrepreneur OU SAS xxx]
 - **Forme juridique :** [À COMPLÉTER — Auto-entrepreneur / SASU / SAS / EI]
@@ -25,7 +25,7 @@ L'utilisation de la Plateforme implique l'acceptation **pleine et entière** des
 
 ## ARTICLE 2 — DÉFINITIONS
 
-- **Plateforme** : l'ensemble des services en ligne accessibles depuis marcheo.fr
+- **Plateforme** : l'ensemble des services en ligne accessibles depuis marchéo.fr
 - **Commerçant** : artisan ou commerçant disposant d'un compte actif sur la Plateforme
 - **Client Final** : personne physique passant commande sur la boutique en ligne d'un Commerçant
 - **Commande** : transaction validée par un Client Final sur une boutique
@@ -204,7 +204,7 @@ Après résiliation :
 
 ## ARTICLE 11 — DONNÉES PERSONNELLES
 
-Le traitement des données personnelles est régi par notre **Politique de confidentialité**, accessible à : https://marcheo.fr/confidentialite
+Le traitement des données personnelles est régi par notre **Politique de confidentialité**, accessible à : https://marchéo.fr/confidentialite
 
 Marchéo agit en qualité de :
 - **Sous-traitant** au sens du RGPD pour les données des Clients Finaux (le Commerçant en est le responsable de traitement)

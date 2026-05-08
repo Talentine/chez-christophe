@@ -186,7 +186,7 @@
         <label>Adresse de votre site *</label>
         <div style="display:flex;align-items:center;gap:6px;">
           <input id="iSlug" placeholder="paul-primeur" style="font-family:monospace;flex:1;">
-          <span style="color:rgba(255,255,255,0.4);font-size:13px;">.marcheo.fr</span>
+          <span style="color:rgba(255,255,255,0.4);font-size:13px;">.marchéo.fr</span>
         </div>
         <div class="hint">Lettres minuscules, chiffres et tirets uniquement.</div>
       </div>
@@ -590,7 +590,7 @@ function etape(n) {
     document.getElementById('recap').innerHTML =
       `<div class="recap-label">Métier</div><div>${state.type}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
-      `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marcheo.fr/${state.slug}</div>` +
+      `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marchéo.fr/${state.slug}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));

@@ -1,5 +1,5 @@
 // Service Worker v2 — Notifications Push VAPID
-// Chez Christophe — App Commerçant
+// Marchéo — App Commerçant
 
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
