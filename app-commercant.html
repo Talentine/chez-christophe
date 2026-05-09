@@ -2809,7 +2809,7 @@ window.acheterPackSms = async function(packKey) {
     const r = await fetch(SUPABASE_URL + '/functions/v1/sms-pack-purchase', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ commercant_id: commercantId, pack_key: packKey, return_url: location.origin + '/app-commercant.html' }),
+      body: JSON.stringify({ commercant_id: commercantId, pack_key: packKey, return_url: window.toAsciiUrl(location.origin + '/app-commercant.html') }),
     });
     const data = await r.json();
     if (!r.ok || !data.url) throw new Error(data.error || 'Erreur HTTP ' + r.status);
@@ -3823,7 +3823,7 @@ window.ouvrirPortalAbonnement = async function() {
       },
       body: JSON.stringify({
         commercant_id: commercantId,
-        return_url: location.href
+        return_url: window.toAsciiUrl(location.href)
       })
     });
     const data = await r.json();

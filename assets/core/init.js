@@ -4,6 +4,19 @@
 // Expose window.CC pour toutes les pages HTML.
 // ============================================================
 
+// ── Helper : URL ASCII pour Stripe ──────────────────────────
+// L'API Stripe rejette les URLs avec caractères non-ASCII (IDN) :
+//   "Invalid URL: Non-ASCII characters in URLs must be percent-encoded".
+// location.origin / location.href peuvent renvoyer "https://marchéo.fr/..."
+// si l'utilisateur a accédé via la forme accentuée. On convertit
+// explicitement vers la forme punycode "xn--marcho-fva.fr" avant tout
+// passage à Stripe (return_url, cancel_url, success_url, etc.).
+// Le navigateur ré-affiche en marchéo.fr lors du retour utilisateur,
+// donc aucun impact UX.
+window.toAsciiUrl = function(url) {
+  return String(url || '').replace(/marchéo\.fr/gi, 'xn--marcho-fva.fr');
+};
+
 // ── DEBUG MODE — désactive console.log/warn en production ──
 // console.error reste actif pour traquer les vrais bugs.
 (function setupDebugMode() {

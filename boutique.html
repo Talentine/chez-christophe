@@ -3558,8 +3558,8 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       body: JSON.stringify({
         commercant_id: b.id,
         offre: offre,
-        return_url: location.origin + '/' + (b.slug || '') + '?paiement=success',
-        cancel_url: location.href,
+        return_url: window.toAsciiUrl(location.origin + '/' + (b.slug || '') + '?paiement=success'),
+        cancel_url: window.toAsciiUrl(location.href),
         referral_code: referralCode || undefined,
         fingerprint: simpleFingerprint || undefined,
         user_agent: (navigator.userAgent || '').slice(0, 200)
