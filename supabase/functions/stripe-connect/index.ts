@@ -15,10 +15,18 @@
 //
 // Variables d'environnement requises :
 //   STRIPE_SECRET_KEY
-//   STRIPE_CONNECT_REFRESH_URL   (ex: https://marcheo.fr/app?stripe=refresh)
-//   STRIPE_CONNECT_RETURN_URL    (ex: https://marcheo.fr/app?stripe=success)
-//   SUPABASE_URL
-//   SUPABASE_SERVICE_ROLE_KEY
+//   STRIPE_CONNECT_REFRESH_URL   (ex: https://xn--marcho-fva.fr/app?stripe=refresh)
+//   STRIPE_CONNECT_RETURN_URL    (ex: https://xn--marcho-fva.fr/app?stripe=success)
+//   PUBLIC_BASE_URL              (ex: https://xn--marcho-fva.fr)
+//   SUPABASE_URL                 (auto-injecté)
+//   SUPABASE_SERVICE_ROLE_KEY    (auto-injecté)
+//
+// ⚠️  IMPORTANT : Stripe REFUSE les URLs avec caractères non-ASCII.
+//     Le domaine canonique côté pages/UI est "marchéo.fr" (avec accent),
+//     mais TOUTES les URLs passées à l'API Stripe doivent utiliser la forme
+//     punycode "xn--marcho-fva.fr" (sinon : "Non-ASCII characters in URLs
+//     must be percent-encoded"). Le navigateur ré-affiche automatiquement
+//     en "marchéo.fr" lors du retour utilisateur. Aucun impact UX.
 // ============================================================
 
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
@@ -35,8 +43,12 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
 );
 
+// ⚠️  Punycode obligatoire pour Stripe (rejette les URLs avec caractères non-ASCII).
+//     L'utilisateur final voit "marchéo.fr" dans son navigateur — ces URLs servent
+//     uniquement aux appels API Stripe et au retour d'onboarding.
 const REFRESH_URL = Deno.env.get('STRIPE_CONNECT_REFRESH_URL') || 'https://xn--marcho-fva.fr/app?stripe=refresh';
 const RETURN_URL  = Deno.env.get('STRIPE_CONNECT_RETURN_URL')  || 'https://xn--marcho-fva.fr/app?stripe=success';
+const PUBLIC_BASE = Deno.env.get('PUBLIC_BASE_URL')             || 'https://xn--marcho-fva.fr';
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -95,7 +107,7 @@ async function actionOnboarding({ commercant_id }: any) {
       },
       business_profile: {
         name: c.nom_boutique,
-        url: `https://xn--marcho-fva.fr/${c.slug}`,
+        url: `${PUBLIC_BASE}/${c.slug}`,
         mcc: getMCC(c.business_type), // code MCC selon le métier
       },
       metadata: {
@@ -143,17 +155,29 @@ async function actionStatus({ commercant_id }: any) {
 
   const c = await loadCommercant(commercant_id);
   if (!c.stripe_connect_id) {
-    return json({ actif: false, charges_enabled: false, payouts_enabled: false, details_submitted: false });
+    return json({
+      actif: false,
+      charges_enabled: false,
+      payouts_enabled: false,
+      details_submitted: false,
+      requirements: null,
+    });
   }
 
   const account = await stripe.accounts.retrieve(c.stripe_connect_id);
 
   const actif = account.charges_enabled && account.payouts_enabled;
 
-  // Mettre à jour Supabase si le statut a changé
-  if (actif !== c.stripe_connect_actif) {
-    await supabase.from('commercants').update({ stripe_connect_actif: actif }).eq('id', commercant_id);
-  }
+  // Synchroniser tous les flags en base — chaque appel /status met à jour la DB
+  // (utilisé pour la vue admin v_stripe_connect_status et bloquer les checkout
+  //  côté serveur si le compte n'est pas pleinement actif)
+  await supabase.from('commercants').update({
+    stripe_connect_actif: actif,
+    stripe_connect_charges_enabled: !!account.charges_enabled,
+    stripe_connect_payouts_enabled: !!account.payouts_enabled,
+    stripe_connect_details_submitted: !!account.details_submitted,
+    stripe_connect_updated_at: new Date().toISOString(),
+  }).eq('id', commercant_id);
 
   return json({
     actif,
@@ -161,6 +185,13 @@ async function actionStatus({ commercant_id }: any) {
     payouts_enabled: account.payouts_enabled,
     details_submitted: account.details_submitted,
     account_id: c.stripe_connect_id,
+    // Liste des champs encore manquants côté Stripe (utile pour debugger côté merchant)
+    requirements: {
+      currently_due: account.requirements?.currently_due || [],
+      eventually_due: account.requirements?.eventually_due || [],
+      past_due: account.requirements?.past_due || [],
+      disabled_reason: account.requirements?.disabled_reason || null,
+    },
   });
 }
 
@@ -174,6 +205,10 @@ function getMCC(businessType: string): string {
     primeur:      '5411',
     fromagerie:   '5411',
     traiteur:     '5812', // Eating Places, Restaurants
+    fleuriste:    '5992', // Florists
+    pizzeria:     '5812', // Eating Places, Restaurants
+    restaurant:   '5812', // Eating Places, Restaurants
+    fastfood:     '5814', // Fast Food Restaurants
   };
   return map[businessType] || '5411';
 }
