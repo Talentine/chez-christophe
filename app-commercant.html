@@ -6617,27 +6617,87 @@ window.voirJourCalendrier = async function(dateKey) {
   try {
     const isResto = ['pizzeria','restaurant','fastfood'].includes(window.__CONFIG__?.business?.business_type);
 
-    // Commandes du jour
-    const r1 = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId
-      + '&date_retrait=gte.' + encodeURIComponent(dateStart)
-      + '&date_retrait=lte.' + encodeURIComponent(dateEnd)
-      + '&order=date_retrait.asc&select=*,clients(prenom,nom,telephone),commande_lignes(nom_produit,quantite,unite,total_ligne)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const commandes = (await r1.json()) || [];
-
-    // Réservations du jour (si métier resto)
+    // En mode démo (commercant_id n'est pas un UUID) : lire depuis
+    // toutesLesCommandes en mémoire et transformer le format. Sinon
+    // le fetch retournerait toujours vide et le panneau du jour serait
+    // toujours « Aucune activité » alors qu'on voit des dots dans la grille.
+    const isDemoMode = !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(commercantId));
+    let commandes = [];
     let reservations = [];
-    if (isResto) {
-      try {
-        const r2 = await fetch(SUPABASE_URL + '/rest/v1/reservations?commercant_id=eq.' + commercantId
-          + '&date_reservation=eq.' + dateKey
-          + '&order=heure_reservation.asc', {
-          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-        });
-        reservations = (await r2.json()) || [];
-        if (!Array.isArray(reservations)) reservations = [];
-      } catch(e) { /* table peut-être absente */ }
+
+    if (isDemoMode) {
+      const all = Array.isArray(window.toutesLesCommandes) ? window.toutesLesCommandes : (typeof toutesLesCommandes !== 'undefined' ? toutesLesCommandes : []);
+      commandes = all
+        .filter(c => {
+          if (!c.date_retrait) return false;
+          const d = new Date(c.date_retrait);
+          return d.getFullYear() === yyyy && (d.getMonth()+1) === mm && d.getDate() === dd;
+        })
+        .map(c => {
+          // Transforme le format démo (client string, produits array) vers le
+          // format attendu par le rendu (clients object, commande_lignes array).
+          const parts = String(c.client || '').trim().split(/\s+/);
+          const prenom = parts[0] || '';
+          const nom = parts.slice(1).join(' ') || '';
+          const lignes = Array.isArray(c.produits) ? c.produits.map(p => ({
+            nom_produit: p.nom,
+            quantite: p.qte,
+            unite: '',
+            total_ligne: p.prix,
+          })) : [];
+          return Object.assign({}, c, {
+            clients: prenom || nom ? { prenom, nom, telephone: '' } : null,
+            commande_lignes: lignes,
+          });
+        })
+        .sort((a, b) => String(a.date_retrait).localeCompare(String(b.date_retrait)));
+
+      // Réservations fictives pour démo restaurant : J+1 = 3 résa, J+2 = 2, J+4 = 1
+      if (isResto) {
+        const dDay = new Date(yyyy, mm-1, dd);
+        const today0 = new Date(); today0.setHours(0,0,0,0);
+        const diffDays = Math.round((dDay - today0) / 86400000);
+        const counts = { 1: 3, 2: 2, 4: 1 };
+        const nb = counts[diffDays] || 0;
+        const noms = [
+          { prenom:'Camille', nom:'D.',    couverts:2, occasion:'anniversaire', heure:'19:30' },
+          { prenom:'Thomas',  nom:'M.',    couverts:4, occasion:'',             heure:'20:00' },
+          { prenom:'Léa',     nom:'B.',    couverts:6, occasion:'fête famille', heure:'12:30' },
+        ];
+        for (let i = 0; i < nb; i++) {
+          const r = noms[i];
+          reservations.push({
+            id: 'demo-resa-' + diffDays + '-' + i,
+            prenom_client: r.prenom, nom_client: r.nom,
+            heure_reservation: r.heure + ':00',
+            nb_couverts: r.couverts, occasion: r.occasion,
+            statut: 'confirmee', telephone: '',
+            notes: i === 0 ? 'Démo : réservation fictive' : null,
+          });
+        }
+      }
+    } else {
+      // Commandes du jour
+      const r1 = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId
+        + '&date_retrait=gte.' + encodeURIComponent(dateStart)
+        + '&date_retrait=lte.' + encodeURIComponent(dateEnd)
+        + '&order=date_retrait.asc&select=*,clients(prenom,nom,telephone),commande_lignes(nom_produit,quantite,unite,total_ligne)', {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      commandes = (await r1.json()) || [];
+
+      // Réservations du jour (si métier resto)
+      if (isResto) {
+        try {
+          const r2 = await fetch(SUPABASE_URL + '/rest/v1/reservations?commercant_id=eq.' + commercantId
+            + '&date_reservation=eq.' + dateKey
+            + '&order=heure_reservation.asc', {
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+          });
+          reservations = (await r2.json()) || [];
+          if (!Array.isArray(reservations)) reservations = [];
+        } catch(e) { /* table peut-être absente */ }
+      }
     }
 
     const total = (Array.isArray(commandes) ? commandes.length : 0) + reservations.length;
