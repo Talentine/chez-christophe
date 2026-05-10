@@ -4784,11 +4784,15 @@ async function verifierSessionCommercant() {
 // ============================================================
 // ── TOUR INTERACTIF (onboarding 1er login) ───────────────────
 // ============================================================
+// Chaque étape qui a un `onglet` navigue automatiquement sur cette page
+// AVANT d'afficher la bulle (le commerçant voit la vraie page concernée
+// pendant qu'il lit la description, pas juste un highlight).
 const TOUR_STEPS = [
   {
     titre: '👋 Bienvenue sur Marchéo !',
     desc: 'Je vais te montrer ton dashboard en 7 étapes. Ça prend 1 minute, et après tu pourras gérer ta boutique les yeux fermés.',
     cible: null, // intro
+    onglet: 'commandes', // démarre sur la page principale
     position: 'center',
     cta: 'Commencer le tour →'
   },
@@ -4796,42 +4800,49 @@ const TOUR_STEPS = [
     titre: '📦 Tes commandes en direct',
     desc: 'Toutes les commandes en cours arrivent ici. Tu vois le client, le créneau, le total. Clique sur une commande pour voir les détails.',
     cible: '#tab-commandes',
+    onglet: 'commandes',
     position: 'top'
   },
   {
-    titre: '📅 Planning & créneaux',
+    titre: '📅 Agenda & créneaux',
     desc: 'Visualise tes journées chargées en un coup d\'œil. Clique sur un jour pour voir les commandes et résa du jour avec les téléphones clients.',
     cible: '#tab-creneaux',
+    onglet: 'creneaux',
     position: 'top'
   },
   {
     titre: '🥕 Tes produits',
     desc: 'Ajoute un produit en 10 secondes : photo, nom, prix, c\'est en ligne. Tu peux aussi gérer les stocks.',
     cible: '#tab-produits',
+    onglet: 'produits',
     position: 'top'
   },
   {
     titre: '💬 Carnet client (CRM)',
     desc: 'Tous tes clients regroupés par segment : VIP, fidèles, inactifs. Envoie un SMS ou une notification pour les faire revenir.',
     cible: '#tab-crm',
+    onglet: 'crm',
     position: 'top'
   },
   {
     titre: '⚙️ Réglages',
     desc: 'Identité boutique, palette, horaires, abonnement Marchéo, paiements Stripe : tout est centralisé ici, organisé par catégories.',
     cible: '#tab-reglages',
+    onglet: 'reglages',
     position: 'top'
   },
   {
     titre: '🔔 Notifications',
     desc: 'Tu recevras une notification push à chaque nouvelle commande. Va dans Réglages pour activer les notifs sur ce téléphone.',
     cible: null,
+    onglet: 'reglages', // reste sur Réglages pour que l\'utilisateur voie le bouton notifs
     position: 'center'
   },
   {
     titre: '🎉 C\'est parti !',
     desc: 'Tu sais tout. Commence par configurer ton identité de boutique et ajouter tes premiers produits. Bonne aventure !',
     cible: null,
+    onglet: 'commandes', // retour à la page d\'accueil pour démarrer
     position: 'center',
     cta: 'Lancer ma boutique 🚀',
     final: true
@@ -4865,12 +4876,31 @@ function afficherEtapeTour() {
   }
 
   const step = TOUR_STEPS[tourCurrentStep];
+
+  // Si l'étape demande un onglet précis, on y navigue d'abord — l'utilisateur
+  // voit ainsi le contenu réel de la page pendant qu'il lit la description.
+  // 500ms = laisse le smooth-scroll vers top + le rendu du tab content se
+  // terminer avant qu'on calcule la position du spotlight (sinon décalé).
+  if (step.onglet && typeof allerOnglet === 'function') {
+    if (typeof ongletActif !== 'undefined' && ongletActif !== step.onglet) {
+      allerOnglet(step.onglet);
+      setTimeout(function(){ rendreOverlayTour(step); }, 500);
+      return;
+    }
+  }
+  rendreOverlayTour(step);
+}
+
+function rendreOverlayTour(step) {
   const cible = step.cible ? document.querySelector(step.cible) : null;
   const isCenter = !cible || step.position === 'center';
 
-  // Position du highlight
+  // Position du highlight (seulement si l'élément ciblé est visible)
   let rect = null;
-  if (cible) rect = cible.getBoundingClientRect();
+  if (cible) {
+    const r = cible.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) rect = r;
+  }
 
   const overlay = document.createElement('div');
   overlay.id = 'tour-overlay';
