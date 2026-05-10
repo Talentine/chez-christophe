@@ -157,8 +157,13 @@
     fromagerie:   60, traiteur: 60, fleuriste: 60,
     pizzeria:     30, restaurant: 30, fastfood: 15,
   };
+  // Livraison : couvre tous les métiers. Granularité 60min pour les
+  // commerces de bouche (1 tournée par heure), 30min pour la restauration
+  // (services rapides), 15min pour le fastfood (livraison continue).
   var GRAIN_LIVRAISON = {
-    pizzeria: 30, restaurant: 30, fastfood: 15, traiteur: 60,
+    boulangerie: 60, boucherie: 60, primeur: 60, poissonnerie: 60,
+    fromagerie: 60, fleuriste: 60, traiteur: 60,
+    pizzeria: 30, restaurant: 30, fastfood: 15,
   };
   var GRAIN_RESERVATION = {
     pizzeria: 30, restaurant: 30, fastfood: 30, traiteur: 60,
@@ -170,9 +175,41 @@
     fromagerie: 5, traiteur: 4, fleuriste: 5,
     pizzeria: 6, restaurant: 4, fastfood: 10,
   };
-  var CAP_LIVRAISON = { pizzeria: 4, restaurant: 3, fastfood: 5, traiteur: 2 };
+  // Livraison : capacité = nombre de commandes livrables sur le créneau
+  // (selon le nombre de livreurs disponibles). Volontairement basse pour
+  // que le commerçant adapte selon ses moyens. Les valeurs typiques :
+  //   - 3 pour les commerces de bouche avec 1 livreur (3 livraisons/h)
+  //   - 4-5 pour les boulangeries (paniers légers)
+  //   - 4-5 pour la restauration rapide
+  var CAP_LIVRAISON = {
+    boulangerie: 5, boucherie: 3, primeur: 3, poissonnerie: 3,
+    fromagerie: 3, fleuriste: 4, traiteur: 2,
+    pizzeria: 4, restaurant: 3, fastfood: 5,
+  };
   // Réservation = couverts par créneau (en pratique, somme des tables disponibles à ce moment)
   var CAP_RESERVATION = { pizzeria: 20, restaurant: 16, fastfood: 30, traiteur: 12 };
+
+  // ──────────────────────────────────────────────────────────
+  // PLAGES LIVRAISON par métier (différentes des horaires d'ouverture)
+  // Format : array de fenêtres { debut, fin } appliquées à chaque jour
+  // ouvert. Permet de découpler la livraison de la vente sur place :
+  // ex. un primeur livre seulement en fin d'AM, pas pendant le rush du
+  // matin où il sert ses clients en boutique. Si aucune plage n'est
+  // définie pour un métier, fallback = plages d'ouverture (livraison
+  // continue toute la journée).
+  // ──────────────────────────────────────────────────────────
+  var PLAGES_LIVRAISON = {
+    boulangerie: [{ debut:'07:30', fin:'09:00' }, { debut:'16:00', fin:'19:00' }],
+    boucherie:    [{ debut:'16:00', fin:'19:00' }],
+    primeur:      [{ debut:'16:00', fin:'19:00' }],
+    fromagerie:   [{ debut:'16:00', fin:'19:00' }],
+    poissonnerie: [{ debut:'08:00', fin:'10:00' }], // produit frais : matinée uniquement
+    fleuriste:    [{ debut:'09:00', fin:'13:00' }, { debut:'14:00', fin:'18:00' }],
+    traiteur:     [{ debut:'11:00', fin:'13:00' }, { debut:'18:00', fin:'20:00' }],
+    pizzeria:     [{ debut:'18:00', fin:'22:30' }], // soir uniquement
+    restaurant:   [{ debut:'12:00', fin:'14:00' }, { debut:'19:00', fin:'22:00' }],
+    fastfood:     [{ debut:'11:00', fin:'22:30' }],
+  };
 
   // ──────────────────────────────────────────────────────────
   // Génère les créneaux d'un type pour un commerçant
@@ -247,20 +284,32 @@
     var withLivraison   = offre === 'livraison';
     var withReservation = (offre === 'reservation' || offre === 'livraison') && isResto;
 
+    // Plages livraison spécifiques au métier (peut différer des horaires
+    // d'ouverture — ex. primeur livre seulement en fin d'AM). Fallback :
+    // si pas de config dédiée, utiliser les plages d'ouverture du jour.
+    var plagesLivraisonMetier = PLAGES_LIVRAISON[businessType] || null;
+
     var jours = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
     jours.forEach(function (jourKey) {
-      var plages = plagesDuJour(h[jourKey]);
-      plages.forEach(function (plage) {
+      var plagesJour = plagesDuJour(h[jourKey]);
+      var jourEstOuvert = plagesJour.length > 0;
+      plagesJour.forEach(function (plage) {
         if (withRetrait) {
           creneaux = creneaux.concat(genererCreneauxJour(jourKey, plage, grainRet, capRet, 'retrait'));
-        }
-        if (withLivraison) {
-          creneaux = creneaux.concat(genererCreneauxJour(jourKey, plage, grainLiv, capLiv, 'livraison'));
         }
         if (withReservation) {
           creneaux = creneaux.concat(genererCreneauxJour(jourKey, plage, grainRes, capRes, 'reservation'));
         }
       });
+      // Livraison : utilise les plages livraison du métier si définies,
+      // sinon les plages d'ouverture. Uniquement sur les jours où la
+      // boutique est ouverte (pas de livraison le lundi de fermeture).
+      if (withLivraison && jourEstOuvert) {
+        var plagesLiv = plagesLivraisonMetier || plagesJour;
+        plagesLiv.forEach(function (plage) {
+          creneaux = creneaux.concat(genererCreneauxJour(jourKey, plage, grainLiv, capLiv, 'livraison'));
+        });
+      }
     });
 
     return creneaux;
