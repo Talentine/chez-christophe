@@ -313,8 +313,21 @@
 
       <div class="field">
         <label>Mot de passe *</label>
-        <input id="iMdp" type="password" placeholder="6 caractères minimum">
-        <div class="hint">Vous pourrez le changer ensuite depuis votre dashboard.</div>
+        <div style="position:relative;">
+          <input id="iMdp" type="password" placeholder="10 caractères minimum" oninput="evaluerForceMdp()" autocomplete="new-password" style="padding-right:42px;">
+          <button type="button" id="btnTogglePwd" onclick="togglePwdVisibility()" aria-label="Afficher / masquer le mot de passe" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px;padding:6px;">👁</button>
+        </div>
+        <!-- Barre de force du mot de passe (cachée tant que vide) -->
+        <div id="mdpForceWrap" style="display:none;margin-top:6px;">
+          <div style="display:flex;gap:3px;height:4px;border-radius:50px;overflow:hidden;background:rgba(255,255,255,0.06);">
+            <div id="mdpForceBar1" style="flex:1;background:transparent;transition:background .2s;"></div>
+            <div id="mdpForceBar2" style="flex:1;background:transparent;transition:background .2s;"></div>
+            <div id="mdpForceBar3" style="flex:1;background:transparent;transition:background .2s;"></div>
+            <div id="mdpForceBar4" style="flex:1;background:transparent;transition:background .2s;"></div>
+          </div>
+          <div id="mdpForceLabel" style="font-size:11.5px;margin-top:5px;color:rgba(255,255,255,0.55);"></div>
+        </div>
+        <div class="hint" style="margin-top:6px;">Choisissez un mot de passe inédit (≥ 10 car.). Pas de mot du dictionnaire seul. Mélangez lettres, chiffres et symboles. Vous pourrez le changer ensuite depuis votre dashboard.</div>
       </div>
 
       <!-- CODE PROMO -->
@@ -748,6 +761,54 @@ function validerPhotos() {
   etape(4);
 }
 
+// ── Évaluation force mot de passe (UX feedback temps réel)
+//    Score 0..4 : longueur + variété de classes de caractères + non-trivialité
+function calculerForceMdp(p) {
+  if (!p) return 0;
+  var classes = 0;
+  if (/[a-z]/.test(p)) classes++;
+  if (/[A-Z]/.test(p)) classes++;
+  if (/[0-9]/.test(p)) classes++;
+  if (/[^a-zA-Z0-9]/.test(p)) classes++;
+  // Pénalité : mot de passe trop répétitif ou très commun
+  var commun = /^(?:password|motdepasse|azerty|qwerty|123456|111111|000000|marcheo)/i.test(p);
+  var repete = /^(.)\1+$/.test(p) || /^(..)\1+$/.test(p);
+  if (commun || repete) return Math.min(1, classes);
+  if (p.length < 8) return 1;
+  if (p.length < 10) return Math.min(2, classes);
+  if (p.length < 12) return Math.min(3, classes + 1);
+  return Math.min(4, classes + 1);
+}
+
+window.evaluerForceMdp = function() {
+  var input = document.getElementById('iMdp');
+  var wrap = document.getElementById('mdpForceWrap');
+  var label = document.getElementById('mdpForceLabel');
+  if (!input) return;
+  var v = input.value || '';
+  if (!v) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  var score = calculerForceMdp(v);
+  var couleurs = ['#E65533','#E65533','#F4B942','#F4B942','#5BBE3A'];
+  var labels = ['🔓 Très faible','🔓 Faible','🔒 Moyen','🔒 Bon','🔐 Excellent'];
+  for (var i = 1; i <= 4; i++) {
+    var bar = document.getElementById('mdpForceBar' + i);
+    if (bar) bar.style.background = (i <= score) ? couleurs[score] : 'rgba(255,255,255,0.06)';
+  }
+  if (label) {
+    label.textContent = labels[score] + (v.length < 10 ? ' · trop court (≥ 10 caractères)' : '');
+    label.style.color = score >= 3 ? '#5BBE3A' : (score >= 2 ? '#F4B942' : '#E65533');
+  }
+};
+
+window.togglePwdVisibility = function() {
+  var input = document.getElementById('iMdp');
+  var btn = document.getElementById('btnTogglePwd');
+  if (!input) return;
+  if (input.type === 'password') { input.type = 'text';     if (btn) btn.textContent = '🙈'; }
+  else                            { input.type = 'password'; if (btn) btn.textContent = '👁'; }
+};
+
 // ── Création
 async function creerBoutique() {
   const err = document.getElementById('err');
@@ -762,8 +823,15 @@ async function creerBoutique() {
     err.style.display = 'block';
     return;
   }
-  if (state.mdp.length < 6) {
-    err.textContent = 'Mot de passe : 6 caractères minimum.';
+  if (state.mdp.length < 10) {
+    err.textContent = '🔒 Mot de passe trop court : 10 caractères minimum.';
+    err.style.display = 'block';
+    return;
+  }
+  // Bloque les mots de passe trivialement faibles (commun, répétitif, sans
+  // diversité de caractères) — éviter un AR-fer 422 weak_password de Supabase
+  if (calculerForceMdp(state.mdp) < 2) {
+    err.textContent = '🔒 Mot de passe trop simple. Mélangez lettres (maj/min), chiffres et symboles. Évitez les mots du dictionnaire seuls et les suites comme « 123456 » ou « azerty ».';
     err.style.display = 'block';
     return;
   }
@@ -801,7 +869,24 @@ async function creerBoutique() {
       // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
       const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
       if (!isExisting) {
-        throw new Error('Signup: ' + (supData.msg || supData.message || supData.error_description || supData.error || ('HTTP ' + sup.status)));
+        // Traduit les codes d'erreur courants Supabase auth en messages clairs
+        const code = supData.error_code || supData.code || '';
+        const rawMsg = supData.msg || supData.message || supData.error_description || supData.error || '';
+        let msgUtilisateur;
+        if (/weak_password|password.*weak|breach/i.test(code + ' ' + rawMsg)) {
+          msgUtilisateur = '🔒 Ce mot de passe a été trouvé dans une fuite publique de mots de passe (Supabase vérifie via HaveIBeenPwned). Choisissez un mot de passe inédit, jamais utilisé sur un autre site.';
+        } else if (/validation_failed|invalid.*email|email.*invalid/i.test(code + ' ' + rawMsg)) {
+          msgUtilisateur = '📧 Email invalide ou mot de passe non conforme. Vérifiez le format de l\'email et la force du mot de passe.';
+        } else if (/signup_disabled|disabled/i.test(code + ' ' + rawMsg)) {
+          msgUtilisateur = '🚫 Les inscriptions sont temporairement désactivées. Réessayez dans quelques minutes ou contactez marcheo.contact@gmail.com.';
+        } else if (/over_email_send_rate|rate_limit/i.test(code + ' ' + rawMsg)) {
+          msgUtilisateur = '⏱ Trop de tentatives récentes avec cet email. Patientez 60 secondes puis réessayez.';
+        } else if (/captcha/i.test(code + ' ' + rawMsg)) {
+          msgUtilisateur = '🤖 Vérification anti-bot échouée. Rafraîchissez la page et réessayez.';
+        } else {
+          msgUtilisateur = 'Échec de la création du compte : ' + (rawMsg || ('HTTP ' + sup.status));
+        }
+        throw new Error(msgUtilisateur);
       }
       // Tenter signin
       const signin = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
