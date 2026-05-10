@@ -121,6 +121,7 @@
   .media-count strong{color:#7dc9a0;}
 </style>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/business-defaults.js?v=1" defer></script>
 </head>
 <body>
 
@@ -395,44 +396,91 @@ const JOURS = [
   { key:'dimanche', label:'Dimanche' },
 ];
 
-function genererHorairesUI() {
+// Style commun pour les inputs time (sombre comme le reste de la page)
+const _HR_INPUT_STYLE = "background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;";
+const _HR_ARROW_STYLE = "color:rgba(255,255,255,0.3);font-size:12px;";
+
+function genererHorairesUI(horairesPreset) {
+  // horairesPreset facultatif (ex: défauts métier). Sinon valeurs neutres.
   const block = document.getElementById('horairesBlock');
   if (!block) return;
-  // Par défaut : Mar–Sam 9-19h
-  const defaults = { mardi:1, mercredi:1, jeudi:1, vendredi:1, samedi:1 };
-  block.innerHTML = JOURS.map(j => `
-    <div style="display:grid;grid-template-columns:auto 1fr auto auto auto;gap:8px;align-items:center;background:rgba(255,255,255,0.03);border-radius:10px;padding:8px 10px;">
-      <input type="checkbox" id="hr-${j.key}" ${defaults[j.key] ? 'checked' : ''} onchange="majActifJour('${j.key}')" style="width:16px;height:16px;accent-color:#5BBE3A;cursor:pointer;">
-      <label for="hr-${j.key}" style="font-size:13px;color:rgba(255,255,255,0.85);cursor:pointer;">${j.label}</label>
-      <input type="time" id="hr-${j.key}-debut" value="09:00" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;">
-      <span style="color:rgba(255,255,255,0.3);font-size:12px;">→</span>
-      <input type="time" id="hr-${j.key}-fin" value="19:00" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;">
+  block.innerHTML = JOURS.map(j => {
+    const h = (horairesPreset && horairesPreset[j.key]) || { ouvert: ['mardi','mercredi','jeudi','vendredi','samedi'].indexOf(j.key) >= 0, debut:'09:00', fin:'19:00' };
+    const hasPause = !!(h.debut2 && h.fin2);
+    return `
+    <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:8px;align-items:center;">
+        <input type="checkbox" id="hr-${j.key}" ${h.ouvert ? 'checked' : ''} onchange="majActifJour('${j.key}')" style="width:16px;height:16px;accent-color:#5BBE3A;cursor:pointer;">
+        <label for="hr-${j.key}" style="font-size:13px;color:rgba(255,255,255,0.85);cursor:pointer;">${j.label}</label>
+        <input type="time" id="hr-${j.key}-debut" value="${h.debut || '09:00'}" style="${_HR_INPUT_STYLE}">
+        <span style="${_HR_ARROW_STYLE}">→</span>
+        <input type="time" id="hr-${j.key}-fin" value="${h.fin || '19:00'}" style="${_HR_INPUT_STYLE}">
+        <button type="button" id="hr-${j.key}-togglepause" onclick="togglePauseDejeuner('${j.key}')" title="Ajouter une pause déjeuner" style="background:transparent;border:1px dashed rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;font-family:inherit;">${hasPause ? '− pause' : '+ pause'}</button>
+      </div>
+      <div id="hr-${j.key}-pause" style="${hasPause ? '' : 'display:none;'}padding-left:24px;display:${hasPause ? 'grid' : 'none'};grid-template-columns:auto auto auto auto;gap:8px;align-items:center;">
+        <span style="font-size:11.5px;color:rgba(255,255,255,0.5);">Après-midi</span>
+        <input type="time" id="hr-${j.key}-debut2" value="${h.debut2 || '15:00'}" style="${_HR_INPUT_STYLE}">
+        <span style="${_HR_ARROW_STYLE}">→</span>
+        <input type="time" id="hr-${j.key}-fin2" value="${h.fin2 || '19:00'}" style="${_HR_INPUT_STYLE}">
+      </div>
     </div>
-  `).join('');
-  // Init disabled state
+  `;
+  }).join('');
+  // Init disabled state pour toutes les lignes
   JOURS.forEach(j => majActifJour(j.key));
 }
 
 function majActifJour(key) {
   const cb = document.getElementById('hr-' + key);
-  const debut = document.getElementById('hr-' + key + '-debut');
-  const fin   = document.getElementById('hr-' + key + '-fin');
   const ouvert = cb?.checked;
-  if (debut) { debut.disabled = !ouvert; debut.style.opacity = ouvert ? '1' : '0.3'; }
-  if (fin)   { fin.disabled   = !ouvert; fin.style.opacity   = ouvert ? '1' : '0.3'; }
+  ['debut','fin','debut2','fin2'].forEach(suf => {
+    const el = document.getElementById('hr-' + key + '-' + suf);
+    if (el) { el.disabled = !ouvert; el.style.opacity = ouvert ? '1' : '0.3'; }
+  });
+  const tog = document.getElementById('hr-' + key + '-togglepause');
+  if (tog) { tog.disabled = !ouvert; tog.style.opacity = ouvert ? '1' : '0.3'; }
+}
+
+function togglePauseDejeuner(key) {
+  const pauseEl = document.getElementById('hr-' + key + '-pause');
+  const tog = document.getElementById('hr-' + key + '-togglepause');
+  if (!pauseEl || !tog) return;
+  const isVisible = pauseEl.style.display !== 'none';
+  pauseEl.style.display = isVisible ? 'none' : 'grid';
+  tog.textContent = isVisible ? '+ pause' : '− pause';
 }
 
 function lireHoraires() {
   const out = {};
   JOURS.forEach(j => {
     const cb = document.getElementById('hr-' + j.key);
-    out[j.key] = {
-      ouvert: !!cb?.checked,
+    const ouvert = !!cb?.checked;
+    const entry = {
+      ouvert: ouvert,
       debut: document.getElementById('hr-' + j.key + '-debut')?.value || '09:00',
       fin:   document.getElementById('hr-' + j.key + '-fin')?.value || '19:00',
     };
+    // Pause déjeuner uniquement si la 2e plage est visible (= activée)
+    const pauseEl = document.getElementById('hr-' + j.key + '-pause');
+    if (ouvert && pauseEl && pauseEl.style.display !== 'none') {
+      const d2 = document.getElementById('hr-' + j.key + '-debut2')?.value;
+      const f2 = document.getElementById('hr-' + j.key + '-fin2')?.value;
+      if (d2 && f2) { entry.debut2 = d2; entry.fin2 = f2; }
+    }
+    out[j.key] = entry;
   });
   return out;
+}
+
+// Pré-remplit l'UI horaires avec les défauts du métier choisi.
+// Appelé à la sélection du métier (étape 1) — l'utilisateur peut ensuite éditer.
+function appliquerHorairesDefautsMetier(businessType) {
+  if (!businessType) return;
+  const defaults = window.MarcheoBusinessDefaults && window.MarcheoBusinessDefaults.getDefaultHoraires
+    ? window.MarcheoBusinessDefaults.getDefaultHoraires(businessType)
+    : null;
+  if (!defaults) return;
+  genererHorairesUI(defaults);
 }
 
 // Logo
@@ -554,6 +602,8 @@ document.getElementById('metiersList').addEventListener('click', e => {
   m.classList.add('actif');
   state.type = m.dataset.type;
   document.getElementById('btnNext1').disabled = false;
+  // Pré-remplit l'UI horaires avec les défauts du métier (l'utilisateur peut ensuite ajuster)
+  try { appliquerHorairesDefautsMetier(state.type); } catch (_) {}
 });
 
 // ── Slugify auto
@@ -849,6 +899,33 @@ async function creerBoutique() {
       headers: authHeader,
       body: JSON.stringify({ user_id: userId, commercant_id: state.commercantId, role: 'commercant' })
     });
+
+    // 4b. Créneaux par défaut selon métier × offre (sauf offre Vitrine = aucun)
+    //     L'utilisateur pourra tout modifier ensuite depuis le dashboard.
+    try {
+      if (window.MarcheoBusinessDefaults) {
+        const creneauxParDefaut = window.MarcheoBusinessDefaults.getDefaultCreneaux(
+          state.type,
+          state.offre || 'clickcollect',
+          state.horaires
+        );
+        if (creneauxParDefaut.length > 0) {
+          // Ajoute commercant_id à chaque créneau et bulk insert
+          const payload = creneauxParDefaut.map(c => Object.assign({ commercant_id: state.commercantId }, c));
+          // Insertion par batch de 100 pour éviter une payload trop grosse
+          for (let i = 0; i < payload.length; i += 100) {
+            await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+              method: 'POST',
+              headers: Object.assign({}, authHeader, { 'Prefer': 'return=minimal' }),
+              body: JSON.stringify(payload.slice(i, i + 100))
+            });
+          }
+        }
+      }
+    } catch (e) {
+      // Non bloquant — le commerçant pourra créer ses créneaux manuellement.
+      console.warn('[inscription] Insertion créneaux par défaut échouée:', e);
+    }
 
     // 5. Persister la session pour le dashboard
     if (state.accessToken) {
