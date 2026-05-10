@@ -33,15 +33,6 @@
   .btn-primary { background: linear-gradient(135deg, var(--vert), #2A6F3F); color: #fff; border: none; padding: 12px 22px; border-radius: 50px; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; font-size: 14px; }
   .btn-secondary { background: #fff; border: 1.5px solid var(--cream-dark); padding: 12px 22px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: inherit; color: var(--brand); text-decoration: none; display: inline-block; font-size: 14px; }
   h2 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; margin: 24px 0 14px; color: var(--brand); }
-  .demos-table { background: #fff; border-radius: 14px; border: 1px solid var(--cream-dark); overflow: hidden; }
-  .demos-table .demo { padding: 14px 18px; border-bottom: 1px solid var(--cream-dark); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .demos-table .demo:last-child { border-bottom: none; }
-  .demo .nom { font-weight: 600; }
-  .demo .meta { font-size: 12px; color: var(--texte-doux); }
-  .demo a { color: var(--brand); font-size: 13px; text-decoration: none; font-weight: 600; }
-  .demo .badge { font-size: 11px; padding: 4px 10px; border-radius: 50px; font-weight: 700; }
-  .badge-pending { background: rgba(244,185,66,.2); color: #8a5a00; }
-  .badge-converti { background: rgba(91,190,58,.2); color: #2A6F3F; }
   .empty { padding: 30px; text-align: center; color: var(--texte-doux); font-size: 14px; }
   .kyc-banner { background: rgba(244,185,66,.15); border: 1.5px solid var(--gold); padding: 16px 18px; border-radius: 14px; margin-bottom: 24px; }
   .kyc-banner h3 { color: #8a5a00; margin-bottom: 6px; font-size: 15px; }
@@ -88,13 +79,8 @@
   </div>
 
   <div class="row-actions">
-    <a href="/ambassadeur/creer-demo" class="btn-primary">+ Créer une démo prospect</a>
+    <button class="btn-primary" onclick="copierLien()">📋 Copier mon lien d'inscription</button>
     <a href="/ambassadeur/conditions" class="btn-secondary">Voir les conditions</a>
-  </div>
-
-  <h2>Mes démos créées</h2>
-  <div class="demos-table" id="listeDemos">
-    <div class="empty">Chargement…</div>
   </div>
 
 </main>
@@ -147,7 +133,7 @@ async function chargerDashboard() {
 
   document.getElementById('welcomeName').textContent = session.prenom || session.email || '';
 
-  // 1) Lire la vue dashboard (cumul gains + nb démos)
+  // 1) Lire la vue dashboard (cumul gains)
   const dashR = await fetch(SUPABASE_URL + '/rest/v1/v_ambassadeur_dashboard?user_id=eq.' + session.user_id + '&select=*', {
     headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
   });
@@ -176,28 +162,6 @@ async function chargerDashboard() {
   }
   if (a.kyc_statut === 'required' || a.kyc_statut === 'submitted') {
     document.getElementById('kycBanner').style.display = 'block';
-  }
-
-  // 3) Liste des démos
-  const demosR = await fetch(SUPABASE_URL + '/rest/v1/demo_sites?ambassadeur_id=eq.' + session.user_id + '&select=*&order=created_at.desc', {
-    headers: { apikey: SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
-  });
-  const demos = await demosR.json();
-  const liste = document.getElementById('listeDemos');
-  if (!demos || demos.length === 0) {
-    liste.innerHTML = '<div class="empty">Aucune démo créée pour l\'instant. <a href="/ambassadeur/creer-demo" style="color:var(--brand);font-weight:600;">Créez la première →</a></div>';
-  } else {
-    liste.innerHTML = demos.map(d => {
-      const converti = !!d.converti_en_commercant_id;
-      return '<div class="demo">'
-        + '<div><div class="nom">' + (d.nom_prospect || '—') + '</div>'
-        + '<div class="meta">' + (d.business_type || '') + ' · ' + (d.ville || '') + ' · créée le ' + new Date(d.created_at).toLocaleDateString('fr-FR') + '</div></div>'
-        + (converti
-            ? '<span class="badge badge-converti">✓ Converti</span>'
-            : '<span class="badge badge-pending">Démo active</span>')
-        + '<a href="/demo/' + d.slug_demo + '" target="_blank">Voir →</a>'
-        + '</div>';
-    }).join('');
   }
 }
 

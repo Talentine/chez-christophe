@@ -9,8 +9,6 @@ Disallow: /branding.html
 Disallow: /_test-metiers.html
 Disallow: /ambassadeur-dashboard.html
 Disallow: /ambassadeur/dashboard
-Disallow: /ambassadeur-creer-demo.html
-Disallow: /ambassadeur/creer-demo
 Disallow: /annuler-reservation.html
 Disallow: /unsubscribe.html
 Disallow: /unsubscribe

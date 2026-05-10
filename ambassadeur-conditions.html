@@ -57,18 +57,19 @@
 
   <section>
     <h2><span class="num">1</span> Combien gagnez-vous ?</h2>
-    <p>Le montant de la récompense dépend de l'offre Marchéo souscrite par le commerçant que vous avez parrainé :</p>
+    <p>Le montant de la récompense dépend de l'offre Marchéo souscrite par le commerçant que vous avez parrainé. Chaque offre comporte des <strong>frais d'installation uniques</strong> (à l'inscription) puis un <strong>abonnement mensuel sans engagement</strong> :</p>
     <table>
       <thead>
-        <tr><th>Offre Marchéo</th><th>Prix mensuel</th><th>Votre récompense</th></tr>
+        <tr><th>Offre Marchéo</th><th>Frais d'installation</th><th>Abonnement</th><th>Votre récompense</th></tr>
       </thead>
       <tbody>
-        <tr><td>Vitrine</td><td>19 € / mois</td><td class="reward-cell">30 €</td></tr>
-        <tr><td>Click & Collect</td><td>39 € / mois</td><td class="reward-cell">50 €</td></tr>
-        <tr><td>Click & Collect + Livraison</td><td>59 € / mois</td><td class="reward-cell">80 €</td></tr>
+        <tr><td>Vitrine</td><td>249 € (paiement unique)</td><td>19 € / mois</td><td class="reward-cell">30 €</td></tr>
+        <tr><td>Click &amp; Collect + Réservation de table</td><td>399 € (paiement unique)</td><td>39 € / mois (1<sup>er</sup> mois offert)</td><td class="reward-cell">50 €</td></tr>
+        <tr><td>Tout-en-un + Livraison</td><td>549 € (paiement unique)</td><td>59 € / mois (1<sup>er</sup> mois offert)</td><td class="reward-cell">80 €</td></tr>
       </tbody>
     </table>
-    <div class="highlight">💡 Vous gagnez la <strong>même récompense pour chaque commerçant</strong> qui souscrit avec votre code, sans plafond mensuel sur le nombre de parrainages.</div>
+    <div class="highlight">💡 Vous gagnez la <strong>même récompense pour chaque commerçant</strong> qui souscrit avec votre code, sans plafond mensuel sur le nombre de parrainages. La récompense est versée dès que le commerçant a réglé ses frais d'installation et son premier paiement (cf. délais en section 3).</div>
+    <div class="highlight" style="background:rgba(91,190,58,.10);border-left-color:var(--vert);">🍽️ <strong>Réservation de table</strong> : incluse dans les offres 2 et 3, utile pour les pizzerias, restaurants et fast-foods. Mentionnez-la si vous parrainez ce type de commerce — c'est souvent l'argument déclencheur.</div>
   </section>
 
   <section>
@@ -113,16 +114,42 @@
     <h2><span class="num">4</span> Comment êtes-vous parrainé ?</h2>
     <p>Le tracking se fait <strong>automatiquement via votre code</strong> de parrainage personnel (ex : <code style="background:var(--cream);padding:2px 8px;border-radius:6px;">MARCHEO-PRENOM-NNN</code>) :</p>
     <ul>
-      <li>Quand vous créez une démo pour un prospect, le lien généré contient déjà votre code.</li>
-      <li>Quand le commerçant clique sur "Activer ma boutique" depuis cette démo, le code est attaché à son inscription.</li>
+      <li>Vous partagez votre lien d'inscription personnel à un commerçant intéressé : <code style="background:var(--cream);padding:2px 8px;border-radius:6px;">marchéo.fr/inscription?ref=VOTRE-CODE</code></li>
+      <li>Quand il clique et s'inscrit depuis ce lien, votre code est automatiquement attaché à son compte.</li>
       <li>Au moment du paiement Stripe, le code est transmis aux serveurs Marchéo via les <em>metadata</em> de la transaction.</li>
-      <li>La récompense est alors créée à votre nom, sans intervention manuelle.</li>
+      <li>La récompense est créée à votre nom, sans intervention manuelle.</li>
     </ul>
-    <div class="highlight">🔗 Si le prospect n'utilise pas votre lien de démo mais s'inscrit directement, vous pouvez aussi lui partager votre lien personnel <code style="background:var(--cream);padding:2px 8px;border-radius:6px;">marchéo.fr/inscription?ref=VOTRE-CODE</code> — le tracking marche pareil.</div>
+    <div class="highlight">🔗 Vous trouvez votre lien personnel directement dans votre dashboard (bouton « 📋 Copier le lien »).</div>
   </section>
 
   <section>
-    <h2><span class="num">5</span> Statuts de vos récompenses</h2>
+    <h2><span class="num">5</span> Le speech au vendeur</h2>
+    <p>Pas de blabla commercial, pas de promesses chiffrées. <strong>Soyez simple et honnête</strong> — c'est ce qui convertit le mieux face à un artisan.</p>
+    <div class="highlight" style="background:rgba(91,190,58,.10);border-left-color:var(--vert);">
+      <strong>Une phrase qui résume Marchéo :</strong><br>
+      <em>« Marchéo, c'est un site click &amp; collect (ou réservation de table) personnalisé à votre commerce, sans commission sur les ventes, à partir de 19 €/mois. Vous gardez 100 % de chaque panier vendu. Je peux vous envoyer le lien d'inscription si ça vous parle ? »</em>
+    </div>
+    <p style="margin-top:14px;"><strong>Ce qu'il faut dire :</strong></p>
+    <ul>
+      <li>C'est <strong>son</strong> site (URL personnalisée, ses photos, ses produits) — pas une marketplace partagée.</li>
+      <li><strong>0 % de commission</strong> sur les ventes : il garde 100 % du panier.</li>
+      <li>Frais d'installation unique (249 / 399 / 549 €) puis abonnement mensuel <strong>sans engagement</strong>.</li>
+      <li>L'inscription se fait en 5 minutes, et le 1<sup>er</sup> mois est offert sur les offres Click &amp; Collect et Tout-en-un.</li>
+    </ul>
+    <div class="warning">
+      <strong>⚠️ Ne mentez pas. Jamais.</strong> Voici les choses à <u>ne pas dire</u> sous prétexte de signer plus vite :
+      <ul style="margin-top:8px;margin-bottom:0;">
+        <li>« +30 % de chiffre d'affaires garanti » → vous n'en savez rien et c'est faux.</li>
+        <li>« C'est gratuit » → il y a des frais d'installation <em>et</em> un abonnement.</li>
+        <li>« Tous vos concurrents l'ont déjà » → ne jamais inventer.</li>
+        <li>« Je travaille pour Marchéo » → vous êtes ambassadeur indépendant, dites-le.</li>
+      </ul>
+    </div>
+    <p style="margin-top:12px;"><strong>Soyez transparent sur votre récompense</strong> si on vous pose la question : « Oui je touche une carte cadeau si vous vous abonnez, c'est public, ça ne change rien à votre prix. » La franchise rassure plus qu'elle ne fait fuir.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span> Statuts de vos récompenses</h2>
     <p>Dans votre dashboard, chaque récompense passe successivement par 4 statuts :</p>
     <table>
       <thead>
@@ -139,7 +166,7 @@
   </section>
 
   <section>
-    <h2><span class="num">6</span> Seuil de 300€ : justificatifs requis</h2>
+    <h2><span class="num">7</span> Seuil de 300€ : justificatifs requis</h2>
     <p>Conformément à la réglementation française sur les programmes de recommandation, lorsque vos gains cumulés validés <strong>dépassent 300 €</strong> sur une année civile, votre compte est temporairement mis en pause et nous vous demandons de fournir :</p>
     <ul>
       <li>Une copie de votre <strong>pièce d'identité</strong> (CNI ou passeport en cours de validité)</li>
@@ -150,20 +177,20 @@
   </section>
 
   <section>
-    <h2><span class="num">7</span> Règles anti-fraude</h2>
+    <h2><span class="num">8</span> Règles anti-fraude</h2>
     <p>Pour préserver la confiance dans le programme, certains comportements entraînent <strong>l'annulation automatique de la récompense</strong> et peuvent bloquer votre compte :</p>
     <ul>
       <li><strong>Auto-parrainage</strong> : créer un compte commerçant avec votre propre identité ou votre famille proche.</li>
       <li><strong>Même carte bancaire</strong> utilisée pour deux inscriptions différentes que vous parrainez.</li>
       <li><strong>Même appareil / IP</strong> détecté pour plusieurs inscriptions consécutives (analyse à titre indicatif).</li>
-      <li><strong>Fausses informations</strong> dans les démos (commerces fictifs créés uniquement pour gonfler les chiffres).</li>
+      <li><strong>Fausses informations</strong> ou inscriptions fictives créées uniquement pour gonfler les chiffres.</li>
       <li><strong>Spam</strong> envers des commerçants n'ayant pas donné leur accord.</li>
     </ul>
     <div class="highlight">✅ En revanche, parrainer plusieurs <strong>vrais commerçants différents</strong> ayant un commerce réel est totalement autorisé et encouragé — c'est l'objet du programme.</div>
   </section>
 
   <section>
-    <h2><span class="num">8</span> Foire aux questions</h2>
+    <h2><span class="num">9</span> Foire aux questions</h2>
 
     <div class="faq-item">
       <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">Est-ce que je dois être commerçant moi-même pour participer ?</button>
@@ -181,18 +208,13 @@
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">Les démos que je crée expirent-elles ?</button>
-      <div class="faq-a">Oui, après <strong>90 jours</strong> sans activation par le commerçant, la démo est automatiquement supprimée. Vous pouvez en recréer une à tout moment.</div>
-    </div>
-
-    <div class="faq-item">
       <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">Mes données personnelles sont-elles protégées ?</button>
       <div class="faq-a">Oui. Marchéo respecte le RGPD. Vos données ne sont jamais partagées avec des tiers à l'exception du fournisseur de cartes cadeau au moment de l'envoi (email + montant). <a href="/confidentialite">Lire la politique complète.</a></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">Comment résilier le programme ?</button>
-      <div class="faq-a">Vous pouvez supprimer votre compte ambassadeur à tout moment depuis votre dashboard. Les récompenses validées avant la suppression vous restent dues. Les démos en cours non converties sont automatiquement supprimées.</div>
+      <div class="faq-a">Vous pouvez supprimer votre compte ambassadeur à tout moment depuis votre dashboard. Les récompenses validées avant la suppression vous restent dues.</div>
     </div>
 
     <div class="faq-item">

@@ -23,7 +23,6 @@
 
     { "source": "/ambassadeur", "destination": "/ambassadeur.html" },
     { "source": "/ambassadeur/dashboard", "destination": "/ambassadeur-dashboard.html" },
-    { "source": "/ambassadeur/creer-demo", "destination": "/ambassadeur-creer-demo.html" },
     { "source": "/ambassadeur/conditions", "destination": "/ambassadeur-conditions.html" },
 
     { "source": "/:slug", "destination": "/boutique.html?slug=:slug" },
