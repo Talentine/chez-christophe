@@ -308,7 +308,8 @@
 
       <div class="field">
         <label>Email *</label>
-        <input id="iEmail" type="email" placeholder="paul@boutique.fr">
+        <input id="iEmail" type="email" placeholder="paul@boutique.fr" autocomplete="email" onblur="verifierEmailUI()" oninput="resetEmailFeedback()">
+        <div id="emailFeedback" style="font-size:12px;margin-top:6px;display:none;line-height:1.4;"></div>
       </div>
 
       <div class="field">
@@ -761,6 +762,76 @@ function validerPhotos() {
   etape(4);
 }
 
+// ── Feedback temps réel sur le champ email (étape 4)
+window.verifierEmailUI = function() {
+  var inp = document.getElementById('iEmail');
+  var fb = document.getElementById('emailFeedback');
+  if (!inp || !fb) return;
+  var v = (inp.value || '').trim();
+  if (!v) { fb.style.display = 'none'; inp.style.borderColor = ''; return; }
+  var check = validerEmail(v);
+  fb.style.display = 'block';
+  if (check.ok) {
+    fb.innerHTML = '<span style="color:#7dc9a0;">✓ Email valide</span>';
+    inp.style.borderColor = 'rgba(125,201,160,0.6)';
+  } else {
+    fb.innerHTML = '<span style="color:#e88080;">✗ ' + check.raison + '</span>';
+    inp.style.borderColor = 'rgba(232,128,128,0.5)';
+  }
+};
+window.resetEmailFeedback = function() {
+  var fb = document.getElementById('emailFeedback');
+  var inp = document.getElementById('iEmail');
+  if (fb) fb.style.display = 'none';
+  if (inp) inp.style.borderColor = '';
+};
+
+// ── Validation email stricte (refuse les emails bidons / jetables)
+// Retourne { ok: bool, raison: string }
+// Niveaux de check : format RFC simple → domaines évidemment faux → domaines jetables
+function validerEmail(email) {
+  if (!email) return { ok: false, raison: 'Email obligatoire.' };
+  email = String(email).trim().toLowerCase();
+  // Regex stricte : un local-part, @, domaine avec au moins un point, TLD ≥ 2 lettres
+  var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+\.[a-z]{2,}$/i;
+  if (!regex.test(email)) return { ok: false, raison: 'Format d\'email invalide.' };
+  if (email.length > 254) return { ok: false, raison: 'Email trop long.' };
+  if (email.indexOf('..') >= 0) return { ok: false, raison: 'Email invalide (deux points consécutifs).' };
+
+  var parts = email.split('@');
+  var local = parts[0];
+  var domain = parts[1];
+
+  // Local part anti-spam : refuse les emails évidemment générés à la chaîne
+  if (/^[a-z]{1,3}$/.test(local)) return { ok: false, raison: 'Préfixe email trop court (ex: « ab@... »). Utilisez votre vraie adresse pro.' };
+  // Refuse les noms de domaine = TLD identiques au local-part (test@test.com, abc@abc.fr)
+  var domainBase = domain.split('.')[0];
+  if (local === domainBase) return { ok: false, raison: 'Email suspect (ex: « test@test.com »). Utilisez votre vraie adresse.' };
+
+  // Liste des domaines jetables connus (à étendre au besoin)
+  var DOMAINES_JETABLES = [
+    'mailinator.com','10minutemail.com','10minutemail.net','tempmail.com','tempmail.net','tempmailaddress.com',
+    'guerrillamail.com','guerrillamail.net','guerrillamail.org','yopmail.com','yopmail.fr','yopmail.net',
+    'sharklasers.com','grr.la','spam4.me','trashmail.com','trashmail.net','dispostable.com',
+    'mailcatch.com','maildrop.cc','tempinbox.com','throwawaymail.com','getnada.com','nada.email',
+    'jetable.org','jetable.fr.nf','jetable.net','tempmail.io','temp-mail.io','temp-mail.org','temp-mail.com',
+    'inboxbear.com','meltmail.com','spambox.us','mintemail.com','spamgourmet.com','mohmal.com',
+    'fakeinbox.com','fakemailgenerator.com','byom.de','dropmail.me','emailondeck.com','mytemp.email',
+    'tempinbox.xyz','tmpmail.org','tmpmail.net','wegwerfmail.de','wegwerf-email.de','onetimemail.com'
+  ];
+  for (var i = 0; i < DOMAINES_JETABLES.length; i++) {
+    if (domain === DOMAINES_JETABLES[i] || domain.endsWith('.' + DOMAINES_JETABLES[i])) {
+      return { ok: false, raison: 'Les emails jetables (mailinator, yopmail, etc.) ne sont pas acceptés. Utilisez votre adresse pro réelle.' };
+    }
+  }
+
+  // Refuse les TLDs grotesques (mais accepte tous les TLDs courants .fr .com .net .shop .boutique etc.)
+  var tld = domain.split('.').pop();
+  if (tld.length < 2 || tld.length > 24) return { ok: false, raison: 'Extension de domaine invalide.' };
+
+  return { ok: true };
+}
+
 // ── Évaluation force mot de passe (UX feedback temps réel)
 //    Score 0..4 : longueur + variété de classes de caractères + non-trivialité
 function calculerForceMdp(p) {
@@ -820,6 +891,13 @@ async function creerBoutique() {
 
   if (!state.email || !state.mdp) {
     err.textContent = 'Email et mot de passe obligatoires.';
+    err.style.display = 'block';
+    return;
+  }
+  // Validation stricte de l'email — bloque les emails bidons, jetables, et formats invalides
+  var emailCheck = validerEmail(state.email);
+  if (!emailCheck.ok) {
+    err.textContent = '📧 ' + emailCheck.raison;
     err.style.display = 'block';
     return;
   }
