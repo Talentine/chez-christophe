@@ -1076,6 +1076,24 @@ async function creerBoutique() {
         sauverEtatPending();
         const emailEl = document.getElementById('pendingEmailDisplay');
         if (emailEl) emailEl.textContent = state.email;
+
+        // Détection « user_repeated_signup » : Supabase retourne 200 OK avec
+        // user.id mais identities: [] quand l'email existe déjà non confirmé.
+        // Dans ce cas Supabase n'envoie PAS de nouvel email (protection enum).
+        // → on déclenche explicitement /auth/v1/resend pour garantir l'envoi.
+        const estRepeatedSignup = Array.isArray(supData.user?.identities) && supData.user.identities.length === 0;
+        if (estRepeatedSignup) {
+          // Resend silencieux en arrière-plan (rate-limited par Supabase à 1/min)
+          fetch(SUPABASE_URL + '/auth/v1/resend?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
+            method: 'POST',
+            headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: 'signup', email: state.email })
+          }).catch(()=>{});
+          // Affiche un message spécifique sur l'étape 6
+          const subEl = document.getElementById('pendingEmailSousTitre');
+          if (subEl) subEl.innerHTML = '⚠️ Vous avez <b>déjà commencé</b> une inscription avec cet email. Si vous n\'avez pas reçu le 1<sup>er</sup> mail, vérifiez vos <b>spams</b> ou cliquez sur « Renvoyer l\'email » ci-dessous.';
+        }
+
         // Le bouton final pour aller au dashboard ne fonctionne qu'après confirmation
         // → on reste sur l'étape 6 jusqu'au callback.
         etape(6);
@@ -1161,6 +1179,14 @@ async function creerBoutique() {
       if (state.codePromo.type === 'test_gratuit') {
         promoPayload.frais_acquisition_paye = 0;
         promoPayload.mois_offerts = 999; // illimité de fait
+        // Active directement la boutique (sinon abonnement_actif=false → dashboard
+        // affiche le bandeau « payer pour activer ») et force l'offre 3 (livraison)
+        // pour donner accès à TOUTES les fonctionnalités (vitrine + click&collect +
+        // réservation table + livraison).
+        promoPayload.abonnement_actif = true;
+        promoPayload.abonnement_debut = new Date().toISOString();
+        promoPayload.offre = 'livraison';
+        state.offre = 'livraison';
       }
     }
 
@@ -1459,6 +1485,11 @@ async function reprendreInscriptionDepuisCallback() {
       if (state.codePromo.type === 'test_gratuit') {
         promoPayload.frais_acquisition_paye = 0;
         promoPayload.mois_offerts = 999;
+        // Active directement (pas de bandeau « payer pour activer ») + force offre 3
+        promoPayload.abonnement_actif = true;
+        promoPayload.abonnement_debut = new Date().toISOString();
+        promoPayload.offre = 'livraison';
+        state.offre = 'livraison';
       }
     }
 
