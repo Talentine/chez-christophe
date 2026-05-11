@@ -1021,15 +1021,14 @@ async function creerBoutique() {
     err.style.display = 'block';
     return;
   }
-  if (state.mdp.length < 10) {
-    err.textContent = '🔒 Mot de passe trop court : 10 caractères minimum.';
-    err.style.display = 'block';
-    return;
-  }
-  // Bloque les mots de passe trivialement faibles (commun, répétitif, sans
-  // diversité de caractères) — éviter un AR-fer 422 weak_password de Supabase
-  if (calculerForceMdp(state.mdp) < 2) {
-    err.textContent = '🔒 Mot de passe trop simple. Mélangez lettres (maj/min), chiffres et symboles. Évitez les mots du dictionnaire seuls et les suites comme « 123456 » ou « azerty ».';
+  // Seuil dur de blocage = 6 caractères (minimum absolu de Supabase Auth).
+  // L'indicateur visuel pousse à 10+ pour les nouveaux comptes (sécurité Stripe Connect),
+  // mais on n'empêche pas le passage car les utilisateurs qui ont déjà un compte (créé
+  // avant la règle 10 chars) doivent pouvoir s'authentifier pour ajouter une boutique.
+  // Pour les nouveaux comptes faibles, Supabase rejettera côté serveur (HaveIBeenPwned)
+  // et notre handler d'erreur affichera un message clair.
+  if (state.mdp.length < 6) {
+    err.textContent = '🔒 Mot de passe trop court : 6 caractères minimum.';
     err.style.display = 'block';
     return;
   }
