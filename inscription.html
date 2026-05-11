@@ -379,6 +379,34 @@
       </div>
     </div>
 
+    <!-- ÉTAPE 6 : ✉️ Vérifiez votre email (apparaît uniquement si Supabase
+         « Confirm email » est activé : la session n'est pas créée tant que
+         l'utilisateur n'a pas cliqué le lien dans son email). -->
+    <div class="step" id="step6">
+      <div class="success">
+        <div class="success-emoji" style="font-size:62px;">✉️</div>
+        <div class="step-title" style="font-size:22px;">Vérifiez votre email</div>
+        <div class="step-sub" style="margin-top:14px;font-size:14.5px;line-height:1.6;">
+          Nous venons d'envoyer un email à<br>
+          <strong id="pendingEmailDisplay" style="color:#7dc9a0;"></strong>
+        </div>
+        <div style="margin:20px 0;padding:14px 16px;background:rgba(125,201,160,0.08);border:1px solid rgba(125,201,160,0.3);border-radius:12px;text-align:left;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,0.85);">
+          <strong>📬 Étapes suivantes :</strong>
+          <ol style="margin:10px 0 0 18px;padding:0;">
+            <li style="margin-bottom:6px;">Ouvrez votre boîte mail (vérifiez aussi les <strong>spams</strong>).</li>
+            <li style="margin-bottom:6px;">Cliquez sur le bouton <strong>« Confirm your email »</strong> dans l'email.</li>
+            <li>Vous reviendrez automatiquement sur Marchéo pour finaliser votre boutique.</li>
+          </ol>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:8px;">
+          Pas reçu après 2 min ?
+          <button onclick="renvoyerEmailConfirmation()" id="btnRenvoiEmail" style="background:none;border:none;color:#7dc9a0;font-weight:600;cursor:pointer;text-decoration:underline;font-family:inherit;font-size:12px;padding:0;">Renvoyer l'email</button>
+        </div>
+        <div id="renvoiFeedback" style="margin-top:10px;font-size:12px;display:none;"></div>
+        <button class="btn btn-secondary" style="margin-top:22px;" onclick="annulerInscriptionPending()">← Recommencer avec un autre email</button>
+      </div>
+    </div>
+
   </div>
 
   <div class="footer-link">
@@ -792,8 +820,10 @@ window.resetEmailFeedback = function() {
 function validerEmail(email) {
   if (!email) return { ok: false, raison: 'Email obligatoire.' };
   email = String(email).trim().toLowerCase();
-  // Regex stricte : un local-part, @, domaine avec au moins un point, TLD ≥ 2 lettres
-  var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+\.[a-z]{2,}$/i;
+  // Regex stricte : un local-part, @, domaine (1 ou plusieurs parties), TLD ≥ 2 lettres
+  // Le quantifieur sur le groupe des sous-domaines est * (zéro ou plus), pour accepter
+  // a@b.c (Gmail style) tout en autorisant les sous-domaines comme a@b.example.com.
+  var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.[a-z]{2,}$/i;
   if (!regex.test(email)) return { ok: false, raison: 'Format d\'email invalide.' };
   if (email.length > 254) return { ok: false, raison: 'Email trop long.' };
   if (email.indexOf('..') >= 0) return { ok: false, raison: 'Email invalide (deux points consécutifs).' };
