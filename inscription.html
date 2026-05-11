@@ -538,8 +538,20 @@ function prevLogo(input) {
   reader.readAsDataURL(file);
 }
 
-// Lancer la génération au chargement
-document.addEventListener('DOMContentLoaded', genererHorairesUI);
+// Lancer la génération au chargement + traitement du callback email s'il y en a un
+document.addEventListener('DOMContentLoaded', function() {
+  genererHorairesUI();
+  // Si on revient d'un clic sur le lien email Supabase, on a un #access_token=... dans l'URL.
+  // On bascule alors directement sur la finalisation (création commerçant + créneaux) en
+  // restaurant l'état d'inscription depuis localStorage.
+  if (location.hash && location.hash.indexOf('access_token=') >= 0) {
+    reprendreInscriptionDepuisCallback().catch(function(e) {
+      console.error('[callback] échec reprise', e);
+      const err = document.getElementById('err');
+      if (err) { err.textContent = '❌ ' + (e.message || 'Erreur de reprise'); err.style.display = 'block'; }
+    });
+  }
+});
 
 // ── Vérification code promo (RPC valider_code_promo) ──
 async function verifierCodePromo() {
@@ -910,6 +922,84 @@ window.togglePwdVisibility = function() {
   else                            { input.type = 'password'; if (btn) btn.textContent = '👁'; }
 };
 
+// ──────────────────────────────────────────────────────────────
+// Gestion du flow « Confirm email » Supabase
+// ──────────────────────────────────────────────────────────────
+const PENDING_KEY = 'marcheo_pending_inscription';
+const REDIRECT_URL = (window.toAsciiUrl
+  ? window.toAsciiUrl(location.origin + '/inscription?finalize=1')
+  : location.origin + '/inscription?finalize=1');
+
+function sauverEtatPending() {
+  // Sauve uniquement les champs JSON-serialisables (pas les File blobs).
+  // Les photos seront re-uploadées depuis le dashboard après confirmation.
+  const lite = {
+    email: state.email,
+    slug: state.slug,
+    nom: state.nom,
+    type: state.type,
+    ville: state.ville,
+    adresse: state.adresse,
+    tel: state.tel,
+    offre: state.offre,
+    horaires: state.horaires,
+    codePromo: state.codePromo,
+    userId: state.userId || null,
+    avaitPhotos: !!(mediaFiles && mediaFiles.some(Boolean)),
+    savedAt: Date.now(),
+  };
+  try { localStorage.setItem(PENDING_KEY, JSON.stringify(lite)); } catch (_) {}
+}
+
+function chargerEtatPending() {
+  try {
+    const raw = localStorage.getItem(PENDING_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Expire après 24h (le lien email Supabase expire au bout de 1h-24h)
+    if (Date.now() - (parsed.savedAt || 0) > 24 * 3600 * 1000) {
+      localStorage.removeItem(PENDING_KEY);
+      return null;
+    }
+    return parsed;
+  } catch (_) { return null; }
+}
+
+function nettoyerEtatPending() {
+  try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
+}
+
+window.renvoyerEmailConfirmation = async function() {
+  const btn = document.getElementById('btnRenvoiEmail');
+  const fb = document.getElementById('renvoiFeedback');
+  if (!btn || !state.email) return;
+  btn.disabled = true; btn.textContent = '…envoi en cours…';
+  if (fb) { fb.style.display = 'none'; }
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/resend?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'signup', email: state.email })
+    });
+    if (r.ok) {
+      if (fb) { fb.style.display = 'block'; fb.innerHTML = '<span style="color:#7dc9a0;">✓ Email renvoyé. Vérifiez votre boîte (et les spams).</span>'; }
+    } else {
+      const data = await r.json().catch(() => ({}));
+      if (fb) { fb.style.display = 'block'; fb.innerHTML = '<span style="color:#e88080;">✗ ' + (data.msg || data.message || 'Erreur de renvoi') + '</span>'; }
+    }
+  } catch (e) {
+    if (fb) { fb.style.display = 'block'; fb.innerHTML = '<span style="color:#e88080;">✗ ' + e.message + '</span>'; }
+  } finally {
+    btn.disabled = false; btn.textContent = 'Renvoyer l\'email';
+  }
+};
+
+window.annulerInscriptionPending = function() {
+  if (!confirm('Recommencer l\'inscription depuis le début ? Vous devrez vous reconnecter à votre email pour valider le compte précédent (sinon il restera inutilisable).')) return;
+  nettoyerEtatPending();
+  location.href = '/inscription'; // reset complet
+};
+
 // ── Création
 async function creerBoutique() {
   const err = document.getElementById('err');
@@ -959,8 +1049,10 @@ async function creerBoutique() {
     if (exist?.length) throw new Error('L\'URL de site « ' + state.slug + ' » est déjà prise. Modifiez le champ « Adresse de votre site » plus haut.');
 
     // 2. Signup auth — si l'email existe déjà, on tente un signin pour récupérer le user_id
+    //    Passe redirect_to pour que le lien email pointe vers la page d'inscription en
+    //    finalize=1 (permet de reprendre la création commerçant après confirmation).
     let userId, accessToken;
-    const sup = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+    const sup = await fetch(SUPABASE_URL + '/auth/v1/signup?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
       method: 'POST',
       headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: state.email, password: state.mdp })
@@ -973,6 +1065,24 @@ async function creerBoutique() {
       userId = supData.user?.id || supData.id;
       accessToken = supData.access_token || supData.session?.access_token || null;
       refreshToken = supData.refresh_token || supData.session?.refresh_token || null;
+
+      // ── Flow « Confirm email » Supabase activé ──
+      // Quand Supabase exige une confirmation email, la réponse signup contient
+      // bien user.id mais PAS de session (access_token). Dans ce cas on
+      // sauvegarde tout l'état d'inscription en localStorage et on bascule sur
+      // l'étape 6 (« vérifiez votre email »). La création du commerçant se fera
+      // au retour du clic sur le lien email — voir reprendreInscriptionDepuisCallback().
+      if (userId && !accessToken) {
+        state.userId = userId;
+        sauverEtatPending();
+        const emailEl = document.getElementById('pendingEmailDisplay');
+        if (emailEl) emailEl.textContent = state.email;
+        // Le bouton final pour aller au dashboard ne fonctionne qu'après confirmation
+        // → on reste sur l'étape 6 jusqu'au callback.
+        etape(6);
+        btn.disabled = false; btn.textContent = 'Créer ma boutique';
+        return;
+      }
     } else {
       // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
       const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
@@ -1250,6 +1360,216 @@ async function creerBoutique() {
     err.style.display = 'block';
   } finally {
     btn.disabled = false; btn.textContent = 'Créer ma boutique';
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
+// Reprise de l'inscription après clic sur le lien email Supabase
+// (flow « Confirm email » activé). L'URL ressemble à :
+//   https://marchéo.fr/inscription#access_token=...&refresh_token=...&type=signup
+// ──────────────────────────────────────────────────────────────
+async function reprendreInscriptionDepuisCallback() {
+  const err = document.getElementById('err');
+  // 1. Parser les tokens du hash
+  const hash = (location.hash || '').replace(/^#/, '');
+  const params = new URLSearchParams(hash);
+  const accessToken = params.get('access_token');
+  const refreshToken = params.get('refresh_token');
+  if (!accessToken) return; // pas un callback Supabase
+  // Nettoie l'URL (retire le hash pour ne pas exposer le token)
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {}
+
+  // 2. Récupère le user.id depuis le JWT
+  let userId = null;
+  try {
+    const payload = JSON.parse(atob(accessToken.split('.')[1]));
+    userId = payload.sub;
+  } catch (_) {}
+  if (!userId) {
+    if (err) { err.textContent = '❌ Token reçu mais illisible. Réessayez l\'inscription.'; err.style.display = 'block'; }
+    return;
+  }
+
+  // 3. Charger l'état d'inscription en attente
+  const pending = chargerEtatPending();
+  if (!pending) {
+    // L'état est perdu (autre navigateur, cache effacé, > 24h). On essaie quand
+    // même de connecter l'utilisateur — il pourra finir l'inscription manuellement
+    // depuis le dashboard (mais sans boutique créée pour l'instant).
+    try {
+      localStorage.setItem('session_commercant', JSON.stringify({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        user_id: userId,
+        role: 'commercant',
+      }));
+    } catch (_) {}
+    document.getElementById('step5').classList.add('actif');
+    document.querySelectorAll('.step').forEach(s => { if (s.id !== 'step5') s.classList.remove('actif'); });
+    document.getElementById('successUrl').innerHTML = `
+      <div style="background:rgba(244,185,66,0.12);border:1px solid rgba(244,185,66,0.5);border-radius:12px;padding:14px;font-size:13px;line-height:1.55;color:#FFD27A;">
+        ⚠️ <b>Email confirmé !</b> Mais nous avons perdu les infos de votre boutique en cours d'inscription (cache effacé ou autre navigateur).
+        <br><br>
+        Pas de panique : <a href="/inscription" style="color:#7dc9a0;font-weight:600;">recommencez l'inscription</a> depuis le début, votre compte email est désormais validé donc l'étape sera plus rapide (cliquez « Se connecter » si on vous le propose).
+      </div>`;
+    return;
+  }
+
+  // 4. Restaurer l'état dans la variable globale `state`
+  state.email = pending.email;
+  state.slug = pending.slug;
+  state.nom = pending.nom;
+  state.type = pending.type;
+  state.ville = pending.ville;
+  state.adresse = pending.adresse;
+  state.tel = pending.tel;
+  state.offre = pending.offre;
+  state.horaires = pending.horaires;
+  state.codePromo = pending.codePromo;
+  state.accessToken = accessToken;
+  state.refreshToken = refreshToken;
+  state.userId = userId;
+
+  // 5. Afficher une étape de loader pendant la finalisation
+  const wrap = document.querySelector('.wrap');
+  if (wrap) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
+    const tmp = document.createElement('div');
+    tmp.id = 'stepLoading';
+    tmp.className = 'step actif';
+    tmp.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:48px;margin-bottom:14px;">⏳</div><div style="font-size:16px;font-weight:600;margin-bottom:6px;">Email confirmé !</div><div style="font-size:13.5px;color:rgba(255,255,255,0.6);">Création de votre boutique en cours…</div></div>';
+    wrap.appendChild(tmp);
+  }
+
+  // 6. Finaliser la création (commerçant + rôle + créneaux + session)
+  const authHeader = { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' };
+
+  try {
+    // a. Application du code promo si présent
+    const promoPayload = {};
+    if (state.codePromo?.valide) {
+      promoPayload.code_promo_utilise = state.codePromo.code;
+      promoPayload.code_promo_id = state.codePromo.code_id;
+      if (state.codePromo.type === 'mois_offert') promoPayload.mois_offerts = parseInt(state.codePromo.valeur || 0);
+      if (state.codePromo.type === 'frais_acquisition_pct') {
+        const offresMontant = { vitrine: 249, clickcollect: 399, livraison: 549 };
+        const baseMontant = offresMontant[state.offre || 'clickcollect'] || 399;
+        const reduction = (baseMontant * (state.codePromo.valeur || 0)) / 100;
+        promoPayload.frais_acquisition_paye = Math.round((baseMontant - reduction) * 100) / 100;
+      }
+      if (state.codePromo.type === 'test_gratuit') {
+        promoPayload.frais_acquisition_paye = 0;
+        promoPayload.mois_offerts = 999;
+      }
+    }
+
+    // b. Création commerçant
+    const cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
+      method: 'POST',
+      headers: authHeader,
+      body: JSON.stringify({
+        ...promoPayload,
+        auth_user_id: userId,
+        slug: state.slug,
+        nom_boutique: state.nom,
+        business_type: state.type,
+        ville: state.ville || null,
+        adresse: state.adresse || null,
+        telephone: state.tel || null,
+        horaires: state.horaires,
+        email: state.email,
+        actif: true,
+        offre: state.offre || 'clickcollect',
+        business_config: { offre: state.offre || 'clickcollect' },
+        cgv_plateforme_acceptees: true,
+        cgv_plateforme_version: '2026-04',
+        cgv_plateforme_acceptees_at: new Date().toISOString(),
+        charte_acceptee: true,
+        charte_acceptee_at: new Date().toISOString(),
+      })
+    });
+    const cData = await cRes.json();
+    if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData).slice(0, 200)) + ' — création boutique échouée');
+    const commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
+    state.commercantId = commercantId;
+
+    // c. Rôle commerçant
+    await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
+      method: 'POST',
+      headers: authHeader,
+      body: JSON.stringify({ user_id: userId, commercant_id: commercantId, role: 'commercant' })
+    });
+
+    // d. Créneaux par défaut selon métier × offre
+    try {
+      if (window.MarcheoBusinessDefaults) {
+        const creneauxParDefaut = window.MarcheoBusinessDefaults.getDefaultCreneaux(state.type, state.offre || 'clickcollect', state.horaires);
+        if (creneauxParDefaut.length > 0) {
+          const payload = creneauxParDefaut.map(c => Object.assign({ commercant_id: commercantId }, c));
+          for (let i = 0; i < payload.length; i += 100) {
+            await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+              method: 'POST',
+              headers: Object.assign({}, authHeader, { 'Prefer': 'return=minimal' }),
+              body: JSON.stringify(payload.slice(i, i + 100))
+            });
+          }
+        }
+      }
+    } catch (e) { console.warn('[callback] créneaux par défaut échec', e); }
+
+    // e. Persister la session
+    try {
+      localStorage.setItem('session_commercant', JSON.stringify({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        email: state.email,
+        user_id: userId,
+        role: 'commercant',
+        commercant_id: commercantId,
+        slug: state.slug,
+        nom_boutique: state.nom
+      }));
+    } catch (_) {}
+
+    // f. Incrémenter compteur code promo
+    if (state.codePromo?.code_id) {
+      fetch(SUPABASE_URL + '/rest/v1/rpc/incrementer_utilisation_code', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_code_id: state.codePromo.code_id })
+      }).catch(()=>{});
+    }
+
+    // g. Cleanup pending state + UI succès
+    nettoyerEtatPending();
+    const baseHost = location.protocol + '//' + location.host;
+    const urlBoutique = baseHost + '/' + state.slug;
+    const urlDashboard = baseHost + '/app-commercant.html';
+
+    const stepLoading = document.getElementById('stepLoading');
+    if (stepLoading) stepLoading.remove();
+    document.getElementById('step5').classList.add('actif');
+    document.getElementById('successUrl').innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        ${pending.avaitPhotos ? `
+        <div style="background:rgba(125,201,160,0.10);border:1px solid rgba(125,201,160,0.4);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.55;color:#7dc9a0;">
+          ℹ️ <b>Photos à re-uploader</b> — La confirmation email a réinitialisé votre navigateur, donc les photos que vous aviez choisies ne sont plus en mémoire. Connectez-vous au dashboard et uploadez-les depuis <b>Réglages → Photos</b> (ça prend 30s).
+        </div>` : ''}
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:6px;">🌐 Lien de votre boutique (à partager)</div>
+          <a href="${urlBoutique}" target="_blank" style="color:#7dc9a0;text-decoration:none;word-break:break-all;font-family:monospace;font-size:13px;">${urlBoutique}</a>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:6px;">🛠 Votre dashboard (pour gérer la boutique)</div>
+          <a href="${urlDashboard}" target="_blank" style="color:#E5CB82;text-decoration:none;word-break:break-all;font-family:monospace;font-size:13px;">${urlDashboard}</a>
+        </div>
+      </div>`;
+  } catch (e) {
+    const stepLoading = document.getElementById('stepLoading');
+    if (stepLoading) stepLoading.remove();
+    if (err) { err.textContent = '❌ ' + e.message; err.style.display = 'block'; }
+    document.getElementById('step4').classList.add('actif');
+    console.error('[callback] finalisation échouée', e);
   }
 }
 
