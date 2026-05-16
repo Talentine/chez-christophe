@@ -1199,7 +1199,13 @@ function refreshChrome(){
       <span class="n">${s.synth?"★":(done?"✓":i+1)}</span>${esc(shortTitle(s.title))}</button>`;
   }).join("");
   nav.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{cur=+b.dataset.go;render();});
-  const ac=nav.querySelector(".chip.active"); ac&&ac.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
+  // Centre la puce active DANS la barre de nav uniquement (scroll horizontal interne).
+  // scrollIntoView ramènerait toute la page en haut car .nav est sticky.
+  const ac=nav.querySelector(".chip.active");
+  if(ac){
+    const delta=(ac.getBoundingClientRect().left-nav.getBoundingClientRect().left)-(nav.clientWidth-ac.offsetWidth)/2;
+    nav.scrollBy({left:delta,behavior:"smooth"});
+  }
 
   // progress global
   const tot=secs.filter(s=>!s.synth);
