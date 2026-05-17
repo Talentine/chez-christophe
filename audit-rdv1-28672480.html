@@ -250,27 +250,7 @@
   .vit-cta{height:44px;border-radius:11px;color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center;margin-top:4px}
   .vit-cap{text-align:center;font-size:13px;color:var(--g1);margin-top:12px;font-weight:600}
 
-  /* diagnostic + maquettes */
-  .mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-  @media(max-width:560px){.mock-grid{grid-template-columns:1fr}}
-  .mock{background:#fff;border:1px solid var(--cremef);border-radius:14px;padding:13px;box-shadow:var(--sh)}
-  .mock h5{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--g2);margin:0 0 9px}
-  .mk-g{font-family:Arial,Helvetica,sans-serif}
-  .mk-g .nm{font-size:15px;color:#1a0dab;font-weight:700}
-  .mk-g .ur{font-size:12px;color:#0a7d2c;margin:1px 0 3px}
-  .mk-g .st{font-size:12px;color:#e8a200;letter-spacing:1px}
-  .mk-g .ds{font-size:12px;color:#555;margin-top:3px;line-height:1.4}
-  .mk-ph{border:6px solid #11151f;border-radius:18px;overflow:hidden;background:#fff}
-  .mk-ph .hd{color:#fff;padding:14px 10px;text-align:center;font-weight:800;font-size:14px;line-height:1.3}
-  .mk-ph .bd{padding:10px}
-  .mk-row{display:flex;align-items:center;gap:8px;border:1px solid #eee;border-radius:9px;padding:7px;margin-bottom:6px}
-  .mk-row .em{font-size:18px}
-  .mk-row b{display:block;font-size:12.5px}
-  .mk-row span{color:#8a8a8a;font-size:11px}
-  .mk-btn{height:34px;border-radius:9px;color:#fff;font-weight:800;font-size:12.5px;display:grid;place-items:center}
-  .mk-cat{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-  .mk-cat>div{border:1px solid #eee;border-radius:9px;padding:8px;text-align:center;font-size:12px;line-height:1.5}
-  .mk-cat .em{font-size:22px;display:block}
+  /* diagnostic */
   .diag{background:linear-gradient(150deg,var(--nuit),var(--bleuc));color:#fff;border-radius:var(--rl,18px);padding:22px;margin-bottom:16px}
   .diag h3{font-family:var(--fd);font-size:20px;margin-bottom:3px}
   .diag .sub{font-size:13px;opacity:.8;margin-bottom:16px}
@@ -282,35 +262,15 @@
   .diag-glob{display:flex;align-items:center;gap:14px;margin:16px 0;padding:14px;background:rgba(255,255,255,.08);border-radius:12px}
   .diag-glob .num{font-family:var(--fd);font-size:38px;font-weight:800;line-height:1}
   .diag-mg{font-size:14px;line-height:1.5;background:rgba(255,255,255,.10);border-radius:10px;padding:12px 14px;margin-bottom:16px}
-  .diag-cta{display:flex;flex-direction:column;gap:9px}
+  .diag-opth{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;opacity:.75;margin:4px 0 10px}
+  .diag-opt{display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.08);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .diag-opt .ic{flex:none;font-size:18px;line-height:1.25}
+  .diag-opt b{display:block;font-size:14px;margin-bottom:2px}
+  .diag-opt span{font-size:13px;opacity:.85;line-height:1.45}
+  .diag-cta{display:flex;flex-direction:column;gap:9px;margin-top:16px}
   .diag-cta button{height:50px;border-radius:12px;font-weight:800;font-size:15px;width:100%}
   .diag-cta .c1{background:var(--vert);color:#06270a}
   .diag-cta .c2{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.25)}
-  .mock-cap{font-size:14px;color:var(--g1);margin-bottom:10px}
-  .mock-cap b{color:var(--nuit)}
-  .site{border:1px solid var(--cremef);border-radius:14px;overflow:hidden;box-shadow:var(--sh);background:#fff;margin-bottom:14px}
-  .site.real{display:block;text-decoration:none;color:inherit}
-  .site.real:active{transform:scale(.997)}
-  .site-bar{height:30px;background:#11151f;display:flex;align-items:center;gap:5px;padding:0 12px}
-  .site-bar i{width:9px;height:9px;border-radius:50%;background:#3a4150;flex:none}
-  .site-url{flex:1;text-align:center;font-size:11px;color:#8893a5;font-family:Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .site-hero{position:relative;padding:34px 20px;text-align:center;color:#fff;background-size:cover;background-position:center;overflow:hidden}
-  .site-hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,25,18,.22),rgba(15,25,18,.64))}
-  .site-hero .hc{position:relative}
-  .site-hero .lg-img{height:36px;width:auto;margin-bottom:8px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.55))}
-  .site-hero .lg{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;margin-bottom:10px;backdrop-filter:blur(2px)}
-  .site-hero h4{font-family:var(--fd);font-size:24px;font-weight:800;margin:4px 0;text-shadow:0 2px 10px rgba(0,0,0,.45)}
-  .site-hero p{font-size:13px;opacity:.95;margin-bottom:14px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-  .site-hero .cta{display:inline-grid;place-items:center;height:40px;padding:0 22px;border-radius:10px;font-weight:800;font-size:14px;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-  .site-foot{padding:11px 14px;font-size:12px;font-weight:600;color:var(--vert);background:var(--cremef);text-align:center}
-  .site-body{padding:14px}
-  .site-body h6{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--g2);margin:0 0 9px}
-  .site-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  @media(max-width:560px){.site-grid{grid-template-columns:1fr 1fr}}
-  .site-grid .it{border:1px solid #eee;border-radius:10px;padding:10px;text-align:center}
-  .site-grid .it .em{font-size:24px;display:block;margin-bottom:3px}
-  .site-grid .it b{display:block;font-size:12.5px;line-height:1.25}
-  .site-grid .it span{color:#8a8a8a;font-size:11.5px}
 
   /* synthèse */
   .syn-hero{background:linear-gradient(140deg,var(--nuit),var(--bleuc));color:#fff;border-radius:var(--rl);padding:26px 22px;margin-bottom:18px}
@@ -838,7 +798,6 @@ const SCHEMA = [
 
 { id:"diagnostic", kicker:"Votre diagnostic", title:"Votre diagnostic digital", sub:"Voici où en est votre commerce aujourd'hui — et ce que ça pourrait changer.",
   blocks:[
-    {k:"mock"},
     {k:"diag"}
   ]},
 
@@ -1069,7 +1028,6 @@ function renderBlock(b){
     if(!(b.only||[]).includes(val("type_commerce"))) return "";
     return `<div class="card">${b.fields.map(renderField).join("")}</div>`;
   }
-  if(b.k==="mock") return buildMock();
   if(b.k==="diag") return buildDiag();
   return "";
 }
@@ -1371,81 +1329,6 @@ function diagManque(){
   return "Vous avez de bonnes bases : quelques optimisations simples peuvent encore augmenter vos commandes et votre visibilité.";
 }
 function ctaPick(v){ setVal("cta_choice",v); toast(v==="demo"?"Parfait — démo adaptée notée ✓":"Noté — votre plan d'amélioration ✓"); }
-function diagProducts(){
-  const d=fiche.data, out=[];
-  for(let i=1;i<=5;i++){ const n=d[`top5_${i}_nom`]; if(n&&String(n).trim()) out.push({n:String(n).trim(),p:(d[`top5_${i}_prix`]||"").toString().trim()}); }
-  if(out.length<3){
-    const txt=[d.pr_signatures,d.pr_categories,d.pr_marge,d.pr_differenciants].filter(Boolean).join(", ");
-    txt.split(/[,;\n•·\/]+/).map(s=>s.trim()).filter(s=>s.length>1).forEach(s=>{
-      if(out.length<6 && !out.some(o=>o.n.toLowerCase()===s.toLowerCase())) out.push({n:s,p:""});
-    });
-  }
-  return out.slice(0,6);
-}
-function buildMock(){
-  const k=selFirst(val("type_commerce"))||"autre";
-  const m=METIERS[k]||METIERS.autre;
-  const nom=esc(val("nom_commerce")||m.label);
-  const slug=(val("nom_commerce")||m.label).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-  const PH={primeur:1,boucherie:1,boulangerie:1,poissonnerie:1,traiteur:1,fromagerie:1,fleuriste:1,pizzeria:1,restaurant:1,fastfood:1};
-  const photo = PH[k] ? `/assets/metiers/${k}.webp` : "";
-  let prods=diagProducts();
-  if(!prods.length) prods=[{n:"Spécialité maison",p:""},{n:"Produit phare",p:""},{n:"Sélection du jour",p:""},{n:"Coffret cadeau",p:""}];
-  const grid=prods.map(p=>`<div class="it"><span class="em">${m.emoji}</span><b>${esc(p.n)}</b><span>${p.p?esc(p.p):"Voir"}</span></div>`).join("");
-  const CC="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe";
-  const isPrim = k==="primeur";
-
-  const real=`<div class="mock-cap">Un <b>vrai site</b> qu'on a créé${isPrim?", un primeur comme vous":""} — ouvrez-le, il est en ligne :</div>
-  <a class="site real" href="/chez-christophe" target="_blank" rel="noopener">
-    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">marchéo.fr/chez-christophe</div></div>
-    <div class="site-hero" style="background-color:#2A4535;background-image:url('${CC}/hero.png')">
-      <div class="ov"></div>
-      <div class="hc">
-        <img class="lg-img" src="${CC}/logo.png" alt="" onerror="this.style.display='none'">
-        <h4>Chez Christophe 🌿</h4>
-        <p>Primeur · Blonville-sur-Mer — fruits &amp; légumes de saison</p>
-        <span class="cta" style="background:var(--vert)">Voir nos rayons</span>
-      </div>
-    </div>
-    <div class="site-foot">Site Marchéo en production · marchéo.fr/chez-christophe ↗</div>
-  </a>`;
-
-  const heroStyle = photo
-    ? `background-color:${m.c};background-image:url('${photo}')`
-    : `background:linear-gradient(150deg,${m.c},${m.c}cc)`;
-
-  const yours=`<div class="mock-cap" style="margin-top:18px">Et voici <b>${nom}</b>, sur le même modèle :</div>
-  <div class="site">
-    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">${esc(slug)}.marchéo.fr</div></div>
-    <div class="site-hero${photo?" ph":""}" style="${heroStyle}">
-      ${photo?'<div class="ov"></div>':''}
-      <div class="hc">
-        <span class="lg">● ${nom}</span>
-        <h4>${nom} ${m.emoji}</h4>
-        <p>${esc(m.tag)}</p>
-        <span class="cta" style="background:${m.a}">${esc(m.cta)}</span>
-      </div>
-    </div>
-    <div class="site-body">
-      <h6>Nos produits</h6>
-      <div class="site-grid">${grid}</div>
-    </div>
-  </div>
-  <div class="mock-grid">
-    <div class="mock"><h5>Sur Google</h5><div class="mk-g">
-      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${esc(slug)}.marchéo.fr · Itinéraire</div>
-      <div class="st">★★★★★ <span style="color:#555">(127 avis)</span></div>
-      <div class="ds">${esc(m.tag)}. Commande en ligne · Click &amp; collect · Ouvre à 8h00.</div></div></div>
-    <div class="mock"><h5>Sur mobile</h5><div class="mk-ph" style="max-width:160px;margin:0 auto">
-      <div class="hd" style="${photo?`background:${m.c} url('${photo}') center/cover`:`background:${m.c}`};padding:20px 10px;position:relative">
-        <span style="position:relative">${m.emoji}<br>${nom}</span></div>
-      <div class="bd">
-        <div class="mk-row"><span class="em">${m.emoji}</span><div><b>${esc(prods[0].n)}</b><span>${prods[0].p?esc(prods[0].p):"Disponible"}</span></div></div>
-        <div class="mk-btn" style="background:${m.a}">${esc(m.cta)}</div></div></div></div>
-  </div>`;
-
-  return real+yours;
-}
 function buildDiag(){
   const s=diagScores();
   const tone=n=>n>=7?"var(--vert)":n>=4?"var(--soleil)":"var(--tomate)";
@@ -1453,6 +1336,16 @@ function buildDiag(){
     <div class="diag-bar"><i style="width:${n*10}%;background:${tone(n)}"></i></div>
     <div class="vn">${n}/10</div></div>`;
   const nm=esc(val("nom_commerce")||"votre commerce");
+  const AX=[
+    ["vg","🔎","Être visible quand on vous cherche","Une fiche Google et un site à votre nom : vos clients vous trouvent en 2 secondes."],
+    ["gc","🛒","Prendre les commandes sans le téléphone","Click & collect et commande en ligne : les commandes tombent même quand c'est fermé."],
+    ["mo","✨","Une vitrine toujours à jour","Vos produits, prix et photos en ligne, modifiables en 2 clics depuis le téléphone."],
+    ["fi","🔔","Faire revenir vos clients","Un seul message pour prévenir tous vos clients de vos promos et arrivages."]
+  ];
+  const sorted=AX.slice().sort((a,b)=>s[a[0]]-s[b[0]]);
+  const weak=sorted.filter(a=>s[a[0]]<=6);
+  const opts=(weak.length?weak:sorted.slice(0,2))
+    .map(a=>`<div class="diag-opt"><span class="ic">${a[1]}</span><div><b>${a[2]}</b><span>${a[3]}</span></div></div>`).join("");
   return `<div class="diag">
     <h3>Diagnostic de ${nm}</h3>
     <div class="sub">Estimation à partir de vos réponses.</div>
@@ -1463,6 +1356,8 @@ function buildDiag(){
     <div class="diag-glob"><div class="num">${s.global}<span style="font-size:16px;opacity:.6">/10</span></div>
       <div style="font-size:14px;line-height:1.45">Score global de votre présence digitale aujourd'hui.</div></div>
     <div class="diag-mg">💡 ${esc(diagManque())}</div>
+    <div class="diag-opth">Ce qu'on peut faire pour y répondre</div>
+    ${opts}
     <div class="diag-cta">
       <button class="c1" onclick="ctaPick('demo')">Voir une démo adaptée à mon commerce</button>
       <button class="c2" onclick="ctaPick('plan')">Recevoir mon plan d'amélioration</button>
