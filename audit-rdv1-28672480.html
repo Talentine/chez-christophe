@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Audit Marchéo">
-<title>Fiche Audit RDV1 — Marchéo</title>
+<title>Diagnostic digital — Marchéo</title>
 <style>
   :root{
     --nuit:#0F2C52; --nuit2:#0A1428; --bleuc:#1B3F6E; --bleu100:#DCE5F0;
@@ -393,12 +393,13 @@ const METIERS = {
   boucherie:   {label:"Boucherie",    emoji:"🥩", c:"#8B1A1A", a:"#D4A44C", tag:"Viandes d'origine, le conseil du boucher", cta:"Commander mes viandes"},
   boulangerie: {label:"Boulangerie",  emoji:"🥖", c:"#6B4423", a:"#E8B14C", tag:"Pains & viennoiseries, tout juste sortis du four", cta:"Réserver ma commande"},
   poissonnerie:{label:"Poissonnerie", emoji:"🐟", c:"#1B4965", a:"#62B6CB", tag:"La pêche du jour, arrivée ce matin", cta:"Voir la pêche du jour"},
+  epicerie:    {label:"Épicerie",     emoji:"🛒", c:"#5A3E2B", a:"#C9A54B", tag:"Vos produits du quotidien, près de chez vous", cta:"Voir l'épicerie"},
   traiteur:    {label:"Traiteur",     emoji:"🍽️", c:"#2B2B2B", a:"#C9A54B", tag:"Vos réceptions, faites maison", cta:"Composer ma commande"},
   fromagerie:  {label:"Fromagerie",   emoji:"🧀", c:"#3D5446", a:"#C9A54B", tag:"Fromages affinés, la sélection de l'affineur", cta:"Voir nos fromages"},
   fleuriste:   {label:"Fleuriste",    emoji:"💐", c:"#4A6741", a:"#E89BAE", tag:"Des fleurs fraîches pour chaque occasion", cta:"Commander un bouquet"},
   pizzeria:    {label:"Pizzeria",     emoji:"🍕", c:"#9F1B1F", a:"#1B7A3E", tag:"Pizzas au feu de bois, à emporter ou livrées", cta:"Commander ma pizza"},
   restaurant:  {label:"Restaurant",   emoji:"🍽️", c:"#1F1F1F", a:"#A8825D", tag:"Notre carte, à réserver ou à emporter", cta:"Voir la carte"},
-  fastfood:    {label:"Fast-food",    emoji:"🍔", c:"#C99A00", a:"#E63946", tag:"Vos plats préférés, prêts plus vite", cta:"Commander maintenant"},
+  fastfood:    {label:"Restaurant rapide",emoji:"🍔",c:"#C99A00", a:"#E63946", tag:"Vos plats préférés, prêts plus vite", cta:"Commander maintenant"},
   autre:       {label:"Autre commerce",emoji:"🛍️",c:"#0F2C52", a:"#5BBE3A", tag:"Votre commerce, en ligne et simple", cta:"Découvrir"}
 };
 
@@ -421,11 +422,15 @@ const O  = (v,l,sub,imp,tone) => ({v,l,sub:sub||null,imp:imp||null,tone:tone||""
    SCHÉMA COMPLET DE LA FICHE
    ============================================================ */
 const SCHEMA = [
-{ id:"identite", kicker:"Étape 1", title:"Identité du commerce", sub:"On démarre simplement. Cette fiche tourne sur tablette — n'hésitez pas à la tourner vers le commerçant, c'est déjà une démo de ce que le digital simple peut faire.",
+{ id:"identite", kicker:"Étape 1 · Votre commerce", title:"Diagnostic digital de votre commerce", sub:"Découvrez comment gagner du temps, recevoir plus de commandes et moderniser votre commerce.",
   blocks:[
+    NOTE("✨","Votre commerce mérite les mêmes outils que les grandes enseignes","Aujourd'hui, même les commerces de proximité ont besoin d'outils simples pour rester visibles face aux grandes chaînes — sans complexité. Ce diagnostic prend quelques minutes et vous repartez avec des pistes concrètes."),
     {k:"card",fields:[
+      F("type_commerce","Quel type de commerce avez-vous ?",{type:"radio",grid:true,opts:[
+        O("primeur","🌿 Primeur"),O("boucherie","🥩 Boucherie"),O("boulangerie","🥖 Boulangerie"),
+        O("poissonnerie","🐟 Poissonnerie"),O("epicerie","🛒 Épicerie"),O("traiteur","🍽️ Traiteur"),
+        O("fastfood","🍔 Restaurant rapide"),O("autre","🛍️ Autre")]}),
       F("nom_commerce","Nom du commerce",{ph:"Ex : Boucherie Martin"}),
-      F("type_commerce","Type de commerce",{type:"select",opts:Object.keys(METIERS).map(k=>O(k,METIERS[k].label))}),
       F("adresse","Adresse",{ph:"N°, rue, ville"}),
       F("responsable","Nom du / de la responsable",{ph:"Prénom Nom"}),
       F("telephone","Téléphone portable",{inp:"tel",ph:"06 .. .. .. .."}),
@@ -448,9 +453,25 @@ const SCHEMA = [
     QC("qc_plait_fatigue","Qu'est-ce qui vous plaît le plus dans votre journée ? Et qu'est-ce qui vous fatigue le plus ?","La « fatigue » pointe vers le problème opérationnel que Marchéo résout (appels, gestion…)")
   ]},
 
-{ id:"visibilite", kicker:"Étape 3", title:"Audit visibilité", sub:"Comment ses clients le trouvent — et ce que le digital change déjà.",
+{ id:"visibilite", kicker:"Étape 3 · Votre visibilité", title:"Quand on vous cherche, qu'est-ce qu'on trouve ?", sub:"Aujourd'hui, vos clients vous cherchent d'abord sur leur téléphone.",
   blocks:[
     {k:"card",fields:[
+      F("vis_google_resultat","Quand un client cherche votre commerce sur Google, qu'est-ce qu'il trouve aujourd'hui ?",{type:"radio",opts:[
+        O("rien","Rien ou presque",null,"Invisible pour qui le cherche — le point d'entrée n°1.","bad"),
+        O("maps","Seulement Google Maps",null,"Présent mais pauvre : ni produits, ni commande.","warn"),
+        O("fb","Une page Facebook",null,"Une audience existe, mais rien pour convertir en commande.","warn"),
+        O("vieux","Un ancien site",null,"Mauvaise image + souvent pas adapté au mobile.","warn"),
+        O("complet","Un site complet",null,"Déjà équipé : on optimise plutôt qu'on évangélise.","good")]}),
+      F("vis_decouverte","Comment vos clients découvrent-ils vos nouveautés ou promotions ?",{type:"check",grid:true,opts:[
+        O("bao","Bouche à oreille",null,"Diffusion lente et plafonnée.","warn"),
+        O("fb","Facebook"),O("insta","Instagram"),O("google","Google"),
+        O("vitrine","Vitrine magasin",null,"Ne touche que ceux qui passent déjà devant.","warn"),
+        O("aucun","Aucun moyen particulier",null,"Aucun canal pour faire revenir les clients.","bad")]}),
+      F("vis_concurrents","Quand on tape votre activité + votre ville sur Google, vos concurrents apparaissent-ils avant vous ?",{type:"radio",grid:true,opts:[
+        O("oui","Oui clairement",null,"Manque à gagner direct : ils captent vos clients.","bad"),
+        O("parfois","Parfois",null,"Position fragile selon la recherche.","warn"),
+        O("sais_pas","Je ne sais pas",null,"À vérifier ensemble en direct.","warn"),
+        O("non","Non",null,"Bonne position locale à préserver.","good")]}),
       F("vis_trouve","Comment les clients le trouvent aujourd'hui",{type:"check",opts:[
         O("bao","Bouche-à-oreille",null,"Croissance plafonnée : il ne touche que le cercle déjà connu. Rebond : « et tous ceux qui ne vous connaissent pas encore ? »","warn"),
         O("passent","Clients qui passent devant",null,"Dépend 100% de l'emplacement. Aucun levier pour faire venir de plus loin.","warn"),
@@ -473,9 +494,23 @@ const SCHEMA = [
     QC("qc_savent_pas","Qu'est-ce que vos clients ne savent pas de vous et que vous aimeriez qu'ils sachent ?","La pépite : tout ce qu'il aimerait raconter ira dans le site V2 (À propos, valeurs, savoir-faire)")
   ]},
 
-{ id:"operationnel", kicker:"Étape 4", title:"Audit opérationnel", sub:"Là où le temps se perd. C'est le cœur du levier Marchéo.",
+{ id:"operationnel", kicker:"Étape 4 · Votre temps", title:"Le temps que ça vous prend", sub:"Là où vous perdez du temps chaque jour — souvent sans le voir.",
   blocks:[
     {k:"card",fields:[
+      F("op_appels_horaires","Combien d'appels recevez-vous juste pour les horaires, produits ou réservations ?",{type:"radio",grid:true,opts:[
+        O("tres","Très souvent",null,"Douleur forte : le click & collect supprime ces appels.","bad"),
+        O("jour","Tous les jours",null,"Temps perdu quotidien, à chiffrer sur la semaine.","warn"),
+        O("parfois","Quelques fois",null,"Douleur latente.","warn"),
+        O("rare","Rarement",null,"Chercher le levier ailleurs.","good")]}),
+      F("op_distance","Comment gérez-vous les commandes à distance aujourd'hui ?",{type:"check",grid:true,opts:[
+        O("tel","Téléphone"),O("sms","SMS"),O("messenger","Messenger / WhatsApp"),
+        O("aucun","Aucun système",null,"Aucune commande possible hors présence/horaires.","bad"),
+        O("cc","Click & collect"),O("liv","Livraison")]}),
+      F("op_commande_manuelle","Prenez-vous encore les commandes manuellement ?",{type:"radio",grid:true,opts:[
+        O("tel","Oui, par téléphone",null,"Chronophage et source d'oublis.","warn"),
+        O("fb","Oui, via Facebook/Messenger",null,"Dispersé, rien n'est centralisé.","warn"),
+        O("sms","Oui, par SMS/WhatsApp",null,"Pas de suivi ni de paiement, oublis fréquents.","warn"),
+        O("auto","Non, tout est automatisé",null,"Déjà outillé : comprendre l'existant.","good")]}),
       F("op_appels","Volume d'appels reçus (horaires, produits, dispo)",{type:"radio",opts:[
         O("peu","Très peu",null,"Peu de douleur ici : ne pas forcer cet angle, chercher le levier ailleurs.","warn"),
         O("quelques","Quelques-uns par jour",null,"Douleur latente. Faire dire le temps perdu cumulé sur la semaine.","warn"),
@@ -503,7 +538,18 @@ const SCHEMA = [
     QC("qc_2h","Si je vous rendais 2 heures par semaine, vous en feriez quoi ?","Le projette dans l'après-Marchéo. Sa réponse devient le pitch d'ouverture du RDV 2")
   ]},
 
-{ id:"clientele", kicker:"Étape 5", title:"Audit clientèle", sub:"Qui vient, qui manque, qui pourrait revenir plus souvent.",
+{ id:"douleurs", kicker:"Vos irritants", title:"Qu'est-ce qui vous fait perdre le plus de temps ?", sub:"Cochez tout ce qui vous pèse au quotidien — c'est exactement ce qu'on va alléger.",
+  blocks:[
+    {k:"card",fields:[
+      F("dl_temps","Ce qui vous fait perdre le plus de temps aujourd'hui",{type:"check",grid:true,opts:[
+        O("tel","Répondre au téléphone"),O("msg","Répondre aux messages"),
+        O("cmd","Gérer les commandes"),O("fb","Mettre à jour Facebook"),
+        O("horaires","Expliquer les horaires"),O("liv","Organiser les livraisons")]}),
+      TA("dl_autre","Autre chose qui vous pèse ?")
+    ]}
+  ]},
+
+{ id:"clientele", kicker:"Étape 5 · Vos clients", title:"Vos clients", sub:"Qui vient, qui manque, qui pourrait revenir plus souvent.",
   blocks:[
     {k:"card",fields:[
       F("cl_profil","Profil dominant",{type:"check",grid:true,opts:[
@@ -513,6 +559,15 @@ const SCHEMA = [
         O("jeunes","Jeunes actifs",null,"Cible 100% digitale : commande mobile + créneaux = exactement leur usage.","good"),
         O("passage","Passage / touristes",null,"Visibilité Google / SEO local = capter ceux qui cherchent « près de moi ».","good"),
         O("autre","Autre",[F("cl_profil_autre","Préciser",{ph:"…"})])]}),
+      F("cl_prevenir","Avez-vous un moyen simple de prévenir vos clients des promotions ou arrivages ?",{type:"radio",grid:true,opts:[
+        O("oui","Oui",null,"À amplifier via notifications.","good"),
+        O("non","Non",null,"Aucun rappel = clients qui ne reviennent pas.","bad"),
+        O("fb","Seulement Facebook",null,"Ne touche qu'une partie, sans garantie d'être vu.","warn"),
+        O("magasin","Seulement en magasin",null,"Trop tard : le client est déjà venu.","warn")]}),
+      F("cl_voir_produits","Vos clients peuvent-ils voir facilement vos produits avant de venir ?",{type:"radio",grid:true,opts:[
+        O("oui","Oui",null,"Bon point — à valoriser et compléter.","good"),
+        O("non","Non",null,"Le client ne sait pas ce qu'il va trouver.","bad"),
+        O("rs","Seulement sur Facebook/Instagram",null,"Dispersé, pas de catalogue ni de commande.","warn")]}),
       TA("cl_tel","Clients qui commandent par téléphone ?"),
       TA("cl_saison","Saisonnalité / pics d'activité")
     ]},
@@ -520,6 +575,18 @@ const SCHEMA = [
     QC("qc_clients_disent","Qu'est-ce que vos clients vous disent le plus souvent ? Compliments… et reproches.","Compliments = arguments à valoriser / Reproches = problèmes que Marchéo peut résoudre"),
     QC("qc_reviennent_pas","Des clients que vous aimeriez voir plus souvent mais qui ne reviennent pas autant ?","Pointe le besoin de fidélisation, click & collect, notifications, programme de fidélité"),
     QC("qc_pas_touchee","Une catégorie de clients que vous n'arrivez pas à toucher mais aimeriez avoir ?","Ouvre sur Google / SEO local / réseaux sociaux pour attirer de nouveaux profils")
+  ]},
+
+{ id:"objectifs", kicker:"Vos objectifs", title:"Qu'aimeriez-vous améliorer ?", sub:"Ce que vous cochez ici oriente directement votre plan d'amélioration.",
+  blocks:[
+    {k:"card",fields:[
+      F("ob_buts","Ce que vous aimeriez améliorer dans votre commerce",{type:"check",grid:true,opts:[
+        O("clients","Plus de clients"),O("commandes","Plus de commandes"),
+        O("temps","Gagner du temps"),O("image","Moderniser l'image"),
+        O("livraison","Développer la livraison"),O("cc","Mettre en place le click & collect"),
+        O("fidel","Fidéliser les clients")]}),
+      TA("ob_autre","Un autre objectif important pour vous ?")
+    ]}
   ]},
 
 { id:"offre", kicker:"Étape 6 · Produits & vision", title:"Offre & produits phares", sub:"La matière première du futur site : ses pépites.",
@@ -955,6 +1022,7 @@ function bind(){
         setVal(g, val(g)===vv ? "" : vv);
       }
       // mise à jour sur place : pas de re-render → la page ne bouge pas
+      if(g==="type_commerce"||g==="nom_commerce") refreshVitrine();
       syncSelections();
       applyConditionals();
       refreshChrome();
