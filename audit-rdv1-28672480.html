@@ -1238,6 +1238,15 @@ const OPEN_RULES=[
     {w:["tout de suite","des maintenant","des aujourd'hui","au plus vite","c'est urgent","rapidement","pas attendre","des que possible","la tout de suite","faut que ca bouge","on y va"],t:"hot",ti:"Urgence exprimée",m:"Veut avancer vite — ne pas laisser refroidir.",a:"Closer : caler un RDV2 rapproché immédiatement."}
 ];
 function _normTxt(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/['‘’‚]/g,"'"); }
+const _STOP=new Set(["le","la","les","un","une","de","des","du","au","aux","en","et","ou","ce","ca","mon","ma","mes","son","sa","ses","votre","vos","leur","leurs","pour","par","plus","pas","ne","que","qui","est","sur","dans","avec","sans","trop","tres","bien","fait","sont","ont","a","y"]);
+function _toks(s){ return _normTxt(s).replace(/[^a-z0-9 ]+/g," ").split(/\s+/).filter(w=>w.length>2 && !_STOP.has(w)); }
+/* match souple : la phrase entière OU un mot significatif partagé (notes courtes du conseiller) */
+function softHit(nAnswer, term){
+  const t=_normTxt(term);
+  if(t && nAnswer.indexOf(t)>=0) return true;
+  const tt=_toks(term); if(!tt.length) return false;
+  return tt.some(w=> nAnswer.indexOf(w)>=0);
+}
 
 /* Analyse question par question (les violettes) : famille + mots-clés propres + signaux transverses */
 function qcInsights(){
@@ -1250,8 +1259,8 @@ function qcInsights(){
     const raw=(d[b.id]==null?"":String(d[b.id])).trim();
     if(raw.length<3) return;
     const n=_normTxt(raw), sigs=[]; let tone="good";
-    OPEN_RULES.forEach(r=>{ if(r.w.some(x=>n.includes(x))){ sigs.push(r.ti); families.add(r.ti); if(r.t==="hot")tone="hot"; else if(r.t==="warm"&&tone!=="hot")tone="warm"; } });
-    const kwHit=(b.kw||[]).filter(k=>n.includes(_normTxt(k)));
+    OPEN_RULES.forEach(r=>{ if(r.w.some(x=>softHit(n,x))){ sigs.push(r.ti); families.add(r.ti); if(r.t==="hot")tone="hot"; else if(r.t==="warm"&&tone!=="hot")tone="warm"; } });
+    const kwHit=(b.kw||[]).filter(k=>softHit(n,k));
     if(BUY.some(x=>n.includes(x))){ sigs.unshift("🟢 Signal d'achat"); tone="hot"; }
     if(OBJ.some(x=>n.includes(x))){ sigs.push("🟠 Objection / réserve"); if(tone!=="hot")tone="warm"; }
     if(EMO.some(x=>n.includes(x))) sigs.push("Charge émotionnelle");
