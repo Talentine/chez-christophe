@@ -1049,7 +1049,9 @@ function renderField(f){
       <select class="t" data-id="${f.id}">${opts}</select></div>`;
   }
   if(f.type==="check"||f.type==="radio"){
-    const cv = v || (f.type==="check"?{}:"");
+    const cv = f.type==="check"
+      ? ((v && typeof v==="object") ? v : (v ? {[v]:true} : {}))
+      : (v||"");
     const cls = f.type==="check"?"cb":"rb";
     const opts = f.opts.map(o=>{
       const on = f.type==="check" ? !!cv[o.v] : cv===o.v;
@@ -1103,7 +1105,8 @@ function bind(){
     el.addEventListener("click",()=>{
       const g=el.dataset.grp, vv=el.dataset.val, multi=el.dataset.multi==="1";
       if(multi){
-        const o=val(g)||{};
+        const cur=val(g);
+        const o = (cur && typeof cur==="object") ? cur : (cur ? {[cur]:true} : {});
         if(o[vv]) delete o[vv]; else o[vv]=true;
         setVal(g, Object.keys(o).length?o:"");
       } else {
