@@ -1264,14 +1264,18 @@ const OPEN_RULES=[
     {w:["tout de suite","des maintenant","des aujourd'hui","au plus vite","c'est urgent","rapidement","pas attendre","des que possible","la tout de suite","faut que ca bouge","on y va"],t:"hot",ti:"Urgence exprimée",m:"Veut avancer vite — ne pas laisser refroidir.",a:"Closer : caler un RDV2 rapproché immédiatement."}
 ];
 function _normTxt(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/['‘’‚]/g,"'"); }
-const _STOP=new Set(["le","la","les","un","une","de","des","du","au","aux","en","et","ou","ce","ca","mon","ma","mes","son","sa","ses","votre","vos","leur","leurs","pour","par","plus","pas","ne","que","qui","est","sur","dans","avec","sans","trop","tres","bien","fait","sont","ont","a","y"]);
-function _toks(s){ return _normTxt(s).replace(/[^a-z0-9 ]+/g," ").split(/\s+/).filter(w=>w.length>2 && !_STOP.has(w)); }
-/* match souple : la phrase entière OU un mot significatif partagé (notes courtes du conseiller) */
+const _STOP=new Set(["le","la","les","un","une","de","des","du","au","aux","en","et","ou","ce","ca","mon","ma","mes","son","sa","ses","votre","vos","leur","leurs","pour","par","plus","pas","ne","que","qui","est","sur","dans","avec","sans","trop","tres","bien","fait","sont","ont","ete","jour","jours","temps","face","chose","choses","truc","trucs","gens","client","clients","commerce","commerces","produit","produits","semaine","journee","matin","soir","autre","autres","cote","gros","petit","petits","grand","grands","monde","moment","moments","souvent","beaucoup","aussi","comme","quand","tout","tous","toute","toutes","cela","mais","donc","alors","deja","encore","vraiment","peut","etre","avoir","faire","mettre","quelque","quelques","chaque"]);
+function _toks(s){ return _normTxt(s).replace(/[^a-z0-9 ]+/g," ").split(/\s+/).filter(w=>w.length>=4 && !_STOP.has(w)); }
+/* match strict : la phrase entière présente, OU mots significatifs partagés
+   (1 si le terme est un seul mot, ≥2 si c'est une expression) — évite le bruit */
 function softHit(nAnswer, term){
-  const t=_normTxt(term);
-  if(t && nAnswer.indexOf(t)>=0) return true;
-  const tt=_toks(term); if(!tt.length) return false;
-  return tt.some(w=> nAnswer.indexOf(w)>=0);
+  const t=_normTxt(term).trim();
+  if(t && t.indexOf(" ")>=0 && nAnswer.indexOf(t)>=0) return true;   // expression exacte
+  const tt=_toks(term); if(!tt.length){ return t && t.length>=4 && nAnswer.indexOf(t)>=0; }
+  const aw=_toks(nAnswer); if(!aw.length) return false;
+  const pfx=(x,y)=> x.length>=5 && y.length>=5 && (x.indexOf(y)===0 || y.indexOf(x)===0);
+  const hits=tt.filter(w=> aw.indexOf(w)>=0 || aw.some(a=>pfx(a,w)));
+  return tt.length===1 ? hits.length>=1 : hits.length>=2;
 }
 
 /* Analyse question par question (les violettes) : famille + mots-clés propres + signaux transverses */
@@ -1284,17 +1288,30 @@ function qcInsights(){
     if(b.k!=="qc") return;
     const raw=(d[b.id]==null?"":String(d[b.id])).trim();
     if(raw.length<3) return;
-    const n=_normTxt(raw), sigs=[]; let tone="good";
-    OPEN_RULES.forEach(r=>{ if(r.w.some(x=>softHit(n,x))){ sigs.push(r.ti); families.add(r.ti); if(r.t==="hot")tone="hot"; else if(r.t==="warm"&&tone!=="hot")tone="warm"; } });
+    const n=_normTxt(raw);
+    const rk={hot:0,warm:1,good:2};
+    let topRule=null; const fSet=[];
+    OPEN_RULES.forEach(r=>{ if(r.w.some(x=>softHit(n,x))){ families.add(r.ti);
+      if(fSet.indexOf(r.ti)<0) fSet.push(r.ti);
+      if(!topRule || rk[r.t]<rk[topRule.t]) topRule=r; } });
     const kwHit=(b.kw||[]).filter(k=>softHit(n,k));
-    if(BUY.some(x=>n.includes(x))){ sigs.unshift("🟢 Signal d'achat"); tone="hot"; }
-    if(OBJ.some(x=>n.includes(x))){ sigs.push("🟠 Objection / réserve"); if(tone!=="hot")tone="warm"; }
-    if(EMO.some(x=>n.includes(x))) sigs.push("Charge émotionnelle");
-    if(!sigs.length && !kwHit.length) return;
+    const buy=BUY.some(x=>n.includes(x)), obj=OBJ.some(x=>n.includes(x)), emo=EMO.some(x=>n.includes(x));
+    // 🔥 uniquement pour un vrai signal d'achat ; les familles plafonnent à ⚠️
+    let tone = buy ? "hot" : (topRule ? (topRule.t==="good"?"good":"warm") : "good");
+    if((obj||emo) && tone==="good") tone="warm";
+    if(!fSet.length && !kwHit.length && !buy && !obj && !emo) return;
+    const sigArr=[];
+    if(buy) sigArr.push("🟢 signal d'achat");
+    if(obj) sigArr.push("🟠 objection");
+    fSet.slice(0,2).forEach(s=>sigArr.push(s));
+    if(emo && sigArr.length<3) sigArr.push("charge émotionnelle");
+    const action = buy
+      ? "Signal d'achat → closer : caler un RDV2 rapproché, garder le mystère sur SA démo."
+      : (topRule ? topRule.a : (b.hint||"À réutiliser tel quel au RDV2."));
     const detail = `« ${trunc(raw,120)} »`
-      + (kwHit.length?` · capté : ${kwHit.join(", ")}`:"")
-      + (sigs.length?` · ${sigs.join(" · ")}`:"");
-    out.push([tone, "🗣️ "+trunc(b.q,60), detail, b.hint||"À réutiliser tel quel au RDV2."]);
+      + (kwHit.length?` · capté : ${kwHit.slice(0,4).join(", ")}`:"")
+      + (sigArr.length?` · ${sigArr.join(" · ")}`:"");
+    out.push([tone, "🗣️ "+trunc(b.q,60), detail, action]);
   }));
   return {alerts:out, families};
 }
@@ -1305,16 +1322,32 @@ function freeTextAlerts(){
   const items=collectOpenText();
   if(items.length){
     const it=items.map(i=>({a:i.a,n:_normTxt(i.a)}));
-    const blob=it.map(i=>i.n).join("  ");
     OPEN_RULES.forEach(r=>{
       if(qi.families.has(r.ti)) return;          // déjà remonté par une question précise
-      const w=r.w.find(x=>blob.includes(x)); if(!w) return;
-      const src=it.find(i=>i.n.includes(w));
-      const snip=src?trunc(src.a,90):"";
-      A.push([r.t,"🗣️ "+r.ti, r.m+(snip?` — « ${snip} »`:""), r.a]);
+      const src=it.find(i=> r.w.some(x=>softHit(i.n,x)));
+      if(!src) return;
+      A.push([r.t,"🗣️ "+r.ti, r.m+` — « ${trunc(src.a,90)} »`, r.a]);
     });
   }
   return A;
+}
+
+/* Manque à gagner estimé (prudent) à partir du panier + tickets + signaux de perte */
+function manqueAGagner(){
+  const d=fiche.data;
+  const mid={m10:8,"10_20":15,"20_40":30,"40_80":60,p80:90};
+  let pm=mid[selFirst(d.pa_moyen)]||0;
+  if(!pm && selFirst(d.pa_moyen)==="var"){ const x=(String(d.pa_moyen_var||"").match(/\d+/)||[])[0]; pm=x?+x:0; }
+  const tj=(String(d.pa_tickets_n||"").match(/\d+/)||[])[0]; const tickets=tj?+tj:0;
+  if(!pm || !tickets) return null;
+  const has=(g,v)=>{const x=d[g];return typeof x==="object"&&x?!!x[v]:x===v;};
+  const loss = has("dl_perte","repart") || has("dl_temps","attente") || has("dl_temps","invendus")
+    || has("op_appels","beaucoup") || has("op_appels","probleme")
+    || (d.op_pertes||"").trim() || (d.qc_ca_perdu||"").trim();
+  const perDay = loss ? Math.min(12,Math.max(2,Math.round(tickets*0.04)))
+                      : Math.max(1,Math.round(tickets*0.02));
+  const eur = Math.round((perDay*pm*26)/50)*50;
+  return { eur, perDay, pm, tickets, loss:!!loss };
 }
 
 function evalAlerts(){
@@ -1322,8 +1355,19 @@ function evalAlerts(){
   const has=(g,v)=> { const x=d[g]; return typeof x==="object"&&x?!!x[v]:x===v; };
   const txt=id=> (d[id]||"").toString().trim();
 
-  if(has("vis_presence","pas_site"))
-    A.push(["hot","Aucune présence en ligne","Le commerce est invisible pour qui le cherche sur son téléphone.","RDV2 : ouvrir sur la vitrine Marchéo à son nom + Google."]);
+  const vp=d.vis_presence||{};
+  const hasSite=!!vp.site, noSite=!!vp.pas_site, hasSocG=!!(vp.fb||vp.insta||vp.gbp);
+  if(noSite && !hasSite && !hasSocG)
+    A.push(["hot","Aucune présence en ligne","Invisible pour qui le cherche sur son téléphone.","RDV2 : ouvrir sur la vitrine Marchéo à son nom + Google."]);
+  else if(hasSite)
+    A.push(["warm","Site existant mais passif / daté","Un site qui ne prend pas de commande = vitrine morte.","RDV2 : avant/après à son nom — « on le modernise ET il encaisse »."]);
+  else if(noSite && hasSocG)
+    A.push(["warm","Présence éparse, zéro prise de commande","Visible mais aucun canal pour commander/réserver.","RDV2 : tout centraliser sur SA vitrine Marchéo qui convertit."]);
+
+  { const mg=manqueAGagner(); if(mg)
+    A.push([mg.loss?"warm":"good", `💶 Manque à gagner estimé ≈ ${mg.eur.toLocaleString("fr-FR")} €/mois`,
+      `Base prudente : ~${mg.perDay} panier${mg.perDay>1?"s":""}/j récupérable${mg.perDay>1?"s":""} × ${mg.pm} € × 26 j. À valider avec lui.`,
+      "RDV2 : lui faire dire le chiffre, puis montrer comment Marchéo le récupère."]); }
   const vt=d.vis_trouve||{};
   if((vt.bao||vt.habitues)&&!vt.google&&!vt.rs)
     A.push(["warm","100% dépendant du bouche-à-oreille","Aucun canal digital actif : croissance plafonnée, fragile.","RDV2 : montrer le canal qui amène des nouveaux clients sans effort."]);
@@ -1490,22 +1534,37 @@ function buildSynthesis(){
   const temp=tempMap[selFirst(d.pj_interet)]||["À évaluer","•"];
   const prob=probMap[selFirst(d.ev_proba)]||"non évaluée";
 
+  // présence en ligne (réconciliée : site obsolète ≠ aucune présence)
+  const vp=d.vis_presence||{};
+  const noPresence = !!vp.pas_site && !vp.site && !(vp.fb||vp.insta||vp.gbp);
+  const siteVieux  = !!vp.site;
+
+  // appels / C&C : aussi lus dans les réponses ouvertes
+  const openAppels=_normTxt([d.qc_supprimer_tache,d.qc_moment_solution,d.op_douleurs].filter(Boolean).join(" "));
+  const appelsPain = H("op_appels","probleme")||H("op_appels","beaucoup")
+    || /appel|telephone|coup de feu|file d.attente|debord/.test(openAppels);
+  const ccReady = H("op_cc","pense")||H("op_cc","essaye");
+
   // douleurs détectées
   const pains=[];
-  if(H("op_appels","probleme")||H("op_appels","beaucoup")) pains.push("Appels chronophages");
-  if(H("vis_presence","pas_site")) pains.push("Aucune présence en ligne");
+  if(appelsPain) pains.push("Appels chronophages / coup de feu");
+  if(noPresence) pains.push("Aucune présence en ligne");
+  else if(siteVieux) pains.push("Site existant mais passif / daté");
+  { const mg=manqueAGagner(); if(mg) pains.push(`Manque à gagner estimé ≈ ${mg.eur.toLocaleString("fr-FR")} €/mois`); }
   if((d.op_pertes||"").trim()) pains.push("Pertes de ventes : "+trunc(d.op_pertes,60));
   if(H("li_position","aimerait")) pains.push("Veut livrer mais pas outillé");
-  if(H("op_cc","pense")) pains.push("Click & collect imaginé mais jamais lancé");
+  if(ccReady) pains.push("Click & collect imaginé mais jamais lancé");
   if((d.op_douleurs||"").trim()) pains.push(trunc(d.op_douleurs,70));
   if((d.qc_dormir||"").trim()) pains.push("Peur profonde : "+trunc(d.qc_dormir,60));
 
-  // plat principal
+  // plat principal — appels/C&C prioritaire (moindre effort, douleur n°1)
   let plat="Vitrine + click & collect à son nom";
-  if(H("op_appels","probleme")||H("op_appels","beaucoup")) plat="Click & collect (supprime les appels)";
+  if(appelsPain && ccReady) plat="Click & Collect (fin des appels) — il y a déjà pensé";
+  else if(appelsPain) plat="Click & Collect (supprime les appels)";
   else if(H("li_position","aimerait")||H("op_livraison","regulier")) plat="Module livraison cadré (zone + créneaux)";
+  else if(ccReady) plat="Click & collect, prêt à l'emploi";
   else if((d.qc_reviennent_pas||"").trim()) plat="Fidélisation + notifications clients";
-  else if(H("vis_presence","pas_site")) plat="Vitrine en ligne + visibilité Google";
+  else if(noPresence) plat="Vitrine en ligne + visibilité Google";
 
   // arguments dans SES mots
   const qcIds=["qc_choisissent_vous","qc_savent_pas","qc_supprimer_tache","qc_ca_perdu","qc_2h","qc_sousvalorise","qc_jamais_ose","qc_dormir","qc_different_200m","qc_invisibles","qc_retenir"];
