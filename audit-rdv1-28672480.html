@@ -289,14 +289,20 @@
   .mock-cap{font-size:14px;color:var(--g1);margin-bottom:10px}
   .mock-cap b{color:var(--nuit)}
   .site{border:1px solid var(--cremef);border-radius:14px;overflow:hidden;box-shadow:var(--sh);background:#fff;margin-bottom:14px}
+  .site.real{display:block;text-decoration:none;color:inherit}
+  .site.real:active{transform:scale(.997)}
   .site-bar{height:30px;background:#11151f;display:flex;align-items:center;gap:5px;padding:0 12px}
   .site-bar i{width:9px;height:9px;border-radius:50%;background:#3a4150;flex:none}
   .site-url{flex:1;text-align:center;font-size:11px;color:#8893a5;font-family:Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .site-hero{padding:30px 20px;text-align:center;color:#fff}
-  .site-hero .lg{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:999px;margin-bottom:10px}
-  .site-hero h4{font-family:var(--fd);font-size:24px;font-weight:800;margin:4px 0}
-  .site-hero p{font-size:13px;opacity:.92;margin-bottom:14px}
-  .site-hero .cta{display:inline-grid;place-items:center;height:40px;padding:0 22px;border-radius:10px;font-weight:800;font-size:14px;color:#fff}
+  .site-hero{position:relative;padding:34px 20px;text-align:center;color:#fff;background-size:cover;background-position:center;overflow:hidden}
+  .site-hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,25,18,.22),rgba(15,25,18,.64))}
+  .site-hero .hc{position:relative}
+  .site-hero .lg-img{height:36px;width:auto;margin-bottom:8px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.55))}
+  .site-hero .lg{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;margin-bottom:10px;backdrop-filter:blur(2px)}
+  .site-hero h4{font-family:var(--fd);font-size:24px;font-weight:800;margin:4px 0;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+  .site-hero p{font-size:13px;opacity:.95;margin-bottom:14px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+  .site-hero .cta{display:inline-grid;place-items:center;height:40px;padding:0 22px;border-radius:10px;font-weight:800;font-size:14px;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .site-foot{padding:11px 14px;font-size:12px;font-weight:600;color:var(--vert);background:var(--cremef);text-align:center}
   .site-body{padding:14px}
   .site-body h6{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--g2);margin:0 0 9px}
   .site-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
@@ -1249,17 +1255,17 @@ function freeTextAlerts(){
   const it=items.map(i=>({a:i.a,n:norm(i.a)}));
   const blob=it.map(i=>i.n).join("  ");
   const RULES=[
-    {w:["trop cher","pas les moyens","budget","ca coute","trop couteux","rentable","rentabilite","ca rapporte"],t:"warm",ti:"Sensibilité prix / ROI",m:"Le prix est déjà dans sa tête.",a:"RDV2 : chiffrer le gain (CA récupéré, temps gagné) AVANT d'annoncer le prix."},
-    {w:["pas le temps","pas de temps","deborde","tout seul","toute seule","epuise","fatigue","trop de travail","surcharge","cours partout","jamais le temps"],t:"hot",ti:"Surcharge / manque de temps",m:"Douleur opérationnelle forte, dite avec ses mots.",a:"RDV2 : Click & Collect / automatisation = gain de temps concret, en plat principal."},
-    {w:["peur","complique","pas doue","pas a l'aise","informatique","trop technique","connais rien","pas pour moi","trop vieux","mon age","depasse"],t:"warm",ti:"Frein au digital",m:"Appréhension de la technique — à désamorcer avant l'argument produit.",a:"RDV2 : démo ultra simple, « tout est fait pour vous, zéro manip »."},
-    {w:["concurrent","concurrence","en face","a cote","200 m","200m","grande surface","supermarche","amazon","leclerc","carrefour","intermarche"],t:"warm",ti:"Pression concurrentielle",m:"Il se compare — terrain pour la différenciation.",a:"RDV2 : tout miser sur SA différence (nom, histoire, produits, photos)."},
-    {w:["ne reviennent","moins de clients","perdu des clients","moins de monde","en baisse","plus comme avant","frequentation","moins frequente","ca baisse"],t:"hot",ti:"Érosion de la clientèle",m:"Il constate une baisse — levier émotionnel + besoin de fidélisation.",a:"RDV2 : notifications, fidélité, visibilité pour faire revenir les clients."},
-    {w:["bouche a oreille","habitues","on ne me trouve","personne ne sait","pas connu","invisible","pas de site","pas sur internet","pas sur le net","pas de visibilite"],t:"warm",ti:"100% bouche-à-oreille",m:"Aucun canal digital actif — croissance plafonnée.",a:"RDV2 : montrer le canal qui amène des NOUVEAUX clients sans effort."},
-    {w:["j'aimerais","jaimerais","je reve","j'adorerais","envie de","aimerais developper","agrandir","me developper","grandir","ambition","projet de","aimerais bien"],t:"good",ti:"Envie de développement",m:"Énergie positive à capter — il se projette.",a:"RDV2 : raccrocher la démo V2 à SON projet, avec ses mots."},
-    {w:["invendu","invendus","jeter","gaspillage","gaspille","perte de marchandise","perime","reste sur les bras","poubelle"],t:"warm",ti:"Invendus / gaspillage",m:"Pertes de marchandise verbalisées — argument ROI concret.",a:"RDV2 : précommande / click & collect = écoulement anticipé du frais."},
-    {w:["fier","fierte","savoir-faire","savoir faire","fait maison","artisanal","qualite","fait moi-meme","fait moi meme","selection","meilleur"],t:"good",ti:"Fierté produit / savoir-faire",m:"Matière émotionnelle forte pour le storytelling du site.",a:"RDV2 : mettre SA pépite en hero, raconter son histoire produit."},
-    {w:["reserve","reserver","reservation","commande a l'avance","commander a l'avance","precommande","pre-commande","mettre de cote","mets de cote"],t:"good",ti:"Réservation déjà demandée",m:"Le besoin de commande à l'avance existe déjà chez ses clients.",a:"RDV2 : montrer SA page de précommande, prête à l'emploi."},
-    {w:["seul","toute seule","tout seul","pas d'employe","pas d'equipe","je gere tout","personne pour m'aider","manque de personnel","pas de main"],t:"hot",ti:"Isolé / pas de main-d'œuvre",m:"Surcharge structurelle — automatiser, pas embaucher.",a:"RDV2 : positionner Marchéo comme « un employé qui prend les commandes 24/7 »."}
+    {w:["cher","trop cher","pas les moyens","budget","ca coute","coute cher","couteux","rentab","ca rapporte","retour sur","investiss","trop d'argent","pas d'argent","tarif","ca vaut le coup","amortir","tous les mois","abonnement","mensualite","gratuit","sans payer","ca me coute","prix"],t:"warm",ti:"Sensibilité prix / ROI",m:"Le prix est déjà dans sa tête.",a:"RDV2 : chiffrer le gain (CA récupéré, temps gagné) AVANT d'annoncer le prix."},
+    {w:["pas le temps","plus le temps","jamais le temps","manque de temps","pas de temps","deborde","debord","epuis","fatigu","creve","a bout","sous l'eau","cours partout","cours dans tous","jongl","trop de boulot","trop de travail","trop a faire","surcharg","speed","rush","charrette","plus de souffle","crame","au taquet","non-stop","nonstop","du matin au soir","sans arreter","sans m'arreter","plus le temps de","cavale","sur tous les fronts"],t:"hot",ti:"Surcharge / manque de temps",m:"Douleur opérationnelle forte, dite avec ses mots.",a:"RDV2 : Click & Collect / automatisation = gain de temps concret, en plat principal."},
+    {w:["informatiq","ordinateur","pas internet pour","technolog","trop technique","la technique","complique a","pas doue","doue pour","a l'aise avec","pas a l'aise","connais rien","comprends rien","comprend rien","perdu avec","nul en","pas pour moi","trop vieux","trop vieille","ma generation","depass","peur de mal","ca me fait peur","me fait peur","angoiss","novice","debutant","sais pas faire","sais pas m'en servir","jamais touche","pas mon truc","trop complique"],t:"warm",ti:"Frein au digital",m:"Appréhension de la technique — à désamorcer avant l'argument produit.",a:"RDV2 : démo ultra simple, « tout est fait pour vous, zéro manip »."},
+    {w:["concurr","la concu","en face","juste a cote","a cote il y a","grande surface","grandes surfaces","supermarch","hypermarch","leclerc","carrefour","intermarch","auchan","lidl","super u","casino","drive","amazon","la chaine","les chaines","franchise","centre commercial","gros qui","le gros","la grande distribution","grande distribution"],t:"warm",ti:"Pression concurrentielle",m:"Il se compare — terrain pour la différenciation.",a:"RDV2 : tout miser sur SA différence (nom, histoire, produits, photos)."},
+    {w:["ne revien","reviennent pas","reviennent plus","moins de client","moins de monde","moins de mond","y a moins","baisse","baiss","en chute","ca chute","frequentation","moins frequent","plus comme avant","perdu des client","perds des client","perte de client","clientele vieilli","population vieilli","le village se vide","ca se vide","plus personne","desert","moins d'affluence","moins de passage","moins de passages","plus assez de client","ca tourne moins","ca marche moins"],t:"hot",ti:"Érosion de la clientèle",m:"Il constate une baisse — levier émotionnel + besoin de fidélisation.",a:"RDV2 : notifications, fidélité, visibilité pour faire revenir les clients."},
+    {w:["bouche a oreille","bouche-a-oreille","que des habitue","les habitue","on ne me trouve","me trouve pas","trouvent pas","trouve pas sur","me connait pas","connaissent pas","pas connu","invisible","pas de site","aucun site","pas de page","pas sur internet","pas sur le net","pas sur le web","pas de visib","aucune visib","pas reference","apparais pas","personne ne sait","pas present en ligne","rien en ligne","introuvable","on ne nous trouve","pas visible","existe pas sur"],t:"warm",ti:"100% bouche-à-oreille",m:"Aucun canal digital actif — croissance plafonnée.",a:"RDV2 : montrer le canal qui amène des NOUVEAUX clients sans effort."},
+    {w:["aimerais","j'aimerais","jaimerais","je reve","j'adorerais","jadorerais","envie de","l'envie de","developp","agrandir","s'agrandir","grandir","ambition","mon projet","projet de","projet d'","faire evoluer","vitesse superieure","franchir un cap","aller plus loin","booster","relancer","relance","dynamis","moderniser","me lancer","faire grossir","faire connaitre","plus de client","attirer","gagner des client","toucher plus","conquerir"],t:"good",ti:"Envie de développement",m:"Énergie positive à capter — il se projette.",a:"RDV2 : raccrocher la démo V2 à SON projet, avec ses mots."},
+    {w:["invendu","jeter","je jette","on jette","gaspill","perim","poubelle","brad","solder","sur les bras","reste sur les","ecouler","ecoule pas","trop de stock","frais perdu","marchandise perdue","perte de marchandise","perte seche","ce qui ne part pas","ce qu'on ne vend pas","ce qu'on jette","pertes de produit","perte de produit","fin de journee"],t:"warm",ti:"Invendus / gaspillage",m:"Pertes de marchandise verbalisées — argument ROI concret.",a:"RDV2 : précommande / click & collect = écoulement anticipé du frais."},
+    {w:["fier de","tres fier","fiere de","fierte","savoir-faire","savoir faire","fait maison","faite maison","artisan","qualite de mes","la qualite","selection","selectionn","circuit court","producteur local","produit local","produits locaux","exigea","fait moi-meme","fait moi meme","fait par moi","ma passion","passion du","amour du metier","tradition","authentiq","les meilleurs","le meilleur","haut de gamme","fait avec amour","de saison"],t:"good",ti:"Fierté produit / savoir-faire",m:"Matière émotionnelle forte pour le storytelling du site.",a:"RDV2 : mettre SA pépite en hero, raconter son histoire produit."},
+    {w:["reserv","commande a l'avance","commander a l'avance","commande a l avance","precommand","pre-command","pre command","mettre de cote","mets de cote","met de cote","mis de cote","de cote pour","sur commande","commande special","commandes speciales","a l'avance","a l avance","anticip","reserver leur","garder pour"],t:"good",ti:"Réservation déjà demandée",m:"Le besoin de commande à l'avance existe déjà chez ses clients.",a:"RDV2 : montrer SA page de précommande, prête à l'emploi."},
+    {w:["tout seul","toute seule","je suis seul","seul a faire","seule a faire","sans employe","pas d'employe","pas d employe","sans salarie","pas de salarie","pas d'equipe","pas d equipe","sans equipe","personne pour m'aider","personne pour m aider","manque de personnel","pas de main d'oeuvre","pas de main d oeuvre","pas de bras","embauch","recrut","trouve pas de personnel","dur de recruter","jamais en conge","jamais de vacances","peux pas m'arreter","peux pas m arreter","tout repose sur moi","je gere tout"],t:"hot",ti:"Isolé / pas de main-d'œuvre",m:"Surcharge structurelle — automatiser, pas embaucher.",a:"RDV2 : positionner Marchéo comme « un employé qui prend les commandes 24/7 »."}
   ];
   const A=[];
   RULES.forEach(r=>{
@@ -1377,20 +1383,48 @@ function diagProducts(){
   return out.slice(0,6);
 }
 function buildMock(){
-  const m=METIERS[selFirst(val("type_commerce"))]||METIERS.autre;
+  const k=selFirst(val("type_commerce"))||"autre";
+  const m=METIERS[k]||METIERS.autre;
   const nom=esc(val("nom_commerce")||m.label);
   const slug=(val("nom_commerce")||m.label).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  const PH={primeur:1,boucherie:1,boulangerie:1,poissonnerie:1,traiteur:1,fromagerie:1,fleuriste:1,pizzeria:1,restaurant:1,fastfood:1};
+  const photo = PH[k] ? `/assets/metiers/${k}.webp` : "";
   let prods=diagProducts();
   if(!prods.length) prods=[{n:"Spécialité maison",p:""},{n:"Produit phare",p:""},{n:"Sélection du jour",p:""},{n:"Coffret cadeau",p:""}];
   const grid=prods.map(p=>`<div class="it"><span class="em">${m.emoji}</span><b>${esc(p.n)}</b><span>${p.p?esc(p.p):"Voir"}</span></div>`).join("");
-  return `<div class="mock-cap">Voici à quoi ressemblerait <b>${nom}</b> en ligne :</div>
+  const CC="https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/boutiques-media/chez-christophe";
+  const isPrim = k==="primeur";
+
+  const real=`<div class="mock-cap">Un <b>vrai site</b> qu'on a créé${isPrim?", un primeur comme vous":""} — ouvrez-le, il est en ligne :</div>
+  <a class="site real" href="/chez-christophe" target="_blank" rel="noopener">
+    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">marchéo.fr/chez-christophe</div></div>
+    <div class="site-hero" style="background-color:#2A4535;background-image:url('${CC}/hero.png')">
+      <div class="ov"></div>
+      <div class="hc">
+        <img class="lg-img" src="${CC}/logo.png" alt="" onerror="this.style.display='none'">
+        <h4>Chez Christophe 🌿</h4>
+        <p>Primeur · Blonville-sur-Mer — fruits &amp; légumes de saison</p>
+        <span class="cta" style="background:var(--vert)">Voir nos rayons</span>
+      </div>
+    </div>
+    <div class="site-foot">Site Marchéo en production · marchéo.fr/chez-christophe ↗</div>
+  </a>`;
+
+  const heroStyle = photo
+    ? `background-color:${m.c};background-image:url('${photo}')`
+    : `background:linear-gradient(150deg,${m.c},${m.c}cc)`;
+
+  const yours=`<div class="mock-cap" style="margin-top:18px">Et voici <b>${nom}</b>, sur le même modèle :</div>
   <div class="site">
-    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">${esc(slug)}.marcheo.fr</div></div>
-    <div class="site-hero" style="background:linear-gradient(150deg,${m.c},${m.c}cc)">
-      <span class="lg">● ${nom}</span>
-      <h4>${nom} ${m.emoji}</h4>
-      <p>${esc(m.tag)}</p>
-      <span class="cta" style="background:${m.a}">${esc(m.cta)}</span>
+    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">${esc(slug)}.marchéo.fr</div></div>
+    <div class="site-hero${photo?" ph":""}" style="${heroStyle}">
+      ${photo?'<div class="ov"></div>':''}
+      <div class="hc">
+        <span class="lg">● ${nom}</span>
+        <h4>${nom} ${m.emoji}</h4>
+        <p>${esc(m.tag)}</p>
+        <span class="cta" style="background:${m.a}">${esc(m.cta)}</span>
+      </div>
     </div>
     <div class="site-body">
       <h6>Nos produits</h6>
@@ -1399,15 +1433,18 @@ function buildMock(){
   </div>
   <div class="mock-grid">
     <div class="mock"><h5>Sur Google</h5><div class="mk-g">
-      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${esc(slug)}.marcheo.fr · Itinéraire</div>
+      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${esc(slug)}.marchéo.fr · Itinéraire</div>
       <div class="st">★★★★★ <span style="color:#555">(127 avis)</span></div>
       <div class="ds">${esc(m.tag)}. Commande en ligne · Click &amp; collect · Ouvre à 8h00.</div></div></div>
     <div class="mock"><h5>Sur mobile</h5><div class="mk-ph" style="max-width:160px;margin:0 auto">
-      <div class="hd" style="background:${m.c};padding:20px 10px">${m.emoji}<br>${nom}</div>
+      <div class="hd" style="${photo?`background:${m.c} url('${photo}') center/cover`:`background:${m.c}`};padding:20px 10px;position:relative">
+        <span style="position:relative">${m.emoji}<br>${nom}</span></div>
       <div class="bd">
         <div class="mk-row"><span class="em">${m.emoji}</span><div><b>${esc(prods[0].n)}</b><span>${prods[0].p?esc(prods[0].p):"Disponible"}</span></div></div>
         <div class="mk-btn" style="background:${m.a}">${esc(m.cta)}</div></div></div></div>
   </div>`;
+
+  return real+yours;
 }
 function buildDiag(){
   const s=diagScores();
