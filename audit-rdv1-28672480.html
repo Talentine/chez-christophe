@@ -212,6 +212,15 @@
   .al .alm{font-size:14px;color:var(--g1);line-height:1.45}
   .al .ala{font-size:13.5px;font-weight:700;color:var(--nuit);background:var(--bleu100);border-radius:8px;padding:8px 11px;margin-top:9px}
   .al-empty{text-align:center;color:var(--g2);padding:40px 16px;font-size:15px}
+  .al.ai{border-left-color:var(--bleuc);background:#FBFCFF}
+  .al .ai-tag{display:inline-block;background:var(--nuit);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;border-radius:5px;padding:2px 6px}
+  .ai-bar{display:flex;gap:8px;margin-bottom:14px}
+  .ai-bar .ai-go{flex:1;height:46px;border-radius:11px;background:var(--nuit);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .ai-bar .ai-go.busy{opacity:.65}
+  .ai-bar .ai-key{width:62px;border-radius:11px;background:var(--creme);border:1.5px solid var(--cremef);color:var(--g1);font-weight:800;font-size:13px}
+  .ai-head{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--g1);text-transform:uppercase;margin:2px 0 10px}
+  .spin{width:15px;height:15px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
 
   /* fiches list */
   .fitem{background:#fff;border-radius:12px;padding:15px;margin-bottom:11px;box-shadow:var(--sh);display:flex;align-items:center;gap:12px}
@@ -780,11 +789,12 @@ function uid(){ return "f"+Date.now().toString(36)+Math.random().toString(36).sl
 function newFiche(){
   fiche = {id:uid(), data:{}, createdAt:Date.now(), updatedAt:Date.now()};
   store.fiches.unshift(fiche); store.currentId = fiche.id;
+  aiInsights=[];
   persist();
 }
 function loadFiche(id){
   const f = store.fiches.find(x=>x.id===id);
-  if(f){ fiche=f; store.currentId=id; cur=0; persist(); render(); closeAll(); }
+  if(f){ fiche=f; store.currentId=id; cur=0; aiInsights=[]; persist(); render(); closeAll(); }
 }
 function ensureFiche(){
   if(store.currentId){ fiche = store.fiches.find(x=>x.id===store.currentId); }
@@ -1027,6 +1037,49 @@ function refreshVitrine(){
 /* ============================================================
    STRATÈGE — alertes live (conseiller)
    ============================================================ */
+/* Récupère toutes les RÉPONSES OUVERTES (questions à creuser + champs texte libre) */
+function collectOpenText(){
+  const d=fiche.data, out=[], seen={};
+  const push=(q,id)=>{ if(seen[id]) return; seen[id]=1;
+    const v=(d[id]==null?"":String(d[id])).trim(); if(v.length>2) out.push({q:q||id,a:v}); };
+  SCHEMA.forEach(s=>(s.blocks||[]).forEach(b=>{
+    if(b.k==="qc") push(b.q,b.id);
+    else if(b.k==="card"){ b.fields.forEach(f=>{
+      if(f.type==="textarea") push(f.label,f.id);
+      (f.opts||[]).forEach(o=>(o.sub||[]).forEach(sf=>{ if(sf.type==="textarea") push(sf.label,sf.id); }));
+    }); }
+    else if(b.k==="rep"){ for(let i=1;i<=b.n;i++) b.fields.forEach(f=>{
+      if(f.type==="textarea") push(`${b.title} ${i} — ${f.label}`,`${b.id}_${i}_${f.id}`); }); }
+  }));
+  return out;
+}
+
+/* Analyse heuristique hors-ligne des réponses ouvertes → alertes stratégiques */
+function freeTextAlerts(){
+  const items=collectOpenText();
+  if(!items.length) return [];
+  const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[‘’‚]/g,"'");
+  const it=items.map(i=>({a:i.a,n:norm(i.a)}));
+  const blob=it.map(i=>i.n).join("  ");
+  const RULES=[
+    {w:["trop cher","pas les moyens","budget","ca coute","trop couteux","rentable","rentabilite","ca rapporte"],t:"warm",ti:"Sensibilité prix / ROI",m:"Le prix est déjà dans sa tête.",a:"RDV2 : chiffrer le gain (CA récupéré, temps gagné) AVANT d'annoncer le prix."},
+    {w:["pas le temps","pas de temps","deborde","tout seul","toute seule","epuise","fatigue","trop de travail","surcharge","cours partout","jamais le temps"],t:"hot",ti:"Surcharge / manque de temps",m:"Douleur opérationnelle forte, dite avec ses mots.",a:"RDV2 : Click & Collect / automatisation = gain de temps concret, en plat principal."},
+    {w:["peur","complique","pas doue","pas a l'aise","informatique","trop technique","connais rien","pas pour moi","trop vieux","mon age","depasse"],t:"warm",ti:"Frein au digital",m:"Appréhension de la technique — à désamorcer avant l'argument produit.",a:"RDV2 : démo ultra simple, « tout est fait pour vous, zéro manip »."},
+    {w:["concurrent","concurrence","en face","a cote","200 m","200m","grande surface","supermarche","amazon","leclerc","carrefour","intermarche"],t:"warm",ti:"Pression concurrentielle",m:"Il se compare — terrain pour la différenciation.",a:"RDV2 : tout miser sur SA différence (nom, histoire, produits, photos)."},
+    {w:["ne reviennent","moins de clients","perdu des clients","moins de monde","en baisse","plus comme avant","frequentation","moins frequente","ca baisse"],t:"hot",ti:"Érosion de la clientèle",m:"Il constate une baisse — levier émotionnel + besoin de fidélisation.",a:"RDV2 : notifications, fidélité, visibilité pour faire revenir les clients."},
+    {w:["bouche a oreille","habitues","on ne me trouve","personne ne sait","pas connu","invisible","pas de site","pas sur internet","pas sur le net","pas de visibilite"],t:"warm",ti:"100% bouche-à-oreille",m:"Aucun canal digital actif — croissance plafonnée.",a:"RDV2 : montrer le canal qui amène des NOUVEAUX clients sans effort."},
+    {w:["j'aimerais","jaimerais","je reve","j'adorerais","envie de","aimerais developper","agrandir","me developper","grandir","ambition","projet de","aimerais bien"],t:"good",ti:"Envie de développement",m:"Énergie positive à capter — il se projette.",a:"RDV2 : raccrocher la démo V2 à SON projet, avec ses mots."}
+  ];
+  const A=[];
+  RULES.forEach(r=>{
+    const w=r.w.find(x=>blob.includes(x)); if(!w) return;
+    const src=it.find(i=>i.n.includes(w));
+    const snip=src?trunc(src.a,90):"";
+    A.push([r.t,"🗣️ "+r.ti, r.m+(snip?` — « ${snip} »`:""), r.a]);
+  });
+  return A;
+}
+
 function evalAlerts(){
   const d=fiche.data, A=[];
   const has=(g,v)=> { const x=d[g]; return typeof x==="object"&&x?!!x[v]:x===v; };
@@ -1056,21 +1109,104 @@ function evalAlerts(){
   // reco — rappel persistant
   if(!d.re_demande || d.re_demande==="non")
     A.push(["hot","RECO NON DEMANDÉE","L'étape la plus rentable de la tournée n'est pas faite.","Avant de partir : demander 2-3 noms. Toujours."]);
+  freeTextAlerts().forEach(x=>A.push(x));
   return A;
 }
 
+let aiInsights=[], aiBusy=false;
+const AI_MODEL="claude-opus-4-7";
+const AI_LSKEY="mcheo_ai_key";
+function aiKey(){ try{ return localStorage.getItem(AI_LSKEY)||""; }catch(e){ return ""; } }
+function setAiKey(){
+  const v=prompt("Clé API Anthropic pour l'analyse IA.\nStockée uniquement sur cette tablette, envoyée seulement à l'API Anthropic.\nLaisser vide puis OK = supprimer la clé.", aiKey());
+  if(v===null) return;
+  try{ if(v.trim()) localStorage.setItem(AI_LSKEY,v.trim()); else localStorage.removeItem(AI_LSKEY); }catch(e){}
+  toast(v.trim()?"Clé IA enregistrée":"Clé IA supprimée");
+  refreshStrat();
+}
+const AI_SYS=`Tu es un expert de la vente terrain pour Marchéo, une solution qui digitalise les commerces de proximité (vitrine en ligne, click & collect, livraison, fidélisation).
+On te donne les RÉPONSES LIBRES d'un commerçant, notées par le conseiller pendant le 1er rendez-vous (RDV1). Ton rôle : aider le conseiller à préparer le RDV2 (démo personnalisée).
+Analyse UNIQUEMENT ce que le commerçant a dit. Détecte : douleurs opérationnelles, signaux d'achat, freins/objections (prix, temps, peur du digital, concurrence), leviers émotionnels et envies.
+Pour chaque insight :
+- tone : "hot" (douleur forte ou signal d'achat à exploiter vite), "warm" (frein / point de vigilance), "good" (levier positif à capitaliser).
+- title : 3 à 6 mots, percutant.
+- message : le constat, ancré dans SES mots (pas de généralités).
+- action : recommandation concrète et actionnable pour le RDV2.
+- quote : sa phrase exacte la plus parlante (ou "").
+Donne 4 à 7 insights maximum, triés du plus important au moins important. Pas de blabla : seulement le format structuré. Ignore les réponses vides ou inexploitables.`;
+const AI_SCHEMA={type:"object",additionalProperties:false,properties:{insights:{type:"array",items:{type:"object",additionalProperties:false,properties:{tone:{type:"string",enum:["hot","warm","good"]},title:{type:"string"},message:{type:"string"},action:{type:"string"},quote:{type:"string"}},required:["tone","title","message","action","quote"]}}},required:["insights"]};
+async function aiAnalyse(){
+  if(aiBusy) return;
+  if(!aiKey()){ setAiKey(); return; }
+  if(!navigator.onLine){ toast("Hors-ligne — l'analyse IA nécessite une connexion"); return; }
+  const items=collectOpenText();
+  if(!items.length){ toast("Aucune réponse ouverte à analyser pour l'instant"); return; }
+  aiBusy=true; refreshStrat();
+  try{
+    const userTxt=items.map(i=>`Q : ${i.q}\nR : ${i.a}`).join("\n\n");
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json",
+        "x-api-key":aiKey(),
+        "anthropic-version":"2023-06-01",
+        "anthropic-dangerous-direct-browser-access":"true"
+      },
+      body:JSON.stringify({
+        model:AI_MODEL,
+        max_tokens:2000,
+        system:[{type:"text",text:AI_SYS,cache_control:{type:"ephemeral"}}],
+        output_config:{format:{type:"json_schema",schema:AI_SCHEMA}},
+        messages:[{role:"user",content:`Réponses libres du commerçant :\n\n${userTxt}`}]
+      })
+    });
+    if(!res.ok){
+      let m=res.status; try{ const e=await res.json(); m=(e.error&&e.error.message)||m; }catch(_){}
+      throw new Error(m);
+    }
+    const data=await res.json();
+    const txt=(data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("");
+    const parsed=JSON.parse(txt);
+    aiInsights=(parsed.insights||[]).filter(x=>x&&x.title).map(x=>{
+      const tone=["hot","warm","good"].includes(x.tone)?x.tone:"warm";
+      const q=(x.quote||"").trim();
+      return [tone, x.title, (x.message||"")+(q?` — « ${trunc(q,110)} »`:""), x.action||"", true];
+    });
+    toast(aiInsights.length?`IA : ${aiInsights.length} insight(s)`:"IA : rien de saillant");
+  }catch(err){
+    toast("Échec IA : "+((err&&err.message)||"erreur"));
+  }finally{
+    aiBusy=false; refreshStrat();
+  }
+}
+function alHTML(a){
+  const ic=a[0]==="hot"?"🔥":a[0]==="warm"?"⚠️":"✅";
+  return `<div class="al ${a[0]}${a[4]?" ai":""}">
+    <div class="alt">${a[4]?'<span class="ai-tag">IA</span> ':''}${ic} ${esc(a[1])}</div>
+    <div class="alm">${esc(a[2])}</div>
+    <div class="ala">→ ${esc(a[3])}</div></div>`;
+}
 function refreshStrat(){
   const A=evalAlerts();
-  const hot=A.some(a=>a[0]==="hot");
   const fab=document.getElementById("fab");
   document.getElementById("fabCnt").textContent=A.length;
   fab.classList.toggle("alarm", (!d_recoOk()) );
   const body=document.getElementById("stratBody");
-  if(!A.length){ body.innerHTML=`<div class="al-empty">Rien à signaler pour l'instant.<br>Les indices stratégiques apparaîtront ici au fil de tes réponses.</div>`; return; }
-  body.innerHTML=A.map(a=>`<div class="al ${a[0]}">
-    <div class="alt">${a[0]==="hot"?"🔥":a[0]==="warm"?"⚠️":"✅"} ${esc(a[1])}</div>
-    <div class="alm">${esc(a[2])}</div>
-    <div class="ala">→ ${esc(a[3])}</div></div>`).join("");
+  const hasKey=!!aiKey();
+  const bar=`<div class="ai-bar">
+      <button class="ai-go${aiBusy?" busy":""}" id="aiGo"${aiBusy?" disabled":""}>${
+        aiBusy?'<span class="spin"></span> Analyse en cours…':'🤖 Analyser les réponses ouvertes'}</button>
+      <button class="ai-key" id="aiKeyBtn" title="Clé IA">${hasKey?"🔑":"＋ clé"}</button>
+    </div>`;
+  const aiBlock = aiInsights.length
+    ? `<div class="ai-head">🤖 Lecture IA des réponses ouvertes</div>`+aiInsights.map(alHTML).join("")
+    : "";
+  const heur = A.length
+    ? A.map(alHTML).join("")
+    : `<div class="al-empty">Rien à signaler pour l'instant.<br>Les indices apparaîtront au fil des réponses — ou lance l'analyse IA ci-dessus.</div>`;
+  body.innerHTML = bar + aiBlock + heur;
+  const go=document.getElementById("aiGo"); if(go) go.onclick=aiAnalyse;
+  const kb=document.getElementById("aiKeyBtn"); if(kb) kb.onclick=setAiKey;
 }
 function d_recoOk(){ const x=fiche.data.re_demande; return x && x!=="non"; }
 
