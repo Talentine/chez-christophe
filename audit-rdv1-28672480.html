@@ -1210,13 +1210,7 @@ function collectOpenText(){
 }
 
 /* Analyse heuristique hors-ligne des réponses ouvertes → alertes stratégiques */
-function freeTextAlerts(){
-  const items=collectOpenText();
-  if(!items.length) return [];
-  const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[‘’‚]/g,"'");
-  const it=items.map(i=>({a:i.a,n:norm(i.a)}));
-  const blob=it.map(i=>i.n).join("  ");
-  const RULES=[
+const OPEN_RULES=[
     {w:["cher","trop cher","pas les moyens","budget","ca coute","coute cher","couteux","rentab","ca rapporte","retour sur","investiss","trop d'argent","pas d'argent","tarif","ca vaut le coup","amortir","tous les mois","abonnement","mensualite","gratuit","sans payer","ca me coute","prix"],t:"warm",ti:"Sensibilité prix / ROI",m:"Le prix est déjà dans sa tête.",a:"RDV2 : chiffrer le gain (CA récupéré, temps gagné) AVANT d'annoncer le prix."},
     {w:["pas le temps","plus le temps","jamais le temps","manque de temps","pas de temps","deborde","debord","epuis","fatigu","creve","a bout","sous l'eau","cours partout","cours dans tous","jongl","trop de boulot","trop de travail","trop a faire","surcharg","speed","rush","charrette","plus de souffle","crame","au taquet","non-stop","nonstop","du matin au soir","sans arreter","sans m'arreter","plus le temps de","cavale","sur tous les fronts"],t:"hot",ti:"Surcharge / manque de temps",m:"Douleur opérationnelle forte, dite avec ses mots.",a:"RDV2 : Click & Collect / automatisation = gain de temps concret, en plat principal."},
     {w:["informatiq","ordinateur","pas internet pour","technolog","trop technique","la technique","complique a","pas doue","doue pour","a l'aise avec","pas a l'aise","connais rien","comprends rien","comprend rien","perdu avec","nul en","pas pour moi","trop vieux","trop vieille","ma generation","depass","peur de mal","ca me fait peur","me fait peur","angoiss","novice","debutant","sais pas faire","sais pas m'en servir","jamais touche","pas mon truc","trop complique"],t:"warm",ti:"Frein au digital",m:"Appréhension de la technique — à désamorcer avant l'argument produit.",a:"RDV2 : démo ultra simple, « tout est fait pour vous, zéro manip »."},
@@ -1227,15 +1221,61 @@ function freeTextAlerts(){
     {w:["invendu","jeter","je jette","on jette","gaspill","perim","poubelle","brad","solder","sur les bras","reste sur les","ecouler","ecoule pas","trop de stock","frais perdu","marchandise perdue","perte de marchandise","perte seche","ce qui ne part pas","ce qu'on ne vend pas","ce qu'on jette","pertes de produit","perte de produit","fin de journee"],t:"warm",ti:"Invendus / gaspillage",m:"Pertes de marchandise verbalisées — argument ROI concret.",a:"RDV2 : précommande / click & collect = écoulement anticipé du frais."},
     {w:["fier de","tres fier","fiere de","fierte","savoir-faire","savoir faire","fait maison","faite maison","artisan","qualite de mes","la qualite","selection","selectionn","circuit court","producteur local","produit local","produits locaux","exigea","fait moi-meme","fait moi meme","fait par moi","ma passion","passion du","amour du metier","tradition","authentiq","les meilleurs","le meilleur","haut de gamme","fait avec amour","de saison"],t:"good",ti:"Fierté produit / savoir-faire",m:"Matière émotionnelle forte pour le storytelling du site.",a:"RDV2 : mettre SA pépite en hero, raconter son histoire produit."},
     {w:["reserv","commande a l'avance","commander a l'avance","commande a l avance","precommand","pre-command","pre command","mettre de cote","mets de cote","met de cote","mis de cote","de cote pour","sur commande","commande special","commandes speciales","a l'avance","a l avance","anticip","reserver leur","garder pour"],t:"good",ti:"Réservation déjà demandée",m:"Le besoin de commande à l'avance existe déjà chez ses clients.",a:"RDV2 : montrer SA page de précommande, prête à l'emploi."},
-    {w:["tout seul","toute seule","je suis seul","seul a faire","seule a faire","sans employe","pas d'employe","pas d employe","sans salarie","pas de salarie","pas d'equipe","pas d equipe","sans equipe","personne pour m'aider","personne pour m aider","manque de personnel","pas de main d'oeuvre","pas de main d oeuvre","pas de bras","embauch","recrut","trouve pas de personnel","dur de recruter","jamais en conge","jamais de vacances","peux pas m'arreter","peux pas m arreter","tout repose sur moi","je gere tout"],t:"hot",ti:"Isolé / pas de main-d'œuvre",m:"Surcharge structurelle — automatiser, pas embaucher.",a:"RDV2 : positionner Marchéo comme « un employé qui prend les commandes 24/7 »."}
-  ];
-  const A=[];
-  RULES.forEach(r=>{
-    const w=r.w.find(x=>blob.includes(x)); if(!w) return;
-    const src=it.find(i=>i.n.includes(w));
-    const snip=src?trunc(src.a,90):"";
-    A.push([r.t,"🗣️ "+r.ti, r.m+(snip?` — « ${snip} »`:""), r.a]);
-  });
+    {w:["tout seul","toute seule","je suis seul","seul a faire","seule a faire","sans employe","pas d'employe","pas d employe","sans salarie","pas de salarie","pas d'equipe","pas d equipe","sans equipe","personne pour m'aider","personne pour m aider","manque de personnel","pas de main d'oeuvre","pas de main d oeuvre","pas de bras","embauch","recrut","trouve pas de personnel","dur de recruter","jamais en conge","jamais de vacances","peux pas m'arreter","peux pas m arreter","tout repose sur moi","je gere tout"],t:"hot",ti:"Isolé / pas de main-d'œuvre",m:"Surcharge structurelle — automatiser, pas embaucher.",a:"RDV2 : positionner Marchéo comme « un employé qui prend les commandes 24/7 »."},
+    {w:["retraite","partir a la retraite","transmettre","reprendre le commerce","ceder","vendre le commerce","fin de carriere","arreter bientot","passer la main","la releve","mon fils reprend","ma fille reprend","plus pour longtemps","derniere ligne"],t:"warm",ti:"Transmission / fin de carrière",m:"Horizon de cession : l'outil doit valoriser le fonds, pas l'alourdir.",a:"RDV2 : une clientèle digitale = fonds plus attractif et transmissible."},
+    {w:["mal au dos","plus l'age","plus l age","ma sante","use","usee","epuise physiquement","les jambes","debout toute la journee","plus la forme","fatigue nerveuse","burn","je craque","physiquement dur","ca m'use","corps qui lache"],t:"hot",ti:"Usure physique / santé",m:"Douleur personnelle profonde, au-delà du business.",a:"RDV2 : vendre le confort gagné (moins debout, moins d'appels, plus de maîtrise)."},
+    {w:["tresorerie","fin de mois difficile","les charges","le loyer","factures","decouvert","la banque","emprunt","credit","marges qui","ca passe juste","compte pas bon","ca rentre pas","argent qui rentre pas","du mal a payer"],t:"hot",ti:"Tension de trésorerie",m:"Sensibilité argent forte — argumenter le ROI très prudemment.",a:"RDV2 : démarrer par le CA récupérable concret, avant tout tarif."},
+    {w:["la saison","hors saison","l'ete","l ete","l'hiver","l hiver","les fetes","la meteo","quand il pleut","periode creuse","tres saisonnier","gros pics","coup de feu saisonnier","creux de l'annee","ca depend des saisons"],t:"warm",ti:"Forte saisonnalité",m:"Activité en dents de scie : lissage à proposer.",a:"RDV2 : commande à l'avance pour lisser les pics + garder le lien hors saison."},
+    {w:["vieux site","site moche","pas a jour","site qui marche pas","honte de mon site","pas joli","ca date","plus moderne","ringard","pas pro","fait amateur","mauvaise image","site nul","site pourri","site abandonne"],t:"warm",ti:"Image en ligne dévalorisante",m:"Conscient que son image numérique le dessert.",a:"RDV2 : avant/après visuel à son nom — choc positif immédiat."},
+    {w:["les avis","avis google","mauvais avis","mauvaise note","note google","reputation","les commentaires","les etoiles","on dit du mal","mal note","e-reputation","avis negatif"],t:"warm",ti:"Enjeu réputation / avis",m:"La réputation en ligne le préoccupe.",a:"RDV2 : montrer collecte d'avis automatisée + fiche Google soignée."},
+    {w:["ca sert a rien","pas convaincu","j'y crois pas","jy crois pas","ca marche pas ces","perte de temps","gadget","a la mode","pas pour mon metier","mes clients sont pas","mes clients veulent du contact","trop vieux pour ca","ca changera rien","deja essaye ca a rate","ca rate","sceptique","j'ai des doutes"],t:"warm",ti:"Scepticisme / résistance",m:"Frein psychologique au changement — désamorcer par la preuve.",a:"RDV2 : preuve d'un commerce identique (Chez Christophe) + démarrage zéro effort."},
+    {w:["ma famille","mes enfants","du temps pour moi","souffler","des vacances","week-end en famille","qualite de vie","profiter de","moins de stress","l'equilibre","vie perso","vie de famille","temps libre","me poser"],t:"good",ti:"Quête de qualité de vie",m:"Moteur personnel : récupérer du temps de vie.",a:"RDV2 : vendre le temps et la sérénité regagnés, pas la techno."},
+    {w:["les restaurants","restaurateur","les pros","les professionnels","collectivite","la cantine","une entreprise","revendeur","gros clients","commande pro","b to b","comite d'entreprise","les chefs","fournir des"],t:"good",ti:"Débouché pro / B2B",m:"Segment pro = gros paniers récurrents.",a:"RDV2 : espace commande pro (compte, tarifs, récurrence)."},
+    {w:["mariage","les fetes","noel","paques","un evenement","commande de groupe","buffet","reception","anniversaire","communion","saint valentin","fete des meres","reveillon","bapteme"],t:"good",ti:"Potentiel événementiel",m:"Commandes événementielles = fort panier, planifiables.",a:"RDV2 : module commande événement (devis, acompte, date)."},
+    {w:["tout de suite","des maintenant","des aujourd'hui","au plus vite","c'est urgent","rapidement","pas attendre","des que possible","la tout de suite","faut que ca bouge","on y va"],t:"hot",ti:"Urgence exprimée",m:"Veut avancer vite — ne pas laisser refroidir.",a:"Closer : caler un RDV2 rapproché immédiatement."}
+];
+function _normTxt(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/['‘’‚]/g,"'"); }
+
+/* Analyse question par question (les violettes) : famille + mots-clés propres + signaux transverses */
+function qcInsights(){
+  const d=fiche.data, out=[], families=new Set();
+  const BUY=["ca m'interesse","ca m interesse","interessant","interesse","combien ca coute","ca coute combien","ca fait combien","quand est-ce qu'on","quand on commence","comment je fais pour","comment on fait","je veux bien","je suis partant","ca me plait","carrement","banco","ou je signe","je prends","on signe quand","faut que j'aie"];
+  const OBJ=["faut voir","je sais pas trop","pas sur que","pas convaincu","faut que j'y reflechisse","y reflechir","pas le moment","trop tot","on verra","pas besoin de ca","ca marchera pas","j'ai deja un site","deja un site","pas vraiment interesse","trop cher pour moi","je verrai plus tard","pas pour moi"];
+  const EMO=["jamais","toujours","horrible","cauchemar","la galere","j'en ai marre","ras-le-bol","ras le bol","epuisant","impossible","desespere","plus possible","a bout","j'en peux plus","ca me ronge","ca m'angoisse","ca m angoisse","j'ai peur","la honte","tellement fier","passionne","j'adore","je deteste","ca me tient a coeur"];
+  SCHEMA.forEach(s=>(s.blocks||[]).forEach(b=>{
+    if(b.k!=="qc") return;
+    const raw=(d[b.id]==null?"":String(d[b.id])).trim();
+    if(raw.length<3) return;
+    const n=_normTxt(raw), sigs=[]; let tone="good";
+    OPEN_RULES.forEach(r=>{ if(r.w.some(x=>n.includes(x))){ sigs.push(r.ti); families.add(r.ti); if(r.t==="hot")tone="hot"; else if(r.t==="warm"&&tone!=="hot")tone="warm"; } });
+    const kwHit=(b.kw||[]).filter(k=>n.includes(_normTxt(k)));
+    if(BUY.some(x=>n.includes(x))){ sigs.unshift("🟢 Signal d'achat"); tone="hot"; }
+    if(OBJ.some(x=>n.includes(x))){ sigs.push("🟠 Objection / réserve"); if(tone!=="hot")tone="warm"; }
+    if(EMO.some(x=>n.includes(x))) sigs.push("Charge émotionnelle");
+    if(!sigs.length && !kwHit.length) return;
+    const detail = `« ${trunc(raw,120)} »`
+      + (kwHit.length?` · capté : ${kwHit.join(", ")}`:"")
+      + (sigs.length?` · ${sigs.join(" · ")}`:"");
+    out.push([tone, "🗣️ "+trunc(b.q,60), detail, b.hint||"À réutiliser tel quel au RDV2."]);
+  }));
+  return {alerts:out, families};
+}
+
+function freeTextAlerts(){
+  const qi=qcInsights();
+  const A=qi.alerts.slice();
+  const items=collectOpenText();
+  if(items.length){
+    const it=items.map(i=>({a:i.a,n:_normTxt(i.a)}));
+    const blob=it.map(i=>i.n).join("  ");
+    OPEN_RULES.forEach(r=>{
+      if(qi.families.has(r.ti)) return;          // déjà remonté par une question précise
+      const w=r.w.find(x=>blob.includes(x)); if(!w) return;
+      const src=it.find(i=>i.n.includes(w));
+      const snip=src?trunc(src.a,90):"";
+      A.push([r.t,"🗣️ "+r.ti, r.m+(snip?` — « ${snip} »`:""), r.a]);
+    });
+  }
   return A;
 }
 
@@ -1291,7 +1331,7 @@ function refreshStrat(){
   let h=`<div class="strat-head">📊 Lecture stratégique <span class="cb">${stratA.length}</span></div>`;
   h+= stratA.length ? stratA.map(alHTML).join("")
      : `<div class="al-empty" style="padding:18px 12px">Rien de marquant côté choix pour l'instant.</div>`;
-  h+=`<div class="strat-head" style="margin-top:20px">🗣️ Réponses ouvertes (violet) <span class="cb">${nOpen} lue${nOpen>1?"s":""}</span></div>`;
+  h+=`<div class="strat-head" style="margin-top:20px">🗣️ Réponses ouvertes (violet) <span class="cb">${nOpen} lue${nOpen>1?"s":""} · ${openA.length} signal${openA.length>1?"x":""}</span></div>`;
   h+= openA.length ? openA.map(alHTML).join("")
      : `<div class="al-empty" style="padding:18px 12px">${nOpen?`${nOpen} réponse${nOpen>1?"s":""} ouverte${nOpen>1?"s":""} analysée${nOpen>1?"s":""} — aucun signal fort détecté pour l'instant.`:"Aucune réponse aux questions ouvertes (en violet) pour l'instant."}</div>`;
   body.innerHTML=h;
