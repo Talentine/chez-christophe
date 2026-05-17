@@ -248,6 +248,43 @@
   .vit-cta{height:44px;border-radius:11px;color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center;margin-top:4px}
   .vit-cap{text-align:center;font-size:13px;color:var(--g1);margin-top:12px;font-weight:600}
 
+  /* diagnostic + maquettes */
+  .mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+  @media(max-width:560px){.mock-grid{grid-template-columns:1fr}}
+  .mock{background:#fff;border:1px solid var(--cremef);border-radius:14px;padding:13px;box-shadow:var(--sh)}
+  .mock h5{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--g2);margin:0 0 9px}
+  .mk-g{font-family:Arial,Helvetica,sans-serif}
+  .mk-g .nm{font-size:15px;color:#1a0dab;font-weight:700}
+  .mk-g .ur{font-size:12px;color:#0a7d2c;margin:1px 0 3px}
+  .mk-g .st{font-size:12px;color:#e8a200;letter-spacing:1px}
+  .mk-g .ds{font-size:12px;color:#555;margin-top:3px;line-height:1.4}
+  .mk-ph{border:6px solid #11151f;border-radius:18px;overflow:hidden;background:#fff}
+  .mk-ph .hd{color:#fff;padding:14px 10px;text-align:center;font-weight:800;font-size:14px;line-height:1.3}
+  .mk-ph .bd{padding:10px}
+  .mk-row{display:flex;align-items:center;gap:8px;border:1px solid #eee;border-radius:9px;padding:7px;margin-bottom:6px}
+  .mk-row .em{font-size:18px}
+  .mk-row b{display:block;font-size:12.5px}
+  .mk-row span{color:#8a8a8a;font-size:11px}
+  .mk-btn{height:34px;border-radius:9px;color:#fff;font-weight:800;font-size:12.5px;display:grid;place-items:center}
+  .mk-cat{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .mk-cat>div{border:1px solid #eee;border-radius:9px;padding:8px;text-align:center;font-size:12px;line-height:1.5}
+  .mk-cat .em{font-size:22px;display:block}
+  .diag{background:linear-gradient(150deg,var(--nuit),var(--bleuc));color:#fff;border-radius:var(--rl,18px);padding:22px;margin-bottom:16px}
+  .diag h3{font-family:var(--fd);font-size:20px;margin-bottom:3px}
+  .diag .sub{font-size:13px;opacity:.8;margin-bottom:16px}
+  .diag-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .diag-row .lb{flex:1;font-size:13.5px;font-weight:600}
+  .diag-bar{flex:0 0 120px;height:9px;border-radius:9px;background:rgba(255,255,255,.16);overflow:hidden}
+  .diag-bar i{display:block;height:100%;border-radius:9px;transition:width .5s ease}
+  .diag-row .vn{flex:0 0 40px;text-align:right;font-weight:800;font-size:13px}
+  .diag-glob{display:flex;align-items:center;gap:14px;margin:16px 0;padding:14px;background:rgba(255,255,255,.08);border-radius:12px}
+  .diag-glob .num{font-family:var(--fd);font-size:38px;font-weight:800;line-height:1}
+  .diag-mg{font-size:14px;line-height:1.5;background:rgba(255,255,255,.10);border-radius:10px;padding:12px 14px;margin-bottom:16px}
+  .diag-cta{display:flex;flex-direction:column;gap:9px}
+  .diag-cta button{height:50px;border-radius:12px;font-weight:800;font-size:15px;width:100%}
+  .diag-cta .c1{background:var(--vert);color:#06270a}
+  .diag-cta .c2{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.25)}
+
   /* synthèse */
   .syn-hero{background:linear-gradient(140deg,var(--nuit),var(--bleuc));color:#fff;border-radius:var(--rl);padding:26px 22px;margin-bottom:18px}
   .syn-hero .t{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--soleil)}
@@ -591,6 +628,16 @@ const SCHEMA = [
 
 { id:"offre", kicker:"Étape 6 · Produits & vision", title:"Offre & produits phares", sub:"La matière première du futur site : ses pépites.",
   blocks:[
+    {k:"metier",only:["primeur"],fields:[
+      F("mp_arrivages","Affichez-vous vos arrivages de saison ?",{type:"radio",grid:true,opts:[O("oui","Oui"),O("non","Non"),O("parfois","Parfois")]}),
+      F("mp_stock","Vos clients savent-ils ce que vous avez en stock avant de venir ?",{type:"radio",grid:true,opts:[O("oui","Oui"),O("non","Non")]})]},
+    {k:"metier",only:["boucherie"],fields:[
+      F("mb_speciales","Prenez-vous les commandes spéciales facilement ?",{type:"radio",grid:true,opts:[O("oui","Oui, sans souci"),O("tel","Oui mais par téléphone"),O("dur","Difficilement")]}),
+      F("mb_weekend","Comment gérez-vous les commandes du week-end ?",{type:"radio",grid:true,opts:[O("tel","Par téléphone"),O("avance","À l'avance en magasin"),O("aucun","Pas de système")]})]},
+    {k:"metier",only:["boulangerie"],fields:[
+      F("mbo_reserve","Combien de clients appellent pour réserver ?",{type:"radio",grid:true,opts:[O("bcp","Beaucoup"),O("qq","Quelques-uns"),O("peu","Peu")]})]},
+    {k:"metier",only:["poissonnerie"],fields:[
+      F("mpo_arrivage","Comment annoncez-vous les arrivages du matin ?",{type:"check",grid:true,opts:[O("fb","Facebook"),O("tel","Téléphone"),O("magasin","En magasin"),O("aucun","Aucun moyen")]})]},
     {k:"card",fields:[
       TA("pr_categories","Catégories de produits principales"),
       TA("pr_marge","Produits sur lesquels il a le plus de marge"),
@@ -746,6 +793,12 @@ const SCHEMA = [
         O("autre","Autre",[F("pj_interet_autre","Préciser",{ph:"…"})])]}),
       TA("pj_objections","Objections exprimées et ma réponse")
     ]}
+  ]},
+
+{ id:"diagnostic", kicker:"Votre diagnostic", title:"Votre diagnostic digital", sub:"Voici où en est votre commerce aujourd'hui — et ce que ça pourrait changer.",
+  blocks:[
+    {k:"mock"},
+    {k:"diag"}
   ]},
 
 { id:"rdv2", kicker:"Étape 15", title:"Prévoir le prochain RDV", sub:"On ne quitte JAMAIS un commerçant sans le prochain RDV calé. Date floue = RDV mort.",
@@ -945,6 +998,12 @@ function renderBlock(b){
     }
     return h+`</div>`;
   }
+  if(b.k==="metier"){
+    if(!(b.only||[]).includes(val("type_commerce"))) return "";
+    return `<div class="card">${b.fields.map(renderField).join("")}</div>`;
+  }
+  if(b.k==="mock") return buildMock();
+  if(b.k==="diag") return buildDiag();
   return "";
 }
 
@@ -1200,6 +1259,90 @@ function refreshStrat(){
 function d_recoOk(){ const x=fiche.data.re_demande; return x && x!=="non"; }
 
 /* ============================================================
+   DIAGNOSTIC (score + manque à gagner + visuels + CTA)
+   ============================================================ */
+function diagScores(){
+  const d=fiche.data, clamp=n=>Math.max(0,Math.min(10,Math.round(n)));
+  let vg=4;
+  const gr={rien:1,maps:3,fb:4,vieux:5,complet:9}[d.vis_google_resultat]; if(gr!=null) vg=gr;
+  if(d.vis_concurrents==="oui") vg-=2; else if(d.vis_concurrents==="parfois") vg-=1; else if(d.vis_concurrents==="non") vg+=1;
+  if(typeof d.vis_presence==="object"&&d.vis_presence&&d.vis_presence.pas_site) vg-=2;
+  let gc=4;
+  const cm={auto:9,sms:4,fb:4,tel:3}[d.op_commande_manuelle]; if(cm!=null) gc=cm;
+  const od=d.op_distance||{};
+  if(od.cc) gc+=2; if(od.liv) gc+=1; if(od.aucun) gc-=3;
+  if(d.op_appels_horaires==="tres") gc-=2; else if(d.op_appels_horaires==="jour") gc-=1; else if(d.op_appels_horaires==="rare") gc+=1;
+  if(d.op_cc==="pense"||d.op_cc==="essaye") gc+=1;
+  let mo=4;
+  if(d.vis_google_resultat==="complet") mo+=4; else if(d.vis_google_resultat==="vieux") mo+=1; else if(d.vis_google_resultat==="rien") mo-=2;
+  if(d.cl_voir_produits==="oui") mo+=2; else if(d.cl_voir_produits==="non") mo-=2;
+  if(d.op_commande_manuelle==="auto") mo+=2;
+  let fi=4;
+  if(d.cl_prevenir==="oui") fi+=4; else if(d.cl_prevenir==="non") fi-=3; else if(d.cl_prevenir==="fb"||d.cl_prevenir==="magasin") fi-=1;
+  const vd=d.vis_decouverte||{};
+  if(["fb","insta","google"].filter(k=>vd[k]).length>=2) fi+=1;
+  if(vd.aucun) fi-=2;
+  const V={vg:clamp(vg),gc:clamp(gc),mo:clamp(mo),fi:clamp(fi)};
+  V.global=clamp((V.vg+V.gc+V.mo+V.fi)/4);
+  return V;
+}
+function diagManque(){
+  const s=diagScores();
+  if(s.vg<=4) return "Une partie de vos clients potentiels ne vous trouvent probablement pas facilement aujourd'hui — ce sont des commandes qui partent ailleurs.";
+  if(s.gc<=4) return "Sans système de commande simple, des ventes se perdent quand vous n'êtes pas joignable ou trop occupé.";
+  if(s.fi<=4) return "Sans moyen simple de prévenir vos clients, beaucoup ne reviennent pas aussi souvent qu'ils le pourraient.";
+  return "Vous avez de bonnes bases : quelques optimisations simples peuvent encore augmenter vos commandes et votre visibilité.";
+}
+function ctaPick(v){ setVal("cta_choice",v); toast(v==="demo"?"Parfait — démo adaptée notée ✓":"Noté — votre plan d'amélioration ✓"); }
+function buildMock(){
+  const m=METIERS[val("type_commerce")]||METIERS.autre;
+  const nom=esc(val("nom_commerce")||"Votre commerce");
+  const row=(em,b,s)=>`<div class="mk-row"><span class="em">${em}</span><div><b>${esc(b)}</b><span>${esc(s)}</span></div></div>`;
+  return `<div class="mock-grid">
+    <div class="mock"><h5>Sur Google</h5><div class="mk-g">
+      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${nom.toLowerCase().replace(/[^a-z0-9]+/g,"-")}.marcheo.fr · Itinéraire</div>
+      <div class="st">★★★★★ <span style="color:#555">(127 avis)</span></div>
+      <div class="ds">${esc(m.tag)}. Commande en ligne · Click &amp; collect · Ouvre à 8h00.</div></div></div>
+    <div class="mock"><h5>Click &amp; collect</h5><div class="mk-ph">
+      <div class="hd" style="background:${m.c}">${nom}</div><div class="bd">
+      ${row(m.emoji,"Produit du jour","Prêt en 2h — payé en ligne")}
+      ${row("🧺","Mon panier","2 articles · 18,40 €")}
+      <div class="mk-btn" style="background:${m.a}">${esc(m.cta)}</div></div></div></div>
+    <div class="mock"><h5>Votre catalogue</h5><div class="mk-cat">
+      <div><span class="em">${m.emoji}</span>Produit phare<br><b>9,90 €</b></div>
+      <div><span class="em">🥇</span>Spécialité<br><b>14,50 €</b></div>
+      <div><span class="em">🧀</span>Sélection<br><b>6,20 €</b></div>
+      <div><span class="em">🎁</span>Coffret<br><b>29 €</b></div></div></div>
+    <div class="mock"><h5>Sur mobile</h5><div class="mk-ph" style="max-width:150px;margin:0 auto">
+      <div class="hd" style="background:${m.c};padding:22px 10px">${m.emoji}<br>${nom}</div>
+      <div class="bd"><div class="mk-btn" style="background:${m.a};margin-bottom:6px">${esc(m.cta)}</div>
+      <div style="font-size:11px;color:#8a8a8a;text-align:center">Réservez en 30 secondes</div></div></div></div>
+  </div>`;
+}
+function buildDiag(){
+  const s=diagScores();
+  const tone=n=>n>=7?"var(--vert)":n>=4?"var(--soleil)":"var(--tomate)";
+  const bar=(lb,n)=>`<div class="diag-row"><div class="lb">${lb}</div>
+    <div class="diag-bar"><i style="width:${n*10}%;background:${tone(n)}"></i></div>
+    <div class="vn">${n}/10</div></div>`;
+  return `<div class="diag">
+    <h3>Diagnostic Marchéo</h3>
+    <div class="sub">Estimation à partir de vos réponses.</div>
+    ${bar("Visibilité Google",s.vg)}
+    ${bar("Gestion des commandes",s.gc)}
+    ${bar("Modernité du commerce",s.mo)}
+    ${bar("Fidélisation client",s.fi)}
+    <div class="diag-glob"><div class="num">${s.global}<span style="font-size:16px;opacity:.6">/10</span></div>
+      <div style="font-size:14px;line-height:1.45">Score global de votre présence digitale aujourd'hui.</div></div>
+    <div class="diag-mg">💡 ${esc(diagManque())}</div>
+    <div class="diag-cta">
+      <button class="c1" onclick="ctaPick('demo')">Voir une démo adaptée à mon commerce</button>
+      <button class="c2" onclick="ctaPick('plan')">Recevoir mon plan d'amélioration</button>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
    SYNTHÈSE RDV2 (auto)
    ============================================================ */
 function buildSynthesis(){
@@ -1303,6 +1446,7 @@ function fieldIds(s){
     if(b.k==="card") b.fields.forEach(f=>ids.push(f.id));
     else if(b.k==="qc") ids.push(b.id);
     else if(b.k==="rep") for(let i=1;i<=b.n;i++) b.fields.forEach(f=>ids.push(`${b.id}_${i}_${f.id}`));
+    else if(b.k==="metier" && (b.only||[]).includes(fiche.data.type_commerce)) b.fields.forEach(f=>ids.push(f.id));
   });
   return ids;
 }
@@ -1333,7 +1477,7 @@ function refreshChrome(){
   }
 
   // progress global
-  const tot=secs.filter(s=>!s.synth);
+  const tot=secs.filter(s=>!s.synth && fieldIds(s).length);
   const g=tot.reduce((a,s)=>a+secFilled(s),0)/Math.max(tot.length,1);
   document.getElementById("progBar").style.width=(g*100).toFixed(1)+"%";
 
@@ -1419,6 +1563,8 @@ function exportPDF(){
           body+=`<div class="p-q"><div class="pq">${esc(b.title)} ${i}</div></div>`;
           b.fields.forEach(f=> body+=qline("• "+f.label, fmt(f,d[`${b.id}_${i}_${f.id}`])) );
         }
+      } else if(b.k==="metier" && (b.only||[]).includes(d.type_commerce)){
+        b.fields.forEach(f=> body+=qline(f.label, fmt(f,d[f.id])) );
       }
     });
     if(body) H+=`<div class="p-sec"><h2>${esc(s.title)}</h2>${body}</div>`;
