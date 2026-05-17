@@ -294,6 +294,20 @@
   .pill.v{background:var(--violet100);color:var(--violetf)}
   .pill.s{background:var(--soleil100);color:#8a6010}
 
+  /* plan de réaction (conseiller) */
+  .syn-react{background:var(--blanc);border:1px solid var(--cremef);border-radius:var(--r);padding:18px;box-shadow:var(--sh);margin-top:14px}
+  .syn-react>h3{font-family:var(--fd);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--vert);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .syn-react>p.sub{font-size:13.5px;color:var(--g1);margin-bottom:14px}
+  .rx-h{font-weight:800;font-size:12.5px;color:var(--g1);text-transform:uppercase;letter-spacing:.08em;margin:16px 0 9px;padding-bottom:5px;border-bottom:1px solid var(--cremef)}
+  .rx{border-left:4px solid var(--g3);background:var(--creme);border-radius:10px;padding:12px 15px;margin-bottom:10px;break-inside:avoid}
+  .rx.hot{border-color:var(--tomate);background:var(--tomate100)}
+  .rx.warm{border-color:var(--soleil);background:var(--soleil100)}
+  .rx.good{border-color:var(--vert);background:var(--vert100)}
+  .rx .rt{font-weight:800;font-size:15.5px;color:var(--nuit);margin-bottom:4px;line-height:1.3}
+  .rx .rm{font-size:13.5px;color:var(--nuit2);line-height:1.45;margin-bottom:8px}
+  .rx .ra{font-size:14.5px;color:var(--nuit);line-height:1.5;background:rgba(255,255,255,.65);border-radius:8px;padding:8px 11px}
+  .rx .ra b{color:var(--vertf);font-weight:800}
+
   .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 150px);transform:translateX(-50%) translateY(20px);
     background:var(--nuit2);color:#fff;font-weight:700;font-size:14.5px;padding:13px 22px;border-radius:999px;
     z-index:500;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shl)}
@@ -338,6 +352,18 @@
     .p-syn{break-inside:avoid;background:#F7F2E8;border:1px solid #E5E2D8;border-radius:8px;padding:14px 16px;margin-bottom:14px}
     .p-syn h3{font-family:var(--fd);font-size:12pt;color:#5BBE3A;margin-bottom:6px}
     .p-syn ul{margin-left:18px;font-size:11pt}
+    .p-react{margin-bottom:18px}
+    .p-react>h2{font-family:var(--fd);font-size:14pt;color:#0F2C52;border-bottom:2px solid #E5E2D8;padding-bottom:5px;margin-bottom:4px}
+    .p-react>p.sub{font-size:10pt;color:#5A6478;margin-bottom:10px}
+    .p-rxh{font-weight:800;font-size:10.5pt;color:#5A6478;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 7px}
+    .p-rx{break-inside:avoid;border-left:3px solid #C4CCD9;padding:7px 0 7px 12px;margin-bottom:9px}
+    .p-rx.hot{border-color:#E65533}
+    .p-rx.warm{border-color:#F4B942}
+    .p-rx.good{border-color:#5BBE3A}
+    .p-rx .rt{font-weight:800;font-size:11pt;color:#0A1428}
+    .p-rx .rm{font-size:10pt;color:#444;margin:2px 0 4px}
+    .p-rx .ra{font-size:10.5pt;color:#0A1428}
+    .p-rx .ra b{color:#46A02A}
   }
 </style>
 </head>
@@ -1350,6 +1376,16 @@ function refreshStrat(){
 }
 function d_recoOk(){ const k=selKeys(fiche.data.re_demande); return k.length>0 && !(k.length===1 && k[0]==="non"); }
 
+/* Toutes les analyses, triées par priorité (🔥 → ⚠️ → ✅), séparées strat / réponses ouvertes */
+function analysisDigest(){
+  const A=evalAlerts();
+  const open=A.filter(a=>typeof a[1]==="string"&&a[1].indexOf("🗣️")===0);
+  const strat=A.filter(a=>open.indexOf(a)<0);
+  const ord={hot:0,warm:1,good:2};
+  const srt=arr=>arr.slice().sort((x,y)=>(ord[x[0]]==null?3:ord[x[0]])-(ord[y[0]]==null?3:ord[y[0]]));
+  return { strat:srt(strat), open:srt(open) };
+}
+
 /* ============================================================
    DIAGNOSTIC (score + manque à gagner + visuels + CTA)
    ============================================================ */
@@ -1470,6 +1506,24 @@ function buildSynthesis(){
 
   const li=(arr,cls)=> arr.length?arr.map(x=>`<li class="${cls||""}">${esc(x)}</li>`).join(""):`<li class="none">À compléter pendant le RDV</li>`;
 
+  // plan de réaction : toutes les analyses, priorisées, avec comment rebondir
+  const dg=analysisDigest();
+  const rx=a=>{
+    const ic=a[0]==="hot"?"🔥":a[0]==="warm"?"⚠️":"✅";
+    return `<div class="rx ${esc(a[0])}">
+      <div class="rt">${ic} ${esc(a[1])}</div>
+      <div class="rm">${esc(a[2])}</div>
+      <div class="ra"><b>→ Comment rebondir :</b> ${esc(a[3])}</div></div>`;
+  };
+  const nReact=dg.strat.length+dg.open.length;
+  const reactBlock = nReact ? `
+  <div class="syn-react">
+    <h3>🧭 Plan de réaction <span class="pill s" style="margin:0">${nReact} analyse${nReact>1?"s":""}</span></h3>
+    <p class="sub">Tout ce que l'audit a détecté, du plus urgent au plus opportun. Chaque ligne dit quoi faire au RDV2.</p>
+    ${dg.strat.length?`<div class="rx-h">📊 Lecture stratégique (ses choix)</div>${dg.strat.map(rx).join("")}`:""}
+    ${dg.open.length?`<div class="rx-h">🗣️ Ce qu'il a dit (réponses ouvertes)</div>${dg.open.map(rx).join("")}`:""}
+  </div>` : "";
+
   return `
   <div class="syn-hero">
     <div class="t">Brief de préparation — Démo V2</div>
@@ -1506,6 +1560,7 @@ function buildSynthesis(){
       <ul>${li([d.r2_ne_pas_oublier,d.vi_ne_pas&&("Éviter : "+d.vi_ne_pas),d.de_perplexe&&("L'a laissé froid : "+d.de_perplexe)].filter(Boolean).map(x=>trunc(x,80)))}</ul>
     </div>
   </div>
+  ${reactBlock}
 
   <div class="card" style="margin-top:16px">
     <h3 style="font-family:var(--fd);font-size:15px;margin-bottom:12px">Prochaine étape</h3>
@@ -1658,6 +1713,21 @@ function exportPDF(){
     const items=[...c.querySelectorAll("li")].map(li=>li.textContent).filter(t=>t&&!/^À compléter/.test(t));
     synTxt+=`<h3>${esc(h)}</h3><ul>${items.map(t=>`<li>${esc(t)}</li>`).join("")||"<li>—</li>"}</ul>`;
   });
+  // analyses + comment rebondir (toutes, priorisées)
+  const dg=analysisDigest();
+  const prx=a=>{
+    const ic=a[0]==="hot"?"🔥":a[0]==="warm"?"⚠️":"✅";
+    return `<div class="p-rx ${esc(a[0])}"><div class="rt">${ic} ${esc(a[1])}</div><div class="rm">${esc(a[2])}</div><div class="ra"><b>→ Rebondir :</b> ${esc(a[3])}</div></div>`;
+  };
+  const nReact=dg.strat.length+dg.open.length;
+  if(nReact){
+    H+=`<div class="p-react"><h2>Analyses & comment rebondir</h2>`
+     + `<p class="sub">${nReact} point${nReact>1?"s":""} détecté${nReact>1?"s":""} pendant l'audit, du plus urgent au plus opportun.</p>`
+     + (dg.strat.length?`<div class="p-rxh">Lecture stratégique (ses choix)</div>${dg.strat.map(prx).join("")}`:"")
+     + (dg.open.length?`<div class="p-rxh">Ce qu'il a dit (réponses ouvertes)</div>${dg.open.map(prx).join("")}`:"")
+     + `</div>`;
+  }
+
   H+=`<div class="p-syn"><h2 style="font-family:var(--fd);color:#0F2C52;border-bottom:2px solid #E5E2D8;padding-bottom:5px;margin-bottom:8px">★ Synthèse RDV 2</h2>${synTxt}</div>`;
 
   document.getElementById("print-root").innerHTML=H;
