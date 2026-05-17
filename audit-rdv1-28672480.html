@@ -1366,7 +1366,25 @@ function refreshStrat(){
   const openA=A.filter(a=>typeof a[1]==="string"&&a[1].indexOf("🗣️")===0);
   const stratA=A.filter(a=>openA.indexOf(a)<0);
   const nOpen=collectOpenText().filter(x=>x.a&&x.a.length>2).length;
-  let h=`<div class="strat-head">📊 Lecture stratégique <span class="cb">${stratA.length}</span></div>`;
+
+  // ── L'ESSENTIEL : récap des points les plus importants, tout en haut ──
+  const ordT={hot:0,warm:1,good:2};
+  const ranked=A.slice().sort((x,y)=>(ordT[x[0]]==null?3:ordT[x[0]])-(ordT[y[0]]==null?3:ordT[y[0]]));
+  const hotA=ranked.filter(a=>a[0]==="hot");
+  const top = hotA.length ? hotA.slice(0,5)
+            : ranked.filter(a=>a[0]==="warm").slice(0,3).concat(ranked.filter(a=>a[0]==="good").slice(0,1)).slice(0,3);
+  const rxS=a=>{
+    const ic=a[0]==="hot"?"🔥":a[0]==="warm"?"⚠️":"✅";
+    const t=String(a[1]).replace(/^🗣️\s*/,"");
+    return `<div class="rx ${esc(a[0])}">
+      <div class="rt">${ic} ${esc(t)}</div>
+      <div class="ra"><b>→ Rebondir :</b> ${esc(a[3])}</div></div>`;
+  };
+  let h=`<div class="strat-head" style="margin-top:0">🎯 L'essentiel — à jouer en priorité <span class="cb">${top.length}</span></div>`;
+  h+= top.length ? `<div class="syn-react" style="margin-top:0;padding:14px">${top.map(rxS).join("")}</div>`
+     : `<div class="al-empty" style="padding:18px 12px">Pas encore de point fort. Continue l'audit : les signaux apparaîtront ici.</div>`;
+
+  h+=`<div class="strat-head" style="margin-top:22px">📊 Lecture stratégique <span class="cb">${stratA.length}</span></div>`;
   h+= stratA.length ? stratA.map(alHTML).join("")
      : `<div class="al-empty" style="padding:18px 12px">Rien de marquant côté choix pour l'instant.</div>`;
   h+=`<div class="strat-head" style="margin-top:20px">🗣️ Réponses ouvertes (violet) <span class="cb">${nOpen} lue${nOpen>1?"s":""} · ${openA.length} signal${openA.length>1?"x":""}</span></div>`;
