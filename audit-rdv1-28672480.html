@@ -212,6 +212,8 @@
   .al .alm{font-size:14px;color:var(--g1);line-height:1.45}
   .al .ala{font-size:13.5px;font-weight:700;color:var(--nuit);background:var(--bleu100);border-radius:8px;padding:8px 11px;margin-top:9px}
   .al-empty{text-align:center;color:var(--g2);padding:40px 16px;font-size:15px}
+  .strat-head{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--g1);margin:2px 0 10px;display:flex;align-items:center;gap:8px}
+  .strat-head .cb{background:var(--nuit);color:#fff;border-radius:999px;font-size:11px;padding:2px 9px;font-weight:700}
 
   /* fiches list */
   .fitem{background:#fff;border-radius:12px;padding:15px;margin-bottom:11px;box-shadow:var(--sh);display:flex;align-items:center;gap:12px}
@@ -284,6 +286,25 @@
   .diag-cta button{height:50px;border-radius:12px;font-weight:800;font-size:15px;width:100%}
   .diag-cta .c1{background:var(--vert);color:#06270a}
   .diag-cta .c2{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.25)}
+  .mock-cap{font-size:14px;color:var(--g1);margin-bottom:10px}
+  .mock-cap b{color:var(--nuit)}
+  .site{border:1px solid var(--cremef);border-radius:14px;overflow:hidden;box-shadow:var(--sh);background:#fff;margin-bottom:14px}
+  .site-bar{height:30px;background:#11151f;display:flex;align-items:center;gap:5px;padding:0 12px}
+  .site-bar i{width:9px;height:9px;border-radius:50%;background:#3a4150;flex:none}
+  .site-url{flex:1;text-align:center;font-size:11px;color:#8893a5;font-family:Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .site-hero{padding:30px 20px;text-align:center;color:#fff}
+  .site-hero .lg{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:999px;margin-bottom:10px}
+  .site-hero h4{font-family:var(--fd);font-size:24px;font-weight:800;margin:4px 0}
+  .site-hero p{font-size:13px;opacity:.92;margin-bottom:14px}
+  .site-hero .cta{display:inline-grid;place-items:center;height:40px;padding:0 22px;border-radius:10px;font-weight:800;font-size:14px;color:#fff}
+  .site-body{padding:14px}
+  .site-body h6{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--g2);margin:0 0 9px}
+  .site-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  @media(max-width:560px){.site-grid{grid-template-columns:1fr 1fr}}
+  .site-grid .it{border:1px solid #eee;border-radius:10px;padding:10px;text-align:center}
+  .site-grid .it .em{font-size:24px;display:block;margin-bottom:3px}
+  .site-grid .it b{display:block;font-size:12.5px;line-height:1.25}
+  .site-grid .it span{color:#8a8a8a;font-size:11.5px}
 
   /* synthèse */
   .syn-hero{background:linear-gradient(140deg,var(--nuit),var(--bleuc));color:#fff;border-radius:var(--rl);padding:26px 22px;margin-bottom:18px}
@@ -575,14 +596,28 @@ const SCHEMA = [
     QC("qc_2h","Si je vous rendais 2 heures par semaine, vous en feriez quoi ?","Le projette dans l'après-Marchéo. Sa réponse devient le pitch d'ouverture du RDV 2")
   ]},
 
-{ id:"douleurs", kicker:"Vos irritants", title:"Qu'est-ce qui vous fait perdre le plus de temps ?", sub:"Cochez tout ce qui vous pèse au quotidien — c'est exactement ce qu'on va alléger.",
+{ id:"douleurs", kicker:"Vos irritants", title:"Ce qui vous complique la vie", sub:"Pas besoin d'être « digital » pour répondre — c'est juste votre quotidien. Cochez ce qui vous parle.",
   blocks:[
     {k:"card",fields:[
-      F("dl_temps","Ce qui vous fait perdre le plus de temps aujourd'hui",{type:"check",grid:true,opts:[
-        O("tel","Répondre au téléphone"),O("msg","Répondre aux messages"),
-        O("cmd","Gérer les commandes"),O("fb","Mettre à jour Facebook"),
-        O("horaires","Expliquer les horaires"),O("liv","Organiser les livraisons")]}),
-      TA("dl_autre","Autre chose qui vous pèse ?")
+      F("dl_temps","Qu'est-ce qui vous prend le plus de temps / d'énergie ?",{type:"check",grid:true,opts:[
+        O("tel","Le téléphone qui sonne sans arrêt"),
+        O("redire","Répéter 10 fois les mêmes infos (horaires, dispo, prix)"),
+        O("cmd","Noter et suivre les commandes"),
+        O("oubli","Les oublis / erreurs de commande"),
+        O("attente","La file d'attente aux heures de pointe"),
+        O("invendus","Gérer les invendus / le surplus"),
+        O("relance","Prévenir / relancer les clients un par un"),
+        O("compta","La paperasse / la compta")]}),
+      F("dl_quand","Quand est-ce le plus dur ?",{type:"check",grid:true,opts:[
+        O("pointe","Aux heures de pointe"),O("weekend","Le week-end / jours fériés"),
+        O("saison","En forte saison / fêtes"),O("seul","Quand je suis seul(e) en boutique"),
+        O("toujours","Un peu tout le temps")]}),
+      F("dl_perte","Quand vous êtes débordé(e), qu'est-ce qui se passe ?",{type:"check",grid:true,opts:[
+        O("repart","Des clients repartent sans acheter"),
+        O("rate","Je rate des appels / des commandes"),
+        O("vite","Je sers plus vite, moins bien"),
+        O("rien","Rien, je gère")]}),
+      TA("dl_autre","Autre chose qui vous pèse, avec vos mots ?")
     ]}
   ]},
 
@@ -878,6 +913,28 @@ const SCHEMA = [
 { id:"synthese", kicker:"Étape 18", title:"Synthèse RDV 2", sub:"Générée automatiquement à partir de tes réponses. Ton brief de préparation.", conseiller:true, synth:true, blocks:[] }
 ];
 
+/* Normalisation : multi-réponses partout + option « Autre » (avec champ texte)
+   partout. Exception : « type_commerce » reste un choix unique (la
+   personnalisation — nom, vitrine, visuels, score — dépend d'UN métier). */
+(function(){
+  function ensureAutre(f){
+    if(!Array.isArray(f.opts)) return;
+    let a=f.opts.find(o=>o&&o.v==="autre");
+    if(!a){ a=O("autre","Autre"); f.opts.push(a); }
+    if(!Array.isArray(a.sub)||!a.sub.length) a.sub=[F(f.id+"_autre","Préciser",{ph:"…"})];
+  }
+  function doFields(fields){
+    (fields||[]).forEach(f=>{
+      if(!f||!Array.isArray(f.opts)) return;
+      if(f.id!=="type_commerce" && f.type==="radio") f.type="check";
+      ensureAutre(f);
+    });
+  }
+  SCHEMA.forEach(s=>(s.blocks||[]).forEach(b=>{
+    if((b.k==="card"||b.k==="metier"||b.k==="rep")&&Array.isArray(b.fields)) doFields(b.fields);
+  }));
+})();
+
 /* ============================================================
    ÉTAT + PERSISTANCE
    ============================================================ */
@@ -911,6 +968,10 @@ function ensureFiche(){
   if(!fiche){ newFiche(); }
 }
 function val(id){ return fiche.data[id]; }
+/* Valeurs tolérantes au type : champ mono (string) OU multi (objet {clé:true}) */
+function selKeys(v){ if(v==null||v==="") return []; if(typeof v==="object") return Object.keys(v).filter(k=>v[k]); return [String(v)]; }
+function selFirst(v){ return selKeys(v)[0]||""; }
+function selHas(v,k){ return (v&&typeof v==="object") ? !!v[k] : v===k; }
 function setVal(id,v){
   if(v===""||v==null||(typeof v==="object"&&!Object.keys(v).length)) delete fiche.data[id];
   else fiche.data[id]=v;
@@ -1194,7 +1255,11 @@ function freeTextAlerts(){
     {w:["concurrent","concurrence","en face","a cote","200 m","200m","grande surface","supermarche","amazon","leclerc","carrefour","intermarche"],t:"warm",ti:"Pression concurrentielle",m:"Il se compare — terrain pour la différenciation.",a:"RDV2 : tout miser sur SA différence (nom, histoire, produits, photos)."},
     {w:["ne reviennent","moins de clients","perdu des clients","moins de monde","en baisse","plus comme avant","frequentation","moins frequente","ca baisse"],t:"hot",ti:"Érosion de la clientèle",m:"Il constate une baisse — levier émotionnel + besoin de fidélisation.",a:"RDV2 : notifications, fidélité, visibilité pour faire revenir les clients."},
     {w:["bouche a oreille","habitues","on ne me trouve","personne ne sait","pas connu","invisible","pas de site","pas sur internet","pas sur le net","pas de visibilite"],t:"warm",ti:"100% bouche-à-oreille",m:"Aucun canal digital actif — croissance plafonnée.",a:"RDV2 : montrer le canal qui amène des NOUVEAUX clients sans effort."},
-    {w:["j'aimerais","jaimerais","je reve","j'adorerais","envie de","aimerais developper","agrandir","me developper","grandir","ambition","projet de","aimerais bien"],t:"good",ti:"Envie de développement",m:"Énergie positive à capter — il se projette.",a:"RDV2 : raccrocher la démo V2 à SON projet, avec ses mots."}
+    {w:["j'aimerais","jaimerais","je reve","j'adorerais","envie de","aimerais developper","agrandir","me developper","grandir","ambition","projet de","aimerais bien"],t:"good",ti:"Envie de développement",m:"Énergie positive à capter — il se projette.",a:"RDV2 : raccrocher la démo V2 à SON projet, avec ses mots."},
+    {w:["invendu","invendus","jeter","gaspillage","gaspille","perte de marchandise","perime","reste sur les bras","poubelle"],t:"warm",ti:"Invendus / gaspillage",m:"Pertes de marchandise verbalisées — argument ROI concret.",a:"RDV2 : précommande / click & collect = écoulement anticipé du frais."},
+    {w:["fier","fierte","savoir-faire","savoir faire","fait maison","artisanal","qualite","fait moi-meme","fait moi meme","selection","meilleur"],t:"good",ti:"Fierté produit / savoir-faire",m:"Matière émotionnelle forte pour le storytelling du site.",a:"RDV2 : mettre SA pépite en hero, raconter son histoire produit."},
+    {w:["reserve","reserver","reservation","commande a l'avance","commander a l'avance","precommande","pre-commande","mettre de cote","mets de cote"],t:"good",ti:"Réservation déjà demandée",m:"Le besoin de commande à l'avance existe déjà chez ses clients.",a:"RDV2 : montrer SA page de précommande, prête à l'emploi."},
+    {w:["seul","toute seule","tout seul","pas d'employe","pas d'equipe","je gere tout","personne pour m'aider","manque de personnel","pas de main"],t:"hot",ti:"Isolé / pas de main-d'œuvre",m:"Surcharge structurelle — automatiser, pas embaucher.",a:"RDV2 : positionner Marchéo comme « un employé qui prend les commandes 24/7 »."}
   ];
   const A=[];
   RULES.forEach(r=>{
@@ -1216,25 +1281,25 @@ function evalAlerts(){
   const vt=d.vis_trouve||{};
   if((vt.bao||vt.habitues)&&!vt.google&&!vt.rs)
     A.push(["warm","100% dépendant du bouche-à-oreille","Aucun canal digital actif : croissance plafonnée, fragile.","RDV2 : montrer le canal qui amène des nouveaux clients sans effort."]);
-  if(d.op_appels==="probleme"||d.op_appels==="beaucoup")
+  if(has("op_appels","probleme")||has("op_appels","beaucoup"))
     A.push(["hot","Les appels sont une vraie douleur","Pic de douleur opérationnel identifié — argument émotionnel n°1.","RDV2 : Click & Collect = LE plat principal de la démo."]);
-  if(d.op_cc==="pense")
+  if(has("op_cc","pense"))
     A.push(["good","Terrain mûr pour le click & collect","Il y a déjà pensé : l'idée est acceptée, reste à la rendre concrète.","RDV2 : montrer SA version du C&C, prête à l'emploi."]);
   if(txt("op_pertes"))
     A.push(["warm","Pertes de ventes verbalisées","Il a lui-même nommé un manque à gagner.","RDV2 : transformer en chiffre → argument ROI."]);
-  if(d.op_livraison==="regulier"||d.li_position==="aimerait")
+  if(has("op_livraison","regulier")||has("li_position","aimerait"))
     A.push(["good","Levier livraison fort","Demande réelle ou envie non outillée.","RDV2 : désamorcer le frein (zone limitée, créneaux, panier mini)."]);
-  if(d.qc_reviennent_pas&&txt("qc_reviennent_pas"))
+  if(txt("qc_reviennent_pas"))
     A.push(["good","Besoin de fidélisation exprimé","Des clients qu'il aimerait revoir plus souvent.","RDV2 : notifications + programme de fidélité."]);
-  if(d.pj_interet==="chaud")
+  if(has("pj_interet","chaud"))
     A.push(["hot","Très chaud — demande déjà les prix","Signal d'achat fort. Ne pas refroidir.","Closer vite : caler un RDV2 rapproché, garder une part de mystère sur SA démo."]);
-  if(d.pj_interet==="froid")
+  if(has("pj_interet","froid"))
     A.push(["warm","Accroche faible","Il n'a pas mordu sur le générique.","RDV2 : tout miser sur SA personnalisation (nom, produits, photos)."]);
-  if(d.ev_proba==="tres_bonne")
+  if(has("ev_proba","tres_bonne"))
     A.push(["good","Signature très probable","Prioriser ce dossier dans ta tournée.","Préparer une démo V2 irréprochable + proposition claire."]);
   // reco — rappel persistant
-  if(!d.re_demande || d.re_demande==="non")
-    A.push(["hot","RECO NON DEMANDÉE","L'étape la plus rentable de la tournée n'est pas faite.","Avant de partir : demander 2-3 noms. Toujours."]);
+  { const rk=selKeys(d.re_demande); if(!rk.length || (rk.length===1&&rk[0]==="non"))
+    A.push(["hot","RECO NON DEMANDÉE","L'étape la plus rentable de la tournée n'est pas faite.","Avant de partir : demander 2-3 noms. Toujours."]); }
   freeTextAlerts().forEach(x=>A.push(x));
   return A;
 }
@@ -1252,36 +1317,42 @@ function refreshStrat(){
   document.getElementById("fabCnt").textContent=A.length;
   fab.classList.toggle("alarm", (!d_recoOk()) );
   const body=document.getElementById("stratBody");
-  body.innerHTML = A.length
-    ? A.map(alHTML).join("")
-    : `<div class="al-empty">Rien à signaler pour l'instant.<br>Les indices stratégiques apparaîtront ici au fil des réponses.</div>`;
+  const openA=A.filter(a=>typeof a[1]==="string"&&a[1].indexOf("🗣️")===0);
+  const stratA=A.filter(a=>openA.indexOf(a)<0);
+  const nOpen=collectOpenText().filter(x=>x.a&&x.a.length>2).length;
+  let h=`<div class="strat-head">📊 Lecture stratégique <span class="cb">${stratA.length}</span></div>`;
+  h+= stratA.length ? stratA.map(alHTML).join("")
+     : `<div class="al-empty" style="padding:18px 12px">Rien de marquant côté choix pour l'instant.</div>`;
+  h+=`<div class="strat-head" style="margin-top:20px">🗣️ Réponses ouvertes (violet) <span class="cb">${nOpen} lue${nOpen>1?"s":""}</span></div>`;
+  h+= openA.length ? openA.map(alHTML).join("")
+     : `<div class="al-empty" style="padding:18px 12px">${nOpen?`${nOpen} réponse${nOpen>1?"s":""} ouverte${nOpen>1?"s":""} analysée${nOpen>1?"s":""} — aucun signal fort détecté pour l'instant.`:"Aucune réponse aux questions ouvertes (en violet) pour l'instant."}</div>`;
+  body.innerHTML=h;
 }
-function d_recoOk(){ const x=fiche.data.re_demande; return x && x!=="non"; }
+function d_recoOk(){ const k=selKeys(fiche.data.re_demande); return k.length>0 && !(k.length===1 && k[0]==="non"); }
 
 /* ============================================================
    DIAGNOSTIC (score + manque à gagner + visuels + CTA)
    ============================================================ */
 function diagScores(){
   const d=fiche.data, clamp=n=>Math.max(0,Math.min(10,Math.round(n)));
+  const H=(id,k)=>selHas(d[id],k), F1=id=>selFirst(d[id]);
   let vg=4;
-  const gr={rien:1,maps:3,fb:4,vieux:5,complet:9}[d.vis_google_resultat]; if(gr!=null) vg=gr;
-  if(d.vis_concurrents==="oui") vg-=2; else if(d.vis_concurrents==="parfois") vg-=1; else if(d.vis_concurrents==="non") vg+=1;
-  if(typeof d.vis_presence==="object"&&d.vis_presence&&d.vis_presence.pas_site) vg-=2;
+  const gr={rien:1,maps:3,fb:4,vieux:5,complet:9}[F1("vis_google_resultat")]; if(gr!=null) vg=gr;
+  if(H("vis_concurrents","oui")) vg-=2; else if(H("vis_concurrents","parfois")) vg-=1; else if(H("vis_concurrents","non")) vg+=1;
+  if(H("vis_presence","pas_site")) vg-=2;
   let gc=4;
-  const cm={auto:9,sms:4,fb:4,tel:3}[d.op_commande_manuelle]; if(cm!=null) gc=cm;
-  const od=d.op_distance||{};
-  if(od.cc) gc+=2; if(od.liv) gc+=1; if(od.aucun) gc-=3;
-  if(d.op_appels_horaires==="tres") gc-=2; else if(d.op_appels_horaires==="jour") gc-=1; else if(d.op_appels_horaires==="rare") gc+=1;
-  if(d.op_cc==="pense"||d.op_cc==="essaye") gc+=1;
+  const cm={auto:9,sms:4,fb:4,tel:3}[F1("op_commande_manuelle")]; if(cm!=null) gc=cm;
+  if(H("op_distance","cc")) gc+=2; if(H("op_distance","liv")) gc+=1; if(H("op_distance","aucun")) gc-=3;
+  if(H("op_appels_horaires","tres")) gc-=2; else if(H("op_appels_horaires","jour")) gc-=1; else if(H("op_appels_horaires","rare")) gc+=1;
+  if(H("op_cc","pense")||H("op_cc","essaye")) gc+=1;
   let mo=4;
-  if(d.vis_google_resultat==="complet") mo+=4; else if(d.vis_google_resultat==="vieux") mo+=1; else if(d.vis_google_resultat==="rien") mo-=2;
-  if(d.cl_voir_produits==="oui") mo+=2; else if(d.cl_voir_produits==="non") mo-=2;
-  if(d.op_commande_manuelle==="auto") mo+=2;
+  if(H("vis_google_resultat","complet")) mo+=4; else if(H("vis_google_resultat","vieux")) mo+=1; else if(H("vis_google_resultat","rien")) mo-=2;
+  if(H("cl_voir_produits","oui")) mo+=2; else if(H("cl_voir_produits","non")) mo-=2;
+  if(H("op_commande_manuelle","auto")) mo+=2;
   let fi=4;
-  if(d.cl_prevenir==="oui") fi+=4; else if(d.cl_prevenir==="non") fi-=3; else if(d.cl_prevenir==="fb"||d.cl_prevenir==="magasin") fi-=1;
-  const vd=d.vis_decouverte||{};
-  if(["fb","insta","google"].filter(k=>vd[k]).length>=2) fi+=1;
-  if(vd.aucun) fi-=2;
+  if(H("cl_prevenir","oui")) fi+=4; else if(H("cl_prevenir","non")) fi-=3; else if(H("cl_prevenir","fb")||H("cl_prevenir","magasin")) fi-=1;
+  if(["fb","insta","google"].filter(k=>H("vis_decouverte",k)).length>=2) fi+=1;
+  if(H("vis_decouverte","aucun")) fi-=2;
   const V={vg:clamp(vg),gc:clamp(gc),mo:clamp(mo),fi:clamp(fi)};
   V.global=clamp((V.vg+V.gc+V.mo+V.fi)/4);
   return V;
@@ -1294,29 +1365,48 @@ function diagManque(){
   return "Vous avez de bonnes bases : quelques optimisations simples peuvent encore augmenter vos commandes et votre visibilité.";
 }
 function ctaPick(v){ setVal("cta_choice",v); toast(v==="demo"?"Parfait — démo adaptée notée ✓":"Noté — votre plan d'amélioration ✓"); }
+function diagProducts(){
+  const d=fiche.data, out=[];
+  for(let i=1;i<=5;i++){ const n=d[`top5_${i}_nom`]; if(n&&String(n).trim()) out.push({n:String(n).trim(),p:(d[`top5_${i}_prix`]||"").toString().trim()}); }
+  if(out.length<3){
+    const txt=[d.pr_signatures,d.pr_categories,d.pr_marge,d.pr_differenciants].filter(Boolean).join(", ");
+    txt.split(/[,;\n•·\/]+/).map(s=>s.trim()).filter(s=>s.length>1).forEach(s=>{
+      if(out.length<6 && !out.some(o=>o.n.toLowerCase()===s.toLowerCase())) out.push({n:s,p:""});
+    });
+  }
+  return out.slice(0,6);
+}
 function buildMock(){
-  const m=METIERS[val("type_commerce")]||METIERS.autre;
-  const nom=esc(val("nom_commerce")||"Votre commerce");
-  const row=(em,b,s)=>`<div class="mk-row"><span class="em">${em}</span><div><b>${esc(b)}</b><span>${esc(s)}</span></div></div>`;
-  return `<div class="mock-grid">
+  const m=METIERS[selFirst(val("type_commerce"))]||METIERS.autre;
+  const nom=esc(val("nom_commerce")||m.label);
+  const slug=(val("nom_commerce")||m.label).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  let prods=diagProducts();
+  if(!prods.length) prods=[{n:"Spécialité maison",p:""},{n:"Produit phare",p:""},{n:"Sélection du jour",p:""},{n:"Coffret cadeau",p:""}];
+  const grid=prods.map(p=>`<div class="it"><span class="em">${m.emoji}</span><b>${esc(p.n)}</b><span>${p.p?esc(p.p):"Voir"}</span></div>`).join("");
+  return `<div class="mock-cap">Voici à quoi ressemblerait <b>${nom}</b> en ligne :</div>
+  <div class="site">
+    <div class="site-bar"><i></i><i></i><i></i><div class="site-url">${esc(slug)}.marcheo.fr</div></div>
+    <div class="site-hero" style="background:linear-gradient(150deg,${m.c},${m.c}cc)">
+      <span class="lg">● ${nom}</span>
+      <h4>${nom} ${m.emoji}</h4>
+      <p>${esc(m.tag)}</p>
+      <span class="cta" style="background:${m.a}">${esc(m.cta)}</span>
+    </div>
+    <div class="site-body">
+      <h6>Nos produits</h6>
+      <div class="site-grid">${grid}</div>
+    </div>
+  </div>
+  <div class="mock-grid">
     <div class="mock"><h5>Sur Google</h5><div class="mk-g">
-      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${nom.toLowerCase().replace(/[^a-z0-9]+/g,"-")}.marcheo.fr · Itinéraire</div>
+      <div class="nm">${nom} ${m.emoji}</div><div class="ur">${esc(slug)}.marcheo.fr · Itinéraire</div>
       <div class="st">★★★★★ <span style="color:#555">(127 avis)</span></div>
       <div class="ds">${esc(m.tag)}. Commande en ligne · Click &amp; collect · Ouvre à 8h00.</div></div></div>
-    <div class="mock"><h5>Click &amp; collect</h5><div class="mk-ph">
-      <div class="hd" style="background:${m.c}">${nom}</div><div class="bd">
-      ${row(m.emoji,"Produit du jour","Prêt en 2h — payé en ligne")}
-      ${row("🧺","Mon panier","2 articles · 18,40 €")}
-      <div class="mk-btn" style="background:${m.a}">${esc(m.cta)}</div></div></div></div>
-    <div class="mock"><h5>Votre catalogue</h5><div class="mk-cat">
-      <div><span class="em">${m.emoji}</span>Produit phare<br><b>9,90 €</b></div>
-      <div><span class="em">🥇</span>Spécialité<br><b>14,50 €</b></div>
-      <div><span class="em">🧀</span>Sélection<br><b>6,20 €</b></div>
-      <div><span class="em">🎁</span>Coffret<br><b>29 €</b></div></div></div>
-    <div class="mock"><h5>Sur mobile</h5><div class="mk-ph" style="max-width:150px;margin:0 auto">
-      <div class="hd" style="background:${m.c};padding:22px 10px">${m.emoji}<br>${nom}</div>
-      <div class="bd"><div class="mk-btn" style="background:${m.a};margin-bottom:6px">${esc(m.cta)}</div>
-      <div style="font-size:11px;color:#8a8a8a;text-align:center">Réservez en 30 secondes</div></div></div></div>
+    <div class="mock"><h5>Sur mobile</h5><div class="mk-ph" style="max-width:160px;margin:0 auto">
+      <div class="hd" style="background:${m.c};padding:20px 10px">${m.emoji}<br>${nom}</div>
+      <div class="bd">
+        <div class="mk-row"><span class="em">${m.emoji}</span><div><b>${esc(prods[0].n)}</b><span>${prods[0].p?esc(prods[0].p):"Disponible"}</span></div></div>
+        <div class="mk-btn" style="background:${m.a}">${esc(m.cta)}</div></div></div></div>
   </div>`;
 }
 function buildDiag(){
@@ -1325,8 +1415,9 @@ function buildDiag(){
   const bar=(lb,n)=>`<div class="diag-row"><div class="lb">${lb}</div>
     <div class="diag-bar"><i style="width:${n*10}%;background:${tone(n)}"></i></div>
     <div class="vn">${n}/10</div></div>`;
+  const nm=esc(val("nom_commerce")||"votre commerce");
   return `<div class="diag">
-    <h3>Diagnostic Marchéo</h3>
+    <h3>Diagnostic de ${nm}</h3>
     <div class="sub">Estimation à partir de vos réponses.</div>
     ${bar("Visibilité Google",s.vg)}
     ${bar("Gestion des commandes",s.gc)}
@@ -1347,31 +1438,32 @@ function buildDiag(){
    ============================================================ */
 function buildSynthesis(){
   const d=fiche.data;
-  const m=METIERS[d.type_commerce]||null;
+  const m=METIERS[selFirst(d.type_commerce)]||null;
   const nom=d.nom_commerce||"Le commerce";
+  const H=(id,k)=>selHas(d[id],k);
 
   // température
   const tempMap={froid:["Froid","🧊"],curieux:["Tiède","🌤️"],interesse:["Chaud","🔥"],chaud:["Brûlant","🔥🔥"]};
   const probMap={faible:"Faible (<25%)",moyenne:"Moyenne (25-50%)",bonne:"Bonne (50-75%)",tres_bonne:"Très bonne (>75%)"};
-  const temp=tempMap[d.pj_interet]||["À évaluer","•"];
-  const prob=probMap[d.ev_proba]||"non évaluée";
+  const temp=tempMap[selFirst(d.pj_interet)]||["À évaluer","•"];
+  const prob=probMap[selFirst(d.ev_proba)]||"non évaluée";
 
   // douleurs détectées
   const pains=[];
-  if(d.op_appels==="probleme"||d.op_appels==="beaucoup") pains.push("Appels chronophages");
-  if(typeof d.vis_presence==="object"&&d.vis_presence&&d.vis_presence.pas_site) pains.push("Aucune présence en ligne");
+  if(H("op_appels","probleme")||H("op_appels","beaucoup")) pains.push("Appels chronophages");
+  if(H("vis_presence","pas_site")) pains.push("Aucune présence en ligne");
   if((d.op_pertes||"").trim()) pains.push("Pertes de ventes : "+trunc(d.op_pertes,60));
-  if(d.li_position==="aimerait") pains.push("Veut livrer mais pas outillé");
-  if(d.op_cc==="pense") pains.push("Click & collect imaginé mais jamais lancé");
+  if(H("li_position","aimerait")) pains.push("Veut livrer mais pas outillé");
+  if(H("op_cc","pense")) pains.push("Click & collect imaginé mais jamais lancé");
   if((d.op_douleurs||"").trim()) pains.push(trunc(d.op_douleurs,70));
   if((d.qc_dormir||"").trim()) pains.push("Peur profonde : "+trunc(d.qc_dormir,60));
 
   // plat principal
   let plat="Vitrine + click & collect à son nom";
-  if(d.op_appels==="probleme"||d.op_appels==="beaucoup") plat="Click & collect (supprime les appels)";
-  else if(d.li_position==="aimerait"||d.op_livraison==="regulier") plat="Module livraison cadré (zone + créneaux)";
+  if(H("op_appels","probleme")||H("op_appels","beaucoup")) plat="Click & collect (supprime les appels)";
+  else if(H("li_position","aimerait")||H("op_livraison","regulier")) plat="Module livraison cadré (zone + créneaux)";
   else if((d.qc_reviennent_pas||"").trim()) plat="Fidélisation + notifications clients";
-  else if(typeof d.vis_presence==="object"&&d.vis_presence&&d.vis_presence.pas_site) plat="Vitrine en ligne + visibilité Google";
+  else if(H("vis_presence","pas_site")) plat="Vitrine en ligne + visibilité Google";
 
   // arguments dans SES mots
   const qcIds=["qc_choisissent_vous","qc_savent_pas","qc_supprimer_tache","qc_ca_perdu","qc_2h","qc_sousvalorise","qc_jamais_ose","qc_dormir","qc_different_200m","qc_invisibles","qc_retenir"];
@@ -1379,12 +1471,12 @@ function buildSynthesis(){
 
   // visuels (top5)
   const prods=[];
-  for(let i=1;i<=5;i++){ const n=d[`top5_${i}_nom`]; if(n) prods.push(n+(d[`top5_${i}_prix`]?" — "+d[`top5_${i}_prix`]:"")+(d[`top5_${i}_photo`]==="aprendre"?" (📷 à prendre)":"")); }
+  for(let i=1;i<=5;i++){ const n=d[`top5_${i}_nom`]; if(n) prods.push(n+(d[`top5_${i}_prix`]?" — "+d[`top5_${i}_prix`]:"")+(selHas(d[`top5_${i}_photo`],"aprendre")?" (📷 à prendre)":"")); }
 
   // reco
   const recoNames=[];
   for(let i=1;i<=4;i++){ const n=d[`reco_${i}_nom`]; if(n) recoNames.push(n); }
-  const recoState = !d.re_demande||d.re_demande==="non"
+  const recoState = (()=>{const rk=selKeys(d.re_demande);return !rk.length||(rk.length===1&&rk[0]==="non");})()
     ? `<span class="pill" style="background:var(--tomate100);color:#9B3115">⚠️ Reco non demandée — à rattraper</span>`
     : `<span class="pill">Reco demandée</span>`+ (recoNames.length?recoNames.map(n=>`<span class="pill v">${esc(n)}</span>`).join(""):` <span class="none" style="padding-left:0">aucun nom donné</span>`);
 
