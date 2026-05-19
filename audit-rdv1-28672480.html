@@ -480,9 +480,7 @@ const SCHEMA = [
     NOTE("✨","Votre commerce mérite les mêmes outils que les grandes enseignes","Aujourd'hui, même les commerces de proximité ont besoin d'outils simples pour rester visibles face aux grandes chaînes — sans complexité. Ce diagnostic prend quelques minutes et vous repartez avec des pistes concrètes."),
     {k:"card",fields:[
       F("type_commerce","Quel type de commerce avez-vous ?",{type:"radio",grid:true,opts:[
-        O("primeur","🌿 Primeur"),O("boucherie","🥩 Boucherie"),O("boulangerie","🥖 Boulangerie"),
-        O("poissonnerie","🐟 Poissonnerie"),O("epicerie","🛒 Épicerie"),O("traiteur","🍽️ Traiteur"),
-        O("fastfood","🍔 Restaurant rapide"),O("autre","🛍️ Autre")]}),
+        ...Object.keys(METIERS).map(k=>O(k,METIERS[k].emoji+" "+METIERS[k].label))]}),
       F("nom_commerce","Nom du commerce",{ph:"Ex : Boucherie Martin"}),
       F("adresse","Adresse",{ph:"N°, rue, ville"}),
       F("responsable","Nom du / de la responsable",{ph:"Prénom Nom"}),
@@ -797,10 +795,8 @@ const SCHEMA = [
 { id:"demo", kicker:"Étape 13", title:"Démo générique en boutique", sub:"Sa réaction face à un exemple concret.",
   blocks:[
     {k:"card",fields:[
-      F("de_exemple","Quel exemple j'ai montré",{type:"check",opts:[
-        O("boul","Site exemple boulangerie"),O("bouch","Site exemple boucherie / charcuterie"),
-        O("prim","Site exemple primeur"),O("pois","Site exemple poissonnerie"),
-        O("epi","Site exemple épicerie / caviste"),
+      F("de_exemple","Quel exemple j'ai montré",{type:"check",grid:true,opts:[
+        ...Object.keys(METIERS).filter(k=>k!=="autre").map(k=>O(k,"Exemple "+METIERS[k].label)),
         O("autre","Autre",[F("de_exemple_autre","Préciser",{ph:"…"})])]}),
       TA("de_reagi","Sur quelles fonctionnalités a-t-il réagi le plus ?"),
       TA("de_perplexe","Sur quoi a-t-il paru perplexe / désintéressé ?"),
