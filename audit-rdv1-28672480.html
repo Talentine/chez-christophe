@@ -497,6 +497,13 @@ const SCHEMA = [
     {k:"card",fields:[
       TA("anciennete","Depuis combien de temps installé ? A monté ou repris ?"),
       F("effectif","Combien de personnes travaillent dans le commerce ?",{ph:"Ex : 3 personnes"}),
+      F("heures_semaine","Heures par semaine que vous travaillez",{ph:"Ex : 60 h",inp:"text"}),
+      F("digital_referent","Qui s'occupe(rait) du digital chez vous ?",{type:"radio",grid:true,opts:[
+        O("moi","Moi-même",null,"À rassurer sur la simplicité. « Tout est fait pour vous, zéro manip ».","warn"),
+        O("conjoint","Mon conjoint / un proche",null,"Allié digital : à intégrer dans la démo V2.","good"),
+        O("enfant","Mon enfant",null,"Bon levier : génération à l'aise avec les outils.","good"),
+        O("salarie","Un(e) salarié(e)",null,"Confier la maintenance à la même personne qui tient les réseaux.","good"),
+        O("personne","Personne pour l'instant",null,"Argument « zéro manip + accompagnement Marchéo » indispensable.","bad")]}),
       TA("ambiance","Notes sur l'ambiance / la personnalité du commerçant")
     ]},
     QC("qc_metier_envie","Votre histoire en 30 secondes — repris ou créé, depuis quand, et pourquoi ce métier ?","Récup pour la page « À propos » du site V2 et l'amorce du RDV 2.",["repris","famille","installé","ouvert","tradition","passion","père","mère","grand-père","créé","monté","ans"]),
@@ -531,11 +538,19 @@ const SCHEMA = [
         O("rs","Réseaux sociaux",null,"Il fait déjà l'effort de communiquer : le site V2 devient le prolongement qui convertit.","good"),
         O("autre","Autre",[F("vis_trouve_autre","Préciser",{ph:"…"})])]}),
       F("vis_presence","Présence digitale actuelle",{type:"check",opts:[
-        O("site","Site internet existant",[F("vis_site_url","URL du site",{ph:"https://…"})],"À auditer en direct : souvent vieux/pas mobile. Lever : « on le modernise ET il prend les commandes ».","warn"),
+        O("site","Site internet existant",[
+          F("vis_site_url","URL du site",{ph:"https://…"}),
+          F("vis_site_etat","État du site (à auditer ensemble)",{type:"radio",grid:true,opts:[
+            O("complet","À jour, mobile, prend déjà les commandes",null,"Bien équipé : on optimise ou on complète.","good"),
+            O("vitrine","À jour mais juste vitrine (pas de commande)",null,"Quick win : ajouter la prise de commande sans tout refaire.","warn"),
+            O("vieux","Vieux / pas mobile / pas à jour",null,"Refonte nécessaire — argument « avant/après » fort.","bad")]})
+        ],"À auditer en direct. Selon l'état, on modernise OU on ajoute juste la commande.","warn"),
         O("pas_site","Pas de site internet",null,"Invisible pour qui le cherche. C'EST le point d'entrée Marchéo n°1.","bad"),
         O("fb","Page Facebook",[F("vis_fb_actif","Page active ?",{type:"radio",grid:true,opts:[O("oui","Oui"),O("non","Non")]})],"S'il publie déjà, il a l'habitude. Page morte = mauvaise image, à corriger.","warn"),
         O("insta","Page Instagram",[F("vis_insta_actif","Page active ?",{type:"radio",grid:true,opts:[O("oui","Oui"),O("non","Non")]})],"Bon signe d'ouverture. À relier au site pour transformer l'audience en commandes.","good"),
         O("gbp","Fiche Google Business",[F("vis_gbp_etat","État de la fiche",{ph:"À jour ? Photos ? Avis ?"})],"Minimum vital local. Si absente/vide → quick win immédiat très parlant.","warn")]}),
+      F("vis_avis_nb","Nombre d'avis Google",{ph:"Ex : 47"}),
+      F("vis_avis_note","Note moyenne Google",{ph:"Ex : 4,8 / 5"}),
       TA("vis_google","Ce qui apparaît sur Google (observation)"),
       TA("vis_reaction","Sa réaction quand je lui ai montré")
     ]},
@@ -553,10 +568,19 @@ const SCHEMA = [
         O("jour","Tous les jours",null,"Temps perdu quotidien, à chiffrer sur la semaine.","warn"),
         O("parfois","Quelques fois",null,"Douleur latente.","warn"),
         O("rare","Rarement",null,"Chercher le levier ailleurs.","good")]}),
-      F("op_distance","Comment gérez-vous les commandes à distance aujourd'hui ?",{type:"check",grid:true,opts:[
-        O("tel","Téléphone"),O("sms","SMS"),O("messenger","Messenger / WhatsApp"),
-        O("aucun","Aucun système",null,"Aucune commande possible hors présence/horaires.","bad"),
-        O("cc","Click & collect"),O("liv","Livraison")]}),
+      F("op_canaux","Par quels canaux recevez-vous les commandes hors boutique ?",{type:"check",grid:true,opts:[
+        O("tel","Téléphone",null,"Chronophage. Le site centralise et libère du temps.","warn"),
+        O("sms","SMS",null,"Pas de suivi structuré, oublis fréquents.","warn"),
+        O("messenger","Messenger / WhatsApp",null,"Dispersé, rien n'est centralisé.","warn"),
+        O("email","E-mail",null,"Manuel, lent : à automatiser.","warn"),
+        O("formulaire","Formulaire / site existant",null,"Déjà digital : on optimise plutôt qu'on évangélise.","good"),
+        O("marketplace","Marketplace / appli tiers (Uber Eats, Deliveroo…)",null,"Commission élevée. Marchéo = canal direct sans commission.","warn"),
+        O("aucun","Aucun — uniquement en boutique",null,"Aucune commande possible hors horaires : manque à gagner direct.","bad")]}),
+      F("op_modeles","Quels modèles de retrait / livraison proposez-vous DÉJÀ ?",{type:"check",grid:true,opts:[
+        O("cc","Click & collect (commande à l'avance, retrait en boutique)",null,"Déjà acquis dans sa tête : à structurer dans la V2.","good"),
+        O("liv","Livraison à domicile",null,"Comprendre l'organisation actuelle pour cadrer la V2.","good"),
+        O("reserv","Réservation (mise de côté, paiement en magasin)",null,"Brique du C&C : facile à transformer en commande en ligne.","good"),
+        O("aucun","Aucun des deux",null,"Tout est à construire — gros levier de différenciation V2.","warn")]}),
       F("op_commande_manuelle","Prenez-vous encore les commandes manuellement ?",{type:"radio",grid:true,opts:[
         O("tel","Oui, par téléphone",null,"Chronophage et source d'oublis.","warn"),
         O("fb","Oui, via Facebook/Messenger",null,"Dispersé, rien n'est centralisé.","warn"),
@@ -668,6 +692,7 @@ const SCHEMA = [
       F("mpo_arrivage","Comment annoncez-vous les arrivages du matin ?",{type:"check",grid:true,opts:[O("fb","Facebook"),O("tel","Téléphone"),O("magasin","En magasin"),O("aucun","Aucun moyen")]})]},
     {k:"card",fields:[
       TA("pr_categories","Catégories de produits principales"),
+      F("pr_references","Nombre de produits / références (estimé)",{ph:"Ex : 80"}),
       TA("pr_marge","Produits sur lesquels il a le plus de marge"),
       TA("pr_signatures","Produits emblématiques / signatures")
     ]},
@@ -712,7 +737,7 @@ const SCHEMA = [
     QC("qc_depenser_plus","Selon vous, qu'est-ce qui ferait qu'un client dépense plus à chaque visite ?","Sa réponse = ce qu'on met en place dans le tunnel de commande de la V2",["suggérer","un menu","un lot","une promo","nouveauté","conseiller","accompagnement","photos","visible","plus de choix","mettre en avant","fiche produit"])
   ]},
 
-{ id:"cc", kicker:"Étape 8 · Produits & vision", title:"Commandes à l'avance & click & collect", sub:"Ce qui se prête naturellement au digital, selon LUI.",
+{ id:"cc", kicker:"Étape 8 · Click & collect", title:"Commandes à l'avance & click & collect", sub:"Ce qui se prête naturellement au digital, selon LUI.",
   blocks:[
     {k:"card",fields:[
       TA("cc_deja","Produits déjà commandés à l'avance par téléphone"),
@@ -724,11 +749,29 @@ const SCHEMA = [
         O("48h","48h ou plus",null,"Pré-commande indispensable : le site sécurise et planifie la prod.","good"),
         O("variable","Variable selon le produit",null,"Délai par produit dans le catalogue → attentes clients maîtrisées.","warn"),
         O("autre","Autre",[F("cc_delai_autre","Préciser",{ph:"…"})])]}),
-      TA("cc_exclure","Produits à exclure de la commande en ligne")
+      F("cc_paiement","Paiement à la commande en ligne, vous le voyez comment ?",{type:"radio",grid:true,opts:[
+        O("integral","Encaisser intégralement en ligne",null,"Idéal : zéro impayé, zéro file à la caisse. Vendre la sérénité.","good"),
+        O("acompte","Un acompte en ligne, le reste en magasin",null,"Bon compromis : sécurise sans bouleverser l'habitude.","good"),
+        O("magasin","Paiement uniquement en magasin",null,"Risque d'impayés (clients qui ne viennent pas chercher). À chiffrer au RDV2.","warn"),
+        O("sais_pas","Je ne sais pas encore",null,"À cadrer au RDV 2 avec les avantages concrets de chaque option.","warn")]}),
+      F("cc_notif","Notification au client quand sa commande est prête",{type:"check",grid:true,opts:[
+        O("sms","SMS automatique",null,"Standard C&C. Le client revient zen, sans rappeler.","good"),
+        O("email","E-mail",null,"Backup utile pour les commandes anticipées.","good"),
+        O("appel","Appel téléphonique",null,"Lui re-fait perdre du temps. À automatiser.","warn"),
+        O("aucune","Aucune — il vient à l'heure prévue",null,"Source de friction (oublis, retards). Pousser le SMS auto.","warn")]}),
+      F("cc_creneaux","Créneaux de retrait qu'il souhaite proposer",{type:"check",grid:true,opts:[
+        O("matin","Matin (8h-12h)"),
+        O("midi","Midi (12h-14h)",null,"Plage clé pour les actifs (déjeuner, pause).","good"),
+        O("aprem","Après-midi (14h-18h)"),
+        O("soir","Fin de journée (17h-20h)",null,"Plage la plus demandée (sortie du travail).","good"),
+        O("tout","Toute la journée",null,"À cadrer pour éviter les interruptions permanentes.","warn"),
+        O("weekend","Week-end uniquement",null,"Modèle « marchés » : adapté si gros volume samedi/dimanche.","good")]}),
+      TA("cc_exclure","Produits à exclure de la commande en ligne"),
+      TA("cc_objections","Objections C&C qu'IL exprime",{ph:"Ex : « ça va casser le contact », « mes produits ne sont pas standards », « je ne pourrai pas suivre »…"})
     ]}
   ]},
 
-{ id:"livraison", kicker:"Étape 9 · Produits & vision", title:"Livraison", sub:"Capter sa vision et son vrai frein.",
+{ id:"livraison", kicker:"Étape 9 · Livraison", title:"Livraison", sub:"Capter sa vision, son vrai frein, et le cadre concret (créneaux, tarif, froid).",
   blocks:[
     {k:"card",fields:[
       F("li_position","Position actuelle",{type:"radio",opts:[
@@ -740,13 +783,41 @@ const SCHEMA = [
         O("autre","Autre",[TA("li_autre","Préciser")])]}),
       TA("li_zone","Zone géographique réaliste de livraison"),
       TA("li_qui","Qui pourrait livrer ?"),
-      TA("li_panier_min","Panier minimum + frais de livraison envisagés")
+      TA("li_panier_min","Panier minimum + frais de livraison envisagés"),
+      F("li_creneaux","Créneaux de livraison souhaités",{type:"check",grid:true,opts:[
+        O("matin","Matin (8h-12h)",null,"Plutôt pros / restaurateurs.","good"),
+        O("midi","Midi (12h-14h)"),
+        O("aprem","Après-midi (14h-18h)"),
+        O("soir","Fin de journée (17h-20h)",null,"Plage la plus demandée (retour du travail).","good"),
+        O("samedi","Samedi journée"),
+        O("variable","Variable selon le jour")]}),
+      F("li_modele","Type de livraison envisagé",{type:"radio",grid:true,opts:[
+        O("j1","J+1 (commande la veille pour le lendemain)",null,"Le plus simple à organiser : tournée groupée.","good"),
+        O("j0","Le jour même",null,"Plus exigeant logistiquement, mais très vendeur.","warn"),
+        O("creneau","Créneau fixe choisi par le client",null,"Le plus apprécié des clients. À chiffrer côté tournée.","good"),
+        O("demande","À la demande (cas par cas)",null,"Difficile à scaler — à éviter pour démarrer.","warn")]}),
+      F("li_tarif","Tarification livraison envisagée",{type:"radio",grid:true,opts:[
+        O("gratuit_seuil","Gratuit à partir d'un panier minimum",null,"Augmente le panier moyen et rentabilise la tournée.","good"),
+        O("fixe","Frais fixes par livraison",null,"Simple à comprendre, sécurise la marge.","good"),
+        O("calcul","Calculé selon la distance",null,"Juste mais peu lisible. À expliquer clairement.","warn"),
+        O("offerte","Offerte systématiquement",null,"Sympathique mais souvent perdant. À chiffrer.","warn"),
+        O("sais_pas","Je ne sais pas encore",null,"À cadrer au RDV 2 : un tarif clair facilite la conversion.","warn")]}),
+      F("li_froid","Chaîne du froid à respecter ?",{type:"radio",grid:true,opts:[
+        O("oui","Oui — frais / surgelé",null,"Sac isotherme + créneaux courts indispensables. À cadrer dans la démo.","warn"),
+        O("non","Non — produits secs / non périssables",null,"Logistique simplifiée.","good"),
+        O("partiel","Partiel — certains produits seulement",null,"Distinguer dans le catalogue ce qui se livre ou pas.","warn")]}),
+      F("li_vehicule","Véhicule envisagé",{type:"check",grid:true,opts:[
+        O("velo","Vélo / vélo cargo",null,"Adapté centre-ville, écologique.","good"),
+        O("scooter","Scooter"),
+        O("voiture","Voiture / camionnette",null,"Volume + chaîne du froid possible.","good"),
+        O("frigo","Véhicule frigorifique",null,"Investissement : à amortir sur volume.","warn"),
+        O("sais_pas","Pas encore décidé")]})
     ]},
     QC("qc_livraison_ideale","Si la livraison n'avait aucune contrainte technique, vous la feriez comment idéalement ?","Capte sa vision = exactement ce que la démo V2 montre comme « votre livraison »",["livrer","à domicile","la zone","créneaux","autour","personnes âgées","scooter","vélo","planning","le lendemain","horaires","tournée","quartier"]),
     QC("qc_frein_livrer","Qu'est-ce qui vous freine vraiment dans l'idée de livrer ? Temps, logistique, outil ?","Le frein = exactement ce qu'on désamorce au RDV 2 (zone limitée, créneaux, panier mini…)",["le temps","logistique","seul","le coût","emballage","la zone","froid","quelqu'un","route","chaîne du froid","trajet","essence"])
   ]},
 
-{ id:"vision", kicker:"Étape 10 · Produits & vision", title:"Vision de la solution idéale", sub:"Le rêve, la peur, le long terme. Le matériau émotionnel du closing.",
+{ id:"vision", kicker:"Étape 10 · Vision", title:"Vision de la solution idéale", sub:"Le rêve, la peur, le long terme. Le matériau émotionnel du closing.",
   blocks:[
     {k:"card",fields:[
       TA("vi_baguette","S'il avait une baguette magique pour résoudre UN problème, lequel ?"),
@@ -761,7 +832,7 @@ const SCHEMA = [
     QC("qc_entourage","Un confrère qui s'est mis au site ou aux commandes en ligne — il en dit quoi ?","Désamorce ses préjugés sur le digital avant le RDV 2.",["a un site","commande en ligne","a essayé","ça a marché","déçu","méfiant","fonctionne","content","abandonné","compliqué","ça l'a aidé","ça lui amène"])
   ]},
 
-{ id:"style", kicker:"Étape 11 · Produits & vision", title:"Identité & style", sub:"Le ton et l'apparence du futur site.",
+{ id:"style", kicker:"Étape 11 · Identité", title:"Identité & style", sub:"Le ton et l'apparence du futur site.",
   blocks:[
     {k:"card",fields:[
       F("st_style","Style / ambiance",{type:"check",grid:true,opts:[
@@ -777,7 +848,7 @@ const SCHEMA = [
     QC("qc_different_200m","Qu'est-ce qui vous rend différent du même commerce 200 m plus loin ?","La proposition de valeur unique → affichée en gros sur la home V2",["différent","qualité","accueil","fait maison","le prix","le conseil","fraîcheur","sélection","sérieux","savoir-faire","rapport qualité","relation","sourire"])
   ]},
 
-{ id:"services", kicker:"Étape 12 · Produits & vision", title:"Services différenciants", sub:"Les services « invisibles » qu'il oublie de valoriser.",
+{ id:"services", kicker:"Étape 12 · Services", title:"Services différenciants", sub:"Les services « invisibles » qu'il oublie de valoriser.",
   blocks:[
     {k:"card",fields:[
       F("se_services","Services proposés",{type:"check",grid:true,opts:[
@@ -817,7 +888,12 @@ const SCHEMA = [
         O("interesse","Intéressé — pose des questions",null,"Bon signe. Capitaliser sur SES questions = plan de la démo V2.","good"),
         O("chaud","Très chaud — demande déjà les prix",null,"Signal d'achat. Caler le RDV2 vite, garder une part de mystère sur SA démo.","good"),
         O("autre","Autre",[F("pj_interet_autre","Préciser",{ph:"…"})])]}),
-      TA("pj_objections","Objections exprimées et ma réponse")
+      TA("pj_objections","Objections exprimées et ma réponse"),
+      F("pj_prochaine_etape","Sa prochaine étape mentale (ce qu'IL va faire après mon départ)",{type:"radio",grid:true,opts:[
+        O("signer","Prêt à signer / dire oui",null,"Closing imminent. Ne pas refroidir : caler le RDV2 vite, court, décisif.","good"),
+        O("conjoint","En parler à son conjoint / associé",null,"Demander qu'il soit présent au RDV2. Prévoir un pitch pour qui n'a pas vu le RDV1.","warn"),
+        O("reflechir","Réfléchir tranquillement",null,"Lui laisser un support tangible (PDF synthèse) pour qu'il y revienne.","warn"),
+        O("comparer","Comparer avec d'autres solutions",null,"Préparer le comparatif : pourquoi Marchéo ≠ marketplace, ≠ Wix, ≠ marketplace tiers.","warn")]})
     ]}
   ]},
 
@@ -852,7 +928,22 @@ const SCHEMA = [
       TA("r2_fonctions","Fonctionnalités à mettre en avant"),
       TA("r2_arguments","Arguments précis à reprendre (basés sur SES mots)"),
       TA("r2_ne_pas_oublier","Ce que je dois absolument NE PAS oublier")
-    ]}
+    ]},
+    NOTE("✏️","Checklist V2","Liste, point par point, ce qu'IL veut voir changé / ajouté dans la démo V2. C'est ta to-do avant le prochain RDV."),
+    REPEAT("v2mod",6,"Modif à intégrer dans la V2",[
+      F("type","Type",{type:"radio",grid:true,opts:[
+        O("page","Page / parcours",null,"Ajouter ou réorganiser une page (livraison, C&C, à propos…).","good"),
+        O("produit","Produit / catalogue",null,"Ajouter / retirer / modifier des produits, une catégorie.","good"),
+        O("photo","Photo / visuel",null,"Photo à prendre, à remplacer, à recadrer.","good"),
+        O("copy","Texte / wording",null,"Reformuler dans SES mots (à reprendre tels quels).","good"),
+        O("fonction","Fonctionnalité",null,"Activer / désactiver une option (paiement, créneau, livraison…).","good"),
+        O("style","Style / couleurs",null,"Couleur, logo, ambiance.","good")]}),
+      F("description","Description précise",{ph:"Ex : Remplacer la photo du hero par une de SA boutique en pleine ouverture"}),
+      F("priorite","Priorité",{type:"radio",grid:true,opts:[
+        O("haute","🔥 Haute — sans ça, il décroche",null,"À faire en premier : c'est ce qui peut faire capoter la signature.","bad"),
+        O("moyenne","⚠️ Moyenne — différenciant",null,"À intégrer si le temps le permet.","warn"),
+        O("basse","✅ Basse — bonus",null,"Bonus, à proposer si tout le reste tient.","good")]})
+    ])
   ]},
 
 { id:"evaluation", kicker:"Étape 16", title:"Évaluation post-RDV", sub:"À chaud, pour progresser et calibrer la synthèse.", conseiller:true,
@@ -878,11 +969,16 @@ const SCHEMA = [
         O("refuse","Oui — il a refusé de donner des noms",null,"Confiance encore faible. Soigner la valeur livrée avant de redemander.","bad"),
         O("non","Non — JE NE L'AI PAS DEMANDÉ ❌",null,"À rattraper IMPÉRATIVEMENT avant de partir. C'est la base de notre modèle.","bad")]})
     ]},
+    NOTE("🎯","Objectif minimum","Vise au moins 3 noms par RDV1. C'est ce qui transforme une tournée en flux régulier."),
     REPEAT("reco",4,"Recommandé",[
       F("nom","Nom + commerce du recommandé",{ph:"…"}),
       F("adresse","Adresse / quartier",{ph:"…"}),
       F("lien","Lien avec le recommandeur (ami, confrère, voisin, fournisseur…)",{ph:"…"}),
       TA("pourquoi","Pourquoi ça pourrait l'intéresser"),
+      F("digital","Déjà digitalisé ?",{type:"radio",grid:true,opts:[
+        O("oui","Oui (a déjà un site / commande en ligne)",null,"Conversion plus rapide : prouver la valeur ajoutée Marchéo vs son outil actuel.","good"),
+        O("non","Non (pas de site, juste FB ou rien)",null,"Profil typique Marchéo. Pitch standard.","good"),
+        O("sais_pas","Je ne sais pas",null,"À vérifier sur Google avant la première visite.","warn")]}),
       F("sms","SMS d'introduction envoyé ?",{type:"radio",opts:[
         O("devant","Oui (envoyé devant moi)",null,"Le meilleur cas : la chaîne est lancée immédiatement.","good"),
         O("promis","Promis (à vérifier)",null,"À relancer : un SMS « promis » non envoyé = reco perdue.","warn"),
@@ -1386,6 +1482,30 @@ function evalAlerts(){
     A.push(["hot","Les appels sont une vraie douleur","Pic de douleur opérationnel identifié — argument émotionnel n°1.","RDV2 : Click & Collect = LE plat principal de la démo."]);
   if(has("op_cc","pense"))
     A.push(["good","Terrain mûr pour le click & collect","Il y a déjà pensé : l'idée est acceptée, reste à la rendre concrète.","RDV2 : montrer SA version du C&C, prête à l'emploi."]);
+  if(has("op_modeles","cc")||has("op_modeles","reserv"))
+    A.push(["good","Déjà des commandes à l'avance / mises de côté","Brique du C&C en place : on industrialise ce qu'il fait à la main.","RDV2 : montrer que la prise de commande se fait toute seule, sans appel."]);
+  if(has("op_modeles","liv"))
+    A.push(["good","Livraison déjà pratiquée","Acquis concret : la V2 cadre et fiabilise ce qu'il fait déjà.","RDV2 : structurer zone + créneaux + panier mini autour de SON existant."]);
+  if(has("op_modeles","aucun")||has("op_canaux","aucun"))
+    A.push(["warm","Aucune commande possible hors boutique","Tout est à construire — gros levier de différenciation V2.","RDV2 : démarrer par le C&C (le plus simple) puis livraison."]);
+  if(has("op_canaux","marketplace"))
+    A.push(["warm","Sur une marketplace (commission élevée)","Il subit une commission. Marchéo = canal direct sans commission.","RDV2 : chiffrer la commission annuelle évitée."]);
+  if(has("cc_paiement","magasin"))
+    A.push(["warm","Paiement uniquement en magasin envisagé","Risque d'impayés : clients qui ne viennent pas chercher.","RDV2 : présenter l'option acompte en ligne (compromis rassurant)."]);
+  if(has("cc_notif","aucune"))
+    A.push(["warm","Pas de notification de retrait prévue","Friction garantie : oublis, retards, appels du client.","RDV2 : SMS auto = standard du C&C, à activer par défaut."]);
+  if(txt("cc_objections"))
+    A.push(["warm","Objections C&C exprimées","Il a une réserve nommée — à désamorcer frontalement.","RDV2 : préparer la réponse précise (exemple confrère qui a vécu la même chose)."]);
+  if(has("li_froid","oui"))
+    A.push(["warm","Chaîne du froid à respecter","Contrainte logistique forte (sac iso + créneaux courts).","RDV2 : cadrer la promesse — pas de surpromesse sur la durée de tournée."]);
+  if(has("li_tarif","sais_pas"))
+    A.push(["warm","Tarification livraison non fixée","Sans tarif clair, la livraison reste floue à l'oral.","RDV2 : proposer 2 scénarios chiffrés (frais fixes vs gratuit dès X €)."]);
+  if(has("digital_referent","personne"))
+    A.push(["warm","Personne pour le digital","Argument « zéro manip + accompagnement » indispensable.","RDV2 : promettre l'onboarding assisté + la maintenance déléguée."]);
+  if(has("vis_site_etat","vieux"))
+    A.push(["warm","Site existant obsolète (avis du conseiller)","Refonte = opportunité de vente forte (avant/après).","RDV2 : avant/après visuel à son nom, sur mobile."]);
+  if(has("vis_site_etat","vitrine"))
+    A.push(["good","Site vitrine OK mais ne prend pas les commandes","Quick win : ajouter la commande sans tout refaire.","RDV2 : montrer l'ajout C&C / livraison sur SA vitrine actuelle."]);
   if(txt("op_pertes"))
     A.push(["warm","Pertes de ventes verbalisées","Il a lui-même nommé un manque à gagner.","RDV2 : transformer en chiffre → argument ROI."]);
   if(has("op_livraison","regulier")||has("li_position","aimerait"))
@@ -1396,8 +1516,14 @@ function evalAlerts(){
     A.push(["hot","Très chaud — demande déjà les prix","Signal d'achat fort. Ne pas refroidir.","Closer vite : caler un RDV2 rapproché, garder une part de mystère sur SA démo."]);
   if(has("pj_interet","froid"))
     A.push(["warm","Accroche faible","Il n'a pas mordu sur le générique.","RDV2 : tout miser sur SA personnalisation (nom, produits, photos)."]);
+  if(has("pj_prochaine_etape","conjoint"))
+    A.push(["warm","Doit en parler à son conjoint / associé","Le décideur n'est pas dans la pièce.","RDV2 : demander que les deux soient présents + pitch pour qui n'a pas vu le RDV1."]);
+  if(has("pj_prochaine_etape","comparer"))
+    A.push(["warm","Veut comparer avec d'autres solutions","Risque de noyade par benchmark.","RDV2 : préparer comparatif Marchéo vs marketplace / Wix / faire soi-même."]);
   if(has("ev_proba","tres_bonne"))
     A.push(["good","Signature très probable","Prioriser ce dossier dans ta tournée.","Préparer une démo V2 irréprochable + proposition claire."]);
+  { const an=+(String(d.vis_avis_nb||"").match(/\d+/)||[0])[0]; if(an && an<10)
+    A.push(["warm",`Très peu d'avis Google (${an})`,"Argument réputation + quick win : campagne d'avis facile à lancer.","RDV2 : QR code avis Google en boutique + relance auto post-achat."]); }
   // reco — rappel persistant
   { const rk=selKeys(d.re_demande); if(!rk.length || (rk.length===1&&rk[0]==="non"))
     A.push(["hot","RECO NON DEMANDÉE","L'étape la plus rentable de la tournée n'est pas faite.","Avant de partir : demander 2-3 noms. Toujours."]); }
@@ -1471,7 +1597,8 @@ function diagScores(){
   if(H("vis_presence","pas_site")) vg-=2;
   let gc=4;
   const cm={auto:9,sms:4,fb:4,tel:3}[F1("op_commande_manuelle")]; if(cm!=null) gc=cm;
-  if(H("op_distance","cc")) gc+=2; if(H("op_distance","liv")) gc+=1; if(H("op_distance","aucun")) gc-=3;
+  if(H("op_modeles","cc")) gc+=2; if(H("op_modeles","liv")) gc+=1; if(H("op_modeles","reserv")) gc+=1;
+  if(H("op_modeles","aucun")||H("op_canaux","aucun")) gc-=3;
   if(H("op_appels_horaires","tres")) gc-=2; else if(H("op_appels_horaires","jour")) gc-=1; else if(H("op_appels_horaires","rare")) gc+=1;
   if(H("op_cc","pense")||H("op_cc","essaye")) gc+=1;
   let mo=4;
@@ -1560,11 +1687,18 @@ function buildSynthesis(){
   const pains=[];
   if(appelsPain) pains.push("Appels chronophages / coup de feu");
   if(noPresence) pains.push("Aucune présence en ligne");
-  else if(siteVieux) pains.push("Site existant mais passif / daté");
+  else if(siteVieux || H("vis_site_etat","vieux")) pains.push("Site existant mais passif / daté");
+  else if(H("vis_site_etat","vitrine")) pains.push("Site vitrine ne prenant pas les commandes");
+  if(H("op_modeles","aucun")||H("op_canaux","aucun")) pains.push("Aucune commande possible hors boutique");
+  if(H("op_canaux","marketplace")) pains.push("Sur une marketplace (commission élevée)");
   { const mg=manqueAGagner(); if(mg) pains.push(`Manque à gagner estimé ≈ ${mg.eur.toLocaleString("fr-FR")} €/mois`); }
   if((d.op_pertes||"").trim()) pains.push("Pertes de ventes : "+trunc(d.op_pertes,60));
   if(H("li_position","aimerait")) pains.push("Veut livrer mais pas outillé");
+  if(H("li_froid","oui")) pains.push("Chaîne du froid à respecter en livraison");
   if(ccReady) pains.push("Click & collect imaginé mais jamais lancé");
+  if(H("cc_paiement","magasin")) pains.push("Paiement uniquement en magasin envisagé (risque d'impayés)");
+  if((d.cc_objections||"").trim()) pains.push("Objections C&C : "+trunc(d.cc_objections,60));
+  if(H("digital_referent","personne")) pains.push("Personne pour s'occuper du digital");
   if((d.op_douleurs||"").trim()) pains.push(trunc(d.op_douleurs,70));
   if((d.qc_dormir||"").trim()) pains.push("Peur profonde : "+trunc(d.qc_dormir,60));
 
