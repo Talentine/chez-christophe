@@ -662,7 +662,7 @@ const SCHEMA = [
     ]},
     QC("qc_client_ideal","Si vous deviez décrire votre client idéal, ce serait qui ?","Le « persona » qui guidera le ton, les visuels et le contenu du site V2",["habitué","famille","quartier","fidèle","exigeant","local","régulier","apprécie","gourmet","actif","jeune","retraité"]),
     QC("qc_clients_disent","Qu'est-ce que vos clients vous disent le plus souvent ? Compliments… et reproches.","Compliments = arguments à valoriser / Reproches = problèmes que Marchéo peut résoudre",["qualité","accueil","prix","l'attente","le choix","un reproche","trop cher","ferme tôt","disponibilité","manque","souriant","fraîcheur"]),
-    QC("qc_reviennent_pas","Des clients que vous aimeriez voir plus souvent mais qui ne reviennent pas autant ?","Pointe le besoin de fidélisation, click & collect, notifications, programme de fidélité",["ne reviennent pas","oublient","concurrence","plus de promo","fidéliser","relancer","ailleurs","perdus","moins souvent","disparus","plus loin"]),
+    QC("qc_reviennent_pas","Y a-t-il des clients qui passent moins souvent qu'avant ? (les jeunes au drive, les actifs au déjeuner, des anciens habitués…)","On cible la fidélisation : notifications, programme de fidélité, C&C pour les rattraper au RDV 2.",["ne reviennent pas","oublient","concurrence","plus de promo","fidéliser","relancer","ailleurs","perdus","moins souvent","disparus","plus loin","jeunes","actifs","anciens"]),
     QC("qc_pas_touchee","Une catégorie de clients que vous n'arrivez pas à toucher mais aimeriez avoir ?","Ouvre sur Google / SEO local / réseaux sociaux pour attirer de nouveaux profils",["jeunes","actifs","familles","touristes","autour","attirer","pros","entreprises","restaurants","bureaux","étudiants","cadres","télétravail"])
   ]},
 
@@ -750,10 +750,11 @@ const SCHEMA = [
         O("variable","Variable selon le produit",null,"Délai par produit dans le catalogue → attentes clients maîtrisées.","warn"),
         O("autre","Autre",[F("cc_delai_autre","Préciser",{ph:"…"})])]}),
       F("cc_paiement","Paiement à la commande en ligne, vous le voyez comment ?",{type:"radio",grid:true,opts:[
-        O("integral","Encaisser intégralement en ligne",null,"Idéal : zéro impayé, zéro file à la caisse. Vendre la sérénité.","good"),
-        O("acompte","Un acompte en ligne, le reste en magasin",null,"Bon compromis : sécurise sans bouleverser l'habitude.","good"),
-        O("magasin","Paiement uniquement en magasin",null,"Risque d'impayés (clients qui ne viennent pas chercher). À chiffrer au RDV2.","warn"),
-        O("sais_pas","Je ne sais pas encore",null,"À cadrer au RDV 2 avec les avantages concrets de chaque option.","warn")]}),
+        O("empreinte","Empreinte bancaire (carte enregistrée, paiement en magasin)",null,"NOTRE système Marchéo : zéro impayé, le client paye en boutique comme d'habitude. La carte n'est débitée qu'en cas de no-show. À pitcher en premier.","good"),
+        O("integral","Encaisser intégralement en ligne",null,"Zéro impayé + zéro file à la caisse. Vendre la sérénité, mais peut effrayer un client traditionnel.","good"),
+        O("acompte","Un acompte en ligne, le reste en magasin",null,"Compromis classique : sécurise sans bouleverser l'habitude.","good"),
+        O("magasin","Paiement uniquement en magasin (sans empreinte)",null,"Risque d'impayés (clients qui ne viennent pas chercher). Proposer l'empreinte bancaire à la place.","warn"),
+        O("sais_pas","Je ne sais pas encore",null,"Pitch RDV 2 : commencer par l'empreinte bancaire — meilleur compromis.","warn")]}),
       F("cc_notif","Notification au client quand sa commande est prête",{type:"check",grid:true,opts:[
         O("sms","SMS automatique",null,"Standard C&C. Le client revient zen, sans rappeler.","good"),
         O("email","E-mail",null,"Backup utile pour les commandes anticipées.","good"),
@@ -1490,8 +1491,12 @@ function evalAlerts(){
     A.push(["warm","Aucune commande possible hors boutique","Tout est à construire — gros levier de différenciation V2.","RDV2 : démarrer par le C&C (le plus simple) puis livraison."]);
   if(has("op_canaux","marketplace"))
     A.push(["warm","Sur une marketplace (commission élevée)","Il subit une commission. Marchéo = canal direct sans commission.","RDV2 : chiffrer la commission annuelle évitée."]);
+  if(has("cc_paiement","empreinte"))
+    A.push(["good","Empreinte bancaire choisie","Système Marchéo retenu. Zéro impayé, paiement en boutique comme avant.","RDV2 : montrer le parcours empreinte côté client (rassurer sur la simplicité)."]);
   if(has("cc_paiement","magasin"))
-    A.push(["warm","Paiement uniquement en magasin envisagé","Risque d'impayés : clients qui ne viennent pas chercher.","RDV2 : présenter l'option acompte en ligne (compromis rassurant)."]);
+    A.push(["warm","Paiement magasin sans empreinte envisagé","Risque d'impayés (clients qui ne viennent pas chercher).","RDV2 : pitcher l'empreinte bancaire — le client paye toujours en boutique mais la carte est captée."]);
+  if(has("cc_paiement","sais_pas"))
+    A.push(["warm","Mode de paiement C&C non décidé","Sans tranchage, le C&C reste flou.","RDV2 : commencer par l'empreinte bancaire — le compromis qui rassure."]);
   if(has("cc_notif","aucune"))
     A.push(["warm","Pas de notification de retrait prévue","Friction garantie : oublis, retards, appels du client.","RDV2 : SMS auto = standard du C&C, à activer par défaut."]);
   if(txt("cc_objections"))
@@ -1696,7 +1701,7 @@ function buildSynthesis(){
   if(H("li_position","aimerait")) pains.push("Veut livrer mais pas outillé");
   if(H("li_froid","oui")) pains.push("Chaîne du froid à respecter en livraison");
   if(ccReady) pains.push("Click & collect imaginé mais jamais lancé");
-  if(H("cc_paiement","magasin")) pains.push("Paiement uniquement en magasin envisagé (risque d'impayés)");
+  if(H("cc_paiement","magasin")) pains.push("Paiement magasin sans empreinte (risque d'impayés)");
   if((d.cc_objections||"").trim()) pains.push("Objections C&C : "+trunc(d.cc_objections,60));
   if(H("digital_referent","personne")) pains.push("Personne pour s'occuper du digital");
   if((d.op_douleurs||"").trim()) pains.push(trunc(d.op_douleurs,70));
