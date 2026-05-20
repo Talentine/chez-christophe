@@ -499,9 +499,9 @@ const SCHEMA = [
       F("effectif","Combien de personnes travaillent dans le commerce ?",{ph:"Ex : 3 personnes"}),
       TA("ambiance","Notes sur l'ambiance / la personnalité du commerçant")
     ]},
-    QC("qc_metier_envie","Qu'est-ce qui vous a donné envie de faire ce métier au départ ?","Capte l'histoire émotionnelle → réutilisable dans la page « À propos » du site V2",["passion","famille","fierté","savoir-faire","tradition","amour du métier"]),
-    QC("qc_change_metier","Qu'est-ce qui a le plus changé dans votre métier depuis que vous avez commencé ?","Ouvre sur la digitalisation, la concurrence, les nouvelles habitudes clients",["concurrence","grande surface","internet","moins de clients","habitudes","baisse"]),
-    QC("qc_plait_fatigue","Qu'est-ce qui vous plaît le plus dans votre journée ? Et qu'est-ce qui vous fatigue le plus ?","La « fatigue » pointe vers le problème opérationnel que Marchéo résout (appels, gestion…)",["fatigue","débordé","seul","les appels","paperasse","pas le temps"])
+    QC("qc_metier_envie","Votre histoire en 30 secondes — repris ou créé, depuis quand, et pourquoi ce métier ?","Récup pour la page « À propos » du site V2 et l'amorce du RDV 2.",["repris","famille","installé","ouvert","tradition","passion"]),
+    QC("qc_change_metier","Vos clients ne consomment plus comme avant — qu'est-ce qui a le plus changé chez eux ?","Fait émerger les nouveaux réflexes (téléphone, Google, livraison) — ouvre direct sur le besoin de site.",["téléphone","Google","pressés","moins de temps","commande","livraison","drive","concurrence"]),
+    QC("qc_plait_fatigue","Quelle tâche vous bouffe vos journées et ne devrait pas être à vous ?","Cible la tâche à automatiser (souvent : prise d'appel, répéter les mêmes infos, noter les commandes).",["téléphone","appels","commandes","horaires","stock","mêmes infos","paperasse"])
   ]},
 
 { id:"visibilite", kicker:"Étape 3 · Votre visibilité", title:"Quand on vous cherche, qu'est-ce qu'on trouve ?", sub:"Aujourd'hui, vos clients vous cherchent d'abord sur leur téléphone.",
@@ -540,7 +540,7 @@ const SCHEMA = [
       TA("vis_reaction","Sa réaction quand je lui ai montré")
     ]},
     NOTE("🔎","Le réflexe a changé","8 Français sur 10 vérifient un commerce sur leur téléphone avant de s'y rendre. Ce qui apparaît — ou pas — sur Google décide à leur place. C'est un point d'ouverture, pas un reproche."),
-    QC("qc_choisissent_vous","Qu'est-ce qui fait que les gens vous choisissent VOUS plutôt qu'un autre commerce du même type ?","Le différenciateur clé → c'est ce qu'on met en avant dans le hero du site V2",["qualité","fait maison","conseil","accueil","local","différent"]),
+    QC("qc_choisissent_vous","Pourquoi un client vous choisit VOUS plutôt que le commerce d'à côté ? Une raison concrète.","→ Phrase d'accroche du site V2, dans SES mots.",["qualité","conseil","accueil","fait maison","local","différent","habitué"]),
     QC("qc_nouveau_client","Quand un nouveau client pousse la porte la 1ère fois, comment il vous a connu en général ?","Révèle la dépendance au bouche-à-oreille et l'absence de canal digital actif",["bouche-à-oreille","habitués","passé devant","Google","Facebook","recommandé"]),
     QC("qc_savent_pas","Qu'est-ce que vos clients ne savent pas de vous et que vous aimeriez qu'ils sachent ?","La pépite : tout ce qu'il aimerait raconter ira dans le site V2 (À propos, valeurs, savoir-faire)",["savoir-faire","origine","sélection","histoire","sous-valorisé","fierté"])
   ]},
@@ -583,9 +583,9 @@ const SCHEMA = [
       TA("op_pertes","Pertes de ventes identifiées"),
       TA("op_douleurs","Autres douleurs exprimées")
     ]},
-    QC("qc_moment_solution","Quel est LE moment de la semaine où vous vous dites « là j'aimerais bien avoir une solution » ?","Cible le pic de douleur le plus aigu → argument émotionnel principal au RDV 2",["coup de feu","heures de pointe","week-end","seul","débordé","les appels"]),
+    QC("qc_moment_solution","Le moment le plus tendu de votre semaine, c'est quand ? Et qu'est-ce qui craque en premier ?","Pic de douleur exact → argument émotionnel principal au RDV 2.",["coup de feu","heures de pointe","week-end","seul","débordé","les appels"]),
     QC("qc_supprimer_tache","Si vous pouviez supprimer UNE tâche pénible de votre quotidien, ce serait laquelle ?","Identifie LA fonctionnalité Marchéo qui sera le « plat principal » de la démo V2",["le téléphone","les appels","les commandes","paperasse","relancer","le stock"]),
-    QC("qc_ca_perdu","Y a-t-il des moments où vous laissez passer du chiffre d'affaires sans pouvoir l'empêcher ?","Fait quantifier mentalement la perte → prépare l'argument ROI au RDV 2",["invendus","jeter","ventes ratées","file d'attente","pas pu répondre","perdu"]),
+    QC("qc_ca_perdu","Sur une semaine type, combien de ventes vous laissez filer (clients qui repartent, appels manqués, ruptures) ?","Quantification du manque à gagner → prépare l'argument ROI au RDV 2.",["clients repartent","appels manqués","rupture","invendus","file d'attente","perdu"]),
     QC("qc_2h","Si je vous rendais 2 heures par semaine, vous en feriez quoi ?","Le projette dans l'après-Marchéo. Sa réponse devient le pitch d'ouverture du RDV 2",["développer","famille","souffler","prospecter","produits","me reposer"])
   ]},
 
@@ -681,7 +681,7 @@ const SCHEMA = [
       TA("pr_differenciants","Produits différenciants (bio, local, AOP)")
     ]},
     QC("qc_sousvalorise","Un produit dont vous êtes fier et que vous trouvez sous-valorisé ?","À mettre en hero / page produit dédiée — effet « WAOUH il m'a écouté »",["fier","sous-valorisé","pépite","spécialité","personne ne sait"]),
-    QC("qc_recommander","Si vous deviez recommander UN produit à un nouveau client, lequel et pourquoi ?","Le « produit d'appel » parfait pour le site — souvent celui qui convertit le mieux",["best-seller","spécialité","incontournable","préféré","produit d'appel"]),
+    QC("qc_recommander","Si vous deviez vendre UN seul produit à un nouveau client, lequel et pourquoi ?","Le produit d'appel à mettre en hero du site et en précommande.",["best-seller","spécialité","incontournable","préféré","produit d'appel"]),
     QC("qc_demande_pas_fait","Un produit que les clients demandent souvent et que vous ne faites pas ?","Idée de produit à tester via le site (préco / sondage clients) — levier pour la V2",["demandent souvent","je ne fais pas","commande spéciale","réclamé"]),
     QC("qc_savoirfaire","Quelle histoire / quel savoir-faire derrière vos produits aimeriez-vous raconter ?","Matière première pour les pages produits, la fiche À propos, les contenus",["savoir-faire","fait maison","histoire","origine","fabrication","passion"])
   ]},
@@ -755,10 +755,10 @@ const SCHEMA = [
       F("vi_marque","Un commerce / une marque qu'il admire et qui pourrait inspirer le sien ?",{ph:"…"}),
       TA("vi_ne_pas","Qu'aimerait-il NE PAS retrouver dans la solution ?")
     ]},
-    QC("qc_5ans","Si vous me parliez de votre commerce dans 5 ans, qu'est-ce qui aurait changé idéalement ?","Sa vision long terme. Si elle inclut du digital → allié. Sinon → tu sais où l'emmener",["développer","agrandir","transmettre","digital","arrêter","moderniser"]),
-    QC("qc_dormir","Qu'est-ce qui vous empêche de dormir parfois quand vous pensez à votre commerce ?","La peur la plus profonde. C'est ELLE qu'il faut adresser pour le faire signer",["peur","trésorerie","les charges","concurrence","l'avenir","fatigue","seul"]),
-    QC("qc_jamais_ose","Qu'aimeriez-vous vraiment essayer mais que vous n'avez jamais osé / pu faire ?","Le rêve bloqué. Si Marchéo peut le débloquer → argument émotionnel ultra-puissant",["un rêve","jamais osé","pas le temps","pas les moyens","j'aimerais"]),
-    QC("qc_entourage","Quelqu'un dans votre entourage a digitalisé son commerce ? Qu'en avez-vous retenu ?","Permet de désamorcer ses préjugés (positifs ou négatifs) avant le RDV 2",["a un site","a essayé","ça a marché","déçu","méfiant","ça l'a aidé"])
+    QC("qc_5ans","D'ici 12 mois, qu'aimeriez-vous voir changer concrètement dans votre commerce ?","Sa vision business à court terme — sur quoi accrocher la solution au RDV 2.",["développer","plus de clients","livrer","commande en ligne","embaucher","plus de temps","ouvrir"]),
+    QC("qc_dormir","Qu'est-ce qui vous inquiète le plus pour les 12 prochains mois ?","Sa peur concrète — c'est ELLE qu'on adresse au RDV 2 pour le faire signer.",["concurrence","baisse","trésorerie","charges","clients","seul","avenir"]),
+    QC("qc_jamais_ose","Un projet que vous repoussez depuis longtemps, faute de temps ou d'outil ?","Projet bloqué — si Marchéo le débloque, argument émotionnel ultra-puissant au RDV 2.",["livraison","site","communiquer","embaucher","ouvrir","semaine de 4 jours","fermer un jour"]),
+    QC("qc_entourage","Un confrère qui s'est mis au site ou aux commandes en ligne — il en dit quoi ?","Désamorce ses préjugés sur le digital avant le RDV 2.",["a un site","commande en ligne","a essayé","ça a marché","déçu","méfiant"])
   ]},
 
 { id:"style", kicker:"Étape 11 · Produits & vision", title:"Identité & style", sub:"Le ton et l'apparence du futur site.",
@@ -773,7 +773,7 @@ const SCHEMA = [
       TA("st_valeurs","Mots / valeurs à reprendre sur le site"),
       TA("st_photos","Photos existantes exploitables ?")
     ]},
-    QC("qc_personne","Si votre commerce était une personne, comment le décririez-vous ?","Définit le « ton de voix » du site V2 (chaleureux, sérieux, fun, gourmand…)",["chaleureux","sérieux","gourmand","familial","authentique","dynamique"]),
+    QC("qc_personne","En 3 mots, comment vous voulez que les gens parlent de votre commerce ?","Définit le ton du site V2 (3 mots à coller en home).",["chaleureux","sérieux","gourmand","familial","authentique","dynamique"]),
     QC("qc_different_200m","Qu'est-ce qui vous rend différent du même commerce 200 m plus loin ?","La proposition de valeur unique → affichée en gros sur la home V2",["différent","qualité","accueil","fait maison","le prix","le conseil"])
   ]},
 
@@ -788,7 +788,7 @@ const SCHEMA = [
       TA("se_differencie","Ce qui le différencie vraiment des concurrents"),
       TA("se_fournisseurs","Fournisseurs notables")
     ]},
-    QC("qc_invisibles","Des choses que vous faites pour vos clients sans même y penser ?","Les services « invisibles » qu'il oublie de valoriser. À mettre en gros sur le site V2",["sans y penser","rendre service","gratuit","le conseil","un petit plus"]),
+    QC("qc_invisibles","Un service ou un geste que vous faites tout le temps, mais qu'aucune affiche ne mentionne ?","Service caché → à afficher sur le site et dans le tunnel de commande.",["conseil","gratuit","petit plus","emballage","découpe","préparation","livraison"]),
     QC("qc_qualite","Qu'est-ce que les gens ne savent pas sur la qualité de vos produits / votre travail ?","L'histoire derrière le produit = matière pour les pages produits et le storytelling",["origine","qualité","sélection","fait maison","fraîcheur","le travail"])
   ]},
 
@@ -802,8 +802,8 @@ const SCHEMA = [
       TA("de_perplexe","Sur quoi a-t-il paru perplexe / désintéressé ?"),
       TA("de_questions","Questions qu'il a posées pendant la démo")
     ]},
-    QC("qc_retenir","Si vous deviez retenir UN truc de ce que je viens de montrer, ce serait quoi ?","Sa fonctionnalité préférée → à mettre absolument au centre de la démo V2",["intéressant","ça me parle","utile","ce truc-là","pratique"]),
-    QC("qc_en_plus","Y a-t-il quelque chose que vous voudriez en plus, ou autrement ?","Les ajustements à intégrer dans la démo V2 — preuve que tu as écouté",["en plus","autrement","il manque","j'aimerais","et si"])
+    QC("qc_retenir","De ce que je viens de montrer, qu'est-ce qui vous a parlé en premier ?","Sa fonctionnalité préférée → au centre de la démo V2.",["intéressant","ça me parle","utile","ce truc-là","pratique"]),
+    QC("qc_en_plus","Qu'est-ce qui manque, ou que vous voudriez autrement, dans ce que je vous ai montré ?","Les ajustements à intégrer dans la démo V2 — preuve que tu as écouté.",["en plus","autrement","il manque","j'aimerais","et si"])
   ]},
 
 { id:"projection", kicker:"Étape 14", title:"Projection & objections", sub:"Sa température réelle et ce qui bloque encore.",
