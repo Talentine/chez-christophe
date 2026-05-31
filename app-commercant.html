@@ -7463,13 +7463,16 @@ async function uploaderLogo(file) {
   const commercantId = session.commercant_id;
   const token = await getValidToken();
     if (!token) return;
-  const ext = file.name.split('.').pop().toLowerCase();
+  let body = file, ext = file.name.split('.').pop().toLowerCase(), contentType = file.type;
+  if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
+    try { body = await compresserImage(file, 512, 0.85); ext = 'webp'; contentType = 'image/webp'; } catch(e) { body = file; }
+  }
   const path = slug + '/logo.' + ext;
   try {
     const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
       method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': file.type, 'x-upsert': 'true' },
-      body: file
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': contentType, 'x-upsert': 'true' },
+      body
     });
     if (!up.ok) throw new Error(await up.text());
     const logoUrl = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
@@ -7717,13 +7720,16 @@ async function uploaderImageRayonFile(slugCat, file) {
   const commercantId = session.commercant_id;
   const token = await getValidToken();
   if (!token) return;
-  const ext = file.name.split('.').pop().toLowerCase();
+  let body = file, ext = file.name.split('.').pop().toLowerCase(), contentType = file.type;
+  if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
+    try { body = await compresserImage(file, 800, 0.82); ext = 'webp'; contentType = 'image/webp'; } catch(e) { body = file; }
+  }
   const path = slugBoutique + '/rayons/' + slugCat + '.' + ext;
   try {
     const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
       method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': file.type, 'x-upsert': 'true' },
-      body: file
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': contentType, 'x-upsert': 'true' },
+      body
     });
     if (!up.ok) throw new Error(await up.text());
     const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
