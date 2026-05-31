@@ -1,64 +1,32 @@
-# Core — Moteur multi-tenant
+# Core — scripts partagés (multi-tenant)
 
-Architecture modulaire pour transformer le site en template universel (primeur, boucherie, boulangerie, poissonnerie, traiteur, fromagerie).
+Scripts chargés par les pages HTML via `<script src>` (pas de bundler, pas de modules ES).
+Tout est exposé sur `window` pour rester accessible entre les `<script>` inline des pages.
 
-## Fichiers
+## Fichiers actifs
 
-| Fichier | Rôle |
-|---|---|
-| `config.js` | Résout le slug, charge le commerce, applique handler + thème |
-| `api.js` | Accès Supabase (business, produits, créneaux, commandes, galerie) + cache |
-| `business-types.js` | Handlers par métier : palette, fontes, features, labels, filtres |
-| `theme.js` | Injecte variables CSS + Google Fonts + favicon + theme-color |
-| `product-model.js` | Normalise les produits bruts en modèle universel + valide les payloads |
-| `router.js` | Génère les liens internes adaptés au mode de routage |
+| Fichier | Rôle | Chargé par |
+|---|---|---|
+| `init.js` | Résout le slug, charge le commerce, applique thème + fontes, expose `window.CC`, `window.toAsciiUrl`, `retourAccueilBoutique`. Désactive `console.log/warn` en prod. | boutique, panier, compte, catalogue, app-commercant, notre-histoire |
+| `analytics.js` | Tracking d'événements (insert `analytics_events`) | boutique, panier, compte, catalogue, landing, inscription, notre-histoire |
+| `vitrine-mode.js` | Mode vitrine (aperçu sans commander) | panier, compte, catalogue, notre-histoire |
+| `business-defaults.js` | Valeurs par défaut par métier au moment de l'inscription | inscription |
+| `svg-icons.js` | Jeu d'icônes SVG injectées | app-commercant |
 
-## Usage minimal dans une page HTML
+## Notes
 
-```html
-<script type="module">
-import { initBusiness } from './assets/core/config.js';
-import { fetchProducts, fetchLatestProducts } from './assets/core/api.js';
-import { normalize, extractDisplayFields } from './assets/core/product-model.js';
-
-const cfg = await initBusiness();
-
-// Labels dynamiques
-document.querySelector('#titreArrivage').textContent = cfg.labels.arrivage;
-
-// Produits
-const raw = await fetchLatestProducts(cfg.business.id, 8);
-const produits = raw.map(normalize);
-
-produits.forEach(p => {
-  const fields = extractDisplayFields(p, cfg.handler);
-  // … rendu card avec p.nom, p.prix, p.badges, fields métier
-});
-
-// Features conditionnelles
-if (cfg.features.programmation) showDatePicker();
-if (!cfg.features.saison) hideSeasonBadges();
-</script>
-```
-
-## Migration SQL (obligatoire avant activation)
-
-Voir `../MIGRATION.sql` à la racine. Ajoute `business_type`, `business_config`, `logo_url`, `favicon_url` sur `commercants` et `custom_fields` sur `produits_base`.
+- `init.js` contient la table des 10 métiers (`TYPES`) en dur — il est **autonome**, n'importe rien.
+- L'URL Supabase et la clé anon (publique) sont définies dans `init.js`. Les pages qui ne chargent
+  pas `init.js` redéclarent leur propre `SUPABASE_URL` / `SUPABASE_KEY` localement.
+- Helper Stripe : `window.toAsciiUrl(url)` convertit `marchéo.fr` → `xn--marcho-fva.fr` (punycode)
+  avant tout passage à une Edge Function Stripe (l'API Stripe rejette le non-ASCII).
 
 ## Ajouter un nouveau client
 
-1. Exécuter dans Supabase :
-```sql
-INSERT INTO commercants (slug, nom, business_type, ville, actif)
-VALUES ('paul-primeur', 'Paul Primeur', 'primeur', 'Deauville', true);
-```
-2. Le commerçant se connecte à `app-commercant.html`, ajoute ses produits, ses créneaux, sa galerie.
-3. Le site est accessible sur `/paul-primeur/` (avec rewrites Vercel) ou `paul-primeur.domaine.com`.
-
-**Aucune modification de code requise.**
+1. Créer la boutique en base (`commercants`) avec son `slug` et son `business_type`.
+2. Le commerçant se connecte à `app-commercant.html`, ajoute produits / créneaux / galerie.
+3. Le site est servi sur `/{slug}` (rewrites Vercel). Aucune modification de code requise.
 
 ## Ajouter un nouveau métier
 
-1. Ajouter une entrée dans `BUSINESS_TYPES` (`business-types.js`).
-2. Ajouter les mappings d'affichage dans `extractDisplayFields` (`product-model.js`).
-3. Tester avec un commerce de démo de ce type.
+Ajouter une entrée dans la table `TYPES` de `init.js` (palette, fontes, features, labels).
