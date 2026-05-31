@@ -2488,7 +2488,7 @@ async function chargerPlanningReel() {
   let toutes = [];
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=500&select=id,numero,type,date_retrait,total_ttc,statut,empreinte_status,commande_lignes(nom_produit,quantite,unite,total_ligne)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     toutes = await r.json();
     if (!Array.isArray(toutes)) toutes = [];
@@ -2686,7 +2686,7 @@ async function voirCommandesCreneau(dateKey, heure) {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId 
       + '&order=date_retrait.asc&limit=200'
       + '&select=*,clients(prenom,nom,telephone),commande_lignes(nom_produit,quantite,unite)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     toutes = await r.json();
     if (!Array.isArray(toutes)) toutes = [];
@@ -3409,7 +3409,7 @@ async function chargerReservations() {
     if (liste) liste.innerHTML = '<div style="text-align:center;color:var(--texte-doux);padding:40px 0;">Chargement…</div>';
 
     const r = await fetch(SUPABASE_URL + '/rest/v1/reservations_avec_deadline?commercant_id=eq.' + commercantId + '&order=reservation_at.desc&limit=100', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     const data = await r.json();
     toutesResas = Array.isArray(data) ? data : [];
@@ -4181,7 +4181,7 @@ async function envoyerMessage(type) {
   let telephone = null;
   try {
     const cmdR = await fetch(SUPABASE_URL + '/rest/v1/commandes?id=eq.' + commandeContactId + '&select=*,clients(telephone,prenom)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     const cmdData = await cmdR.json();
     telephone = cmdData?.[0]?.clients?.telephone;
@@ -4498,7 +4498,7 @@ async function demarrerRealtime() {
 async function chargerCommandesSupabase(commercantId) {
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=50&select=*,commande_lignes(*),clients(prenom,nom,telephone)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     const commandes = await r.json();
     if (!commandes || commandes.error) return;
@@ -6478,7 +6478,7 @@ async function renderCalendrierCreneaux() {
         + '&date_retrait=gte.' + encodeURIComponent(monthStart)
         + '&date_retrait=lte.' + encodeURIComponent(monthEnd)
         + '&select=date_retrait,total_ttc,statut,type', {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
       });
       const cmds = await r1.json();
       if (Array.isArray(cmds)) {
@@ -6501,7 +6501,7 @@ async function renderCalendrierCreneaux() {
           + '&date_reservation=gte.' + `${year}-${String(month+1).padStart(2,'0')}-01`
           + '&date_reservation=lte.' + `${year}-${String(month+1).padStart(2,'0')}-${String(daysInMonth).padStart(2,'0')}`
           + '&select=date_reservation,statut', {
-          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
         });
         const resas = await r2.json();
         if (Array.isArray(resas)) {
@@ -6686,7 +6686,7 @@ window.voirJourCalendrier = async function(dateKey) {
         + '&date_retrait=gte.' + encodeURIComponent(dateStart)
         + '&date_retrait=lte.' + encodeURIComponent(dateEnd)
         + '&order=date_retrait.asc&select=*,clients(prenom,nom,telephone),commande_lignes(nom_produit,quantite,unite,total_ligne)', {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
       });
       commandes = (await r1.json()) || [];
 
@@ -6696,7 +6696,7 @@ window.voirJourCalendrier = async function(dateKey) {
           const r2 = await fetch(SUPABASE_URL + '/rest/v1/reservations?commercant_id=eq.' + commercantId
             + '&date_reservation=eq.' + dateKey
             + '&order=heure_reservation.asc', {
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
           });
           reservations = (await r2.json()) || [];
           if (!Array.isArray(reservations)) reservations = [];

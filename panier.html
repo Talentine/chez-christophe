@@ -993,32 +993,6 @@ async function confirmerCommande() {
     const nowIso = new Date().toISOString();
 
     let clientId = null;
-    const clients = await sb('clients', '?commercant_id=eq.' + commercantId + '&email=eq.' + encodeURIComponent(email) + '&select=id,sms_marketing_consent,email_marketing_consent');
-    if (clients?.length > 0) {
-      clientId = clients[0].id;
-      // Si le client coche le consent (et n'avait pas déjà consenti) → on met à jour avec horodatage
-      const patch = {};
-      if (smsOptIn && !clients[0].sms_marketing_consent) {
-        patch.sms_marketing_consent = true;
-        patch.sms_marketing_consent_at = nowIso;
-      }
-      if (emailOptIn && !clients[0].email_marketing_consent) {
-        patch.email_marketing_consent = true;
-        patch.email_marketing_consent_at = nowIso;
-      }
-      if (Object.keys(patch).length > 0) {
-        await sb('clients', '?id=eq.' + clientId, 'PATCH', patch);
-      }
-    } else {
-      const newClient = await sb('clients', '', 'POST', {
-        commercant_id: commercantId, email, nom, prenom, telephone,
-        sms_marketing_consent: smsOptIn,
-        sms_marketing_consent_at: smsOptIn ? nowIso : null,
-        email_marketing_consent: emailOptIn,
-        email_marketing_consent_at: emailOptIn ? nowIso : null,
-      });
-      clientId = newClient?.[0]?.id;
-    }
 
     const adresseLiv = modeCommande === 'livraison' ? (
       document.getElementById('livraisonAdresse').value.trim() + ', ' +
@@ -1026,42 +1000,47 @@ async function confirmerCommande() {
       document.getElementById('livraisonVille').value.trim()
     ) : null;
 
-    const cmdResp = await sb('commandes', '', 'POST', {
-      commercant_id: commercantId,
-      client_id: clientId,
-      numero,
-      type: modeCommande,
-      creneau_id: creneau.id || null,
-      date_retrait: creneau.dateISO || null,
-      retrait_date: creneau.dateISO || null,
-      statut: empreinteRequise ? 'empreinte_pending' : 'nouvelle',
-      sous_total,
-      frais_livraison: frais,
-      total_ttc: total,
-      note_client: note || null,
-      adresse_livraison: adresseLiv,
-      empreinte_status: empreinteRequise ? 'pending' : 'none',
-      cgv_acceptees: true,
-      cgv_version: '2026-04',
-      cgv_acceptees_at: new Date().toISOString(),
+    // RPC security definer : crée (ou retrouve) le client + insère la commande + ses lignes
+    // en une transaction. Évite la dépendance au SELECT public (PII) et aux PATCH anon.
+    const rpcResp = await sb('rpc/checkout_create_order', '', 'POST', {
+      p_client: {
+        commercant_id: commercantId, email, nom, prenom, telephone,
+        sms_marketing_consent: smsOptIn,
+        sms_marketing_consent_at: smsOptIn ? nowIso : null,
+        email_marketing_consent: emailOptIn,
+        email_marketing_consent_at: emailOptIn ? nowIso : null,
+      },
+      p_commande: {
+        numero,
+        type: modeCommande,
+        creneau_id: creneau.id || null,
+        date_retrait: creneau.dateISO || null,
+        retrait_date: creneau.dateISO || null,
+        statut: empreinteRequise ? 'empreinte_pending' : 'nouvelle',
+        sous_total,
+        frais_livraison: frais,
+        total_ttc: total,
+        note_client: note || null,
+        adresse_livraison: adresseLiv,
+        empreinte_status: empreinteRequise ? 'pending' : 'none',
+        cgv_acceptees: true,
+        cgv_version: '2026-04',
+        cgv_acceptees_at: new Date().toISOString(),
+      },
+      p_lignes: panier.map(p => ({
+        produit_base_id: p.id || null,
+        nom_produit: p.nom,
+        unite: p.unite,
+        quantite: p.qte,
+        prix_unitaire: p.prix_marche_indicatif || 0,
+        tva_pct: 5.50,
+        total_ligne: calcTotalLignePanier(p),
+      })),
     });
 
-    // Insérer les lignes de commande
-    commandeId = Array.isArray(cmdResp) ? cmdResp[0]?.id : cmdResp?.id;
+    commandeId = rpcResp?.commande_id || null;
+    clientId = rpcResp?.client_id || null;
     if (commandeId) {
-      for (const p of panier) {
-        await sb('commande_lignes', '', 'POST', {
-          commande_id: commandeId,
-          produit_base_id: p.id || null,
-          nom_produit: p.nom,
-          unite: p.unite,
-          quantite: p.qte,
-          prix_unitaire: p.prix_marche_indicatif || 0,
-          tva_pct: 5.50,
-          total_ligne: calcTotalLignePanier(p),
-        });
-      }
-
       // Empreinte bancaire (si activée par le commerçant)
       if (empreinteRequise && commandeId && stripeCard) {
         const pct = __BIZ__.no_show_pct || 75;

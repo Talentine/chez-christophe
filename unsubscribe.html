@@ -116,15 +116,16 @@ async function init() {
     return;
   }
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?unsubscribe_token=eq.' + encodeURIComponent(token) + '&select=id,prenom,opt_out_sms,opt_out_push,opt_out_email', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/get_client_by_unsubscribe_token', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_token: token }),
     });
-    const data = await r.json();
-    if (!data || !data.length) {
+    const c = await r.json();
+    if (!c || !c.id) {
       helloEl.textContent = '⚠️ Lien invalide ou expiré.';
       return;
     }
-    const c = data[0];
     clientId = c.id;
     helloEl.innerHTML = (c.prenom ? 'Bonjour <strong>' + c.prenom + '</strong>, ' : '') + 'choisis comment tu souhaites être contacté(e).';
     document.getElementById('optSms').checked = !!c.opt_out_sms;
@@ -143,22 +144,21 @@ async function save(allOut) {
   statusEl.style.display = 'none';
 
   const body = allOut
-    ? { opt_out_sms: true, opt_out_push: true, opt_out_email: true, opt_out_at: new Date().toISOString() }
+    ? { p_token: token, p_sms: true, p_push: true, p_email: true }
     : {
-        opt_out_sms: document.getElementById('optSms').checked,
-        opt_out_push: document.getElementById('optPush').checked,
-        opt_out_email: document.getElementById('optEmail').checked,
-        opt_out_at: new Date().toISOString(),
+        p_token: token,
+        p_sms: document.getElementById('optSms').checked,
+        p_push: document.getElementById('optPush').checked,
+        p_email: document.getElementById('optEmail').checked,
       };
 
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/clients?unsubscribe_token=eq.' + encodeURIComponent(token), {
-      method: 'PATCH',
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/set_optout_by_unsubscribe_token', {
+      method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
         'Authorization': 'Bearer ' + SUPABASE_KEY,
         'Content-Type': 'application/json',
-        'Prefer': 'return=minimal',
       },
       body: JSON.stringify(body),
     });

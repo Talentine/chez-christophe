@@ -373,7 +373,7 @@ async function seConnecter() {
     if (data.access_token) {
       // Récupérer les infos client
       const clientR = await fetch(SUPABASE_URL + '/rest/v1/clients?email=eq.' + encodeURIComponent(email) + '&select=*&limit=1', {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + data.access_token }
       });
       const clients = await clientR.json();
       const client = clients?.[0] || {};
@@ -439,7 +439,7 @@ async function sInscrire() {
       if (commercantId) {
         await fetch(SUPABASE_URL + '/rest/v1/clients', {
           method: 'POST',
-          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
           body: JSON.stringify({ commercant_id: commercantId, email, prenom, nom, telephone: tel })
         });
       }
@@ -501,8 +501,9 @@ async function chargerMesCommandes() {
   container.innerHTML = '<div class="empty-state"><p>Chargement...</p></div>';
 
   try {
+    const authToken = session.access_token || SUPABASE_KEY;
     const clients = await fetch(SUPABASE_URL + '/rest/v1/clients?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + authToken }
     }).then(r => r.json());
     const clientId = clients?.[0]?.id;
     if (!clientId) { container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>Aucune commande</p></div>'; return; }
@@ -512,7 +513,7 @@ async function chargerMesCommandes() {
     const filtreCommercant = commercantId ? '&commercant_id=eq.' + commercantId : '';
 
     const commandes = await fetch(SUPABASE_URL + '/rest/v1/commandes?client_id=eq.' + clientId + filtreCommercant + '&order=created_at.desc&limit=20&select=*,commande_lignes(nom_produit,quantite,unite,prix_unitaire,total_ligne)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + authToken }
     }).then(r => r.json());
 
     if (!commandes || commandes.length === 0) {
