@@ -43,12 +43,43 @@ const cors = {
 };
 const json = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: { ...cors, 'Content-Type': 'application/json' } });
 
+// ── Auth : résout l'utilisateur réel depuis le JWT (null si clé anon / absent)
+async function getAuthUser(req: Request) {
+  const h = req.headers.get('Authorization') || '';
+  const jwt = h.startsWith('Bearer ') ? h.slice(7) : '';
+  if (!jwt) return null;
+  const { data, error } = await supabase.auth.getUser(jwt);
+  if (error || !data?.user) return null;
+  return data.user;
+}
+
+// ── Ownership : l'utilisateur est-il le commerçant propriétaire (ou admin) de la réservation ?
+async function ownsReservation(userId: string, reservation_id: string): Promise<boolean> {
+  if (!reservation_id) return false;
+  const { data: r } = await supabase.from('reservations').select('commercant_id').eq('id', reservation_id).single();
+  if (!r?.commercant_id) return false;
+  const { data: owner } = await supabase.from('commercants')
+    .select('id').eq('id', r.commercant_id).eq('auth_user_id', userId).maybeSingle();
+  if (owner) return true;
+  const { data: admin } = await supabase.from('roles_utilisateurs')
+    .select('user_id').eq('user_id', userId).eq('role', 'admin').maybeSingle();
+  return !!admin;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
 
   try {
     const body = await req.json();
     const action = body.action;
+
+    // Actions sensibles (débit / libération / geste commercial) : réservées au
+    // commerçant propriétaire. create/confirm restent ouverts (checkout invité).
+    if (action === 'capture' || action === 'release' || action === 'commercial_gesture') {
+      const user = await getAuthUser(req);
+      if (!user) return json({ error: 'Authentification requise' }, 401);
+      if (!(await ownsReservation(user.id, body.reservation_id))) return json({ error: 'Accès refusé' }, 403);
+    }
 
     if (action === 'create') {
       const { commercant_id, nb_couverts, date_reservation, heure_reservation, nom_client, prenom_client, telephone, email, notes, occasion } = body;

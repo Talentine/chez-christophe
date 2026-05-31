@@ -44,12 +44,43 @@ const cors = {
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...cors, 'Content-Type': 'application/json' } });
 
+// ── Auth : résout l'utilisateur réel depuis le JWT (null si clé anon / absent)
+async function getAuthUser(req: Request) {
+  const h = req.headers.get('Authorization') || '';
+  const jwt = h.startsWith('Bearer ') ? h.slice(7) : '';
+  if (!jwt) return null;
+  const { data, error } = await supabase.auth.getUser(jwt);
+  if (error || !data?.user) return null;
+  return data.user;
+}
+
+// ── Ownership : l'utilisateur est-il le commerçant propriétaire (ou admin) de la commande ?
+async function ownsCommande(userId: string, commande_id: string): Promise<boolean> {
+  if (!commande_id) return false;
+  const { data: cmd } = await supabase.from('commandes').select('commercant_id').eq('id', commande_id).single();
+  if (!cmd?.commercant_id) return false;
+  const { data: owner } = await supabase.from('commercants')
+    .select('id').eq('id', cmd.commercant_id).eq('auth_user_id', userId).maybeSingle();
+  if (owner) return true;
+  const { data: admin } = await supabase.from('roles_utilisateurs')
+    .select('user_id').eq('user_id', userId).eq('role', 'admin').maybeSingle();
+  return !!admin;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
   if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
   try {
     const { action, ...payload } = await req.json();
+
+    // Actions sensibles (débit / libération d'empreinte) : réservées au commerçant
+    // propriétaire de la commande. Le cron (auto-release) et le checkout (create) restent ouverts.
+    if (action === 'capture' || action === 'release') {
+      const user = await getAuthUser(req);
+      if (!user) return json({ error: 'Authentification requise' }, 401);
+      if (!(await ownsCommande(user.id, payload.commande_id))) return json({ error: 'Accès refusé' }, 403);
+    }
 
     if (action === 'create')        return await actionCreate(payload);
     if (action === 'capture')       return await actionCapture(payload);
@@ -68,12 +99,18 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   if (!commande_id || !montant_cents) return json({ error: 'Missing params' }, 400);
   if (montant_cents < 50) return json({ error: 'Montant trop faible (min 0.50€)' }, 400);
 
-  // Récupérer le stripe_connect_id du commerçant
+  // Récupérer le stripe_connect_id du commerçant + total pour borner l'empreinte
   const { data: cmd } = await supabase
     .from('commandes')
-    .select('commercant_id, commercants(stripe_connect_id, stripe_connect_actif)')
+    .select('commercant_id, total_ttc, commercants(stripe_connect_id, stripe_connect_actif)')
     .eq('id', commande_id)
     .single();
+
+  if (!cmd?.commercant_id) return json({ error: 'Commande introuvable' }, 404);
+
+  // Garde-fou : on ne pré-autorise jamais plus que le total du panier (l'empreinte = 75% du total)
+  const maxCents = Math.round(Number(cmd.total_ttc || 0) * 100);
+  if (maxCents > 0 && montant_cents > maxCents) return json({ error: 'Montant empreinte invalide' }, 400);
 
   const connectId = (cmd?.commercants as any)?.stripe_connect_id;
   const connectActif = (cmd?.commercants as any)?.stripe_connect_actif;
