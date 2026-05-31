@@ -364,6 +364,32 @@
     .p-rx .rm{font-size:10pt;color:#444;margin:2px 0 4px}
     .p-rx .ra{font-size:10.5pt;color:#0A1428}
     .p-rx .ra b{color:#46A02A}
+    /* Rapport commerçant (propre, sans notes internes) */
+    .pr-cover{text-align:center;padding:34px 0 24px;border-bottom:3px solid #0F2C52;margin-bottom:22px}
+    .pr-cover .b{font-family:var(--fd);font-size:30pt;font-weight:800;color:#0F2C52}
+    .pr-cover .s{font-size:11pt;letter-spacing:.18em;text-transform:uppercase;color:#5BBE3A;font-weight:800;margin-top:4px}
+    .pr-id{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:18px;font-size:11pt;color:#222}
+    .pr-id b{color:#0F2C52;display:block;font-size:8.5pt;text-transform:uppercase;letter-spacing:.05em}
+    .pr-bar{display:flex;align-items:center;gap:12px;margin-bottom:11px;break-inside:avoid}
+    .pr-bar .l{flex:0 0 175px;font-weight:700;font-size:11pt;color:#0A1428}
+    .pr-bar .t{flex:1;height:11px;background:#ECE7DA;border-radius:6px;overflow:hidden}
+    .pr-bar .t i{display:block;height:100%;border-radius:6px}
+    .pr-bar .v{flex:0 0 42px;text-align:right;font-weight:800;font-size:11pt;color:#0F2C52}
+    .pr-glob{display:flex;align-items:center;gap:16px;background:#0F2C52;color:#fff;border-radius:10px;padding:14px 18px;margin:14px 0;break-inside:avoid}
+    .pr-glob .n{font-family:var(--fd);font-size:30pt;font-weight:800;line-height:1}
+    .pr-glob .n span{font-size:13pt;opacity:.6}
+    .pr-glob>div:last-child{font-size:11pt;line-height:1.4}
+    .pr-mg{background:#F7F2E8;border-left:4px solid #E8A33D;border-radius:8px;padding:11px 14px;font-size:11pt;color:#3A2E12;margin-bottom:16px;break-inside:avoid}
+    .pr-h{font-family:var(--fd);font-size:13pt;color:#0F2C52;border-bottom:2px solid #E5E2D8;padding-bottom:4px;margin:0 0 10px}
+    .pr-opt{display:flex;gap:11px;align-items:flex-start;margin-bottom:10px;break-inside:avoid}
+    .pr-opt span{font-size:17pt;line-height:1}
+    .pr-opt b{font-size:11pt;color:#0A1428}
+    .pr-opt p{font-size:10pt;color:#444;margin-top:2px}
+    .pr-help{margin-top:16px;break-inside:avoid}
+    .pr-help ul{margin:0 0 0 16px;font-size:11pt;color:#222;line-height:1.5}
+    .pr-help li{margin-bottom:5px}
+    .pr-foot{margin-top:22px;padding-top:12px;border-top:1px solid #E5E2D8;text-align:center;font-size:9.5pt;color:#5A6478;line-height:1.5}
+    .pr-foot b{color:#0F2C52}
   }
 </style>
 </head>
@@ -1659,6 +1685,10 @@ function buildDiag(){
       <button class="c1" onclick="ctaPick('demo')">Voir une démo adaptée à mon commerce</button>
       <button class="c2" onclick="ctaPick('plan')">Recevoir mon plan d'amélioration</button>
     </div>
+    <div class="diag-rapport" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button onclick="exportRapport()" style="flex:1;min-width:200px;padding:13px;border:none;border-radius:12px;background:var(--nuit2,#16365f);color:#fff;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer">📄 Rapport pour le commerçant (PDF)</button>
+      <button onclick="emailRecap()" class="conseiller-only" style="flex:1;min-width:160px;padding:13px;border:1.5px solid var(--cremef,#E5E2D8);border-radius:12px;background:var(--creme,#F7F2E8);color:var(--nuit,#0F2C52);font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer">✉️ M'envoyer le récap</button>
+    </div>
   </div>`;
 }
 
@@ -1980,6 +2010,81 @@ function fmt(f,v){
     return s;
   }
   return v;
+}
+
+/* ============================================================
+   RAPPORT COMMERÇANT — PDF propre, remis au prospect.
+   N'inclut JAMAIS le brut Q/R, la lecture stratégique
+   ("comment rebondir") ni la synthèse RDV 2 (usage interne).
+   ============================================================ */
+function exportRapport(){
+  const d=fiche.data, m=METIERS[d.type_commerce], s=diagScores();
+  const nm=esc(d.nom_commerce||"votre commerce");
+  const tone=n=>n>=7?"#5BBE3A":n>=4?"#E8A33D":"#E2563B";
+  const bar=(lb,n)=>`<div class="pr-bar"><div class="l">${lb}</div><div class="t"><i style="width:${n*10}%;background:${tone(n)}"></i></div><div class="v">${n}/10</div></div>`;
+  const AX=[
+    ["vg","🔎","Être visible quand on vous cherche","Une fiche Google et un site à votre nom : vos clients vous trouvent en 2 secondes."],
+    ["gc","🛒","Prendre les commandes sans le téléphone","Click & collect et commande en ligne : les commandes tombent même quand c'est fermé."],
+    ["mo","✨","Une vitrine toujours à jour","Vos produits, prix et photos en ligne, modifiables en 2 clics depuis le téléphone."],
+    ["fi","🔔","Faire revenir vos clients","Un seul message pour prévenir tous vos clients de vos promos et arrivages."]
+  ];
+  const sorted=AX.slice().sort((a,b)=>s[a[0]]-s[b[0]]);
+  const weak=sorted.filter(a=>s[a[0]]<=6);
+  const opts=(weak.length?weak:sorted.slice(0,2))
+    .map(a=>`<div class="pr-opt"><span>${a[1]}</span><div><b>${esc(a[2])}</b><p>${esc(a[3])}</p></div></div>`).join("");
+  const H=`<div class="pr-cover">
+      <div class="b">Marchéo</div><div class="s">Votre diagnostic digital</div>
+      <div class="pr-id">
+        <div><b>Commerce</b>${nm}</div>
+        <div><b>Type</b>${m?esc(m.label):"—"}</div>
+        <div><b>Date</b>${esc(d.date_rdv||"—")}</div>
+      </div></div>
+    ${bar("Visibilité Google",s.vg)}
+    ${bar("Gestion des commandes",s.gc)}
+    ${bar("Modernité du commerce",s.mo)}
+    ${bar("Fidélisation client",s.fi)}
+    <div class="pr-glob"><div class="n">${s.global}<span>/10</span></div><div>Score global de votre présence digitale aujourd'hui.</div></div>
+    <div class="pr-mg">💡 ${esc(diagManque())}</div>
+    <div class="pr-h">Ce qu'on peut faire pour y répondre</div>
+    ${opts}
+    <div class="pr-help"><div class="pr-h">Comment Marchéo vous accompagne</div>
+      <ul>
+        <li>Votre boutique en ligne à votre nom, prête en quelques jours, sans rien installer.</li>
+        <li>Vos clients commandent et réservent en ligne — vous gardez le téléphone pour cuisiner et servir.</li>
+        <li>Vous prévenez tous vos clients d'un arrivage ou d'une promo en un seul message.</li>
+        <li>Mise en place accompagnée, sans engagement.</li>
+      </ul></div>
+    <div class="pr-foot"><b>Marchéo</b> · marchéo.fr · marcheo.contact@gmail.com<br>Document remis à titre indicatif suite à votre diagnostic.</div>`;
+  document.getElementById("print-root").innerHTML=H;
+  closeAll();
+  setTimeout(()=>window.print(),120);
+}
+
+/* Récap du RDV par email vers le contact Marchéo (offline-safe : mailto). */
+function emailRecap(){
+  const d=fiche.data, m=METIERS[d.type_commerce], s=diagScores();
+  const cta={demo:"Souhaite une démo adaptée",plan:"Souhaite un plan d'amélioration"}[val("cta_choice")]||"—";
+  const nom=d.nom_commerce||"Commerce";
+  const lines=[
+    "Audit RDV complété.","",
+    "Commerce : "+(d.nom_commerce||"—"),
+    "Type : "+(m?m.label:"—"),
+    "Responsable : "+(d.responsable||"—"),
+    "Téléphone : "+(d.telephone||"—"),
+    "Email : "+(d.email||"—"),
+    "Adresse : "+(d.adresse||"—"),
+    "Date RDV : "+(d.date_rdv||"—")+" "+(d.heure_arrivee||""),
+    "","— Diagnostic —",
+    "Visibilité Google : "+s.vg+"/10",
+    "Gestion commandes : "+s.gc+"/10",
+    "Modernité : "+s.mo+"/10",
+    "Fidélisation : "+s.fi+"/10",
+    "Score global : "+s.global+"/10",
+    "","Intérêt : "+cta
+  ];
+  location.href="mailto:marcheo.contact@gmail.com?subject="
+    +encodeURIComponent("Audit RDV — "+nom)
+    +"&body="+encodeURIComponent(lines.join("\n"));
 }
 
 /* ============================================================
