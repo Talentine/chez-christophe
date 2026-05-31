@@ -1049,12 +1049,16 @@ async function confirmerCommande() {
           name: prenom + ' ' + nom,
           email,
         });
-        if (!res.ok) {
-          // Échec empreinte → on annule la commande
-          await sb('commandes', '?id=eq.' + commandeId, 'PATCH', {
-            statut: 'annulee',
-            empreinte_status: 'failed',
-          });
+        // La bascule de statut se fait côté Edge Function (service_role) : le PATCH
+        // commandes en anon est bloqué par RLS owner-only. finalize lit le vrai statut
+        // du PaymentIntent et passe la commande en 'nouvelle' ou 'annulee'.
+        const fin = await fetch(SUPABASE_URL + '/functions/v1/stripe-empreinte', {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'finalize', commande_id: commandeId })
+        }).then(r => r.json()).catch(() => null);
+
+        if (!res.ok || !fin || fin.statut !== 'nouvelle') {
           const err = document.getElementById('stripe-card-errors');
           err.textContent = res.error || 'Empreinte refusée';
           err.style.display = 'block';
@@ -1062,8 +1066,6 @@ async function confirmerCommande() {
           document.getElementById('btnTxt').textContent = 'Confirmer la commande →';
           return;
         }
-        // Empreinte OK → la commande passe à "nouvelle"
-        await sb('commandes', '?id=eq.' + commandeId, 'PATCH', { statut: 'nouvelle' });
       }
     }
 
