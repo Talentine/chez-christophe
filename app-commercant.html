@@ -6564,6 +6564,9 @@ async function sauvegarderProduit() {
         prix_vente: prix,
         prix_lot_qte: parseInt(document.getElementById('produitPrixLotQte')?.value) || null,
         prix_lot: parseFloat(document.getElementById('produitPrixLot')?.value) || null,
+        // Stock quantifié : champ vide → NULL (illimité)
+        stock_qte: (function(){ const v = document.getElementById('produitStockQte')?.value; return (v === '' || v === undefined || v === null) ? null : Number(v); })(),
+        stock_alerte_seuil: parseInt(document.getElementById('produitStockSeuil')?.value) || 5,
         actif: true,
       })
     });
@@ -8306,6 +8309,22 @@ verifierSessionCommercant().then(function(ok) {
         <div style="position:relative;">
           <input id="produitPrixLot" type="number" min="0" step="0.10" placeholder="3.00" style="width:100%;padding:10px 30px 10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
           <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STOCK QUANTIFIÉ (optionnel) -->
+    <div style="margin-bottom:14px;background:#eef5f0;border:1px dashed #9cc3aa;border-radius:12px;padding:14px;">
+      <label style="font-size:13px;color:#2e5d40;display:block;margin-bottom:6px;font-weight:600;">📦 Stock <span style="color:#5a8068;font-weight:400;font-size:11px;">(optionnel)</span></label>
+      <div style="font-size:12px;color:#3d6b4e;margin-bottom:10px;line-height:1.5;">Laissez <strong>vide</strong> = stock illimité. Sinon la quantité décrémente à chaque commande et le produit passe « épuisé » à 0.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end;">
+        <div>
+          <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Quantité en stock</label>
+          <input id="produitStockQte" type="number" min="0" step="1" placeholder="illimité" style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Alerte stock bas ≤</label>
+          <input id="produitStockSeuil" type="number" min="0" step="1" placeholder="5" style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
         </div>
       </div>
     </div>
