@@ -1712,6 +1712,25 @@
       </div>
     </div>
 
+    <!-- CONGÉS & FERMETURES -->
+    <div id="reg-conges" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:4px;">🌴 Congés &amp; fermetures</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;line-height:1.5;">Pendant une fermeture, vos clients voient un bandeau sur la boutique et ne peuvent pas choisir de créneau sur ces dates.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px;">
+        <label style="font-size:12px;color:var(--texte-doux);display:flex;flex-direction:column;gap:4px;">Du
+          <input type="date" id="congesDebut" style="padding:9px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-family:inherit;font-size:14px;background:white;">
+        </label>
+        <label style="font-size:12px;color:var(--texte-doux);display:flex;flex-direction:column;gap:4px;">Au (inclus)
+          <input type="date" id="congesFin" style="padding:9px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-family:inherit;font-size:14px;background:white;">
+        </label>
+        <label style="font-size:12px;color:var(--texte-doux);display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px;">Motif (affiché aux clients)
+          <input type="text" id="congesMotif" placeholder="Congés annuels" maxlength="60" style="padding:9px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-family:inherit;font-size:14px;background:white;">
+        </label>
+        <button type="button" onclick="ajouterConge()" style="padding:11px 18px;background:var(--vert);color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;">Ajouter</button>
+      </div>
+      <div id="congesListe" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
     <!-- DÉLAIS D'ATTENTE MIN AVANT COMMANDE / RÉSERVATION -->
     <div id="reg-delais" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Délais minimum avant commande</div>
@@ -3345,7 +3364,7 @@ function allerOnglet(id) {
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'crm') chargerCRM();
   if (id === 'avis') chargerAvisCommercant();
-  if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); chargerFideliteRecap(); }
+  if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); chargerFideliteRecap(); chargerConges(); }
 }
 
 // ── ONGLET RÉSERVATIONS ────────────────────────────────────────
@@ -3991,6 +4010,77 @@ async function sauverRecapHebdo() {
   const actif = !!document.getElementById('toggleRecapHebdo')?.checked;
   _setToggleVisual(document.getElementById('toggleRecapHebdoSlider'), actif);
   await _patchCommercant({ recap_hebdo_actif: actif }, actif ? '✅ Récap du lundi activé' : 'Récap du lundi désactivé');
+}
+
+// ── CONGÉS & FERMETURES (réglages) ────────────────────────────────
+async function chargerConges() {
+  const liste = document.getElementById('congesListe');
+  if (!liste) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  const today = new Date().toISOString().slice(0, 10);
+  let data;
+  try {
+    data = await sb('fermetures_planifiees',
+      '?commercant_id=eq.' + commercantId + '&date_fin=gte.' + today + '&select=*&order=date_debut.asc');
+  } catch (e) {
+    liste.innerHTML = '<p style="color:#b3261e;font-size:13px;">Impossible de charger les fermetures.</p>';
+    return;
+  }
+  if (!Array.isArray(data) || data.length === 0) {
+    liste.innerHTML = '<p style="color:#9aa39c;font-size:13px;">Aucune fermeture prévue.</p>';
+    return;
+  }
+  const fmt = s => new Date(s + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  liste.innerHTML = data.map(f =>
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--creme);border:1px solid var(--creme-fonce);border-radius:10px;padding:12px 14px;">' +
+      '<div><div style="font-size:14px;font-weight:500;">' +
+        (f.date_debut === f.date_fin ? fmt(f.date_debut) : 'Du ' + fmt(f.date_debut) + ' au ' + fmt(f.date_fin)) +
+      '</div><div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">' + _escapeAvisAdmin(f.motif || 'Fermeture') + '</div></div>' +
+      '<button onclick="supprimerConge(\'' + f.id + '\')" style="background:none;border:none;color:#b3261e;font-size:13px;cursor:pointer;font-family:inherit;flex-shrink:0;">Supprimer</button>' +
+    '</div>').join('');
+}
+
+async function ajouterConge() {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  const debut = document.getElementById('congesDebut').value;
+  const fin = document.getElementById('congesFin').value;
+  if (!debut || !fin) { if (typeof afficherToast === 'function') afficherToast('⚠️ Renseignez les deux dates'); return; }
+  if (fin < debut) { if (typeof afficherToast === 'function') afficherToast('⚠️ La fin doit être après le début'); return; }
+  const motif = document.getElementById('congesMotif').value.trim() || 'Congés';
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/fermetures_planifiees', {
+      method: 'POST',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }),
+      body: JSON.stringify({ commercant_id: commercantId, date_debut: debut, date_fin: fin, motif }),
+    });
+    if (!r.ok) { if (typeof afficherToast === 'function') afficherToast('❌ Erreur lors de l\'ajout'); return; }
+    document.getElementById('congesDebut').value = '';
+    document.getElementById('congesFin').value = '';
+    document.getElementById('congesMotif').value = '';
+    if (typeof afficherToast === 'function') afficherToast('✅ Fermeture ajoutée');
+    chargerConges();
+  } catch (e) {
+    if (typeof afficherToast === 'function') afficherToast('❌ Erreur réseau');
+  }
+}
+
+async function supprimerConge(id) {
+  if (!confirm('Supprimer cette fermeture ? Les clients pourront à nouveau commander sur ces dates.')) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/fermetures_planifiees?id=eq.' + id, {
+      method: 'DELETE',
+      headers: await mWriteAuth({ 'Prefer': 'return=minimal' }),
+    });
+    if (!r.ok) { if (typeof afficherToast === 'function') afficherToast('❌ Erreur'); return; }
+    if (typeof afficherToast === 'function') afficherToast('Fermeture supprimée');
+    chargerConges();
+  } catch (e) {
+    if (typeof afficherToast === 'function') afficherToast('❌ Erreur réseau');
+  }
 }
 
 async function chargerReglages() {
@@ -5875,6 +5965,48 @@ async function chargerProduits() {
   chargerProduitsAdmin();
 }
 
+// ── RUPTURE EN 1 TAP ──────────────────────────────────────────────
+// Un produit est en rupture si en_stock=false ET (pas de date de retour
+// OU date de retour encore future). Réactivation auto gérée en base.
+function produitEnRupture(item) {
+  if (item.en_stock !== false) return false;
+  const today = new Date().toISOString().slice(0, 10);
+  return !item.rupture_jusquau || item.rupture_jusquau > today;
+}
+
+function ruptureControl(item) {
+  if (produitEnRupture(item)) {
+    const retour = item.rupture_jusquau
+      ? new Date(item.rupture_jusquau + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+      : null;
+    return '<button onclick="event.stopPropagation();toggleRupture(\'' + item.catalogue_id + '\',false)" title="Remettre en vente"'
+      + ' style="flex-shrink:0;background:#fdecea;color:#b3261e;border:1px solid #f3c4c0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;">⛔ '
+      + (retour ? 'retour ' + retour : 'rupture') + ' · remettre</button>';
+  }
+  return '<button onclick="event.stopPropagation();toggleRupture(\'' + item.catalogue_id + '\',true)" title="Mettre en rupture aujourd\'hui (réactivation auto demain)"'
+    + ' style="flex-shrink:0;background:#fff;color:#8a6020;border:1px solid var(--creme-fonce);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;">Rupture</button>';
+}
+
+async function toggleRupture(catalogueId, enRupture) {
+  let demain = '';
+  { const d = new Date(); d.setDate(d.getDate() + 1); demain = d.toISOString().slice(0, 10); }
+  const body = enRupture ? { en_stock: false, rupture_jusquau: demain } : { en_stock: true, rupture_jusquau: null };
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?id=eq.' + catalogueId, {
+      method: 'PATCH',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }),
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) { if (typeof afficherToast === 'function') afficherToast('❌ Erreur'); return; }
+    const it = catalogueCache.find(x => x.catalogue_id === catalogueId);
+    if (it) { it.en_stock = body.en_stock; it.rupture_jusquau = body.rupture_jusquau; }
+    renderCatalogueHTML(catalogueCache);
+    if (typeof afficherToast === 'function') afficherToast(enRupture ? '⛔ En rupture — retour automatique demain' : '✅ Produit remis en vente');
+  } catch (e) {
+    if (typeof afficherToast === 'function') afficherToast('❌ Erreur réseau');
+  }
+}
+
 // Libellé de stock affiché sous chaque produit (null = illimité).
 function stockLabel(item) {
   if (item.stock_qte === null || item.stock_qte === undefined) return '';
@@ -5903,6 +6035,7 @@ function renderCatalogueHTML(liste) {
       + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + stockLabel(item) + ' · ✏️ Modifier</div>'
       + '</div>'
       + '</div>'
+      + ruptureControl(item)
       + '<div onclick="toggleProduitActif(\'' + item.catalogue_id + '\',' + item.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
       + '<div style="position:absolute;top:3px;' + thumbPos + ';width:20px;height:20px;border-radius:50%;background:white;"></div>'
       + '</div>'
@@ -5932,7 +6065,7 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,stock_qte,stock_alerte_seuil,produit_base_id&limit=200&order=id.desc', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,rupture_jusquau,stock_qte,stock_alerte_seuil,produit_base_id&limit=200&order=id.desc', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
@@ -5961,6 +6094,8 @@ async function chargerProduitsAdmin() {
         prix: c.prix_vente || p.prix_marche_indicatif || 0,
         photo_url: p.photo_url || '',
         actif: c.actif,
+        en_stock: c.en_stock !== false,
+        rupture_jusquau: c.rupture_jusquau || null,
         categorie_id: p.categorie_id || null,
         description: p.description || '',
         provenance: p.provenance || '',

@@ -1145,6 +1145,9 @@
   </button>
 </header>
 
+<!-- Bandeau congés / fermeture (affiché si une fermeture est en cours ou proche) -->
+<div id="bandeau-fermeture" style="display:none;background:#fdf3e3;border-bottom:1px solid #f0d9ae;padding:10px 16px;text-align:center;font-size:14px;color:#7a5410;line-height:1.4;"></div>
+
 <div class="bandeau" id="bandeauDerniers">
   <span class="bandeau-inner" id="bandeauTexte">
     <span style="opacity:.6;">Chargement des derniers arrivages…</span>
@@ -1417,12 +1420,25 @@ function flattenCatalogueRow(row) {
     // Stock quantifié — stock_qte NULL = illimité (boutiques legacy inchangées)
     stock_qte:             (row.stock_qte === null || row.stock_qte === undefined) ? null : Number(row.stock_qte),
     stock_alerte_seuil:    (row.stock_alerte_seuil === null || row.stock_alerte_seuil === undefined) ? 5 : Number(row.stock_alerte_seuil),
+    // Rupture temporaire — réactivation auto à rupture_jusquau (logique produit_disponible)
+    rupture_jusquau:       row.rupture_jusquau || null,
+    disponible:            estDisponible(row.en_stock, row.rupture_jusquau),
   };
+}
+
+// Réplique de public.produit_disponible(en_stock, rupture_jusquau) côté client :
+// dispo si en stock, ou si la date de rupture est dépassée (réactivation auto).
+function estDisponible(en_stock, rupture_jusquau) {
+  if (en_stock !== false) return true;
+  const today = new Date().toISOString().slice(0, 10);
+  return !!rupture_jusquau && rupture_jusquau <= today;
 }
 
 // ── HELPER : badge de stock quantifié ───────────────────
 // null = illimité → rien. <=0 = épuisé. <= seuil = "Plus que X !".
 function badgeStock(p) {
+  // Rupture temporaire (en_stock=false, pas encore réactivé) → indisponible
+  if (p.disponible === false) return '<span class="badge-carte" style="background:#9F1B1F;color:#fff;">Indisponible</span>';
   if (p.stock_qte === null || p.stock_qte === undefined) return '';
   if (p.stock_qte <= 0) return '<span class="badge-carte" style="background:#9F1B1F;color:#fff;">Épuisé</span>';
   if (p.stock_qte <= (p.stock_alerte_seuil ?? 5)) {
@@ -1464,9 +1480,10 @@ function renderProduitCard(p) {
   } else {
     actionHtml = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>';
   }
-  // Produit épuisé (stock quantifié à 0) → on remplace l'action d'ajout
-  const epuise = (p.stock_qte !== null && p.stock_qte !== undefined && p.stock_qte <= 0);
-  if (epuise && !ep) actionHtml = '<span style="font-size:12px;font-weight:700;color:#9F1B1F;">Épuisé</span>';
+  // Produit indisponible (rupture temporaire) ou épuisé (stock à 0) → pas d'ajout
+  const indispo = (p.disponible === false);
+  const epuise = indispo || (p.stock_qte !== null && p.stock_qte !== undefined && p.stock_qte <= 0);
+  if (epuise && !ep) actionHtml = '<span style="font-size:12px;font-weight:700;color:#9F1B1F;">' + (indispo ? 'Indisponible' : 'Épuisé') + '</span>';
   const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${actionHtml}</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
@@ -2747,6 +2764,29 @@ async function chargerFidelite(commercantId) {
   card.style.display = 'block';
 }
 
+// ── BANDEAU CONGÉS / FERMETURE ────────────────────────────────────
+async function afficherFermetures(commercantId) {
+  const bandeau = document.getElementById('bandeau-fermeture');
+  if (!bandeau) return;
+  const today = new Date().toISOString().slice(0, 10);
+  const dans14j = new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10);
+  let data;
+  try {
+    data = await supabase('fermetures_planifiees',
+      '?commercant_id=eq.' + commercantId +
+      '&date_debut=lte.' + dans14j + '&date_fin=gte.' + today +
+      '&select=date_debut,date_fin,motif,message_client&order=date_debut.asc&limit=1');
+  } catch (e) { return; }
+  const f = Array.isArray(data) ? data[0] : null;
+  if (!f) return;
+  const fmt = s => new Date(s + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+  const enCours = f.date_debut <= today;
+  bandeau.textContent = f.message_client || (enCours
+    ? '🌴 Boutique fermée jusqu\'au ' + fmt(f.date_fin) + ' (' + (f.motif || 'congés') + '). Les commandes reprennent ensuite.'
+    : '📅 ' + (f.motif || 'Fermeture') + ' : nous serons fermés du ' + fmt(f.date_debut) + ' au ' + fmt(f.date_fin) + '. Anticipez vos commandes !');
+  bandeau.style.display = 'block';
+}
+
 // ── INIT PRINCIPAL (async) ────────────────────────────────────────
 (async () => {
   statutOuverture();
@@ -2767,6 +2807,7 @@ async function chargerFidelite(commercantId) {
   chargerPromotions(cid);
   chargerAvis(cid);
   chargerFidelite(cid);
+  afficherFermetures(cid);
 })();
 
 // Scroll reveal

@@ -777,6 +777,15 @@ function mettreAJourCTA() {
   }
 }
 
+// ── CONGÉS / FERMETURES : dates non commandables ──────
+let DATES_FERMEES = new Set();
+async function chargerDatesFermees(commercantId) {
+  try {
+    const data = await sb('rpc/get_dates_fermees', '', 'POST', { p_commercant_id: commercantId, p_jours: 30 });
+    DATES_FERMEES = new Set((Array.isArray(data) ? data : []).map(d => (typeof d === 'string' ? d.slice(0, 10) : d)));
+  } catch (e) { DATES_FERMEES = new Set(); }
+}
+
 // ── CRÉNEAUX ──────────────────────────────────────────
 async function chargerCreneaux() {
   const grid = document.getElementById('creneauxGrid');
@@ -802,6 +811,7 @@ async function chargerCreneaux() {
     return;
   }
 
+  await chargerDatesFermees(commercantId); // congés → dates à exclure
   creneaux = genererCreneauxSemaine(data);
   renderCreneaux();
 }
@@ -849,6 +859,9 @@ function genererCreneauxSemaine(data) {
       const hh = String(hNum).padStart(2, '0');
       const mn = String(mNum).padStart(2, '0');
       const dateISO = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + mn + ':00';
+
+      // Congés / fermeture : on n'affiche pas les créneaux des jours fermés
+      if (DATES_FERMEES.has(yyyy + '-' + mm + '-' + dd)) continue;
 
       result.push({
         id: c.id,
@@ -1038,6 +1051,24 @@ async function confirmerCommande() {
           return;
         }
       }
+    }
+
+    // ── Garde-fou congés ─────────────────────────────────────
+    // L'onglet a pu rester ouvert pendant que le commerçant ajoutait une
+    // fermeture. La RPC est_ferme (security definer) revérifie la date.
+    if (creneau && creneau.dateISO) {
+      try {
+        const ferme = await sb('rpc/est_ferme', '', 'POST', {
+          p_commercant_id: commercantId, p_date: creneau.dateISO.slice(0, 10),
+        });
+        if (ferme === true) {
+          afficherToastPanier('🌴 La boutique est fermée à cette date — choisissez un autre créneau.', 'remove');
+          await chargerDatesFermees(commercantId);
+          btn.disabled = false;
+          if (btnTxtEl) btnTxtEl.textContent = 'Confirmer la commande →';
+          return;
+        }
+      } catch (e) { /* en cas d'erreur réseau, on n'empêche pas la commande */ }
     }
 
     // Opt-in marketing RGPD (case décochée par défaut, opt-in EXPLICITE requis)
