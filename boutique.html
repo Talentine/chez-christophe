@@ -1276,33 +1276,17 @@
   </section>
 
   <!-- AVIS -->
-  <div class="avis-section reveal">
+  <!-- Carte de fidélité — affichée si la boutique a activé la fidélité -->
+  <div id="fideliteCard" class="reveal" style="display:none;margin:0 auto 28px;max-width:520px;"></div>
+
+  <!-- Avis clients réels (chargés depuis la table `avis`, validés uniquement).
+       Masqué tant qu'aucun avis validé n'existe — pas de faux témoignages. -->
+  <div class="avis-section reveal" id="avisSection" style="display:none;">
     <div class="section-header">
       <h2 class="section-title">Avis clients</h2>
+      <div id="avisResume" style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--texte-doux);"></div>
     </div>
-    <div id="avisListe">
-      <div class="avis-card">
-        <div class="avis-header">
-          <span class="avis-etoiles">★★★★★</span>
-          <span class="avis-auteur">Pierre D.</span>
-        </div>
-        <p class="avis-texte">Le panier de la semaine est une vraie bonne idée. Tout était frais et les quantités parfaites pour 2.</p>
-      </div>
-      <div class="avis-card">
-        <div class="avis-header">
-          <span class="avis-etoiles">★★★★☆</span>
-          <span class="avis-auteur">Sophie M.</span>
-        </div>
-        <p class="avis-texte">Tomates cœur de bœuf excellentes, un vrai goût d'été ! Le service drive est super pratique.</p>
-      </div>
-      <div class="avis-card">
-        <div class="avis-header">
-          <span class="avis-etoiles">★★★★★</span>
-          <span class="avis-auteur">Jean-Claude R.</span>
-        </div>
-        <p class="avis-texte">Ça fait plaisir de retrouver un vrai primeur passionné. Les produits sont toujours impeccables.</p>
-      </div>
-    </div>
+    <div id="avisListe"></div>
   </div>
 
   <!-- LIGHTBOX -->
@@ -1430,7 +1414,21 @@ function flattenCatalogueRow(row) {
     en_stock:              row.en_stock !== false,
     prix_lot_qte:          row.prix_lot_qte || null,
     prix_lot:              row.prix_lot || null,
+    // Stock quantifié — stock_qte NULL = illimité (boutiques legacy inchangées)
+    stock_qte:             (row.stock_qte === null || row.stock_qte === undefined) ? null : Number(row.stock_qte),
+    stock_alerte_seuil:    (row.stock_alerte_seuil === null || row.stock_alerte_seuil === undefined) ? 5 : Number(row.stock_alerte_seuil),
   };
+}
+
+// ── HELPER : badge de stock quantifié ───────────────────
+// null = illimité → rien. <=0 = épuisé. <= seuil = "Plus que X !".
+function badgeStock(p) {
+  if (p.stock_qte === null || p.stock_qte === undefined) return '';
+  if (p.stock_qte <= 0) return '<span class="badge-carte" style="background:#9F1B1F;color:#fff;">Épuisé</span>';
+  if (p.stock_qte <= (p.stock_alerte_seuil ?? 5)) {
+    return '<span class="badge-carte" style="background:#C44616;color:#fff;">Plus que ' + p.stock_qte + ' !</span>';
+  }
+  return '';
 }
 
 // ── HELPER : badge offre lot/promo ──────────────────
@@ -1466,6 +1464,9 @@ function renderProduitCard(p) {
   } else {
     actionHtml = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>';
   }
+  // Produit épuisé (stock quantifié à 0) → on remplace l'action d'ajout
+  const epuise = (p.stock_qte !== null && p.stock_qte !== undefined && p.stock_qte <= 0);
+  if (epuise && !ep) actionHtml = '<span style="font-size:12px;font-weight:700;color:#9F1B1F;">Épuisé</span>';
   const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${actionHtml}</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
@@ -1475,6 +1476,7 @@ function renderProduitCard(p) {
     <div class="produit-img" style="position:relative;">
       ${imgHtml}
       ${p.saisonnier ? '<span class="badge-carte saison">Saison</span>' : ''}
+      ${badgeStock(p)}
     </div>
     <div class="produit-info">
       <div class="produit-nom">${p.nom}</div>
@@ -2592,6 +2594,127 @@ function formatHorairesCourt(h) {
   return '';
 }
 
+// ── AVIS CLIENTS (validés) ────────────────────────────────────────
+function _escapeAvis(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function _etoiles(note) {
+  const n = Math.max(0, Math.min(5, Math.round(Number(note) || 0)));
+  return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+}
+async function chargerAvis(commercantId) {
+  const section = document.getElementById('avisSection');
+  const liste = document.getElementById('avisListe');
+  const resume = document.getElementById('avisResume');
+  if (!section || !liste) return;
+  let avis;
+  try {
+    avis = await supabase('avis',
+      '?commercant_id=eq.' + commercantId + '&valide=eq.true' +
+      '&select=note,commentaire,prenom_affiche,reponse_commercant,reponse_at,created_at' +
+      '&order=created_at.desc&limit=12');
+  } catch (e) { return; }
+  if (!Array.isArray(avis) || avis.length === 0) return; // section reste masquée
+
+  const moyenne = avis.reduce((s, a) => s + (Number(a.note) || 0), 0) / avis.length;
+  if (resume) {
+    resume.innerHTML = '<span style="color:var(--or);letter-spacing:1px;">' + _etoiles(moyenne) + '</span>' +
+      '<strong style="color:var(--texte);">' + moyenne.toFixed(1).replace('.', ',') + '</strong>' +
+      '<span>· ' + avis.length + ' avis</span>';
+  }
+
+  liste.innerHTML = avis.map(a => {
+    const auteur = _escapeAvis(a.prenom_affiche || 'Client');
+    const txt = a.commentaire ? '<p class="avis-texte">' + _escapeAvis(a.commentaire) + '</p>' : '';
+    const rep = a.reponse_commercant
+      ? '<div class="avis-reponse" style="margin-top:10px;padding:10px 12px;background:var(--creme);border-radius:10px;font-size:13.5px;line-height:1.5;">' +
+        '<strong style="color:var(--vert);">Réponse du commerçant</strong><br>' + _escapeAvis(a.reponse_commercant) + '</div>'
+      : '';
+    return '<div class="avis-card">' +
+      '<div class="avis-header"><span class="avis-etoiles">' + _etoiles(a.note) + '</span>' +
+      '<span class="avis-auteur">' + auteur + '</span></div>' + txt + rep + '</div>';
+  }).join('');
+
+  section.style.display = '';
+
+  // SEO : AggregateRating dans le JSON-LD existant
+  try {
+    const ld = document.getElementById('schema-localbusiness');
+    if (ld) {
+      const data = JSON.parse(ld.textContent);
+      data.aggregateRating = {
+        "@type": "AggregateRating",
+        "ratingValue": moyenne.toFixed(1),
+        "reviewCount": avis.length,
+        "bestRating": "5", "worstRating": "1"
+      };
+      ld.textContent = JSON.stringify(data, null, 2);
+    }
+  } catch (_) {}
+}
+
+// ── CARTE DE FIDÉLITÉ ─────────────────────────────────────────────
+function _clientEmailStocke() {
+  try { return (JSON.parse(localStorage.getItem('session_client') || 'null') || {}).email || null; }
+  catch (e) { return null; }
+}
+async function chargerFidelite(commercantId) {
+  const card = document.getElementById('fideliteCard');
+  const b = window.__CONFIG__?.business || {};
+  if (!card || !b.fidelite_active) return;
+
+  const objectif = b.fidelite_objectif || 10;
+  const recompense = b.fidelite_recompense_cents ? (b.fidelite_recompense_cents / 100) : null;
+  const recompenseTxt = recompense ? recompense.toFixed(2).replace('.', ',').replace(/,00$/, '') + '€' : 'une récompense';
+
+  // Progression réelle si l'email client est connu
+  let nbTampons = 0, codesDispo = 0;
+  const email = _clientEmailStocke();
+  if (email) {
+    try {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/get_fidelite_statut', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_email: email, p_commercant_id: commercantId })
+      });
+      const data = await r.json();
+      const st = Array.isArray(data) ? data[0] : data;
+      if (st) {
+        nbTampons = Number(st.nb_tampons) || 0;
+        codesDispo = Array.isArray(st.codes_disponibles) ? st.codes_disponibles.length : 0;
+      }
+    } catch (e) {}
+  }
+
+  const remplis = Math.min(nbTampons % objectif || (nbTampons && nbTampons % objectif === 0 ? objectif : 0), objectif);
+  const tampons = Array.from({ length: objectif }, (_, i) =>
+    '<span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--or);' +
+    (i < remplis ? 'background:var(--or);color:white;' : 'color:var(--or);background:transparent;') +
+    'font-size:14px;">' + (i < remplis ? '★' : '') + '</span>'
+  ).join('');
+
+  const codeBanner = codesDispo > 0
+    ? '<div style="margin-top:12px;padding:10px 12px;background:#eaf7ee;border-radius:10px;font-size:13.5px;color:#1f5230;text-align:center;font-weight:600;">🎉 Vous avez ' + codesDispo + ' récompense' + (codesDispo > 1 ? 's' : '') + ' à utiliser ! Code à saisir au panier.</div>'
+    : '';
+
+  const progressTxt = email
+    ? '<div style="font-size:13px;color:var(--texte-doux);margin-top:8px;text-align:center;">' + remplis + ' / ' + objectif + ' commandes</div>'
+    : '<div style="font-size:13px;color:var(--texte-doux);margin-top:8px;text-align:center;">1 récompense de ' + recompenseTxt + ' toutes les ' + objectif + ' commandes</div>';
+
+  card.innerHTML =
+    '<div style="background:linear-gradient(135deg,var(--creme),var(--creme-fonce));border:1.5px solid var(--or);border-radius:18px;padding:20px;">' +
+      '<div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:14px;">' +
+        '<span style="font-size:20px;">🎟️</span>' +
+        '<h3 style="font-size:17px;font-weight:700;margin:0;">Carte de fidélité</h3>' +
+      '</div>' +
+      '<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">' + tampons + '</div>' +
+      progressTxt + codeBanner +
+    '</div>';
+  card.style.display = 'block';
+}
+
 // ── INIT PRINCIPAL (async) ────────────────────────────────────────
 (async () => {
   statutOuverture();
@@ -2610,6 +2733,8 @@ function formatHorairesCourt(h) {
   chargerCoupsDeCoeur(cid);
   chargerPaniers(cid);
   chargerPromotions(cid);
+  chargerAvis(cid);
+  chargerFidelite(cid);
 })();
 
 // Scroll reveal

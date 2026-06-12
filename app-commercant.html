@@ -629,10 +629,26 @@
     <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
     <span>Clients</span>
   </button>
+  <button class="tab-btn" onclick="allerOnglet('avis')" id="tab-avis" style="position:relative;">
+    <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+    <span>Avis</span>
+    <span class="tab-badge" id="badge-avis" style="display:none;">0</span>
+  </button>
   <button class="tab-btn" onclick="allerOnglet('reglages')" id="tab-reglages">
     <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
     <span>Réglages</span>
   </button>
+</div>
+
+<!-- ONGLET AVIS -->
+<div class="tab-content" id="content-avis">
+  <div style="padding:16px;">
+    <h2 style="font-size:20px;font-weight:700;margin-bottom:4px;">⭐ Avis clients</h2>
+    <p style="font-size:13.5px;color:var(--texte-doux);line-height:1.5;margin-bottom:16px;">
+      Validez un avis pour le publier sur votre boutique. Vous pouvez aussi y répondre publiquement ou le masquer.
+    </p>
+    <div id="avisAdminListe"></div>
+  </div>
 </div>
 
 <!-- ONGLET COMMANDES -->
@@ -1642,6 +1658,57 @@
           💡 <strong>Astuce conversion</strong> : descendre à <strong>20 %</strong> peut <strong>déclencher davantage de ventes</strong> 🚀.
           Plus l'empreinte est basse, moins le client hésite à réserver. Pour les paniers à fort risque de no-show (plateaux frais, traiteur), garde 75 %.
         </div>
+      </div>
+    </div>
+
+    <!-- FIDÉLITÉ — carte de tampons -->
+    <div id="reg-fidelite" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">🎟️ Carte de fidélité</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Récompensez vos clients réguliers — un argument différenciant vs Wix/Shopify</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
+          <input type="checkbox" id="toggleFidelite" onchange="sauverFidelite()" style="opacity:0;width:0;height:0;">
+          <span id="toggleFideliteSlider" style="position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:50px;transition:.2s;"></span>
+        </label>
+      </div>
+      <div id="fideliteParams" style="margin-top:14px;display:none;">
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
+          1 récompense toutes les <b id="fidObjectifVal">10</b> commandes
+        </label>
+        <input type="range" id="fidObjectifRange" min="2" max="20" step="1" value="10"
+          oninput="document.getElementById('fidObjectifVal').textContent=this.value"
+          onchange="sauverFidelite()" style="width:100%;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
+          <div>
+            <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Récompense (€)</label>
+            <input type="number" id="fidRecompense" min="0" step="0.5" placeholder="5" onchange="sauverFidelite()"
+              style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+          </div>
+          <div>
+            <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Commande min. comptée (€)</label>
+            <input type="number" id="fidMinCommande" min="0" step="1" placeholder="0" onchange="sauverFidelite()"
+              style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--texte-doux);line-height:1.5;background:rgba(184,131,42,0.06);border-radius:10px;padding:10px 12px;margin-top:12px;">
+          Un code <strong>FIDEL-XXXXXXXX</strong> (valable 6 mois) est généré automatiquement dès qu'un client atteint l'objectif. Il le saisit dans son panier pour déduire la récompense.
+        </div>
+      </div>
+    </div>
+
+    <!-- RÉCAP HEBDO -->
+    <div id="reg-recap" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">📊 Récap du lundi</div>
+          <div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Recevez chaque lundi par email votre CA, vos commandes et votre top produits de la semaine</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:48px;height:28px;flex-shrink:0;">
+          <input type="checkbox" id="toggleRecapHebdo" onchange="sauverRecapHebdo()" style="opacity:0;width:0;height:0;">
+          <span id="toggleRecapHebdoSlider" style="position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:50px;transition:.2s;"></span>
+        </label>
       </div>
     </div>
 
@@ -3277,7 +3344,8 @@ function allerOnglet(id) {
   if (id === 'reservations') { chargerReservations(); chargerCreneauxResa(); }
   if (id === 'galerie') { chargerGalerie(); chargerRayonsImages(); }
   if (id === 'crm') chargerCRM();
-  if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); }
+  if (id === 'avis') chargerAvisCommercant();
+  if (id === 'reglages') { chargerReglages(); chargerBusinessConfig(); chargerFideliteRecap(); }
 }
 
 // ── ONGLET RÉSERVATIONS ────────────────────────────────────────
@@ -3839,6 +3907,91 @@ window.ouvrirPortalAbonnement = async function() {
     if (btn) { btn.disabled = false; btn.textContent = '⚙️ Gérer mon abonnement (factures, RIB, résiliation)'; }
   }
 };
+
+// Visuel du knob d'un toggle (même rendu que toggleEmpreinte).
+function _setToggleVisual(slider, on) {
+  if (!slider) return;
+  slider.style.background = on ? 'var(--vert)' : '#ccc';
+  slider.innerHTML = '<span style="position:absolute;height:22px;width:22px;left:' + (on ? '23px' : '3px') + ';top:3px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>';
+}
+
+// ── FIDÉLITÉ + RÉCAP HEBDO (réglages) ─────────────────────────────
+async function chargerFideliteRecap() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const commercantId = session.commercant_id;
+    if (!commercantId) return;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId +
+      '&select=fidelite_active,fidelite_objectif,fidelite_recompense_cents,fidelite_min_commande_cents,recap_hebdo_actif', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const c = (await r.json())?.[0] || {};
+
+    // Fidélité
+    const fidActive = !!c.fidelite_active;
+    const tgF = document.getElementById('toggleFidelite');
+    if (tgF) tgF.checked = fidActive;
+    _setToggleVisual(document.getElementById('toggleFideliteSlider'), fidActive);
+    const params = document.getElementById('fideliteParams');
+    if (params) params.style.display = fidActive ? 'block' : 'none';
+    const obj = c.fidelite_objectif ?? 10;
+    const rng = document.getElementById('fidObjectifRange');
+    const objVal = document.getElementById('fidObjectifVal');
+    if (rng) rng.value = obj;
+    if (objVal) objVal.textContent = obj;
+    const rec = document.getElementById('fidRecompense');
+    if (rec) rec.value = c.fidelite_recompense_cents ? (c.fidelite_recompense_cents / 100) : '';
+    const minC = document.getElementById('fidMinCommande');
+    if (minC) minC.value = c.fidelite_min_commande_cents ? (c.fidelite_min_commande_cents / 100) : '';
+
+    // Récap hebdo (défaut true)
+    const recapOn = c.recap_hebdo_actif !== false;
+    const tgR = document.getElementById('toggleRecapHebdo');
+    if (tgR) tgR.checked = recapOn;
+    _setToggleVisual(document.getElementById('toggleRecapHebdoSlider'), recapOn);
+  } catch (e) { console.log('chargerFideliteRecap', e); }
+}
+
+async function _patchCommercant(body, okMsg) {
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return false;
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }),
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) { if (typeof afficherToast === 'function') afficherToast('❌ Erreur d\'enregistrement'); return false; }
+    if (okMsg && typeof afficherToast === 'function') afficherToast(okMsg);
+    return true;
+  } catch (e) {
+    if (typeof afficherToast === 'function') afficherToast('❌ Erreur réseau');
+    return false;
+  }
+}
+
+async function sauverFidelite() {
+  const active = !!document.getElementById('toggleFidelite')?.checked;
+  _setToggleVisual(document.getElementById('toggleFideliteSlider'), active);
+  const params = document.getElementById('fideliteParams');
+  if (params) params.style.display = active ? 'block' : 'none';
+  const objectif = parseInt(document.getElementById('fidObjectifRange')?.value) || 10;
+  const recompenseEuros = parseFloat(document.getElementById('fidRecompense')?.value) || 0;
+  const minEuros = parseFloat(document.getElementById('fidMinCommande')?.value) || 0;
+  await _patchCommercant({
+    fidelite_active: active,
+    fidelite_objectif: objectif,
+    fidelite_recompense_cents: Math.round(recompenseEuros * 100),
+    fidelite_min_commande_cents: Math.round(minEuros * 100),
+  }, '✅ Fidélité enregistrée');
+}
+
+async function sauverRecapHebdo() {
+  const actif = !!document.getElementById('toggleRecapHebdo')?.checked;
+  _setToggleVisual(document.getElementById('toggleRecapHebdoSlider'), actif);
+  await _patchCommercant({ recap_hebdo_actif: actif }, actif ? '✅ Récap du lundi activé' : 'Récap du lundi désactivé');
+}
 
 async function chargerReglages() {
   try {
@@ -5722,6 +5875,14 @@ async function chargerProduits() {
   chargerProduitsAdmin();
 }
 
+// Libellé de stock affiché sous chaque produit (null = illimité).
+function stockLabel(item) {
+  if (item.stock_qte === null || item.stock_qte === undefined) return '';
+  if (item.stock_qte <= 0) return ' · <b style="color:#9F1B1F;">Épuisé</b>';
+  if (item.stock_qte <= (item.stock_alerte_seuil ?? 5)) return ' · <b style="color:#C44616;">Stock : ' + item.stock_qte + '</b>';
+  return ' · Stock : ' + item.stock_qte;
+}
+
 function renderCatalogueHTML(liste) {
   const container = document.getElementById('produitsAdmin');
   if (!container) return;
@@ -5739,7 +5900,7 @@ function renderCatalogueHTML(liste) {
       + '<img src="' + (item.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
       + '<div style="flex:1;min-width:0;">'
       + '<div style="font-size:15px;font-weight:500;">' + item.nom + '</div>'
-      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + ' · ✏️ Modifier</div>'
+      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + stockLabel(item) + ' · ✏️ Modifier</div>'
       + '</div>'
       + '</div>'
       + '<div onclick="toggleProduitActif(\'' + item.catalogue_id + '\',' + item.actif + ')" style="width:44px;height:26px;border-radius:13px;background:' + toggleBg + ';position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;">'
@@ -5771,7 +5932,7 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,produit_base_id&limit=200&order=id.desc', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,stock_qte,stock_alerte_seuil,produit_base_id&limit=200&order=id.desc', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const catalogue = await r.json();
@@ -5809,6 +5970,8 @@ async function chargerProduitsAdmin() {
         badge_bio: p.badge_bio || false,
         prix_lot_qte: c.prix_lot_qte || null,
         prix_lot: c.prix_lot || null,
+        stock_qte: (c.stock_qte === null || c.stock_qte === undefined) ? null : Number(c.stock_qte),
+        stock_alerte_seuil: (c.stock_alerte_seuil === null || c.stock_alerte_seuil === undefined) ? 5 : Number(c.stock_alerte_seuil),
       };
     }).filter(p => p.nom !== '—');
 
@@ -5870,6 +6033,113 @@ async function mWriteAuth(extra) {
   }, extra || {});
 }
 
+// ====================================================================
+// AVIS — modération commerçant (onglet Avis)
+// Lecture AVEC le token JWT : la RLS owner laisse voir les avis en
+// attente (valide=false), invisibles avec la clé anon.
+// ====================================================================
+let avisAdminCache = [];
+
+function _escapeAvisAdmin(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function _etoilesAdmin(note) {
+  const n = Math.max(0, Math.min(5, Math.round(Number(note) || 0)));
+  return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+}
+
+async function chargerAvisCommercant() {
+  const box = document.getElementById('avisAdminListe');
+  if (!box) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  box.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Chargement…</div>';
+  try {
+    const token = await getValidToken();
+    const r = await fetch(SUPABASE_URL + '/rest/v1/avis?commercant_id=eq.' + commercantId +
+      '&select=*&order=created_at.desc&limit=100', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
+    });
+    const avis = await r.json();
+    avisAdminCache = Array.isArray(avis) ? avis : [];
+    renderAvisAdmin();
+  } catch (e) {
+    box.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Erreur de chargement</div>';
+  }
+}
+
+function renderAvisAdmin() {
+  const box = document.getElementById('avisAdminListe');
+  if (!box) return;
+  // Badge : nombre d'avis en attente
+  const enAttente = avisAdminCache.filter(a => !a.valide).length;
+  const badge = document.getElementById('badge-avis');
+  if (badge) {
+    badge.textContent = enAttente;
+    badge.style.display = enAttente > 0 ? '' : 'none';
+  }
+  if (avisAdminCache.length === 0) {
+    box.innerHTML = '<div style="text-align:center;padding:40px;color:var(--texte-doux)"><p style="font-size:32px">⭐</p><p style="margin-top:8px">Aucun avis pour le moment</p><p style="font-size:13px;margin-top:4px">Les demandes d\'avis sont envoyées automatiquement après chaque commande remise.</p></div>';
+    return;
+  }
+  box.innerHTML = avisAdminCache.map(a => {
+    const date = a.created_at ? new Date(a.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+    const statut = a.valide
+      ? '<span style="font-size:11px;font-weight:700;color:#1f5230;background:#eaf7ee;padding:3px 9px;border-radius:20px;">Publié</span>'
+      : '<span style="font-size:11px;font-weight:700;color:#8a6020;background:#fff3da;padding:3px 9px;border-radius:20px;">En attente</span>';
+    const comment = a.commentaire ? '<p style="margin:8px 0 0;font-size:14px;line-height:1.5;">' + _escapeAvisAdmin(a.commentaire) + '</p>' : '';
+    const repExistante = a.reponse_commercant
+      ? '<div style="margin-top:8px;padding:8px 10px;background:var(--creme);border-radius:8px;font-size:13px;"><strong style="color:var(--vert);">Votre réponse :</strong> ' + _escapeAvisAdmin(a.reponse_commercant) + '</div>'
+      : '';
+    const btnValider = a.valide
+      ? '<button onclick="masquerAvis(\'' + a.id + '\')" style="flex:1;padding:9px;border:1.5px solid var(--creme-fonce);background:white;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">🚫 Masquer</button>'
+      : '<button onclick="publierAvis(\'' + a.id + '\')" style="flex:1;padding:9px;border:none;background:var(--vert);color:white;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">✓ Publier</button>';
+    return '<div style="background:white;border:1px solid var(--creme-fonce);border-radius:14px;padding:14px;margin-bottom:12px;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+        '<div><span style="color:var(--or);letter-spacing:1px;font-size:15px;">' + _etoilesAdmin(a.note) + '</span> ' +
+        '<strong style="font-size:14px;">' + _escapeAvisAdmin(a.prenom_affiche || 'Client') + '</strong></div>' +
+        statut +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">' + date + '</div>' +
+      comment + repExistante +
+      '<div style="display:flex;gap:8px;margin-top:12px;">' + btnValider +
+        '<button onclick="repondreAvis(\'' + a.id + '\')" style="flex:1;padding:9px;border:1.5px solid var(--creme-fonce);background:white;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">💬 ' + (a.reponse_commercant ? 'Modifier la réponse' : 'Répondre') + '</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+async function _patchAvis(id, body, okMsg) {
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/avis?id=eq.' + id, {
+      method: 'PATCH',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }),
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) { if (typeof afficherToast === 'function') afficherToast('❌ Erreur'); return; }
+    // Maj cache local + re-render sans refetch
+    const a = avisAdminCache.find(x => x.id === id);
+    if (a) Object.assign(a, body);
+    renderAvisAdmin();
+    if (okMsg && typeof afficherToast === 'function') afficherToast(okMsg);
+  } catch (e) {
+    if (typeof afficherToast === 'function') afficherToast('❌ Erreur réseau');
+  }
+}
+function publierAvis(id) { _patchAvis(id, { valide: true }, '✅ Avis publié'); }
+function masquerAvis(id) { _patchAvis(id, { valide: false }, '🚫 Avis masqué'); }
+function repondreAvis(id) {
+  const a = avisAdminCache.find(x => x.id === id);
+  const txt = prompt('Votre réponse publique à cet avis :', (a && a.reponse_commercant) || '');
+  if (txt === null) return; // annulé
+  const clean = txt.trim();
+  _patchAvis(id, { reponse_commercant: clean || null, reponse_at: clean ? new Date().toISOString() : null },
+    clean ? '💬 Réponse enregistrée' : 'Réponse supprimée');
+}
+
 async function toggleProduitActif(catalogueId, actif) {
   try {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -5916,6 +6186,9 @@ function ouvrirEditionProduit(catalogueId) {
   // Offre lot / promo
   if (document.getElementById('editPrixLotQte')) document.getElementById('editPrixLotQte').value = p.prix_lot_qte || '';
   if (document.getElementById('editPrixLot')) document.getElementById('editPrixLot').value = p.prix_lot || '';
+  // Stock quantifié — vide = illimité
+  if (document.getElementById('editStockQte')) document.getElementById('editStockQte').value = (p.stock_qte === null || p.stock_qte === undefined) ? '' : p.stock_qte;
+  if (document.getElementById('editStockSeuil')) document.getElementById('editStockSeuil').value = (p.stock_alerte_seuil ?? 5);
   document.getElementById('editErreur').style.display = 'none';
   document.getElementById('editPhotoActuelle').src = p.photo_url || '';
   document.getElementById('editPhotoActuelle').style.display = p.photo_url ? 'block' : 'none';
@@ -6044,6 +6317,9 @@ async function sauvegarderEdition() {
         prix_vente: prix,
         prix_lot_qte: parseInt(document.getElementById('editPrixLotQte')?.value) || null,
         prix_lot: parseFloat(document.getElementById('editPrixLot')?.value) || null,
+        // Stock quantifié : champ vide → NULL (illimité). Sinon nombre.
+        stock_qte: (function(){ const v = document.getElementById('editStockQte')?.value; return (v === '' || v === undefined || v === null) ? null : Number(v); })(),
+        stock_alerte_seuil: parseInt(document.getElementById('editStockSeuil')?.value) || 5,
       })
     });
 
@@ -8165,6 +8441,22 @@ verifierSessionCommercant().then(function(ok) {
         <div style="position:relative;">
           <input id="editPrixLot" type="number" min="0" step="0.10" placeholder="3.00" style="width:100%;padding:10px 30px 10px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
           <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--texte-doux);">€</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STOCK QUANTIFIÉ (optionnel) -->
+    <div style="margin-bottom:14px;background:#eef5f0;border:1px dashed #9cc3aa;border-radius:12px;padding:14px;">
+      <label style="font-size:13px;color:#2e5d40;display:block;margin-bottom:6px;font-weight:600;">📦 Stock <span style="color:#5a8068;font-weight:400;font-size:11px;">(optionnel)</span></label>
+      <div style="font-size:12px;color:#3d6b4e;margin-bottom:10px;line-height:1.5;">Laissez <strong>vide</strong> pour un stock illimité. Sinon, la quantité est décrémentée à chaque commande et le produit passe « épuisé » à 0.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end;">
+        <div>
+          <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Quantité en stock</label>
+          <input id="editStockQte" type="number" min="0" step="1" placeholder="illimité" style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--texte-doux);display:block;margin-bottom:4px;">Alerte stock bas ≤</label>
+          <input id="editStockSeuil" type="number" min="0" step="1" placeholder="5" style="width:100%;padding:10px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-size:14px;font-family:inherit;background:white;">
         </div>
       </div>
     </div>

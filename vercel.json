@@ -24,6 +24,7 @@
     { "source": "/unsubscribe", "destination": "/unsubscribe.html" },
     { "source": "/contester", "destination": "/contester.html" },
     { "source": "/litige", "destination": "/contester.html" },
+    { "source": "/avis/:token", "destination": "/avis.html?token=:token" },
 
     { "source": "/ambassadeur", "destination": "/ambassadeur.html" },
     { "source": "/ambassadeur/dashboard", "destination": "/ambassadeur-dashboard.html" },

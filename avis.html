@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Donner mon avis — Marchéo</title>
+<link rel="icon" type="image/svg+xml" href="/assets/brand/monogram.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#F7F2E8;color:#0F2C52;line-height:1.5;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{background:#fff;border-radius:24px;padding:32px 28px;max-width:480px;width:100%;box-shadow:0 12px 40px rgba(15,44,82,.1)}
+  .logo{text-align:center;margin-bottom:16px}
+  .logo img{width:60px;height:60px;border-radius:50%;object-fit:cover}
+  h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:6px;line-height:1.2}
+  .sub{text-align:center;color:#6B7785;font-size:14px;margin-bottom:22px}
+  .stars{display:flex;justify-content:center;gap:8px;margin:8px 0 22px}
+  .star{font-size:40px;cursor:pointer;line-height:1;color:#E2D8C4;transition:transform .1s,color .1s;user-select:none}
+  .star:hover{transform:scale(1.12)}
+  .star.on{color:#F4B400}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:600;color:#6B7785;margin-bottom:6px}
+  .field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #E8E0D5;border-radius:12px;font-family:inherit;font-size:15px;color:#0F2C52;background:#FCFAF5}
+  .field textarea{resize:vertical;min-height:90px}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent,#B8832A)}
+  .btn{width:100%;padding:14px;border:none;border-radius:50px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;margin-top:6px;min-height:48px;background:var(--accent,#B8832A);color:#fff}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .err{color:#E65533;text-align:center;font-size:14px;padding:14px;background:#fdf0ef;border-radius:10px;line-height:1.5}
+  .ok{color:#1f5230;text-align:center;font-size:15px;padding:18px;background:#eaf7ee;border-radius:12px;line-height:1.55}
+  .muted{text-align:center;color:#6B7785;font-size:13px;margin-top:14px}
+  #loadingState,#formState,#successState,#errorState,#infoState{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <img id="logoImg" src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo" onerror="this.src='/assets/brand/monogram.svg'">
+  </div>
+  <h1 id="title">Votre avis</h1>
+  <p class="sub" id="subtitle">Marchéo — click &amp; collect artisan</p>
+
+  <div id="loadingState" style="text-align:center;padding:30px 0">
+    <p>Chargement…</p>
+  </div>
+
+  <div id="formState">
+    <p style="text-align:center;font-size:15px;margin-bottom:4px">Quelle note donnez-vous à votre commande&nbsp;?</p>
+    <div class="stars" id="stars" role="radiogroup" aria-label="Note">
+      <span class="star" data-v="1" role="radio" aria-label="1 étoile">★</span>
+      <span class="star" data-v="2" role="radio" aria-label="2 étoiles">★</span>
+      <span class="star" data-v="3" role="radio" aria-label="3 étoiles">★</span>
+      <span class="star" data-v="4" role="radio" aria-label="4 étoiles">★</span>
+      <span class="star" data-v="5" role="radio" aria-label="5 étoiles">★</span>
+    </div>
+    <div class="field">
+      <label for="prenom">Votre prénom (affiché avec l'avis)</label>
+      <input id="prenom" type="text" maxlength="40" placeholder="Ex. Camille" autocomplete="given-name">
+    </div>
+    <div class="field">
+      <label for="commentaire">Votre commentaire (facultatif)</label>
+      <textarea id="commentaire" maxlength="600" placeholder="Qu'avez-vous pensé des produits, de l'accueil…&nbsp;?"></textarea>
+    </div>
+    <button class="btn" id="btnSubmit" onclick="envoyerAvis()" disabled>Envoyer mon avis</button>
+    <p class="muted">Votre avis sera publié après validation par le commerçant.</p>
+  </div>
+
+  <div id="infoState"></div>
+  <div id="successState"></div>
+  <div id="errorState"></div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+
+// Token : path /avis/{token} (rewrite Vercel) ou ?token= / ?t= (fallback local).
+function resolveToken() {
+  const p = new URLSearchParams(location.search);
+  const q = p.get('token') || p.get('t');
+  if (q) return q;
+  const seg = location.pathname.split('/').filter(Boolean); // ['avis','{token}']
+  if (seg[0] === 'avis' && seg[1]) return decodeURIComponent(seg[1]);
+  return null;
+}
+const token = resolveToken();
+let note = 0;
+
+async function rpc(name, body) {
+  const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error((data && (data.message || data.hint)) || 'Erreur ' + r.status);
+  return data;
+}
+
+const $ = (id) => document.getElementById(id);
+function show(id) { ['loadingState','formState','infoState','successState','errorState'].forEach(s => $(s).style.display = s === id ? 'block' : 'none'); }
+function showError(msg) { $('errorState').innerHTML = '<div class="err">' + msg + '</div>'; show('errorState'); }
+function showInfo(emoji, msg) { $('infoState').innerHTML = '<div class="ok"><div style="font-size:46px;margin-bottom:8px">' + emoji + '</div>' + msg + '</div>'; show('infoState'); }
+
+// Étoiles
+$('stars').querySelectorAll('.star').forEach(st => {
+  st.addEventListener('click', () => setNote(parseInt(st.dataset.v, 10)));
+});
+function setNote(v) {
+  note = v;
+  $('stars').querySelectorAll('.star').forEach(st => {
+    st.classList.toggle('on', parseInt(st.dataset.v, 10) <= v);
+    st.setAttribute('aria-checked', parseInt(st.dataset.v, 10) === v ? 'true' : 'false');
+  });
+  $('btnSubmit').disabled = note < 1;
+}
+
+async function init() {
+  if (!token) { show('errorState'); showError('Lien invalide ou incomplet.'); return; }
+  show('loadingState');
+  try {
+    const arr = await rpc('get_commande_review', { p_token: token });
+    const c = Array.isArray(arr) ? arr[0] : arr;
+    if (!c) { showError('Commande introuvable. Le lien a peut-être expiré.'); return; }
+
+    // Thème boutique (accent) + logo si dispo
+    if (c.couleur_principale) document.documentElement.style.setProperty('--accent', c.couleur_principale);
+    if (c.logo_url) $('logoImg').src = c.logo_url;
+    $('title').textContent = 'Votre avis sur ' + (c.nom_boutique || 'votre commande');
+    if (c.nom_boutique) $('subtitle').textContent = 'Commande ' + (c.numero || '') + ' · ' + c.nom_boutique;
+
+    if (c.deja_note) { showInfo('🙏', '<strong>Merci, votre avis est déjà enregistré&nbsp;!</strong><div style="margin-top:6px;color:#6B7785;font-size:13px">Vous ne pouvez laisser qu\'un seul avis par commande.</div>'); return; }
+    if (!c.eligible) { showInfo('⏳', '<strong>Avis pas encore disponible</strong><div style="margin-top:6px;color:#6B7785;font-size:13px">Vous pourrez noter votre commande une fois qu\'elle aura été remise.</div>'); return; }
+
+    show('formState');
+  } catch (e) {
+    showError(e.message || 'Erreur de chargement.');
+  }
+}
+
+async function envoyerAvis() {
+  if (note < 1) return;
+  const btn = $('btnSubmit');
+  btn.disabled = true; btn.textContent = 'Envoi…';
+  try {
+    await rpc('submit_avis_by_token', {
+      p_token: token,
+      p_note: note,
+      p_commentaire: $('commentaire').value.trim() || null,
+      p_prenom: $('prenom').value.trim() || null,
+    });
+    showInfo('✅', '<strong>Merci pour votre avis&nbsp;!</strong><div style="margin-top:6px;color:#6B7785;font-size:13px">Il sera publié sur la boutique après validation par le commerçant.</div>');
+  } catch (e) {
+    btn.disabled = false; btn.textContent = 'Envoyer mon avis';
+    showError(e.message || 'Impossible d\'enregistrer votre avis.');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

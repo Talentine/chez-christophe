@@ -254,6 +254,15 @@
     <div id="recapFinal"></div>
   </div>
 
+  <!-- Code fidélité (affiché si la boutique a activé la fidélité) -->
+  <div class="section" id="fideliteSection" style="display:none;background:var(--creme);">
+    <div class="section-titre">🎟️ Code fidélité</div>
+    <input class="form-input" id="fideliteCode" type="text" placeholder="FIDEL-XXXXXXXX" autocapitalize="characters" style="text-transform:uppercase;">
+    <div id="fideliteMsg" style="font-size:12.5px;margin-top:8px;color:var(--texte-doux);line-height:1.5;">
+      Vous avez une carte de fidélité complète&nbsp;? Saisissez votre code pour profiter de votre récompense.
+    </div>
+  </div>
+
   <!-- Opt-in marketing (RGPD - décoché par défaut, OPTIONNEL) -->
   <div class="section" style="background:var(--creme);">
     <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12.5px;line-height:1.5;color:var(--texte-doux);margin-bottom:10px;">
@@ -300,6 +309,11 @@
     <div class="succes-badge" style="background:var(--or);color:var(--vert-fonce);">
       <div class="succes-badge-label" id="succesRetraitLabel">Retrait</div>
       <div class="succes-badge-val" id="succesRetrait">—</div>
+    </div>
+
+    <div class="succes-badge" id="succesFidelite" style="display:none;background:#eaf7ee;color:#1f5230;">
+      <div class="succes-badge-label">🎟️ Récompense fidélité appliquée</div>
+      <div class="succes-badge-val" id="succesFideliteVal">—</div>
     </div>
 
     <!-- Liens navigation (livraison uniquement) -->
@@ -358,6 +372,7 @@ let stripe = null;
 let stripeCard = null;
 let stripeSecret = null;
 let stripePaymentMethodId = null;
+let __FIDELITE_REMISE_CENTS__ = 0; // remise fidélité appliquée à la dernière commande
 
 async function sb(table, params='', method='GET', body=null) {
   const opts = {
@@ -387,6 +402,11 @@ async function bootCommerce() {
   if (!cfg) return null;
   __CID__ = cfg.business.id;
   __BIZ__ = cfg.business;
+  // Fidélité : afficher le champ code si la boutique l'a activée
+  if (__BIZ__ && __BIZ__.fidelite_active) {
+    const fs = document.getElementById('fideliteSection');
+    if (fs) fs.style.display = 'block';
+  }
   // Titres dynamiques selon métier
   const labelPanier = (cfg.labels && cfg.labels.panier) || 'Mon panier';
   const headerEl = document.getElementById('headerTitre');
@@ -987,6 +1007,31 @@ async function confirmerCommande() {
   try {
     const commercantId = __CID__;
 
+    // ── Garde-fou stock quantifié ────────────────────────────
+    // Le trigger DB décrémente le stock mais ne bloque PAS la survente.
+    // On vérifie donc le stock disponible AVANT de créer la commande.
+    // stock_qte = NULL → illimité (ignoré). NULL = comportement legacy.
+    const stockIds = panier.map(p => p.id).filter(Boolean);
+    if (stockIds.length) {
+      const stocks = await sb('catalogue',
+        `?commercant_id=eq.${commercantId}&produit_base_id=in.(${stockIds.join(',')})&stock_qte=not.is.null&select=produit_base_id,stock_qte,nom_custom`);
+      if (Array.isArray(stocks)) {
+        const manquant = panier.find(p => {
+          const s = stocks.find(x => x.produit_base_id === p.id);
+          return s && Number(s.stock_qte) < Number(p.qte);
+        });
+        if (manquant) {
+          const s = stocks.find(x => x.produit_base_id === manquant.id);
+          const reste = Number(s.stock_qte);
+          const nom = manquant.nom || s.nom_custom || 'cet article';
+          afficherToastPanier(`⚠️ Stock insuffisant pour ${nom} — il reste ${reste} ${manquant.unite || ''}`.trim(), 'remove');
+          btn.disabled = false;
+          if (btnTxtEl) btnTxtEl.textContent = 'Confirmer la commande →';
+          return;
+        }
+      }
+    }
+
     // Opt-in marketing RGPD (case décochée par défaut, opt-in EXPLICITE requis)
     const smsOptIn = !!document.getElementById('smsMarketingOptIn')?.checked;
     const emailOptIn = !!document.getElementById('emailMarketingOptIn')?.checked;
@@ -1069,6 +1114,30 @@ async function confirmerCommande() {
       }
     }
 
+    // ── Récompense fidélité ──────────────────────────────────
+    // Consommée APRÈS création de la commande, de façon atomique :
+    // la RPC marque le code 'utilisee' et le lie à la commande (pas de
+    // double usage possible). On n'échoue jamais la commande si le code
+    // est invalide/expiré (montantCents = 0) — on l'ignore simplement.
+    // ⚠️ La remise n'est PAS recalculée côté Stripe ici. Pour une boutique
+    // en empreinte/paiement, la déduction sur le montant débité doit être
+    // appliquée côté serveur (Edge Function / checkout_create_order). En
+    // flux sans paiement (défaut), le commerçant applique la remise au retrait.
+    __FIDELITE_REMISE_CENTS__ = 0;
+    const fidCode = (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
+    if (commandeId && fidCode) {
+      try {
+        const montantCents = await sb('rpc/utiliser_recompense_fidelite', '', 'POST', {
+          p_code: fidCode, p_commande_id: commandeId,
+        });
+        __FIDELITE_REMISE_CENTS__ = Number(montantCents) || 0;
+        if (!__FIDELITE_REMISE_CENTS__) {
+          const fm = document.getElementById('fideliteMsg');
+          if (fm) { fm.textContent = '❌ Code fidélité invalide ou expiré — non appliqué.'; fm.style.color = 'var(--rouge)'; }
+        }
+      } catch (e) { console.log('fidélité', e); }
+    }
+
   } catch(e) { console.log('Erreur commande:', e); }
 
   // EMAIL de confirmation
@@ -1106,6 +1175,13 @@ async function confirmerCommande() {
   allerEtape(5);
   document.getElementById('succesNumero').textContent = numero;
   document.getElementById('succesRetrait').textContent = creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
+
+  // Récompense fidélité appliquée → affichée sur l'écran de confirmation
+  if (__FIDELITE_REMISE_CENTS__ > 0) {
+    const fb = document.getElementById('succesFidelite');
+    document.getElementById('succesFideliteVal').textContent = '−' + (__FIDELITE_REMISE_CENTS__ / 100).toFixed(2).replace('.', ',') + ' €';
+    if (fb) fb.style.display = 'block';
+  }
 
   // Pré-remplit le lien "Contester un débit" avec le numéro de commande + slug
   try {
