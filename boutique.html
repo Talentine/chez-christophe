@@ -1829,8 +1829,22 @@ function calculerTotalAvecLot(p, qte) {
   return lots * parseFloat(p.prix_lot) + reste * prixUnit;
 }
 
+// Quantité max commandable selon le stock (null/undefined = illimité).
+// Ne s'applique pas aux produits au poids (stock géré différemment).
+function stockMax(p) {
+  if (!p || estProduitAuPoids(p)) return Infinity;
+  if (p.stock_qte === null || p.stock_qte === undefined) return Infinity;
+  return Number(p.stock_qte);
+}
+
 function changerQteFicheAccueil(delta) {
-  ficheProduitQte = Math.max(1, ficheProduitQte + delta);
+  const max = stockMax(ficheProduitData);
+  let next = Math.max(1, ficheProduitQte + delta);
+  if (next > max) {
+    next = Math.max(1, max);
+    if (typeof afficherToastPanierBoutique === 'function') afficherToastPanierBoutique('📦 Il ne reste que ' + max + ' en stock', 'remove');
+  }
+  ficheProduitQte = next;
   document.getElementById('ficheQteAccueil').textContent = ficheProduitQte;
   if (ficheProduitData) {
     const total = calculerTotalAvecLot(ficheProduitData, ficheProduitQte).toFixed(2).replace('.',',');
@@ -1892,6 +1906,10 @@ function ajouterDepuisFicheAccueil() {
   } else {
     ligne.qte = ficheProduitQte;
     ligne.au_poids = false;
+    // Plafond stock (null = illimité)
+    const max = stockMax(ficheProduitData);
+    if (max < 1) { afficherToastPanierBoutique('📦 Produit épuisé', 'remove'); return; }
+    if (ligne.qte > max) { ligne.qte = max; afficherToastPanierBoutique('📦 Quantité ajustée : ' + max + ' en stock', 'remove'); }
   }
   if (idx >= 0) {
     panier[idx] = { ...panier[idx], ...ligne };
@@ -1991,6 +2009,14 @@ function modifierQteAccueil(produitId, delta) {
   const idx = panier.findIndex(p => p.id === produitId);
   if (idx < 0) return;
   const produit = panier[idx];
+  // Plafond stock à l'incrément (null = illimité ; ignoré pour le poids)
+  if (delta > 0) {
+    const max = stockMax(produit);
+    if (produit.qte + delta > max) {
+      afficherToastPanierBoutique('📦 Il ne reste que ' + max + ' en stock', 'remove');
+      return;
+    }
+  }
   panier[idx].qte += delta;
   if (panier[idx].qte <= 0) {
     __dernierProduitSupprimePanier = { produit: { ...produit, qte: 1 }, idx: idx };
@@ -2038,9 +2064,15 @@ function ajouterAuPanier(produit) {
     }
   }
   const idx = panier.findIndex(p => p.id === produit.id);
+  const max = stockMax(produit);
   if (idx >= 0) {
+    if (panier[idx].qte + 1 > max) {
+      afficherToastPanierBoutique('📦 Il ne reste que ' + max + ' en stock', 'remove');
+      return;
+    }
     panier[idx].qte++;
   } else {
+    if (max < 1) { afficherToastPanierBoutique('📦 Produit épuisé', 'remove'); return; }
     panier.push({ ...produit, qte: 1 });
   }
   localStorage.setItem('panier', JSON.stringify(panier));

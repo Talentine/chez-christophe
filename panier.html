@@ -527,6 +527,14 @@ window.annulerSuppressionPanier = annulerSuppressionPanier;
 
 function modifierQte(idx, delta) {
   const produit = panier[idx];
+  // Plafond stock (null/undefined = illimité ; ignoré pour le poids).
+  // Le blocage dur reste au checkout (garde-fou + serveur).
+  if (delta > 0 && !produit.au_poids
+      && produit.stock_qte !== null && produit.stock_qte !== undefined
+      && produit.qte + delta > Number(produit.stock_qte)) {
+    afficherToastPanier('📦 Il ne reste que ' + Number(produit.stock_qte) + ' en stock', 'remove');
+    return;
+  }
   panier[idx].qte = Math.max(0, panier[idx].qte + delta);
   if (panier[idx].qte === 0) {
     __dernierProduitSupprime = { produit: { ...produit, qte: 1 }, idx: idx };
