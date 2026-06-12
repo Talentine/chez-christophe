@@ -1089,7 +1089,10 @@ async function confirmerCommande() {
       // Empreinte bancaire (si activée par le commerçant)
       if (empreinteRequise && commandeId && stripeCard) {
         const pct = __BIZ__.no_show_pct || 75;
-        const montantCents = Math.round(total * 100 * pct / 100);
+        // Base = total RECALCULÉ par le serveur (checkout_create_order le renvoie),
+        // pas le total client : empêche de minorer la pré-autorisation.
+        const baseTotal = Number(rpcResp?.total_ttc ?? total);
+        const montantCents = Math.round(baseTotal * 100 * pct / 100);
         const res = await creerEtConfirmerEmpreinte(commandeId, montantCents, {
           name: prenom + ' ' + nom,
           email,
