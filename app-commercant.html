@@ -3256,7 +3256,14 @@ window.envoyerCRM = async function() {
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Erreur HTTP ' + r.status);
 
-    if (data.success && data.sent != null) {
+    if (data.quota_depasse || (data.quota_bloques && data.quota_bloques > 0)) {
+      const dispo = (data.sms_quota != null) ? (data.sms_envoyes + '/' + data.sms_quota + ' SMS utilisés ce mois-ci') : 'Quota SMS épuisé';
+      const bloques = data.quota_bloques ? data.quota_bloques + ' message(s) non envoyé(s) faute de crédits.' : '';
+      result.innerHTML = '<div style="background:#fff6e5;border-left:3px solid #d4a84c;padding:12px 14px;border-radius:8px;color:#6b4b12;">'
+        + '<strong>📱 Quota SMS épuisé</strong><br>' + dispo + '. ' + bloques
+        + '<div style="margin-top:10px;"><button onclick="ouvrirAchatSmsPack()" style="background:#0F2C52;color:#fff;border:none;border-radius:10px;padding:9px 16px;font-weight:700;cursor:pointer;">Acheter un pack</button></div>'
+        + '</div>';
+    } else if (data.success && data.sent != null) {
       result.innerHTML = '<div style="background:#eaf7ee;border-left:3px solid #5BBE3A;padding:10px 12px;border-radius:8px;color:#1f5230;">✅ <strong>Envoyé !</strong> ' + data.sent + ' destinataires · 🔔 ' + (data.push||0) + ' push · 📱 ' + (data.sms||0) + ' SMS · 💰 ' + ((data.total_cost_cents||0)/100).toFixed(2) + ' €' + (data.skipped ? ' · ' + data.skipped + ' opt-out' : '') + '</div>';
     } else if (data.success) {
       result.innerHTML = '<div style="background:#eaf7ee;border-left:3px solid #5BBE3A;padding:10px 12px;border-radius:8px;color:#1f5230;">✅ Envoyé via <strong>' + (data.canal || '?') + '</strong>' + (data.cost_cents ? ' · 💰 ' + (data.cost_cents/100).toFixed(2) + ' €' : '') + '</div>';
