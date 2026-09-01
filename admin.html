@@ -1369,14 +1369,42 @@ function voirBoutique(slug) {
   }
 }
 
-async function modifierPlan(id) {
-  const plan = prompt('Nouvelle offre :\n\n• vitrine    (249€ + 19€/mois)\n• clickcollect (399€ + 39€/mois) ★\n• livraison  (549€ + 59€/mois)\n\nTape : vitrine | clickcollect | livraison');
-  if (!plan) return;
+// Choix de l'offre par boutons plutot que par saisie libre : le prompt()
+// obligeait a taper exactement 'vitrine', 'clickcollect' ou 'livraison',
+// et la moindre faute renvoyait une erreur.
+function modifierPlan(id) {
+  const existant = document.getElementById('planOverlay');
+  if (existant) existant.remove();
+
+  const offres = [
+    { cle: 'vitrine',      titre: 'Vitrine',          prix: '249 EUR + 19 EUR/mois' },
+    { cle: 'clickcollect', titre: 'Click & collect',  prix: '399 EUR + 39 EUR/mois' },
+    { cle: 'livraison',    titre: 'Livraison',        prix: '549 EUR + 59 EUR/mois' },
+  ];
+
+  const html = '<div id="planOverlay" style="position:fixed;inset:0;background:rgba(15,44,82,.7);display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px;">'
+    + '<div style="background:#fff;max-width:380px;width:100%;border-radius:18px;padding:22px;">'
+    +   '<div style="font-size:18px;font-weight:800;margin-bottom:4px;">Changer l\'offre</div>'
+    +   '<div style="font-size:13px;color:#667;margin-bottom:16px;">Selectionnez la nouvelle offre du commercant.</div>'
+    +   offres.map(o =>
+          '<button onclick="appliquerPlan(\'' + id + '\',\'' + o.cle + '\')" '
+          + 'style="display:block;width:100%;text-align:left;margin-bottom:9px;padding:13px 15px;border:1.5px solid #e8dfc9;'
+          + 'background:#fff;border-radius:12px;cursor:pointer;font-family:inherit;">'
+          + '<div style="font-weight:700;font-size:15px;">' + o.titre + '</div>'
+          + '<div style="font-size:12px;color:#667;">' + o.prix + '</div>'
+          + '</button>').join('')
+    +   '<button onclick="document.getElementById(\'planOverlay\').remove()" '
+    +     'style="width:100%;margin-top:6px;padding:11px;border:none;background:#F7F2E8;border-radius:12px;cursor:pointer;font-family:inherit;">Annuler</button>'
+    + '</div></div>';
+
+  document.body.insertAdjacentHTML('beforeend', html);
+}
+
+async function appliquerPlan(id, plan) {
+  const ov = document.getElementById('planOverlay');
+  if (ov) ov.remove();
   const valid = ['vitrine','clickcollect','livraison'];
-  if (!valid.includes(plan)) {
-    alert('❌ Offre invalide. Tape exactement : vitrine, clickcollect ou livraison');
-    return;
-  }
+  if (!valid.includes(plan)) return;
   try {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/commercants?id=eq.${id}`, {
       method: 'PATCH',
