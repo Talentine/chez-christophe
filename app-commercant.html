@@ -1642,6 +1642,22 @@
         ℹ️ Ne s'applique pas aux <strong>réservations de table</strong> — celles-ci ont leur propre frais de couvert (ci-dessous).
       </div>
 
+      <div style="margin-top:14px;">
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
+          Montant minimum de commande
+        </label>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <input type="number" id="montantMinCommande" min="0" step="0.50" value="5.00"
+            onchange="sauverReglages()"
+            style="width:110px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;">
+          <span style="font-size:14px;">€</span>
+        </div>
+        <div style="font-size:12px;color:var(--texte-doux);margin-top:6px;">
+          Vos clients ne peuvent pas valider un panier inférieur à ce montant.
+          Évite les micro-commandes et garantit que l'empreinte reste au-dessus du minimum bancaire de 0,50 €.
+        </div>
+      </div>
+
       <div id="empreintePctWrap" style="margin-top:14px;display:none;">
         <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;">
           Pourcentage prélevé en cas d'absence client : <b id="empreintePctVal">75</b>%
@@ -4108,7 +4124,7 @@ async function chargerReglages() {
     // Pour vitrine pure : masquée. La logique fine est dans appliquerVisibiliteFeatures().
     if (typeof appliquerVisibiliteFeatures === 'function') appliquerVisibiliteFeatures();
 
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,cancellation_policy_hours,empreinte_couvert_cents,delai_min_retrait_min,delai_min_livraison_min,delai_min_reservation_min', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,montant_min_commande,cancellation_policy_hours,empreinte_couvert_cents,delai_min_retrait_min,delai_min_livraison_min,delai_min_reservation_min', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
     });
     const data = await r.json();
@@ -4128,6 +4144,8 @@ async function chargerReglages() {
     if (wrap) wrap.style.display = obligatoire ? 'block' : 'none';
     if (range) range.value = pct;
     if (pctVal) pctVal.textContent = pct;
+    const minInput = document.getElementById('montantMinCommande');
+    if (minInput) minInput.value = Number(c.montant_min_commande ?? 5).toFixed(2);
 
     // Politique d'annulation (tous métiers)
     const cancelHours = c.cancellation_policy_hours ?? 24;
@@ -4353,6 +4371,11 @@ async function sauverReglages() {
       if (!commercantId) return;
       const obligatoire = document.getElementById('toggleEmpreinte').checked;
       const pct = parseInt(document.getElementById('empreintePctRange').value, 10) || 75;
+      const minEl = document.getElementById('montantMinCommande');
+      let montantMin = minEl ? parseFloat(String(minEl.value).replace(',', '.')) : 5;
+      if (!isFinite(montantMin) || montantMin < 0) montantMin = 0;
+      montantMin = Math.round(montantMin * 100) / 100;
+      if (minEl) minEl.value = montantMin.toFixed(2);
       const status = document.getElementById('reglagesStatus');
       const sl = document.getElementById('toggleEmpreinteSlider');
       const wrap = document.getElementById('empreintePctWrap');
@@ -4370,7 +4393,7 @@ async function sauverReglages() {
           'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json', 'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({ empreinte_obligatoire: obligatoire, no_show_pct: pct })
+        body: JSON.stringify({ empreinte_obligatoire: obligatoire, no_show_pct: pct, montant_min_commande: montantMin })
       });
       if (!r.ok) {
         const txt = await r.text().catch(() => '');
@@ -4508,6 +4531,9 @@ async function confirmerNoShow() {
     const data = await r.json();
     if (!r.ok || data.error) throw new Error(data.error || 'Erreur capture');
     cmd.empreinte_status = 'captured';
+    // La commande est close côté serveur (statut 'terminee') : on reflète le
+    // changement localement pour qu'elle sorte de la liste des commandes à préparer.
+    cmd.statut = 'terminee';
     fermerNoShow();
     afficherToast('💳 ' + (cmd.empreinte_montant_cents/100).toFixed(2).replace('.', ',') + '€ débités');
     renderCommandes();

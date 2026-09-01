@@ -1028,6 +1028,22 @@ async function confirmerCommande() {
   try {
     const commercantId = __CID__;
 
+    // ── Garde-fou montant minimum de commande ────────────────
+    // Réglé par le commerçant (commercants.montant_min_commande, défaut 5 €).
+    // Empêche aussi les paniers si petits que l'empreinte tomberait sous le
+    // minimum bancaire de 0,50 € imposé par Stripe.
+    const montantMin = Number(__BIZ__ && __BIZ__.montant_min_commande);
+    if (isFinite(montantMin) && montantMin > 0 && Number(total) < montantMin) {
+      const manque = (montantMin - Number(total)).toFixed(2).replace('.', ',');
+      afficherToastPanier(
+        `Commande minimum : ${montantMin.toFixed(2).replace('.', ',')} € — il manque ${manque} €`,
+        'remove'
+      );
+      btn.disabled = false;
+      if (btnTxtEl) btnTxtEl.textContent = 'Confirmer la commande →';
+      return;
+    }
+
     // ── Garde-fou stock quantifié ────────────────────────────
     // Le trigger DB décrémente le stock mais ne bloque PAS la survente.
     // On vérifie donc le stock disponible AVANT de créer la commande.
