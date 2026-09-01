@@ -1225,7 +1225,7 @@ async function confirmerCommande() {
     fetch(SUPABASE_URL + '/functions/v1/send-sms', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ telephone: tel, message: cMsg })
+      body: JSON.stringify({ telephone: tel, message: cMsg, commande_id: commandeId })
     }).catch(() => {});
   }
 

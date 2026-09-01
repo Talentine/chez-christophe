@@ -4468,10 +4468,13 @@ async function envoyerMessage(type) {
     };
 
     if (telephone) {
+      // send-sms exige desormais commande_id (le destinataire est borne par la
+      // commande) et le JWT du commercant proprietaire.
+      const tokenSms = await getValidToken();
       await fetch(SUPABASE_URL + '/functions/v1/send-sms', {
         method: 'POST',
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ telephone, message: messages[type] || messages.prete })
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (tokenSms || SUPABASE_KEY), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telephone, message: messages[type] || messages.prete, commande_id: cmd.id })
       });
     }
   } catch(e) {
