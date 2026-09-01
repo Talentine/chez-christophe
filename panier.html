@@ -193,7 +193,7 @@
 <div id="step3" style="display:none">
   <div class="section">
     <div class="section-titre" id="creneauTitre">🕐 Choisissez votre créneau</div>
-    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px" id="creneauSub">Retrait en boutique — 8 rue Neuve Saint-Jean, Caen</p>
+    <p style="font-size:13px;color:var(--texte-doux);margin-bottom:16px" id="creneauSub">Retrait en boutique</p>
     <div class="creneaux-grid" id="creneauxGrid">
       <div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Chargement des créneaux...</div>
     </div>
@@ -396,6 +396,13 @@ function getSession() {
 // ── INIT ──────────────────────────────────────────────
 let __CID__ = null;
 let __BIZ__ = null;
+
+// Adresse postale de la boutique courante, composee depuis sa fiche.
+// Renvoie '' si l'adresse n'est pas renseignee : on n'invente rien.
+function adresseBoutique() {
+  const b = __BIZ__ || {};
+  return [b.adresse, b.code_postal, b.ville].filter(Boolean).join(', ');
+}
 
 async function bootCommerce() {
   const cfg = await window.CC.initBusiness();
@@ -798,7 +805,8 @@ async function chargerCreneaux() {
     document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
   } else {
     document.getElementById('creneauTitre').textContent = '🕐 Créneau de retrait';
-    document.getElementById('creneauSub').textContent = 'Retrait en boutique — 8 rue Neuve Saint-Jean, Caen';
+    const adrRetrait = adresseBoutique();
+    document.getElementById('creneauSub').textContent = 'Retrait en boutique' + (adrRetrait ? ' — ' + adrRetrait : '');
   }
 
   const commercantId = __CID__;
@@ -1221,7 +1229,7 @@ async function confirmerCommande() {
   if (tel) {
     const cMsg = modeCommande === 'livraison'
       ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. À bientôt !`
-      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. 8 rue Neuve Saint-Jean, Caen. À bientôt !`;
+      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}.${adresseBoutique() ? ' ' + adresseBoutique() + '.' : ''} À bientôt !`;
     fetch(SUPABASE_URL + '/functions/v1/send-sms', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
