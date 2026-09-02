@@ -1,4 +1,4 @@
-// ============================================================
+// // ============================================================
 // Edge Function: stripe-empreinte
 // Gère le cycle de vie de l'empreinte bancaire
 //
@@ -83,6 +83,7 @@ serve(async (req) => {
     }
 
     if (action === 'create')        return await actionCreate(payload);
+    if (action === 'finalize')      return await actionFinalize(payload);
     if (action === 'capture')       return await actionCapture(payload);
     if (action === 'release')       return await actionRelease(payload);
     if (action === 'auto-release')  return await actionAutoRelease();
@@ -161,6 +162,51 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   });
 }
 
+// ── FINALIZE ───────────────────────────────────────────────
+// Appelé par le panier après la confirmation de la carte côté navigateur.
+// Bascule le statut de la commande d'après le VRAI statut du PaymentIntent
+// (le PATCH commandes en anon est bloqué par RLS owner-only).
+async function actionFinalize({ commande_id }: any) {
+  if (!commande_id) return json({ error: 'Missing commande_id' }, 400);
+  const { data: cmd, error } = await supabase
+    .from('commandes').select('stripe_payment_intent_id, statut, empreinte_status').eq('id', commande_id).single();
+  if (error || !cmd) return json({ error: 'Commande introuvable' }, 404);
+
+  // Idempotent : n'agir que sur une commande encore en attente d'empreinte
+  if (cmd.statut !== 'empreinte_pending') {
+    return json({ ok: cmd.statut !== 'annulee', statut: cmd.statut, skipped: true });
+  }
+
+  // Aucune empreinte enregistrée = actionCreate a échoué (montant sous le
+  // minimum Stripe, carte refusée avant PaymentIntent, appel interrompu...).
+  // Sans ce cas, la commande restait en 'empreinte_pending' et s'affichait
+  // dans le dashboard du commerçant comme une commande à préparer.
+  if (!cmd.stripe_payment_intent_id) {
+    await supabase.from('commandes').update({
+      statut: 'annulee',
+      empreinte_status: 'failed',
+    }).eq('id', commande_id);
+    return json({ ok: false, statut: 'annulee', raison: 'empreinte jamais créée' });
+  }
+
+  const pi = await stripe.paymentIntents.retrieve(cmd.stripe_payment_intent_id);
+
+  if (pi.status === 'requires_capture') {
+    await supabase.from('commandes').update({
+      statut: 'nouvelle',
+      empreinte_status: 'pending',
+    }).eq('id', commande_id);
+    return json({ ok: true, statut: 'nouvelle' });
+  }
+
+  // Tout autre statut = empreinte non autorisée → on annule la commande
+  await supabase.from('commandes').update({
+    statut: 'annulee',
+    empreinte_status: 'failed',
+  }).eq('id', commande_id);
+  return json({ ok: false, statut: 'annulee', pi_status: pi.status });
+}
+
 // ── CAPTURE (no-show, litige) ──────────────────────────────
 async function actionCapture({ commande_id }: any) {
   const { data: cmd, error } = await supabase
@@ -171,6 +217,7 @@ async function actionCapture({ commande_id }: any) {
   await stripe.paymentIntents.capture(cmd.stripe_payment_intent_id);
 
   await supabase.from('commandes').update({
+    statut: 'terminee',
     empreinte_status: 'captured',
     empreinte_capturee_at: new Date().toISOString(),
   }).eq('id', commande_id);
