@@ -87,8 +87,13 @@ window.toAsciiUrl = function(url) {
       if (host.length >= 3 && host[0] !== 'www' && host[0] !== 'localhost') return host[0];
     }
 
-    // 4. Fallback
-    return 'christophe-frais-caen';
+    // 4. Aucun slug identifiable.
+    //    Auparavant on repliait sur la boutique pilote ('christophe-frais-caen') :
+    //    toute URL mal formee affichait donc la boutique de Chez Christophe, ce qui
+    //    devient faux des le 2e commercant. On renvoie null : initBusiness affiche
+    //    l'ecran "Commerce introuvable" sur une boutique publique, et le dashboard
+    //    (qui passe un slug explicite) n'est pas concerne.
+    return null;
   }
 
   // ── THÈME ─────────────────────────────────────────────────
@@ -219,6 +224,9 @@ window.toAsciiUrl = function(url) {
     var slug = explicitSlug || resolveSlug();
     var isExplicit = !!explicitSlug;
     try {
+      // Slug non identifiable : inutile d'interroger l'API, on part directement
+      // sur le meme chemin d'erreur qu'une boutique inexistante.
+      if (!slug) throw new Error('COMMERCE_NOT_FOUND');
       var r = await fetch(SB_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(slug) + '&select=*', {
         headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
       });
@@ -262,7 +270,7 @@ window.toAsciiUrl = function(url) {
   // ── BOUTON ACCUEIL : retour à la home boutique (jamais marchéo.fr) ──
   function retourAccueilBoutique() {
     var path = location.pathname;
-    var slug = (window.__CONFIG__ && window.__CONFIG__.slug) || resolveSlug();
+    var slug = (window.__CONFIG__ && window.__CONFIG__.slug) || resolveSlug() || '';
     var segments = path.split('/').filter(Boolean);
 
     // Détection de la home — uniquement /, /{slug}, /index.html, /boutique.html
