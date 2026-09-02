@@ -1,0 +1,210 @@
+// ============================================================
+// Edge Function: stripe-reservation
+//
+// Crée une SetupIntent Stripe pour prendre l'empreinte bancaire
+// d'une réservation de table (anti no-show).
+//
+// Le client saisit sa carte → SetupIntent confirmé → on stocke
+// le payment_method_id sur la résa. Aucun débit n'est fait tant
+// que le commerçant ne marque pas 'no_show'.
+//
+// Actions (POST body { action }):
+//   - create   : crée résa + SetupIntent + retourne client_secret
+//   - confirm  : marque la résa comme confirmée après confirm carte
+//   - release  : libère l'empreinte (client arrivé)
+//   - capture  : débite l'empreinte (no-show)
+//
+// Variables d'env :
+//   STRIPE_SECRET_KEY
+//   SUPABASE_URL
+//   SUPABASE_SERVICE_ROLE_KEY
+// ============================================================
+
+import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
+import Stripe from 'https://esm.sh/stripe@14.0.0?target=denonext';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY')!, {
+  apiVersion: '2023-10-16',
+  httpClient: Stripe.createFetchHttpClient(),
+});
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+);
+
+// Fallback si le commerçant n'a rien configuré (commercants.empreinte_couvert_cents IS NULL)
+const MONTANT_PAR_COUVERT_CENTS_FALLBACK = 1000; // 10€/couvert
+
+const cors = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+};
+const json = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: { ...cors, 'Content-Type': 'application/json' } });
+
+// ── Auth : résout l'utilisateur réel depuis le JWT (null si clé anon / absent)
+async function getAuthUser(req: Request) {
+  const h = req.headers.get('Authorization') || '';
+  const jwt = h.startsWith('Bearer ') ? h.slice(7) : '';
+  if (!jwt) return null;
+  const { data, error } = await supabase.auth.getUser(jwt);
+  if (error || !data?.user) return null;
+  return data.user;
+}
+
+// ── Ownership : l'utilisateur est-il le commerçant propriétaire (ou admin) de la réservation ?
+async function ownsReservation(userId: string, reservation_id: string): Promise<boolean> {
+  if (!reservation_id) return false;
+  const { data: r } = await supabase.from('reservations').select('commercant_id').eq('id', reservation_id).single();
+  if (!r?.commercant_id) return false;
+  const { data: owner } = await supabase.from('commercants')
+    .select('id').eq('id', r.commercant_id).eq('auth_user_id', userId).maybeSingle();
+  if (owner) return true;
+  const { data: admin } = await supabase.from('roles_utilisateurs')
+    .select('user_id').eq('user_id', userId).eq('role', 'admin').maybeSingle();
+  return !!admin;
+}
+
+serve(async (req) => {
+  if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
+
+  try {
+    const body = await req.json();
+    const action = body.action;
+
+    // Actions sensibles (débit / libération / geste commercial) : réservées au
+    // commerçant propriétaire. create/confirm restent ouverts (checkout invité).
+    if (action === 'capture' || action === 'release' || action === 'commercial_gesture') {
+      const user = await getAuthUser(req);
+      if (!user) return json({ error: 'Authentification requise' }, 401);
+      if (!(await ownsReservation(user.id, body.reservation_id))) return json({ error: 'Accès refusé' }, 403);
+    }
+
+    if (action === 'create') {
+      const { commercant_id, nb_couverts, date_reservation, heure_reservation, nom_client, prenom_client, telephone, email, notes, occasion } = body;
+      if (!commercant_id || !nb_couverts || !date_reservation || !heure_reservation || !nom_client || !telephone) {
+        return json({ error: 'Champs requis manquants' }, 400);
+      }
+
+      // ── Lit les paramètres du commerçant : montant par couvert + politique d'annulation
+      const { data: biz, error: bizErr } = await supabase
+        .from('commercants')
+        .select('empreinte_couvert_cents, cancellation_policy_hours')
+        .eq('id', commercant_id)
+        .single();
+      if (bizErr || !biz) {
+        console.error('[reservation] biz lookup err:', bizErr);
+        return json({ error: 'Commerçant introuvable' }, 404);
+      }
+      const montantParCouvertCents = Number(biz.empreinte_couvert_cents) > 0
+        ? Number(biz.empreinte_couvert_cents)
+        : MONTANT_PAR_COUVERT_CENTS_FALLBACK;
+      const cancellation_policy_hours = Number(biz.cancellation_policy_hours) || 24;
+
+      const montant_cents = montantParCouvertCents * Number(nb_couverts);
+
+      const customer = await stripe.customers.create({
+        email: email || undefined,
+        name: (prenom_client ? prenom_client + ' ' : '') + nom_client,
+        phone: telephone,
+        metadata: { commercant_id, type: 'reservation' },
+      });
+
+      const setupIntent = await stripe.setupIntents.create({
+        customer: customer.id,
+        payment_method_types: ['card'],
+        usage: 'off_session',
+        metadata: { commercant_id, nb_couverts: String(nb_couverts), date_reservation, heure_reservation, type: 'reservation_empreinte' },
+      });
+
+      const { data: reservation, error } = await supabase.from('reservations').insert({
+        commercant_id,
+        nom_client, prenom_client, telephone, email,
+        date_reservation, heure_reservation,
+        nb_couverts: Number(nb_couverts),
+        notes: notes || null,
+        occasion: occasion || null,
+        statut: 'nouvelle',
+        empreinte_montant_cents: montant_cents,
+        empreinte_status: 'pending',
+        stripe_customer_id: customer.id,
+      }).select().single();
+
+      if (error) {
+        console.error('[reservation] insert err:', error);
+        return json({ error: 'Erreur DB' }, 500);
+      }
+
+      return json({
+        client_secret: setupIntent.client_secret,
+        setup_intent_id: setupIntent.id,
+        reservation_id: reservation.id,
+        montant_cents,
+        montant_par_couvert_cents: montantParCouvertCents,
+        cancellation_policy_hours,
+      });
+    }
+
+    if (action === 'confirm') {
+      const { reservation_id, setup_intent_id } = body;
+      if (!reservation_id || !setup_intent_id) return json({ error: 'reservation_id + setup_intent_id requis' }, 400);
+
+      const setupIntent = await stripe.setupIntents.retrieve(setup_intent_id);
+      if (setupIntent.status !== 'succeeded') return json({ error: 'SetupIntent non confirmé' }, 400);
+
+      await supabase.from('reservations').update({
+        statut: 'confirmee',
+        date_confirmation: new Date().toISOString(),
+        stripe_payment_intent_id: setupIntent.payment_method as string,
+      }).eq('id', reservation_id);
+
+      return json({ ok: true });
+    }
+
+    if (action === 'release') {
+      const { reservation_id } = body;
+      if (!reservation_id) return json({ error: 'reservation_id requis' }, 400);
+
+      await supabase.from('reservations').update({
+        statut: 'arrivee',
+        empreinte_status: 'released',
+        date_arrivee: new Date().toISOString(),
+      }).eq('id', reservation_id);
+
+      return json({ ok: true });
+    }
+
+    if (action === 'capture') {
+      const { reservation_id } = body;
+      if (!reservation_id) return json({ error: 'reservation_id requis' }, 400);
+
+      const { data: r } = await supabase.from('reservations').select('*').eq('id', reservation_id).single();
+      if (!r || !r.stripe_customer_id || !r.stripe_payment_intent_id) return json({ error: 'Empreinte non trouvée' }, 404);
+
+      const pi = await stripe.paymentIntents.create({
+        amount: r.empreinte_montant_cents,
+        currency: 'eur',
+        customer: r.stripe_customer_id,
+        payment_method: r.stripe_payment_intent_id,
+        off_session: true,
+        confirm: true,
+        description: 'Empreinte no-show — Réservation ' + r.nb_couverts + ' couverts du ' + r.date_reservation,
+        metadata: { reservation_id, type: 'no_show_capture' },
+      });
+
+      await supabase.from('reservations').update({
+        statut: 'no_show',
+        empreinte_status: pi.status === 'succeeded' ? 'captured' : 'failed',
+        date_no_show: new Date().toISOString(),
+      }).eq('id', reservation_id);
+
+      return json({ ok: true, captured: pi.status === 'succeeded', amount: r.empreinte_montant_cents });
+    }
+
+    return json({ error: 'Action inconnue' }, 400);
+  } catch (e: any) {
+    console.error('[stripe-reservation] error:', e);
+    return json({ error: e.message || 'Erreur serveur' }, 500);
+  }
+});

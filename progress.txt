@@ -1,0 +1,314 @@
+PROGRESS — Marchéo / chez-christophe
+====================================
+
+SESSION 1 — 2026-09-01 — AUDIT DE REPRISE (aucun code produit)
+--------------------------------------------------------------
+Contexte : reprise après ~3 mois de pause. Dernier commit : 2026-06-12.
+Objectif de la session : établir l'état RÉEL du projet, sans rien supposer.
+
+CE QUI A ÉTÉ FAIT
+- Clone du dépôt Talentine/chez-christophe (main, shallow depth=50).
+- Vérification syntaxique de 44 blocs <script> inline (tous les .html) + 11 fichiers .js/.mjs
+  => 0 erreur. Le bug bloquant de fin de session précédente (Unexpected identifier 'none'
+  dans app-commercant.html) N'EST PLUS PRÉSENT dans le code committé.
+- Scan de secrets committés : aucun secret réel trouvé. Les JWT présents dans le front
+  sont bien la clé "anon" (role:anon), exposition normale. Aucun sk_live/sk_test/whsec
+  ni service_role committé.
+- Lecture ciblée : assets/core/init.js (résolution slug + thème), vercel.json (routage),
+  admin.html (création commerce), supabase/functions/stripe-empreinte/index.ts.
+- Inventaire Supabase (lecture seule) : 19 Edge Functions ACTIVE, advisors sécurité.
+
+TROIS "TROUS" HÉRITÉS DES NOTES PRÉCÉDENTES — TOUS PÉRIMÉS
+1. "Stripe en mode test / simple toast" : FAUX aujourd'hui. Le front utilise une clé
+   pk_live_ (panier.html:351, boutique.html:4409) et la fonction stripe-empreinte
+   implémente réellement create / capture / release / auto-release via l'API Stripe,
+   avec vérification d'ownership sur capture et release. NON VÉRIFIÉ : la valeur de
+   STRIPE_SECRET_KEY côté Supabase (test ou live) — non lisible depuis ici.
+2. "Mono-tenant, slug codé en dur" : FAUX. Routage multi-tenant réel via vercel.json
+   (/:slug -> boutique.html?slug=:slug) + resolveSlug() (param > sous-chemin > sous-domaine).
+   Reste un fallback codé en dur 'christophe-frais-caen' (init.js:91).
+3. "Onboarding admin = alerts placeholder" : FAUX. creerCommerce() (admin.html:1473)
+   écrit réellement dans Supabase (POST /rest/v1/commercants) avec contrôle d'unicité
+   du slug. Les alert() sont des retours UX, pas des placeholders.
+
+POINTS D'ATTENTION POUR LA PROCHAINE SESSION
+- Ne PAS pousser sur main sans validation : main auto-déploie en production Vercel.
+- 10 Edge Functions tournent en prod sans source dans git (voir tasks.json T1).
+- stripe-charge-noshow et notify-client sont les deux vrais dangers immédiats.
+- Le clone est shallow (depth=50) : l'historique complet n'a pas été analysé.
+
+SESSION 1 (suite) — ACTIONS RÉALISÉES
+--------------------------------------
+- stripe-charge-noshow : redéployée v37, neutralisée (410 Gone). Aucun appelant côté front
+  (vérifié par grep sur tout le dépôt). Suppression définitive à faire au dashboard.
+- notify-client : redéployée v20 avec verify_jwt=true + JWT obligatoire + contrôle
+  d'ownership (commercants.auth_user_id = user.id, ou rôle admin). Le front envoyait déjà
+  un access_token via getValidToken() (app-commercant.html:6124) — pas de régression attendue.
+  NON TESTÉE en conditions réelles : un envoi SMS depuis le CRM reste à faire.
+- Sources des deux fonctions rapatriées dans supabase/functions/ (T4 partiel : 8 restantes).
+- Mode Stripe RÉSOLU : live confirmé par corrélation (voir tasks.json T3).
+- Historique git complet récupéré (371 commits, le clone initial était shallow).
+
+NON FAIT
+- Push GitHub impossible : aucun identifiant disponible côté agent. Les fichiers doivent
+  être déposés manuellement. 2 commits locaux en attente (8efd3be, 082d5b8).
+
+SESSION 1 (suite 2) — MONTANT MINIMUM DE COMMANDE
+--------------------------------------------------
+- Migration appliquée en production : commercants.montant_min_commande
+  (numeric(10,2), NOT NULL, défaut 5.00, contrainte >= 0). Vérifiée sur 12 boutiques.
+- app-commercant.html : champ "Montant minimum de commande" dans les réglages,
+  chargé et sauvegardé avec empreinte_obligatoire / no_show_pct.
+- panier.html : blocage de la validation sous le minimum, message indiquant le manque.
+- Syntaxe revérifiée après édition (44 blocs, 0 erreur). NON TESTÉ en navigateur.
+- Les deux fichiers front sont EN ATTENTE DE DÉPLOIEMENT (copie manuelle GitHub).
+
+Stripe Connect : aucun bug. Le routage des fonds vers le commerçant est déjà codé
+et le drapeau se synchronise seul. Blocage purement administratif (T13).
+
+SESSION 1 (suite 3) — COMMANDES FANTÔMES
+-----------------------------------------
+Cause trouvée : l'action 'finalize' refusait de traiter une commande sans
+stripe_payment_intent_id (erreur 400) au lieu de l'annuler. Quand l'empreinte
+échouait avant la création du PaymentIntent, la commande restait en
+'empreinte_pending' et s'affichait chez le commerçant.
+
+- stripe-empreinte v41 déployée : le cas "aucune empreinte créée" bascule la
+  commande en 'annulee' / 'failed'.
+- ⚠️ DÉRIVE : la v40 en prod (01/06) contenait 'finalize' mais avait PERDU le
+  routage Stripe Connect (on_behalf_of + transfer_data) et le garde-fou de
+  montant max, tous deux présents dans le dépôt (31/05). La v41 fusionne les deux.
+  Ce que j'ai affirmé plus tôt ("le routage Connect est déjà en place") était vrai
+  du dépôt mais FAUX de la production.
+- 4 commandes fantômes nettoyées en base (CCB-2026-0919, 7436, 5171, 5476).
+- NON TESTÉ : le nouveau chemin d'annulation n'a pas été rejoué en conditions réelles.
+
+SESSION 1 (fin) — TEST DE BOUT EN BOUT RÉUSSI
+----------------------------------------------
+CCB-2026-2894 (10,45 €, chez-christophe) : empreinte 1,57 € créée puis CAPTURÉE
+le 01/09 à 18:32:53 UTC. Premier débit no-show réel du projet. La chaîne
+commande -> empreinte -> débit fonctionne en production, en mode live.
+
+Vérifié aussi : les 3 commandes fantômes n'apparaissent plus, la fonction
+send-email a bien été appelée après la capture (statut de délivrance non vérifié).
+
+Observation (T14) : après le débit, la commande reste en statut 'nouvelle'.
+
+À FAIRE PAR PAUL
+- Se rembourser les 1,57 € dans Stripe (frais non récupérables, ~25 c).
+- Copier dans GitHub : panier.html, app-commercant.html,
+  supabase/functions/{notify-client,stripe-charge-noshow,stripe-empreinte}/index.ts,
+  progress.txt, tasks.json. 5 commits locaux en attente.
+- Faire terminer l'onboarding Stripe Connect à Christophe (T13).
+
+SESSION 1 (suite 4) — STATUT NO-SHOW + FUITE DE DONNÉES
+--------------------------------------------------------
+- stripe-empreinte v42 : la capture clôt la commande (statut 'terminee').
+  CCB-2026-2894 régularisée en base.
+- FUITE DE DONNÉES FERMÉE : v_ambassadeur_demos et v_stripe_connect_status étaient
+  en SECURITY DEFINER avec SELECT accordé à anon. Elles contournaient la RLS et
+  exposaient emails/téléphones de prospects et l'email de tous les commerçants à
+  quiconque possédait la clé anon (publique dans le front). REVOKE + security_invoker=on.
+  Les 2 advisors de niveau ERROR ont disparu — il ne reste que des WARN.
+- NON TESTÉ : le nouveau passage en 'terminee' n'a pas été rejoué sur une vraie capture.
+
+SESSION 1 (suite 5) — notify-segment : FAILLE + RÉGRESSION DE MA PART
+---------------------------------------------------------------------
+En rapatriant notify-segment, deux découvertes :
+
+1. FAILLE (même nature que notify-client, en pire) : aucun contrôle d'appelant.
+   Avec la seule clé anon publique, n'importe qui pouvait envoyer un SMS marketing
+   à 500 clients d'une boutique, facturés au commerçant et signés de son nom.
+   Corrigé en v17 (JWT + ownership).
+
+2. RÉGRESSION QUE J'AI INTRODUITE ce soir : notify-client v20 exigeait un JWT
+   utilisateur, or notify-segment relaie avec la service_role key. Toutes les
+   campagnes auraient échoué en 401. Corrigé en notify-client v21 : la
+   service_role key vaut appel interne de confiance.
+   LEÇON : ne jamais durcir une fonction sans lire d'abord qui l'appelle.
+
+NON TESTÉ : la chaîne complète campagne -> segment -> client n'a pas été rejouée.
+Test à faire : envoyer un message à un segment depuis le CRM du dashboard.
+
+SESSION 1 (suite 6) — ÉCONOMIE DES SMS
+---------------------------------------
+Modèle constaté : quota mensuel selon l'offre (livraison 100 / clickcollect 50 /
+vitrine 0), packs additionnels vendus 15 € (100), 60 € (500), 110 € (1000).
+Coût Twilio ~7 c/SMS. Les push sont illimités et gratuits.
+
+- T17 CORRIGÉ : les packs achetés étaient effacés au premier envoi suivant
+  (incrementer_quota_notif écrasait sms_quota). GREATEST() appliqué.
+- T18 OUVERT (décision produit) : le quota n'est pas appliqué. Rien n'empêche
+  d'envoyer 1000 SMS avec 50 inclus — facturés à Paul, sans obligation d'acheter.
+- T19 OUVERT : coût unitaire incohérent (7 c vs 12 c selon la fonction).
+
+SESSION 1 (suite 7) — PLAFOND SMS ACTIF
+----------------------------------------
+Choix de Paul : blocage dur au quota + invitation à acheter un pack.
+
+- notify-client v22 : quota lu AVANT envoi (offre + packs). Épuisé -> push si le
+  client est abonné, sinon refus (quota_depasse=true), rien n'est facturé.
+  Trois contournements fermés : repli push->sms, canal_prefere='push' sans
+  abonnement, échec push en mode auto.
+- notify-segment v18 : remonte quota_bloques + l'état du quota.
+- app-commercant.html : encart orange + bouton "Acheter un pack" (branché sur
+  ouvrirAchatSmsPack(), la fenêtre d'achat qui existait déjà).
+- PÉRIMÈTRE : seuls les SMS du CRM sont plafonnés. Les SMS de commande passent
+  par send-sms, hors quota et non comptés (T20).
+
+NON TESTÉ : aucun envoi rejoué. Pour tester sans attendre 100 SMS, mettre
+temporairement sms_quota à 0 pour chez-christophe sur le mois courant.
+
+SESSION 1 (suite 8) — AUDIT DES FONCTIONS RESTANTES
+----------------------------------------------------
+- send-sms (T21) : LA faille la plus grave de la session. Numéro ET texte libres,
+  protégés par la seule clé anon publique = relais SMS ouvert au monde entier
+  depuis le numéro Twilio de Marchéo. Corrigé en v37 : commande_id obligatoire,
+  numéro borné à celui du client de la commande, appelant = commerçant propriétaire
+  ou client dans les 30 min suivant sa commande. Les deux fronts sont adaptés.
+- delete-commercant-account : CORRECTE. Rien à changer (JWT + ownership,
+  anonymisation RGPD, conservation de l'historique de facturation 10 ans).
+- stripe-setup-intent (T23) : code mort, jumelle de stripe-charge-noshow, aucun
+  appelant. À neutraliser au prochain tour.
+- compress-image, send-push-notification, envoi-recap-audit : aucun appelant front,
+  pas encore lues.
+- T22 ouvert et BLOQUANT avant le 2e client : l'adresse de Chez Christophe et un
+  montant de « 5 € » sont codés en dur dans les SMS envoyés par le dashboard.
+
+SESSION 1 (suite 9) — MESSAGES PAR COMMERÇANT
+----------------------------------------------
+Tout ce qui part vers un client porte désormais les infos de SA boutique :
+- app-commercant.html : les 4 SMS de statut utilisent nom_boutique, adresse et
+  téléphone de la boutique de la commande. Le SMS de no-show annonce le montant
+  réellement débité (empreinte_montant_cents) au lieu du forfait « 5 € ».
+- panier.html : helper adresseBoutique() depuis __BIZ__, utilisé dans le SMS de
+  confirmation et l'écran de choix du créneau. Plus d'adresse du pilote en dur.
+
+VÉRIFIÉ CORRECT (déjà dynamique) : pourcentage d'empreinte affiché et calculé
+(__BIZ__.no_show_pct), emails, messages CRM (nom_boutique + lien /{slug}/).
+RESTE : init.js:91 (slug de repli 'christophe-frais-caen', T7) et le <title>
+statique de compte.html (cosmétique).
+
+SESSION 1 (suite 10) — DERNIERS RESTES DU PILOTE
+-------------------------------------------------
+- init.js : plus de repli sur 'christophe-frais-caen'. resolveSlug() renvoie null,
+  initBusiness affiche l'écran « Commerce introuvable » déjà présent. Le dashboard
+  passe un slug explicite, donc non affecté.
+- compte.html : <title> devient « Mon Compte — Marchéo ».
+- Placeholders nominatifs du formulaire d'identité remplacés par des exemples neutres.
+À TESTER : ouvrir une URL bidon type marchéo.fr/nimportequoi -> doit afficher
+« Commerce introuvable », plus la boutique de Christophe.
+
+SESSION 1 (fin) — LES 3 DERNIÈRES FONCTIONS
+--------------------------------------------
+ERREUR D'ANALYSE CORRIGÉE : j'avais déduit « aucun appelant front = code mort ».
+FAUX. Deux de ces fonctions sont câblées à des TRIGGERS de base de données :
+  - trigger-compress-image  sur storage.objects
+  - trigger-push-notification sur public.commandes
+Seule stripe-setup-intent est réellement morte.
+
+- compress-image (T25, P1) : vise le bucket 'photos-produits' abandonné → échoue à
+  chaque upload. Et écrit dans produits_base (catalogue GLOBAL) par nom de fichier :
+  un commerçant peut écraser la photo d'un produit partagé par toutes les boutiques.
+- send-push-notification (T26) : fonctionne, mais un 'record' forgé avec la clé anon
+  permet d'envoyer des push arbitraires à un commerçant.
+- envoi-recap-audit (T28) : correcte (PIN vérifié), mais PIN sans anti-bruteforce.
+- T27 : la clé service_role est en clair dans la définition des deux triggers.
+  NE PAS la faire tourner sans reprendre les triggers d'abord.
+
+Les 10 fonctions non versionnées sont désormais AUDITÉES. Restent à écrire dans le
+dépôt : notify-segment, send-sms, compress-image, send-push-notification,
+stripe-setup-intent, sms-pack-purchase, delete-commercant-account, envoi-recap-audit.
+
+SESSION 1 (post-scriptum) — LE PIN D'AUDIT EST PUBLIC
+------------------------------------------------------
+Le PIN est écrit en dur dans audit-express.html:2205 et audit-complet.html, deux
+pages publiques servies par Vercel. Il est donc lisible par tout le monde dans le
+code source. La protection est nulle. Concernés : envoi-recap-audit (relais email
+depuis bonjour@marcheo.fr), fn_creer_demo_audit, upsert_audit_prospect.
+Changer le PIN est inutile — il serait republié. Voir T28 (décision requise).
+
+SESSION 1 (suite 11) — MÉNAGE DES FONCTIONS DÉCLENCHÉES PAR LA BASE
+--------------------------------------------------------------------
+- compress-image v40 : NEUTRALISÉE. Elle échouait à chaque upload (mauvais bucket)
+  en ajoutant jusqu'à 5 s de latence, et pouvait écraser le catalogue global par
+  nom de fichier. La compression est déjà faite côté navigateur avant l'upload,
+  donc rien n'est perdu. Trigger conservé pour la trace.
+- send-push-notification v40 : appel réservé au trigger (service_role), contenu
+  de la notification relu en base. Un record forgé ne fait plus sonner les
+  téléphones d'un commerçant.
+- stripe-setup-intent v38 : neutralisée (410), comme stripe-charge-noshow.
+
+À TESTER : envoyer un logo depuis le dashboard (doit être plus rapide, sans erreur)
+et passer une commande (le push « Nouvelle commande » doit toujours arriver).
+
+RISQUE ACCEPTÉ (T28) : PIN d'audit public. Décision de Paul du 2026-09-01,
+à rouvrir quand il y aura des clients payants ou du trafic sur le domaine.
+
+SESSION 1 (suite 12) — RE-VÉRIFICATION DES 3 POINTS DE LA NOTE PRÉCÉDENTE
+--------------------------------------------------------------------------
+1. « Stripe en mode test, confirmerNoShow n'affiche qu'un toast » : FAUX.
+   confirmerNoShow() (app-commercant.html:4532) appelle stripe-empreinte
+   action 'capture'. Front en pk_live. Preuve : 1,57 € réellement débités
+   sur CCB-2026-2894 le 01/09 à 18:32:53 UTC.
+2. « Pas multi-tenant, slug en dur » : FAUX aujourd'hui. Routage /:slug dans
+   vercel.json + resolveSlug(). Zéro occurrence du slug pilote depuis la
+   suppression du repli dans init.js ce soir.
+3. « admin.html = alert()/prompt() placeholder » : PARTIELLEMENT VRAI.
+   - Ajouter un commerçant : FAUX, vrai formulaire relié à Supabase.
+   - Modifier le plan : VRAI, c'était un prompt() en saisie libre. CORRIGÉ (T30).
+   - « créer le compte + le catalogue » : VRAI et non résolu (T29, P1) — l'admin
+     ne crée ni le compte de connexion ni le catalogue initial.
+
+SESSION 1 (suite 13) — AUDIT D'ÉTAT + DÉCOUVERTE MAJEURE
+---------------------------------------------------------
+ÉTAT DÉPLOIEMENT
+- Supabase : tout est en ligne (13 fonctions redéployées, 3 migrations).
+- GitHub : panier/app-commercant/compte/admin sont à jour. MAIS init.js a été
+  déposé À LA RACINE au lieu de assets/core/ : le fichier est inerte et la prod
+  garde le repli vers la boutique pilote (T31).
+- 19 commits locaux non poussés (les sources de fonctions, progress, tasks).
+
+DÉCOUVERTE (T29, remonté en P0)
+Ma note précédente sur l'onboarding était fausse sur le catalogue : il EST amorcé
+par un trigger (chez-christophe a 167 produits). Le vrai problème est plus grave :
+31 boutiques en base, 12 SANS auth_user_id — dont le PILOTE chez-christophe.
+Or tous les contrôles d'ownership ajoutés ce soir comparent auth_user_id à
+l'utilisateur connecté. Un commerçant sans compte lié n'est propriétaire de rien :
+CRM, SMS et débit no-show lui seraient refusés. Si le débit a marché ce soir,
+c'est parce que Paul est admin (2 admins en base) et que le contrôle accepte ce rôle.
+=> Rattacher chez-christophe à un compte AVANT que Christophe utilise le dashboard.
+
+T32 : 19 boutiques de test actives et publiques, à trier et supprimer.
+
+SESSION 1 (suite 14) — RATTACHEMENT DU PILOTE + EMPREINTES FANTÔMES
+--------------------------------------------------------------------
+- chez-christophe est RATTACHÉE à un compte. La boutique portait déjà l'email de
+  Paul, pour lequel un compte confirmé existait : simple liaison, aucun compte créé,
+  aucun email envoyé. Les contrôles d'ownership ne dépendent plus du rôle admin.
+- 3 empreintes bloquées depuis mai (148,10 € / 35,40 € / 9,65 €) passées en
+  'released'. CAUSE : le cron tournait bien, mais actionAutoRelease avale l'erreur
+  quand Stripe refuse d'annuler une autorisation expirée, et ne met jamais la ligne
+  à jour — elles repassaient donc toutes les heures depuis 4 mois (~2 900 appels
+  Stripe pour rien). Correctif de code à faire : T33.
+- T34 : mb-primeur a un numéro de téléphone dans son champ email.
+
+SESSION 1 (suite 15) — SUPPRESSION DES BOUTIQUES DE TEST
+---------------------------------------------------------
+10 boutiques supprimées après validation explicite de Paul :
+hhh (Traiteur Lyson), piazzaa, ma-cantinaaa (L'atelier), gytyt, hjgg,
+paul-merieultgfg, kukyiuy, paul-merieultjj, hoteljjjjkljkh, hoteljhfgf.
+Toutes à 0 commande / 0 client / 0 notification. Catalogue supprimé en cascade
+(~1 070 lignes). La requête excluait par sécurité toute boutique ayant une commande.
+Après : 31 -> 21 boutiques, 15 commandes intactes.
+
+NON SUPPRIMÉES (tri de Paul à venir) : les 4 démos métier du 28/04, les 14
+boutiques aux noms crédibles du 5-13 mai, et mb-primeur (1 commande, 2 clients).
+
+SESSION 1 (suite 16) — SAUVEGARDE DES SOURCES
+----------------------------------------------
+5 fonctions écrites dans supabase/functions/ : compress-image, stripe-setup-intent,
+send-push-notification, send-sms, notify-segment. Toutes celles modifiées pendant
+cette session sont maintenant versionnées.
+16 fonctions sur 19 sont dans le dépôt. Restent 3, non modifiées cette session :
+sms-pack-purchase, delete-commercant-account, envoi-recap-audit.
