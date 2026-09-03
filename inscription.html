@@ -814,11 +814,40 @@ window.verifierEmailUI = function() {
   if (check.ok) {
     fb.innerHTML = '<span style="color:#7dc9a0;">✓ Email valide</span>';
     inp.style.borderColor = 'rgba(125,201,160,0.6)';
+    enregistrerLead(v);
   } else {
     fb.innerHTML = '<span style="color:#e88080;">✗ ' + check.raison + '</span>';
     inp.style.borderColor = 'rgba(232,128,128,0.5)';
   }
 };
+// ── Lead d'inscription : dès que l'email est valide, on le mémorise (table leads_inscription, lecture admin
+//    uniquement) pour pouvoir recontacter quelqu'un qui ne termine pas le formulaire. Voir politique de confidentialité.
+var _leadsEnvoyes = {};
+function enregistrerLead(email) {
+  var cle = (email || '').toLowerCase();
+  if (!cle || _leadsEnvoyes[cle]) return;
+  _leadsEnvoyes[cle] = true;
+  var val = function(id) { var el = document.getElementById(id); return el ? (el.value || '').trim() || null : null; };
+  var body = {
+    email: cle,
+    nom_boutique: val('iNom') || state.nom || null,
+    business_type: state.type || null,
+    offre: state.offre || null,
+    ville: val('iVille') || state.ville || null,
+    telephone: val('iTel') || state.tel || null,
+    page: location.pathname,
+    device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+  };
+  try {
+    fetch(SUPABASE_URL + '/rest/v1/leads_inscription', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(body),
+      keepalive: true
+    }).catch(function() {});
+  } catch (e) { /* silencieux : ne doit jamais gêner l'inscription */ }
+}
+
 window.resetEmailFeedback = function() {
   var fb = document.getElementById('emailFeedback');
   var inp = document.getElementById('iEmail');

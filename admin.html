@@ -690,7 +690,28 @@
           </tbody>
         </table>
       </div>
-      <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;">Un compte apparaît ici dès que le formulaire d'inscription est validé. Un visiteur qui clique sur « S'inscrire » sans terminer n'est compté que dans les chiffres du haut : son email n'est pas connu.</p>
+      <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;">Un compte apparaît ici dès que le formulaire d'inscription est validé.</p>
+
+      <div class="page-titre" style="font-size:18px;margin-top:28px;">Ont commencé sans finir</div>
+      <div class="page-sub">Email saisi sur le formulaire d'inscription, mais compte jamais créé. À recontacter.</div>
+      <div class="table-card" style="margin-top:12px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Email</th>
+              <th>Boutique</th>
+              <th>Métier</th>
+              <th>Offre</th>
+              <th>Ville</th>
+              <th>Téléphone</th>
+            </tr>
+          </thead>
+          <tbody id="tableLeads">
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- PAGE CATALOGUE -->
@@ -1151,11 +1172,13 @@ async function chargerInscriptions() {
   const tbody = document.getElementById('tableInscriptions');
   tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>';
   const depuis30 = new Date(Date.now() - 30 * 86400_000).toISOString();
-  const [comptes, events] = await Promise.all([
+  const [comptes, events, leads] = await Promise.all([
     sb('commercants', '?select=id,nom_boutique,email,telephone,ville,business_type,offre,actif,abonnement_actif,is_fixture,est_demo_ambassadeur,code_promo_utilise,created_at&supprime_at=is.null&order=created_at.desc&limit=200'),
     sb('analytics_events', `?select=event,page,created_at,device&created_at=gte.${encodeURIComponent(depuis30)}&or=(event.eq.cta_inscription,page.like.*inscription*)&order=created_at.desc&limit=2000`),
+    sb('leads_inscription', '?select=email,nom_boutique,business_type,offre,ville,telephone,device,created_at&order=created_at.desc&limit=300'),
   ]);
   _inscriptions = Array.isArray(comptes) ? comptes : [];
+  renderLeads(Array.isArray(leads) ? leads : [], _inscriptions);
   const ev = Array.isArray(events) ? events : [];
   const depuis7 = Date.now() - 7 * 86400_000;
   const compte = (liste, test) => [liste.filter(e => test(e) && new Date(e.created_at).getTime() >= depuis7).length, liste.filter(test).length];
@@ -1201,6 +1224,31 @@ function renderInscriptions() {
       <td style="font-size:13px;color:rgba(255,255,255,.7);">${c.ville || '—'}</td>
       <td style="font-size:13px;">${offreLabels[c.offre] || '—'}</td>
       <td>${statut}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderLeads(leads, comptes) {
+  const tbody = document.getElementById('tableLeads');
+  if (!tbody) return;
+  const dejaInscrits = new Set(comptes.map(c => (c.email || '').toLowerCase()).filter(Boolean));
+  const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
+  const data = leads.filter(l => l.email && !dejaInscrits.has(l.email.toLowerCase()) && l.email.toLowerCase() !== 'paulpromerieult@gmail.com');
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Personne pour l\'instant</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(l => {
+    const m = l.business_type ? (METIERS[l.business_type] || null) : null;
+    const date = new Date(l.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
+      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}${l.device ? '<div style="font-size:11px;color:rgba(255,255,255,.35);">' + l.device + '</div>' : ''}</td>
+      <td style="font-size:13px;"><a href="mailto:${l.email}" style="color:var(--or);">${l.email}</a></td>
+      <td style="font-size:13px;color:#fff;">${l.nom_boutique || '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.8);">${m ? m.emoji + ' ' + m.label : '—'}</td>
+      <td style="font-size:13px;">${offreLabels[l.offre] || '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.7);">${l.ville || '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.8);">${l.telephone ? '<a href="tel:' + l.telephone.replace(/\\s/g, '') + '" style="color:inherit;">' + l.telephone + '</a>' : '—'}</td>
     </tr>`;
   }).join('');
 }
