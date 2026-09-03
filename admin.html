@@ -495,6 +495,9 @@
     <div class="nav-link" onclick="allerPage('commercants')" id="nav-commercants">
       <span class="nav-link-icon">🏪</span> Commerçants
     </div>
+    <div class="nav-link" onclick="allerPage('inscriptions')" id="nav-inscriptions">
+      <span class="nav-link-icon">📝</span> Inscriptions
+    </div>
     <div class="nav-link" onclick="allerPage('catalogue')" id="nav-catalogue">
       <span class="nav-link-icon">🥕</span> Catalogue base
     </div>
@@ -647,6 +650,47 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- PAGE INSCRIPTIONS -->
+    <div class="page" id="page-inscriptions">
+      <div class="page-titre">Inscriptions</div>
+      <div class="page-sub">Qui a créé un compte, et combien de visiteurs ont commencé sans finir</div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-card-val" id="insc-clics">—</div><div class="stat-card-lbl">🖱️ Clics « S'inscrire » · 7 j / 30 j</div></div>
+        <div class="stat-card"><div class="stat-card-val" id="insc-vues">—</div><div class="stat-card-lbl">👀 Page inscription vue · 7 j / 30 j</div></div>
+        <div class="stat-card" style="border-left:3px solid #7fd97f;"><div class="stat-card-val" id="insc-comptes" style="color:#7fd97f;">—</div><div class="stat-card-lbl">✅ Comptes créés · 7 j / 30 j</div></div>
+        <div class="stat-card" style="border-left:3px solid #ffd47a;"><div class="stat-card-val" id="insc-dernier" style="font-size:16px;color:#ffd47a;">—</div><div class="stat-card-lbl">🕒 Dernier clic « S'inscrire »</div></div>
+      </div>
+
+      <div class="search-bar" style="align-items:center;">
+        <input class="search-input" id="searchInscriptions" placeholder="🔍 Filtrer (nom, email, ville)..." oninput="renderInscriptions()">
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">
+          <input type="checkbox" id="insc-masquer-tests" checked onchange="renderInscriptions()"> Masquer mes comptes de test
+        </label>
+        <button class="btn-ajouter" onclick="copierEmailsInscriptions()">📋 Copier les emails</button>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Boutique</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Ville</th>
+              <th>Offre</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="tableInscriptions">
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;">Un compte apparaît ici dès que le formulaire d'inscription est validé. Un visiteur qui clique sur « S'inscrire » sans terminer n'est compté que dans les chiffres du haut : son email n'est pas connu.</p>
     </div>
 
     <!-- PAGE CATALOGUE -->
@@ -900,6 +944,7 @@ function allerPage(id) {
   document.getElementById(`nav-${id}`)?.classList.add('actif');
 
   if (id === 'commercants') chargerCommercants();
+  if (id === 'inscriptions') chargerInscriptions();
   if (id === 'analytics') chargerAnalytics();
   if (id === 'catalogue') chargerCatalogue();
   if (id === 'commandes') chargerCommandes();
@@ -1099,6 +1144,75 @@ const METIERS = {
 };
 
 let _activite30jParCommercant = null;
+
+// ── INSCRIPTIONS ──────────────────────────────────────
+let _inscriptions = [];
+async function chargerInscriptions() {
+  const tbody = document.getElementById('tableInscriptions');
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>';
+  const depuis30 = new Date(Date.now() - 30 * 86400_000).toISOString();
+  const [comptes, events] = await Promise.all([
+    sb('commercants', '?select=id,nom_boutique,email,telephone,ville,business_type,offre,actif,abonnement_actif,is_fixture,est_demo_ambassadeur,code_promo_utilise,created_at&supprime_at=is.null&order=created_at.desc&limit=200'),
+    sb('analytics_events', `?select=event,page,created_at,device&created_at=gte.${encodeURIComponent(depuis30)}&or=(event.eq.cta_inscription,page.like.*inscription*)&order=created_at.desc&limit=2000`),
+  ]);
+  _inscriptions = Array.isArray(comptes) ? comptes : [];
+  const ev = Array.isArray(events) ? events : [];
+  const depuis7 = Date.now() - 7 * 86400_000;
+  const compte = (liste, test) => [liste.filter(e => test(e) && new Date(e.created_at).getTime() >= depuis7).length, liste.filter(test).length];
+  const [c7, c30] = compte(ev, e => e.event === 'cta_inscription');
+  const [v7, v30] = compte(ev, e => e.event === 'page_view' && /inscription/.test(e.page || ''));
+  const reels = _inscriptions.filter(c => !c.is_fixture && !c.est_demo_ambassadeur && (c.code_promo_utilise || '') !== 'TEST_ADMIN');
+  const [k7, k30] = compte(reels.filter(c => new Date(c.created_at).getTime() >= Date.now() - 30 * 86400_000), () => true);
+  document.getElementById('insc-clics').textContent = `${c7} / ${c30}`;
+  document.getElementById('insc-vues').textContent = `${v7} / ${v30}`;
+  document.getElementById('insc-comptes').textContent = `${k7} / ${k30}`;
+  const dernier = ev.find(e => e.event === 'cta_inscription');
+  document.getElementById('insc-dernier').textContent = dernier
+    ? new Date(dernier.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) + (dernier.device ? ' · ' + dernier.device : '')
+    : 'aucun sur 30 j';
+  renderInscriptions();
+}
+
+function renderInscriptions() {
+  const tbody = document.getElementById('tableInscriptions');
+  const q = (document.getElementById('searchInscriptions')?.value || '').toLowerCase().trim();
+  const masquerTests = document.getElementById('insc-masquer-tests')?.checked;
+  const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
+  const data = _inscriptions.filter(c => {
+    if (masquerTests && (c.is_fixture || c.est_demo_ambassadeur || (c.code_promo_utilise || '') === 'TEST_ADMIN' || (c.email || '') === 'paulpromerieult@gmail.com')) return false;
+    if (!q) return true;
+    return [c.nom_boutique, c.email, c.ville, c.telephone].some(v => (v || '').toLowerCase().includes(q));
+  });
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucune inscription' + (masquerTests ? ' (hors comptes de test)' : '') + '</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(c => {
+    const m = METIERS[c.business_type] || METIERS.primeur;
+    const statut = !c.actif ? '<span class="badge badge-inactif">⛔ Suspendu</span>'
+      : !c.abonnement_actif ? '<span class="badge" style="background:rgba(255,212,122,.18);color:#ffd47a;border:1px solid rgba(255,212,122,.4);font-weight:700;">🎯 Démo</span>'
+      : '<span class="badge" style="background:rgba(127,217,127,.18);color:#7fd97f;border:1px solid rgba(127,217,127,.4);font-weight:700;">✅ Payant</span>';
+    const date = new Date(c.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
+      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}</td>
+      <td style="padding:12px;"><div style="font-weight:600;color:#fff;">${m.emoji} ${c.nom_boutique || '—'}</div><div style="font-size:11.5px;color:rgba(255,255,255,.45);">${m.label}</div></td>
+      <td style="font-size:13px;"><a href="mailto:${c.email || ''}" style="color:var(--or);">${c.email || '—'}</a></td>
+      <td style="font-size:13px;color:rgba(255,255,255,.8);">${c.telephone ? '<a href="tel:' + c.telephone.replace(/\\s/g, '') + '" style="color:inherit;">' + c.telephone + '</a>' : '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.7);">${c.ville || '—'}</td>
+      <td style="font-size:13px;">${offreLabels[c.offre] || '—'}</td>
+      <td>${statut}</td>
+    </tr>`;
+  }).join('');
+}
+
+function copierEmailsInscriptions() {
+  const masquerTests = document.getElementById('insc-masquer-tests')?.checked;
+  const emails = [...new Set(_inscriptions
+    .filter(c => c.email && !(masquerTests && (c.is_fixture || c.est_demo_ambassadeur || (c.code_promo_utilise || '') === 'TEST_ADMIN' || c.email === 'paulpromerieult@gmail.com')))
+    .map(c => c.email))];
+  if (!emails.length) { alert('Aucun email à copier.'); return; }
+  navigator.clipboard.writeText(emails.join(', ')).then(() => alert(emails.length + ' email(s) copié(s).'), () => prompt('Copie manuelle :', emails.join(', ')));
+}
 
 async function chargerCommercants() {
   if (tousCommercants.length === 0) {
