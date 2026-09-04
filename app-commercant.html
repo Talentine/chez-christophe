@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<!-- Redirect Supabase Auth recovery/invite links vers la page reset dédiée -->
+<script>(function(){var h=location.hash||'',s=location.search||'';var reFrag=/(?:^|[#&])type=(recovery|invite|magiclink|signup)(?:&|$)/,reQuery=/(?:^|[?&])type=(recovery|invite|magiclink|signup)(?:&|$)/;if(reFrag.test(h)){location.replace('/reset-password.html'+h);return;}if(reQuery.test(s)){location.replace('/reset-password.html'+s+h);return;}})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Marchéo">
@@ -483,6 +485,9 @@
       style="width:100%;background:#c9a84c;color:#1a2e26;border:none;border-radius:50px;padding:15px;font-size:16px;font-weight:500;font-family:'Manrope', system-ui, sans-serif;cursor:pointer;">
       Accéder au dashboard
     </button>
+    <div style="text-align:center;margin-top:14px;">
+      <a href="/reset-password.html" style="color:rgba(255,255,255,0.6);font-size:13px;text-decoration:underline;font-family:'Manrope', system-ui, sans-serif;">Mot de passe oublié ?</a>
+    </div>
   </div>
 </div>
 
@@ -655,7 +660,8 @@
 <div class="tab-content active" id="content-commandes">
   <div class="commandes-filtres">
     <button class="filtre-pill actif" onclick="filtrerStatut('nouvelle',this)">🔵 Nouvelles</button>
-    <button class="filtre-pill" onclick="filtrerStatut('en_preparation',this)">🟡 À préparer</button>
+    <button class="filtre-pill" onclick="filtrerStatut('a_preparer_aujourdhui',this)">🟡 À préparer aujourd'hui</button>
+    <button class="filtre-pill" onclick="filtrerStatut('a_preparer_plus_tard',this)">🟠 À préparer plus tard</button>
     <button class="filtre-pill" onclick="filtrerStatut('prete',this)">🟢 Prêtes</button>
     <button class="filtre-pill" onclick="filtrerStatut('remise',this)">✅ Remises</button>
     <button class="filtre-pill" onclick="filtrerStatut(null,this)">Toutes</button>
@@ -2205,15 +2211,19 @@ function chargerCommandesDemo() {
 function renderCommandes() {
   const liste = document.getElementById('commandesListe');
 
-  // Filtre selon onglet actif — aligné sur les statuts DB
-  // (nouvelle, en_preparation, prete, remise, terminee, annulee)
-  // - 'nouvelle'       → nouvelle ET date_retrait >= aujourd'hui
-  // - 'en_preparation' → en_preparation ET date_retrait = aujourd'hui
-  // - 'prete'          → prete
-  // - 'remise'         → remise / livree / terminee (groupé « terminées »)
-  // - null             → toutes SAUF annulees
+  // Filtre selon onglet actif — statuts DB : nouvelle, empreinte_pending,
+  // en_preparation, prete, remise, terminee, annulee (livree = alias legacy)
+  // - 'nouvelle'             → nouvelle (toutes dates ≥ aujourd'hui) — commandes à accepter
+  // - 'a_preparer_aujourdhui'→ {nouvelle, empreinte_pending, en_preparation}
+  //                             ET date_retrait ≤ aujourd'hui (inclut les retards)
+  // - 'a_preparer_plus_tard' → {nouvelle, empreinte_pending, en_preparation}
+  //                             ET date_retrait > aujourd'hui (anticipation)
+  // - 'prete'                → prete
+  // - 'remise'                → remise / livree / terminee (« terminées »)
+  // - null                    → toutes SAUF annulees
   const todayStart = new Date(); todayStart.setHours(0,0,0,0);
   const tomorrowStart = new Date(todayStart); tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+  const A_PREPARER_STATUTS = ['nouvelle','empreinte_pending','en_preparation'];
 
   let filtrees;
   if (statutFiltre === 'nouvelle') {
@@ -2222,12 +2232,17 @@ function renderCommandes() {
       if (!c.date_retrait) return true;
       return new Date(c.date_retrait) >= todayStart;
     });
-  } else if (statutFiltre === 'en_preparation') {
+  } else if (statutFiltre === 'a_preparer_aujourdhui') {
     filtrees = toutesLesCommandes.filter(c => {
-      if (c.statut !== 'en_preparation') return false;
-      if (!c.date_retrait) return true;
-      const d = new Date(c.date_retrait);
-      return d >= todayStart && d < tomorrowStart;
+      if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
+      if (!c.date_retrait) return true;               // pas de date = à traiter aujourd'hui
+      return new Date(c.date_retrait) < tomorrowStart; // aujourd'hui + retards
+    });
+  } else if (statutFiltre === 'a_preparer_plus_tard') {
+    filtrees = toutesLesCommandes.filter(c => {
+      if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
+      if (!c.date_retrait) return false;               // sans date, on considère aujourd'hui
+      return new Date(c.date_retrait) >= tomorrowStart;
     });
   } else if (statutFiltre === 'remise') {
     filtrees = toutesLesCommandes.filter(c => ['remise','livree','terminee'].includes(c.statut));
