@@ -655,7 +655,7 @@
 <div class="tab-content active" id="content-commandes">
   <div class="commandes-filtres">
     <button class="filtre-pill actif" onclick="filtrerStatut('nouvelle',this)">🔵 Nouvelles</button>
-    <button class="filtre-pill" onclick="filtrerStatut('a_preparer',this)">🟡 À préparer</button>
+    <button class="filtre-pill" onclick="filtrerStatut('en_preparation',this)">🟡 À préparer</button>
     <button class="filtre-pill" onclick="filtrerStatut('prete',this)">🟢 Prêtes</button>
     <button class="filtre-pill" onclick="filtrerStatut('remise',this)">✅ Remises</button>
     <button class="filtre-pill" onclick="filtrerStatut(null,this)">Toutes</button>
@@ -2205,12 +2205,13 @@ function chargerCommandesDemo() {
 function renderCommandes() {
   const liste = document.getElementById('commandesListe');
 
-  // Filtre selon onglet actif
-  // - 'nouvelle'   → statut nouvelle ET date_retrait >= aujourd'hui (jour J et suivants)
-  // - 'a_preparer' → statut en_preparation ET date_retrait = aujourd'hui uniquement
-  // - 'prete'      → statut prete
-  // - 'remise'     → statut remise / livree / terminee
-  // - null         → toutes
+  // Filtre selon onglet actif — aligné sur les statuts DB
+  // (nouvelle, en_preparation, prete, remise, terminee, annulee)
+  // - 'nouvelle'       → nouvelle ET date_retrait >= aujourd'hui
+  // - 'en_preparation' → en_preparation ET date_retrait = aujourd'hui
+  // - 'prete'          → prete
+  // - 'remise'         → remise / livree / terminee (groupé « terminées »)
+  // - null             → toutes SAUF annulees
   const todayStart = new Date(); todayStart.setHours(0,0,0,0);
   const tomorrowStart = new Date(todayStart); tomorrowStart.setDate(tomorrowStart.getDate() + 1);
 
@@ -2221,7 +2222,7 @@ function renderCommandes() {
       if (!c.date_retrait) return true;
       return new Date(c.date_retrait) >= todayStart;
     });
-  } else if (statutFiltre === 'a_preparer') {
+  } else if (statutFiltre === 'en_preparation') {
     filtrees = toutesLesCommandes.filter(c => {
       if (c.statut !== 'en_preparation') return false;
       if (!c.date_retrait) return true;
@@ -2233,7 +2234,7 @@ function renderCommandes() {
   } else if (statutFiltre) {
     filtrees = toutesLesCommandes.filter(c => c.statut === statutFiltre);
   } else {
-    filtrees = toutesLesCommandes;
+    filtrees = toutesLesCommandes.filter(c => c.statut !== 'annulee');
   }
 
   if (filtrees.length === 0) {
@@ -2957,10 +2958,11 @@ async function chargerCRM() {
   const commercantId = session.commercant_id;
   if (!commercantId) return;
 
-  // 1. Stats globales + clients
+  // 1. Stats globales + clients — vue clients_crm en security_invoker, RLS = authenticated
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/clients_crm?commercant_id=eq.' + commercantId + '&order=derniere_commande_at.desc.nullslast&limit=500', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     crmClients = await r.json();
     if (!Array.isArray(crmClients)) crmClients = [];
@@ -3287,8 +3289,9 @@ async function renderHistoriqueCRM() {
   if (!cont || !commercantId) return;
   cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);">Chargement…</div>';
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/notifications_envoyees?commercant_id=eq.' + commercantId + '&order=sent_at.desc&limit=100&select=*,clients(prenom,nom)', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     if (!Array.isArray(data) || data.length === 0) {
@@ -3400,8 +3403,9 @@ async function chargerCreneauxResa() {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const commercantId = session.commercant_id;
     if (!commercantId) return;
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + commercantId + '&type=eq.reservation&order=jour_semaine.asc,heure_debut.asc', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     renderCreneauxResa(Array.isArray(data) ? data : []);
@@ -3659,8 +3663,9 @@ async function sauverCancellationPolicy() {
 
 async function chargerIdentiteBoutique(commercantId) {
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=nom_boutique,adresse,code_postal,ville,telephone,slogan', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     const c = (data && data[0]) || {};
@@ -3778,8 +3783,9 @@ async function chargerAbonnementMarcheo(commercantId) {
   const subLabel = document.getElementById('abonnementSubLabel');
   if (!badge || !content) return;
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=abonnement_actif,offre,abonnement_debut,abonnement_fin,stripe_subscription_id,stripe_customer_id', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const arr = await r.json();
     const c = (arr && arr[0]) || {};
@@ -3963,9 +3969,10 @@ async function chargerFideliteRecap() {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const commercantId = session.commercant_id;
     if (!commercantId) return;
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId +
       '&select=fidelite_active,fidelite_objectif,fidelite_recompense_cents,fidelite_min_commande_cents,recap_hebdo_actif', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const c = (await r.json())?.[0] || {};
 
@@ -4131,8 +4138,9 @@ async function chargerReglages() {
     // Pour vitrine pure : masquée. La logique fine est dans appliquerVisibiliteFeatures().
     if (typeof appliquerVisibiliteFeatures === 'function') appliquerVisibiliteFeatures();
 
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=empreinte_obligatoire,no_show_pct,montant_min_commande,cancellation_policy_hours,empreinte_couvert_cents,delai_min_retrait_min,delai_min_livraison_min,delai_min_reservation_min', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     const c = data?.[0] || {};
@@ -4763,8 +4771,9 @@ async function demarrerRealtime() {
     let commercantId = session?.commercant_id;
 
     if (!commercantId && session?.email) {
+      const token = await getValidToken();
       const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?email=eq.' + encodeURIComponent(session.email) + '&select=id', {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
       });
       const data = await r.json();
       commercantId = data?.[0]?.id;
@@ -6114,8 +6123,9 @@ async function chargerProduitsAdmin() {
   if (!commercantId) return;
 
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,rupture_jusquau,stock_qte,stock_alerte_seuil,produit_base_id&limit=200&order=id.desc', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const catalogue = await r.json();
     if (!Array.isArray(catalogue) || catalogue.length === 0) {
@@ -7256,8 +7266,9 @@ async function chargerCreneaux() {
   if (!commercantId) return;
 
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + commercantId + '&order=jour_semaine.asc,heure_debut.asc', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     creneauxData = Array.isArray(data) ? data : [];
@@ -7691,8 +7702,9 @@ async function chargerBusinessConfig() {
   const commercantId = session.commercant_id;
   if (!commercantId) return;
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_config,business_types_secondaires,palette', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     const c = data?.[0];
@@ -7754,8 +7766,9 @@ async function chargerZoneLivraison() {
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=zone_livraison,frais_livraison,min_commande_livraison,rayon_livraison_km,seuil_livraison_gratuite', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r.json();
     const c = data?.[0];
@@ -7837,8 +7850,9 @@ async function chargerGalerie() {
     // Charger hero + logo actuels pour les indicateurs
     let heroActuelle = '', logoActuel = '';
     try {
+      const token = await getValidToken();
       const rH = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=hero_photo_url,logo_url', {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
       });
       const dH = await rH.json();
       heroActuelle = dH?.[0]?.hero_photo_url || '';
@@ -7879,8 +7893,9 @@ async function chargerGalerie() {
 
   // Charger le texte histoire
   try {
+    const token = await getValidToken();
     const r2 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=texte_histoire', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const data = await r2.json();
     const texte = data?.[0]?.texte_histoire || '';
@@ -7962,8 +7977,9 @@ async function chargerRayonsImages() {
   const commercantId = session.commercant_id;
   if (!commercantId) return;
   try {
+    const token = await getValidToken();
     const r1 = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_type,business_types_secondaires,rayons_images_custom,rayons_config', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const dC = await r1.json();
     const c = dC?.[0] || {};
@@ -7982,7 +7998,7 @@ async function chargerRayonsImages() {
 
     // 2. Catégories custom de ce commerçant
     const r3 = await fetch(SUPABASE_URL + '/rest/v1/categories?commercant_id=eq.' + commercantId + '&select=id,slug,nom,image_url,emoji,ordre&order=ordre', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const customCats = (await r3.json()) || [];
 
@@ -9041,8 +9057,9 @@ async function chargerSalaries() {
   const liste = document.getElementById('salariesListe');
   if (!commercantId || !liste) return;
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/salaries?commercant_id=eq.' + commercantId + '&select=*&order=created_at.desc', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const rows = await r.json();
     if (!Array.isArray(rows) || rows.length === 0) {
@@ -9099,8 +9116,9 @@ async function chargerHorairesEditor() {
   if (!editor) return;
   let horaires = {};
   try {
+    const token = await getValidToken();
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=horaires', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const d = await r.json();
     horaires = d?.[0]?.horaires || {};
