@@ -391,6 +391,26 @@
     .pr-foot{margin-top:22px;padding-top:12px;border-top:1px solid #E5E2D8;text-align:center;font-size:9.5pt;color:#5A6478;line-height:1.5}
     .pr-foot b{color:#0F2C52}
   }
+  /* ===== CORRECTIF MOBILE : debordement horizontal du bandeau =====
+     Sur telephone, brand + boutons + indicateur depassaient la largeur
+     de l'ecran : la page devenait plus large que le viewport et tout
+     le contenu se decalait vers la gauche. */
+  @media (max-width:600px){
+    .topbar{gap:10px;padding-left:12px;padding-right:12px}
+    .brand{flex:none;font-size:17px}
+    .brand small{display:none}
+    .tb-mid{display:none}
+    .tb-actions{
+      min-width:0;flex:1;justify-content:flex-end;
+      overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch
+    }
+    .tb-actions::-webkit-scrollbar{display:none}
+    .tbtn{flex:none;height:38px;padding:0 11px;font-size:13px}
+    .save-ind{min-width:0;flex:none}
+    .save-ind span{display:none}
+    .sec-title{font-size:26px}
+    .nav{padding-left:12px;padding-right:12px}
+  }
 </style>
 </head>
 <body>
