@@ -2103,6 +2103,29 @@ let commandeContactId = null;
 let tousLesProduits = [];
 let toutesLesCommandes = [];
 
+// État UI persistant à travers les re-render du polling toutes les 5s :
+// - cartesOuvertes : set d'IDs de cartes dont le détail est déplié
+// - commandesVuesAt : { [id]: timestamp } — quand le commerçant a ouvert
+//   le détail pour la 1re fois. Sert à sortir la commande de l'onglet
+//   « Nouvelles » 24h après la 1re ouverture (statut UX, pas DB).
+const cartesOuvertes = new Set();
+const CMD_VUES_KEY = 'commandes_vues_at';
+function chargerCommandesVues() {
+  try { return JSON.parse(localStorage.getItem(CMD_VUES_KEY) || '{}'); }
+  catch(_) { return {}; }
+}
+let commandesVuesAt = chargerCommandesVues();
+function marquerCommandeVue(id) {
+  if (!id || commandesVuesAt[id]) return;
+  commandesVuesAt[id] = Date.now();
+  try { localStorage.setItem(CMD_VUES_KEY, JSON.stringify(commandesVuesAt)); } catch(_) {}
+}
+function estToujoursNouvelle(id) {
+  const vueAt = commandesVuesAt[id];
+  if (!vueAt) return true;                       // pas encore vue
+  return (Date.now() - vueAt) < 24 * 3600 * 1000; // vue < 24h
+}
+
 async function sb(table, params='', method='GET', body=null) {
   const opts = {
     method,
@@ -2227,11 +2250,13 @@ function renderCommandes() {
 
   let filtrees;
   if (statutFiltre === 'nouvelle') {
-    // « Nouvelles » = toutes les commandes en statut nouvelle, peu importe la date.
-    // Le commerçant doit acknowledge toute commande non traitée — même une nouvelle
-    // datée d'hier (rupture, retard de traitement…). Ça aligne le bandeau
-    // « X nouvelles commandes en attente » avec le contenu de l'onglet.
-    filtrees = toutesLesCommandes.filter(c => c.statut === 'nouvelle');
+    // « Nouvelles » = commandes en statut='nouvelle' dont le détail N'a pas encore
+    // été ouvert par le commerçant, OU ouvert depuis moins de 24h. Le tracking
+    // « vue » se fait côté client (localStorage). Une commande peut être à la fois
+    // Nouvelle (non-vue) ET dans « À préparer aujourd'hui » — c'est voulu.
+    filtrees = toutesLesCommandes.filter(c =>
+      c.statut === 'nouvelle' && estToujoursNouvelle(c.id)
+    );
   } else if (statutFiltre === 'a_preparer_aujourdhui') {
     filtrees = toutesLesCommandes.filter(c => {
       if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
@@ -2349,7 +2374,16 @@ function renderCarteCommande(c) {
     terminee: 'Terminée',
   }[statutAffiche];
 
-  const typeIcon = c.type === 'livraison' ? '🚚 Livraison' : '📍 Retrait';
+  // Différenciation visuelle livraison / retrait :
+  // - Livraison : bord gauche bleu (#185fa5), badge fond bleu clair
+  // - Retrait   : bord gauche vert (var(--vert)), badge fond crème
+  const estLivraison = c.type === 'livraison';
+  const typeCouleur  = estLivraison ? '#185fa5' : 'var(--vert)';
+  const typeIcon     = estLivraison ? '🚚 Livraison' : '📍 Retrait';
+  const typeBadgeStyle = estLivraison
+    ? 'background:#e8f4fd;color:#185fa5;'
+    : 'background:#eaf7ee;color:var(--vert-fonce);';
+  const cardTypeStyle = 'border-left:4px solid ' + typeCouleur + ';';
 
   const btnPrincipal = statutAffiche === 'nouvelle'
     ? `<button class="btn-preparer vert" onclick="changerStatut('${c.id}','prete')">✅ MARQUER PRÊTE</button>`
@@ -2365,7 +2399,7 @@ function renderCarteCommande(c) {
   ).join('');
 
   return `
-    <div class="commande-card ${c.statut}" id="card-${c.id}">
+    <div class="commande-card ${c.statut}" id="card-${c.id}" style="${cardTypeStyle}">
       <div class="commande-header" onclick="toggleDetail('${c.id}')">
         <div>
           <div class="commande-client">${c.client}</div>
@@ -2373,7 +2407,7 @@ function renderCarteCommande(c) {
             <span class="meta-pill">⏰ ${c.heure}</span>
             <span class="meta-pill">· ${c.montant}</span>
             <span class="meta-pill">· ${c.articles} art.</span>
-            <span class="meta-pill" style="color:${c.type==='livraison'?'#185fa5':''}">${typeIcon}</span>
+            <span class="meta-pill" style="${typeBadgeStyle}font-weight:600;">${typeIcon}</span>
           </div>
         </div>
         <span class="badge-statut ${badgeClass}">${badgeTxt}</span>
@@ -2394,7 +2428,7 @@ function renderCarteCommande(c) {
           </a>
         </div>
       </div>` : ''}
-      <div class="commande-detail" id="detail-${c.id}">
+      <div class="commande-detail${cartesOuvertes.has(c.id) ? ' open' : ''}" id="detail-${c.id}">
         ${produits}
       </div>
       ${renderEmpreinteBadge(c)}
@@ -2437,7 +2471,11 @@ function ouvrirLitige(id) {
 }
 
 function toggleDetail(id) {
-  document.getElementById(`detail-${id}`)?.classList.toggle('open');
+  const el = document.getElementById(`detail-${id}`);
+  if (!el) return;
+  const now = el.classList.toggle('open');
+  if (now) { cartesOuvertes.add(id); marquerCommandeVue(id); }
+  else     { cartesOuvertes.delete(id); }
 }
 
 // Bandeau jaune → ouvrir la première commande "nouvelle"
@@ -2455,6 +2493,17 @@ window.voirPremiereNouvelle = function() {
 // Aller à l'onglet Commandes + scroller vers la carte + ouvrir le détail
 window.voirCommande = function(id) {
   if (typeof allerOnglet === 'function') allerOnglet('commandes');
+  marquerCommandeVue(id);
+  cartesOuvertes.add(id);
+  // Fix « depuis Agenda ou bandeau, clic Voir → ma commande disparaît » :
+  // les onglets filtrent (Nouvelles = date≥today, À préparer = date=today, etc.).
+  // Une commande d'un autre jour/statut n'était pas rendue → carte introuvable.
+  // On force le filtre « Toutes » pour être sûr que la carte est dans le DOM.
+  statutFiltre = null;
+  document.querySelectorAll('.filtre-pill').forEach(b => b.classList.remove('actif'));
+  const toutesBtn = Array.from(document.querySelectorAll('.filtre-pill')).find(b => b.textContent.trim() === 'Toutes');
+  if (toutesBtn) toutesBtn.classList.add('actif');
+  renderCommandes();
   setTimeout(function(){
     const card = document.getElementById('card-' + id);
     if (card) {
