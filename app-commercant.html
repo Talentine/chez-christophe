@@ -2264,10 +2264,15 @@ function renderCommandes() {
       return new Date(c.date_retrait) < tomorrowStart; // aujourd'hui + retards
     });
   } else if (statutFiltre === 'a_preparer_plus_tard') {
+    // Fenêtre 7 jours à compter de demain (utile : la semaine à venir uniquement,
+    // les commandes lointaines encombrent la vue et se retraitent naturellement
+    // quand on s'en rapproche via la vue « aujourd'hui »).
+    const finSemaine = new Date(tomorrowStart); finSemaine.setDate(finSemaine.getDate() + 7);
     filtrees = toutesLesCommandes.filter(c => {
       if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
-      if (!c.date_retrait) return false;               // sans date, on considère aujourd'hui
-      return new Date(c.date_retrait) >= tomorrowStart;
+      if (!c.date_retrait) return false;
+      const d = new Date(c.date_retrait);
+      return d >= tomorrowStart && d < finSemaine;
     });
   } else if (statutFiltre === 'remise') {
     filtrees = toutesLesCommandes.filter(c => ['remise','livree','terminee'].includes(c.statut));
@@ -4951,6 +4956,12 @@ async function chargerCommandesSupabase(commercantId) {
 
     renderCommandes();
     chargerPlanningReel();
+
+    // Le statut « Chargement… » ne disparaissait jamais tant que le commerçant
+    // ne cliquait pas sur PAUSE. Après la 1re réception effective des commandes,
+    // on bascule à « Boutique ouverte » (ou « en pause » si l'utilisateur l'a set).
+    const statutEl = document.getElementById('statutBoutique');
+    if (statutEl) statutEl.textContent = enPause ? 'Boutique en pause' : 'Boutique ouverte';
 
     // Stats "aujourd'hui" : commandes dont date_retrait tombe entre minuit
     // et minuit+24h locale, hors annulées.
