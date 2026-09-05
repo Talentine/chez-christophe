@@ -2258,10 +2258,15 @@ function renderCommandes() {
       c.statut === 'nouvelle' && estToujoursNouvelle(c.id)
     );
   } else if (statutFiltre === 'a_preparer_aujourdhui') {
+    // « Aujourd'hui » = TOUTES les commandes dont le retrait/livraison tombe
+    // aujourd'hui, quel que soit le statut (nouvelle, en préparation, prête,
+    // remise, terminée). Seules les annulées sont exclues. On garde tri par
+    // heure de passage (Supabase renvoie déjà `order=date_retrait.asc`).
     filtrees = toutesLesCommandes.filter(c => {
-      if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
-      if (!c.date_retrait) return true;               // pas de date = à traiter aujourd'hui
-      return new Date(c.date_retrait) < tomorrowStart; // aujourd'hui + retards
+      if (c.statut === 'annulee') return false;
+      if (!c.date_retrait) return false;
+      const d = new Date(c.date_retrait);
+      return d >= todayStart && d < tomorrowStart;
     });
   } else if (statutFiltre === 'a_preparer_plus_tard') {
     // Fenêtre 7 jours à compter de demain (utile : la semaine à venir uniquement,
@@ -4880,10 +4885,31 @@ async function demarrerRealtime() {
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) chargerCommandesSupabase(commercantId);
     });
+    // Passage de jour : à minuit, recharge + re-render pour que les commandes
+    // d'hier basculent en historique et que « Aujourd'hui » soit à jour, même
+    // si le commerçant a laissé le dashboard ouvert toute la nuit.
+    programmerRefreshMinuit(commercantId);
 
   } catch(e) {
     console.log('Realtime non disponible:', e);
   }
+}
+
+// Programme un tick à 00:00:05 pour recalculer les vues « aujourd'hui »/
+// « plus tard » au passage de jour, puis se re-programme pour le lendemain.
+// Nécessaire si le dashboard reste ouvert au-delà de minuit.
+function programmerRefreshMinuit(commercantId) {
+  const now = new Date();
+  const prochainMinuit = new Date(now);
+  prochainMinuit.setHours(24, 0, 5, 0); // 00:00:05 pour marge d'horloge
+  const ms = Math.max(1000, prochainMinuit.getTime() - now.getTime());
+  setTimeout(async () => {
+    try {
+      if (typeof chargerCommandesSupabase === 'function') await chargerCommandesSupabase(commercantId);
+      if (typeof renderCommandes === 'function') renderCommandes();
+    } catch(_) {}
+    programmerRefreshMinuit(commercantId); // re-arme pour le jour suivant
+  }, ms);
 }
 
 async function chargerCommandesSupabase(commercantId) {
