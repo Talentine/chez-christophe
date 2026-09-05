@@ -2227,11 +2227,11 @@ function renderCommandes() {
 
   let filtrees;
   if (statutFiltre === 'nouvelle') {
-    filtrees = toutesLesCommandes.filter(c => {
-      if (c.statut !== 'nouvelle') return false;
-      if (!c.date_retrait) return true;
-      return new Date(c.date_retrait) >= todayStart;
-    });
+    // « Nouvelles » = toutes les commandes en statut nouvelle, peu importe la date.
+    // Le commerçant doit acknowledge toute commande non traitée — même une nouvelle
+    // datée d'hier (rupture, retard de traitement…). Ça aligne le bandeau
+    // « X nouvelles commandes en attente » avec le contenu de l'onglet.
+    filtrees = toutesLesCommandes.filter(c => c.statut === 'nouvelle');
   } else if (statutFiltre === 'a_preparer_aujourdhui') {
     filtrees = toutesLesCommandes.filter(c => {
       if (!A_PREPARER_STATUTS.includes(c.statut)) return false;
@@ -2506,6 +2506,18 @@ async function changerStatut(id, nouveauStatut) {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const token = await getValidToken();
     if (!token) return;
+    // Écrit aussi le timestamp de transition correspondant, indispensable
+    // pour : fidélité (fn_fidelite_apres_remise vérifie remise_le),
+    // audit historique par période, restock à l'annulation, factures.
+    const patch = { statut: nouveauStatut };
+    const nowIso = new Date().toISOString();
+    if (nouveauStatut === 'en_preparation' && !cmd.confirmee_le) patch.confirmee_le = nowIso;
+    if (nouveauStatut === 'prete'          && !cmd.prete_le)     patch.prete_le     = nowIso;
+    if (['remise','livree','terminee'].includes(nouveauStatut) && !cmd.remise_le) patch.remise_le = nowIso;
+    if (nouveauStatut === 'annulee'        && !cmd.annulee_le)   patch.annulee_le   = nowIso;
+    // Miroir local pour éviter de re-set en cas d'appels successifs.
+    Object.assign(cmd, patch);
+
     const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?id=eq.' + id, {
       method: 'PATCH',
       headers: {
@@ -2514,13 +2526,14 @@ async function changerStatut(id, nouveauStatut) {
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal',
       },
-      body: JSON.stringify({ statut: nouveauStatut }),
+      body: JSON.stringify(patch),
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);
 
-    // Auto-libération empreinte quand commande terminée (remise / livree / terminee)
-    // Le commerçant n'a plus à la libérer manuellement
-    if ((nouveauStatut === 'remise' || nouveauStatut === 'livree' || nouveauStatut === 'terminee') && cmd.empreinte_status === 'pending') {
+    // Auto-libération empreinte quand la commande sort du circuit :
+    // - terminée (remise / livree / terminee) → le client a récupéré, on libère
+    // - annulée par le commerçant → aucune raison de retenir l'empreinte du client
+    if (['remise','livree','terminee','annulee'].includes(nouveauStatut) && cmd.empreinte_status === 'pending') {
       libererEmpreinteAuto(id);
     }
   } catch (e) {
@@ -4528,6 +4541,14 @@ async function envoyerMessage(type) {
   if (type === 'prete' && commandeContactId) {
     changerStatut(commandeContactId, 'prete');
   }
+  // « SMS Annulation » envoyait juste un SMS et laissait la commande active en base
+  // (donc pas de restock, pas de libération d'empreinte, pas de traçabilité).
+  // On enclenche maintenant l'annulation effective avec confirmation.
+  if (type === 'annulee' && commandeContactId) {
+    if (confirm('Confirmer l\'annulation de cette commande ? Le stock sera restitué et l\'empreinte libérée.')) {
+      changerStatut(commandeContactId, 'annulee');
+    }
+  }
 }
 
 function ouvrirNoShow() {
@@ -4864,6 +4885,11 @@ async function chargerCommandesSupabase(commercantId) {
       adresse: c.adresse_livraison || null,
       date_retrait: c.date_retrait || null,
       created_at: c.created_at || null,
+      confirmee_le: c.confirmee_le || null,
+      prete_le: c.prete_le || null,
+      remise_le: c.remise_le || null,
+      annulee_le: c.annulee_le || null,
+      client_id: c.client_id || null,
       commercant_id: c.commercant_id || null,
       empreinte_status: c.empreinte_status || 'none',
       empreinte_montant_cents: c.empreinte_montant_cents || 0,
@@ -6232,12 +6258,16 @@ async function getValidToken() {
       }
     } catch (e) { console.warn('[refresh-token] échec', e); }
   }
-  // Échec → forcer reconnexion
-  if (typeof afficherToast === 'function') afficherToast('🔒 Session expirée — reconnexion…');
-  setTimeout(() => {
-    localStorage.removeItem('session_commercant');
-    location.reload();
-  }, 1500);
+  // Échec → afficher l'écran de login SANS recharger la page.
+  // Un location.reload() ici surprenait le commerçant à chaque clic ("le dashboard
+  // se refresh dès que je clique quelque part") — en réalité une session expirée
+  // silencieuse. On garde son contexte et on demande juste de se reconnecter.
+  if (typeof afficherToast === 'function') afficherToast('🔒 Session expirée — reconnectez-vous');
+  localStorage.removeItem('session_commercant');
+  const loginEl = document.getElementById('loginScreen');
+  const appEl = document.getElementById('appPrincipal');
+  if (loginEl) loginEl.style.display = 'flex';
+  if (appEl)   appEl.style.display   = 'none';
   return null;
 }
 
