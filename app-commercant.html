@@ -1311,7 +1311,7 @@
       <div class="reg-group">
         <div class="reg-group-titre">💰 Ventes</div>
         <div class="reg-list">
-          <div class="reg-row" onclick="scrollToReg('reg-livraison')">
+          <div class="reg-row" onclick="ouvrirZoneLivraison()">
             <div class="reg-icon" style="background:#5BBE3A;">🚚</div>
             <div class="reg-label">Zone de livraison<div class="reg-sub">Rayon, frais, seuil gratuité</div></div>
             <div class="reg-chevron">›</div>
@@ -7020,6 +7020,20 @@ window.creneauxRetourCalendrier = function() { switchVueCreneaux('calendrier'); 
 window.ouvrirEditeurCreneaux = function() {
   if (typeof allerOnglet === 'function') allerOnglet('creneaux');
   setTimeout(() => switchVueCreneaux('liste'), 200);
+};
+// Raccourci depuis Réglages → Zone de livraison. Le bloc de config
+// (rayon, codes postaux, frais, seuil gratuité) vit dans l'onglet
+// Créneaux → mode édition → onglet Livraison. On y accède en 1 clic.
+window.ouvrirZoneLivraison = function() {
+  if (typeof allerOnglet === 'function') allerOnglet('creneaux');
+  setTimeout(() => {
+    switchVueCreneaux('liste');
+    switchTypeCreneaux('livraison');
+    setTimeout(() => {
+      const el = document.getElementById('zoneLivraisonSection');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+  }, 200);
 };
 
 let creneauxAllByType = { retrait: [], livraison: [], reservation: [] };
