@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog Marchéo : Manger Local, Digitaliser son Commerce de Bouche, Marchés en France</title>
-<meta name="description" content="Conseils, guides et inspirations pour les commerçants de marché et les amateurs de produits locaux. Comment digitaliser son étal, fidéliser, choisir son producteur, top des marchés en France.">
+<title>Blog Marchéo : click & collect, commande en ligne et livraison pour les commerces de bouche</title>
+<meta name="description" content="Guides pratiques pour les commerçants de bouche : créer son site de click & collect, éviter les no-shows avec l'empreinte bancaire, organiser sa livraison locale, se passer des commissions des plateformes, prix et comparatifs.">
 <meta name="keywords" content="manger local, digitaliser commerce de bouche, application commerçant marché, fidéliser clients marché local, marché horaires, food-truck, producteurs locaux vente directe, panier primeur, alerter clients absence marché">
 <link rel="canonical" href="https://marchéo.fr/blog">
-<meta property="og:title" content="Blog Marchéo · Manger Local et Digitaliser son commerce">
-<meta property="og:description" content="Le média des commerçants de marché et amateurs de produits locaux.">
+<meta property="og:title" content="Blog Marchéo · Guides pour les commerces de bouche">
+<meta property="og:description" content="Click & collect, empreinte bancaire, livraison locale, prix : des guides concrets pour les artisans de bouche.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://marchéo.fr/blog">
 <meta property="og:image" content="https://marchéo.fr/assets/brand/logo.svg">
@@ -22,7 +22,7 @@
   "@type": "Blog",
   "name": "Blog Marchéo",
   "url": "https://marchéo.fr/blog",
-  "description": "Conseils et guides pour les commerçants de marché et les amateurs de manger local.",
+  "description": "Guides concrets pour les commerçants de bouche : click & collect, empreinte bancaire, livraison locale, prix et comparatifs.",
   "publisher": {
     "@type": "Organization",
     "name": "Marchéo",
@@ -130,6 +130,10 @@
     text-align: center; font-size: 12.5px;
   }
   footer a { color: rgba(255,255,255,.85); }
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid #E5E2D8;border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:#5BBE3A;box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:#0F2C52;line-height:1.3}.tuile p{margin:0;font-size:14px;color:#5B6472}.tuile .d{font-size:12px;color:#5B6472}
 </style>
 </head>
 <body>
@@ -145,180 +149,15 @@
 </header>
 
 <section class="hero">
-  <h1>Le média du Manger Local</h1>
-  <p>Conseils, guides et inspirations pour les commerçants de marché et les amateurs de produits locaux. Découvrez comment digitaliser votre commerce, fidéliser vos clients, et trouver les meilleurs producteurs près de chez vous.</p>
+  <h1>Guides pour les commerces de bouche</h1>
+  <p>Créer son site de click &amp; collect, éviter les commandes non retirées, organiser sa livraison dans le quartier, se passer des commissions des plateformes : des guides écrits pour les boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes et restaurateurs.</p>
 </section>
 
 <div class="container">
-  <div class="categories">
-    <button class="cat-pill actif" onclick="filtrer('tous', this)">Tous</button>
-    <button class="cat-pill" onclick="filtrer('conseil', this)">💡 Conseils commerçants</button>
-    <button class="cat-pill" onclick="filtrer('marche', this)">🛒 Marchés locaux</button>
-    <button class="cat-pill" onclick="filtrer('foodtruck', this)">🚚 Food-trucks</button>
-    <button class="cat-pill" onclick="filtrer('resto', this)">🍴 Restauration</button>
-    <button class="cat-pill" onclick="filtrer('faq', this)">❓ FAQ commerçants</button>
-  </div>
 
-  <div class="articles" id="articlesList">
-
-    <a href="/blog/digitaliser-commerce-bouche.html" class="article-link">
-      <div class="article" data-cat="conseil">
-        <div class="article-image cat-conseil">📱</div>
-        <div class="article-content">
-          <div class="article-cat">Conseils</div>
-          <h2 class="article-titre">Comment digitaliser son commerce de bouche en 2026 ?</h2>
-          <p class="article-extrait">Le guide complet pour passer du papier à la commande en ligne sans perdre votre âme artisanale. Outils, méthodes, retours d'expérience.</p>
-          <div class="article-meta">8 min de lecture · Conseils commerçants</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/application-commercant-marche.html" class="article-link">
-      <div class="article" data-cat="conseil">
-        <div class="article-image cat-conseil">🛍️</div>
-        <div class="article-content">
-          <div class="article-cat">Conseils</div>
-          <h2 class="article-titre">L'application pour commerçant de marché : ce qu'elle doit faire</h2>
-          <p class="article-extrait">Caisse, click & collect, fidélité, alerte d'absence : voici les fonctionnalités indispensables d'une bonne app pour les commerces de marché.</p>
-          <div class="article-meta">6 min · Outils &amp; logiciels</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/logiciel-gestion-food-truck.html" class="article-link">
-      <div class="article" data-cat="foodtruck">
-        <div class="article-image cat-foodtruck">🚚</div>
-        <div class="article-content">
-          <div class="article-cat">Food-truck</div>
-          <h2 class="article-titre">Logiciel de gestion food-truck : comparatif 2026</h2>
-          <p class="article-extrait">Réservation de table itinérante, planning des emplacements, fidélisation : on compare les meilleurs logiciels dédiés aux food-trucks.</p>
-          <div class="article-meta">10 min · Outils food-truck</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/fideliser-clients-marche-local.html" class="article-link">
-      <div class="article" data-cat="conseil">
-        <div class="article-image cat-conseil">💚</div>
-        <div class="article-content">
-          <div class="article-cat">Fidélisation</div>
-          <h2 class="article-titre">Comment fidéliser ses clients sur un marché local ?</h2>
-          <p class="article-extrait">5 stratégies concrètes pour transformer un client de passage en ambassadeur. SMS, push, programme fidélité, segmentation.</p>
-          <div class="article-meta">7 min · Marketing local</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/alerter-clients-absence-marche.html" class="article-link">
-      <div class="article" data-cat="conseil">
-        <div class="article-image cat-conseil">🔔</div>
-        <div class="article-content">
-          <div class="article-cat">Astuces</div>
-          <h2 class="article-titre">Alerter ses clients en cas d'absence sur le marché : le guide</h2>
-          <p class="article-extrait">Vous êtes malade ou en congés ? Comment prévenir vos clients en quelques secondes pour ne pas les laisser faire le déplacement pour rien.</p>
-          <div class="article-meta">4 min · Communication client</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/top-marches-france.html" class="article-link">
-      <div class="article" data-cat="marche">
-        <div class="article-image cat-marche">🛒</div>
-        <div class="article-content">
-          <div class="article-cat">Marchés</div>
-          <h2 class="article-titre">Top des marchés à visiter en France : notre sélection 2026</h2>
-          <p class="article-extrait">De Sanary-sur-Mer à Sarlat en passant par Aligre à Paris : les marchés les plus authentiques de France.</p>
-          <div class="article-meta">12 min · Voyage &amp; gastronomie</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/producteurs-locaux-vente-directe.html" class="article-link">
-      <div class="article" data-cat="marche">
-        <div class="article-image cat-marche">🌿</div>
-        <div class="article-content">
-          <div class="article-cat">Producteurs</div>
-          <h2 class="article-titre">Producteurs locaux et vente directe : où en sommes-nous en 2026 ?</h2>
-          <p class="article-extrait">Tour d'horizon des circuits courts, AMAP et plateformes qui mettent en relation producteurs et consommateurs.</p>
-          <div class="article-meta">9 min · Manger local</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/commander-panier-primeur.html" class="article-link">
-      <div class="article" data-cat="marche">
-        <div class="article-image cat-marche">🥕</div>
-        <div class="article-content">
-          <div class="article-cat">Click &amp; collect</div>
-          <h2 class="article-titre">Commander un panier de primeur en ligne : mode d'emploi</h2>
-          <p class="article-extrait">Comment réserver vos fruits et légumes de saison sans faire la queue. Étape par étape.</p>
-          <div class="article-meta">5 min · Guide consommateur</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/ou-trouver-food-truck.html" class="article-link">
-      <div class="article" data-cat="foodtruck">
-        <div class="article-image cat-foodtruck">🍔</div>
-        <div class="article-content">
-          <div class="article-cat">Food-truck</div>
-          <h2 class="article-titre">Où trouver un food-truck près de chez moi ?</h2>
-          <p class="article-extrait">L'application qui géolocalise les food-trucks, leurs horaires et leurs menus du jour, en temps réel.</p>
-          <div class="article-meta">4 min · Découverte</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/meilleur-boucher-marche.html" class="article-link">
-      <div class="article" data-cat="marche">
-        <div class="article-image cat-marche">🥩</div>
-        <div class="article-content">
-          <div class="article-cat">Bonnes adresses</div>
-          <h2 class="article-titre">Meilleur boucher du marché : comment le reconnaître ?</h2>
-          <p class="article-extrait">Origine, traçabilité, conseil, vitrine : 7 critères pour identifier un boucher artisan de qualité.</p>
-          <div class="article-meta">6 min · Guide consommateur</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/restaurant-reservation-en-ligne.html" class="article-link">
-      <div class="article" data-cat="resto">
-        <div class="article-image cat-resto">🍴</div>
-        <div class="article-content">
-          <div class="article-cat">Restauration</div>
-          <h2 class="article-titre">Pourquoi votre restaurant doit accepter les réservations en ligne</h2>
-          <p class="article-extrait">Empreinte bancaire anti no-show, automatisation, données clients : ce que vous gagnez à digitaliser vos résas.</p>
-          <div class="article-meta">7 min · Restauration</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/blog/pizzeria-click-collect.html" class="article-link">
-      <div class="article" data-cat="resto">
-        <div class="article-image cat-resto">🍕</div>
-        <div class="article-content">
-          <div class="article-cat">Pizzeria</div>
-          <h2 class="article-titre">Pizzeria : pourquoi le click &amp; collect change tout</h2>
-          <p class="article-extrait">Augmentez votre panier moyen de 30% et libérez votre téléphone aux heures de pointe.</p>
-          <div class="article-meta">5 min · Restauration</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/faq" class="article-link">
-      <div class="article" data-cat="faq">
-        <div class="article-image cat-faq">❓</div>
-        <div class="article-content">
-          <div class="article-cat">FAQ</div>
-          <h2 class="article-titre">Toutes les questions des commerçants &amp; clients</h2>
-          <p class="article-extrait">Tarifs, fonctionnalités, RGPD, intégrations : retrouvez nos réponses à plus de 30 questions fréquentes.</p>
-          <div class="article-meta">FAQ Marchéo</div>
-        </div>
-      </div>
-    </a>
-
-  </div>
-</div>
+  <!-- SEO:ARTICLES -->
+<div class="cards"><a class="tuile" href="/blog/comment-creer-un-site-click-and-collect-pour-son-commerce"><span class="e">🧭</span><h3>Comment créer un site de click &amp; collect pour son commerce en 2026</h3><p>Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine.</p><span class="d">05/09/2026 · 5 min</span></a><a class="tuile" href="/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo"><span class="e">⚖️</span><h3>Click &amp; collect sans commission : l'alternative à Uber Eats et Deliveroo pour les commerçants</h3><p>Ce que coûtent vraiment les plateformes de livraison à une pizzeria, un restaurant ou un traiteur, et comment garder ses habitués sur sa propre boutique en ligne sans commission, tout en gardant les plateformes pour les nouveaux clients.</p><span class="d">04/09/2026 · 4 min</span></a><a class="tuile" href="/blog/empreinte-bancaire-no-show-commerce-restaurant"><span class="e">🛡️</span><h3>Empreinte bancaire et no-show : comment protéger ses commandes et ses réservations</h3><p>Gâteau jamais récupéré, plateau de fruits de mer oublié, table de 6 vide un samedi soir : ce que coûtent les no-shows à un commerçant, comment fonctionne l'empreinte bancaire, ce que dit la loi, et comment la régler sans faire fuir les clients.</p><span class="d">03/09/2026 · 4 min</span></a><a class="tuile" href="/blog/combien-coute-un-site-de-click-and-collect"><span class="e">💶</span><h3>Combien coûte un site de click &amp; collect pour un commerce ? Prix réels en 2026</h3><p>Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés.</p><span class="d">02/09/2026 · 5 min</span></a><a class="tuile" href="/blog/digitaliser-commerce-bouche"><span class="e">📱</span><h3>Digitaliser son commerce de bouche en 2026 : par où commencer, quoi éviter</h3><p>Fiche Google, Instagram, commande en ligne, SMS aux clients, livraison locale : les cinq étapes dans le bon ordre pour un boulanger, un boucher, un primeur ou un fromager, avec ce que chacune rapporte et ce qui ne sert à rien.</p><span class="d">01/09/2026 · 4 min</span></a><a class="tuile" href="/blog/site-internet-boulangerie-commandes-en-ligne"><span class="e">🥖</span><h3>Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne</h3><p>Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pains spéciaux à l'avance, créneaux de retrait, protection contre les gâteaux non récupérés, photos, fiche Google. Avec les prix et un plan de mise en place en une semaine.</p><span class="d">30/08/2026 · 3 min</span></a><a class="tuile" href="/blog/livraison-locale-commercant-comment-organiser"><span class="e">🚚</span><h3>Livraison locale pour un commerçant : comment l'organiser sans plateforme et sans y perdre</h3><p>Zone, créneaux, minimum de commande, frais, tournée : la méthode pour qu'un primeur, un traiteur, un fleuriste ou un fromager livre ses clients dans le quartier, à ses conditions, sans commission et sans se faire déborder.</p><span class="d">28/08/2026 · 4 min</span></a><a class="tuile" href="/blog/logiciel-click-and-collect-comparatif-2026"><span class="e">🔍</span><h3>Logiciel de click &amp; collect : comparatif des solutions pour commerçants en 2026</h3><p>Plateformes, constructeurs de sites, outils de restauration, solutions spécialisées commerces de bouche : les critères qui comptent vraiment pour un artisan, un tableau comparatif honnête et la grille pour choisir en dix minutes.</p><span class="d">26/08/2026 · 4 min</span></a></div>
+<!-- /SEO:ARTICLES -->
 
 <section class="cta-section">
   <h2>Prêt à digitaliser votre commerce ?</h2>
@@ -331,14 +170,6 @@
 </footer>
 
 <script>
-function filtrer(cat, btn) {
-  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('actif'));
-  btn.classList.add('actif');
-  document.querySelectorAll('.article').forEach(a => {
-    if (cat === 'tous' || a.dataset.cat === cat) a.parentElement.style.display = '';
-    else a.parentElement.style.display = 'none';
-  });
-}
 
 // Articles à venir : tant que /blog/*.html n'est pas publié, on désactive le clic
 // pour éviter les 404 visibles. Réactivation = créer le fichier ciblé.

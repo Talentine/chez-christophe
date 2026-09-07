@@ -3,11 +3,20 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/landing.html", "destination": "/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/blog/:slug.html", "destination": "/blog/:slug", "permanent": true },
+    { "source": "/solutions/:metier.html", "destination": "/solutions/:metier", "permanent": true },
+    { "source": "/solutions/index", "destination": "/solutions/", "permanent": true },
+    { "source": "/a-propos.html", "destination": "/a-propos", "permanent": true }
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/", "destination": "/landing.html" },
+    { "source": "/a-propos", "destination": "/a-propos.html" },
+    { "source": "/solutions", "destination": "/solutions/index.html" },
+    { "source": "/solutions/", "destination": "/solutions/index.html" },
+    { "source": "/solutions/:metier", "destination": "/solutions/:metier.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     { "source": "/inscription", "destination": "/inscription.html" },
     { "source": "/app", "destination": "/app-commercant.html" },
     { "source": "/admin", "destination": "/admin.html" },

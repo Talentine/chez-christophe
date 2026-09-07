@@ -7,10 +7,17 @@
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
+import pagesSeo from '../seo/urls.js';   // pages métier, articles, À propos (générées par seo/build.py)
+
 const HOST = 'https://marchéo.fr';
 const PAGES_STATIQUES = [
   { loc: '/',                    priority: '1.0', changefreq: 'weekly'  },
   { loc: '/inscription',         priority: '0.9', changefreq: 'monthly' },
+  ...pagesSeo.map(loc => ({
+    loc,
+    priority: loc.startsWith('/solutions') ? '0.8' : loc === '/a-propos' ? '0.5' : '0.7',
+    changefreq: loc.startsWith('/blog/') ? 'monthly' : 'weekly',
+  })),
   { loc: '/blog',                priority: '0.7', changefreq: 'weekly'  },
   { loc: '/faq',                 priority: '0.6', changefreq: 'monthly' },
   { loc: '/ambassadeur',         priority: '0.5', changefreq: 'monthly' },

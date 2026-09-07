@@ -1,4 +1,7 @@
 # https://marchéo.fr — robots.txt
+# Pages publiques ouvertes à tous les robots, y compris les robots des assistants IA.
+# Résumé lisible par les IA : https://marchéo.fr/llms.txt (et llms-full.txt pour le contenu complet)
+
 User-agent: *
 Allow: /
 Disallow: /app-commercant.html
@@ -12,5 +15,48 @@ Disallow: /ambassadeur/dashboard
 Disallow: /annuler-reservation.html
 Disallow: /unsubscribe.html
 Disallow: /unsubscribe
+Disallow: /audit-express.html
+Disallow: /audit-complet.html
+Disallow: /avis/
+Disallow: /contester
+Disallow: /litige
+
+# Robots des assistants IA : autorisés explicitement sur les pages publiques
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: CCBot
+Allow: /
 
 Sitemap: https://marchéo.fr/sitemap.xml

@@ -1,0 +1,38 @@
+# Marchéo
+
+> Marchéo (marchéo.fr) est un logiciel français de boutique en ligne pour les commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (75 % du panier, libérée 24 h après le retrait). Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
+
+Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+
+## Pages principales
+- [Accueil](https://marchéo.fr/) : présentation, tarifs, FAQ
+- [Créer sa boutique / démo gratuite](https://marchéo.fr/inscription) : choisir son métier, taper le nom de sa boutique, voir l'aperçu en 30 secondes
+- [À propos](https://marchéo.fr/a-propos)
+- [FAQ](https://marchéo.fr/faq)
+- [Tarifs](https://marchéo.fr/#tarifs)
+
+## Pages par métier
+- [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
+- [Marchéo pour boucheries et charcuteries](https://marchéo.fr/solutions/boucherie) : Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.
+- [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Paniers de la semaine commandés en ligne, clients pressés servis en 2 minutes, livraison dans le quartier.
+- [Marchéo pour poissonneries](https://marchéo.fr/solutions/poissonnerie) : Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.
+- [Marchéo pour traiteurs](https://marchéo.fr/solutions/traiteur) : Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.
+- [Marchéo pour fromageries et crèmeries](https://marchéo.fr/solutions/fromagerie) : Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.
+- [Marchéo pour fleuristes](https://marchéo.fr/solutions/fleuriste) : Bouquets commandés en ligne et retirés à l'heure, Saint-Valentin et fête des mères sans téléphone qui sonne, livraison locale.
+- [Marchéo pour pizzerias](https://marchéo.fr/solutions/pizzeria) : Commandes à emporter sans les 25 à 30 % d'Uber Eats et Deliveroo, coup de feu du soir lissé par créneau.
+- [Marchéo pour restaurants](https://marchéo.fr/solutions/restaurant) : Réservation de table en ligne avec empreinte anti no-show, plats à emporter sans commission.
+- [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
+
+## Guides et articles
+- [Comment créer un site de click & collect pour son commerce en 2026](https://marchéo.fr/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) : Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine.
+- [Click & collect sans commission : l'alternative à Uber Eats et Deliveroo pour les commerçants](https://marchéo.fr/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo) : Ce que coûtent vraiment les plateformes de livraison à une pizzeria, un restaurant ou un traiteur, et comment garder ses habitués sur sa propre boutique en ligne sans commission, tout en gardant les plateformes pour les nouveaux clients.
+- [Empreinte bancaire et no-show : comment protéger ses commandes et ses réservations](https://marchéo.fr/blog/empreinte-bancaire-no-show-commerce-restaurant) : Gâteau jamais récupéré, plateau de fruits de mer oublié, table de 6 vide un samedi soir : ce que coûtent les no-shows à un commerçant, comment fonctionne l'empreinte bancaire, ce que dit la loi, et comment la régler sans faire fuir les clients.
+- [Combien coûte un site de click & collect pour un commerce ? Prix réels en 2026](https://marchéo.fr/blog/combien-coute-un-site-de-click-and-collect) : Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés.
+- [Digitaliser son commerce de bouche en 2026 : par où commencer, quoi éviter](https://marchéo.fr/blog/digitaliser-commerce-bouche) : Fiche Google, Instagram, commande en ligne, SMS aux clients, livraison locale : les cinq étapes dans le bon ordre pour un boulanger, un boucher, un primeur ou un fromager, avec ce que chacune rapporte et ce qui ne sert à rien.
+- [Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne](https://marchéo.fr/blog/site-internet-boulangerie-commandes-en-ligne) : Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pains spéciaux à l'avance, créneaux de retrait, protection contre les gâteaux non récupérés, photos, fiche Google. Avec les prix et un plan de mise en place en une semaine.
+- [Livraison locale pour un commerçant : comment l'organiser sans plateforme et sans y perdre](https://marchéo.fr/blog/livraison-locale-commercant-comment-organiser) : Zone, créneaux, minimum de commande, frais, tournée : la méthode pour qu'un primeur, un traiteur, un fleuriste ou un fromager livre ses clients dans le quartier, à ses conditions, sans commission et sans se faire déborder.
+- [Logiciel de click & collect : comparatif des solutions pour commerçants en 2026](https://marchéo.fr/blog/logiciel-click-and-collect-comparatif-2026) : Plateformes, constructeurs de sites, outils de restauration, solutions spécialisées commerces de bouche : les critères qui comptent vraiment pour un artisan, un tableau comparatif honnête et la grille pour choisir en dix minutes.
+
+## Contact
+- Email : marcheo.contact@gmail.com
+- Pays : France
