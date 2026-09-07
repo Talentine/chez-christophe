@@ -2,6 +2,8 @@
 title: "Empreinte bancaire et no-show : comment protéger ses commandes et ses réservations"
 titre_court: "Empreinte bancaire contre les no-shows"
 description: "Gâteau jamais récupéré, plateau de fruits de mer oublié, table de 6 vide un samedi soir : ce que coûtent les no-shows à un commerçant, comment fonctionne l'empreinte bancaire, ce que dit la loi, et comment la régler sans faire fuir les clients."
+meta_title: "Empreinte bancaire et no-show : le guide"
+meta_description: "Comment marche l'empreinte bancaire contre les no-shows, ce que dit la loi, quel montant retenir et comment l'annoncer sans faire fuir vos clients."
 date: 2026-09-03
 rubrique: Guide
 emoji: 🛡️

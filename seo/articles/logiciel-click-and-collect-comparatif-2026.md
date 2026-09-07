@@ -2,6 +2,8 @@
 title: "Logiciel de click & collect : comparatif des solutions pour commerçants en 2026"
 titre_court: "Comparatif des logiciels de click & collect"
 description: "Plateformes, constructeurs de sites, outils de restauration, solutions spécialisées commerces de bouche : les critères qui comptent vraiment pour un artisan, un tableau comparatif honnête et la grille pour choisir en dix minutes."
+meta_title: "Comparatif des logiciels de click & collect 2026"
+meta_description: "Quel logiciel de click & collect choisir en 2026 : commissions, abonnement, fonctions utiles à un commerce de bouche. Comparatif honnête."
 date: 2026-08-26
 rubrique: Comparatif
 emoji: 🔍

@@ -2,6 +2,8 @@
 title: "Combien coûte un site de click & collect pour un commerce ? Prix réels en 2026"
 titre_court: "Prix d'un site de click & collect"
 description: "Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés."
+meta_title: "Prix d'un site de click & collect en 2026"
+meta_description: "Ce que coûte vraiment un site de click & collect : abonnement, installation, frais bancaires et commissions cachées. Les prix réels en 2026."
 date: 2026-09-02
 rubrique: Prix
 emoji: 💶

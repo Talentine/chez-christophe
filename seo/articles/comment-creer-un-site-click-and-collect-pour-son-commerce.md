@@ -2,6 +2,8 @@
 title: "Comment créer un site de click & collect pour son commerce en 2026"
 titre_court: "Créer un site de click & collect"
 description: "Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine."
+meta_title: "Créer un site de click & collect pour son commerce"
+meta_description: "Les étapes pour créer un site de click & collect : catalogue, créneaux de retrait, paiement, mise en ligne. Guide pratique pour un commerçant."
 date: 2026-09-05
 rubrique: Guide
 emoji: 🧭

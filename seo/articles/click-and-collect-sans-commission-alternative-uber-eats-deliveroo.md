@@ -2,6 +2,8 @@
 title: "Click & collect sans commission : l'alternative à Uber Eats et Deliveroo pour les commerçants"
 titre_court: "Sans commission : l'alternative aux plateformes"
 description: "Ce que coûtent vraiment les plateformes de livraison à une pizzeria, un restaurant ou un traiteur, et comment garder ses habitués sur sa propre boutique en ligne sans commission, tout en gardant les plateformes pour les nouveaux clients."
+meta_title: "Click & collect sans commission : les alternatives"
+meta_description: "Uber Eats et Deliveroo prennent 14 à 30 % par commande. Comment vendre en ligne sans commission, avec un abonnement fixe et 100 % de vos ventes."
 date: 2026-09-04
 rubrique: Comparatif
 emoji: ⚖️

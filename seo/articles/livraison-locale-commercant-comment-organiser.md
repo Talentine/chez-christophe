@@ -2,6 +2,8 @@
 title: "Livraison locale pour un commerçant : comment l'organiser sans plateforme et sans y perdre"
 titre_court: "Organiser sa livraison locale"
 description: "Zone, créneaux, minimum de commande, frais, tournée : la méthode pour qu'un primeur, un traiteur, un fleuriste ou un fromager livre ses clients dans le quartier, à ses conditions, sans commission et sans se faire déborder."
+meta_title: "Organiser sa livraison locale de commerçant"
+meta_description: "Zone, créneaux, minimum de commande, frais et tournée : comment organiser soi-même sa livraison locale sans plateforme et sans y perdre d'argent."
 date: 2026-08-28
 rubrique: Guide
 emoji: 🚚

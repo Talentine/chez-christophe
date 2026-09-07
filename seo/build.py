@@ -185,6 +185,26 @@ def org_ld() -> dict:
             "founder": {"@type": "Person", "name": FONDATEUR}, "email": CONTACT, "areaServed": "FR"}
 
 
+SUFFIXE_TITRE = f" · {BRAND}"
+
+
+def seo_titre(meta: dict, defaut: str) -> str:
+    """Balise <title> : 40 à 70 caractères, marque comprise. `meta_title` du front matter sinon
+    le titre, avec repli sur `titre_court` quand le titre complet dépasse ce que Google affiche."""
+    t = meta.get("meta_title")
+    if not t:
+        t = defaut
+        if len(t) + len(SUFFIXE_TITRE) > 70 and meta.get("titre_court"):
+            t = meta["titre_court"]
+    return t if t.endswith(SUFFIXE_TITRE) else t + SUFFIXE_TITRE
+
+
+def seo_desc(meta: dict) -> str:
+    """Meta description : 120 à 160 caractères. `meta_description` sinon la description longue
+    (qui sert aussi de chapô et de résumé sur les tuiles)."""
+    return meta.get("meta_description") or meta["description"]
+
+
 def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: str, eyebrow: str, crumbs: list[tuple[str, str]],
          ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article") -> str:
     ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
@@ -265,7 +285,7 @@ def build_articles(arts: list[dict], metiers: list[dict]) -> list[str]:
             "keywords": ", ".join(a.get("keywords", [])), "articleSection": a.get("rubrique", "Guides"),
         }, faq_ld(a["faq"])]
         d = date.fromisoformat(a["date"]).strftime("%d/%m/%Y")
-        html = page(titre=a["title"] + " · Marchéo", description=a["description"], path=path, h1=a["title"], lead=a["description"],
+        html = page(titre=seo_titre(a, a["title"]), description=seo_desc(a), path=path, h1=a["title"], lead=a["description"],
                     corps=a["body_html"] + faq_html(a["faq"]), eyebrow=a.get("rubrique", "Guide"),
                     crumbs=[("Accueil", "/"), ("Blog", "/blog"), (a.get("titre_court") or a["title"], path)],
                     ld=ld, aside=aside_block(liens), meta_line=f"Par {FONDATEUR} · {d} · {a['minutes']} min de lecture")
@@ -309,7 +329,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
             "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR", "lowPrice": "19", "highPrice": "59", "offerCount": "3",
                        "description": "Abonnement mensuel sans engagement, 0 % de commission sur les ventes"},
         }, faq_ld(m.get("faq", []))]
-        html = page(titre=m["title"], description=m["description"], path=path, h1=m["h1"], lead=m["lead"],
+        html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=m["h1"], lead=m["lead"],
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
                     crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
                     ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website",
@@ -319,8 +339,8 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
     # index
     tuiles = "".join(f'<a class="tuile" href="/solutions/{m["slug"]}"><span class="e">{m["emoji"]}</span><h3>{esc(m["label"])}</h3><p>{esc(m["accroche"])}</p></a>' for m in metiers)
     ld = [{"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{HOST}/solutions/{m['slug']}", "name": f"Marchéo pour {m['pluriel']}"} for i, m in enumerate(metiers)]}]
-    html = page(titre="Click & collect et livraison par métier : boulangerie, boucherie, primeur, restaurant… · Marchéo",
-                description="Marchéo s'adapte à chaque commerce de bouche : catalogue pré-rempli, thème et fonctionnalités propres à votre métier. Choisissez le vôtre et voyez votre boutique en 30 secondes.",
+    html = page(titre="Click & collect et livraison par métier · Marchéo",
+                description="Une boutique en ligne par métier de bouche : catalogue pré-rempli, thème et options adaptés. Choisissez le vôtre et voyez votre démo gratuite.",
                 path="/solutions", h1="Une boutique en ligne pensée pour votre métier", lead="Dix métiers, dix catalogues déjà remplis, dix thèmes. Le click & collect d'un boucher n'est pas celui d'un fleuriste : Marchéo le sait.",
                 corps=f'<div class="cards">{tuiles}</div>' + md_to_html(SOLUTIONS_INTRO), eyebrow="Par métier", crumbs=[("Accueil", "/"), ("Par métier", "/solutions")],
                 ld=ld, aside=aside_block([(a.get("titre_court") or a["title"], f"/blog/{a['slug']}") for a in arts[:6]]), og_type="website")
@@ -346,7 +366,7 @@ def build_pages(arts: list[dict]) -> list[str]:
         path = "/" + f.stem
         ld = [{"@type": "AboutPage" if f.stem == "a-propos" else "WebPage", "name": meta["title"], "url": HOST + path, "description": meta["description"],
                "inLanguage": "fr-FR", "about": {"@id": f"{HOST}/#org"}}, faq_ld([x for x in meta.get("faq", []) if isinstance(x, dict)])]
-        html = page(titre=meta["title"] + " · Marchéo", description=meta["description"], path=path, h1=meta["h1"], lead=meta["lead"],
+        html = page(titre=seo_titre(meta, meta["title"]), description=seo_desc(meta), path=path, h1=meta["h1"], lead=meta["lead"],
                     corps=md_to_html(body) + faq_html([x for x in meta.get("faq", []) if isinstance(x, dict)]), eyebrow=meta.get("eyebrow", BRAND),
                     crumbs=[("Accueil", "/"), (meta["h1"], path)], ld=ld,
                     aside=aside_block([(a.get("titre_court") or a["title"], f"/blog/{a['slug']}") for a in arts[:5]]), og_type="website")

@@ -2,6 +2,8 @@
 title: "Digitaliser son commerce de bouche en 2026 : par où commencer, quoi éviter"
 titre_court: "Digitaliser son commerce de bouche"
 description: "Fiche Google, Instagram, commande en ligne, SMS aux clients, livraison locale : les cinq étapes dans le bon ordre pour un boulanger, un boucher, un primeur ou un fromager, avec ce que chacune rapporte et ce qui ne sert à rien."
+meta_title: "Digitaliser son commerce de bouche : par où commencer"
+meta_description: "Par quoi commencer pour vendre en ligne quand on est boulanger, boucher ou primeur, ce qui rapporte vite et les erreurs qui coûtent cher."
 date: 2026-09-01
 rubrique: Guide
 emoji: 📱

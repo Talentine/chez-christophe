@@ -35,7 +35,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour boulangerie et pâtisserie",
+    "meta_description": "Faites commander pains, gâteaux et brioches en ligne, avec créneaux de retrait et acomptes. 0 % de commission, dès 19 € par mois, sans engagement."
   },
   {
     "slug": "boucherie",
@@ -69,7 +71,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour boucherie et charcuterie",
+    "meta_description": "Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneaux. 0 % de commission, dès 19 € par mois."
   },
   {
     "slug": "primeur",
@@ -99,7 +103,9 @@
         "q": "Est-ce que ça marche pour la vente à la ferme ?",
         "r": "Oui. Les maraîchers utilisent la boutique pour prendre les commandes à l'avance et les faire retirer à la ferme, au marché ou dans un point de dépôt, ou pour organiser une tournée de livraison."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour primeur et maraîcher",
+    "meta_description": "Paniers de la semaine commandés en ligne, vente au poids, livraison dans votre quartier. 0 % de commission, dès 19 € par mois, sans engagement."
   },
   {
     "slug": "poissonnerie",
@@ -129,7 +135,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour poissonnerie",
+    "meta_description": "Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages annoncés le matin. 0 % de commission, dès 19 € par mois, sans engagement."
   },
   {
     "slug": "traiteur",
@@ -159,7 +167,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Click & collect et commandes pour traiteur",
+    "meta_description": "Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits et livraison locale. 0 % de commission, dès 19 € par mois."
   },
   {
     "slug": "fromagerie",
@@ -189,7 +199,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour fromagerie et crémerie",
+    "meta_description": "Plateaux sur mesure et commandes de fêtes en ligne, vente au poids, retraits par créneaux. 0 % de commission, dès 19 € par mois, sans engagement."
   },
   {
     "slug": "fleuriste",
@@ -215,7 +227,9 @@
         "q": "Comment gérer la Saint-Valentin sans être débordé ?",
         "r": "Ouvrez des créneaux de retrait et de livraison avec une capacité maximale par créneau. Quand le créneau est plein, le client voit le suivant. Vous savez le 13 au soir exactement ce que vous composez le 14."
       }
-    ]
+    ],
+    "meta_title": "Click & collect pour fleuriste",
+    "meta_description": "Bouquets commandés en ligne et retirés à l'heure, Saint-Valentin et fête des mères sans téléphone qui sonne. 0 % de commission, dès 19 € par mois."
   },
   {
     "slug": "pizzeria",
@@ -245,7 +259,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Commande en ligne pour pizzeria, sans commission",
+    "meta_description": "Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, dès 19 € par mois."
   },
   {
     "slug": "restaurant",
@@ -275,7 +291,9 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Réservation et commande en ligne pour restaurant",
+    "meta_description": "Réservation de table avec empreinte anti no-show et plats à emporter sans commission. Dès 19 € par mois, sans engagement, 0 % sur vos ventes."
   },
   {
     "slug": "fastfood",
@@ -305,6 +323,8 @@
         "q": "Marchéo livre-t-il les commandes ?",
         "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
       }
-    ]
+    ],
+    "meta_title": "Commande en ligne pour fast-food et food-truck",
+    "meta_description": "Commandes en ligne sans commission, menu du jour, clients prévenus par SMS quand c'est prêt. Dès 19 € par mois, sans engagement, 0 % sur vos ventes."
   }
 ]

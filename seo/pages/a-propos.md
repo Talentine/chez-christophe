@@ -1,6 +1,8 @@
 ---
 title: "À propos de Marchéo : la boutique en ligne des commerces de bouche"
 description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les artisans de bouche. Fondé par Paul Merieult. 0 % de commission, abonnement de 19 à 59 € par mois, données hébergées en Europe."
+meta_title: "À propos de Marchéo, logiciel des commerces de bouche"
+meta_description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, dès 19 € par mois."
 h1: "Marchéo, c'est quoi ?"
 lead: "Marchéo est un logiciel français qui donne à chaque commerce de bouche sa boutique en ligne : les clients commandent depuis leur téléphone en 30 secondes et viennent retirer à l'heure choisie, ou se font livrer dans le quartier. Sans commission."
 eyebrow: "À propos"

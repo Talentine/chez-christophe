@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/precommandes-fetes-noel-commerce-bouche",
   "/blog/comment-creer-un-site-click-and-collect-pour-son-commerce",
   "/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo",
   "/blog/empreinte-bancaire-no-show-commerce-restaurant",
