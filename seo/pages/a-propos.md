@@ -11,6 +11,8 @@ faq:
     r: "Non. Le commerçant paie un abonnement fixe de 19 à 59 € par mois selon l'offre, sans engagement, et garde 100 % de ses ventes. L'argent des commandes payées en ligne arrive directement sur son compte via Stripe."
   - q: "Où sont hébergées les données ?"
     r: "En Europe, chez des hébergeurs conformes au RGPD. Les données des clients d'un commerçant lui appartiennent et sont exportables à tout moment."
+  - q: "Marchéo livre-t-il les commandes ?"
+    r: "Non. Marchéo ne livre pas et n'a pas de coursiers. Il fournit l'outil qui permet au commerçant de mettre en place son propre système de livraison : zone, créneaux, minimum de commande, frais, tournée organisée par créneau avec les adresses et l'itinéraire. La livraison est faite par le commerçant ou son livreur, sans commission."
   - q: "Pour quels commerces Marchéo est-il fait ?"
     r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
 ---
@@ -33,7 +35,7 @@ faq:
 
 ## Ce que Marchéo ne fait pas
 
-Marchéo ne prend **aucune commission** sur les ventes et n'a pas de coursiers : la livraison est faite par le commerçant, à ses conditions. Marchéo n'est pas une place de marché : chaque boutique est celle du commerçant, avec ses clients.
+Marchéo ne prend **aucune commission** sur les ventes. **Marchéo ne livre pas** et n'a pas de coursiers : il fournit l'outil qui permet au commerçant de mettre en place son propre système de livraison, avec ses moyens et à ses conditions. Marchéo n'est pas une place de marché : chaque boutique est celle du commerçant, avec ses clients.
 
 ## Les tarifs
 

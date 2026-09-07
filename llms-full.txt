@@ -55,7 +55,7 @@ Commande en 30 secondes depuis le téléphone, sans création de compte pour le 
 Paiement en ligne ou au retrait, au choix.
 SMS automatique au client quand sa commande est prête, base clients avec l&rsquo;historique des achats.
 Comptes pour vos vendeurs, qui gèrent les commandes sans accéder aux réglages.
-Livraison locale en option : vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais.
+Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, la tournée est organisée par créneau.
 
 Combien ça coûte
 
@@ -107,6 +107,8 @@ Q : Faut-il un site internet avant de commencer ?
 R : Non. Marchéo est votre site : une adresse à votre nom, référencée sur Google, avec vos horaires, votre adresse et votre catalogue. Si vous avez déjà un site, il suffit d'y ajouter le bouton « Commander ».
 Q : Y a-t-il une commission sur les ventes ?
 R : Aucune. Vous payez un abonnement fixe de 19 à 59 € par mois selon l'offre, et l'argent des ventes arrive directement sur votre compte via Stripe.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour boucheries et charcuteries
 
@@ -123,7 +125,7 @@ Champ « précisions » sur chaque produit : découpe, épaisseur, cuisson, sans
 Commande en 30 secondes, sans compte client, paiement en ligne ou au retrait.
 Créneaux de retrait par jour et par heure, avec capacité.
 Comptes pour vos employés, calendrier partagé des commandes.
-Livraison locale en option, à vos conditions.
+Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, à vos conditions.
 
 Combien ça coûte
 
@@ -167,6 +169,8 @@ Q : Que se passe-t-il si un client ne vient pas chercher sa commande de fête ?
 R : Avec l'empreinte bancaire activée, 75 % du panier a été pré-autorisé à la commande. Vous décidez du montant prélevé en cas d'absence, selon votre politique d'annulation affichée au client.
 Q : Mes clients âgés commandent par téléphone, ça change quoi ?
 R : Rien pour eux. La boutique en ligne s'ajoute au téléphone, elle ne le remplace pas. En pratique, ce sont souvent leurs enfants qui commandent pour eux depuis la boutique.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour primeurs et maraîchers
 
@@ -183,7 +187,7 @@ Ce qui est inclus
 Boutique à vos couleurs avec le catalogue primeur déjà rempli : fruits, légumes, herbes, produits d&rsquo;épicerie, paniers. Vente au kilo, à la pièce ou au panier.
 Mise en avant des produits de saison et de la provenance.
 Commande en 30 secondes sans compte client, paiement en ligne ou au retrait.
-Retrait par créneau, ou livraison locale à vos conditions.
+Retrait par créneau, ou livraison locale à vos conditions : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
 Base clients, SMS d&rsquo;arrivage et de promotion inclus, comptes salariés.
 
 Combien ça coûte
@@ -243,7 +247,7 @@ Boutique à vos couleurs avec le catalogue poissonnerie déjà rempli : poissons
 Champ « précisions » : écaillé, vidé, en filets, en darnes.
 Commande en 30 secondes sans compte, paiement en ligne ou au retrait, retrait par créneau avec capacité.
 Empreinte bancaire réglable, SMS d&rsquo;arrivage inclus, base clients.
-Livraison locale en option pour les plateaux à domicile.
+Livraison locale en option pour les plateaux à domicile : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
 
 Combien ça coûte
 
@@ -285,6 +289,8 @@ Q : Puis-je exiger le paiement d'avance uniquement sur les plateaux ?
 R : Oui. L'empreinte bancaire se règle par seuil de montant, et vous pouvez demander le paiement en ligne sur certains produits seulement.
 Q : Comment sont gérées les commandes de Noël et du Nouvel An ?
 R : Vous ouvrez des créneaux de retrait aux dates voulues avec une capacité par créneau, plusieurs semaines à l'avance. Les commandes sont réglées ou garanties par empreinte, vous préparez sans risque.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour traiteurs
 
@@ -299,7 +305,7 @@ Ce qui est inclus
 Boutique à vos couleurs avec le catalogue traiteur déjà rempli : plats du jour, plateaux repas, buffets, cocktails, desserts, menus événementiels.
 Quantités par personne, précisions et allergènes sur chaque produit.
 Commande en 30 secondes sans compte, paiement en ligne ou au retrait, acompte via empreinte.
-Retrait par créneau, livraison locale à vos conditions avec tournée par créneau.
+Retrait par créneau, livraison locale à vos conditions avec tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
 Base clients entreprises et particuliers, SMS inclus, comptes salariés.
 
 Combien ça coûte
@@ -342,6 +348,8 @@ Q : Comment gérer un délai de préparation de 48 heures ?
 R : Chaque produit peut avoir un délai minimum de commande. Un buffet demandé à 48 heures ne pourra être commandé que pour un créneau au-delà de ce délai.
 Q : Les entreprises peuvent-elles commander pour plusieurs personnes ?
 R : Oui. Les quantités sont libres, la commande porte le nom de l'entreprise et du contact, et la facture est disponible dans l'historique.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour fromageries et crèmeries
 
@@ -399,6 +407,8 @@ Q : Puis-je vendre au poids en ligne ?
 R : Oui. Le client choisit un poids approximatif, vous ajustez le montant au poids réel avant l'encaissement si nécessaire.
 Q : Faut-il payer en ligne ?
 R : C'est votre choix par produit. Beaucoup de fromageries laissent payer au retrait et activent l'empreinte bancaire uniquement sur les plateaux et les commandes de fêtes.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour fleuristes
 
@@ -413,7 +423,7 @@ Ce qui est inclus
 Boutique à vos couleurs avec le catalogue fleuriste déjà rempli : bouquets par budget, compositions, plantes, roses à l&rsquo;unité, événements. Le client choisit un budget et un style, vous composez.
 Champ « message pour la carte » et « précisions » sur chaque commande.
 Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte réglable.
-Retrait par créneau, livraison locale avec adresse et itinéraire, tournée par créneau.
+Retrait par créneau, livraison locale avec adresse et itinéraire, tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour livrer vous-même.
 Base clients, SMS inclus pour rappeler les grandes dates à vos habitués.
 
 Combien ça coûte
@@ -473,7 +483,7 @@ Options et suppléments sur chaque produit, précisions du client.
 Créneaux de retrait de 15 ou 30 minutes avec capacité, commande en 30 secondes sans compte.
 Réservation de table en ligne avec empreinte anti no-show, pour la salle.
 Base clients, SMS inclus, comptes pour l&rsquo;équipe.
-Livraison locale en option : vous livrez vous-même, à vos conditions.
+Livraison locale en option : Marchéo ne livre pas à votre place, vous livrez vous-même avec l&rsquo;outil, à vos conditions.
 
 Combien ça coûte
 
@@ -515,6 +525,8 @@ Q : Comment éviter d'être débordé à 20 h ?
 R : Chaque créneau de retrait a une capacité maximale, par exemple 6 pizzas par quart d'heure. Quand c'est plein, le client voit le créneau suivant.
 Q : Peut-on gérer les réservations de table aussi ?
 R : Oui, l'offre Click & Collect inclut la réservation de table en ligne avec empreinte bancaire optionnelle contre les no-shows.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour restaurants
 
@@ -531,7 +543,7 @@ Page à vos couleurs avec vos horaires, votre carte et le bouton « Réserver »
 Réservation en ligne 24 h/24, gestion des couverts et des services, empreinte bancaire par couvert réglable, politique d&rsquo;annulation paramétrable.
 Click &amp; collect pour la vente à emporter, avec le catalogue restaurant déjà rempli à adapter.
 SMS de rappel de réservation inclus, base clients, comptes pour l&rsquo;équipe.
-Livraison locale en option.
+Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, à vos conditions.
 
 Combien ça coûte
 
@@ -573,6 +585,8 @@ Q : Combien est retenu si le client ne vient pas ?
 R : C'est vous qui décidez : un montant par couvert, annoncé au client à la réservation, avec un délai d'annulation gratuite que vous fixez.
 Q : Puis-je gérer les réservations téléphoniques dans le même outil ?
 R : Oui. Vous ajoutez une réservation prise au téléphone en quelques secondes, elle apparaît dans le même plan de salle.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour fast-foods et food-trucks
 
@@ -630,6 +644,8 @@ Q : Les suppléments et options sont-ils gérés ?
 R : Oui. Chaque produit peut avoir des options, taille, sauce, suppléments payants, cuisson, et un champ de précisions.
 Q : Puis-je garder Uber Eats en parallèle ?
 R : Oui. La plupart gardent les plateformes pour les nouveaux clients et orientent les habitués vers leur boutique sans commission, avec un flyer ou un QR code sur l'emballage.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Comment créer un site de click & collect pour son commerce en 2026
 
@@ -1189,7 +1205,7 @@ Découverte, restauration rapide
 
 Pour un commerce de bouche traditionnel, la livraison en propre gagne dès que vous avez une dizaine de commandes par créneau. Beaucoup gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués.
 Comment Marchéo organise tout ça
-L&rsquo;offre Click &amp; Collect + Livraison de Marchéo, à 59 € par mois sans commission, contient les six réglages : zone par rayon ou par communes, créneaux de livraison avec capacité, minimum de commande et frais avec seuil de gratuité, paiement en ligne et empreinte bancaire, tournée par créneau avec adresses et itinéraire, et le SMS au client. Vous pouvez voir votre boutique en 30 secondes puis activer la livraison quand vous serez prêt.
+Marchéo ne livre pas à votre place et n&rsquo;a pas de coursiers : c&rsquo;est l&rsquo;outil qui vous permet de mettre en place votre propre système de livraison. L&rsquo;offre Click &amp; Collect + Livraison, à 59 € par mois sans commission, contient les six réglages : zone par rayon ou par communes, créneaux de livraison avec capacité, minimum de commande et frais avec seuil de gratuité, paiement en ligne et empreinte bancaire, tournée par créneau avec adresses et itinéraire, et le SMS au client. Vous pouvez voir votre boutique en 30 secondes puis activer la livraison quand vous serez prêt.
 Par quoi commencer
 Un créneau par semaine, une zone de 3 kilomètres, un minimum de 25 €. Annoncez-le par SMS à vos habitués et sur votre fiche Google. La première tournée aura cinq commandes ; la dixième en aura vingt, et vous ajouterez un créneau.
 

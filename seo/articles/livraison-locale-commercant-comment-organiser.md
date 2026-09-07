@@ -79,7 +79,7 @@ Pour un commerce de bouche traditionnel, la livraison en propre gagne dès que v
 
 ## Comment Marchéo organise tout ça
 
-L'offre Click & Collect + Livraison de Marchéo, à 59 € par mois sans commission, contient les six réglages : zone par rayon ou par communes, créneaux de livraison avec capacité, minimum de commande et frais avec seuil de gratuité, paiement en ligne et empreinte bancaire, tournée par créneau avec adresses et itinéraire, et le SMS au client. Vous pouvez [voir votre boutique en 30 secondes](/inscription) puis activer la livraison quand vous serez prêt.
+Marchéo ne livre pas à votre place et n'a pas de coursiers : c'est l'outil qui vous permet de mettre en place votre propre système de livraison. L'offre Click & Collect + Livraison, à 59 € par mois sans commission, contient les six réglages : zone par rayon ou par communes, créneaux de livraison avec capacité, minimum de commande et frais avec seuil de gratuité, paiement en ligne et empreinte bancaire, tournée par créneau avec adresses et itinéraire, et le SMS au client. Vous pouvez [voir votre boutique en 30 secondes](/inscription) puis activer la livraison quand vous serez prêt.
 
 ## Par quoi commencer
 
