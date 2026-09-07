@@ -47,7 +47,7 @@ Sans engagement, résiliable à tout moment, 0 % de commission. Paiements sécur
 
 ## Les métiers couverts
 
-Boulangerie et pâtisserie, boucherie et charcuterie, primeur et maraîcher, poissonnerie, traiteur, fromagerie, fleuriste, pizzeria, restaurant, fast-food et food-truck. Chaque métier a [sa page](/solutions/) avec ce que Marchéo change concrètement pour lui.
+Boulangerie et pâtisserie, boucherie et charcuterie, primeur et maraîcher, poissonnerie, traiteur, fromagerie, fleuriste, pizzeria, restaurant, fast-food et food-truck. Chaque métier a [sa page](/solutions) avec ce que Marchéo change concrètement pour lui.
 
 ## L'histoire
 

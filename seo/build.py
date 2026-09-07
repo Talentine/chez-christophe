@@ -138,7 +138,7 @@ def header() -> str:
     return f"""<header class="header"><div class="header-in">
   <a href="/" class="logo" aria-label="{BRAND}, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">{BRAND}<span>.fr</span></a>
   <nav class="nav" aria-label="Navigation">
-    <a href="/solutions/">Par métier</a>
+    <a href="/solutions">Par métier</a>
     <a href="/#tarifs" class="hide-m">Tarifs</a>
     <a href="/faq" class="hide-m">FAQ</a>
     <a href="/inscription" class="cta">Créer ma boutique</a>
@@ -146,7 +146,7 @@ def header() -> str:
 
 
 def footer() -> str:
-    return f"""<footer>© {date.today().year} {BRAND} · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions/">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:{CONTACT}">{CONTACT}</a></footer>"""
+    return f"""<footer>© {date.today().year} {BRAND} · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:{CONTACT}">{CONTACT}</a></footer>"""
 
 
 def cta_final(titre: str = "Voyez votre boutique en 30 secondes", texte: str = "Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.") -> str:
@@ -311,7 +311,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
         }, faq_ld(m.get("faq", []))]
         html = page(titre=m["title"], description=m["description"], path=path, h1=m["h1"], lead=m["lead"],
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
-                    crumbs=[("Accueil", "/"), ("Par métier", "/solutions/"), (m["label"], path)],
+                    crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
                     ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website",
                     cta=cta_final(m.get("cta_titre", "Votre boutique, prête en 30 secondes"), m.get("cta_texte", "Choisissez « " + m["label"] + " », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire.")))
         (out_dir / f"{m['slug']}.html").write_text(html, encoding="utf-8")
@@ -321,11 +321,11 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
     ld = [{"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{HOST}/solutions/{m['slug']}", "name": f"Marchéo pour {m['pluriel']}"} for i, m in enumerate(metiers)]}]
     html = page(titre="Click & collect et livraison par métier : boulangerie, boucherie, primeur, restaurant… · Marchéo",
                 description="Marchéo s'adapte à chaque commerce de bouche : catalogue pré-rempli, thème et fonctionnalités propres à votre métier. Choisissez le vôtre et voyez votre boutique en 30 secondes.",
-                path="/solutions/", h1="Une boutique en ligne pensée pour votre métier", lead="Dix métiers, dix catalogues déjà remplis, dix thèmes. Le click & collect d'un boucher n'est pas celui d'un fleuriste : Marchéo le sait.",
-                corps=f'<div class="cards">{tuiles}</div>' + md_to_html(SOLUTIONS_INTRO), eyebrow="Par métier", crumbs=[("Accueil", "/"), ("Par métier", "/solutions/")],
+                path="/solutions", h1="Une boutique en ligne pensée pour votre métier", lead="Dix métiers, dix catalogues déjà remplis, dix thèmes. Le click & collect d'un boucher n'est pas celui d'un fleuriste : Marchéo le sait.",
+                corps=f'<div class="cards">{tuiles}</div>' + md_to_html(SOLUTIONS_INTRO), eyebrow="Par métier", crumbs=[("Accueil", "/"), ("Par métier", "/solutions")],
                 ld=ld, aside=aside_block([(a.get("titre_court") or a["title"], f"/blog/{a['slug']}") for a in arts[:6]]), og_type="website")
     (out_dir / "index.html").write_text(html, encoding="utf-8")
-    urls.append("/solutions/")
+    urls.append("/solutions")
     return urls
 
 

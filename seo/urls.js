@@ -18,6 +18,6 @@ export default [
   "/solutions/pizzeria",
   "/solutions/restaurant",
   "/solutions/fastfood",
-  "/solutions/",
+  "/solutions",
   "/a-propos"
 ];
