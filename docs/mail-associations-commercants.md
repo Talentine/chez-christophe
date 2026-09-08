@@ -24,7 +24,8 @@
 >
 > Nous souhaitons proposer à **[NOM_ASSOCIATION]** un partenariat autour d'un tarif préférentiel pour vos adhérents, sans engagement de votre côté :
 >
-> - **–25 % la première année** sur l'abonnement, pour tout adhérent que vous nous adressez
+> - **Installation à 49 € au lieu de 199 €** — création boutique + catalogue + formation
+> - **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent que vous nous adressez (soit près de 200 € d'économies au démarrage)
 > - **Un audit digital offert** pour chaque commerce signé — état des lieux de la présence en ligne, recommandations concrètes, plan d'action
 > - **Aucune convention lourde** — un simple code adhérent
 > - **Point d'étape trimestriel** avec vous sur les adoptions
