@@ -30,6 +30,7 @@
     { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/sans-commission", "destination": "/sans-commission.html" },
     { "source": "/unsubscribe", "destination": "/unsubscribe.html" },
     { "source": "/contester", "destination": "/contester.html" },
     { "source": "/litige", "destination": "/contester.html" },

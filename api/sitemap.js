@@ -13,6 +13,7 @@ const HOST = 'https://marchéo.fr';
 const PAGES_STATIQUES = [
   { loc: '/',                    priority: '1.0', changefreq: 'weekly'  },
   { loc: '/inscription',         priority: '0.9', changefreq: 'monthly' },
+  { loc: '/sans-commission',     priority: '0.8', changefreq: 'monthly' },
   ...pagesSeo.map(loc => ({
     loc,
     priority: loc.startsWith('/solutions') ? '0.8' : loc === '/a-propos' ? '0.5' : '0.7',
