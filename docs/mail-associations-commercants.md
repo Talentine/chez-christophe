@@ -7,8 +7,8 @@
 
 ## Objet (à tester A/B)
 
-- **A** — Proposition de partenariat pour vos adhérents commerçants
-- **B** — Un tarif préférentiel Marchéo pour les adhérents [NOM_ASSOCIATION]
+- **A** — Aider vos adhérents à vendre en ligne — proposition de partenariat
+- **B** — Un partenariat Marchéo pour digitaliser les commerçants adhérents [NOM_ASSOCIATION]
 
 *Recommandé : version B, personnalisée, taux d'ouverture +30–40 % en B2B institutionnel.*
 
@@ -18,19 +18,20 @@
 
 > Bonjour [Prénom NOM ou « Madame, Monsieur »],
 >
-> Je me permets de vous écrire au sujet d'un enjeu qui touche directement les commerçants que vous représentez : la commission de 25 à 30 % prélevée par les plateformes de livraison sur chaque vente en ligne.
+> Être présent en ligne, proposer le click & collect, offrir la livraison — c'est devenu incontournable pour un commerce de proximité. Beaucoup des artisans que vous représentez veulent franchir le pas, mais ne savent pas par où commencer, redoutent la technique, ou refusent de laisser 25 à 30 % à une plateforme de livraison sur chaque vente.
 >
-> Chez **Marchéo**, nous proposons aux artisans commerçants une solution simple pour prendre les commandes en ligne — click & collect et livraison — **sans commission**. Un abonnement fixe à partir de 19 €/mois, la boutique reste au nom du commerçant, le fichier client lui appartient.
+> Chez **Marchéo**, on résout exactement ce problème : on crée une boutique en ligne au nom du commerçant, on active le click & collect et la livraison, on gère les commandes et les paiements — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Le fichier client reste au commerçant.
 >
-> Aujourd'hui, nous souhaitons proposer à **[NOM_ASSOCIATION]** un partenariat autour d'un tarif préférentiel réservé à vos adhérents, sans engagement de votre côté :
+> Nous souhaitons proposer à **[NOM_ASSOCIATION]** un partenariat autour d'un tarif préférentiel pour vos adhérents, sans engagement de votre côté :
 >
 > - **–25 % la première année** sur l'abonnement, pour tout adhérent que vous nous adressez
-> - **Formation gratuite en visio** de 45 min pour les intéressés (« Vendre en ligne sans se faire prendre 30 % »)
-> - Point d'étape trimestriel avec vous sur les adoptions
+> - **Un audit digital offert** pour chaque commerce signé — état des lieux de la présence en ligne, recommandations concrètes, plan d'action
+> - **Aucune convention lourde** — un simple code adhérent
+> - **Point d'étape trimestriel** avec vous sur les adoptions
 >
 > Auriez-vous 15 minutes cette semaine ou la prochaine pour en discuter ? Je m'adapte à votre agenda.
 >
-> Vous pouvez découvrir notre engagement sans commission ici : https://marchéo.fr/sans-commission
+> Voici un exemple de boutique déjà en ligne (d'autres sur simple demande) : https://marchéo.fr/chez-christophe
 >
 > Bien cordialement,
 >
