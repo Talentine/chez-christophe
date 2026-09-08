@@ -1,423 +1,295 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sans commission · Marchéo — 100% de vos ventes vous reviennent</title>
-  <meta name="description" content="Marchéo prend 0% de commission sur vos ventes. Un abonnement fixe à partir de 19€/mois, click & collect, livraison, empreinte bancaire anti no-show. Vous gardez 100% de votre chiffre d'affaires.">
-  <meta name="keywords" content="sans commission, click and collect sans commission, livraison sans commission, alternative Uber Eats, alternative Deliveroo, artisan boucher primeur boulanger">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Click &amp; collect sans commission pour commerçants | Marchéo</title>
+<meta name="description" content="0 % de commission sur vos ventes. Comparez le coût réel d'une plateforme de livraison avec un abonnement fixe. Calculez ce que vous gardez vraiment.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://marchéo.fr/sans-commission">
+<meta property="og:title" content="Click &amp; collect sans commission pour commerçants | Marchéo">
+<meta property="og:description" content="0 % de commission sur vos ventes. Comparez le coût réel d'une plateforme de livraison avec un abonnement fixe.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://marchéo.fr/sans-commission">
+<meta property="og:site_name" content="Marchéo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Click &amp; collect sans commission pour commerçants | Marchéo">
+<meta name="twitter:description" content="0 % de commission sur vos ventes. Un abonnement fixe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://marchéo.fr/sans-commission",
+  "name": "Click & collect sans commission pour commerçants",
+  "description": "0 % de commission sur vos ventes. Un abonnement fixe, sans engagement.",
+  "isPartOf": { "@type": "WebSite", "url": "https://marchéo.fr/", "name": "Marchéo" }
+}
+</script>
+<style>
+:root{
+  --bleu:#0F2C52; --vert:#5BBE3A; --dore:#F4B942;
+  --creme:#F7F2E8; --blanc:#fff; --gris:#6B7785; --bord:#EEE6D7;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:'Manrope',system-ui,-apple-system,sans-serif;
+  color:var(--bleu); background:var(--creme); line-height:1.55;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+h1{font-size:clamp(28px,5vw,46px);font-weight:800;line-height:1.15;margin:0 0 16px}
+h2{font-size:clamp(22px,3.5vw,32px);font-weight:800;margin:0 0 14px;line-height:1.2}
+h3{font-size:18px;font-weight:700;margin:0 0 8px}
+p{margin:0 0 16px}
+.lead{font-size:clamp(16px,2.2vw,20px);color:var(--gris);max-width:640px}
 
-  <meta property="og:title" content="Sans commission · Marchéo">
-  <meta property="og:description" content="0% de commission. Un abonnement fixe. Vous gardez 100% de vos ventes.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://marchéo.fr/sans-commission">
-  <meta property="og:site_name" content="Marchéo">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sans commission · Marchéo">
-  <meta name="twitter:description" content="0% de commission. Vous gardez 100% de vos ventes.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://marchéo.fr/sans-commission">
+/* HERO */
+.hero{background:var(--bleu);color:var(--blanc);padding:64px 0 56px}
+.hero h1{color:var(--blanc)}
+.hero .lead{color:rgba(255,255,255,.78)}
+.badge{
+  display:inline-block;background:var(--vert);color:var(--blanc);
+  font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:6px 14px;border-radius:50px;margin-bottom:18px;
+}
+.cta{
+  display:inline-block;background:var(--dore);color:var(--bleu);
+  font-weight:800;font-size:16px;padding:15px 30px;border-radius:50px;
+  text-decoration:none;margin-top:8px;transition:transform .15s;
+}
+.cta:active{transform:scale(.97)}
+.cta.vert{background:var(--vert);color:var(--blanc)}
+.cta-note{font-size:13px;color:rgba(255,255,255,.6);margin-top:12px}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
-  <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
-  <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
+/* CALCULATEUR */
+.calc{background:var(--blanc);border-radius:24px;padding:32px;border:2px solid var(--bord);margin-top:8px}
+.calc label{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gris);margin-bottom:10px}
+.calc input[type=range]{width:100%;accent-color:var(--vert);height:32px}
+.calc-val{font-size:34px;font-weight:800;margin:4px 0 20px}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
+.calc-box{border-radius:16px;padding:20px;border:2px solid var(--bord)}
+.calc-box.bad{background:#FDF1F0;border-color:#F3C9C4}
+.calc-box.good{background:#F1FAEE;border-color:#BFE6AE}
+.calc-box .k{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gris);margin-bottom:6px}
+.calc-box .v{font-size:28px;font-weight:800;line-height:1.1}
+.calc-box .n{font-size:12.5px;color:var(--gris);margin-top:6px}
+.calc-out{
+  margin-top:18px;background:var(--bleu);color:var(--blanc);
+  border-radius:16px;padding:22px;text-align:center;
+}
+.calc-out .v{font-size:38px;font-weight:800;color:var(--dore);line-height:1.1}
+.calc-out .n{font-size:13.5px;color:rgba(255,255,255,.72);margin-top:6px}
 
-  <link rel="icon" href="/assets/brand/favicon.svg?v=brandv2" type="image/svg+xml">
-  <meta name="theme-color" content="#0F2C52">
+/* TABLEAU */
+.tbl{width:100%;border-collapse:collapse;background:var(--blanc);border-radius:16px;overflow:hidden;font-size:15px}
+.tbl th,.tbl td{padding:15px 16px;text-align:left;border-bottom:1px solid var(--bord)}
+.tbl th{background:var(--bleu);color:var(--blanc);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{font-weight:700}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "url": "https://marchéo.fr/sans-commission",
-    "name": "Sans commission · Marchéo",
-    "description": "Marchéo prend 0% de commission sur vos ventes. Vous gardez 100% de votre chiffre d'affaires.",
-    "isPartOf": { "@type": "WebSite", "url": "https://marchéo.fr/", "name": "Marchéo" }
-  }
-  </script>
+/* CARTES */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--blanc);border:2px solid var(--bord);border-radius:18px;padding:24px}
+.card .ico{font-size:26px;margin-bottom:10px}
+.card p{font-size:14.5px;color:var(--gris);margin:0}
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* FAQ */
+details{background:var(--blanc);border:2px solid var(--bord);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+details[open]{border-color:var(--vert)}
+summary{font-weight:700;cursor:pointer;list-style:none;font-size:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';float:right;color:var(--vert);font-weight:800;font-size:20px;line-height:1}
+details[open] summary::after{content:'–'}
+details p{margin:12px 0 0;font-size:14.5px;color:var(--gris)}
 
-    :root {
-      --brand:        #0F2C52;
-      --brand-dark:   #0A1428;
-      --brand-light:  #1B3F6E;
-      --gold:         #5BBE3A;
-      --gold-light:   #DDF3D2;
-      --cream:        #F7F2E8;
-      --cream-dark:   #E5E2D8;
-      --text:         #0A1428;
-      --text-muted:   #5A6478;
-      --white:        #FFFFFF;
-      --accent-soleil:#F4B942;
-      --accent-tomate:#E65533;
-      --radius: 16px;
-      --shadow: 0 4px 24px rgba(15,44,82,.08);
-      --shadow-lg: 0 8px 48px rgba(15,44,82,.12);
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Manrope', system-ui, sans-serif;
-      font-size: 16px; line-height: 1.6;
-      color: var(--text); background: var(--white);
-      overflow-x: hidden;
-    }
-    h1,h2,h3 { font-family: 'Manrope', system-ui, sans-serif; line-height: 1.2; letter-spacing: -0.01em; }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    /* ── NAV ────────────────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 24px;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; color: var(--brand); letter-spacing:-.5px; }
-    .nav-logo img { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; }
-    .nav-logo .fr { color: var(--gold); font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 8px; }
-    .nav-link { padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: 500; color: var(--text-muted); transition: all .15s; }
-    .nav-link:hover { color: var(--brand); background: var(--cream); }
-    .nav-cta {
-      display: inline-block;
-      padding: 10px 20px; border-radius: 50px;
-      background: var(--brand); color: var(--white);
-      font-size: 14px; font-weight: 600;
-      transition: all .15s;
-    }
-    .nav-cta:hover { background: var(--brand-light); transform: translateY(-1px); }
-
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      padding: 140px 24px 80px;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gold-light); color: #2f6e1e;
-      padding: 8px 16px; border-radius: 50px;
-      font-size: 13px; font-weight: 600;
-      margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 68px); font-weight: 800;
-      color: var(--brand); margin-bottom: 20px;
-    }
-    .hero h1 .accent { color: var(--gold); }
-    .hero p.lead {
-      max-width: 700px; margin: 0 auto 32px;
-      font-size: 18px; color: var(--text-muted);
-    }
-    .cta-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold); color: var(--brand-dark);
-      padding: 16px 36px; border-radius: 50px;
-      font-weight: 700; font-size: 16px;
-      box-shadow: var(--shadow); transition: all .15s;
-      display: inline-block;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); background: #4fa632; }
-    .btn-secondary {
-      background: var(--white); color: var(--brand);
-      padding: 16px 32px; border-radius: 50px;
-      font-weight: 600; font-size: 16px;
-      border: 1.5px solid var(--cream-dark); transition: all .15s;
-      display: inline-block;
-    }
-    .btn-secondary:hover { background: var(--cream); border-color: var(--brand); }
-
-    /* ── COMPARATIF ────────────────────────────── */
-    .section { padding: 80px 24px; }
-    .container { max-width: 1120px; margin: 0 auto; }
-    .section-title {
-      text-align: center;
-      font-size: clamp(30px, 4vw, 44px);
-      color: var(--brand); margin-bottom: 16px;
-    }
-    .section-sub {
-      text-align: center; color: var(--text-muted);
-      max-width: 640px; margin: 0 auto 48px;
-      font-size: 17px;
-    }
-
-    .compare {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      max-width: 900px; margin: 0 auto;
-    }
-    @media (max-width:720px) { .compare { grid-template-columns: 1fr; } }
-    .compare-card {
-      background: var(--white); border: 1.5px solid var(--cream-dark);
-      border-radius: var(--radius); padding: 32px 28px;
-    }
-    .compare-card.marketplace { background: #fff5f2; border-color: rgba(230,85,51,.25); }
-    .compare-card.marcheo { background: var(--gold-light); border-color: var(--gold); position: relative; }
-    .compare-card.marcheo::before {
-      content: "✓ Notre modèle";
-      position: absolute; top: -14px; right: 20px;
-      background: var(--gold); color: var(--brand-dark);
-      padding: 4px 14px; border-radius: 50px;
-      font-size: 12px; font-weight: 700;
-    }
-    .compare-card h3 { font-size: 22px; color: var(--brand); margin-bottom: 8px; }
-    .compare-card .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: .05em; }
-    .compare-card .rate {
-      font-size: 56px; font-weight: 800; line-height: 1;
-      color: var(--brand); margin-bottom: 6px;
-    }
-    .compare-card.marketplace .rate { color: var(--accent-tomate); }
-    .compare-card.marcheo .rate { color: #2f6e1e; }
-    .compare-card .rate-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
-    .compare-card ul { list-style: none; padding: 0; }
-    .compare-card li { padding: 8px 0; font-size: 15px; display: flex; gap: 8px; }
-    .compare-card li::before { content: "•"; color: var(--text-muted); font-weight: 700; }
-    .compare-card.marcheo li::before { content: "✓"; color: var(--gold); }
-
-    /* ── SIMULATEUR ─────────────────────────────── */
-    .calc {
-      background: var(--brand); color: var(--white);
-      border-radius: 24px; padding: 48px 40px;
-      max-width: 900px; margin: 0 auto;
-    }
-    .calc h2 { color: var(--white); font-size: clamp(24px, 3vw, 32px); margin-bottom: 12px; text-align: center; }
-    .calc .calc-sub { color: rgba(255,255,255,.72); text-align: center; margin-bottom: 32px; }
-    .calc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; text-align: center; }
-    @media (max-width:640px) { .calc-grid { grid-template-columns: 1fr; } }
-    .calc-block .label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-bottom: 8px; }
-    .calc-block .val { font-size: 34px; font-weight: 800; margin-bottom: 4px; }
-    .calc-block .val.gold { color: var(--accent-soleil); }
-    .calc-block .val.green { color: var(--gold); }
-    .calc-block .rem { font-size: 13px; color: rgba(255,255,255,.6); }
-
-    /* ── FEATURES ───────────────────────────────── */
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    @media (max-width:800px) { .features { grid-template-columns: 1fr; } }
-    .feature {
-      background: var(--white); border: 1.5px solid var(--cream-dark);
-      border-radius: var(--radius); padding: 28px 24px;
-    }
-    .feature-icon { font-size: 32px; margin-bottom: 12px; }
-    .feature h3 { font-size: 18px; color: var(--brand); margin-bottom: 8px; }
-    .feature p { color: var(--text-muted); font-size: 14.5px; }
-
-    /* ── FAQ ─────────────────────────────────────── */
-    .faq { max-width: 780px; margin: 0 auto; }
-    .faq-item { border-bottom: 1px solid var(--cream-dark); padding: 20px 0; }
-    .faq-item h3 { font-size: 17px; color: var(--brand); margin-bottom: 6px; }
-    .faq-item p { color: var(--text-muted); font-size: 15px; }
-
-    /* ── CTA FINAL ──────────────────────────────── */
-    .cta-final {
-      background: var(--cream); text-align: center;
-      padding: 100px 24px;
-    }
-    .cta-final h2 {
-      font-size: clamp(30px, 4vw, 44px); color: var(--brand);
-      margin-bottom: 16px;
-    }
-    .cta-final p { color: var(--text-muted); margin-bottom: 28px; font-size: 17px; max-width: 640px; margin-left: auto; margin-right: auto; }
-
-    /* ── FOOTER ─────────────────────────────────── */
-    footer {
-      background: var(--brand-dark); color: rgba(255,255,255,.65);
-      padding: 40px 24px; text-align: center; font-size: 13px;
-    }
-    footer a { color: rgba(255,255,255,.85); margin: 0 10px; }
-
-    /* Mobile nav — cache les liens détaillés */
-    @media (max-width:820px) {
-      .nav-links { display: none; }
-      .nav { padding: 12px 16px; }
-      .hero { padding: 100px 20px 60px; }
-      .section { padding: 60px 20px; }
-      .calc { padding: 32px 24px; border-radius: 20px; }
-    }
-  </style>
+.final{background:var(--bleu);color:var(--blanc);text-align:center;border-radius:24px;padding:44px 28px;margin:0 0 56px}
+.final h2{color:var(--blanc)}
+.final p{color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 22px}
+.small{font-size:13px;color:var(--gris)}
+a{color:var(--vert)}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="/" class="nav-logo" aria-label="Marchéo — Accueil">
-      <img src="/assets/brand/logo-marcheo.png?v=1" alt="Marchéo"
-           onerror="this.onerror=null;this.src='/assets/brand/monogram.svg?v=brandv3';">
-      <span>Marchéo<span class="fr">.fr</span></span>
-    </a>
-    <div class="nav-links">
-      <a href="/#metiers" class="nav-link">Métiers</a>
-      <a href="/#fonctionnement" class="nav-link">Comment ça marche</a>
-      <a href="/sans-commission" class="nav-link" aria-current="page">Sans commission</a>
-      <a href="/#tarifs" class="nav-link">Tarifs</a>
-      <a href="/blog" class="nav-link">Blog</a>
-      <a href="/faq" class="nav-link">FAQ</a>
-    </div>
-    <a href="/inscription" class="nav-cta" role="button">S'inscrire</a>
-  </nav>
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">0 % de commission</span>
+    <h1>Vos ventes vous appartiennent.<br>Entièrement.</h1>
+    <p class="lead">Les plateformes de livraison prélèvent jusqu'à 30 % sur chaque commande. Marchéo ne prend rien. Un abonnement fixe, et vous gardez chaque euro que vous encaissez.</p>
+    <a class="cta" href="/#contact">Demander une démonstration</a>
+    <div class="cta-note">Gratuit · sans engagement</div>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">🌱 0 % de commission sur vos ventes</div>
-    <h1>Vous gardez <span class="accent">100&nbsp;%</span><br>de votre chiffre d'affaires.</h1>
-    <p class="lead">
-      Marchéo, c'est un abonnement fixe, mensuel, sans engagement.
-      Aucun pourcentage prélevé sur vos commandes — jamais.
-      Ce que vos clients paient, vous l'encaissez en entier.
-    </p>
-    <div class="cta-row">
-      <a href="/inscription" class="btn-primary" role="button">Créer ma boutique</a>
-      <a href="/#tarifs" class="btn-secondary" role="button">Voir les tarifs</a>
-    </div>
-  </section>
+<section>
+  <div class="wrap">
+    <h2>Ce que la commission vous coûte vraiment</h2>
+    <p class="lead" style="margin-bottom:26px">Déplacez le curseur sur votre chiffre d'affaires mensuel en ligne.</p>
 
-  <!-- COMPARATIF MARKETPLACES -->
-  <section class="section" id="compare">
-    <div class="container">
-      <h2 class="section-title">Ce que les autres prennent, ce que nous prenons</h2>
-      <p class="section-sub">
-        Sur les plateformes de livraison classiques, une commande à 40 € vous rapporte 28 € net.
-        Chez Marchéo, elle vous rapporte 40 €. Toujours.
-      </p>
+    <div class="calc">
+      <label for="ca">Chiffre d'affaires en ligne par mois</label>
+      <div class="calc-val" id="caVal">2 000 €</div>
+      <input type="range" id="ca" min="500" max="10000" step="100" value="2000">
 
-      <div class="compare">
-        <div class="compare-card marketplace">
-          <div class="sub">Marketplaces (Uber Eats, Deliveroo…)</div>
-          <div class="rate">25-30 %</div>
-          <div class="rate-sub">de commission sur chaque commande</div>
-          <ul>
-            <li>Prélèvement sur chaque vente, à vie</li>
-            <li>Frais de service côté client en plus</li>
-            <li>Vos clients ne sont pas « vos » clients</li>
-            <li>Aucune main sur votre image ni votre catalogue</li>
-          </ul>
+      <div class="calc-grid">
+        <div class="calc-box bad">
+          <div class="k">Plateforme à 30 %</div>
+          <div class="v" id="perte">600 €</div>
+          <div class="n">prélevés chaque mois sur vos ventes</div>
         </div>
-
-        <div class="compare-card marcheo">
-          <div class="sub">Marchéo</div>
-          <div class="rate">0 %</div>
-          <div class="rate-sub">de commission — un abonnement fixe, point.</div>
-          <ul>
-            <li>Vous encaissez 100 % de vos ventes</li>
-            <li>Prix simple : à partir de 19 € / mois</li>
-            <li>Vos clients restent VOS clients (fichier, CRM)</li>
-            <li>Votre nom, votre charte, votre catalogue</li>
-          </ul>
+        <div class="calc-box good">
+          <div class="k">Avec Marchéo</div>
+          <div class="v">19 à 39 €</div>
+          <div class="n">selon l'offre — fixe, quel que soit votre volume</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SIMULATEUR CONCRET -->
-  <section class="section" id="calc" style="background:var(--cream);">
-    <div class="container">
-      <div class="calc">
-        <h2>À quoi ça ressemble sur un mois</h2>
-        <p class="calc-sub">Exemple : un commerce qui fait 5 000 € de CA mensuel en click&nbsp;&&nbsp;collect + livraison.</p>
-        <div class="calc-grid">
-          <div class="calc-block">
-            <div class="label">Marketplace (25 %)</div>
-            <div class="val" style="color:#ff9c85">−&nbsp;1 250 €</div>
-            <div class="rem">prélevés sur vos ventes</div>
-          </div>
-          <div class="calc-block">
-            <div class="label">Marchéo</div>
-            <div class="val gold">−&nbsp;19 €</div>
-            <div class="rem">abonnement mensuel fixe</div>
-          </div>
-          <div class="calc-block">
-            <div class="label">Économies par an</div>
-            <div class="val green">≈&nbsp;14 700 €</div>
-            <div class="rem">que vous gardez pour votre commerce</div>
-          </div>
-        </div>
+      <div class="calc-out">
+        <div class="v" id="ecart">6 732 €</div>
+        <div class="n">de différence sur un an</div>
       </div>
     </div>
-  </section>
+    <p class="small" style="margin-top:14px">Calcul indicatif sur la base d'une commission de 30 %, taux haut couramment pratiqué par les plateformes de livraison, comparée à notre abonnement le plus complet à 39 €/mois. Détail des offres sur la page <a href="/#tarifs">tarifs</a>.</p>
+  </div>
+</section>
 
-  <!-- POURQUOI PAS DE COMMISSION -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Pourquoi 0 % ?</h2>
-      <p class="section-sub">On préfère un modèle simple, prévisible, du côté du commerçant.</p>
+<section>
+  <div class="wrap">
+    <h2>Trois modèles, trois logiques</h2>
+    <div class="scroll">
+      <table class="tbl">
+        <tr>
+          <th>&nbsp;</th>
+          <th>Plateformes de livraison</th>
+          <th>Solutions au pourcentage</th>
+          <th>Marchéo</th>
+        </tr>
+        <tr>
+          <td>Coût par vente</td>
+          <td>25 à 30 %</td>
+          <td>2 à 8 %</td>
+          <td>0 %</td>
+        </tr>
+        <tr>
+          <td>Plus vous vendez</td>
+          <td>Plus vous payez</td>
+          <td>Plus vous payez</td>
+          <td>Vous payez pareil</td>
+        </tr>
+        <tr>
+          <td>Fichier client</td>
+          <td>Appartient à la plateforme</td>
+          <td>Variable</td>
+          <td>Vous appartient</td>
+        </tr>
+        <tr>
+          <td>Votre nom</td>
+          <td>Noyé parmi les autres</td>
+          <td>Selon la solution</td>
+          <td>Votre boutique, votre marque</td>
+        </tr>
+        <tr>
+          <td>Matériel requis</td>
+          <td>Tablette dédiée</td>
+          <td>Souvent</td>
+          <td>Aucun — votre téléphone</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
 
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">🧾</div>
-          <h3>Un prix qui ne bouge pas</h3>
-          <p>Vous savez exactement ce que Marchéo vous coûte. Aucun mauvais surprise en fin de mois.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🤝</div>
-          <h3>Vos clients restent vos clients</h3>
-          <p>CRM intégré, historique, segments, notifications — vous parlez directement à vos clients, sans intermédiaire.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🚀</div>
-          <h3>Plus vous vendez, plus vous gagnez</h3>
-          <p>Chaque euro gagné va dans votre caisse, pas dans une commission qui grandit avec votre succès.</p>
-        </div>
+<section>
+  <div class="wrap">
+    <h2>Comment on gagne notre vie, alors</h2>
+    <p class="lead">Un abonnement mensuel fixe, de 19 à 39 € selon l'offre, sans engagement. C'est tout. Pas de pourcentage caché, pas de frais par transaction, pas de palier qui se déclenche quand vous marchez bien.</p>
+    <p class="lead">Notre intérêt et le vôtre vont dans le même sens : si votre boutique en ligne fonctionne, vous restez. Nous n'avons aucune raison de vous prendre une part de votre croissance.</p>
+    <a class="cta vert" href="/#tarifs">Voir les tarifs</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Et le no-show, alors ?</h2>
+    <p class="lead" style="margin-bottom:26px">C'est la vraie question quand on ne fait pas payer en ligne. Voilà comment ça marche chez nous.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">🔒</div>
+        <h3>Le client s'engage</h3>
+        <p>À la commande, une empreinte bancaire est prise via Stripe. Le client n'est pas débité — sa carte est enregistrée.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎚️</div>
+        <h3>Vous fixez le montant</h3>
+        <p>Vous choisissez le pourcentage retenu en cas de commande non récupérée. Élevé pour vous protéger, bas pour convertir davantage. C'est votre réglage.</p>
+      </div>
+      <div class="card">
+        <div class="ico">✅</div>
+        <h3>Libérée au retrait</h3>
+        <p>Vous validez le retrait, l'empreinte est libérée et vous encaissez. Le client paie comme il en a l'habitude, en boutique.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section class="section" style="background:var(--cream);">
-    <div class="container">
-      <h2 class="section-title">Questions fréquentes</h2>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>Vraiment aucune commission cachée ?</h3>
-          <p>Non. Vous payez l'abonnement mensuel et c'est tout. Les frais de traitement bancaire (Stripe) sont facturés au coût, sans marge de notre côté.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Comment Marchéo gagne sa vie alors ?</h3>
-          <p>Uniquement via l'abonnement mensuel. À partir de 19 € / mois selon les options (click&nbsp;&&nbsp;collect, livraison, empreinte anti no-show, réservation).</p>
-        </div>
-        <div class="faq-item">
-          <h3>Si je vends plus, mon abonnement grimpe&nbsp;?</h3>
-          <p>Non. Le tarif dépend des fonctionnalités que vous activez, pas du volume de commandes.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Puis-je continuer à vendre sur Uber Eats en parallèle&nbsp;?</h3>
-          <p>Rien ne vous en empêche. Beaucoup de nos commerçants gardent une présence marketplace pour la visibilité, et redirigent leurs habitués vers Marchéo pour économiser la commission.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Et si j'arrête ?</h3>
-          <p>Sans engagement. Vous stoppez quand vous voulez, votre catalogue vous appartient, vos données clients aussi.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section>
+  <div class="wrap">
+    <h2>Questions fréquentes</h2>
 
-  <!-- CTA FINAL -->
-  <section class="cta-final">
-    <h2>Prêt à garder tout ce que vous gagnez ?</h2>
-    <p>Créez votre boutique Marchéo en 15 minutes. Sans engagement, sans commission — jamais.</p>
-    <div class="cta-row">
-      <a href="/inscription" class="btn-primary" role="button">Créer ma boutique</a>
-      <a href="/#tarifs" class="btn-secondary" role="button">Voir les tarifs</a>
-    </div>
-  </section>
+    <details>
+      <summary>Vraiment aucune commission ?</summary>
+      <p>Aucune. Vous payez un abonnement mensuel fixe, entre 19 et 39 € selon l'offre choisie. Que vous fassiez 10 ou 200 commandes dans le mois, le montant ne bouge pas.</p>
+    </details>
 
-  <footer>
-    <div>
-      <a href="/">Accueil</a>
-      <a href="/#tarifs">Tarifs</a>
-      <a href="/faq">FAQ</a>
-      <a href="/blog">Blog</a>
-      <a href="/cgv">CGV</a>
-      <a href="/mentions-legales">Mentions légales</a>
-    </div>
-    <div style="margin-top:16px;">© Marchéo · 0 % de commission, 100 % de votre commerce.</div>
-  </footer>
+    <details>
+      <summary>Y a-t-il des frais bancaires ?</summary>
+      <p>Les frais de traitement Stripe s'appliquent sur les transactions, comme pour n'importe quel terminal de paiement. Ils vont à Stripe, pas à nous.</p>
+    </details>
 
+    <details>
+      <summary>Puis-je arrêter quand je veux ?</summary>
+      <p>Oui. Sans engagement, résiliable à tout moment.</p>
+    </details>
+
+    <details>
+      <summary>Que deviennent mes clients si j'arrête ?</summary>
+      <p>Ce sont vos clients. Le fichier vous appartient et vous pouvez l'exporter.</p>
+    </details>
+
+    <details>
+      <summary>Faut-il acheter du matériel ?</summary>
+      <p>Non. Pas d'imprimante, pas de terminal, pas de caisse à changer. Votre téléphone reçoit les commandes et vous les validez dessus.</p>
+    </details>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="final">
+    <h2>Combien laissez-vous chaque mois ?</h2>
+    <p>On analyse votre présence en ligne et on vous montre, chiffres à l'appui, ce que vous laissez aujourd'hui. Sans engagement.</p>
+    <a class="cta" href="/#contact">Être rappelé</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.getElementById('ca'),
+      caVal=document.getElementById('caVal'),
+      perte=document.getElementById('perte'),
+      ecart=document.getElementById('ecart');
+  function fmt(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
+  function maj(){
+    var ca=+s.value, commission=ca*0.30, diff=(commission-39)*12; // base 39 € : notre offre la plus complète
+    caVal.textContent=fmt(ca);
+    perte.textContent=fmt(commission);
+    ecart.textContent=fmt(diff>0?diff:0);
+  }
+  s.addEventListener('input',maj); maj();
+})();
+</script>
 </body>
 </html>
