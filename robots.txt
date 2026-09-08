@@ -17,6 +17,8 @@ Disallow: /unsubscribe.html
 Disallow: /unsubscribe
 Disallow: /audit-express.html
 Disallow: /audit-complet.html
+Disallow: /audit-rdv1-28672480.html
+Disallow: /audit-rdv1-28672480.webmanifest
 Disallow: /avis/
 Disallow: /contester
 Disallow: /litige

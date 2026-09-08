@@ -945,6 +945,8 @@ async function seConnecterAdmin() {
       email,
       user_id: data.user?.id,
     }));
+    const to = new URLSearchParams(location.search).get('redirect');
+    if (to && to.startsWith('/') && !to.startsWith('//')) { location.replace(to); return; }
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dashboard').classList.add('actif');
     chargerDashboard();

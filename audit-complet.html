@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0F2C52">
 <meta name="robots" content="noindex,nofollow">
+<script>
+(function(){
+  var t=null;
+  try{
+    var a=localStorage.getItem('session_admin');
+    var c=localStorage.getItem('session_commercant');
+    t=(a&&JSON.parse(a).access_token)||(c&&JSON.parse(c).access_token)||null;
+  }catch(e){}
+  if(!t){location.replace('/admin.html?redirect='+encodeURIComponent(location.pathname));}
+})();
+</script>
 <link rel="manifest" href="/audit-rdv1-28672480.webmanifest">
 <link rel="apple-touch-icon" href="data:image/png;base64,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">
 <meta name="apple-mobile-web-app-capable" content="yes">

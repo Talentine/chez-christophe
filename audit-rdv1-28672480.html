@@ -7,6 +7,17 @@
 <meta name="theme-color" content="#0F2C52">
 <link rel="manifest" href="/audit-rdv1-28672480.webmanifest">
 <title>Audit RDV1 — Marchéo</title>
+<script>
+(function(){
+  var t=null;
+  try{
+    var a=localStorage.getItem('session_admin');
+    var c=localStorage.getItem('session_commercant');
+    t=(a&&JSON.parse(a).access_token)||(c&&JSON.parse(c).access_token)||null;
+  }catch(e){}
+  if(!t){location.replace('/admin.html?redirect='+encodeURIComponent(location.pathname));}
+})();
+</script>
 <style>
   body{margin:0;font-family:Georgia,serif;background:#F7F2E8;color:#0F2C52;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
   .w{max-width:420px;width:100%;text-align:center}
