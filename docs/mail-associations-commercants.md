@@ -24,8 +24,10 @@
 >
 > Nous souhaitons proposer à **[NOM_ASSOCIATION]** un partenariat autour d'un tarif préférentiel pour vos adhérents, sans engagement de votre côté :
 >
-> - **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine 19 €/mois, Click & Collect 39 €/mois, Tout-en-un + Livraison 59 €/mois)
-> - **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule
+> - **Une réduction de 100 à 250 €** sur les frais d'installation, selon la formule :
+>   - Vitrine (19 €/mois) : installation à **149 € au lieu de 249 €** (–100 €)
+>   - Click & Collect (39 €/mois) : installation à **199 € au lieu de 399 €** (–200 €)
+>   - Tout-en-un + Livraison (59 €/mois) : installation à **299 € au lieu de 549 €** (–250 €)
 > - **Un audit digital offert** pour chaque commerce signé — état des lieux + recommandations + plan d'action
 > - **Aucune convention lourde** — un simple code adhérent
 > - **Point d'étape trimestriel** avec vous sur les adoptions
