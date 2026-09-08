@@ -15,8 +15,11 @@ La CGAD fédère 18 organisations qui représentent les métiers de bouche — b
 Chez **Marchéo**, on résout exactement ce problème. On crée une boutique en ligne au nom de chaque artisan, on active le click & collect et la livraison, on gère les commandes et les paiements. Un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes.
 
 Nous souhaitons proposer à la CGAD un partenariat pour vos organisations adhérentes, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque commerce signé (état des lieux + reco + plan)
 - **Aucune convention lourde**, un simple code adhérent par métier
 - **Point d'étape trimestriel** avec vous sur les adoptions
@@ -42,8 +45,11 @@ Les bouchers et charcutiers-traiteurs vivent leur pire moment de l'année autour
 Chez **Marchéo**, on crée un site à leur nom, on active la prise de commande en ligne, on gère les précommandes de fêtes (Noël, Pâques, 15 août). Un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Empreinte bancaire à la commande pour éviter les no-shows — débitée seulement en cas de non-retrait.
 
 Nous souhaitons proposer à la CFBCT un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque boucherie signée
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -69,8 +75,11 @@ Les boulangers-pâtissiers gèrent leurs précommandes (pains spéciaux, brioche
 Chez **Marchéo**, on crée un site à leur nom, on prend les commandes en ligne, on gère les créneaux de retrait — même très tôt le matin. Un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes.
 
 Nous souhaitons proposer à la CNBPF un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque boulangerie signée
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -96,8 +105,11 @@ Un pâtissier réalise une part énorme de son chiffre d'affaires sur quelques j
 Chez **Marchéo**, on crée un site à leur nom, on active la prise de précommande en ligne avec paiement, on gère les créneaux et les alertes — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Empreinte bancaire pour éviter les no-shows (essentiels sur les précommandes de bûches ou de pièces montées).
 
 Nous souhaitons proposer à la Confédération un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque pâtisserie signée
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -123,8 +135,11 @@ Les poissonniers ont un produit fragile, saisonnier, coûteux — et une client�
 Chez **Marchéo**, on crée un site à leur nom, on active la prise de commande en ligne (marée du jour, plateaux d'huîtres, précommandes de fêtes), on gère la livraison locale — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes.
 
 Nous souhaitons proposer à l'OPEF un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque poissonnerie signée
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -150,8 +165,11 @@ Les artisans fleuristes ont deux gros pics dans l'année : Saint-Valentin, fête
 Chez **Marchéo**, on crée un site à leur nom, on active la prise de commande en ligne avec choix des créneaux de livraison, on gère les paiements. Un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Le fichier client reste au fleuriste — pas de captation par la plateforme.
 
 Nous souhaitons proposer à la FFAF un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque fleuriste signé
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -177,8 +195,11 @@ Les fromagers-crémiers ont une offre riche, changeante, et une expertise que le
 Chez **Marchéo**, on crée un site à leur nom, on active la prise de commande en ligne (plateaux, précommandes de fêtes, click & collect quotidien), on gère la livraison locale. Un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Notre premier client de référence est justement fromager (Chez Christophe, Angoulême).
 
 Nous souhaitons proposer à la Fédération un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque fromagerie signée
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -256,8 +277,11 @@ La Confédération défend les commerçants indépendants — ceux qui font vivr
 Chez **Marchéo**, on crée un site au nom de chaque commerçant, on active le click & collect et la livraison, on gère les commandes et les paiements — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Le commerçant garde son fichier client.
 
 Nous souhaitons proposer à la CDF un partenariat pour vos adhérents, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque commerce signé
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous
@@ -283,8 +307,11 @@ L'U2P est le porte-voix des entreprises de proximité — commerce, artisanat, p
 Chez **Marchéo**, on crée un site au nom du commerçant/artisan, on active le click & collect et la livraison, on gère les commandes et les paiements — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes.
 
 Nous souhaitons proposer à l'U2P un partenariat pour vos organisations adhérentes (CGAD, CNAMS, U2P-Territoires…), sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque commerce signé
 - **Aucune convention**, un simple code adhérent par organisation
 - **Point d'étape trimestriel** avec vous
@@ -310,8 +337,11 @@ La CPME défend les TPE et PME françaises. Parmi vos adhérents, une part impor
 Chez **Marchéo**, on crée un site au nom du commerçant, on active la prise de commande, le click & collect, la livraison, les paiements — pour un abonnement fixe à partir de 19 €/mois. **Zéro commission** sur les ventes. Un coût maîtrisé, un ROI mesurable en quelques mois.
 
 Nous souhaitons proposer à la CPME un partenariat pour vos adhérents commerçants, sans engagement de votre côté :
-- **Installation à 49 € au lieu de 199 €** — création de la boutique, mise en ligne du catalogue, formation
-- **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent adressé (soit près de 200 € d'économies au démarrage)
+- **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine, Click & Collect + Réservation, Tout-en-un + Livraison)
+- **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule choisie :
+  - **Vitrine · 19 €/mois** → 49 € installation + mois 2-3 à 9,50 € = **238 € d'économies**
+  - **Click & Collect + Réservation · 39 €/mois** → 49 € installation + mois 2-3 à 19,50 € = **389 € d'économies**
+  - **Tout-en-un + Livraison · 59 €/mois** → 49 € installation + mois 2-3 à 29,50 € = **559 € d'économies**
 - **Un audit digital offert** pour chaque commerce signé
 - **Aucune convention**, un simple code adhérent
 - **Point d'étape trimestriel** avec vous

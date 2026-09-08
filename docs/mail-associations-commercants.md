@@ -24,9 +24,9 @@
 >
 > Nous souhaitons proposer à **[NOM_ASSOCIATION]** un partenariat autour d'un tarif préférentiel pour vos adhérents, sans engagement de votre côté :
 >
-> - **Installation à 49 € au lieu de 199 €** — création boutique + catalogue + formation
-> - **–50 % sur les 3 premiers mois** d'abonnement, pour tout adhérent que vous nous adressez (soit près de 200 € d'économies au démarrage)
-> - **Un audit digital offert** pour chaque commerce signé — état des lieux de la présence en ligne, recommandations concrètes, plan d'action
+> - **Installation à 49 € forfait** — au lieu de 249 € à 549 € selon la formule (Vitrine 19 €/mois, Click & Collect 39 €/mois, Tout-en-un + Livraison 59 €/mois)
+> - **1er mois offert + –50 % sur les mois 2 et 3** d'abonnement — soit **de 238 € à 559 € d'économies** pour l'adhérent selon la formule
+> - **Un audit digital offert** pour chaque commerce signé — état des lieux + recommandations + plan d'action
 > - **Aucune convention lourde** — un simple code adhérent
 > - **Point d'étape trimestriel** avec vous sur les adoptions
 >
