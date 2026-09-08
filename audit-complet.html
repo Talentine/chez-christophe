@@ -40,8 +40,9 @@
 
   /* ───── APP SHELL ───── */
   .app{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+  .stickyhead{position:sticky;top:0;z-index:100;background:var(--blanc)}
   .topbar{
-    position:sticky;top:0;z-index:100;background:var(--nuit);color:#fff;
+    background:var(--nuit);color:#fff;
     padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;
     display:flex;align-items:center;gap:14px;box-shadow:0 2px 16px rgba(10,20,40,.25)
   }
@@ -62,12 +63,12 @@
   .save-ind.dirty b{background:var(--soleil)}
 
   /* progress */
-  .progress{height:5px;background:var(--cremef);position:sticky;top:0;z-index:99}
+  .progress{height:5px;background:var(--cremef)}
   .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--vert),var(--soleil));width:0;transition:width .4s var(--ff,ease)}
 
   /* section nav */
   .nav{
-    position:sticky;z-index:98;background:var(--blanc);border-bottom:1px solid var(--cremef);
+    background:var(--blanc);border-bottom:1px solid var(--cremef);
     display:flex;gap:8px;overflow-x:auto;padding:11px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch
   }
   .nav::-webkit-scrollbar{display:none}
@@ -416,6 +417,7 @@
 <body>
 <div class="app" id="app">
 
+  <div class="stickyhead">
   <header class="topbar">
     <div class="brand"><span class="dot"></span><div>Marchéo<small>Fiche audit · RDV 1</small></div></div>
     <div class="tb-mid" id="tbMid">Nouvelle fiche</div>
@@ -438,6 +440,7 @@
 
   <div class="progress"><i id="progBar"></i></div>
   <nav class="nav" id="nav"></nav>
+  </div>
 
   <main id="main"></main>
 
