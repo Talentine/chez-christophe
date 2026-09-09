@@ -2,6 +2,12 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "(www\\.)?marcheo\\.pro" }],
+      "destination": "https://xn--marcho-fva.fr/:path*",
+      "permanent": true
+    },
     { "source": "/landing.html", "destination": "/", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/blog/:slug.html", "destination": "/blog/:slug", "permanent": true },
