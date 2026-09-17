@@ -22,6 +22,10 @@ Disallow: /audit-rdv1-28672480.webmanifest
 Disallow: /avis/
 Disallow: /contester
 Disallow: /litige
+# Endpoints d'API Supabase repérés par Google dans le JavaScript : ce ne sont pas des pages
+Disallow: /auth/
+Disallow: /rest/
+Disallow: /functions/
 
 # Robots des assistants IA : autorisés explicitement sur les pages publiques
 User-agent: GPTBot
