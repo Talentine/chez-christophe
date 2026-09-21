@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/vendre-au-poids-en-ligne",
   "/blog/click-and-collect-food-truck",
   "/blog/precommandes-fetes-noel-commerce-bouche",
   "/blog/comment-creer-un-site-click-and-collect-pour-son-commerce",

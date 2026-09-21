@@ -5,6 +5,7 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
+modified: 2026-09-21
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -62,6 +63,8 @@ Une bonne offre de fêtes tient sur une page :
 - **Boulangerie-pâtisserie** : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité.
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
+
+Les produits au kilo demandent un réglage particulier, et c'est le moment de l'année où une erreur se paie le plus cher : un chapon ou un plateau de fruits de mer dont le poids réel s'écarte de la commande, le 24 décembre à 11 h, avec vingt personnes derrière. La méthode pour présenter ces produits, proposer des poids d'un clic et annoncer l'ajustement à la pesée est détaillée dans notre guide sur [vendre au poids en ligne](/blog/vendre-au-poids-en-ligne).
 
 ## Les acomptes et l'empreinte bancaire
 

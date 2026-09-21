@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Vendre au poids en ligne : comment un boucher, un poissonnier ou un fromager prend des commandes sans se tromper](https://marchéo.fr/blog/vendre-au-poids-en-ligne) : Une entrecôte ne se vend pas comme une paire de chaussures. Voici comment prendre des commandes au kilo, aux 100 g ou à la pièce en ligne, et ajuster le montant à la pesée sans conflit avec le client.
 - [Click & collect pour food-truck : des commandes prêtes avant votre arrivée sur le spot](https://marchéo.fr/blog/click-and-collect-food-truck) : Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les commandes à l'avance, annoncer son emplacement du jour et servir par créneau change complètement ce que vous pouvez encaisser sur ce créneau du midi.
 - [Précommandes des fêtes : organiser Noël et le 31 décembre sans y laisser sa santé](https://marchéo.fr/blog/precommandes-fetes-noel-commerce-bouche) : Chapons, plateaux de fruits de mer, plateaux de fromages, buffets du 31 : les fêtes concentrent en dix jours une part énorme de l'année. Voici comment ouvrir ses précommandes en ligne, fixer ses dates limites, encaisser des acomptes et étaler les retraits pour tenir le coup.
 - [Comment créer un site de click & collect pour son commerce en 2026](https://marchéo.fr/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) : Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine.
@@ -50,6 +51,15 @@ Ce que ça change dans votre boulangerie
 Le samedi matin, la file avance. Les commandes de gâteaux, de pains spéciaux et de viennoiseries sont prises la veille en ligne, avec l&rsquo;heure de retrait. Vous les préparez au calme, et le client repart en 30 secondes au comptoir.
 Fini le gâteau commandé et jamais récupéré. Avec l&rsquo;empreinte bancaire optionnelle, 75 % du panier est pré-autorisé sur la carte du client au moment de la commande. Si la commande est retirée, rien n&rsquo;est débité et l&rsquo;empreinte est libérée 24 heures après. S&rsquo;il ne vient pas, vous décidez de ce que vous prélevez.
 Vos fournées se programment. Vous ouvrez des créneaux de retrait par jour et par heure, avec une capacité maximale par créneau. Le client ne peut réserver que ce que vous pouvez produire.
+Le rush du matin, et ce que le click &amp; collect y change
+Entre 7 h et 9 h, une boulangerie fait une part importante de sa journée en vingt minutes cumulées de file d&rsquo;attente. Le client qui part au travail compte les personnes devant lui et renonce parfois. C&rsquo;est le chiffre d&rsquo;affaires le plus invisible du métier : celui qui repart sans rien dire.
+Le click &amp; collect ne supprime pas la file, il la contourne. Le client qui a commandé la veille au soir passe sur le côté, annonce son nom, repart avec son sac. Trois réglages suffisent :
+
+Des créneaux courts le matin, de 10 ou 15 minutes, avec une capacité basse au début. Cinq commandes par tranche la première semaine.
+Une heure limite de commande la veille, pour que la fournée soit calée avant l&rsquo;ouverture.
+Un point de retrait identifié au comptoir, même une simple étagère avec une pancarte. C&rsquo;est ce que voient les clients qui font la queue, et c&rsquo;est ce qui les décide à essayer.
+
+Les habitués sont les premiers à basculer, parce qu&rsquo;ils commandent toujours la même chose. Leur historique est enregistré : ils reprennent leur commande précédente en deux clics. Au bout d&rsquo;un mois, la liste du matin se remplit toute seule.
 Ce qui est inclus
 
 Une boutique à vos couleurs, à l&rsquo;adresse marchéo.fr/votre-boulangerie, avec le catalogue boulangerie déjà rempli : pains, viennoiseries, pâtisseries, gâteaux sur commande, sandwichs. Vous cochez, vous ajustez les prix, c&rsquo;est en ligne.
@@ -98,6 +108,11 @@ Ajustez le catalogue depuis votre téléphone, ajoutez vos photos.
 Imprimez le QR code pour le comptoir et la vitrine, partagez le lien sur Instagram et Facebook.
 
 L&rsquo;installation se fait avec vous en 20 minutes si vous le souhaitez. Vos premières commandes arrivent souvent le week-end suivant.
+Pour aller plus loin
+
+Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne, avec le plan de mise en place en une semaine et les réglages de la fiche Google.
+Organiser ses précommandes des fêtes, pour les bûches, les galettes et les pics de fin d&rsquo;année.
+Vendre au poids en ligne, utile dès que vous proposez des pièces montées au nombre de parts ou des plateaux à la coupe.
 
 Q : Mes clients doivent-ils créer un compte pour commander ?
 R : Non. Ils choisissent leurs produits, leur créneau de retrait, laissent un nom et un téléphone, et c'est fini. Le paiement en ligne est optionnel : vous pouvez laisser régler au comptoir.
@@ -105,6 +120,10 @@ Q : Comment éviter les gâteaux commandés et jamais retirés ?
 R : Activez l'empreinte bancaire : 75 % du panier est pré-autorisé sur la carte du client. Si la commande est retirée, rien n'est débité. Sinon, vous décidez du montant prélevé. Vous pouvez aussi n'activer l'empreinte qu'au-dessus d'un certain montant.
 Q : Puis-je limiter le nombre de gâteaux par jour ?
 R : Oui. Chaque créneau de retrait a une capacité maximale et chaque produit peut avoir un stock. Quand c'est complet, le client voit le prochain créneau disponible.
+Q : Le click & collect a-t-il un intérêt pour le pain quotidien ?
+R : Oui, mais pas pour la baguette isolée. L'intérêt est le client pressé du matin qui prend toujours la même chose : deux baguettes tradition, trois croissants. Il reprend sa commande précédente en deux clics la veille au soir et passe devant la file. Le pain d'impulsion, lui, reste au comptoir.
+Q : Combien de temps faut-il pour être en ligne ?
+R : Moins de dix minutes pour la boutique elle-même : le catalogue boulangerie est pré-rempli, vous cochez ce que vous vendez et vous ajustez les prix. Comptez une soirée de plus pour les photos et le réglage des créneaux. L'installation peut se faire avec vous en 20 minutes.
 Q : Faut-il un site internet avant de commencer ?
 R : Non. Marchéo est votre site : une adresse à votre nom, référencée sur Google, avec vos horaires, votre adresse et votre catalogue. Si vous avez déjà un site, il suffit d'y ajouter le bouton « Commander ».
 Q : Y a-t-il une commission sur les ventes ?
@@ -665,6 +684,130 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Vendre au poids en ligne : comment un boucher, un poissonnier ou un fromager prend des commandes sans se tromper
+
+Une entrecôte ne se vend pas comme une paire de chaussures. Voici comment prendre des commandes au kilo, aux 100 g ou à la pièce en ligne, et ajuster le montant à la pesée sans conflit avec le client.
+
+Un boucher qui envisage de vendre en ligne bute presque toujours sur la même question, et elle arrive dans les cinq premières minutes : comment on fait pour la viande au kilo ?
+Elle paraît anodine. Elle ne l&rsquo;est pas. C&rsquo;est exactement ce qui bloque la plupart des commerces de bouche devant les outils de vente en ligne généralistes, conçus pour des articles qui ont un prix fixe, un code et un poids constant. Un rôti de 1,3 kg n&rsquo;a rien de tout cela.
+La bonne nouvelle, c&rsquo;est que le problème est résolu depuis longtemps dans les solutions pensées pour ces métiers. Encore faut-il régler son catalogue correctement, et surtout annoncer les choses au client au bon moment.
+Pourquoi les boutiques en ligne classiques calent sur le poids
+
+
+
+Ce que fait un outil généraliste
+Ce qu&rsquo;il faut pour un commerce de bouche
+
+
+
+
+Un prix fixe par article
+Un prix au kilo, recalculé selon le poids choisi
+
+
+Une quantité en nombre d&rsquo;unités
+Une quantité en grammes, en parts, en barquettes ou en pièces
+
+
+Un montant définitif au moment du paiement
+Un montant ajusté après la pesée
+
+
+Une fiche produit standardisée
+Une fiche qui accepte les précisions du client, épaisseur, cuisson, maturité
+
+
+Un stock compté à l&rsquo;unité
+Une disponibilité qui dépend de ce que vous avez coupé ce matin
+
+
+
+Cinq lignes, cinq raisons pour lesquelles un boucher qui essaie de monter sa boutique sur un outil de e-commerce généraliste abandonne au bout de deux soirées. Il ne manque pas une fonction, il en manque cinq, et elles sont toutes au cœur du métier.
+Les trois manières de vendre au poids, et quand utiliser chacune
+Tout ne se vend pas de la même façon, même dans une seule boutique. En pratique, trois modes suffisent à couvrir l&rsquo;ensemble d&rsquo;un catalogue.
+
+Le prix au kilo avec poids choisi. Le client voit « 28,90 € le kilo », choisit un poids, le total se calcule. C&rsquo;est le mode pour la viande coupée, le poisson à la pièce, le fromage à la coupe, les fruits et légumes au poids. C&rsquo;est celui qui inquiète, et c&rsquo;est le plus simple à mettre en place.
+Le format fixe. Barquette de 250 g, plateau six personnes, botte de radis, corbeille de fruits. Le poids est intégré au produit, le prix ne bouge pas, le client ne se pose aucune question. À utiliser dès que c&rsquo;est possible : c&rsquo;est le mode qui convertit le mieux.
+La pièce à poids variable. Le poulet fermier, le bar entier, le jambon. Vous vendez une pièce, mais elle pèse entre 1,2 et 1,6 kg. On affiche une fourchette, un prix au kilo, et on ajuste à la pesée.
+
+Une boutique bien réglée mélange les trois. Le réflexe utile est de basculer en format fixe tout ce qui peut l&rsquo;être : la moitié d&rsquo;un catalogue de fromagerie ou de traiteur se vend très bien en barquettes et en plateaux, et chaque produit passé en format fixe est une hésitation en moins pour le client.
+Donner des repères, jamais un champ vide
+C&rsquo;est là que la plupart des boutiques se ratent. Un client qui commande de la viande en ligne pour la première fois ne sait pas ce que représentent 400 g de bavette. S&rsquo;il doit taper un nombre dans un champ vide, il ferme la page.
+Ce qui fonctionne :
+
+Des poids proposés d&rsquo;un clic, adaptés au produit. 200 g, 400 g, 600 g pour de la bavette. 500 g, 1 kg, 1,5 kg pour un rôti. Trois ou quatre choix, pas dix.
+Un réglage fin par pas de 100 g pour ceux qui savent exactement ce qu&rsquo;ils veulent.
+Le prix qui se met à jour à chaque clic. Le client ne doit jamais avoir à calculer. Il voit le total avant d&rsquo;ajouter au panier.
+Une équivalence en nombre de personnes quand elle a du sens. « 800 g, environ 4 personnes » vend mieux que « 800 g ».
+Une phrase sur l&rsquo;ajustement, visible sur la fiche produit et non enterrée dans les conditions générales.
+
+Cette dernière ligne est la plus importante de l&rsquo;article. Le montant sera ajusté au poids exact à la pesée : dit avant la commande, c&rsquo;est une évidence du métier que tout le monde comprend. Découvert au comptoir, c&rsquo;est une mauvaise surprise, et une mauvaise surprise sur un prix coûte un client.
+Le paiement, le vrai piège de la vente au poids
+Le prépaiement intégral en ligne, réflexe naturel quand on monte une boutique, est mal adapté ici. Si le client a payé 14,45 € pour 500 g et que la pièce en fait 540, vous voilà à gérer un complément ou un remboursement de quelques dizaines de centimes, sur chaque commande, toute la journée.
+Trois options tiennent la route :
+
+Le paiement au retrait, au comptoir, comme d&rsquo;habitude. Simple, mais sans garantie si le client ne vient pas.
+L&rsquo;empreinte bancaire. Une partie du panier, 75 % chez Marchéo, est pré-autorisée sur la carte du client à la commande, sans aucun débit. La somme est libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;en entend jamais parler ; celui qui réserve trois kilos de gigot sans intention de venir y réfléchit à deux fois. Le mécanisme est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les no-shows.
+Le paiement en ligne réservé aux formats fixes. Les barquettes et les plateaux ont un prix définitif : rien n&rsquo;empêche de les faire payer d&rsquo;avance, et de laisser le reste du catalogue au comptoir.
+
+Beaucoup de commerces combinent les trois selon le produit. C&rsquo;est un réglage, pas une doctrine.
+Le catalogue, métier par métier
+
+
+
+Métier
+Ce qui se vend au poids
+Ce qui gagne à passer en format fixe
+
+
+
+
+Boucherie
+Viandes coupées, rôtis, steaks hachés
+Colis de viande, paniers barbecue, brochettes à la pièce
+
+
+Poissonnerie
+Filets, pavés, coquillages
+Plateaux de fruits de mer, poissons entiers à la pièce
+
+
+Fromagerie
+Fromages à la coupe
+Barquettes 125 et 250 g, plateaux par nombre de personnes
+
+
+Primeur
+Fruits et légumes au kilo
+Paniers de saison, bottes, corbeilles
+
+
+Traiteur
+Salades et plats au poids
+Parts, plats pour 4 ou 6, menus complets
+
+
+
+La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste.
+Trois erreurs qui coûtent des commandes
+
+Tout mettre au kilo. C&rsquo;est le réflexe du commerçant, parce que c&rsquo;est la réalité de la balance. Mais chaque produit au poids demande une décision au client. Multipliez par quinze produits dans le panier, vous avez un abandon.
+Ne pas annoncer l&rsquo;ajustement. Une ligne sur la fiche produit suffit. Son absence transforme une pratique normale en litige au comptoir.
+Oublier le champ de précisions. Épaisseur des tranches, degré d&rsquo;affinage, poisson vidé ou non, viande parée. C&rsquo;est ce champ qui fait la différence entre une commande en ligne et un caddie anonyme, et c&rsquo;est ce que vos clients attendent de vous plutôt que d&rsquo;un supermarché.
+
+Pour commencer
+Vendre au poids en ligne ne demande ni développement particulier ni matériel supplémentaire. Il faut un catalogue où chaque produit porte son unité de vente, des poids proposés d&rsquo;un clic, une phrase claire sur l&rsquo;ajustement à la pesée et un mode de paiement adapté. Le reste, vous le faites déjà tous les jours derrière votre balance.
+La page dédiée au métier est là : click &amp; collect pour boucherie. Si vos plus gros volumes sont les commandes de fêtes, notre guide des précommandes de fêtes pour les commerces de bouche complète celui-ci. Et pour voir à quoi ressemblerait votre boutique avec votre catalogue déjà rempli, la démo gratuite prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
+
+Q : Comment le client choisit-il un poids s'il ne sait pas ce que ça représente ?
+R : En lui proposant des repères plutôt qu'un champ vide. Des boutons de poids courants pour le produit, par exemple 300 g, 500 g, 1 kg, puis un réglage par pas de 100 g pour ceux qui veulent affiner. Le prix se met à jour à chaque clic, donc le client voit tout de suite ce qu'il commande. Un champ libre sans repère est la première cause d'abandon sur ce type de produit.
+Q : Que se passe-t-il si le poids réel n'est pas exactement celui commandé ?
+R : C'est la règle, pas l'exception : on ne coupe pas 500 g de rôti au gramme près. Le client commande un poids approximatif, vous pesez, et vous ajustez le montant avant l'encaissement. Prévenez-le simplement sur la fiche produit, en une phrase du type « le montant sera ajusté au poids exact à la pesée ». Personne ne conteste ce qui a été annoncé avant la commande.
+Q : Faut-il faire payer en ligne quand on vend au poids ?
+R : Le prépaiement intégral est mal adapté : vous devriez rembourser ou recompléter la différence à chaque commande. La plupart des commerces de bouche laissent payer au retrait et activent l'empreinte bancaire, qui réserve 75 % du panier sur la carte sans le débiter et libère la somme 24 heures après le retrait.
+Q : Et les produits qui se vendent à la pièce mais dont le poids varie, comme un poulet ou un bar entier ?
+R : Vendez-les à la pièce avec une fourchette de poids annoncée, par exemple « poulet fermier, 1,2 à 1,6 kg », et un prix au kilo affiché à côté. Le client sait ce qu'il aura et ce qu'il paiera approximativement, et vous ajustez au moment de la pesée comme pour le reste.
+
 # Click & collect pour food-truck : des commandes prêtes avant votre arrivée sur le spot
 
 Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les commandes à l'avance, annoncer son emplacement du jour et servir par créneau change complètement ce que vous pouvez encaisser sur ce créneau du midi.
@@ -807,6 +950,7 @@ Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un bu
 Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité.
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
+Les produits au kilo demandent un réglage particulier, et c&rsquo;est le moment de l&rsquo;année où une erreur se paie le plus cher : un chapon ou un plateau de fruits de mer dont le poids réel s&rsquo;écarte de la commande, le 24 décembre à 11 h, avec vingt personnes derrière. La méthode pour présenter ces produits, proposer des poids d&rsquo;un clic et annoncer l&rsquo;ajustement à la pesée est détaillée dans notre guide sur vendre au poids en ligne.
 Les acomptes et l&rsquo;empreinte bancaire
 Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du temps de travail, vous refusez d&rsquo;autres clients. Il est normal de demander une garantie.
 Deux mécanismes fonctionnent, et ils ne s&rsquo;excluent pas :
