@@ -9,7 +9,11 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 import pagesSeo from '../seo/urls.js';   // pages métier, articles, À propos (générées par seo/build.py)
 
-const HOST = 'https://marchéo.fr';
+// Domaine en punycode : la spec sitemaps.org impose des URL échappées en ASCII
+// et Google attend cette forme pour les domaines accentués. xn--marcho-fva.fr
+// et marchéo.fr désignent le même domaine, le site continue de s'afficher avec
+// l'accent (canonical, og:url) et les visiteurs ne voient aucune différence.
+const HOST = 'https://xn--marcho-fva.fr';
 const PAGES_STATIQUES = [
   { loc: '/',                    priority: '1.0', changefreq: 'weekly'  },
   { loc: '/inscription',         priority: '0.9', changefreq: 'monthly' },
