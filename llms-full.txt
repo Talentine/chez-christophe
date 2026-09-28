@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Fiche Google Business pour un commerce de bouche : le réglage qui vous fait trouver avant vos concurrents](https://marchéo.fr/blog/fiche-google-business-commerce-bouche) : Vos clients ne cherchent pas votre nom, ils cherchent « boulangerie ouverte dimanche ». Voici comment régler votre fiche Google Business pour apparaître dans ces recherches, et le champ que presque personne ne remplit.
 - [Vendre au poids en ligne : comment un boucher, un poissonnier ou un fromager prend des commandes sans se tromper](https://marchéo.fr/blog/vendre-au-poids-en-ligne) : Une entrecôte ne se vend pas comme une paire de chaussures. Voici comment prendre des commandes au kilo, aux 100 g ou à la pièce en ligne, et ajuster le montant à la pesée sans conflit avec le client.
 - [Click & collect pour food-truck : des commandes prêtes avant votre arrivée sur le spot](https://marchéo.fr/blog/click-and-collect-food-truck) : Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les commandes à l'avance, annoncer son emplacement du jour et servir par créneau change complètement ce que vous pouvez encaisser sur ce créneau du midi.
 - [Précommandes des fêtes : organiser Noël et le 31 décembre sans y laisser sa santé](https://marchéo.fr/blog/precommandes-fetes-noel-commerce-bouche) : Chapons, plateaux de fruits de mer, plateaux de fromages, buffets du 31 : les fêtes concentrent en dix jours une part énorme de l'année. Voici comment ouvrir ses précommandes en ligne, fixer ses dates limites, encaisser des acomptes et étaler les retraits pour tenir le coup.
@@ -380,6 +381,40 @@ Ce que ça change dans votre fromagerie
 Les plateaux se commandent à l&rsquo;avance. Un plateau pour 6 personnes, avec les préférences du client, commandé pour le samedi 18 h. Vous le composez le samedi matin, avec les affinages du moment.
 L&rsquo;hiver se prépare. Raclette, fondue, tartiflette : des produits saisonniers commandés en ligne au poids ou par personne, avec le créneau de retrait. Vous anticipez les quantités.
 Vos affinages se racontent. Chaque fiche produit a sa description, son origine, son AOP. Les clients découvrent, commandent, reviennent.
+Le calendrier d&rsquo;une fromagerie
+Peu de métiers de bouche ont une saisonnalité aussi marquée, et c&rsquo;est exactement ce qui rend la commande à l&rsquo;avance rentable : vous savez des mois d&rsquo;avance quand la demande va monter.
+
+
+
+Période
+Ce qui se commande
+À ouvrir
+
+
+
+
+Octobre à mars
+Raclette, fondue, tartiflette, au poids ou par personne
+Dès les premiers froids, avec une formule par nombre de convives
+
+
+Décembre
+Plateaux de fêtes, pièces d&rsquo;exception, beurres et crèmes
+Début novembre, date limite ferme mi-décembre
+
+
+Printemps et été
+Plateaux d&rsquo;apéritif, chèvres frais, fromages de pique-nique
+Aux beaux jours, avec des formats plus petits
+
+
+Toute l&rsquo;année
+Plateaux pour dîners, cadeaux, buffets d&rsquo;entreprise
+En permanence, par nombre de personnes
+
+
+
+La formule par nombre de convives est le format qui marche le mieux en fromagerie. « Raclette pour 4, 250 g par personne » ne demande aucun calcul au client, alors qu&rsquo;un prix au kilo l&rsquo;oblige à deviner une quantité qu&rsquo;il ne connaît pas. Gardez la vente au poids pour la coupe, et proposez des formules pour tout ce qui se consomme à plusieurs.
 Ce qui est inclus
 
 Boutique à vos couleurs avec le catalogue fromagerie déjà rempli : pâtes molles, pressées, persillées, chèvres, brebis, crèmerie, plateaux.
@@ -395,6 +430,7 @@ Combien ça coûte
 Offre
 Installation
 Par mois
+Pour
 
 
 
@@ -402,30 +438,43 @@ Par mois
 Vitrine
 249 €
 19 €
+Être visible sur Google et présenter vos fromages, sans vente en ligne
 
 
 Click &amp; Collect
 399 €
 39 €
+Plateaux et formules commandés à l&rsquo;avance, créneaux, empreinte, SMS
 
 
 Click &amp; Collect + Livraison
 549 €
 59 €
+Tout ça, plus la livraison dans votre zone
 
 
 
-0 % de commission, sans engagement.
+0 % de commission, sans engagement. Deux plateaux de fêtes par mois remboursent l&rsquo;abonnement.
 Comment démarrer
 
 Choisissez « Fromagerie » à l&rsquo;inscription, tapez le nom de votre commerce.
 Ajustez le catalogue, créez vos plateaux et vos formules raclette.
 QR code en boutique, lien sur vos réseaux.
 
+Pour aller plus loin
+
+Vendre au poids en ligne : proposer des poids d&rsquo;un clic, annoncer l&rsquo;ajustement à la pesée et choisir le bon mode de paiement pour la coupe.
+Organiser ses précommandes des fêtes : dates limites, créneaux et acomptes pour décembre.
+Régler sa fiche Google Business : être trouvé sur « fromagerie » plus le nom de votre ville, et mettre le lien de commande au bon endroit.
+
 Q : Comment vendre un plateau dont la composition dépend des affinages du moment ?
 R : Créez des plateaux par nombre de personnes avec un prix fixe et un champ où le client indique ses préférences. Vous composez avec ce que vous avez de meilleur le jour du retrait.
 Q : Puis-je vendre au poids en ligne ?
 R : Oui. Le client choisit un poids approximatif, vous ajustez le montant au poids réel avant l'encaissement si nécessaire.
+Q : Comment vendre la raclette et la fondue en ligne ?
+R : Par formule plutôt qu'au kilo. Créez des produits « raclette pour 2, 4 ou 6 personnes » avec une quantité annoncée par convive, et proposez la charcuterie et les pommes de terre en options. Le client n'a aucune quantité à estimer, et vous connaissez vos volumes à l'avance.
+Q : Mes arrivages changent toutes les semaines, comment tenir le catalogue à jour ?
+R : Vous masquez un produit en un geste depuis votre téléphone quand il n'est plus disponible, et vous le réaffichez à l'arrivage suivant sans avoir à le recréer. Pour les pièces d'exception qui tournent souvent, une seule fiche « le fromage de la semaine » dont vous changez la description évite de refaire un produit à chaque fois.
 Q : Faut-il payer en ligne ?
 R : C'est votre choix par produit. Beaucoup de fromageries laissent payer au retrait et activent l'empreinte bancaire uniquement sur les plateaux et les commandes de fêtes.
 Q : Marchéo livre-t-il les commandes ?
@@ -683,6 +732,109 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Fiche Google Business pour un commerce de bouche : le réglage qui vous fait trouver avant vos concurrents
+
+Vos clients ne cherchent pas votre nom, ils cherchent « boulangerie ouverte dimanche ». Voici comment régler votre fiche Google Business pour apparaître dans ces recherches, et le champ que presque personne ne remplit.
+
+Un client qui cherche votre boulangerie par son nom vous connaît déjà. Il n&rsquo;est pas le sujet.
+Le sujet, c&rsquo;est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n&rsquo;est pas votre site : c&rsquo;est votre fiche Google Business.
+C&rsquo;est l&rsquo;outil de visibilité locale le plus puissant dont dispose un commerce de quartier, il est gratuit, et il est presque toujours à moitié rempli.
+Ce que la fiche décide vraiment
+Quand quelqu&rsquo;un fait une recherche locale, Google affiche en haut un bloc de trois établissements avec la carte. Passer dans ces trois-là ou arriver quatorzième dans la liste en dessous, ce n&rsquo;est pas une différence de degré, c&rsquo;est une différence de nature.
+Trois facteurs pèsent, et un seul échappe totalement à votre contrôle :
+
+La proximité entre le client et votre commerce. Vous ne pouvez rien y faire, mais c&rsquo;est aussi ce qui vous protège : vous ne jouez pas contre la France entière, vous jouez contre les commerces de votre quartier.
+La pertinence : est-ce que votre fiche dit clairement que vous faites ce qui est recherché ? C&rsquo;est la catégorie, les produits, la description.
+La notoriété : avis, ancienneté, cohérence des informations vous concernant sur le web.
+
+Les deux derniers se travaillent, et c&rsquo;est là que la plupart des commerces laissent des places libres.
+Les champs qui pèsent, dans l&rsquo;ordre
+
+
+
+Champ
+Pourquoi il compte
+L&rsquo;erreur courante
+
+
+
+
+Catégorie principale
+C&rsquo;est elle qui vous fait apparaître ou non sur la recherche
+« Magasin d&rsquo;alimentation » au lieu de « Boulangerie »
+
+
+Horaires
+Une fiche qui affiche « fermé » vous coûte la matinée
+Les jours fériés et les congés jamais mis à jour
+
+
+Lien de commande ou site web
+C&rsquo;est le clic qui rapporte
+Vide, ou pointant vers une plateforme commissionnée
+
+
+Photos
+Elles décident du clic dans une liste de trois
+Trois photos de 2019 prises au flash
+
+
+Avis récents
+Le critère le plus visible pour le client
+Aucune demande faite aux clients contents
+
+
+Description et produits
+Vous positionne sur les recherches précises
+Un paragraphe de généralités
+
+
+
+Sur la catégorie principale. C&rsquo;est le réglage le plus important et le plus vite fait. Choisissez la plus précise qui vous décrive : boulangerie, boucherie, poissonnerie, fromagerie, primeur, fleuriste, traiteur. Ajoutez des catégories secondaires pour le reste de votre activité, sans les empiler : une pâtisserie et un salon de thé en secondaire pour une boulangerie qui fait les deux, pas dix catégories au hasard.
+Le champ que presque personne ne remplit
+Sur une fiche de commerce de bouche, il existe un endroit où mettre l&rsquo;adresse à laquelle on commande chez vous. Selon votre catégorie, cela s&rsquo;appelle le site web ou un lien de commande en ligne.
+C&rsquo;est le champ le plus rentable de la fiche, et c&rsquo;est celui qu&rsquo;on trouve vide ou mal rempli le plus souvent. Deux cas de figure :
+
+Il est vide. Le client qui voulait commander vous appelle, ou ne fait rien. Vous êtes visible sans être joignable au moment où il était décidé.
+Il pointe vers une plateforme de livraison. Vous payez alors une commission de 14 à 30 % sur un client qui vous avait trouvé tout seul, par une recherche où votre nom apparaissait déjà. C&rsquo;est le pire cas : vous avez fait le travail d&rsquo;acquisition, quelqu&rsquo;un d&rsquo;autre encaisse la marge.
+
+Mettez votre propre adresse de commande. Si vous avez une boutique Marchéo, c&rsquo;est marchéo.fr/votre-commerce, et la vente se fait sans commission. Le bouton apparaît directement dans les résultats de recherche, à côté de l&rsquo;itinéraire et du numéro de téléphone.
+Ce lien rend aussi service à Google : une fiche vérifiée qui pointe vers votre site aide ce site à être exploré et indexé.
+Les avis, sans tricher
+Les avis sont le critère que le client regarde en premier, et la seule chose que vous ne pouvez pas remplir vous-même.
+Ce qui fonctionne est peu spectaculaire :
+
+Demander, simplement, aux clients contents. Pas par message groupé : au comptoir, au moment où quelqu&rsquo;un vous dit que c&rsquo;était très bon. C&rsquo;est là que ça marche.
+Donner le lien. Google fournit un lien de demande d&rsquo;avis depuis votre fiche. Un QR code à côté de la caisse évite au client d&rsquo;avoir à chercher.
+Répondre à tous, en deux lignes, y compris les bons. Une page où le commerçant répond se voit tout de suite.
+Étaler dans le temps. Quarante avis arrivés le même mardi, c&rsquo;est plus suspect qu&rsquo;utile. Deux ou trois par semaine, régulièrement, valent mieux.
+
+Ce qui ne fonctionne pas : acheter des avis, en offrir contre une réduction, ou ne solliciter que les clients dont vous êtes sûr. C&rsquo;est contraire aux règles de Google, détectable, et la sanction porte sur la fiche entière.
+Les photos
+Un client choisit entre trois commerces sur un écran de téléphone. Les photos font une partie du travail.
+Prenez-les vous-même, en lumière du jour, sans flash : la vitrine du matin quand elle est pleine, deux ou trois produits en gros plan, la devanture pour qu&rsquo;on vous reconnaisse dans la rue, et vous ou votre équipe derrière le comptoir. Cette dernière est souvent celle qui déclenche la visite, parce qu&rsquo;elle montre que c&rsquo;est un vrai commerce tenu par quelqu&rsquo;un.
+Remplacez-les deux ou trois fois par an, au rythme des saisons. Une fiche dont les photos bougent est une fiche vivante.
+Les erreurs qui coûtent le plus cher
+
+Les horaires exceptionnels oubliés. Le 15 août, le lundi de Pentecôte, la semaine de fermeture annuelle. Une fiche qui dit « ouvert » quand vous êtes fermé génère des clients mécontents et des avis à une étoile ; l&rsquo;inverse vous fait perdre une journée entière.
+Les fiches en double. Un changement de propriétaire, un déménagement, et deux fiches coexistent en se partageant les avis. Signalez le doublon à Google pour le faire fusionner.
+Le nom trafiqué. « Boulangerie Dupont Pains Bio Sandwichs Toulon » n&rsquo;aide pas, et c&rsquo;est une infraction aux règles. Mettez votre enseigne, telle qu&rsquo;elle est sur votre devanture.
+Des informations différentes ailleurs. Un numéro de téléphone sur la fiche, un autre sur Facebook, une adresse écrite de trois manières sur les annuaires. Cette incohérence vous coûte des places. Alignez tout sur une seule écriture.
+
+Le lien avec votre boutique en ligne
+La fiche et la boutique se renforcent l&rsquo;une l&rsquo;autre. La fiche vous rend trouvable au moment de la recherche ; la boutique transforme cette visibilité en commande, à l&rsquo;heure où votre magasin est fermé et où personne ne peut répondre au téléphone.
+C&rsquo;est le schéma qui fait la différence pour un commerce de quartier : le client cherche « boulangerie ouverte dimanche » le samedi soir, tombe sur votre fiche, clique sur « Commander », réserve son gâteau pour le lendemain 10 h, et vous le préparez au calme. Aucune commission, et un client qui reviendra directement par votre adresse la fois suivante.
+Pour la mise en place côté boutique, notre guide sur créer un site de click &amp; collect pour son commerce donne la marche à suivre, et la page click &amp; collect pour boulangerie détaille le cas d&rsquo;un commerce à forte fréquentation matinale. Pour voir à quoi ressemblerait votre page de commande, la démo gratuite prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
+
+Q : La fiche Google Business est-elle payante ?
+R : Non, elle est entièrement gratuite, y compris les photos, les horaires, les avis et le lien vers votre site. Si quelqu'un vous appelle pour vous vendre « le référencement de votre fiche Google » ou sa validation, méfiez-vous : c'est un démarchage classique auprès des commerçants, et Google ne facture rien pour cela.
+Q : Combien de temps faut-il pour que la fiche remonte dans les résultats ?
+R : La fiche elle-même apparaît dès qu'elle est validée, en quelques jours. Sa position parmi les commerces du quartier bouge plus lentement, sur plusieurs semaines, et dépend surtout de trois choses : la proximité du client qui cherche, la cohérence de vos informations et vos avis récents. C'est un entretien régulier, pas un réglage à faire une fois.
+Q : Puis-je mettre le lien de ma boutique en ligne sur ma fiche ?
+R : Oui, et c'est le champ le plus rentable de la fiche. Selon votre catégorie, vous disposez d'un champ site web et parfois d'un champ de commande en ligne. Mettez votre propre adresse de commande plutôt que celle d'une plateforme : le client arrive directement chez vous et vous ne payez aucune commission sur la vente.
+Q : Que faire d'un avis négatif ?
+R : Répondez, calmement, publiquement, dans les jours qui suivent. Un avis négatif avec une réponse posée rassure souvent plus qu'une page d'avis parfaits. Vous ne pouvez pas supprimer un avis parce qu'il vous déplaît ; seuls les avis qui enfreignent les règles de Google, insultes ou contenu sans rapport, peuvent être signalés.
 
 # Vendre au poids en ligne : comment un boucher, un poissonnier ou un fromager prend des commandes sans se tromper
 
@@ -1487,6 +1639,7 @@ Les horaires exacts, y compris les fermetures exceptionnelles. Une fiche qui aff
 Les photos récentes, prises au téléphone en lumière du jour, remplacées deux ou trois fois par an.
 
 Ajoutez à cela les avis clients : demandez-les au comptoir, simplement, aux habitués. Une boulangerie avec quarante avis récents passe devant une boulangerie avec six avis de 2021.
+Le détail de tous les réglages, catégorie principale, horaires exceptionnels, photos et champ de commande en ligne, est dans notre guide de la fiche Google Business pour un commerce de bouche.
 Le plan en une semaine
 
 Lundi. Sur la page de création, choisissez « Boulangerie », tapez le nom de votre boulangerie : la boutique apparaît avec le catalogue. Cochez ce que vous vendez, corrigez les prix.

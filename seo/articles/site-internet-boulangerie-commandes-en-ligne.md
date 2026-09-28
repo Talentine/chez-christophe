@@ -5,7 +5,7 @@ description: "Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâ
 meta_title: "Site internet pour boulangerie : commandes en ligne"
 meta_description: "Prendre les commandes de pains, gâteaux et bûches en ligne : ce qu'il faut sur un site de boulangerie, les créneaux, les acomptes et le prix."
 date: 2026-08-30
-modified: 2026-09-07
+modified: 2026-09-28
 rubrique: Métier
 emoji: 🥖
 keywords:
@@ -90,6 +90,8 @@ Trois réglages font la différence, et ils sont gratuits :
 - **Les photos récentes**, prises au téléphone en lumière du jour, remplacées deux ou trois fois par an.
 
 Ajoutez à cela les avis clients : demandez-les au comptoir, simplement, aux habitués. Une boulangerie avec quarante avis récents passe devant une boulangerie avec six avis de 2021.
+
+Le détail de tous les réglages, catégorie principale, horaires exceptionnels, photos et champ de commande en ligne, est dans notre guide de [la fiche Google Business pour un commerce de bouche](/blog/fiche-google-business-commerce-bouche).
 
 ## Le plan en une semaine
 
