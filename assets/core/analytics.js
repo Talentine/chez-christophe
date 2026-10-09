@@ -42,8 +42,32 @@
     return p;
   }
 
+  // ── Source de campagne (UTM) : lue à l'arrivée, gardée le temps de la session ──
+  //    Ne contient que les paramètres de campagne (pas d'identifiant personnel) ;
+  //    pour fbclid on ne garde que sa présence, jamais sa valeur.
+  function detectUtm() {
+    const CLE = 'marcheo_utm';
+    try {
+      const q = new URLSearchParams(location.search);
+      const u = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        const v = q.get(k);
+        if (v) u[k] = v.slice(0, 100);
+      });
+      if (q.has('fbclid')) u.fbclid = true;
+      if (Object.keys(u).length) {
+        sessionStorage.setItem(CLE, JSON.stringify(u));
+        return u;
+      }
+      return JSON.parse(sessionStorage.getItem(CLE) || 'null');
+    } catch (e) { return null; }
+  }
+  const UTM = detectUtm();
+
   // ── Envoi vers Supabase via beacon (non-bloquant) ──
   function sendEvent(event, meta = {}) {
+    meta = (meta && typeof meta === 'object') ? Object.assign({}, meta) : {};
+    if (UTM && !meta.utm) meta.utm = UTM;
     const payload = {
       event:    String(event).slice(0, 60),
       page:     detectPage().slice(0, 200),

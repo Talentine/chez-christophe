@@ -123,6 +123,7 @@
   .media-count strong{color:#7dc9a0;}
 </style>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=1" defer></script>
 <script src="/assets/core/business-defaults.js?v=1" defer></script>
 </head>
 <body>
@@ -848,6 +849,14 @@ function enregistrerLead(email) {
       keepalive: true
     }).catch(function() {});
   } catch (e) { /* silencieux : ne doit jamais gêner l'inscription */ }
+  suivreConversion('lead', 'Lead');
+}
+
+// ── Suivi des conversions : analytics interne (avec UTM) + Pixel Meta (si consentement) ──
+function suivreConversion(evenement, evenementMeta) {
+  var meta = { business_type: state.type || null, offre: state.offre || null };
+  try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track(evenement, meta); } catch (e) {}
+  try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, { content_category: state.type || undefined }); } catch (e) {}
 }
 
 window.resetEmailFeedback = function() {
@@ -1251,6 +1260,7 @@ async function creerBoutique() {
     const cData = await cRes.json();
     if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData)) + ' — vérifiez la config RLS de commercants');
     state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
+    suivreConversion('demo_creee', 'CompleteRegistration');
 
     // 4. Lien rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
@@ -1553,6 +1563,7 @@ async function reprendreInscriptionDepuisCallback() {
     if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData).slice(0, 200)) + ' — création boutique échouée');
     const commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
     state.commercantId = commercantId;
+    suivreConversion('demo_creee', 'CompleteRegistration');
 
     // c. Rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
