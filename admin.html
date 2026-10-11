@@ -847,6 +847,31 @@
           <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
         </div>
       </div>
+
+      <!-- OÙ LES VISITEURS S'ARRÊTENT -->
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Où les visiteurs s'arrêtent</div>
+      <div class="page-sub">Visites anonymes reliées page à page · données collectées depuis le 11/10/2026</div>
+
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">Entonnoir d'inscription (visites)</div>
+          <div id="anaEntonnoir" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Pages de sortie (dernière page vue)</div>
+          <div id="anaSorties" style="font-size:13px;">Chargement…</div>
+        </div>
+      </div>
+
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Lecture des pages · défilement moyen, temps moyen, section où l'on décroche le plus</div>
+        <div id="anaLecture" style="font-size:13px;">Chargement…</div>
+      </div>
+
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Derniers parcours</div>
+        <div id="anaParcours" style="font-size:13px;">Chargement…</div>
+      </div>
     </div>
 
   </div>
@@ -2088,22 +2113,28 @@ async function chargerAnalytics() {
       const jours = periodeAnalytics === '7j' ? 7 : 30;
       since = new Date(Date.now() - jours*86400000).toISOString();
     }
-    const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(since) + '&select=event,page,slug,referrer,device&limit=10000';
-    const r = await fetch(url, {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY) }
-    });
-    const events = await r.json();
-    if (!Array.isArray(events)) {
-      document.getElementById('anaPageViews').textContent = '—';
-      return;
+    // Récupère par paquets de 1000 (limite par requête de Supabase)
+    const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(since) + '&select=created_at,event,page,slug,referrer,device,meta&order=created_at.asc';
+    const events = [];
+    for (let debut = 0; debut < 50000; debut += 1000) {
+      const r = await fetch(url, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY), 'Range': debut + '-' + (debut + 999) }
+      });
+      const lot = await r.json();
+      if (!Array.isArray(lot)) {
+        document.getElementById('anaPageViews').textContent = '—';
+        return;
+      }
+      events.push(...lot);
+      if (lot.length < 1000) break;
     }
 
     // Compteurs
     const pageViews = events.filter(e => e.event === 'page_view').length;
     const inscClicks = events.filter(e => e.event === 'cta_inscription').length;
     const conversion = pageViews > 0 ? ((inscClicks / pageViews) * 100).toFixed(1) + '%' : '—';
-    const mobile = events.filter(e => e.device === 'mobile').length;
-    const mobilePct = events.length > 0 ? Math.round((mobile / events.length) * 100) + '%' : '—';
+    const mobile = events.filter(e => e.event === 'page_view' && e.device === 'mobile').length;
+    const mobilePct = pageViews > 0 ? Math.round((mobile / pageViews) * 100) + '%' : '—';
 
     document.getElementById('anaPageViews').textContent = pageViews.toLocaleString('fr-FR');
     document.getElementById('anaInscClicks').textContent = inscClicks.toLocaleString('fr-FR');
@@ -2117,7 +2148,7 @@ async function chargerAnalytics() {
     });
     const topPages = Object.entries(pageCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopPages').innerHTML = topPages.length
-      ? topPages.map(([p,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-family:monospace;font-size:12px;">${p}</span><strong>${n}</strong></div>`).join('')
+      ? topPages.map(([p,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-family:monospace;font-size:12px;">${escHtml(p)}</span><strong>${n}</strong></div>`).join('')
       : '<div style="opacity:.5">Aucune donnée</div>';
 
     // Top boutiques (par slug)
@@ -2127,7 +2158,7 @@ async function chargerAnalytics() {
     });
     const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopBoutiques').innerHTML = topSlugs.length
-      ? topSlugs.map(([s,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${s}</span><strong>${n}</strong></div>`).join('')
+      ? topSlugs.map(([s,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${escHtml(s)}</span><strong>${n}</strong></div>`).join('')
       : '<div style="opacity:.5">Aucune visite de boutique</div>';
 
     // Top referrers — normalisation des sources
@@ -2158,17 +2189,137 @@ async function chargerAnalytics() {
       return h;
     }
     const refCounts = {};
-    events.filter(e => e.referrer).forEach(e => {
+    events.filter(e => e.event === 'page_view' && e.referrer).forEach(e => {
       const src = normaliserSource(e.referrer);
       refCounts[src] = (refCounts[src] || 0) + 1;
     });
     const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaReferrers').innerHTML = topRefs.length
-      ? topRefs.map(([r,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${r}</span><strong>${n}</strong></div>`).join('')
+      ? topRefs.map(([r,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${escHtml(r)}</span><strong>${n}</strong></div>`).join('')
       : '<div style="opacity:.5">Trafic direct uniquement</div>';
+
+    afficherParcours(events, normaliserSource);
   } catch (e) {
     document.getElementById('anaPageViews').textContent = '⚠️';
   }
+}
+
+function escHtml(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function formaterDuree(sec) {
+  if (sec == null || isNaN(sec)) return '—';
+  sec = Math.round(sec);
+  if (sec < 60) return sec + ' s';
+  return Math.floor(sec / 60) + ' min ' + String(sec % 60).padStart(2, '0');
+}
+
+// ── Où les visiteurs s'arrêtent : visites reliées par l'identifiant anonyme meta.sid ──
+function afficherParcours(events, normaliserSource) {
+  const ligne = (gauche, droite) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.75;font-size:12px;">${gauche}</span><strong style="white-space:nowrap;">${droite}</strong></div>`;
+  const vide = '<div style="opacity:.5">Pas encore de visite suivie sur cette période</div>';
+
+  // Regroupe par visite
+  const visites = {};
+  events.forEach(e => {
+    const sid = e.meta && e.meta.sid;
+    if (!sid) return;
+    (visites[sid] = visites[sid] || []).push(e);
+  });
+  const listeVisites = Object.values(visites).filter(v => v.some(e => e.event === 'page_view'));
+
+  // Entonnoir d'inscription : nombre de visites ayant atteint chaque étape
+  const etapes = [
+    { lbl: 'Visite du site', test: e => e.event === 'page_view' },
+    { lbl: 'Clic « S\'inscrire »', test: e => e.event === 'cta_inscription' },
+    { lbl: 'Page inscription · métier', test: e => e.event === 'page_view' && /inscription/.test(e.page || '') },
+    { lbl: 'Étape 2 · boutique', test: e => e.event === 'inscription_etape' && e.meta.etape >= 2 },
+    { lbl: 'Étape 3 · photos', test: e => e.event === 'inscription_etape' && e.meta.etape >= 3 },
+    { lbl: 'Étape 4 · compte', test: e => e.event === 'inscription_etape' && e.meta.etape >= 4 },
+    { lbl: 'Boutique démo créée', test: e => e.event === 'demo_creee' },
+  ];
+  const comptes = etapes.map(et => listeVisites.filter(v => v.some(et.test)).length);
+  document.getElementById('anaEntonnoir').innerHTML = listeVisites.length
+    ? etapes.map((et, i) => {
+        const pctDebut = comptes[0] ? Math.round(comptes[i] / comptes[0] * 100) : 0;
+        const perte = i > 0 && comptes[i-1] ? Math.round((1 - comptes[i] / comptes[i-1]) * 100) : null;
+        return `<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="display:flex;justify-content:space-between;gap:12px;"><span style="opacity:.75;font-size:12px;">${et.lbl}</span><strong>${comptes[i]}${perte != null && perte > 0 ? ` <span style="color:#ff8a8a;font-weight:400;font-size:11px;">−${perte}%</span>` : ''}</strong></div>
+          <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:4px;"><div style="height:4px;width:${pctDebut}%;background:var(--or);border-radius:2px;"></div></div>
+        </div>`;
+      }).join('')
+    : vide;
+
+  // Pages de sortie : dernière page vue de chaque visite
+  const sorties = {};
+  listeVisites.forEach(v => {
+    const vues = v.filter(e => e.event === 'page_view');
+    const derniere = vues[vues.length - 1].page || '/';
+    sorties[derniere] = (sorties[derniere] || 0) + 1;
+  });
+  const topSorties = Object.entries(sorties).sort((a,b) => b[1]-a[1]).slice(0,10);
+  document.getElementById('anaSorties').innerHTML = topSorties.length
+    ? topSorties.map(([p,n]) => ligne(`<span style="font-family:monospace;">${escHtml(p)}</span>`, `${n} <span style="opacity:.5;font-weight:400;font-size:11px;">(${Math.round(n / listeVisites.length * 100)}%)</span>`)).join('')
+    : vide;
+
+  // Lecture par page (événements page_exit)
+  const lecture = {};
+  events.filter(e => e.event === 'page_exit' && e.meta).forEach(e => {
+    const l = lecture[e.page || '/'] = lecture[e.page || '/'] || { n: 0, scroll: 0, duree: 0, sections: {} };
+    l.n++;
+    l.scroll += Number(e.meta.scroll) || 0;
+    l.duree += Math.min(Number(e.meta.duree) || 0, 1800); // plafonne les onglets oubliés à 30 min
+    if (e.meta.section) l.sections[e.meta.section] = (l.sections[e.meta.section] || 0) + 1;
+  });
+  const topLecture = Object.entries(lecture).sort((a,b) => b[1].n - a[1].n).slice(0,10);
+  document.getElementById('anaLecture').innerHTML = topLecture.length
+    ? `<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">
+        <tr style="opacity:.5;text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Vues</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
+        ${topLecture.map(([p,l]) => {
+          const section = Object.entries(l.sections).sort((a,b) => b[1]-a[1])[0];
+          const scroll = Math.round(l.scroll / l.n);
+          return `<tr style="border-top:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.75;">${escHtml(p)}</td>
+            <td style="padding:6px 8px;">${l.n}</td>
+            <td style="padding:6px 8px;"><strong style="color:${scroll < 30 ? '#ff8a8a' : scroll < 70 ? '#ffd47a' : '#7fd97f'};">${scroll}%</strong></td>
+            <td style="padding:6px 8px;">${formaterDuree(l.duree / l.n)}</td>
+            <td style="padding:6px 0 6px 8px;opacity:.75;">${section ? escHtml(section[0]) : '—'}</td>
+          </tr>`;
+        }).join('')}
+      </table></div>`
+    : vide;
+
+  // Derniers parcours (20 plus récents)
+  const recents = listeVisites
+    .sort((a,b) => new Date(b[b.length-1].created_at) - new Date(a[a.length-1].created_at))
+    .slice(0, 20);
+  document.getElementById('anaParcours').innerHTML = recents.length
+    ? recents.map(v => {
+        const debut = new Date(v[0].created_at);
+        const fin = new Date(v[v.length-1].created_at);
+        const vues = v.filter(e => e.event === 'page_view');
+        const sortie = v.filter(e => e.event === 'page_exit').pop();
+        const source = normaliserSource(vues[0].referrer);
+        const etapeMax = Math.max(0, ...v.filter(e => e.event === 'inscription_etape').map(e => Number(e.meta.etape) || 0));
+        const badges = [];
+        if (v.some(e => e.event === 'cta_inscription')) badges.push('🖱️ clic S\'inscrire');
+        if (etapeMax) badges.push('📝 inscription étape ' + etapeMax);
+        if (v.some(e => e.event === 'demo_creee')) badges.push('✅ démo créée');
+        const chemin = vues.map(e => `<span style="font-family:monospace;">${escHtml(e.page || '/')}</span>`).join(' <span style="opacity:.4;">→</span> ');
+        const arret = sortie
+          ? `arrêt à ${Number(sortie.meta.scroll) || 0}%${sortie.meta.section ? ' · « ' + escHtml(sortie.meta.section) + ' »' : ''}`
+          : '';
+        return `<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;opacity:.55;margin-bottom:4px;">
+            <span>${debut.toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' })} · ${escHtml(vues[0].device || '?')} · ${escHtml(source)}</span>
+            <span>${formaterDuree((fin - debut) / 1000)} · ${vues.length} page${vues.length > 1 ? 's' : ''}</span>
+          </div>
+          <div style="font-size:12px;line-height:1.6;">${chemin}</div>
+          ${arret || badges.length ? `<div style="font-size:11px;margin-top:4px;"><span style="color:#ffd47a;">${arret}</span>${badges.length ? ` <span style="opacity:.7;">${badges.join(' · ')}</span>` : ''}</div>` : ''}
+        </div>`;
+      }).join('')
+    : vide;
 }
 
 async function chargerRevenus() {

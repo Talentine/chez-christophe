@@ -704,6 +704,7 @@ function etape(n) {
   document.getElementById('step' + n).classList.add('actif');
   for (let i=1;i<=4;i++) document.querySelector('.bar'+i)?.classList.toggle('actif', i <= n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track('inscription_etape', { etape: n }); } catch (e) {}
 }
 
 // ── Gestion médias

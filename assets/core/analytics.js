@@ -64,10 +64,26 @@
   }
   const UTM = detectUtm();
 
+  // ── Identifiant de visite anonyme : aléatoire, propre à l'onglet, oublié à sa fermeture ──
+  //    (sessionStorage, pas de cookie) — sert uniquement à relier les pages d'une même visite.
+  function detectSid() {
+    const CLE = 'marcheo_sid';
+    try {
+      let sid = sessionStorage.getItem(CLE);
+      if (!sid) {
+        sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2));
+        sessionStorage.setItem(CLE, sid);
+      }
+      return sid;
+    } catch (e) { return null; }
+  }
+  const SID = detectSid();
+
   // ── Envoi vers Supabase via beacon (non-bloquant) ──
   function sendEvent(event, meta = {}) {
     meta = (meta && typeof meta === 'object') ? Object.assign({}, meta) : {};
     if (UTM && !meta.utm) meta.utm = UTM;
+    if (SID && !meta.sid) meta.sid = SID;
     const payload = {
       event:    String(event).slice(0, 60),
       page:     detectPage().slice(0, 200),
@@ -114,6 +130,54 @@
   } else {
     window.addEventListener('load', () => sendEvent('page_view'));
   }
+
+  // ── Point d'arrêt sur la page : profondeur de défilement, dernière section vue, temps passé ──
+  const debutPage = Date.now();
+  let scrollMax = 0;
+  let sectionMax = null;
+  let rafScroll = null;
+
+  function titreSection(el) {
+    const txt = (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim();
+    return txt ? txt.slice(0, 60) : (el.id || null);
+  }
+
+  function mesurerScroll() {
+    rafScroll = null;
+    const doc = document.documentElement;
+    const hauteur = Math.max(doc.scrollHeight - window.innerHeight, 1);
+    const pct = Math.min(100, Math.round((window.scrollY / hauteur) * 100));
+    if (pct < scrollMax) return;
+    scrollMax = pct;
+    // Dernier titre de section entré dans l'écran
+    const titres = document.querySelectorAll('h1, h2, .step.actif .step-title');
+    for (let i = titres.length - 1; i >= 0; i--) {
+      if (titres[i].getBoundingClientRect().top < window.innerHeight && titres[i].offsetParent !== null) {
+        sectionMax = titreSection(titres[i]);
+        break;
+      }
+    }
+  }
+  window.addEventListener('scroll', function () {
+    if (!rafScroll) rafScroll = requestAnimationFrame(mesurerScroll);
+  }, { passive: true });
+  window.addEventListener('load', mesurerScroll);
+
+  let sortieEnvoyee = false;
+  function envoyerSortie() {
+    if (sortieEnvoyee) return;
+    sortieEnvoyee = true;
+    mesurerScroll();
+    sendEvent('page_exit', {
+      scroll: scrollMax,
+      section: sectionMax,
+      duree: Math.round((Date.now() - debutPage) / 1000),
+    });
+  }
+  window.addEventListener('pagehide', envoyerSortie);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') envoyerSortie();
+  });
 
   // ── Auto-track les clics sur les CTA principaux (data-track) ──
   document.addEventListener('click', function (e) {
