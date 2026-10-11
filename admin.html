@@ -801,7 +801,18 @@
     <!-- PAGE ANALYTICS -->
     <div class="page" id="page-analytics">
       <div class="page-titre">Analytics</div>
-      <div class="page-sub">Trafic anonyme · 30 derniers jours</div>
+      <div class="page-sub" id="anaSousTitre">Trafic anonyme · aujourd'hui</div>
+
+      <!-- PÉRIODE (Aujourd'hui / 7 j / 30 j) -->
+      <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
+        <button class="ana-pill actif" data-periode="jour" onclick="changerPeriodeAnalytics('jour')">📅 Aujourd'hui</button>
+        <button class="ana-pill" data-periode="7j" onclick="changerPeriodeAnalytics('7j')">7 jours</button>
+        <button class="ana-pill" data-periode="30j" onclick="changerPeriodeAnalytics('30j')">30 jours</button>
+      </div>
+      <style>
+        .ana-pill { background:rgba(255,255,255,.06); border:1.5px solid rgba(255,255,255,.12); border-radius:50px; padding:8px 16px; font-size:13px; font-weight:600; color:#fff; cursor:pointer; font-family:inherit; }
+        .ana-pill.actif { background:rgba(201,165,75,.18); border-color:var(--or,#c9a54b); color:var(--or,#c9a54b); }
+      </style>
 
       <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
         <div class="stat-card">
@@ -2055,10 +2066,28 @@ async function chargerCommandes() {
 
 // ── REVENUS ───────────────────────────────────────────
 // ── ANALYTICS DASHBOARD ───────────────────────────────
+let periodeAnalytics = 'jour';
+const LIBELLES_PERIODE_ANALYTICS = { jour: "aujourd'hui", '7j': '7 derniers jours', '30j': '30 derniers jours' };
+
+function changerPeriodeAnalytics(periode) {
+  periodeAnalytics = periode;
+  document.querySelectorAll('.ana-pill').forEach(p => p.classList.toggle('actif', p.dataset.periode === periode));
+  chargerAnalytics();
+}
+
 async function chargerAnalytics() {
+  document.getElementById('anaSousTitre').textContent = 'Trafic anonyme · ' + LIBELLES_PERIODE_ANALYTICS[periodeAnalytics];
   try {
-    // 30 derniers jours
-    const since = new Date(Date.now() - 30*86400000).toISOString();
+    // Aujourd'hui = depuis minuit (heure locale), sinon 7 / 30 derniers jours
+    let since;
+    if (periodeAnalytics === 'jour') {
+      const minuit = new Date();
+      minuit.setHours(0, 0, 0, 0);
+      since = minuit.toISOString();
+    } else {
+      const jours = periodeAnalytics === '7j' ? 7 : 30;
+      since = new Date(Date.now() - jours*86400000).toISOString();
+    }
     const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(since) + '&select=event,page,slug,referrer,device&limit=10000';
     const r = await fetch(url, {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY) }
