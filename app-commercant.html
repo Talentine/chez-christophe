@@ -6610,25 +6610,39 @@ async function sauvegarderEdition() {
       }
     }
 
-    // Mettre à jour produits_base (nom, unité, photo)
-    const updateProduit = await fetch(SUPABASE_URL + '/rest/v1/produits_base?id=eq.' + produitEnEdition.produit_base_id, {
-      method: 'PATCH',
-      headers: await mWriteAuth({
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation',
-      }),
-      body: JSON.stringify({
-        nom,
-        unite: produitEnEdition.unite,
-        photo_url: photoUrl,
-        categorie_id: document.getElementById('editCategorie')?.value || null,
-        description: document.getElementById('editDescription')?.value.trim() || null,
-        provenance: document.getElementById('editProvenance')?.value.trim() || null,
-        saisonnier: document.getElementById('editBadgeSaison')?.checked || false,
-        badge_local: document.getElementById('editBadgeLocal')?.checked || false,
-        badge_nouveau: document.getElementById('editBadgeNouveau')?.checked || false,
-        badge_bio: document.getElementById('editBadgeBio')?.checked || false,
-      })
+    // Fiche produit (nom, photo, description…) : on n'envoie que ce qui a changé.
+    // personnaliser_produit met à jour un produit de la boutique, ou crée une copie
+    // propre à la boutique si c'est un produit du catalogue général (les autres
+    // boutiques gardent la fiche d'origine).
+    const fiche = {
+      nom,
+      photo_url: photoUrl || '',
+      categorie_id: document.getElementById('editCategorie')?.value || null,
+      description: document.getElementById('editDescription')?.value.trim() || '',
+      provenance: document.getElementById('editProvenance')?.value.trim() || '',
+      saisonnier: document.getElementById('editBadgeSaison')?.checked || false,
+      badge_local: document.getElementById('editBadgeLocal')?.checked || false,
+      badge_nouveau: document.getElementById('editBadgeNouveau')?.checked || false,
+      badge_bio: document.getElementById('editBadgeBio')?.checked || false,
+    };
+    const avant = {
+      nom: produitEnEdition.nom,
+      photo_url: produitEnEdition.photo_url || '',
+      categorie_id: produitEnEdition.categorie_id || null,
+      description: produitEnEdition.description || '',
+      provenance: produitEnEdition.provenance || '',
+      saisonnier: !!produitEnEdition.saisonnier,
+      badge_local: !!produitEnEdition.badge_local,
+      badge_nouveau: !!produitEnEdition.badge_nouveau,
+      badge_bio: !!produitEnEdition.badge_bio,
+    };
+    const changements = {};
+    Object.keys(fiche).forEach(k => { if (fiche[k] !== avant[k]) changements[k] = fiche[k] === '' ? null : fiche[k]; });
+
+    const updateProduit = Object.keys(changements).length === 0 ? { ok: true } : await fetch(SUPABASE_URL + '/rest/v1/rpc/personnaliser_produit', {
+      method: 'POST',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ p_catalogue_id: produitEnEdition.catalogue_id, p_data: changements }),
     });
 
     if (!updateProduit.ok) {
@@ -6868,6 +6882,10 @@ async function sauvegarderProduit() {
         badge_nouveau: document.getElementById('badgeNouveau')?.checked || false,
         badge_bio: document.getElementById('badgeBio')?.checked || false,
         actif: true,
+        // Produit propre à la boutique : n'entre pas dans le catalogue général
+        // (l'admin peut l'y ajouter depuis le back-office).
+        global: false,
+        commercant_id: commercantId,
       })
     });
 
