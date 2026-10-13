@@ -692,8 +692,9 @@ async function verifierZoneLivraison(adresse, cp, ville) {
 
 async function etapeSuivante() {
   if (etape === 1) {
-    // Vérifier connexion
-    if (!getSession()) {
+    // Vérifier connexion (sauf boutique démo : commande test sans compte)
+    const estDemo = !!(__BIZ__ && __BIZ__.abonnement_actif !== true);
+    if (!estDemo && !getSession()) {
       if (confirm('Vous devez être connecté pour commander.\n\nAller sur la page de connexion ?')) {
         window.location.href = (window.CC && window.CC.url) ? window.CC.url('compte.html') : 'compte.html';
       }
