@@ -2,8 +2,11 @@
 -- CATALOGUE_BOUTIQUES.sql — séparer le catalogue général Marchéo des produits
 -- créés par les boutiques (+ correctif de sécurité RLS sur produits_base).
 --
--- À exécuter UNE FOIS dans l'éditeur SQL Supabase, AVANT de déployer les
--- changements admin.html / app-commercant.html qui l'utilisent.
+-- APPLIQUÉ le 13/10/2026 (migrations produits_base_global_securite,
+-- produits_base_garde_trigger, produits_base_rls_update_securite,
+-- personnaliser_produit, seed_catalogue_global_seulement), sauf l'étape 0 :
+-- les produits de test ont seulement été désactivés (actif = false partout),
+-- leur suppression définitive reste à lancer.
 -- Rejouable sans risque (if not exists / create or replace).
 -- =============================================================================
 
@@ -60,15 +63,12 @@ begin
   return new;
 end;
 $$;
-drop trigger if exists produits_base_garde on public.produits_base;
-create trigger produits_base_garde before insert or update on public.produits_base
+create or replace trigger produits_base_garde before insert or update on public.produits_base
   for each row execute function public.produits_base_garde();
 
 -- 4. RLS : un commerçant ne modifie plus QUE les produits de sa boutique
 --    (avant : n'importe quel produit du catalogue général, pour toutes les boutiques).
-drop policy if exists produits_base_commercant_update on public.produits_base;
-create policy produits_base_commercant_update on public.produits_base
-  for update to authenticated
+alter policy produits_base_commercant_update on public.produits_base
   using (global = false and commercant_id in (
     select ru.commercant_id from roles_utilisateurs ru
      where ru.user_id = (select auth.uid()) and ru.role in ('commercant','salarie')))
@@ -135,98 +135,22 @@ $$;
 revoke all on function public.personnaliser_produit(uuid, jsonb) from public, anon;
 grant execute on function public.personnaliser_produit(uuid, jsonb) to authenticated;
 
--- 6. Les boutiques ne reçoivent que le catalogue général.
-create or replace function public.reseed_catalogue(p_commercant_id uuid)
-returns integer
-language plpgsql
-security definer
-set search_path = public, pg_temp
-as $$
-DECLARE
-  v_count_added integer;
-  v_count_removed integer;
-  v_types text[];
-BEGIN
-  SELECT ARRAY[business_type] || COALESCE(business_types_secondaires, '{}'::text[])
-    INTO v_types
-  FROM commercants
-  WHERE id = p_commercant_id;
-
-  IF v_types IS NULL THEN RETURN 0; END IF;
-
-  -- 1. AJOUTER les produits du catalogue général des types actuels pas encore présents
-  INSERT INTO catalogue (commercant_id, produit_base_id, prix_vente, actif, en_stock, ordre_affichage)
-  SELECT p_commercant_id, pb.id, COALESCE(pb.prix_marche_indicatif, 0), true, true,
-         ROW_NUMBER() OVER (ORDER BY c.ordre, pb.nom)
-  FROM produits_base pb
-  JOIN categories c ON c.id = pb.categorie_id
-  WHERE c.business_type = ANY(v_types)
-    AND pb.global
-    AND NOT EXISTS (
-      SELECT 1 FROM catalogue cat
-      WHERE cat.commercant_id = p_commercant_id AND cat.produit_base_id = pb.id
-    );
-  GET DIAGNOSTICS v_count_added = ROW_COUNT;
-
-  -- 2. SUPPRIMER les produits dont la catégorie n'est plus dans les types actifs
-  DELETE FROM catalogue cat
-  USING produits_base pb, categories c
-  WHERE cat.commercant_id = p_commercant_id
-    AND cat.produit_base_id = pb.id
-    AND pb.categorie_id = c.id
-    AND NOT (c.business_type = ANY(v_types));
-  GET DIAGNOSTICS v_count_removed = ROW_COUNT;
-
-  RETURN v_count_added + v_count_removed;
-END;
+-- 6. Un produit de boutique n'entre que dans le catalogue de SA boutique.
+--    Couvre seed_catalogue_for_commercant, reseed_catalogue et
+--    fn_creer_demo_ambassadeur (qui copient tous les produits du métier).
+create or replace function public.catalogue_refus_produit_autre_boutique()
+returns trigger language plpgsql security definer set search_path = public, pg_temp as $$
+begin
+  if exists (select 1 from produits_base pb
+              where pb.id = new.produit_base_id and not pb.global
+                and pb.commercant_id is distinct from new.commercant_id) then
+    return null;  -- ignoré silencieusement : les seeds en masse continuent
+  end if;
+  return new;
+end;
 $$;
-
-create or replace function public.seed_catalogue_for_commercant(p_commercant_id uuid)
-returns integer
-language plpgsql
-security definer
-set search_path = public, pg_temp
-as $$
-DECLARE
-  v_count integer;
-  v_types text[];
-  v_owner uuid;
-  v_caller uuid;
-BEGIN
-  SELECT auth_user_id, ARRAY[business_type] || COALESCE(business_types_secondaires, '{}'::text[])
-    INTO v_owner, v_types
-  FROM commercants
-  WHERE id = p_commercant_id;
-
-  IF v_types IS NULL THEN RETURN 0; END IF;
-
-  -- Garde-fou : appelé depuis un client authentifié → propriétaire ou admin.
-  v_caller := auth.uid();
-  IF v_caller IS NOT NULL THEN
-    IF v_caller <> v_owner AND NOT EXISTS (
-      SELECT 1 FROM roles_utilisateurs WHERE user_id = v_caller AND role = 'admin'
-    ) THEN
-      RAISE EXCEPTION 'Non autorisé : vous devez être propriétaire du commerçant'
-        USING ERRCODE = 'insufficient_privilege';
-    END IF;
-  END IF;
-
-  INSERT INTO catalogue (commercant_id, produit_base_id, prix_vente, actif, en_stock, ordre_affichage)
-  SELECT p_commercant_id, pb.id, COALESCE(pb.prix_marche_indicatif, 0), true, true,
-         ROW_NUMBER() OVER (ORDER BY c.ordre, pb.nom)
-  FROM produits_base pb
-  JOIN categories c ON c.id = pb.categorie_id
-  WHERE c.business_type = ANY(v_types)
-    AND pb.global
-    AND NOT EXISTS (
-      SELECT 1 FROM catalogue cat
-      WHERE cat.commercant_id = p_commercant_id AND cat.produit_base_id = pb.id
-    );
-
-  GET DIAGNOSTICS v_count = ROW_COUNT;
-  RETURN v_count;
-END;
-$$;
+create or replace trigger catalogue_refus_produit_autre_boutique before insert on public.catalogue
+  for each row execute function public.catalogue_refus_produit_autre_boutique();
 
 -- 7. La régénération photo ne touche jamais un produit de boutique.
 create or replace function public.photo_regen_refus_boutique()
@@ -238,8 +162,7 @@ begin
   return new;
 end;
 $$;
-drop trigger if exists photo_regen_refus_boutique on public.photo_regen;
-create trigger photo_regen_refus_boutique before insert on public.photo_regen
+create or replace trigger photo_regen_refus_boutique before insert on public.photo_regen
   for each row execute function public.photo_regen_refus_boutique();
 
 commit;

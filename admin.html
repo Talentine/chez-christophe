@@ -1793,7 +1793,7 @@ let sourceCatalogue = 'global';
 
 async function chargerCatalogue(forceReload) {
   if (forceReload || tousProduits.length === 0) {
-    tousProduits = await sb('produits_base', '?select=*,categories(nom,emoji,slug),commercants(nom_boutique)&order=nom') || [];
+    tousProduits = await sb('produits_base', '?select=*,categories(nom,emoji,slug),commercants!produits_base_commercant_id_fkey(nom_boutique)&order=nom') || [];
   }
   const nbGlobal = tousProduits.filter(p => p.global !== false).length;
   document.getElementById('nbGlobal').textContent = '(' + nbGlobal + ')';
