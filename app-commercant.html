@@ -6506,6 +6506,7 @@ function ouvrirEditionProduit(catalogueId) {
   if (!p) return;
   produitEnEdition = p;
   photoFileEdit = null;
+  ['editPhotoCamera','editPhotoGalerie'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
   document.getElementById('editNom').value = p.nom || '';
   document.getElementById('editPrix').value = p.prix || '';
@@ -6742,8 +6743,12 @@ function ajouterProduit() {
   }
 
   document.getElementById('modalAjoutProduit').style.display = 'flex';
-  document.getElementById('produitNom').value = '';
-  document.getElementById('produitPrix').value = '';
+  ['produitNom','produitPrix','produitDescription','produitPrixLotQte','produitPrixLot','produitStockQte','produitProvenance','produitCategorie','photoCamera','photoGalerie']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  const seuil = document.getElementById('produitStockSeuil');
+  if (seuil) seuil.value = '';
+  ['badgeSaison','badgeLocal','badgeNouveau','badgeBio']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.checked = false; });
   document.getElementById('photoPreview').style.display = 'none';
   document.getElementById('ajoutErreur').style.display = 'none';
   uniteSelectionnee = null;
