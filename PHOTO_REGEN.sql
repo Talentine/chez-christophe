@@ -23,13 +23,39 @@ create table if not exists public.photo_regen (
 alter table public.photo_regen enable row level security;
 -- Aucune policy : accessible uniquement par la service_role.
 
--- Import automatique : toutes les minutes tant que la file n'est pas vide.
+-- Évolutions (migrations photo_regen_detourage, photo_regen_claim) :
+alter table public.photo_regen add column if not exists detoure boolean not null default false;
+alter table public.photo_regen add column if not exists claimed_at timestamptz;
+alter table public.photo_regen drop constraint if exists photo_regen_statut_check;
+alter table public.photo_regen add constraint photo_regen_statut_check
+  check (statut in ('a_importer','en_cours','importe','erreur','annule'));
+-- Un même rendu peut servir à plusieurs produits doublons.
+alter table public.photo_regen drop constraint if exists photo_regen_job_id_key;
+alter table public.photo_regen add constraint photo_regen_job_produit_key unique (job_id, produit_id);
+
+create or replace function public.claim_photo_regen(n int)
+returns setof public.photo_regen
+language sql security definer set search_path = public
+as $$
+  update photo_regen p set statut = 'en_cours', claimed_at = now()
+   where p.id in (
+     select id from photo_regen
+      where statut = 'a_importer'
+         or (statut = 'en_cours' and claimed_at < now() - interval '5 minutes')
+      order by id limit n
+      for update skip locked)
+  returning p.*;
+$$;
+revoke all on function public.claim_photo_regen(int) from public, anon, authenticated;
+
+-- Import automatique : chaque minute, 4 appels parallèles d'1 image (limite CPU edge).
 select cron.schedule('import-photos-regen', '* * * * *', $$
   select net.http_post(
     url := 'https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/import-photos-regen',
-    body := '{"limite":6}'::jsonb,
+    body := '{"limite":1}'::jsonb,
     headers := '{"Content-Type":"application/json"}'::jsonb,
     timeout_milliseconds := 120000)
+  from generate_series(1, 4)
   where exists (select 1 from public.photo_regen where statut = 'a_importer')
 $$);
 

@@ -10,10 +10,12 @@ Remplace les photos DALL-E 3 de `generate.js` (rendu trop « IA », variétés a
    (`produit_id`, `job_id`, `source_url`). Table RLS sans policy → service_role uniquement.
 3. **Import** : le cron `import-photos-regen` appelle chaque minute l'edge function
    `supabase/functions/import-photos-regen` qui télécharge l'image (CDN Higgsfield uniquement),
-   la réduit à 1200 px JPEG q85 (~200 Ko), l'envoie dans
+   la réduit à 800 px JPEG q80 (comme `compresserImage()` de l'app), l'envoie dans
    `produits-media/catalogue-v2/<metier>/<slug>.jpg`, sauvegarde les anciennes URL
    (`old_photo_url*`) puis met à jour `produits_base`.
    Les boutiques lisent la photo dans `produits_base` : elles héritent automatiquement de la nouvelle.
+   Si `detoure = true` (source PNG détourée par Higgsfield), le produit est recadré, centré
+   dans 72 % × 60 % du cadre et recomposé sur le fond crème `#F2EDE3` avec une ombre douce.
 4. **Rollback** : voir la requête en bas de `PHOTO_REGEN.sql`.
 
 ## Brief de prompt (utilisé pour la passe du 13/10/2026)
