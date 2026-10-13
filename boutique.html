@@ -3989,7 +3989,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         <div style="font-weight:800;font-size:22px;color:#0F2C52;margin-top:8px">Réservation confirmée !</div>
         <div style="font-size:14px;color:#6B7785;margin-top:8px;line-height:1.5" id="m-resa-recap"></div>
 
-        <div style="margin:18px 0;padding:14px;background:#F7F2E8;border-radius:12px;text-align:left;font-size:13px;color:#0F2C52;line-height:1.55;">
+        <div id="m-resa-policy" style="margin:18px 0;padding:14px;background:#F7F2E8;border-radius:12px;text-align:left;font-size:13px;color:#0F2C52;line-height:1.55;">
           <strong>📋 Politique d'annulation</strong><br>
           Annulation gratuite jusqu'à <strong id="m-resa-policy-hours">24</strong> h avant l'horaire.<br>
           Au-delà : empreinte de <strong id="m-resa-policy-montant">30€</strong> débitée.
@@ -4294,7 +4294,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         body: JSON.stringify(Object.assign({ action: 'create' }, resaCtx))
       });
       var data = await r.json();
-      if (!r.ok || !data.client_secret) throw new Error(data.error || 'Erreur HTTP ' + r.status);
+      if (!r.ok || (!data.client_secret && !data.demo)) throw new Error(data.error || 'Erreur HTTP ' + r.status);
 
       resaCtx.client_secret = data.client_secret;
       resaCtx.setup_intent_id = data.setup_intent_id;
@@ -4302,6 +4302,14 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       resaCtx.cancel_token = data.cancel_token;
       resaCtx.policy_hours = data.cancellation_policy_hours || 24;
       resaCtx.montant_cents = data.montant_cents;
+      resaCtx.demo = !!data.demo;
+
+      // Boutique démo : réservation de test confirmée sans carte
+      if (data.demo) {
+        document.getElementById('m-resa-step1').style.display = 'none';
+        afficherResaConfirmee();
+        return;
+      }
 
       // Switch UI
       document.getElementById('m-resa-step1').style.display = 'none';
@@ -4351,6 +4359,45 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
     }
   };
 
+  function afficherResaConfirmee() {
+    document.getElementById('m-resa-step2').style.display = 'none';
+    document.getElementById('m-resa-step3').style.display = 'block';
+    document.getElementById('m-resa-recap').textContent =
+      resaCtx.nb_couverts + ' couverts · ' + resaCtx.date_reservation + ' à ' + resaCtx.heure_reservation;
+
+    // Politique d'annulation + lien magique
+    document.getElementById('m-resa-policy-hours').textContent = resaCtx.policy_hours;
+    document.getElementById('m-resa-policy-montant').textContent = ((resaCtx.montant_cents || 1500*resaCtx.nb_couverts)/100).toFixed(0) + '€';
+    document.getElementById('m-resa-policy').style.display = resaCtx.demo ? 'none' : '';
+    var cancelUrl = location.origin + '/annuler-reservation.html?t=' + resaCtx.cancel_token;
+    var link = document.getElementById('m-resa-cancel-link');
+    link.href = cancelUrl;
+    link.textContent = cancelUrl;
+
+    // Sauver la résa dans localStorage pour la retrouver via "Mes réservations"
+    try {
+      var key = 'marcheo_mes_resas';
+      var mesResas = JSON.parse(localStorage.getItem(key) || '[]');
+      mesResas.unshift({
+        reservation_id: resaCtx.reservation_id,
+        cancel_token: resaCtx.cancel_token,
+        date: resaCtx.date_reservation,
+        heure: resaCtx.heure_reservation,
+        nb_couverts: resaCtx.nb_couverts,
+        nom_client: resaCtx.nom_client,
+        shop_slug: (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.slug) || '',
+        shop_nom: (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.nom_boutique) || '',
+        montant_cents: resaCtx.montant_cents,
+        policy_hours: resaCtx.policy_hours,
+        created_at: new Date().toISOString(),
+      });
+      if (mesResas.length > 50) mesResas = mesResas.slice(0, 50);
+      localStorage.setItem(key, JSON.stringify(mesResas));
+      // Mettre à jour le badge
+      if (typeof majBadgeMesResas === 'function') majBadgeMesResas();
+    } catch(e) {}
+  }
+
   window.confirmerReservation = async function() {
     var btn = document.getElementById('m-resa-confirm-btn');
     btn.disabled = true; btn.textContent = 'Vérification carte…';
@@ -4367,41 +4414,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         body: JSON.stringify({ action: 'confirm', reservation_id: resaCtx.reservation_id, setup_intent_id: resaCtx.setup_intent_id })
       });
 
-      document.getElementById('m-resa-step2').style.display = 'none';
-      document.getElementById('m-resa-step3').style.display = 'block';
-      document.getElementById('m-resa-recap').textContent =
-        resaCtx.nb_couverts + ' couverts · ' + resaCtx.date_reservation + ' à ' + resaCtx.heure_reservation;
-
-      // Politique d'annulation + lien magique
-      document.getElementById('m-resa-policy-hours').textContent = resaCtx.policy_hours;
-      document.getElementById('m-resa-policy-montant').textContent = ((resaCtx.montant_cents || 1500*resaCtx.nb_couverts)/100).toFixed(0) + '€';
-      var cancelUrl = location.origin + '/annuler-reservation.html?t=' + resaCtx.cancel_token;
-      var link = document.getElementById('m-resa-cancel-link');
-      link.href = cancelUrl;
-      link.textContent = cancelUrl;
-
-      // Sauver la résa dans localStorage pour la retrouver via "Mes réservations"
-      try {
-        var key = 'marcheo_mes_resas';
-        var mesResas = JSON.parse(localStorage.getItem(key) || '[]');
-        mesResas.unshift({
-          reservation_id: resaCtx.reservation_id,
-          cancel_token: resaCtx.cancel_token,
-          date: resaCtx.date_reservation,
-          heure: resaCtx.heure_reservation,
-          nb_couverts: resaCtx.nb_couverts,
-          nom_client: resaCtx.nom_client,
-          shop_slug: (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.slug) || '',
-          shop_nom: (window.__CONFIG__ && window.__CONFIG__.business && window.__CONFIG__.business.nom_boutique) || '',
-          montant_cents: resaCtx.montant_cents,
-          policy_hours: resaCtx.policy_hours,
-          created_at: new Date().toISOString(),
-        });
-        if (mesResas.length > 50) mesResas = mesResas.slice(0, 50);
-        localStorage.setItem(key, JSON.stringify(mesResas));
-        // Mettre à jour le badge
-        if (typeof majBadgeMesResas === 'function') majBadgeMesResas();
-      } catch(e) {}
+      afficherResaConfirmee();
     } catch (e) {
       btn.disabled = false; btn.textContent = '🔒 Valider ma réservation';
       document.getElementById('m-resa-status').textContent = '⚠️ ' + e.message;

@@ -947,7 +947,8 @@ function validerFormulaire() {
 //            est créée APRÈS la commande, dans confirmerCommande.
 async function initialiserStripe() {
   const section = document.getElementById('empreinteSection');
-  if (!__BIZ__ || !__BIZ__.empreinte_obligatoire) {
+  // Boutique démo (abonnement non actif) : commandes de test, jamais d'empreinte
+  if (!__BIZ__ || !__BIZ__.empreinte_obligatoire || __BIZ__.abonnement_actif !== true) {
     if (section) section.style.display = 'none';
     return;
   }
@@ -1030,7 +1031,7 @@ async function confirmerCommande() {
   const email = document.getElementById('email').value.trim();
   const note = document.getElementById('note').value.trim();
 
-  const empreinteRequise = !!(__BIZ__ && __BIZ__.empreinte_obligatoire);
+  const empreinteRequise = !!(__BIZ__ && __BIZ__.empreinte_obligatoire && __BIZ__.abonnement_actif === true);
   let commandeId = null;
 
   try {
