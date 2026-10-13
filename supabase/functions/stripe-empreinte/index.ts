@@ -1,4 +1,4 @@
-// // ============================================================
+// ============================================================
 // Edge Function: stripe-empreinte
 // Gère le cycle de vie de l'empreinte bancaire
 //
@@ -6,7 +6,10 @@
 //   - 'create'     → crée PaymentIntent capture_method=manual
 //                    body: { commande_id, montant_cents, email, nom }
 //                    return: { client_secret, payment_intent_id, customer_id }
-//   - 'capture'    → débite l'empreinte (no-show, litige)
+//   - 'finalize'   → bascule le statut de la commande après confirmation carte
+//                    body: { commande_id }
+//                    return: { ok, statut }
+//   - 'capture'    → débite l'empreinte (no-show, litige) et clot la commande
 //                    body: { commande_id }
 //                    return: { ok }
 //   - 'release'    → libère l'empreinte (client venu)
@@ -95,7 +98,7 @@ serve(async (req) => {
   }
 });
 
-// ── CREATE ─────────────────────────────────────────────────
+// ── CREATE ──────────────────────────────────────────────
 async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   if (!commande_id || !montant_cents) return json({ error: 'Missing params' }, 400);
   if (montant_cents < 50) return json({ error: 'Montant trop faible (min 0.50€)' }, 400);
@@ -103,13 +106,18 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   // Récupérer le stripe_connect_id du commerçant + total pour borner l'empreinte
   const { data: cmd } = await supabase
     .from('commandes')
-    .select('commercant_id, total_ttc, commercants(stripe_connect_id, stripe_connect_actif)')
+    .select('commercant_id, total_ttc, commercants(stripe_connect_id, stripe_connect_actif, abonnement_actif)')
     .eq('id', commande_id)
     .single();
 
   if (!cmd?.commercant_id) return json({ error: 'Commande introuvable' }, 404);
 
-  // Garde-fou : on ne pré-autorise jamais plus que le total du panier (l'empreinte = 75% du total)
+  // Boutique démo (abonnement non actif) : commandes de test, jamais d'empreinte
+  if ((cmd?.commercants as any)?.abonnement_actif !== true) {
+    return json({ error: 'Boutique de démonstration : aucune empreinte bancaire' }, 409);
+  }
+
+  // Garde-fou : on ne pré-autorise jamais plus que le total du panier
   const maxCents = Math.round(Number(cmd.total_ttc || 0) * 100);
   if (maxCents > 0 && montant_cents > maxCents) return json({ error: 'Montant empreinte invalide' }, 400);
 
@@ -162,7 +170,7 @@ async function actionCreate({ commande_id, montant_cents, email, nom }: any) {
   });
 }
 
-// ── FINALIZE ───────────────────────────────────────────────
+// ── FINALIZE ───────────────────────────────────────────
 // Appelé par le panier après la confirmation de la carte côté navigateur.
 // Bascule le statut de la commande d'après le VRAI statut du PaymentIntent
 // (le PATCH commandes en anon est bloqué par RLS owner-only).
@@ -208,6 +216,9 @@ async function actionFinalize({ commande_id }: any) {
 }
 
 // ── CAPTURE (no-show, litige) ──────────────────────────────
+// Le débit clot la commande : le client ne s'est pas présenté, il n'y a plus
+// rien à préparer. Sans le passage en 'terminee', elle restait affichée comme
+// commande à traiter dans le dashboard du commerçant.
 async function actionCapture({ commande_id }: any) {
   const { data: cmd, error } = await supabase
     .from('commandes').select('stripe_payment_intent_id, empreinte_status').eq('id', commande_id).single();
@@ -225,7 +236,7 @@ async function actionCapture({ commande_id }: any) {
   return json({ ok: true });
 }
 
-// ── RELEASE (client venu, ou manuel) ───────────────────────
+// ── RELEASE (client venu, ou manuel) ─────────────────────────
 async function actionRelease({ commande_id }: any) {
   const { data: cmd, error } = await supabase
     .from('commandes').select('stripe_payment_intent_id, empreinte_status').eq('id', commande_id).single();

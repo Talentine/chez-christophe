@@ -3,21 +3,8 @@
 //
 // Crée une SetupIntent Stripe pour prendre l'empreinte bancaire
 // d'une réservation de table (anti no-show).
-//
-// Le client saisit sa carte → SetupIntent confirmé → on stocke
-// le payment_method_id sur la résa. Aucun débit n'est fait tant
-// que le commerçant ne marque pas 'no_show'.
-//
-// Actions (POST body { action }):
-//   - create   : crée résa + SetupIntent + retourne client_secret
-//   - confirm  : marque la résa comme confirmée après confirm carte
-//   - release  : libère l'empreinte (client arrivé)
-//   - capture  : débite l'empreinte (no-show)
-//
-// Variables d'env :
-//   STRIPE_SECRET_KEY
-//   SUPABASE_URL
-//   SUPABASE_SERVICE_ROLE_KEY
+// Boutique démo (abonnement non actif) : réservation de test confirmée
+// directement, sans carte ni Stripe.
 // ============================================================
 
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
@@ -74,7 +61,8 @@ serve(async (req) => {
     const action = body.action;
 
     // Actions sensibles (débit / libération / geste commercial) : réservées au
-    // commerçant propriétaire. create/confirm restent ouverts (checkout invité).
+    // commerçant propriétaire. create/confirm/cancel_by_client restent ouverts
+    // (checkout invité + annulation client via cancel_token non devinable).
     if (action === 'capture' || action === 'release' || action === 'commercial_gesture') {
       const user = await getAuthUser(req);
       if (!user) return json({ error: 'Authentification requise' }, 401);
@@ -90,17 +78,45 @@ serve(async (req) => {
       // ── Lit les paramètres du commerçant : montant par couvert + politique d'annulation
       const { data: biz, error: bizErr } = await supabase
         .from('commercants')
-        .select('empreinte_couvert_cents, cancellation_policy_hours')
+        .select('empreinte_couvert_cents, cancellation_policy_hours, abonnement_actif')
         .eq('id', commercant_id)
         .single();
       if (bizErr || !biz) {
         console.error('[reservation] biz lookup err:', bizErr);
         return json({ error: 'Commerçant introuvable' }, 404);
       }
+      const cancellation_policy_hours = Number(biz.cancellation_policy_hours) || 24;
+
+      // ── Boutique démo : réservation de test, aucune carte demandée, aucun débit possible
+      if (biz.abonnement_actif !== true) {
+        const { data: resaDemo, error: demoErr } = await supabase.from('reservations').insert({
+          commercant_id,
+          nom_client, prenom_client, telephone, email,
+          date_reservation, heure_reservation,
+          nb_couverts: Number(nb_couverts),
+          notes: notes || null,
+          occasion: occasion || null,
+          statut: 'confirmee',
+          date_confirmation: new Date().toISOString(),
+          empreinte_montant_cents: 0,
+          empreinte_status: 'none',
+        }).select().single();
+        if (demoErr) {
+          console.error('[reservation] demo insert err:', demoErr);
+          return json({ error: 'Erreur DB' }, 500);
+        }
+        return json({
+          demo: true,
+          reservation_id: resaDemo.id,
+          cancel_token: resaDemo.cancel_token,
+          montant_cents: 0,
+          cancellation_policy_hours,
+        });
+      }
+
       const montantParCouvertCents = Number(biz.empreinte_couvert_cents) > 0
         ? Number(biz.empreinte_couvert_cents)
         : MONTANT_PAR_COUVERT_CENTS_FALLBACK;
-      const cancellation_policy_hours = Number(biz.cancellation_policy_hours) || 24;
 
       const montant_cents = montantParCouvertCents * Number(nb_couverts);
 
@@ -140,6 +156,7 @@ serve(async (req) => {
         client_secret: setupIntent.client_secret,
         setup_intent_id: setupIntent.id,
         reservation_id: reservation.id,
+        cancel_token: reservation.cancel_token,
         montant_cents,
         montant_par_couvert_cents: montantParCouvertCents,
         cancellation_policy_hours,
@@ -160,6 +177,106 @@ serve(async (req) => {
       }).eq('id', reservation_id);
 
       return json({ ok: true });
+    }
+
+    // ── Annulation par le client (via cancel_token non devinable, sans auth).
+    // Dans les délais (peut_annuler_gratuit, calculé côté serveur par la vue) :
+    // aucun débit. Hors délai : on débite l'empreinte sur la carte enregistrée
+    // (le client accepte explicitement via le bouton "annuler quand même").
+    if (action === 'cancel_by_client') {
+      const { cancel_token } = body;
+      if (!cancel_token) return json({ error: 'cancel_token requis' }, 400);
+
+      const { data: r, error: rErr } = await supabase
+        .from('reservations_avec_deadline')
+        .select('id, statut, empreinte_status, empreinte_montant_cents, stripe_customer_id, stripe_payment_intent_id, peut_annuler_gratuit')
+        .eq('cancel_token', cancel_token)
+        .maybeSingle();
+      if (rErr || !r) return json({ error: 'Réservation introuvable' }, 404);
+
+      if (r.statut === 'annulee') return json({ error: 'Réservation déjà annulée' }, 400);
+      if (r.statut === 'arrivee' || r.statut === 'no_show') {
+        return json({ error: 'Réservation déjà traitée par le restaurant' }, 400);
+      }
+
+      const fmtEur = (c: number) => (Number(c || 0) / 100).toFixed(0) + '€';
+      const nowIso = new Date().toISOString();
+
+      // Dans les délais → annulation gratuite, aucun débit
+      if (r.peut_annuler_gratuit) {
+        await supabase.from('reservations').update({
+          statut: 'annulee',
+          empreinte_status: 'released',
+          date_annulation: nowIso,
+          annule_par: 'client',
+        }).eq('id', r.id);
+        return json({ ok: true, libere: true, message: 'Réservation annulée. Aucun montant ne sera débité.' });
+      }
+
+      // Hors délai : débit possible seulement si une carte est enregistrée et l'empreinte encore pending
+      const peutDebiter = !!r.stripe_customer_id && !!r.stripe_payment_intent_id
+        && Number(r.empreinte_montant_cents) > 0 && r.empreinte_status === 'pending';
+
+      if (!peutDebiter) {
+        await supabase.from('reservations').update({
+          statut: 'annulee',
+          empreinte_status: r.empreinte_status === 'pending' ? 'released' : r.empreinte_status,
+          date_annulation: nowIso,
+          annule_par: 'client',
+        }).eq('id', r.id);
+        return json({ ok: true, libere: true, message: 'Réservation annulée.' });
+      }
+
+      let captured = false;
+      try {
+        const pi = await stripe.paymentIntents.create({
+          amount: Number(r.empreinte_montant_cents),
+          currency: 'eur',
+          customer: r.stripe_customer_id as string,
+          payment_method: r.stripe_payment_intent_id as string,
+          off_session: true,
+          confirm: true,
+          description: 'Empreinte annulation hors délai — Réservation ' + r.id,
+          metadata: { reservation_id: r.id, type: 'late_cancel_capture' },
+        });
+        captured = pi.status === 'succeeded';
+      } catch (e: any) {
+        console.error('[reservation] late-cancel charge failed:', e?.message || e);
+        captured = false;
+      }
+
+      await supabase.from('reservations').update({
+        statut: 'annulee',
+        empreinte_status: captured ? 'captured' : 'failed',
+        date_annulation: nowIso,
+        annule_par: 'client',
+      }).eq('id', r.id);
+
+      return json({
+        ok: true,
+        libere: false,
+        captured,
+        message: captured
+          ? 'Réservation annulée. L\'empreinte de ' + fmtEur(Number(r.empreinte_montant_cents)) + ' a été débitée (annulation hors délai).'
+          : 'Réservation annulée. Le débit de l\'empreinte n\'a pas pu être traité — le restaurant vous recontactera.',
+      });
+    }
+
+    // ── Geste commercial (commerçant) : annule la réservation SANS débit et
+    // enregistre la raison. Empreinte (carte off_session) simplement libérée.
+    if (action === 'commercial_gesture') {
+      const { reservation_id, raison } = body;
+      if (!reservation_id) return json({ error: 'reservation_id requis' }, 400);
+
+      await supabase.from('reservations').update({
+        statut: 'annulee',
+        empreinte_status: 'released',
+        date_annulation: new Date().toISOString(),
+        annule_par: 'geste_commercial',
+        geste_commercial_raison: raison || null,
+      }).eq('id', reservation_id);
+
+      return json({ ok: true, libere: true });
     }
 
     if (action === 'release') {
