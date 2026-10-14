@@ -173,17 +173,6 @@
     pointer-events: none;
   }
 
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 30px;
-    background: linear-gradient(to top, var(--creme), transparent);
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
   .hero > div[style*="position:relative"] { z-index: 2 !important; }
   .hero h2, .hero-sub, .hero-btns, .hero-infos { text-shadow: 0 2px 16px rgba(0,0,0,0.35); }
   .hero-info-pill {
@@ -743,9 +732,8 @@
   
   /* BARRE FRAÎCHEUR */
   .barre-fraicheur {
-    background: var(--blanc);
-    border-bottom: 1px solid var(--creme-fonce);
-    padding: 12px 0;
+    background: transparent;
+    padding: 12px 0 2px;
   }
   .fraicheur-scroll {
     display: grid;
