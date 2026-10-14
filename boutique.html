@@ -731,29 +731,29 @@
 
   
   /* BARRE FRAÎCHEUR */
+  /* Posée sur la photo : fond sombre flouté pour rester lisible sur toute image */
   .barre-fraicheur {
-    background: transparent;
-    padding: 12px 0 2px;
+    margin-top: 10px;
   }
   .fraicheur-scroll {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 6px;
-    padding: 0 12px;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .fraicheur-pill {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    background: var(--creme);
-    border: 1px solid var(--creme-fonce);
+    gap: 6px;
+    background: rgba(0,0,0,0.45);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 50px;
-    padding: 5px 10px;
-    font-size: 10.5px;
-    color: var(--texte);
-    font-weight: 500;
+    padding: 6px 12px;
+    font-size: 11.5px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    font-weight: 600;
     line-height: 1.25;
     white-space: normal;
     min-width: 0;
@@ -1176,14 +1176,13 @@
         <div class="hero-info-pill" id="heroHoraires" style="display:none">&nbsp;</div>
         <div class="hero-info-pill" id="statutOuverture" style="display:none">&nbsp;</div>
       </div>
-    </div>
-  </div>
-
-  <!-- BARRE FRAÎCHEUR -->
-  <div class="barre-fraicheur">
-    <div class="fraicheur-scroll">
-      <div class="fraicheur-pill"><span class="fraicheur-icon">🚚</span> <span id="pillLivraison">Livraison offerte dès 25€</span></div>
-      <div class="fraicheur-pill"><span class="fraicheur-icon">⏰</span> Commandez avant 16h pour être livré demain</div>
+      <!-- BARRE FRAÎCHEUR : posée sur le bas de la photo -->
+      <div class="barre-fraicheur">
+        <div class="fraicheur-scroll">
+          <div class="fraicheur-pill"><span class="fraicheur-icon">🚚</span> <span id="pillLivraison">Livraison offerte dès 25€</span></div>
+          <div class="fraicheur-pill"><span class="fraicheur-icon">⏰</span> Commandez avant 16h pour être livré demain</div>
+        </div>
+      </div>
     </div>
   </div>
 
