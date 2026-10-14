@@ -7,6 +7,8 @@ Allow: /
 Disallow: /app-commercant.html
 Disallow: /admin.html
 Disallow: /admin
+Disallow: /prospection
+Disallow: /prospection.html
 Disallow: /app
 Disallow: /branding.html
 Disallow: /_test-metiers.html

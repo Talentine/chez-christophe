@@ -26,6 +26,7 @@
     { "source": "/inscription", "destination": "/inscription.html" },
     { "source": "/app", "destination": "/app-commercant.html" },
     { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/prospection", "destination": "/prospection.html" },
     { "source": "/catalogue", "destination": "/catalogue.html" },
     { "source": "/panier", "destination": "/panier.html" },
     { "source": "/compte", "destination": "/compte.html" },
@@ -72,6 +73,12 @@
       "source": "/(.*)\\.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/prospection(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     },
     {
