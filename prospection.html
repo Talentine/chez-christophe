@@ -33,6 +33,7 @@
   .titre { font-family: 'Manrope', system-ui, sans-serif; font-weight: 700; font-size: 16px; white-space: nowrap; }
   .titre span { color: var(--or); }
   .sous { font-size: 12px; color: var(--txt-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .compteur-m { display: none; font-size: 12px; color: var(--txt-2); margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .spacer { flex: 1; }
   .btn {
     background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px;
@@ -41,6 +42,12 @@
   .btn:hover { border-color: rgba(255,255,255,0.25); }
   .btn.or { background: var(--or); color: var(--vert-fonce); border-color: var(--or); font-weight: 600; }
   .btn.on { border-color: var(--or); color: var(--or); }
+  .btn.petit { padding: 5px 9px; min-height: 30px; font-size: 12px; }
+  .btn .badge { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 9px; background: #dc2626; color: #fff; font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; }
+  .btn .badge:empty { display: none; }
+  a.btn { color: var(--txt); text-decoration: none; display: inline-flex; align-items: center; }
+  a.btn.or { color: var(--vert-fonce); }
+  .sync-ok { color: #4ade80; } .sync-attente { color: var(--or); } .sync-erreur { color: #f87171; }
   .search {
     flex: 1; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
     padding: 8px 11px; font-size: 14px; min-height: 38px; outline: none;
@@ -48,6 +55,7 @@
   .search:focus { border-color: var(--or); }
   .chips { display: flex; gap: 6px; overflow-x: auto; padding: 8px 0 2px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
+  .chips-titre { flex: none; font-size: 11px; color: var(--txt-2); text-transform: uppercase; letter-spacing: .06em; align-self: center; padding-right: 2px; }
   .chip {
     flex: none; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;
     padding: 5px 10px; font-size: 12px; background: var(--panel); border: 1px solid var(--line);
@@ -56,12 +64,12 @@
   .chip.on { color: var(--txt); border-color: rgba(255,255,255,0.35); background: var(--panel-2); }
   .chip .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
   .chip b { font-weight: 600; color: var(--txt); }
-  .filtres { display: none; }
-  .filtres.open { display: block; }
+  .filtres, #rayonRow { display: none; }
+  .filtres.open, #rayonRow.open { display: block; }
 
   /* ---------- Fiche commerce ---------- */
   .fiche {
-    position: absolute; z-index: 1100; right: 12px; top: var(--top-h, 110px); bottom: 12px; width: 380px;
+    position: absolute; z-index: 1100; right: 12px; top: var(--top-h, 110px); bottom: 12px; width: 390px;
     background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
     box-shadow: 0 20px 50px rgba(0,0,0,0.45); display: none; flex-direction: column; overflow: hidden;
   }
@@ -74,18 +82,24 @@
   .fiche-body { padding: 14px 16px 18px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 16px; }
   .infos { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--txt-2); }
   .infos a { color: var(--or); text-decoration: none; overflow-wrap: anywhere; }
-  a.btn { color: var(--txt); text-decoration: none; display: inline-flex; align-items: center; }
-  a.btn.or { color: var(--vert-fonce); }
+  .infos .dirigeant { color: var(--txt); font-weight: 600; }
   .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .actions a { text-decoration: none; }
-  .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--txt-2); margin-bottom: 8px; font-weight: 600; }
-  .statuts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--txt-2); margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .grille2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
   .statut {
     display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px;
     background: var(--panel-2); border: 1.5px solid transparent; font-size: 13px; text-align: left; min-height: 40px;
   }
   .statut .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
   .statut.on { border-color: var(--c); background: color-mix(in srgb, var(--c) 22%, var(--panel-2)); }
+  .rapide { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; font-size: 13px; text-align: left; min-height: 42px; }
+  .rapide:active { transform: scale(0.97); }
+  .segment { display: flex; gap: 6px; }
+  .segment button { flex: 1; padding: 8px 6px; border-radius: 10px; background: var(--panel-2); border: 1.5px solid transparent; font-size: 13px; }
+  .segment button.on { border-color: var(--or); background: color-mix(in srgb, var(--or) 18%, var(--panel-2)); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { padding: 6px 10px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); font-size: 12px; color: var(--txt-2); }
+  .tag.on { color: #fff; border-color: #f87171; background: color-mix(in srgb, #dc2626 25%, var(--panel-2)); }
   .couleurs { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .sw { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; outline: 1px solid var(--line); }
   .sw.on { border-color: #fff; }
@@ -94,29 +108,46 @@
     width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
     padding: 10px 12px; font-size: 14px; outline: none;
   }
-  textarea { min-height: 120px; resize: vertical; line-height: 1.45; }
+  textarea { min-height: 110px; resize: vertical; line-height: 1.45; }
   textarea:focus, .champ:focus { border-color: var(--or); }
   .champ { min-height: 40px; color-scheme: dark; }
+  .micro { border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px; padding: 3px 10px; font-size: 12px; text-transform: none; letter-spacing: 0; color: var(--txt); }
+  .micro.rec { background: #dc2626; border-color: #dc2626; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .6; } }
   .save-state { font-size: 11px; color: var(--txt-2); margin-top: 6px; height: 14px; }
   .histo { font-size: 12px; color: var(--txt-2); display: flex; flex-direction: column; gap: 4px; }
   .histo div { display: flex; gap: 8px; }
   .histo time { flex: none; color: rgba(255,255,255,0.4); font-variant-numeric: tabular-nums; }
 
-  /* ---------- Liste ---------- */
-  .liste {
-    position: absolute; z-index: 1050; left: 12px; bottom: 12px; width: 360px; max-height: calc(100% - var(--top-h, 110px) - 12px);
+  /* ---------- Panneau gauche (liste / aujourd'hui / tournée) ---------- */
+  .panneau {
+    position: absolute; z-index: 1050; left: 12px; bottom: 12px; width: 370px; max-height: calc(100% - var(--top-h, 110px) - 12px);
     background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
     box-shadow: 0 20px 50px rgba(0,0,0,0.45); display: none; flex-direction: column; overflow: hidden;
   }
-  .liste.open { display: flex; }
-  .liste-head { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--txt-2); display: flex; align-items: center; gap: 8px; }
-  .liste-body { overflow-y: auto; }
+  .panneau.open { display: flex; }
+  .panneau-head { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--txt-2); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .panneau-head strong { color: var(--txt); font-size: 14px; }
+  .panneau-body { overflow-y: auto; }
+  .section-titre { padding: 12px 12px 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--or); font-weight: 700; }
+  .vide { padding: 4px 12px 10px; font-size: 13px; color: var(--txt-2); }
   .item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-bottom: 1px solid var(--line); width: 100%; text-align: left; background: none; border-left: 0; border-right: 0; border-top: 0; }
   .item:hover { background: var(--panel-2); }
   .item .dot { width: 11px; height: 11px; border-radius: 50%; margin-top: 4px; flex: none; }
+  .item .num { width: 22px; height: 22px; border-radius: 50%; background: var(--or); color: var(--vert-fonce); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .item-txt { min-width: 0; flex: 1; }
   .item-nom { font-size: 14px; font-weight: 600; }
   .item-sous { font-size: 12px; color: var(--txt-2); margin-top: 2px; }
-  .item-memo { font-size: 12px; color: var(--or); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 280px; }
+  .item-memo { font-size: 12px; color: var(--or); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item-btns { display: flex; gap: 4px; flex: none; }
+  .item-btns button { width: 28px; height: 28px; border-radius: 8px; background: var(--panel-2); border: 1px solid var(--line); font-size: 12px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 4px 12px 10px; }
+  .stat { background: var(--panel-2); border-radius: 10px; padding: 8px; text-align: center; }
+  .stat b { display: block; font-size: 20px; font-family: 'Manrope', system-ui, sans-serif; }
+  .stat span { font-size: 11px; color: var(--txt-2); }
+  .barre { display: flex; align-items: center; gap: 8px; padding: 3px 12px; font-size: 12px; }
+  .barre i { display: block; height: 6px; border-radius: 3px; background: #f87171; }
+  .barre span:first-child { width: 150px; flex: none; color: var(--txt-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* ---------- Divers ---------- */
   .toast {
@@ -127,21 +158,25 @@
   .toast.show { display: block; }
   .chargement {
     position: absolute; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center;
-    background: rgba(8,15,31,0.65); font-size: 14px; flex-direction: column; gap: 12px;
+    background: rgba(8,15,31,0.65); font-size: 14px; flex-direction: column; gap: 12px; text-align: center; padding: 20px;
   }
   .spin { width: 28px; height: 28px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--or); border-radius: 50%; animation: s 0.8s linear infinite; }
   @keyframes s { to { transform: rotate(360deg); } }
   .mode-ajout #map { cursor: crosshair; }
   .leaflet-tooltip.tt { background: var(--panel); color: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 12px; padding: 4px 8px; box-shadow: none; }
   .leaflet-tooltip.tt::before { display: none; }
+  .num-etape { background: var(--or); color: var(--vert-fonce); border: 2px solid #fff; border-radius: 50%; font: 700 11px/18px system-ui, sans-serif; text-align: center; width: 22px !important; height: 22px !important; }
   .leaflet-top.leaflet-left { top: var(--top-h, 110px); }
   .leaflet-control-attribution { font-size: 10px; }
 
   @media (max-width: 720px) {
-    .titre-bloc .sous { display: none; }
+    .titre-bloc { display: none; }
+    .compteur-m { display: block; }
+    .topbar .row:first-child { justify-content: space-between; }
+    .topbar .row:first-child .spacer { display: none; }
     .hide-m { display: none; }
-    .fiche { left: 0; right: 0; bottom: 0; top: auto; width: auto; max-height: 78vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
-    .liste { left: 0; right: 0; bottom: 0; width: auto; border-radius: 18px 18px 0 0; max-height: 60vh; }
+    .fiche { left: 0; right: 0; bottom: 0; top: auto; width: auto; max-height: 80vh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+    .panneau { left: 0; right: 0; bottom: 0; width: auto; border-radius: 18px 18px 0 0; max-height: 62vh; padding-bottom: env(safe-area-inset-bottom); }
     .leaflet-top.leaflet-left { display: none; }
   }
 </style>
@@ -157,20 +192,31 @@
       <div class="sous" id="sousTitre">Commerces de bouche · chargement…</div>
     </div>
     <div class="spacer"></div>
-    <button class="btn" id="btnLoc" title="Me localiser">📍<span class="hide-m"> Moi</span></button>
+    <button class="btn" id="btnLoc" title="Autour de moi">📍<span class="hide-m"> Autour de moi</span></button>
+    <button class="btn" id="btnJour" title="Aujourd'hui">☀️<span class="hide-m"> Aujourd’hui</span><span class="badge" id="badgeJour"></span></button>
+    <button class="btn" id="btnTournee" title="Tournée">🧭<span class="hide-m"> Tournée</span><span class="badge" id="badgeTournee" style="background:var(--or);color:var(--vert-fonce)"></span></button>
     <button class="btn" id="btnListe" title="Liste">☰<span class="hide-m"> Liste</span></button>
     <button class="btn" id="btnFiltres" title="Filtres">⚙︎<span class="hide-m"> Filtres</span></button>
+    <button class="btn" id="btnSync" title="Synchronisation">☁︎</button>
   </div>
   <div class="row" style="margin-top:8px">
-    <input class="search" id="recherche" type="search" placeholder="Rechercher un nom, une ville, un mémo…" autocomplete="off">
+    <input class="search" id="recherche" type="search" placeholder="Rechercher un nom, une ville, un gérant, un mémo…" autocomplete="off">
+  </div>
+  <div class="compteur-m" id="compteurM"></div>
+  <div id="rayonRow">
+    <div class="chips" id="chipsRayon"></div>
   </div>
   <div class="chips" id="chipsStatuts"></div>
   <div class="filtres" id="panneauFiltres">
     <div class="chips" id="chipsCats"></div>
+    <div class="chips"><span class="chips-titre">Potentiel</span><span id="chipsPotentiel" style="display:contents"></span></div>
+    <div class="chips"><span class="chips-titre">Sources</span><span id="chipsSources" style="display:contents"></span></div>
     <div class="chips">
       <button class="chip" id="chipChaines">Masquer les chaînes</button>
       <button class="chip" id="chipMemo">Avec mémo seulement</button>
       <button class="chip" id="chipRappel">Rappels échus</button>
+    </div>
+    <div class="chips">
       <button class="chip" id="btnAjout">＋ Ajouter un commerce</button>
       <button class="chip" id="btnMaj">↻ Actualiser les données</button>
       <button class="chip" id="btnExportCsv">⬇ Export CSV</button>
@@ -181,9 +227,9 @@
   </div>
 </header>
 
-<aside class="liste" id="liste">
-  <div class="liste-head"><span id="listeTitre"></span><div class="spacer"></div><button class="btn" id="fermerListe">✕</button></div>
-  <div class="liste-body" id="listeBody"></div>
+<aside class="panneau" id="panneau">
+  <div class="panneau-head" id="panneauHead"></div>
+  <div class="panneau-body" id="panneauBody"></div>
 </aside>
 
 <aside class="fiche" id="fiche">
@@ -197,27 +243,43 @@
     <div class="infos" id="ficheInfos"></div>
     <div class="actions" id="ficheActions"></div>
     <div>
+      <div class="lbl">Sur place</div>
+      <div class="grille2" id="ficheRapides"></div>
+    </div>
+    <div>
       <div class="lbl">Statut</div>
-      <div class="statuts" id="ficheStatuts"></div>
+      <div class="grille2" id="ficheStatuts"></div>
+    </div>
+    <div>
+      <div class="lbl">Potentiel</div>
+      <div class="segment" id="fichePotentiel"></div>
+    </div>
+    <div>
+      <div class="lbl">Mémo <button class="micro" id="btnMicro" type="button" hidden>🎤 Dicter</button></div>
+      <textarea id="ficheMemo" placeholder="Nom du gérant, horaires de passage, intérêt, ce qu’il vend…"></textarea>
+      <div class="save-state" id="saveState"></div>
+    </div>
+    <div>
+      <div class="lbl">Objections</div>
+      <div class="tags" id="ficheObjections"></div>
+    </div>
+    <div>
+      <div class="lbl">Contact (gérant)</div>
+      <input class="champ" id="ficheContact" placeholder="Nom, tél. direct, e-mail…">
+    </div>
+    <div class="row">
+      <div style="flex:1.3">
+        <div class="lbl">Rappel / RDV le</div>
+        <input class="champ" id="ficheRappel" type="date">
+      </div>
+      <div style="flex:1">
+        <div class="lbl">à</div>
+        <input class="champ" id="ficheHeure" type="time">
+      </div>
     </div>
     <div>
       <div class="lbl">Couleur du repère</div>
       <div class="couleurs" id="ficheCouleurs"></div>
-    </div>
-    <div>
-      <div class="lbl">Mémo</div>
-      <textarea id="ficheMemo" placeholder="Nom du gérant, horaires de passage, objections, intérêt…"></textarea>
-      <div class="save-state" id="saveState"></div>
-    </div>
-    <div class="row">
-      <div style="flex:1">
-        <div class="lbl">Contact (gérant)</div>
-        <input class="champ" id="ficheContact" placeholder="Nom, tél. direct…">
-      </div>
-      <div style="flex:1">
-        <div class="lbl">Date de rappel</div>
-        <input class="champ" id="ficheRappel" type="date">
-      </div>
     </div>
     <div>
       <div class="lbl">Historique</div>
@@ -232,14 +294,43 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+// ============================================================================
+// Configuration
+// ============================================================================
 // Zone couverte : de Caen (ouest/sud) à Deauville-Trouville / Pont-l'Évêque (est), côte comprise.
 const BBOX = { sud: 49.08, ouest: -0.50, nord: 49.43, est: 0.22 };
+const CENTRE = { lat: 49.255, lon: -0.14 };
+
+const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 const OVERPASS = [
   'https://overpass-api.de/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
   'https://maps.mail.ru/osm/tools/overpass/api/interpreter'
 ];
+
+// Registre national des entreprises (SIRENE / RNE) — API publique, CORS ouvert.
+const SIRENE_URL = 'https://recherche-entreprises.api.gouv.fr/near_point';
+// Deux requêtes pour rester sous la limite de 100 pages × 25 résultats de l'API.
+const SIRENE_GROUPES = [
+  '10.13B,10.51C,10.71B,10.71C,10.71D,10.82Z,11.01Z,11.03Z,56.21Z',
+  '47.21Z,47.22Z,47.23Z,47.24Z,47.25Z,47.29Z'
+];
+const NAF_CAT = {
+  '10.13B': 'charcuterie', '10.51C': 'fromagerie', '10.71B': 'boulangerie', '10.71C': 'boulangerie',
+  '10.71D': 'patisserie', '10.82Z': 'chocolatier', '11.01Z': 'caviste', '11.03Z': 'caviste',
+  '56.21Z': 'charcuterie', '47.21Z': 'primeur', '47.22Z': 'boucherie', '47.23Z': 'poissonnerie',
+  '47.24Z': 'patisserie', '47.25Z': 'caviste', '47.29Z': 'epicerie'
+};
+// Codes NAF "fourre-tout" : on affine la catégorie avec le nom de l'enseigne.
+const NAF_GENERIQUES = ['47.24Z', '47.29Z', '56.21Z'];
+const NOM_CAT = [
+  [/FROMAG|CREMERIE/, 'fromagerie'], [/BOULANG|FOURNIL|\bPAIN/, 'boulangerie'], [/CHOCOLA|CONFIS|CARAMEL|BISCUIT/, 'chocolatier'],
+  [/BOUCHER/, 'boucherie'], [/CHARCUT|TRAITEUR/, 'charcuterie'], [/POISSON|MAREE|ECAILL|HUITRE/, 'poissonnerie'],
+  [/\bCAVE|\bVINS?\b|CIDRE|CALVADOS/, 'caviste'], [/\bCAFES?\b|TORREFA|\bTHES?\b|\bTEA\b/, 'cafe_the'], [/PRIMEUR|FRUITS/, 'primeur']
+];
+const SIRENE_EXCLUS = /\bCBD\b|VAPE|TABAC|CIGARETTE|GROSSISTE/;
 
 const CATEGORIES = {
   boulangerie:  { label: 'Boulangerie',        emoji: '🥖' },
@@ -268,53 +359,99 @@ const STATUTS = {
   refus:    { label: 'Pas intéressé', couleur: '#dc2626' },
   hors:     { label: 'Fermé / hors cible', couleur: '#111827' }
 };
+const STATUTS_CLOS = ['signe', 'refus', 'hors'];
+
+const POTENTIELS = {
+  chaud: { label: '🔥 Chaud', rayon: 12 },
+  tiede: { label: '🌤️ Tiède', rayon: 10 },
+  froid: { label: '❄️ Froid', rayon: 8 },
+  aucun: { label: 'Non évalué', rayon: 8 }
+};
+
+const OBJECTIONS = [
+  'Trop cher', 'Pas le temps', 'A déjà un site / une solution', 'Pas besoin (clientèle d’habitués)',
+  'Pas à l’aise avec le numérique', 'Méfiant (engagement, commission)', 'Doit en parler (associé, conjoint)', 'Va fermer / vendre'
+];
+
+const SOURCES = {
+  osm:      'OpenStreetMap',
+  registre: 'Registre (avec enseigne)',
+  registre_brut: 'Registre (sans enseigne)',
+  manuel:   'Ajoutés à la main'
+};
 
 const COULEURS_LIBRES = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#3b82f6', '#a855f7', '#ec4899', '#ffffff', '#000000'];
 
-const K_SUIVI = 'prospection.suivi.v1';
-const K_CACHE = 'prospection.osm.v1';
-const K_AJOUTS = 'prospection.ajouts.v1';
-const K_FILTRES = 'prospection.filtres.v1';
+const K = {
+  suivi: 'prospection.suivi.v1', ajouts: 'prospection.ajouts.v1', filtres: 'prospection.filtres.v2',
+  osm: 'prospection.osm.v2', sirene: 'prospection.sirene.v1', tournee: 'prospection.tournee.v1',
+  outbox: 'prospection.outbox.v1', curseur: 'prospection.curseur.v1'
+};
 
-// ---------- Stockage (tolérant aux navigateurs privés) ----------
+// ============================================================================
+// Stockage local (tolérant aux navigateurs privés)
+// ============================================================================
 function lire(k, defaut) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : defaut; } catch { return defaut; } }
 function ecrire(k, v) {
   try { localStorage.setItem(k, JSON.stringify(v)); return true; }
-  catch { toast('⚠️ Sauvegarde locale impossible (navigation privée ?) — exporte une sauvegarde.'); return false; }
+  catch { toast('⚠️ Stockage local plein ou bloqué — exporte une sauvegarde.'); return false; }
+}
+const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const aujourdhui = () => dateLocale(new Date());
+function dateLocale(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+function demain() { const d = new Date(); d.setDate(d.getDate() + 1); return dateLocale(d); }
+const fmtDate = iso => new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
+const fmtDist = m => m < 1000 ? Math.round(m) + ' m' : (m / 1000).toFixed(1) + ' km';
+function depuis(iso) {
+  const j = Math.floor((Date.now() - new Date(iso)) / 86400000);
+  return j <= 0 ? 'aujourd’hui' : j === 1 ? 'hier' : `il y a ${j} j`;
+}
+function titreCase(s) {
+  return String(s || '').toLowerCase().replace(/(^|[\s'’\-(])([a-zà-ÿ])/g, (m, a, b) => a + b.toUpperCase());
 }
 
-let suivi = lire(K_SUIVI, {});          // id -> { statut, couleur, memo, contact, rappel, maj, histo:[{d,t}] }
-let ajouts = lire(K_AJOUTS, []);        // commerces ajoutés à la main
-let commerces = [];                     // liste fusionnée OSM + ajouts
-const marqueurs = new Map();            // id -> L.circleMarker
+let suivi = lire(K.suivi, {});          // id -> { statut, couleur, memo, contact, rappel, heure, potentiel, objections[], visite, histo[], maj }
+let ajouts = lire(K.ajouts, []);        // commerces ajoutés à la main
+let tournee = lire(K.tournee, []);      // ids dans l'ordre de passage
+let commerces = [];
+let parId = new Map();
+const marqueurs = new Map();
 let selection = null;
 let modeAjout = false;
+let maPos = null;
+let panneauMode = null;
 
 const filtres = Object.assign({
   statuts: Object.keys(STATUTS),
   cats: Object.keys(CATEGORIES),
-  masquerChaines: false,
-  memoSeul: false,
-  rappelEchu: false
-}, lire(K_FILTRES, {}));
+  potentiels: Object.keys(POTENTIELS),
+  sources: ['osm', 'registre', 'manuel'],
+  masquerChaines: false, memoSeul: false, rappelEchu: false, rayon: 0
+}, lire(K.filtres, {}));
 let recherche = '';
 
-// ---------- Carte ----------
+// ============================================================================
+// Carte
+// ============================================================================
 const map = L.map('map', { zoomControl: true, preferCanvas: true })
   .fitBounds([[BBOX.sud, BBOX.ouest], [BBOX.nord, BBOX.est]]);
-L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-  maxZoom: 20, subdomains: 'abc',
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, crossOrigin: '',
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · Registre : <a href="https://annuaire-entreprises.data.gouv.fr">data.gouv</a>'
 }).addTo(map);
 L.rectangle([[BBOX.sud, BBOX.ouest], [BBOX.nord, BBOX.est]], { color: '#F4B942', weight: 1, fill: false, dashArray: '6 6', interactive: false }).addTo(map);
 const canvas = L.canvas({ padding: 0.5, tolerance: 6 });
+const coucheTournee = L.layerGroup().addTo(map);
+let cercleRayon = null, pointMoi = null;
 
 function ajusterHautCarte() {
   document.documentElement.style.setProperty('--top-h', (document.getElementById('topbar').offsetHeight + 10) + 'px');
 }
 window.addEventListener('resize', ajusterHautCarte);
 
-// ---------- Données OSM ----------
+// ============================================================================
+// Données : OpenStreetMap
+// ============================================================================
 function requeteOverpass() {
   const b = `${BBOX.sud},${BBOX.ouest},${BBOX.nord},${BBOX.est}`;
   return `[out:json][timeout:90];
@@ -326,7 +463,7 @@ function requeteOverpass() {
 out center tags;`;
 }
 
-function categorie(t) {
+function categorieOsm(t) {
   const s = t.shop, c = t.craft;
   if (t.amenity === 'marketplace') return 'marche';
   if (s === 'bakery' || c === 'bakery') return 'boulangerie';
@@ -344,80 +481,217 @@ function categorie(t) {
   return 'autre';
 }
 
-function normaliser(el) {
+function normaliserOsm(el) {
   const t = el.tags || {};
   const lat = el.lat ?? el.center?.lat, lon = el.lon ?? el.center?.lon;
   if (lat == null || lon == null) return null;
-  const cat = categorie(t);
+  const cat = categorieOsm(t);
   const adresse = [[t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' '), [t['addr:postcode'], t['addr:city']].filter(Boolean).join(' ')].filter(Boolean).join(', ');
   return {
-    id: `${el.type}/${el.id}`,
-    nom: t.name || t.brand || `${CATEGORIES[cat].label} (sans nom)`,
-    cat, lat, lon,
-    ville: t['addr:city'] || '',
-    adresse,
+    id: `${el.type}/${el.id}`, source: 'osm',
+    nom: t.name || t.brand || '', cat, lat, lon,
+    ville: t['addr:city'] || '', adresse,
     tel: t.phone || t['contact:phone'] || '',
     web: t.website || t['contact:website'] || '',
     email: t.email || t['contact:email'] || '',
     horaires: t.opening_hours || '',
-    chaine: !!(t.brand || t['brand:wikidata']),
-    marque: t.brand || ''
+    chaine: !!(t.brand || t['brand:wikidata']), marque: t.brand || ''
   };
 }
 
-async function chargerOSM(force) {
-  const cache = lire(K_CACHE, null);
-  if (cache && !force) { return cache; }
-  afficherChargement('Récupération des commerces sur OpenStreetMap…');
+async function chargerOsm(force) {
+  const cache = lire(K.osm, null);
+  if (cache && !force) return cache;
   const corps = 'data=' + encodeURIComponent(requeteOverpass());
-  let derniereErreur;
   for (const url of OVERPASS) {
     try {
       const r = await fetch(url, { method: 'POST', body: corps, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const json = await r.json();
       const vus = new Set();
-      const liste = json.elements.map(normaliser).filter(c => c && !vus.has(c.id) && vus.add(c.id));
+      const liste = json.elements.map(normaliserOsm).filter(c => c && !vus.has(c.id) && vus.add(c.id));
       const data = { date: new Date().toISOString(), liste };
-      ecrire(K_CACHE, data);
+      ecrire(K.osm, data);
       return data;
-    } catch (e) { derniereErreur = e; }
+    } catch { /* serveur suivant */ }
   }
-  if (cache) { toast('Serveur OSM indisponible — données en cache utilisées.'); return cache; }
-  throw derniereErreur;
+  if (cache) return cache;
+  throw new Error('osm');
 }
 
-// ---------- Logique suivi ----------
+// ============================================================================
+// Données : registre des entreprises (SIRENE / RNE)
+// ============================================================================
+const attendre = ms => new Promise(r => setTimeout(r, ms));
+
+async function pageSirene(groupe, page) {
+  const url = `${SIRENE_URL}?lat=${CENTRE.lat}&long=${CENTRE.lon}&radius=33&activite_principale=${groupe}` +
+    `&per_page=25&page=${page}&minimal=true&include=matching_etablissements,dirigeants&limite_matching_etablissements=100`;
+  for (let essai = 0; essai < 5; essai++) {
+    const r = await fetch(url);
+    if (r.status === 429) { await attendre(1500 * (essai + 1)); continue; }
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }
+  throw new Error('429');
+}
+
+function dirigeantDe(ul) {
+  const pp = (ul.dirigeants || []).filter(d => d.type_dirigeant === 'personne physique' && !/commissaire/i.test(d.qualite || ''));
+  return pp.slice(0, 2).map(d => {
+    const prenom = titreCase((d.prenoms || '').split(/\s+/)[0]);
+    return `${prenom} ${titreCase(d.nom || '')}`.trim() + (d.qualite ? ` (${d.qualite.toLowerCase()})` : '');
+  }).join(', ');
+}
+
+function normaliserSirene(ul) {
+  const sortie = [];
+  for (const e of ul.matching_etablissements || []) {
+    if (e.etat_administratif !== 'A' || !NAF_CAT[e.activite_principale]) continue;
+    const lat = parseFloat(e.latitude), lon = parseFloat(e.longitude);
+    if (!isFinite(lat) || !isFinite(lon) || lat < BBOX.sud || lat > BBOX.nord || lon < BBOX.ouest || lon > BBOX.est) continue;
+    const enseigne = (e.liste_enseignes || [])[0] || e.nom_commercial || '';
+    const brut = (enseigne || (ul.nom_complet || '').replace(/\s*\(.*\)\s*$/, '')).trim();
+    if (SIRENE_EXCLUS.test(brut.toUpperCase())) continue;
+    let cat = NAF_CAT[e.activite_principale];
+    if (NAF_GENERIQUES.includes(e.activite_principale)) {
+      const trouve = NOM_CAT.find(([re]) => re.test(brut.toUpperCase()));
+      if (trouve) cat = trouve[1];
+    }
+    sortie.push({
+      id: 'siret/' + e.siret, source: enseigne ? 'registre' : 'registre_brut',
+      nom: titreCase(brut), cat, lat, lon,
+      ville: titreCase(e.libelle_commune || ''), adresse: titreCase(e.adresse || ''),
+      tel: '', web: '', email: '', horaires: '',
+      chaine: (ul.nombre_etablissements || 0) > 5, marque: (ul.nombre_etablissements || 0) > 5 ? titreCase(ul.nom_complet) : '',
+      siret: e.siret, raison: titreCase(ul.nom_complet || ''), dirigeant: dirigeantDe(ul),
+      creation: e.date_creation || ul.date_creation || '', naf: e.activite_principale
+    });
+  }
+  return sortie;
+}
+
+async function chargerSirene(force) {
+  const cache = lire(K.sirene, null);
+  if (cache && !force) return cache;
+  const vus = new Map();
+  let complet = true;
+  try {
+    for (const [gi, groupe] of SIRENE_GROUPES.entries()) {
+      const premiere = await pageSirene(groupe, 1);
+      const total = Math.min(premiere.total_pages || 1, 100);
+      const pages = [premiere];
+      let faites = 1;
+      const etape = `Registre des entreprises (${gi + 1}/${SIRENE_GROUPES.length})`;
+      afficherChargement(`${etape} : page 1/${total}…`);
+      // 3 requêtes en parallèle ≈ 6 req/s, sous la limite de 7 req/s de l'API.
+      const reste = Array.from({ length: total - 1 }, (_, i) => i + 2);
+      while (reste.length) {
+        const lot = reste.splice(0, 3);
+        const res = await Promise.all(lot.map(p => pageSirene(groupe, p)));
+        pages.push(...res); faites += lot.length;
+        afficherChargement(`${etape} : page ${faites}/${total}…`);
+        await attendre(450);
+      }
+      pages.flatMap(p => p.results || []).flatMap(normaliserSirene).forEach(c => vus.set(c.id, c));
+    }
+  } catch (e) {
+    if (cache) return cache;
+    if (!vus.size) throw e;
+    complet = false;
+  }
+  const data = { date: new Date().toISOString(), liste: [...vus.values()] };
+  if (complet) ecrire(K.sirene, data);
+  return data;
+}
+
+// ============================================================================
+// Fusion OSM + registre (même commerce = proche + même métier ou nom commun)
+// ============================================================================
+const MOTS_VIDES = new Set(['boulangerie', 'patisserie', 'boucherie', 'charcuterie', 'fromagerie', 'poissonnerie', 'traiteur', 'primeur',
+  'epicerie', 'maison', 'chez', 'cave', 'caves', 'sarl', 'eurl', 'sasu', 'les', 'des', 'aux', 'and', 'normandie', 'chocolaterie', 'boulangerie-patisserie']);
+function mots(s) {
+  return new Set(String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .split(/[^a-z0-9]+/).filter(w => w.length >= 4 && !MOTS_VIDES.has(w)));
+}
+function distance(a, b) {
+  const R = 6371000, r = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * r, dLon = (b.lon - a.lon) * r;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function fusionner(osm, registre) {
+  const liste = osm.map(c => ({ ...c }));
+  const motsOsm = liste.map(c => mots(c.nom + ' ' + c.marque));
+  const pris = new Set();
+  const seuls = [];
+  for (const r of registre) {
+    const mr = new Set([...mots(r.nom), ...mots(r.raison)]);
+    let meilleur = -1, score = 0;
+    liste.forEach((o, i) => {
+      if (pris.has(i) || Math.abs(o.lat - r.lat) > 0.0015 || Math.abs(o.lon - r.lon) > 0.0025) return;
+      const d = distance(o, r);
+      if (d > 150) return;
+      const nomCommun = [...mr].some(w => motsOsm[i].has(w));
+      const s = (nomCommun ? 3 : 0) + (o.cat === r.cat ? 1 : 0) + (d < 40 ? 1 : 0);
+      if ((nomCommun || (o.cat === r.cat && d < 60)) && s > score) { score = s; meilleur = i; }
+    });
+    if (meilleur >= 0) {
+      const o = liste[meilleur];
+      pris.add(meilleur);
+      Object.assign(o, { siret: r.siret, raison: r.raison, dirigeant: r.dirigeant, creation: r.creation, naf: r.naf });
+      if (!o.nom) o.nom = r.nom;
+      if (!o.adresse) o.adresse = r.adresse;
+      if (!o.ville) o.ville = r.ville;
+    } else seuls.push(r);
+  }
+  liste.forEach(c => { if (!c.nom) c.nom = `${CATEGORIES[c.cat].label} (sans nom)`; });
+  return [...liste, ...seuls];
+}
+
+// ============================================================================
+// Suivi
+// ============================================================================
 function etat(id) { return suivi[id] || {}; }
 function statutDe(id) { return etat(id).statut || 'a_faire'; }
 function couleurDe(id) { return etat(id).couleur || STATUTS[statutDe(id)].couleur; }
-function aujourdhui() { return new Date().toISOString().slice(0, 10); }
-function rappelEchu(id) { const r = etat(id).rappel; return !!r && r <= aujourdhui(); }
+function potentielDe(id) { return etat(id).potentiel || 'aucun'; }
+function rappelEchu(id) { const e = etat(id); return !!e.rappel && e.rappel <= aujourdhui() && !STATUTS_CLOS.includes(statutDe(id)); }
 
 function majSuivi(id, patch, note) {
   const e = Object.assign({}, etat(id), patch, { maj: new Date().toISOString() });
-  if (note) e.histo = [{ d: e.maj, t: note }, ...(e.histo || [])].slice(0, 50);
+  Object.keys(e).forEach(k => e[k] === undefined && delete e[k]);
+  if (note) e.histo = [{ d: e.maj, t: note }, ...(e.histo || [])].slice(0, 60);
   suivi[id] = e;
-  ecrire(K_SUIVI, suivi);
+  ecrire(K.suivi, suivi);
+  marquerAEnvoyer(id);
   rafraichirMarqueur(id);
   majCompteurs();
+  rafraichirPanneau();
 }
 
 function visible(c) {
   if (!filtres.cats.includes(c.cat)) return false;
   if (!filtres.statuts.includes(statutDe(c.id))) return false;
+  if (!filtres.potentiels.includes(potentielDe(c.id))) return false;
+  if (!filtres.sources.includes(c.source || 'osm')) return false;
   if (filtres.masquerChaines && c.chaine) return false;
   if (filtres.memoSeul && !(etat(c.id).memo || '').trim()) return false;
   if (filtres.rappelEchu && !rappelEchu(c.id)) return false;
+  if (filtres.rayon && maPos && distance(maPos, c) > filtres.rayon) return false;
   if (recherche) {
     const e = etat(c.id);
-    const h = `${c.nom} ${c.ville} ${c.adresse} ${c.marque} ${CATEGORIES[c.cat].label} ${e.memo || ''} ${e.contact || ''}`.toLowerCase();
+    const h = `${c.nom} ${c.ville} ${c.adresse} ${c.marque} ${c.raison || ''} ${c.dirigeant || ''} ${CATEGORIES[c.cat].label} ${e.memo || ''} ${e.contact || ''}`
+      .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
     if (!recherche.split(/\s+/).every(m => h.includes(m))) return false;
   }
   return true;
 }
 
-// ---------- Marqueurs ----------
+// ============================================================================
+// Marqueurs
+// ============================================================================
 function creerMarqueur(c) {
   const m = L.circleMarker([c.lat, c.lon], { renderer: canvas, radius: 8, weight: 2, color: '#fff', fillOpacity: 0.95 });
   m.bindTooltip(() => `${CATEGORIES[c.cat].emoji} ${esc(c.nom)}`, { className: 'tt', direction: 'top', offset: [0, -6] });
@@ -427,14 +701,14 @@ function creerMarqueur(c) {
 }
 
 function rafraichirMarqueur(id) {
-  const c = commerces.find(x => x.id === id), m = marqueurs.get(id);
+  const c = parId.get(id), m = marqueurs.get(id);
   if (!c || !m) return;
-  const sel = selection === id;
+  const sel = selection === id, echu = rappelEchu(id);
   m.setStyle({
     fillColor: couleurDe(id),
-    color: sel ? '#F4B942' : (rappelEchu(id) ? '#f59e0b' : '#ffffff'),
-    weight: sel ? 4 : (rappelEchu(id) ? 3 : 2),
-    radius: sel ? 11 : 8
+    color: sel ? '#F4B942' : (echu ? '#f59e0b' : '#ffffff'),
+    weight: sel ? 4 : (echu ? 3 : 2),
+    radius: (sel ? 3 : 0) + POTENTIELS[potentielDe(id)].rayon
   });
   if (visible(c)) { if (!map.hasLayer(m)) m.addTo(map); if (sel) m.bringToFront(); }
   else if (map.hasLayer(m)) m.remove();
@@ -443,23 +717,28 @@ function rafraichirMarqueur(id) {
 function appliquerFiltres() {
   commerces.forEach(c => rafraichirMarqueur(c.id));
   majCompteurs();
-  if (document.getElementById('liste').classList.contains('open')) rendreListe();
-  ecrire(K_FILTRES, filtres);
+  rafraichirPanneau();
+  ecrire(K.filtres, filtres);
 }
 
-// ---------- Barre de filtres ----------
+// ============================================================================
+// Filtres
+// ============================================================================
 function rendreChips() {
-  const cs = document.getElementById('chipsStatuts');
-  cs.innerHTML = Object.entries(STATUTS).map(([k, s]) =>
-    `<button class="chip ${filtres.statuts.includes(k) ? 'on' : ''}" data-statut="${k}"><span class="dot" style="background:${s.couleur}"></span>${s.label} <b data-n="${k}">0</b></button>`
-  ).join('');
-  const cc = document.getElementById('chipsCats');
-  cc.innerHTML = Object.entries(CATEGORIES).map(([k, c]) =>
-    `<button class="chip ${filtres.cats.includes(k) ? 'on' : ''}" data-cat="${k}">${c.emoji} ${c.label} <b data-c="${k}">0</b></button>`
-  ).join('');
+  document.getElementById('chipsStatuts').innerHTML = Object.entries(STATUTS).map(([k, s]) =>
+    `<button class="chip ${filtres.statuts.includes(k) ? 'on' : ''}" data-statut="${k}"><span class="dot" style="background:${s.couleur}"></span>${s.label} <b data-n="${k}">0</b></button>`).join('');
+  document.getElementById('chipsCats').innerHTML = Object.entries(CATEGORIES).map(([k, c]) =>
+    `<button class="chip ${filtres.cats.includes(k) ? 'on' : ''}" data-cat="${k}">${c.emoji} ${c.label} <b data-c="${k}">0</b></button>`).join('');
+  document.getElementById('chipsPotentiel').innerHTML = Object.entries(POTENTIELS).map(([k, p]) =>
+    `<button class="chip ${filtres.potentiels.includes(k) ? 'on' : ''}" data-pot="${k}">${p.label}</button>`).join('');
+  document.getElementById('chipsSources').innerHTML = Object.entries(SOURCES).map(([k, l]) =>
+    `<button class="chip ${filtres.sources.includes(k) ? 'on' : ''}" data-src="${k}">${l} <b data-s="${k}">0</b></button>`).join('');
   document.getElementById('chipChaines').classList.toggle('on', filtres.masquerChaines);
   document.getElementById('chipMemo').classList.toggle('on', filtres.memoSeul);
   document.getElementById('chipRappel').classList.toggle('on', filtres.rappelEchu);
+  document.getElementById('chipsRayon').innerHTML = [[0, 'Partout'], [500, '500 m'], [1000, '1 km'], [2000, '2 km'], [5000, '5 km']].map(([v, l]) =>
+    `<button class="chip ${filtres.rayon === v ? 'on' : ''}" data-rayon="${v}">${v ? '◎ ' : ''}${l}</button>`).join('') +
+    `<button class="chip" id="btnProches">🧭 Tournée des 10 plus proches à démarcher</button>`;
 }
 
 function basculer(liste, k, tous) {
@@ -469,14 +748,16 @@ function basculer(liste, k, tous) {
   return r.length ? r : [...tous];
 }
 
-document.getElementById('chipsStatuts').addEventListener('click', e => {
-  const b = e.target.closest('[data-statut]'); if (!b) return;
-  filtres.statuts = basculer(filtres.statuts, b.dataset.statut, Object.keys(STATUTS));
-  rendreChips(); appliquerFiltres();
-});
-document.getElementById('chipsCats').addEventListener('click', e => {
-  const b = e.target.closest('[data-cat]'); if (!b) return;
-  filtres.cats = basculer(filtres.cats, b.dataset.cat, Object.keys(CATEGORIES));
+document.getElementById('topbar').addEventListener('click', e => {
+  const b = e.target.closest('[data-statut],[data-cat],[data-pot],[data-src],[data-rayon]');
+  if (!b) return;
+  if (b.dataset.statut) filtres.statuts = basculer(filtres.statuts, b.dataset.statut, Object.keys(STATUTS));
+  else if (b.dataset.cat) filtres.cats = basculer(filtres.cats, b.dataset.cat, Object.keys(CATEGORIES));
+  else if (b.dataset.pot) filtres.potentiels = basculer(filtres.potentiels, b.dataset.pot, Object.keys(POTENTIELS));
+  else if (b.dataset.src) {
+    filtres.sources = filtres.sources.includes(b.dataset.src) ? filtres.sources.filter(x => x !== b.dataset.src) : [...filtres.sources, b.dataset.src];
+    if (!filtres.sources.length) filtres.sources = Object.keys(SOURCES);
+  } else if (b.dataset.rayon !== undefined) { filtres.rayon = +b.dataset.rayon; dessinerRayon(); }
   rendreChips(); appliquerFiltres();
 });
 document.getElementById('chipChaines').onclick = () => { filtres.masquerChaines = !filtres.masquerChaines; rendreChips(); appliquerFiltres(); };
@@ -490,83 +771,117 @@ document.getElementById('btnFiltres').onclick = e => {
 let tRech;
 document.getElementById('recherche').addEventListener('input', e => {
   clearTimeout(tRech);
-  tRech = setTimeout(() => { recherche = e.target.value.trim().toLowerCase(); appliquerFiltres(); }, 150);
+  tRech = setTimeout(() => {
+    recherche = e.target.value.trim().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    appliquerFiltres();
+  }, 150);
 });
 
 function majCompteurs() {
-  const nS = {}, nC = {};
+  const nS = {}, nC = {}, nSrc = {};
   let vis = 0;
   commerces.forEach(c => {
-    nS[statutDe(c.id)] = (nS[statutDe(c.id)] || 0) + 1;
+    const s = statutDe(c.id);
+    nS[s] = (nS[s] || 0) + 1;
     nC[c.cat] = (nC[c.cat] || 0) + 1;
+    nSrc[c.source || 'osm'] = (nSrc[c.source || 'osm'] || 0) + 1;
     if (visible(c)) vis++;
   });
   document.querySelectorAll('[data-n]').forEach(b => b.textContent = nS[b.dataset.n] || 0);
   document.querySelectorAll('[data-c]').forEach(b => b.textContent = nC[b.dataset.c] || 0);
+  document.querySelectorAll('[data-s]').forEach(b => b.textContent = nSrc[b.dataset.s] || 0);
   const faits = commerces.length - (nS.a_faire || 0);
-  const cache = lire(K_CACHE, null);
-  document.getElementById('sousTitre').textContent =
-    `${vis} affichés / ${commerces.length} commerces · ${faits} démarchés · ${nS.signe || 0} inscrits` +
-    (cache ? ` · données OSM du ${new Date(cache.date).toLocaleDateString('fr-FR')}` : '');
+  const txt = `${vis} affichés / ${commerces.length} commerces · ${faits} démarchés · ${nS.signe || 0} inscrits`;
+  document.getElementById('sousTitre').textContent = txt;
+  document.getElementById('compteurM').textContent = txt;
+  const nJour = commerces.filter(c => rappelEchu(c.id)).length;
+  document.getElementById('badgeJour').textContent = nJour || '';
+  document.getElementById('badgeTournee').textContent = tournee.length || '';
 }
 
-// ---------- Fiche ----------
-const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+// ============================================================================
+// Fiche commerce
+// ============================================================================
+const ACTIONS_RAPIDES = [
+  { k: 'vu',        label: '🗣️ Vu le gérant',     note: 'Discuté avec le gérant',  statut: s => s === 'a_faire' ? 'visite' : s },
+  { k: 'absent',    label: '👤 Gérant absent',    note: 'Gérant absent',           statut: s => ['a_faire', 'visite'].includes(s) ? 'rappeler' : s, rappelDemain: true },
+  { k: 'ferme',     label: '🚪 Trouvé fermé',     note: 'Trouvé fermé',            statut: s => ['a_faire', 'visite'].includes(s) ? 'rappeler' : s, rappelDemain: true },
+  { k: 'plaquette', label: '📄 Plaquette laissée', note: 'Plaquette laissée',       statut: s => s === 'a_faire' ? 'visite' : s },
+  { k: 'occupe',    label: '⏳ Trop de monde',     note: 'Trop de clients, repasser', statut: s => ['a_faire', 'visite'].includes(s) ? 'rappeler' : s },
+  { k: 'repasser',  label: '⏰ Repasser à…',      note: null }
+];
 
 function ouvrirFiche(id) {
-  const c = commerces.find(x => x.id === id); if (!c) return;
+  const c = parId.get(id); if (!c) return;
   const ancienne = selection;
   selection = id;
-  if (ancienne) rafraichirMarqueur(ancienne);
+  if (ancienne && ancienne !== id) rafraichirMarqueur(ancienne);
   rafraichirMarqueur(id);
-  const e = etat(id);
+  rendreFiche();
+  document.getElementById('fiche').classList.add('open');
+  if (window.innerWidth <= 720) fermerPanneau();
+}
+
+function rendreFiche(garderSaisie) {
+  const id = selection, c = parId.get(id); if (!c) return;
+  const e = etat(id), st = statutDe(id);
 
   document.getElementById('ficheNom').textContent = c.nom;
-  document.getElementById('ficheCat').textContent =
-    `${CATEGORIES[c.cat].emoji} ${CATEGORIES[c.cat].label}` + (c.chaine ? ` · chaîne${c.marque ? ' (' + c.marque + ')' : ''}` : '') + (c.manuel ? ' · ajouté à la main' : '');
+  document.getElementById('ficheCat').textContent = [
+    `${CATEGORIES[c.cat].emoji} ${CATEGORIES[c.cat].label}`,
+    c.chaine && `chaîne${c.marque ? ' (' + c.marque + ')' : ''}`,
+    c.source === 'manuel' && 'ajouté à la main',
+    c.source?.startsWith('registre') && 'registre des entreprises'
+  ].filter(Boolean).join(' · ');
   document.getElementById('ficheBandeau').style.background = couleurDe(id);
 
   const web = c.web && !/^https?:\/\//.test(c.web) ? 'https://' + c.web : c.web;
+  const tel = (c.tel || '').replace(/\s/g, '');
   document.getElementById('ficheInfos').innerHTML = [
+    c.dirigeant && `👤 <span class="dirigeant">${esc(c.dirigeant)}</span>`,
     c.adresse && `📫 ${esc(c.adresse)}`,
-    c.tel && `📞 <a href="tel:${esc(c.tel.replace(/\s/g, ''))}">${esc(c.tel)}</a>`,
+    c.tel && `📞 <a href="tel:${esc(tel)}">${esc(c.tel)}</a>`,
     c.email && `✉️ <a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`,
     web && `🌐 <a href="${esc(web)}" target="_blank" rel="noopener">${esc(c.web)}</a>`,
-    c.horaires && `🕒 ${esc(c.horaires)}`
-  ].filter(Boolean).map(l => `<div>${l}</div>`).join('') || '<div>Pas de coordonnées dans OpenStreetMap.</div>';
+    c.horaires && `🕒 ${esc(c.horaires)}`,
+    c.creation && `🗓️ Établissement ouvert en ${new Date(c.creation).getFullYear()}${c.raison && c.raison !== c.nom ? ' · ' + esc(c.raison) : ''}`,
+    c.siret && `🏛️ SIRET <a href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(c.siret)}" target="_blank" rel="noopener">${esc(c.siret)}</a>`,
+    maPos && `📍 à ${fmtDist(distance(maPos, c))} de toi`
+  ].filter(Boolean).map(l => `<div>${l}</div>`).join('') || '<div>Pas de coordonnées connues.</div>';
 
   const q = encodeURIComponent(`${c.nom} ${c.adresse || c.ville}`);
+  const dansTournee = tournee.includes(id);
   document.getElementById('ficheActions').innerHTML = `
     <a class="btn or" href="https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}" target="_blank" rel="noopener">🧭 Itinéraire</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">🔎 Google</a>
-    ${c.tel ? `<a class="btn" href="tel:${esc(c.tel.replace(/\s/g, ''))}">📞 Appeler</a>` : ''}
-    ${c.id.startsWith('custom/') ? '' : `<a class="btn" href="https://www.openstreetmap.org/${c.id}" target="_blank" rel="noopener">OSM</a>`}`;
+    <button class="btn ${dansTournee ? 'on' : ''}" id="btnFicheTournee">${dansTournee ? '✓ Dans la tournée' : '＋ Tournée'}</button>
+    ${c.tel ? `<a class="btn" href="tel:${esc(tel)}">📞 Appeler</a>` : ''}
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">🔎 Google</a>`;
 
-  const st = statutDe(id);
+  document.getElementById('ficheRapides').innerHTML = ACTIONS_RAPIDES.map(a => `<button class="rapide" data-action="${a.k}">${a.label}</button>`).join('');
   document.getElementById('ficheStatuts').innerHTML = Object.entries(STATUTS).map(([k, s]) =>
-    `<button class="statut ${k === st ? 'on' : ''}" style="--c:${s.couleur}" data-s="${k}"><span class="dot" style="background:${s.couleur}"></span>${s.label}</button>`
-  ).join('');
-
+    `<button class="statut ${k === st ? 'on' : ''}" style="--c:${s.couleur}" data-s2="${k}"><span class="dot" style="background:${s.couleur}"></span>${s.label}</button>`).join('');
+  document.getElementById('fichePotentiel').innerHTML = ['chaud', 'tiede', 'froid'].map(k =>
+    `<button class="${potentielDe(id) === k ? 'on' : ''}" data-pot2="${k}">${POTENTIELS[k].label}</button>`).join('');
+  const obj = e.objections || [];
+  document.getElementById('ficheObjections').innerHTML = OBJECTIONS.map(o =>
+    `<button class="tag ${obj.includes(o) ? 'on' : ''}" data-obj="${esc(o)}">${esc(o)}</button>`).join('');
   document.getElementById('ficheCouleurs').innerHTML =
     `<button class="sw auto ${!e.couleur ? 'on' : ''}" data-col="" title="Couleur du statut">auto</button>` +
     COULEURS_LIBRES.map(col => `<button class="sw ${e.couleur === col ? 'on' : ''}" data-col="${col}" style="background:${col}" title="${col}"></button>`).join('') +
     `<input type="color" id="colLibre" value="${e.couleur || STATUTS[st].couleur}" title="Autre couleur" style="width:34px;height:34px;border:0;background:none;padding:0">`;
 
-  document.getElementById('ficheMemo').value = e.memo || '';
-  document.getElementById('ficheContact').value = e.contact || '';
+  if (!garderSaisie) {
+    document.getElementById('ficheMemo').value = e.memo || '';
+    document.getElementById('ficheContact').value = e.contact || '';
+    document.getElementById('saveState').textContent = e.maj ? `Dernière modif. ${new Date(e.maj).toLocaleString('fr-FR')}` : '';
+  }
   document.getElementById('ficheRappel').value = e.rappel || '';
-  document.getElementById('saveState').textContent = e.maj ? `Dernière modif. ${new Date(e.maj).toLocaleString('fr-FR')}` : '';
-  rendreHisto();
-  document.getElementById('btnSupprimer').style.display = c.manuel ? '' : 'none';
-  document.getElementById('fiche').classList.add('open');
-  if (window.innerWidth <= 720) document.getElementById('liste').classList.remove('open');
-}
-
-function rendreHisto() {
-  const h = etat(selection).histo || [];
+  document.getElementById('ficheHeure').value = e.heure || '';
+  const h = e.histo || [];
   document.getElementById('ficheHisto').innerHTML = h.length
     ? h.map(x => `<div><time>${new Date(x.d).toLocaleDateString('fr-FR')} ${new Date(x.d).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</time><span>${esc(x.t)}</span></div>`).join('')
     : '<div>Aucune action pour l’instant.</div>';
+  document.getElementById('btnSupprimer').style.display = c.source === 'manuel' ? '' : 'none';
 }
 
 function fermerFiche() {
@@ -576,86 +891,522 @@ function fermerFiche() {
 }
 document.getElementById('fermerFiche').onclick = fermerFiche;
 
-document.getElementById('ficheStatuts').addEventListener('click', e => {
-  const b = e.target.closest('[data-s]'); if (!b || !selection) return;
-  const k = b.dataset.s;
-  if (k === statutDe(selection)) return;
-  majSuivi(selection, { statut: k }, `Statut → ${STATUTS[k].label}`);
-  ouvrirFiche(selection);
-});
-document.getElementById('ficheCouleurs').addEventListener('click', e => {
-  const b = e.target.closest('[data-col]'); if (!b || !selection) return;
-  majSuivi(selection, { couleur: b.dataset.col || undefined });
-  ouvrirFiche(selection);
+document.getElementById('fiche').addEventListener('click', ev => {
+  if (!selection) return;
+  const id = selection, st = statutDe(id), t = ev.target;
+  const b = t.closest('[data-action],[data-s2],[data-pot2],[data-obj],[data-col],#btnFicheTournee');
+  if (!b) return;
+  if (b.id === 'btnFicheTournee') { basculerTournee(id); return rendreFiche(true); }
+  if (b.dataset.action) {
+    const a = ACTIONS_RAPIDES.find(x => x.k === b.dataset.action);
+    if (a.k === 'repasser') {
+      const quand = prompt('Repasser quand ? (ex. « mardi 15h », « après le marché »)');
+      if (!quand) return;
+      majSuivi(id, { statut: STATUTS_CLOS.includes(st) ? st : 'rappeler', visite: new Date().toISOString() }, `Repasser : ${quand}`);
+      rendreFiche(true);
+      document.getElementById('ficheRappel').focus();
+      return;
+    }
+    const patch = { statut: a.statut(st), visite: new Date().toISOString() };
+    if (a.rappelDemain && !(etat(id).rappel > aujourdhui())) patch.rappel = demain();
+    majSuivi(id, patch, a.note + (patch.statut !== st ? ` → ${STATUTS[patch.statut].label}` : ''));
+    toast(`✓ ${a.note}`);
+  } else if (b.dataset.s2) {
+    const k = b.dataset.s2; if (k === st) return;
+    const patch = { statut: k };
+    if (k !== 'a_faire' && !etat(id).visite) patch.visite = new Date().toISOString();
+    majSuivi(id, patch, `Statut → ${STATUTS[k].label}`);
+  } else if (b.dataset.pot2) {
+    const k = b.dataset.pot2 === potentielDe(id) ? undefined : b.dataset.pot2;
+    majSuivi(id, { potentiel: k }, k ? `Potentiel : ${POTENTIELS[k].label}` : 'Potentiel retiré');
+  } else if (b.dataset.obj) {
+    const o = b.dataset.obj, liste = etat(id).objections || [];
+    const ajout = !liste.includes(o);
+    majSuivi(id, { objections: ajout ? [...liste, o] : liste.filter(x => x !== o) }, ajout ? `Objection : ${o}` : null);
+  } else if (b.dataset.col !== undefined) {
+    majSuivi(id, { couleur: b.dataset.col || undefined });
+  }
+  rendreFiche(true);
 });
 document.getElementById('ficheCouleurs').addEventListener('change', e => {
   if (e.target.id !== 'colLibre' || !selection) return;
   majSuivi(selection, { couleur: e.target.value });
-  ouvrirFiche(selection);
+  rendreFiche(true);
 });
 
-let tMemo;
+let tSaisie;
 function sauverChamp(champ, val) {
   document.getElementById('saveState').textContent = 'Enregistrement…';
-  clearTimeout(tMemo);
+  clearTimeout(tSaisie);
   const id = selection;
-  tMemo = setTimeout(() => {
+  tSaisie = setTimeout(() => {
     majSuivi(id, { [champ]: val });
     if (selection === id) document.getElementById('saveState').textContent = '✓ Enregistré';
-  }, 400);
+  }, 500);
 }
 document.getElementById('ficheMemo').addEventListener('input', e => sauverChamp('memo', e.target.value));
 document.getElementById('ficheContact').addEventListener('input', e => sauverChamp('contact', e.target.value));
 document.getElementById('ficheRappel').addEventListener('change', e => {
-  majSuivi(selection, { rappel: e.target.value || undefined }, e.target.value ? `Rappel prévu le ${new Date(e.target.value).toLocaleDateString('fr-FR')}` : 'Rappel retiré');
-  rendreHisto();
+  const v = e.target.value || undefined;
+  majSuivi(selection, { rappel: v, heure: v ? etat(selection).heure : undefined }, v ? `Rappel / RDV le ${new Date(v + 'T12:00').toLocaleDateString('fr-FR')}` : 'Rappel retiré');
+  rendreFiche(true);
+});
+document.getElementById('ficheHeure').addEventListener('change', e => {
+  majSuivi(selection, { heure: e.target.value || undefined }, e.target.value ? `Heure : ${e.target.value}` : null);
+  rendreFiche(true);
 });
 
-// ---------- Liste ----------
-function rendreListe() {
-  const centre = map.getCenter();
-  const vis = commerces.filter(visible)
-    .map(c => ({ c, d: centre.distanceTo([c.lat, c.lon]) }))
-    .sort((a, b) => (rappelEchu(b.c.id) - rappelEchu(a.c.id)) || a.d - b.d);
-  document.getElementById('listeTitre').textContent = `${vis.length} commerces · triés par distance au centre de la carte`;
-  document.getElementById('listeBody').innerHTML = vis.slice(0, 400).map(({ c, d }) => {
-    const e = etat(c.id);
-    return `<button class="item" data-id="${esc(c.id)}">
-      <span class="dot" style="background:${couleurDe(c.id)}"></span>
-      <span style="min-width:0">
-        <div class="item-nom">${CATEGORIES[c.cat].emoji} ${esc(c.nom)}</div>
-        <div class="item-sous">${esc(c.ville || c.adresse || '')}${c.ville || c.adresse ? ' · ' : ''}${d < 1000 ? Math.round(d) + ' m' : (d / 1000).toFixed(1) + ' km'} · ${STATUTS[statutDe(c.id)].label}${rappelEchu(c.id) ? ' · ⏰ rappel' : ''}</div>
-        ${e.memo ? `<div class="item-memo">${esc(e.memo)}</div>` : ''}
-      </span></button>`;
-  }).join('') + (vis.length > 400 ? `<div class="liste-head">… ${vis.length - 400} autres, zoome ou filtre pour affiner.</div>` : '');
+// ---------- Dictée vocale du mémo ----------
+const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (Reco) {
+  const btnMicro = document.getElementById('btnMicro');
+  btnMicro.hidden = false;
+  let reco = null;
+  btnMicro.onclick = () => {
+    if (reco) { reco.stop(); return; }
+    const memo = document.getElementById('ficheMemo');
+    const base = memo.value;
+    const prefixe = (base ? base.replace(/\s*$/, '') + '\n' : '') + `[${fmtDate(new Date())}] `;
+    reco = new Reco();
+    reco.lang = 'fr-FR'; reco.interimResults = true; reco.continuous = true;
+    reco.onresult = ev => {
+      const texte = Array.from(ev.results).map(r => r[0].transcript).join(' ').trim();
+      memo.value = prefixe + texte;
+      sauverChamp('memo', memo.value);
+    };
+    reco.onerror = ev => { if (ev.error === 'not-allowed') toast('Micro refusé : autorise-le dans le navigateur.'); };
+    reco.onend = () => { reco = null; btnMicro.classList.remove('rec'); btnMicro.textContent = '🎤 Dicter'; };
+    reco.start();
+    btnMicro.classList.add('rec'); btnMicro.textContent = '■ Stop';
+  };
 }
-document.getElementById('listeBody').addEventListener('click', e => {
-  const b = e.target.closest('[data-id]'); if (!b) return;
-  const c = commerces.find(x => x.id === b.dataset.id);
-  map.flyTo([c.lat, c.lon], Math.max(map.getZoom(), 17), { duration: 0.6 });
-  ouvrirFiche(c.id);
+
+// ============================================================================
+// Panneau gauche : liste / aujourd'hui / tournée
+// ============================================================================
+function ouvrirPanneau(mode) {
+  if (panneauMode === mode) return fermerPanneau();
+  panneauMode = mode;
+  document.getElementById('panneau').classList.add('open');
+  ['Liste', 'Jour', 'Tournee'].forEach(m => document.getElementById('btn' + m).classList.toggle('on', m.toLowerCase() === mode));
+  if (window.innerWidth <= 720) fermerFiche();
+  rafraichirPanneau();
+}
+function fermerPanneau() {
+  panneauMode = null;
+  document.getElementById('panneau').classList.remove('open');
+  ['Liste', 'Jour', 'Tournee'].forEach(m => document.getElementById('btn' + m).classList.remove('on'));
+}
+document.getElementById('btnListe').onclick = () => ouvrirPanneau('liste');
+document.getElementById('btnJour').onclick = () => ouvrirPanneau('jour');
+document.getElementById('btnTournee').onclick = () => ouvrirPanneau('tournee');
+
+function ligne(c, opts = {}) {
+  const e = etat(c.id);
+  const ref = maPos || (opts.centre && { lat: opts.centre.lat, lon: opts.centre.lng });
+  const sous = [
+    c.ville || c.adresse,
+    ref && fmtDist(distance(ref, c)),
+    STATUTS[statutDe(c.id)].label,
+    e.rappel && `⏰ ${fmtDate(e.rappel + 'T12:00')}${e.heure ? ' ' + e.heure : ''}`,
+    e.visite && `vu ${depuis(e.visite)}`,
+    potentielDe(c.id) === 'chaud' && '🔥'
+  ].filter(Boolean).join(' · ');
+  return `<div class="item" data-id="${esc(c.id)}">
+    ${opts.num ? `<span class="num">${opts.num}</span>` : `<span class="dot" style="background:${couleurDe(c.id)}"></span>`}
+    <div class="item-txt">
+      <div class="item-nom">${CATEGORIES[c.cat].emoji} ${esc(c.nom)}</div>
+      <div class="item-sous">${esc(sous)}</div>
+      ${e.memo ? `<div class="item-memo">${esc(e.memo)}</div>` : ''}
+    </div>
+    ${opts.btns ? `<div class="item-btns">
+      <button data-monter="${esc(c.id)}" title="Monter">↑</button>
+      <button data-descendre="${esc(c.id)}" title="Descendre">↓</button>
+      <button data-retirer="${esc(c.id)}" title="Retirer">✕</button></div>` : ''}
+  </div>`;
+}
+
+function rafraichirPanneau() {
+  if (!panneauMode) return;
+  const head = document.getElementById('panneauHead'), body = document.getElementById('panneauBody');
+  const fermer = `<div class="spacer"></div><button class="btn petit" data-fermer-panneau>✕</button>`;
+
+  if (panneauMode === 'liste') {
+    const centre = map.getCenter(), ref = maPos || { lat: centre.lat, lon: centre.lng };
+    const vis = commerces.filter(visible).map(c => ({ c, d: distance(ref, c) }))
+      .sort((a, b) => (rappelEchu(b.c.id) - rappelEchu(a.c.id)) || a.d - b.d);
+    head.innerHTML = `<strong>${vis.length} commerces</strong><span>triés par distance ${maPos ? 'à toi' : 'au centre de la carte'}</span>${fermer}`;
+    body.innerHTML = vis.slice(0, 300).map(({ c }) => ligne(c, { centre })).join('') +
+      (vis.length > 300 ? `<div class="vide">… ${vis.length - 300} autres : zoome, filtre ou cherche pour affiner.</div>` : '') ||
+      '<div class="vide">Aucun commerce avec ces filtres.</div>';
+  }
+
+  if (panneauMode === 'jour') {
+    const auj = aujourdhui();
+    const ouverts = commerces.filter(c => !STATUTS_CLOS.includes(statutDe(c.id)));
+    const parRappel = (a, b) => ((etat(a.id).rappel || '') + (etat(a.id).heure || '')).localeCompare((etat(b.id).rappel || '') + (etat(b.id).heure || ''));
+    const rdvJour = ouverts.filter(c => statutDe(c.id) === 'rdv' && etat(c.id).rappel === auj).sort(parRappel);
+    const rappels = ouverts.filter(c => rappelEchu(c.id) && !rdvJour.includes(c)).sort(parRappel);
+    const aVenir = ouverts.filter(c => etat(c.id).rappel > auj).sort(parRappel).slice(0, 15);
+    const chauds = ouverts.filter(c => potentielDe(c.id) === 'chaud' && !rappels.includes(c) && !rdvJour.includes(c));
+
+    const semaine = Date.now() - 7 * 86400000;
+    const histoSemaine = commerces.flatMap(c => (etat(c.id).histo || []).filter(h => new Date(h.d) > semaine).map(h => ({ c, h })));
+    const vusSemaine = new Set(histoSemaine.map(x => x.c.id)).size;
+    const inscritsSemaine = new Set(histoSemaine.filter(x => x.h.t.includes(STATUTS.signe.label)).map(x => x.c.id)).size;
+    const rdvSemaine = new Set(histoSemaine.filter(x => x.h.t.includes(STATUTS.rdv.label)).map(x => x.c.id)).size;
+    const nObj = {};
+    commerces.forEach(c => (etat(c.id).objections || []).forEach(o => nObj[o] = (nObj[o] || 0) + 1));
+    const topObj = Object.entries(nObj).sort((a, b) => b[1] - a[1]).slice(0, 5);
+    const maxObj = topObj[0]?.[1] || 1;
+
+    const section = (titre, liste, vide) => `<div class="section-titre">${titre} (${liste.length})</div>` +
+      (liste.length ? liste.map(c => ligne(c)).join('') : `<div class="vide">${vide}</div>`);
+    head.innerHTML = `<strong>Aujourd’hui</strong><span>${new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>${fermer}`;
+    body.innerHTML =
+      `<div class="section-titre">7 derniers jours</div>
+       <div class="stats"><div class="stat"><b>${vusSemaine}</b><span>commerces travaillés</span></div>
+       <div class="stat"><b>${rdvSemaine}</b><span>RDV pris</span></div>
+       <div class="stat"><b>${inscritsSemaine}</b><span>inscrits</span></div></div>` +
+      ((rdvJour.length + rappels.length) ? `<div style="padding:0 12px 6px"><button class="btn petit or" id="btnTourneeRappels">🧭 ${rdvJour.length + rappels.length > 1 ? `Mettre ces ${rdvJour.length + rappels.length} visites` : 'Mettre cette visite'} en tournée</button></div>` : '') +
+      section('📅 RDV du jour', rdvJour, 'Pas de RDV aujourd’hui.') +
+      section('⏰ Rappels à faire', rappels, 'Aucun rappel en retard. 👍') +
+      section('🔥 Prospects chauds', chauds, 'Note le potentiel dans les fiches pour les voir ici.') +
+      section('🗓️ Prochains rappels', aVenir, 'Rien de planifié.') +
+      (topObj.length ? `<div class="section-titre">Objections les plus fréquentes</div>` +
+        topObj.map(([o, n]) => `<div class="barre"><span>${esc(o)}</span><i style="width:${Math.round(n / maxObj * 120)}px"></i><b>${n}</b></div>`).join('') + '<div style="height:10px"></div>' : '');
+  }
+
+  if (panneauMode === 'tournee') {
+    const etapes = tournee.map(id => parId.get(id)).filter(Boolean);
+    let total = 0;
+    etapes.forEach((c, i) => { if (i) total += distance(etapes[i - 1], c); });
+    const troncons = [];
+    for (let i = 0; i < etapes.length; i += 10) troncons.push([i, Math.min(i + 10, etapes.length)]);
+    head.innerHTML = `<strong>Tournée · ${etapes.length} étapes</strong><span>≈ ${fmtDist(total * 1.3)}</span>${fermer}
+      <div class="row" style="width:100%;flex-wrap:wrap;gap:6px">
+        <button class="btn petit" id="btnOptimiser" ${etapes.length < 3 ? 'disabled' : ''}>⚡ Optimiser l’ordre</button>
+        ${troncons.map(([a, b], i) => `<button class="btn petit or" data-gmaps="${i}">Google Maps ${troncons.length > 1 ? `${a + 1}–${b}` : ''}</button>`).join('')}
+        ${etapes.length ? '<button class="btn petit" id="btnViderTournee">Vider</button>' : ''}
+      </div>`;
+    body.innerHTML = etapes.length
+      ? etapes.map((c, i) => ligne(c, { num: i + 1, btns: true })).join('')
+      : `<div class="vide" style="padding:14px 12px">Ajoute des commerces avec « ＋ Tournée » dans leur fiche, ou utilise 📍 Autour de moi → « Tournée des 10 plus proches ».<br><br>Les étapes sont ensuite ouvertes dans Google Maps, par tronçons de 10.</div>`;
+  }
+}
+
+document.getElementById('panneau').addEventListener('click', e => {
+  const t = e.target;
+  if (t.closest('[data-fermer-panneau]')) return fermerPanneau();
+  const mv = t.closest('[data-monter],[data-descendre],[data-retirer]');
+  if (mv) {
+    const id = mv.dataset.monter || mv.dataset.descendre || mv.dataset.retirer;
+    const i = tournee.indexOf(id);
+    if (mv.dataset.retirer) tournee.splice(i, 1);
+    else {
+      const j = mv.dataset.monter ? i - 1 : i + 1;
+      if (j >= 0 && j < tournee.length) [tournee[i], tournee[j]] = [tournee[j], tournee[i]];
+    }
+    return sauverTournee();
+  }
+  if (t.closest('#btnOptimiser')) { optimiserTournee(); return toast('Ordre optimisé' + (maPos ? ' depuis ta position.' : '.')); }
+  if (t.closest('#btnViderTournee')) { if (confirm('Vider la tournée ?')) { tournee = []; sauverTournee(); } return; }
+  if (t.closest('#btnTourneeRappels')) {
+    const auj = aujourdhui();
+    const ids = commerces.filter(c => !STATUTS_CLOS.includes(statutDe(c.id)) && (rappelEchu(c.id) || (statutDe(c.id) === 'rdv' && etat(c.id).rappel === auj))).map(c => c.id);
+    tournee = [...new Set([...tournee, ...ids])];
+    optimiserTournee();
+    return ouvrirPanneau('tournee');
+  }
+  const g = t.closest('[data-gmaps]');
+  if (g) return ouvrirGoogleMaps(+g.dataset.gmaps);
+  const it = t.closest('.item[data-id]');
+  if (it) {
+    const c = parId.get(it.dataset.id);
+    map.flyTo([c.lat, c.lon], Math.max(map.getZoom(), 17), { duration: 0.6 });
+    ouvrirFiche(c.id);
+  }
 });
-document.getElementById('btnListe').onclick = e => {
-  const l = document.getElementById('liste');
-  l.classList.toggle('open'); e.currentTarget.classList.toggle('on', l.classList.contains('open'));
-  if (l.classList.contains('open')) { rendreListe(); if (window.innerWidth <= 720) fermerFiche(); }
-};
-document.getElementById('fermerListe').onclick = () => { document.getElementById('liste').classList.remove('open'); document.getElementById('btnListe').classList.remove('on'); };
-map.on('moveend', () => { if (document.getElementById('liste').classList.contains('open')) rendreListe(); });
+map.on('moveend', () => { if (panneauMode === 'liste' && !maPos) rafraichirPanneau(); });
 
-// ---------- Géolocalisation ----------
-let moi;
+// ============================================================================
+// Tournée
+// ============================================================================
+function sauverTournee() {
+  ecrire(K.tournee, tournee);
+  dessinerTournee(); majCompteurs(); rafraichirPanneau();
+}
+function basculerTournee(id) {
+  if (tournee.includes(id)) tournee = tournee.filter(x => x !== id);
+  else tournee.push(id);
+  sauverTournee();
+}
+function dessinerTournee() {
+  coucheTournee.clearLayers();
+  const etapes = tournee.map(id => parId.get(id)).filter(Boolean);
+  if (!etapes.length) return;
+  L.polyline(etapes.map(c => [c.lat, c.lon]), { color: '#F4B942', weight: 3, dashArray: '6 8', interactive: false }).addTo(coucheTournee);
+  etapes.forEach((c, i) => {
+    L.marker([c.lat, c.lon], { icon: L.divIcon({ className: 'num-etape', html: String(i + 1), iconSize: [22, 22], iconAnchor: [11, 26] }), zIndexOffset: 1000 })
+      .on('click', () => ouvrirFiche(c.id)).addTo(coucheTournee);
+  });
+}
+function optimiserTournee() {
+  const pts = tournee.map(id => parId.get(id)).filter(Boolean);
+  if (pts.length < 3) return;
+  // Plus proche voisin depuis ma position (ou la 1re étape), puis amélioration 2-opt.
+  const depart = maPos || pts[0];
+  const reste = [...pts], ordre = [];
+  let cur = depart;
+  while (reste.length) {
+    let bi = 0, bd = Infinity;
+    reste.forEach((p, i) => { const d = distance(cur, p); if (d < bd) { bd = d; bi = i; } });
+    cur = reste.splice(bi, 1)[0]; ordre.push(cur);
+  }
+  const route = maPos ? [depart, ...ordre] : ordre;
+  const d = (a, b) => distance(route[a], route[b]);
+  let mieux = true, tours = 0;
+  while (mieux && tours++ < 50) {
+    mieux = false;
+    for (let i = maPos ? 1 : 0; i < route.length - 2; i++) {
+      for (let j = i + 2; j < route.length; j++) {
+        const avant = (i > 0 ? d(i - 1, i) : 0) + (j + 1 < route.length ? d(j, j + 1) : 0);
+        const apres = (i > 0 ? d(i - 1, j) : 0) + (j + 1 < route.length ? d(i, j + 1) : 0);
+        if (apres + 0.1 < avant) { route.splice(i, j - i + 1, ...route.slice(i, j + 1).reverse()); mieux = true; }
+      }
+    }
+  }
+  tournee = (maPos ? route.slice(1) : route).map(c => c.id);
+  sauverTournee();
+}
+function ouvrirGoogleMaps(troncon) {
+  const etapes = tournee.map(id => parId.get(id)).filter(Boolean);
+  const a = troncon * 10, morceau = etapes.slice(a, a + 10);
+  if (!morceau.length) return;
+  const pt = c => `${c.lat},${c.lon}`;
+  const dest = morceau[morceau.length - 1];
+  let url = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${pt(dest)}`;
+  if (a > 0) url += `&origin=${pt(etapes[a - 1])}`;
+  const via = morceau.slice(0, -1);
+  if (via.length) url += `&waypoints=${encodeURIComponent(via.map(pt).join('|'))}`;
+  window.open(url, '_blank', 'noopener');
+}
+
+// ============================================================================
+// Autour de moi (géolocalisation)
+// ============================================================================
+let suiviPos = null;
+function ouvrirRayon() {
+  if (!filtres.rayon) filtres.rayon = 2000;
+  document.getElementById('rayonRow').classList.add('open');
+  document.getElementById('btnLoc').classList.add('on');
+  rendreChips(); ajusterHautCarte();
+  map.flyTo([maPos.lat, maPos.lon], 15);
+  dessinerRayon(); appliquerFiltres();
+}
 document.getElementById('btnLoc').onclick = () => {
+  const row = document.getElementById('rayonRow');
+  if (row.classList.contains('open')) {
+    row.classList.remove('open'); document.getElementById('btnLoc').classList.remove('on');
+    filtres.rayon = 0; dessinerRayon(); rendreChips(); appliquerFiltres(); ajusterHautCarte();
+    return;
+  }
+  if (maPos) return ouvrirRayon();
   if (!navigator.geolocation) return toast('Géolocalisation non disponible.');
-  navigator.geolocation.getCurrentPosition(p => {
-    const ll = [p.coords.latitude, p.coords.longitude];
-    if (!moi) moi = L.circleMarker(ll, { radius: 7, color: '#fff', weight: 3, fillColor: '#2563eb', fillOpacity: 1, interactive: false }).addTo(map);
-    else moi.setLatLng(ll);
-    map.flyTo(ll, 16);
-  }, () => toast('Position refusée ou indisponible.'), { enableHighAccuracy: true, timeout: 10000 });
+  toast('Recherche de ta position…');
+  if (suiviPos !== null) navigator.geolocation.clearWatch(suiviPos);
+  suiviPos = navigator.geolocation.watchPosition(p => {
+    const premier = !maPos;
+    maPos = { lat: p.coords.latitude, lon: p.coords.longitude };
+    if (!pointMoi) pointMoi = L.circleMarker([maPos.lat, maPos.lon], { radius: 7, color: '#fff', weight: 3, fillColor: '#2563eb', fillOpacity: 1, interactive: false }).addTo(map);
+    else pointMoi.setLatLng([maPos.lat, maPos.lon]);
+    if (premier) return ouvrirRayon();
+    dessinerRayon();
+    if (filtres.rayon) appliquerFiltres();
+  }, () => { suiviPos = null; toast('Position refusée ou indisponible.'); }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 20000 });
 };
+function dessinerRayon() {
+  if (cercleRayon) { cercleRayon.remove(); cercleRayon = null; }
+  if (maPos && filtres.rayon) cercleRayon = L.circle([maPos.lat, maPos.lon], { radius: filtres.rayon, color: '#2563eb', weight: 1, fillOpacity: 0.05, interactive: false }).addTo(map);
+}
+document.getElementById('chipsRayon').addEventListener('click', e => {
+  if (!e.target.closest('#btnProches')) return;
+  if (!maPos) return toast('Position inconnue.');
+  const proches = commerces.filter(c => statutDe(c.id) === 'a_faire' && visible(c) && !tournee.includes(c.id))
+    .sort((a, b) => distance(maPos, a) - distance(maPos, b)).slice(0, 10);
+  if (!proches.length) return toast('Aucun commerce à démarcher dans ce rayon.');
+  tournee = [...tournee, ...proches.map(c => c.id)];
+  optimiserTournee(); sauverTournee();
+  ouvrirPanneau('tournee');
+});
 
-// ---------- Ajout manuel ----------
+// ============================================================================
+// Synchronisation Supabase (compte admin) + file d'attente hors-ligne
+// ============================================================================
+let outbox = lire(K.outbox, {});       // id -> maj envoyée attendue (ou 'DEL')
+let etatSync = 'off';
+let tSync = null, syncEnCours = false;
+
+function session() { return lire('session_admin', null); }
+
+async function rafraichirSession() {
+  const s = session();
+  if (!s?.refresh_token) return false;
+  try {
+    const r = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=refresh_token`, {
+      method: 'POST', headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: s.refresh_token })
+    });
+    if (!r.ok) return false;
+    const d = await r.json();
+    ecrire('session_admin', { ...s, access_token: d.access_token, refresh_token: d.refresh_token || s.refresh_token });
+    return true;
+  } catch { return false; }
+}
+
+async function sb(chemin, opts = {}, reessai = true) {
+  const s = session();
+  if (!s?.access_token) throw { code: 'auth' };
+  const r = await fetch(SUPABASE_URL + chemin, {
+    ...opts,
+    headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + s.access_token, 'Content-Type': 'application/json', ...(opts.headers || {}) }
+  });
+  if (r.status === 401 && reessai && await rafraichirSession()) return sb(chemin, opts, false);
+  if (r.status === 401 || r.status === 403) throw { code: 'auth' };
+  if (r.status === 404) throw { code: 'table' };
+  if (!r.ok) throw { code: 'http', status: r.status };
+  return r.status === 204 || r.status === 201 ? null : r.json();
+}
+
+function marquerAEnvoyer(id, supprime) {
+  outbox[id] = supprime ? 'DEL' : (suivi[id]?.maj || new Date().toISOString());
+  ecrire(K.outbox, outbox);
+  majBoutonSync();
+  planifierSync(1500);
+}
+function planifierSync(ms) { clearTimeout(tSync); tSync = setTimeout(synchroniser, ms); }
+
+function majBoutonSync() {
+  const b = document.getElementById('btnSync');
+  const n = Object.keys(outbox).length;
+  const etats = {
+    off:     ['☁︎<span class="hide-m"> Connexion</span>', '', 'Se connecter pour synchroniser entre appareils'],
+    ok:      ['☁︎<span class="hide-m"> Synchro</span> ✓', 'sync-ok', 'Synchronisé'],
+    attente: [`☁︎ ⏳${n}`, 'sync-attente', `${n} modification(s) en attente d’envoi`],
+    horsligne: [`☁︎ ⏸${n || ''}`, 'sync-attente', 'Hors ligne : les modifications partiront au retour du réseau'],
+    table:   ['☁︎ ⚠', 'sync-erreur', 'Synchronisation pas encore activée côté base'],
+    auth:    ['☁︎ 🔒', 'sync-erreur', 'Session expirée ou compte non admin : reconnecte-toi'],
+    erreur:  [`☁︎ ⚠${n || ''}`, 'sync-erreur', 'Erreur de synchronisation, nouvel essai bientôt']
+  };
+  const [html, cls, titre] = etats[etatSync === 'ok' && n ? 'attente' : etatSync];
+  b.innerHTML = html; b.className = 'btn ' + cls; b.title = titre;
+}
+
+function appliquerDistant(rows) {
+  let change = false;
+  for (const r of rows) {
+    if (r.supprime) {
+      if (r.commerce || ajouts.some(a => a.id === r.id)) {
+        ajouts = ajouts.filter(a => a.id !== r.id);
+        retirerCommerce(r.id);
+      }
+      delete suivi[r.id]; delete outbox[r.id];
+      change = true; continue;
+    }
+    const local = suivi[r.id];
+    if (!local || (r.suivi?.maj || '') > (local.maj || '')) {
+      suivi[r.id] = r.suivi || {};
+      delete outbox[r.id];                // la version distante est plus récente : on n'écrase pas
+      change = true;
+    }
+    if (r.commerce && !ajouts.some(a => a.id === r.id)) { ajouts.push(r.commerce); change = true; }
+    if (r.commerce && commerces.length && !parId.has(r.id)) { ajouterCommerce({ source: 'manuel', ...r.commerce }); change = true; }
+  }
+  if (change) {
+    ecrire(K.suivi, suivi); ecrire(K.ajouts, ajouts); ecrire(K.outbox, outbox);
+    commerces.forEach(c => rafraichirMarqueur(c.id));
+    majCompteurs(); rafraichirPanneau(); dessinerTournee();
+    const saisie = ['ficheMemo', 'ficheContact'].includes(document.activeElement?.id);
+    if (selection && parId.has(selection)) rendreFiche(saisie);
+  }
+}
+
+async function synchroniser() {
+  if (syncEnCours) return planifierSync(2000);
+  if (!session()?.access_token) { etatSync = 'off'; return majBoutonSync(); }
+  if (!navigator.onLine) { etatSync = 'horsligne'; return majBoutonSync(); }
+  syncEnCours = true;
+  try {
+    // 1) Récupérer ce qui a changé ailleurs depuis la dernière synchro.
+    const premiereFois = !lire(K.curseur, null);
+    let curseur = lire(K.curseur, '1970-01-01T00:00:00Z');
+    for (;;) {
+      const rows = await sb(`/rest/v1/prospection?select=id,suivi,commerce,supprime,updated_at&updated_at=gt.${encodeURIComponent(curseur)}&order=updated_at.asc&limit=1000`);
+      if (!rows.length) break;
+      appliquerDistant(rows);
+      curseur = rows[rows.length - 1].updated_at;
+      ecrire(K.curseur, curseur);
+      if (rows.length < 1000) break;
+    }
+    if (premiereFois) {
+      // Première connexion de cet appareil : on envoie le suivi déjà saisi en local.
+      Object.keys(suivi).forEach(id => { if (!outbox[id]) outbox[id] = suivi[id].maj || ''; });
+      ecrire(K.curseur, curseur);
+    }
+    // 2) Envoyer les modifications locales.
+    const ids = Object.keys(outbox);
+    for (let i = 0; i < ids.length; i += 200) {
+      const lot = ids.slice(i, i + 200);
+      const envoye = {};
+      const rows = lot.map(id => {
+        envoye[id] = outbox[id];
+        const ajout = ajouts.find(a => a.id === id) || null;
+        return { id, suivi: suivi[id] || {}, commerce: ajout, supprime: outbox[id] === 'DEL' };
+      });
+      await sb('/rest/v1/prospection?on_conflict=id', {
+        method: 'POST', body: JSON.stringify(rows),
+        headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }
+      });
+      lot.forEach(id => { if (outbox[id] === envoye[id]) delete outbox[id]; });
+      ecrire(K.outbox, outbox);
+    }
+    etatSync = 'ok';
+  } catch (e) {
+    etatSync = e?.code === 'auth' ? 'auth' : e?.code === 'table' ? 'table' : navigator.onLine ? 'erreur' : 'horsligne';
+    if (etatSync === 'erreur') planifierSync(30000);
+  } finally {
+    syncEnCours = false;
+    majBoutonSync();
+  }
+}
+
+document.getElementById('btnSync').onclick = () => {
+  if (!session()?.access_token || etatSync === 'auth') {
+    if (confirm('Se connecter avec le compte admin Marchéo pour synchroniser le suivi entre ton téléphone et ton ordinateur ?'))
+      location.href = '/admin?redirect=' + encodeURIComponent('/prospection');
+    return;
+  }
+  if (etatSync === 'table') return toast('La table de synchronisation n’existe pas encore dans la base : le suivi reste enregistré sur cet appareil.');
+  toast('Synchronisation…');
+  synchroniser().then(() => toast(document.getElementById('btnSync').title));
+};
+window.addEventListener('online', () => synchroniser());
+window.addEventListener('offline', () => { etatSync = 'horsligne'; majBoutonSync(); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') synchroniser(); });
+setInterval(() => { if (document.visibilityState === 'visible') synchroniser(); }, 60000);
+
+// ============================================================================
+// Ajout manuel
+// ============================================================================
+function ajouterCommerce(c) {
+  commerces.push(c); parId.set(c.id, c); creerMarqueur(c); rafraichirMarqueur(c.id);
+}
+function retirerCommerce(id) {
+  commerces = commerces.filter(c => c.id !== id); parId.delete(id);
+  marqueurs.get(id)?.remove(); marqueurs.delete(id);
+  tournee = tournee.filter(x => x !== id); ecrire(K.tournee, tournee);
+  if (selection === id) fermerFiche();
+}
 document.getElementById('btnAjout').onclick = () => {
   modeAjout = !modeAjout;
   document.body.classList.toggle('mode-ajout', modeAjout);
@@ -666,43 +1417,49 @@ map.on('click', e => {
   if (!modeAjout) return;
   modeAjout = false; document.body.classList.remove('mode-ajout'); document.getElementById('btnAjout').classList.remove('on');
   const nom = prompt('Nom du commerce ?'); if (!nom) return;
-  const choix = Object.entries(CATEGORIES).map(([k, c], i) => `${i + 1}. ${c.label}`).join('\n');
+  const choix = Object.values(CATEGORIES).map((c, i) => `${i + 1}. ${c.label}`).join('\n');
   const n = parseInt(prompt('Catégorie (numéro) :\n' + choix, '1'), 10);
   const cat = Object.keys(CATEGORIES)[(n || 1) - 1] || 'autre';
   const ville = prompt('Ville ?', '') || '';
-  const c = { id: 'custom/' + Date.now().toString(36), nom, cat, lat: e.latlng.lat, lon: e.latlng.lng, ville, adresse: ville, tel: '', web: '', email: '', horaires: '', chaine: false, marque: '', manuel: true };
-  ajouts.push(c); ecrire(K_AJOUTS, ajouts);
-  commerces.push(c); creerMarqueur(c);
+  const c = { id: 'custom/' + Date.now().toString(36), source: 'manuel', nom, cat, lat: e.latlng.lat, lon: e.latlng.lng, ville, adresse: ville, tel: '', web: '', email: '', horaires: '', chaine: false, marque: '' };
+  ajouts.push(c); ecrire(K.ajouts, ajouts);
+  ajouterCommerce(c);
   majSuivi(c.id, {}, 'Commerce ajouté à la main');
   ouvrirFiche(c.id);
 });
 document.getElementById('btnSupprimer').onclick = () => {
   if (!selection || !confirm('Supprimer ce commerce ajouté et son suivi ?')) return;
   const id = selection; fermerFiche();
-  ajouts = ajouts.filter(a => a.id !== id); ecrire(K_AJOUTS, ajouts);
-  commerces = commerces.filter(c => c.id !== id);
-  marqueurs.get(id)?.remove(); marqueurs.delete(id);
-  delete suivi[id]; ecrire(K_SUIVI, suivi); majCompteurs();
+  ajouts = ajouts.filter(a => a.id !== id); ecrire(K.ajouts, ajouts);
+  retirerCommerce(id);
+  delete suivi[id]; ecrire(K.suivi, suivi);
+  marquerAEnvoyer(id, true);
+  majCompteurs(); dessinerTournee();
 };
 
-// ---------- Export / import ----------
+// ============================================================================
+// Export / import
+// ============================================================================
 function telecharger(nom, contenu, type) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([contenu], { type }));
   a.download = nom; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 document.getElementById('btnExportCsv').onclick = () => {
-  const cols = ['Nom', 'Catégorie', 'Chaîne', 'Adresse', 'Ville', 'Téléphone', 'Email', 'Site', 'Statut', 'Couleur', 'Contact', 'Rappel', 'Mémo', 'Dernière modif', 'Latitude', 'Longitude', 'Id'];
+  const cols = ['Nom', 'Catégorie', 'Chaîne', 'Dirigeant', 'Raison sociale', 'SIRET', 'Adresse', 'Ville', 'Téléphone', 'Email', 'Site',
+    'Statut', 'Potentiel', 'Objections', 'Contact', 'Rappel', 'Heure', 'Mémo', 'Dernière visite', 'Dernière modif', 'Source', 'Latitude', 'Longitude', 'Id'];
   const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const lignes = commerces.filter(visible).map(c => {
-    const e = etat(c.id);
-    return [c.nom, CATEGORIES[c.cat].label, c.chaine ? c.marque || 'oui' : '', c.adresse, c.ville, c.tel, c.email, c.web,
-      STATUTS[statutDe(c.id)].label, couleurDe(c.id), e.contact, e.rappel, e.memo, e.maj ? new Date(e.maj).toLocaleString('fr-FR') : '', c.lat, c.lon, c.id].map(q).join(';');
+    const e = etat(c.id), p = potentielDe(c.id);
+    return [c.nom, CATEGORIES[c.cat].label, c.chaine ? c.marque || 'oui' : '', c.dirigeant, c.raison, c.siret, c.adresse, c.ville, c.tel, c.email, c.web,
+      STATUTS[statutDe(c.id)].label, p === 'aucun' ? '' : POTENTIELS[p].label.replace(/^\S+\s/, ''), (e.objections || []).join(' | '), e.contact, e.rappel, e.heure, e.memo,
+      e.visite ? new Date(e.visite).toLocaleDateString('fr-FR') : '', e.maj ? new Date(e.maj).toLocaleString('fr-FR') : '',
+      SOURCES[c.source || 'osm'], c.lat, c.lon, c.id].map(q).join(';');
   });
   telecharger(`prospection-${aujourdhui()}.csv`, '﻿' + [cols.map(q).join(';'), ...lignes].join('\n'), 'text/csv;charset=utf-8');
 };
 document.getElementById('btnExportJson').onclick = () => {
-  telecharger(`prospection-sauvegarde-${aujourdhui()}.json`, JSON.stringify({ version: 1, date: new Date().toISOString(), suivi, ajouts }, null, 1), 'application/json');
+  telecharger(`prospection-sauvegarde-${aujourdhui()}.json`, JSON.stringify({ version: 2, date: new Date().toISOString(), suivi, ajouts, tournee }, null, 1), 'application/json');
 };
 document.getElementById('btnImport').onclick = () => document.getElementById('fichierImport').click();
 document.getElementById('fichierImport').onchange = async e => {
@@ -712,18 +1469,23 @@ document.getElementById('fichierImport').onchange = async e => {
     if (!d.suivi) throw new Error('format');
     if (!confirm(`Fusionner la sauvegarde du ${new Date(d.date).toLocaleString('fr-FR')} ? (la version la plus récente de chaque fiche est conservée)`)) return;
     for (const [id, v] of Object.entries(d.suivi)) {
-      if (!suivi[id] || (v.maj || '') > (suivi[id].maj || '')) suivi[id] = v;
+      if (!suivi[id] || (v.maj || '') > (suivi[id].maj || '')) { suivi[id] = v; outbox[id] = v.maj || ''; }
     }
     const ids = new Set(ajouts.map(a => a.id));
-    (d.ajouts || []).forEach(a => { if (!ids.has(a.id)) ajouts.push(a); });
-    ecrire(K_SUIVI, suivi); ecrire(K_AJOUTS, ajouts);
+    (d.ajouts || []).forEach(a => { if (!ids.has(a.id)) { ajouts.push({ source: 'manuel', ...a }); outbox[a.id] = suivi[a.id]?.maj || ''; } });
+    if (!tournee.length && d.tournee) ecrire(K.tournee, d.tournee);
+    ecrire(K.suivi, suivi); ecrire(K.ajouts, ajouts); ecrire(K.outbox, outbox);
     location.reload();
   } catch { toast('Fichier de sauvegarde invalide.'); }
   e.target.value = '';
 };
-document.getElementById('btnMaj').onclick = () => demarrer(true);
+document.getElementById('btnMaj').onclick = () => {
+  if (confirm('Recharger tous les commerces (OpenStreetMap + registre des entreprises) ? Compte ~1 minute. Ton suivi est conservé.')) demarrer(true);
+};
 
-// ---------- UI divers ----------
+// ============================================================================
+// Divers
+// ============================================================================
 let tToast;
 function toast(msg) {
   const t = document.getElementById('toast');
@@ -734,23 +1496,32 @@ function afficherChargement(txt) {
   document.getElementById('chargementTxt').textContent = txt;
   document.getElementById('chargement').style.display = 'flex';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') fermerFiche(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { fermerFiche(); } });
 
-// ---------- Démarrage ----------
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/prospection-sw.js', { scope: '/prospection' }).catch(() => {});
+}
+
+// ============================================================================
+// Démarrage
+// ============================================================================
 async function demarrer(force) {
-  try {
-    const data = await chargerOSM(force);
-    marqueurs.forEach(m => m.remove()); marqueurs.clear();
-    commerces = [...data.liste, ...ajouts];
-    commerces.forEach(creerMarqueur);
-    rendreChips(); appliquerFiltres(); ajusterHautCarte();
-    if (force) toast(`${data.liste.length} commerces chargés depuis OpenStreetMap.`);
-  } catch (e) {
-    toast('Impossible de charger les commerces (connexion ?). Réessaie avec « Actualiser ».');
-    commerces = [...ajouts]; commerces.forEach(creerMarqueur); rendreChips(); appliquerFiltres(); ajusterHautCarte();
-  } finally {
-    document.getElementById('chargement').style.display = 'none';
-  }
+  afficherChargement('Récupération des commerces sur OpenStreetMap…');
+  const [osm, sirene] = await Promise.allSettled([chargerOsm(force), chargerSirene(force)]);
+  const liste = fusionner(osm.value?.liste || [], sirene.value?.liste || []);
+  if (osm.status === 'rejected' && sirene.status === 'rejected') toast('Impossible de charger les commerces (connexion ?). Réessaie avec « Actualiser ».');
+  else if (osm.status === 'rejected') toast('OpenStreetMap indisponible : seul le registre des entreprises est affiché.');
+  else if (sirene.status === 'rejected') toast('Registre des entreprises indisponible : seul OpenStreetMap est affiché.');
+  else if (force) toast(`${liste.length} commerces chargés.`);
+
+  marqueurs.forEach(m => m.remove()); marqueurs.clear();
+  const manuels = ajouts.map(a => ({ source: 'manuel', ...a }));
+  commerces = [...liste, ...manuels];
+  parId = new Map(commerces.map(c => [c.id, c]));
+  commerces.forEach(creerMarqueur);
+  rendreChips(); appliquerFiltres(); dessinerTournee(); ajusterHautCarte(); majBoutonSync();
+  document.getElementById('chargement').style.display = 'none';
+  synchroniser();
 }
 ajusterHautCarte();
 demarrer(false);
