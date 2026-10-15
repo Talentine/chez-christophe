@@ -1,0 +1,2531 @@
+{
+  "mois": "2026-11",
+  "statut_global": "en attente de validation des thèmes par Paul",
+  "contenus": [
+    {
+      "id": "2026-11-01-1",
+      "date": "2026-11-01",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "19 ans primeur. Voilà pourquoi.",
+      "accroche_voix": "J'ai passé dix-neuf ans derrière un étal. Voilà pourquoi j'ai créé Marchéo.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-01-1",
+      "creneau": {
+        "instagram": "15:30",
+        "facebook": "15:30"
+      },
+      "theme_id": 53,
+      "theme": "Pourquoi j'ai créé Marchéo (et pourquoi pas une appli de plus)",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-01-2",
+      "date": "2026-11-01",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "10:00",
+        "facebook": "10:00"
+      },
+      "theme_id": 53,
+      "theme": "Pourquoi j'ai créé Marchéo (et pourquoi pas une appli de plus)",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-01-3",
+      "date": "2026-11-01",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "10:30",
+          "15:45",
+          "21:00"
+        ]
+      },
+      "theme_id": 53,
+      "theme": "Pourquoi j'ai créé Marchéo (et pourquoi pas une appli de plus)",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-01-4",
+      "date": "2026-11-01",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 53,
+      "theme": "Pourquoi j'ai créé Marchéo (et pourquoi pas une appli de plus)",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-02-1",
+      "date": "2026-11-02",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Votre semaine, en 2 minutes.",
+      "accroche_voix": "Lundi matin, avant le café, vous savez déjà comment s'est passée votre semaine.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-02-1",
+      "creneau": {
+        "instagram": "11:00",
+        "facebook": "11:00"
+      },
+      "theme_id": 29,
+      "theme": "Le récap du lundi matin : piloter sa semaine avec ses chiffres",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-02-2",
+      "date": "2026-11-02",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 29,
+      "theme": "Le récap du lundi matin : piloter sa semaine avec ses chiffres",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-02-3",
+      "date": "2026-11-02",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "14:00",
+          "21:00"
+        ]
+      },
+      "theme_id": 29,
+      "theme": "Le récap du lundi matin : piloter sa semaine avec ses chiffres",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-02-4",
+      "date": "2026-11-02",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 29,
+      "theme": "Le récap du lundi matin : piloter sa semaine avec ses chiffres",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-03-1",
+      "date": "2026-11-03",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Ce coup de fil vous coûte cher.",
+      "accroche_voix": "Chaque appel pendant le rush, c'est un client au comptoir qui attend. Ou qui part.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 3,
+      "theme": "Le téléphone qui sonne pendant le rush : le vrai coût",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-03-2",
+      "date": "2026-11-03",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 3,
+      "theme": "Le téléphone qui sonne pendant le rush : le vrai coût",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-03-3",
+      "date": "2026-11-03",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 3,
+      "theme": "Le téléphone qui sonne pendant le rush : le vrai coût",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-03-4",
+      "date": "2026-11-03",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 3,
+      "theme": "Le téléphone qui sonne pendant le rush : le vrai coût",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-04-1",
+      "date": "2026-11-04",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "30 % ? C'est de la folie.",
+      "accroche_voix": "Payer 30 % de commission sur une côte de bœuf, c'est de la folie.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 2,
+      "theme": "30 % de commission, c'est travailler un jour sur trois pour une plateforme",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-04-2",
+      "date": "2026-11-04",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 2,
+      "theme": "30 % de commission, c'est travailler un jour sur trois pour une plateforme",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-04-3",
+      "date": "2026-11-04",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 2,
+      "theme": "30 % de commission, c'est travailler un jour sur trois pour une plateforme",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-04-4",
+      "date": "2026-11-04",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 2,
+      "theme": "30 % de commission, c'est travailler un jour sur trois pour une plateforme",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-04-5",
+      "date": "2026-11-04",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-05-1",
+      "date": "2026-11-05",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "3 plateaux jamais récupérés.",
+      "accroche_voix": "Trois plateaux de Noël jamais récupérés. Faites le calcul avec moi.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-05-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 1,
+      "theme": "Le no-show des commandes de Noël : combien ça coûte vraiment",
+      "pilier": "SAIS",
+      "angle": "Calcul chiffré",
+      "metier": "traiteur",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-05-2",
+      "date": "2026-11-05",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 1,
+      "theme": "Le no-show des commandes de Noël : combien ça coûte vraiment",
+      "pilier": "SAIS",
+      "angle": "Calcul chiffré",
+      "metier": "traiteur",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-05-3",
+      "date": "2026-11-05",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 1,
+      "theme": "Le no-show des commandes de Noël : combien ça coûte vraiment",
+      "pilier": "SAIS",
+      "angle": "Calcul chiffré",
+      "metier": "traiteur",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-05-4",
+      "date": "2026-11-05",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 1,
+      "theme": "Le no-show des commandes de Noël : combien ça coûte vraiment",
+      "pilier": "SAIS",
+      "angle": "Calcul chiffré",
+      "metier": "traiteur",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-06-1",
+      "date": "2026-11-06",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Comptez ceux qui repartent.",
+      "accroche_voix": "Samedi, prenez une feuille et comptez ceux qui repartent sans rien acheter.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 31,
+      "theme": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-06-2",
+      "date": "2026-11-06",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 31,
+      "theme": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-06-3",
+      "date": "2026-11-06",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 31,
+      "theme": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-06-4",
+      "date": "2026-11-06",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 31,
+      "theme": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-06-5",
+      "date": "2026-11-06",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "F2",
+      "theme_id": 31,
+      "theme": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-07-1",
+      "date": "2026-11-07",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Une règle pour garder un client.",
+      "accroche_voix": "En dix-neuf ans de primeur, j'ai appris une seule règle pour garder un client.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-07-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 20,
+      "theme": "Ce que Paul a appris en 19 ans de primeur sur la fidélisation",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-07-2",
+      "date": "2026-11-07",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 20,
+      "theme": "Ce que Paul a appris en 19 ans de primeur sur la fidélisation",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-07-3",
+      "date": "2026-11-07",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 20,
+      "theme": "Ce que Paul a appris en 19 ans de primeur sur la fidélisation",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-07-4",
+      "date": "2026-11-07",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 20,
+      "theme": "Ce que Paul a appris en 19 ans de primeur sur la fidélisation",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-07-5",
+      "date": "2026-11-07",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-08-1",
+      "date": "2026-11-08",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "« Trop vieux pour Internet » ?",
+      "accroche_voix": "« Mes clients sont trop vieux pour Internet. » Regardez qui commande vos plateaux de Noël.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "15:30",
+        "facebook": "15:30"
+      },
+      "theme_id": 9,
+      "theme": "« Mes clients sont âgés, ils ne commandent pas en ligne » : mythe ou réalité",
+      "pilier": "OPI",
+      "angle": "Mythe vs réalité",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-08-2",
+      "date": "2026-11-08",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "10:00",
+        "facebook": "10:00"
+      },
+      "theme_id": 9,
+      "theme": "« Mes clients sont âgés, ils ne commandent pas en ligne » : mythe ou réalité",
+      "pilier": "OPI",
+      "angle": "Mythe vs réalité",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-08-3",
+      "date": "2026-11-08",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "10:30",
+          "15:45",
+          "21:00"
+        ]
+      },
+      "theme_id": 9,
+      "theme": "« Mes clients sont âgés, ils ne commandent pas en ligne » : mythe ou réalité",
+      "pilier": "OPI",
+      "angle": "Mythe vs réalité",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-08-4",
+      "date": "2026-11-08",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 9,
+      "theme": "« Mes clients sont âgés, ils ne commandent pas en ligne » : mythe ou réalité",
+      "pilier": "OPI",
+      "angle": "Mythe vs réalité",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-09-1",
+      "date": "2026-11-09",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Commandé = protégé. Même absent.",
+      "accroche_voix": "Un client commande, ne vient pas. Avec l'empreinte, vous n'êtes plus perdant.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-09-1",
+      "creneau": {
+        "instagram": "11:00",
+        "facebook": "11:00"
+      },
+      "theme_id": 11,
+      "theme": "L'empreinte bancaire : la fin des commandes non récupérées",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-09-2",
+      "date": "2026-11-09",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 11,
+      "theme": "L'empreinte bancaire : la fin des commandes non récupérées",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-09-3",
+      "date": "2026-11-09",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "14:00",
+          "21:00"
+        ]
+      },
+      "theme_id": 11,
+      "theme": "L'empreinte bancaire : la fin des commandes non récupérées",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-09-4",
+      "date": "2026-11-09",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 11,
+      "theme": "L'empreinte bancaire : la fin des commandes non récupérées",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-10-1",
+      "date": "2026-11-10",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Le carnet, c'est des erreurs.",
+      "accroche_voix": "Le carnet papier, c'est pas de la tradition. C'est des erreurs.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-10-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 7,
+      "theme": "Le carnet de commandes papier : erreurs et oublis",
+      "pilier": "VAL",
+      "angle": "Erreur fréquente",
+      "metier": "traiteur",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-10-2",
+      "date": "2026-11-10",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 7,
+      "theme": "Le carnet de commandes papier : erreurs et oublis",
+      "pilier": "VAL",
+      "angle": "Erreur fréquente",
+      "metier": "traiteur",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-10-3",
+      "date": "2026-11-10",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 7,
+      "theme": "Le carnet de commandes papier : erreurs et oublis",
+      "pilier": "VAL",
+      "angle": "Erreur fréquente",
+      "metier": "traiteur",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-10-4",
+      "date": "2026-11-10",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 7,
+      "theme": "Le carnet de commandes papier : erreurs et oublis",
+      "pilier": "VAL",
+      "angle": "Erreur fréquente",
+      "metier": "traiteur",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-10-5",
+      "date": "2026-11-10",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "F2",
+      "theme_id": 7,
+      "theme": "Le carnet de commandes papier : erreurs et oublis",
+      "pilier": "VAL",
+      "angle": "Erreur fréquente",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-11-1",
+      "date": "2026-11-11",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Vos horaires Google datent ?",
+      "accroche_voix": "Si Google affiche encore vos horaires de 2022, ne vous plaignez pas que la rue soit vide.",
+      "cta": "audit",
+      "cta_texte": "Envoyez AUDIT en message, je regarde gratuitement votre commerce",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 4,
+      "theme": "Votre fiche Google vous fait perdre des clients (horaires faux, pas de photos)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-11-2",
+      "date": "2026-11-11",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 4,
+      "theme": "Votre fiche Google vous fait perdre des clients (horaires faux, pas de photos)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-11-3",
+      "date": "2026-11-11",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 4,
+      "theme": "Votre fiche Google vous fait perdre des clients (horaires faux, pas de photos)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-11-4",
+      "date": "2026-11-11",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 4,
+      "theme": "Votre fiche Google vous fait perdre des clients (horaires faux, pas de photos)",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-11-5",
+      "date": "2026-11-11",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-12-1",
+      "date": "2026-11-12",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Noël se joue maintenant.",
+      "accroche_voix": "Vos fêtes de fin d'année se gagnent ou se perdent dès la mi-novembre.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 17,
+      "theme": "Plateaux, bûches, foie gras, fruits de mer : organiser les fêtes sans chaos",
+      "pilier": "SAIS",
+      "angle": "Saisonnier / actu",
+      "metier": "poissonnier",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-12-2",
+      "date": "2026-11-12",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 17,
+      "theme": "Plateaux, bûches, foie gras, fruits de mer : organiser les fêtes sans chaos",
+      "pilier": "SAIS",
+      "angle": "Saisonnier / actu",
+      "metier": "poissonnier",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-12-3",
+      "date": "2026-11-12",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 17,
+      "theme": "Plateaux, bûches, foie gras, fruits de mer : organiser les fêtes sans chaos",
+      "pilier": "SAIS",
+      "angle": "Saisonnier / actu",
+      "metier": "poissonnier",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-12-4",
+      "date": "2026-11-12",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 17,
+      "theme": "Plateaux, bûches, foie gras, fruits de mer : organiser les fêtes sans chaos",
+      "pilier": "SAIS",
+      "angle": "Saisonnier / actu",
+      "metier": "poissonnier",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-13-1",
+      "date": "2026-11-13",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "2 000 € pour zéro visite.",
+      "accroche_voix": "Un site vitrine à deux mille euros que personne ne visite, c'est une vitrine dans une impasse.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 15,
+      "theme": "Le site vitrine à 2 000 € que personne ne visite",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-13-2",
+      "date": "2026-11-13",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 15,
+      "theme": "Le site vitrine à 2 000 € que personne ne visite",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-13-3",
+      "date": "2026-11-13",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 15,
+      "theme": "Le site vitrine à 2 000 € que personne ne visite",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-13-4",
+      "date": "2026-11-13",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 15,
+      "theme": "Le site vitrine à 2 000 € que personne ne visite",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-14-1",
+      "date": "2026-11-14",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Préparé la veille. Zéro attente.",
+      "accroche_voix": "Les commandes préparées la veille, c'est un samedi qui respire.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-14-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 10,
+      "theme": "Préparer les commandes la veille : gain de temps et d'invendus",
+      "pilier": "VAL",
+      "angle": "Avant / après",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-14-2",
+      "date": "2026-11-14",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 10,
+      "theme": "Préparer les commandes la veille : gain de temps et d'invendus",
+      "pilier": "VAL",
+      "angle": "Avant / après",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-14-3",
+      "date": "2026-11-14",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 10,
+      "theme": "Préparer les commandes la veille : gain de temps et d'invendus",
+      "pilier": "VAL",
+      "angle": "Avant / après",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-14-4",
+      "date": "2026-11-14",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 10,
+      "theme": "Préparer les commandes la veille : gain de temps et d'invendus",
+      "pilier": "VAL",
+      "angle": "Avant / après",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-14-5",
+      "date": "2026-11-14",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-15-1",
+      "date": "2026-11-15",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Empreinte haute ou basse ?",
+      "accroche_voix": "Empreinte haute ou basse : ça dépend de votre commerce. Je vous montre.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-15-1",
+      "creneau": {
+        "instagram": "15:30",
+        "facebook": "15:30"
+      },
+      "theme_id": 44,
+      "theme": "Régler son empreinte bancaire : haut ou bas, que choisir selon son commerce",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-15-2",
+      "date": "2026-11-15",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "10:00",
+        "facebook": "10:00"
+      },
+      "theme_id": 44,
+      "theme": "Régler son empreinte bancaire : haut ou bas, que choisir selon son commerce",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-15-3",
+      "date": "2026-11-15",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "10:30",
+          "15:45",
+          "21:00"
+        ]
+      },
+      "theme_id": 44,
+      "theme": "Régler son empreinte bancaire : haut ou bas, que choisir selon son commerce",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-15-4",
+      "date": "2026-11-15",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 44,
+      "theme": "Régler son empreinte bancaire : haut ou bas, que choisir selon son commerce",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-16-1",
+      "date": "2026-11-16",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Un client fidèle vaut combien ?",
+      "accroche_voix": "Un client fidèle sur cinq ans, c'est bien plus qu'une baguette par jour.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "11:00",
+        "facebook": "11:00"
+      },
+      "theme_id": 12,
+      "theme": "Combien vaut un client fidèle sur 5 ans",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boulanger",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-16-2",
+      "date": "2026-11-16",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 12,
+      "theme": "Combien vaut un client fidèle sur 5 ans",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boulanger",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-16-3",
+      "date": "2026-11-16",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "14:00",
+          "21:00"
+        ]
+      },
+      "theme_id": 12,
+      "theme": "Combien vaut un client fidèle sur 5 ans",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boulanger",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-16-4",
+      "date": "2026-11-16",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 12,
+      "theme": "Combien vaut un client fidèle sur 5 ans",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boulanger",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-16-5",
+      "date": "2026-11-16",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "format": "F2",
+      "theme_id": 12,
+      "theme": "Combien vaut un client fidèle sur 5 ans",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-17-1",
+      "date": "2026-11-17",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Le client est roi. Sauf…",
+      "accroche_voix": "Le client est roi. Sauf quand il ne vient pas chercher sa commande.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 38,
+      "theme": "« Le client est roi »… sauf quand il ne vient pas chercher sa commande",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-17-2",
+      "date": "2026-11-17",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 38,
+      "theme": "« Le client est roi »… sauf quand il ne vient pas chercher sa commande",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-17-3",
+      "date": "2026-11-17",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 38,
+      "theme": "« Le client est roi »… sauf quand il ne vient pas chercher sa commande",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-17-4",
+      "date": "2026-11-17",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 38,
+      "theme": "« Le client est roi »… sauf quand il ne vient pas chercher sa commande",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "traiteur",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-18-1",
+      "date": "2026-11-18",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Votre répondeur peut vendre.",
+      "accroche_voix": "Votre répondeur peut transformer un appel manqué en commande. Voilà le texte.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 33,
+      "theme": "Le message de répondeur qui transforme un appel manqué en commande",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-18-2",
+      "date": "2026-11-18",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 33,
+      "theme": "Le message de répondeur qui transforme un appel manqué en commande",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-18-3",
+      "date": "2026-11-18",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 33,
+      "theme": "Le message de répondeur qui transforme un appel manqué en commande",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-18-4",
+      "date": "2026-11-18",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 33,
+      "theme": "Le message de répondeur qui transforme un appel manqué en commande",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-18-5",
+      "date": "2026-11-18",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-19-1",
+      "date": "2026-11-19",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Caen, un samedi de décembre.",
+      "accroche_voix": "Caen, un samedi de décembre. Ce jour-là, j'ai compris un truc.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-19-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 52,
+      "theme": "5 ans primeur à Caen : ce que le samedi m'a appris",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-19-2",
+      "date": "2026-11-19",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 52,
+      "theme": "5 ans primeur à Caen : ce que le samedi m'a appris",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-19-3",
+      "date": "2026-11-19",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 52,
+      "theme": "5 ans primeur à Caen : ce que le samedi m'a appris",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-19-4",
+      "date": "2026-11-19",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 52,
+      "theme": "5 ans primeur à Caen : ce que le samedi m'a appris",
+      "pilier": "CRED",
+      "angle": "Histoire vécue",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-20-1",
+      "date": "2026-11-20",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Vendez un plateau, pas 6 fromages.",
+      "accroche_voix": "Vendre un plateau prêt, plutôt que six fromages à l'unité. Comparons.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-20-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 34,
+      "theme": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+      "pilier": "VAL",
+      "angle": "Comparatif honnête",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-20-2",
+      "date": "2026-11-20",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 34,
+      "theme": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+      "pilier": "VAL",
+      "angle": "Comparatif honnête",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-20-3",
+      "date": "2026-11-20",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 34,
+      "theme": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+      "pilier": "VAL",
+      "angle": "Comparatif honnête",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-20-4",
+      "date": "2026-11-20",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 34,
+      "theme": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+      "pilier": "VAL",
+      "angle": "Comparatif honnête",
+      "metier": "fromager",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-20-5",
+      "date": "2026-11-20",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "F2",
+      "theme_id": 34,
+      "theme": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+      "pilier": "VAL",
+      "angle": "Comparatif honnête",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-21-1",
+      "date": "2026-11-21",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Ce qu'on me demande toujours.",
+      "accroche_voix": "À chaque visite de commerce, on me pose les mêmes cinq questions.",
+      "cta": "audit",
+      "cta_texte": "Envoyez AUDIT en message, je regarde gratuitement votre commerce",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 55,
+      "theme": "Les 5 questions qu'on me pose à chaque visite de commerce",
+      "pilier": "CRED",
+      "angle": "Point de vue terrain",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-21-2",
+      "date": "2026-11-21",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 55,
+      "theme": "Les 5 questions qu'on me pose à chaque visite de commerce",
+      "pilier": "CRED",
+      "angle": "Point de vue terrain",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-21-3",
+      "date": "2026-11-21",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 55,
+      "theme": "Les 5 questions qu'on me pose à chaque visite de commerce",
+      "pilier": "CRED",
+      "angle": "Point de vue terrain",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-21-4",
+      "date": "2026-11-21",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 55,
+      "theme": "Les 5 questions qu'on me pose à chaque visite de commerce",
+      "pilier": "CRED",
+      "angle": "Point de vue terrain",
+      "metier": "tous",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-21-5",
+      "date": "2026-11-21",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-22-1",
+      "date": "2026-11-22",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Votre carte finit au lavage.",
+      "accroche_voix": "Votre carte à tampons, elle finit dans la machine à laver.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "15:30",
+        "facebook": "15:30"
+      },
+      "theme_id": 13,
+      "theme": "La carte de fidélité papier est morte",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-22-2",
+      "date": "2026-11-22",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "10:00",
+        "facebook": "10:00"
+      },
+      "theme_id": 13,
+      "theme": "La carte de fidélité papier est morte",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-22-3",
+      "date": "2026-11-22",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "10:30",
+          "15:45",
+          "21:00"
+        ]
+      },
+      "theme_id": 13,
+      "theme": "La carte de fidélité papier est morte",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-22-4",
+      "date": "2026-11-22",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 13,
+      "theme": "La carte de fidélité papier est morte",
+      "pilier": "OPI",
+      "angle": "Avis tranché",
+      "metier": "boulanger",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-23-1",
+      "date": "2026-11-23",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Le vrai prix. Sans astérisque.",
+      "accroche_voix": "Ce que coûte Marchéo. Le vrai prix, sans petites lignes.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-23-1",
+      "creneau": {
+        "instagram": "11:00",
+        "facebook": "11:00"
+      },
+      "theme_id": 49,
+      "theme": "Les 3 formules expliquées simplement, prix compris",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-23-2",
+      "date": "2026-11-23",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 49,
+      "theme": "Les 3 formules expliquées simplement, prix compris",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-23-3",
+      "date": "2026-11-23",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "14:00",
+          "21:00"
+        ]
+      },
+      "theme_id": 49,
+      "theme": "Les 3 formules expliquées simplement, prix compris",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-23-4",
+      "date": "2026-11-23",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 49,
+      "theme": "Les 3 formules expliquées simplement, prix compris",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-24-1",
+      "date": "2026-11-24",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Facture électronique : on respire.",
+      "accroche_voix": "Facture électronique : ce qui a vraiment changé en septembre, et ce qui attend 2027.",
+      "cta": "save",
+      "cta_texte": "Enregistrez ce post pour le samedi",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 57,
+      "theme": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+      "pilier": "SAIS",
+      "angle": "Mythe vs réalité",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-24-2",
+      "date": "2026-11-24",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "site",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 57,
+      "theme": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+      "pilier": "SAIS",
+      "angle": "Mythe vs réalité",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-24-3",
+      "date": "2026-11-24",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 57,
+      "theme": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+      "pilier": "SAIS",
+      "angle": "Mythe vs réalité",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-24-4",
+      "date": "2026-11-24",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 57,
+      "theme": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+      "pilier": "SAIS",
+      "angle": "Mythe vs réalité",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-24-5",
+      "date": "2026-11-24",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "F2",
+      "theme_id": 57,
+      "theme": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+      "pilier": "SAIS",
+      "angle": "Mythe vs réalité",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-25-1",
+      "date": "2026-11-25",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Des avis, sans quémander.",
+      "accroche_voix": "Des avis Google sans quémander au comptoir. Trois gestes simples.",
+      "cta": "audit",
+      "cta_texte": "Envoyez AUDIT en message, je regarde gratuitement votre commerce",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 14,
+      "theme": "Avis Google : comment en obtenir sans quémander",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-25-2",
+      "date": "2026-11-25",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 14,
+      "theme": "Avis Google : comment en obtenir sans quémander",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-25-3",
+      "date": "2026-11-25",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 14,
+      "theme": "Avis Google : comment en obtenir sans quémander",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-25-4",
+      "date": "2026-11-25",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 14,
+      "theme": "Avis Google : comment en obtenir sans quémander",
+      "pilier": "VAL",
+      "angle": "Tuto concret",
+      "metier": "primeur",
+      "persona": 4,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-25-5",
+      "date": "2026-11-25",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-26-1",
+      "date": "2026-11-26",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Un site ? Non. Des commandes.",
+      "accroche_voix": "Vous n'avez pas besoin d'un site. Vous avez besoin qu'on puisse vous commander.",
+      "cta": "demo",
+      "cta_texte": "Commentez DÉMO, je vous envoie le lien",
+      "lien": null,
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 40,
+      "theme": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+      "pilier": "OPI",
+      "angle": "Question qui divise",
+      "metier": "epicerie-fine",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-26-2",
+      "date": "2026-11-26",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 40,
+      "theme": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+      "pilier": "OPI",
+      "angle": "Question qui divise",
+      "metier": "epicerie-fine",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-26-3",
+      "date": "2026-11-26",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 40,
+      "theme": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+      "pilier": "OPI",
+      "angle": "Question qui divise",
+      "metier": "epicerie-fine",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-26-4",
+      "date": "2026-11-26",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 40,
+      "theme": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+      "pilier": "OPI",
+      "angle": "Question qui divise",
+      "metier": "epicerie-fine",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-26-5",
+      "date": "2026-11-26",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "F2",
+      "theme_id": 40,
+      "theme": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+      "pilier": "OPI",
+      "angle": "Question qui divise",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 3,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-27-1",
+      "date": "2026-11-27",
+      "type": "reel_principal",
+      "format": "F1",
+      "accroche_ecran": "Black Friday ? Pas pour vous.",
+      "accroche_voix": "Le Black Friday n'est pas fait pour l'artisan. Et c'est tant mieux.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-27-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 59,
+      "theme": "Le Black Friday n'est pas fait pour l'artisan (et c'est tant mieux)",
+      "pilier": "SAIS",
+      "angle": "Avis tranché",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-27-2",
+      "date": "2026-11-27",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 59,
+      "theme": "Le Black Friday n'est pas fait pour l'artisan (et c'est tant mieux)",
+      "pilier": "SAIS",
+      "angle": "Avis tranché",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-27-3",
+      "date": "2026-11-27",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 59,
+      "theme": "Le Black Friday n'est pas fait pour l'artisan (et c'est tant mieux)",
+      "pilier": "SAIS",
+      "angle": "Avis tranché",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-27-4",
+      "date": "2026-11-27",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 59,
+      "theme": "Le Black Friday n'est pas fait pour l'artisan (et c'est tant mieux)",
+      "pilier": "SAIS",
+      "angle": "Avis tranché",
+      "metier": "tous",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-28-1",
+      "date": "2026-11-28",
+      "type": "reel_principal",
+      "format": "F2",
+      "accroche_ecran": "Et si samedi commençait jeudi ?",
+      "accroche_voix": "Et si une partie de votre samedi se faisait le jeudi ?",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-28-1",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "theme_id": 32,
+      "theme": "Lisser le samedi : des créneaux de retrait pour étaler le rush sur la semaine",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-28-2",
+      "date": "2026-11-28",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 32,
+      "theme": "Lisser le samedi : des créneaux de retrait pour étaler le rush sur la semaine",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-28-3",
+      "date": "2026-11-28",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "13:45",
+          "21:15"
+        ]
+      },
+      "theme_id": 32,
+      "theme": "Lisser le samedi : des créneaux de retrait pour étaler le rush sur la semaine",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-28-4",
+      "date": "2026-11-28",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 32,
+      "theme": "Lisser le samedi : des créneaux de retrait pour étaler le rush sur la semaine",
+      "pilier": "VAL",
+      "angle": "Calcul chiffré",
+      "metier": "boucher",
+      "persona": 1,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-28-5",
+      "date": "2026-11-28",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "13:45",
+        "facebook": "13:45"
+      },
+      "format": "à définir",
+      "theme": null,
+      "statut": "créneau actu libre"
+    },
+    {
+      "id": "2026-11-29-1",
+      "date": "2026-11-29",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Commander chez son boucher : 60 s.",
+      "accroche_voix": "Commander chez son boucher en soixante secondes, côté client. Je vous montre.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-29-1",
+      "creneau": {
+        "instagram": "15:30",
+        "facebook": "15:30"
+      },
+      "theme_id": 42,
+      "theme": "Une commande de A à Z côté client, en 60 secondes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-29-2",
+      "date": "2026-11-29",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "10:00",
+        "facebook": "10:00"
+      },
+      "theme_id": 42,
+      "theme": "Une commande de A à Z côté client, en 60 secondes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-29-3",
+      "date": "2026-11-29",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "10:30",
+          "15:45",
+          "21:00"
+        ]
+      },
+      "theme_id": 42,
+      "theme": "Une commande de A à Z côté client, en 60 secondes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-29-4",
+      "date": "2026-11-29",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 42,
+      "theme": "Une commande de A à Z côté client, en 60 secondes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "boucher",
+      "persona": 2,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-30-1",
+      "date": "2026-11-30",
+      "type": "reel_principal",
+      "format": "F3",
+      "accroche_ecran": "Fermé le 25 ? Réglé une fois.",
+      "accroche_voix": "Fermé le 25 décembre et le 1er janvier ? Vous le réglez une fois, c'est fini.",
+      "cta": "site",
+      "cta_texte": "Créez la démo de votre boutique en 5 minutes sur marchéo.fr",
+      "lien": "https://xn--marcho-fva.fr/inscription?utm_source=instagram&utm_medium=social&utm_campaign=2026-11&utm_content=2026-11-30-1",
+      "creneau": {
+        "instagram": "11:00",
+        "facebook": "11:00"
+      },
+      "theme_id": 47,
+      "theme": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-30-2",
+      "date": "2026-11-30",
+      "type": "carrousel",
+      "format": "F4",
+      "cta": "save",
+      "creneau": {
+        "instagram": "06:30",
+        "facebook": "06:30"
+      },
+      "theme_id": 47,
+      "theme": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-30-3",
+      "date": "2026-11-30",
+      "type": "stories",
+      "format": "F5",
+      "nombre": 3,
+      "creneau": {
+        "instagram": [
+          "06:45",
+          "14:00",
+          "21:00"
+        ]
+      },
+      "theme_id": 47,
+      "theme": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-30-4",
+      "date": "2026-11-30",
+      "type": "post_facebook",
+      "format": "F6",
+      "creneau": {
+        "facebook": "12:15"
+      },
+      "theme_id": 47,
+      "theme": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "tous",
+      "persona": 5,
+      "statut": "idée"
+    },
+    {
+      "id": "2026-11-30-5",
+      "date": "2026-11-30",
+      "type": "reel_secondaire",
+      "creneau": {
+        "instagram": "20:45",
+        "facebook": "20:45"
+      },
+      "format": "F2",
+      "theme_id": 47,
+      "theme": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+      "pilier": "DEMO",
+      "angle": "Démonstration produit",
+      "metier": "autre métier à choisir (déclinaison)",
+      "persona": 5,
+      "statut": "idée"
+    }
+  ]
+}

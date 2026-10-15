@@ -1,0 +1,24 @@
+{
+  "regle": "Chaque nouveau Reel réutilise au moins 50 % de plans de cette banque (recadrés, accélérés ou étalonnés différemment). Ne générer que les plans propres au thème.",
+  "objectif": "80 à 100 plans génériques par métier",
+  "champs": "id, metier, sujet, duree_s, image_cle, video_1080p, modele, prompt, credits, utilisations[]",
+  "a_generer_en_priorite": [
+    {"id": "GEN-001", "metier": "tous", "sujet": "sac kraft posé sur un comptoir en bois, étiquette nom manuscrite", "statut": "à générer"},
+    {"id": "GEN-002", "metier": "tous", "sujet": "téléphone fixe qui sonne sur un comptoir pendant qu'une main sert un client", "statut": "à générer"},
+    {"id": "GEN-003", "metier": "tous", "sujet": "file d'attente de 6 clients devant une vitrine un samedi matin, vue de l'intérieur", "statut": "à générer"},
+    {"id": "GEN-004", "metier": "tous", "sujet": "client qui récupère son sac et sourit, mains seulement", "statut": "à générer"},
+    {"id": "GEN-005", "metier": "tous", "sujet": "carnet de commandes papier raturé, stylo, coin de comptoir", "statut": "à générer"},
+    {"id": "GEN-006", "metier": "tous", "sujet": "rue commerçante normande en pierre, matin, rideau qui se lève", "statut": "à générer"},
+    {"id": "BOU-001", "metier": "boucher", "sujet": "mains qui découpent une côte de bœuf au couteau (Kling 3.0 pro)", "statut": "à générer"},
+    {"id": "BOU-002", "metier": "boucher", "sujet": "vitrine réfrigérée de boucherie, travelling latéral lent", "statut": "à générer"},
+    {"id": "BOU-003", "metier": "boucher", "sujet": "papier boucher qui emballe un rôti, ficelle", "statut": "à générer"},
+    {"id": "TRA-001", "metier": "traiteur", "sujet": "plateaux de fêtes alignés sur un plan de travail inox, film alimentaire", "statut": "à générer"},
+    {"id": "FRO-001", "metier": "fromager", "sujet": "fil à couper le fromage dans une meule, gros plan", "statut": "à générer"},
+    {"id": "FRO-002", "metier": "fromager", "sujet": "plateau de fromages normands (camembert, livarot, pont-l'évêque) sur planche", "statut": "à générer"},
+    {"id": "PRI-001", "metier": "primeur", "sujet": "cagettes de pommes et de poireaux sur un étal, lumière du matin", "statut": "à générer"},
+    {"id": "PRI-002", "metier": "primeur", "sujet": "mains qui pèsent des légumes sur une balance de comptoir", "statut": "à générer"},
+    {"id": "POI-001", "metier": "poissonnier", "sujet": "étal de glace pilée avec huîtres et bars, citrons", "statut": "à générer"},
+    {"id": "BOL-001", "metier": "boulanger", "sujet": "baguettes sortant du four sur une pelle, vapeur", "statut": "à générer"}
+  ],
+  "plans": []
+}

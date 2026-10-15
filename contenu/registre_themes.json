@@ -1,0 +1,5 @@
+{
+  "regle": "Un thème ne revient pas avant 45 jours, et seulement avec un angle absent de angles_utilises.",
+  "angles_possibles": ["Avis tranché", "Erreur fréquente", "Calcul chiffré", "Mythe vs réalité", "Avant / après", "Histoire vécue", "Tuto concret", "Point de vue du client final", "Comparatif honnête", "Démonstration produit", "Question qui divise", "Saisonnier / actu"],
+  "themes": []
+}

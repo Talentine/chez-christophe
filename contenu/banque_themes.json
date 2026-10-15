@@ -1,0 +1,1039 @@
+[
+  {
+    "id": 1,
+    "titre": "Le no-show des commandes de Noël : combien ça coûte vraiment",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "boucher",
+      "traiteur",
+      "fromager",
+      "poissonnier"
+    ],
+    "periode": "nov-dec",
+    "note_veille": "Pas de statistique nationale trouvée : chiffrer en ESTIMATION sur un exemple (ex. 3 plateaux à 80 € non retirés).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 2,
+    "titre": "30 % de commission, c'est travailler un jour sur trois pour une plateforme",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "traiteur",
+      "boulanger",
+      "boucher"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Fourchette publique 15–35 %, 25–30 % le plus cité (sources tierces, pas de grille officielle). Dire « jusqu'à 30 % ».",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 3,
+    "titre": "Le téléphone qui sonne pendant le rush : le vrai coût",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 4,
+    "titre": "Votre fiche Google vous fait perdre des clients (horaires faux, pas de photos)",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Chiffres FR récents fiables introuvables ; vieux baromètre Google 2015 : horaires = 2e info cherchée (36 %). Préférer la démonstration à la statistique.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 5,
+    "titre": "Les 25–40 ans ne viennent plus en boutique « par hasard »",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "fromager",
+      "boulanger"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Kantar 2025 : proximité gagne des parts, portée par des urbains de moins de 65 ans sans enfant. Ne pas surinterpréter.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 6,
+    "titre": "Le drive du supermarché vous vole vos clients du samedi",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "primeur",
+      "fromager"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Online = ~10 % de PDM grande distribution mi-2025 (Kantar, source secondaire).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 7,
+    "titre": "Le carnet de commandes papier : erreurs et oublis",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "traiteur",
+      "boulanger"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 8,
+    "titre": "La file d'attente du samedi fait fuir des clients",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Aucune donnée fiable sur le « 1 client sur X » : utiliser la méthode de comptage (thème 31) plutôt qu'un chiffre inventé.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 9,
+    "titre": "« Mes clients sont âgés, ils ne commandent pas en ligne » : mythe ou réalité",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "primeur",
+      "boulanger"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 10,
+    "titre": "Préparer les commandes la veille : gain de temps et d'invendus",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "primeur",
+      "poissonnier",
+      "traiteur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 11,
+    "titre": "L'empreinte bancaire : la fin des commandes non récupérées",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "traiteur",
+      "boucher",
+      "fromager"
+    ],
+    "periode": "nov-dec en priorité",
+    "note_veille": "Capture réelle de l'interface obligatoire.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 12,
+    "titre": "Combien vaut un client fidèle sur 5 ans",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Calcul en estimation explicite (panier × fréquence × 5 ans). Repère fromagerie : panier moyen ~17 € (FFF, année non précisée).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 13,
+    "titre": "La carte de fidélité papier est morte",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boulanger",
+      "fromager",
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 14,
+    "titre": "Avis Google : comment en obtenir sans quémander",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 15,
+    "titre": "Le site vitrine à 2 000 € que personne ne visite",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Jamais nommer une agence.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 16,
+    "titre": "Fermeture pour congés : comment ne pas perdre ses clients",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "fév, été, Toussaint",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 17,
+    "titre": "Plateaux, bûches, foie gras, fruits de mer : organiser les fêtes sans chaos",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "traiteur",
+      "poissonnier",
+      "boulanger",
+      "boucher"
+    ],
+    "periode": "nov-dec",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 18,
+    "titre": "Vendre ses invendus de fin de journée intelligemment",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boulanger",
+      "primeur",
+      "traiteur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Ne pas nommer d'appli anti-gaspi pour la dénigrer.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 19,
+    "titre": "Le prix affiché en ligne : peur de se comparer ?",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "fromager",
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 20,
+    "titre": "Ce que Paul a appris en 19 ans de primeur sur la fidélisation",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Anecdotes à recueillir auprès de Paul (aucune invention).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 21,
+    "titre": "Le samedi à 11 h : anatomie d'un rush",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 22,
+    "titre": "Instagram pour un boucher : utile ou perte de temps ?",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 23,
+    "titre": "Commander pour le lendemain : le geste que vos clients attendent",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boulanger",
+      "boucher",
+      "traiteur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 24,
+    "titre": "Les commerces qui ont tenu pendant le Covid grâce au click & collect",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Uniquement des cas réels connus de Paul ou sourcés presse.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 25,
+    "titre": "Pourquoi les jeunes repreneurs modernisent en premier",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Crémeries-fromageries : ~4 000 points de vente en 2025, plus haut niveau depuis 20 ans (Bpifrance).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 26,
+    "titre": "Le panier moyen en ligne est-il plus élevé qu'au comptoir ?",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "fromager",
+      "traiteur",
+      "epicerie-fine"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Pas de donnée vérifiée : traiter en question/hypothèse, ou attendre des chiffres réels Marchéo.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 27,
+    "titre": "Combien de temps faut-il vraiment pour mettre sa boutique en ligne",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Chronométrer une vraie création de démo à l'écran.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 28,
+    "titre": "Les erreurs de photos produits qui font fuir",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 29,
+    "titre": "Le récap du lundi matin : piloter sa semaine avec ses chiffres",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "lundis",
+    "note_veille": "Fonction « Récap du lundi » présente dans l'app.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 30,
+    "titre": "Réservation de produits rares (gibier, AOP, arrivage) : créer l'attente",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "fromager",
+      "poissonnier",
+      "caviste"
+    ],
+    "periode": "automne (gibier), arrivages",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 31,
+    "titre": "Comptez votre file d'attente samedi : la méthode en 3 colonnes (entrés / servis / repartis)",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Tuto sans Marchéo, réutilisable comme carrousel à enregistrer.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 32,
+    "titre": "Lisser le samedi : des créneaux de retrait pour étaler le rush sur la semaine",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "fromager",
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 33,
+    "titre": "Le message de répondeur qui transforme un appel manqué en commande",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Tuto applicable aujourd'hui, avec texte de répondeur à copier.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 34,
+    "titre": "Vendre un panier prêt plutôt que des produits à l'unité (colis, plateau, box)",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "primeur",
+      "fromager",
+      "traiteur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 35,
+    "titre": "Vendre au poids en ligne : prix estimé, ajusté au retrait",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "fromager",
+      "primeur",
+      "poissonnier"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Article de blog existant : /blog/vendre-au-poids-en-ligne.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 36,
+    "titre": "Le conjoint qui tient l'admin : 3 tâches à sortir du comptoir",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Persona 5.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 37,
+    "titre": "Marché + boutique : faire commander en boutique les clients du marché",
+    "pilier": "VAL",
+    "pilier_nom": "Valeur métier",
+    "metiers": [
+      "primeur",
+      "fromager",
+      "poissonnier"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "1 fromagerie sur 4 fait aussi les marchés (Bpifrance).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 38,
+    "titre": "« Le client est roi »… sauf quand il ne vient pas chercher sa commande",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "traiteur",
+      "boucher",
+      "boulanger"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 39,
+    "titre": "Les promos permanentes abîment le métier d'artisan",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 40,
+    "titre": "Vous n'avez pas besoin d'un site, vous avez besoin qu'on puisse vous commander",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 41,
+    "titre": "Le fait-maison ne se vend pas s'il ne se montre pas",
+    "pilier": "OPI",
+    "pilier_nom": "Opinions tranchées",
+    "metiers": [
+      "boulanger",
+      "traiteur",
+      "boucher"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 42,
+    "titre": "Une commande de A à Z côté client, en 60 secondes",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Capture réelle.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 43,
+    "titre": "Une commande de A à Z côté commerçant : de la notification au retrait",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Capture réelle.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 44,
+    "titre": "Régler son empreinte bancaire : haut ou bas, que choisir selon son commerce",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "traiteur",
+      "boucher",
+      "fromager",
+      "poissonnier"
+    ],
+    "periode": "nov-dec",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 45,
+    "titre": "La carte de fidélité à tampons, sans carton à imprimer",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boulanger",
+      "fromager",
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 46,
+    "titre": "Le suivi de stock : le produit passe en « épuisé » tout seul",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boulanger",
+      "traiteur",
+      "poissonnier"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 47,
+    "titre": "Fermetures planifiées : congés et jours fériés réglés une fois pour toutes",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "avant vacances / fériés",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 48,
+    "titre": "L'avis demandé après la commande : sans quémander au comptoir",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Se combine avec le thème 14.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 49,
+    "titre": "Les 3 formules expliquées simplement, prix compris",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Vitrine 249 € + 19 €/mois ; C&C + Réservation 399 € + 39 €/mois (1er mois offert) ; Tout-en-un + Livraison 549 € + 59 €/mois (1er mois offert). 0 % commission, sans engagement.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 50,
+    "titre": "La livraison locale par créneaux : organiser une tournée sans s'y perdre",
+    "pilier": "DEMO",
+    "pilier_nom": "Démonstration Marchéo",
+    "metiers": [
+      "primeur",
+      "boucher",
+      "epicerie-fine"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 51,
+    "titre": "Fils de primeur : ce que mon père faisait sans ordinateur et qui marche encore",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Anecdotes de Paul à recueillir.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 52,
+    "titre": "5 ans primeur à Caen : ce que le samedi m'a appris",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "primeur"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Anecdotes de Paul à recueillir.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 53,
+    "titre": "Pourquoi j'ai créé Marchéo (et pourquoi pas une appli de plus)",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 54,
+    "titre": "Une journée de prospection chez les commerçants normands",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Coulisses réelles uniquement, accord écrit de chaque commerçant filmé ou nommé.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 55,
+    "titre": "Les 5 questions qu'on me pose à chaque visite de commerce",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "Questions réellement entendues (Paul les liste).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 56,
+    "titre": "Ce que je refuse de faire avec Marchéo : commission, engagement, paiement forcé",
+    "pilier": "CRED",
+    "pilier_nom": "Crédibilité / coulisses",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "toute l'année",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 57,
+    "titre": "Facture électronique : ce qui a changé au 1er septembre 2026 et ce qui arrive en 2027",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "oct-nov 2026",
+    "note_veille": "Réception obligatoire pour toutes les entreprises depuis le 01/09/2026 ; émission TPE/PME au 01/09/2027 ; ventes aux particuliers hors champ (e-reporting). Faire valider par une source officielle (impots.gouv.fr) avant publication. Ne pas présenter Marchéo comme solution de facturation.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 58,
+    "titre": "Horaires des fêtes sur Google : le piège des 24 et 31 décembre",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "fin nov-déc",
+    "note_veille": "",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 59,
+    "titre": "Le Black Friday n'est pas fait pour l'artisan (et c'est tant mieux)",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "boucher",
+      "boulanger",
+      "fromager",
+      "primeur",
+      "poissonnier",
+      "traiteur",
+      "epicerie-fine",
+      "caviste"
+    ],
+    "periode": "fin novembre",
+    "note_veille": "Black Friday 2026 = vendredi 27 novembre.",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  },
+  {
+    "id": 60,
+    "titre": "Galette des rois : beurre cher, précommandes et zéro galette perdue",
+    "pilier": "SAIS",
+    "pilier_nom": "Saisonnier / actu",
+    "metiers": [
+      "boulanger"
+    ],
+    "periode": "fin déc-janv",
+    "note_veille": "Beurre : forte hausse 2024-2025 (FranceAgriMer, questions parlementaires).",
+    "statut": "disponible",
+    "derniere_utilisation": null
+  }
+]
