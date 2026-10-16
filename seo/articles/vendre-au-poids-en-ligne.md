@@ -5,6 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
+modified: 2026-10-16
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -56,7 +57,7 @@ Tout ne se vend pas de la même façon, même dans une seule boutique. En pratiq
 2. **Le format fixe.** Barquette de 250 g, plateau six personnes, botte de radis, corbeille de fruits. Le poids est intégré au produit, le prix ne bouge pas, le client ne se pose aucune question. À utiliser dès que c'est possible : c'est le mode qui convertit le mieux.
 3. **La pièce à poids variable.** Le poulet fermier, le bar entier, le jambon. Vous vendez une pièce, mais elle pèse entre 1,2 et 1,6 kg. On affiche une fourchette, un prix au kilo, et on ajuste à la pesée.
 
-Une boutique bien réglée mélange les trois. Le réflexe utile est de basculer en format fixe tout ce qui peut l'être : la moitié d'un catalogue de fromagerie ou de traiteur se vend très bien en barquettes et en plateaux, et chaque produit passé en format fixe est une hésitation en moins pour le client.
+Une boutique bien réglée mélange les trois. Le réflexe utile est de basculer en format fixe tout ce qui peut l'être : la moitié d'un catalogue de fromagerie ou de traiteur se vend très bien en barquettes et en plateaux, et chaque produit passé en format fixe est une hésitation en moins pour le client. Pour un fromager, notre guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie) détaille quoi mettre en ligne et comment régler les créneaux.
 
 ## Donner des repères, jamais un champ vide
 

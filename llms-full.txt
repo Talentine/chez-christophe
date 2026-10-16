@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect fromagerie : commandes à la coupe et plateaux](https://marchéo.fr/blog/click-and-collect-fromagerie) : Mettre en place le click and collect dans une fromagerie : vendre à la coupe, en plateaux et en formules raclette, et régler ses créneaux de retrait.
 - [Fiche Google Business pour un commerce de bouche : le réglage qui vous fait trouver avant vos concurrents](https://marchéo.fr/blog/fiche-google-business-commerce-bouche) : Vos clients ne cherchent pas votre nom, ils cherchent « boulangerie ouverte dimanche ». Voici comment régler votre fiche Google Business pour apparaître dans ces recherches, et le champ que presque personne ne remplit.
 - [Vendre au poids en ligne : comment un boucher, un poissonnier ou un fromager prend des commandes sans se tromper](https://marchéo.fr/blog/vendre-au-poids-en-ligne) : Une entrecôte ne se vend pas comme une paire de chaussures. Voici comment prendre des commandes au kilo, aux 100 g ou à la pièce en ligne, et ajuster le montant à la pesée sans conflit avec le client.
 - [Click & collect pour food-truck : des commandes prêtes avant votre arrivée sur le spot](https://marchéo.fr/blog/click-and-collect-food-truck) : Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les commandes à l'avance, annoncer son emplacement du jour et servir par créneau change complètement ce que vous pouvez encaisser sur ce créneau du midi.
@@ -733,6 +734,99 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Click and collect fromagerie : commandes à la coupe et plateaux
+
+Mettre en place le click and collect dans une fromagerie : vendre à la coupe, en plateaux et en formules raclette, et régler ses créneaux de retrait.
+
+Le click and collect en fromagerie, c&rsquo;est permettre à vos clients de commander leurs fromages en ligne, à la coupe ou en plateau, puis de les retirer en boutique au créneau choisi. Vous préparez à l&rsquo;avance, aux heures creuses, et le client passe devant la file. Les commandes de raclette, de plateaux et de fêtes s&rsquo;y prêtent particulièrement bien.
+Une fromagerie a une particularité que les autres commerces n&rsquo;ont pas : une bonne partie du travail se fait au fil, à la coupe, en conseillant. On pourrait croire que ce métier ne se met pas en ligne. En réalité, il s&rsquo;y prête très bien, à condition de ne pas essayer de tout mettre sur internet.
+Pourquoi mettre en place le click and collect dans une fromagerie ?
+Le samedi matin et les veilles de fête, la file s&rsquo;allonge vite. Chaque client prend du temps : il goûte, il hésite, il demande conseil. C&rsquo;est ce qui fait la valeur d&rsquo;une fromagerie, et c&rsquo;est aussi ce qui fait partir le client pressé.
+Le click and collect sert d&rsquo;abord ces clients-là : ceux qui savent ce qu&rsquo;ils veulent et qui n&rsquo;ont pas envie d&rsquo;attendre. Il libère le comptoir pour ceux qui ont le temps de découvrir.
+
+
+
+Sans commande en ligne
+Avec le click and collect
+
+
+
+
+Les plateaux se commandent par téléphone, souvent pendant le rush
+Les commandes arrivent par écrit, avec la date et l&rsquo;heure
+
+
+Vous coupez tout le samedi matin, en direct
+Vous préparez la veille ou à l&rsquo;ouverture, au calme
+
+
+Le client pressé voit la file et repart
+Il commande la veille et passe en deux minutes
+
+
+Les erreurs de prise de commande au téléphone
+Le client choisit lui-même le fromage et le poids
+
+
+Les formules raclette se préparent au jugé
+Vous connaissez le nombre de personnes à l&rsquo;avance
+
+
+
+Quels produits mettre en ligne en premier ?
+N&rsquo;essayez pas de reproduire tout votre comptoir. Commencez par ce qui se commande déjà par téléphone et par ce que les clients rachètent souvent.
+
+Les plateaux de fromages. C&rsquo;est le produit idéal : un prix fixe, un nombre de personnes, une date. Proposez trois tailles, par exemple pour 4, 8 et 12 personnes.
+Les formules raclette et fondue. De l&rsquo;automne au printemps, c&rsquo;est la demande la plus fréquente. Vendez-les par personne plutôt qu&rsquo;au kilo : le client sait combien ils seront à table, il ne sait pas combien de grammes prévoir. Ajoutez la charcuterie et le vin en option si vous en avez.
+Vos dix ou quinze fromages les plus vendus. Ceux que les habitués rachètent chaque semaine.
+Les produits de saison. Mont d&rsquo;or, fromages de chèvre frais au printemps : une fiche qui apparaît et disparaît selon la période.
+L&rsquo;épicerie fine. Confitures, crackers, beurre à la motte. Un ajout facile au panier.
+
+Gardez pour le comptoir les fromages rares, les affinages longs vendus au conseil et tout ce qui demande de goûter avant d&rsquo;acheter.
+Comment vendre le fromage à la coupe en ligne ?
+C&rsquo;est la question qui freine le plus les fromagers. Elle se règle simplement.
+Vous affichez le prix au kilo et vous proposez des poids types : 150 g, 250 g, 500 g. Le client choisit, le total estimé s&rsquo;affiche. Au moment de couper, vous tombez rarement pile au gramme, et ce n&rsquo;est pas un problème : le montant final est ajusté à la pesée, comme au comptoir. Une phrase claire sur la fiche produit suffit à éviter toute surprise : « Coupé à la demande, le poids peut varier légèrement. »
+Pour les formats qui s&rsquo;y prêtent, passez en prix fixe : une pièce entière de petit fromage, une portion préemballée, un plateau. Chaque produit à prix fixe est une hésitation en moins pour le client. Le détail des unités de vente est expliqué dans notre guide pour vendre au poids en ligne.
+Comment régler les créneaux de retrait ?
+Le créneau est le réglage le plus important. Mal réglé, il vous fait crouler sous les commandes à l&rsquo;heure de pointe.
+
+Des tranches de 15 ou 30 minutes, avec un nombre maximum de commandes par tranche. Une tranche pleine disparaît, le client prend la suivante.
+Un délai minimum de préparation. Quelques heures pour un fromage coupé, 24 ou 48 heures pour un plateau.
+Une heure limite pour le lendemain. Par exemple, commandes du samedi fermées le vendredi à 18 h. Vous préparez ensuite au calme.
+Des jours fermés à la commande si votre boutique ne tient pas le rythme certains jours, comme le dimanche matin.
+
+Commencez avec des créneaux larges et une capacité basse. Vous les ajusterez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
+Payer en ligne ou au retrait ?
+Les deux fonctionnent. Le paiement au retrait rassure les habitués. Le paiement en ligne est plus confortable pour les grosses commandes.
+Le vrai risque, c&rsquo;est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l&rsquo;empreinte bancaire est une bonne protection : elle bloque 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L&rsquo;option est facultative, vous pouvez l&rsquo;activer seulement sur les plateaux. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
+Comment préparer les fêtes avec le click and collect ?
+Entre mi-décembre et le 31, une fromagerie fait une part très importante de son année. C&rsquo;est là que la commande en ligne rend le plus de services.
+Ouvrez les précommandes de plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour organiser ses précommandes de Noël.
+Comment faire connaître sa boutique en ligne aux clients ?
+Le click and collect d&rsquo;une fromagerie se remplit par les habitués, pas par la publicité.
+
+Un QR code au comptoir et sur la vitrine, avec une phrase simple : « Commandez la veille, retirez sans attendre ».
+Le lien sur votre fiche Google, dans le champ commande en ligne.
+Une phrase au moment de rendre la monnaie, surtout aux clients qui ont attendu.
+Un message avant la saison raclette, aux clients qui ont accepté d&rsquo;en recevoir.
+
+Comptez quelques semaines pour que le réflexe s&rsquo;installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
+Ce que coûte le click and collect pour une fromagerie
+Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur un plateau à 80 €, cela représente une somme importante pour un client qui vient déjà chez vous.
+Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
+Pour commencer
+Il vous faut un catalogue court, des créneaux réglés à votre rythme, et un QR code au comptoir. Pas de développeur, pas de caisse particulière.
+La page détaillée pour votre métier est ici : click and collect pour fromagerie. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fromagerie », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Comment vendre un fromage à la coupe en click and collect ?
+R : Vous affichez un prix au kilo et vous proposez des poids types, par exemple 200 g, 300 g ou 500 g. Le client choisit, vous coupez au plus près, et le montant final est ajusté à la pesée au moment du retrait. Prévenez-le simplement que le poids peut varier de quelques grammes.
+Q : Faut-il mettre tout son comptoir en ligne ?
+R : Non. Une trentaine de références suffisent pour commencer : vos fromages les plus demandés, vos plateaux, vos formules raclette ou fondue et quelques produits d'épicerie. Le client qui veut découvrir viendra au comptoir. Celui qui commande en ligne sait déjà ce qu'il veut.
+Q : Que faire si un fromage manque le jour du retrait ?
+R : Vous le passez en indisponible depuis votre téléphone dès que la meule est finie, il disparaît de la boutique. Pour une commande déjà passée, appelez le client et proposez un équivalent proche. C'est le réflexe du comptoir, il marche aussi en ligne.
+Q : Combien coûte le click and collect pour une fromagerie ?
+R : Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par mois, sans engagement et sans commission sur les ventes, avec des frais d'installation uniques de 399 €. Vous pouvez voir votre boutique gratuitement en 30 secondes avant de décider.
+
 # Fiche Google Business pour un commerce de bouche : le réglage qui vous fait trouver avant vos concurrents
 
 Vos clients ne cherchent pas votre nom, ils cherchent « boulangerie ouverte dimanche ». Voici comment régler votre fiche Google Business pour apparaître dans ces recherches, et le champ que presque personne ne remplit.
@@ -882,7 +976,7 @@ Le prix au kilo avec poids choisi. Le client voit « 28,90 € le kilo », chois
 Le format fixe. Barquette de 250 g, plateau six personnes, botte de radis, corbeille de fruits. Le poids est intégré au produit, le prix ne bouge pas, le client ne se pose aucune question. À utiliser dès que c&rsquo;est possible : c&rsquo;est le mode qui convertit le mieux.
 La pièce à poids variable. Le poulet fermier, le bar entier, le jambon. Vous vendez une pièce, mais elle pèse entre 1,2 et 1,6 kg. On affiche une fourchette, un prix au kilo, et on ajuste à la pesée.
 
-Une boutique bien réglée mélange les trois. Le réflexe utile est de basculer en format fixe tout ce qui peut l&rsquo;être : la moitié d&rsquo;un catalogue de fromagerie ou de traiteur se vend très bien en barquettes et en plateaux, et chaque produit passé en format fixe est une hésitation en moins pour le client.
+Une boutique bien réglée mélange les trois. Le réflexe utile est de basculer en format fixe tout ce qui peut l&rsquo;être : la moitié d&rsquo;un catalogue de fromagerie ou de traiteur se vend très bien en barquettes et en plateaux, et chaque produit passé en format fixe est une hésitation en moins pour le client. Pour un fromager, notre guide du click and collect en fromagerie détaille quoi mettre en ligne et comment régler les créneaux.
 Donner des repères, jamais un champ vide
 C&rsquo;est là que la plupart des boutiques se ratent. Un client qui commande de la viande en ligne pour la première fois ne sait pas ce que représentent 400 g de bavette. S&rsquo;il doit taper un nombre dans un champ vide, il ferme la page.
 Ce qui fonctionne :
@@ -1097,7 +1191,7 @@ Une bonne offre de fêtes tient sur une page :
 
 Boucherie : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
 Poissonnerie : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer.
-Fromagerie : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids.
+Fromagerie : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du click and collect pour fromagerie.
 Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un buffet apéritif par tranche de 10 personnes.
 Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité.
 
