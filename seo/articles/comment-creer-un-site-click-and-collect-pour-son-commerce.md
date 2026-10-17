@@ -5,6 +5,7 @@ description: "Le guide pas à pas pour un boulanger, un boucher, un primeur ou u
 meta_title: "Créer un site de click & collect pour son commerce"
 meta_description: "Les étapes pour créer un site de click & collect : catalogue, créneaux de retrait, paiement, mise en ligne. Guide pratique pour un commerçant."
 date: 2026-09-05
+modified: 2026-10-17
 rubrique: Guide
 emoji: 🧭
 keywords:
@@ -30,7 +31,7 @@ faq:
 
 Un site de click & collect, c'est une page où vos clients choisissent leurs produits, paient ou non, et indiquent l'heure à laquelle ils passeront chercher leur commande. Pour un commerce de bouche, c'est la différence entre un samedi matin où l'on note des commandes de gâteaux sur un carnet pendant que la file s'allonge, et un samedi où tout est préparé d'avance.
 
-Ce guide s'adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s'y prendre, avec les prix réels et les pièges, puis donne la méthode pour être en ligne cette semaine.
+Ce guide s'adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s'y prendre, avec les prix réels et les pièges, puis donne la méthode pour être en ligne cette semaine. Si vous êtes traiteur, notre guide dédié à la [création d'un site internet de traiteur](/blog/creation-site-internet-traiteur) détaille les pages, les photos et les réglages propres aux plateaux et aux buffets.
 
 ## Les 5 façons de créer un site de click & collect
 

@@ -5,6 +5,7 @@ description: "Plateformes à commission, Wix ou Shopify, agence, solution spéci
 meta_title: "Prix d'un site de click & collect en 2026"
 meta_description: "Ce que coûte vraiment un site de click & collect : abonnement, installation, frais bancaires et commissions cachées. Les prix réels en 2026."
 date: 2026-09-02
+modified: 2026-10-17
 rubrique: Prix
 emoji: 💶
 keywords:
@@ -81,6 +82,6 @@ Sur cet exemple prudent, 150 + 60 + 0 = **210 € par mois** de gain, contre 39 
 
 ## Ce qui justifie des frais d'installation
 
-Beaucoup se demandent pourquoi payer 249 à 549 € d'installation quand Wix propose zéro. La réponse est dans ce que l'installation contient : un catalogue prêt pour votre métier, la mise en place avec vous, votre thème, vos créneaux, votre QR code, votre référencement sur Google. C'est le travail que vous ne ferez pas vous-même un dimanche soir. Et c'est payé une fois.
+Beaucoup se demandent pourquoi payer 249 à 549 € d'installation quand Wix propose zéro. La réponse est dans ce que l'installation contient : un catalogue prêt pour votre métier, la mise en place avec vous, votre thème, vos créneaux, votre QR code, votre référencement sur Google. C'est le travail que vous ne ferez pas vous-même un dimanche soir. Et c'est payé une fois. Pour un exemple concret par métier, voyez ce que coûte la [création d'un site internet de traiteur](/blog/creation-site-internet-traiteur), plateaux et buffets compris.
 
 Pour juger sur pièce, le plus simple reste de [voir votre boutique en 30 secondes](/inscription) : le métier, le nom, et l'aperçu apparaît, gratuitement.
