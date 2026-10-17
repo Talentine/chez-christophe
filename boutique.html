@@ -1082,7 +1082,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta id="m-apple-title" name="apple-mobile-web-app-title" content="Marchéo">
-<script src="assets/core/init.js?v=resto3"></script>
+<script src="assets/core/init.js?v=panier1"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 </head>
 <body>
@@ -1331,7 +1331,9 @@ const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 // Panier en mémoire
-let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+// Panier propre à chaque boutique (clé par slug, cf. assets/core/init.js)
+const PANIER_KEY = window.CC.panierKey();
+let panier = JSON.parse(localStorage.getItem(PANIER_KEY) || '[]');
 
 // retourAccueilBoutique() est définie globalement dans assets/core/init.js
 
@@ -1883,7 +1885,7 @@ function ajouterDepuisFicheAccueil() {
   } else {
     panier.push(ligne);
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourBadge();
 
   // Animation
@@ -1964,7 +1966,7 @@ window.annulerSuppressionPanier = function() {
   if (!__dernierProduitSupprimePanier) return;
   const it = __dernierProduitSupprimePanier;
   panier.splice(Math.min(it.idx, panier.length), 0, it.produit);
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   __dernierProduitSupprimePanier = null;
   afficherToastPanierBoutique('✓ Produit restauré', 'undo-ok');
   mettreAJourBadge();
@@ -1994,7 +1996,7 @@ function modifierQteAccueil(produitId, delta) {
       'remove'
     );
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourBadge();
   rafraichirBoutonsCartes();
 }
@@ -2042,7 +2044,7 @@ function ajouterAuPanier(produit) {
     if (max < 1) { afficherToastPanierBoutique('📦 Produit épuisé', 'remove'); return; }
     panier.push({ ...produit, qte: 1 });
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourBadge();
 
   // Animation panier
@@ -2186,7 +2188,7 @@ function changerQte(idx, delta) {
       'remove'
     );
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourBadge();
   renderPanier();
 }

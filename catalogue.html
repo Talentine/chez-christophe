@@ -694,7 +694,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="assets/core/init.js?v=brandv2"></script>
+<script src="assets/core/init.js?v=panier1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 </head>
@@ -823,7 +823,9 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 let tousProduits = [];
 let produitsFiltres = [];
 let categorieActive = null;
-let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+// Panier propre à chaque boutique (clé par slug, cf. assets/core/init.js)
+const PANIER_KEY = window.CC.panierKey();
+let panier = JSON.parse(localStorage.getItem(PANIER_KEY) || '[]');
 let produitEnCours = null;
 let qteFiche = 1;
 let poidsKgFiche = 0.5; // poids choisi (en kg) pour les produits au kilo
@@ -1201,7 +1203,7 @@ function ajouterDepuisFiche() {
     if (idx >= 0) panier[idx].qte += qteFiche;
     else panier.push({ ...produitEnCours, qte: qteFiche });
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourPanier();
 
   // Animation bouton
@@ -1238,7 +1240,7 @@ function modifierQteCatalogue(produitId, delta) {
   if (panier[idx].qte <= 0) {
     panier.splice(idx, 1);
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourPanier();
   renderProduits();
 }
@@ -1254,7 +1256,7 @@ function ajouterAuPanier(produit) {
   const idx = panier.findIndex(x => x.id === produit.id);
   if (idx >= 0) panier[idx].qte++;
   else panier.push({ ...produit, qte: 1 });
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   mettreAJourPanier();
 
   // Animation badge panier

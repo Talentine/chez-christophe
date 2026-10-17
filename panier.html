@@ -113,7 +113,7 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="assets/core/init.js?v=brandv2"></script>
+<script src="assets/core/init.js?v=panier1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 </head>
@@ -351,7 +351,9 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const STRIPE_PK = 'pk_live_51TNZXSEFuhD5VmbykaqK1Bwbs7Jhq3mZHPXNazRTK8WqVL1dbIWXnBdRMCL0TzCaRGlex38ZKzhWh0Ke3mTjXOSo00tL0YAlLt';
 const FRAIS_LIVRAISON = 3.90;
 
-let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+// Panier propre à chaque boutique (clé par slug, cf. assets/core/init.js)
+const PANIER_KEY = window.CC.panierKey();
+let panier = JSON.parse(localStorage.getItem(PANIER_KEY) || '[]');
 
 // Calcul du total d'une ligne avec offre lot appliquée si applicable
 function calcTotalLignePanier(p) {
@@ -510,7 +512,7 @@ function retirerLigne(idx) {
   const produitSupprime = panier[idx];
   __dernierProduitSupprime = { produit: { ...produitSupprime }, idx: idx };
   panier.splice(idx, 1);
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   // Bandeau avec bouton Annuler
   afficherToastPanier(
     '🗑 <span><b>' + (produitSupprime.nom || 'Produit') + '</b> retiré</span>'
@@ -524,7 +526,7 @@ function retirerLigne(idx) {
 function annulerSuppressionPanier() {
   if (!__dernierProduitSupprime) return;
   panier.splice(__dernierProduitSupprime.idx, 0, __dernierProduitSupprime.produit);
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   __dernierProduitSupprime = null;
   afficherToastPanier('✓ Produit restauré dans le panier', 'undo-ok');
   renderPanier();
@@ -552,7 +554,7 @@ function modifierQte(idx, delta) {
       'remove'
     );
   }
-  localStorage.setItem('panier', JSON.stringify(panier));
+  localStorage.setItem(PANIER_KEY, JSON.stringify(panier));
   if (panier.length === 0) { init(); return; }
   renderPanier();
   mettreAJourCTA();
@@ -1274,7 +1276,7 @@ async function confirmerCommande() {
     document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + encodeURIComponent(adresse) + '&navigate=yes';
   }
 
-  localStorage.removeItem('panier');
+  localStorage.removeItem(PANIER_KEY);
   panier = [];
 }
 

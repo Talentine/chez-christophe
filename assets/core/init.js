@@ -307,5 +307,18 @@ window.toAsciiUrl = function(url) {
   }
   window.retourAccueilBoutique = retourAccueilBoutique;
 
-  window.CC = { resolveSlug: resolveSlug, initBusiness: initBusiness, cfg: function(){ return window.__CONFIG__; }, TYPES: TYPES, retourAccueilBoutique: retourAccueilBoutique };
+  // ── PANIER ────────────────────────────────────────────────
+  // Toutes les boutiques sont servies sur le même domaine : une clé
+  // localStorage unique ('panier') faisait voyager le panier d'une boutique
+  // à l'autre (viande de la boucherie retrouvée chez le primeur). Chaque
+  // boutique a donc sa propre clé, dérivée de son slug.
+  function panierKey() {
+    var slug = (window.__CONFIG__ && window.__CONFIG__.slug) || resolveSlug() || '';
+    return 'panier_' + slug;
+  }
+  // Purge l'ancienne clé partagée, qui contient potentiellement le panier
+  // d'une autre boutique.
+  try { localStorage.removeItem('panier'); } catch (e) {}
+
+  window.CC = { resolveSlug: resolveSlug, panierKey: panierKey, initBusiness: initBusiness, cfg: function(){ return window.__CONFIG__; }, TYPES: TYPES, retourAccueilBoutique: retourAccueilBoutique };
 })();
