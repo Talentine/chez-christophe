@@ -67,3 +67,4 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | variante de poissonnerie livraison à domicile |
 | création site internet pour restaurant | site | restaurant | GS (17/10) | haute | à faire (à fusionner avec « combien coûte un site internet pour un restaurant ») |
 | boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | variante de boucherie click and collect |
+| primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10) | haute | à faire (article dédié click and collect primeur, pas de page blog primeur à ce jour) |
