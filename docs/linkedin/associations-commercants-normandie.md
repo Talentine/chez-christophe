@@ -54,3 +54,46 @@
 4. **Rouen et les fédérations départementales.** Ce sont les gros volumes, une fois que tu auras un premier partenariat à montrer.
 
 Les messages à envoyer sont dans `docs/linkedin-prospection.md`, section 1.
+
+---
+
+## Notes d'invitation LinkedIn (priorités 2 et 3)
+
+> Moins de 200 caractères chacune. Remplace [Prénom] et, s'il y en a, [Ville] ou [Riva Bella]. Le pitch vient dans le message après acceptation (`docs/linkedin-prospection.md`, section 1).
+
+**Bayeux Shopping**
+> Bonjour [Prénom], plus de 160 commerçants fédérés depuis 1904, chapeau à Bayeux Shopping ! Je suis à Caen et j'aide les commerces à vendre en ligne sans commission. Ravi d'échanger.
+
+**CAPLisieux**
+> Bonjour [Prénom], j'ai vu le travail de CAPLisieux pour les commerçants, de la braderie à la Grande Brocante. Caennais, j'aide les commerces à vendre en ligne sans commission. Au plaisir !
+
+**UCIA Riva Bella / Terre et Mer**
+> Bonjour [Prénom], je suis à Caen, à 15 min de Ouistreham. J'aide les commerces de bouche à vendre en ligne sans commission. J'aimerais beaucoup échanger avec l'UCIA [Riva Bella].
+
+**Falaise / Honfleur / Pont-l'Évêque**
+> Bonjour [Prénom], je suis caennais et j'aide les commerces de bouche à vendre en ligne sans commission. J'aimerais échanger avec l'union commerciale de [Ville]. Au plaisir !
+
+**Vire (mairie)**
+> Bonjour [Prénom], j'ai vu l'engagement de Vire Normandie pour le commerce de proximité. Je suis à Caen et j'aide les commerces à vendre en ligne sans commission. Ravi d'échanger.
+
+**Vitrines de Rouen**
+> Bonjour [Prénom], 450 commerçants fédérés, Les Vitrines de Rouen sont une référence en Normandie. J'aide les commerces à vendre en ligne sans commission. J'aimerais échanger avec vous.
+
+**Féd. Unions Commerciales 76**
+> Bonjour [Prénom], je lance depuis Caen une solution de vente en ligne sans commission pour les commerces de proximité. J'aimerais échanger avec la Fédération des unions de Seine-Maritime.
+
+**Union Cherbourg Commerces**
+> Bonjour [Prénom], j'ai vu les actions d'Union Cherbourg Commerces pour le centre-ville. Normand, j'aide les commerces à vendre en ligne sans commission. J'aimerais échanger avec vous.
+
+**Saint-Lô Commerces**
+> Bonjour [Prénom], j'ai vu le travail de Saint-Lô Commerces pour animer le centre-ville. Je suis à Caen et j'aide les commerces à vendre en ligne sans commission. Au plaisir d'échanger !
+
+**Féd. centre et sud Manche**
+> Bonjour [Prénom], je lance depuis Caen une solution de vente en ligne sans commission pour les commerces de proximité. J'aimerais échanger avec votre fédération des unions de la Manche.
+
+**Le Havre (CCI / quartiers)**
+> Bonjour [Prénom], j'aide les commerces de proximité normands à vendre en ligne sans commission. J'aimerais comprendre comment vous accompagnez les commerçants havrais. Au plaisir !
+
+**Alençon / Évreux (CCI, mairie)**
+> Bonjour [Prénom], je lance depuis Caen une solution de vente en ligne sans commission pour les commerces de proximité. J'aimerais échanger sur le commerce à [Ville]. Au plaisir !
+
