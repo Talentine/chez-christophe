@@ -32,8 +32,8 @@ Variante plus courte :
 - **Lieu** : [ta ville], France. Mets ta vraie ville : les associations de commerçants cherchent quelqu'un de proche.
 - **Site web** (Coordonnées → Site web, type « Entreprise ») : https://marchéo.fr
 - **Lien personnalisé** (bouton « Modifier le profil public et l'URL », à droite) : linkedin.com/in/paul-merieult
-- **Bouton « Visiter mon site »** (Paramètres du profil → Lien personnalisé en haut du profil) : https://marchéo.fr, avec le libellé « Voir une boutique en exemple » vers https://marchéo.fr/chez-christophe
-- **Mode créateur** : active-le et ajoute 5 hashtags : #commercedeproximite #artisan #clickandcollect #boulangerie #boucherie
+- **Lien affiché sous ton nom** (réservé à Premium) : si tu prends Premium, mets https://marchéo.fr/chez-christophe avec le libellé « Voir une boutique en exemple ». Sans Premium, le lien du site dans tes coordonnées suffit.
+- **Hashtags** : à mettre dans tes posts (3 maximum), pas sur le profil. Par exemple #commercedeproximite #artisan #clickandcollect.
 
 ### 5. Infos (2 600 caractères max)
 
