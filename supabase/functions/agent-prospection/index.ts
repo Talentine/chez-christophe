@@ -20,16 +20,18 @@
 //   - 'apercu-post'   → génère un post LinkedIn sans le publier
 // GET ?action=desinscription&t=<token> → page de désinscription (lien des mails)
 //
+// Le secret des appels (header x-agent-secret ou ?k=) est dans Supabase Vault
+// ('agent_prospection_secret'), lu via la RPC agent_prospection_secret().
+// Marche / pause : ligne 'mode' de prospection_etat (ou secret AGENT_MODE).
+//
 // Variables d'env :
-//   ANTHROPIC_API_KEY, RESEND_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
-//   AGENT_SECRET          secret partagé avec pg_cron et le webhook entrant
-//   AGENT_MODE            'live' pour envoyer/publier ; tout autre valeur = pause
-//   PROSPECTION_FROM      ex. 'Paul Merieult — Marchéo <paul@xn--marcho-fva.fr>'
-//   PROSPECTION_REPLY_TO  boîte qui reçoit les réponses (inbound)
-//   OWNER_EMAIL           reçoit le digest et les alertes « prospect intéressé »
+//   ANTHROPIC_API_KEY, RESEND_API_KEY, RESEND_FROM, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
+//   PROSPECTION_FROM      (optionnel) défaut : 'Paul Merieult — Marchéo <adresse de RESEND_FROM>'
+//   PROSPECTION_REPLY_TO  (optionnel) boîte qui reçoit les réponses, défaut OWNER_EMAIL
+//   OWNER_EMAIL           (optionnel) digest et alertes, défaut marcheo.contact@gmail.com
 //   SIGNATURE_NOM, SIGNATURE_ROLE, SIGNATURE_TEL
 //   BOOKING_URL           (optionnel) lien de prise de rendez-vous
-//   QUOTA_JOUR            (optionnel, défaut 40) mails initiaux par jour
+//   QUOTA_JOUR            (optionnel, défaut 25) mails initiaux par jour
 //   LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN ('urn:li:person:xxxx')
 //   LINKEDIN_POSTS_PAR_JOUR (optionnel, défaut 1, max 2)
 //   CLAUDE_MODEL          (optionnel, défaut 'claude-opus-5-5')
@@ -41,17 +43,19 @@ import Anthropic from 'npm:@anthropic-ai/sdk';
 
 const env = (k: string, d = '') => Deno.env.get(k) ?? d;
 
-const LIVE = env('AGENT_MODE') === 'live';
-const AGENT_SECRET = env('AGENT_SECRET');
+// Envoi réel seulement si AGENT_MODE=live, ou si la ligne 'mode' de prospection_etat vaut 'live'.
+let LIVE = env('AGENT_MODE') === 'live';
 const RESEND_API_KEY = env('RESEND_API_KEY');
-const FROM = env('PROSPECTION_FROM', 'Marchéo <onboarding@resend.dev>');
-const REPLY_TO = env('PROSPECTION_REPLY_TO');
-const OWNER_EMAIL = env('OWNER_EMAIL');
 const SIGNATURE_NOM = env('SIGNATURE_NOM', 'Paul Merieult');
 const SIGNATURE_ROLE = env('SIGNATURE_ROLE', 'Fondateur');
 const SIGNATURE_TEL = env('SIGNATURE_TEL');
+// Même adresse d'envoi vérifiée que les mails transactionnels, au nom du fondateur.
+const ADRESSE_ENVOI = (env('RESEND_FROM').match(/<([^>]+)>/)?.[1] ?? env('RESEND_FROM')) || 'onboarding@resend.dev';
+const FROM = env('PROSPECTION_FROM', `${SIGNATURE_NOM} — Marchéo <${ADRESSE_ENVOI}>`);
+const OWNER_EMAIL = env('OWNER_EMAIL', 'marcheo.contact@gmail.com');
+const REPLY_TO = env('PROSPECTION_REPLY_TO', OWNER_EMAIL);
 const BOOKING_URL = env('BOOKING_URL');
-const QUOTA_JOUR = Number(env('QUOTA_JOUR', '40'));
+const QUOTA_JOUR = Number(env('QUOTA_JOUR', '25'));
 const MODEL = env('CLAUDE_MODEL', 'claude-opus-5-5');
 const LINKEDIN_TOKEN = env('LINKEDIN_ACCESS_TOKEN');
 const LINKEDIN_URN = env('LINKEDIN_PERSON_URN');
@@ -73,8 +77,14 @@ serve(async (req) => {
     }
     if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
+    // Secret partagé avec pg_cron : stocké dans Supabase Vault (nom 'agent_prospection_secret').
     const secret = req.headers.get('x-agent-secret') || url.searchParams.get('k');
-    if (!AGENT_SECRET || secret !== AGENT_SECRET) return json({ error: 'Unauthorized' }, 401);
+    const { data: attendu } = await supabase.rpc('agent_prospection_secret');
+    if (!attendu || secret !== attendu) return json({ error: 'Unauthorized' }, 401);
+    if (!env('AGENT_MODE')) {
+      const { data: mode } = await supabase.from('prospection_etat').select('valeur').eq('cle', 'mode').maybeSingle();
+      LIVE = mode?.valeur?.valeur === 'live';
+    }
 
     const body = await req.json().catch(() => ({}));
     const action = body.action || url.searchParams.get('action') || (body.type === 'email.received' ? 'reponse' : '');
@@ -164,7 +174,7 @@ function dirigeantPrincipal(e: any) {
 
 async function actionSourcer() {
   // Assez de stock à enrichir : on ne source pas plus.
-  const { count } = await supabase.from('prospects').select('id', { count: 'exact', head: true }).eq('statut', 'a_enrichir');
+  const { count } = await supabase.from('agent_prospects').select('id', { count: 'exact', head: true }).eq('statut', 'a_enrichir');
   if ((count ?? 0) >= 60) return { skip: 'stock suffisant', a_enrichir: count };
 
   const { data: etat } = await supabase.from('prospection_etat').select('valeur').eq('cle', 'sourcing').maybeSingle();
@@ -188,8 +198,9 @@ async function actionSourcer() {
   for (let page = 1; page <= 8; page++) {
     const r = await rechercheEntreprises({ activite_principale: NAF_BOUCHE.join(','), departement: dep, page: String(page) });
     for (const e of r.results) {
+      // Au-delà de 30 établissements : enseigne nationale ou franchise, hors cible.
       const n = e.nombre_etablissements_ouverts ?? 0;
-      if (n < 2) continue;
+      if (n < 2 || n > 30) continue;
       lignes.push(ligneProspect(e, n >= 5 ? 'groupe' : 'multi_boutiques', dep));
     }
     if (page >= r.total_pages) break;
@@ -197,7 +208,7 @@ async function actionSourcer() {
 
   const uniques = [...new Map(lignes.map((l) => [l.siren, l])).values()];
   if (uniques.length) {
-    const { error } = await supabase.from('prospects').upsert(uniques, { onConflict: 'siren', ignoreDuplicates: true });
+    const { error } = await supabase.from('agent_prospects').upsert(uniques, { onConflict: 'siren', ignoreDuplicates: true });
     if (error) throw error;
   }
   await supabase.from('prospection_etat').upsert({ cle: 'sourcing', valeur: { index: index + 1, dernier: dep }, maj_at: new Date().toISOString() });
@@ -258,17 +269,17 @@ async function claude(params: Record<string, unknown>) {
 const texte = (res: any) => res.content.filter((b: any) => b.type === 'text').map((b: any) => b.text).join('').trim();
 
 async function actionEnrichir(limite: number) {
-  const { count } = await supabase.from('prospects').select('id', { count: 'exact', head: true }).eq('statut', 'pret');
+  const { count } = await supabase.from('agent_prospects').select('id', { count: 'exact', head: true }).eq('statut', 'pret');
   if ((count ?? 0) >= 150) return { skip: 'stock prêt suffisant', pret: count };
 
-  const { data: lot } = await supabase.from('prospects').select('*').eq('statut', 'a_enrichir')
+  const { data: lot } = await supabase.from('agent_prospects').select('*').eq('statut', 'a_enrichir')
     .order('type').order('nb_etablissements', { ascending: false, nullsFirst: false }).limit(limite);
   const resultats = [];
   for (const p of lot ?? []) {
     try {
       const r = await enrichir(p);
       const email = r?.trouve && r.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(r.email) ? r.email.toLowerCase() : null;
-      await supabase.from('prospects').update({
+      await supabase.from('agent_prospects').update({
         site_web: r?.site_web ?? null,
         email,
         telephone: r?.telephone ?? null,
@@ -353,11 +364,11 @@ async function actionEnvoyer() {
   const bilan: any[] = [];
 
   // Relances d'abord (J+7 puis J+14), elles ne comptent pas dans le quota.
-  const { data: relances } = await supabase.rpc('claim_prospects', { p_statuts: ['contacte', 'relance_1'], n: 3 });
+  const { data: relances } = await supabase.rpc('agent_claim_prospects', { p_statuts: ['contacte', 'relance_1'], n: 3 });
   for (const p of relances ?? []) bilan.push(await envoyerRelance(p));
 
   if (reste > 0) {
-    const { data: nouveaux } = await supabase.rpc('claim_prospects', { p_statuts: ['pret'], n: Math.min(reste, parPassage) });
+    const { data: nouveaux } = await supabase.rpc('agent_claim_prospects', { p_statuts: ['pret'], n: Math.min(reste, parPassage) });
     for (const p of nouveaux ?? []) bilan.push(await envoyerInitial(p));
   }
   return { envoyes: bilan };
@@ -454,12 +465,12 @@ async function envoyerInitial(p: any) {
     const m = await redigerInitial(p);
     const corps = `${m.salutation}\n\n${m.corps}\n\nBien cordialement,\n${signatureTexte()}`;
     await envoyerMail(p, m.sujet, corps, 'initial');
-    await supabase.from('prospects').update({
+    await supabase.from('agent_prospects').update({
       statut: 'contacte', sujet_initial: m.sujet, dernier_envoi_at: new Date().toISOString(), prochaine_action_at: dansJours(7),
     }).eq('id', p.id);
     return { nom: p.nom, etape: 'initial' };
   } catch (e) {
-    await supabase.from('prospects').update({ statut: 'pret', prochaine_action_at: dansJours(1) }).eq('id', p.id);
+    await supabase.from('agent_prospects').update({ statut: 'pret', prochaine_action_at: dansJours(1) }).eq('id', p.id);
     return { nom: p.nom, erreur: (e as Error).message };
   }
 }
@@ -478,18 +489,18 @@ async function envoyerRelance(p: any) {
   const etape = n === 1 ? 'relance_1' : 'relance_2';
   try {
     await envoyerMail(p, sujet, corps, etape);
-    await supabase.from('prospects').update({
+    await supabase.from('agent_prospects').update({
       statut: n === 1 ? 'relance_1' : 'termine', dernier_envoi_at: new Date().toISOString(), prochaine_action_at: n === 1 ? dansJours(7) : null,
     }).eq('id', p.id);
     return { nom: p.nom, etape };
   } catch (e) {
-    await supabase.from('prospects').update({ statut: n === 1 ? 'contacte' : 'relance_1', prochaine_action_at: dansJours(1) }).eq('id', p.id);
+    await supabase.from('agent_prospects').update({ statut: n === 1 ? 'contacte' : 'relance_1', prochaine_action_at: dansJours(1) }).eq('id', p.id);
     return { nom: p.nom, erreur: (e as Error).message };
   }
 }
 
 async function actionApercu(n: number) {
-  const { data } = await supabase.from('prospects').select('*').eq('statut', 'pret').limit(Math.min(n, 5));
+  const { data } = await supabase.from('agent_prospects').select('*').eq('statut', 'pret').limit(Math.min(n, 5));
   const out = [];
   for (const p of data ?? []) {
     const m = await redigerInitial(p);
@@ -520,12 +531,12 @@ async function actionReponse(body: any) {
   const email = adresse(m.from);
   if (!email) return { error: 'expéditeur manquant' };
 
-  let { data: p } = await supabase.from('prospects').select('*').ilike('email', email).limit(1).maybeSingle();
+  let { data: p } = await supabase.from('agent_prospects').select('*').ilike('email', email).limit(1).maybeSingle();
   if (!p) {
     // Réponse depuis une autre adresse du même domaine
     const domaine = email.split('@')[1];
     if (domaine && !/gmail|yahoo|hotmail|outlook|orange|free|wanadoo|laposte|sfr|icloud/.test(domaine)) {
-      ({ data: p } = await supabase.from('prospects').select('*').ilike('email', `%@${domaine}`).limit(1).maybeSingle());
+      ({ data: p } = await supabase.from('agent_prospects').select('*').ilike('email', `%@${domaine}`).limit(1).maybeSingle());
     }
   }
   if (!p) {
@@ -589,9 +600,9 @@ ${(m.text ?? '').slice(0, 6000)}`,
   };
   if (r.classification === 'absence') {
     // On décale la prochaine action d'une semaine, sans répondre.
-    await supabase.from('prospects').update({ prochaine_action_at: dansJours(7) }).eq('id', p.id);
+    await supabase.from('agent_prospects').update({ prochaine_action_at: dansJours(7) }).eq('id', p.id);
   } else {
-    await supabase.from('prospects').update({ statut: statut[r.classification], prochaine_action_at: null }).eq('id', p.id);
+    await supabase.from('agent_prospects').update({ statut: statut[r.classification], prochaine_action_at: null }).eq('id', p.id);
   }
 
   // Au-delà de 3 réponses automatiques dans un même échange, la main passe à l'humain.
@@ -623,7 +634,7 @@ async function alerterOwner(sujet: string, corps: string) {
 async function pageDesinscription(token: string, dejaFait: boolean) {
   let ok = false;
   if (/^[0-9a-f-]{36}$/i.test(token)) {
-    const { data } = await supabase.from('prospects').update({ statut: 'desinscrit', prochaine_action_at: null })
+    const { data } = await supabase.from('agent_prospects').update({ statut: 'desinscrit', prochaine_action_at: null })
       .eq('unsubscribe_token', token).select('id');
     ok = (data?.length ?? 0) > 0 || dejaFait;
   }
@@ -757,13 +768,13 @@ async function actionDigest(forcer: boolean) {
   const stats = {
     envoyes: await compte(supabase.from('prospection_messages').select('id', { count: 'exact', head: true }).eq('sens', 'sortant').gte('created_at', hier)),
     recus: await compte(supabase.from('prospection_messages').select('id', { count: 'exact', head: true }).eq('sens', 'entrant').gte('created_at', hier)),
-    interesses: await compte(supabase.from('prospects').select('id', { count: 'exact', head: true }).eq('statut', 'interesse')),
-    prets: await compte(supabase.from('prospects').select('id', { count: 'exact', head: true }).eq('statut', 'pret')),
-    total: await compte(supabase.from('prospects').select('id', { count: 'exact', head: true })),
+    interesses: await compte(supabase.from('agent_prospects').select('id', { count: 'exact', head: true }).eq('statut', 'interesse')),
+    prets: await compte(supabase.from('agent_prospects').select('id', { count: 'exact', head: true }).eq('statut', 'pret')),
+    total: await compte(supabase.from('agent_prospects').select('id', { count: 'exact', head: true })),
   };
 
   // 15 invitations LinkedIn du jour : prospects déjà contactés par mail (le nom leur dira quelque chose).
-  const { data: aInviter } = await supabase.from('prospects').select('id, nom, ville, type, contact_nom, contact_role, linkedin_url, notes')
+  const { data: aInviter } = await supabase.from('agent_prospects').select('id, nom, ville, type, contact_nom, contact_role, linkedin_url, notes')
     .not('linkedin_url', 'is', null).eq('linkedin_fait', false).in('statut', ['contacte', 'relance_1', 'relance_2', 'interesse', 'repondu'])
     .order('dernier_envoi_at', { ascending: false }).limit(15);
 
@@ -772,7 +783,7 @@ async function actionDigest(forcer: boolean) {
     const note = await noteInvitation(p);
     lignes.push(`• ${p.contact_nom ?? p.nom} — ${p.nom} (${p.ville ?? ''})\n  ${p.linkedin_url}\n  Note d'invitation : ${note}`);
     await supabase.from('prospection_messages').insert({ prospect_id: p.id, canal: 'linkedin', sens: 'sortant', etape: 'invitation', corps: note });
-    await supabase.from('prospects').update({ linkedin_fait: true }).eq('id', p.id);
+    await supabase.from('agent_prospects').update({ linkedin_fait: true }).eq('id', p.id);
   }
 
   const corps = `Bonjour,

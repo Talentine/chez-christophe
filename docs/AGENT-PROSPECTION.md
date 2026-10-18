@@ -2,6 +2,13 @@
 
 Fonction Supabase `agent-prospection` + migration `supabase/migrations/20261018_agent_prospection.sql`.
 
+**Installé le 18/10/2026** sur le projet `epvdzhzwfmtnioedyfgm` : tables, fonction et tâches planifiées actives, mode `live`.
+Le secret d'appel est généré dans Supabase Vault (`agent_prospection_secret`) : rien à configurer. Les étapes ci-dessous
+qui parlent de `AGENT_SECRET` ou du bloc `cron.schedule` sont déjà faites par la migration.
+Reste à fournir : `ANTHROPIC_API_KEY` (obligatoire pour écrire les mails), et en option le jeton LinkedIn et la réception des réponses.
+Valeurs par défaut : signature « Paul Merieult, Fondateur », envoi depuis l'adresse de `RESEND_FROM`, réponses et récap sur
+marcheo.contact@gmail.com, 25 mails initiaux par jour, entreprises de 2 à 30 établissements.
+
 ## Ce que fait l'agent, tout seul
 
 | Quand | Action | Détail |
@@ -85,9 +92,9 @@ Exécuter le bloc `cron.schedule` en commentaire à la fin de la migration, apr�
 
 ## Suivi
 ```sql
-select statut, type, count(*) from prospects group by 1, 2 order by 1, 2;
-select * from prospects where statut = 'interesse';
-select p.nom, m.classification, m.corps from prospection_messages m join prospects p on p.id = m.prospect_id
+select statut, type, count(*) from agent_prospects group by 1, 2 order by 1, 2;
+select * from agent_prospects where statut = 'interesse';
+select p.nom, m.classification, m.corps from prospection_messages m join agent_prospects p on p.id = m.prospect_id
  where m.sens = 'entrant' order by m.created_at desc limit 20;
 select created_at, theme, statut, erreur from linkedin_posts order by created_at desc limit 10;
 ```
