@@ -1,6 +1,6 @@
 # Marchéo
 
-> Marchéo (marchéo.fr) est un logiciel français de boutique en ligne pour les commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
+> Marchéo (marchéo.fr) est un logiciel français de boutique en ligne pour les commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
 
 Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
@@ -53,7 +53,7 @@ Vos clients commandent leur gâteau du dimanche, leur pain spécial ou leurs bri
 
 Ce que ça change dans votre boulangerie
 Le samedi matin, la file avance. Les commandes de gâteaux, de pains spéciaux et de viennoiseries sont prises la veille en ligne, avec l&rsquo;heure de retrait. Vous les préparez au calme, et le client repart en 30 secondes au comptoir.
-Fini le gâteau commandé et jamais récupéré. Avec l&rsquo;empreinte bancaire optionnelle, 75 % du panier est pré-autorisé sur la carte du client au moment de la commande. Si la commande est retirée, rien n&rsquo;est débité et l&rsquo;empreinte est libérée 24 heures après. S&rsquo;il ne vient pas, vous décidez de ce que vous prélevez.
+Fini le gâteau commandé et jamais récupéré. Avec l&rsquo;empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier est pré-autorisé sur la carte du client au moment de la commande. Si la commande est retirée, rien n&rsquo;est débité et l&rsquo;empreinte est libérée 24 heures après. S&rsquo;il ne vient pas, vous décidez de ce que vous prélevez.
 Vos fournées se programment. Vous ouvrez des créneaux de retrait par jour et par heure, avec une capacité maximale par créneau. Le client ne peut réserver que ce que vous pouvez produire.
 Le rush du matin, et ce que le click &amp; collect y change
 Entre 7 h et 9 h, une boulangerie fait une part importante de sa journée en vingt minutes cumulées de file d&rsquo;attente. Le client qui part au travail compte les personnes devant lui et renonce parfois. C&rsquo;est le chiffre d&rsquo;affaires le plus invisible du métier : celui qui repart sans rien dire.
@@ -121,7 +121,7 @@ Vendre au poids en ligne, utile dès que vous proposez des pièces montées au n
 Q : Mes clients doivent-ils créer un compte pour commander ?
 R : Non. Ils choisissent leurs produits, leur créneau de retrait, laissent un nom et un téléphone, et c'est fini. Le paiement en ligne est optionnel : vous pouvez laisser régler au comptoir.
 Q : Comment éviter les gâteaux commandés et jamais retirés ?
-R : Activez l'empreinte bancaire : 75 % du panier est pré-autorisé sur la carte du client. Si la commande est retirée, rien n'est débité. Sinon, vous décidez du montant prélevé. Vous pouvez aussi n'activer l'empreinte qu'au-dessus d'un certain montant.
+R : Activez l'empreinte bancaire : jusqu'à 75 % du panier est pré-autorisé sur la carte du client. Si la commande est retirée, rien n'est débité. Sinon, vous décidez du montant prélevé. Vous pouvez aussi n'activer l'empreinte qu'au-dessus d'un certain montant.
 Q : Puis-je limiter le nombre de gâteaux par jour ?
 R : Oui. Chaque créneau de retrait a une capacité maximale et chaque produit peut avoir un stock. Quand c'est complet, le client voit le prochain créneau disponible.
 Q : Le click & collect a-t-il un intérêt pour le pain quotidien ?
@@ -141,7 +141,7 @@ Rôtis, plateaux, volailles de fête, pièces sur mesure : vos clients commanden
 
 Ce que ça change dans votre boucherie
 Noël, Pâques, les barbecues d&rsquo;été : plus de carnet. Chaque commande arrive avec le nom, le téléphone, le créneau de retrait et les précisions du client, épaisseur, poids, préparation. Vous imprimez la liste du jour et vous préparez dans l&rsquo;ordre.
-Les commandes de fêtes sont garanties. Un chapon à 80 € commandé et jamais retiré, ça n&rsquo;arrive plus : avec l&rsquo;empreinte bancaire, 75 % du panier est pré-autorisé à la commande. Le client sérieux ne paie rien de plus, l&rsquo;empreinte est libérée 24 heures après le retrait.
+Les commandes de fêtes sont garanties. Un chapon à 80 € commandé et jamais retiré, ça n&rsquo;arrive plus : avec l&rsquo;empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Le client sérieux ne paie rien de plus, l&rsquo;empreinte est libérée 24 heures après le retrait.
 Vos habitués reviennent. Base clients avec l&rsquo;historique, SMS pour annoncer un arrivage, une promo sur les merguez le vendredi, ou la fermeture d&rsquo;août. Les SMS sont inclus dans l&rsquo;abonnement.
 Ce qui est inclus
 
@@ -191,7 +191,7 @@ R : Chaque produit peut être vendu au kilo, aux 100 g ou à la pièce. Le clien
 Q : Peut-on prendre les commandes de Noël plusieurs semaines à l'avance ?
 R : Oui. Vous ouvrez des créneaux de retrait à la date voulue, par exemple les 23 et 24 décembre de 8 h à 13 h, avec une capacité par créneau. Les commandes se réservent dès que le créneau est ouvert.
 Q : Que se passe-t-il si un client ne vient pas chercher sa commande de fête ?
-R : Avec l'empreinte bancaire activée, 75 % du panier a été pré-autorisé à la commande. Vous décidez du montant prélevé en cas d'absence, selon votre politique d'annulation affichée au client.
+R : Avec l'empreinte bancaire activée, jusqu'à 75 % du panier a été pré-autorisé à la commande. Vous décidez du montant prélevé en cas d'absence, selon votre politique d'annulation affichée au client.
 Q : Mes clients âgés commandent par téléphone, ça change quoi ?
 R : Rien pour eux. La boutique en ligne s'ajoute au téléphone, elle ne le remplace pas. En pratique, ce sont souvent leurs enfants qui commandent pour eux depuis la boutique.
 Q : Marchéo livre-t-il les commandes ?
@@ -263,7 +263,7 @@ R : Oui. Les maraîchers utilisent la boutique pour prendre les commandes à l'a
 Plateaux de fruits de mer, poisson pour le week-end, commandes des fêtes : vos clients commandent en ligne, règlent d'avance, retirent à l'heure prévue. La marée du matin part par SMS à vos habitués.
 
 Ce que ça change dans votre poissonnerie
-Plus de plateau préparé pour rien. Un plateau de fruits de mer commandé pour le samedi soir et jamais retiré, c&rsquo;est une perte sèche. Avec l&rsquo;empreinte bancaire, 75 % du panier est pré-autorisé à la commande. Le client qui vient ne paie rien de plus, celui qui ne vient pas vous rembourse.
+Plus de plateau préparé pour rien. Un plateau de fruits de mer commandé pour le samedi soir et jamais retiré, c&rsquo;est une perte sèche. Avec l&rsquo;empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Le client qui vient ne paie rien de plus, celui qui ne vient pas vous rembourse.
 Le vendredi et le samedi se préparent la veille. Les commandes arrivent avec le créneau de retrait et les précisions, écaillé, vidé, en filets. Vous savez ce que vous devez commander à la criée.
 La marée se vend le matin même. Un SMS à vos clients quand le bar de ligne ou les coquilles arrivent. Ceux qui commandent dans l&rsquo;heure sont servis en premier.
 Ce qui est inclus
@@ -322,7 +322,7 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 Plateaux repas pour le bureau d'à côté, buffets d'anniversaire, plats du jour à emporter : vos clients commandent en ligne, garantissent leur commande, et vous savez exactement quoi préparer pour quand.
 
 Ce que ça change chez un traiteur
-Chaque commande est garantie. Un buffet pour 30 personnes commandé et annulé la veille, ça ne se produit plus : l&rsquo;empreinte bancaire pré-autorise 75 % du panier à la commande, et vous fixez votre politique d&rsquo;annulation. Le client peut aussi payer intégralement en ligne.
+Chaque commande est garantie. Un buffet pour 30 personnes commandé et annulé la veille, ça ne se produit plus : l&rsquo;empreinte bancaire pré-autorise jusqu&rsquo;à 75 % du panier à la commande, et vous fixez votre politique d&rsquo;annulation. Le client peut aussi payer intégralement en ligne.
 Le planning se remplit tout seul. Chaque commande a sa date, son créneau de retrait ou de livraison, ses quantités et ses précisions. Le calendrier de la semaine vous dit ce que vous produisez chaque jour.
 Les plats du jour partent le matin. Vous publiez le menu de la semaine, les bureaux du quartier commandent avant 11 h, vous préparez les quantités vendues. Un SMS annonce le menu du lendemain.
 Ce qui est inclus
@@ -368,7 +368,7 @@ Publiez vos plateaux et votre menu de la semaine, ouvrez vos créneaux et votre 
 Envoyez le lien aux entreprises du quartier, imprimez le QR code.
 
 Q : Peut-on demander un acompte sur les grosses commandes ?
-R : Oui, de deux façons : le paiement intégral en ligne, ou l'empreinte bancaire qui pré-autorise 75 % du panier et vous laisse prélever selon votre politique d'annulation en cas de désistement.
+R : Oui, de deux façons : le paiement intégral en ligne, ou l'empreinte bancaire qui pré-autorise jusqu'à 75 % du panier et vous laisse prélever selon votre politique d'annulation en cas de désistement.
 Q : Comment gérer un délai de préparation de 48 heures ?
 R : Chaque produit peut avoir un délai minimum de commande. Un buffet demandé à 48 heures ne pourra être commandé que pour un créneau au-delà de ce délai.
 Q : Les entreprises peuvent-elles commander pour plusieurs personnes ?
@@ -686,7 +686,7 @@ Une heure limite de commande, 11 h ou 11 h 15 pour le midi. Au-delà vous êtes 
 
 Commencez bas et augmentez semaine après semaine : un client qui attend un plat annoncé prêt est plus mécontent qu&rsquo;un client qui fait la queue. Les créneaux pleins disparaissent tout seuls de la liste, personne ne réserve un horaire que vous ne pouvez pas tenir.
 Les commandes de bureau
-La réunion qui commande douze menus est votre meilleure vente de la semaine, et la plus risquée : elle occupe une part entière de votre production et elle s&rsquo;annule parfois la veille au soir. L&rsquo;empreinte bancaire optionnelle réserve 75 % du panier sur la carte du client sans le débiter, et libère la somme automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver.
+La réunion qui commande douze menus est votre meilleure vente de la semaine, et la plus risquée : elle occupe une part entière de votre production et elle s&rsquo;annule parfois la veille au soir. L&rsquo;empreinte bancaire optionnelle réserve jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et libère la somme automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver.
 Combien ça coûte
 
 
@@ -819,7 +819,7 @@ Un client commande « un bar d&rsquo;environ 800 g ». Vous pesez 870 g. Le prix
 Deux solutions simples :
 
 Le paiement à la livraison, au montant exact. Simple, mais vous prenez le risque du client absent.
-L&rsquo;empreinte bancaire. Avec Marchéo, 75 % du panier peut être bloqué sur la carte du client à la commande, sans être débité, puis libéré automatiquement 24 heures après. Vous gardez la souplesse du poids réel, et vous êtes couvert si personne n&rsquo;ouvre la porte. L&rsquo;option est facultative.
+L&rsquo;empreinte bancaire. Avec Marchéo, jusqu&rsquo;à 75 % du panier peut être bloqué sur la carte du client à la commande, sans être débité, puis libéré automatiquement 24 heures après. Vous gardez la souplesse du poids réel, et vous êtes couvert si personne n&rsquo;ouvre la porte. L&rsquo;option est facultative.
 
 Les réglages de la vente au poids (pièces, tranches, kilos) sont expliqués dans notre article sur la vente au poids en ligne.
 Livrer soi-même ou passer par une plateforme ?
@@ -965,7 +965,7 @@ Un champ de précisions pour les allergies, le nombre exact de couverts, le nom 
 Le plat du jour se gère à part : vous publiez le menu de la semaine, les bureaux du quartier commandent avant une heure limite, vous préparez exactement les quantités vendues.
 Comment éviter les commandes annulées au dernier moment ?
 Un buffet de trente personnes annulé la veille, c&rsquo;est une journée de travail et des produits frais perdus. Deux protections existent.
-La première est le paiement en ligne à la commande. La seconde, plus souple, est l&rsquo;empreinte bancaire : 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d&rsquo;absence. L&rsquo;option est facultative. Notre guide sur l&rsquo;empreinte bancaire et les no-shows explique comment la régler.
+La première est le paiement en ligne à la commande. La seconde, plus souple, est l&rsquo;empreinte bancaire : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d&rsquo;absence. L&rsquo;option est facultative. Notre guide sur l&rsquo;empreinte bancaire et les no-shows explique comment la régler.
 Faut-il proposer la livraison sur le site ?
 Pour les plateaux repas en entreprise, souvent oui. Les bureaux veulent recevoir, pas venir chercher.
 Vous pouvez livrer vous-même, avec votre zone, vos créneaux, un minimum de commande et vos frais. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison et votre tournée. Les bonnes pratiques sont dans notre guide pour organiser une livraison locale sans plateforme.
@@ -1054,7 +1054,7 @@ Des jours fermés à la commande si votre boutique ne tient pas le rythme certai
 Commencez avec des créneaux larges et une capacité basse. Vous les ajusterez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
 Payer en ligne ou au retrait ?
 Les deux fonctionnent. Le paiement au retrait rassure les habitués. Le paiement en ligne est plus confortable pour les grosses commandes.
-Le vrai risque, c&rsquo;est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l&rsquo;empreinte bancaire est une bonne protection : elle bloque 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L&rsquo;option est facultative, vous pouvez l&rsquo;activer seulement sur les plateaux. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
+Le vrai risque, c&rsquo;est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l&rsquo;empreinte bancaire est une bonne protection : elle bloque jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L&rsquo;option est facultative, vous pouvez l&rsquo;activer seulement sur les plateaux. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
 Comment préparer les fêtes avec le click and collect ?
 Entre mi-décembre et le 31, une fromagerie fait une part très importante de son année. C&rsquo;est là que la commande en ligne rend le plus de services.
 Ouvrez les précommandes de plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour organiser ses précommandes de Noël.
@@ -1249,7 +1249,7 @@ Le prépaiement intégral en ligne, réflexe naturel quand on monte une boutique
 Trois options tiennent la route :
 
 Le paiement au retrait, au comptoir, comme d&rsquo;habitude. Simple, mais sans garantie si le client ne vient pas.
-L&rsquo;empreinte bancaire. Une partie du panier, 75 % chez Marchéo, est pré-autorisée sur la carte du client à la commande, sans aucun débit. La somme est libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;en entend jamais parler ; celui qui réserve trois kilos de gigot sans intention de venir y réfléchit à deux fois. Le mécanisme est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les no-shows.
+L&rsquo;empreinte bancaire. Une partie du panier, jusqu&rsquo;à 75 % chez Marchéo, est pré-autorisée sur la carte du client à la commande, sans aucun débit. La somme est libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;en entend jamais parler ; celui qui réserve trois kilos de gigot sans intention de venir y réfléchit à deux fois. Le mécanisme est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les no-shows.
 Le paiement en ligne réservé aux formats fixes. Les barquettes et les plateaux ont un prix définitif : rien n&rsquo;empêche de les faire payer d&rsquo;avance, et de laisser le reste du catalogue au comptoir.
 
 Beaucoup de commerces combinent les trois selon le produit. C&rsquo;est un réglage, pas une doctrine.
@@ -1306,7 +1306,7 @@ R : En lui proposant des repères plutôt qu'un champ vide. Des boutons de poids
 Q : Que se passe-t-il si le poids réel n'est pas exactement celui commandé ?
 R : C'est la règle, pas l'exception : on ne coupe pas 500 g de rôti au gramme près. Le client commande un poids approximatif, vous pesez, et vous ajustez le montant avant l'encaissement. Prévenez-le simplement sur la fiche produit, en une phrase du type « le montant sera ajusté au poids exact à la pesée ». Personne ne conteste ce qui a été annoncé avant la commande.
 Q : Faut-il faire payer en ligne quand on vend au poids ?
-R : Le prépaiement intégral est mal adapté : vous devriez rembourser ou recompléter la différence à chaque commande. La plupart des commerces de bouche laissent payer au retrait et activent l'empreinte bancaire, qui réserve 75 % du panier sur la carte sans le débiter et libère la somme 24 heures après le retrait.
+R : Le prépaiement intégral est mal adapté : vous devriez rembourser ou recompléter la différence à chaque commande. La plupart des commerces de bouche laissent payer au retrait et activent l'empreinte bancaire, qui réserve jusqu'à 75 % du panier sur la carte sans le débiter et libère la somme 24 heures après le retrait.
 Q : Et les produits qui se vendent à la pièce mais dont le poids varie, comme un poulet ou un bar entier ?
 R : Vendez-les à la pièce avec une fourchette de poids annoncée, par exemple « poulet fermier, 1,2 à 1,6 kg », et un prix au kilo affiché à côté. Le client sait ce qu'il aura et ce qu'il paiera approximativement, et vous ajustez au moment de la pesée comme pour le reste.
 
@@ -1384,7 +1384,7 @@ Le premier SMS. Quand vous avez trente ou quarante clients enregistrés, un mess
 Comptez trois à quatre semaines avant que le réflexe s&rsquo;installe. Les premières commandes viennent toujours des mêmes cinq ou six habitués, et c&rsquo;est très bien : ce sont eux qui en parlent aux collègues.
 Le cas des grosses commandes
 Le bureau qui commande douze menus pour une réunion est le meilleur client d&rsquo;un food-truck, et le plus risqué. Il occupe une part entière de votre production et il annule parfois la veille au soir.
-Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L&rsquo;empreinte bancaire permet de réserver 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur organiser sa propre livraison locale donne la méthode pour fixer zone, minimum et frais.
+Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L&rsquo;empreinte bancaire permet de réserver jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur organiser sa propre livraison locale donne la méthode pour fixer zone, minimum et frais.
 Pour commencer
 Vous n&rsquo;avez besoin ni d&rsquo;un site, ni d&rsquo;un développeur, ni d&rsquo;une caisse particulière. Il vous faut une page à votre nom, un catalogue, des créneaux réglés à votre cadence et un QR code sur le camion.
 La page détaillée pour ce métier est là : click &amp; collect pour fast-food et food-truck. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
@@ -1458,7 +1458,7 @@ Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du te
 Deux mécanismes fonctionnent, et ils ne s&rsquo;excluent pas :
 
 L&rsquo;acompte : 20 à 30 % à la commande, le solde au retrait. C&rsquo;est la pratique la plus répandue chez les traiteurs et sur les grosses pièces. Elle filtre les commandes qui n&rsquo;étaient qu&rsquo;une intention.
-L&rsquo;empreinte bancaire : le client n&rsquo;est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l&rsquo;empreinte porte sur 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
+L&rsquo;empreinte bancaire : le client n&rsquo;est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l&rsquo;empreinte couvre jusqu&rsquo;à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
 
 Dans les deux cas, la condition juridique est la même : le client doit être informé avant de valider, avec le montant, le délai d&rsquo;annulation gratuite et les conditions. C&rsquo;est détaillé dans notre guide sur l&rsquo;empreinte bancaire et les no-shows.
 Étaler les retraits, la vraie difficulté
@@ -1701,7 +1701,7 @@ Le client annule dans le délai que vous avez fixé. L&rsquo;empreinte est libé
 Le client ne vient pas. Vous pouvez capturer tout ou partie du montant pré-autorisé, selon les conditions annoncées.
 
 Techniquement, c&rsquo;est le même mécanisme qu&rsquo;une caution d&rsquo;hôtel ou de location de voiture. Le client le connaît.
-Sur Marchéo, l&rsquo;empreinte porte sur 75 % du panier pour une commande, ou sur un montant par couvert que vous fixez pour une réservation. Elle est libérée automatiquement 24 heures après le retrait ou le service. Le commerçant décide, commande par commande, s&rsquo;il capture en cas d&rsquo;absence.
+Sur Marchéo, l&rsquo;empreinte couvre jusqu&rsquo;à 75 % du panier pour une commande, ou sur un montant par couvert que vous fixez pour une réservation. Elle est libérée automatiquement 24 heures après le retrait ou le service. Le commerçant décide, commande par commande, s&rsquo;il capture en cas d&rsquo;absence.
 Ce que dit la loi
 Le droit français encadre la pratique par l&rsquo;information du consommateur, pas par une interdiction. Pour qu&rsquo;une retenue soit valable :
 
@@ -1881,7 +1881,7 @@ Ce que le carnet coûte
 Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d&rsquo;une prise de commande manuelle.
 Ce que le site doit faire
 Prendre la commande sans vous interrompre. La cliente choisit le fraisier, la taille, laisse le message pour la plaque, choisit l&rsquo;heure de retrait dimanche, laisse son nom et son numéro. Trente secondes, sans créer de compte, depuis son téléphone. Vous voyez la commande dans la liste du dimanche matin.
-Garantir la commande. Avec une empreinte bancaire, 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n&rsquo;est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
+Garantir la commande. Avec une empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n&rsquo;est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
 Respecter votre production. Des créneaux de retrait par jour et par heure, avec une capacité : dix gâteaux maximum le samedi, cinq le dimanche. Quand c&rsquo;est complet, le client voit le prochain créneau. Vous ne promettez que ce que le fournil peut faire.
 Se gérer depuis le fournil. Masquer un produit épuisé, changer un prix, fermer un créneau : tout depuis le téléphone, en quelques secondes.
 Être trouvé sur Google. Une adresse à votre nom, référencée, avec vos horaires, votre adresse et vos photos.
