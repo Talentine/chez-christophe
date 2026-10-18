@@ -374,7 +374,53 @@ async function actionEnvoyer() {
   return { envoyes: bilan };
 }
 
+// Mail sans appel à Claude : modèle fixe + phrase d'accroche (champ notes) écrite à l'enrichissement.
+// Utilisé quand l'API Claude n'est pas disponible (pas de clé ou pas de crédit).
+function redigerModele(p: any) {
+  const ville = p.ville ? p.ville.toLowerCase().replace(/(^|[\s-])\p{L}/gu, (c: string) => c.toUpperCase()) : '';
+  const accroche = p.notes && /[.!?]$/.test(p.notes.trim()) ? `${p.notes.trim()}\n\n` : '';
+  const salutation = p.contact_nom ? `Bonjour ${p.contact_nom},` : 'Bonjour,';
+  if (p.type === 'association') {
+    return {
+      sujet: ville ? `Un tarif adhérent pour les commerçants de ${ville}` : 'Un tarif adhérent pour vos commerçants',
+      salutation,
+      corps: `${accroche}Beaucoup de commerçants veulent prendre des commandes en ligne sans laisser 25 à 30 % à une plateforme. Marchéo leur crée une boutique en ligne à leur nom : click & collect, livraison locale, réservation, 0 % de commission, abonnement fixe dès 19 €/mois.
+
+Je propose à votre association un tarif partenaire pour vos adhérents, sans convention de votre côté, juste un code adhérent :
+- Vitrine (19 €/mois) : installation à 149 € au lieu de 249 €
+- Click & Collect (39 €/mois) : installation à 199 € au lieu de 399 €
+- Tout-en-un + Livraison (59 €/mois) : installation à 299 € au lieu de 549 €
+- un audit digital offert à chaque commerce qui se lance
+
+Un exemple de boutique en ligne : ${SITE}/chez-christophe
+
+Auriez-vous 15 minutes cette semaine ou la suivante pour en parler ?`,
+    };
+  }
+  return {
+    sujet: `Vos ${p.nb_etablissements ?? ''} boutiques en ligne, sans commission`.replace('  ', ' '),
+    salutation,
+    corps: `${accroche}Avec plusieurs boutiques, prendre les commandes en ligne devient vite un casse-tête, et les plateformes prennent 25 à 30 % sur chaque vente. Marchéo crée une boutique en ligne au nom de chacun de vos commerces : click & collect, livraison locale, précommandes des fêtes, 0 % de commission, abonnement fixe dès 19 €/mois.
+
+Pour un propriétaire de plusieurs boutiques : ${OFFRE_MULTI_TEXTE()}.
+
+Un exemple de boutique en ligne : ${SITE}/chez-christophe
+
+Auriez-vous 15 minutes cette semaine ou la suivante pour en parler ?`,
+  };
+}
+
 async function redigerInitial(p: any) {
+  try {
+    return await redigerAvecClaude(p);
+  } catch (e) {
+    console.warn('[rediger] modèle utilisé :', (e as Error).message);
+    return redigerModele(p);
+  }
+}
+
+async function redigerAvecClaude(p: any) {
+  if (!env('ANTHROPIC_API_KEY') || env('REDACTION') === 'modele') throw new Error('API Claude désactivée');
   const cible = p.type === 'association'
     ? "le responsable d'une association / union de commerçants : proposer un partenariat avec un tarif préférentiel pour ses adhérents"
     : `le propriétaire de ${p.nb_etablissements ?? 'plusieurs'} boutiques alimentaires : proposer Marchéo pour toutes ses boutiques avec le tarif plusieurs boutiques`;
@@ -803,6 +849,18 @@ Pensez aussi à répondre aux commentaires du post du jour : l'API LinkedIn ne p
 }
 
 async function noteInvitation(p: any) {
+  try {
+    return await noteInvitationClaude(p);
+  } catch {
+    const ville = p.ville ? ` à ${p.ville.toLowerCase().replace(/(^|[\s-])\p{L}/gu, (c: string) => c.toUpperCase())}` : '';
+    return p.type === 'association'
+      ? `Bonjour, je vous ai écrit au sujet des commerçants de votre association${ville}. J'accompagne les commerces de proximité dans leur passage au click & collect et serais ravi d'échanger ici.`
+      : `Bonjour, je vous ai écrit au sujet de vos boutiques${ville}. J'accompagne les commerces de bouche dans la vente en ligne sans commission et serais ravi d'échanger ici.`;
+  }
+}
+
+async function noteInvitationClaude(p: any) {
+  if (!env('ANTHROPIC_API_KEY') || env('REDACTION') === 'modele') throw new Error('API Claude désactivée');
   const res = await claude({
     output_config: { effort: 'low' },
     system: `Tu écris des notes d'invitation LinkedIn pour ${SIGNATURE_NOM}, fondateur de Marchéo (boutique en ligne sans commission pour commerces de bouche).

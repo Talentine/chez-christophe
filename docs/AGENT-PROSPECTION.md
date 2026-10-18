@@ -6,6 +6,10 @@ Fonction Supabase `agent-prospection` + migration `supabase/migrations/20261018_
 Le secret d'appel est généré dans Supabase Vault (`agent_prospection_secret`) : rien à configurer. Les étapes ci-dessous
 qui parlent de `AGENT_SECRET` ou du bloc `cron.schedule` sont déjà faites par la migration.
 Reste à fournir : `ANTHROPIC_API_KEY` (obligatoire pour écrire les mails), et en option le jeton LinkedIn et la réception des réponses.
+**Mode gratuit (actif tant que l'API Claude n'a pas de crédit)** : les mails partent sur des modèles fixes
+(`redigerModele`) avec la phrase d'accroche du champ `notes`. La recherche des coordonnées est faite chaque jour ouvré à 6h52
+par une tâche programmée Claude Code (« Prospection Marchéo : recherche des contacts ») qui remplit `agent_prospects`.
+Dès qu'il y a du crédit sur l'API, la fonction repasse seule à la rédaction et à l'enrichissement par Claude.
 Valeurs par défaut : signature « Paul Merieult, Fondateur », envoi depuis l'adresse de `RESEND_FROM`, réponses et récap sur
 marcheo.contact@gmail.com, 25 mails initiaux par jour, entreprises de 2 à 30 établissements.
 
