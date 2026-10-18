@@ -97,3 +97,22 @@ Les messages à envoyer sont dans `docs/linkedin-prospection.md`, section 1.
 **Alençon / Évreux (CCI, mairie)**
 > Bonjour [Prénom], je lance depuis Caen une solution de vente en ligne sans commission pour les commerces de proximité. J'aimerais échanger sur le commerce à [Ville]. Au plaisir !
 
+---
+
+## Qui contacter : noms trouvés (recherche du 18/10/2026)
+
+> Fiabilité : ✅ source récente et concordante · ⚠️ source ancienne ou unique · ❌ rien trouvé.
+> Sur LinkedIn, tape le nom de la personne et la ville. Si elle n'apparaît pas, passe par la page Facebook de l'association.
+
+| Association | Personne à contacter | Fiabilité | Source |
+|---|---|---|---|
+| Vitrines de Caen | **Miguel Pinto**, président élu en avril 2024 (Colombus Café, Comptoir de Mathilde). Un article de 2025 citerait **Julien Vittecoq**, non confirmé. Autre contact : **Pierre Delarue** (chef de projet « Boulevard des héros »). | ⚠️ | [vitrines-caen.fr](https://www.vitrines-caen.fr/rubriques/association/presentation-10.html) · [Tendance Ouest](https://www.tendanceouest.com/actualite-431562-caen-convivialite-musique-et-nourriture-voici-le-banquet-des-1-000-couverts) |
+| Bayeux Shopping | **Romuald Colin**, co-président (boutique RDH, prêt-à-porter) | ⚠️ | [Tendance Ouest](https://www.tendanceouest.com/actualite-382705-calvados-une-reouverture-au-beau-fixe-pour-les-commercants-bayeusains.html) |
+| CAPLisieux | **Jean-Pierre Gosselin**, président | ⚠️ (page d'environ 2 ans) | [caplisieux.fr](https://caplisieux.fr/lassociation) |
+| UCIA Ouistreham Riva Bella | **Dissoute en janvier 2022.** Passer par la mairie (maire : Romain Bail) ou la CCI Caen Normandie. | ✅ | [assoce.fr](https://assoce.fr/departement/14/CALVADOS/commune/14488/Ouistreham?cat=economie) |
+| UCIA Falaise | Active : quinzaine commerciale de décembre 2025. Nom du président non trouvé. | ❌ nom | [jds.fr](https://www.jds.fr/caen/manifestations/la-quinzaine-commerciale-de-l-ucia-1265442_A) |
+| Honfleur | **Les Vitrines Honfleuraises**, nouvelle association créée en juin 2025. Président non nommé. | ❌ nom | [PV conseil municipal déc. 2025](https://www.ville-honfleur.com/wp-content/uploads/2025/12/20251014-proces-verbal-publi.pdf) |
+| Vitrines de Rouen | **Fabrice Antoncic**, président ; **Antoine Fauquembergue** et **José Ortuzar**, vice-présidents. L'association a une **page LinkedIn**. | ⚠️ (page non datée) | [vitrinesrouen.fr](https://vitrinesrouen.fr/les-vitrines-de-rouen/) · [LinkedIn](https://fr.linkedin.com/company/vitrines-de-rouen) |
+| Union Cherbourg Commerces | **Florence Kwiatek**, présidente | ✅ (2 sources) | [ucc-boutique.fr](https://www.ucc-boutique.fr/mentions-legales/) · [Réussir](https://www.reussir.fr/lesmarches/lunion-cherbourg-commerces-ouvre-sa-boutique-en-ligne) |
+| Saint-Lô Commerces | **David Lalinec**, vice-président (info ancienne) | ⚠️ | [Tendance Ouest](https://www.tendanceouest.com/actualite-54372-saint-lo-commerces-fete-les-mamans) |
+| Le Havre, Alençon, Évreux, Vire | Aucun nom fiable. Passer par le manager de commerce de la mairie ou la CCI. | ❌ | — |
