@@ -29,7 +29,7 @@ Variante plus courte :
 - **Prénom / Nom** : Paul Merieult
 - **Poste actuel** : Fondateur, Marchéo
 - **Secteur** : Développement de logiciels
-- **Lieu** : [ta ville], France. Mets ta vraie ville : les associations de commerçants cherchent quelqu'un de proche.
+- **Lieu** : Caen, Normandie, France.
 - **Site web** (Coordonnées → Site web, type « Entreprise ») : https://marchéo.fr
 - **Lien personnalisé** (bouton « Modifier le profil public et l'URL », à droite) : linkedin.com/in/paul-merieult
 - **Lien affiché sous ton nom** (réservé à Premium) : si tu prends Premium, mets https://marchéo.fr/chez-christophe avec le libellé « Voir une boutique en exemple ». Sans Premium, le lien du site dans tes coordonnées suffit.
@@ -69,7 +69,7 @@ Ajoute 3 éléments, dans cet ordre :
 
 ### 7. Expérience
 
-**Fondateur, Marchéo**, [mois et année de création], aujourd'hui. Lieu : [ville]. Type : Indépendant.
+**Fondateur, Marchéo**, octobre 2026, aujourd'hui. Lieu : Caen, Normandie, France. Type : Indépendant.
 
 > Marchéo est le logiciel français de click & collect, de livraison locale et de réservation pour les commerces de bouche. 0 % de commission, un abonnement fixe.
 >
