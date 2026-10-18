@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-10-16
+modified: 2026-10-18
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -95,7 +95,7 @@ Beaucoup de commerces combinent les trois selon le produit. C'est un réglage, p
 | Primeur | Fruits et légumes au kilo | Paniers de saison, bottes, corbeilles |
 | Traiteur | Salades et plats au poids | Parts, plats pour 4 ou 6, menus complets |
 
-La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste.
+La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée.
 
 ## Trois erreurs qui coûtent des commandes
 

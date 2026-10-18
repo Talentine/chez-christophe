@@ -5,6 +5,7 @@ description: "Zone, créneaux, minimum de commande, frais, tournée : la méthod
 meta_title: "Organiser sa livraison locale de commerçant"
 meta_description: "Zone, créneaux, minimum de commande, frais et tournée : comment organiser soi-même sa livraison locale sans plateforme et sans y perdre d'argent."
 date: 2026-08-28
+modified: 2026-10-18
 rubrique: Guide
 emoji: 🚚
 keywords:
@@ -28,7 +29,7 @@ faq:
     r: "Empreinte bancaire ou paiement en ligne à la commande, et un SMS avant le départ de la tournée. Une absence sans réponse est facturée selon la politique annoncée au client."
 ---
 
-Livrer ses clients dans le quartier, c'est toucher ceux qui ne viennent pas en boutique : les bureaux à midi, les familles le soir, les personnes qui ne se déplacent plus. Pour un primeur, un traiteur, un fleuriste ou un fromager, c'est souvent 15 à 30 % de chiffre d'affaires en plus. À condition de le faire **à ses conditions**, pas à celles d'une plateforme qui prend 30 % et impose ses horaires.
+Livrer ses clients dans le quartier, c'est toucher ceux qui ne viennent pas en boutique : les bureaux à midi, les familles le soir, les personnes qui ne se déplacent plus. Pour un primeur, un traiteur, un fleuriste ou un fromager, ce sont des ventes en plus, auprès de clients que vous ne voyez pas au comptoir. À condition de le faire **à ses conditions**, pas à celles d'une plateforme qui prend jusqu'à 30 % de commission et impose ses horaires.
 
 Voici la méthode, en six réglages.
 
@@ -41,6 +42,8 @@ Ne livrez pas « partout ». Définissez une zone que vous pouvez couvrir en une
 Livrer à la demande est le meilleur moyen de se faire déborder. Ouvrez **deux ou trois créneaux par semaine** : mardi et vendredi de 17 h à 19 h pour un primeur, le midi en semaine pour un traiteur qui vise les bureaux, le samedi matin pour un fleuriste. Les commandes se regroupent sur ces créneaux et la tournée se fait d'une traite.
 
 Fixez aussi un délai minimum : commande la veille avant 20 h pour une livraison le lendemain, 48 heures pour un buffet.
+
+Pour les produits de la mer, plus fragiles, nous avons écrit un guide à part sur la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile), avec la chaîne du froid pendant la tournée.
 
 ## 3. Le minimum de commande et les frais
 

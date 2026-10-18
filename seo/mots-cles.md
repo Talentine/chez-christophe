@@ -31,7 +31,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison à domicile boucherie | livraison | boucherie | GS | haute | à faire (angle : livrer soi-même) |
 | primeur livraison à domicile | livraison | primeur | GS | moyenne | partiellement couvert par livraison-locale-commercant-comment-organiser |
 | fromagerie livraison à domicile | livraison | fromagerie | GS | moyenne | à faire (pas avant novembre, fromagerie publiée le 16/10) |
-| poissonnerie livraison à domicile | livraison | poissonnerie | GS | haute | à faire (chaîne du froid) |
+| poissonnerie livraison à domicile | livraison | poissonnerie | GS + WS (1re page : PDF administratifs, annuaires, faible) | haute | publié le 2026-10-18 poissonnerie-livraison-a-domicile |
 | livraison traiteur à domicile | livraison | traiteur | GS | moyenne | à faire |
 | pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | à faire (dominé par les plateformes, angle « livrer soi-même ») |
 | service de livraison à domicile restaurant | livraison | restaurant | GS | moyenne | à faire |
@@ -63,8 +63,16 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | traiteur livraison repas entreprise | livraison | traiteur | GS (17/10) | moyenne | même article que la ligne précédente |
 | traiteur vente en ligne | click & collect | traiteur | GS (17/10) | moyenne | à faire |
 | devis traiteur en ligne | transverse | traiteur | GS (17/10) | basse | écarté : Marchéo ne fait pas de devis, intention annuaires |
-| poissonnerie livraison à domicile | livraison | poissonnerie | GS (17/10) | haute | confirmé par la suggestion, à faire |
-| livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | variante de poissonnerie livraison à domicile |
+| poissonnerie livraison à domicile | livraison | poissonnerie | GS (17/10) | haute | doublon, voir ligne publiée le 2026-10-18 |
+| livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
 | création site internet pour restaurant | site | restaurant | GS (17/10) | haute | à faire (à fusionner avec « combien coûte un site internet pour un restaurant ») |
 | boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | variante de boucherie click and collect |
 | primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10) | haute | à faire (article dédié click and collect primeur, pas de page blog primeur à ce jour) |
+| poissonnier livraison domicile | livraison | poissonnerie | GS (18/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
+| livraison fruits de mer à domicile | livraison | poissonnerie | GS (18/10) | moyenne | à faire en novembre, avec l'article plateau de fruits de mer de Noël |
+| poissonnerie en ligne livraison | site | poissonnerie | GS (18/10) | moyenne | à faire (angle : créer le site de sa poissonnerie) |
+| site de poissonnerie | site | poissonnerie | GS (18/10) | moyenne | même article que la ligne précédente |
+| transport de produits frais réglementation | livraison | transverse | GS (18/10) | moyenne | à faire (vérifier les sources officielles DGAL/DDPP avant d'écrire) |
+| température transport produits frais | livraison | transverse | GS (18/10) | basse | à fondre dans l'article réglementation |
+| livraison à domicile comment faire | livraison | transverse | GS (18/10) | moyenne | proche de livraison-locale-commercant-comment-organiser, à retravailler dans cette page |
+| commerce livraison à domicile | livraison | transverse | GS (18/10) | basse | générique |
