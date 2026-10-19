@@ -182,7 +182,9 @@ def breadcrumb_ld(items: list[tuple[str, str]]) -> dict:
 
 def org_ld() -> dict:
     return {"@type": "Organization", "@id": f"{HOST}/#org", "name": BRAND, "url": HOST + "/", "logo": LOGO,
-            "founder": {"@type": "Person", "name": FONDATEUR}, "email": CONTACT, "areaServed": "FR"}
+            "founder": {"@type": "Person", "name": FONDATEUR}, "email": CONTACT, "areaServed": "FR",
+            "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+            "description": f"{BRAND} est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."}
 
 
 SUFFIXE_TITRE = f" · {BRAND}"
@@ -380,8 +382,8 @@ def build_pages(arts: list[dict]) -> list[str]:
 # ─────────────────────────────────────────────────────────────
 def build_llms(arts: list[dict], metiers: list[dict]) -> None:
     lignes = [f"# {BRAND}", "",
-              f"> {BRAND} (marchéo.fr) est un logiciel français de boutique en ligne pour les commerces de bouche et artisans indépendants : "
-              "click & collect, livraison locale et réservation de table. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte "
+              f"> {BRAND} (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. "
+              "Il s'adresse aux commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Aucune tablette, imprimante ou caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur du commerçant. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte "
               "et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, "
               "frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. "
               f"Fondé par {FONDATEUR}. Données hébergées en Europe, paiements Stripe.", "",

@@ -86,3 +86,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
 | tarif site internet restaurant | site | restaurant | GS (19/10) | haute | à faire (avec « combien coûte un site internet pour un restaurant ») |
 | boucherie click and collect halal | click & collect | boucherie | GS (19/10) | basse | variante de l'article boucherie à venir |
+| créer sa boutique en ligne comment faire | site | tous | GS (19/10) | haute | à faire : page pilier « créer la boutique en ligne de son commerce » (hub vers tous les articles site) |
+| créer sa boutique en ligne pas cher | site | tous | GS (19/10) | haute | à faire (angle prix réels, sans matériel ni commission) |
+| boutique en ligne sans abonnement | site | tous | GS (19/10) | moyenne | à faire (comparatif honnête : commission contre abonnement fixe) |
+| boutique en ligne sans frais | site | tous | GS (19/10) | moyenne | même article que la ligne précédente |
+| click and collect ça veut dire quoi | click & collect | tous | GS (19/10) | haute | à faire : page pilier « click & collect pour commerçant : le guide complet » (définition + hub) |
+| logiciel commande en ligne gratuit | click & collect | tous | GS (19/10) | moyenne | à faire (avec « application click and collect gratuite ») |
+| créer un site de vente en ligne prix | site | tous | GS (19/10) | moyenne | proche de combien-coute-un-site-de-click-and-collect, à renforcer dans cette page |
+| click and collect sans matériel | transverse | tous | positionnement (pas de volume Google) | moyenne | argument à placer dans chaque page pilier et dans la FAQ, pas d'article dédié |

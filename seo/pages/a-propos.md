@@ -4,7 +4,7 @@ description: "Marchéo est un logiciel français de click & collect, livraison l
 meta_title: "À propos de Marchéo, logiciel des commerces de bouche"
 meta_description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, dès 19 € par mois."
 h1: "Marchéo, c'est quoi ?"
-lead: "Marchéo est un logiciel français qui donne à chaque commerce de bouche sa boutique en ligne : les clients commandent depuis leur téléphone en 30 secondes et viennent retirer à l'heure choisie, ou se font livrer dans le quartier. Sans commission."
+lead: "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Les clients commandent depuis leur téléphone en 30 secondes et viennent retirer à l'heure choisie, ou se font livrer dans le quartier."
 eyebrow: "À propos"
 faq:
   - q: "Qui est derrière Marchéo ?"
@@ -34,6 +34,7 @@ faq:
 - La **réservation de table** pour les restaurants.
 - Une **base clients** qui appartient au commerçant, avec SMS et notifications inclus.
 - Un tableau de bord sur téléphone, des comptes pour les salariés, des statistiques de ventes.
+- **Aucun matériel à acheter** : pas de tablette, d'imprimante ni de caisse imposée. Tout se gère depuis le téléphone ou l'ordinateur que le commerçant a déjà.
 
 ## Ce que Marchéo ne fait pas
 
