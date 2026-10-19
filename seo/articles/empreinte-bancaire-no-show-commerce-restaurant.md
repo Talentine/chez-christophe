@@ -48,7 +48,7 @@ L'empreinte est une **pré-autorisation** : au moment de la commande ou de la r�
 
 Techniquement, c'est le même mécanisme qu'une caution d'hôtel ou de location de voiture. Le client le connaît.
 
-Sur Marchéo, l'empreinte porte sur **75 % du panier** pour une commande, ou sur un montant par couvert que vous fixez pour une réservation. Elle est **libérée automatiquement 24 heures après** le retrait ou le service. Le commerçant décide, commande par commande, s'il capture en cas d'absence.
+Sur Marchéo, l'empreinte couvre **jusqu'à 75 % du panier** pour une commande, ou sur un montant par couvert que vous fixez pour une réservation. Elle est **libérée automatiquement 24 heures après** le retrait ou le service. Le commerçant décide, commande par commande, s'il capture en cas d'absence.
 
 ## Ce que dit la loi
 

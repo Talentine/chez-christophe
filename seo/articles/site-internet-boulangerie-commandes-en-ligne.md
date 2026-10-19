@@ -36,7 +36,7 @@ Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le 
 
 **Prendre la commande sans vous interrompre.** La cliente choisit le fraisier, la taille, laisse le message pour la plaque, choisit l'heure de retrait dimanche, laisse son nom et son numéro. Trente secondes, sans créer de compte, depuis son téléphone. Vous voyez la commande dans la liste du dimanche matin.
 
-**Garantir la commande.** Avec une empreinte bancaire, 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n'est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
+**Garantir la commande.** Avec une empreinte bancaire, jusqu'à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n'est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
 
 **Respecter votre production.** Des créneaux de retrait par jour et par heure, avec une capacité : dix gâteaux maximum le samedi, cinq le dimanche. Quand c'est complet, le client voit le prochain créneau. Vous ne promettez que ce que le fournil peut faire.
 

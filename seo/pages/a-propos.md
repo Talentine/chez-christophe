@@ -28,7 +28,7 @@ faq:
 - Une **boutique en ligne** à l'adresse marchéo.fr/nom-du-commerce, aux couleurs du commerçant, référencée sur Google.
 - La **commande en 30 secondes** depuis un téléphone, sans application ni compte client, avec paiement en ligne ou au retrait.
 - Des **créneaux de retrait** par jour et par heure, avec une capacité maximale.
-- Une **empreinte bancaire** optionnelle contre les commandes non retirées et les réservations non honorées : 75 % du panier pré-autorisé, libéré 24 heures après le retrait.
+- Une **empreinte bancaire** optionnelle contre les commandes non retirées et les réservations non honorées : jusqu'à 75 % du panier pré-autorisé, libéré 24 heures après le retrait.
 - La **vente au poids**, les options, les précisions du client.
 - La **livraison locale** organisée par le commerçant : zone, créneaux, minimum de commande, frais, tournée.
 - La **réservation de table** pour les restaurants.

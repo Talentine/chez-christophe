@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect primeur : paniers, vente au kilo et retrait rapide](https://marchéo.fr/blog/click-and-collect-primeur) : Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](https://marchéo.fr/blog/poissonnerie-livraison-a-domicile) : Poissonnerie et livraison à domicile : zone, créneaux, glace et caisses isothermes, frais, pesée et paiement. Le guide pour livrer vos clients vous-même.
 - [Création site internet traiteur : par où commencer, quel budget](https://marchéo.fr/blog/creation-site-internet-traiteur) : Création d'un site internet pour traiteur : les pages indispensables, les photos, le prix selon la solution et la prise de commandes de plateaux en ligne.
 - [Click and collect fromagerie : commandes à la coupe et plateaux](https://marchéo.fr/blog/click-and-collect-fromagerie) : Mettre en place le click and collect dans une fromagerie : vendre à la coupe, en plateaux et en formules raclette, et régler ses créneaux de retrait.

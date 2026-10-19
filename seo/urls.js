@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/click-and-collect-primeur",
   "/blog/poissonnerie-livraison-a-domicile",
   "/blog/creation-site-internet-traiteur",
   "/blog/click-and-collect-fromagerie",

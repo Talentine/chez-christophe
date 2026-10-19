@@ -97,7 +97,7 @@ Un client commande « un bar d'environ 800 g ». Vous pesez 870 g. Le prix chang
 Deux solutions simples :
 
 - **Le paiement à la livraison**, au montant exact. Simple, mais vous prenez le risque du client absent.
-- **L'empreinte bancaire.** Avec Marchéo, 75 % du panier peut être bloqué sur la carte du client à la commande, sans être débité, puis libéré automatiquement 24 heures après. Vous gardez la souplesse du poids réel, et vous êtes couvert si personne n'ouvre la porte. L'option est facultative.
+- **L'empreinte bancaire.** Avec Marchéo, jusqu'à 75 % du panier peut être bloqué sur la carte du client à la commande, sans être débité, puis libéré automatiquement 24 heures après. Vous gardez la souplesse du poids réel, et vous êtes couvert si personne n'ouvre la porte. L'option est facultative.
 
 Les réglages de la vente au poids (pièces, tranches, kilos) sont expliqués dans notre article sur [la vente au poids en ligne](/blog/vendre-au-poids-en-ligne).
 

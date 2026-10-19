@@ -99,7 +99,7 @@ Le plat du jour se gère à part : vous publiez le menu de la semaine, les burea
 
 Un buffet de trente personnes annulé la veille, c'est une journée de travail et des produits frais perdus. Deux protections existent.
 
-La première est le paiement en ligne à la commande. La seconde, plus souple, est l'empreinte bancaire : 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d'absence. L'option est facultative. Notre guide sur [l'empreinte bancaire et les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant) explique comment la régler.
+La première est le paiement en ligne à la commande. La seconde, plus souple, est l'empreinte bancaire : jusqu'à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d'absence. L'option est facultative. Notre guide sur [l'empreinte bancaire et les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant) explique comment la régler.
 
 ## Faut-il proposer la livraison sur le site ?
 

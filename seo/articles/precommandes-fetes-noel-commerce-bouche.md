@@ -73,7 +73,7 @@ Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du te
 Deux mécanismes fonctionnent, et ils ne s'excluent pas :
 
 1. **L'acompte** : 20 à 30 % à la commande, le solde au retrait. C'est la pratique la plus répandue chez les traiteurs et sur les grosses pièces. Elle filtre les commandes qui n'étaient qu'une intention.
-2. **L'empreinte bancaire** : le client n'est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l'empreinte porte sur 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
+2. **L'empreinte bancaire** : le client n'est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l'empreinte couvre jusqu'à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
 
 Dans les deux cas, la condition juridique est la même : le client doit être informé avant de valider, avec le montant, le délai d'annulation gratuite et les conditions. C'est détaillé dans notre guide sur [l'empreinte bancaire et les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
 

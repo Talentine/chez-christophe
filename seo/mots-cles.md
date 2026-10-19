@@ -8,7 +8,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boulangerie click and collect | click & collect | boulangerie | GSC (32 impr., pos. 25,6) | haute | à faire : retravailler title et H2 de site-internet-boulangerie-commandes-en-ligne plutôt qu'un nouvel article (cannibalisation) |
 | boulangerie en click and collect | click & collect | boulangerie | GSC (11 impr., pos. 28,6) | haute | même cible que la ligne précédente |
 | précommande boulangerie | click & collect | boulangerie | GSC (6 impr., pos. 12,0) | haute | à faire (angle : commandes de gâteaux, galette des rois en décembre) |
-| comparatif création site click and collect | transverse | tous | GSC (15 impr., pos. 3,7) | haute | publié le 2026-08-26 logiciel-click-and-collect-comparatif-2026 (title à retravailler, 0 clic) |
+| comparatif création site click and collect | transverse | tous | GSC (13 impr., pos. 3,5 au 19/10) | haute | publié le 2026-08-26 logiciel-click-and-collect-comparatif-2026 (title et description retravaillés le 2026-10-19, à suivre) |
 | commande galette des rois en ligne | click & collect | boulangerie | GS | haute | à faire (publier début décembre) |
 | création site internet traiteur | site | traiteur | GS + WS (1re page faite de freelances, faible) | haute | publié le 2026-10-17 creation-site-internet-traiteur |
 | site internet pour traiteur | site | traiteur | GS | haute | couvert par creation-site-internet-traiteur (2026-10-17) |
@@ -67,7 +67,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
 | création site internet pour restaurant | site | restaurant | GS (17/10) | haute | à faire (à fusionner avec « combien coûte un site internet pour un restaurant ») |
 | boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | variante de boucherie click and collect |
-| primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10) | haute | à faire (article dédié click and collect primeur, pas de page blog primeur à ce jour) |
+| primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10 ; pos. 57,4 au 19/10) + GS (« primeur click and collect ») | haute | publié le 2026-10-19 click-and-collect-primeur |
 | poissonnier livraison domicile | livraison | poissonnerie | GS (18/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
 | livraison fruits de mer à domicile | livraison | poissonnerie | GS (18/10) | moyenne | à faire en novembre, avec l'article plateau de fruits de mer de Noël |
 | poissonnerie en ligne livraison | site | poissonnerie | GS (18/10) | moyenne | à faire (angle : créer le site de sa poissonnerie) |
@@ -76,3 +76,13 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | température transport produits frais | livraison | transverse | GS (18/10) | basse | à fondre dans l'article réglementation |
 | livraison à domicile comment faire | livraison | transverse | GS (18/10) | moyenne | proche de livraison-locale-commercant-comment-organiser, à retravailler dans cette page |
 | commerce livraison à domicile | livraison | transverse | GS (18/10) | basse | générique |
+| commande primeur | click & collect | primeur | GS (19/10) | moyenne | couvert par click-and-collect-primeur (2026-10-19) |
+| primeur commande en ligne | click & collect | primeur | GS (19/10) | moyenne | couvert par click-and-collect-primeur (2026-10-19) |
+| maraîcher vente en ligne | site | primeur | GS (19/10) | moyenne | à faire (angle : vente directe à la ferme et points de retrait) |
+| commande fruits et légumes en ligne | click & collect | primeur | GS (19/10) | basse | dominé par la grande distribution, en variante de l'article primeur |
+| commande boulangerie en ligne | click & collect | boulangerie | GSC (pos. 14,0, 19/10) | haute | à faire : renforcer site-internet-boulangerie-commandes-en-ligne (même cible que « boulangerie click and collect ») |
+| click and collect food truck | click & collect | fastfood | GSC (pos. 13,5, 19/10) | moyenne | publié le 2026-09-17 click-and-collect-food-truck (à enrichir lors d'un prochain lundi) |
+| fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | à faire (requêtes locales nombreuses, pas d'article fleuriste à ce jour) |
+| site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
+| tarif site internet restaurant | site | restaurant | GS (19/10) | haute | à faire (avec « combien coûte un site internet pour un restaurant ») |
+| boucherie click and collect halal | click & collect | boucherie | GS (19/10) | basse | variante de l'article boucherie à venir |

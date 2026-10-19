@@ -2,9 +2,10 @@
 title: "Logiciel de click & collect : comparatif des solutions pour commerçants en 2026"
 titre_court: "Comparatif des logiciels de click & collect"
 description: "Plateformes, constructeurs de sites, outils de restauration, solutions spécialisées commerces de bouche : les critères qui comptent vraiment pour un artisan, un tableau comparatif honnête et la grille pour choisir en dix minutes."
-meta_title: "Comparatif des logiciels de click & collect 2026"
-meta_description: "Quel logiciel de click & collect choisir en 2026 : commissions, abonnement, fonctions utiles à un commerce de bouche. Comparatif honnête."
+meta_title: "Comparatif création site click and collect 2026"
+meta_description: "Comparatif pour créer un site de click and collect en 2026 : commissions, abonnements, fonctions utiles à un commerce de bouche et grille de choix."
 date: 2026-08-26
+modified: 2026-10-19
 rubrique: Comparatif
 emoji: 🔍
 keywords:
@@ -12,6 +13,8 @@ keywords:
   - meilleur logiciel click and collect
   - solution click and collect commerçant
   - comparatif click and collect
+  - comparatif création site click and collect
+  - comparer création site click and collect
 metiers:
   - boulangerie
   - boucherie
@@ -24,9 +27,11 @@ faq:
     r: "Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande. Il n'existe pas d'outil sérieux gratuit sans commission : un abonnement de 19 à 59 € par mois est le prix normal d'une solution sans commission."
   - q: "Combien de temps pour changer de logiciel ?"
     r: "Une journée si le nouvel outil fournit un catalogue pré-rempli et si vous pouvez exporter votre base clients de l'ancien. Vérifiez ce point avant de signer quoi que ce soit."
+  - q: "Faut-il créer son site de click and collect soi-même ou passer par une solution métier ?"
+    r: "Un constructeur de site généraliste demande d'assembler soi-même la boutique, les créneaux et le paiement, souvent avec des modules payants. Une solution métier arrive avec un catalogue pré-rempli et les réglages propres aux commerces de bouche. Le bon choix dépend du temps que vous pouvez y consacrer."
 ---
 
-Le marché du click & collect pour commerçants s'est structuré en quatre familles. Aucune n'est la meilleure dans l'absolu ; chacune correspond à un type de commerce. Ce comparatif donne les critères qui comptent pour un artisan, situe chaque famille, et fournit une grille pour choisir sans y passer un week-end.
+Le marché du click & collect pour commerçants s'est structuré en quatre familles. Aucune n'est la meilleure dans l'absolu ; chacune correspond à un type de commerce. Ce comparatif donne les critères qui comptent pour un artisan, situe chaque famille, et fournit une grille pour choisir sans y passer un week-end. Il répond à la question que se pose tout commerçant avant la création d'un site de click and collect : quel type d'outil, pour quel prix, avec quelles limites.
 
 ## Les critères qui comptent pour un commerce de bouche
 

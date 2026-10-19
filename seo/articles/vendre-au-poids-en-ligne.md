@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-10-18
+modified: 2026-10-19
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -26,7 +26,7 @@ faq:
   - q: "Que se passe-t-il si le poids réel n'est pas exactement celui commandé ?"
     r: "C'est la règle, pas l'exception : on ne coupe pas 500 g de rôti au gramme près. Le client commande un poids approximatif, vous pesez, et vous ajustez le montant avant l'encaissement. Prévenez-le simplement sur la fiche produit, en une phrase du type « le montant sera ajusté au poids exact à la pesée ». Personne ne conteste ce qui a été annoncé avant la commande."
   - q: "Faut-il faire payer en ligne quand on vend au poids ?"
-    r: "Le prépaiement intégral est mal adapté : vous devriez rembourser ou recompléter la différence à chaque commande. La plupart des commerces de bouche laissent payer au retrait et activent l'empreinte bancaire, qui réserve 75 % du panier sur la carte sans le débiter et libère la somme 24 heures après le retrait."
+    r: "Le prépaiement intégral est mal adapté : vous devriez rembourser ou recompléter la différence à chaque commande. La plupart des commerces de bouche laissent payer au retrait et activent l'empreinte bancaire, qui réserve jusqu'à 75 % du panier sur la carte sans le débiter et libère la somme 24 heures après le retrait."
   - q: "Et les produits qui se vendent à la pièce mais dont le poids varie, comme un poulet ou un bar entier ?"
     r: "Vendez-les à la pièce avec une fourchette de poids annoncée, par exemple « poulet fermier, 1,2 à 1,6 kg », et un prix au kilo affiché à côté. Le client sait ce qu'il aura et ce qu'il paiera approximativement, et vous ajustez au moment de la pesée comme pour le reste."
 ---
@@ -80,7 +80,7 @@ Le prépaiement intégral en ligne, réflexe naturel quand on monte une boutique
 Trois options tiennent la route :
 
 - **Le paiement au retrait**, au comptoir, comme d'habitude. Simple, mais sans garantie si le client ne vient pas.
-- **L'empreinte bancaire.** Une partie du panier, 75 % chez Marchéo, est pré-autorisée sur la carte du client à la commande, sans aucun débit. La somme est libérée automatiquement 24 heures après le retrait. Le client sérieux n'en entend jamais parler ; celui qui réserve trois kilos de gigot sans intention de venir y réfléchit à deux fois. Le mécanisme est détaillé dans notre article sur [l'empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
+- **L'empreinte bancaire.** Une partie du panier, jusqu'à 75 % chez Marchéo, est pré-autorisée sur la carte du client à la commande, sans aucun débit. La somme est libérée automatiquement 24 heures après le retrait. Le client sérieux n'en entend jamais parler ; celui qui réserve trois kilos de gigot sans intention de venir y réfléchit à deux fois. Le mécanisme est détaillé dans notre article sur [l'empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
 - **Le paiement en ligne réservé aux formats fixes.** Les barquettes et les plateaux ont un prix définitif : rien n'empêche de les faire payer d'avance, et de laisser le reste du catalogue au comptoir.
 
 Beaucoup de commerces combinent les trois selon le produit. C'est un réglage, pas une doctrine.
@@ -95,7 +95,7 @@ Beaucoup de commerces combinent les trois selon le produit. C'est un réglage, p
 | Primeur | Fruits et légumes au kilo | Paniers de saison, bottes, corbeilles |
 | Traiteur | Salades et plats au poids | Parts, plats pour 4 ou 6, menus complets |
 
-La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée.
+La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du [click and collect primeur](/blog/click-and-collect-primeur) montre comment faire cohabiter paniers de la semaine et vente au kilo.
 
 ## Trois erreurs qui coûtent des commandes
 

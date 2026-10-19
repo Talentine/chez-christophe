@@ -95,7 +95,7 @@ Comptez trois à quatre semaines avant que le réflexe s'installe. Les première
 
 Le bureau qui commande douze menus pour une réunion est le meilleur client d'un food-truck, et le plus risqué. Il occupe une part entière de votre production et il annule parfois la veille au soir.
 
-Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L'empreinte bancaire permet de réserver 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n'y voit rien passer, l'autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur [organiser sa propre livraison locale](/blog/livraison-locale-commercant-comment-organiser) donne la méthode pour fixer zone, minimum et frais.
+Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L'empreinte bancaire permet de réserver jusqu'à 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n'y voit rien passer, l'autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur [organiser sa propre livraison locale](/blog/livraison-locale-commercant-comment-organiser) donne la méthode pour fixer zone, minimum et frais.
 
 ## Pour commencer
 

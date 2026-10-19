@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect primeur : paniers, vente au kilo et retrait rapide](https://marchéo.fr/blog/click-and-collect-primeur) : Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](https://marchéo.fr/blog/poissonnerie-livraison-a-domicile) : Poissonnerie et livraison à domicile : zone, créneaux, glace et caisses isothermes, frais, pesée et paiement. Le guide pour livrer vos clients vous-même.
 - [Création site internet traiteur : par où commencer, quel budget](https://marchéo.fr/blog/creation-site-internet-traiteur) : Création d'un site internet pour traiteur : les pages indispensables, les photos, le prix selon la solution et la prise de commandes de plateaux en ligne.
 - [Click and collect fromagerie : commandes à la coupe et plateaux](https://marchéo.fr/blog/click-and-collect-fromagerie) : Mettre en place le click and collect dans une fromagerie : vendre à la coupe, en plateaux et en formules raclette, et régler ses créneaux de retrait.
@@ -736,6 +737,124 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Click and collect primeur : paniers, vente au kilo et retrait rapide
+
+Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
+
+Le click and collect chez un primeur, c&rsquo;est laisser vos clients composer leur panier de fruits et légumes en ligne, puis le retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client pressé repart en deux minutes, et les paniers de la semaine se vendent avant même votre passage au marché de gros ou votre récolte.
+Un primeur a ses propres contraintes : des produits vendus au poids, des arrivages qui changent chaque jour, des ruptures fréquentes. On pourrait croire que cela ne se met pas en ligne. En pratique, ces contraintes se règlent avec quelques réglages simples, à condition de ne pas vouloir tout mettre sur internet le premier jour.
+Pourquoi proposer le click and collect dans un primeur ?
+Le samedi matin et en fin de journée, la boutique se remplit vite. Chaque client choisit, pèse, hésite. Pendant ce temps, celui qui voulait juste ses légumes de la semaine regarde la file et repart.
+Le click and collect sert d&rsquo;abord ce client-là. Il commande la veille ou le matin, vous préparez au calme, il passe récupérer son sac. Le comptoir reste libre pour ceux qui aiment choisir eux-mêmes.
+
+
+
+Sans commande en ligne
+Avec le click and collect primeur
+
+
+
+
+Les commandes arrivent par téléphone, souvent pendant le rush
+Elles arrivent par écrit, avec le créneau de retrait
+
+
+Vous achetez au jugé avant de connaître la demande
+Les paniers vendus d&rsquo;avance vous donnent une base de quantités
+
+
+Le client pressé voit la file et renonce
+Il commande en 30 secondes et passe en deux minutes
+
+
+Les erreurs de quantité au téléphone
+Le client choisit lui-même le produit et le poids
+
+
+Les invendus de fin de semaine
+Une partie du stock est déjà réservée
+
+
+
+Quels produits mettre en ligne en premier ?
+N&rsquo;essayez pas de reproduire tout votre étal. Commencez par ce qui se vend toutes les semaines et ce qui se commande déjà par téléphone.
+
+Les paniers de la semaine. C&rsquo;est le produit le plus simple à vendre en ligne : un prix fixe, un contenu de saison, un jour de retrait. Proposez deux ou trois tailles, par exemple pour une ou deux personnes, pour une famille, et un panier fruits seuls.
+Les incontournables. Pommes de terre, carottes, oignons, tomates, bananes, salades : ce que tout le monde rachète chaque semaine.
+Les produits de saison. Les premières fraises, les clémentines, les champignons : une fiche qui apparaît et disparaît selon la période.
+L&rsquo;épicerie et les à-côtés. Œufs, jus, herbes fraîches, fruits secs. Un ajout facile au panier.
+
+Gardez pour l&rsquo;étal ce qui se choisit à l&rsquo;œil et au toucher, comme les fruits très mûrs ou les lots de fin de journée.
+Comment vendre les fruits et légumes au kilo en ligne ?
+C&rsquo;est la question qui freine le plus les primeurs. Elle se règle en trois choix.
+
+Le prix à la pièce pour tout ce qui s&rsquo;y prête : salade, chou-fleur, melon, botte de radis, avocat. Le client sait ce qu&rsquo;il paie, vous n&rsquo;avez rien à peser.
+Le prix au kilo avec des quantités types pour le reste : 500 g, 1 kg, 2 kg. Le total estimé s&rsquo;affiche, et le montant final est ajusté à la pesée au retrait, comme à la caisse.
+Le prix fixe par barquette ou par filet quand vous conditionnez déjà : barquette de fraises, filet de pommes de terre de 2,5 kg.
+
+Une phrase claire sur la fiche produit évite toute surprise : « Préparé à la commande, le poids peut varier légèrement. » Le détail des unités de vente est expliqué dans notre guide pour vendre au poids en ligne.
+Comment gérer les ruptures et les arrivages du jour ?
+Un primeur vend des produits qui changent chaque jour. La boutique en ligne doit suivre, sans vous prendre de temps.
+
+Passez un produit en indisponible depuis votre téléphone dès que la caisse est vide. Il disparaît de la boutique, plus personne ne le commande.
+Fixez une règle de remplacement et affichez-la : un produit équivalent de même prix, ou le retrait de l&rsquo;article avec ajustement du total. Le client sait à quoi s&rsquo;attendre.
+Mettez en avant l&rsquo;arrivage en tête de boutique le jour où il arrive, et prévenez vos clients qui ont accepté d&rsquo;en recevoir par un SMS court.
+
+Ce sont les mêmes réflexes qu&rsquo;au comptoir. La seule différence, c&rsquo;est que vous les faites en deux gestes sur le téléphone.
+Comment régler les créneaux de retrait ?
+Le créneau est le réglage le plus important. Mal réglé, il vous fait crouler sous les commandes à l&rsquo;heure de pointe.
+
+
+
+Réglage
+Exemple pour un primeur
+
+
+
+
+Durée d&rsquo;un créneau
+15 ou 30 minutes
+
+
+Nombre maximum de commandes par créneau
+Bas au début, à monter ensuite
+
+
+Délai minimum de préparation
+Une ou deux heures pour une commande simple
+
+
+Heure limite pour les paniers
+La veille au soir, pour préparer au calme
+
+
+Jours fermés à la commande
+Les jours où vous êtes au marché, par exemple
+
+
+
+Commencez avec des créneaux larges et une capacité basse. Ajustez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
+Payer en ligne ou au retrait ?
+Les deux fonctionnent chez un primeur. Le paiement au retrait est souvent plus simple, puisque le prix final dépend de la pesée. Le paiement en ligne convient bien aux paniers à prix fixe.
+Le vrai risque, c&rsquo;est le panier préparé pour un client qui ne vient pas. Les fruits mûrs ne se revendent pas toujours le lendemain. Pour les grosses commandes, l&rsquo;empreinte bancaire est une protection simple : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. L&rsquo;option est facultative, vous pouvez la réserver aux commandes importantes. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
+Et si vous voulez aussi livrer dans le quartier ?
+Beaucoup de primeurs ajoutent la livraison une fois le click and collect installé, souvent pour les clients âgés ou les paniers lourds. Le plus simple est de la limiter à une zone proche, à un ou deux jours de tournée, avec un minimum de commande. Marchéo ne livre pas : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux, votre minimum et vos frais. Notre guide pour organiser sa propre livraison locale donne la méthode.
+Ce que coûte le click and collect pour un primeur
+Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cela se sent vite.
+Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d&rsquo;installation. Le client commande en 30 secondes, sans créer de compte.
+Pour commencer
+Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse particulière.
+La page détaillée pour votre métier est ici : click and collect pour primeur et maraîcher. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Comment vendre des fruits et légumes au kilo en click and collect ?
+R : Vous affichez un prix au kilo et des quantités types, par exemple 500 g, 1 kg ou 2 kg, ou un prix à la pièce pour ce qui se vend à l'unité. Le client choisit, vous préparez au plus près, et le montant final est ajusté à la pesée au retrait. Une phrase sur la fiche produit suffit à prévenir que le poids peut varier légèrement.
+Q : Que faire quand un produit manque le jour de la préparation ?
+R : Vous le passez en indisponible depuis votre téléphone dès que la caisse est vide, il disparaît de la boutique. Pour les commandes déjà passées, prévoyez une règle simple affichée au client : remplacement par un produit équivalent ou retrait de l'article et ajustement du prix.
+Q : Le click and collect convient-il à un maraîcher en vente directe ?
+R : Oui. La boutique en ligne sert de point de commande pour la vente à la ferme, le marché ou un point de dépôt. Le client choisit son lieu et son créneau de retrait, et vous récoltez ce qui est déjà vendu.
+Q : Combien coûte le click and collect pour un primeur ?
+R : Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par mois, sans engagement et sans commission sur les ventes, avec des frais d'installation uniques de 399 €. Vous pouvez voir votre boutique gratuitement en 30 secondes avant de décider.
+
 # Poissonnerie livraison à domicile : livrer sans casser le froid
 
 Poissonnerie et livraison à domicile : zone, créneaux, glace et caisses isothermes, frais, pesée et paiement. Le guide pour livrer vos clients vous-même.
@@ -1290,7 +1409,7 @@ Parts, plats pour 4 ou 6, menus complets
 
 
 
-La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la livraison à domicile pour une poissonnerie explique comment combiner pesée, paiement et tournée.
+La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la livraison à domicile pour une poissonnerie explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du click and collect primeur montre comment faire cohabiter paniers de la semaine et vente au kilo.
 Trois erreurs qui coûtent des commandes
 
 Tout mettre au kilo. C&rsquo;est le réflexe du commerçant, parce que c&rsquo;est la réalité de la balance. Mais chaque produit au poids demande une décision au client. Multipliez par quinze produits dans le panier, vous avez un abandon.
@@ -1505,7 +1624,7 @@ R : Vous les gardez, mais vous saisissez leur commande dans le même outil que l
 Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine.
 
 Un site de click &amp; collect, c&rsquo;est une page où vos clients choisissent leurs produits, paient ou non, et indiquent l&rsquo;heure à laquelle ils passeront chercher leur commande. Pour un commerce de bouche, c&rsquo;est la différence entre un samedi matin où l&rsquo;on note des commandes de gâteaux sur un carnet pendant que la file s&rsquo;allonge, et un samedi où tout est préparé d&rsquo;avance.
-Ce guide s&rsquo;adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s&rsquo;y prendre, avec les prix réels et les pièges, puis donne la méthode pour être en ligne cette semaine. Si vous êtes traiteur, notre guide dédié à la création d&rsquo;un site internet de traiteur détaille les pages, les photos et les réglages propres aux plateaux et aux buffets.
+Ce guide s&rsquo;adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s&rsquo;y prendre, avec les prix réels et les pièges, puis donne la méthode pour être en ligne cette semaine. Si vous êtes traiteur, notre guide dédié à la création d&rsquo;un site internet de traiteur détaille les pages, les photos et les réglages propres aux plateaux et aux buffets. Si vous tenez un primeur, notre guide du click and collect primeur traite des paniers, de la vente au kilo et des ruptures.
 Les 5 façons de créer un site de click &amp; collect
 1. Une plateforme de livraison (Uber Eats, Deliveroo)
 C&rsquo;est la solution la plus connue, et la plus chère à l&rsquo;usage. Vous êtes en ligne en quelques jours, la plateforme amène des clients, mais elle prend 25 à 30 % de commission sur chaque commande, et le client reste le sien : vous n&rsquo;avez ni son numéro, ni son historique. Pour un commerce de bouche traditionnel, c&rsquo;est un canal d&rsquo;acquisition, pas une boutique.
@@ -2122,7 +2241,7 @@ R : Empreinte bancaire ou paiement en ligne à la commande, et un SMS avant le d
 
 Plateformes, constructeurs de sites, outils de restauration, solutions spécialisées commerces de bouche : les critères qui comptent vraiment pour un artisan, un tableau comparatif honnête et la grille pour choisir en dix minutes.
 
-Le marché du click &amp; collect pour commerçants s&rsquo;est structuré en quatre familles. Aucune n&rsquo;est la meilleure dans l&rsquo;absolu ; chacune correspond à un type de commerce. Ce comparatif donne les critères qui comptent pour un artisan, situe chaque famille, et fournit une grille pour choisir sans y passer un week-end.
+Le marché du click &amp; collect pour commerçants s&rsquo;est structuré en quatre familles. Aucune n&rsquo;est la meilleure dans l&rsquo;absolu ; chacune correspond à un type de commerce. Ce comparatif donne les critères qui comptent pour un artisan, situe chaque famille, et fournit une grille pour choisir sans y passer un week-end. Il répond à la question que se pose tout commerçant avant la création d&rsquo;un site de click and collect : quel type d&rsquo;outil, pour quel prix, avec quelles limites.
 Les critères qui comptent pour un commerce de bouche
 
 La commission. 0 % ou 30 %, c&rsquo;est la première ligne du calcul.
@@ -2256,3 +2375,5 @@ Q : Un logiciel de click & collect gratuit existe-t-il ?
 R : Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande. Il n'existe pas d'outil sérieux gratuit sans commission : un abonnement de 19 à 59 € par mois est le prix normal d'une solution sans commission.
 Q : Combien de temps pour changer de logiciel ?
 R : Une journée si le nouvel outil fournit un catalogue pré-rempli et si vous pouvez exporter votre base clients de l'ancien. Vérifiez ce point avant de signer quoi que ce soit.
+Q : Faut-il créer son site de click and collect soi-même ou passer par une solution métier ?
+R : Un constructeur de site généraliste demande d'assembler soi-même la boutique, les créneaux et le paiement, souvent avec des modules payants. Une solution métier arrive avec un catalogue pré-rempli et les réglages propres aux commerces de bouche. Le bon choix dépend du temps que vous pouvez y consacrer.

@@ -80,7 +80,7 @@ Commencez avec des créneaux larges et une capacité basse. Vous les ajusterez a
 
 Les deux fonctionnent. Le paiement au retrait rassure les habitués. Le paiement en ligne est plus confortable pour les grosses commandes.
 
-Le vrai risque, c'est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l'empreinte bancaire est une bonne protection : elle bloque 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L'option est facultative, vous pouvez l'activer seulement sur les plateaux. Notre article sur [l'empreinte bancaire contre les commandes non retirées](/blog/empreinte-bancaire-no-show-commerce-restaurant) détaille le fonctionnement.
+Le vrai risque, c'est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l'empreinte bancaire est une bonne protection : elle bloque jusqu'à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L'option est facultative, vous pouvez l'activer seulement sur les plateaux. Notre article sur [l'empreinte bancaire contre les commandes non retirées](/blog/empreinte-bancaire-no-show-commerce-restaurant) détaille le fonctionnement.
 
 ## Comment préparer les fêtes avec le click and collect ?
 
