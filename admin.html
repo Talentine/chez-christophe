@@ -940,13 +940,31 @@
         <input id="ncEmail" type="email" placeholder="contact@boutique.fr" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
       </div>
 
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Statut</label>
+          <select id="ncStatut" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+            <option value="demo" selected>🎯 Démo</option>
+            <option value="payant">✅ Payant</option>
+          </select>
+        </div>
+        <div style="flex:1;">
+          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Offre</label>
+          <select id="ncOffre" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+            <option value="vitrine">Vitrine</option>
+            <option value="clickcollect" selected>Click&amp;Collect</option>
+            <option value="livraison">Livraison</option>
+          </select>
+        </div>
+      </div>
+
       <div id="ncErr" style="display:none;background:rgba(196,97,74,0.15);border:1px solid rgba(196,97,74,0.4);border-radius:8px;padding:10px;font-size:13px;color:#ffaa9a;"></div>
 
       <button onclick="creerCommerce()" id="ncSubmit" style="width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#5c8a6e,#3d5446);color:white;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;">
         Créer le commerce
       </button>
       <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;line-height:1.4;">
-        Le commerce est créé inactif. Le commerçant pourra ensuite se connecter à <code>/app</code> pour configurer ses produits, créneaux et galerie.
+        En « Démo », la boutique est en ligne sans abonnement ; passez-la en « Payant » depuis la liste quand le commerçant signe. Le commerçant pourra ensuite se connecter à <code>/app</code> pour configurer ses produits, créneaux et galerie.
       </div>
     </div>
   </div>
@@ -1702,6 +1720,8 @@ function ajouterCommercant() {
   document.getElementById('ncAdresse').value = '';
   document.getElementById('ncEmail').value = '';
   document.getElementById('ncType').value = 'primeur';
+  document.getElementById('ncStatut').value = 'demo';
+  document.getElementById('ncOffre').value = 'clickcollect';
   document.getElementById('ncErr').style.display = 'none';
   document.getElementById('modalNouveauCommerce').style.display = 'flex';
   document.getElementById('ncSlug').addEventListener('input', () => {
@@ -1725,6 +1745,8 @@ async function creerCommerce() {
   const telephone = document.getElementById('ncTel').value.trim();
   const adresse = document.getElementById('ncAdresse').value.trim();
   const email = document.getElementById('ncEmail').value.trim();
+  const payant = document.getElementById('ncStatut').value === 'payant';
+  const offre = document.getElementById('ncOffre').value || 'clickcollect';
 
   if (!nom || !slug) {
     errEl.textContent = 'Nom et slug obligatoires.';
@@ -1753,7 +1775,10 @@ async function creerCommerce() {
       telephone: telephone || null,
       email: email || null,
       actif: true,
-      business_config: {}
+      offre,
+      business_config: { offre },
+      abonnement_actif: payant,
+      abonnement_debut: payant ? new Date().toISOString().slice(0, 10) : null
     };
 
     const r = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
@@ -1776,7 +1801,9 @@ async function creerCommerce() {
     }
 
     fermerModalCommerce();
+    tousCommercants = []; // vide le cache, sinon la nouvelle boutique n'apparaît qu'après F5
     await chargerCommercants();
+    filtrerStatutDemo('tous');
     alert('✅ Commerce créé !\n\nURL boutique : /' + slug + '/\nDashboard commerçant : /app');
   } catch (e) {
     errEl.textContent = '❌ ' + e.message;
