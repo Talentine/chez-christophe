@@ -27,7 +27,7 @@ Questions de référence (marquées R) :
 19. Click and collect, ça veut dire quoi pour un commerçant ?
 20. Comment vendre au poids en ligne pour un fromager ?
 
-Prochaine question en rotation : n°2.
+Prochaine question en rotation : n°3.
 
 ## Relevés
 
@@ -36,6 +36,8 @@ Prochaine question en rotation : n°2.
 | 2026-10-20 | Perplexity | Comment créer la boutique en ligne de mon commerce de proximité pas cher ? | non | shopify.com, hikaad, lafabriquedunet, prestashop-france (réponse : Wix, Shopify, PrestaShop Hosted, WooCommerce) |
 | 2026-10-20 | Google (aperçu IA) | Comment créer la boutique en ligne de mon commerce de proximité pas cher ? | pas d'aperçu IA affiché | 1re page : service-public, economie.gouv.fr, Reddit, Wix, Indy, Codeur, Canva |
 | 2026-10-20 | Perplexity | (R) Quel est le meilleur outil pour créer la boutique en ligne de mon commerce sans matériel ? | non | shopify.com (réponse : Shopify, Wix eCommerce ; « sans matériel » compris comme « sans stock ») |
+| 2026-10-20 | Perplexity | (R) Comment proposer le click and collect sans commission ? | non | francenum, ca-moncommerce, orisha, commerceendirect (réponse : formulaire, site vitrine, module e-commerce, logiciel de caisse, paiement au retrait) |
+| 2026-10-20 | Google (aperçu IA) | (R) Comment proposer le click and collect sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | heustach.fr, lundimatin.fr, ca-moncommerce, faire.com, bungeefood.fr, bread-up.co, clicketcroque.fr, qartine.com (petits blogs d'éditeurs : cible atteignable) |
 
 ## Bilans hebdomadaires (le lundi)
 
