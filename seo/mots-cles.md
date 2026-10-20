@@ -104,3 +104,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer sa boutique en ligne sumup | site | tous | GS (20/10) | basse | marque, à citer factuellement dans un comparatif uniquement |
 | mettre son commerce sur google | transverse | tous | GS (20/10) | moyenne | couvert par fiche-google-business-commerce-bouche |
 | mettre son commerce sur uber eats | livraison | restaurant | GS (20/10) | moyenne | à faire dans la page pilier livraison (comparatif honnête plateforme / livraison maison) |
+| quel budget pour créer une boutique en ligne | site | tous | GS « Autres questions » (20/10) | moyenne | couvert par la page pilier (section prix) ; à reprendre en FAQ de combien-coute-un-site-de-click-and-collect |
+| conditions pour ouvrir une boutique en ligne | site | tous | GS « Autres questions » + IA (20/10, service-public en tête) | moyenne | à faire (angle commerçant déjà installé : mentions légales, CGV, allergènes, RGPD) |
+| meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | à faire : comparatif honnête « Shopify, Wix ou logiciel métier pour un commerce de bouche » |
+| marcheo.ma | transverse | - | GSC (14 impr., 20/10) | basse | écarté : requête marocaine sans lien, rien à faire |
