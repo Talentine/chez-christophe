@@ -28,12 +28,15 @@ const json = (b: unknown, s = 200) =>
 const FENETRE_CHECKOUT_MIN = 30
 const LONGUEUR_MAX_MESSAGE = 480
 
-// Normalise un numéro FR en format international pour comparaison et envoi
-function normaliserTel(brut: string): string {
-  let tel = String(brut || '').replace(/[\s.\-()]/g, '')
-  if (tel.startsWith('0')) tel = '+33' + tel.slice(1)
-  if (!tel.startsWith('+')) tel = '+33' + tel
-  return tel
+// Normalise un numéro en format international pour comparaison et envoi.
+// Numéro national (0…) → indicatif du pays du commerce : +33 (FR) ou +32 (BE).
+function normaliserTel(brut: string, pays = 'FR'): string {
+  let tel = String(brut || '').replace(/[\s.\-()\/]/g, '')
+  if (tel.startsWith('00')) tel = '+' + tel.slice(2)
+  if (tel.startsWith('+')) return tel
+  const indicatif = pays === 'BE' ? '+32' : '+33'
+  if (tel.startsWith('0')) return indicatif + tel.slice(1)
+  return indicatif + tel
 }
 
 Deno.serve(async (req) => {
@@ -82,8 +85,12 @@ Deno.serve(async (req) => {
     if (!telClient) return json({ error: 'Aucun numéro sur cette commande' }, 400)
     if (optOut) return json({ error: 'Client désinscrit des SMS', skipped: true }, 200)
 
-    const telDemande = normaliserTel(telephone)
-    if (telDemande !== normaliserTel(telClient)) {
+    const { data: com } = await supabase.from('commercants')
+      .select('pays').eq('id', cmd.commercant_id).maybeSingle()
+    const pays = (com as any)?.pays || 'FR'
+
+    const telDemande = normaliserTel(telephone, pays)
+    if (telDemande !== normaliserTel(telClient, pays)) {
       console.log('[send-sms] refus : numéro different de celui de la commande')
       return json({ error: 'Numéro non associé à cette commande' }, 403)
     }

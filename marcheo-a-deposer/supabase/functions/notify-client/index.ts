@@ -24,16 +24,19 @@ function renderTemplate(tpl: string, vars: Record<string, any>): string {
   })
 }
 
-async function envoyerSMS(tel: string, message: string) {
+async function envoyerSMS(tel: string, message: string, pays = 'FR') {
   const ACCOUNT_SID = Deno.env.get('TWILIO_ACCOUNT_SID')
   const AUTH_TOKEN  = Deno.env.get('TWILIO_AUTH_TOKEN')
   const FROM_NUMBER = Deno.env.get('TWILIO_PHONE_NUMBER')
   if (!ACCOUNT_SID || !AUTH_TOKEN || !FROM_NUMBER) {
     return { ok: false, error: 'Secrets Twilio manquants', cost_cents: 0 }
   }
-  let to = tel.replace(/[\s.\-]/g, '')
-  if (to.startsWith('0')) to = '+33' + to.slice(1)
-  if (!to.startsWith('+')) to = '+33' + to
+  // Numéro national (0…) → indicatif du pays du commerce : +33 (FR) ou +32 (BE)
+  let to = tel.replace(/[\s.\-()\/]/g, '')
+  if (to.startsWith('00')) to = '+' + to.slice(2)
+  const indicatif = pays === 'BE' ? '+32' : '+33'
+  if (to.startsWith('0')) to = indicatif + to.slice(1)
+  if (!to.startsWith('+')) to = indicatif + to
   const params = new URLSearchParams({ To: to, From: FROM_NUMBER, Body: message })
   const r = await fetch(
     `https://api.twilio.com/2010-04-01/Accounts/${ACCOUNT_SID}/Messages.json`,
@@ -140,7 +143,7 @@ Deno.serve(async (req) => {
     }
 
     const { data: commercant } = await supabaseAdmin
-      .from('commercants').select('id, slug, nom_boutique, offre').eq('id', commercant_id).single()
+      .from('commercants').select('id, slug, nom_boutique, offre, pays').eq('id', commercant_id).single()
     if (!commercant) {
       return new Response(JSON.stringify({ error: 'Commerçant introuvable' }), {
         status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -238,7 +241,7 @@ Deno.serve(async (req) => {
 
     if (canal === 'sms') {
       const messageFinal = messageRendu + `\nSTOP : ${unsubUrl}`
-      const res = await envoyerSMS(client.telephone, messageFinal)
+      const res = await envoyerSMS(client.telephone, messageFinal, commercant.pays)
       cost = res.cost_cents
       providerId = res.sid || null
       statut = res.ok ? 'envoyee' : 'echec'
@@ -252,7 +255,7 @@ Deno.serve(async (req) => {
       if (!res.ok && canal_prefere === 'auto' && peutSMS && !quotaSmsEpuise) {
         canal = 'sms'
         const messageFinal = messageRendu + `\nSTOP : ${unsubUrl}`
-        const resSms = await envoyerSMS(client.telephone, messageFinal)
+        const resSms = await envoyerSMS(client.telephone, messageFinal, commercant.pays)
         cost = resSms.cost_cents
         providerId = resSms.sid || null
         statut = resSms.ok ? 'envoyee' : 'echec'

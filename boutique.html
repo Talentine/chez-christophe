@@ -2447,7 +2447,7 @@ function injecterSEOBoutique(b, nom, labelMetier, heroInfo) {
       "@type": "PostalAddress",
       "streetAddress": b.adresse || undefined,
       "addressLocality": ville || undefined,
-      "addressCountry": "FR"
+      "addressCountry": b.pays === 'BE' ? "BE" : "FR"
     } : undefined,
     "openingHours": openingHours.length ? openingHours : undefined,
     "priceRange": "€€"
@@ -2929,7 +2929,7 @@ if ('serviceWorker' in navigator) {
           streetAddress: adresse || undefined,
           postalCode: cp || undefined,
           addressLocality: ville || undefined,
-          addressCountry: 'FR'
+          addressCountry: business.pays === 'BE' ? 'BE' : 'FR'
         };
       }
       if (tel) schema.telephone = tel;

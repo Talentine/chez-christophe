@@ -79,7 +79,7 @@ serve(async (req) => {
 async function loadCommercant(commercant_id: string) {
   const { data, error } = await supabase
     .from('commercants')
-    .select('id, nom_boutique, email, slug, stripe_connect_id, stripe_connect_actif, business_type')
+    .select('id, nom_boutique, email, slug, stripe_connect_id, stripe_connect_actif, business_type, pays')
     .eq('id', commercant_id)
     .single();
   if (error || !data) throw new Error('Commerçant introuvable: ' + (error?.message || commercant_id));
@@ -98,7 +98,7 @@ async function actionOnboarding({ commercant_id }: any) {
   if (!accountId) {
     const account = await stripe.accounts.create({
       type: 'express',
-      country: 'FR',
+      country: c.pays === 'BE' ? 'BE' : 'FR', // pays du commerce (non modifiable ensuite chez Stripe)
       email: c.email,
       business_type: 'individual', // sera mis à jour pendant l'onboarding Stripe
       capabilities: {
