@@ -865,6 +865,25 @@ function suivreConversion(evenement, evenementMeta) {
   try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, { content_category: state.type || undefined }); } catch (e) {}
 }
 
+// ── Source d'acquisition : campagne (UTM) de la visite + choix Pixel Meta, posés sur la boutique créée.
+//    Sert à relier un abonnement payé à la publicité qui l'a amené (CAC par création). Requête séparée et
+//    silencieuse : si la colonne `acquisition` n'existe pas encore, l'inscription n'est pas gênée.
+function enregistrerAcquisition(commercantId, headers) {
+  if (!commercantId) return;
+  var utm = null, consent = null;
+  try { utm = JSON.parse(sessionStorage.getItem('marcheo_utm') || 'null'); } catch (e) {}
+  try { consent = (JSON.parse(localStorage.getItem('marcheo_consent_pub') || 'null') || {}).choix || null; } catch (e) {}
+  var acquisition = { utm: utm, consent_pub: consent, page: location.pathname, at: new Date().toISOString() };
+  try {
+    fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + encodeURIComponent(commercantId), {
+      method: 'PATCH',
+      headers: Object.assign({}, headers, { Prefer: 'return=minimal' }),
+      body: JSON.stringify({ acquisition: acquisition }),
+      keepalive: true
+    }).catch(function() {});
+  } catch (e) {}
+}
+
 window.resetEmailFeedback = function() {
   var fb = document.getElementById('emailFeedback');
   var inp = document.getElementById('iEmail');
@@ -1267,6 +1286,7 @@ async function creerBoutique() {
     if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData)) + ' — vérifiez la config RLS de commercants');
     state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
     suivreConversion('demo_creee', 'CompleteRegistration');
+    enregistrerAcquisition(state.commercantId, authHeader);
 
     // 4. Lien rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
@@ -1582,6 +1602,7 @@ async function reprendreInscriptionDepuisCallback() {
     const commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
     state.commercantId = commercantId;
     suivreConversion('demo_creee', 'CompleteRegistration');
+    enregistrerAcquisition(commercantId, authHeader);
 
     // c. Rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {

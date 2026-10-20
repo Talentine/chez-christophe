@@ -261,6 +261,8 @@ def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: 
 </div>
 </main>
 {footer()}
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=1" defer></script>
 </body>
 </html>
 """

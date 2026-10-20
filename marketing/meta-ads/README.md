@@ -1,0 +1,141 @@
+# Publicités Facebook et Instagram : acquisition de commerçants
+
+Statut : **BROUILLON**. Rien n'est publié. Aucune campagne n'a été créée dans le compte Meta Ads (compte connecté : `675546266352427`). Chaque mise en ligne attend une validation explicite.
+
+Objectif : des **abonnements payés directement sur le site** (offre Click & Collect, 399 € d'installation puis 39 €/mois sans engagement), sans appel commercial. On cherche des commerçants qui paient, pas des clics.
+
+| Fichier | Contenu |
+|---|---|
+| [`bibliotheque.md`](bibliotheque.md) | Les fiches complètes : textes, scripts, storyboards, consignes visuelles, formats, URL, UTM, indicateurs |
+| [`annonces.csv`](annonces.csv) | Une ligne par annonce et par format, prête à recopier dans le Gestionnaire de publicités |
+| [`suivi-hebdo.csv`](suivi-hebdo.csv) | Tableau de suivi hebdomadaire (dépense Meta + démos et paiements Marchéo) pour calculer le CAC |
+| `supabase/migrations/20261020_acquisition_publicites.sql` | Colonne `commercants.acquisition` + vue `v_acquisition_pub` (démos et paiements par création) |
+
+---
+
+## 1. Ce qui a été vérifié dans le code avant d'écrire les textes
+
+Les textes n'utilisent que des fonctionnalités présentes dans le site et l'application. Source entre parenthèses.
+
+**Utilisable dans les publicités (offre 399 € + 39 €/mois)**
+
+- Tarif : 399 € de frais d'installation une seule fois, 39 €/mois, sans engagement, résiliable depuis le tableau de bord (`supabase/functions/stripe-setup-fee`, `faq.html`, `solutions/*.html`).
+- 0 % de commission sur les ventes. Les paiements par carte des clients passent par le compte Stripe du commerçant, aux frais Stripe standards (`faq.html`).
+- Démo gratuite sans carte bancaire : on choisit son métier, on tape le nom de son commerce, la boutique s'affiche avec un catalogue de base déjà rempli pour le métier (`inscription.html`, `solutions/*.html`, modale d'offre de `boutique.html` « catalogue produits illimité + base fournie »).
+- Adresse de boutique `marchéo.fr/nom-du-commerce`, QR code imprimable (`vercel.json`, offre Vitrine incluse).
+- Commande client depuis le téléphone, sans créer de compte, retrait sur créneau choisi (`solutions/*.html`, `panier.html`).
+- Vente au kilo, aux 100 g, à la pièce ou au panier ; ajustement du montant à la pesée (`solutions/boucherie.html`, blog « vendre au poids »).
+- Champ « précisions » sur les produits (découpe, épaisseur…) côté boucherie (`solutions/boucherie.html`).
+- Créneaux de retrait par jour et heure, avec capacité (`solutions/boucherie.html`).
+- Paiement en ligne ou au retrait (le paiement en ligne suppose que le commerçant active son compte Stripe depuis les réglages).
+- Empreinte bancaire anti no-show : jusqu'à 75 % du panier pré-autorisé, libérée 24 h après le retrait (`stripe-empreinte`, offre Click & Collect).
+- Notifications SMS et e-mail, 50 SMS clients/mois inclus ; push gratuits si le client a installé la boutique sur son téléphone (`faq.html`).
+- Gestion depuis le téléphone, sans matériel à acheter (`llms.txt`, `app-commercant.html`).
+
+**À NE PAS écrire dans ces publicités**
+
+| Allégation | Pourquoi |
+|---|---|
+| « Livraison à domicile » associée à 399 €/39 € | La livraison est dans l'offre 3 (549 € + 59 €/mois), pas dans l'offre Click & Collect. Les fiches parlent de retrait. |
+| « 1er mois offert » | Incohérence à régler d'abord (voir § 2, point 3). |
+| « Marchéo livre vos clients » | Faux : Marchéo fournit l'outil, pas de coursiers. |
+| « Formation en visio incluse » | Mentionné dans la FAQ, mais pas dans la modale d'offre ni dans Stripe. À confirmer avant usage. |
+| Un chiffre de clients, de CA ou de CAC | Aucune donnée réelle à ce jour. |
+| « Votre boutique complète en 30 secondes » | C'est l'aperçu qui s'affiche en 30 secondes. Les textes disent « aperçu » ou « démo ». |
+
+---
+
+## 2. À régler avant de lancer (bloquant)
+
+1. **Pixel Meta inactif.** `assets/core/meta-pixel.js` a `PIXEL_ID = ''`. Sans lui, Meta ne voit aucune conversion. Créer le Pixel dans le Gestionnaire d'événements et coller son ID.
+2. **Aucun événement « achat » envoyé à Meta.** Le paiement se fait sur Stripe Checkout depuis la page boutique du commerçant (`boutique.html` → `stripe-setup-fee`). Le site envoie aujourd'hui `Lead` (e-mail saisi) et `CompleteRegistration` (démo créée), mais **pas `Purchase`**. Deux options, à décider :
+   - **API Conversions côté serveur** depuis le webhook `checkout.session.completed` de `stripe-setup-fee` (fiable, mais envoie à Meta l'e-mail haché du commerçant, uniquement s'il a accepté le Pixel). Je ne l'ai pas branché : ça transmet des données personnelles à Meta, c'est à vous de décider.
+   - **Import hors ligne** une fois par semaine : exporter les abonnements payés (vue `v_acquisition_pub`) et les importer comme événements hors ligne. Plus simple, moins réactif.
+
+   Tant que `Purchase` n'existe pas, on **optimise la campagne sur `CompleteRegistration`** (démo créée) et on **juge les créations sur les paiements réels** dans Marchéo. Même avec `Purchase` en place, 500 €/mois ne donnera pas les ~50 achats par semaine dont Meta a besoin pour sortir de l'apprentissage. Rester sur la démo en optimisation est donc probable ; le juge reste le paiement.
+3. **Incohérence sur le premier mois.** La modale d'activation (`boutique.html`) affiche « À payer aujourd'hui : 399 € · 1er mois OFFERT », et la FAQ dit « premier mois offert ». Mais `stripe-setup-fee` crée une session sans période d'essai et le texte Stripe précise « 1er paiement = frais d'installation + 1er mois » : le commerçant paie **438 €**. Un commerçant venu par une publicité qui découvre 438 € au lieu de 399 € abandonne ou réclame. À corriger dans un sens ou dans l'autre avant de dépenser. Les textes publicitaires disent « 399 € d'installation, puis 39 €/mois » : c'est vrai dans les deux cas.
+4. **Appliquer la migration** `supabase/migrations/20261020_acquisition_publicites.sql` (colonne `acquisition`, vue `v_acquisition_pub`). Tant qu'elle n'est pas appliquée, l'inscription fonctionne normalement mais la source publicitaire n'est pas enregistrée.
+5. **Tourner les vidéos** : aucune vidéo ni image n'existe encore. Les storyboards de `bibliotheque.md` donnent le plan à plan. Les écrans à filmer sont réels : `/mb-primeur`, `/chez-christophe`, `/boucherie-classique`, `/le-petrin`, `/maree-d-or`, `/fromagerie-conquerant`, `/inscription` et le tableau de bord `/app`. Il n'y a pas de boutique de démonstration traiteur : en créer une avant de produire les variantes traiteur.
+
+---
+
+## 3. Suivi : relier une publicité à un commerçant qui paie
+
+Ce qui est en place dans ce commit :
+
+- Les pages métier et le blog (`seo/build.py` → `solutions/*.html`, `blog/*.html`) chargent maintenant `analytics.js` et `meta-pixel.js`. Avant, une publicité qui pointait vers `/solutions/primeur` perdait ses UTM dès le clic vers l'inscription.
+- `analytics.js` garde les UTM de la visite (onglet en cours) et les joint à chaque événement (`lead`, `demo_creee`).
+- À la création de la boutique, `inscription.html` enregistre `commercants.acquisition` : UTM, choix Pixel, date. Le paiement, souvent fait plus tard, est donc rattaché à la publicité d'origine.
+- La vue `v_acquisition_pub` donne, par création (`utm_content`) et par métier : démos, payés, encore actifs.
+
+Limite connue : si la démo est créée avec confirmation d'e-mail obligatoire (pas de session ouverte à l'inscription), l'enregistrement peut être refusé par la sécurité de la table. Vérifier sur les premières inscriptions qu'`acquisition` est bien rempli.
+
+**Requête hebdomadaire** (SQL Editor Supabase) :
+
+```sql
+select creation, metier, demos, payes, actifs,
+       round(100.0 * payes / nullif(demos, 0), 1) as taux_demo_paye
+from v_acquisition_pub
+where source in ('fb', 'ig', 'an', 'msg', 'facebook', 'instagram', 'meta')
+order by payes desc, demos desc;
+```
+
+Reporter `demos` et `payes` dans `suivi-hebdo.csv` à côté de la dépense Meta de la même création. **CAC = dépense ÷ payés.**
+
+### Convention UTM (identique pour toutes les annonces)
+
+```
+utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=<campagne>&utm_term={{adset.name}}&utm_content=<ID annonce>
+```
+
+- `utm_source` : rempli par Meta (`fb`, `ig`, `an`, `msg`).
+- `utm_campaign` : `acq_primeur`, `acq_boucherie`, `acq_relance`, `acq_bouche` (TRA-02, mois 2), puis `acq_boulangerie`, `acq_poissonnerie`, `acq_fromagerie`, `acq_traiteur`.
+- `utm_content` : l'ID de l'annonce, format compris (`PRI-02-916`, `PRI-02-45`…). C'est la clé de toute l'analyse : ne jamais réutiliser un ID pour une autre création.
+- À coller dans le champ « Paramètres d'URL » de l'annonce, pas dans l'URL de destination.
+
+---
+
+## 4. Structure de test (budget 500 €/mois)
+
+Une seule campagne, peu d'ensembles, pour ne pas éparpiller le budget.
+
+```
+Campagne « MQ – Acquisition commerçants » · objectif Ventes · budget campagne (Advantage) ~13 €/jour
+├── Ensemble « Primeurs »   · France · 25-65 ans · Advantage+ audience
+│     suggestions : primeur, fruits et légumes, maraîcher, Rungis, marché de producteurs, commerce de proximité
+│     annonces : PRI-01, PRI-02, PRI-03, PRI-04, TRA-01
+└── Ensemble « Bouchers »   · mêmes réglages
+      suggestions : boucherie, charcuterie, artisan boucher, CAP boucher, métiers de bouche
+      annonces : BOU-01, BOU-02, BOU-03, TRA-03
+
+Ensemble « Relance » (≈ 80 €/mois, à ouvrir quand le Pixel tourne depuis 2 semaines)
+      audience : visiteurs /solutions/* et /inscription 30 jours, hors démos créées
+      annonces : TRA-01 (démo vidéo), TRA-03 (transparence des prix), PRI-04 / BOU-03 (tarif)
+```
+
+- Placements Advantage+ ; chaque annonce a ses deux formats (9:16 pour Reels et Stories, 4:5 pour le fil), servis par Meta selon l'emplacement.
+- TRA-02 (tous commerces alimentaires) attend le deuxième mois : en un seul ensemble large, il diluerait le test primeurs/bouchers.
+- Mois 2 : si un métier a au moins un paiement et un coût par démo correct, ouvrir l'ensemble suivant (boulangers, puis poissonniers, fromagers, traiteurs) avec les variantes de `bibliotheque.md`, en coupant les créations perdantes.
+
+### Règles de décision
+
+Le CAC de 10 € est une **hypothèse à tester**, pas un acquis. Avec 438 € encaissés au premier paiement puis 39 €/mois, un CAC de plusieurs dizaines d'euros reste rentable. On fixe le seuil après les premiers paiements réels.
+
+| Moment | Règle |
+|---|---|
+| Avant 7 jours ou 50 € dépensés sur une annonce | Ne rien couper. Quelques clics ne disent rien. |
+| 100 € dépensés, 0 démo | Couper l'annonce (le message n'attire pas les bons commerçants). |
+| 3 démos ou plus, 0 payé à 300 € dépensés | Le message attire, mais pas des acheteurs : revoir l'angle prix et la page d'arrivée avant de couper. |
+| Au moins 1 payé | Garder. Comparer les CAC à volume de dépense comparable. |
+| Fin du mois 1 | Classer par CAC réel par métier et par création. Réaffecter 70 % du budget aux deux meilleures, 30 % à de nouvelles variantes. |
+
+Indicateurs de diagnostic (secondaires, jamais suffisants seuls) : taux d'accroche vidéo (vues de 3 s ÷ impressions), CTR lien, coût par démo, taux démo → payé.
+
+### Avant de passer une annonce de « brouillon » à « active »
+
+- [ ] Pixel actif et `CompleteRegistration` visible dans le Gestionnaire d'événements
+- [ ] Incohérence 399 € / 438 € réglée
+- [ ] Migration appliquée, une inscription test montre `acquisition.utm.utm_content`
+- [ ] Vidéo montée avec sous-titres incrustés, relue sur téléphone
+- [ ] Paramètres d'URL collés, lien testé depuis l'aperçu Meta
+- [ ] Validation explicite de Paul
