@@ -9,7 +9,7 @@ Objectif : des **abonnements payés directement sur le site** (offre Click & Col
 | [`bibliotheque.md`](bibliotheque.md) | Les fiches complètes : textes, scripts, storyboards, consignes visuelles, formats, URL, UTM, indicateurs |
 | [`annonces.csv`](annonces.csv) | Une ligne par annonce et par format, prête à recopier dans le Gestionnaire de publicités |
 | [`suivi-hebdo.csv`](suivi-hebdo.csv) | Tableau de suivi hebdomadaire (dépense Meta + démos et paiements Marchéo) pour calculer le CAC |
-| `supabase/migrations/20261020_acquisition_publicites.sql` | Colonne `commercants.acquisition` + vue `v_acquisition_pub` (démos et paiements par création) |
+| `supabase/migrations/20261020_acquisition_publicites.sql` | Colonne `commercants.acquisition` + vue `v_acquisition_pub` (démos et paiements par création), appliquée |
 
 ---
 
@@ -20,6 +20,7 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
 **Utilisable dans les publicités (offre 399 € + 39 €/mois)**
 
 - Tarif : 399 € de frais d'installation une seule fois, 39 €/mois, sans engagement, résiliable depuis le tableau de bord (`supabase/functions/stripe-setup-fee`, `faq.html`, `solutions/*.html`).
+- 1er mois d'abonnement offert : le commerçant paie 399 € à l'activation, l'abonnement à 39 €/mois démarre avec 30 jours d'essai (version en ligne de `stripe-setup-fee`, vérifiée dans les journaux de paiement).
 - 0 % de commission sur les ventes. Les paiements par carte des clients passent par le compte Stripe du commerçant, aux frais Stripe standards (`faq.html`).
 - Démo gratuite sans carte bancaire : on choisit son métier, on tape le nom de son commerce, la boutique s'affiche avec un catalogue de base déjà rempli pour le métier (`inscription.html`, `solutions/*.html`, modale d'offre de `boutique.html` « catalogue produits illimité + base fournie »).
 - Adresse de boutique `marchéo.fr/nom-du-commerce`, QR code imprimable (`vercel.json`, offre Vitrine incluse).
@@ -37,7 +38,6 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
 | Allégation | Pourquoi |
 |---|---|
 | « Livraison à domicile » associée à 399 €/39 € | La livraison est dans l'offre 3 (549 € + 59 €/mois), pas dans l'offre Click & Collect. Les fiches parlent de retrait. |
-| « 1er mois offert » | Incohérence à régler d'abord (voir § 2, point 3). |
 | « Marchéo livre vos clients » | Faux : Marchéo fournit l'outil, pas de coursiers. |
 | « Formation en visio incluse » | Mentionné dans la FAQ, mais pas dans la modale d'offre ni dans Stripe. À confirmer avant usage. |
 | Un chiffre de clients, de CA ou de CAC | Aucune donnée réelle à ce jour. |
@@ -53,8 +53,8 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
    - **Import hors ligne** une fois par semaine : exporter les abonnements payés (vue `v_acquisition_pub`) et les importer comme événements hors ligne. Plus simple, moins réactif.
 
    Tant que `Purchase` n'existe pas, on **optimise la campagne sur `CompleteRegistration`** (démo créée) et on **juge les créations sur les paiements réels** dans Marchéo. Même avec `Purchase` en place, 500 €/mois ne donnera pas les ~50 achats par semaine dont Meta a besoin pour sortir de l'apprentissage. Rester sur la démo en optimisation est donc probable ; le juge reste le paiement.
-3. **Incohérence sur le premier mois.** La modale d'activation (`boutique.html`) affiche « À payer aujourd'hui : 399 € · 1er mois OFFERT », et la FAQ dit « premier mois offert ». Mais `stripe-setup-fee` crée une session sans période d'essai et le texte Stripe précise « 1er paiement = frais d'installation + 1er mois » : le commerçant paie **438 €**. Un commerçant venu par une publicité qui découvre 438 € au lieu de 399 € abandonne ou réclame. À corriger dans un sens ou dans l'autre avant de dépenser. Les textes publicitaires disent « 399 € d'installation, puis 39 €/mois » : c'est vrai dans les deux cas.
-4. **Appliquer la migration** `supabase/migrations/20261020_acquisition_publicites.sql` (colonne `acquisition`, vue `v_acquisition_pub`). Tant qu'elle n'est pas appliquée, l'inscription fonctionne normalement mais la source publicitaire n'est pas enregistrée.
+3. ~~Incohérence sur le premier mois~~ **Réglé le 20/10.** La fonction Stripe en ligne offrait déjà le 1er mois (399 € payés à l'activation, puis 30 jours d'essai avant le premier prélèvement de 39 €) ; c'est le fichier du dépôt qui était resté sur l'ancienne version à 438 €. Le dépôt est maintenant aligné sur la version en ligne : un redéploiement ne réintroduira pas l'écart.
+4. ~~Appliquer la migration~~ **Fait le 20/10** : colonne `acquisition` et vue `v_acquisition_pub` en place.
 5. **Tourner les vidéos** : aucune vidéo ni image n'existe encore. Les storyboards de `bibliotheque.md` donnent le plan à plan. Les écrans à filmer sont réels : `/mb-primeur`, `/chez-christophe`, `/boucherie-classique`, `/le-petrin`, `/maree-d-or`, `/fromagerie-conquerant`, `/inscription` et le tableau de bord `/app`. Il n'y a pas de boutique de démonstration traiteur : en créer une avant de produire les variantes traiteur.
 
 ---
@@ -119,7 +119,7 @@ Ensemble « Relance » (≈ 80 €/mois, à ouvrir quand le Pixel tourne depuis 
 
 ### Règles de décision
 
-Le CAC de 10 € est une **hypothèse à tester**, pas un acquis. Avec 438 € encaissés au premier paiement puis 39 €/mois, un CAC de plusieurs dizaines d'euros reste rentable. On fixe le seuil après les premiers paiements réels.
+Le CAC de 10 € est une **hypothèse à tester**, pas un acquis. Avec 399 € encaissés à l'activation puis 39 €/mois à partir du 2e mois, un CAC de plusieurs dizaines d'euros reste rentable. On fixe le seuil après les premiers paiements réels.
 
 | Moment | Règle |
 |---|---|
@@ -134,8 +134,9 @@ Indicateurs de diagnostic (secondaires, jamais suffisants seuls) : taux d'accroc
 ### Avant de passer une annonce de « brouillon » à « active »
 
 - [ ] Pixel actif et `CompleteRegistration` visible dans le Gestionnaire d'événements
-- [ ] Incohérence 399 € / 438 € réglée
-- [ ] Migration appliquée, une inscription test montre `acquisition.utm.utm_content`
+- [x] Premier mois offert, cohérent entre le site et Stripe
+- [x] Migration appliquée
+- [ ] Une inscription test depuis un lien avec UTM montre `acquisition.utm.utm_content`
 - [ ] Vidéo montée avec sous-titres incrustés, relue sur téléphone
 - [ ] Paramètres d'URL collés, lien testé depuis l'aperçu Meta
 - [ ] Validation explicite de Paul

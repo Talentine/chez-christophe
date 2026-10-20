@@ -14,8 +14,8 @@ alter table public.commercants
 create index if not exists commercants_acquisition_campagne_idx
   on public.commercants ((acquisition -> 'utm' ->> 'utm_campaign'));
 
--- Une ligne par création publicitaire (utm_content) : démos créées, abonnements payés
--- et abonnés toujours actifs. Le CAC se calcule en divisant la dépense Meta par `payes`.
+-- Une ligne par création publicitaire (utm_content) : démos créées, frais d'installation payés
+-- (stripe_setup_session_id, posé par le webhook stripe-setup-fee) et abonnés toujours actifs. Le CAC se calcule en divisant la dépense Meta par `payes`.
 create or replace view public.v_acquisition_pub
 with (security_invoker = true) as
 select
@@ -25,12 +25,13 @@ select
   coalesce(acquisition -> 'utm' ->> 'utm_content',  '(aucune)') as creation,
   business_type                                                 as metier,
   count(*)                                                      as demos,
-  count(*) filter (where stripe_subscription_id is not null)    as payes,
-  count(*) filter (where abonnement_actif and stripe_subscription_id is not null) as actifs,
-  count(*) filter (where stripe_subscription_id is not null and offre = 'clickcollect') as payes_clickcollect,
+  count(*) filter (where stripe_setup_session_id is not null)   as payes,
+  count(*) filter (where abonnement_actif and stripe_setup_session_id is not null) as actifs,
+  count(*) filter (where stripe_setup_session_id is not null and offre = 'clickcollect') as payes_clickcollect,
   min(created_at)                                               as premiere_demo,
   max(abonnement_debut)                                         as dernier_paiement
 from public.commercants
+where coalesce(is_fixture, false) = false
 group by 1, 2, 3, 4, 5;
 
 comment on view public.v_acquisition_pub is

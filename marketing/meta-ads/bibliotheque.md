@@ -2,7 +2,7 @@
 
 Statut de toutes les annonces : **BROUILLON, non publiées.**
 Offre présentée partout : **399 € d'installation (une seule fois), puis 39 €/mois sans engagement**, 0 % de commission.
-Fonctionnalités citées : vérifiées dans le code (voir `README.md` § 1). Aucune annonce ne promet la livraison (offre à 549 €) ni le « 1er mois offert ».
+Fonctionnalités citées : vérifiées dans le code (voir `README.md` § 1). Aucune annonce ne promet la livraison (offre à 549 €). Le 1er mois offert est réel (399 € payés à l'activation, abonnement après 30 jours) : il figure dans les annonces de prix.
 
 Sommaire
 - [Règles communes de production](#règles-communes-de-production)
@@ -188,7 +188,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 **Texte principal**
 > Le prix, tout de suite :
 > · 399 € d'installation, une seule fois
-> · 39 €/mois, sans engagement, résiliable depuis votre tableau de bord
+> · 1er mois d'abonnement offert, puis 39 €/mois, sans engagement, résiliable depuis votre tableau de bord
 > · 0 % de commission sur vos ventes
 >
 > Pour ce prix : votre boutique de primeur en ligne, les commandes de vos clients avec retrait sur créneau, la vente au kilo, l'empreinte bancaire contre les commandes non retirées et 50 SMS clients par mois.
@@ -196,9 +196,9 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 > Pas de devis, pas de rendez-vous commercial. Vous démarrez quand vous voulez.
 
 **Titre** : 399 € une fois, 39 €/mois
-**Description** : Sans engagement · 0 % de commission
+**Description** : 1er mois offert · sans engagement
 
-**Image fixe 4:5** : photo réelle d'un étal (moitié haute). Moitié basse, fond crème, texte bleu Marchéo `#0F2C52` : « 399 € une fois » (très grand), « puis 39 €/mois · sans engagement » (moyen), « 0 % de commission » (petit, vert). Logo en bas à droite. Rien d'autre.
+**Image fixe 4:5** : photo réelle d'un étal (moitié haute). Moitié basse, fond crème, texte bleu Marchéo `#0F2C52` : « 399 € une fois » (très grand), « 1er mois offert, puis 39 €/mois · sans engagement » (moyen), « 0 % de commission » (petit, vert). Logo en bas à droite. Rien d'autre.
 
 **Vidéo 10 s** : 3 plans de 2,5 s (étal, téléphone avec la boutique, remise d'un sac), chaque plan porte une ligne de prix, puis carton de fin.
 
@@ -306,7 +306,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 > Marchéo, c'est votre boucherie en ligne : catalogue au kilo, commandes avec créneaux de retrait, empreinte bancaire pour les commandes de fêtes, 50 SMS clients par mois.
 >
 > · 399 € d'installation, une seule fois
-> · 39 €/mois, sans engagement
+> · 1er mois offert, puis 39 €/mois, sans engagement
 > · 0 % de commission sur vos ventes
 >
 > Pas de devis, pas d'appel obligatoire : vous voyez l'aperçu de votre boutique et vous l'activez en ligne.
@@ -404,7 +404,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 **Texte principal**
 > Ce que vous payez avec Marchéo :
 > · 399 € d'installation, une seule fois
-> · 39 €/mois, sans engagement
+> · 39 €/mois à partir du 2e mois (le 1er est offert), sans engagement
 > · les frais Stripe standards sur les paiements par carte de vos clients (1,4 % + 0,25 € par carte française)
 >
 > Ce que vous ne payez pas :
