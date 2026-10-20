@@ -1,16 +1,19 @@
 ---
-title: "Click & collect sans commission : l'alternative à Uber Eats et Deliveroo pour les commerçants"
+title: "Click and collect sans commission : comment le proposer à vos clients"
 titre_court: "Sans commission : l'alternative aux plateformes"
 description: "Ce que coûtent vraiment les plateformes de livraison à une pizzeria, un restaurant ou un traiteur, et comment garder ses habitués sur sa propre boutique en ligne sans commission, tout en gardant les plateformes pour les nouveaux clients."
-meta_title: "Click & collect sans commission : les alternatives"
-meta_description: "Uber Eats et Deliveroo prennent 14 à 30 % par commande. Comment vendre en ligne sans commission, avec un abonnement fixe et 100 % de vos ventes."
+meta_title: "Click and collect sans commission : comment le proposer"
+meta_description: "Proposer le click and collect sans commission : les 5 solutions comparées, leurs prix réels, et comment garder 100 % de vos ventes face à Uber Eats."
 date: 2026-09-04
+modified: 2026-10-20
 rubrique: Comparatif
 emoji: ⚖️
 keywords:
+  - click and collect sans commission
+  - comment proposer le click and collect sans commission
+  - logiciel click and collect sans commission
   - alternative uber eats
   - alternative deliveroo
-  - click and collect sans commission
   - commande en ligne restaurant sans commission
 metiers:
   - pizzeria
@@ -18,6 +21,12 @@ metiers:
   - fastfood
   - traiteur
 faq:
+  - q: "Quel logiciel de click and collect sans commission pour un commerçant ?"
+    r: "Plusieurs éditeurs proposent un abonnement fixe sans pourcentage sur les ventes. Pour les commerces de bouche (boulangerie, boucherie, primeur, poissonnerie, traiteur, fromagerie, fleuriste, pizzeria, restaurant), Marchéo en fait partie : 0 % de commission, 39 € par mois pour le click & collect avec réservation, 59 € avec la livraison organisée par le commerçant, sans engagement, frais d'installation uniques de 399 ou 549 €. Seuls les frais bancaires du paiement en ligne restent, comme pour toute carte."
+  - q: "Le click and collect sans commission est-il vraiment gratuit ?"
+    r: "Non, le coût est déplacé. Une offre sans commission se paie par un abonnement fixe, des frais d'installation ou des options. L'intérêt est que ce coût ne grossit pas avec vos ventes, contrairement à une commission de 14 à 30 % prélevée sur chaque commande."
+  - q: "Faut-il acheter du matériel pour proposer le click and collect sans commission ?"
+    r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà."
   - q: "Quelle commission prennent Uber Eats et Deliveroo ?"
     r: "Les commissions publiées vont de 14 % pour le seul retrait à environ 30 % pour la livraison assurée par la plateforme, hors TVA et hors options de visibilité. Sur une commande de 25 €, cela représente 3,50 à 7,50 €."
   - q: "Faut-il quitter les plateformes pour lancer sa propre boutique ?"
@@ -27,6 +36,26 @@ faq:
   - q: "Ma propre boutique peut-elle gérer la livraison ?"
     r: "Oui si vous livrez vous-même ou avec un livreur à vous. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais de livraison. Sans commission sur la commande."
 ---
+
+Pour proposer le click and collect sans commission, il faut prendre les commandes sur votre propre boutique en ligne plutôt que sur une plateforme comme Uber Eats ou Deliveroo, qui prélève 14 à 30 % par commande. Vous payez alors un abonnement fixe, ou rien du tout avec un simple formulaire, et vous gardez 100 % du prix de vente ainsi que les coordonnées de vos clients. Seuls les frais bancaires s'appliquent si le client paie en ligne.
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Pour la vue d'ensemble, lisez aussi notre guide pour [créer sa boutique en ligne](/blog/creer-sa-boutique-en-ligne-commerce).
+
+## Comment proposer le click and collect sans commission ?
+
+Il existe cinq façons de proposer le click and collect sans commission, de la plus artisanale à la plus complète. Toutes évitent le pourcentage prélevé par une plateforme ; elles diffèrent par le temps qu'elles vous coûtent.
+
+| Solution | Coût habituel | Commission | Créneaux de retrait | Protection contre les commandes non retirées | Limite |
+|---|---|---|---|---|---|
+| Formulaire en ligne ou messagerie (WhatsApp, Facebook) | Gratuit | Aucune | À gérer à la main | Non | Tout se ressaisit, ingérable au-delà de quelques commandes |
+| Commande par téléphone avec page vitrine | Prix de la vitrine | Aucune | À la main | Non | Le téléphone sonne pendant le coup de feu |
+| Module click & collect sur un site e-commerce (Shopify, Wix, WooCommerce) | 30 à 80 € par mois avec les extensions | Frais de transaction selon l'offre | Via extensions | Via extensions | Pensé pour l'expédition de colis, paramétrage long |
+| Logiciel de caisse avec vente en ligne | Abonnement variable | Variable selon l'éditeur | Selon l'offre | Rare | Dépend de la caisse déjà installée |
+| Logiciel métier pour commerces de bouche (Marchéo) | 39 ou 59 € par mois, sans engagement | 0 % | Oui, avec capacité par créneau | Empreinte bancaire optionnelle | Abonnement fixe à payer même les mois creux |
+
+Pour quelques commandes par semaine, un formulaire suffit. Dès que les commandes deviennent régulières, un outil qui gère les créneaux, la vente au poids et les commandes non retirées fait gagner plus de temps qu'il ne coûte. Notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) détaille chaque catégorie.
+
+## Pourquoi chercher une alternative aux plateformes ?
 
 Une pizzeria qui vend 100 pizzas par semaine à 14 € par une plateforme de livraison verse entre 350 et 420 € par semaine en commissions. Sur un an, c'est le prix d'un four. Ce chiffre explique pourquoi de plus en plus de commerçants cherchent une alternative à Uber Eats et Deliveroo, non pas pour les remplacer, mais pour arrêter de payer 30 % sur des clients qui reviendraient de toute façon.
 
@@ -86,4 +115,4 @@ Même avec un basculement modeste, l'écart se compte en centaines d'euros chaqu
 
 ## Par où commencer
 
-Créez votre boutique, imprimez un QR code, glissez un flyer dans chaque commande pendant un mois. Mesurez. Dans la grande majorité des cas, la question de la commission se règle d'elle-même en un trimestre.
+Créez votre boutique, imprimez un QR code, glissez un flyer dans chaque commande pendant un mois. Mesurez. Au bout d'un trimestre, vous saurez précisément combien de commandes sont passées de la plateforme à votre boutique, et combien de commission vous avez gardée.

@@ -187,6 +187,20 @@ def org_ld() -> dict:
             "description": f"{BRAND} est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."}
 
 
+def logiciel_ld() -> dict:
+    """Fiche logiciel avec les prix exacts : les moteurs et les IA citent ce qui est écrit noir sur blanc."""
+    formules = [("Vitrine", "19", "Site internet du commerce"),
+                ("Click & Collect + Réservation", "39", "Commande en ligne avec retrait en boutique et réservation de table"),
+                ("Click & Collect + Livraison", "59", "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant")]
+    return {"@type": "SoftwareApplication", "@id": f"{HOST}/#logiciel", "name": BRAND, "url": HOST + "/",
+            "applicationCategory": "BusinessApplication", "operatingSystem": "Web, iOS, Android (navigateur)",
+            "inLanguage": "fr-FR", "publisher": {"@id": f"{HOST}/#org"},
+            "description": org_ld()["description"] + " 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+            "offers": [{"@type": "Offer", "name": n, "price": p, "priceCurrency": "EUR", "description": d + ", abonnement mensuel sans engagement, 0 % de commission",
+                        "priceSpecification": {"@type": "UnitPriceSpecification", "price": p, "priceCurrency": "EUR", "unitCode": "MON"}}
+                       for n, p, d in formules]}
+
+
 SUFFIXE_TITRE = f" · {BRAND}"
 
 
@@ -209,7 +223,7 @@ def seo_desc(meta: dict) -> str:
 
 def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: str, eyebrow: str, crumbs: list[tuple[str, str]],
          ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article") -> str:
-    ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
+    ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), logiciel_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
     crumbs_html = " › ".join(f'<a href="{esc(u)}">{esc(n)}</a>' if i < len(crumbs) - 1 else esc(n) for i, (n, u) in enumerate(crumbs))
     return f"""<!DOCTYPE html>
 <html lang="fr">
