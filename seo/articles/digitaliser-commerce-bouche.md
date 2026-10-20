@@ -5,6 +5,7 @@ description: "Fiche Google, Instagram, commande en ligne, SMS aux clients, livra
 meta_title: "Digitaliser son commerce de bouche : par où commencer"
 meta_description: "Par quoi commencer pour vendre en ligne quand on est boulanger, boucher ou primeur, ce qui rapporte vite et les erreurs qui coûtent cher."
 date: 2026-09-01
+modified: 2026-10-20
 rubrique: Guide
 emoji: 📱
 keywords:
@@ -45,7 +46,7 @@ C'est une heure de travail, et c'est l'étape qui rapporte le plus. Une fiche co
 
 Une fois trouvé, le client veut agir. Sur la plupart des fiches, il ne peut qu'appeler. Une **boutique en ligne de click & collect** lui permet de commander son gâteau, son rôti ou son panier en 30 secondes, de choisir son heure, et de venir retirer sans attendre.
 
-Ce que la boutique doit avoir pour un commerce de bouche : commande sans création de compte, créneaux de retrait avec capacité, vente au poids et précisions, empreinte bancaire contre les commandes non retirées, gestion depuis le téléphone. Une solution comme Marchéo fournit tout ça avec le catalogue de votre métier déjà rempli, à partir de 19 € par mois et sans commission. Le lien de la boutique va ensuite sur la fiche Google, sur Instagram, et en QR code sur le comptoir.
+Ce que la boutique doit avoir pour un commerce de bouche : commande sans création de compte, créneaux de retrait avec capacité, vente au poids et précisions, empreinte bancaire contre les commandes non retirées, gestion depuis le téléphone. Une solution comme Marchéo fournit tout ça avec le catalogue de votre métier déjà rempli, à partir de 39 € par mois pour le click & collect et sans commission. Le lien de la boutique va ensuite sur la fiche Google, sur Instagram, et en QR code sur le comptoir. Pour toutes les étapes, du choix de l'outil au lancement, lisez notre guide complet pour [créer sa boutique en ligne](/blog/creer-sa-boutique-en-ligne-commerce).
 
 ## Étape 3 : un canal pour prévenir vos habitués
 
