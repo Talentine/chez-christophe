@@ -27,7 +27,7 @@ Questions de référence (marquées R) :
 19. Click and collect, ça veut dire quoi pour un commerçant ?
 20. Comment vendre au poids en ligne pour un fromager ?
 
-Prochaine question en rotation : n°3.
+Prochaine question en rotation : n°4.
 
 ## Relevés
 
@@ -38,6 +38,9 @@ Prochaine question en rotation : n°3.
 | 2026-10-20 | Perplexity | (R) Quel est le meilleur outil pour créer la boutique en ligne de mon commerce sans matériel ? | non | shopify.com (réponse : Shopify, Wix eCommerce ; « sans matériel » compris comme « sans stock ») |
 | 2026-10-20 | Perplexity | (R) Comment proposer le click and collect sans commission ? | non | francenum, ca-moncommerce, orisha, commerceendirect (réponse : formulaire, site vitrine, module e-commerce, logiciel de caisse, paiement au retrait) |
 | 2026-10-20 | Google (aperçu IA) | (R) Comment proposer le click and collect sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | heustach.fr, lundimatin.fr, ca-moncommerce, faire.com, bungeefood.fr, bread-up.co, clicketcroque.fr, qartine.com (petits blogs d'éditeurs : cible atteignable) |
+| 2026-10-21 | Perplexity | Click and collect, ça veut dire quoi pour un commerçant ? | non | francenum.gouv, ionos, shopify (réponse : définition, formulaire ou WhatsApp pour démarrer, puis Shopify ou WooCommerce) |
+| 2026-10-21 | Google (aperçu IA) | Click and collect, ça veut dire quoi pour un commerçant ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | economie.gouv.fr, Solocal, mypos, SumUp, Alma, Wikipédia, ChapsVision, MMA (aucun site spécialisé commerce de bouche) |
+| 2026-10-21 | Perplexity | (R) Quel logiciel pour livrer mes clients moi-même ? | non | routific, getapp (réponse : Routific, RoadWarrior, Shipday, Logistia, OptimoRoute, Track-POD : optimiseurs de tournée, rien qui combine commande en ligne et livraison locale) |
 
 ## Bilans hebdomadaires (le lundi)
 

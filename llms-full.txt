@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click & collect pour commerçant : le guide complet](https://marchéo.fr/blog/click-and-collect-commercant-guide-complet) : Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
 - [Créer sa boutique en ligne pour son commerce : le guide complet](https://marchéo.fr/blog/creer-sa-boutique-en-ligne-commerce) : Créer sa boutique en ligne quand on tient un commerce de proximité : comment faire, quelles solutions, combien ça coûte, quoi y mettre. Sans matériel, sans commission.
 - [Click and collect primeur : paniers, vente au kilo et retrait rapide](https://marchéo.fr/blog/click-and-collect-primeur) : Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](https://marchéo.fr/blog/poissonnerie-livraison-a-domicile) : Poissonnerie et livraison à domicile : zone, créneaux, glace et caisses isothermes, frais, pesée et paiement. Le guide pour livrer vos clients vous-même.
@@ -738,6 +739,228 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Click & collect pour commerçant : le guide complet
+
+Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
+
+Click and collect veut dire « cliquer et retirer » : le client commande en ligne, choisit un créneau, puis vient chercher sa commande prête dans votre boutique. Pour un commerçant de proximité, c&rsquo;est une façon de prendre des commandes pendant qu&rsquo;il sert au comptoir, de préparer aux heures creuses et de faire repartir le client en deux minutes. Avec un logiciel métier, cela se met en place en une journée, sans matériel à acheter et sans commission.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Ce guide complète notre guide pour créer sa boutique en ligne et se concentre sur le retrait en boutique. Il s&rsquo;adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs qui se demandent concrètement comment cela marche, ce que cela change au quotidien et par où commencer.
+Click and collect, ça veut dire quoi exactement ?
+Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton.
+Dans la grande distribution, le client vient chercher un colis préparé à partir du stock. Dans un commerce de bouche, c&rsquo;est un peu différent : le client commande un gâteau pour samedi, un rôti de 1,2 kg, un plateau de fromages ou un bouquet pour 18 h. Le produit est souvent préparé ou découpé pour lui. C&rsquo;est pour cela que trois éléments comptent plus qu&rsquo;ailleurs :
+
+le créneau de retrait, pour que la commande soit fraîche et prête à l&rsquo;heure ;
+la vente au poids, pour la viande, le poisson, le fromage, les fruits et légumes ;
+la protection contre les commandes non récupérées, car un produit frais préparé pour rien est perdu.
+
+Comment fonctionne le click and collect, étape par étape ?
+Le click and collect fonctionne en cinq étapes, du côté du client comme du vôtre. La commande prend environ 30 secondes au client, et la préparation se fait quand cela vous arrange, avant le créneau choisi.
+
+Le client ouvre votre boutique en ligne depuis votre fiche Google, votre Instagram, un lien envoyé par SMS ou le QR code de votre comptoir.
+Il choisit ses produits et indique un créneau de retrait, par exemple samedi entre 10 h et 10 h 30.
+Il valide sa commande avec son nom et son téléphone, sans créer de compte. Selon vos réglages, il paie en ligne ou au retrait.
+Vous recevez une notification et la commande s&rsquo;affiche dans votre espace commerçant, avec le créneau et le détail. Vous la préparez quand vous voulez avant l&rsquo;heure.
+Le client passe en boutique, donne son nom, récupère son sac et repart. S&rsquo;il a payé en ligne, il n&rsquo;attend pas à la caisse.
+
+Quels sont les avantages et les inconvénients du click and collect ?
+Le click and collect fait gagner du temps au client et lisse le travail du commerçant, mais il demande un peu d&rsquo;organisation. Le tableau ci-dessous résume les deux côtés, sans enjoliver.
+
+
+
+Avantages
+Inconvénients à anticiper
+
+
+
+
+Des commandes prises même quand vous êtes occupé au comptoir
+Il faut un endroit pour stocker les commandes prêtes, au froid si besoin
+
+
+Une préparation aux heures creuses, moins de rush au comptoir
+Il faut tenir le catalogue à jour (ruptures, produits de saison)
+
+
+Des quantités connues à l&rsquo;avance, donc moins de pertes
+Des commandes peuvent ne pas être récupérées
+
+
+Un panier souvent mieux préparé et plus complet
+Il faut prévenir les clients que le service existe
+
+
+Pas de livraison à organiser, pas de frais de port pour le client
+Les créneaux doivent être limités pour éviter l&rsquo;embouteillage
+
+
+Le client reste le vôtre, avec son nom et son téléphone
+Un outil mal choisi peut prélever une commission sur chaque vente
+
+
+
+La plupart de ces inconvénients se règlent avec de bons réglages : capacité par créneau, empreinte bancaire, mise à jour du catalogue depuis le téléphone.
+Comment mettre en place le click and collect dans sa boutique ?
+Mettre en place le click and collect demande quatre décisions et quelques réglages, pas un projet informatique. Comptez une journée pour être prêt à recevoir vos premières commandes.
+
+Choisir ce que vous proposez en retrait. Commencez par ce qui se commande déjà à l&rsquo;avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir.
+Choisir votre outil. Il doit gérer les créneaux et, si besoin, la vente au poids. Sur la page de création de Marchéo, vous choisissez votre métier, vous tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, avec un catalogue déjà rempli.
+Régler vos créneaux et votre délai de préparation. Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
+Choisir le paiement. En ligne, au retrait, ou les deux. Décidez aussi si vous activez l&rsquo;empreinte bancaire.
+Organiser le retrait en boutique. Un endroit dédié pour les commandes prêtes, étiquetées au nom du client, et un réflexe au comptoir pour les servir vite.
+Le faire savoir. QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués.
+
+Si vous partez de zéro côté site, notre article sur comment créer un site de click &amp; collect détaille la partie technique.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Pour faire du click and collect, il vous faut un téléphone, une liste de produits et des créneaux. Il ne vous faut ni matériel spécial, ni développeur, ni commission à reverser.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Un téléphone ou un ordinateur que vous avez déjà
+Pas de tablette, d&rsquo;imprimante ou de caisse à acheter
+
+
+Vos produits phares avec leurs prix
+Pas de développeur ni d&rsquo;agence
+
+
+Des créneaux de retrait et un nombre de commandes par créneau
+Pas de commission sur chaque commande
+
+
+Un coin de la boutique pour les commandes prêtes
+Pas d&rsquo;application à faire télécharger à vos clients
+
+
+Un QR code et un lien à partager
+Pas de compte à créer pour vos clients
+
+
+
+Attention à une confusion fréquente : « sans matériel » veut dire que vous n&rsquo;achetez pas d&rsquo;équipement pour recevoir et gérer les commandes. Si un client paie par carte au retrait, il le fait avec le terminal de paiement que vous utilisez déjà en boutique.
+Comment gérer les créneaux de retrait et les heures de pointe ?
+Les créneaux de retrait se gèrent avec une règle simple : un nombre maximum de commandes par créneau. Sans cette limite, tout le monde choisit midi ou 18 h et vous retrouvez la file d&rsquo;attente que le click and collect devait éviter.
+Quelques réglages qui marchent bien dans les commerces de bouche :
+
+Des créneaux de 15 ou 30 minutes, selon le temps de préparation de vos produits.
+Une capacité par créneau adaptée à votre équipe, plus faible aux heures de rush.
+Un délai minimum de préparation, par exemple deux heures pour un plateau, 48 heures pour un gâteau personnalisé.
+Des créneaux fermés quand vous êtes seul en boutique ou en pleine livraison.
+Des créneaux spéciaux pour les fêtes, ouverts plusieurs semaines à l&rsquo;avance. Notre guide des précommandes de Noël détaille cette organisation, à préparer dès maintenant.
+
+Paiement en ligne ou paiement au retrait : que choisir ?
+Le paiement en ligne sécurise la vente, le paiement au retrait rassure les clients qui n&rsquo;aiment pas payer à l&rsquo;avance. Beaucoup de commerçants proposent les deux et laissent le client choisir.
+
+
+
+Mode de paiement
+Pour vous
+Pour le client
+
+
+
+
+Paiement en ligne
+Commande payée, retrait plus rapide
+Rien à faire en boutique
+
+
+Paiement au retrait
+Montant exact après pesée
+Paie comme d&rsquo;habitude, avec votre terminal habituel
+
+
+Paiement au retrait avec empreinte bancaire
+Vous êtes couvert si la commande n&rsquo;est pas récupérée
+Aucun débit si tout se passe bien
+
+
+
+Pour la vente au poids, le paiement au retrait est souvent le plus simple : le prix final dépend de la pesée. Le guide vendre au poids en ligne explique comment afficher les prix au kilo et ajuster le montant.
+Comment éviter les commandes non récupérées ?
+Les commandes non récupérées s&rsquo;évitent surtout avec un rappel clair et une empreinte bancaire. Sur des produits frais préparés à la demande, une seule commande oubliée un samedi peut représenter une vraie perte.
+Avec Marchéo, l&rsquo;empreinte bancaire est optionnelle. Vous choisissez le pourcentage du panier bloqué sur la carte du client, jusqu&rsquo;à 75 %. Rien n&rsquo;est débité si le client vient chercher sa commande : l&rsquo;empreinte est libérée 24 h après le retrait. Si la commande n&rsquo;est pas récupérée, vous êtes couvert. Notre article sur l&rsquo;empreinte bancaire et le no-show détaille le fonctionnement.
+D&rsquo;autres réflexes aident aussi : demander le téléphone à chaque commande, afficher la règle de retrait au moment de valider, et appeler le client si le créneau est dépassé.
+Combien coûte le click and collect pour un commerçant ?
+Le click and collect coûte, selon l&rsquo;outil, entre zéro abonnement avec une commission de 14 à 30 % par commande sur les plateformes, et un abonnement fixe de quelques dizaines d&rsquo;euros par mois sans commission. Pour un commerce qui vend régulièrement en ligne, l&rsquo;abonnement fixe revient en général moins cher.
+Chez Marchéo, les prix sont fixes, sans engagement et à 0 % de commission :
+
+
+
+Formule
+Abonnement mensuel
+Frais d&rsquo;installation uniques
+Click &amp; collect
+
+
+
+
+Vitrine
+19 €
+249 €
+Non, site sans commande
+
+
+Click &amp; Collect + Réservation
+39 €
+399 €
+Oui, avec réservation de table
+
+
+Click &amp; Collect + Livraison
+59 €
+549 €
+Oui, avec livraison organisée par vous
+
+
+
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : la formule Livraison vous donne l&rsquo;outil pour organiser votre propre livraison. Pour comparer avec les autres solutions du marché, lisez combien coûte un site de click &amp; collect, notre comparatif des logiciels de click &amp; collect et le calcul face aux plateformes dans click and collect sans commission.
+Le click and collect selon votre métier
+Chaque métier a ses produits qui se commandent naturellement en retrait. Un logiciel métier les prévoit déjà dans le catalogue de départ.
+
+Boulangerie. Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir la solution pour boulangerie et le guide du site internet de boulangerie.
+Boucherie. Colis, rôtis, découpes à la demande, vente au kilo. Voir la solution pour boucherie.
+Primeur. Paniers de la semaine, vente au kilo, fruits de saison. Voir la solution pour primeur et le guide du click and collect primeur.
+Poissonnerie. Poisson préparé, plateaux de fruits de mer. Voir la solution pour poissonnerie.
+Traiteur. Plats du jour, plateaux, buffets. Voir la solution pour traiteur et la création de site internet de traiteur.
+Fromagerie. Coupes au poids, plateaux, formules raclette. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
+Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste.
+Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
+Restaurant. Vente à emporter et réservation de table. Voir la solution pour restaurant.
+Fast-food et food-truck. Commandes prêtes à l&rsquo;arrivée sur l&rsquo;emplacement. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.
+
+Par où commencer aujourd&rsquo;hui ?
+Le plus simple est de voir à quoi ressemblerait votre click and collect avant de décider quoi que ce soit. Sur marchéo.fr/inscription, vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche en 30 secondes. C&rsquo;est gratuit et sans engagement.
+Les autres guides du blog sur le click &amp; collect :
+
+Comment créer un site de click &amp; collect pour son commerce
+Logiciel de click &amp; collect : comparatif 2026
+Click and collect sans commission
+Combien coûte un site de click &amp; collect
+Empreinte bancaire et no-show
+Vendre au poids en ligne
+Précommandes des fêtes de fin d&rsquo;année
+Click and collect primeur
+Click and collect fromagerie
+Click &amp; collect pour food-truck
+Site internet pour boulangerie
+Digitaliser son commerce de bouche
+
+Q : Click and collect, ça veut dire quoi pour un commerçant ?
+R : Click and collect veut dire « cliquer et retirer » : votre client commande en ligne, choisit une heure de retrait, puis vient chercher sa commande dans votre boutique. Pour vous, c'est une commande prête à préparer aux heures creuses, sans livraison et sans file d'attente au comptoir.
+Q : Faut-il acheter du matériel pour faire du click and collect ?
+R : Non. Avec un logiciel comme Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent par notification sur le téléphone ou l'ordinateur que vous avez déjà, et vous les suivez depuis votre espace commerçant.
+Q : Quel logiciel de click and collect pour un petit commerce sans commission ?
+R : Plusieurs familles de solutions existent : modules de retrait pour Shopify ou WooCommerce, outils de caisse, plateformes de livraison avec commission, et logiciels métier. Marchéo est un logiciel métier pour les commerces de bouche : 0 % de commission, 39 € par mois pour la formule Click & Collect + Réservation et 59 € par mois avec la livraison, sans engagement, plus des frais d'installation uniques de 399 ou 549 €. La formule Vitrine à 19 € par mois ne prend pas de commande.
+Q : Combien de temps un client a-t-il pour récupérer sa commande en click and collect ?
+R : C'est vous qui fixez la règle. Pour des produits frais, la commande est en général à retirer le jour du créneau choisi. Indiquez la règle clairement au moment de la commande et, si vous craignez les oublis, activez une empreinte bancaire pour être couvert en cas de commande non récupérée.
+
 # Créer sa boutique en ligne pour son commerce : le guide complet
 
 Créer sa boutique en ligne quand on tient un commerce de proximité : comment faire, quelles solutions, combien ça coûte, quoi y mettre. Sans matériel, sans commission.
@@ -908,7 +1131,7 @@ Pour la vente à la pièce ou au kilo, le guide vendre au poids en ligne expliqu
 Click &amp; collect, livraison ou simple vitrine ?
 Le bon choix dépend de ce que veulent vos clients, et vous pouvez commencer petit. Une vitrine suffit pour être trouvé sur Google et afficher vos horaires. Le click &amp; collect convient à la plupart des commerces de bouche. La livraison a du sens si vos clients sont âgés, éloignés ou pressés.
 La vitrine présente votre commerce, vos produits et vos horaires, sans commande. C&rsquo;est la formule à 19 € par mois.
-Le click &amp; collect permet de commander en ligne et de retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client repart en deux minutes. Pour limiter les commandes non récupérées, l&rsquo;empreinte bancaire est optionnelle : vous choisissez le pourcentage du panier bloqué, jusqu&rsquo;à 75 %, et il est libéré 24 h après le retrait. Notre article sur l&rsquo;empreinte bancaire et le no-show explique son fonctionnement.
+Le click &amp; collect permet de commander en ligne et de retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client repart en deux minutes. Pour limiter les commandes non récupérées, l&rsquo;empreinte bancaire est optionnelle : vous choisissez le pourcentage du panier bloqué, jusqu&rsquo;à 75 %, et il est libéré 24 h après le retrait. Notre article sur l&rsquo;empreinte bancaire et le no-show explique son fonctionnement. Pour tout comprendre du retrait en boutique, lisez notre guide complet du click and collect pour commerçant.
 La livraison à domicile est organisée par vous : zone, créneaux, minimum de commande, frais, tournée. Marchéo ne livre pas et n&rsquo;a pas de coursiers ; il vous fournit l&rsquo;outil pour organiser votre propre livraison. Le guide livraison locale pour un commerçant détaille la méthode.
 Comment faire connaître sa boutique en ligne ?
 Une boutique en ligne se fait connaître d&rsquo;abord par vos clients actuels, ensuite par Google. Les premiers jours, ce sont vos habitués qui commandent, parce qu&rsquo;ils voient le QR code au comptoir.
@@ -969,7 +1192,7 @@ Le click and collect chez un primeur, c&rsquo;est laisser vos clients composer l
 Un primeur a ses propres contraintes : des produits vendus au poids, des arrivages qui changent chaque jour, des ruptures fréquentes. On pourrait croire que cela ne se met pas en ligne. En pratique, ces contraintes se règlent avec quelques réglages simples, à condition de ne pas vouloir tout mettre sur internet le premier jour.
 Pourquoi proposer le click and collect dans un primeur ?
 Le samedi matin et en fin de journée, la boutique se remplit vite. Chaque client choisit, pèse, hésite. Pendant ce temps, celui qui voulait juste ses légumes de la semaine regarde la file et repart.
-Le click and collect sert d&rsquo;abord ce client-là. Il commande la veille ou le matin, vous préparez au calme, il passe récupérer son sac. Le comptoir reste libre pour ceux qui aiment choisir eux-mêmes.
+Le click and collect sert d&rsquo;abord ce client-là. Il commande la veille ou le matin, vous préparez au calme, il passe récupérer son sac. Le comptoir reste libre pour ceux qui aiment choisir eux-mêmes. Si vous découvrez le principe, notre guide sur ce que veut dire le click and collect pour un commerçant en explique toutes les étapes.
 
 
 

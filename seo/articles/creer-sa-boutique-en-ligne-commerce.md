@@ -5,6 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
+modified: 2026-10-21
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -129,7 +130,7 @@ Le bon choix dépend de ce que veulent vos clients, et vous pouvez commencer pet
 
 **La vitrine** présente votre commerce, vos produits et vos horaires, sans commande. C'est la formule à 19 € par mois.
 
-**Le click & collect** permet de commander en ligne et de retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client repart en deux minutes. Pour limiter les commandes non récupérées, l'empreinte bancaire est optionnelle : vous choisissez le pourcentage du panier bloqué, jusqu'à 75 %, et il est libéré 24 h après le retrait. Notre article sur [l'empreinte bancaire et le no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant) explique son fonctionnement.
+**Le click & collect** permet de commander en ligne et de retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client repart en deux minutes. Pour limiter les commandes non récupérées, l'empreinte bancaire est optionnelle : vous choisissez le pourcentage du panier bloqué, jusqu'à 75 %, et il est libéré 24 h après le retrait. Notre article sur [l'empreinte bancaire et le no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant) explique son fonctionnement. Pour tout comprendre du retrait en boutique, lisez notre guide complet du [click and collect pour commerçant](/blog/click-and-collect-commercant-guide-complet).
 
 **La livraison à domicile** est organisée par vous : zone, créneaux, minimum de commande, frais, tournée. Marchéo ne livre pas et n'a pas de coursiers ; il vous fournit l'outil pour organiser votre propre livraison. Le guide [livraison locale pour un commerçant](/blog/livraison-locale-commercant-comment-organiser) détaille la méthode.
 

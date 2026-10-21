@@ -25,7 +25,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
 | site click and collect gratuit | click & collect | transverse | GS | moyenne | à faire (angle : ce qui est vraiment gratuit) |
 | application click and collect gratuite | click & collect | transverse | GS | moyenne | à faire (même article que la ligne précédente) |
-| comment mettre en place le click and collect dans sa boutique | click & collect | transverse | GS | moyenne | à faire (proche de comment-creer-un-site-click-and-collect, angle boutique physique) |
+| comment mettre en place le click and collect dans sa boutique | click & collect | transverse | GS | moyenne | publié le 2026-10-21 click-and-collect-commercant-guide-complet (section dédiée de la page pilier) |
 | qr code commande restaurant | click & collect | restaurant | GS | moyenne | à faire |
 | qr code commande à table | click & collect | restaurant | GS | moyenne | à faire |
 | livraison à domicile boucherie | livraison | boucherie | GS | haute | à faire (angle : livrer soi-même) |
@@ -90,7 +90,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer sa boutique en ligne pas cher | site | tous | GS (19/10) | haute | couvert par la page pilier creer-sa-boutique-en-ligne-commerce (2026-10-20), section prix |
 | boutique en ligne sans abonnement | site | tous | GS (19/10) | moyenne | à faire (comparatif honnête : commission contre abonnement fixe) |
 | boutique en ligne sans frais | site | tous | GS (19/10) | moyenne | même article que la ligne précédente |
-| click and collect ça veut dire quoi | click & collect | tous | GS (19/10) | haute | à faire : page pilier « click & collect pour commerçant : le guide complet » (définition + hub) |
+| click and collect ça veut dire quoi | click & collect | tous | GS (19/10) + IA (21/10 : Perplexity cite francenum, ionos, shopify) | haute | publié le 2026-10-21 click-and-collect-commercant-guide-complet (page pilier) |
 | logiciel commande en ligne gratuit | click & collect | tous | GS (19/10) | moyenne | à faire (avec « application click and collect gratuite ») |
 | créer un site de vente en ligne prix | site | tous | GS (19/10) | moyenne | proche de combien-coute-un-site-de-click-and-collect, à renforcer dans cette page |
 | click and collect sans matériel | transverse | tous | positionnement (pas de volume Google) | moyenne | argument à placer dans chaque page pilier et dans la FAQ, pas d'article dédié |
@@ -109,3 +109,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | à faire : comparatif honnête « Shopify, Wix ou logiciel métier pour un commerce de bouche » |
 | marcheo.ma | transverse | - | GSC (14 impr., 20/10) | basse | écarté : requête marocaine sans lien, rien à faire |
 | click and collect sans commission | click & collect | tous | IA + Google (20/10 : 1re page = petits blogs d'éditeurs, marchéo.fr absent) | haute | à faire : refresh de click-and-collect-sans-commission-alternative-uber-eats-deliveroo (title sur la requête exacte, réponse directe, tableau des options sans commission) au prochain lundi |
+| click and collect avantages et inconvénients | click & collect | tous | GS (21/10) | moyenne | couvert par la page pilier click-and-collect-commercant-guide-complet (tableau dédié) |
+| click and collect combien de temps pour récupérer | click & collect | tous | GS recherches associées (21/10) | moyenne | couvert en FAQ de la page pilier ; à reprendre en FAQ des articles métier |
+| click and collect définition | click & collect | tous | GS recherches associées (21/10) | moyenne | variante de la page pilier (1re page : economie.gouv, Wikipédia, Solocal, SumUp, Alma : sites généralistes) |
+| que veut dire click and collect en français | click & collect | tous | GS (21/10) | basse | variante de la page pilier |
+| click and collect fleurs | click & collect | fleuriste | GS (21/10) | haute | à faire avec « fleuriste click and collect » (requêtes locales : Paris, Lyon, Rennes, Toulouse, Nice) |
+| logiciel livraison commerçant avec commande en ligne | livraison | tous | IA (21/10 : Perplexity ne cite que des optimiseurs de tournée : Routific, Shipday, OptimoRoute) | haute | à faire dans la page pilier livraison : angle « commande + zone + créneaux + tournée dans un seul outil » |
+| logiciel tournée de livraison gratuit commerçant | livraison | tous | IA (21/10) | moyenne | à faire (section de la page pilier livraison : Google Maps, limites, alternative) |
+| click and collect produits frais chaîne du froid | click & collect | tous | IA (21/10 : stockage des commandes prêtes non traité ailleurs) | basse | à faire en FAQ des articles boucherie et poissonnerie |

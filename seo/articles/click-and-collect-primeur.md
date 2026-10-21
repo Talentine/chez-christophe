@@ -5,6 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
+modified: 2026-10-21
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -35,7 +36,7 @@ Un primeur a ses propres contraintes : des produits vendus au poids, des arrivag
 
 Le samedi matin et en fin de journée, la boutique se remplit vite. Chaque client choisit, pèse, hésite. Pendant ce temps, celui qui voulait juste ses légumes de la semaine regarde la file et repart.
 
-Le click and collect sert d'abord ce client-là. Il commande la veille ou le matin, vous préparez au calme, il passe récupérer son sac. Le comptoir reste libre pour ceux qui aiment choisir eux-mêmes.
+Le click and collect sert d'abord ce client-là. Il commande la veille ou le matin, vous préparez au calme, il passe récupérer son sac. Le comptoir reste libre pour ceux qui aiment choisir eux-mêmes. Si vous découvrez le principe, notre guide sur [ce que veut dire le click and collect pour un commerçant](/blog/click-and-collect-commercant-guide-complet) en explique toutes les étapes.
 
 | Sans commande en ligne | Avec le click and collect primeur |
 | --- | --- |
