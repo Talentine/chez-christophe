@@ -1575,7 +1575,7 @@ async function chargerPaniers(commercantId) {
     const b = window.__CONFIG__?.business || {};
     const types = [b.business_type || 'primeur', ...(b.business_types_secondaires || [])];
     const filterTypes = '(' + types.map(encodeURIComponent).join(',') + ')';
-    const cats = await supabase('categories', '?slug=in.(paniers,plateaux,plateaux-fromage,plats-cuisines-bouch,buffets)&business_type=in.' + filterTypes + '&select=id,nom,slug');
+    const cats = await supabase('categories', '?slug=in.(paniers,plateaux,plateaux-fromage,plats-cuisines-bouch,buffets,paniers-boucherie,paniers-boulangerie,paniers-traiteur,paniers-fleuriste,paniers-pizzeria,paniers-restaurant,paniers-fastfood)&business_type=in.' + filterTypes + '&select=id,nom,slug');
     if (!cats || cats.error || !cats.length) {
       container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>';
       return;

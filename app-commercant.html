@@ -6141,6 +6141,12 @@ let categoriesCache = [];
 
 // Rayons du commerçant = catégories globales de son/ses métier(s)
 // + ses propres rayons custom (jamais ceux des autres commerçants).
+// Catégorie globale « Paniers » du métier (corbeilles, paniers garnis, plateaux)
+function estCategoriePanier(c) {
+  const slug = c?.slug || '';
+  return ['paniers', 'plateaux', 'plateaux-fromage'].includes(slug) || slug.startsWith('paniers-');
+}
+
 async function chargerCategories() {
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const commercantId = session.commercant_id;
@@ -6175,8 +6181,12 @@ async function chargerCategories() {
   } catch(e) { console.log('Erreur catégories:', e); categoriesCache = []; }
 
   // Remplir les dropdowns en conservant la sélection en cours
+  // La catégorie « Paniers » du métier est libellée explicitement pour que les
+  // corbeilles / paniers garnis y soient rangés (rayon Paniers de la boutique).
   const options = '<option value="">Aucune catégorie (optionnel)</option>'
-    + categoriesCache.map(c => '<option value="' + c.id + '">' + (c.emoji || '') + ' ' + c.nom + '</option>').join('');
+    + categoriesCache.map(c => '<option value="' + c.id + '">'
+      + (estCategoriePanier(c) ? '🧺 Paniers & corbeilles' : (c.emoji || '') + ' ' + c.nom)
+      + '</option>').join('');
 
   ['produitCategorie', 'editCategorie'].forEach(id => {
     const sel = document.getElementById(id);
@@ -6810,6 +6820,12 @@ function selectionnerUnite(unite) {
   document.querySelectorAll('.btn-unite').forEach(b => b.classList.remove('actif'));
   const id = 'unite-' + unite.replace(/ /g, '-');
   document.getElementById(id)?.classList.add('actif');
+  // Une corbeille va dans le rayon Paniers si aucune catégorie n'est choisie
+  if (unite === 'corbeille') {
+    const sel = document.getElementById('produitCategorie');
+    const panier = categoriesCache.find(estCategoriePanier);
+    if (sel && !sel.value && panier) sel.value = panier.id;
+  }
 }
 
 
