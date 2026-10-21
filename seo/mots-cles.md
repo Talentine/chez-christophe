@@ -117,3 +117,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel livraison commerçant avec commande en ligne | livraison | tous | IA (21/10 : Perplexity ne cite que des optimiseurs de tournée : Routific, Shipday, OptimoRoute) | haute | à faire dans la page pilier livraison : angle « commande + zone + créneaux + tournée dans un seul outil » |
 | logiciel tournée de livraison gratuit commerçant | livraison | tous | IA (21/10) | moyenne | à faire (section de la page pilier livraison : Google Maps, limites, alternative) |
 | click and collect produits frais chaîne du froid | click & collect | tous | IA (21/10 : stockage des commandes prêtes non traité ailleurs) | basse | à faire en FAQ des articles boucherie et poissonnerie |
+| creation site internet commerce | site | tous | GS (21/10) | haute | à faire : requête principale de la page pilier n°2 « Créer le site internet de son commerce » (22/10) |
+| creer site internet marchand | site | tous | GS (21/10) | moyenne | variante de la page pilier n°2 (section site vitrine ou site de commande) |
+| precommande noel | click & collect | tous | GS (21/10) | haute | à faire début novembre : guide des précommandes de fêtes en ligne (bûche, plateaux, foie gras, chapons), renvoie vers les articles métier de saison |
+| traiteur noël livraison à domicile | livraison | traiteur | GS (21/10) | haute | à faire début novembre : organiser la livraison des commandes de réveillon (créneaux du 24 et du 31, minimum, chaîne du froid) |
+| menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | à fondre dans l'article précédent (mettre son menu de réveillon en précommande en ligne) |
+| commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | variante de « commander un plateau de fruits de mer pour noël » (début novembre) |
+| fromagerie internet | site | fromagerie | GS (21/10) | moyenne | à faire : site internet pour sa fromagerie (vente au poids, plateaux de fêtes) |
+| livraison à domicile code ape | livraison | tous | GS (21/10) | basse | à faire en FAQ de la page pilier livraison (un commerçant qui livre ses propres clients garde son code APE) ; vérifier la formulation avant publication |
+| livreur à domicile indépendant | livraison | - | GS (21/10) | basse | écarté : intention emploi (devenir livreur), pas commerçant |
