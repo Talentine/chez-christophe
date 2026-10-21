@@ -8,6 +8,7 @@ Objectif : des **abonnements payés directement sur le site** (offre Click & Col
 |---|---|
 | [`bibliotheque.md`](bibliotheque.md) | Les fiches complètes : textes, scripts, storyboards, consignes visuelles, formats, URL, UTM, indicateurs |
 | [`annonces.csv`](annonces.csv) | Une ligne par annonce et par format, prête à recopier dans le Gestionnaire de publicités |
+| [`creations.md`](creations.md) | Les vidéos et images produites : liens, archive, méthode, limites |
 | [`suivi-hebdo.csv`](suivi-hebdo.csv) | Tableau de suivi hebdomadaire (dépense Meta + démos et paiements Marchéo) pour calculer le CAC |
 | `supabase/migrations/20261020_acquisition_publicites.sql` | Colonne `commercants.acquisition` + vue `v_acquisition_pub` (démos et paiements par création), appliquée |
 
@@ -22,11 +23,11 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
 - Tarif : 399 € de frais d'installation une seule fois, 39 €/mois, sans engagement, résiliable depuis le tableau de bord (`supabase/functions/stripe-setup-fee`, `faq.html`, `solutions/*.html`).
 - 1er mois d'abonnement offert : le commerçant paie 399 € à l'activation, l'abonnement à 39 €/mois démarre avec 30 jours d'essai (version en ligne de `stripe-setup-fee`, vérifiée dans les journaux de paiement).
 - 0 % de commission sur les ventes. Les paiements par carte des clients passent par le compte Stripe du commerçant, aux frais Stripe standards (`faq.html`).
-- Démo gratuite sans carte bancaire : on choisit son métier, on tape le nom de son commerce, la boutique s'affiche avec un catalogue de base déjà rempli pour le métier (`inscription.html`, `solutions/*.html`, modale d'offre de `boutique.html` « catalogue produits illimité + base fournie »).
+- Démo gratuite sans carte bancaire : le commerçant choisit son métier, saisit le nom, la ville et les horaires, ajoute 2 photos minimum et crée son compte ; la boutique est créée avec le catalogue de base du métier. Il paie seulement à l'activation (`inscription.html`, vérifié sur le site le 21/10).
 - Adresse de boutique `marchéo.fr/nom-du-commerce`, QR code imprimable (`vercel.json`, offre Vitrine incluse).
-- Commande client depuis le téléphone, sans créer de compte, retrait sur créneau choisi (`solutions/*.html`, `panier.html`).
-- Vente au kilo, aux 100 g, à la pièce ou au panier ; ajustement du montant à la pesée (`solutions/boucherie.html`, blog « vendre au poids »).
-- Champ « précisions » sur les produits (découpe, épaisseur…) côté boucherie (`solutions/boucherie.html`).
+- Commande client depuis le téléphone, retrait sur créneau choisi. **Le client doit avoir un compte** (e-mail + mot de passe) pour commander dans une boutique active ; ensuite ses coordonnées sont pré-remplies (`panier.html`, vérifié sur le site le 21/10).
+- Vente au kilo ou à la pièce avec choix du poids (250 g, 500 g, 1 kg…) ; l'interface indique « Le commerçant ajustera selon le poids exact à la pesée » (`catalogue.html`).
+- Note du client pour le commerçant dans la commande (« Note pour <boutique> »), utilisable pour la découpe. Il n'y a **pas** de champ « précisions » par produit (`panier.html`).
 - Créneaux de retrait par jour et heure, avec capacité (`solutions/boucherie.html`).
 - Paiement en ligne ou au retrait (le paiement en ligne suppose que le commerçant active son compte Stripe depuis les réglages).
 - Empreinte bancaire anti no-show : jusqu'à 75 % du panier pré-autorisé, libérée 24 h après le retrait (`stripe-empreinte`, offre Click & Collect).
@@ -41,6 +42,9 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
 | « Marchéo livre vos clients » | Faux : Marchéo fournit l'outil, pas de coursiers. |
 | « Formation en visio incluse » | Mentionné dans la FAQ, mais pas dans la modale d'offre ni dans Stripe. À confirmer avant usage. |
 | Un chiffre de clients, de CA ou de CAC | Aucune donnée réelle à ce jour. |
+| « Sans créer de compte » (côté client) | Faux pour une boutique active : le client doit se connecter pour commander. |
+| « Aperçu en 30 secondes », « en 3 gestes » | L'inscription demande métier, nom, horaires, 2 photos et un compte. |
+| « Champ précisions sur chaque produit » | N'existe pas : c'est une note sur la commande. |
 | « Votre boutique complète en 30 secondes » | C'est l'aperçu qui s'affiche en 30 secondes. Les textes disent « aperçu » ou « démo ». |
 
 ---
@@ -55,7 +59,10 @@ Les textes n'utilisent que des fonctionnalités présentes dans le site et l'app
    Tant que `Purchase` n'existe pas, on **optimise la campagne sur `CompleteRegistration`** (démo créée) et on **juge les créations sur les paiements réels** dans Marchéo. Même avec `Purchase` en place, 500 €/mois ne donnera pas les ~50 achats par semaine dont Meta a besoin pour sortir de l'apprentissage. Rester sur la démo en optimisation est donc probable ; le juge reste le paiement.
 3. ~~Incohérence sur le premier mois~~ **Réglé le 20/10.** La fonction Stripe en ligne offrait déjà le 1er mois (399 € payés à l'activation, puis 30 jours d'essai avant le premier prélèvement de 39 €) ; c'est le fichier du dépôt qui était resté sur l'ancienne version à 438 €. Le dépôt est maintenant aligné sur la version en ligne : un redéploiement ne réintroduira pas l'écart.
 4. ~~Appliquer la migration~~ **Fait le 20/10** : colonne `acquisition` et vue `v_acquisition_pub` en place.
-5. **Tourner les vidéos** : aucune vidéo ni image n'existe encore. Les storyboards de `bibliotheque.md` donnent le plan à plan. Les écrans à filmer sont réels : `/mb-primeur`, `/chez-christophe`, `/boucherie-classique`, `/le-petrin`, `/maree-d-or`, `/fromagerie-conquerant`, `/inscription` et le tableau de bord `/app`. Il n'y a pas de boutique de démonstration traiteur : en créer une avant de produire les variantes traiteur.
+5. ~~Tourner les vidéos~~ **Produit le 21/10** : 19 vidéos (9:16 et 4:5) et 13 images fixes, montées à partir d'enregistrements d'écran du vrai site sur iPhone (boutiques de démonstration internes) et de photos d'ambiance générées. Liens et méthode : [`creations.md`](creations.md).
+6. **Démos sans créneau** : Le pétrin, Marée d'or et Fromagerie des Conquérants n'ont aucun créneau de retrait. Un visiteur qui teste ces démos depuis la page d'accueil tombe sur « Aucun créneau disponible ». Les vidéos de ces métiers s'arrêtent donc à l'étape « Retrait en boutique ».
+7. **Pastilles livraison affichées partout** : la page d'accueil de chaque boutique affiche « Livraison offerte dès 25 € » et « Commandez avant 16 h pour être livré demain », même sans offre livraison (`boutique.html`, texte fixe). Elles sont masquées dans les vidéos pour rester fidèle à l'offre à 399 €, mais un vrai client Click & Collect les verrait.
+8. **Le site promet encore « sans compte client » et « prête en 30 secondes »** (pages métier, `llms.txt`), ce que le parcours réel contredit. À trancher : autoriser la commande sans compte, ou corriger ces pages.
 
 ---
 
