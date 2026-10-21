@@ -126,7 +126,8 @@ Votre boutique en ligne avec un catalogue de base adapté à votre métier, la v
 TRA-03-45,brouillon,Tous,Bouchers + Relance,acq_boucherie | acq_relance,Image fixe 4:5,,Transparence des prix,Les commerçants échaudés par les commissions répondent à une liste exhaustive des coûts,"Ce que vous payez avec Marchéo :
 · 399 € d'installation, une seule fois
 · 39 €/mois à partir du 2e mois (le 1er est offert), sans engagement
-· les frais Stripe standards sur les paiements par carte de vos clients (1,4 % + 0,25 € par carte française)
+· les frais CB habituels sur les paiements par carte de vos clients
+· l'empreinte bancaire anti no-show : zéro frais
 
 Ce que vous ne payez pas :
 · aucune commission sur vos ventes
@@ -137,7 +138,8 @@ Le prix est affiché sur le site, vous démarrez sans rendez-vous.","Le prix com
 TRA-03-916,brouillon,Tous,Bouchers + Relance,acq_boucherie | acq_relance,Vidéo 9:16,15 s,Transparence des prix,Les commerçants échaudés par les commissions répondent à une liste exhaustive des coûts,"Ce que vous payez avec Marchéo :
 · 399 € d'installation, une seule fois
 · 39 €/mois à partir du 2e mois (le 1er est offert), sans engagement
-· les frais Stripe standards sur les paiements par carte de vos clients (1,4 % + 0,25 € par carte française)
+· les frais CB habituels sur les paiements par carte de vos clients
+· l'empreinte bancaire anti no-show : zéro frais
 
 Ce que vous ne payez pas :
 · aucune commission sur vos ventes

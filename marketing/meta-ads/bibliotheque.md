@@ -22,12 +22,12 @@ Sommaire
 
 **Démonstrations réelles**
 - Toujours filmer le vrai site sur un vrai téléphone (iPhone ou Android récent, luminosité au maximum, mode Ne pas déranger, batterie et heure propres). Enregistrement d'écran natif, pas de maquette.
-- Boutiques utilisables : `/mb-primeur` (Primeur du Cours Lafayette), `/chez-christophe` (primeur), `/boucherie-classique`, `/le-petrin` (boulangerie), `/maree-d-or` (poissonnerie), `/fromagerie-conquerant`. Si ce sont des commerçants réels, **obtenir leur accord écrit** avant de montrer leur boutique dans une publicité. Sinon, créer des boutiques de démonstration dédiées aux publicités.
+- Boutiques utilisables : `/chez-christophe` (primeur, boutique retenue pour les vidéos), `/mb-primeur` (primeur), `/boucherie-classique`, `/le-petrin` (boulangerie), `/maree-d-or` (poissonnerie), `/fromagerie-conquerant`. Si ce sont des commerçants réels, **obtenir leur accord écrit** avant de montrer leur boutique dans une publicité. Sinon, créer des boutiques de démonstration dédiées aux publicités.
 - Tableau de bord : `/app`, onglets commandes et réglages, sur une boutique de démonstration (jamais de vraies données clients à l'écran : noms, téléphones, adresses).
 - Prix et produits visibles à l'écran : cohérents avec un vrai commerce (pas de « Produit test 0,01 € »).
 
 **Tournage en boutique**
-- Lumière naturelle, vraie boutique, vrai commerçant ou figurant crédible en tenue de travail. Pas de banque d'images, pas de visuels générés par IA pour le commerçant ni les produits.
+- Lumière naturelle, vraie boutique, vrai commerçant ou figurant crédible en tenue de travail. Pas de visage à l'image : cadrer sur les mains, les gestes et les produits, pour un rendu réaliste.
 - Son : ambiance de boutique basse ; voix off ou voix du commerçant enregistrée au micro-cravate.
 
 **Sous-titres**
@@ -78,7 +78,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Temps | Image | Sous-titre / voix off |
 |---|---|---|
 | 0-2 s | Gros plan mains qui posent une cagette de tomates sur l'étal | « Votre primeur… » |
-| 2-4 s | Le téléphone entre dans le champ, écran sur la page d'accueil de `/mb-primeur` | « …a maintenant sa boutique en ligne. » |
+| 2-4 s | Le téléphone entre dans le champ, écran sur la page d'accueil de `/chez-christophe` | « …a maintenant sa boutique en ligne. » |
 | 4-9 s | Défilement lent du catalogue : fruits, légumes, prix au kilo | « Vos produits, vos prix, au kilo ou à la pièce. » |
 | 9-13 s | Zoom sur un produit, ajout au panier, choix d'un créneau de retrait | « Vos clients commandent et choisissent l'heure de retrait. » |
 | 13-17 s | Commerçant qui tend un sac à un client souriant | « Ils passent, c'est prêt. » |
@@ -130,7 +130,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | 26-30 s | Carton de fin | « 399 € une fois · 39 €/mois · sans engagement » |
 
 **Storyboard**
-1-5. Enregistrement d'écran natif d'un téléphone sur `/mb-primeur`, prise en une seule fois (le chronomètre doit être vrai : couper seulement les temps morts > 1 s et le dire « montage sans accélération »).
+1-5. Enregistrement d'écran natif d'un téléphone sur `/chez-christophe`, prise en une seule fois (le chronomètre doit être vrai : couper seulement les temps morts > 1 s et le dire « montage sans accélération »).
 6. Plan réel : téléphone du commerçant posé sur le comptoir, notification de commande, puis écran du tableau de bord `/app` (données fictives).
 7. Carton de fin.
 
@@ -405,7 +405,8 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 > Ce que vous payez avec Marchéo :
 > · 399 € d'installation, une seule fois
 > · 39 €/mois à partir du 2e mois (le 1er est offert), sans engagement
-> · les frais Stripe standards sur les paiements par carte de vos clients (1,4 % + 0,25 € par carte française)
+> · les frais CB habituels sur les paiements par carte de vos clients
+> · l'empreinte bancaire anti no-show : zéro frais
 >
 > Ce que vous ne payez pas :
 > · aucune commission sur vos ventes
@@ -419,7 +420,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 
 **Image fixe 4:5** : deux colonnes sur fond crème. « Vous payez » : 399 € une fois · 39 €/mois. « Vous ne payez pas » : commission · matériel · engagement (barrés en rouge). Logo.
 
-**Vidéo 15 s** : les mêmes lignes qui apparaissent une à une sur plans de boutique floutés, puis carton de fin.
+**Vidéo 15 s** : les mêmes lignes (dont « Empreinte bancaire : zéro frais » et « frais CB habituels ») qui apparaissent une à une sur plans de boutique floutés, puis carton de fin.
 
 ---
 
