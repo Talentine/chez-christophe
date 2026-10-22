@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Création site internet commerce : le guide complet du commerçant](https://marchéo.fr/blog/creation-site-internet-commerce) : Création du site internet de votre commerce : site vitrine ou de commande, pages à prévoir, nom de domaine, prix réels. Sans matériel, sans commission.
 - [Click & collect pour commerçant : le guide complet](https://marchéo.fr/blog/click-and-collect-commercant-guide-complet) : Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
 - [Créer sa boutique en ligne pour son commerce : le guide complet](https://marchéo.fr/blog/creer-sa-boutique-en-ligne-commerce) : Créer sa boutique en ligne quand on tient un commerce de proximité : comment faire, quelles solutions, combien ça coûte, quoi y mettre. Sans matériel, sans commission.
 - [Click and collect primeur : paniers, vente au kilo et retrait rapide](https://marchéo.fr/blog/click-and-collect-primeur) : Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.

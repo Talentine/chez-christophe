@@ -5,6 +5,7 @@ description: "Création d'un site internet pour traiteur : les pages indispensab
 meta_title: "Création site internet traiteur : le guide complet"
 meta_description: "Créer le site internet de votre traiteur : pages utiles, photos, allergènes, prix réels d'un site et commandes de plateaux en ligne. Le guide pour démarrer."
 date: 2026-10-17
+modified: 2026-10-22
 rubrique: Métier
 emoji: 🍽️
 keywords:
@@ -33,7 +34,7 @@ Un traiteur vend deux choses très différentes. D'un côté, des produits simpl
 
 ## Site vitrine ou site de commande : lequel choisir pour un traiteur ?
 
-Tout dépend de ce que vos clients vous demandent aujourd'hui au téléphone.
+Tout dépend de ce que vos clients vous demandent aujourd'hui au téléphone. Pour la méthode valable dans tous les commerces de bouche (pages, nom de domaine, mentions légales, prix), lisez notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce).
 
 | Votre activité principale | Le site qu'il vous faut |
 | --- | --- |

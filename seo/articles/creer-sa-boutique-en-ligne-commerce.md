@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-10-21
+modified: 2026-10-22
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -41,7 +41,7 @@ Pour créer sa boutique en ligne quand on tient un commerce de proximité, il fa
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
 
-Ce guide s'adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs. Il répond aux questions que l'on se pose avant de se lancer : comment faire, avec quel outil, pour quel budget, et quoi mettre dessus. Si votre priorité est la commande avec retrait, notre guide pour [créer un site de click & collect](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) détaille la partie technique.
+Ce guide s'adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs. Il répond aux questions que l'on se pose avant de se lancer : comment faire, avec quel outil, pour quel budget, et quoi mettre dessus. Si votre priorité est la commande avec retrait, notre guide pour [créer un site de click & collect](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) détaille la partie technique, et notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce) aide à choisir entre site vitrine et site de commande.
 
 ## Une boutique en ligne pour un commerce, qu'est-ce que c'est ?
 

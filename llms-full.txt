@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Création site internet commerce : le guide complet du commerçant](https://marchéo.fr/blog/creation-site-internet-commerce) : Création du site internet de votre commerce : site vitrine ou de commande, pages à prévoir, nom de domaine, prix réels. Sans matériel, sans commission.
 - [Click & collect pour commerçant : le guide complet](https://marchéo.fr/blog/click-and-collect-commercant-guide-complet) : Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
 - [Créer sa boutique en ligne pour son commerce : le guide complet](https://marchéo.fr/blog/creer-sa-boutique-en-ligne-commerce) : Créer sa boutique en ligne quand on tient un commerce de proximité : comment faire, quelles solutions, combien ça coûte, quoi y mettre. Sans matériel, sans commission.
 - [Click and collect primeur : paniers, vente au kilo et retrait rapide](https://marchéo.fr/blog/click-and-collect-primeur) : Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
@@ -739,6 +740,225 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Création site internet commerce : le guide complet du commerçant
+
+Création du site internet de votre commerce : site vitrine ou de commande, pages à prévoir, nom de domaine, prix réels. Sans matériel, sans commission.
+
+La création du site internet d&rsquo;un commerce se fait en quatre décisions : choisir entre un site vitrine et un site de commande, choisir l&rsquo;outil, préparer cinq pages simples (accueil, produits, horaires et accès, commande, informations légales) puis faire connaître l&rsquo;adresse. Avec un logiciel métier, un commerçant de proximité voit l&rsquo;aperçu de son site en 30 secondes et peut être en ligne le jour même, sans matériel à acheter et sans commission sur les ventes.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Ce guide complète notre guide pour créer sa boutique en ligne, centré sur la vente. Ici, la question est plus large : à quoi doit ressembler le site internet de votre commerce, ce qu&rsquo;il doit contenir, et combien il coûte vraiment. Il s&rsquo;adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs.
+Pourquoi un commerce de proximité a-t-il besoin d&rsquo;un site internet ?
+Un commerce de proximité a besoin d&rsquo;un site internet parce que ses clients le cherchent d&rsquo;abord sur leur téléphone. Avant de passer, ils veulent savoir si vous êtes ouvert, ce que vous vendez et s&rsquo;ils peuvent commander à l&rsquo;avance.
+Une fiche Google et une page Instagram répondent à une partie de ces questions, mais elles ne vous appartiennent pas vraiment et ne prennent pas de commandes. Un site internet joue trois rôles :
+
+Être trouvé. Google affiche plus volontiers un commerce dont la fiche renvoie vers un site clair, à jour, avec l&rsquo;adresse et les horaires.
+Rassurer. Des photos réelles de la vitrine et des produits, des prix affichés, un numéro de téléphone : le client sait à quoi s&rsquo;attendre.
+Faire gagner du temps. Avec la commande en ligne, les demandes arrivent par écrit, avec le nom, le créneau et le détail, au lieu d&rsquo;appels pendant le coup de feu.
+
+Pour l&rsquo;articulation entre la fiche Google et le site, notre guide de la fiche Google Business pour un commerce de bouche détaille les réglages utiles.
+Site vitrine ou site de commande : lequel choisir ?
+Un site vitrine présente votre commerce sans prendre de commande ; un site de commande, aussi appelé site marchand, permet au client de choisir ses produits et de valider en ligne. Pour un commerce de bouche, le choix dépend surtout de la part de vos ventes qui se prépare à l&rsquo;avance.
+
+
+
+Critère
+Site vitrine
+Site de commande
+
+
+
+
+Ce qu&rsquo;il fait
+Présente le commerce, les produits, les horaires
+Prend les commandes avec retrait ou livraison
+
+
+Pour qui
+Commerce qui vend surtout au comptoir, sans préparation à l&rsquo;avance
+Commerce avec gâteaux, colis, plateaux, paniers ou plats à emporter
+
+
+Ce qu&rsquo;il change au quotidien
+Moins de questions au téléphone sur les horaires
+Moins d&rsquo;appels, préparation aux heures creuses, retrait rapide
+
+
+Prix chez Marchéo
+19 € par mois, 249 € d&rsquo;installation
+39 € ou 59 € par mois, 399 € ou 549 € d&rsquo;installation
+
+
+
+Une bonne règle : si vos clients vous appellent déjà pour réserver ou commander, il vous faut un site de commande. Sinon, commencez par une vitrine. Sur Marchéo, vous pouvez passer de la formule Vitrine à une formule avec commande plus tard, sans refaire le site.
+Le site de commande se décline en deux usages. Le click &amp; collect, où le client retire en boutique au créneau choisi, est expliqué dans notre guide complet du click and collect pour commerçant. La livraison à domicile, que vous organisez vous-même, est détaillée dans le guide livraison locale pour un commerçant.
+Quelles pages mettre sur le site internet de son commerce ?
+Le site d&rsquo;un commerce de proximité n&rsquo;a besoin que de cinq pages, ou de cinq parties sur une même page. Un site court et à jour vaut mieux qu&rsquo;un site long et oublié.
+
+L&rsquo;accueil. Le nom du commerce, une phrase qui dit ce que vous vendez et où, une belle photo de la vitrine ou des produits, et un bouton bien visible « Commander » ou « Voir nos horaires ».
+Les produits. Vos produits phares avec un prix, une photo et une phrase. Pour la viande, le poisson, le fromage ou les fruits et légumes, indiquez le prix au kilo et des quantités types (500 g, 1 kg).
+Les horaires et l&rsquo;accès. Horaires d&rsquo;ouverture, jours de fermeture, adresse, plan, stationnement, téléphone.
+La commande. Créneaux de retrait, zone et frais de livraison si vous livrez, mode de paiement.
+Les informations légales. Mentions légales, conditions de vente, politique de confidentialité et informations sur les allergènes pour les produits concernés.
+
+Une page « Notre histoire » est un plus, pas une obligation : deux ou trois phrases sur votre parcours et vos fournisseurs suffisent souvent sur la page d&rsquo;accueil.
+Quelles photos mettre sur le site d&rsquo;un commerce de bouche ?
+Les meilleures photos pour le site d&rsquo;un commerce de bouche sont des photos réelles, prises au téléphone en lumière du jour. Elles rassurent plus qu&rsquo;une banque d&rsquo;images, parce que le client reconnaît votre vitrine en arrivant.
+
+La devanture, pour que le client vous repère dans la rue.
+Le comptoir ou l&rsquo;étal, plein, à l&rsquo;ouverture.
+Trois à cinq produits phares, sur un fond simple.
+Vous ou votre équipe, au travail.
+
+Cinq ou six photos suffisent au lancement. Vous les remplacerez au fil des saisons, depuis votre téléphone.
+Nom de domaine, hébergement, mentions légales : que faut-il savoir ?
+Un nom de domaine est l&rsquo;adresse de votre site, l&rsquo;hébergement est l&rsquo;endroit où il est stocké, et les mentions légales sont une obligation pour tout site professionnel. Avec un logiciel métier, l&rsquo;hébergement est compris et vous n&rsquo;avez pas à vous en occuper.
+Le nom de domaine. Il n&rsquo;est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone.
+L&rsquo;hébergement. Avec un constructeur de site ou un logiciel métier, il est inclus dans l&rsquo;abonnement. Avec une agence ou un site WordPress installé à part, c&rsquo;est une ligne de budget distincte, à laquelle s&rsquo;ajoutent les mises à jour de sécurité.
+Les mentions légales. Tout site professionnel doit indiquer l&rsquo;identité de l&rsquo;entreprise (nom, adresse, numéro d&rsquo;immatriculation), l&rsquo;hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes.
+Combien coûte la création du site internet d&rsquo;un commerce ?
+La création du site internet d&rsquo;un commerce coûte de quelques centaines d&rsquo;euros par an à plusieurs milliers d&rsquo;euros, selon que vous le faites vous-même, avec un logiciel métier ou avec une agence. Le vrai coût se mesure sur trois ans, en comptant le temps passé et les éventuelles commissions.
+
+
+
+Solution
+Création
+Coût mensuel
+Commission sur les ventes
+Temps à y passer
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Votre temps, parfois un thème payant
+Environ 15 à 80 € selon l&rsquo;offre et les extensions
+Frais de transaction selon l&rsquo;offre
+Élevé au départ
+
+
+Prestataire ou agence, site vitrine
+Environ 500 à 2 000 €
+Hébergement et maintenance en plus
+Aucune
+Faible, mais chaque modification passe par le prestataire
+
+
+Agence, site de vente sur mesure
+Plusieurs milliers d&rsquo;euros
+Maintenance en plus
+Aucune
+Faible au départ, dépendance ensuite
+
+
+Plateformes de livraison
+Aucun site à vous
+Peu ou pas d&rsquo;abonnement
+14 à 30 % par commande
+Faible
+
+
+Logiciel métier (Marchéo)
+249, 399 ou 549 € d&rsquo;installation
+19, 39 ou 59 €
+0 %
+Une heure de réglages
+
+
+
+Les fourchettes ci-dessus sont des ordres de grandeur, qui varient selon les prestataires. Ce qui coûte le plus cher sur la durée, ce n&rsquo;est souvent pas la création, mais la commission prélevée sur chaque commande ou les modifications facturées une à une. Pour un calcul détaillé, lisez combien coûte un site de click &amp; collect et notre comparatif des logiciels de click &amp; collect.
+Faire son site soi-même ou passer par un logiciel métier ?
+Faire son site soi-même avec un constructeur généraliste est possible et peu coûteux, à condition d&rsquo;avoir du temps et d&rsquo;accepter de régler soi-même tout ce qui est propre à un commerce de bouche. Un logiciel métier fait ces réglages pour vous.
+Un constructeur généraliste est pensé pour beaucoup de métiers à la fois, souvent pour l&rsquo;expédition de colis. Pour un boucher ou un primeur, il faut ajouter des extensions pour les créneaux de retrait, la vente au poids ou la limite de commandes par créneau. Un logiciel métier les prévoit dès le départ, avec un catalogue déjà rempli pour votre métier.
+Le choix honnête est donc le suivant : si vous aimez bricoler votre site et vendez peu à l&rsquo;avance, un constructeur suffit. Si vous voulez un site qui prend des commandes sans y passer vos soirées, un logiciel métier est plus adapté.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Pour créer le site internet de votre commerce, il vous faut un téléphone, vos produits et une heure de réglages. Le reste n&rsquo;est plus nécessaire.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Un téléphone ou un ordinateur que vous avez déjà
+Pas de tablette, d&rsquo;imprimante ou de caisse à acheter
+
+
+La liste de vos produits et de vos prix
+Pas de développeur ni d&rsquo;agence
+
+
+Cinq ou six photos prises au téléphone
+Pas de photographe professionnel au départ
+
+
+Vos horaires et, si vous vendez en ligne, vos créneaux
+Pas de commission sur chaque vente
+
+
+Vos informations d&rsquo;entreprise pour les mentions légales
+Pas d&rsquo;hébergement à gérer à part
+
+
+Un lien et un QR code à afficher
+Pas d&rsquo;application à faire télécharger à vos clients
+
+
+
+Côté client, la commande se passe en 30 secondes, sans création de compte : il choisit ses produits, donne son nom et son téléphone, choisit son créneau et valide. Pour limiter les commandes non récupérées, une empreinte bancaire est possible en option : vous choisissez le pourcentage du panier bloqué, jusqu&rsquo;à 75 %, et il est libéré 24 h après le retrait. Notre article sur l&rsquo;empreinte bancaire et le no-show explique son fonctionnement.
+Comment faire trouver le site de son commerce sur Google ?
+Le site d&rsquo;un commerce local se fait trouver sur Google d&rsquo;abord grâce à la fiche d&rsquo;établissement, ensuite grâce au contenu du site. Les deux doivent dire la même chose : même nom, même adresse, mêmes horaires.
+
+Reliez la fiche Google au site. Ajoutez l&rsquo;adresse du site et le lien de commande sur votre fiche d&rsquo;établissement.
+Nommez votre métier et votre ville. « Boucherie à Rennes, colis et découpes sur commande » est plus utile qu&rsquo;un slogan.
+Tenez les horaires à jour, surtout les jours fériés et les fermetures.
+Demandez des avis à vos clients fidèles, au comptoir ou après une commande.
+Partagez l&rsquo;adresse partout : QR code en vitrine et sur le comptoir, lien en bio sur Instagram et Facebook, signature de vos messages.
+
+Créer le site internet de son commerce selon votre métier
+Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit dans le catalogue de départ.
+
+Boulangerie. Gâteaux sur commande et pains spéciaux. Voir la solution pour boulangerie et notre guide du site internet de boulangerie.
+Boucherie. Colis, découpes sur demande, vente au kilo. Voir la solution pour boucherie et le guide pour vendre au poids en ligne.
+Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur et le guide du click and collect primeur.
+Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
+Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
+Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
+Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste.
+Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
+Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant.
+Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.
+
+Les erreurs à éviter lors de la création du site
+La plupart des sites de commerce qui ne servent à rien ont été faits une fois, puis oubliés. Quelques règles évitent l&rsquo;essentiel.
+Un site sans horaires ni téléphone. C&rsquo;est la première chose que cherche le client. Mettez-les en haut de la page d&rsquo;accueil.
+Des photos de banque d&rsquo;images. Le client veut voir votre vitrine et vos produits, pas ceux d&rsquo;un autre.
+Un site impossible à modifier soi-même. Si chaque changement d&rsquo;horaire passe par un prestataire, le site sera vite faux. Choisissez un outil que vous pouvez mettre à jour depuis votre téléphone.
+Choisir sur le prix de départ. Une offre gratuite avec commission coûte plus cher qu&rsquo;un abonnement fixe dès que les commandes arrivent. Faites le calcul sur un mois normal.
+Attendre que tout soit parfait. Un site simple en ligne aujourd&rsquo;hui vaut mieux qu&rsquo;un site complet dans six mois. Pensez aux précommandes de Noël : c&rsquo;est le bon moment pour lancer le vôtre.
+Par où commencer aujourd&rsquo;hui ?
+Le plus simple est de voir à quoi ressemblerait le site de votre commerce avant de décider quoi que ce soit. Sur marchéo.fr/inscription, vous choisissez votre métier, vous tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, avec un catalogue déjà adapté. La démo est gratuite et l&rsquo;abonnement est sans engagement.
+Pour aller plus loin, voici les guides du blog liés à la création du site de votre commerce :
+
+Créer sa boutique en ligne pour son commerce : le guide complet
+Comment créer un site de click &amp; collect pour son commerce
+Combien coûte un site de click &amp; collect
+Digitaliser son commerce de bouche : par où commencer
+Site internet pour boulangerie
+Création de site internet pour traiteur
+Fiche Google Business pour un commerce de bouche
+Click and collect sans commission
+
+Q : Faut-il acheter du matériel pour créer le site internet de son commerce ?
+R : Non. Avec un logiciel comme Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous créez et gérez le site depuis le téléphone ou l'ordinateur que vous avez déjà, et les commandes arrivent par notification.
+Q : Quel est le meilleur outil pour créer le site internet de mon commerce de bouche ?
+R : Cela dépend de ce que vous attendez du site. Un constructeur généraliste comme Wix ou WordPress convient pour une vitrine si vous avez du temps pour la régler. Une agence convient pour un projet sur mesure, avec un budget de plusieurs milliers d'euros. Un logiciel métier comme Marchéo convient si vous voulez une vitrine ou la commande en ligne prête à l'emploi : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, 0 % de commission, avec des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Combien coûte la création du site internet d'un commerce ?
+R : Comptez quelques centaines d'euros par an pour un constructeur de site que vous réglez vous-même, de 500 à 2 000 € pour un site vitrine réalisé par un prestataire, et nettement plus pour un site de vente sur mesure. Un logiciel métier se situe entre les deux, avec un abonnement fixe et des frais d'installation connus à l'avance.
+Q : Ai-je besoin d'un nom de domaine pour le site de mon commerce ?
+R : Ce n'est pas obligatoire pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce. Si vous possédez déjà un nom de domaine, vous pouvez le garder et faire pointer un lien ou une redirection vers cette adresse.
+
 # Click & collect pour commerçant : le guide complet
 
 Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
@@ -967,7 +1187,7 @@ Créer sa boutique en ligne quand on tient un commerce de proximité : comment f
 
 Pour créer sa boutique en ligne quand on tient un commerce de proximité, il faut choisir un outil qui gère le retrait en boutique ou la livraison locale, mettre en ligne un catalogue simple avec des photos, régler ses horaires de retrait, puis partager le lien à ses clients. Avec un logiciel métier, l&rsquo;aperçu prend 30 secondes et la boutique peut vendre le jour même, sans matériel à acheter et sans commission sur les ventes.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
-Ce guide s&rsquo;adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs. Il répond aux questions que l&rsquo;on se pose avant de se lancer : comment faire, avec quel outil, pour quel budget, et quoi mettre dessus. Si votre priorité est la commande avec retrait, notre guide pour créer un site de click &amp; collect détaille la partie technique.
+Ce guide s&rsquo;adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs. Il répond aux questions que l&rsquo;on se pose avant de se lancer : comment faire, avec quel outil, pour quel budget, et quoi mettre dessus. Si votre priorité est la commande avec retrait, notre guide pour créer un site de click &amp; collect détaille la partie technique, et notre guide de la création du site internet d&rsquo;un commerce aide à choisir entre site vitrine et site de commande.
 Une boutique en ligne pour un commerce, qu&rsquo;est-ce que c&rsquo;est ?
 Une boutique en ligne de commerce de proximité est une page où vos clients choisissent leurs produits, indiquent l&rsquo;heure à laquelle ils passent les chercher ou se font livrer, et valident en quelques secondes. Elle ne remplace pas votre magasin : elle prend les commandes pendant que vous servez au comptoir.
 C&rsquo;est très différent d&rsquo;un site d&rsquo;e-commerce classique. Une boutique de vêtements en ligne expédie des colis partout en France. Vous, vous vendez une côte de bœuf, un plateau de fromages ou un bouquet que le client récupère cet après-midi à deux rues de chez lui. Les besoins changent :
@@ -1420,7 +1640,7 @@ Création d'un site internet pour traiteur : les pages indispensables, les photo
 La création d&rsquo;un site internet de traiteur commence par une question simple : voulez-vous seulement être trouvé, ou aussi prendre des commandes ? Un site vitrine présente vos menus et vos prestations. Un site de commande permet en plus à vos clients de réserver plateaux, buffets et plats du jour en ligne, avec une date et un créneau.
 Un traiteur vend deux choses très différentes. D&rsquo;un côté, des produits simples et répétitifs : plats du jour, plateaux repas, pièces cocktail. De l&rsquo;autre, des prestations sur mesure : mariages, séminaires, repas de famille. Votre site doit servir les deux, sans les mélanger.
 Site vitrine ou site de commande : lequel choisir pour un traiteur ?
-Tout dépend de ce que vos clients vous demandent aujourd&rsquo;hui au téléphone.
+Tout dépend de ce que vos clients vous demandent aujourd&rsquo;hui au téléphone. Pour la méthode valable dans tous les commerces de bouche (pages, nom de domaine, mentions légales, prix), lisez notre guide de la création du site internet d&rsquo;un commerce.
 
 
 
