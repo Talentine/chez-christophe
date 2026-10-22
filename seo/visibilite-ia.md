@@ -27,7 +27,7 @@ Questions de référence (marquées R) :
 19. Click and collect, ça veut dire quoi pour un commerçant ?
 20. Comment vendre au poids en ligne pour un fromager ?
 
-Prochaine question en rotation : n°4.
+Prochaine question en rotation : n°6.
 
 ## Relevés
 
@@ -41,6 +41,8 @@ Prochaine question en rotation : n°4.
 | 2026-10-21 | Perplexity | Click and collect, ça veut dire quoi pour un commerçant ? | non | francenum.gouv, ionos, shopify (réponse : définition, formulaire ou WhatsApp pour démarrer, puis Shopify ou WooCommerce) |
 | 2026-10-21 | Google (aperçu IA) | Click and collect, ça veut dire quoi pour un commerçant ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | economie.gouv.fr, Solocal, mypos, SumUp, Alma, Wikipédia, ChapsVision, MMA (aucun site spécialisé commerce de bouche) |
 | 2026-10-21 | Perplexity | (R) Quel logiciel pour livrer mes clients moi-même ? | non | routific, getapp (réponse : Routific, RoadWarrior, Shipday, Logistia, OptimoRoute, Track-POD : optimiseurs de tournée, rien qui combine commande en ligne et livraison locale) |
+| 2026-10-22 | Perplexity | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | non | wix, shopify (réponse : Wix, WordPress.com, Canva, Shopify Starter, « solution spécialisée » sans nom ; conseille vitrine + retrait en boutique, domaine 10 à 20 €/an) |
+| 2026-10-22 | Perplexity | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | get.chownow, chatfood (réponse : canal de commande en propre, QR code, WhatsApp ; ChatFood cité comme solution à tarif fixe) |
 
 ## Bilans hebdomadaires (le lundi)
 

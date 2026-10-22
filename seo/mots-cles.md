@@ -133,3 +133,4 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet fleurs | site | fleuriste | GS (22/10) | moyenne | à faire avec « création site internet fleuriste » |
 | nom de domaine commercial | site | tous | GS (22/10) | basse | couvert en section et FAQ de la page pilier n°2 (2026-10-22) |
 | pourquoi créer un site web pour son entreprise | site | tous | GS (22/10) | basse | couvert par la section « Pourquoi un commerce de proximité a-t-il besoin d'un site internet ? » de la page pilier n°2 |
+| alternative uber eats pour commerçant garder ses clients | transverse | tous | IA (Perplexity 22/10 : chownow, chatfood cités) | haute | à faire : renforcer click-and-collect-sans-commission-alternative-uber-eats-deliveroo (section « garder le fichier clients », QR code, commande en propre) plutôt qu'un nouvel article |
