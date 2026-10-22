@@ -1,8 +1,8 @@
-# Créations produites (22/10/2026, version 3)
+# Créations produites (23/10/2026, version 4)
 
 Statut : **brouillons, non publiés.** Rien n'est créé dans Meta Ads.
 
-**Tout télécharger** (38 vidéos + 13 images, 126 Mo) : [marcheo-publicites-meta.zip](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/28c6df8e-2c82-474c-9009-060f02577d27.zip)
+**Tout télécharger** (38 vidéos + 13 images, 106 Mo) : [marcheo-publicites-meta.zip](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/fa09dc46-14e8-465d-8595-75a684df97f9.zip)
 
 Fichiers hébergés dans la médiathèque Higgsfield du compte. Le nom de chaque fichier est l'ID de l'annonce (`utm_content`) : `-916` = 9:16 (Reels, Stories), `-45` = 4:5 (fil).
 
@@ -10,25 +10,25 @@ Fichiers hébergés dans la médiathèque Higgsfield du compte. Le nom de chaque
 
 | Annonce | Durée | Lien |
 |---|---|---|
-| PRI-01 | 28 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/b84ca685-c97c-44f9-8651-3562036b1a85.mp4) |
-| PRI-02 | 33 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/c2625aa4-b99c-4f1c-8f35-165517c1f2d8.mp4) |
-| PRI-03 | 28 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/af58f3ef-723d-4f8b-b0be-767c1a188ff9.mp4) |
-| PRI-04 | 13 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/f4293aef-d5ad-4e0a-8c05-6997d899cbe2.mp4) |
-| BOU-01 | 27 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/1d8dad0d-e617-4113-a37f-e836c136668f.mp4) |
-| BOU-02 | 25 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/dbff2353-db6e-4f37-8910-81124f15585e.mp4) |
-| BOU-03 | 16 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/f53b5c60-41fd-46d0-b383-b8691deaf2bb.mp4) |
-| TRA-01 | 37 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/2ac6126b-28f8-40ef-b341-d823ff9d85e9.mp4) |
-| TRA-02 | 16 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/23cb448f-4af4-4932-b6c6-906c46fbaf78.mp4) |
-| TRA-03 | 17 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/daefd7c0-0ecc-4848-b382-fe21d8e58a8e.mp4) |
-| BLG-01 | 23 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/5d43c3eb-692a-4c09-955a-b53bbc83b6d4.mp4) |
-| BLG-02 | 20 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/dbf4be91-9582-426d-a57b-7c88ac6be5a1.mp4) |
-| POI-01 | 25 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/889211bd-5281-4a78-ada0-93a976650df8.mp4) |
-| POI-02 | 25 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/ba2c82ad-697a-4867-89ad-07dbf61b0bcb.mp4) |
-| POI-03 | 13 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/a19d8f1c-d0e4-4afa-82a1-834000d8547f.mp4) |
-| FRO-01 | 22 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/3e20b59b-fc03-47d5-95f4-87579c1251e3.mp4) |
-| FRO-02 | 22 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/47681f65-7929-4c56-b750-73f2736b5ba5.mp4) |
-| TRT-01 | 16 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/a644830e-f9f4-457e-83fb-9bf5efdd4043.mp4) |
-| TRT-02 | 13 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/7e33d770-f206-4eb0-a24f-3d08326b9c01.mp4) |
+| PRI-01 | 28 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/d1a0d992-3114-4355-b5e3-213e9f1caac4.mp4) |
+| PRI-02 | 31 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/04dc9a02-ac22-479e-848d-0f3a56c38c99.mp4) |
+| PRI-03 | 31 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/83f2dffb-3f93-4734-90d4-40ad7685fce5.mp4) |
+| PRI-04 | 19 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/14f21945-783b-4d58-9c5c-d8e046146a6a.mp4) |
+| BOU-01 | 25 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/4ef9696c-48ae-4d6b-8bc5-e72821658945.mp4) |
+| BOU-02 | 23 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/5f03e3d9-8ee6-489f-aad3-b6f69d32ce1c.mp4) |
+| BOU-03 | 16 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/97f51e07-14ff-407d-ac67-ad750d18c0c2.mp4) |
+| TRA-01 | 33 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/caf61574-e627-401c-a41a-08993e4af6d8.mp4) |
+| TRA-02 | 19 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/b486a7e4-fcbe-482d-800d-7f3474e89942.mp4) |
+| TRA-03 | 21 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/ec6c638a-dbaa-41c3-85d3-371f980dc2e9.mp4) |
+| BLG-01 | 21 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/fd389089-1ae3-4811-9b8a-6e4094e4987d.mp4) |
+| BLG-02 | 18 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/daee0e92-edd1-4e0c-aca9-d33ecf6b4e65.mp4) |
+| POI-01 | 23 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/840f18b5-b2e7-480a-8369-01d5e34c7c71.mp4) |
+| POI-02 | 23 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/fd794e75-3407-4a09-86e6-1f9cc53a85e7.mp4) |
+| POI-03 | 15 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/2e7b26f5-39de-4e15-bb6e-f68ad7bbdddf.mp4) |
+| FRO-01 | 20 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/651d8cec-3155-4223-bc1a-bb5714c8fd46.mp4) |
+| FRO-02 | 20 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/507d7883-bbe5-4e25-8d60-100c3eed52aa.mp4) |
+| TRT-01 | 19 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/c1347e59-6cf1-4cc9-8938-f4816686266b.mp4) |
+| TRT-02 | 13 s | [regarder](https://d2ol7oe51mr4n9.cloudfront.net/user_3Ik83YqD75C5vRWe24tODfUjMks/5a9513f9-ae02-46b4-a590-430c2c92662c.mp4) |
 
 Les versions 4:5 (fil) sont dans l'archive (`videos-4x5-fil/`).
 
@@ -43,14 +43,17 @@ PRI-03, PRI-04, BOU-03, BOU-01 (carrousel, cartes 1 à 4), TRA-02, TRA-03, BLG-0
 - **Masqué à l'écran** : les pastilles « Livraison offerte dès 25 € » et l'option « Livraison domicile », absentes de l'offre à 399 €.
 - **Photos d'ambiance** : générées (Higgsfield), style documentaire, **sans aucun visage** (cadrage sur les mains, les gestes et les produits), sans marque.
 - **Montage** : ffmpeg. Couleurs Marchéo (vert, jaune, bleu nuit, fond crème) avec une ambiance épurée : police arrondie Fredoka, mots-clés en italique Fraunces, beaucoup d'espace.
-- **Accroche** : la première image de chaque vidéo affiche déjà un texte en couleur (carte crème avec étiquette verte, ou grand chiffre vert). Elle n'est pas animée, pour être lisible dès l'arrêt sur image dans le fil.
+- **Ouverture (1,5 s)** : le métier en très gros en haut de l'image (« Primeurs », « Bouchers »…), en jaune Marchéo, avec une phrase dessous. Aucun cadre ni encadré : texte posé sur la photo avec une ombre douce. La première image affiche déjà ce texte en couleur.
+- **Boutique dès 1,5 s** : chaque vidéo montre la boutique en ligne (dans le téléphone) juste après l'ouverture, y compris les vidéos de prix et les vidéos traiteur.
+- **Primeurs** : la boutique Chez Christophe est montrée avec sa section « Promotions du moment » (offres « 2 pour 8 € »…) et son catalogue complet.
+- **Téléphone** : centré horizontalement (vérifié au pixel sur les fichiers).
 - **Animations** : textes qui apparaissent en fondu avec une légère montée (ralentie en fin de course), sous-titres en gros caractères blancs sans cadre, carton de fin construit en 4 temps (logo, titre, prix avec « 1er mois offert », mentions).
 - **Sans musique** : à ajouter depuis la bibliothèque sonore de Meta au moment de créer l'annonce.
 
-Durées : 13 à 37 s (version 2 : jusqu'à 61 s). Chaque sous-titre reste affiché au moins le temps de le lire à vitesse posée, pour un public qui n'est pas forcément habitué aux Reels.
+Durées : 13 à 33 s. Chaque sous-titre reste affiché au moins le temps de le lire à vitesse posée, pour un public qui n'est pas forcément habitué aux Reels.
 
 ## Limites connues
 
 - Pas de vidéo du tableau de bord commerçant (accès connecté nécessaire). La réception de la commande et le passage en « Prête » sont donc illustrés par des photos.
-- Traiteur : pas de boutique de démonstration, donc TRT-01 et TRT-02 sont faites de photos et de texte, sans écran.
+- Traiteur : TRT-01, TRT-02 et TRA-02 montrent la boutique « Gourmet traiteur » (Houlgate), qui n'est pas marquée comme boutique de démonstration. À valider avant diffusion, ou à remplacer par une boutique de démonstration traiteur.
 - BOU-03 était prévue en face caméra : elle est livrée en version texte animé. Une version tournée par vous reste possible.
