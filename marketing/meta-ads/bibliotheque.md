@@ -57,7 +57,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Hypothèse testée | Un primeur se projette davantage en voyant une vraie boutique de primeur qu'en lisant une liste de fonctionnalités |
 | Formats | `PRI-01-916` vidéo 20 s · `PRI-01-45` vidéo 20 s recadrée |
 | CTA | En savoir plus |
-| Destination | `https://xn--marcho-fva.fr/solutions/primeur` |
+| Destination | `https://xn--marcho-fva.fr/chez-christophe?demo=1` |
 | UTM | `utm_campaign=acq_primeur&utm_content=PRI-01-916` / `PRI-01-45` |
 | Indicateur | Coût par démo primeur ; taux démo → payé ≥ 10 % ; taux d'accroche 3 s ≥ 25 % |
 
@@ -103,7 +103,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Hypothèse testée | Montrer que la commande prend moins d'une minute rassure le primeur sur l'usage par ses clients (y compris les moins à l'aise) |
 | Formats | `PRI-02-916` vidéo 30 s, écran plein cadre · `PRI-02-45` même vidéo, téléphone centré sur fond crème |
 | CTA | En savoir plus |
-| Destination | `https://xn--marcho-fva.fr/solutions/primeur` |
+| Destination | `https://xn--marcho-fva.fr/chez-christophe?demo=1` |
 | UTM | `utm_campaign=acq_primeur&utm_content=PRI-02-916` / `PRI-02-45` |
 | Indicateur | Lecture à 50 % ≥ 20 % ; coût par démo ; taux démo → payé |
 
@@ -181,7 +181,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Hypothèse testée | Afficher le prix filtre les curieux : moins de clics, mais un taux démo → payé plus élevé et un CAC plus bas |
 | Formats | `PRI-04-45` image fixe · `PRI-04-916` vidéo 10 s (texte animé sur plans de boutique) |
 | CTA | En savoir plus |
-| Destination | `https://xn--marcho-fva.fr/solutions/primeur` (tableau des offres sur la page) |
+| Destination | `https://xn--marcho-fva.fr/chez-christophe?demo=1` (tableau des offres sur la page) |
 | UTM | `utm_campaign=acq_primeur&utm_content=PRI-04-45` / `PRI-04-916` |
 | Indicateur | Taux démo → payé le plus élevé des annonces primeur ; CTR bas accepté |
 
@@ -217,7 +217,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | Hypothèse testée | Un boucher doute qu'un site sache vendre de la viande au poids ; montrer les fiches au kilo, l'ajustement à la pesée et la note pour la découpe lève l'objection |
 | Formats | `BOU-01-916` vidéo 20 s · `BOU-01-45` carrousel 4 cartes (ou vidéo recadrée) |
 | CTA | Découvrir |
-| Destination | `https://xn--marcho-fva.fr/solutions/boucherie` |
+| Destination | `https://xn--marcho-fva.fr/boucherie-classique?demo=1` |
 | UTM | `utm_campaign=acq_boucherie&utm_content=BOU-01-916` / `BOU-01-45` |
 | Indicateur | Coût par démo boucherie ; taux démo → payé |
 
@@ -256,7 +256,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | Hypothèse testée | Montrer le côté commerçant (réception, préparation, « prête ») convainc plus que le seul côté client |
 | Formats | `BOU-02-916` vidéo 30 s écran partagé · `BOU-02-45` vidéo 30 s |
 | CTA | Découvrir |
-| Destination | `https://xn--marcho-fva.fr/solutions/boucherie` |
+| Destination | `https://xn--marcho-fva.fr/boucherie-classique?demo=1` |
 | UTM | `utm_campaign=acq_boucherie&utm_content=BOU-02-916` / `BOU-02-45` |
 | Indicateur | Lecture à 75 % ≥ 12 % ; taux démo → payé |
 
@@ -296,7 +296,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | Hypothèse testée | Rapporter 39 €/mois au panier moyen d'une boucherie rend le prix évident et attire des acheteurs |
 | Formats | `BOU-03-45` image fixe · `BOU-03-916` vidéo 12 s face caméra |
 | CTA | En savoir plus |
-| Destination | `https://xn--marcho-fva.fr/solutions/boucherie` |
+| Destination | `https://xn--marcho-fva.fr/boucherie-classique?demo=1` |
 | UTM | `utm_campaign=acq_boucherie&utm_content=BOU-03-45` / `BOU-03-916` |
 | Indicateur | Taux démo → payé le plus élevé des annonces boucherie |
 
@@ -370,7 +370,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | Hypothèse testée | Un message large mais très spécifique au secteur trouve des commerçants hors des deux métiers testés à moindre coût |
 | Formats | `TRA-02-916` vidéo 15 s (6 métiers × 2 s) · `TRA-02-45` image fixe mosaïque 6 métiers |
 | CTA | En savoir plus |
-| Destination | `https://xn--marcho-fva.fr/solutions` |
+| Destination | `https://xn--marcho-fva.fr/inscription` |
 | UTM | `utm_campaign=acq_bouche&utm_content=TRA-02-916` / `TRA-02-45` |
 | Indicateur | Répartition des démos par métier ; coût par démo ; à lancer au mois 2 seulement |
 
@@ -430,7 +430,7 @@ Mêmes règles, mêmes UTM (changer la campagne), mêmes indicateurs que la fich
 
 ## Boulangers et pâtissiers
 
-Campagne `acq_boulangerie` · destination `https://xn--marcho-fva.fr/solutions/boulangerie` · boutique filmée : `/le-petrin`
+Campagne `acq_boulangerie` · destination `https://xn--marcho-fva.fr/le-petrin?demo=1` · boutique filmée : `/le-petrin`
 
 **BLG-01 · Présentation** (adapte PRI-01) · `BLG-01-916` / `BLG-01-45` · CTA En savoir plus
 > Votre boulangerie en ligne, simplement.
@@ -454,7 +454,7 @@ Accroche image : « 399 € une fois · 39 €/mois ». Texte principal de PRI-0
 
 ## Poissonniers
 
-Campagne `acq_poissonnerie` · destination `https://xn--marcho-fva.fr/solutions/poissonnerie` · boutique filmée : `/maree-d-or`
+Campagne `acq_poissonnerie` · destination `https://xn--marcho-fva.fr/maree-d-or?demo=1` · boutique filmée : `/maree-d-or`
 
 **POI-01 · Présentation** · `POI-01-916` / `POI-01-45` · CTA En savoir plus
 > Votre poissonnerie en ligne, simplement.
@@ -482,7 +482,7 @@ Titre : Votre arrivage annoncé par SMS · Visuel : coquilles Saint-Jacques sur 
 
 ## Fromagers
 
-Campagne `acq_fromagerie` · destination `https://xn--marcho-fva.fr/solutions/fromagerie` · boutique filmée : `/fromagerie-conquerant`
+Campagne `acq_fromagerie` · destination `https://xn--marcho-fva.fr/fromagerie-conquerant?demo=1` · boutique filmée : `/fromagerie-conquerant`
 
 **FRO-01 · Présentation** · `FRO-01-916` / `FRO-01-45` · CTA En savoir plus
 > Votre fromagerie en ligne, simplement.
@@ -505,7 +505,7 @@ Titre : Le plateau commandé, prêt à l'heure · Script : PRI-02 avec chronomè
 
 ## Traiteurs
 
-Campagne `acq_traiteur` · destination `https://xn--marcho-fva.fr/solutions/traiteur`
+Campagne `acq_traiteur` · destination `https://xn--marcho-fva.fr/inscription?metier=traiteur`
 **Prérequis** : créer une boutique de démonstration traiteur avant le tournage (il n'en existe pas aujourd'hui).
 
 **TRT-01 · Présentation** · `TRT-01-916` / `TRT-01-45` · CTA En savoir plus

@@ -5,7 +5,7 @@ Statut : **prêt, non publié.** Les campagnes seront créées en pause, puis ac
 ## Le parcours
 
 1. **Publicité vidéo par métier** : le métier en gros dès la première image, la boutique à 1,5 s.
-2. **Clic** : page du métier (`/solutions/primeur`) ou directement le formulaire de démo (`/inscription?metier=primeur`, métier déjà choisi).
+2. **Clic → boutique de démonstration du métier** (`/chez-christophe?demo=1` pour les primeurs, `/boucherie-classique?demo=1` pour les bouchers, etc.). Le visiteur parcourt une vraie boutique, avec une grosse barre verte « Créer ma démo gratuitement » qui mène au formulaire, métier déjà coché. Aucune commande ne part : le bouton de commande ouvre l'invitation à créer sa démo. Les publicités transversales mènent directement au formulaire (`/inscription`), où le commerçant choisit son métier.
 3. **Démo gratuite créée** : événement Meta `CompleteRegistration`. **C'est la conversion sur laquelle Meta optimise.**
 4. **Relances automatiques** (fonction `relances-demo`, toutes les heures) :
    - environ 15 min après la création : « Votre boutique est prête » ;
@@ -30,8 +30,8 @@ Pourquoi concentrer :
 | Publicité | Rôle | Destination | Bouton |
 |---|---|---|---|
 | **TRA-02** (18 s, tous les métiers, boutique à 1,5 s) | Toucher le plus de commerçants possible | `/inscription` (le commerçant choisit son métier) | S'inscrire |
-| **PRI-01** (28 s, démo primeur avec promotions) | Convaincre les primeurs | `/solutions/primeur` | En savoir plus |
-| **PRI-04** (19 s, le prix) | Ceux qui ont déjà compris : passer à la démo | `/inscription?metier=primeur` | S'inscrire |
+| **PRI-01** (28 s, démo primeur avec promotions) | Convaincre les primeurs | `/chez-christophe?demo=1` (boutique de démonstration + gros bouton) | En savoir plus |
+| **PRI-04** (19 s, le prix) | Ceux qui ont déjà compris : passer à la démo | `/chez-christophe?demo=1` | S'inscrire |
 
 Budget : 8 €/jour × 30 jours = **240 €**.
 
