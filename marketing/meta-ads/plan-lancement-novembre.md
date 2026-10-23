@@ -54,7 +54,7 @@ Chaque mois : la meilleure vidéo transversale du mois précédent reste en plac
 - **Ciblage** : France, 30 à 65 ans, langue française. Audience Advantage+ avec ces suggestions : boucherie, charcuterie, primeur, fruits et légumes, Rungis, artisan, commerce de proximité. C'est la vidéo qui fait le tri : « Primeurs » en gros attire les primeurs.
 - **Emplacements** : Advantage+. Vidéo 9:16 pour Reels et Stories, 4:5 pour le fil, via « personnaliser les éléments par emplacement ».
 - **Paramètres d'URL** : coller le modèle du [README](README.md) dans « Paramètres d'URL ».
-- **Musique** : choisir un titre dans la bibliothèque sonore de Meta.
+- **Musique** : déjà intégrée aux vidéos (guitare acoustique originale, sans droits tiers). Ne pas en ajouter une seconde dans Meta.
 - **Bouton** : « S'inscrire » pour le formulaire, « En savoir plus » pour la page métier.
 
 ## Règles de décision
