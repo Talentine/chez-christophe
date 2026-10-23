@@ -87,7 +87,6 @@
           '<div class="mpromo-code"><div><small>Votre code</small><br><strong>' + OFFRE.code + '</strong></div><button type="button" class="mpromo-copier">Copier</button></div>' +
           '<a class="mpromo-cta" href="' + OFFRE.lien + '">J\'en profite</a>' +
           '<button class="mpromo-later" type="button">Plus tard</button>' +
-          '<div class="mpromo-fin">Offre valable jusqu\'au ' + OFFRE.finTexte + ' inclus</div>' +
         '</div>' +
       '</div>';
     document.body.appendChild(o);
