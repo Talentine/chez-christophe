@@ -457,6 +457,7 @@
 </style>
 
 <script src="assets/core/init.js?v=brandv2"></script>
+<script src="/assets/core/poids-indicatif.js?v=1"></script>
 </head>
 <body>
 
@@ -2411,9 +2412,10 @@ function renderCarteCommande(c) {
   const produits = c.produits.map(p =>
     `<div class="detail-produit">
       <span class="detail-produit-nom">${p.nom} — ${p.qte}</span>
-      <span class="detail-produit-prix">${p.prix}</span>
-    </div>`
+      <span class="detail-produit-prix">${p.poids_indicatif && !p.poids_reel_g ? '≈ ' : ''}${p.prix}</span>
+    </div>${p.poids_indicatif ? renderPeseeLigne(c, p) : ''}`
   ).join('');
+  const aPeser = c.produits.filter(p => p.poids_indicatif && !p.poids_reel_g).length;
 
   return `
     <div class="commande-card ${c.statut}" id="card-${c.id}" style="${cardTypeStyle}">
@@ -2425,6 +2427,7 @@ function renderCarteCommande(c) {
             <span class="meta-pill">· ${c.montant}</span>
             <span class="meta-pill">· ${c.articles} art.</span>
             <span class="meta-pill" style="${typeBadgeStyle}font-weight:600;">${typeIcon}</span>
+            ${aPeser ? `<span class="meta-pill" style="background:#f3f0fa;color:#4b3a7a;font-weight:600;">⚖️ ${aPeser} à peser</span>` : ''}
           </div>
         </div>
         <span class="badge-statut ${badgeClass}">${badgeTxt}</span>
@@ -2458,6 +2461,100 @@ function renderCarteCommande(c) {
       ${renderEmpreinteActions(c)}
     </div>
   `;
+}
+
+// ── POIDS INDICATIF : pesée d'une ligne ─────────────────────────────
+function renderPeseeLigne(c, p) {
+  const PI = window.PoidsIndicatif;
+  const kg = v => PI ? PI.fmtPoids(v) : (v + ' g');
+  const eur = v => Number(v || 0).toFixed(2).replace('.', ',') + '€';
+  const prixKg = p.prix_kg ? eur(p.prix_kg) + '/kg' : '';
+  const verrou = ['annulee'].includes(c.statut);
+  if (p.poids_reel_g) {
+    const ecart = p.poids_estime_g ? Math.round((p.poids_reel_g - p.poids_estime_g) / p.poids_estime_g * 100) : null;
+    const diff = p.total_estime != null ? p.total_ligne - p.total_estime : null;
+    return `<div class="pesee-ligne" style="margin:-2px 0 8px;padding:8px 10px;background:#eef7f0;border-radius:10px;font-size:12.5px;color:#2d6a3e;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span>⚖️ Pesé <b>${kg(p.poids_reel_g)}</b>${ecart !== null ? ` (${ecart > 0 ? '+' : ''}${ecart} %)` : ''} · ${prixKg}${diff !== null && Math.abs(diff) >= 0.01 ? ` · ${diff > 0 ? '+' : ''}${eur(diff)} vs estimé` : ''}</span>
+      ${verrou ? '' : `<button onclick="event.stopPropagation();peserLigne('${c.id}','${p.id}',null)" style="margin-left:auto;background:none;border:1px solid #9cc3aa;color:#2d6a3e;border-radius:8px;padding:4px 8px;font-size:11.5px;font-family:inherit;cursor:pointer;">Modifier</button>`}
+    </div>`;
+  }
+  if (verrou) return '';
+  return `<div class="pesee-ligne" onclick="event.stopPropagation()" style="margin:-2px 0 8px;padding:8px 10px;background:#f3f0fa;border:1px dashed #b9a7e0;border-radius:10px;font-size:12.5px;color:#4b3a7a;">
+    <div style="margin-bottom:6px;">⚖️ À peser · estimé <b>${kg(p.poids_estime_g || 0)}</b> au total · ${prixKg}</div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <input id="pesee-${p.id}" type="text" inputmode="decimal" placeholder="Poids pesé (ex : 2,45 kg ou 2450 g)" value="${p._poids_precedent ? String(p._poids_precedent / 1000).replace('.', ',') : ''}"
+        onkeydown="if(event.key==='Enter'){peserLigne('${c.id}','${p.id}')}"
+        style="flex:1;min-width:0;padding:9px 10px;border:1.5px solid #cfc3ea;border-radius:9px;font-size:14px;font-family:inherit;background:white;">
+      <button onclick="peserLigne('${c.id}','${p.id}')" style="background:#6b4fbb;color:white;border:none;border-radius:9px;padding:9px 12px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;">Valider</button>
+    </div>
+  </div>`;
+}
+
+// « 2,45 » / « 2.45 kg » → 2450 g ; « 2450 » / « 2450 g » → 2450 g ; « 800 » → 800 g
+function lirePoidsSaisi(txt) {
+  const t = String(txt || '').trim().toLowerCase().replace(/\s/g, '').replace(',', '.');
+  const n = parseFloat(t);
+  if (!(n > 0)) return null;
+  if (/kg$|kilo/.test(t)) return Math.round(n * 1000);
+  if (/g$/.test(t)) return Math.round(n);
+  // Sans unité : décimal ou < 30 → kilos, sinon grammes
+  return (t.includes('.') || n < 30) ? Math.round(n * 1000) : Math.round(n);
+}
+
+// poids === null depuis « Modifier » : on rouvre la saisie (sans effacer la pesée tant qu'on n'a pas revalidé)
+async function peserLigne(cmdId, ligneId, poids) {
+  const cmd = toutesLesCommandes.find(c => c.id === cmdId);
+  const ligne = cmd?.produits.find(p => p.id === ligneId);
+  if (!cmd || !ligne) return;
+
+  if (poids === null) {            // repasser en saisie
+    ligne._poids_precedent = ligne.poids_reel_g;
+    ligne.poids_reel_g = null;
+    ligne._ressaisie = true;
+    cartesOuvertes.add(cmdId);
+    renderCommandes();
+    setTimeout(() => document.getElementById('pesee-' + ligneId)?.focus(), 50);
+    return;
+  }
+  const g = lirePoidsSaisi(document.getElementById('pesee-' + ligneId)?.value);
+  if (!g) { afficherToast('⚠️ Entrez le poids pesé'); return; }
+  if (ligne.poids_estime_g) {
+    const ecart = Math.round((g - ligne.poids_estime_g) / ligne.poids_estime_g * 100);
+    if (Math.abs(ecart) >= 40 && !confirm('⚖️ ' + (window.PoidsIndicatif ? PoidsIndicatif.fmtPoids(g) : g + ' g') + ' pour ' + ligne.nom + ', soit ' + (ecart > 0 ? '+' : '') + ecart + ' % par rapport à l\'estimation.\n\nC\'est bien le bon poids ?')) return;
+  }
+
+  const appliquer = (totalLigne, totalTtc) => {
+    ligne.poids_reel_g = g;
+    ligne._ressaisie = false;
+    ligne.total_ligne = Number(totalLigne);
+    ligne.prix = ligne.total_ligne.toFixed(2).replace('.', ',') + '€';
+    cmd.total_ttc = Number(totalTtc);
+    cmd.montant = cmd.total_ttc.toFixed(2).replace('.', ',') + '€';
+    cartesOuvertes.add(cmdId);
+    renderCommandes();
+    const reste = cmd.produits.filter(p => p.poids_indicatif && !p.poids_reel_g).length;
+    afficherToast(reste ? '⚖️ Pesé · encore ' + reste + ' à peser' : '✅ Tout est pesé · total ' + cmd.montant);
+  };
+
+  // Commande démo (id non-UUID) : calcul local uniquement
+  const isDemo = !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(cmdId));
+  if (isDemo) {
+    const nouveau = Math.round((ligne.prix_kg || 0) * g / 10) / 100;
+    return appliquer(nouveau, (cmd.total_ttc || 0) + nouveau - (ligne.total_ligne || 0));
+  }
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/peser_ligne_commande', {
+      method: 'POST',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ p_ligne_id: ligneId, p_poids_g: g }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data?.message || ('HTTP ' + r.status));
+    appliquer(data.total_ligne, data.total_ttc);
+  } catch (e) {
+    console.error('[peserLigne]', e);
+    afficherToast('❌ Pesée non enregistrée : ' + e.message);
+  }
 }
 
 function renderEmpreinteBadge(c) {
@@ -2540,6 +2637,15 @@ window.voirCommande = function(id) {
 async function changerStatut(id, nouveauStatut) {
   const cmd = toutesLesCommandes.find(c => c.id === id);
   if (!cmd) return;
+  // Poids indicatif : rappel si des pièces n'ont pas été pesées
+  if (['prete','remise','livree','terminee'].includes(nouveauStatut)) {
+    const nonPesees = (cmd.produits || []).filter(p => p.poids_indicatif && !p.poids_reel_g);
+    if (nonPesees.length && !confirm('⚖️ ' + nonPesees.map(p => p.nom).join(', ') + (nonPesees.length > 1 ? ' ne sont pas pesés' : ' n\'est pas pesé') + '.\n\nSans pesée, le client paiera le prix estimé.\nContinuer quand même ?')) {
+      cartesOuvertes.add(id);
+      renderCommandes();
+      return;
+    }
+  }
   const ancienStatut = cmd.statut;
 
   // Optimistic update local + persistance Supabase
@@ -4982,10 +5088,20 @@ async function chargerCommandesSupabase(commercantId) {
       commercant_id: c.commercant_id || null,
       empreinte_status: c.empreinte_status || 'none',
       empreinte_montant_cents: c.empreinte_montant_cents || 0,
+      total_ttc: Number(c.total_ttc || 0),
       produits: (c.commande_lignes || []).map(l => ({
+        id: l.id,
         nom: l.nom_produit,
         qte: l.quantite + ' ' + l.unite,
-        prix: (l.total_ligne || 0).toFixed(2).replace('.', ',') + '€'
+        prix: (l.total_ligne || 0).toFixed(2).replace('.', ',') + '€',
+        // Poids indicatif : estimation figée à la commande + pesée du commerçant
+        poids_indicatif: !!l.poids_indicatif,
+        quantite: Number(l.quantite || 0),
+        prix_kg: l.prix_kg != null ? Number(l.prix_kg) : null,
+        poids_estime_g: l.poids_estime_g ?? null,
+        poids_reel_g: l.poids_reel_g ?? null,
+        total_ligne: Number(l.total_ligne || 0),
+        total_estime: l.total_estime != null ? Number(l.total_estime) : null,
       }))
     }));
 
@@ -6268,7 +6384,9 @@ function renderCatalogueHTML(liste) {
       + '<img src="' + (item.photo_url || '') + '" onerror="this.style.display=\'none\'" style="width:54px;height:54px;border-radius:12px;object-fit:cover;background:var(--creme);flex-shrink:0;">'
       + '<div style="flex:1;min-width:0;">'
       + '<div style="font-size:15px;font-weight:500;">' + item.nom + '</div>'
-      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + item.prix + '€ / ' + item.unite + stockLabel(item) + ' · ✏️ Modifier</div>'
+      + '<div style="font-size:13px;color:var(--texte-doux);margin-top:2px;">' + (item.poids_indicatif && window.PoidsIndicatif
+          ? '≈ ' + Number(item.prix).toFixed(2).replace('.', ',') + '€ / pièce · ⚖️ ~' + PoidsIndicatif.fmtPoids(item.poids_piece_g) + ' à ' + Number(item.prix_kg).toFixed(2).replace('.', ',') + '€/kg'
+          : item.prix + '€ / ' + item.unite) + stockLabel(item) + ' · ✏️ Modifier</div>'
       + '</div>'
       + '</div>'
       + ruptureControl(item)
@@ -6302,7 +6420,7 @@ async function chargerProduitsAdmin() {
 
   try {
     const token = await getValidToken();
-    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,rupture_jusquau,stock_qte,stock_alerte_seuil,produit_base_id&limit=200&order=id.desc', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + commercantId + '&select=id,prix_vente,prix_lot,prix_lot_qte,actif,en_stock,rupture_jusquau,stock_qte,stock_alerte_seuil,produit_base_id,poids_indicatif,poids_piece_g,prix_kg,poids_ecart_pct&limit=200&order=id.desc', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
     });
     const catalogue = await r.json();
@@ -6344,6 +6462,11 @@ async function chargerProduitsAdmin() {
         prix_lot: c.prix_lot || null,
         stock_qte: (c.stock_qte === null || c.stock_qte === undefined) ? null : Number(c.stock_qte),
         stock_alerte_seuil: (c.stock_alerte_seuil === null || c.stock_alerte_seuil === undefined) ? 5 : Number(c.stock_alerte_seuil),
+        // Poids indicatif (pièce pesée, prix ajusté à la pesée)
+        poids_indicatif: !!c.poids_indicatif,
+        poids_piece_g: c.poids_piece_g ?? null,
+        prix_kg: c.prix_kg != null ? Number(c.prix_kg) : null,
+        poids_ecart_pct: c.poids_ecart_pct ?? 15,
       };
     }).filter(p => p.nom !== '—');
 
@@ -6576,6 +6699,9 @@ function ouvrirEditionProduit(catalogueId) {
   const unId = 'edit-unite-' + (p.unite || '').replace(/ /g, '-');
   document.getElementById(unId)?.classList.add('actif');
 
+  // Poids indicatif : pré-remplit et affiche l'option si active sur ce produit
+  if (window.PoidsIndicatif) PoidsIndicatif.charger('edit', p);
+
   document.getElementById('modalEditProduit').style.display = 'flex';
 }
 
@@ -6623,6 +6749,8 @@ async function sauvegarderEdition() {
   const btn = document.getElementById('btnSauvegarderEdit');
 
   if (!nom) { erreur.textContent = '⚠️ Nom requis'; erreur.style.display = 'block'; return; }
+  const piEdit = window.PoidsIndicatif ? PoidsIndicatif.lire('edit') : { ok: true, data: {} };
+  if (!piEdit.ok) { erreur.textContent = piEdit.erreur; erreur.style.display = 'block'; return; }
   if (!prix || prix <= 0) { erreur.textContent = '⚠️ Prix invalide'; erreur.style.display = 'block'; return; }
 
   erreur.style.display = 'none';
@@ -6711,6 +6839,8 @@ async function sauvegarderEdition() {
         // Stock quantifié : champ vide → NULL (illimité). Sinon nombre.
         stock_qte: (function(){ const v = document.getElementById('editStockQte')?.value; return (v === '' || v === undefined || v === null) ? null : Number(v); })(),
         stock_alerte_seuil: parseInt(document.getElementById('editStockSeuil')?.value) || 5,
+        // Poids indicatif — prix_vente est recalculé côté base (prix_kg × poids moyen)
+        ...piEdit.data,
       })
     });
 
@@ -6809,6 +6939,7 @@ function ajouterProduit() {
   uniteSelectionnee = null;
   photoFile = null;
   document.querySelectorAll('.btn-unite').forEach(b => b.classList.remove('actif'));
+  if (window.PoidsIndicatif) PoidsIndicatif.charger('produit', {});
 }
 
 function fermerAjoutProduit() {
@@ -6871,6 +7002,9 @@ async function sauvegarderProduit() {
   const btn = document.getElementById('btnSauvegarder');
 
   if (!nom) { erreur.textContent = '⚠️ Entrez le nom du produit'; erreur.style.display = 'block'; return; }
+  const piAjout = window.PoidsIndicatif ? PoidsIndicatif.lire('produit') : { ok: true, data: {} };
+  if (!piAjout.ok) { erreur.textContent = piAjout.erreur; erreur.style.display = 'block'; return; }
+  if (piAjout.data.poids_indicatif && !uniteSelectionnee) selectionnerUnite('pièce');
   if (!prix || prix <= 0) { erreur.textContent = '⚠️ Entrez un prix valide'; erreur.style.display = 'block'; return; }
   if (!uniteSelectionnee) { erreur.textContent = '⚠️ Choisissez un conditionnement'; erreur.style.display = 'block'; return; }
 
@@ -6973,6 +7107,8 @@ async function sauvegarderProduit() {
         stock_qte: (function(){ const v = document.getElementById('produitStockQte')?.value; return (v === '' || v === undefined || v === null) ? null : Number(v); })(),
         stock_alerte_seuil: parseInt(document.getElementById('produitStockSeuil')?.value) || 5,
         actif: true,
+        // Poids indicatif — prix_vente est recalculé côté base (prix_kg × poids moyen)
+        ...piAjout.data,
       })
     });
 
@@ -6997,6 +7133,7 @@ async function sauvegarderProduit() {
       prix,
       photo_url: photoUrl || '',
       actif: true,
+      ...piAjout.data,
     };
     catalogueCache.unshift(nouveauProduit);
 
@@ -8720,6 +8857,9 @@ verifierSessionCommercant().then(function(ok) {
       </div>
     </div>
 
+    <!-- POIDS INDICATIF (optionnel) — rempli par assets/core/poids-indicatif.js -->
+    <div id="produitPiConteneur"></div>
+
     <!-- DESCRIPTION (optionnel) -->
     <div style="margin-bottom:14px;">
       <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Description <span style="color:#aaa;font-size:12px;">(optionnel)</span></label>
@@ -8870,6 +9010,9 @@ verifierSessionCommercant().then(function(ok) {
         <button onclick="selectionnerUniteEdit('botte')" id="edit-unite-botte" class="btn-unite-edit" style="border:1.5px solid var(--creme-fonce);border-radius:10px;padding:10px 6px;font-size:12px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);cursor:pointer;">botte</button>
       </div>
     </div>
+
+    <!-- POIDS INDICATIF (optionnel) -->
+    <div id="editPiConteneur"></div>
 
     <!-- DESCRIPTION (optionnel) -->
     <div style="margin-bottom:14px;">
@@ -9791,6 +9934,60 @@ function appliquerRestrictionsRole(role) {
       }catch(e){}
     },1200);
   });
+})();
+</script>
+
+<script>
+// ── POIDS INDICATIF — montage dans les formulaires ajout / modification produit ──
+(function () {
+  function monterPoidsIndicatif() {
+    if (!window.PoidsIndicatif) return;
+    const val = id => document.getElementById(id)?.value || '';
+    const verrou = id => on => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.readOnly = on;
+      el.style.opacity = on ? '0.7' : '';
+      el.title = on ? 'Calculé automatiquement : prix au kilo × poids moyen' : '';
+    };
+    const lot = (a, b) => on => [a, b].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.disabled = !on;
+      el.closest('div[style*="dashed #f0c060"]')?.style.setProperty('opacity', on ? '' : '0.45');
+      if (!on) el.value = '';
+    });
+
+    PoidsIndicatif.monter('produit', 'produitPiConteneur', {
+      getNom: () => val('produitNom'),
+      getPrix: () => val('produitPrix'),
+      setPrix: v => { const el = document.getElementById('produitPrix'); if (el) el.value = v; },
+      getUnite: () => (typeof uniteSelectionnee !== 'undefined' ? uniteSelectionnee : '') || '',
+      setUnitePiece: () => { if (typeof selectionnerUnite === 'function') selectionnerUnite('pièce'); },
+      setPrixVerrouille: verrou('produitPrix'),
+      setLotActif: lot('produitPrixLotQte', 'produitPrixLot'),
+    });
+    PoidsIndicatif.monter('edit', 'editPiConteneur', {
+      getNom: () => val('editNom'),
+      getPrix: () => val('editPrix'),
+      setPrix: v => { const el = document.getElementById('editPrix'); if (el) el.value = v; },
+      getUnite: () => (typeof produitEnEdition !== 'undefined' && produitEnEdition ? produitEnEdition.unite : '') || '',
+      setUnitePiece: () => { if (typeof selectionnerUniteEdit === 'function') selectionnerUniteEdit('pièce'); },
+      setPrixVerrouille: verrou('editPrix'),
+      setLotActif: lot('editPrixLotQte', 'editPrixLot'),
+    });
+
+    // Suggestion intelligente dès la saisie du nom (« Côte de bœuf » → ~1,2 kg)
+    document.getElementById('produitNom')?.addEventListener('input', () => PoidsIndicatif.surNom('produit'));
+    document.getElementById('editNom')?.addEventListener('input', () => PoidsIndicatif.surNom('edit'));
+    // Passer sur « kg » désactive l'option (un produit au kg n'a pas de poids indicatif)
+    ['produit', 'edit'].forEach(p => {
+      document.getElementById(p === 'produit' ? 'unite-kg' : 'edit-unite-kg')
+        ?.addEventListener('click', () => { if (PoidsIndicatif.actif(p)) PoidsIndicatif.basculer(p, false); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monterPoidsIndicatif);
+  else monterPoidsIndicatif();
 })();
 </script>
 

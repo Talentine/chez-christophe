@@ -695,6 +695,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="/assets/core/init.js?v=brandv2"></script>
+<script src="/assets/core/poids-indicatif.js?v=1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=1" defer></script>
@@ -832,6 +833,7 @@ let poidsKgFiche = 0.5; // poids choisi (en kg) pour les produits au kilo
 // Détecte si un produit est vendu au poids (kg, gramme, livre, /kg…)
 function estProduitAuPoids(produit) {
   if (!produit) return false;
+  if (produit.poids_indicatif) return false; // pièce pesée : commandée à l'unité
   const sources = [
     produit.unite, produit.unite_vente, produit.unite_label, produit.unite_affichage,
     produit.au_poids === true ? 'kg' : null
@@ -881,6 +883,11 @@ async function sb(table, params) {
 }
 
 function flattenCatalogueRow(row) {
+  const produit = flattenCatalogueRowBase(row);
+  // Poids indicatif : vendu à la pièce, prix estimé (prix au kg × poids moyen)
+  return window.PoidsIndicatif ? PoidsIndicatif.enrichir(produit, row) : produit;
+}
+function flattenCatalogueRowBase(row) {
   const pb = row.produits_base || {};
   return {
     id: pb.id || row.produit_base_id,
@@ -1067,9 +1074,10 @@ function renderProduits() {
           ${p.provenance ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>` : ''}
           <div class="produit-footer">
             <div class="produit-prix-bloc">
-              <span class="produit-prix">${prix ? prix.toFixed(2).replace('.',',') + '€' : '—'}</span>
+              <span class="produit-prix">${prix ? (p.poids_indicatif ? '≈ ' : '') + prix.toFixed(2).replace('.',',') + '€' : '—'}</span>
               <span class="produit-unite"> /${p.unite}</span>
               ${badgeOffreLotCatalogue(p)}
+              ${window.PoidsIndicatif ? PoidsIndicatif.badgeCarte(p) : ''}
             </div>
             ${enPanier
               ? '<div class="qty-mini" onclick="event.stopPropagation()">'
@@ -1119,9 +1127,14 @@ function ouvrirFiche(produitId) {
   setText('ficheCat',  produitEnCours.categories?.nom || '');
   setText('ficheNom',  produitEnCours.nom || '');
   setText('ficheDesc', produitEnCours.description || 'Produit frais sélectionné avec soin.');
+  // Poids indicatif : encart « environ 1,2 kg, prix ajusté à la pesée »
+  const ficheDescEl = document.getElementById('ficheDesc');
+  if (ficheDescEl && window.PoidsIndicatif && PoidsIndicatif.estPI(produitEnCours)) {
+    ficheDescEl.insertAdjacentHTML('afterbegin', PoidsIndicatif.encartFiche(produitEnCours));
+  }
 
   const prix = produitEnCours.prix_marche_indicatif;
-  setText('fichePrix',  prix ? prix.toFixed(2).replace('.',',') + ' €' : '—');
+  setText('fichePrix',  prix ? (produitEnCours.poids_indicatif ? '≈ ' : '') + prix.toFixed(2).replace('.',',') + ' €' : '—');
   setText('ficheUnite', '/ ' + (produitEnCours.unite || ''));
   setText('ficheQty',   qteFiche);
   setStyle('ficheSaison', 'display', produitEnCours.saisonnier ? 'block' : 'none');

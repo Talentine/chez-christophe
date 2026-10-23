@@ -1083,6 +1083,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta id="m-apple-title" name="apple-mobile-web-app-title" content="Marchéo">
 <script src="assets/core/init.js?v=resto3"></script>
+<script src="/assets/core/poids-indicatif.js?v=1"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=1" defer></script>
 </head>
@@ -1317,8 +1318,9 @@
         <div id="progressionBarre" style="height:100%;background:linear-gradient(to right, var(--or), var(--or-clair));width:0%;transition:width 0.3s;"></div>
       </div>
     </div>
+    <div id="piNotePanier" style="padding:0 20px;"></div>
     <div class="drawer-total">
-      <span>Total</span>
+      <span id="totalLibelle">Total</span>
       <span id="totalMontant">0,00 €</span>
     </div>
     <a href="panier.html" class="btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:16px;text-decoration:none;">
@@ -1349,6 +1351,11 @@ async function supabase(table, params = '') {
 
 // ── HELPER : aplatit une ligne catalogue+produits_base ──────────
 function flattenCatalogueRow(row) {
+  const produit = flattenCatalogueRowBase(row);
+  // Poids indicatif : vendu à la pièce, prix estimé (prix au kg × poids moyen)
+  return window.PoidsIndicatif ? PoidsIndicatif.enrichir(produit, row) : produit;
+}
+function flattenCatalogueRowBase(row) {
   const pb = row.produits_base || {};
   return {
     id:                    pb.id || row.produit_base_id,
@@ -1451,9 +1458,10 @@ function renderProduitCard(p) {
       ${provHtml}
       <div class="produit-footer">
         <div>
-          <span class="produit-prix">${prix}€</span>
+          <span class="produit-prix">${p.poids_indicatif ? '≈ ' : ''}${prix}€</span>
           <span class="produit-unite"> /${p.unite}</span>
           ${badgeOffreLot(p)}
+          ${window.PoidsIndicatif ? PoidsIndicatif.badgeCarte(p) : ''}
         </div>
         ${btnHtml}
       </div>
@@ -1666,6 +1674,7 @@ let ficheProduitPoidsKg = 0.5;    // pour produits au kilo (en kg, défaut 500g)
 // quel que soit le format de données stocké en base.
 function estProduitAuPoids(produit) {
   if (!produit) return false;
+  if (produit.poids_indicatif) return false; // pièce pesée : commandée à l'unité
   const sources = [
     produit.unite,
     produit.unite_vente,
@@ -1711,14 +1720,14 @@ function ouvrirFicheProduit(produit) {
   document.getElementById('ficheOverlay').classList.add('open');
   document.getElementById('ficheDrawer').classList.add('open');
   document.getElementById('ficheNomAccueil').textContent = produit.nom;
-  document.getElementById('fichePrixAccueil').textContent = prix + '€';
+  document.getElementById('fichePrixAccueil').textContent = (produit.poids_indicatif ? '≈ ' : '') + prix + '€';
   document.getElementById('ficheUniteAccueil').textContent = '/' + produit.unite;
   // Description + offre lot
   const descBase = produit.description || '';
   const offreLotTxt = (produit.prix_lot_qte && produit.prix_lot)
     ? '🏷️ Offre : ' + produit.prix_lot_qte + ' pour ' + parseFloat(produit.prix_lot).toFixed(2).replace('.', ',').replace(/,00$/, '') + '€'
     : '';
-  document.getElementById('ficheDescAccueil').innerHTML = (offreLotTxt ? '<span style="background:#ffeec2;color:#8a6020;font-size:12px;font-weight:600;padding:4px 10px;border-radius:50px;display:inline-block;margin-bottom:8px;border:1px solid #f0c060;">' + offreLotTxt + '</span><br>' : '') + descBase;
+  document.getElementById('ficheDescAccueil').innerHTML = (window.PoidsIndicatif ? PoidsIndicatif.encartFiche(produit) : '') + (offreLotTxt ? '<span style="background:#ffeec2;color:#8a6020;font-size:12px;font-weight:600;padding:4px 10px;border-radius:50px;display:inline-block;margin-bottom:8px;border:1px solid #f0c060;">' + offreLotTxt + '</span><br>' : '') + descBase;
   document.getElementById('ficheCatAccueil').textContent = produit.categories?.nom || '';
 
   // Badges bio / saison / local / nouveau
@@ -2161,7 +2170,7 @@ function renderPanier() {
   contenu.innerHTML = panier.map((p, i) => `
     <div class="panier-ligne">
       <span class="panier-ligne-nom">${p.nom}${(p.prix_lot_qte && p.prix_lot && p.qte >= p.prix_lot_qte) ? ' <span style="color:#C44616;font-size:11px;font-weight:700;">🔖</span>' : ''}</span>
-      <span class="panier-ligne-prix">${calculerTotalAvecLot(p, p.qte).toFixed(2).replace('.',',')}€</span>
+      <span class="panier-ligne-prix">${p.poids_indicatif ? '≈ ' : ''}${calculerTotalAvecLot(p, p.qte).toFixed(2).replace('.',',')}€</span>
       <div class="qty-ctrl">
         <button class="qty-btn" onclick="changerQte(${i}, -1)">−</button>
         <span class="qty-num">${p.qte}</span>
@@ -2171,6 +2180,11 @@ function renderPanier() {
   `).join('');
 
   document.getElementById('totalMontant').textContent = totalMontant.toFixed(2).replace('.',',') + ' €';
+  // Poids indicatif : total estimé + explication
+  const piNote = document.getElementById('piNotePanier');
+  if (piNote) piNote.innerHTML = window.PoidsIndicatif ? PoidsIndicatif.notePanier(panier) : '';
+  const totalLib = document.getElementById('totalLibelle');
+  if (totalLib) totalLib.textContent = panier.some(p => p.poids_indicatif) ? 'Total estimé' : 'Total';
   mettreAJourProgression(totalMontant);
   totalEl.style.display = 'block';
 }
