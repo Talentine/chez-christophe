@@ -1409,8 +1409,7 @@ async function creerBoutique() {
             'Content-Type': contentType,
             'x-upsert': 'true',
           },
-          logoBody,
-          2
+          logoBody
         );
         if (upRes.ok) {
           const logoUrl = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path;
@@ -1735,8 +1734,9 @@ async function compresserPhoto(file, maxSize = 1200, quality = 0.85) {
   });
 }
 
-// POST avec retry : 2 tentatives, pause 1.2s, retry seulement pour les 5xx et 429.
-async function uploadAvecRetry(url, headers, body, maxTry = 2) {
+// POST avec retry : 4 tentatives, pause 1,5 s / 3 s / 6 s, retry seulement pour les 5xx et 429
+// (Supabase répond 429 quand plusieurs photos partent coup sur coup).
+async function uploadAvecRetry(url, headers, body, maxTry = 4) {
   let last = null;
   for (let i = 0; i < maxTry; i++) {
     try {
@@ -1749,7 +1749,7 @@ async function uploadAvecRetry(url, headers, body, maxTry = 2) {
     } catch (e) {
       last = { status: 0, body: String(e?.message || e), tries: i + 1 };
     }
-    if (i < maxTry - 1) await new Promise(r => setTimeout(r, 1200));
+    if (i < maxTry - 1) await new Promise(r => setTimeout(r, 1500 * Math.pow(2, i)));
   }
   return { ok: false, _error: last };
 }
@@ -1797,7 +1797,7 @@ async function uploadMedia(accessToken, slug) {
       'x-upsert': 'true',
     };
 
-    const res = await uploadAvecRetry(url, headers, body, 2);
+    const res = await uploadAvecRetry(url, headers, body);
     if (res.ok) {
       uploaded.push(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
     } else {

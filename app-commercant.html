@@ -6215,7 +6215,7 @@ function appliquerVisibiliteFeatures() {
 })();
 
 let uniteSelectionnee = null;
-let photoFile = null;
+let photoPrete = null; // promesse de preparerImage() pour la photo du nouveau produit
 let catalogueCache = []; // cache global pour la recherche
 
 
@@ -6249,6 +6249,45 @@ async function compresserImage(file, maxSize = 800, quality = 0.82) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+// Prépare une photo pour l'envoi : compressée en webp → { body, ext, type }.
+// Si le navigateur ne sait pas la lire : message clair pour le HEIC d'iPhone,
+// sinon on envoie le fichier d'origine.
+async function preparerImage(file, maxSize = 800, quality = 0.82) {
+  try {
+    return { body: await compresserImage(file, maxSize, quality), ext: 'webp', type: 'image/webp' };
+  } catch (e) {
+    console.log('Compression échouée:', e);
+    if (/\.(heic|heif)$/i.test(file.name || '') || /heic|heif/i.test(file.type || '')) {
+      throw new Error('Photo iPhone au format HEIC illisible. Réglages → Appareil photo → Formats → « Le plus compatible », puis reprenez la photo.');
+    }
+    const ext = ((file.name || '').split('.').pop() || 'jpg').toLowerCase();
+    return { body: file, ext, type: file.type || 'image/jpeg' };
+  }
+}
+
+// Envoi vers Supabase Storage avec nouvelles tentatives. Supabase répond 429
+// (trop de requêtes) quand plusieurs envois partent coup sur coup, ou 5xx :
+// on réessaie 4 fois (1,5 s, 3 s, 6 s ou le Retry-After). Autres 4xx = définitif.
+async function envoyerStorage(url, headers, body, essais = 4) {
+  let derniere = '';
+  for (let i = 0; i < essais; i++) {
+    let attente = 1500 * Math.pow(2, i);
+    try {
+      const r = await fetch(url, { method: 'POST', headers, body });
+      if (r.ok) return r;
+      derniere = r.status + ' ' + (await r.text().catch(() => '')).slice(0, 200);
+      if (r.status !== 429 && r.status < 500) break;
+      const retryAfter = parseInt(r.headers.get('Retry-After'), 10);
+      if (retryAfter > 0) attente = Math.min(retryAfter * 1000, 15000);
+    } catch (e) {
+      derniere = String(e?.message || e);
+    }
+    console.log('Envoi photo, tentative ' + (i + 1) + ' échouée :', derniere);
+    if (i < essais - 1) await new Promise(res => setTimeout(res, attente));
+  }
+  throw new Error('Envoi de la photo impossible (' + derniere + '). Réessayez.');
 }
 
 
@@ -6663,13 +6702,13 @@ async function toggleProduitActif(catalogueId, actif) {
 
 // ── ÉDITION PRODUIT ──────────────────────────────────
 let produitEnEdition = null;
-let photoFileEdit = null;
+let photoPreteEdit = null; // promesse de preparerImage() pour la nouvelle photo
 
 function ouvrirEditionProduit(catalogueId) {
   const p = catalogueCache.find(x => x.catalogue_id === catalogueId);
   if (!p) return;
   produitEnEdition = p;
-  photoFileEdit = null;
+  photoPreteEdit = null;
   ['editPhotoCamera','editPhotoGalerie'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
   document.getElementById('editNom').value = p.nom || '';
@@ -6708,7 +6747,7 @@ function ouvrirEditionProduit(catalogueId) {
 function fermerEditionProduit() {
   document.getElementById('modalEditProduit').style.display = 'none';
   produitEnEdition = null;
-  photoFileEdit = null;
+  photoPreteEdit = null;
 }
 
 function selectionnerUniteEdit(unite) {
@@ -6732,13 +6771,11 @@ async function previewPhotoEdit(input) {
   };
   previewReader.readAsDataURL(original);
 
-  // Compresser en arrière-plan
-  try {
-    photoFileEdit = await compresserImage(original);
-  } catch(e) {
-    console.log('Compression échouée, photo originale utilisée:', e);
-    photoFileEdit = original;
-  }
+  // Compresser en arrière-plan ; sauvegarderEdition() attend la fin si besoin
+  const erreur = document.getElementById('editErreur');
+  erreur.style.display = 'none';
+  photoPreteEdit = preparerImage(original);
+  photoPreteEdit.catch(e => { erreur.textContent = '⚠️ ' + e.message; erreur.style.display = 'block'; });
 }
 
 async function sauvegarderEdition() {
@@ -6762,21 +6799,18 @@ async function sauvegarderEdition() {
     let photoUrl = produitEnEdition.photo_url;
 
     // Upload nouvelle photo si sélectionnée
-    if (photoFileEdit) {
-      const slug = 'edit-' + Date.now().toString();
-      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/' + slug + '.webp', {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'image/webp',
-          'x-upsert': 'true',
-        },
-        body: photoFileEdit,
-      });
-      if (uploadR.ok) {
-        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/' + slug + '.webp';
-      }
+    if (photoPreteEdit) {
+      btn.textContent = 'Envoi de la photo...';
+      const img = await photoPreteEdit;
+      const fichier = 'edit-' + Date.now().toString() + '.' + img.ext;
+      await envoyerStorage(SUPABASE_URL + '/storage/v1/object/photos-produits/' + fichier, {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': img.type,
+        'x-upsert': 'true',
+      }, img.body);
+      photoUrl = SUPABASE_URL + '/storage/v1/object/public/photos-produits/' + fichier;
+      btn.textContent = 'Enregistrement...';
     }
 
     // Fiche produit (nom, photo, description…) : on n'envoie que ce qui a changé.
@@ -6937,7 +6971,7 @@ function ajouterProduit() {
   document.getElementById('photoPreview').style.display = 'none';
   document.getElementById('ajoutErreur').style.display = 'none';
   uniteSelectionnee = null;
-  photoFile = null;
+  photoPrete = null;
   document.querySelectorAll('.btn-unite').forEach(b => b.classList.remove('actif'));
   if (window.PoidsIndicatif) PoidsIndicatif.charger('produit', {});
 }
@@ -6986,13 +7020,11 @@ async function previewPhoto(input) {
   };
   previewReader.readAsDataURL(original);
 
-  // Compresser en arrière-plan
-  try {
-    photoFile = await compresserImage(original);
-  } catch(e) {
-    console.log('Compression échouée, photo originale utilisée:', e);
-    photoFile = original;
-  }
+  // Compresser en arrière-plan ; sauvegarderProduit() attend la fin si besoin
+  const erreur = document.getElementById('ajoutErreur');
+  erreur.style.display = 'none';
+  photoPrete = preparerImage(original);
+  photoPrete.catch(e => { erreur.textContent = '⚠️ ' + e.message; erreur.style.display = 'block'; });
 }
 
 async function sauvegarderProduit() {
@@ -7022,24 +7054,21 @@ async function sauvegarderProduit() {
       .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
       + '-' + Date.now().toString();
 
+    // Photo envoyée avant de créer le produit : si l'envoi échoue, rien n'est
+    // créé et le commerçant peut réessayer (plus de produit muet sans photo).
     let photoUrl = null;
-    if (photoFile) {
-      const uploadR = await fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/photos-produits/' + slug + '.webp', {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'image/webp',
-          'x-upsert': 'true',
-        },
-        body: photoFile,
-      });
-      const upText = await uploadR.text();
-      console.log('Upload ajout:', uploadR.status, upText);
-      if (uploadR.ok) {
-        photoUrl = 'https://epvdzhzwfmtnioedyfgm.supabase.co/storage/v1/object/public/photos-produits/' + slug + '.webp';
-        console.log('Photo URL:', photoUrl);
-      }
+    if (photoPrete) {
+      btn.textContent = 'Envoi de la photo...';
+      const img = await photoPrete;
+      const fichier = slug + '.' + img.ext;
+      await envoyerStorage(SUPABASE_URL + '/storage/v1/object/photos-produits/' + fichier, {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': img.type,
+        'x-upsert': 'true',
+      }, img.body);
+      photoUrl = SUPABASE_URL + '/storage/v1/object/public/photos-produits/' + fichier;
+      btn.textContent = 'Enregistrement...';
     }
 
     // Étape 1 — Créer le produit dans produits_base
@@ -8303,18 +8332,12 @@ async function uploaderLogo(file) {
   const commercantId = session.commercant_id;
   const token = await getValidToken();
     if (!token) return;
-  let body = file, ext = file.name.split('.').pop().toLowerCase(), contentType = file.type;
-  if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
-    try { body = await compresserImage(file, 512, 0.85); ext = 'webp'; contentType = 'image/webp'; } catch(e) { body = file; }
-  }
-  const path = slug + '/logo.' + ext;
   try {
-    const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': contentType, 'x-upsert': 'true' },
-      body
-    });
-    if (!up.ok) throw new Error(await up.text());
+    const img = await preparerImage(file, 512, 0.85);
+    const path = slug + '/logo.' + img.ext;
+    await envoyerStorage(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path,
+      { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': img.type, 'x-upsert': 'true' },
+      img.body);
     const logoUrl = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
     await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
       method: 'PATCH',
@@ -8325,7 +8348,7 @@ async function uploaderLogo(file) {
     rendreSectionLogo(logoUrl);
   } catch (e) {
     console.error(e);
-    afficherToast('❌ Échec upload logo');
+    afficherToast('❌ Logo : ' + e.message);
   }
 }
 
@@ -8564,18 +8587,12 @@ async function uploaderImageRayonFile(slugCat, file) {
   const commercantId = session.commercant_id;
   const token = await getValidToken();
   if (!token) return;
-  let body = file, ext = file.name.split('.').pop().toLowerCase(), contentType = file.type;
-  if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
-    try { body = await compresserImage(file, 800, 0.82); ext = 'webp'; contentType = 'image/webp'; } catch(e) { body = file; }
-  }
-  const path = slugBoutique + '/rayons/' + slugCat + '.' + ext;
   try {
-    const up = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path, {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': contentType, 'x-upsert': 'true' },
-      body
-    });
-    if (!up.ok) throw new Error(await up.text());
+    const img = await preparerImage(file, 800, 0.82);
+    const path = slugBoutique + '/rayons/' + slugCat + '.' + img.ext;
+    await envoyerStorage(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + path,
+      { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': img.type, 'x-upsert': 'true' },
+      img.body);
     const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + path + '?t=' + Date.now();
     // Mettre à jour rayons_images_custom
     const cur = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=rayons_images_custom', {
@@ -8642,34 +8659,35 @@ async function uploaderGalerie(files) {
   if (!slug) return afficherToast('❌ Slug introuvable');
 
   let ok = 0;
-  for (const file of files) {
-    const ext = file.name.split('.').pop().toLowerCase();
+  const echecs = [];
+  const liste = Array.from(files);
+  for (const [i, file] of liste.entries()) {
     const existants = document.querySelectorAll('#galerieListe > div').length;
-    const ordre = String(existants + 1 + Array.from(files).indexOf(file)).padStart(3, '0');
-    const nom = ordre + '-' + Date.now().toString().slice(-6) + '.' + ext;
-
-    let body = file;
-    if (file.type.startsWith('image/') && typeof compresserImage === 'function') {
-      try { body = await compresserImage(file, 1200, 0.85); } catch(e) { body = file; }
-    }
+    const ordre = String(existants + 1 + i).padStart(3, '0');
 
     try {
-      const r = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + slug + '/' + nom, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': file.type || 'application/octet-stream',
-          'x-upsert': 'true',
-        },
-        body,
-      });
-      if (r.ok) ok++;
-      else console.log('Upload échoué:', await r.text());
-    } catch(e) { console.log('Erreur upload:', e); }
+      // Vidéos envoyées telles quelles, images compressées en webp
+      const media = file.type.startsWith('video/')
+        ? { body: file, ext: (file.name.split('.').pop() || 'mp4').toLowerCase(), type: file.type }
+        : await preparerImage(file, 1200, 0.85);
+      const nom = ordre + '-' + Date.now().toString().slice(-6) + '.' + media.ext;
+      await envoyerStorage(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + slug + '/' + nom, {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': media.type || 'application/octet-stream',
+        'x-upsert': 'true',
+      }, media.body);
+      ok++;
+    } catch(e) {
+      console.log('Erreur upload:', file.name, e);
+      echecs.push(e.message);
+    }
+    // Petite pause entre deux fichiers pour ne pas déclencher le 429 de Supabase
+    if (i < liste.length - 1) await new Promise(res => setTimeout(res, 400));
   }
 
-  afficherToast('✅ ' + ok + ' fichier' + (ok > 1 ? 's' : '') + ' ajouté' + (ok > 1 ? 's' : ''));
+  if (echecs.length) afficherToast('⚠️ ' + ok + ' ajouté' + (ok > 1 ? 's' : '') + ', ' + echecs.length + ' en échec : ' + echecs[0]);
+  else afficherToast('✅ ' + ok + ' fichier' + (ok > 1 ? 's' : '') + ' ajouté' + (ok > 1 ? 's' : ''));
   chargerGalerie();
 }
 
