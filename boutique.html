@@ -3419,7 +3419,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       var offre = ORDRE[i]; var a = it.querySelector('.m-offre-amount'); if (!a || !PRIX[offre]) return;
       if (!a.dataset.base) a.dataset.base = a.innerHTML;
       if (p && p.valeur && p.type === 'frais_acquisition_pct') {
-        var n = Math.round(PRIX[offre] * (100 - Number(p.valeur)) / 100);
+        var n = Math.floor(PRIX[offre] * (100 - Number(p.valeur)) / 100);
         a.innerHTML = '<span class="m-prix-barre">' + PRIX[offre] + '€</span>' + n + '€';
       } else { a.innerHTML = a.dataset.base; }
       var mo = it.querySelector('.m-offre-promo-mois');

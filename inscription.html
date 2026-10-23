@@ -1256,7 +1256,7 @@ async function creerBoutique() {
         const offresMontant = { vitrine: 249, clickcollect: 399, livraison: 549 };
         const baseMontant = offresMontant[state.offre || 'clickcollect'] || 399;
         const reduction = (baseMontant * (state.codePromo.valeur || 0)) / 100;
-        promoPayload.frais_acquisition_paye = Math.round((baseMontant - reduction) * 100) / 100;
+        promoPayload.frais_acquisition_paye = Math.floor(baseMontant - reduction);
       }
       if (state.codePromo.mois_offerts && state.codePromo.type !== 'test_gratuit') {
         promoPayload.mois_offerts = parseInt(state.codePromo.mois_offerts || 0);
@@ -1579,7 +1579,7 @@ async function reprendreInscriptionDepuisCallback() {
         const offresMontant = { vitrine: 249, clickcollect: 399, livraison: 549 };
         const baseMontant = offresMontant[state.offre || 'clickcollect'] || 399;
         const reduction = (baseMontant * (state.codePromo.valeur || 0)) / 100;
-        promoPayload.frais_acquisition_paye = Math.round((baseMontant - reduction) * 100) / 100;
+        promoPayload.frais_acquisition_paye = Math.floor(baseMontant - reduction);
       }
       if (state.codePromo.mois_offerts && state.codePromo.type !== 'test_gratuit') promoPayload.mois_offerts = parseInt(state.codePromo.mois_offerts || 0);
       if (state.codePromo.type === 'test_gratuit') {

@@ -70,7 +70,8 @@ serve(async (req) => {
     // ── Code promo (remise installation + mois offerts)
     const promo = await resoudreCodePromo(code_promo, commercant);
     if (promo && promo.erreur) return json({ error: promo.erreur, code_promo_invalide: true }, 400);
-    const setupFee = promo && promo.pct ? Math.round(config.setup_fee * (100 - promo.pct) / 100) : config.setup_fee;
+    // Prix remise arrondi a l'euro inferieur (ex. 399 EUR -30 % = 279 EUR)
+    const setupFee = promo && promo.pct ? Math.floor(config.setup_fee * (100 - promo.pct) / 100 / 100) * 100 : config.setup_fee;
     const moisOfferts = promo && promo.mois ? promo.mois : (config.first_month_free ? 1 : 0);
     const trialDays = moisOfferts * 30;
     const avecEssai = trialDays > 0;
