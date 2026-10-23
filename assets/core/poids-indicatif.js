@@ -9,33 +9,41 @@
 
   // ── Poids moyens usuels (g) — sert à suggérer l'option et à pré-remplir ──
   // Ordre : du plus précis au plus général (« pavé de saumon » avant « saumon »).
+  // Produits préparés / conditionnés : jamais de suggestion (« Nuggets de poulet », « Sandwich saumon »…)
+  const EXCLUSIONS = /nugget|sandwich|burger|wrap|quesadilla|poke|bowl|verrine|quiche|tarte|pizza|salade|tartare|wings|crispy|brochette|rillette|terrine|pate de|fume|mariné|marine|plateau|panier|buffet|menu|plat du jour|bourguignon|blanquette|pot.au.feu|\d+\s?k?g\b|cotelettes d.agneau/;
+
+  // ── Poids moyens usuels (g) — sert à suggérer l'option et à pré-remplir ──
+  // Ordre : du plus précis au plus général. (^|[^a-z]) évite « entrecôte » → « côte ».
   const SUGGESTIONS = [
     // Boucherie
-    [/cote de b(o?e)uf|cote a l.os/, 1200], [/entrecote/, 300], [/faux[- ]?filet/, 250],
-    [/tournedos|filet de b(o?e)uf|pave de b(o?e)uf|pave de rumsteck/, 180], [/rumsteck|bavette|onglet|hampe/, 200],
-    [/cote de veau/, 400], [/cote de porc|cotelette/, 220], [/carre d.agneau/, 800], [/souris d.agneau/, 350],
+    [/entrecote/, 300], [/(^|[^a-z])cote de b(o?e)uf|cote a l.os|tomahawk/, 1200], [/faux[- ]?filet/, 250],
+    [/tournedos|filet de b(o?e)uf|pave de b(o?e)uf/, 180], [/rumste(a|c)k|bavette|onglet|hampe/, 200],
+    [/(^|[^a-z])cote(lette)? de veau/, 300], [/(^|[^a-z])cote(lette)? de porc/, 220], [/carre d.agneau/, 800], [/souris d.agneau/, 350],
     [/gigot/, 2200], [/epaule d.agneau/, 1500], [/roti/, 1000], [/jarret/, 900], [/jambonneau/, 800],
-    [/palette|echine/, 1500], [/tomahawk/, 1100], [/osso.?buco/, 350], [/joue de b(o?e)uf/, 300],
+    [/filet mignon/, 500], [/escalope/, 150], [/foie de veau/, 150],
+    [/palette|echine/, 1500], [/osso.?buco/, 350], [/joue de b(o?e)uf/, 300],
     // Volaille
     [/magret/, 400], [/supreme|filet de poulet|blanc de poulet/, 180], [/cuisse de (poulet|canard)/, 280],
     [/coquelet/, 600], [/caille/, 200], [/pigeon/, 450], [/chapon/, 3500], [/dinde/, 4500],
-    [/canard/, 2200], [/pintade/, 1400], [/lapin/, 1500], [/poulet|poularde/, 1800],
+    [/canard (fermier|entier|de barbarie)|^canard$/, 2200], [/pintade/, 1400], [/lapin/, 1500],
+    [/poulet (fermier|entier|jaune|noir|label|bio)|^poulet$|poularde/, 1800],
     // Poissonnerie
-    [/pave de saumon|dos de cabillaud|pave de cabillaud|filet de/, 160], [/saumon/, 4000],
-    [/bar\b|loup de mer|\bloup\b/, 600], [/dorade|daurade/, 450], [/turbot/, 1500], [/sole/, 350],
-    [/truite/, 300], [/maquereau/, 300], [/homard/, 500], [/tourteau/, 700], [/araignee/, 900],
+    [/pave de saumon|dos de cabillaud|pave de cabillaud|filet de cabillaud/, 160], [/saumon (entier|frais)|^saumon$/, 4000],
+    [/darne/, 250], [/aile de raie/, 500], [/(^|[^a-z])bar(\s|$)|loup de mer|^loup$/, 600], [/dorade|daurade|pageot/, 450],
+    [/rouget/, 200], [/turbot/, 1500], [/sole (meuniere|entiere|portion)|^sole$/, 350],
+    [/truite (entiere|fario|arc)|^truite$/, 300], [/maquereau/, 300], [/homard/, 500], [/tourteau/, 700], [/araignee/, 900],
     [/lotte/, 800], [/saint.?pierre/, 900],
     // Fromagerie (à la coupe)
-    [/comte|beaufort|tomme|abondance|gruyere|emmental|cantal|salers|mimolette|parmesan|morbier|raclette/, 250],
-    [/brie de|brie\b|coulommiers|roquefort|bleu d/, 250],
-    // Charcuterie / traiteur
-    [/saucisson/, 250], [/pate en croute|terrine/, 400], [/jambon (a l.os|entier)/, 6000],
-    // Primeur
+    [/saint.?nectaire/, 1700], [/fourme/, 750],
+    [/comte|beaufort|tomme|abondance|gruyere|emmental|cantal|salers|mimolette|parmesan|morbier|raclette|ossau|pecorino|brebis des pyrenees/, 250],
+    [/brie de|brie\b|roquefort|bleu d|bleu de/, 250],
+    // Charcuterie
+    [/saucisson/, 250], [/jambon (a l.os|entier)/, 6000],
+    // Primeur (pièces à poids très variable)
     [/pasteque/, 4000], [/potiron|citrouille/, 3000], [/courge|potimarron|butternut/, 1200],
-    [/melon/, 1000], [/ananas/, 1200], [/chou.?fleur/, 1000], [/romanesco/, 800], [/chou\b|chou (vert|blanc|rouge|pomme)/, 1200],
-    [/celeri.?rave/, 800], [/brocoli/, 500], [/papaye/, 600], [/mangue/, 400], [/noix de coco/, 600],
-    // Boulangerie (pains au poids)
-    [/miche|pain de campagne|tourte|pain au levain/, 1000], [/pain de seigle|pain complet/, 500],
+    [/melon/, 1000], [/celeri.?rave/, 800], [/papaye/, 600],
+    // Boulangerie (pains vendus au poids)
+    [/miche|tourte|pain au levain/, 1000],
   ];
 
   const CHIPS_G = [200, 300, 500, 1000, 1200, 1500, 2000];
@@ -46,8 +54,8 @@
   }
 
   function suggerer(nom) {
-    const n = normaliser(nom);
-    if (!n.trim()) return null;
+    const n = normaliser(nom).trim();
+    if (!n || EXCLUSIONS.test(n)) return null;
     for (const [re, g] of SUGGESTIONS) if (re.test(n)) return g;
     return null;
   }
