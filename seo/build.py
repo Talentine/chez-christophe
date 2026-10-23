@@ -149,9 +149,9 @@ def footer() -> str:
     return f"""<footer>© {date.today().year} {BRAND} · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:{CONTACT}">{CONTACT}</a></footer>"""
 
 
-def cta_final(titre: str = "Voyez votre boutique en 30 secondes", texte: str = "Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.") -> str:
+def cta_final(titre: str = "Voyez votre boutique en 30 secondes", texte: str = "Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.", lien: str = "/inscription") -> str:
     return f"""<section class="cta-final"><h2>{esc(titre)}</h2><p>{esc(texte)}</p>
-  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>"""
+  <a class="btn soleil" href="{lien}">Créer ma démo gratuite</a></section>"""
 
 
 def aside_block(liens: list[tuple[str, str]], titre_liens: str = "À lire aussi") -> str:
@@ -351,7 +351,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
                     crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
                     ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website",
-                    cta=cta_final(m.get("cta_titre", "Votre boutique, prête en 30 secondes"), m.get("cta_texte", "Choisissez « " + m["label"] + " », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire.")))
+                    cta=cta_final(m.get("cta_titre", "Votre boutique, prête en 30 secondes"), m.get("cta_texte", "Choisissez « " + m["label"] + " », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire."), f"/inscription?metier={m['slug']}"))
         (out_dir / f"{m['slug']}.html").write_text(html, encoding="utf-8")
         urls.append(path)
     # index
