@@ -7,7 +7,7 @@
 // ============================================================
 
 (function () {
-  const PIXEL_ID = ''; // ← ID du Pixel Meta (Gestionnaire d'événements), ex. '123456789012345'
+  const PIXEL_ID = '2383980339004163'; // ← ID du Pixel Meta (Gestionnaire d'événements), ex. '123456789012345'
   const CLE = 'marcheo_consent_pub';
   const DUREE_MS = 1000 * 60 * 60 * 24 * 390; // ~13 mois
 
