@@ -16,22 +16,37 @@ Statut : **prêt, non publié.** Les campagnes seront créées en pause, puis ac
    Les relances s'arrêtent dès que le commerçant paie, ou s'il clique sur « Ne plus recevoir ces conseils ».
 5. **Bandeau dans le tableau de bord de la démo** : « Testez tout, puis mettez votre boutique en ligne : 1er mois offert », avec un bouton « Activer ».
 6. **Paiement** : événements Meta `InitiateCheckout` (clic sur une offre) et `Purchase` (retour de Stripe, valeur 399 €, envoyé une seule fois).
-7. **Reciblage** à partir du 15 novembre : personnes ayant visité le site ou regardé la moitié d'une vidéo, sans avoir payé.
+7. **Reciblage** à partir de décembre : personnes ayant visité le site ou regardé la moitié d'une vidéo, sans avoir payé.
 
 ## Budget et publicités
 
-Pourquoi seulement 2 métiers et 5 vidéos : avec 250 €, chaque ensemble de publicités doit recevoir au moins 3 €/jour pour que Meta apprenne quelque chose. Répartir sur 6 métiers donnerait environ 1 €/jour chacun, et aucun résultat lisible.
+**Une seule campagne, un seul ensemble de publicités, 8 €/jour, 3 vidéos.** Meta répartit lui-même le budget vers la vidéo qui fait le plus de démos.
 
-| Période | Campagne / ensemble de publicités | Publicités | Destination | Budget |
-|---|---|---|---|---|
-| 1er → 14 nov. | Démo · Primeurs | PRI-01 (démo complète), PRI-04 (prix), PRI-02 (vraie commande) | PRI-01 et PRI-02 : `/solutions/primeur` · PRI-04 : `/inscription?metier=primeur` | 4 €/jour |
-| 1er → 14 nov. | Démo · Bouchers | BOU-01 (catalogue au kilo), BOU-03 (39 €/mois) | BOU-01 : `/solutions/boucherie` · BOU-03 : `/inscription?metier=boucherie` | 3 €/jour |
-| 15 → 30 nov. | Démo · Primeurs et Bouchers | les 2 ou 3 meilleures du 1er au 14 | idem | 7 €/jour |
-| 15 → 30 nov. | Reciblage | TRA-03 (prix complet), TRA-01 (démo complète) | `/inscription` | 1,50 €/jour |
+Pourquoi concentrer :
+- Pour sortir de sa phase d'apprentissage, Meta veut environ 50 conversions par semaine et par ensemble de publicités. À 250 €/mois, on n'y arrivera de toute façon pas. Il faut donc mettre toutes les démos au même endroit pour qu'il apprenne le plus vite possible.
+- Deux ensembles à 3 et 4 €/jour se partagent les données, apprennent deux fois moins vite et coûtent plus cher par démo.
+- Au-delà de 3 ou 4 vidéos pour ce budget, chacune reçoit trop peu de diffusion pour être jugée.
 
-Total : 7 € × 14 jours + 8,50 € × 16 jours = **234 €** (16 € de marge).
+| Publicité | Rôle | Destination | Bouton |
+|---|---|---|---|
+| **TRA-02** (18 s, tous les métiers, boutique à 1,5 s) | Toucher le plus de commerçants possible | `/inscription` (le commerçant choisit son métier) | S'inscrire |
+| **PRI-01** (28 s, démo primeur avec promotions) | Convaincre les primeurs | `/solutions/primeur` | En savoir plus |
+| **PRI-04** (19 s, le prix) | Ceux qui ont déjà compris : passer à la démo | `/inscription?metier=primeur` | S'inscrire |
 
-Les 2 destinations comparent deux choses : la page du métier, qui explique avant la démo, et le formulaire direct, avec une étape de moins. Les publicités de prix vont au formulaire, parce que la personne a déjà l'information principale.
+Budget : 8 €/jour × 30 jours = **240 €**.
+
+Pas de reciblage en novembre : avec ce budget, l'audience à recibler ne dépassera pas quelques centaines de personnes, et les relances par e-mail et les appels font déjà ce travail. On l'ajoutera en décembre, quand l'audience existera.
+
+### Les mois suivants
+
+Chaque mois : la meilleure vidéo transversale du mois précédent reste en place, et on ajoute un métier.
+
+| Mois | Vidéos |
+|---|---|
+| Novembre | TRA-02 + PRI-01 + PRI-04 |
+| Décembre | meilleure transversale + BOU-01 + BOU-03, et reciblage à environ 1,50 €/jour |
+| Janvier | meilleure transversale + POI-01 + FRO-01 |
+| Février | meilleure transversale + BLG-01 + TRT-01 (boutique traiteur à valider) |
 
 ## Réglages Meta
 
@@ -44,9 +59,10 @@ Les 2 destinations comparent deux choses : la page du métier, qui explique avan
 
 ## Règles de décision
 
-À appliquer le 8 et le 14 novembre :
-- **Couper** une publicité qui a dépensé 15 € sans démo, ou dont le taux de clic sur le lien reste sous 0,8 %.
-- **Garder** celle qui a le coût par démo le plus bas, et lui donner le budget de son ensemble.
+À appliquer le 8 et le 15 novembre (ne rien toucher avant : chaque modification relance l'apprentissage de Meta) :
+- **Couper** une vidéo qui a dépensé 25 € sans démo, ou dont le taux de clic sur le lien reste sous 0,8 %.
+- **La remplacer** par une autre vidéo primeur (PRI-02) ou transversale (TRA-01).
+- **Ne pas changer le budget** de plus de 20 % à la fois.
 - **Si moins de 3 démos au total au bout de 5 jours** : le pixel est neuf, et Meta n'a pas assez de données pour optimiser sur la démo. Passer temporairement l'optimisation sur « Vues de page de destination », puis revenir sur la démo dès 10 démos.
 
 À quoi s'attendre honnêtement : un coût par démo entre 8 et 30 €, soit environ 8 à 25 démos dans le mois. Les ventes viendront surtout des appels et des relances.
