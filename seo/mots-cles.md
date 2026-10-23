@@ -74,7 +74,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site de poissonnerie | site | poissonnerie | GS (18/10) | moyenne | même article que la ligne précédente |
 | transport de produits frais réglementation | livraison | transverse | GS (18/10) | moyenne | à faire (vérifier les sources officielles DGAL/DDPP avant d'écrire) |
 | température transport produits frais | livraison | transverse | GS (18/10) | basse | à fondre dans l'article réglementation |
-| livraison à domicile comment faire | livraison | transverse | GS (18/10) | moyenne | proche de livraison-locale-commercant-comment-organiser, à retravailler dans cette page |
+| livraison à domicile comment faire | livraison | transverse | GS (18/10) | moyenne | couvert par la page pilier n°4 (2026-10-23 livraison-locale-commercant-comment-organiser) |
 | commerce livraison à domicile | livraison | transverse | GS (18/10) | basse | générique |
 | commande primeur | click & collect | primeur | GS (19/10) | moyenne | couvert par click-and-collect-primeur (2026-10-19) |
 | primeur commande en ligne | click & collect | primeur | GS (19/10) | moyenne | couvert par click-and-collect-primeur (2026-10-19) |
@@ -103,7 +103,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boutique en ligne viande | site | boucherie | GS (20/10) | moyenne | à faire avec « site boucherie en ligne » (dominé par les e-boucheries qui expédient, angle boucher de quartier) |
 | créer sa boutique en ligne sumup | site | tous | GS (20/10) | basse | marque, à citer factuellement dans un comparatif uniquement |
 | mettre son commerce sur google | transverse | tous | GS (20/10) | moyenne | couvert par fiche-google-business-commerce-bouche |
-| mettre son commerce sur uber eats | livraison | restaurant | GS (20/10) | moyenne | à faire dans la page pilier livraison (comparatif honnête plateforme / livraison maison) |
+| mettre son commerce sur uber eats | livraison | restaurant | GS (20/10) | moyenne | couvert en section « Livrer soi-même ou passer par une plateforme ? » de la page pilier n°4 (2026-10-23) |
 | quel budget pour créer une boutique en ligne | site | tous | GS « Autres questions » (20/10) | moyenne | couvert par la page pilier (section prix) ; à reprendre en FAQ de combien-coute-un-site-de-click-and-collect |
 | conditions pour ouvrir une boutique en ligne | site | tous | GS « Autres questions » + IA (20/10, service-public en tête) | moyenne | à faire (angle commerçant déjà installé : mentions légales, CGV, allergènes, RGPD) |
 | meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | à faire : comparatif honnête « Shopify, Wix ou logiciel métier pour un commerce de bouche » |
@@ -114,8 +114,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect définition | click & collect | tous | GS recherches associées (21/10) | moyenne | variante de la page pilier (1re page : economie.gouv, Wikipédia, Solocal, SumUp, Alma : sites généralistes) |
 | que veut dire click and collect en français | click & collect | tous | GS (21/10) | basse | variante de la page pilier |
 | click and collect fleurs | click & collect | fleuriste | GS (21/10) | haute | à faire avec « fleuriste click and collect » (requêtes locales : Paris, Lyon, Rennes, Toulouse, Nice) |
-| logiciel livraison commerçant avec commande en ligne | livraison | tous | IA (21/10 : Perplexity ne cite que des optimiseurs de tournée : Routific, Shipday, OptimoRoute) | haute | à faire dans la page pilier livraison : angle « commande + zone + créneaux + tournée dans un seul outil » |
-| logiciel tournée de livraison gratuit commerçant | livraison | tous | IA (21/10) | moyenne | à faire (section de la page pilier livraison : Google Maps, limites, alternative) |
+| logiciel livraison commerçant avec commande en ligne | livraison | tous | IA (21/10 : Perplexity ne cite que des optimiseurs de tournée : Routific, Shipday, OptimoRoute) | haute | couvert en section « Quel logiciel pour gérer la livraison à domicile ? » de la page pilier n°4 (2026-10-23) |
+| logiciel tournée de livraison gratuit commerçant | livraison | tous | IA (21/10) | moyenne | couvert en section logiciel de la page pilier n°4 (2026-10-23) ; un article dédié reste possible |
 | click and collect produits frais chaîne du froid | click & collect | tous | IA (21/10 : stockage des commandes prêtes non traité ailleurs) | basse | à faire en FAQ des articles boucherie et poissonnerie |
 | creation site internet commerce | site | tous | GS (21/10) | haute | publié le 2026-10-22 creation-site-internet-commerce (page pilier n°2) |
 | creer site internet marchand | site | tous | GS (21/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22), section site vitrine ou site de commande |
@@ -124,7 +124,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | à fondre dans l'article précédent (mettre son menu de réveillon en précommande en ligne) |
 | commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | variante de « commander un plateau de fruits de mer pour noël » (début novembre) |
 | fromagerie internet | site | fromagerie | GS (21/10) | moyenne | à faire : site internet pour sa fromagerie (vente au poids, plateaux de fêtes) |
-| livraison à domicile code ape | livraison | tous | GS (21/10) | basse | à faire en FAQ de la page pilier livraison (un commerçant qui livre ses propres clients garde son code APE) ; vérifier la formulation avant publication |
+| livraison à domicile code ape | livraison | tous | GS (21/10) | basse | écarté de la page pilier n°4 (2026-10-23) : formulation juridique non vérifiée, à ne traiter qu'avec une source officielle |
 | livreur à domicile indépendant | livraison | - | GS (21/10) | basse | écarté : intention emploi (devenir livreur), pas commerçant |
 | site vitrine vs site e commerce | site | tous | GS (22/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22) ; article dédié possible avec « site vitrine ou e commerce » |
 | site internet commerce gratuit | site | tous | GS (22/10) | moyenne | à faire avec « site click and collect gratuit » (angle : ce qui est vraiment gratuit) |
@@ -134,3 +134,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | nom de domaine commercial | site | tous | GS (22/10) | basse | couvert en section et FAQ de la page pilier n°2 (2026-10-22) |
 | pourquoi créer un site web pour son entreprise | site | tous | GS (22/10) | basse | couvert par la section « Pourquoi un commerce de proximité a-t-il besoin d'un site internet ? » de la page pilier n°2 |
 | alternative uber eats pour commerçant garder ses clients | transverse | tous | IA (Perplexity 22/10 : chownow, chatfood cités) | haute | à faire : renforcer click-and-collect-sans-commission-alternative-uber-eats-deliveroo (section « garder le fichier clients », QR code, commande en propre) plutôt qu'un nouvel article |
+| comment mettre en place un service de livraison à domicile | livraison | tous | GS (23/10) + WS (1re page : La Poste Pro, blog du dirigeant, CCI 2020 : aucun angle commerce de bouche) | haute | publié le 2026-10-23 livraison-locale-commercant-comment-organiser (page pilier n°4) |
+| créer un service de livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) |
+| logiciel livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) ; à renforcer par un comparatif dédié |
+| logiciel livraison pizza | livraison | pizzeria | GS (23/10) | haute | à faire avec « pizzeria livraison à domicile » (angle : livrer soi-même sans plateforme) |
+| comment proposer livraison gratuite | livraison | transverse | GS (23/10) | moyenne | à faire avec « proposer la livraison gratuite » (seuil de gratuité, calcul) |
+| frais de livraison comment calculer | livraison | transverse | GS (23/10) | moyenne | à faire : article frais et minimum de livraison (éviter l'intention leboncoin/ebay, viser commerçant) |
+| application tournée de livraison gratuit | livraison | transverse | GS (23/10) | moyenne | même article que « logiciel tournée de livraison gratuit commerçant » |
+| livraison à domicile paiement en espèces | livraison | transverse | GS (23/10) | basse | à fondre en FAQ d'un article paiement à la livraison |
+| boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | à faire avec « livraison à domicile boucherie » (boucher de quartier qui livre, pas e-boucherie qui expédie) |

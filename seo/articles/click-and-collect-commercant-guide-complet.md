@@ -5,6 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : ce que ça veut dire, comment le mettre en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
+modified: 2026-10-23
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -148,7 +149,7 @@ Chez Marchéo, les prix sont fixes, sans engagement et à 0 % de commission :
 | Click & Collect + Réservation | 39 € | 399 € | Oui, avec réservation de table |
 | Click & Collect + Livraison | 59 € | 549 € | Oui, avec livraison organisée par vous |
 
-Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison. Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison, comme l'explique notre guide complet de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
 
 ## Le click and collect selon votre métier
 

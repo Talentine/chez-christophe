@@ -5,6 +5,7 @@ description: "Poissonnerie et livraison à domicile : zone, créneaux, glace et 
 meta_title: "Poissonnerie livraison à domicile : le guide pratique"
 meta_description: "Lancer la livraison à domicile dans votre poissonnerie : chaîne du froid, zone, créneaux, frais, poids variable et paiement. Sans plateforme ni commission."
 date: 2026-10-18
+modified: 2026-10-23
 rubrique: Métier
 emoji: 🐟
 keywords:
@@ -88,7 +89,7 @@ Les formules les plus courantes chez les commerçants de proximité :
 - **La livraison offerte au-delà d'un montant**, qui pousse le panier vers le haut.
 - **Des frais plus élevés pour la zone éloignée**, si vous en avez une.
 
-Notre guide pour [organiser une livraison locale sans plateforme](/blog/livraison-locale-commercant-comment-organiser) détaille comment poser ces chiffres, quel que soit votre métier.
+Notre guide complet pour [mettre en place un service de livraison à domicile](/blog/livraison-locale-commercant-comment-organiser) détaille comment poser ces chiffres, quel que soit votre métier.
 
 ## Comment gérer le poids variable et le paiement ?
 
