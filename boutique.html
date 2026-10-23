@@ -3379,11 +3379,91 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       </div>
     </div>
 
+    <div class="m-offre-promo" id="mOffrePromo">
+      <label for="mOffrePromoInput">Code promo</label>
+      <div class="m-offre-promo-row">
+        <input id="mOffrePromoInput" type="text" autocomplete="off" placeholder="Ex. SOUTIEN30" maxlength="30">
+        <button type="button" id="mOffrePromoBtn">Appliquer</button>
+      </div>
+      <div class="m-offre-promo-msg" id="mOffrePromoMsg" aria-live="polite"></div>
+    </div>
+
     <p class="m-offre-foot">
       💳 Paiement sécurisé via Stripe · Sans engagement · Résiliation à tout moment
     </p>
   </div>
 </div>
+
+<style>
+  .m-offre-promo{max-width:420px;margin:18px auto 0;text-align:left}
+  .m-offre-promo label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;opacity:.9}
+  .m-offre-promo-row{display:flex;gap:8px}
+  .m-offre-promo-row input{flex:1;min-width:0;border:1.5px solid rgba(15,44,82,.25);border-radius:10px;padding:10px 12px;font-size:15px;font-family:inherit;text-transform:uppercase;letter-spacing:.06em;background:#fff;color:#0A1428}
+  .m-offre-promo-row button{border:0;border-radius:10px;padding:0 16px;font-weight:700;font-family:inherit;cursor:pointer;background:#0F2C52;color:#fff}
+  .m-offre-promo-msg{font-size:13px;margin-top:6px;min-height:18px}
+  .m-offre-promo-msg.ok{color:#2D6E17}
+  .m-offre-promo-msg.ko{color:#B3261E}
+  .m-offre-amount .m-prix-barre{font-size:.55em;text-decoration:line-through;opacity:.55;margin-right:6px;font-weight:600}
+</style>
+<script>
+(function(){
+  var SB = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+  var PRIX = { vitrine: 249, clickcollect: 399, livraison: 549 };
+  var ORDRE = ['vitrine','clickcollect','livraison'];
+  window.__marcheoCodePromo = null;
+  function cle(){ return (window.__CONFIG__ && window.__CONFIG__.supabase_key) || (typeof SUPABASE_KEY !== 'undefined' ? SUPABASE_KEY : ''); }
+  function msg(t, ok){ var m = document.getElementById('mOffrePromoMsg'); if (!m) return; m.textContent = t; m.className = 'm-offre-promo-msg ' + (ok ? 'ok' : (t ? 'ko' : '')); }
+  function majPrix(p){
+    var items = document.querySelectorAll('#m-offre-modal .m-offre-item');
+    items.forEach(function(it, i){
+      var offre = ORDRE[i]; var a = it.querySelector('.m-offre-amount'); if (!a || !PRIX[offre]) return;
+      if (!a.dataset.base) a.dataset.base = a.innerHTML;
+      if (p && p.valeur && p.type === 'frais_acquisition_pct') {
+        var n = Math.round(PRIX[offre] * (100 - Number(p.valeur)) / 100);
+        a.innerHTML = '<span class="m-prix-barre">' + PRIX[offre] + '€</span>' + n + '€';
+      } else { a.innerHTML = a.dataset.base; }
+      var mo = it.querySelector('.m-offre-promo-mois');
+      if (p && p.mois_offerts) {
+        if (!mo) { mo = document.createElement('div'); mo.className = 'm-offre-monthly m-offre-promo-mois'; mo.style.marginTop = '6px'; var box = it.querySelector('.m-offre-pricebox'); if (box) box.appendChild(mo); }
+        mo.innerHTML = '<strong style="color:#5BBE3A">🎁 ' + p.mois_offerts + ' mois d\'abonnement offerts</strong>';
+      } else if (mo) { mo.remove(); }
+    });
+  }
+  window.appliquerCodePromoOffre = function(silencieux){
+    var inp = document.getElementById('mOffrePromoInput'); if (!inp) return;
+    var code = (inp.value || '').trim().toUpperCase();
+    if (!code) { window.__marcheoCodePromo = null; majPrix(null); msg(''); return; }
+    var k = cle();
+    fetch(SB + '/rest/v1/rpc/valider_code_promo_v2', { method:'POST', headers:{ apikey:k, Authorization:'Bearer ' + k, 'Content-Type':'application/json' }, body: JSON.stringify({ p_code: code }) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        var res = Array.isArray(d) ? d[0] : d;
+        if (res && res.valide) {
+          window.__marcheoCodePromo = code;
+          try { localStorage.setItem('marcheo_code_promo', code); } catch(e) {}
+          majPrix(res); msg('✓ ' + (res.description || 'Code appliqué'), true);
+        } else {
+          window.__marcheoCodePromo = null; majPrix(null);
+          if (!silencieux) msg('✗ ' + ((res && res.description) || 'Code invalide'), false); else msg('');
+        }
+      })
+      .catch(function(){ if (!silencieux) msg('⚠ Vérification impossible, réessayez', false); });
+  };
+  function init(){
+    var btn = document.getElementById('mOffrePromoBtn'); var inp = document.getElementById('mOffrePromoInput');
+    if (!btn || !inp) return;
+    btn.addEventListener('click', function(){ appliquerCodePromoOffre(false); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); appliquerCodePromoOffre(false); } });
+    // Empêche le clic dans la zone code d'être pris pour un choix d'offre
+    var zone = document.getElementById('mOffrePromo'); if (zone) zone.addEventListener('click', function(e){ e.stopPropagation(); });
+    var code = '';
+    try { code = (new URLSearchParams(location.search).get('code') || '').toUpperCase(); } catch(e) {}
+    if (!code) { try { code = (localStorage.getItem('marcheo_code_promo') || '').toUpperCase(); } catch(e) {} }
+    if (code && /^[A-Z0-9_-]{3,30}$/.test(code)) { inp.value = code; setTimeout(function(){ appliquerCodePromoOffre(true); }, 600); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
 
 <script>
 (function() {
@@ -3644,6 +3724,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
         return_url: window.toAsciiUrl(location.origin + '/' + (b.slug || '') + '?paiement=success'),
         cancel_url: window.toAsciiUrl(location.href),
         referral_code: referralCode || undefined,
+        code_promo: window.__marcheoCodePromo || undefined,
         fingerprint: simpleFingerprint || undefined,
         user_agent: (navigator.userAgent || '').slice(0, 200)
       })
