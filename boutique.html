@@ -3433,9 +3433,30 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
   }
 
   // ── Modal de bienvenue post-paiement (si ?paiement=success dans l'URL)
+  // ── Pixel Meta : chargé seulement sur le parcours de paiement commerçant (jamais pour les clients de la boutique)
+  var PRIX_INSTALLATION = { vitrine: 249, clickcollect: 399, livraison: 549 };
+  function suivrePaiementMarcheo(evenementMeta, evenement, offre) {
+    var params = { value: PRIX_INSTALLATION[offre] || 399, currency: 'EUR', content_name: offre || 'clickcollect' };
+    try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track(evenement, { offre: offre || null }); } catch (e) {}
+    var envoyer = function () { try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, params); } catch (e) {} };
+    if (window.MarcheoPixel) return envoyer();
+    var s = document.createElement('script');
+    s.src = '/assets/core/meta-pixel.js?v=2'; s.onload = envoyer;
+    document.head.appendChild(s);
+  }
+
   function checkPaiementSuccess() {
     if (location.search.indexOf('paiement=success') === -1) return;
     var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    // Achat envoyé une seule fois par session Stripe (un rechargement de la page ne le recompte pas)
+    try {
+      var sid = new URLSearchParams(location.search).get('session_id') || 'sans-session';
+      if (localStorage.getItem('marcheo_achat_suivi') !== sid) {
+        localStorage.setItem('marcheo_achat_suivi', sid);
+        var offrePayee = localStorage.getItem('marcheo_offre_paiement') || b.offre || 'clickcollect';
+        suivrePaiementMarcheo('Purchase', 'abonnement_paye', offrePayee);
+      }
+    } catch (e) {}
     var modal = document.createElement('div');
     modal.id = 'm-success-modal';
     modal.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(15,44,82,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;animation:mOffreFade .3s ease';
@@ -3604,6 +3625,9 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       for (var i = 0; i < fpRaw.length; i++) { h = ((h << 5) + h + fpRaw.charCodeAt(i)) | 0; }
       simpleFingerprint = (h >>> 0).toString(16);
     } catch(_) {}
+
+    try { localStorage.setItem('marcheo_offre_paiement', offre); } catch (_) {}
+    suivrePaiementMarcheo('InitiateCheckout', 'paiement_commence', offre);
 
     // Appel à l'edge function stripe-setup-fee
     fetch('https://epvdzhzwfmtnioedyfgm.supabase.co/functions/v1/stripe-setup-fee', {

@@ -667,6 +667,12 @@ document.getElementById('metiersList').addEventListener('click', e => {
   // Pré-remplit l'UI horaires avec les défauts du métier (l'utilisateur peut ensuite ajuster)
   try { appliquerHorairesDefautsMetier(state.type); } catch (_) {}
 });
+// Métier pré-choisi depuis le lien (ex. /inscription?metier=primeur venant d'une publicité ou d'une page métier)
+(function () {
+  const metier = new URLSearchParams(location.search).get('metier');
+  const carte = metier && document.querySelector('.metier[data-type="' + metier.replace(/[^a-z]/g, '') + '"]');
+  if (carte && !state.type) carte.click();
+})();
 
 // ── Slugify auto
 function slugify(s) {

@@ -22,12 +22,12 @@ Sommaire
 
 **Démonstrations réelles**
 - Toujours filmer le vrai site sur un vrai téléphone (iPhone ou Android récent, luminosité au maximum, mode Ne pas déranger, batterie et heure propres). Enregistrement d'écran natif, pas de maquette.
-- Boutiques utilisables : `/mb-primeur` (Primeur du Cours Lafayette), `/chez-christophe` (primeur), `/boucherie-classique`, `/le-petrin` (boulangerie), `/maree-d-or` (poissonnerie), `/fromagerie-conquerant`. Si ce sont des commerçants réels, **obtenir leur accord écrit** avant de montrer leur boutique dans une publicité. Sinon, créer des boutiques de démonstration dédiées aux publicités.
+- Boutiques utilisables : `/chez-christophe` (primeur, boutique retenue pour les vidéos), `/mb-primeur` (primeur), `/boucherie-classique`, `/le-petrin` (boulangerie), `/maree-d-or` (poissonnerie), `/fromagerie-conquerant`. Si ce sont des commerçants réels, **obtenir leur accord écrit** avant de montrer leur boutique dans une publicité. Sinon, créer des boutiques de démonstration dédiées aux publicités.
 - Tableau de bord : `/app`, onglets commandes et réglages, sur une boutique de démonstration (jamais de vraies données clients à l'écran : noms, téléphones, adresses).
 - Prix et produits visibles à l'écran : cohérents avec un vrai commerce (pas de « Produit test 0,01 € »).
 
 **Tournage en boutique**
-- Lumière naturelle, vraie boutique, vrai commerçant ou figurant crédible en tenue de travail. Pas de banque d'images, pas de visuels générés par IA pour le commerçant ni les produits.
+- Lumière naturelle, vraie boutique, vrai commerçant ou figurant crédible en tenue de travail. Pas de visage à l'image : cadrer sur les mains, les gestes et les produits, pour un rendu réaliste.
 - Son : ambiance de boutique basse ; voix off ou voix du commerçant enregistrée au micro-cravate.
 
 **Sous-titres**
@@ -68,7 +68,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 >
 > 399 € pour l'installation, puis 39 €/mois sans engagement. 0 % de commission.
 >
-> Regardez la démonstration et créez l'aperçu de votre boutique gratuitement.
+> Regardez la démonstration et créez votre boutique de démonstration gratuitement.
 
 **Titre** : Votre primeur en ligne
 **Description** : 399 € d'installation · 39 €/mois sans engagement
@@ -78,7 +78,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Temps | Image | Sous-titre / voix off |
 |---|---|---|
 | 0-2 s | Gros plan mains qui posent une cagette de tomates sur l'étal | « Votre primeur… » |
-| 2-4 s | Le téléphone entre dans le champ, écran sur la page d'accueil de `/mb-primeur` | « …a maintenant sa boutique en ligne. » |
+| 2-4 s | Le téléphone entre dans le champ, écran sur la page d'accueil de `/chez-christophe` | « …a maintenant sa boutique en ligne. » |
 | 4-9 s | Défilement lent du catalogue : fruits, légumes, prix au kilo | « Vos produits, vos prix, au kilo ou à la pièce. » |
 | 9-13 s | Zoom sur un produit, ajout au panier, choix d'un créneau de retrait | « Vos clients commandent et choisissent l'heure de retrait. » |
 | 13-17 s | Commerçant qui tend un sac à un client souriant | « Ils passent, c'est prêt. » |
@@ -110,7 +110,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 **Texte principal**
 > Voici une vraie commande chez un primeur, filmée en entier.
 >
-> Le client choisit ses produits, indique la quantité au kilo ou à la pièce, choisit son créneau de retrait et valide. Pas de compte à créer. Vous recevez la commande sur votre téléphone et vous la préparez avant son passage.
+> Le client choisit ses produits, indique la quantité au kilo ou à la pièce, choisit son créneau de retrait et valide : une fois son compte créé, ses coordonnées sont déjà remplies. Vous recevez la commande sur votre téléphone et vous la préparez avant son passage.
 >
 > Marchéo : 399 € d'installation, puis 39 €/mois sans engagement. Aucune commission sur vos ventes.
 
@@ -125,12 +125,12 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | 2-8 s | Ajout de 1 kg de pommes, 500 g de clémentines, une botte de radis | « Au kilo ou à la pièce. » |
 | 8-12 s | Ouverture du panier, total affiché | « Le total s'affiche tout de suite. » |
 | 12-17 s | Choix du créneau de retrait (samedi 10 h-10 h 30) | « Le client choisit son heure. » |
-| 17-21 s | Saisie prénom + téléphone, validation, écran de confirmation · chronomètre arrêté | « Validé. Sans créer de compte. » |
+| 17-21 s | Écran coordonnées pré-rempli (client déjà inscrit), bouton « Confirmer la commande » | « Ses coordonnées sont déjà remplies : il confirme. » |
 | 21-26 s | Bascule : téléphone du commerçant, la commande apparaît dans le tableau de bord | « Vous la recevez. Vous préparez. » |
 | 26-30 s | Carton de fin | « 399 € une fois · 39 €/mois · sans engagement » |
 
 **Storyboard**
-1-5. Enregistrement d'écran natif d'un téléphone sur `/mb-primeur`, prise en une seule fois (le chronomètre doit être vrai : couper seulement les temps morts > 1 s et le dire « montage sans accélération »).
+1-5. Enregistrement d'écran natif d'un téléphone sur `/chez-christophe`, prise en une seule fois (le chronomètre doit être vrai : couper seulement les temps morts > 1 s et le dire « montage sans accélération »).
 6. Plan réel : téléphone du commerçant posé sur le comptoir, notification de commande, puis écran du tableau de bord `/app` (données fictives).
 7. Carton de fin.
 
@@ -141,7 +141,7 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | | |
 |---|---|
 | Métier | Primeurs |
-| Angle | Simplicité : on choisit « Primeur », on tape le nom du commerce, l'aperçu s'affiche avec le catalogue déjà rempli |
+| Angle | Simplicité : métier, nom, horaires, deux photos, et le catalogue primeur de base est déjà là |
 | Hypothèse testée | La peur du « trop compliqué, pas le temps » freine plus que le prix ; lever ce frein augmente le taux de démos ET de paiements |
 | Formats | `PRI-03-916` vidéo 15 s · `PRI-03-45` image fixe (avant / après) |
 | CTA | S'inscrire |
@@ -150,27 +150,27 @@ Campagne `acq_primeur` · ensemble « Primeurs »
 | Indicateur | Coût par démo le plus bas des 4 annonces primeur attendu ; surveiller le taux démo → payé (risque de démos « curieuses ») |
 
 **Texte principal**
-> Pas le temps de faire un site ? Choisissez « Primeur », tapez le nom de votre commerce : l'aperçu de votre boutique s'affiche, avec un catalogue de fruits et légumes déjà rempli.
+> Pas le temps de faire un site ? Depuis votre téléphone : choisissez « Primeur », tapez le nom de votre commerce, vos horaires, ajoutez deux photos. Votre boutique est créée avec un catalogue de fruits et légumes de base déjà rempli.
 >
 > Vous ajustez vos prix et vos photos depuis votre téléphone. Rien à installer, aucun matériel à acheter.
 >
-> Essai de l'aperçu gratuit, sans carte bancaire. Ensuite : 399 € d'installation, puis 39 €/mois sans engagement.
+> Démo gratuite, sans carte bancaire. Ensuite : 399 € d'installation, 1er mois offert, puis 39 €/mois sans engagement.
 
-**Titre** : Votre boutique de primeur, prête à essayer
-**Description** : Aperçu gratuit · sans carte bancaire
+**Titre** : Votre boutique de primeur, depuis votre téléphone
+**Description** : Démo gratuite · sans carte bancaire
 
 **Script vidéo (15 s)**
 
 | Temps | Image | Sous-titre |
 |---|---|---|
 | 0-2 s | Page `/inscription`, doigt qui touche « Primeur » | « 1. Choisissez Primeur » |
-| 2-6 s | Saisie « Au Panier de Léa » (nom fictif) | « 2. Tapez le nom de votre commerce » |
-| 6-11 s | L'aperçu de la boutique apparaît, défilement du catalogue pré-rempli | « 3. Votre boutique est là, catalogue compris » |
-| 11-15 s | Carton de fin | « Aperçu gratuit · puis 399 € + 39 €/mois sans engagement » |
+| 2-6 s | Saisie « Au Panier de Léa » (nom fictif), ville, horaires | « 2. Le nom de votre commerce, vos horaires » |
+| 6-11 s | Ajout de deux photos, puis catalogue primeur de base | « 3. Deux photos de votre boutique » puis « Le catalogue primeur est déjà rempli » |
+| 11-15 s | Carton de fin | « 399 € une fois · 1er mois offert · puis 39 €/mois » |
 
-**Storyboard** : enregistrement d'écran réel en une prise sur un compte de test (le supprimer ensuite). Ne rien accélérer : la vitesse réelle est l'argument.
+**Storyboard** : enregistrement d'écran réel de l'inscription, arrêté à l'écran « Votre compte » (aucun compte créé).
 
-**Image fixe 4:5** : à gauche, écran vide « Nom de votre commerce » ; à droite, la boutique générée. Accroche sur l'image : « Votre boutique de primeur, en 3 gestes ». Bandeau bas : « Aperçu gratuit ».
+**Image fixe 4:5** : à gauche, l'écran d'inscription ; à droite, le catalogue d'une boutique primeur. Accroche : « Votre boutique de primeur, depuis votre téléphone ». Bandeau bas : « Démo gratuite, sans carte bancaire ».
 
 ## PRI-04 · Le tarif en clair
 
@@ -213,8 +213,8 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | | |
 |---|---|
 | Métier | Bouchers, charcutiers |
-| Angle | Le catalogue : bœuf, veau, agneau, porc, volaille, charcuterie, au kilo ou à la pièce, avec précisions de découpe |
-| Hypothèse testée | Un boucher doute qu'un site sache vendre de la viande au poids ; montrer les fiches au kilo et le champ « précisions » lève l'objection |
+| Angle | Le catalogue : bœuf, veau, agneau, porc, volaille, charcuterie, au kilo ou à la pièce, avec une note du client pour la découpe |
+| Hypothèse testée | Un boucher doute qu'un site sache vendre de la viande au poids ; montrer les fiches au kilo, l'ajustement à la pesée et la note pour la découpe lève l'objection |
 | Formats | `BOU-01-916` vidéo 20 s · `BOU-01-45` carrousel 4 cartes (ou vidéo recadrée) |
 | CTA | Découvrir |
 | Destination | `https://xn--marcho-fva.fr/solutions/boucherie` |
@@ -224,14 +224,14 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 **Texte principal**
 > Et si vos clients pouvaient préparer leurs achats chez vous directement en ligne ?
 >
-> Avec Marchéo, votre boucherie a sa boutique : bœuf, veau, agneau, volaille, charcuterie. Prix au kilo, aux 100 g ou à la pièce, et un champ « précisions » pour la découpe, l'épaisseur ou la préparation. Si le poids réel diffère, vous ajustez avant d'encaisser.
+> Avec Marchéo, votre boucherie a sa boutique : bœuf, veau, agneau, volaille, charcuterie. Prix au kilo ou à la pièce, ajusté au poids exact à la pesée, et une note du client pour la découpe, l'épaisseur ou la préparation.
 >
 > 399 € d'installation, puis 39 €/mois sans engagement.
 >
 > Découvrez comment ça fonctionne.
 
 **Titre** : Votre boucherie en ligne
-**Description** : Au kilo, à la pièce, avec vos précisions
+**Description** : Au kilo, à la pièce, ajusté à la pesée
 
 **Script vidéo (20 s)**
 
@@ -240,10 +240,10 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 | 0-2 s | Boucher qui tranche une entrecôte, plan serré | « Vendre de la viande en ligne ? » |
 | 2-7 s | Écran `/boucherie-classique`, catégories bœuf / veau / volaille | « Votre catalogue, rayon par rayon. » |
 | 7-12 s | Fiche produit : prix au kilo, choix de la quantité | « Au kilo, aux 100 g ou à la pièce. » |
-| 12-16 s | Saisie dans « précisions » : « 2 tranches de 3 cm » | « Avec les précisions du client. » |
+| 12-16 s | Saisie de la note : « Rôti ficelé, 2 tranches fines à part » | « Une note pour la découpe, et c'est commandé. » |
 | 16-20 s | Carton de fin | « 399 € une fois · 39 €/mois · sans engagement » |
 
-**Carrousel 4:5** (4 cartes, photo réelle + capture d'écran) : 1. « Votre boucherie en ligne » (vitrine réelle) · 2. « Prix au kilo ou à la pièce » (capture fiche produit) · 3. « Découpe, épaisseur : le client précise » (capture champ précisions) · 4. « 399 € une fois · 39 €/mois · sans engagement ».
+**Carrousel 4:5** (4 cartes, photo réelle + capture d'écran) : 1. « Votre boucherie en ligne » (vitrine réelle) · 2. « Prix au kilo ou à la pièce » (capture fiche produit) · 3. « Une note pour la découpe » (capture de la note) · ancien : « Découpe, épaisseur : le client précise » (capture champ précisions) · 4. « 399 € une fois · 39 €/mois · sans engagement ».
 
 **Consignes visuelles** : viande filmée proprement, lumière froide maîtrisée, pas de plans sanglants. Tablier propre, vitrine réfrigérée nette.
 
@@ -264,7 +264,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 > Comment une commande arrive dans votre boucherie avec Marchéo :
 >
 > 1. Votre client commande la veille depuis son téléphone et choisit son créneau.
-> 2. Vous recevez la commande avec son nom, son téléphone et ses précisions.
+> 2. Vous recevez la commande avec son nom, son téléphone et sa note pour la découpe.
 > 3. Vous préparez le matin, vous passez la commande en « Prête » : il est prévenu automatiquement.
 >
 > Pour les commandes importantes, l'empreinte bancaire bloque jusqu'à 75 % du panier contre les commandes jamais retirées.
@@ -309,7 +309,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 > · 1er mois offert, puis 39 €/mois, sans engagement
 > · 0 % de commission sur vos ventes
 >
-> Pas de devis, pas d'appel obligatoire : vous voyez l'aperçu de votre boutique et vous l'activez en ligne.
+> Pas de devis, pas d'appel obligatoire : vous créez votre boutique de démonstration et vous l'activez en ligne.
 
 **Titre** : 399 € une fois, 39 €/mois
 **Description** : Une commande de fête couvre le mois
@@ -342,7 +342,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 >
 > 399 € d'installation, puis 39 €/mois sans engagement. 0 % de commission.
 >
-> Créez l'aperçu de votre boutique gratuitement.
+> Créez votre boutique de démonstration gratuitement.
 
 **Titre** : Marchéo, la démo complète
 **Description** : Boutique, commandes, retrait : tout depuis votre téléphone
@@ -353,7 +353,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 |---|---|---|
 | 0-3 s | Écran : `marchéo.fr/votre-commerce` qui se tape dans la barre d'adresse | « Voici votre commerce, en ligne. » |
 | 3-10 s | Défilement d'une boutique (primeur), puis bascule sur une boucherie | « Une boutique à votre nom, avec vos produits, vos prix, vos horaires. » |
-| 10-20 s | Commande client : produit au kilo, panier, créneau, validation | « Vos clients commandent depuis leur téléphone, sans créer de compte, et choisissent quand passer. » |
+| 10-20 s | Commande client : produit au kilo, panier, créneau, validation | « Vos clients commandent depuis leur téléphone et choisissent quand passer. » |
 | 20-28 s | Tableau de bord `/app` : liste des commandes du jour, passage en « Prête » | « Vous recevez la commande, vous préparez, un geste et le client est prévenu. » |
 | 28-34 s | Réglages : créneaux, empreinte bancaire activée | « Vous réglez vos créneaux, et vous protégez les grosses commandes avec l'empreinte bancaire. » |
 | 34-40 s | Plan boutique réelle, remise d'un sac | « Pas de tablette, pas de caisse, pas de commission. » |
@@ -405,7 +405,8 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 > Ce que vous payez avec Marchéo :
 > · 399 € d'installation, une seule fois
 > · 39 €/mois à partir du 2e mois (le 1er est offert), sans engagement
-> · les frais Stripe standards sur les paiements par carte de vos clients (1,4 % + 0,25 € par carte française)
+> · les frais CB habituels sur les paiements par carte de vos clients
+> · l'empreinte bancaire anti no-show : zéro frais
 >
 > Ce que vous ne payez pas :
 > · aucune commission sur vos ventes
@@ -419,7 +420,7 @@ Campagne `acq_boucherie` · ensemble « Bouchers »
 
 **Image fixe 4:5** : deux colonnes sur fond crème. « Vous payez » : 399 € une fois · 39 €/mois. « Vous ne payez pas » : commission · matériel · engagement (barrés en rouge). Logo.
 
-**Vidéo 15 s** : les mêmes lignes qui apparaissent une à une sur plans de boutique floutés, puis carton de fin.
+**Vidéo 15 s** : les mêmes lignes (dont « Empreinte bancaire : zéro frais » et « frais CB habituels ») qui apparaissent une à une sur plans de boutique floutés, puis carton de fin.
 
 ---
 
@@ -442,7 +443,7 @@ Titre : Votre boulangerie en ligne · Description : Commandes à l'avance, retra
 Visuels : sortie de four, vitrine de pâtisseries, écran du catalogue `/le-petrin`. Storyboard identique à PRI-01, plan 1 = fournée qui sort du four.
 
 **BLG-02 · Démonstration** (adapte PRI-02) · `BLG-02-916` / `BLG-02-45`
-> Un gâteau commandé un mardi soir, retiré samedi à 11 h. Le client choisit, réserve son heure et valide sans créer de compte. Pour les grosses commandes, l'empreinte bancaire protège contre le gâteau jamais récupéré (jusqu'à 75 % du panier).
+> Un gâteau commandé un mardi soir, retiré samedi à 11 h. Le client choisit, réserve son heure et valide. Pour les grosses commandes, l'empreinte bancaire protège contre le gâteau jamais récupéré (jusqu'à 75 % du panier).
 >
 > 399 € d'installation, puis 39 €/mois sans engagement.
 
@@ -473,11 +474,11 @@ Visuels : étal sur glace pilée, gros plan bar entier, écran `/maree-d-or`. Pa
 Titre : Le plateau du samedi, réservé jeudi · Script : BOU-02 (écran partagé client / commerçant) avec un plateau de fruits de mer.
 
 **POI-03 · Annonce d'arrivage** · `POI-03-45` image fixe + `POI-03-916` vidéo 10 s
-> Arrivage de Saint-Jacques ce matin ? Prévenez vos clients par SMS en 30 secondes depuis votre téléphone : 50 SMS par mois sont inclus. Ils commandent, vous préparez.
+> Arrivage de Saint-Jacques ce matin ? Prévenez vos clients par SMS depuis votre téléphone : 50 SMS par mois sont inclus. Ils commandent, vous préparez.
 >
 > 399 € d'installation, puis 39 €/mois sans engagement.
 
-Titre : Votre arrivage annoncé en 30 secondes · Visuel : coquilles Saint-Jacques sur glace + capture de l'écran d'envoi de SMS du tableau de bord (contenu fictif).
+Titre : Votre arrivage annoncé par SMS · Visuel : coquilles Saint-Jacques sur glace + capture de l'écran d'envoi de SMS du tableau de bord (contenu fictif).
 
 ## Fromagers
 
@@ -494,7 +495,7 @@ Titre : Votre fromagerie en ligne · Description : À la coupe, en plateau, retr
 Visuels : coupe au fil, meules, écran `/fromagerie-conquerant`.
 
 **FRO-02 · Démonstration** · `FRO-02-916` / `FRO-02-45`
-> Un plateau pour 8 et 1 kg de raclette pour vendredi soir : commandé en moins d'une minute, sans compte client, avec un créneau de retrait. Vous préparez à l'avance, le client ne fait pas la queue.
+> Un plateau pour 8 et 1 kg de raclette pour vendredi soir : commandé en quelques gestes, avec un créneau de retrait. Vous préparez à l'avance, le client ne fait pas la queue.
 >
 > 399 € d'installation, puis 39 €/mois sans engagement.
 
