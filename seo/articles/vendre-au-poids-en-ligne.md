@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-10-19
+modified: 2026-10-24
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -107,4 +107,4 @@ La logique est toujours la même : le poids pour ce que le client veut doser lui
 
 Vendre au poids en ligne ne demande ni développement particulier ni matériel supplémentaire. Il faut un catalogue où chaque produit porte son unité de vente, des poids proposés d'un clic, une phrase claire sur l'ajustement à la pesée et un mode de paiement adapté. Le reste, vous le faites déjà tous les jours derrière votre balance.
 
-La page dédiée au métier est là : [click & collect pour boucherie](/solutions/boucherie). Si vos plus gros volumes sont les commandes de fêtes, notre guide des [précommandes de fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) complète celui-ci. Et pour voir à quoi ressemblerait votre boutique avec votre catalogue déjà rempli, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l'aperçu s'affiche. Sans carte bancaire et sans engagement.
+La page dédiée au métier est là : [click & collect pour boucherie](/solutions/boucherie). Si vous partez de zéro, notre guide pour créer le [site internet de votre boucherie](/blog/site-internet-boucherie) explique les pages à prévoir et les prix. Si vos plus gros volumes sont les commandes de fêtes, notre guide des [précommandes de fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) complète celui-ci. Et pour voir à quoi ressemblerait votre boutique avec votre catalogue déjà rempli, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l'aperçu s'affiche. Sans carte bancaire et sans engagement.

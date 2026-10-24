@@ -16,7 +16,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet restaurant prix | site | restaurant | GS | haute | à faire (variante) |
 | création site internet fleuriste | site | fleuriste | GS | haute | à faire |
 | site internet pour pizzeria | site | pizzeria | GS | haute | à faire |
-| site boucherie en ligne | site | boucherie | GS | haute | à faire |
+| site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
 | click and collect viande | click & collect | boucherie | GS | haute | à faire |
 | boucherie click and collect | click & collect | boucherie | GS | haute | à faire (même article que la ligne précédente) |
 | commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | à faire (publier début novembre) |
@@ -129,7 +129,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site vitrine vs site e commerce | site | tous | GS (22/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22) ; article dédié possible avec « site vitrine ou e commerce » |
 | site internet commerce gratuit | site | tous | GS (22/10) | moyenne | à faire avec « site click and collect gratuit » (angle : ce qui est vraiment gratuit) |
 | site internet marchand gratuit | site | tous | GS (22/10) | basse | même article que la ligne précédente |
-| site web boucherie | site | boucherie | GS (22/10) | haute | à faire avec « site boucherie en ligne » (boucher de quartier, pas e-boucherie qui expédie) |
+| site web boucherie | site | boucherie | GS (22/10) | haute | couvert par site-internet-boucherie (2026-10-24) |
 | site internet fleurs | site | fleuriste | GS (22/10) | moyenne | à faire avec « création site internet fleuriste » |
 | nom de domaine commercial | site | tous | GS (22/10) | basse | couvert en section et FAQ de la page pilier n°2 (2026-10-22) |
 | pourquoi créer un site web pour son entreprise | site | tous | GS (22/10) | basse | couvert par la section « Pourquoi un commerce de proximité a-t-il besoin d'un site internet ? » de la page pilier n°2 |
@@ -143,3 +143,9 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application tournée de livraison gratuit | livraison | transverse | GS (23/10) | moyenne | même article que « logiciel tournée de livraison gratuit commerçant » |
 | livraison à domicile paiement en espèces | livraison | transverse | GS (23/10) | basse | à fondre en FAQ d'un article paiement à la livraison |
 | boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | à faire avec « livraison à domicile boucherie » (boucher de quartier qui livre, pas e-boucherie qui expédie) |
+| site internet boucherie | site | boucherie | GS (24/10) + WS (1re page : portfolio de graphiste, blog d'agence à Dakar, annuaires : aucun guide pour boucher de quartier) | haute | publié le 2026-10-24 site-internet-boucherie |
+| logiciel prise de commande boucherie | click & collect | boucherie | GS (24/10) | haute | à faire : article click and collect boucherie (avec « click and collect viande ») ; en FAQ de site-internet-boucherie en attendant |
+| logiciel gestion boucherie gratuit | transverse | boucherie | GS (24/10) | basse | écarté (intention caisse et gestion de stock, hors périmètre) |
+| boucherie commande en ligne halal | click & collect | boucherie | GS (24/10) | moyenne | à faire en section de l'article click and collect boucherie |
+| boucherie en ligne autour de moi | site | boucherie | GS (24/10) | moyenne | à fondre : fiche Google + site, déjà couvert en section de site-internet-boucherie |
+| site de boucher | site | boucherie | GS (24/10) | basse | variante, couverte par site-internet-boucherie |
