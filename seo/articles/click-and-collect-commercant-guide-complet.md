@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : ce que ça veut dire, comment le mettre en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-10-23
+modified: 2026-10-25
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -161,7 +161,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Voir [la solution pour poissonnerie](/solutions/poissonnerie).
 - **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
-- **Fleuriste.** Bouquets par budget, commandes pour une date précise. Voir [la solution pour fleuriste](/solutions/fleuriste).
+- **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
 - **Restaurant.** Vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Commandes prêtes à l'arrivée sur l'emplacement. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck).

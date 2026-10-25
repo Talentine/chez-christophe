@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Fleuriste click and collect : bouquets en ligne et retrait à l'heure](https://marchéo.fr/blog/click-and-collect-fleuriste) : Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
 - [Site internet boucherie : créer le site de votre boucherie de quartier](https://marchéo.fr/blog/site-internet-boucherie) : Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
 - [Création site internet commerce : le guide complet du commerçant](https://marchéo.fr/blog/creation-site-internet-commerce) : Création du site internet de votre commerce : site vitrine ou de commande, pages à prévoir, nom de domaine, prix réels. Sans matériel, sans commission.
 - [Click & collect pour commerçant : le guide complet](https://marchéo.fr/blog/click-and-collect-commercant-guide-complet) : Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission.
@@ -741,6 +742,158 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Fleuriste click and collect : bouquets en ligne et retrait à l'heure
+
+Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
+
+Le click and collect chez un fleuriste, c&rsquo;est permettre à vos clients de choisir un bouquet en ligne, par budget et par style, avec le message de la carte, puis de le retirer en boutique au créneau choisi. Vous composez à l&rsquo;avance, au calme, et le client repart en une minute. Les grandes dates comme la Toussaint, la Saint-Valentin et la fête des mères s&rsquo;y prêtent particulièrement bien.
+Le fleuriste a souvent l&rsquo;impression que son métier ne se met pas en ligne : chaque bouquet est unique, chaque client demande conseil. C&rsquo;est pourtant l&rsquo;un des commerces où la commande à l&rsquo;avance rend le plus de services, à condition de vendre un budget et une intention plutôt qu&rsquo;un produit figé. Ce guide applique au métier de fleuriste notre guide complet du click &amp; collect pour commerçant.
+Pourquoi un fleuriste a intérêt à proposer le click and collect ?
+Le click and collect sert d&rsquo;abord à absorber les pics sans décrocher le téléphone toute la journée. Chez un fleuriste, la demande arrive par vagues : la veille de la Toussaint, le 13 février, le samedi de la fête des mères. Ces jours-là, chaque appel vous éloigne du client qui attend au comptoir.
+
+
+
+Sans commande en ligne
+Avec le click and collect
+
+
+
+
+Les commandes arrivent par téléphone, pendant que vous servez
+Elles arrivent par écrit, avec le budget, la date et l&rsquo;heure
+
+
+Le message de la carte est noté à la volée, parfois mal
+Le client l&rsquo;écrit lui-même, sans faute de nom
+
+
+Vous découvrez le volume le matin même
+Vous savez la veille combien de bouquets composer
+
+
+Le client pressé voit la file et va au supermarché
+Il commande depuis son bureau et passe en une minute
+
+
+Les compositions de deuil se règlent dans l&rsquo;urgence
+La commande est datée, payée ou garantie à l&rsquo;avance
+
+
+
+Le click and collect ne remplace pas le conseil. Il libère du temps pour les clients qui en ont besoin.
+Comment vendre des bouquets uniques en ligne ?
+La réponse est de vendre par budget et par style, pas à l&rsquo;identique. Le client qui commande en ligne ne cherche pas un bouquet précis : il cherche un cadeau réussi pour un montant donné.
+Organisez votre boutique en ligne en quelques familles simples :
+
+Le bouquet du fleuriste, en trois budgets, par exemple 30, 45 et 60 €. C&rsquo;est la fiche qui se vend le plus.
+Les styles : champêtre, romantique, coloré, blanc et vert. Une photo pour donner l&rsquo;esprit, une phrase pour dire que la composition suit l&rsquo;arrivage.
+Les roses à l&rsquo;unité ou en bottes, utiles pour la Saint-Valentin.
+Les plantes et les compositions en coupe, faciles à préparer à l&rsquo;avance.
+Le deuil : coussins, gerbes, raquettes, plantes pour le cimetière, avec un délai de préparation plus long.
+Les événements : mariage, baptême, décoration de table, plutôt sur demande avec un acompte.
+
+Sur chaque commande, deux champs font la différence : le message pour la carte et les précisions (couleurs, fleurs à éviter, occasion). Avec ces deux informations, vous composez exactement comme si le client était devant vous.
+Comment régler les créneaux de retrait chez un fleuriste ?
+Le bon réglage est un créneau de 30 minutes avec un nombre maximum de bouquets par créneau, et un délai de préparation adapté à chaque produit. Quand un créneau est plein, il disparaît et le client prend le suivant.
+
+Délai court pour le bouquet du jour, par exemple deux ou trois heures.
+Délai long pour le deuil et les compositions, 24 ou 48 heures.
+Heure limite pour le lendemain, par exemple 18 h la veille, pour passer votre commande au grossiste en connaissant le volume.
+Capacité réduite les jours de marché ou de livraison si vous êtes seul en boutique.
+
+Commencez avec une capacité basse. Vous l&rsquo;augmenterez quand vous saurez combien de commandes arrivent vraiment.
+Comment préparer la Toussaint, la Saint-Valentin et la fête des mères ?
+Ouvrez les commandes deux à trois semaines avant chaque grande date et fixez une date limite. C&rsquo;est le moyen le plus simple de transformer un rush subi en production planifiée.
+
+Toussaint. Les chrysanthèmes et les compositions pour le cimetière se commandent bien à l&rsquo;avance. Proposez quelques tailles de pots et deux ou trois compositions, avec des retraits étalés sur la dernière semaine d&rsquo;octobre.
+Saint-Valentin. Bottes de roses par nombre de tiges, bouquets à budget fixe, et des créneaux de retrait le 13 et le 14, en particulier en fin de journée.
+Fête des mères. Bouquets par budget et plantes, retraits répartis sur le vendredi et le samedi.
+
+Pour ces dates, envoyez un SMS de rappel à vos habitués qui ont accepté d&rsquo;en recevoir, une dizaine de jours avant. Vous commandez ensuite à votre grossiste en connaissant vos volumes, ce qui limite les invendus.
+Paiement en ligne ou au retrait : que choisir ?
+Les deux fonctionnent, et vous pouvez les combiner selon le montant. Le paiement au retrait rassure les habitués pour un bouquet du quotidien. Le paiement en ligne est plus adapté aux commandes importantes.
+Le vrai risque, c&rsquo;est la gerbe ou le bouquet de mariée composé pour un client qui ne vient pas. Les fleurs sont coupées, elles ne se revendent pas. Pour ces commandes, l&rsquo;empreinte bancaire bloque jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. L&rsquo;option est facultative. Le fonctionnement est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées.
+Faut-il aussi livrer à domicile ?
+Pour un fleuriste, la livraison est souvent le complément naturel du click and collect, parce qu&rsquo;une partie des bouquets est offerte à quelqu&rsquo;un d&rsquo;autre. Vous pouvez commencer par le retrait seul, puis ouvrir la livraison dans un rayon proche.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Les étapes pour s&rsquo;organiser sont dans notre guide de la livraison à domicile pour commerçant.
+Combien coûte le click and collect pour un fleuriste ?
+Avec un logiciel à abonnement fixe, le coût ne dépend pas de vos ventes. Les plateformes et réseaux qui prennent une commission sur chaque commande coûtent d&rsquo;autant plus cher que vous vendez.
+
+
+
+Formule Marchéo
+Installation (une fois)
+Par mois
+Ce qu&rsquo;elle permet
+
+
+
+
+Vitrine
+249 €
+19 €
+Présenter la boutique, les horaires, les bouquets
+
+
+Click &amp; Collect + Réservation
+399 €
+39 €
+Commandes en ligne avec retrait en boutique
+
+
+Click &amp; Collect + Livraison
+549 €
+59 €
+Retrait et livraison dans votre zone
+
+
+
+Toutes les formules sont sans engagement, avec 0 % de commission. Le client commande en 30 secondes, sans créer de compte.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Le click and collect d&rsquo;un fleuriste se met en place sans matériel à acheter et sans développeur. Les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Une quinzaine de fiches : budgets, styles, deuil, plantes
+Un catalogue de toutes vos fleurs à l&rsquo;unité
+
+
+Quelques photos prises en boutique
+Un photographe professionnel
+
+
+Des créneaux réglés à votre rythme
+Une tablette, une imprimante ou une caisse neuve
+
+
+Un QR code en vitrine et le lien sur Instagram
+Un développeur ou une agence
+
+
+Un abonnement fixe
+Une commission sur chaque bouquet
+
+
+
+Pour commencer
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous partez de zéro, notre guide pour créer sa boutique en ligne vous aide à poser les bases.
+La page détaillée pour votre métier est ici : click and collect pour fleuriste. Pour voir votre boutique avant de décider, la démo gratuite prend 30 secondes : vous choisissez « Fleuriste », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Quel logiciel de click and collect pour un fleuriste ?
+R : Plusieurs options existent : les réseaux de transmission florale, les créateurs de sites généralistes comme Wix ou Shopify, et les logiciels pensés pour les commerces de proximité. Marchéo en fait partie : la formule Click & Collect + Réservation coûte 39 € par mois, la formule avec livraison 59 € par mois, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 399 € ou 549 €. Le catalogue fleuriste est déjà rempli (bouquets par budget, compositions, plantes) et chaque commande a un champ pour le message de la carte.
+Q : Faut-il acheter du matériel pour faire du click and collect chez un fleuriste ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et vous les préparez comme une commande passée au comptoir.
+Q : Comment vendre en ligne des bouquets qui ne sont jamais identiques ?
+R : Vendez par budget et par style plutôt qu'à l'identique : bouquet du fleuriste à 30, 45 ou 60 €, composition champêtre, bouquet de roses. Une photo indique l'esprit, une phrase précise que la composition suit l'arrivage. Le client choisit ses couleurs dans le champ précisions.
+Q : Comment éviter les bouquets préparés et jamais retirés ?
+R : Pour les grosses commandes, comme une composition de deuil ou un bouquet de mariée, demandez le paiement en ligne ou activez l'empreinte bancaire. Elle bloque jusqu'à 75 % du panier sans débiter le client, et la somme est libérée automatiquement 24 heures après le retrait.
+
 # Site internet boucherie : créer le site de votre boucherie de quartier
 
 Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
@@ -1290,7 +1443,7 @@ Primeur. Paniers de la semaine, vente au kilo, fruits de saison. Voir la solutio
 Poissonnerie. Poisson préparé, plateaux de fruits de mer. Voir la solution pour poissonnerie.
 Traiteur. Plats du jour, plateaux, buffets. Voir la solution pour traiteur et la création de site internet de traiteur.
 Fromagerie. Coupes au poids, plateaux, formules raclette. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
-Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste.
+Fleuriste. Bouquets par budget, commandes pour une date précise. Le détail est dans notre article fleuriste click and collect. Voir aussi la solution pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
 Restaurant. Vente à emporter et réservation de table. Voir la solution pour restaurant.
 Fast-food et food-truck. Commandes prêtes à l&rsquo;arrivée sur l&rsquo;emplacement. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.
@@ -1510,7 +1663,7 @@ Primeur. Paniers de la semaine, vente au kilo, produits de saison. Voir la solut
 Poissonnerie. Commandes de poisson préparé, plateaux de fruits de mer. Voir la solution pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, plats du jour. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
 Fromagerie. Coupes au poids, plateaux pour recevoir. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
-Fleuriste. Bouquets par budget et par style, commandes pour une date précise. Voir la solution pour fleuriste.
+Fleuriste. Bouquets par budget et par style, commandes pour une date précise. Pour démarrer, lisez notre guide du click and collect pour fleuriste et la solution pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
 Restaurant. Vente à emporter et réservation de table. Voir la solution pour restaurant.
 Fast-food et food-truck. Commandes prêtes à l&rsquo;arrivée sur l&rsquo;emplacement. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.

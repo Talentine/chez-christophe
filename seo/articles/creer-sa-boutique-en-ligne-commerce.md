@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-10-22
+modified: 2026-10-25
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -153,7 +153,7 @@ Chaque métier a ses produits phares en ligne, et un logiciel métier les prévo
 - **Poissonnerie.** Commandes de poisson préparé, plateaux de fruits de mer. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre article sur la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux, buffets, plats du jour. Voir [la solution pour traiteur](/solutions/traiteur) et le guide de [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids, plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
-- **Fleuriste.** Bouquets par budget et par style, commandes pour une date précise. Voir [la solution pour fleuriste](/solutions/fleuriste).
+- **Fleuriste.** Bouquets par budget et par style, commandes pour une date précise. Pour démarrer, lisez notre guide du [click and collect pour fleuriste](/blog/click-and-collect-fleuriste) et la [solution pour fleuriste](/solutions/fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
 - **Restaurant.** Vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Commandes prêtes à l'arrivée sur l'emplacement. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck).

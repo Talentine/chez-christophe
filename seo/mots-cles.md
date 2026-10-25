@@ -82,7 +82,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande fruits et légumes en ligne | click & collect | primeur | GS (19/10) | basse | dominé par la grande distribution, en variante de l'article primeur |
 | commande boulangerie en ligne | click & collect | boulangerie | GSC (pos. 14,0, 19/10) | haute | à faire : renforcer site-internet-boulangerie-commandes-en-ligne (même cible que « boulangerie click and collect ») |
 | click and collect food truck | click & collect | fastfood | GSC (pos. 13,5, 19/10) | moyenne | publié le 2026-09-17 click-and-collect-food-truck (à enrichir lors d'un prochain lundi) |
-| fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | à faire (requêtes locales nombreuses, pas d'article fleuriste à ce jour) |
+| fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | publié le 2026-10-25, click-and-collect-fleuriste |
 | site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
 | tarif site internet restaurant | site | restaurant | GS (19/10) | haute | à faire (avec « combien coûte un site internet pour un restaurant ») |
 | boucherie click and collect halal | click & collect | boucherie | GS (19/10) | basse | variante de l'article boucherie à venir |
@@ -113,7 +113,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect combien de temps pour récupérer | click & collect | tous | GS recherches associées (21/10) | moyenne | couvert en FAQ de la page pilier ; à reprendre en FAQ des articles métier |
 | click and collect définition | click & collect | tous | GS recherches associées (21/10) | moyenne | variante de la page pilier (1re page : economie.gouv, Wikipédia, Solocal, SumUp, Alma : sites généralistes) |
 | que veut dire click and collect en français | click & collect | tous | GS (21/10) | basse | variante de la page pilier |
-| click and collect fleurs | click & collect | fleuriste | GS (21/10) | haute | à faire avec « fleuriste click and collect » (requêtes locales : Paris, Lyon, Rennes, Toulouse, Nice) |
+| click and collect fleurs | click & collect | fleuriste | GS (21/10) | haute | publié le 2026-10-25, click-and-collect-fleuriste (variante) |
 | logiciel livraison commerçant avec commande en ligne | livraison | tous | IA (21/10 : Perplexity ne cite que des optimiseurs de tournée : Routific, Shipday, OptimoRoute) | haute | couvert en section « Quel logiciel pour gérer la livraison à domicile ? » de la page pilier n°4 (2026-10-23) |
 | logiciel tournée de livraison gratuit commerçant | livraison | tous | IA (21/10) | moyenne | couvert en section logiciel de la page pilier n°4 (2026-10-23) ; un article dédié reste possible |
 | click and collect produits frais chaîne du froid | click & collect | tous | IA (21/10 : stockage des commandes prêtes non traité ailleurs) | basse | à faire en FAQ des articles boucherie et poissonnerie |
@@ -149,3 +149,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boucherie commande en ligne halal | click & collect | boucherie | GS (24/10) | moyenne | à faire en section de l'article click and collect boucherie |
 | boucherie en ligne autour de moi | site | boucherie | GS (24/10) | moyenne | à fondre : fiche Google + site, déjà couvert en section de site-internet-boucherie |
 | site de boucher | site | boucherie | GS (24/10) | basse | variante, couverte par site-internet-boucherie |
+| bouquet de fleurs click and collect | click & collect | fleuriste | GS (25/10) | moyenne | couvert par click-and-collect-fleuriste |
+| application pour fleuriste | click & collect | fleuriste | GS (25/10) | moyenne | à faire : FAQ ou section d'un futur article site internet fleuriste |
+| logiciel caisse fleuriste | transverse | fleuriste | GS (25/10) | basse | écarté (intention caisse, hors périmètre) |
+| fleuriste livraison à domicile | livraison | fleuriste | GS (25/10) | haute | à faire (angle : fleuriste de quartier qui livre lui-même, sans réseau de transmission) |
+| logiciel commande pizzeria | click & collect | pizzeria | GS (25/10) | haute | à faire avec « application click and collect restaurant » ou « logiciel livraison pizza » |
+| logiciel livraison pizza gratuit | livraison | pizzeria | GS (25/10) | moyenne | à fondre dans l'article « logiciel livraison pizza » (ce qui est vraiment gratuit) |
+| commande chrysanthème toussaint fleuriste | click & collect | fleuriste | réflexion saison (25/10) | basse | section de click-and-collect-fleuriste ; article dédié à envisager fin septembre 2027 |
