@@ -2,10 +2,10 @@
 title: "Livraison à domicile pour commerçant : le guide complet"
 titre_court: "Livraison à domicile : le guide complet"
 description: "Mettre en place un service de livraison à domicile : zone, créneaux, minimum, frais, paiement, tournée et froid, sans plateforme ni commission."
-meta_title: "Mettre en place la livraison à domicile : guide du commerçant"
+meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-10-23
+modified: 2026-10-26
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -171,7 +171,7 @@ Chaque métier livre des produits différents, avec ses contraintes. Voici les p
 - **Traiteur.** Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Plateaux et formules raclette livrés le vendredi soir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Fleuriste.** Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir [la solution pour fleuriste](/solutions/fleuriste).
-- **Pizzeria.** Livraison du soir sur une zone courte, à heure annoncée. Voir [la solution pour pizzeria](/solutions/pizzeria).
+- **Pizzeria.** Livraison du soir sur une zone courte, à heure annoncée. Voir [la solution pour pizzeria](/solutions/pizzeria) et notre guide du [logiciel de livraison pizza](/blog/logiciel-livraison-pizza).
 - **Restaurant.** Livraison des habitués en direct, plateforme pour la découverte si besoin. Voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Livraison autour de l'emplacement du jour. Voir [la solution pour fast-food](/solutions/fastfood) et le [click & collect pour food-truck](/blog/click-and-collect-food-truck).
 

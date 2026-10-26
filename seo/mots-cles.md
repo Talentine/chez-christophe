@@ -33,7 +33,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fromagerie livraison à domicile | livraison | fromagerie | GS | moyenne | à faire (pas avant novembre, fromagerie publiée le 16/10) |
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS + WS (1re page : PDF administratifs, annuaires, faible) | haute | publié le 2026-10-18 poissonnerie-livraison-a-domicile |
 | livraison traiteur à domicile | livraison | traiteur | GS | moyenne | à faire |
-| pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | à faire (dominé par les plateformes, angle « livrer soi-même ») |
+| pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | couvert par logiciel-livraison-pizza (2026-10-26), angle livrer soi-même |
 | service de livraison à domicile restaurant | livraison | restaurant | GS | moyenne | à faire |
 | proposer la livraison gratuite | livraison | transverse | GS | moyenne | à faire (angle : frais et minimum de livraison) |
 | proposer service livraison | livraison | transverse | GS | moyenne | à faire |
@@ -137,7 +137,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | comment mettre en place un service de livraison à domicile | livraison | tous | GS (23/10) + WS (1re page : La Poste Pro, blog du dirigeant, CCI 2020 : aucun angle commerce de bouche) | haute | publié le 2026-10-23 livraison-locale-commercant-comment-organiser (page pilier n°4) |
 | créer un service de livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) |
 | logiciel livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) ; à renforcer par un comparatif dédié |
-| logiciel livraison pizza | livraison | pizzeria | GS (23/10) | haute | à faire avec « pizzeria livraison à domicile » (angle : livrer soi-même sans plateforme) |
+| logiciel livraison pizza | livraison | pizzeria | GS (23/10) | haute | publié le 2026-10-26 logiciel-livraison-pizza |
 | comment proposer livraison gratuite | livraison | transverse | GS (23/10) | moyenne | à faire avec « proposer la livraison gratuite » (seuil de gratuité, calcul) |
 | frais de livraison comment calculer | livraison | transverse | GS (23/10) | moyenne | à faire : article frais et minimum de livraison (éviter l'intention leboncoin/ebay, viser commerçant) |
 | application tournée de livraison gratuit | livraison | transverse | GS (23/10) | moyenne | même article que « logiciel tournée de livraison gratuit commerçant » |
@@ -153,6 +153,14 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application pour fleuriste | click & collect | fleuriste | GS (25/10) | moyenne | à faire : FAQ ou section d'un futur article site internet fleuriste |
 | logiciel caisse fleuriste | transverse | fleuriste | GS (25/10) | basse | écarté (intention caisse, hors périmètre) |
 | fleuriste livraison à domicile | livraison | fleuriste | GS (25/10) | haute | à faire (angle : fleuriste de quartier qui livre lui-même, sans réseau de transmission) |
-| logiciel commande pizzeria | click & collect | pizzeria | GS (25/10) | haute | à faire avec « application click and collect restaurant » ou « logiciel livraison pizza » |
-| logiciel livraison pizza gratuit | livraison | pizzeria | GS (25/10) | moyenne | à fondre dans l'article « logiciel livraison pizza » (ce qui est vraiment gratuit) |
+| logiciel commande pizzeria | click & collect | pizzeria | GS (25/10) | haute | couvert par logiciel-livraison-pizza (2026-10-26, section « Que doit faire un bon logiciel de commande pour pizzeria ? ») |
+| logiciel livraison pizza gratuit | livraison | pizzeria | GS (25/10) | moyenne | couvert en FAQ de logiciel-livraison-pizza (2026-10-26) |
 | commande chrysanthème toussaint fleuriste | click & collect | fleuriste | réflexion saison (25/10) | basse | section de click-and-collect-fleuriste ; article dédié à envisager fin septembre 2027 |
+| logiciel commande pizza | click & collect | pizzeria | GS (26/10) | moyenne | variante couverte par logiciel-livraison-pizza (2026-10-26) |
+| application pizzeria | click & collect | pizzeria | GS (26/10) | moyenne | variante couverte par logiciel-livraison-pizza ; angle « pas d'application à télécharger » à reprendre dans un article click and collect pizza |
+| logiciel caisse pizzeria | transverse | pizzeria | GS (26/10) | basse | écarté (intention caisse, hors périmètre) |
+| pizzeria livraison gratuite | livraison | pizzeria | GS (26/10) | moyenne | à fondre dans l'article frais et minimum de livraison (seuil de gratuité) |
+| prix livraison pizza | livraison | pizzeria | GS (26/10) | moyenne | à fondre dans l'article frais de livraison (suggestions dominées par Domino's et Pizza Hut) |
+| site internet pizza livraison | site | pizzeria | GS (26/10) | haute | à faire avec « site internet pour pizzeria » (angle : site de la pizzeria avec commande et livraison) |
+| application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
+| zone de livraison restaurant | livraison | restaurant | GS (26/10) | basse | à fondre dans l'article frais et zone de livraison |

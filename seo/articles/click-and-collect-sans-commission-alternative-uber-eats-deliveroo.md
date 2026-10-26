@@ -5,7 +5,7 @@ description: "Ce que coûtent vraiment les plateformes de livraison à une pizze
 meta_title: "Click and collect sans commission : comment le proposer"
 meta_description: "Proposer le click and collect sans commission : les 5 solutions comparées, leurs prix réels, et comment garder 100 % de vos ventes face à Uber Eats."
 date: 2026-09-04
-modified: 2026-10-20
+modified: 2026-10-26
 rubrique: Comparatif
 emoji: ⚖️
 keywords:
@@ -78,7 +78,7 @@ Les commerçants qui s'en sortent le mieux ne choisissent pas entre plateforme e
 - **La plateforme** sert à être découvert par des gens qui ne vous connaissent pas. C'est de la publicité payée à la commande.
 - **Votre boutique en ligne** sert à vos habitués et à tous ceux qui vous ont trouvé une fois. Zéro commission, et le client est à vous.
 
-Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant.
+Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du [logiciel de livraison pizza](/blog/logiciel-livraison-pizza) détaille la zone, les créneaux du soir et la tournée.
 
 ## Ce que doit avoir votre boutique pour tenir la comparaison
 

@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Logiciel livraison pizza : livrer vous-même sans commission](https://marchéo.fr/blog/logiciel-livraison-pizza) : Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
 - [Fleuriste click and collect : bouquets en ligne et retrait à l'heure](https://marchéo.fr/blog/click-and-collect-fleuriste) : Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
 - [Site internet boucherie : créer le site de votre boucherie de quartier](https://marchéo.fr/blog/site-internet-boucherie) : Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
 - [Création site internet commerce : le guide complet du commerçant](https://marchéo.fr/blog/creation-site-internet-commerce) : Création du site internet de votre commerce : site vitrine ou de commande, pages à prévoir, nom de domaine, prix réels. Sans matériel, sans commission.
@@ -741,6 +742,193 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Logiciel livraison pizza : livrer vous-même sans commission
+
+Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
+
+Un logiciel de livraison pour pizza permet à une pizzeria de prendre les commandes en ligne, de fixer sa zone, ses créneaux du soir, son minimum et ses frais, puis de préparer la tournée de son propre livreur. Contrairement aux plateformes, il ne prélève pas de pourcentage sur chaque pizza et le fichier clients reste à vous. Marchéo en fait partie, pour 59 € par mois sans commission.
+La livraison est un réflexe pour beaucoup de clients de pizzeria, et c&rsquo;est souvent par une plateforme qu&rsquo;elle a commencé. Ce guide s&rsquo;adresse au pizzaiolo indépendant qui veut livrer lui-même, ou avec un livreur, avec un outil simple. Il applique à la pizza notre guide complet de la livraison à domicile pour commerçant.
+Pourquoi une pizzeria a intérêt à avoir son propre logiciel de livraison ?
+Un logiciel à vous coûte un prix fixe, alors qu&rsquo;une plateforme prend une part de chaque commande. Sur une pizza à 14 €, une commission de 30 % représente 4,20 €, soit souvent l&rsquo;essentiel de la marge.
+
+
+
+Avec une plateforme de livraison
+Avec votre propre logiciel
+
+
+
+
+Commission de l&rsquo;ordre de 14 à 30 % par commande
+Abonnement fixe, 0 % de commission
+
+
+Le client appartient à la plateforme
+Le nom, le téléphone et l&rsquo;adresse restent chez vous
+
+
+Les prix sont souvent majorés pour compenser
+Vos prix de comptoir, sans majoration
+
+
+Le coursier n&rsquo;est pas votre employé
+Votre livreur connaît le quartier et vos clients
+
+
+Visibilité auprès de nouveaux clients
+Il faut faire connaître votre lien vous-même
+
+
+
+Les deux peuvent cohabiter : la plateforme pour se faire découvrir, votre propre boutique pour les habitués. Notre article sur le click and collect sans commission détaille le calcul et la façon de faire passer les clients d&rsquo;un canal à l&rsquo;autre.
+Que doit faire un bon logiciel de commande pour pizzeria ?
+Il doit prendre la commande et préparer la livraison, sans vous obliger à recopier quoi que ce soit. Voici la liste des fonctions qui comptent vraiment le soir du coup de feu :
+
+Une carte claire : pizzas par base tomate ou crème, formats, boissons, desserts, avec un champ précisions pour « sans olives » ou « bien cuite ».
+Une commande rapide : chez Marchéo, le client commande en 30 secondes, sans créer de compte.
+Une zone de livraison par rayon ou par communes, pour refuser poliment les adresses trop lointaines.
+Des créneaux avec capacité : par exemple dix pizzas livrées par quart d&rsquo;heure, pas plus que ce que votre four et votre livreur absorbent.
+Un minimum de commande et des frais, avec un seuil de gratuité.
+Le paiement en ligne ou l&rsquo;empreinte bancaire, pour éviter les trajets pour rien.
+Une tournée par créneau, avec les adresses dans l&rsquo;ordre et l&rsquo;itinéraire à ouvrir dans Google Maps ou Waze.
+Un SMS au client quand la commande part.
+
+Si l&rsquo;outil ne fait que l&rsquo;itinéraire, il vous faudra encore prendre les commandes au téléphone. S&rsquo;il ne fait que la commande, vous recopierez les adresses à la main.
+Comment régler la zone, les créneaux et les frais de livraison d&rsquo;une pizzeria ?
+La règle est de livrer court et vite. Une pizza voyage mal : au-delà d&rsquo;un quart d&rsquo;heure de route, elle arrive tiède et la croûte ramollit.
+
+
+
+Réglage
+Point de départ prudent
+Pourquoi
+
+
+
+
+Zone
+3 à 5 km autour de la pizzeria
+Pizza encore chaude à l&rsquo;arrivée
+
+
+Créneaux
+Tous les 15 ou 20 minutes, de 19 h à 22 h
+Lisser le coup de feu
+
+
+Capacité
+Selon votre four et votre nombre de livreurs
+Ne pas promettre l&rsquo;impossible
+
+
+Minimum de commande
+15 à 20 €
+Rentabiliser chaque trajet
+
+
+Frais de livraison
+2 à 3 €
+Couvrir le carburant
+
+
+Livraison offerte
+À partir de 30 € environ
+Pousser la deuxième pizza
+
+
+
+Ces chiffres sont une base à ajuster selon votre quartier. Commencez avec une capacité basse, puis augmentez quand vous savez ce que votre équipe tient un vendredi soir.
+Comment organiser la tournée du soir ?
+La tournée se prépare créneau par créneau : les commandes d&rsquo;un même quart d&rsquo;heure partent ensemble, dans l&rsquo;ordre des adresses. Le logiciel vous donne la liste et l&rsquo;itinéraire, le livreur charge les boîtes dans l&rsquo;ordre inverse des arrêts.
+Quelques réflexes simples :
+
+un sac isotherme par livreur, et les boîtes à plat pour garder la garniture en place ;
+le SMS « votre commande arrive » au départ, qui évite la plupart des sonnettes sans réponse ;
+un geste sur le téléphone à chaque arrêt pour marquer la commande livrée ;
+deux ou trois communes regroupées par créneau plutôt qu&rsquo;une zone éparpillée.
+
+Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Le logiciel sert à ce que la tournée soit prête quand la pizza sort du four.
+Paiement à la livraison ou paiement en ligne ?
+Les deux sont possibles, et le paiement en ligne est le plus sûr pour la livraison. Une pizza livrée à une porte qui ne s&rsquo;ouvre pas est perdue, et le trajet aussi.
+Si vos clients préfèrent payer à la porte, gardez cette option pour les habitués et activez l&rsquo;empreinte bancaire pour les autres. Elle bloque jusqu&rsquo;à 75 % du panier sans débiter la carte, et la somme est libérée automatiquement 24 heures après la remise de la commande. Le principe est expliqué dans notre article sur l&rsquo;empreinte bancaire et le no-show. Pour le paiement par carte à la porte, il faut un terminal portable, celui que vous avez déjà si c&rsquo;est le cas.
+Combien coûte un logiciel de livraison pour pizzeria ?
+Un logiciel à abonnement coûte le même prix que vous vendiez 50 ou 500 pizzas par mois. C&rsquo;est la différence principale avec les plateformes, dont le coût grandit avec vos ventes.
+
+
+
+Formule Marchéo
+Installation (une fois)
+Par mois
+Livraison à domicile
+
+
+
+
+Vitrine
+249 €
+19 €
+Non, site de présentation et carte
+
+
+Click &amp; Collect + Réservation
+399 €
+39 €
+Non, commandes à emporter et réservation de table
+
+
+Click &amp; Collect + Livraison
+549 €
+59 €
+Oui, organisée par vous
+
+
+
+Toutes les formules sont sans engagement, avec 0 % de commission. Beaucoup de pizzerias commencent par la vente à emporter, puis ajoutent la livraison quand les créneaux de retrait sont bien rodés.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Une pizzeria peut ouvrir la livraison en ligne sans matériel à acheter et sans développeur. Les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre carte avec les prix et les formats
+Une application à faire télécharger aux clients
+
+
+Un livreur, ou vous-même sur les heures calmes
+Une société de livraison ou des coursiers
+
+
+Des sacs isothermes
+Une tablette, une imprimante ou une caisse neuve
+
+
+Une zone, des créneaux, un minimum et des frais
+Un développeur ou une agence
+
+
+Un QR code sur chaque boîte et sur la vitrine
+Une commission sur chaque pizza
+
+
+
+Pour commencer
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous hésitez entre les solutions, notre comparatif des logiciels de click &amp; collect présente les familles d&rsquo;outils de façon factuelle.
+La page dédiée à votre métier est ici : commande en ligne et livraison pour pizzeria. Pour voir votre boutique avant de décider, la démo gratuite prend 30 secondes : vous choisissez « Pizzeria », vous tapez le nom de votre établissement, l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Quel logiciel de livraison pour une pizzeria indépendante ?
+R : Trois familles existent : les plateformes de livraison, qui prennent la commande, fournissent le coursier et prélèvent une commission de l'ordre de 14 à 30 % ; les optimiseurs de tournée, qui calculent l'ordre des arrêts mais ne prennent pas les commandes ; et les logiciels de commande en ligne pour commerçants. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 549 €. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée.
+Q : Faut-il acheter du matériel pour prendre les commandes de livraison en ligne ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client paie par carte à la porte, il le fait avec votre terminal de paiement habituel, à condition qu'il soit portable.
+Q : Existe-t-il un logiciel de livraison pizza gratuit ?
+R : Les outils gratuits sont surtout des applications d'itinéraire ou des versions d'essai. Les plateformes ne coûtent rien à l'inscription mais prélèvent une commission sur chaque commande. Un logiciel à abonnement fixe coûte quelques dizaines d'euros par mois, quel que soit votre volume de pizzas.
+Q : Comment éviter les pizzas livrées à quelqu'un qui n'ouvre pas ?
+R : Demandez le paiement en ligne à la commande, ou activez l'empreinte bancaire : elle bloque jusqu'à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après la commande récupérée. Un SMS au départ du livreur réduit aussi les absences.
 
 # Fleuriste click and collect : bouquets en ligne et retrait à l'heure
 
@@ -2395,7 +2583,7 @@ Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les command
 
 Un food-truck ne vend pas toute la journée. Il vend entre 11 h 45 et 13 h 15. Passé 13 h 30, la zone d&rsquo;activité s&rsquo;est vidée, et ce que vous n&rsquo;avez pas servi dans cette fenêtre est perdu pour de bon.
 C&rsquo;est la particularité du métier : la demande est là, mais elle arrive toute en même temps, sur un poste de travail d&rsquo;un mètre cinquante de large, avec une file qui décourage la moitié des gens qui la voient. Le client qui a vingt minutes de pause déjeuner compte les personnes devant lui, fait le calcul, et va acheter un sandwich ailleurs.
-Prendre une partie des commandes à l&rsquo;avance ne demande pas de changer votre carte ni votre matériel. Cela change simplement l&rsquo;ordre dans lequel les choses se passent.
+Prendre une partie des commandes à l&rsquo;avance ne demande pas de changer votre carte, et se fait sans matériel à acheter ni commission sur vos ventes. Cela change simplement l&rsquo;ordre dans lequel les choses se passent.
 Ce que la commande à l&rsquo;avance change concrètement
 
 
@@ -2466,8 +2654,10 @@ Le bureau qui commande douze menus pour une réunion est le meilleur client d&rs
 Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L&rsquo;empreinte bancaire permet de réserver jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur organiser sa propre livraison locale donne la méthode pour fixer zone, minimum et frais.
 Pour commencer
 Vous n&rsquo;avez besoin ni d&rsquo;un site, ni d&rsquo;un développeur, ni d&rsquo;une caisse particulière. Il vous faut une page à votre nom, un catalogue, des créneaux réglés à votre cadence et un QR code sur le camion.
-La page détaillée pour ce métier est là : click &amp; collect pour fast-food et food-truck. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
+La page détaillée pour ce métier est là : click &amp; collect pour fast-food et food-truck. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement. Si votre camion fait des pizzas et que vous livrez le soir, voyez aussi notre guide du logiciel de livraison pizza.
 
+Q : Faut-il acheter du matériel pour faire du click and collect sur un food-truck ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone que vous avez déjà dans le camion. La formule Click & Collect + Réservation coûte 39 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 €.
 Q : Faut-il une connexion internet stable sur le spot pour prendre des commandes en ligne ?
 R : Le client commande depuis son propre téléphone, donc sur son propre réseau. De votre côté, il vous faut simplement de quoi consulter la liste des commandes : un partage de connexion depuis votre téléphone suffit. Imprimez ou capturez la liste du midi avant de partir, vous êtes couvert même en zone blanche.
 Q : Comment mes clients savent-ils où je suis aujourd'hui ?
@@ -2786,7 +2976,7 @@ Les commerçants qui s&rsquo;en sortent le mieux ne choisissent pas entre platef
 La plateforme sert à être découvert par des gens qui ne vous connaissent pas. C&rsquo;est de la publicité payée à la commande.
 Votre boutique en ligne sert à vos habitués et à tous ceux qui vous ont trouvé une fois. Zéro commission, et le client est à vous.
 
-Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant.
+Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du logiciel de livraison pizza détaille la zone, les créneaux du soir et la tournée.
 Ce que doit avoir votre boutique pour tenir la comparaison
 Le client habitué à une plateforme attend une expérience aussi simple. Votre boutique doit donc offrir :
 
@@ -3389,7 +3579,7 @@ Poissonnerie. Poisson et plateaux de fruits de mer, tournée très courte. Voir 
 Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir la solution pour traiteur et la création de site internet de traiteur.
 Fromagerie. Plateaux et formules raclette livrés le vendredi soir. Voir la solution pour fromagerie et le click and collect en fromagerie.
 Fleuriste. Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir la solution pour fleuriste.
-Pizzeria. Livraison du soir sur une zone courte, à heure annoncée. Voir la solution pour pizzeria.
+Pizzeria. Livraison du soir sur une zone courte, à heure annoncée. Voir la solution pour pizzeria et notre guide du logiciel de livraison pizza.
 Restaurant. Livraison des habitués en direct, plateforme pour la découverte si besoin. Voir la solution pour restaurant.
 Fast-food et food-truck. Livraison autour de l&rsquo;emplacement du jour. Voir la solution pour fast-food et le click &amp; collect pour food-truck.
 

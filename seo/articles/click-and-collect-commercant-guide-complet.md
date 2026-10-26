@@ -2,7 +2,7 @@
 title: "Click & collect pour commerçant : le guide complet"
 titre_court: "Click & collect : le guide complet"
 description: "Click and collect, ça veut dire quoi pour un commerçant ? Définition, fonctionnement, créneaux, paiement, no-show et mise en place, sans matériel ni commission."
-meta_title: "Click and collect : ce que ça veut dire, comment le mettre en place"
+meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
 modified: 2026-10-25

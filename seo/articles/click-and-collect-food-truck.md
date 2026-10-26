@@ -5,6 +5,7 @@ description: "Un food-truck vend l'essentiel de sa journée en 90 minutes. Prend
 meta_title: "Click & collect pour food-truck : le guide pratique"
 meta_description: "Prendre les commandes à l'avance sur un food-truck : emplacement du jour, créneaux de retrait, commissions évitées et passage des habitués. Guide concret."
 date: 2026-09-17
+modified: 2026-10-26
 rubrique: Guide
 emoji: 🚚
 keywords:
@@ -18,6 +19,8 @@ metiers:
   - pizzeria
   - restaurant
 faq:
+  - q: "Faut-il acheter du matériel pour faire du click and collect sur un food-truck ?"
+    r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone que vous avez déjà dans le camion. La formule Click & Collect + Réservation coûte 39 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 €."
   - q: "Faut-il une connexion internet stable sur le spot pour prendre des commandes en ligne ?"
     r: "Le client commande depuis son propre téléphone, donc sur son propre réseau. De votre côté, il vous faut simplement de quoi consulter la liste des commandes : un partage de connexion depuis votre téléphone suffit. Imprimez ou capturez la liste du midi avant de partir, vous êtes couvert même en zone blanche."
   - q: "Comment mes clients savent-ils où je suis aujourd'hui ?"
@@ -32,7 +35,7 @@ Un food-truck ne vend pas toute la journée. Il vend entre 11 h 45 et 13 h 15. P
 
 C'est la particularité du métier : la demande est là, mais elle arrive toute en même temps, sur un poste de travail d'un mètre cinquante de large, avec une file qui décourage la moitié des gens qui la voient. Le client qui a vingt minutes de pause déjeuner compte les personnes devant lui, fait le calcul, et va acheter un sandwich ailleurs.
 
-Prendre une partie des commandes à l'avance ne demande pas de changer votre carte ni votre matériel. Cela change simplement l'ordre dans lequel les choses se passent.
+Prendre une partie des commandes à l'avance ne demande pas de changer votre carte, et se fait sans matériel à acheter ni commission sur vos ventes. Cela change simplement l'ordre dans lequel les choses se passent.
 
 ## Ce que la commande à l'avance change concrètement
 
@@ -101,4 +104,4 @@ Deux garde-fous simples : une date limite plus longue pour ces commandes groupé
 
 Vous n'avez besoin ni d'un site, ni d'un développeur, ni d'une caisse particulière. Il vous faut une page à votre nom, un catalogue, des créneaux réglés à votre cadence et un QR code sur le camion.
 
-La page détaillée pour ce métier est là : [click & collect pour fast-food et food-truck](/solutions/fastfood). Pour voir à quoi ressemblerait votre boutique, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l'aperçu s'affiche. Sans carte bancaire et sans engagement.
+La page détaillée pour ce métier est là : [click & collect pour fast-food et food-truck](/solutions/fastfood). Pour voir à quoi ressemblerait votre boutique, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l'aperçu s'affiche. Sans carte bancaire et sans engagement. Si votre camion fait des pizzas et que vous livrez le soir, voyez aussi notre guide du [logiciel de livraison pizza](/blog/logiciel-livraison-pizza).

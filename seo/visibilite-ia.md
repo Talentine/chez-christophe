@@ -46,4 +46,4 @@ Prochaine question en rotation : n°6.
 
 ## Bilans hebdomadaires (le lundi)
 
-Aucun bilan pour l'instant : premier relevé exploitable attendu au prochain run où le navigateur répond.
+- **Semaine du 20 au 26 octobre 2026** : Marchéo cité 0 fois sur 10 relevés (7 réponses Perplexity, 3 recherches Google sans aperçu IA affiché). Les IA citent Shopify, Wix, des optimiseurs de tournée (Routific, Shipday) et des sites publics (francenum, economie.gouv). Aucun relevé du 23 au 26/10 : navigateur non disponible en run automatique. Les quatre pages piliers sont en ligne depuis le 23/10 ; les IA citent surtout ce que d'autres sites disent d'une marque, d'où l'intérêt des fiches annuaires (voir seo/fiches-annuaires.md).
