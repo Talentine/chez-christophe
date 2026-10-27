@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;600;700&family=Caveat:wght@600&display=swap">
 <style>
-/* Layout : un sommaire, puis une fiche par technique (une page imprimée chacune). Chaque fiche : dessin, étapes numérotées, "c'est fait quand". */
+/* Layout : un sommaire en deux parties (à l'étal / sur Google), puis une fiche par technique. Chaque fiche : dessin, étapes, "c'est fait quand". */
 :root{
   --bg:#F7F2E8;--paper:#FFFFFF;--ink:#0A1428;--ink-soft:#5A6478;--brand:#0F2C52;
   --green:#5BBE3A;--green-soft:#DDF3D2;--tomato:#E65533;--sun:#F4B942;--sun-soft:#FCEFD2;--line:#E5E2D8;--sketch:#0F2C52;
@@ -43,7 +43,6 @@ a{color:var(--brand)}
 .f-green{fill:var(--green)} .f-sun{fill:var(--sun)} .f-tom{fill:var(--tomato)} .f-paper{fill:var(--paper)} .f-soft{fill:var(--green-soft)} .f-ink{fill:var(--sketch)}
 svg text{font-family:var(--f-hand);fill:var(--sketch)}
 
-/* En-tête */
 .head{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:center}
 .head > *{min-width:0}
 .head svg{width:100%;height:auto}
@@ -52,30 +51,33 @@ svg text{font-family:var(--f-hand);fill:var(--sketch)}
 .id dd{margin:0}
 .todo{background:var(--sun);color:#0A1428;padding:0 6px;border-radius:4px;font-weight:600}
 
-/* Rôles */
 .roles{display:grid;grid-template-columns:1fr 2fr;gap:14px}
 .role{border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .role.m{background:var(--paper);border:1.5px dashed var(--line)}
 .role.a{background:var(--green-soft)}
 .role ul{margin:0;padding-left:18px}
 
-/* Sommaire */
+.toc-part{display:flex;flex-direction:column;gap:10px}
+.toc-part + .toc-part{margin-top:8px}
 .toc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.toc a{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.toc a{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;height:100%}
 .toc a:hover,.toc a:focus-visible{border-color:var(--brand);outline:none}
 .toc .num{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--brand)}
 .toc .t{font-weight:700;line-height:1.3;min-width:0}
 .toc .t small{display:block;font-weight:400;color:var(--ink-soft)}
 .toc .d{font-size:12px;color:var(--ink-soft);white-space:nowrap}
 .toc .bonus a{background:transparent;border-style:dashed}
-.toc .google .num{color:var(--tomato)}
+.toc .stall .num{color:var(--tomato)}
 
-/* Fiche */
+.part{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-top:8px;border-top:2px solid var(--brand)}
+.part h2{font-size:clamp(20px,3vw,26px)}
+
 .fiche{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:20px;scroll-margin-top:16px}
 .fiche-top{display:grid;grid-template-columns:1fr 210px;gap:20px;align-items:start}
 .fiche-top > *{min-width:0}
 .fiche-top svg{width:100%;height:auto}
 .tag{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--tomato)}
+.tag.g{color:var(--brand)}
 .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--green-soft);color:var(--brand)}
 .pill.sun{background:var(--sun-soft)}
@@ -86,6 +88,10 @@ svg text{font-family:var(--f-hand);fill:var(--sketch)}
 .steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--paper);display:grid;place-items:center;font-weight:800;font-size:14px;font-family:var(--f-display)}
 .steps li > span{min-width:0;padding-top:4px}
 
+.tips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tips li{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0;font-size:14px}
+.tips li b{font-family:var(--f-display);font-size:15px;color:var(--brand)}
+
 .boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .box{border-radius:12px;padding:14px 16px;font-size:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .box b.h{font-family:var(--f-display);font-size:15px}
@@ -93,13 +99,16 @@ svg text{font-family:var(--f-hand);fill:var(--sketch)}
 .box.no{background:var(--sun-soft)}
 .box ul{margin:0;padding-left:18px}
 
-.copy{position:relative;background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:14px 16px;font-size:14px;white-space:pre-line}
+.copy{background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:14px 16px;font-size:14px;white-space:pre-line}
 .copy .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;white-space:normal}
 .fill{background:var(--sun-soft);padding:0 4px;border-radius:3px}
 .models{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .models > *{min-width:0}
 
-.bubble{position:relative;background:var(--green-soft);border-radius:16px;padding:14px 16px;font-size:15px}
+.scripts{display:grid;grid-template-columns:1fr 1fr;gap:22px 16px}
+.script{display:flex;flex-direction:column;gap:8px;min-width:0}
+.script .when-s{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.bubble{position:relative;background:var(--green-soft);border-radius:16px;padding:12px 16px;font-size:15px}
 .bubble::after{content:"";position:absolute;left:24px;bottom:-10px;border:10px solid transparent;border-top-color:var(--green-soft);border-bottom:0}
 .bubbles{display:flex;flex-direction:column;gap:22px}
 
@@ -122,11 +131,11 @@ td.n{font-weight:700}
 
 @media print{
   body{background:#fff;padding:0}
-  .fiche,.sheet{border:none;break-inside:auto}
+  .fiche,.sheet{border:none}
   .fiche{break-before:page}
 }
 @media (max-width:760px){
-  .head,.roles,.boxes,.models{grid-template-columns:1fr}
+  .head,.roles,.boxes,.models,.tips,.scripts{grid-template-columns:1fr}
   .fiche-top{grid-template-columns:1fr}
   .fiche-top svg{max-width:200px}
   .toc{grid-template-columns:1fr}
@@ -145,31 +154,28 @@ td.n{font-weight:700}
   <div>
     <p class="eyebrow">Marchéo · Guide de lancement · 90 jours</p>
     <h1 style="margin-top:8px">Arnaud, primeur au marché de Toulouse</h1>
-    <p class="muted" style="margin-top:10px">Ce guide est fait pour que vous avanciez seul, à votre rythme. Une fiche = une technique. Chaque fiche dit quoi faire, combien de temps ça prend et quand c'est terminé.</p>
+    <p class="muted" style="margin-top:10px">Un site, ça ne marche que si les clients savent qu'il existe. Ce guide vous donne des gestes simples à faire à l'étal, puis sur Google. Une fiche = une technique, à mettre en place à votre rythme.</p>
     <dl class="id">
       <dt>Métier</dt><dd>Primeur, fruits et légumes</dd>
       <dt>Vente en ligne</dt><dd>Click &amp; collect : retrait à l'étal, pas de livraison</dd>
       <dt>Marché</dt><dd><span class="todo">nom du marché</span> · <span class="todo">jours et horaires</span></dd>
-      <dt>Priorité n°1</dt><dd><b>La fiche Google</b> : c'est là que les Toulousains cherchent un primeur</dd>
+      <dt>Le message</dt><dd><b>« Commandez la veille, c'est prêt quand vous passez. »</b></dd>
     </dl>
   </div>
-  <svg viewBox="0 0 340 250" role="img" aria-label="Dessin de l'étal d'Arnaud et d'une épingle Google Maps au-dessus">
-    <path class="f-tom" d="M30 90 L310 90 L295 125 L45 125 Z" opacity=".9"/>
-    <path class="sk" d="M30 90 L310 90 L295 125 L45 125 Z"/>
-    <path class="sk-thin" d="M80 90 L76 125 M130 90 L128 125 M180 90 L180 125 M230 90 L232 125 M280 90 L284 125"/>
-    <path class="sk" d="M58 125 L58 230 M282 125 L282 230"/>
-    <path class="f-paper sk" d="M40 180 L300 180 L300 220 L40 220 Z"/>
-    <!-- cagettes de fruits et légumes -->
-    <circle cx="75" cy="170" r="12" class="f-tom"/><circle cx="97" cy="171" r="11" class="f-tom"/><circle cx="86" cy="160" r="10" class="f-tom"/>
-    <circle cx="140" cy="170" r="12" class="f-sun"/><circle cx="162" cy="171" r="11" class="f-sun"/><circle cx="151" cy="160" r="10" class="f-sun"/>
-    <circle cx="205" cy="170" r="12" class="f-green"/><circle cx="227" cy="170" r="11" class="f-green"/><circle cx="216" cy="160" r="10" class="f-green"/>
-    <path class="f-green" d="M255 178 C262 150 275 150 282 178 Z"/><path class="sk-thin" d="M268 152 L262 140 M268 152 L276 142"/>
-    <!-- épingle -->
-    <path class="f-tom" d="M170 6 C150 6 140 22 146 38 C152 54 170 74 170 74 C170 74 188 54 194 38 C200 22 190 6 170 6 Z"/>
-    <path class="sk" d="M170 6 C150 6 140 22 146 38 C152 54 170 74 170 74 C170 74 188 54 194 38 C200 22 190 6 170 6 Z"/>
-    <circle cx="170" cy="32" r="9" class="f-paper sk"/>
-    <text x="204" y="30" font-size="20">trouvé sur Google</text>
-    <text x="206" y="50" font-size="15">★★★★★ 40 avis</text>
+  <svg viewBox="0 0 340 250" role="img" aria-label="Dessin de l'étal d'Arnaud avec un QR code et un client qui le scanne">
+    <path class="f-tom" d="M30 60 L310 60 L295 95 L45 95 Z" opacity=".9"/>
+    <path class="sk" d="M30 60 L310 60 L295 95 L45 95 Z"/>
+    <path class="sk-thin" d="M80 60 L76 95 M130 60 L128 95 M180 60 L180 95 M230 60 L232 95 M280 60 L284 95"/>
+    <path class="sk" d="M58 95 L58 220 M282 95 L282 220"/>
+    <path class="f-paper sk" d="M40 165 L300 165 L300 205 L40 205 Z"/>
+    <circle cx="75" cy="155" r="12" class="f-tom"/><circle cx="97" cy="156" r="11" class="f-tom"/><circle cx="86" cy="145" r="10" class="f-tom"/>
+    <circle cx="140" cy="155" r="12" class="f-sun"/><circle cx="162" cy="156" r="11" class="f-sun"/><circle cx="151" cy="145" r="10" class="f-sun"/>
+    <circle cx="205" cy="155" r="12" class="f-green"/><circle cx="227" cy="155" r="11" class="f-green"/>
+    <rect x="248" y="105" width="56" height="68" rx="4" class="f-paper sk"/>
+    <rect x="258" y="113" width="36" height="36" class="sk-thin"/>
+    <path class="f-ink" d="M261 116h9v9h-9zM282 116h9v9h-9zM261 137h9v9h-9zM277 132h6v6h-6zM285 140h6v6h-6z"/>
+    <text x="252" y="166" font-size="13">commandez !</text>
+    <text x="30" y="242" font-size="19">l'étal d'Arnaud, QR code bien visible</text>
   </svg>
 </header>
 
@@ -179,13 +185,12 @@ td.n{font-weight:700}
     <p class="eyebrow">Marchéo</p>
     <ul>
       <li>Vous envoie ce guide</li>
-      <li>Jette un œil à votre fiche Google à J+7</li>
-      <li>Vous appelle 15 min à J+30</li>
+      <li>Fait un point de 15 min avec vous à J+30</li>
     </ul>
   </div>
   <div class="role a">
     <p class="eyebrow">Vous, Arnaud</p>
-    <p>Vous suivez les fiches dans l'ordre. Il faut environ <b>2 heures la première semaine</b>, puis <b>15 minutes par semaine</b>. Tout se fait depuis votre téléphone. Vous imprimez vous-même les QR codes, sur une imprimante ou au tabac-presse (quelques centimes la page).</p>
+    <p>Vous mettez les fiches en place une par une. Le plus important tient en une phrase : <b>parlez-en à chaque client, chaque jour de marché.</b> Aucun matériel n'est fourni : une imprimante (ou le tabac-presse), une pochette plastique et une ardoise suffisent.</p>
   </div>
 </section>
 
@@ -193,52 +198,70 @@ td.n{font-weight:700}
 <section class="sheet" style="display:flex;flex-direction:column;gap:16px">
   <div>
     <p class="eyebrow">Sommaire</p>
-    <h2>Les fiches, dans l'ordre</h2>
+    <h2>Les fiches</h2>
   </div>
-  <ol class="toc">
-    <li class="google"><a href="#fiche-1"><span class="num">1</span><span class="t">Trouver ou créer ma fiche Google<small>Semaine 1</small></span><span class="d">20 min</span></a></li>
-    <li class="google"><a href="#fiche-2"><span class="num">2</span><span class="t">Faire valider ma fiche<small>Semaine 1</small></span><span class="d">10 min</span></a></li>
-    <li class="google"><a href="#fiche-3"><span class="num">3</span><span class="t">Remplir ma fiche à 100 %<small>Semaine 1</small></span><span class="d">30 min</span></a></li>
-    <li class="google"><a href="#fiche-4"><span class="num">4</span><span class="t">Les photos qui donnent faim<small>Semaine 1, puis chaque semaine</small></span><span class="d">10 min</span></a></li>
-    <li class="google"><a href="#fiche-5"><span class="num">5</span><span class="t">Obtenir des avis<small>Chaque jour de marché</small></span><span class="d">2 min</span></a></li>
-    <li class="google"><a href="#fiche-6"><span class="num">6</span><span class="t">Répondre aux avis<small>Chaque semaine</small></span><span class="d">5 min</span></a></li>
-    <li class="google"><a href="#fiche-7"><span class="num">7</span><span class="t">Publier un post Google<small>Chaque semaine</small></span><span class="d">5 min</span></a></li>
-    <li><a href="#fiche-8"><span class="num">8</span><span class="t">Faire connaître la commande en ligne à l'étal<small>Semaine 2</small></span><span class="d">15 min</span></a></li>
-    <li><a href="#fiche-9"><span class="num">9</span><span class="t">Ma routine et mes objectifs<small>À garder sous la main</small></span><span class="d">15 min/sem.</span></a></li>
-    <li class="bonus"><a href="#fiche-bonus"><span class="num">+</span><span class="t">Bonus : et les réseaux sociaux ?<small>Facultatif, quand vous voulez</small></span><span class="d">au choix</span></a></li>
-  </ol>
+  <div class="toc-part">
+    <p class="eyebrow">Partie 1 · À l'étal, ce qui fait venir les premières commandes</p>
+    <ol class="toc">
+      <li class="stall"><a href="#fiche-1"><span class="num">1</span><span class="t">En parler à ses clients<small>Chaque jour de marché</small></span><span class="d">0 €</span></a></li>
+      <li class="stall"><a href="#fiche-2"><span class="num">2</span><span class="t">Afficher le QR code au bon endroit<small>Semaine 1</small></span><span class="d">~1 €</span></a></li>
+      <li class="stall"><a href="#fiche-3"><span class="num">3</span><span class="t">Le lien sur le ticket, les sacs, le téléphone<small>Semaine 1</small></span><span class="d">0 à 20 €</span></a></li>
+      <li class="stall"><a href="#fiche-4"><span class="num">4</span><span class="t">Montrer que ça marche<small>Dès la 1<sup>re</sup> commande</small></span><span class="d">0 €</span></a></li>
+      <li class="stall"><a href="#fiche-5"><span class="num">5</span><span class="t">Les petites astuces qui rapportent<small>Au fil des semaines</small></span><span class="d">0 €</span></a></li>
+    </ol>
+  </div>
+  <div class="toc-part">
+    <p class="eyebrow">Partie 2 · Sur Google, pour les clients qui ne vous connaissent pas encore</p>
+    <ol class="toc" start="6">
+      <li><a href="#fiche-6"><span class="num">6</span><span class="t">Créer et valider ma fiche Google<small>Semaine 1 : la validation prend quelques jours</small></span><span class="d">30 min</span></a></li>
+      <li><a href="#fiche-7"><span class="num">7</span><span class="t">Remplir ma fiche et mettre des photos<small>Semaine 2</small></span><span class="d">30 min</span></a></li>
+      <li><a href="#fiche-8"><span class="num">8</span><span class="t">Avoir des avis et y répondre<small>Chaque semaine</small></span><span class="d">5 min</span></a></li>
+    </ol>
+  </div>
+  <div class="toc-part">
+    <p class="eyebrow">Pour finir</p>
+    <ol class="toc">
+      <li><a href="#fiche-9"><span class="num">9</span><span class="t">Ma routine et mes objectifs<small>À garder sous la main</small></span><span class="d">15 min/sem.</span></a></li>
+      <li class="bonus"><a href="#fiche-bonus"><span class="num">+</span><span class="t">Bonus : et les réseaux sociaux ?<small>Facultatif</small></span><span class="d">au choix</span></a></li>
+    </ol>
+  </div>
 </section>
+
+<!-- ═════════════════ PARTIE 1 ═════════════════ -->
+<div class="part"><p class="eyebrow">Partie 1</p><h2>À l'étal</h2></div>
 
 <!-- ═════════ FICHE 1 ═════════ -->
 <article class="fiche" id="fiche-1">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 1 · Google</p>
-      <h2>Trouver ou créer ma fiche Google</h2>
-      <div class="meta"><span class="pill">⏱ 20 min</span><span class="pill sun">Semaine 1</span><span class="pill">Téléphone + compte Gmail</span></div>
-      <p class="goal">Quand quelqu'un tape « primeur Toulouse » ou « fruits et légumes marché », Google affiche une carte avec des épingles. Le but est que la vôtre y soit.</p>
+      <p class="tag">Fiche 1 · À l'étal · la plus importante</p>
+      <h2>En parler à ses clients</h2>
+      <div class="meta"><span class="pill">⏱ 10 secondes par client</span><span class="pill sun">Chaque jour de marché</span><span class="pill">0 €</span></div>
+      <p class="goal">Vos clients vous font confiance, à vous. Une phrase dite par vous vaut plus que n'importe quelle affiche. Le but : que chaque habitué ait entendu parler de la commande en ligne au moins une fois dans le mois.</p>
     </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Loupe au-dessus d'un plan avec une épingle">
-      <path class="sk-thin" d="M10 120 L70 100 L130 125 L200 105 L200 160 L130 165 L70 150 L10 165 Z"/>
-      <path class="sk-thin" d="M70 100 L70 150 M130 125 L130 165" opacity=".6"/>
-      <path class="f-tom" d="M100 78 C88 78 82 88 85 97 C89 107 100 120 100 120 C100 120 111 107 115 97 C118 88 112 78 100 78 Z"/>
-      <path class="sk-thin" d="M100 78 C88 78 82 88 85 97 C89 107 100 120 100 120 C100 120 111 107 115 97 C118 88 112 78 100 78 Z"/>
-      <circle cx="120" cy="50" r="34" class="sk"/><path class="sk" d="M144 74 L172 102"/>
-      <text x="96" y="56" font-size="17">primeur</text>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Arnaud derrière l'étal qui parle à une cliente">
+      <circle cx="55" cy="45" r="18" class="f-paper sk"/><path class="sk" d="M30 110 C30 80 80 80 80 110"/>
+      <path class="f-tom" d="M15 110 H95 L90 125 H20 Z"/><path class="sk" d="M15 110 H95 L90 125 H20 Z"/>
+      <circle cx="160" cy="55" r="16" class="f-paper sk"/><path class="sk" d="M138 120 C138 90 182 90 182 120"/>
+      <path class="sk" d="M175 110 L195 110 L192 140 L178 140 Z"/>
+      <path class="f-soft" d="M78 10 H172 a8 8 0 0 1 8 8 V34 a8 8 0 0 1 -8 8 H100 L88 52 L90 42 H78 a8 8 0 0 1 -8 -8 V18 a8 8 0 0 1 8 -8 Z"/>
+      <path class="sk-thin" d="M78 10 H172 a8 8 0 0 1 8 8 V34 a8 8 0 0 1 -8 8 H100 L88 52 L90 42 H78 a8 8 0 0 1 -8 -8 V18 a8 8 0 0 1 8 -8 Z"/>
+      <text x="82" y="32" font-size="15">la veille, c'est prêt !</text>
+      <text x="40" y="158" font-size="17">une phrase, à chaque client</text>
     </svg>
   </div>
-  <ol class="steps">
-    <li><span>Ouvrez <b>Google Maps</b> sur votre téléphone. Cherchez le nom de votre étal, puis « primeur + nom du marché ».</span></li>
-    <li><span><b>Si votre étal apparaît déjà</b> : touchez-le, puis « Revendiquer cette fiche » (ou « Vous êtes le propriétaire ? »). Suivez les écrans, puis passez à la fiche 2.</span></li>
-    <li><span><b>Si rien n'apparaît</b> : allez sur <b>business.google.com</b> et touchez « Commencer ». Connectez-vous avec <b>votre</b> adresse Gmail. Si vous n'en avez pas, créez-en une, c'est gratuit.</span></li>
-    <li><span>Nom : le nom de votre enseigne, <b>exactement</b> comme sur votre panneau. N'ajoutez rien (pas « Primeur pas cher Toulouse »), Google suspend les fiches qui font ça.</span></li>
-    <li><span>Catégorie : tapez « Primeur » et choisissez-la.</span></li>
-    <li><span>« Voulez-vous ajouter un lieu que les clients peuvent visiter ? » : répondez <b>Oui</b> et mettez l'adresse du marché. Placez l'épingle à l'endroit précis de votre étal.</span></li>
-    <li><span>Téléphone : votre portable. Site web : l'adresse de votre boutique Marchéo.</span></li>
-  </ol>
+  <p>Choisissez la phrase qui correspond au moment. Pas besoin de tout dire : une seule phrase, avec le sourire.</p>
+  <div class="scripts">
+    <div class="script"><span class="when-s">Quand il y a la queue</span><div class="bubble">« Vous savez que vous pouvez commander la veille sur internet ? Vous passez, c'est prêt, vous ne faites plus la queue. »</div></div>
+    <div class="script"><span class="when-s">Au moment de payer</span><div class="bubble">« La semaine prochaine, commandez en ligne et je vous prépare tout. Le QR code est là, sur l'ardoise. »</div></div>
+    <div class="script"><span class="when-s">Quand un produit est épuisé</span><div class="bubble">« Plus de fraises, désolé ! La prochaine fois, réservez-les en ligne la veille, je vous les mets de côté. »</div></div>
+    <div class="script"><span class="when-s">À un habitué pressé</span><div class="bubble">« Vous voulez que je vous envoie le lien par SMS ? Comme ça vous l'avez dans votre téléphone. »</div></div>
+    <div class="script"><span class="when-s">Pour une grosse quantité</span><div class="bubble">« Pour vos 5 kg de tomates à coulis, commandez en ligne : je vous les choisis bien mûres et c'est prêt à votre arrivée. »</div></div>
+    <div class="script"><span class="when-s">Au téléphone</span><div class="bubble">« Le plus simple, c'est de commander sur mon site, je vous envoie le lien. Vous récupérez à l'étal samedi. »</div></div>
+  </div>
   <div class="boxes">
-    <div class="box ok"><b class="h">C'est fait quand…</b>Google vous demande de valider la fiche. Passez à la fiche 2.</div>
-    <div class="box no"><b class="h">À éviter</b><ul><li>Créer la fiche avec le Gmail de quelqu'un d'autre : vous devez en rester propriétaire.</li><li>Créer une 2<sup>e</sup> fiche si une existe déjà.</li></ul></div>
+    <div class="box ok"><b class="h">Le bon réflexe</b>Enregistrez le lien de votre boutique dans les notes de votre téléphone. Vous pourrez l'envoyer par SMS en 3 secondes.</div>
+    <div class="box no"><b class="h">À éviter</b>Insister. On le dit une fois, on montre l'ardoise, et c'est tout. Le client y repensera tout seul.</div>
   </div>
 </article>
 
@@ -246,30 +269,39 @@ td.n{font-weight:700}
 <article class="fiche" id="fiche-2">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 2 · Google</p>
-      <h2>Faire valider ma fiche</h2>
-      <div class="meta"><span class="pill">⏱ 10 min</span><span class="pill sun">Semaine 1, un jour de marché</span><span class="pill">Étal monté</span></div>
-      <p class="goal">Tant que la fiche n'est pas validée, elle n'apparaît pas. Pour un étal, Google demande presque toujours une courte vidéo.</p>
+      <p class="tag">Fiche 2 · À l'étal</p>
+      <h2>Afficher le QR code au bon endroit</h2>
+      <div class="meta"><span class="pill">⏱ 15 min une fois</span><span class="pill sun">Semaine 1</span><span class="pill">~1 € d'impression</span></div>
+      <p class="goal">Le client doit voir le QR code pendant qu'il attend, quand il a son téléphone en main et rien d'autre à faire.</p>
     </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone qui filme l'étal">
-      <rect x="20" y="30" width="80" height="130" rx="12" class="f-paper sk"/>
-      <circle cx="60" cy="140" r="8" class="f-tom"/>
-      <path class="f-tom" d="M35 80 L85 80 L80 92 L40 92 Z"/><path class="sk-thin" d="M35 80 L85 80 L80 92 L40 92 Z M42 92 V120 M78 92 V120 M36 112 H84"/>
-      <path class="sk-thin" d="M110 70 C130 60 150 62 165 75" stroke-dasharray="4 6"/>
-      <circle cx="175" cy="88" r="6" class="f-tom"/>
-      <text x="118" y="112" font-size="20">REC</text>
-      <text x="112" y="135" font-size="16">1 seule prise</text>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Ardoise sur piquet avec QR code et une flèche vers la file d'attente">
+      <path class="sk" d="M60 165 L60 120"/>
+      <rect x="10" y="20" width="110" height="100" rx="6" class="f-ink" opacity=".92"/>
+      <rect x="10" y="20" width="110" height="100" rx="6" class="sk"/>
+      <rect x="20" y="30" width="50" height="50" fill="#fff"/>
+      <path fill="#0A1428" d="M24 34h12v12h-12zM54 34h12v12h-12zM24 64h12v12h-12zM43 52h7v7h-7zM54 66h8v8h-8z"/>
+      <text x="74" y="50" font-size="14" style="fill:#fff">Com-</text><text x="74" y="66" font-size="14" style="fill:#fff">mandez</text>
+      <text x="18" y="102" font-size="15" style="fill:#fff">c'est prêt la veille !</text>
+      <circle cx="150" cy="60" r="10" class="sk-thin"/><circle cx="172" cy="68" r="10" class="sk-thin"/><circle cx="192" cy="76" r="10" class="sk-thin"/>
+      <path class="sk-thin" d="M140 120 C130 110 128 100 128 90"/><path class="sk-thin" d="M123 96 L128 88 L133 96"/>
+      <text x="138" y="140" font-size="16">la file</text><text x="138" y="156" font-size="16">regarde ici</text>
     </svg>
   </div>
   <ol class="steps">
-    <li><span>Faites-le <b>pendant les horaires du marché</b>, étal monté. Google vérifie que vous êtes bien là aux horaires indiqués.</span></li>
-    <li><span>Dans l'application Google Maps : touchez votre profil, puis « Valider » ou « Obtenir la validation ». Choisissez « Vidéo » si on vous la propose.</span></li>
-    <li><span>Filmez <b>sans couper</b>, pendant 30 secondes à 1 minute : <br>a. un panneau de rue ou l'entrée du marché ; <br>b. le chemin jusqu'à votre étal ; <br>c. votre enseigne et vos cagettes ; <br>d. une preuve que c'est à vous : la caisse, la balance, ou vous qui sortez la clé de votre camion.</span></li>
-    <li><span>Envoyez. La réponse arrive en général en <b>2 à 7 jours</b>. Pendant ce temps, faites la fiche 3 : vos modifications seront visibles dès la validation.</span></li>
+    <li><span>Dans votre tableau de bord Marchéo, téléchargez votre <b>QR code boutique</b>. Imprimez-le en <b>grand</b>, au moins 10 cm de côté, sinon il ne se scanne pas de loin.</span></li>
+    <li><span>Au-dessus du QR code, écrivez gros : <b>« Commandez la veille, c'est prêt quand vous passez »</b>. En dessous : <b>« Retrait à l'étal · Paiement en ligne »</b>.</span></li>
+    <li><span>Glissez la feuille dans une pochette plastique (il pleut aussi à Toulouse) et fixez-la avec des pinces à linge.</span></li>
   </ol>
+  <h3>Les 3 endroits où le mettre</h3>
+  <ul class="tips">
+    <li><b>1. Là où la file attend</b>À hauteur des yeux, sur un piquet ou une ardoise au bout de l'étal. C'est l'endroit qui compte le plus.</li>
+    <li><b>2. À côté de la balance ou de la caisse</b>Le client le voit pendant que vous pesez et qu'il sort sa carte.</li>
+    <li><b>3. Sur la cagette du produit vedette</b>Un petit QR avec « À réserver en ligne » sur les fraises, les tomates anciennes ou le panier de la semaine.</li>
+    <li><b>Bonus : sur le camion</b>Si votre camion est garé près de l'étal, une feuille derrière le pare-brise avec le QR code.</li>
+  </ul>
   <div class="boxes">
-    <div class="box ok"><b class="h">C'est fait quand…</b>Vous recevez l'e-mail « Votre fiche est validée » et votre étal apparaît sur Google Maps.</div>
-    <div class="box no"><b class="h">Si c'est refusé</b>Refaites la vidéo plus lentement, en montrant bien le nom du marché et votre enseigne. Si c'est encore bloqué, écrivez-nous.</div>
+    <div class="box ok"><b class="h">Testez-le</b>Placez-vous à 2 mètres, là où le client attend, et scannez avec votre téléphone. Si ça ne marche pas, imprimez plus grand.</div>
+    <div class="box no"><b class="h">À éviter</b>Le QR code posé à plat sur la table, caché par les cagettes, ou en plein soleil derrière un plastique qui brille.</div>
   </div>
 </article>
 
@@ -277,37 +309,33 @@ td.n{font-weight:700}
 <article class="fiche" id="fiche-3">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 3 · Google</p>
-      <h2>Remplir ma fiche à 100 %</h2>
-      <div class="meta"><span class="pill">⏱ 30 min</span><span class="pill sun">Semaine 1</span><span class="pill">Textes à copier-coller ci-dessous</span></div>
-      <p class="goal">Google montre en premier les fiches complètes. Chaque case vide est un point donné à vos concurrents du marché.</p>
+      <p class="tag">Fiche 3 · À l'étal</p>
+      <h2>Le lien sur le ticket, les sacs, le téléphone</h2>
+      <div class="meta"><span class="pill">⏱ 30 min une fois</span><span class="pill sun">Semaine 1</span><span class="pill">0 à 20 €</span></div>
+      <p class="goal">Le client repart avec le ticket et le sac. Si votre site est écrit dessus, il le retrouve à la maison, au moment où il fait sa liste de courses.</p>
     </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Formulaire avec toutes les cases cochées">
-      <rect x="40" y="10" width="130" height="150" rx="10" class="f-paper sk"/>
-      <g class="sk-thin">
-        <rect x="55" y="32" width="14" height="14" rx="3"/><path d="M78 39 H150"/>
-        <rect x="55" y="62" width="14" height="14" rx="3"/><path d="M78 69 H140"/>
-        <rect x="55" y="92" width="14" height="14" rx="3"/><path d="M78 99 H152"/>
-        <rect x="55" y="122" width="14" height="14" rx="3"/><path d="M78 129 H132"/>
-      </g>
-      <g class="sk" stroke="var(--green)"><path d="M57 39 l4 4 8-9"/><path d="M57 69 l4 4 8-9"/><path d="M57 99 l4 4 8-9"/><path d="M57 129 l4 4 8-9"/></g>
-      <text x="150" y="168" font-size="18">100 %</text>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Ticket de caisse avec le lien du site en bas, et sac kraft tamponné">
+      <path class="f-paper" d="M20 10 H100 V150 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 Z"/>
+      <path class="sk" d="M20 10 H100 V150 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 l-8 -6 l-8 6 Z"/>
+      <path class="sk-thin" d="M30 28 H90 M30 44 H80 M30 56 H86 M30 68 H74 M30 86 H90"/>
+      <rect x="27" y="104" width="66" height="30" rx="4" class="f-soft"/>
+      <text x="31" y="117" font-size="12">Commandez</text><text x="31" y="130" font-size="12">en ligne !</text>
+      <path class="f-sun" d="M120 60 L195 60 L188 160 L127 160 Z" opacity=".85"/><path class="sk" d="M120 60 L195 60 L188 160 L127 160 Z"/>
+      <circle cx="157" cy="108" r="22" class="sk-thin" stroke-dasharray="3 3"/>
+      <text x="141" y="106" font-size="12">mon site</text><text x="143" y="119" font-size="11">tampon</text>
     </svg>
   </div>
-  <ol class="steps">
-    <li><span><b>Catégories</b> : principale « Primeur ». Ajoutez en secondaire « Marchand de fruits et légumes » et, seulement si c'est vrai, « Magasin de produits bio » ou « Producteur ».</span></li>
-    <li><span><b>Horaires</b> : uniquement vos jours et heures de marché. Les autres jours en « Fermé ». Pensez aux <b>horaires exceptionnels</b> pour les jours fériés et vos congés.</span></li>
-    <li><span><b>Description</b> : copiez le modèle ci-dessous et remplacez les passages surlignés.</span></li>
-    <li><span><b>Produits</b> (onglet « Produits ») : ajoutez 10 produits phares avec une photo, par exemple tomates anciennes, fraises, panier de saison, herbes fraîches. Pas besoin de prix si ça change toutes les semaines.</span></li>
-    <li><span><b>Attributs</b> : cochez tout ce qui est vrai, par exemple « paiement par carte », « produits locaux », « retrait en magasin ». Ne cochez <b>pas</b> « livraison ».</span></li>
-    <li><span><b>Lien</b> : vérifiez que « Site web » renvoie bien vers votre boutique Marchéo. Si Google propose un lien « Commander », mettez-y aussi votre boutique.</span></li>
-  </ol>
-  <div class="copy"><span class="lbl">Modèle de description · à copier</span>Primeur au marché <span class="fill">[nom du marché]</span> à Toulouse, nous vous proposons chaque <span class="fill">[jours]</span> des fruits et légumes frais de saison, <span class="fill">[choisis chez des producteurs de la région / d'Occitanie]</span>. Vous nous trouvez <span class="fill">[emplacement : allée, à côté de…]</span>.
-Gagnez du temps : commandez en ligne la veille grâce au bouton « Site web », et récupérez votre panier prêt à l'étal, sans faire la queue.
-Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, herbes fraîches, paniers de la semaine]</span>. Conseils de préparation et de conservation offerts, demandez-nous !</div>
+  <ul class="tips">
+    <li><b>Le ticket de la balance</b>La plupart des balances de marché permettent d'ajouter un message en bas du ticket. Cherchez dans le menu « Programmation », « En-tête » ou « Pied de ticket ». Sinon, le vendeur ou l'installateur de la balance le fait en 5 minutes. Écrivez : « Commandez en ligne : <span class="fill">[adresse de votre boutique]</span> ».</li>
+    <li><b>Le terminal de carte</b>Si vous utilisez SumUp, Zettle ou autre, ajoutez l'adresse de votre boutique dans le profil : elle apparaîtra sur les reçus envoyés par SMS ou e-mail.</li>
+    <li><b>Les sacs kraft</b>Un tampon encreur avec l'adresse de votre boutique (environ 15 à 20 € sur internet). Tamponnez une pile de sacs le soir, devant la télé.</li>
+    <li><b>Les tickets écrits à la main</b>Pas de balance à ticket ? Écrivez l'adresse au feutre sur une étiquette ou au dos de l'ardoise des prix. Le QR code (fiche 2) fait le reste.</li>
+    <li><b>Le répondeur du téléphone</b>Enregistrez : « Bonjour, c'est Arnaud. Pour commander, allez sur mon site <span class="fill">[adresse]</span>, je vous prépare tout pour le marché. »</li>
+    <li><b>Vos SMS</b>Quand un client vous écrit, terminez votre réponse par le lien de la boutique. Mettez-le aussi en signature si votre téléphone le permet.</li>
+  </ul>
   <div class="boxes">
-    <div class="box ok"><b class="h">C'est fait quand…</b>Google n'affiche plus de message « Complétez votre fiche ».</div>
-    <div class="box no"><b class="h">À éviter</b>Mettre une adresse internet ou un numéro de téléphone dans la description : Google les refuse.</div>
+    <div class="box ok"><b class="h">Astuce</b>Si la balance n'accepte pas les accents ou les adresses longues, écrivez simplement : « Commandez en ligne : cherchez <span class="fill">[nom de l'étal]</span> sur Google ».</div>
+    <div class="box no"><b class="h">Rappel</b>Vous ne livrez pas. Écrivez « retrait à l'étal » à côté du lien, pour éviter les demandes de livraison.</div>
   </div>
 </article>
 
@@ -315,30 +343,30 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
 <article class="fiche" id="fiche-4">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 4 · Google</p>
-      <h2>Les photos qui donnent faim</h2>
-      <div class="meta"><span class="pill">⏱ 10 min</span><span class="pill sun">10 photos la 1<sup>re</sup> semaine, puis 2 par semaine</span></div>
-      <p class="goal">Pour un primeur, c'est la couleur qui vend. Une fiche avec des photos récentes reçoit beaucoup plus de clics qu'une fiche vide.</p>
+      <p class="tag">Fiche 4 · À l'étal</p>
+      <h2>Montrer que ça marche</h2>
+      <div class="meta"><span class="pill">⏱ 0 min en plus</span><span class="pill sun">Dès la 1<sup>re</sup> commande</span><span class="pill">0 €</span></div>
+      <p class="goal">Les gens font ce que font les autres. Quand la file voit un client récupérer son panier en 10 secondes, elle a envie de faire pareil.</p>
     </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Appareil photo et cagette de tomates">
-      <rect x="20" y="40" width="110" height="78" rx="10" class="f-paper sk"/>
-      <path class="sk" d="M50 40 L58 26 L92 26 L100 40"/>
-      <circle cx="75" cy="79" r="24" class="sk"/><circle cx="75" cy="79" r="13" class="f-tom"/>
-      <path class="f-sun" d="M138 120 L200 120 L194 155 L144 155 Z"/><path class="sk" d="M138 120 L200 120 L194 155 L144 155 Z"/>
-      <circle cx="153" cy="112" r="10" class="f-tom"/><circle cx="172" cy="110" r="10" class="f-tom"/><circle cx="190" cy="113" r="9" class="f-tom"/>
-      <text x="20" y="150" font-size="18">lumière du jour</text>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Cagette de paniers préparés avec étiquettes au nom des clients">
+      <path class="f-sun" d="M15 90 L195 90 L188 150 L22 150 Z" opacity=".85"/><path class="sk" d="M15 90 L195 90 L188 150 L22 150 Z"/>
+      <path class="sk-thin" d="M15 110 H193 M20 130 H190"/>
+      <path class="f-paper sk" d="M30 40 L75 40 L72 90 L33 90 Z"/><path class="sk-thin" d="M42 40 C42 28 63 28 63 40"/>
+      <path class="f-paper sk" d="M85 40 L130 40 L127 90 L88 90 Z"/><path class="sk-thin" d="M97 40 C97 28 118 28 118 40"/>
+      <path class="f-paper sk" d="M140 40 L185 40 L182 90 L143 90 Z"/><path class="sk-thin" d="M152 40 C152 28 173 28 173 40"/>
+      <text x="36" y="70" font-size="14">Sophie</text><text x="94" y="70" font-size="14">Marc</text><text x="146" y="70" font-size="14">Mme L.</text>
+      <text x="30" y="168" font-size="17">« Commandes en ligne »</text>
     </svg>
   </div>
   <ol class="steps">
-    <li><span><b>Le matin, étal monté, avant l'ouverture</b> : la lumière est belle et il n'y a pas de foule.</span></li>
-    <li><span>Les 10 premières photos : <b>1</b> l'étal entier de face · <b>2</b> votre enseigne · <b>3</b> vous, souriant, derrière l'étal · <b>4 à 8</b> cinq gros plans de produits de saison · <b>9</b> un panier préparé pour un retrait · <b>10</b> l'allée du marché avec votre étal.</span></li>
-    <li><span>Tenez le téléphone à l'horizontale pour l'étal et à la verticale pour les gros plans. Essuyez l'objectif avant.</span></li>
-    <li><span>Dans votre fiche Google : « Ajouter des photos ». Choisissez votre photo d'étal comme <b>photo de couverture</b>.</span></li>
-    <li><span>Ensuite, ajoutez 2 photos par semaine : l'arrivage du moment (premières fraises, courges, agrumes…).</span></li>
+    <li><span>Posez les commandes préparées <b>bien en vue</b>, dans une cagette à part sur le devant de l'étal, avec une ardoise « Commandes en ligne, prêtes ».</span></li>
+    <li><span>Écrivez le prénom du client en gros sur chaque sac.</span></li>
+    <li><span>Quand le client arrive, dites à voix haute : <b>« Sophie, votre commande en ligne, c'est prêt ! »</b>. Toute la file entend que ça existe et que ça va vite.</span></li>
+    <li><span>Si possible, servez les commandes en ligne <b>tout de suite</b>, sans leur faire faire la queue. C'est leur récompense, et les autres le remarquent.</span></li>
   </ol>
   <div class="boxes">
-    <div class="box ok"><b class="h">C'est fait quand…</b>Il y a 10 photos sur la fiche, et une photo de couverture.</div>
-    <div class="box no"><b class="h">À éviter</b>Les photos floues, prises à contre-jour, avec du texte ou trouvées sur internet. Seulement vos vrais produits.</div>
+    <div class="box ok"><b class="h">C'est fait quand…</b>Un client de la file vous demande : « Comment on fait pour commander comme elle ? »</div>
+    <div class="box no"><b class="h">À éviter</b>Ranger les commandes sous la table ou dans le camion : personne ne les voit.</div>
   </div>
 </article>
 
@@ -346,12 +374,104 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
 <article class="fiche" id="fiche-5">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 5 · Google · la plus importante</p>
-      <h2>Obtenir des avis</h2>
-      <div class="meta"><span class="pill">⏱ 2 min par jour de marché</span><span class="pill sun">Dès que la fiche est validée</span></div>
-      <p class="goal">Sur un marché où tout le monde vend des fruits et légumes, Google met en avant celui qui a le <b>plus d'avis récents</b>. Vos clients fidèles vous aiment déjà : il suffit de leur demander.</p>
+      <p class="tag">Fiche 5 · À l'étal</p>
+      <h2>Les petites astuces qui rapportent</h2>
+      <div class="meta"><span class="pill">À piocher au fil des semaines</span><span class="pill">0 €</span></div>
+      <p class="goal">Des idées simples, testées par d'autres commerçants de marché. Pas besoin de tout faire : choisissez-en deux ou trois.</p>
     </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone avec des étoiles et une bulle merci">
+    <svg viewBox="0 0 210 170" role="img" aria-label="Ampoule au-dessus d'un panier de légumes">
+      <path class="f-sun" d="M105 15 C80 15 68 35 74 55 C78 68 90 72 90 85 H120 C120 72 132 68 136 55 C142 35 130 15 105 15 Z"/>
+      <path class="sk" d="M105 15 C80 15 68 35 74 55 C78 68 90 72 90 85 H120 C120 72 132 68 136 55 C142 35 130 15 105 15 Z"/>
+      <path class="sk" d="M92 93 H118 M95 101 H115"/>
+      <path class="sk-thin" d="M60 30 L48 22 M150 30 L162 22 M58 60 H44 M152 60 H166"/>
+      <path class="sk" d="M50 125 L160 125 L150 160 L60 160 Z"/>
+      <circle cx="80" cy="120" r="10" class="f-tom"/><circle cx="105" cy="118" r="11" class="f-green"/><circle cx="130" cy="120" r="10" class="f-sun"/>
+    </svg>
+  </div>
+  <ul class="tips">
+    <li><b>Le panier de la semaine</b>Un panier fixe (par exemple 15 €, 5 à 6 produits de saison) disponible <b>uniquement</b> en ligne. C'est simple à préparer et ça donne une vraie raison de commander.</li>
+    <li><b>Les produits « à réserver »</b>Ce qui part vite (fraises, tomates anciennes, figues…) : gardez-en une partie pour les commandes en ligne. Écrivez « réservable en ligne » sur l'étiquette prix.</li>
+    <li><b>Les grosses quantités</b>Tomates à coulis, fruits pour confiture, courges pour la soupe : proposez-les en ligne, par cagette. Vous savez à l'avance combien en apporter.</li>
+    <li><b>L'annonce de fin de marché</b>En fin de matinée, dites aux habitués ce qui arrive la semaine prochaine : « Les premières clémentines arrivent samedi, réservez-les en ligne ! »</li>
+    <li><b>Le numéro des habitués</b>Demandez aux clients fidèles s'ils veulent recevoir un SMS la veille du marché avec les nouveautés et le lien. Notez leur prénom et leur numéro dans un carnet.</li>
+    <li><b>Les voisins de marché</b>Si vous vous entendez bien avec le fromager ou le boucher d'à côté (qui ne vendent pas la même chose que vous), affichez chacun le QR code de l'autre. Vos clients sont les mêmes.</li>
+    <li><b>Le créneau tôt</b>Proposez le retrait dès l'ouverture : c'est l'argument pour ceux qui vont au travail ou qui ont les enfants le samedi matin.</li>
+    <li><b>Le premier client en ligne</b>Remerciez-le chaleureusement et demandez-lui un avis Google (fiche 8). C'est souvent le plus content.</li>
+  </ul>
+</article>
+
+<!-- ═════════════════ PARTIE 2 ═════════════════ -->
+<div class="part"><p class="eyebrow">Partie 2</p><h2>Sur Google</h2><p class="muted" style="flex-basis:100%">Pour les personnes qui cherchent « primeur Toulouse » et ne vous connaissent pas encore. Lancez la fiche 6 dès la première semaine : Google met quelques jours à la valider.</p></div>
+
+<!-- ═════════ FICHE 6 ═════════ -->
+<article class="fiche" id="fiche-6">
+  <div class="fiche-top">
+    <div>
+      <p class="tag g">Fiche 6 · Google</p>
+      <h2>Créer et valider ma fiche Google</h2>
+      <div class="meta"><span class="pill">⏱ 30 min</span><span class="pill sun">Semaine 1, un jour de marché</span><span class="pill">Téléphone + compte Gmail</span></div>
+      <p class="goal">Quand quelqu'un tape « primeur Toulouse » sur Google Maps, votre étal doit apparaître.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Épingle Google Maps sur un plan">
+      <path class="sk-thin" d="M10 120 L70 100 L130 125 L200 105 L200 160 L130 165 L70 150 L10 165 Z"/>
+      <path class="sk-thin" d="M70 100 L70 150 M130 125 L130 165" opacity=".6"/>
+      <path class="f-tom" d="M100 15 C74 15 62 36 69 56 C76 76 100 104 100 104 C100 104 124 76 131 56 C138 36 126 15 100 15 Z"/>
+      <path class="sk" d="M100 15 C74 15 62 36 69 56 C76 76 100 104 100 104 C100 104 124 76 131 56 C138 36 126 15 100 15 Z"/>
+      <circle cx="100" cy="47" r="11" class="f-paper sk"/>
+      <text x="136" y="36" font-size="17">Arnaud</text><text x="134" y="54" font-size="12">★★★★★</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Cherchez votre étal sur Google Maps. <b>S'il existe déjà</b>, touchez « Revendiquer cette fiche ». <b>Sinon</b>, allez sur <b>business.google.com</b> et créez-la avec <b>votre</b> adresse Gmail.</span></li>
+    <li><span>Nom : celui de votre enseigne, exactement comme sur votre panneau. Catégorie : « Primeur ». Lieu : l'adresse du marché, épingle placée sur votre étal.</span></li>
+    <li><span>Site web : l'adresse de votre boutique Marchéo. Téléphone : votre portable.</span></li>
+    <li><span>Validation : un jour de marché, étal monté, Google vous demandera sûrement une <b>vidéo sans coupure</b>. Filmez l'entrée du marché, le chemin jusqu'à l'étal, votre enseigne et une preuve que c'est à vous (caisse, balance, clé du camion).</span></li>
+  </ol>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Vous recevez l'e-mail « Votre fiche est validée », en général sous 2 à 7 jours.</div>
+    <div class="box no"><b class="h">À éviter</b>Ajouter des mots au nom (« Primeur pas cher Toulouse »), ou créer une 2<sup>e</sup> fiche. Google suspend ces fiches.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 7 ═════════ -->
+<article class="fiche" id="fiche-7">
+  <div class="fiche-top">
+    <div>
+      <p class="tag g">Fiche 7 · Google</p>
+      <h2>Remplir ma fiche et mettre des photos</h2>
+      <div class="meta"><span class="pill">⏱ 30 min</span><span class="pill sun">Semaine 2</span></div>
+      <p class="goal">Une fiche complète avec de belles photos passe devant celles des autres primeurs du marché.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Appareil photo et cagette de tomates">
+      <rect x="20" y="40" width="110" height="78" rx="10" class="f-paper sk"/>
+      <path class="sk" d="M50 40 L58 26 L92 26 L100 40"/>
+      <circle cx="75" cy="79" r="24" class="sk"/><circle cx="75" cy="79" r="13" class="f-tom"/>
+      <path class="f-sun" d="M138 120 L200 120 L194 155 L144 155 Z"/><path class="sk" d="M138 120 L200 120 L194 155 L144 155 Z"/>
+      <circle cx="153" cy="112" r="10" class="f-tom"/><circle cx="172" cy="110" r="10" class="f-tom"/><circle cx="190" cy="113" r="9" class="f-tom"/>
+      <text x="20" y="150" font-size="18">le matin, étal monté</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span><b>Horaires</b> : uniquement vos jours et heures de marché. Ajoutez vos congés en « horaires exceptionnels ».</span></li>
+    <li><span><b>Description</b> : copiez le modèle ci-dessous et complétez les passages surlignés.</span></li>
+    <li><span><b>Photos</b> : le matin, avant l'ouverture, prenez l'étal entier, votre enseigne, vous souriant, 5 gros plans de produits et une commande prête. Puis 1 ou 2 photos d'arrivage par semaine.</span></li>
+    <li><span><b>Attributs</b> : cochez « paiement par carte », « retrait », « produits locaux » si c'est vrai. Ne cochez pas « livraison ».</span></li>
+  </ol>
+  <div class="copy"><span class="lbl">Modèle de description · à copier</span>Primeur au marché <span class="fill">[nom du marché]</span> à Toulouse, nous vous proposons chaque <span class="fill">[jours]</span> des fruits et légumes frais de saison<span class="fill">[, choisis chez des producteurs de la région]</span>. Vous nous trouvez <span class="fill">[emplacement]</span>.
+Gagnez du temps : commandez en ligne la veille grâce au bouton « Site web », et récupérez votre panier prêt à l'étal, sans faire la queue.
+Spécialités : <span class="fill">[tomates anciennes, fruits de saison, panier de la semaine…]</span>.</div>
+</article>
+
+<!-- ═════════ FICHE 8 ═════════ -->
+<article class="fiche" id="fiche-8">
+  <div class="fiche-top">
+    <div>
+      <p class="tag g">Fiche 8 · Google</p>
+      <h2>Avoir des avis et y répondre</h2>
+      <div class="meta"><span class="pill">⏱ 5 min par semaine</span><span class="pill sun">Dès que la fiche est validée</span></div>
+      <p class="goal">Entre deux primeurs sur Google, le client choisit celui qui a le plus d'avis. Vos habitués sont prêts à vous en laisser : il faut juste leur demander.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone avec des étoiles">
       <rect x="60" y="10" width="80" height="150" rx="12" class="f-paper sk"/>
       <path class="sk-thin" d="M88 20 H112"/>
       <g class="f-sun">
@@ -360,130 +480,28 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
       </g>
       <path class="sk-thin" d="M72 130 H128 M72 140 H116"/>
       <text x="144" y="60" font-size="18">5 par</text><text x="144" y="80" font-size="18">marché</text>
-      <text x="2" y="30" font-size="16">merci !</text><path class="sk-thin" d="M10 40 C25 30 40 34 54 46"/>
     </svg>
   </div>
   <ol class="steps">
-    <li><span>Dans votre fiche Google, touchez <b>« Demander des avis »</b>. Google vous donne un lien et un QR code. Enregistrez l'image du QR code.</span></li>
-    <li><span>Imprimez ce QR code en grand sur une feuille A4 avec « Votre avis compte pour moi ★ ». Glissez-la dans une pochette plastique et fixez-la près de la balance.</span></li>
-    <li><span>À chaque marché, demandez à <b>5 clients habitués</b> (ceux qui vous disent « c'était délicieux la dernière fois ») avec la phrase ci-dessous.</span></li>
-    <li><span>Clients qui commandent en ligne : quand vous leur donnez leur panier, montrez le QR code. C'est le moment où ils sont le plus contents.</span></li>
-  </ol>
-  <div class="bubbles">
-    <div class="bubble">« Ça vous a plu la dernière fois ? Ça m'aiderait beaucoup si vous mettiez un petit avis sur Google. Ça prend 30 secondes, c'est le QR code juste là. »</div>
-  </div>
-  <div class="boxes">
-    <div class="box ok"><b class="h">Objectif</b>10 avis à J+30, 25 à J+60, 40 à J+90.</div>
-    <div class="box no"><b class="h">Interdit par Google</b><ul><li>Offrir une réduction ou un cadeau en échange d'un avis.</li><li>Écrire des avis vous-même ou les faire écrire par la famille.</li></ul>La fiche peut être suspendue.</div>
-  </div>
-</article>
-
-<!-- ═════════ FICHE 6 ═════════ -->
-<article class="fiche" id="fiche-6">
-  <div class="fiche-top">
-    <div>
-      <p class="tag">Fiche 6 · Google</p>
-      <h2>Répondre aux avis</h2>
-      <div class="meta"><span class="pill">⏱ 5 min par semaine</span><span class="pill sun">Le lundi, par exemple</span></div>
-      <p class="goal">Répondre montre aux futurs clients qu'il y a quelqu'un de sympathique derrière l'étal. Google le prend aussi en compte.</p>
-    </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Deux bulles de conversation">
-      <path class="f-soft" d="M15 20 H140 a10 10 0 0 1 10 10 V75 a10 10 0 0 1 -10 10 H50 L30 100 L32 85 H15 a10 10 0 0 1 -10 -10 V30 a10 10 0 0 1 10 -10 Z"/>
-      <path class="sk" d="M15 20 H140 a10 10 0 0 1 10 10 V75 a10 10 0 0 1 -10 10 H50 L30 100 L32 85 H15 a10 10 0 0 1 -10 -10 V30 a10 10 0 0 1 10 -10 Z"/>
-      <text x="20" y="48" font-size="15">★★★★★ Super</text><text x="20" y="68" font-size="15">tomates !</text>
-      <path class="f-paper" d="M70 100 H195 a10 10 0 0 1 10 10 V145 a10 10 0 0 1 -10 10 H180 L182 168 L162 155 H70 a10 10 0 0 1 -10 -10 V110 a10 10 0 0 1 10 -10 Z"/>
-      <path class="sk" d="M70 100 H195 a10 10 0 0 1 10 10 V145 a10 10 0 0 1 -10 10 H180 L182 168 L162 155 H70 a10 10 0 0 1 -10 -10 V110 a10 10 0 0 1 10 -10 Z"/>
-      <text x="74" y="133" font-size="17">Merci Sophie !</text>
-    </svg>
-  </div>
-  <ol class="steps">
-    <li><span>Une fois par semaine, ouvrez votre fiche puis « Avis ». Répondez à <b>tous</b> les nouveaux avis, même ceux avec seulement des étoiles.</span></li>
-    <li><span>Utilisez le prénom du client et citez le produit quand il le mentionne. Quelques lignes suffisent.</span></li>
-    <li><span>Avis négatif : attendez le lendemain, restez calme, proposez de voir ça au prochain marché. Les autres clients lisent surtout votre réponse.</span></li>
+    <li><span>Dans votre fiche, touchez « Demander des avis » et enregistrez le QR code. Imprimez-le à côté de celui de la boutique, avec « Un petit avis ? ★ ».</span></li>
+    <li><span>À chaque marché, demandez à 5 habitués : <b>« Ça m'aiderait beaucoup si vous laissiez un avis sur Google, c'est le QR code juste là. »</b> Le meilleur moment : quand un client récupère sa commande en ligne.</span></li>
+    <li><span>Une fois par semaine, répondez à tous les avis, avec le prénom du client.</span></li>
   </ol>
   <div class="models">
-    <div class="copy"><span class="lbl">Avis positif · modèle</span>Merci beaucoup <span class="fill">[prénom]</span> ! Ravi que les <span class="fill">[produit]</span> vous aient plu. À <span class="fill">[samedi]</span> au marché, et pensez à commander la veille pour gagner du temps. Arnaud</div>
-    <div class="copy"><span class="lbl">Avis négatif · modèle</span>Bonjour <span class="fill">[prénom]</span>, merci de nous l'avoir signalé et désolé pour <span class="fill">[le problème]</span>. Passez me voir au prochain marché, je vous le remplace avec plaisir. Arnaud</div>
+    <div class="copy"><span class="lbl">Réponse à un avis positif</span>Merci beaucoup <span class="fill">[prénom]</span> ! Ravi que les <span class="fill">[produit]</span> vous aient plu. À <span class="fill">[samedi]</span> au marché ! Arnaud</div>
+    <div class="copy"><span class="lbl">Réponse à un avis négatif</span>Bonjour <span class="fill">[prénom]</span>, merci de nous l'avoir dit et désolé pour <span class="fill">[le problème]</span>. Passez me voir au prochain marché, je vous le remplace. Arnaud</div>
   </div>
-</article>
-
-<!-- ═════════ FICHE 7 ═════════ -->
-<article class="fiche" id="fiche-7">
-  <div class="fiche-top">
-    <div>
-      <p class="tag">Fiche 7 · Google</p>
-      <h2>Publier un post Google</h2>
-      <div class="meta"><span class="pill">⏱ 5 min par semaine</span><span class="pill sun">La veille du marché</span></div>
-      <p class="goal">Un post, c'est une photo et deux phrases qui s'affichent directement sur votre fiche. Il montre que vous êtes actif et donne envie de commander.</p>
-    </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Carte de post avec une photo de fraises et un bouton Commander">
-      <rect x="30" y="10" width="150" height="150" rx="12" class="f-paper sk"/>
-      <rect x="42" y="22" width="126" height="70" rx="6" class="f-soft"/>
-      <path class="f-tom" d="M80 50 C70 50 66 62 75 74 C80 80 85 80 90 74 C99 62 95 50 85 50 Z"/>
-      <path class="f-tom" d="M120 46 C110 46 106 58 115 70 C120 76 125 76 130 70 C139 58 135 46 125 46 Z"/>
-      <path class="f-green" d="M78 50 l5 -6 l5 6 Z M118 46 l5 -6 l5 6 Z"/>
-      <path class="sk-thin" d="M44 106 H160 M44 118 H140"/>
-      <rect x="44" y="130" width="72" height="20" rx="10" class="f-green"/>
-      <text x="52" y="145" font-size="14" style="fill:#0A1428">Commander</text>
-    </svg>
-  </div>
-  <ol class="steps">
-    <li><span>Dans votre fiche, touchez « Ajouter une mise à jour » (ou « Post »).</span></li>
-    <li><span>Mettez <b>une photo</b> de la semaine et un des textes ci-dessous.</span></li>
-    <li><span>Bouton : choisissez « Commander en ligne » ou « En savoir plus » avec le lien de votre boutique Marchéo.</span></li>
-  </ol>
-  <div class="models">
-    <div class="copy"><span class="lbl">Arrivage</span>Les <span class="fill">[premières fraises / clémentines / courges]</span> sont arrivées ! Commandez dès ce soir, votre panier sera prêt <span class="fill">[samedi]</span> à l'étal.</div>
-    <div class="copy"><span class="lbl">Panier de la semaine</span>Panier de saison de la semaine : <span class="fill">[liste]</span>. Réservez-le en ligne, je vous le prépare pour <span class="fill">[samedi]</span>.</div>
-    <div class="copy"><span class="lbl">Astuce</span>Comment choisir un bon <span class="fill">[melon]</span> ? <span class="fill">[votre astuce]</span>. Et si vous voulez, je vous le choisis : commandez en ligne.</div>
-    <div class="copy"><span class="lbl">Absence</span>Pas de marché <span class="fill">[ce samedi]</span>, on se retrouve <span class="fill">[mercredi]</span> ! Les commandes en ligne restent ouvertes pour mercredi.</div>
-  </div>
-</article>
-
-<!-- ═════════ FICHE 8 ═════════ -->
-<article class="fiche" id="fiche-8">
-  <div class="fiche-top">
-    <div>
-      <p class="tag">Fiche 8 · À l'étal</p>
-      <h2>Faire connaître la commande en ligne</h2>
-      <div class="meta"><span class="pill">⏱ 15 min une fois</span><span class="pill sun">Semaine 2</span><span class="pill">Une ardoise et une imprimante</span></div>
-      <p class="goal">Vos clients ne savent pas encore qu'ils peuvent commander chez vous. Le message à faire passer : <b>« Commandez la veille, c'est prêt quand vous passez. »</b></p>
-    </div>
-    <svg viewBox="0 0 210 170" role="img" aria-label="Ardoise écrite à la main avec un QR code">
-      <path class="sk" d="M40 160 L65 30 L90 160 M50 110 L80 110" />
-      <rect x="20" y="20" width="160" height="100" rx="6" class="f-ink" opacity=".92"/>
-      <rect x="20" y="20" width="160" height="100" rx="6" class="sk"/>
-      <text x="30" y="50" font-size="17" style="fill:#fff">Commandez</text>
-      <text x="30" y="72" font-size="17" style="fill:#fff">la veille,</text>
-      <text x="30" y="94" font-size="17" style="fill:#fff">c'est prêt !</text>
-      <rect x="118" y="40" width="50" height="50" fill="#fff"/>
-      <path fill="#0A1428" d="M123 45h12v12h-12zM151 45h12v12h-12zM123 73h12v12h-12zM141 61h7v7h-7zM151 75h8v8h-8z"/>
-    </svg>
-  </div>
-  <ol class="steps">
-    <li><span>Dans votre tableau de bord Marchéo, téléchargez votre <b>QR code boutique</b>. Imprimez-le sur une feuille A4, en grand.</span></li>
-    <li><span>Collez-le dans une pochette plastique sur votre ardoise ou sur un piquet, à hauteur des yeux, près de la caisse. Écrivez à la craie : « Commandez la veille, c'est prêt ! ».</span></li>
-    <li><span>Écrivez aussi l'adresse de votre boutique à la main sur vos sacs kraft ou vos tickets. C'est gratuit et ça part chez chaque client.</span></li>
-    <li><span>Dites-le à voix haute aux habitués, surtout à ceux qui attendent dans la queue (phrase ci-dessous).</span></li>
-    <li><span>Activez l'<b>alerte absence marché</b> dans Marchéo : vos clients en ligne sont prévenus si vous ne venez pas.</span></li>
-  </ol>
-  <div class="bubbles">
-    <div class="bubble">« Vous savez que vous pouvez commander chez moi la veille ? Vous passez, votre panier est prêt, vous n'attendez pas. C'est le QR code sur l'ardoise. »</div>
-  </div>
-  <div class="boxes">
-    <div class="box ok"><b class="h">C'est fait quand…</b>Le QR code est visible sur l'étal et vous avez reçu une première commande en ligne.</div>
-    <div class="box no"><b class="h">Rappel</b>Vous ne livrez pas : écrivez partout « retrait à l'étal », pour ne pas avoir de demandes de livraison.</div>
-  </div>
+  <div class="box no"><b class="h">Interdit par Google</b>Offrir une réduction ou un cadeau en échange d'un avis, ou faire écrire des avis par la famille. La fiche peut être suspendue.</div>
 </article>
 
 <!-- ═════════ FICHE 9 ═════════ -->
 <article class="fiche" id="fiche-9">
   <div class="fiche-top">
     <div>
-      <p class="tag">Fiche 9 · Le suivi</p>
+      <p class="tag g">Fiche 9 · Le suivi</p>
       <h2>Ma routine et mes objectifs</h2>
       <div class="meta"><span class="pill">⏱ 15 min par semaine</span><span class="pill sun">À coller près de la caisse</span></div>
-      <p class="goal">Une fois les fiches 1 à 8 faites, il reste seulement cette routine. Exemple pour un marché le mercredi et le samedi, à adapter à vos jours.</p>
+      <p class="goal">Exemple pour un marché le mercredi et le samedi, à adapter à vos jours.</p>
     </div>
     <svg viewBox="0 0 210 170" role="img" aria-label="Calendrier avec deux jours de marché entourés">
       <rect x="30" y="20" width="150" height="130" rx="8" class="f-paper sk"/>
@@ -495,25 +513,33 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
     </svg>
   </div>
   <div class="week">
-    <div class="day"><b>Lundi</b><span>Répondre aux avis (fiche 6)</span><small>5 min</small></div>
-    <div class="day"><b>Mardi</b><span>Post Google pour mercredi (fiche 7)</span><small>5 min</small></div>
-    <div class="day mk"><b>Mercredi · marché</b><span>2 photos avant l'ouverture. Demander 5 avis.</span><small>2 min</small></div>
-    <div class="day mk"><b>Samedi · marché</b><span>Préparer les retraits. Demander 5 avis.</span><small>2 min</small></div>
+    <div class="day"><b>Lundi</b><span>Répondre aux avis Google</span><small>5 min</small></div>
+    <div class="day"><b>Mardi / vendredi</b><span>SMS aux habitués : « Demain j'ai… commandez ici »</span><small>5 min</small></div>
+    <div class="day mk"><b>Mercredi · marché</b><span>Commandes en vue, en parler aux clients, 5 demandes d'avis</span><small>pendant le marché</small></div>
+    <div class="day mk"><b>Samedi · marché</b><span>Pareil + annoncer les arrivages de la semaine suivante</span><small>pendant le marché</small></div>
   </div>
   <h3>Mes objectifs</h3>
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>Ce qu'on regarde</th><th class="n">Départ</th><th class="n">J+30</th><th class="n">J+60</th><th class="n">J+90</th><th>Où le voir</th></tr></thead>
       <tbody>
+        <tr><td>Commandes en ligne par semaine</td><td class="n">0</td><td class="n">3</td><td class="n">8</td><td class="n">15</td><td>Tableau de bord Marchéo</td></tr>
+        <tr><td>Habitués qui ont reçu le lien</td><td class="n">0</td><td class="n">30</td><td class="n">60</td><td class="n">100</td><td>Votre carnet</td></tr>
         <tr><td>Avis Google</td><td class="n"><span class="blank"></span></td><td class="n">10</td><td class="n">25</td><td class="n">40</td><td>Fiche Google</td></tr>
         <tr><td>Note moyenne</td><td class="n"><span class="blank"></span></td><td class="n">≥ 4,6</td><td class="n">≥ 4,6</td><td class="n">≥ 4,7</td><td>Fiche Google</td></tr>
-        <tr><td>Photos sur la fiche</td><td class="n"><span class="blank"></span></td><td class="n">15</td><td class="n">25</td><td class="n">35</td><td>Fiche Google</td></tr>
-        <tr><td>Clics vers le site par mois</td><td class="n">0</td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td>Fiche Google, « Performances »</td></tr>
-        <tr><td>Commandes en ligne par semaine</td><td class="n">0</td><td class="n">3</td><td class="n">8</td><td class="n">15</td><td>Tableau de bord Marchéo</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="box no"><b class="h">Pour aller plus loin (facultatif) : surveiller les voisins</b>Une fois par mois, regardez sur Google Maps les autres primeurs de votre marché : leur nombre d'avis et de photos. Le but est simplement d'en avoir plus qu'eux.</div>
+  <div class="box ok"><b class="h">La checklist « c'est en place »</b>
+    <ul>
+      <li>☐ QR code boutique affiché là où la file attend</li>
+      <li>☐ Lien sur le ticket de balance, le reçu carte ou les sacs</li>
+      <li>☐ Lien enregistré dans le téléphone, prêt à être envoyé par SMS</li>
+      <li>☐ Message du répondeur changé</li>
+      <li>☐ Cagette « Commandes en ligne, prêtes » sur le devant de l'étal</li>
+      <li>☐ Fiche Google validée et QR code avis affiché</li>
+    </ul>
+  </div>
 </article>
 
 <!-- ═════════ BONUS RÉSEAUX ═════════ -->
@@ -523,7 +549,7 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
       <p class="tag" style="color:var(--ink-soft)">Fiche bonus · facultatif</p>
       <h2>Et les réseaux sociaux ?</h2>
       <div class="meta"><span class="pill">Quand vous voulez, si vous voulez</span></div>
-      <p class="goal">Ce n'est pas obligatoire : la fiche Google fait déjà l'essentiel. Si un jour vous avez envie d'aller plus loin, voici les options, de la plus simple à la plus prenante.</p>
+      <p class="goal">Ce n'est pas obligatoire : l'étal et Google font déjà l'essentiel. Si un jour vous avez envie d'aller plus loin, voici les options, de la plus simple à la plus prenante.</p>
     </div>
     <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone avec une bulle de message">
       <rect x="60" y="10" width="80" height="150" rx="12" class="f-paper sk"/>
@@ -538,8 +564,8 @@ Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, her
     <table>
       <thead><tr><th>Option</th><th>Temps</th><th>Pour qui</th></tr></thead>
       <tbody>
-        <tr><td><b>1. Liste de diffusion WhatsApp</b><br>Le jeudi, un message aux clients qui le veulent : « Samedi j'ai… commandez ici ». Ils reçoivent le message sans voir les numéros des autres.</td><td>5 min par semaine</td><td>Ceux qui n'aiment pas les réseaux. <b>Notre conseil pour commencer.</b></td></tr>
-        <tr><td><b>2. Instagram, version minimum</b><br>Un compte professionnel, et la photo de l'étal du matin une fois par semaine. Vous pouvez réutiliser la photo du post Google.</td><td>2 min par semaine</td><td>Ceux qui font déjà des photos pour Google.</td></tr>
+        <tr><td><b>1. Liste de diffusion WhatsApp</b><br>La suite logique du SMS aux habitués (fiche 5) : un message la veille du marché à tous ceux qui le veulent. Ils ne voient pas les numéros des autres.</td><td>5 min par semaine</td><td>Ceux qui n'aiment pas les réseaux. <b>Notre conseil pour commencer.</b></td></tr>
+        <tr><td><b>2. Instagram, version minimum</b><br>La photo de l'étal du matin, une fois par semaine. Vous pouvez réutiliser celle de Google.</td><td>2 min par semaine</td><td>Ceux qui font déjà des photos.</td></tr>
         <tr><td><b>3. Facebook, groupes de quartier</b><br>Annoncer une fois la commande en ligne dans 2 ou 3 groupes de quartier toulousains.</td><td>15 min une fois</td><td>Pour un coup de pouce ponctuel.</td></tr>
       </tbody>
     </table>
