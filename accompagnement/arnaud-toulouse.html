@@ -9,136 +9,131 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;600;700&family=Caveat:wght@600&display=swap">
 <style>
-/* Layout : une fiche A4 qui se lit de haut en bas — diagnostic, feuille de route en 4 phases, routine, objectifs. Dessins "au feutre" en SVG. */
+/* Layout : un sommaire, puis une fiche par technique (une page imprimée chacune). Chaque fiche : dessin, étapes numérotées, "c'est fait quand". */
 :root{
-  --bg:#F7F2E8;          /* papier crème Marchéo */
-  --paper:#FFFFFF;
-  --ink:#0A1428;         /* bleu nuit */
-  --ink-soft:#5A6478;
-  --brand:#0F2C52;
-  --green:#5BBE3A;
-  --green-soft:#DDF3D2;
-  --tomato:#E65533;
-  --sun:#F4B942;
-  --line:#E5E2D8;
-  --sketch:#0F2C52;      /* trait des dessins */
+  --bg:#F7F2E8;--paper:#FFFFFF;--ink:#0A1428;--ink-soft:#5A6478;--brand:#0F2C52;
+  --green:#5BBE3A;--green-soft:#DDF3D2;--tomato:#E65533;--sun:#F4B942;--sun-soft:#FCEFD2;--line:#E5E2D8;--sketch:#0F2C52;
   --f-display:'Bricolage Grotesque','Manrope',system-ui,sans-serif;
   --f-body:'Manrope',system-ui,sans-serif;
   --f-hand:'Caveat','Comic Sans MS',cursive;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0A1428;--paper:#11213B;--ink:#EEF1F6;--ink-soft:#A7B1C4;--brand:#9CC3F2;
-  --green:#6FD14C;--green-soft:#1B3A22;--tomato:#FF7A5C;--sun:#F7C760;--line:#22344F;--sketch:#C9D8EE;color-scheme:dark}}
+  --green:#6FD14C;--green-soft:#1B3A22;--tomato:#FF7A5C;--sun:#F7C760;--sun-soft:#3A3018;--line:#22344F;--sketch:#C9D8EE;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0A1428;--paper:#11213B;--ink:#EEF1F6;--ink-soft:#A7B1C4;--brand:#9CC3F2;
-  --green:#6FD14C;--green-soft:#1B3A22;--tomato:#FF7A5C;--sun:#F7C760;--line:#22344F;--sketch:#C9D8EE;color-scheme:dark}
+  --green:#6FD14C;--green-soft:#1B3A22;--tomato:#FF7A5C;--sun:#F7C760;--sun-soft:#3A3018;--line:#22344F;--sketch:#C9D8EE;color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
-.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1;color:var(--brand)}
 h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em}
-h2{font-size:clamp(22px,3vw,28px);font-weight:800}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:800}
 h3{font-size:17px;font-weight:600}
 p{margin:0}
+a{color:var(--brand)}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-.hand{font-family:var(--f-hand);font-size:22px;color:var(--tomato);line-height:1.1}
 .muted{color:var(--ink-soft)}
-section{display:flex;flex-direction:column;gap:16px}
-.sheet{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px}
 
-/* SVG dessins */
 .sk{fill:none;stroke:var(--sketch);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .sk-thin{fill:none;stroke:var(--sketch);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .f-green{fill:var(--green)} .f-sun{fill:var(--sun)} .f-tom{fill:var(--tomato)} .f-paper{fill:var(--paper)} .f-soft{fill:var(--green-soft)} .f-ink{fill:var(--sketch)}
 svg text{font-family:var(--f-hand);fill:var(--sketch)}
 
 /* En-tête */
-.head{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
-.head > div{min-width:0}
+.head{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:center}
+.head > *{min-width:0}
+.head svg{width:100%;height:auto}
 .id{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:16px;font-size:14px}
 .id dt{font-weight:700;color:var(--ink-soft)}
 .id dd{margin:0}
 .todo{background:var(--sun);color:#0A1428;padding:0 6px;border-radius:4px;font-weight:600}
 
-/* Diagnostic */
-.diag{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.chip{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px dashed var(--line);border-radius:12px;background:var(--paper)}
-.chip > div{min-width:0}
-.dot{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:15px}
-.ok{background:var(--green)} .ko{background:var(--tomato)} .q{background:var(--sun);color:#0A1428}
-.chip b{display:block;font-size:14px}
-.chip span{font-size:13px;color:var(--ink-soft)}
+/* Rôles */
+.roles{display:grid;grid-template-columns:1fr 2fr;gap:14px}
+.role{border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.role.m{background:var(--paper);border:1.5px dashed var(--line)}
+.role.a{background:var(--green-soft)}
+.role ul{margin:0;padding-left:18px}
 
-/* Idée-force */
-.big-idea{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:center;background:var(--brand);color:#fff;border-radius:16px;padding:22px}
-.big-idea h2{color:#fff}
-.big-idea p{color:#DCE6F3}
-:root[data-theme="dark"] .big-idea{background:#1B3F6E}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .big-idea{background:#1B3F6E}}
-.big-idea svg text{fill:#fff}
-.big-idea .sk,.big-idea .sk-thin{stroke:#fff}
-.big-idea > div{min-width:0}
+/* Sommaire */
+.toc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.toc a{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.toc a:hover,.toc a:focus-visible{border-color:var(--brand);outline:none}
+.toc .num{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--brand)}
+.toc .t{font-weight:700;line-height:1.3;min-width:0}
+.toc .t small{display:block;font-weight:400;color:var(--ink-soft)}
+.toc .d{font-size:12px;color:var(--ink-soft);white-space:nowrap}
+.toc .bonus a{background:transparent;border-style:dashed}
+.toc .google .num{color:var(--tomato)}
 
-/* Frise */
-.timeline{overflow-x:auto}
-.timeline svg{min-width:640px;width:100%;height:auto;display:block}
+/* Fiche */
+.fiche{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:20px;scroll-margin-top:16px}
+.fiche-top{display:grid;grid-template-columns:1fr 210px;gap:20px;align-items:start}
+.fiche-top > *{min-width:0}
+.fiche-top svg{width:100%;height:auto}
+.tag{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--tomato)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--green-soft);color:var(--brand)}
+.pill.sun{background:var(--sun-soft)}
+.goal{margin-top:12px;font-size:16px}
 
-/* Phases */
-.phase{display:grid;grid-template-columns:200px 1fr;gap:22px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px}
-.phase-side{display:flex;flex-direction:column;gap:8px}
-.phase-side svg{width:100%;max-width:200px;height:auto}
-.when{display:inline-block;align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--green-soft);color:var(--brand)}
-.phase-body{min-width:0;display:flex;flex-direction:column;gap:14px}
-.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.tasks li{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:start}
-.tasks li::before{content:"";width:16px;height:16px;margin-top:3px;border:2px solid var(--sketch);border-radius:4px}
-.who{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:2px}
-.who.m{background:var(--brand);color:var(--paper)}
-.who.a{background:var(--sun);color:#0A1428}
-.who.e{background:var(--green);color:#0A1428}
-.tip{border-left:3px solid var(--tomato);padding:4px 0 4px 12px;font-size:14px}
-.tip b{color:var(--tomato)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--paper);display:grid;place-items:center;font-weight:800;font-size:14px;font-family:var(--f-display)}
+.steps li > span{min-width:0;padding-top:4px}
 
-/* Deux colonnes génériques */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.two > *{min-width:0}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{border-radius:12px;padding:14px 16px;font-size:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.box b.h{font-family:var(--f-display);font-size:15px}
+.box.ok{background:var(--green-soft)}
+.box.no{background:var(--sun-soft)}
+.box ul{margin:0;padding-left:18px}
 
-/* Script */
+.copy{position:relative;background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:14px 16px;font-size:14px;white-space:pre-line}
+.copy .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;white-space:normal}
+.fill{background:var(--sun-soft);padding:0 4px;border-radius:3px}
+.models{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.models > *{min-width:0}
+
 .bubble{position:relative;background:var(--green-soft);border-radius:16px;padding:14px 16px;font-size:15px}
 .bubble::after{content:"";position:absolute;left:24px;bottom:-10px;border:10px solid transparent;border-top-color:var(--green-soft);border-bottom:0}
 .bubbles{display:flex;flex-direction:column;gap:22px}
 
-/* Tableaux */
 .tbl-wrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
 th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
-td.n{text-align:right;font-weight:700}
-th.n{text-align:right}
-.blank{display:inline-block;min-width:60px;border-bottom:1.5px dotted var(--ink-soft)}
+td.n,th.n{text-align:right}
+td.n{font-weight:700}
+.blank{display:inline-block;min-width:50px;border-bottom:1.5px dotted var(--ink-soft)}
 
-/* Semaine */
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.day{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:13px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.day b{font-family:var(--f-display);font-size:15px;color:var(--brand)}
-.day.mk{border:2px solid var(--green);background:var(--green-soft)}
+.week{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.day{border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.day b{font-family:var(--f-display);color:var(--brand)}
 .day small{color:var(--ink-soft)}
+.day.mk{border:2px solid var(--green);background:var(--green-soft)}
 
-.qs{columns:2;column-gap:28px;margin:0;padding-left:20px}
-.qs li{break-inside:avoid;margin-bottom:8px}
-
+.bonus-fiche{border-style:dashed}
 .foot{font-size:13px;color:var(--ink-soft);text-align:center}
 
-@media (max-width:760px){
-  .head,.big-idea,.two,.phase{grid-template-columns:1fr}
-  .diag{grid-template-columns:1fr 1fr}
-  .phase-side svg{max-width:160px}
-  .week{grid-template-columns:repeat(2,1fr)}
-  .qs{columns:1}
+@media print{
+  body{background:#fff;padding:0}
+  .fiche,.sheet{border:none;break-inside:auto}
+  .fiche{break-before:page}
 }
-@media (max-width:440px){ .diag{grid-template-columns:1fr} .tasks li{grid-template-columns:20px 1fr} .tasks .who{grid-column:2;justify-self:start} }
+@media (max-width:760px){
+  .head,.roles,.boxes,.models{grid-template-columns:1fr}
+  .fiche-top{grid-template-columns:1fr}
+  .fiche-top svg{max-width:200px}
+  .toc{grid-template-columns:1fr}
+  .week{grid-template-columns:1fr 1fr}
+  .fiche{padding:20px}
+}
+@media (max-width:420px){ .toc .d{display:none} .toc a{grid-template-columns:36px 1fr} }
 </style>
 </head>
 <body>
@@ -148,373 +143,410 @@ th.n{text-align:right}
 <!-- ═════════ EN-TÊTE ═════════ -->
 <header class="head sheet">
   <div>
-    <p class="eyebrow">Marchéo · Plan d'accompagnement au lancement · 90 jours</p>
-    <h1 style="margin-top:8px">Arnaud, commerçant au marché de Toulouse</h1>
-    <p class="muted" style="margin-top:10px">Objectif : que les clients qui passent devant l'étal <b>et</b> ceux qui cherchent sur Google trouvent Arnaud, commandent en ligne et reviennent.</p>
+    <p class="eyebrow">Marchéo · Guide de lancement · 90 jours</p>
+    <h1 style="margin-top:8px">Arnaud, primeur au marché de Toulouse</h1>
+    <p class="muted" style="margin-top:10px">Ce guide est fait pour que vous avanciez seul, à votre rythme. Une fiche = une technique. Chaque fiche dit quoi faire, combien de temps ça prend et quand c'est terminé.</p>
     <dl class="id">
-      <dt>Métier</dt><dd><span class="todo">à confirmer</span></dd>
-      <dt>Marché(s)</dt><dd><span class="todo">lequel ?</span> Victor Hugo, Carmes, Saint-Aubin, Cristal…</dd>
-      <dt>Jours</dt><dd><span class="todo">à confirmer</span></dd>
-      <dt>Concurrence</dt><dd>Forte : plusieurs étals du même métier sur le même marché</dd>
-      <dt>Réseaux sociaux</dt><dd>Aucun</dd>
-      <dt>Fiche Google</dt><dd>Inconnue, à vérifier au 1er RDV</dd>
-      <dt>Référent Marchéo</dt><dd><span class="blank">&nbsp;</span></dd>
+      <dt>Métier</dt><dd>Primeur, fruits et légumes</dd>
+      <dt>Vente en ligne</dt><dd>Click &amp; collect : retrait à l'étal, pas de livraison</dd>
+      <dt>Marché</dt><dd><span class="todo">nom du marché</span> · <span class="todo">jours et horaires</span></dd>
+      <dt>Priorité n°1</dt><dd><b>La fiche Google</b> : c'est là que les Toulousains cherchent un primeur</dd>
     </dl>
   </div>
-  <!-- Dessin : l'étal d'Arnaud -->
-  <svg viewBox="0 0 340 260" role="img" aria-label="Dessin de l'étal d'Arnaud avec un QR code Marchéo">
-    <path class="f-tom" d="M30 60 L310 60 L295 95 L45 95 Z" opacity=".9"/>
-    <path class="sk" d="M30 60 L310 60 L295 95 L45 95 Z"/>
-    <path class="sk-thin" d="M80 60 L76 95 M130 60 L128 95 M180 60 L180 95 M230 60 L232 95 M280 60 L284 95"/>
-    <path class="sk" d="M58 95 L58 225 M282 95 L282 225"/>
-    <path class="f-paper sk" d="M40 160 L300 160 L300 205 L40 205 Z"/>
-    <!-- produits -->
-    <circle cx="80" cy="150" r="14" class="f-green"/><circle cx="104" cy="152" r="12" class="f-green"/><circle cx="92" cy="140" r="11" class="f-green"/>
-    <circle cx="150" cy="150" r="13" class="f-sun"/><circle cx="172" cy="152" r="12" class="f-sun"/><circle cx="161" cy="139" r="10" class="f-sun"/>
-    <circle cx="215" cy="150" r="13" class="f-tom"/><circle cx="237" cy="151" r="12" class="f-tom"/>
-    <!-- panneau QR -->
-    <rect x="248" y="110" width="58" height="72" rx="4" class="f-paper sk"/>
-    <rect x="258" y="118" width="38" height="38" class="sk-thin"/>
-    <path class="f-ink" d="M262 122h10v10h-10zM282 122h10v10h-10zM262 142h10v10h-10zM278 138h6v6h-6zM286 146h6v6h-6z"/>
-    <text x="252" y="174" font-size="14">commandez !</text>
-    <text x="40" y="245" font-size="20">l'étal d'Arnaud + son QR code</text>
-    <path class="sk-thin" d="M230 238 C250 230 262 210 268 190"/><path class="sk-thin" d="M262 194 L268 188 L272 196"/>
+  <svg viewBox="0 0 340 250" role="img" aria-label="Dessin de l'étal d'Arnaud et d'une épingle Google Maps au-dessus">
+    <path class="f-tom" d="M30 90 L310 90 L295 125 L45 125 Z" opacity=".9"/>
+    <path class="sk" d="M30 90 L310 90 L295 125 L45 125 Z"/>
+    <path class="sk-thin" d="M80 90 L76 125 M130 90 L128 125 M180 90 L180 125 M230 90 L232 125 M280 90 L284 125"/>
+    <path class="sk" d="M58 125 L58 230 M282 125 L282 230"/>
+    <path class="f-paper sk" d="M40 180 L300 180 L300 220 L40 220 Z"/>
+    <!-- cagettes de fruits et légumes -->
+    <circle cx="75" cy="170" r="12" class="f-tom"/><circle cx="97" cy="171" r="11" class="f-tom"/><circle cx="86" cy="160" r="10" class="f-tom"/>
+    <circle cx="140" cy="170" r="12" class="f-sun"/><circle cx="162" cy="171" r="11" class="f-sun"/><circle cx="151" cy="160" r="10" class="f-sun"/>
+    <circle cx="205" cy="170" r="12" class="f-green"/><circle cx="227" cy="170" r="11" class="f-green"/><circle cx="216" cy="160" r="10" class="f-green"/>
+    <path class="f-green" d="M255 178 C262 150 275 150 282 178 Z"/><path class="sk-thin" d="M268 152 L262 140 M268 152 L276 142"/>
+    <!-- épingle -->
+    <path class="f-tom" d="M170 6 C150 6 140 22 146 38 C152 54 170 74 170 74 C170 74 188 54 194 38 C200 22 190 6 170 6 Z"/>
+    <path class="sk" d="M170 6 C150 6 140 22 146 38 C152 54 170 74 170 74 C170 74 188 54 194 38 C200 22 190 6 170 6 Z"/>
+    <circle cx="170" cy="32" r="9" class="f-paper sk"/>
+    <text x="204" y="30" font-size="20">trouvé sur Google</text>
+    <text x="206" y="50" font-size="15">★★★★★ 40 avis</text>
   </svg>
 </header>
 
-<!-- ═════════ DIAGNOSTIC ═════════ -->
-<section>
+<!-- ═════════ QUI FAIT QUOI ═════════ -->
+<section class="roles">
+  <div class="role m">
+    <p class="eyebrow">Marchéo</p>
+    <ul>
+      <li>Vous envoie ce guide</li>
+      <li>Jette un œil à votre fiche Google à J+7</li>
+      <li>Vous appelle 15 min à J+30</li>
+    </ul>
+  </div>
+  <div class="role a">
+    <p class="eyebrow">Vous, Arnaud</p>
+    <p>Vous suivez les fiches dans l'ordre. Il faut environ <b>2 heures la première semaine</b>, puis <b>15 minutes par semaine</b>. Tout se fait depuis votre téléphone. Vous imprimez vous-même les QR codes, sur une imprimante ou au tabac-presse (quelques centimes la page).</p>
+  </div>
+</section>
+
+<!-- ═════════ SOMMAIRE ═════════ -->
+<section class="sheet" style="display:flex;flex-direction:column;gap:16px">
   <div>
-    <p class="eyebrow">Étape 0</p>
-    <h2>Le point de départ</h2>
+    <p class="eyebrow">Sommaire</p>
+    <h2>Les fiches, dans l'ordre</h2>
   </div>
-  <div class="diag">
-    <div class="chip"><div class="dot ok">✓</div><div><b>Site Marchéo</b><span>Il vient de souscrire. Le site est la base de tout.</span></div></div>
-    <div class="chip"><div class="dot q">?</div><div><b>Fiche Google</b><span>Taper « Arnaud + métier + Toulouse » sur Google Maps avec lui.</span></div></div>
-    <div class="chip"><div class="dot ko">✕</div><div><b>Instagram</b><span>À créer. C'est le réseau des marchés.</span></div></div>
-    <div class="chip"><div class="dot ko">✕</div><div><b>Facebook</b><span>À créer, surtout pour les groupes de quartier.</span></div></div>
-    <div class="chip"><div class="dot q">?</div><div><b>Avis clients</b><span>Probablement 0 en ligne. Ses clients fidèles sont sa meilleure arme.</span></div></div>
-    <div class="chip"><div class="dot q">?</div><div><b>Fichier clients</b><span>Numéros ou e-mails ? Sinon on commence à en collecter.</span></div></div>
-  </div>
-</section>
-
-<!-- ═════════ IDÉE-FORCE ═════════ -->
-<section class="big-idea">
-  <div>
-    <p class="eyebrow" style="color:#B9CBE3">Comment gagner face à la concurrence</p>
-    <h2 style="margin-top:8px">Sur un marché, tout le monde vend la même chose. Arnaud, lui, sera le seul où on n'attend pas.</h2>
-    <p style="margin-top:12px">Le message à répéter partout : <b style="color:#fff">« Commandez la veille, c'est prêt quand vous passez. »</b> Et sur Google, c'est celui qui a le plus d'avis récents et de photos qui ressort en premier.</p>
-  </div>
-  <!-- Dessin : le parcours client -->
-  <svg viewBox="0 0 420 170" role="img" aria-label="Parcours : le client voit l'étal, scanne le QR, commande, récupère sans attendre">
-    <g>
-      <rect x="10" y="40" width="70" height="60" rx="8" class="sk"/><path class="sk-thin" d="M10 55 H80"/><text x="16" y="88" font-size="17">étal</text>
-      <text x="8" y="130" font-size="18">1. il passe</text>
-    </g>
-    <path class="sk" d="M88 70 H118"/><path class="sk" d="M112 64 L120 70 L112 76"/>
-    <g>
-      <rect x="128" y="30" width="46" height="80" rx="8" class="sk"/><rect x="138" y="48" width="26" height="26" class="sk-thin"/>
-      <text x="118" y="130" font-size="18">2. il scanne</text>
-    </g>
-    <path class="sk" d="M182 70 H212"/><path class="sk" d="M206 64 L214 70 L206 76"/>
-    <g>
-      <path class="sk" d="M228 50 L238 50 L250 92 L292 92 L300 62 L242 62"/><circle cx="256" cy="102" r="5" class="sk"/><circle cx="286" cy="102" r="5" class="sk"/>
-      <text x="222" y="130" font-size="18">3. il commande</text>
-    </g>
-    <path class="sk" d="M310 70 H336"/><path class="sk" d="M330 64 L338 70 L330 76"/>
-    <g>
-      <path class="sk" d="M350 52 L400 52 L394 104 L356 104 Z"/><path class="sk" d="M363 52 C363 36 387 36 387 52"/>
-      <path class="sk" d="M364 78 L374 88 L392 66"/>
-      <text x="340" y="130" font-size="18">4. prêt, 0 attente</text>
-    </g>
-    <text x="40" y="162" font-size="16" opacity=".85">… puis il laisse un avis Google et revient la semaine suivante</text>
-  </svg>
-</section>
-
-<!-- ═════════ FRISE ═════════ -->
-<section>
-  <div>
-    <p class="eyebrow">Vue d'ensemble</p>
-    <h2>La feuille de route sur 90 jours</h2>
-  </div>
-  <div class="sheet timeline">
-    <svg viewBox="0 0 900 170" role="img" aria-label="Frise : semaine 0 fondations, J0 à J+14 lancement à l'étal, J+15 à J+45 avis et réseaux, J+45 à J+90 fidéliser">
-      <path class="sk" d="M30 85 C200 70 300 100 450 85 S720 70 870 85"/>
-      <path class="sk" d="M860 77 L874 85 L860 93"/>
-      <circle cx="80" cy="82" r="13" class="f-sun"/><circle cx="80" cy="82" r="13" class="sk"/>
-      <circle cx="290" cy="88" r="13" class="f-tom"/><circle cx="290" cy="88" r="13" class="sk"/>
-      <circle cx="520" cy="82" r="13" class="f-green"/><circle cx="520" cy="82" r="13" class="sk"/>
-      <circle cx="760" cy="80" r="13" class="f-soft"/><circle cx="760" cy="80" r="13" class="sk"/>
-      <text x="40" y="44" font-size="24">Semaine 0</text><text x="30" y="128" font-size="19">Fondations</text><text x="30" y="150" font-size="16" opacity=".75">Google + site prêts</text>
-      <text x="245" y="44" font-size="24">J0 → J+14</text><text x="232" y="128" font-size="19">Lancement à l'étal</text><text x="232" y="150" font-size="16" opacity=".75">QR, flyers, réseaux créés</text>
-      <text x="470" y="44" font-size="24">J+15 → J+45</text><text x="462" y="128" font-size="19">Avis & visibilité</text><text x="462" y="150" font-size="16" opacity=".75">20 avis, 3 posts/sem.</text>
-      <text x="705" y="44" font-size="24">J+45 → J+90</text><text x="700" y="128" font-size="19">Fidéliser</text><text x="700" y="150" font-size="16" opacity=".75">précommandes régulières</text>
-    </svg>
-  </div>
-</section>
-
-<!-- ═════════ PHASE 0 ═════════ -->
-<section class="phase">
-  <div class="phase-side">
-    <span class="when">Semaine 0 · avant le lancement</span>
-    <h2>Les fondations</h2>
-    <!-- Dessin : épingle Google Maps -->
-    <svg viewBox="0 0 200 170" role="img" aria-label="Épingle Google Maps sur un plan de Toulouse">
-      <path class="sk-thin" d="M10 120 L70 100 L130 125 L190 105 L190 160 L130 165 L70 150 L10 165 Z"/>
-      <path class="sk-thin" d="M70 100 L70 150 M130 125 L130 165" opacity=".6"/>
-      <path class="sk-thin" d="M30 140 C60 130 110 150 170 130" stroke-dasharray="4 6"/>
-      <path class="f-tom" d="M100 20 C72 20 58 42 66 64 C74 86 100 112 100 112 C100 112 126 86 134 64 C142 42 128 20 100 20 Z"/>
-      <path class="sk" d="M100 20 C72 20 58 42 66 64 C74 86 100 112 100 112 C100 112 126 86 134 64 C142 42 128 20 100 20 Z"/>
-      <circle cx="100" cy="55" r="12" class="f-paper sk"/>
-      <text x="138" y="40" font-size="18">Arnaud</text><text x="134" y="58" font-size="12">★★★★★</text>
-    </svg>
-  </div>
-  <div class="phase-body">
-    <h3>A. La fiche Google (priorité n°1)</h3>
-    <ul class="tasks">
-      <li><span>Chercher sur Google Maps avec Arnaud : son nom, son nom commercial, « métier + marché ». S'il a déjà une fiche, en <b>récupérer l'accès</b> (« Revendiquer cette fiche »).</span><span class="who e">Ensemble</span></li>
-      <li><span>Si aucune fiche : la créer sur <b>business.google.com</b> avec son compte Gmail, pas le nôtre. Il doit rester propriétaire.</span><span class="who e">Ensemble</span></li>
-      <li><span>Adresse : si l'étal est fixe dans une halle (ex. Victor Hugo), mettre l'adresse de la halle. Si c'est un marché de plein vent, choisir « Je livre / je me déplace » et mettre <b>Toulouse</b> comme zone desservie, sans adresse.</span><span class="who m">Marchéo</span></li>
-      <li><span>Catégorie principale précise (« Primeur », « Fromagerie »…, pas « Magasin »), et 2 ou 3 catégories secondaires.</span><span class="who m">Marchéo</span></li>
-      <li><span>Horaires = jours et heures de marché exacts. Ajouter des horaires exceptionnels pour les fêtes et les absences.</span><span class="who m">Marchéo</span></li>
-      <li><span>Lien du site = sa boutique Marchéo. Lien « Commander » = la page click &amp; collect.</span><span class="who m">Marchéo</span></li>
-      <li><span>10 photos minimum : l'étal de face, Arnaud souriant, 5 produits phares, l'enseigne, une vue du marché.</span><span class="who a">Arnaud</span></li>
-      <li><span>Description de 750 caractères avec les mots que tapent les clients : métier, « marché + nom du marché », « Toulouse », quartier, spécialités.</span><span class="who m">Marchéo</span></li>
-    </ul>
-    <h3>B. Le site Marchéo</h3>
-    <ul class="tasks">
-      <li><span>15 à 25 produits avec photo et prix. Mieux vaut peu de produits bien présentés qu'un catalogue vide.</span><span class="who e">Ensemble</span></li>
-      <li><span>Créneaux de retrait calés sur les jours de marché, et un texte clair : « Retrait à l'étal, allée X, à partir de 8h ».</span><span class="who m">Marchéo</span></li>
-      <li><span>Page « Où me trouver » : plan du marché avec l'emplacement de l'étal dessiné.</span><span class="who m">Marchéo</span></li>
-      <li><span>Activer l'empreinte bancaire et l'alerte absence marché.</span><span class="who m">Marchéo</span></li>
-      <li><span>Passer une fausse commande test de bout en bout avec Arnaud, sur son téléphone.</span><span class="who e">Ensemble</span></li>
-    </ul>
-    <p class="tip"><b>Attention :</b> une fiche Google ne s'ouvre pas tout de suite. La validation (code, vidéo ou appel) peut prendre plusieurs jours. Il faut la lancer dès le premier RDV.</p>
-  </div>
-</section>
-
-<!-- ═════════ PHASE 1 ═════════ -->
-<section class="phase">
-  <div class="phase-side">
-    <span class="when">J0 → J+14</span>
-    <h2>Le lancement à l'étal</h2>
-    <!-- Dessin : chevalet QR + flyer dans un sac -->
-    <svg viewBox="0 0 200 170" role="img" aria-label="Chevalet avec QR code et flyer glissé dans un sac kraft">
-      <path class="sk" d="M30 150 L55 30 L80 150 M40 100 L70 100"/>
-      <rect x="35" y="35" width="40" height="55" class="f-paper sk"/>
-      <rect x="43" y="44" width="24" height="24" class="sk-thin"/>
-      <path class="f-ink" d="M46 47h6v6h-6zM58 47h6v6h-6zM46 59h6v6h-6zM56 57h4v4h-4z"/>
-      <path class="f-sun" d="M115 75 L180 75 L172 155 L123 155 Z" opacity=".8"/>
-      <path class="sk" d="M115 75 L180 75 L172 155 L123 155 Z"/>
-      <path class="sk-thin" d="M130 75 C130 55 165 55 165 75"/>
-      <rect x="132" y="50" width="34" height="44" rx="2" transform="rotate(8 149 72)" class="f-paper sk-thin"/>
-      <text x="136" y="76" font-size="13" transform="rotate(8 149 72)">-5 %</text>
-      <text x="100" y="30" font-size="16">flyer dans</text><text x="100" y="46" font-size="16">chaque sac</text>
-    </svg>
-  </div>
-  <div class="phase-body">
-    <h3>Le matériel (on le fournit)</h3>
-    <ul class="tasks">
-      <li><span>1 affiche A4 sous plastique avec un gros QR code et le texte « Commandez en ligne, c'est prêt quand vous passez ».</span><span class="who m">Marchéo</span></li>
-      <li><span>1 chevalet ou ardoise posée à hauteur des yeux, à côté de la balance ou de la caisse.</span><span class="who a">Arnaud</span></li>
-      <li><span>200 petites cartes (format carte de visite) : QR boutique au recto, QR « Laissez un avis » au verso.</span><span class="who m">Marchéo</span></li>
-      <li><span>Une offre de lancement simple, par exemple <b>-5 % sur la 1<sup>re</sup> commande en ligne</b> ou un petit produit offert au retrait.</span><span class="who e">Ensemble</span></li>
-    </ul>
-    <h3>Les réseaux (1 heure ensemble, sur son téléphone)</h3>
-    <ul class="tasks">
-      <li><span>Créer Instagram en compte professionnel. Nom : <b>@nomdelétal.toulouse</b>. Bio : métier, marché, jours, lien vers sa boutique Marchéo.</span><span class="who e">Ensemble</span></li>
-      <li><span>Créer une page Facebook reliée à Instagram, pour publier sur les deux en même temps.</span><span class="who e">Ensemble</span></li>
-      <li><span>Publier les 6 premiers posts d'un coup pour que le profil ne soit pas vide : l'étal, Arnaud, 3 produits, « où me trouver ».</span><span class="who e">Ensemble</span></li>
-      <li><span>Rejoindre 3 groupes Facebook de quartier (Saint-Cyprien, Carmes, Croix-de-Pierre…) et y annoncer la commande en ligne une seule fois, sans spammer.</span><span class="who a">Arnaud</span></li>
-    </ul>
-    <p class="tip"><b>Règle d'or :</b> chaque client qui achète repart avec une carte dans son sac. C'est gratuit et c'est ce qui fait décoller les premières commandes.</p>
-  </div>
-</section>
-
-<!-- ═════════ PHASE 2 ═════════ -->
-<section class="phase">
-  <div class="phase-side">
-    <span class="when">J+15 → J+45</span>
-    <h2>Avis & visibilité</h2>
-    <!-- Dessin : téléphone avec étoiles -->
-    <svg viewBox="0 0 200 170" role="img" aria-label="Téléphone affichant des avis cinq étoiles">
-      <rect x="60" y="10" width="80" height="150" rx="12" class="f-paper sk"/>
-      <path class="sk-thin" d="M88 20 H112"/>
-      <g class="f-sun">
-        <path d="M76 52l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/><path d="M100 52l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z" transform="translate(4 0)"/>
-        <path d="M76 92l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/><path d="M100 92l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z" transform="translate(4 0)"/>
-      </g>
-      <path class="sk-thin" d="M72 130 H128 M72 140 H116"/>
-      <text x="142" y="60" font-size="18">20 avis</text><text x="142" y="80" font-size="18">en 30 j</text>
-      <path class="sk-thin" d="M10 40 C25 30 40 34 52 46"/><text x="2" y="30" font-size="15">merci !</text>
-    </svg>
-  </div>
-  <div class="phase-body">
-    <h3>Les avis Google, c'est ce qui le fera passer devant les concurrents</h3>
-    <ul class="tasks">
-      <li><span>Demander un avis <b>à voix haute</b> aux 5 clients les plus fidèles chaque jour de marché. Objectif : 20 avis en 30 jours.</span><span class="who a">Arnaud</span></li>
-      <li><span>Répondre à chaque avis sous 48 h, en citant le produit acheté : ça montre qu'il y a quelqu'un derrière.</span><span class="who a">Arnaud</span></li>
-      <li><span>Publier 1 « post Google » par semaine sur la fiche (arrivage, produit de saison, absence).</span><span class="who e">Ensemble</span></li>
-    </ul>
-    <h3>Instagram : 3 posts par semaine, 10 minutes</h3>
-    <ul class="tasks">
-      <li><span>La veille du marché : story « Demain je vous ai mis de côté… commandez ici » + lien.</span><span class="who a">Arnaud</span></li>
-      <li><span>Le matin du marché : photo de l'étal monté, avant l'ouverture. C'est le post qui marche le mieux.</span><span class="who a">Arnaud</span></li>
-      <li><span>Une fois par semaine : un produit en gros plan + une astuce (comment le choisir, le cuisiner, le conserver).</span><span class="who a">Arnaud</span></li>
-      <li><span>Toujours mettre le nom du marché et #toulouse en lieu ou en mot-clé.</span><span class="who a">Arnaud</span></li>
-    </ul>
-    <h3>Les annuaires gratuits</h3>
-    <ul class="tasks">
-      <li><span>Inscription : PagesJaunes, Apple Plans (Business Connect), Bing Places, association des commerçants du marché. Toujours le même nom, la même adresse, le même téléphone.</span><span class="who m">Marchéo</span></li>
-    </ul>
-    <p class="tip"><b>Point d'étape J+30 :</b> appel de 20 min. On regarde le nombre d'avis, de commandes et d'abonnés, et on corrige ce qui bloque.</p>
-  </div>
-</section>
-
-<!-- ═════════ PHASE 3 ═════════ -->
-<section class="phase">
-  <div class="phase-side">
-    <span class="when">J+45 → J+90</span>
-    <h2>Fidéliser</h2>
-    <!-- Dessin : calendrier avec cœur -->
-    <svg viewBox="0 0 200 170" role="img" aria-label="Calendrier avec le samedi entouré : commande récurrente">
-      <rect x="30" y="30" width="140" height="120" rx="8" class="f-paper sk"/>
-      <path class="sk" d="M30 55 H170 M60 20 V40 M140 20 V40"/>
-      <g class="sk-thin">
-        <path d="M50 75h12M78 75h12M106 75h12M134 75h12M50 100h12M78 100h12M106 100h12M50 125h12M78 125h12M106 125h12M134 125h12"/>
-      </g>
-      <circle cx="140" cy="100" r="16" class="sk" stroke="var(--tomato)"/>
-      <path class="f-tom" d="M140 108 C128 98 132 90 140 96 C148 90 152 98 140 108 Z"/>
-      <text x="100" y="168" font-size="16">chaque samedi</text>
-    </svg>
-  </div>
-  <div class="phase-body">
-    <ul class="tasks">
-      <li><span>Mettre en avant 1 ou 2 produits « à réserver » qu'on ne trouve pas chez les voisins : panier de la semaine, plateau, pièce spéciale.</span><span class="who e">Ensemble</span></li>
-      <li><span>Envoyer un SMS ou un e-mail le jeudi aux clients qui ont déjà commandé : « Ce samedi j'ai… réservez ici ».</span><span class="who a">Arnaud</span></li>
-      <li><span>Analyser les statistiques Marchéo : produits les plus commandés, heure de commande, clients récurrents.</span><span class="who m">Marchéo</span></li>
-      <li><span>Parrainage : « Faites découvrir à un voisin, vous recevez chacun un petit cadeau ».</span><span class="who e">Ensemble</span></li>
-      <li><span>Bilan J+90 : on garde ce qui marche, on arrête le reste, et on fixe les objectifs du trimestre suivant.</span><span class="who e">Ensemble</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ═════════ CONCURRENCE ═════════ -->
-<section class="sheet">
-  <div>
-    <p class="eyebrow">À remplir au 1er RDV, en 10 minutes sur Google Maps</p>
-    <h2>Le radar concurrence</h2>
-    <p class="muted" style="margin-top:6px">On note les 3 concurrents directs du même marché. L'objectif est de les dépasser sur les avis et les photos d'ici 60 jours.</p>
-  </div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>Étal</th><th class="n">Nb avis</th><th class="n">Note</th><th class="n">Photos</th><th>Instagram ?</th><th>Commande en ligne ?</th><th>Son point fort</th></tr></thead>
-      <tbody>
-        <tr><td><b>Arnaud (aujourd'hui)</b></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td>Non</td><td>Oui, Marchéo</td><td><span class="blank" style="min-width:120px"></span></td></tr>
-        <tr><td>Concurrent 1 : <span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank" style="min-width:120px"></span></td></tr>
-        <tr><td>Concurrent 2 : <span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank" style="min-width:120px"></span></td></tr>
-        <tr><td>Concurrent 3 : <span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank"></span></td><td><span class="blank" style="min-width:120px"></span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ═════════ ROUTINE ═════════ -->
-<section>
-  <div>
-    <p class="eyebrow">À coller à côté de la caisse</p>
-    <h2>La routine d'Arnaud : 15 minutes par jour</h2>
-    <p class="muted" style="margin-top:6px">Exemple pour un marché le mercredi et le samedi. On l'adapte à ses vrais jours.</p>
-  </div>
-  <div class="week">
-    <div class="day"><b>Lun</b><span>Repos</span><small>Répondre aux avis du week-end</small></div>
-    <div class="day"><b>Mar</b><span>Story « demain au marché »</span><small>5 min</small></div>
-    <div class="day mk"><b>Mer · marché</b><span>Photo de l'étal avant l'ouverture. Demander 5 avis.</span><small>Cartes dans les sacs</small></div>
-    <div class="day"><b>Jeu</b><span>SMS ou e-mail aux clients : « samedi j'ai… »</span><small>5 min</small></div>
-    <div class="day"><b>Ven</b><span>Story « réservez pour demain » + post produit</span><small>10 min</small></div>
-    <div class="day mk"><b>Sam · marché</b><span>Photo de l'étal. Préparer les retraits. Demander 5 avis.</span><small>Cartes dans les sacs</small></div>
-    <div class="day"><b>Dim</b><span>Post Google de la semaine</span><small>5 min</small></div>
-  </div>
-</section>
-
-<!-- ═════════ SCRIPT + RÔLES ═════════ -->
-<section class="two">
-  <div class="sheet" style="display:flex;flex-direction:column;gap:16px">
-    <div>
-      <p class="eyebrow">Les phrases à dire au client</p>
-      <h2>Le script de l'étal</h2>
-    </div>
-    <div class="bubbles">
-      <div class="bubble">« Vous savez que vous pouvez commander chez moi la veille ? Vous passez, c'est prêt, pas de queue. Tenez, c'est sur la carte. »</div>
-      <div class="bubble">« Ça vous a plu la dernière fois ? Ça m'aiderait beaucoup si vous mettiez un petit avis sur Google, c'est le QR derrière la carte. »</div>
-      <div class="bubble">« Pour votre première commande en ligne, il y a -5 %. »</div>
-    </div>
-  </div>
-  <div class="sheet" style="display:flex;flex-direction:column;gap:14px">
-    <div>
-      <p class="eyebrow">Qui fait quoi</p>
-      <h2>Le partage des rôles</h2>
-    </div>
-    <div>
-      <h3><span class="who m">Marchéo</span> s'occupe de</h3>
-      <p style="margin-top:6px">La configuration du site et de la fiche Google, le matériel imprimé (affiche, cartes QR), les annuaires, les statistiques, les points d'étape à J+30, J+60 et J+90.</p>
-    </div>
-    <div>
-      <h3><span class="who a">Arnaud</span> s'occupe de</h3>
-      <p style="margin-top:6px">Les photos, demander les avis, distribuer les cartes, 3 posts par semaine, répondre aux clients. Il est le visage de l'étal, c'est ça qui fait la différence.</p>
-    </div>
-    <div>
-      <h3><span class="who e">Ensemble</span></h3>
-      <p style="margin-top:6px">Le 1<sup>er</sup> RDV (environ 2 h), la création des réseaux sociaux, le choix de l'offre de lancement et les bilans.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ OBJECTIFS ═════════ -->
-<section class="sheet">
-  <div>
-    <p class="eyebrow">Ce qu'on mesure</p>
-    <h2>Les objectifs chiffrés</h2>
-    <p class="muted" style="margin-top:6px">Ces cibles sont réalistes pour un étal seul sur un marché concurrentiel. On les ajuste au bilan J+30.</p>
-  </div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>Indicateur</th><th class="n">Départ</th><th class="n">J+30</th><th class="n">J+60</th><th class="n">J+90</th><th>Où le voir</th></tr></thead>
-      <tbody>
-        <tr><td>Avis Google</td><td class="n"><span class="blank"></span></td><td class="n">10</td><td class="n">25</td><td class="n">40</td><td>Fiche Google</td></tr>
-        <tr><td>Note moyenne</td><td class="n"><span class="blank"></span></td><td class="n">≥ 4,6</td><td class="n">≥ 4,6</td><td class="n">≥ 4,7</td><td>Fiche Google</td></tr>
-        <tr><td>Photos sur la fiche</td><td class="n"><span class="blank"></span></td><td class="n">15</td><td class="n">25</td><td class="n">40</td><td>Fiche Google</td></tr>
-        <tr><td>Abonnés Instagram</td><td class="n">0</td><td class="n">80</td><td class="n">180</td><td class="n">300</td><td>Instagram</td></tr>
-        <tr><td>Commandes en ligne / semaine</td><td class="n">0</td><td class="n">5</td><td class="n">12</td><td class="n">20</td><td>Tableau de bord Marchéo</td></tr>
-        <tr><td>Clients qui recommandent</td><td class="n">0</td><td class="n">—</td><td class="n">20 %</td><td class="n">35 %</td><td>Tableau de bord Marchéo</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ═════════ QUESTIONS 1ER RDV ═════════ -->
-<section class="sheet">
-  <div>
-    <p class="eyebrow">Pour compléter la fiche</p>
-    <h2>Les questions à poser à Arnaud au 1<sup>er</sup> RDV</h2>
-  </div>
-  <ol class="qs">
-    <li>Quel est ton métier exact et ton nom commercial ?</li>
-    <li>Sur quel(s) marché(s) es-tu, quels jours et à quelles heures ?</li>
-    <li>Ton emplacement est-il fixe ? Dans quelle allée ?</li>
-    <li>As-tu déjà une fiche Google ? Une adresse Gmail ?</li>
-    <li>Combien de clients sers-tu par jour de marché ?</li>
-    <li>Qui sont tes 3 concurrents directs sur le marché ?</li>
-    <li>Qu'est-ce que tes clients fidèles aiment chez toi ?</li>
-    <li>As-tu un produit que personne d'autre n'a ?</li>
-    <li>As-tu des numéros ou des e-mails de clients ?</li>
-    <li>Es-tu à l'aise pour faire des photos avec ton téléphone ?</li>
-    <li>Quelle offre de lancement es-tu prêt à faire ?</li>
-    <li>Combien de commandes en ligne par semaine voudrais-tu dans 3 mois ?</li>
+  <ol class="toc">
+    <li class="google"><a href="#fiche-1"><span class="num">1</span><span class="t">Trouver ou créer ma fiche Google<small>Semaine 1</small></span><span class="d">20 min</span></a></li>
+    <li class="google"><a href="#fiche-2"><span class="num">2</span><span class="t">Faire valider ma fiche<small>Semaine 1</small></span><span class="d">10 min</span></a></li>
+    <li class="google"><a href="#fiche-3"><span class="num">3</span><span class="t">Remplir ma fiche à 100 %<small>Semaine 1</small></span><span class="d">30 min</span></a></li>
+    <li class="google"><a href="#fiche-4"><span class="num">4</span><span class="t">Les photos qui donnent faim<small>Semaine 1, puis chaque semaine</small></span><span class="d">10 min</span></a></li>
+    <li class="google"><a href="#fiche-5"><span class="num">5</span><span class="t">Obtenir des avis<small>Chaque jour de marché</small></span><span class="d">2 min</span></a></li>
+    <li class="google"><a href="#fiche-6"><span class="num">6</span><span class="t">Répondre aux avis<small>Chaque semaine</small></span><span class="d">5 min</span></a></li>
+    <li class="google"><a href="#fiche-7"><span class="num">7</span><span class="t">Publier un post Google<small>Chaque semaine</small></span><span class="d">5 min</span></a></li>
+    <li><a href="#fiche-8"><span class="num">8</span><span class="t">Faire connaître la commande en ligne à l'étal<small>Semaine 2</small></span><span class="d">15 min</span></a></li>
+    <li><a href="#fiche-9"><span class="num">9</span><span class="t">Ma routine et mes objectifs<small>À garder sous la main</small></span><span class="d">15 min/sem.</span></a></li>
+    <li class="bonus"><a href="#fiche-bonus"><span class="num">+</span><span class="t">Bonus : et les réseaux sociaux ?<small>Facultatif, quand vous voulez</small></span><span class="d">au choix</span></a></li>
   </ol>
 </section>
 
-<p class="foot">Marchéo · Fiche d'accompagnement lancement · modèle réutilisable pour chaque nouveau client · version du 27/10/2026</p>
+<!-- ═════════ FICHE 1 ═════════ -->
+<article class="fiche" id="fiche-1">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 1 · Google</p>
+      <h2>Trouver ou créer ma fiche Google</h2>
+      <div class="meta"><span class="pill">⏱ 20 min</span><span class="pill sun">Semaine 1</span><span class="pill">Téléphone + compte Gmail</span></div>
+      <p class="goal">Quand quelqu'un tape « primeur Toulouse » ou « fruits et légumes marché », Google affiche une carte avec des épingles. Le but est que la vôtre y soit.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Loupe au-dessus d'un plan avec une épingle">
+      <path class="sk-thin" d="M10 120 L70 100 L130 125 L200 105 L200 160 L130 165 L70 150 L10 165 Z"/>
+      <path class="sk-thin" d="M70 100 L70 150 M130 125 L130 165" opacity=".6"/>
+      <path class="f-tom" d="M100 78 C88 78 82 88 85 97 C89 107 100 120 100 120 C100 120 111 107 115 97 C118 88 112 78 100 78 Z"/>
+      <path class="sk-thin" d="M100 78 C88 78 82 88 85 97 C89 107 100 120 100 120 C100 120 111 107 115 97 C118 88 112 78 100 78 Z"/>
+      <circle cx="120" cy="50" r="34" class="sk"/><path class="sk" d="M144 74 L172 102"/>
+      <text x="96" y="56" font-size="17">primeur</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Ouvrez <b>Google Maps</b> sur votre téléphone. Cherchez le nom de votre étal, puis « primeur + nom du marché ».</span></li>
+    <li><span><b>Si votre étal apparaît déjà</b> : touchez-le, puis « Revendiquer cette fiche » (ou « Vous êtes le propriétaire ? »). Suivez les écrans, puis passez à la fiche 2.</span></li>
+    <li><span><b>Si rien n'apparaît</b> : allez sur <b>business.google.com</b> et touchez « Commencer ». Connectez-vous avec <b>votre</b> adresse Gmail. Si vous n'en avez pas, créez-en une, c'est gratuit.</span></li>
+    <li><span>Nom : le nom de votre enseigne, <b>exactement</b> comme sur votre panneau. N'ajoutez rien (pas « Primeur pas cher Toulouse »), Google suspend les fiches qui font ça.</span></li>
+    <li><span>Catégorie : tapez « Primeur » et choisissez-la.</span></li>
+    <li><span>« Voulez-vous ajouter un lieu que les clients peuvent visiter ? » : répondez <b>Oui</b> et mettez l'adresse du marché. Placez l'épingle à l'endroit précis de votre étal.</span></li>
+    <li><span>Téléphone : votre portable. Site web : l'adresse de votre boutique Marchéo.</span></li>
+  </ol>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Google vous demande de valider la fiche. Passez à la fiche 2.</div>
+    <div class="box no"><b class="h">À éviter</b><ul><li>Créer la fiche avec le Gmail de quelqu'un d'autre : vous devez en rester propriétaire.</li><li>Créer une 2<sup>e</sup> fiche si une existe déjà.</li></ul></div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 2 ═════════ -->
+<article class="fiche" id="fiche-2">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 2 · Google</p>
+      <h2>Faire valider ma fiche</h2>
+      <div class="meta"><span class="pill">⏱ 10 min</span><span class="pill sun">Semaine 1, un jour de marché</span><span class="pill">Étal monté</span></div>
+      <p class="goal">Tant que la fiche n'est pas validée, elle n'apparaît pas. Pour un étal, Google demande presque toujours une courte vidéo.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone qui filme l'étal">
+      <rect x="20" y="30" width="80" height="130" rx="12" class="f-paper sk"/>
+      <circle cx="60" cy="140" r="8" class="f-tom"/>
+      <path class="f-tom" d="M35 80 L85 80 L80 92 L40 92 Z"/><path class="sk-thin" d="M35 80 L85 80 L80 92 L40 92 Z M42 92 V120 M78 92 V120 M36 112 H84"/>
+      <path class="sk-thin" d="M110 70 C130 60 150 62 165 75" stroke-dasharray="4 6"/>
+      <circle cx="175" cy="88" r="6" class="f-tom"/>
+      <text x="118" y="112" font-size="20">REC</text>
+      <text x="112" y="135" font-size="16">1 seule prise</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Faites-le <b>pendant les horaires du marché</b>, étal monté. Google vérifie que vous êtes bien là aux horaires indiqués.</span></li>
+    <li><span>Dans l'application Google Maps : touchez votre profil, puis « Valider » ou « Obtenir la validation ». Choisissez « Vidéo » si on vous la propose.</span></li>
+    <li><span>Filmez <b>sans couper</b>, pendant 30 secondes à 1 minute : <br>a. un panneau de rue ou l'entrée du marché ; <br>b. le chemin jusqu'à votre étal ; <br>c. votre enseigne et vos cagettes ; <br>d. une preuve que c'est à vous : la caisse, la balance, ou vous qui sortez la clé de votre camion.</span></li>
+    <li><span>Envoyez. La réponse arrive en général en <b>2 à 7 jours</b>. Pendant ce temps, faites la fiche 3 : vos modifications seront visibles dès la validation.</span></li>
+  </ol>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Vous recevez l'e-mail « Votre fiche est validée » et votre étal apparaît sur Google Maps.</div>
+    <div class="box no"><b class="h">Si c'est refusé</b>Refaites la vidéo plus lentement, en montrant bien le nom du marché et votre enseigne. Si c'est encore bloqué, écrivez-nous.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 3 ═════════ -->
+<article class="fiche" id="fiche-3">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 3 · Google</p>
+      <h2>Remplir ma fiche à 100 %</h2>
+      <div class="meta"><span class="pill">⏱ 30 min</span><span class="pill sun">Semaine 1</span><span class="pill">Textes à copier-coller ci-dessous</span></div>
+      <p class="goal">Google montre en premier les fiches complètes. Chaque case vide est un point donné à vos concurrents du marché.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Formulaire avec toutes les cases cochées">
+      <rect x="40" y="10" width="130" height="150" rx="10" class="f-paper sk"/>
+      <g class="sk-thin">
+        <rect x="55" y="32" width="14" height="14" rx="3"/><path d="M78 39 H150"/>
+        <rect x="55" y="62" width="14" height="14" rx="3"/><path d="M78 69 H140"/>
+        <rect x="55" y="92" width="14" height="14" rx="3"/><path d="M78 99 H152"/>
+        <rect x="55" y="122" width="14" height="14" rx="3"/><path d="M78 129 H132"/>
+      </g>
+      <g class="sk" stroke="var(--green)"><path d="M57 39 l4 4 8-9"/><path d="M57 69 l4 4 8-9"/><path d="M57 99 l4 4 8-9"/><path d="M57 129 l4 4 8-9"/></g>
+      <text x="150" y="168" font-size="18">100 %</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span><b>Catégories</b> : principale « Primeur ». Ajoutez en secondaire « Marchand de fruits et légumes » et, seulement si c'est vrai, « Magasin de produits bio » ou « Producteur ».</span></li>
+    <li><span><b>Horaires</b> : uniquement vos jours et heures de marché. Les autres jours en « Fermé ». Pensez aux <b>horaires exceptionnels</b> pour les jours fériés et vos congés.</span></li>
+    <li><span><b>Description</b> : copiez le modèle ci-dessous et remplacez les passages surlignés.</span></li>
+    <li><span><b>Produits</b> (onglet « Produits ») : ajoutez 10 produits phares avec une photo, par exemple tomates anciennes, fraises, panier de saison, herbes fraîches. Pas besoin de prix si ça change toutes les semaines.</span></li>
+    <li><span><b>Attributs</b> : cochez tout ce qui est vrai, par exemple « paiement par carte », « produits locaux », « retrait en magasin ». Ne cochez <b>pas</b> « livraison ».</span></li>
+    <li><span><b>Lien</b> : vérifiez que « Site web » renvoie bien vers votre boutique Marchéo. Si Google propose un lien « Commander », mettez-y aussi votre boutique.</span></li>
+  </ol>
+  <div class="copy"><span class="lbl">Modèle de description · à copier</span>Primeur au marché <span class="fill">[nom du marché]</span> à Toulouse, nous vous proposons chaque <span class="fill">[jours]</span> des fruits et légumes frais de saison, <span class="fill">[choisis chez des producteurs de la région / d'Occitanie]</span>. Vous nous trouvez <span class="fill">[emplacement : allée, à côté de…]</span>.
+Gagnez du temps : commandez en ligne la veille grâce au bouton « Site web », et récupérez votre panier prêt à l'étal, sans faire la queue.
+Spécialités : <span class="fill">[ex. tomates anciennes, fruits de saison, herbes fraîches, paniers de la semaine]</span>. Conseils de préparation et de conservation offerts, demandez-nous !</div>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Google n'affiche plus de message « Complétez votre fiche ».</div>
+    <div class="box no"><b class="h">À éviter</b>Mettre une adresse internet ou un numéro de téléphone dans la description : Google les refuse.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 4 ═════════ -->
+<article class="fiche" id="fiche-4">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 4 · Google</p>
+      <h2>Les photos qui donnent faim</h2>
+      <div class="meta"><span class="pill">⏱ 10 min</span><span class="pill sun">10 photos la 1<sup>re</sup> semaine, puis 2 par semaine</span></div>
+      <p class="goal">Pour un primeur, c'est la couleur qui vend. Une fiche avec des photos récentes reçoit beaucoup plus de clics qu'une fiche vide.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Appareil photo et cagette de tomates">
+      <rect x="20" y="40" width="110" height="78" rx="10" class="f-paper sk"/>
+      <path class="sk" d="M50 40 L58 26 L92 26 L100 40"/>
+      <circle cx="75" cy="79" r="24" class="sk"/><circle cx="75" cy="79" r="13" class="f-tom"/>
+      <path class="f-sun" d="M138 120 L200 120 L194 155 L144 155 Z"/><path class="sk" d="M138 120 L200 120 L194 155 L144 155 Z"/>
+      <circle cx="153" cy="112" r="10" class="f-tom"/><circle cx="172" cy="110" r="10" class="f-tom"/><circle cx="190" cy="113" r="9" class="f-tom"/>
+      <text x="20" y="150" font-size="18">lumière du jour</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span><b>Le matin, étal monté, avant l'ouverture</b> : la lumière est belle et il n'y a pas de foule.</span></li>
+    <li><span>Les 10 premières photos : <b>1</b> l'étal entier de face · <b>2</b> votre enseigne · <b>3</b> vous, souriant, derrière l'étal · <b>4 à 8</b> cinq gros plans de produits de saison · <b>9</b> un panier préparé pour un retrait · <b>10</b> l'allée du marché avec votre étal.</span></li>
+    <li><span>Tenez le téléphone à l'horizontale pour l'étal et à la verticale pour les gros plans. Essuyez l'objectif avant.</span></li>
+    <li><span>Dans votre fiche Google : « Ajouter des photos ». Choisissez votre photo d'étal comme <b>photo de couverture</b>.</span></li>
+    <li><span>Ensuite, ajoutez 2 photos par semaine : l'arrivage du moment (premières fraises, courges, agrumes…).</span></li>
+  </ol>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Il y a 10 photos sur la fiche, et une photo de couverture.</div>
+    <div class="box no"><b class="h">À éviter</b>Les photos floues, prises à contre-jour, avec du texte ou trouvées sur internet. Seulement vos vrais produits.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 5 ═════════ -->
+<article class="fiche" id="fiche-5">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 5 · Google · la plus importante</p>
+      <h2>Obtenir des avis</h2>
+      <div class="meta"><span class="pill">⏱ 2 min par jour de marché</span><span class="pill sun">Dès que la fiche est validée</span></div>
+      <p class="goal">Sur un marché où tout le monde vend des fruits et légumes, Google met en avant celui qui a le <b>plus d'avis récents</b>. Vos clients fidèles vous aiment déjà : il suffit de leur demander.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone avec des étoiles et une bulle merci">
+      <rect x="60" y="10" width="80" height="150" rx="12" class="f-paper sk"/>
+      <path class="sk-thin" d="M88 20 H112"/>
+      <g class="f-sun">
+        <path d="M76 52l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/><path d="M104 52l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/>
+        <path d="M76 92l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/><path d="M104 92l4 8 9 1-6 6 2 9-9-5-8 5 2-9-6-6 8-1z"/>
+      </g>
+      <path class="sk-thin" d="M72 130 H128 M72 140 H116"/>
+      <text x="144" y="60" font-size="18">5 par</text><text x="144" y="80" font-size="18">marché</text>
+      <text x="2" y="30" font-size="16">merci !</text><path class="sk-thin" d="M10 40 C25 30 40 34 54 46"/>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Dans votre fiche Google, touchez <b>« Demander des avis »</b>. Google vous donne un lien et un QR code. Enregistrez l'image du QR code.</span></li>
+    <li><span>Imprimez ce QR code en grand sur une feuille A4 avec « Votre avis compte pour moi ★ ». Glissez-la dans une pochette plastique et fixez-la près de la balance.</span></li>
+    <li><span>À chaque marché, demandez à <b>5 clients habitués</b> (ceux qui vous disent « c'était délicieux la dernière fois ») avec la phrase ci-dessous.</span></li>
+    <li><span>Clients qui commandent en ligne : quand vous leur donnez leur panier, montrez le QR code. C'est le moment où ils sont le plus contents.</span></li>
+  </ol>
+  <div class="bubbles">
+    <div class="bubble">« Ça vous a plu la dernière fois ? Ça m'aiderait beaucoup si vous mettiez un petit avis sur Google. Ça prend 30 secondes, c'est le QR code juste là. »</div>
+  </div>
+  <div class="boxes">
+    <div class="box ok"><b class="h">Objectif</b>10 avis à J+30, 25 à J+60, 40 à J+90.</div>
+    <div class="box no"><b class="h">Interdit par Google</b><ul><li>Offrir une réduction ou un cadeau en échange d'un avis.</li><li>Écrire des avis vous-même ou les faire écrire par la famille.</li></ul>La fiche peut être suspendue.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 6 ═════════ -->
+<article class="fiche" id="fiche-6">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 6 · Google</p>
+      <h2>Répondre aux avis</h2>
+      <div class="meta"><span class="pill">⏱ 5 min par semaine</span><span class="pill sun">Le lundi, par exemple</span></div>
+      <p class="goal">Répondre montre aux futurs clients qu'il y a quelqu'un de sympathique derrière l'étal. Google le prend aussi en compte.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Deux bulles de conversation">
+      <path class="f-soft" d="M15 20 H140 a10 10 0 0 1 10 10 V75 a10 10 0 0 1 -10 10 H50 L30 100 L32 85 H15 a10 10 0 0 1 -10 -10 V30 a10 10 0 0 1 10 -10 Z"/>
+      <path class="sk" d="M15 20 H140 a10 10 0 0 1 10 10 V75 a10 10 0 0 1 -10 10 H50 L30 100 L32 85 H15 a10 10 0 0 1 -10 -10 V30 a10 10 0 0 1 10 -10 Z"/>
+      <text x="20" y="48" font-size="15">★★★★★ Super</text><text x="20" y="68" font-size="15">tomates !</text>
+      <path class="f-paper" d="M70 100 H195 a10 10 0 0 1 10 10 V145 a10 10 0 0 1 -10 10 H180 L182 168 L162 155 H70 a10 10 0 0 1 -10 -10 V110 a10 10 0 0 1 10 -10 Z"/>
+      <path class="sk" d="M70 100 H195 a10 10 0 0 1 10 10 V145 a10 10 0 0 1 -10 10 H180 L182 168 L162 155 H70 a10 10 0 0 1 -10 -10 V110 a10 10 0 0 1 10 -10 Z"/>
+      <text x="74" y="133" font-size="17">Merci Sophie !</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Une fois par semaine, ouvrez votre fiche puis « Avis ». Répondez à <b>tous</b> les nouveaux avis, même ceux avec seulement des étoiles.</span></li>
+    <li><span>Utilisez le prénom du client et citez le produit quand il le mentionne. Quelques lignes suffisent.</span></li>
+    <li><span>Avis négatif : attendez le lendemain, restez calme, proposez de voir ça au prochain marché. Les autres clients lisent surtout votre réponse.</span></li>
+  </ol>
+  <div class="models">
+    <div class="copy"><span class="lbl">Avis positif · modèle</span>Merci beaucoup <span class="fill">[prénom]</span> ! Ravi que les <span class="fill">[produit]</span> vous aient plu. À <span class="fill">[samedi]</span> au marché, et pensez à commander la veille pour gagner du temps. Arnaud</div>
+    <div class="copy"><span class="lbl">Avis négatif · modèle</span>Bonjour <span class="fill">[prénom]</span>, merci de nous l'avoir signalé et désolé pour <span class="fill">[le problème]</span>. Passez me voir au prochain marché, je vous le remplace avec plaisir. Arnaud</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 7 ═════════ -->
+<article class="fiche" id="fiche-7">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 7 · Google</p>
+      <h2>Publier un post Google</h2>
+      <div class="meta"><span class="pill">⏱ 5 min par semaine</span><span class="pill sun">La veille du marché</span></div>
+      <p class="goal">Un post, c'est une photo et deux phrases qui s'affichent directement sur votre fiche. Il montre que vous êtes actif et donne envie de commander.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Carte de post avec une photo de fraises et un bouton Commander">
+      <rect x="30" y="10" width="150" height="150" rx="12" class="f-paper sk"/>
+      <rect x="42" y="22" width="126" height="70" rx="6" class="f-soft"/>
+      <path class="f-tom" d="M80 50 C70 50 66 62 75 74 C80 80 85 80 90 74 C99 62 95 50 85 50 Z"/>
+      <path class="f-tom" d="M120 46 C110 46 106 58 115 70 C120 76 125 76 130 70 C139 58 135 46 125 46 Z"/>
+      <path class="f-green" d="M78 50 l5 -6 l5 6 Z M118 46 l5 -6 l5 6 Z"/>
+      <path class="sk-thin" d="M44 106 H160 M44 118 H140"/>
+      <rect x="44" y="130" width="72" height="20" rx="10" class="f-green"/>
+      <text x="52" y="145" font-size="14" style="fill:#0A1428">Commander</text>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Dans votre fiche, touchez « Ajouter une mise à jour » (ou « Post »).</span></li>
+    <li><span>Mettez <b>une photo</b> de la semaine et un des textes ci-dessous.</span></li>
+    <li><span>Bouton : choisissez « Commander en ligne » ou « En savoir plus » avec le lien de votre boutique Marchéo.</span></li>
+  </ol>
+  <div class="models">
+    <div class="copy"><span class="lbl">Arrivage</span>Les <span class="fill">[premières fraises / clémentines / courges]</span> sont arrivées ! Commandez dès ce soir, votre panier sera prêt <span class="fill">[samedi]</span> à l'étal.</div>
+    <div class="copy"><span class="lbl">Panier de la semaine</span>Panier de saison de la semaine : <span class="fill">[liste]</span>. Réservez-le en ligne, je vous le prépare pour <span class="fill">[samedi]</span>.</div>
+    <div class="copy"><span class="lbl">Astuce</span>Comment choisir un bon <span class="fill">[melon]</span> ? <span class="fill">[votre astuce]</span>. Et si vous voulez, je vous le choisis : commandez en ligne.</div>
+    <div class="copy"><span class="lbl">Absence</span>Pas de marché <span class="fill">[ce samedi]</span>, on se retrouve <span class="fill">[mercredi]</span> ! Les commandes en ligne restent ouvertes pour mercredi.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 8 ═════════ -->
+<article class="fiche" id="fiche-8">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 8 · À l'étal</p>
+      <h2>Faire connaître la commande en ligne</h2>
+      <div class="meta"><span class="pill">⏱ 15 min une fois</span><span class="pill sun">Semaine 2</span><span class="pill">Une ardoise et une imprimante</span></div>
+      <p class="goal">Vos clients ne savent pas encore qu'ils peuvent commander chez vous. Le message à faire passer : <b>« Commandez la veille, c'est prêt quand vous passez. »</b></p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Ardoise écrite à la main avec un QR code">
+      <path class="sk" d="M40 160 L65 30 L90 160 M50 110 L80 110" />
+      <rect x="20" y="20" width="160" height="100" rx="6" class="f-ink" opacity=".92"/>
+      <rect x="20" y="20" width="160" height="100" rx="6" class="sk"/>
+      <text x="30" y="50" font-size="17" style="fill:#fff">Commandez</text>
+      <text x="30" y="72" font-size="17" style="fill:#fff">la veille,</text>
+      <text x="30" y="94" font-size="17" style="fill:#fff">c'est prêt !</text>
+      <rect x="118" y="40" width="50" height="50" fill="#fff"/>
+      <path fill="#0A1428" d="M123 45h12v12h-12zM151 45h12v12h-12zM123 73h12v12h-12zM141 61h7v7h-7zM151 75h8v8h-8z"/>
+    </svg>
+  </div>
+  <ol class="steps">
+    <li><span>Dans votre tableau de bord Marchéo, téléchargez votre <b>QR code boutique</b>. Imprimez-le sur une feuille A4, en grand.</span></li>
+    <li><span>Collez-le dans une pochette plastique sur votre ardoise ou sur un piquet, à hauteur des yeux, près de la caisse. Écrivez à la craie : « Commandez la veille, c'est prêt ! ».</span></li>
+    <li><span>Écrivez aussi l'adresse de votre boutique à la main sur vos sacs kraft ou vos tickets. C'est gratuit et ça part chez chaque client.</span></li>
+    <li><span>Dites-le à voix haute aux habitués, surtout à ceux qui attendent dans la queue (phrase ci-dessous).</span></li>
+    <li><span>Activez l'<b>alerte absence marché</b> dans Marchéo : vos clients en ligne sont prévenus si vous ne venez pas.</span></li>
+  </ol>
+  <div class="bubbles">
+    <div class="bubble">« Vous savez que vous pouvez commander chez moi la veille ? Vous passez, votre panier est prêt, vous n'attendez pas. C'est le QR code sur l'ardoise. »</div>
+  </div>
+  <div class="boxes">
+    <div class="box ok"><b class="h">C'est fait quand…</b>Le QR code est visible sur l'étal et vous avez reçu une première commande en ligne.</div>
+    <div class="box no"><b class="h">Rappel</b>Vous ne livrez pas : écrivez partout « retrait à l'étal », pour ne pas avoir de demandes de livraison.</div>
+  </div>
+</article>
+
+<!-- ═════════ FICHE 9 ═════════ -->
+<article class="fiche" id="fiche-9">
+  <div class="fiche-top">
+    <div>
+      <p class="tag">Fiche 9 · Le suivi</p>
+      <h2>Ma routine et mes objectifs</h2>
+      <div class="meta"><span class="pill">⏱ 15 min par semaine</span><span class="pill sun">À coller près de la caisse</span></div>
+      <p class="goal">Une fois les fiches 1 à 8 faites, il reste seulement cette routine. Exemple pour un marché le mercredi et le samedi, à adapter à vos jours.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Calendrier avec deux jours de marché entourés">
+      <rect x="30" y="20" width="150" height="130" rx="8" class="f-paper sk"/>
+      <path class="sk" d="M30 46 H180 M62 10 V30 M148 10 V30"/>
+      <g class="sk-thin"><path d="M48 68h12M78 68h12M108 68h12M138 68h12M48 94h12M78 94h12M108 94h12M138 94h12M48 120h12M78 120h12M108 120h12M138 120h12"/></g>
+      <circle cx="84" cy="94" r="15" class="sk" stroke="var(--green)"/>
+      <circle cx="144" cy="94" r="15" class="sk" stroke="var(--green)"/>
+      <text x="58" y="168" font-size="17">jours de marché</text>
+    </svg>
+  </div>
+  <div class="week">
+    <div class="day"><b>Lundi</b><span>Répondre aux avis (fiche 6)</span><small>5 min</small></div>
+    <div class="day"><b>Mardi</b><span>Post Google pour mercredi (fiche 7)</span><small>5 min</small></div>
+    <div class="day mk"><b>Mercredi · marché</b><span>2 photos avant l'ouverture. Demander 5 avis.</span><small>2 min</small></div>
+    <div class="day mk"><b>Samedi · marché</b><span>Préparer les retraits. Demander 5 avis.</span><small>2 min</small></div>
+  </div>
+  <h3>Mes objectifs</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Ce qu'on regarde</th><th class="n">Départ</th><th class="n">J+30</th><th class="n">J+60</th><th class="n">J+90</th><th>Où le voir</th></tr></thead>
+      <tbody>
+        <tr><td>Avis Google</td><td class="n"><span class="blank"></span></td><td class="n">10</td><td class="n">25</td><td class="n">40</td><td>Fiche Google</td></tr>
+        <tr><td>Note moyenne</td><td class="n"><span class="blank"></span></td><td class="n">≥ 4,6</td><td class="n">≥ 4,6</td><td class="n">≥ 4,7</td><td>Fiche Google</td></tr>
+        <tr><td>Photos sur la fiche</td><td class="n"><span class="blank"></span></td><td class="n">15</td><td class="n">25</td><td class="n">35</td><td>Fiche Google</td></tr>
+        <tr><td>Clics vers le site par mois</td><td class="n">0</td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td class="n"><span class="blank"></span></td><td>Fiche Google, « Performances »</td></tr>
+        <tr><td>Commandes en ligne par semaine</td><td class="n">0</td><td class="n">3</td><td class="n">8</td><td class="n">15</td><td>Tableau de bord Marchéo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box no"><b class="h">Pour aller plus loin (facultatif) : surveiller les voisins</b>Une fois par mois, regardez sur Google Maps les autres primeurs de votre marché : leur nombre d'avis et de photos. Le but est simplement d'en avoir plus qu'eux.</div>
+</article>
+
+<!-- ═════════ BONUS RÉSEAUX ═════════ -->
+<article class="fiche bonus-fiche" id="fiche-bonus">
+  <div class="fiche-top">
+    <div>
+      <p class="tag" style="color:var(--ink-soft)">Fiche bonus · facultatif</p>
+      <h2>Et les réseaux sociaux ?</h2>
+      <div class="meta"><span class="pill">Quand vous voulez, si vous voulez</span></div>
+      <p class="goal">Ce n'est pas obligatoire : la fiche Google fait déjà l'essentiel. Si un jour vous avez envie d'aller plus loin, voici les options, de la plus simple à la plus prenante.</p>
+    </div>
+    <svg viewBox="0 0 210 170" role="img" aria-label="Téléphone avec une bulle de message">
+      <rect x="60" y="10" width="80" height="150" rx="12" class="f-paper sk"/>
+      <path class="f-soft" d="M70 40 H130 a6 6 0 0 1 6 6 V72 a6 6 0 0 1 -6 6 H86 L76 86 L77 78 H70 a6 6 0 0 1 -6 -6 V46 a6 6 0 0 1 6 -6 Z"/>
+      <path class="sk-thin" d="M70 40 H130 a6 6 0 0 1 6 6 V72 a6 6 0 0 1 -6 6 H86 L76 86 L77 78 H70 a6 6 0 0 1 -6 -6 V46 a6 6 0 0 1 6 -6 Z"/>
+      <path class="sk-thin" d="M74 52 H124 M74 64 H110"/>
+      <circle cx="100" cy="120" r="14" class="f-green"/>
+      <text x="146" y="60" font-size="16">sans</text><text x="146" y="78" font-size="16">pression</text>
+    </svg>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Option</th><th>Temps</th><th>Pour qui</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Liste de diffusion WhatsApp</b><br>Le jeudi, un message aux clients qui le veulent : « Samedi j'ai… commandez ici ». Ils reçoivent le message sans voir les numéros des autres.</td><td>5 min par semaine</td><td>Ceux qui n'aiment pas les réseaux. <b>Notre conseil pour commencer.</b></td></tr>
+        <tr><td><b>2. Instagram, version minimum</b><br>Un compte professionnel, et la photo de l'étal du matin une fois par semaine. Vous pouvez réutiliser la photo du post Google.</td><td>2 min par semaine</td><td>Ceux qui font déjà des photos pour Google.</td></tr>
+        <tr><td><b>3. Facebook, groupes de quartier</b><br>Annoncer une fois la commande en ligne dans 2 ou 3 groupes de quartier toulousains.</td><td>15 min une fois</td><td>Pour un coup de pouce ponctuel.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+
+<p class="foot">Marchéo · Guide de lancement · version du 27/10/2026 · Une question ? Écrivez à votre contact Marchéo.</p>
 </div>
 </body>
 </html>
