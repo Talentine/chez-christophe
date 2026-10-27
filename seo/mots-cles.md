@@ -23,6 +23,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande bûche de noël en ligne | click & collect | boulangerie | GS | haute | à faire (publier mi-novembre) |
 | application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
 | logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
+| quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | à faire (format question directe, à fusionner avec « click and collect viande ») |
+| empreinte bancaire définition commerçant | click & collect | tous | IA | moyenne | couvert par empreinte-bancaire-no-show-commerce-restaurant (rafraîchi le 2026-10-27) |
 | site click and collect gratuit | click & collect | transverse | GS | moyenne | à faire (angle : ce qui est vraiment gratuit) |
 | application click and collect gratuite | click & collect | transverse | GS | moyenne | à faire (même article que la ligne précédente) |
 | comment mettre en place le click and collect dans sa boutique | click & collect | transverse | GS | moyenne | publié le 2026-10-21 click-and-collect-commercant-guide-complet (section dédiée de la page pilier) |

@@ -3314,11 +3314,38 @@ R : Oui si vous livrez vous-même ou avec un livreur à vous. Vous fixez votre z
 
 Gâteau jamais récupéré, plateau de fruits de mer oublié, table de 6 vide un samedi soir : ce que coûtent les no-shows à un commerçant, comment fonctionne l'empreinte bancaire, ce que dit la loi, et comment la régler sans faire fuir les clients.
 
+Une empreinte bancaire est une pré-autorisation sur la carte du client : le montant est réservé, pas débité, et il n&rsquo;est prélevé que si la commande n&rsquo;est pas retirée ou la table pas honorée. C&rsquo;est la protection la plus simple contre les no-shows pour un commerce de bouche ou un restaurant. Avec Marchéo, elle est optionnelle, va jusqu&rsquo;à 75 % du panier et se libère automatiquement 24 h après le retrait, sans matériel à acheter et sans commission.
 Un chapon à 80 € commandé pour le 24 décembre et jamais récupéré. Un plateau de fruits de mer pour six préparé le samedi à 16 h, encore au frais le dimanche. Une table de huit réservée pour 20 h 30, restée vide pendant que dix personnes étaient refusées. Le no-show, c&rsquo;est la commande ou la réservation que le client ne vient pas honorer, et pour un commerce de bouche c&rsquo;est une perte sèche : le produit est préparé, la place est prise, l&rsquo;argent ne vient pas.
 L&rsquo;empreinte bancaire est l&rsquo;outil qui a réglé ce problème dans l&rsquo;hôtellerie depuis longtemps. Elle arrive maintenant chez les commerçants indépendants. Voici comment elle fonctionne, ce que dit la loi, et comment la régler pour qu&rsquo;elle protège sans repousser.
 Ce que coûte un no-show
-Pour un restaurant, les études du secteur situent le taux de no-show entre 5 et 20 % des réservations selon le type d&rsquo;établissement et la saison. Une table de quatre à 35 € par couvert non honorée, c&rsquo;est 140 € de chiffre d&rsquo;affaires perdu, et souvent des clients refusés pour rien.
-Pour un commerce de bouche, le problème se concentre sur les commandes à forte valeur ou à forte préparation : pièces de fête chez le boucher, plateaux chez le poissonnier et le traiteur, gâteaux de cérémonie chez le pâtissier, compositions chez le fleuriste. Une seule commande de 80 € non retirée par semaine représente plus de 4 000 € par an.
+Un no-show coûte la valeur de ce qui a été préparé ou bloqué pour rien. Pour un restaurant, prenons un exemple : une table de quatre à 35 € par couvert non honorée, c&rsquo;est 140 € de chiffre d&rsquo;affaires perdu, et souvent des clients refusés pour rien.
+Pour un commerce de bouche, le problème se concentre sur les commandes à forte valeur ou à forte préparation : pièces de fête chez le boucher, plateaux chez le poissonnier et le traiteur, gâteaux de cérémonie chez le pâtissier, compositions chez le fleuriste. Toujours à titre d&rsquo;exemple, une seule commande de 80 € non retirée par semaine représente plus de 4 000 € par an.
+
+
+
+Situation
+Sans empreinte
+Avec empreinte
+
+
+
+
+Le client vient
+Paiement normal
+Empreinte libérée, paiement normal
+
+
+Le client annule à temps
+Rien à gérer
+Empreinte libérée
+
+
+Le client ne vient pas
+Perte totale du produit ou de la table
+Vous pouvez capturer tout ou partie du montant annoncé
+
+
+
 Comment fonctionne une empreinte bancaire
 L&rsquo;empreinte est une pré-autorisation : au moment de la commande ou de la réservation, la banque du client réserve un montant sur sa carte, sans le débiter. Trois issues sont possibles :
 
@@ -3327,7 +3354,7 @@ Le client annule dans le délai que vous avez fixé. L&rsquo;empreinte est libé
 Le client ne vient pas. Vous pouvez capturer tout ou partie du montant pré-autorisé, selon les conditions annoncées.
 
 Techniquement, c&rsquo;est le même mécanisme qu&rsquo;une caution d&rsquo;hôtel ou de location de voiture. Le client le connaît.
-Sur Marchéo, l&rsquo;empreinte couvre jusqu&rsquo;à 75 % du panier pour une commande, ou sur un montant par couvert que vous fixez pour une réservation. Elle est libérée automatiquement 24 heures après le retrait ou le service. Le commerçant décide, commande par commande, s&rsquo;il capture en cas d&rsquo;absence.
+Sur Marchéo, l&rsquo;empreinte est optionnelle et couvre jusqu&rsquo;à 75 % du panier, selon le pourcentage que vous choisissez. Elle est libérée automatiquement 24 heures après le retrait. En cas d&rsquo;absence, c&rsquo;est vous qui décidez de capturer ou non.
 Ce que dit la loi
 Le droit français encadre la pratique par l&rsquo;information du consommateur, pas par une interdiction. Pour qu&rsquo;une retenue soit valable :
 
@@ -3344,9 +3371,11 @@ Capturez avec discernement. Un habitué qui a eu un empêchement et prévient le
 Empreinte ou paiement d&rsquo;avance ?
 Le paiement intégral en ligne supprime le no-show mais ajoute une étape et gêne les clients qui préfèrent régler au comptoir, ou dont la commande au poids sera ajustée. L&rsquo;empreinte est un bon compromis : pas de débit, pas de remboursement à gérer, une simple garantie. Beaucoup de commerçants combinent les deux : paiement en ligne possible, empreinte obligatoire au-dessus d&rsquo;un seuil pour ceux qui paient au retrait.
 Ce que ça change dans la pratique
-Les commerçants qui ont activé l&rsquo;empreinte sur leurs commandes de fêtes décrivent la même chose : les commandes fantômes disparaissent presque entièrement dès la première saison, et personne ne se plaint, parce que ceux qui se plaindraient ne commandaient pas sérieusement. Le seul changement visible côté client, c&rsquo;est une ligne de plus avant de valider. Côté commerçant, c&rsquo;est la fin des plateaux à jeter le dimanche soir.
-Marchéo inclut l&rsquo;empreinte bancaire dans ses offres Click &amp; Collect et Livraison, réglable par seuil et par produit, avec une politique d&rsquo;annulation que vous rédigez. Vous pouvez voir votre boutique en 30 secondes et régler tout ça ensuite.
+L&rsquo;empreinte change surtout l&rsquo;engagement du client. Celui qui laisse sa carte sait que sa commande compte, et le commerçant prépare sans craindre de jeter. Côté client, c&rsquo;est une ligne de plus avant de valider. Les fêtes de fin d&rsquo;année sont le bon moment pour l&rsquo;activer : voyez notre guide des précommandes de Noël pour les commerces de bouche et celui du click and collect pour commerçant.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. L&rsquo;empreinte bancaire est incluse dans les offres Click &amp; Collect + Réservation (39 € par mois) et Click &amp; Collect + Livraison (59 € par mois), sans engagement. Pour comparer les outils, lisez aussi Shopify, Wix ou logiciel métier. Vous pouvez voir votre boutique en 30 secondes et régler tout ça ensuite.
 
+Q : Quel logiciel permet de demander une empreinte bancaire sur une commande en click and collect ?
+R : Plusieurs logiciels de réservation et de commande en ligne le proposent. Marchéo l'intègre pour les commerces de bouche et les restaurants : empreinte optionnelle jusqu'à 75 % du panier, libérée 24 h après le retrait, dans les offres à 39 € et 59 € par mois, sans engagement et sans commission sur les ventes. Les frais bancaires du paiement par carte restent à prévoir, comme pour tout paiement en ligne.
 Q : Une empreinte bancaire, est-ce un débit ?
 R : Non. C'est une pré-autorisation : la banque du client réserve le montant sur sa carte sans le débiter. Si la commande est retirée ou la table honorée, la réservation est libérée et rien n'est prélevé. En cas d'absence, le commerçant peut capturer tout ou partie du montant.
 Q : L'empreinte bancaire est-elle légale en France ?

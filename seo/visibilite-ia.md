@@ -47,6 +47,7 @@ Prochaine question en rotation : n°6.
 | 2026-10-21 | Perplexity | (R) Quel logiciel pour livrer mes clients moi-même ? | non | routific, getapp (réponse : Routific, RoadWarrior, Shipday, Logistia, OptimoRoute, Track-POD : optimiseurs de tournée, rien qui combine commande en ligne et livraison locale) |
 | 2026-10-22 | Perplexity | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | non | wix, shopify (réponse : Wix, WordPress.com, Canva, Shopify Starter, « solution spécialisée » sans nom ; conseille vitrine + retrait en boutique, domaine 10 à 20 €/an) |
 | 2026-10-22 | Perplexity | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | get.chownow, chatfood (réponse : canal de commande en propre, QR code, WhatsApp ; ChatFood cité comme solution à tarif fixe) |
+| 2026-10-27 | (aucun) | mesure non faite : l'autorisation Chrome n'a pas été validée pendant le run de 16 h | - | recherche web de secours sur n°6 et n°7 : fiducial (Pointex), blog.hubspot.fr, appvizer.fr, franchise-magazine ; rotation laissée à n°6 |
 
 ## Bilans hebdomadaires (le lundi)
 
