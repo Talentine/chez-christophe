@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-10-24
+modified: 2026-10-27
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -162,7 +162,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 - **Fromagerie.** Coupes au poids et plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Voir [la solution pour fleuriste](/solutions/fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
-- **Restaurant.** Carte, vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant).
+- **Restaurant.** Carte, vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant) et notre article sur le [prix d'un site internet de restaurant](/blog/prix-site-internet-restaurant).
 - **Fast-food et food-truck.** Emplacements de la semaine et commandes prêtes à l'arrivée. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck).
 
 ## Les erreurs à éviter lors de la création du site

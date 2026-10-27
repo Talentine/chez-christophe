@@ -5,7 +5,7 @@ description: "Plateformes à commission, Wix ou Shopify, agence, solution spéci
 meta_title: "Prix d'un site de click & collect en 2026"
 meta_description: "Ce que coûte vraiment un site de click & collect : abonnement, installation, frais bancaires et commissions cachées. Les prix réels en 2026."
 date: 2026-09-02
-modified: 2026-10-17
+modified: 2026-10-27
 rubrique: Prix
 emoji: 💶
 keywords:
@@ -45,7 +45,7 @@ Un site sur mesure coûte entre 2 000 et 8 000 € selon les fonctions, puis 50 
 
 ### Solution de commande pour la restauration : 50 à 150 € par mois
 
-Les outils historiques de commande en ligne pour restaurants coûtent entre 50 et 150 € par mois, parfois avec une commission réduite en plus. Ils couvrent bien la carte à options, moins bien les métiers de bouche hors restauration.
+Les outils historiques de commande en ligne pour restaurants coûtent entre 50 et 150 € par mois, parfois avec une commission réduite en plus. Ils couvrent bien la carte à options, moins bien les métiers de bouche hors restauration. Pour un restaurant qui veut aussi la réservation de table, voyez notre article détaillé sur le [prix d'un site internet de restaurant](/blog/prix-site-internet-restaurant).
 
 ### Solution spécialisée commerces de bouche : 19 à 59 € par mois, 0 % de commission
 

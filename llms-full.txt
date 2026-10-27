@@ -24,6 +24,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
 - [Logiciel livraison pizza : livrer vous-même sans commission](https://marchéo.fr/blog/logiciel-livraison-pizza) : Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
 - [Fleuriste click and collect : bouquets en ligne et retrait à l'heure](https://marchéo.fr/blog/click-and-collect-fleuriste) : Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
 - [Site internet boucherie : créer le site de votre boucherie de quartier](https://marchéo.fr/blog/site-internet-boucherie) : Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
@@ -743,6 +744,155 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Prix site internet restaurant : combien ça coûte vraiment en 2026
+
+Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
+
+Le prix d&rsquo;un site internet de restaurant va de quelques dizaines d&rsquo;euros par mois avec un constructeur à plusieurs milliers d&rsquo;euros avec une agence. Pour un restaurant indépendant qui veut afficher sa carte, prendre des réservations et vendre à emporter, un logiciel métier comme Marchéo coûte 19 à 59 € par mois, sans engagement et sans commission. Ce qui fait vraiment varier la facture, ce sont les fonctions, pas le design.
+Cet article détaille les coûts propres à la restauration. La méthode générale, valable pour tous les commerces, se trouve dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de carte, de couverts et de vente à emporter.
+Combien coûte un site internet pour un restaurant ?
+Le coût dépend de qui fabrique le site et de ce qu&rsquo;il doit faire. Un site qui montre la carte et les horaires coûte peu. Un site qui prend des réservations et des commandes coûte plus, sauf si ces fonctions sont incluses dans l&rsquo;abonnement.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Offre gratuite
+0 €
+Publicité, adresse peu lisible, rarement de réservation
+
+
+Constructeur généraliste (Wix, WordPress)
+Quelques dizaines d&rsquo;euros par mois
+À configurer vous-même, réservation et commande via des extensions payantes
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification de carte peut se facturer
+
+
+Plateformes de commande et de livraison
+14 à 30 % de commission par commande
+Visibilité, mais les clients restent ceux de la plateforme
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Carte, réservation et vente à emporter incluses, 0 % de commission
+
+
+
+Ces fourchettes sont volontairement larges. Demandez toujours un devis écrit qui distingue la création, l&rsquo;abonnement et la maintenance.
+Que doit contenir le site d&rsquo;un restaurant ?
+Le site d&rsquo;un restaurant doit répondre en quelques secondes à trois questions : êtes-vous ouvert, qu&rsquo;est-ce qu&rsquo;on mange, comment réserver. Tout le reste est secondaire.
+
+Accueil : adresse, horaires de service, téléphone, bouton « Réserver » bien visible.
+La carte : plats, prix, allergènes, menu du jour. En texte, pas en PDF, pour que Google et les clients la lisent sur téléphone.
+Réservation : choix du jour, de l&rsquo;heure et du nombre de couverts.
+À emporter : les plats disponibles et les créneaux de retrait, si vous en faites.
+Infos pratiques : accès, terrasse, groupes, moyens de paiement, mentions légales.
+
+Une carte à jour vaut mieux qu&rsquo;un beau site figé. Choisissez un outil où vous changez un plat ou un prix vous-même, depuis votre téléphone, sans appeler personne.
+Quels coûts cachés surveiller ?
+Les coûts cachés sont surtout les frais récurrents qui s&rsquo;ajoutent au prix affiché. Ils passent souvent inaperçus au moment de signer.
+
+Le nom de domaine et l&rsquo;hébergement, parfois facturés à part chaque année.
+Les extensions de réservation ou de commande sur les constructeurs, chacune avec son abonnement.
+La maintenance chez une agence : mises à jour, sécurité, changement de carte.
+Les commissions des plateformes, prélevées sur chaque commande et qui grossissent avec votre chiffre d&rsquo;affaires.
+Le matériel : certaines solutions demandent une tablette ou une imprimante dédiée.
+
+Le détail de ces frais pour un site de commande se trouve dans notre article sur le prix d&rsquo;un site de click &amp; collect.
+Site vitrine ou site avec réservation : que choisir pour un restaurant ?
+Un site vitrine suffit si votre salle se remplit seule et que les réservations par téléphone ne vous dérangent pas. Dès que le téléphone sonne pendant le service ou que des tables restent vides à cause des absences, la réservation en ligne devient rentable.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de réservations
+Vitrine : carte, horaires, adresse
+
+
+Téléphone qui sonne pendant le service
+Réservation en ligne 24 h/24
+
+
+Tables réservées et jamais honorées
+Réservation avec empreinte bancaire
+
+
+Demande de plats à emporter
+Réservation et click &amp; collect
+
+
+Clients qui demandent à être livrés
+Click &amp; collect et livraison organisée par vous
+
+
+
+Chez Marchéo, l&rsquo;offre Vitrine coûte 19 € par mois, l&rsquo;offre Click &amp; Collect + Réservation 39 € par mois et l&rsquo;offre Click &amp; Collect + Livraison 59 € par mois. Les frais d&rsquo;installation sont uniques : 249, 399 ou 549 €. Il n&rsquo;y a aucune commission et aucun engagement.
+Combien coûte un no-show comparé au prix du site ?
+Une seule table absente un samedi soir coûte souvent plus qu&rsquo;un mois d&rsquo;abonnement. C&rsquo;est pourquoi la protection contre les absences est le premier critère de rentabilité d&rsquo;un site de restaurant.
+Avec Marchéo, vous pouvez demander une empreinte bancaire au moment de la réservation. Rien n&rsquo;est débité si le client vient. Vous fixez le montant retenu par couvert et le délai d&rsquo;annulation gratuite. Le fonctionnement est expliqué dans notre article sur l&rsquo;empreinte bancaire et le no-show.
+Plateforme ou site à soi pour la vente à emporter ?
+Les plateformes apportent de la visibilité, mais prennent en général 14 à 30 % de chaque commande et gardent le contact de vos clients. Votre propre site vous laisse la marge entière et le fichier clients.
+Beaucoup de restaurants font les deux : la plateforme pour être découverts, leur site pour les habitués. Mettez le lien de votre page de commande sur votre fiche Google, votre Instagram et un QR code en salle. La comparaison complète est dans notre article sur le click &amp; collect sans commission face à Uber Eats et Deliveroo.
+Si vous livrez, sachez que Marchéo ne livre pas et n&rsquo;a pas de coursiers. Il vous donne l&rsquo;outil pour organiser votre propre livraison : zone, créneaux, minimum de commande et frais.
+Faut-il acheter du matériel pour le site de son restaurant ?
+Non, pas avec un logiciel pensé pour ça. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre carte et vos prix
+Une tablette ou une imprimante dédiée
+
+
+Vos services et votre nombre de couverts
+Un développeur ou une agence
+
+
+Quelques photos de vos plats et de votre salle
+Une commission sur chaque commande
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Votre caisse habituelle reste en place pour encaisser en salle et au retrait.
+Comment être trouvé sur Google avec le site de son restaurant ?
+Reliez votre site à une fiche Google Business à jour : c&rsquo;est elle qui apparaît sur la carte quand un client cherche un restaurant près de lui. Ajoutez-y le lien de réservation et celui de votre page de commande.
+Sur le site, écrivez les mots que vos clients tapent : votre ville, votre quartier, votre type de cuisine, « terrasse », « menu du midi ». Le réglage de la fiche est détaillé dans notre guide de la fiche Google Business pour un commerce de bouche.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site, avant de demander le moindre devis. Sur la page d&rsquo;inscription, choisissez « restaurant », tapez le nom de votre établissement, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Pour voir les fonctions prévues pour votre métier (réservation, empreinte, à emporter), consultez la solution pour restaurant.
+
+Q : Combien coûte un site internet pour un restaurant ?
+R : Comptez quelques dizaines d'euros par mois avec un constructeur comme Wix, de quelques centaines à plusieurs milliers d'euros avec une agence, ou 19 à 59 € par mois avec un logiciel métier comme Marchéo (frais d'installation uniques de 249, 399 ou 549 €, sans engagement, 0 % de commission). Le bon prix dépend surtout de ce que le site doit faire : montrer la carte, prendre des réservations ou vendre à emporter.
+Q : Quel est le meilleur outil pour créer le site internet de mon restaurant sans payer de commission ?
+R : Il existe trois familles d'options sans commission : les constructeurs généralistes (Wix, WordPress), à configurer vous-même ; les agences, qui facturent la création et souvent la maintenance ; et les logiciels métier. Marchéo en fait partie : site avec carte, réservation de table avec empreinte bancaire et vente à emporter, de 19 à 59 € par mois sans engagement, démo gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Faut-il acheter du matériel pour prendre des réservations et des commandes en ligne au restaurant ?
+R : Non. Avec un logiciel comme Marchéo, il n'y a pas de tablette, d'imprimante ou de caisse à acheter. Vous gérez les réservations et les commandes à emporter depuis le téléphone ou l'ordinateur que vous avez déjà. Le paiement au retrait se fait avec votre moyen d'encaissement habituel.
+Q : Un site internet gratuit suffit-il pour un restaurant ?
+R : Une offre gratuite peut dépanner pour afficher l'adresse et les horaires, mais elle impose souvent une publicité ou une adresse peu lisible, et rarement la réservation ou la commande en ligne. Pour un restaurant qui veut remplir sa salle et vendre à emporter, un petit abonnement mensuel revient en général moins cher qu'une seule table perdue chaque semaine.
+
 # Logiciel livraison pizza : livrer vous-même sans commission
 
 Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
@@ -1408,7 +1558,7 @@ Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour 
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
-Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant.
+Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant.
 Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.
 
 Les erreurs à éviter lors de la création du site
@@ -3078,7 +3228,7 @@ Shopify démarre à environ 27 € par mois, Wix autour de 20 à 35 € pour une
 Agence ou développeur indépendant : 2 000 à 8 000 €, puis maintenance
 Un site sur mesure coûte entre 2 000 et 8 000 € selon les fonctions, puis 50 à 150 € par mois d&rsquo;hébergement et de maintenance. Chaque évolution, un nouveau mode de retrait, une promotion, se facture. Pertinent pour un groupe de plusieurs boutiques, rarement pour un commerce.
 Solution de commande pour la restauration : 50 à 150 € par mois
-Les outils historiques de commande en ligne pour restaurants coûtent entre 50 et 150 € par mois, parfois avec une commission réduite en plus. Ils couvrent bien la carte à options, moins bien les métiers de bouche hors restauration.
+Les outils historiques de commande en ligne pour restaurants coûtent entre 50 et 150 € par mois, parfois avec une commission réduite en plus. Ils couvrent bien la carte à options, moins bien les métiers de bouche hors restauration. Pour un restaurant qui veut aussi la réservation de table, voyez notre article détaillé sur le prix d&rsquo;un site internet de restaurant.
 Solution spécialisée commerces de bouche : 19 à 59 € par mois, 0 % de commission
 Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Google, sans vente), Click &amp; Collect à 39 € par mois (commandes, réservation, empreinte bancaire, SMS, base clients), Click &amp; Collect + Livraison à 59 € par mois. Des frais d&rsquo;installation uniques de 249, 399 ou 549 € couvrent la mise en place, faite avec vous. Aucune commission sur les ventes, sans engagement.
 Tableau récapitulatif

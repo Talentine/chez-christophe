@@ -12,8 +12,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande galette des rois en ligne | click & collect | boulangerie | GS | haute | à faire (publier début décembre) |
 | création site internet traiteur | site | traiteur | GS + WS (1re page faite de freelances, faible) | haute | publié le 2026-10-17 creation-site-internet-traiteur |
 | site internet pour traiteur | site | traiteur | GS | haute | couvert par creation-site-internet-traiteur (2026-10-17) |
-| combien coûte un site internet pour un restaurant | site | restaurant | GS | haute | à faire |
-| site internet restaurant prix | site | restaurant | GS | haute | à faire (variante) |
+| combien coûte un site internet pour un restaurant | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant |
+| site internet restaurant prix | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant (requête principale) |
 | création site internet fleuriste | site | fleuriste | GS | haute | à faire |
 | site internet pour pizzeria | site | pizzeria | GS | haute | à faire |
 | site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
@@ -65,7 +65,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | devis traiteur en ligne | transverse | traiteur | GS (17/10) | basse | écarté : Marchéo ne fait pas de devis, intention annuaires |
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS (17/10) | haute | doublon, voir ligne publiée le 2026-10-18 |
 | livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
-| création site internet pour restaurant | site | restaurant | GS (17/10) | haute | à faire (à fusionner avec « combien coûte un site internet pour un restaurant ») |
+| création site internet pour restaurant | site | restaurant | GS (17/10) | haute | couvert par prix-site-internet-restaurant (2026-10-27) ; angle « créer » à reprendre en refresh si GSC le demande |
 | boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | variante de boucherie click and collect |
 | primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10 ; pos. 57,4 au 19/10) + GS (« primeur click and collect ») | haute | publié le 2026-10-19 click-and-collect-primeur |
 | poissonnier livraison domicile | livraison | poissonnerie | GS (18/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
@@ -84,7 +84,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect food truck | click & collect | fastfood | GSC (pos. 13,5, 19/10) | moyenne | publié le 2026-09-17 click-and-collect-food-truck (à enrichir lors d'un prochain lundi) |
 | fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | publié le 2026-10-25, click-and-collect-fleuriste |
 | site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
-| tarif site internet restaurant | site | restaurant | GS (19/10) | haute | à faire (avec « combien coûte un site internet pour un restaurant ») |
+| tarif site internet restaurant | site | restaurant | GS (19/10) | haute | couvert par prix-site-internet-restaurant (2026-10-27) |
 | boucherie click and collect halal | click & collect | boucherie | GS (19/10) | basse | variante de l'article boucherie à venir |
 | créer sa boutique en ligne comment faire | site | tous | GS (19/10) | haute | publié le 2026-10-20 creer-sa-boutique-en-ligne-commerce (page pilier n°1) |
 | créer sa boutique en ligne pas cher | site | tous | GS (19/10) | haute | couvert par la page pilier creer-sa-boutique-en-ligne-commerce (2026-10-20), section prix |
@@ -164,3 +164,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet pizza livraison | site | pizzeria | GS (26/10) | haute | à faire avec « site internet pour pizzeria » (angle : site de la pizzeria avec commande et livraison) |
 | application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
 | zone de livraison restaurant | livraison | restaurant | GS (26/10) | basse | à fondre dans l'article frais et zone de livraison |
+| prix d un site internet pour un restaurant | site | restaurant | GS (27/10) | haute | publié le 2026-10-27 + prix-site-internet-restaurant (variante) |
+| site internet gratuit pour restaurant | site | restaurant | GS (27/10) | moyenne | couvert en FAQ de prix-site-internet-restaurant (2026-10-27) |
+| créer site internet restaurant gratuit | site | restaurant | GS (27/10) | moyenne | à fondre dans un article « site gratuit pour commerce : ce qui est vraiment gratuit » |
+| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS (27/10) | haute | à faire : article application click and collect restaurant (à emporter sans commission) |
+| site commande restaurant | click & collect | restaurant | GS (27/10) | moyenne | à faire avec « application click and collect restaurant » |
+| click and collect boucherie halal | click & collect | boucherie | GS (27/10) | moyenne | section à prévoir dans l'article click and collect boucherie |
+| boucherie moderne click and collect | click & collect | boucherie | GS (27/10) | basse | variante de « click and collect viande » |
+| site internet chef à domicile | site | traiteur | GS (27/10) | basse | écarté pour l'instant (hors commerce de bouche à boutique) |
