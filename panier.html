@@ -259,7 +259,11 @@
   <!-- Code fidélité (affiché si la boutique a activé la fidélité) -->
   <div class="section" id="fideliteSection" style="display:none;background:var(--creme);">
     <div class="section-titre">🎟️ Code fidélité</div>
-    <input class="form-input" id="fideliteCode" type="text" placeholder="FIDEL-XXXXXXXX" autocapitalize="characters" style="text-transform:uppercase;">
+    <div style="display:flex;gap:8px;">
+      <input class="form-input" id="fideliteCode" type="text" placeholder="FIDEL-XXXXXXXX" autocapitalize="characters" style="text-transform:uppercase;flex:1;min-width:0;"
+        oninput="retirerCodeFidelite()" onkeydown="if(event.key==='Enter'){event.preventDefault();appliquerCodeFidelite()}">
+      <button type="button" id="fideliteBtn" onclick="appliquerCodeFidelite()" style="background:var(--vert);color:white;border:none;border-radius:12px;padding:0 16px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;">Appliquer</button>
+    </div>
     <div id="fideliteMsg" style="font-size:12.5px;margin-top:8px;color:var(--texte-doux);line-height:1.5;">
       Vous avez une carte de fidélité complète&nbsp;? Saisissez votre code pour profiter de votre récompense.
     </div>
@@ -375,6 +379,7 @@ let stripeCard = null;
 let stripeSecret = null;
 let stripePaymentMethodId = null;
 let __FIDELITE_REMISE_CENTS__ = 0; // remise fidélité appliquée à la dernière commande
+let __FIDELITE_CODE_OK__ = null;    // { code, cents } validé par « Appliquer », déduit du total
 
 async function sb(table, params='', method='GET', body=null) {
   const opts = {
@@ -569,11 +574,14 @@ function renderRecap() {
   const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
   const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
   const total = sous_total + frais;
+  const remise = __FIDELITE_CODE_OK__ ? Math.min(__FIDELITE_CODE_OK__.cents / 100, total) : 0;
+  const estime = panier.some(p => p.poids_indicatif);
 
   const html = `
     <div class="total-ligne"><span>Sous-total (${panier.length} article${panier.length>1?'s':''})</span><span>${sous_total.toFixed(2).replace('.',',')} €</span></div>
     ${frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison</span><span class="total-livraison">+${frais.toFixed(2).replace('.',',')} €</span></div>` : ''}
-    <div class="total-ligne" style="font-weight:500;font-size:15px;padding-top:10px;"><span>${panier.some(p => p.poids_indicatif) ? 'Total estimé' : 'Total'}</span><span style="color:var(--vert)">${total.toFixed(2).replace('.',',')} €</span></div>
+    ${remise > 0 ? `<div class="total-ligne" style="color:var(--rouge);font-weight:600;"><span>🎟️ Récompense fidélité</span><span>−${remise.toFixed(2).replace('.',',')} €</span></div>` : ''}
+    <div class="total-ligne" style="font-weight:500;font-size:15px;padding-top:10px;"><span>${remise > 0 ? (estime ? 'À payer en boutique (estimé)' : 'À payer en boutique') : (estime ? 'Total estimé' : 'Total')}</span><span style="color:var(--vert)">${(total - remise).toFixed(2).replace('.',',')} €</span></div>
     ${window.PoidsIndicatif ? PoidsIndicatif.notePanier(panier) : ''}
   `;
 
@@ -581,6 +589,41 @@ function renderRecap() {
   const r4 = document.getElementById('recapFinal');
   if (r1) r1.innerHTML = html;
   if (r4) r4.innerHTML = html;
+}
+
+// ── CODE FIDÉLITÉ ─────────────────────────────────────
+// « Appliquer » vérifie le code sans le consommer et le déduit du récap.
+// Il n'est consommé qu'à la validation de la commande (utiliser_recompense_fidelite).
+function _fideliteMsg(txt, couleur) {
+  const fm = document.getElementById('fideliteMsg');
+  if (fm) { fm.textContent = txt; fm.style.color = couleur || 'var(--texte-doux)'; }
+}
+
+async function appliquerCodeFidelite() {
+  const code = (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
+  if (!code) return;
+  const btn = document.getElementById('fideliteBtn');
+  if (btn) btn.disabled = true;
+  let cents = 0;
+  try {
+    cents = Number(await sb('rpc/verifier_code_fidelite', '', 'POST', { p_code: code, p_commercant_id: __CID__ })) || 0;
+  } catch (e) { console.log('fidélité', e); }
+  if (btn) btn.disabled = false;
+  if (cents > 0) {
+    __FIDELITE_CODE_OK__ = { code, cents };
+    _fideliteMsg('✅ Récompense de ' + (cents / 100).toFixed(2).replace('.', ',') + ' € déduite de votre total.', 'var(--vert)');
+  } else {
+    __FIDELITE_CODE_OK__ = null;
+    _fideliteMsg('❌ Code invalide, expiré ou déjà utilisé.', 'var(--rouge)');
+  }
+  renderRecap();
+}
+
+function retirerCodeFidelite() {
+  if (!__FIDELITE_CODE_OK__) return;
+  __FIDELITE_CODE_OK__ = null;
+  _fideliteMsg('Saisissez votre code puis appuyez sur « Appliquer ».');
+  renderRecap();
 }
 
 // ── MODE ──────────────────────────────────────────────
@@ -1195,12 +1238,11 @@ async function confirmerCommande() {
     // la RPC marque le code 'utilisee' et le lie à la commande (pas de
     // double usage possible). On n'échoue jamais la commande si le code
     // est invalide/expiré (montantCents = 0) — on l'ignore simplement.
-    // ⚠️ La remise n'est PAS recalculée côté Stripe ici. Pour une boutique
-    // en empreinte/paiement, la déduction sur le montant débité doit être
-    // appliquée côté serveur (Edge Function / checkout_create_order). En
-    // flux sans paiement (défaut), le commerçant applique la remise au retrait.
+    // La RPC inscrit aussi la remise sur la commande (remise_fidelite_cents) :
+    // le commerçant la voit et la déduit à l'encaissement en boutique.
     __FIDELITE_REMISE_CENTS__ = 0;
-    const fidCode = (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
+    const fidCode = __FIDELITE_CODE_OK__?.code
+      || (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
     if (commandeId && fidCode) {
       try {
         const montantCents = await sb('rpc/utiliser_recompense_fidelite', '', 'POST', {

@@ -2433,6 +2433,7 @@ function renderCarteCommande(c) {
         <span class="badge-statut ${badgeClass}">${badgeTxt}</span>
       </div>
       ${c.note ? `<div class="commande-note">💬 ${c.note}</div>` : ''}
+      ${renderRemiseFidelite(c)}
       ${c.type === 'livraison' && c.adresse ? `
       <div style="margin:8px 0;padding:10px 12px;background:#e8f4fd;border-radius:10px;display:flex;align-items:center;gap:10px;">
         <span style="font-size:18px;">📍</span>
@@ -2461,6 +2462,19 @@ function renderCarteCommande(c) {
       ${renderEmpreinteActions(c)}
     </div>
   `;
+}
+
+// ── FIDÉLITÉ : récompense à déduire à l'encaissement ────────────────
+// total_ttc reste la valeur du panier (recalculée à la pesée) ; le client
+// paie en boutique total_ttc − remise.
+function renderRemiseFidelite(c) {
+  if (!(c.remise_fidelite_cents > 0)) return '';
+  const eur = v => Number(v || 0).toFixed(2).replace('.', ',') + '€';
+  const remise = Math.min(c.remise_fidelite_cents / 100, c.total_ttc || 0);
+  return `<div style="margin:8px 0;padding:10px 12px;background:var(--rouge-clair);border:1.5px solid var(--rouge);border-radius:10px;color:var(--rouge);font-size:13px;font-weight:600;line-height:1.5;">
+    🎟️ Récompense fidélité : −${eur(remise)}${c.code_fidelite ? ` <span style="font-weight:400;opacity:.8;">(${c.code_fidelite})</span>` : ''}<br>
+    À encaisser : ${eur((c.total_ttc || 0) - remise)} <span style="font-weight:400;opacity:.8;">au lieu de ${eur(c.total_ttc)}</span>
+  </div>`;
 }
 
 // ── POIDS INDICATIF : pesée d'une ligne ─────────────────────────────
@@ -5089,6 +5103,8 @@ async function chargerCommandesSupabase(commercantId) {
       empreinte_status: c.empreinte_status || 'none',
       empreinte_montant_cents: c.empreinte_montant_cents || 0,
       total_ttc: Number(c.total_ttc || 0),
+      remise_fidelite_cents: Number(c.remise_fidelite_cents || 0),
+      code_fidelite: c.code_fidelite || null,
       produits: (c.commande_lignes || []).map(l => ({
         id: l.id,
         nom: l.nom_produit,
