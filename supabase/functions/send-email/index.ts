@@ -11,10 +11,14 @@
 //      body: { commande_id }
 //   - 'cron-rappels' → cron : envoie les rappels J-1 du jour suivant
 //      (pas de body requis)
+//   - 'recompense-fidelite' → envoie le code FIDEL-XXXXXXXX au client
+//      body: { recompense_id }  (appelé par le trigger fidelite_recompenses)
 //
 // Variables d'env requises :
 //   RESEND_API_KEY
 //   RESEND_FROM         (optionnel, défaut: 'onboarding@resend.dev')
+//   REPLY_TO_EMAIL      (optionnel, défaut: 'marcheo.contact@gmail.com')
+//   SITE_URL            (optionnel, défaut: 'https://xn--marcho-fva.fr')
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_ROLE_KEY
 // ============================================================
@@ -24,6 +28,9 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')!;
 const RESEND_FROM = Deno.env.get('RESEND_FROM') || 'Marchéo <onboarding@resend.dev>';
+// Adresse Gmail Marchéo — toutes les réponses arrivent ici
+const REPLY_TO = Deno.env.get('REPLY_TO_EMAIL') || 'marcheo.contact@gmail.com';
+const SITE_URL = (Deno.env.get('SITE_URL') || 'https://xn--marcho-fva.fr').replace(/\/$/, '');
 
 const supabase = createClient(
   Deno.env.get('SUPABASE_URL')!,
@@ -49,6 +56,7 @@ serve(async (req) => {
     if (action === 'rappel-j-1')          return await actionRappelJ1(payload);
     if (action === 'empreinte-capturee')  return await actionEmpreinteCapturee(payload);
     if (action === 'cron-rappels')        return await actionCronRappels();
+    if (action === 'recompense-fidelite') return await actionRecompenseFidelite(payload);
     return json({ error: 'Unknown action' }, 400);
   } catch (e) {
     console.error('[send-email]', e);
@@ -71,11 +79,8 @@ async function loadCommande(id: string) {
 async function sendMail(to: string, subject: string, html: string) {
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ from: RESEND_FROM, to, subject, html }),
+    headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: RESEND_FROM, to, subject, html, reply_to: REPLY_TO }),
   });
   const data = await r.json();
   if (!r.ok) throw new Error('Resend error: ' + (data.message || JSON.stringify(data)));
@@ -105,7 +110,8 @@ function buildLayout(title: string, body: string, boutique: string) {
         </td></tr>
         <tr><td style="padding:28px;line-height:1.6;font-size:15px;">${body}</td></tr>
         <tr><td style="padding:18px 28px;background:#FAF7F0;color:#7a8a82;font-size:12px;text-align:center;">
-          Email envoyé par Marchéo · click & collect artisan
+          Email envoyé par Marchéo · click & collect artisan<br>
+          Une question ? <a href="mailto:marcheo.contact@gmail.com" style="color:#2A4535;">marcheo.contact@gmail.com</a>
         </td></tr>
       </table>
     </td></tr>
@@ -124,6 +130,8 @@ async function actionConfirmee({ commande_id }: any) {
     .map((l: any) => `<tr><td style="padding:6px 0;">${l.nom_produit} · ${l.quantite} ${l.unite}</td><td align="right">${fmtMontant((l.total_ligne || 0) * 100)}</td></tr>`)
     .join('');
 
+  const remiseFid = Math.min(c.remise_fidelite_cents || 0, Math.round((c.total_ttc || 0) * 100));
+
   const empreinteBlock = c.empreinte_status === 'pending'
     ? `<div style="background:#FFF8E7;border:1px solid #F0D690;border-radius:10px;padding:14px;margin:18px 0;font-size:13px;">
          🔒 <b>Empreinte bancaire :</b> ${fmtMontant(c.empreinte_montant_cents || 0)} bloqués sur votre carte.<br>
@@ -140,6 +148,8 @@ async function actionConfirmee({ commande_id }: any) {
     <table width="100%" style="border-top:1px solid #EAE4D6;border-bottom:1px solid #EAE4D6;margin:14px 0;">
       ${lignes}
       <tr><td style="padding:10px 0 0;font-weight:600;">Total</td><td align="right" style="font-weight:600;">${fmtMontant((c.total_ttc || 0) * 100)}</td></tr>
+      ${remiseFid > 0 ? `<tr><td style="padding:6px 0 0;color:#E65533;font-weight:600;">🎟️ Récompense fidélité</td><td align="right" style="color:#E65533;font-weight:600;">−${fmtMontant(remiseFid)}</td></tr>
+      <tr><td style="padding:6px 0 10px;font-weight:600;">À payer en boutique</td><td align="right" style="font-weight:600;">${fmtMontant(Math.round((c.total_ttc || 0) * 100) - remiseFid)}</td></tr>` : ''}
     </table>
     ${empreinteBlock}
     <p style="color:#7a8a82;font-size:13px;">À très vite chez ${boutique} !</p>
@@ -218,4 +228,49 @@ async function actionCronRappels() {
     }
   }
   return json({ sent_count: sent });
+}
+
+// ── ACTION : récompense fidélité débloquée ──────────────────
+// Le code est généré par le trigger fn_fidelite_apres_remise ; le trigger
+// fidelite_recompenses_email appelle cette action. email_envoye_at évite
+// tout double envoi.
+async function actionRecompenseFidelite({ recompense_id }: any) {
+  const { data: r, error } = await supabase
+    .from('fidelite_recompenses')
+    .select('id, code, montant_cents, statut, expire_at, email_envoye_at, clients(prenom, email), commercants(nom_boutique, slug, fidelite_objectif)')
+    .eq('id', recompense_id)
+    .single();
+  if (error || !r) throw new Error('Récompense introuvable: ' + (error?.message || recompense_id));
+  if (r.email_envoye_at) return json({ skipped: 'already sent' });
+  if (r.statut !== 'disponible') return json({ skipped: 'not available' });
+
+  const client: any = r.clients;
+  const shop: any = r.commercants;
+  const email = client?.email;
+  if (!email) return json({ skipped: 'no email' });
+
+  const boutique = shop?.nom_boutique || 'Boutique';
+  const lien = shop?.slug ? `${SITE_URL}/${shop.slug}/` : SITE_URL;
+  const expire = r.expire_at
+    ? new Date(r.expire_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+    : null;
+
+  const body = `
+    <p>Bonjour ${client?.prenom || ''},</p>
+    <p>Votre carte de fidélité chez <b>${boutique}</b> est complète${shop?.fidelite_objectif ? ` (${shop.fidelite_objectif} commandes)` : ''}. Merci pour votre fidélité ! 🎉</p>
+    <div style="background:#FAF7F0;border:1.5px dashed #c9a84c;border-radius:12px;padding:18px;margin:18px 0;text-align:center;">
+      <div style="font-size:12px;color:#7a8a82;text-transform:uppercase;letter-spacing:0.5px;">Votre récompense</div>
+      <div style="font-size:26px;font-weight:700;margin:4px 0 10px;color:#2A4535;">${fmtMontant(r.montant_cents || 0)}</div>
+      <div style="font-size:12px;color:#7a8a82;">Code à saisir dans votre panier</div>
+      <div style="font-size:22px;font-weight:700;letter-spacing:2px;font-family:monospace;margin-top:4px;">${r.code}</div>
+    </div>
+    <p style="font-size:14px;">Saisissez ce code à l'étape de validation de votre prochaine commande : la récompense est déduite du montant à payer en boutique.${expire ? ` Valable jusqu'au <b>${expire}</b>.` : ''}</p>
+    <p style="text-align:center;margin:22px 0;">
+      <a href="${lien}" style="background:#2A4535;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;display:inline-block;">Commander chez ${boutique}</a>
+    </p>
+  `;
+  await sendMail(email, `🎁 Votre récompense fidélité de ${fmtMontant(r.montant_cents || 0)} — ${boutique}`, buildLayout('Récompense fidélité', body, boutique));
+
+  await supabase.from('fidelite_recompenses').update({ email_envoye_at: new Date().toISOString() }).eq('id', recompense_id);
+  return json({ ok: true });
 }

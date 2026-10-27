@@ -2710,7 +2710,7 @@ async function chargerFidelite(commercantId) {
   ).join('');
 
   const codeBanner = codesDispo > 0
-    ? '<div style="margin-top:12px;padding:10px 12px;background:#eaf7ee;border-radius:10px;font-size:13.5px;color:#1f5230;text-align:center;font-weight:600;">🎉 Vous avez ' + codesDispo + ' récompense' + (codesDispo > 1 ? 's' : '') + ' à utiliser ! Code à saisir au panier.</div>'
+    ? '<div style="margin-top:12px;padding:10px 12px;background:#eaf7ee;border-radius:10px;font-size:13.5px;color:#1f5230;text-align:center;font-weight:600;">🎉 Vous avez ' + codesDispo + ' récompense' + (codesDispo > 1 ? 's' : '') + ' à utiliser ! Code envoyé par email, à saisir au panier.</div>'
     : '';
 
   const progressTxt = email
