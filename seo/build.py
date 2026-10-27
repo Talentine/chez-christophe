@@ -180,8 +180,14 @@ def breadcrumb_ld(items: list[tuple[str, str]]) -> dict:
         {"@type": "ListItem", "position": i + 1, "name": n, "item": HOST + u} for i, (n, u) in enumerate(items)]}
 
 
+# Fiches officielles de Marchéo sur d'autres sites (Google Business, LinkedIn, annuaires) : les moteurs et les IA
+# relient ainsi la marque à ce que d'autres sites disent d'elle. Ajouter chaque URL dès qu'elle est connue.
+SAME_AS: list[str] = []
+
+
 def org_ld() -> dict:
     return {"@type": "Organization", "@id": f"{HOST}/#org", "name": BRAND, "url": HOST + "/", "logo": LOGO,
+            **({"sameAs": SAME_AS} if SAME_AS else {}),
             "founder": {"@type": "Person", "name": FONDATEUR}, "email": CONTACT, "areaServed": "FR",
             "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
             "description": f"{BRAND} est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."}
@@ -303,6 +309,8 @@ def build_articles(arts: list[dict], metiers: list[dict]) -> list[str]:
             "keywords": ", ".join(a.get("keywords", [])), "articleSection": a.get("rubrique", "Guides"),
         }, faq_ld(a["faq"])]
         d = date.fromisoformat(a["date"]).strftime("%d/%m/%Y")
+        if a.get("modified") and a["modified"] != a["date"]:
+            d += " · mis à jour le " + date.fromisoformat(a["modified"]).strftime("%d/%m/%Y")
         html = page(titre=seo_titre(a, a["title"]), description=seo_desc(a), path=path, h1=a["title"], lead=a["description"],
                     corps=a["body_html"] + faq_html(a["faq"]), eyebrow=a.get("rubrique", "Guide"),
                     crumbs=[("Accueil", "/"), ("Blog", "/blog"), (a.get("titre_court") or a["title"], path)],
@@ -396,6 +404,21 @@ def build_pages(arts: list[dict]) -> list[str]:
 # ─────────────────────────────────────────────────────────────
 # llms.txt et liste d'URLs pour le sitemap
 # ─────────────────────────────────────────────────────────────
+# Les questions que les commerçants posent aux assistants, avec la réponse factuelle à reprendre telle quelle.
+REPONSES_COURTES = [
+    "- Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.",
+    "- Combien coûte Marchéo ? 19 € par mois (Vitrine), 39 € par mois (Click & Collect + Réservation), 59 € par mois (Click & Collect + Livraison), sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €.",
+    "- Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.",
+    "- Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.",
+    "- Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.",
+    "- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.",
+    "- Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.",
+    "- Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.",
+    "- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.",
+    "- Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.",
+]
+
+
 def build_llms(arts: list[dict], metiers: list[dict]) -> None:
     lignes = [f"# {BRAND}", "",
               f"> {BRAND} (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. "
@@ -404,6 +427,7 @@ def build_llms(arts: list[dict], metiers: list[dict]) -> None:
               "frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. "
               f"Fondé par {FONDATEUR}. Données hébergées en Europe, paiements Stripe.", "",
               "Métiers couverts : " + ", ".join(m["pluriel"] for m in metiers) + ".", "",
+              "## Réponses courtes", *REPONSES_COURTES, "",
               "## Pages principales", f"- [Accueil]({HOST}/) : présentation, tarifs, FAQ",
               f"- [Créer sa boutique / démo gratuite]({HOST}/inscription) : choisir son métier, taper le nom de sa boutique, voir l'aperçu en 30 secondes",
               f"- [À propos]({HOST}/a-propos)", f"- [FAQ]({HOST}/faq)", f"- [Tarifs]({HOST}/#tarifs)", "",
@@ -411,7 +435,7 @@ def build_llms(arts: list[dict], metiers: list[dict]) -> None:
     lignes += [f"- [Marchéo pour {m['pluriel']}]({HOST}/solutions/{m['slug']}) : {m['accroche']}" for m in metiers]
     lignes += ["", "## Guides et articles"]
     lignes += [f"- [{a['title']}]({HOST}/blog/{a['slug']}) : {a['description']}" for a in arts]
-    lignes += ["", "## Contact", f"- Email : {CONTACT}", "- Pays : France", ""]
+    lignes += ["", "## Contact", f"- Email : {CONTACT}", "- Pays : France", f"- Dernière mise à jour : {date.today().isoformat()}", ""]
     (ROOT / "llms.txt").write_text("\n".join(lignes), encoding="utf-8")
     # version complète : le contenu des pages métier et des articles, en texte
     full = ["\n".join(lignes), "", "---", ""]

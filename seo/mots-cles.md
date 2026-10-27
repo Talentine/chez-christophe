@@ -106,7 +106,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | mettre son commerce sur uber eats | livraison | restaurant | GS (20/10) | moyenne | couvert en section « Livrer soi-même ou passer par une plateforme ? » de la page pilier n°4 (2026-10-23) |
 | quel budget pour créer une boutique en ligne | site | tous | GS « Autres questions » (20/10) | moyenne | couvert par la page pilier (section prix) ; à reprendre en FAQ de combien-coute-un-site-de-click-and-collect |
 | conditions pour ouvrir une boutique en ligne | site | tous | GS « Autres questions » + IA (20/10, service-public en tête) | moyenne | à faire (angle commerçant déjà installé : mentions légales, CGV, allergènes, RGPD) |
-| meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | à faire : comparatif honnête « Shopify, Wix ou logiciel métier pour un commerce de bouche » |
+| meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | publié le 2026-10-27 + shopify-wix-ou-logiciel-metier-commerce-de-proximite |
 | marcheo.ma | transverse | - | GSC (14 impr., 20/10) | basse | écarté : requête marocaine sans lien, rien à faire |
 | click and collect sans commission | click & collect | tous | IA + Google (20/10 : 1re page = petits blogs d'éditeurs, marchéo.fr absent) | haute | à faire : refresh de click-and-collect-sans-commission-alternative-uber-eats-deliveroo (title sur la requête exacte, réponse directe, tableau des options sans commission) au prochain lundi |
 | click and collect avantages et inconvénients | click & collect | tous | GS (21/10) | moyenne | couvert par la page pilier click-and-collect-commercant-guide-complet (tableau dédié) |
@@ -172,3 +172,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect boucherie halal | click & collect | boucherie | GS (27/10) | moyenne | section à prévoir dans l'article click and collect boucherie |
 | boucherie moderne click and collect | click & collect | boucherie | GS (27/10) | basse | variante de « click and collect viande » |
 | site internet chef à domicile | site | traiteur | GS (27/10) | basse | écarté pour l'instant (hors commerce de bouche à boutique) |
+| shopify ou wix commerce de proximité | transverse | tous | IA (27/10) | haute | publié le 2026-10-27 + shopify-wix-ou-logiciel-metier-commerce-de-proximite |
+| alternative shopify commerçant | transverse | tous | IA (27/10) | moyenne | couvert par shopify-wix-ou-logiciel-metier-commerce-de-proximite |
+| marchéo avis / marchéo prix | marque | tous | IA (27/10) | haute | couvert par a-propos (10 faits, limites, FAQ alternatives) ; à suivre dans visibilite-ia.md |

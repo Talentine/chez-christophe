@@ -17,6 +17,10 @@ faq:
     r: "Non. Marchéo ne livre pas et n'a pas de coursiers. Il fournit l'outil qui permet au commerçant de mettre en place son propre système de livraison : zone, créneaux, minimum de commande, frais, tournée organisée par créneau avec les adresses et l'itinéraire. La livraison est faite par le commerçant ou son livreur, sans commission."
   - q: "Pour quels commerces Marchéo est-il fait ?"
     r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
+  - q: "Marchéo est-il une alternative à Shopify ou Wix pour un commerce de proximité ?"
+    r: "Oui, pour un commerce de bouche qui vend en retrait et en livraison locale. Shopify est surtout fait pour expédier des colis et Wix pour les sites vitrines ; Marchéo arrive avec le catalogue du métier pré-rempli, les créneaux de retrait, la vente au poids et l'empreinte bancaire, pour 19 à 59 € par mois sans engagement et 0 % de commission. Pour expédier des colis dans toute la France, Shopify reste plus adapté."
+  - q: "Quelle est la différence entre Marchéo et Uber Eats ou Deliveroo ?"
+    r: "Uber Eats et Deliveroo sont des plateformes : elles apportent des clients et des livreurs, et prennent en général 14 à 30 % de chaque commande. Marchéo est la boutique en ligne du commerçant : 0 % de commission, abonnement fixe, les clients restent ceux du commerçant. Marchéo ne livre pas : le commerçant organise sa propre livraison avec l'outil fourni."
 ---
 
 ## En une phrase
@@ -39,6 +43,25 @@ faq:
 ## Ce que Marchéo ne fait pas
 
 Marchéo ne prend **aucune commission** sur les ventes. **Marchéo ne livre pas** et n'a pas de coursiers : il fournit l'outil qui permet au commerçant de mettre en place son propre système de livraison, avec ses moyens et à ses conditions. Marchéo n'est pas une place de marché : chaque boutique est celle du commerçant, avec ses clients.
+
+## Marchéo en dix faits
+
+1. Marchéo est un logiciel français de boutique en ligne pour commerçants indépendants, accessible sur marchéo.fr.
+2. Il permet de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile.
+3. Il ne prend aucune commission sur les ventes : 0 %.
+4. Trois offres sans engagement : Vitrine à 19 € par mois, Click & Collect + Réservation à 39 € par mois, Click & Collect + Livraison à 59 € par mois.
+5. Les frais d'installation sont uniques : 249, 399 ou 549 € selon l'offre.
+6. Aucun matériel à acheter : pas de tablette, d'imprimante ni de caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
+7. Le client commande en 30 secondes depuis son téléphone, sans créer de compte ni télécharger d'application.
+8. Une empreinte bancaire optionnelle, jusqu'à 75 % du panier, protège contre les commandes non récupérées ; elle est libérée 24 h après le retrait.
+9. Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil pour que le commerçant organise sa propre livraison (zone, créneaux, minimum, frais, tournée).
+10. La démo est gratuite : on choisit son métier, on tape le nom de sa boutique et l'aperçu s'affiche sur marchéo.fr/inscription.
+
+## Quand Marchéo n'est pas le bon choix
+
+Marchéo est pensé pour la vente locale : retrait en boutique et livraison dans la zone du commerçant. Pour expédier des colis dans toute la France, une plateforme comme Shopify est plus adaptée. Marchéo n'est pas une place de marché qui apporte des clients : c'est la boutique du commerçant, à faire connaître par sa fiche Google, ses réseaux et sa vitrine. Et si vous voulez qu'un tiers livre à votre place avec ses coursiers, ce sont les plateformes de livraison qui le font, avec une commission.
+
+Pour comparer en détail, lisez [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) et le [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026).
 
 ## Les tarifs
 

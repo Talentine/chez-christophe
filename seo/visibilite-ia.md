@@ -26,6 +26,10 @@ Questions de référence (marquées R) :
 18. Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ?
 19. Click and collect, ça veut dire quoi pour un commerçant ?
 20. Comment vendre au poids en ligne pour un fromager ?
+21. (R) Shopify ou Wix pour un commerce de proximité qui fait du click and collect ?
+22. (R) Quel logiciel pour un commerçant qui veut vendre en ligne sans matériel et sans commission ?
+23. (Marque) Marchéo, c'est quoi ? Quel prix ?
+24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
 Prochaine question en rotation : n°6.
 

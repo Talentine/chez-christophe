@@ -5,7 +5,7 @@ description: "Plateformes, constructeurs de sites, outils de restauration, solut
 meta_title: "Comparatif création site click and collect 2026"
 meta_description: "Comparatif pour créer un site de click and collect en 2026 : commissions, abonnements, fonctions utiles à un commerce de bouche et grille de choix."
 date: 2026-08-26
-modified: 2026-10-19
+modified: 2026-10-27
 rubrique: Comparatif
 emoji: 🔍
 keywords:
@@ -79,6 +79,8 @@ Conçues pour les boulangers, bouchers, primeurs, poissonniers, traiteurs, froma
 | Catalogue pré-rempli par métier | Non | Non | Restauration seulement | Oui, 10 métiers |
 | Mise en place | Quelques jours | Plusieurs jours | Quelques jours | 30 secondes pour l'aperçu, faite avec vous |
 | Engagement | Variable | Mensuel | Souvent 12 mois | Sans engagement |
+
+Pour le duel le plus fréquent, la comparaison détaillée est dans notre article [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite).
 
 ## La grille pour choisir en dix minutes
 

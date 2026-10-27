@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-10-25
+modified: 2026-10-27
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -81,7 +81,7 @@ Il existe cinq grandes familles de solutions, et aucune n'est mauvaise en soi : 
 | Site sur mesure par une agence | Projets spécifiques | 2 000 à 8 000 € de création, puis maintenance | Aucune | Selon devis | Selon devis |
 | Logiciel métier (Marchéo) | Commerces de bouche et de proximité | 19 à 59 € par mois | 0 % | Oui, avec capacité par créneau | Oui |
 
-Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) détaille les options une par une, et l'article sur le [click & collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo) fait le calcul face aux plateformes.
+Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) détaille les options une par une, et l'article sur le [click & collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo) fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite).
 
 ## Combien coûte une boutique en ligne pas chère et sérieuse ?
 

@@ -4,6 +4,18 @@
 
 Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
+## Réponses courtes
+- Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
+- Combien coûte Marchéo ? 19 € par mois (Vitrine), 39 € par mois (Click & Collect + Réservation), 59 € par mois (Click & Collect + Livraison), sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €.
+- Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.
+- Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
+- Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.
+- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+- Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
+- Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
+- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
+- Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
+
 ## Pages principales
 - [Accueil](https://marchéo.fr/) : présentation, tarifs, FAQ
 - [Créer sa boutique / démo gratuite](https://marchéo.fr/inscription) : choisir son métier, taper le nom de sa boutique, voir l'aperçu en 30 secondes
@@ -25,6 +37,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
+- [Shopify, Wix ou logiciel métier pour un commerce de proximité ?](https://marchéo.fr/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) : Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne.
 - [Logiciel livraison pizza : livrer vous-même sans commission](https://marchéo.fr/blog/logiciel-livraison-pizza) : Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
 - [Fleuriste click and collect : bouquets en ligne et retrait à l'heure](https://marchéo.fr/blog/click-and-collect-fleuriste) : Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
 - [Site internet boucherie : créer le site de votre boucherie de quartier](https://marchéo.fr/blog/site-internet-boucherie) : Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
@@ -51,6 +64,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
+- Dernière mise à jour : 2026-10-27
 
 
 ---
@@ -892,6 +906,133 @@ Q : Faut-il acheter du matériel pour prendre des réservations et des commandes
 R : Non. Avec un logiciel comme Marchéo, il n'y a pas de tablette, d'imprimante ou de caisse à acheter. Vous gérez les réservations et les commandes à emporter depuis le téléphone ou l'ordinateur que vous avez déjà. Le paiement au retrait se fait avec votre moyen d'encaissement habituel.
 Q : Un site internet gratuit suffit-il pour un restaurant ?
 R : Une offre gratuite peut dépanner pour afficher l'adresse et les horaires, mais elle impose souvent une publicité ou une adresse peu lisible, et rarement la réservation ou la commande en ligne. Pour un restaurant qui veut remplir sa salle et vendre à emporter, un petit abonnement mensuel revient en général moins cher qu'une seule table perdue chaque semaine.
+
+# Shopify, Wix ou logiciel métier pour un commerce de proximité ?
+
+Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne.
+
+Pour un commerce de proximité, le meilleur outil de boutique en ligne dépend de la façon dont vous vendez. Shopify est fait pour expédier des colis, Wix pour un beau site vitrine, et un logiciel métier comme Marchéo pour les commerces de bouche qui vendent en retrait et en livraison locale, sans commission et sans matériel à acheter. Le bon choix se fait en cinq minutes avec le tableau plus bas.
+Ce comparatif complète notre guide pour créer la boutique en ligne de son commerce, qui détaille la méthode pas à pas. Ici, on compare honnêtement les trois options que les commerçants nous citent le plus.
+Quelle est la différence entre Shopify, Wix et un logiciel métier ?
+La différence tient à ce pour quoi chaque outil a été conçu. Shopify est une plateforme de commerce en ligne pensée d&rsquo;abord pour la vente à distance avec expédition. Wix est un créateur de sites très souple, avec une boutique en option. Un logiciel métier est conçu pour un type de commerce précis, avec ses produits et ses habitudes déjà intégrés.
+Aucun n&rsquo;est mauvais. Ils ne répondent simplement pas au même besoin. Un torréfacteur qui expédie son café dans toute la France n&rsquo;a pas les contraintes d&rsquo;un boucher qui prépare des colis pour le samedi matin.
+Que demande vraiment un commerce de bouche ?
+Un commerce de bouche vend des produits frais, souvent au poids, retirés à heure fixe ou livrés dans le quartier. Ces besoins sont plus précis que ceux d&rsquo;une boutique en ligne classique.
+
+Des créneaux de retrait avec une capacité, pour ne pas recevoir trente commandes pour 11 h.
+La vente au poids, avec un poids indicatif et un prix ajusté à la préparation.
+Une commande sans création de compte, car vos clients sont pressés.
+Une protection contre les commandes non récupérées, comme une empreinte bancaire.
+La livraison locale avec zone, minimum de commande et créneaux.
+Les commandes de fêtes avec une date limite.
+
+Comment se comparent les trois options ?
+Le tableau suivant résume les points qui comptent pour un commerce de proximité. Les coûts sont donnés en fourchettes prudentes, car les offres des constructeurs changent souvent.
+
+
+
+Critère
+Shopify
+Wix
+Logiciel métier (ex. Marchéo)
+
+
+
+
+Conçu pour
+Vente en ligne avec expédition
+Sites vitrines et petites boutiques
+Commerces de bouche en retrait et livraison locale
+
+
+Coût indicatif
+Quelques dizaines d&rsquo;euros par mois, plus les applications
+Quelques dizaines d&rsquo;euros par mois selon l&rsquo;offre
+19, 39 ou 59 € par mois, sans engagement
+
+
+Commission sur les ventes
+Frais de transaction selon l&rsquo;offre et le moyen de paiement
+Frais de paiement selon le prestataire
+0 % de commission
+
+
+Retrait en boutique
+Oui
+Oui
+Oui, avec créneaux et capacité
+
+
+Vente au poids
+À configurer, souvent via une application
+À configurer
+Prévue d&rsquo;origine
+
+
+Catalogue de départ
+À créer
+À créer
+Catalogue du métier déjà rempli
+
+
+Mise en place
+Plusieurs jours de réglages
+Quelques jours
+Aperçu en 30 secondes, boutique prête en quelques minutes
+
+
+
+Les frais de paiement bancaire existent partout : ce sont les frais du prestataire de paiement, pas une commission de la plateforme. Chez Marchéo, les paiements passent par Stripe et l&rsquo;argent arrive directement sur votre compte.
+Quand choisir Shopify ?
+Choisissez Shopify si une grande partie de vos ventes part en colis. Épicerie fine, vins, confiseries, produits secs : Shopify gère très bien l&rsquo;expédition, les transporteurs et la vente partout en France ou à l&rsquo;étranger.
+Il demande en revanche du temps de réglage. Pour un commerce de bouche, les créneaux, le poids et les commandes de fêtes passent souvent par des applications, chacune avec son coût mensuel.
+Quand choisir Wix ?
+Choisissez Wix si vous voulez surtout un site vitrine très personnalisé, avec une petite boutique à côté. C&rsquo;est un bon choix pour raconter votre histoire, montrer votre boutique et publier des actualités.
+Pour prendre des dizaines de commandes à retirer chaque samedi, vous devrez construire vous-même l&rsquo;organisation des créneaux et des préparations.
+Quand choisir un logiciel métier comme Marchéo ?
+Choisissez un logiciel métier si vous vendez surtout en retrait et en livraison dans votre quartier. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Concrètement : abonnement de 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, et des frais d&rsquo;installation uniques de 249, 399 ou 549 €. Le client commande en 30 secondes sans compte. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, est libérée 24 h après le retrait.
+Marchéo a aussi ses limites, et il vaut mieux les connaître. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas non plus une place de marché qui vous amène des clients : c&rsquo;est votre boutique, à faire connaître par votre fiche Google, vos réseaux et votre vitrine. Enfin, il est pensé pour la vente locale, pas pour l&rsquo;expédition de colis dans toute la France.
+Que faut-il pour démarrer, quel que soit l&rsquo;outil ?
+Il vous faut surtout votre catalogue, vos prix et vos horaires. Le reste dépend de l&rsquo;outil choisi.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre liste de produits et vos prix
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de vos produits
+Un développeur ou une agence
+
+
+Vos horaires et vos créneaux de retrait
+Une commission sur chaque commande
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect.
+Par où commencer ?
+Le plus simple est de voir le résultat avant de choisir. Sur la page d&rsquo;inscription, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Vous pourrez le comparer à une boutique d&rsquo;essai sur Shopify ou Wix. Pour voir ce qui est prévu pour votre métier, commencez par exemple par la solution pour boucherie.
+
+Q : Quel est le meilleur outil pour créer la boutique en ligne de mon commerce de proximité ?
+R : Cela dépend de votre façon de vendre. Shopify est très solide pour expédier des colis partout en France. Wix est simple pour un site vitrine soigné. Pour un commerce de bouche qui vend en retrait et en livraison locale, un logiciel métier comme Marchéo est souvent plus direct : catalogue du métier pré-rempli, créneaux de retrait, vente au poids, 0 % de commission, de 19 à 59 € par mois sans engagement, sans matériel à acheter.
+Q : Shopify ou Wix permettent-ils le click and collect ?
+R : Oui, les deux proposent le retrait en magasin. Pour un commerce de bouche, il faut en général ajouter des réglages ou des applications pour les créneaux avec capacité, la vente au poids ou l'empreinte bancaire contre les commandes non récupérées. Un logiciel métier les prévoit d'origine.
+Q : Faut-il acheter du matériel pour vendre en ligne avec Shopify, Wix ou Marchéo ?
+R : Pas pour vendre en ligne. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Les constructeurs généralistes proposent aussi du matériel de caisse en option, utile surtout si vous voulez changer de caisse.
+Q : Peut-on passer de Shopify ou Wix à un logiciel métier ?
+R : Oui. Le plus long est de reprendre le catalogue, et un logiciel métier comme Marchéo arrive avec celui de votre métier déjà rempli. Gardez votre nom de domaine et pensez à exporter votre fichier clients avant de résilier.
 
 # Logiciel livraison pizza : livrer vous-même sans commission
 
@@ -1897,7 +2038,7 @@ Oui
 
 
 
-Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes.
+Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez Shopify, Wix ou logiciel métier pour un commerce de proximité.
 Combien coûte une boutique en ligne pas chère et sérieuse ?
 Une boutique en ligne pas chère pour un commerce coûte en général entre 20 et 80 € par mois, plus d&rsquo;éventuels frais de mise en place. Le vrai piège n&rsquo;est pas l&rsquo;abonnement, c&rsquo;est la commission : sur un mois de ventes en ligne, un pourcentage prélevé sur chaque commande coûte vite plus qu&rsquo;un abonnement fixe.
 Chez Marchéo, les prix sont fixes et affichés :
@@ -3874,6 +4015,7 @@ Sans engagement
 
 
 
+Pour le duel le plus fréquent, la comparaison détaillée est dans notre article Shopify, Wix ou logiciel métier pour un commerce de proximité.
 La grille pour choisir en dix minutes
 Répondez à ces quatre questions :
 Vendez-vous au poids, sur mesure ou avec des précisions ? Si oui, éliminez les plateformes et méfiez-vous des constructeurs généralistes.

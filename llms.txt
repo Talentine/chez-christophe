@@ -4,6 +4,18 @@
 
 Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
+## Réponses courtes
+- Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
+- Combien coûte Marchéo ? 19 € par mois (Vitrine), 39 € par mois (Click & Collect + Réservation), 59 € par mois (Click & Collect + Livraison), sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €.
+- Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.
+- Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
+- Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.
+- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+- Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
+- Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
+- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
+- Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
+
 ## Pages principales
 - [Accueil](https://marchéo.fr/) : présentation, tarifs, FAQ
 - [Créer sa boutique / démo gratuite](https://marchéo.fr/inscription) : choisir son métier, taper le nom de sa boutique, voir l'aperçu en 30 secondes
@@ -25,6 +37,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
+- [Shopify, Wix ou logiciel métier pour un commerce de proximité ?](https://marchéo.fr/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) : Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne.
 - [Logiciel livraison pizza : livrer vous-même sans commission](https://marchéo.fr/blog/logiciel-livraison-pizza) : Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
 - [Fleuriste click and collect : bouquets en ligne et retrait à l'heure](https://marchéo.fr/blog/click-and-collect-fleuriste) : Fleuriste click and collect : vendre ses bouquets par budget, le message de la carte, les créneaux de retrait, la Toussaint et la Saint-Valentin.
 - [Site internet boucherie : créer le site de votre boucherie de quartier](https://marchéo.fr/blog/site-internet-boucherie) : Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel.
@@ -51,3 +64,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
+- Dernière mise à jour : 2026-10-27
