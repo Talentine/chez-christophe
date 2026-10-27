@@ -1,6 +1,6 @@
 # Plan de lancement : novembre 2026 (budget 250 €)
 
-Statut : **prêt, non publié.** Les campagnes seront créées en pause, puis activées le 1er novembre avec votre feu vert.
+Statut : **prêt, non publié.** Lancement prévu le vendredi 30 octobre avec 200 € (8 €/jour, environ 25 jours). Le quota Adspirer ne revient que le 8 novembre : la campagne est créée à la main en suivant le guide pas à pas, avec vérification par capture avant « Publier ».
 
 ## Le parcours
 
@@ -72,7 +72,8 @@ Chaque mois : la meilleure vidéo transversale du mois précédent reste en plac
 - [ ] **Vous** : créer le pixel dans le Gestionnaire d'événements Meta (Sources de données → Ajouter → Web → nom « Marchéo »), puis m'envoyer son identifiant (15 chiffres). Le compte publicitaire 675546266352427 n'en a aucun aujourd'hui.
 - [ ] **Vous** : vérifier le domaine marchéo.fr dans le Business Manager (Paramètres → Sécurité de la marque → Domaines).
 - [ ] **Moi** : mettre l'identifiant dans `assets/core/meta-pixel.js`, puis tester les 3 événements avec l'outil « Tester les événements » de Meta.
-- [ ] **Moi** : créer les campagnes en pause. Le quota Adspirer de ce mois est épuisé (15 sur 15) ; il se renouvelle en novembre, sinon je vous donne la marche à suivre dans le Gestionnaire de publicités.
+- [ ] **Vous, avec mon guide** : créer la campagne dans le Gestionnaire de publicités (quota Adspirer épuisé jusqu'au 8 novembre). Plafond de dépenses du compte : 200 €.
+- [ ] **Heures de diffusion** : pas de limitation le premier mois (impossible avec un budget quotidien, et Meta concentre déjà la diffusion sur les heures qui convertissent). Analyse heure par heure au bout de 2 semaines.
 - [ ] **Vous** : le feu vert d'activation.
 
 ## Suivi
