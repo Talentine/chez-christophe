@@ -2,7 +2,7 @@
 
 Les IA (ChatGPT, Perplexity, l'aperçu IA de Google) citent surtout ce que d'autres sites disent d'une marque. Ces fiches sont le levier le plus fort pour que Marchéo soit cité. Chaque texte est prêt à coller, avec les mêmes faits partout : la répétition à l'identique aide les IA à reconnaître Marchéo comme une entité fiable.
 
-Ordre conseillé (du plus utile au moins utile) : 1. Fiche Google Business, 2. Page LinkedIn, 3. Capterra (qui alimente aussi GetApp et Software Advice), 4. Appvizer, 5. Trustpilot, puis demander 3 à 5 avis à des commerçants clients sur Capterra et Trustpilot.
+Ordre conseillé (du plus utile au moins utile) : 0. Bing Webmaster Tools (bing.com/webmasters, « Importer depuis Google Search Console », 2 minutes : la recherche web de ChatGPT s'appuie en grande partie sur Bing), 1. Fiche Google Business (faite le 27/10/2026), 2. Page LinkedIn, 3. Capterra (qui alimente aussi GetApp et Software Advice), 4. Appvizer, 5. Trustpilot, puis demander 3 à 5 avis à des commerçants clients sur Capterra et Trustpilot.
 
 ## Les faits à reprendre partout (ne pas les modifier)
 
@@ -59,6 +59,7 @@ Quand une fiche est en ligne, colle son adresse ici. Je l'ajouterai dans les don
 | Fiche | Adresse | Date |
 |---|---|---|
 | Google Business | créée par Paul (lien à ajouter) | 2026-10-27 |
+| Bing Webmaster Tools | | |
 | LinkedIn | | |
 | Capterra | | |
 | Appvizer | | |
