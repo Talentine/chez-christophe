@@ -3,6 +3,7 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
 import Stripe from 'https://esm.sh/stripe@14.0.0?target=denonext';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { envoyerMailBienvenue } from './mail-bienvenue.ts';
 
 const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'), { apiVersion: '2023-10-16', httpClient: Stripe.createFetchHttpClient() });
 const supabase = createClient(Deno.env.get('SUPABASE_URL'), Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'));
@@ -212,6 +213,36 @@ async function enregistrerCodePromoPaye(meta) {
   } catch (e) { await dbg('code_promo_paye_error', { msg: e.message }); }
 }
 
+// Mail de bienvenue (merci + recap + activation Stripe + diffusion). Envoye une seule fois par commercant,
+// meme si Stripe rejoue le webhook. Une erreur d'envoi ne bloque jamais l'activation.
+async function mailBienvenue(meta, session) {
+  try {
+    const { data: deja } = await supabase.from('webhook_debug_logs').select('id').eq('source', 'stripe-setup-fee').eq('step', 'mail_bienvenue_envoye').eq('data->>commercant_id', meta.commercant_id).limit(1);
+    if (deja && deja.length) return;
+    const { data: c } = await supabase.from('commercants').select('email, nom_boutique, slug, stripe_connect_actif').eq('id', meta.commercant_id).maybeSingle();
+    const email = (c && c.email) || (session.customer_details && session.customer_details.email);
+    if (!email) { await dbg('mail_bienvenue_sans_email', { commercant_id: meta.commercant_id }); return; }
+    const offre = OFFRES[meta.offre];
+    const fraisCents = meta.setup_fee_paye ? parseInt(meta.setup_fee_paye, 10) : (offre ? offre.setup_fee : 0);
+    const mois = meta.trial_days ? Math.round(parseInt(meta.trial_days, 10) / 30) : 0;
+    let promo = null;
+    if (meta.code_promo_id) {
+      const { data: p } = await supabase.from('codes_promo').select('type, valeur, description, mois_offerts').eq('id', meta.code_promo_id).maybeSingle();
+      promo = p;
+    }
+    const res = await envoyerMailBienvenue({
+      email, nom_boutique: (c && c.nom_boutique) || '', slug: (c && c.slug) || meta.slug || '', offre: meta.offre,
+      frais_installation_cents: fraisCents, frais_normal_cents: offre ? offre.setup_fee : fraisCents, mois_offerts: mois,
+      code_promo: meta.code_promo || null,
+      promo_pct: promo && promo.type === 'frais_acquisition_pct' ? Number(promo.valeur) || 0 : 0,
+      promo_description: (promo && promo.description) || null,
+      promo_mois: promo ? Math.max(promo.type === 'mois_offert' ? parseInt(promo.valeur || 0, 10) || 0 : 0, parseInt(promo.mois_offerts || 0, 10) || 0) : 0,
+      stripe_connect_actif: !!(c && c.stripe_connect_actif),
+    });
+    await dbg('mail_bienvenue_envoye', { commercant_id: meta.commercant_id, email, resend_id: res && res.id });
+  } catch (e) { await dbg('mail_bienvenue_erreur', { commercant_id: meta.commercant_id, msg: e.message }); }
+}
+
 async function handleWebhook(req) {
   const sig = req.headers.get('stripe-signature');
   const body = await req.text();
@@ -238,6 +269,7 @@ async function handleWebhook(req) {
         if (updErr) { await dbg('db_update_failed', { commercant_id: meta.commercant_id, error: updErr.message }); return json({ error: 'DB update failed: ' + updErr.message }, 500); }
         await dbg('boutique_activee', { commercant_id: meta.commercant_id, slug: meta.slug, tax_ids: (session.customer_details && session.customer_details.tax_ids) || [] });
         await enregistrerCodePromoPaye(meta);
+        await mailBienvenue(meta, session);
       }
 
       if (meta.type === 'setup_then_trial' && meta.commercant_id) {
