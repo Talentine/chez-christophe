@@ -58,7 +58,7 @@ Quand une fiche est en ligne, colle son adresse ici. Je l'ajouterai dans les don
 
 | Fiche | Adresse | Date |
 |---|---|---|
-| Google Business | | |
+| Google Business | créée par Paul (lien à ajouter) | 2026-10-27 |
 | LinkedIn | | |
 | Capterra | | |
 | Appvizer | | |
