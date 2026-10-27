@@ -32,7 +32,6 @@ exception when others then
   return new;
 end $$;
 
-drop trigger if exists fidelite_recompenses_email on public.fidelite_recompenses;
-create trigger fidelite_recompenses_email
+create or replace trigger fidelite_recompenses_email
 after insert on public.fidelite_recompenses
 for each row execute function public.fn_fidelite_recompense_email();
