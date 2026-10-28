@@ -17,13 +17,13 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | création site internet fleuriste | site | fleuriste | GS | haute | à faire |
 | site internet pour pizzeria | site | pizzeria | GS | haute | à faire |
 | site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
-| click and collect viande | click & collect | boucherie | GS | haute | à faire |
-| boucherie click and collect | click & collect | boucherie | GS | haute | à faire (même article que la ligne précédente) |
+| click and collect viande | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie (variante) |
+| boucherie click and collect | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie |
 | commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | à faire (publier début novembre) |
 | commande bûche de noël en ligne | click & collect | boulangerie | GS | haute | à faire (publier mi-novembre) |
 | application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
 | logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
-| quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | à faire (format question directe, à fusionner avec « click and collect viande ») |
+| quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |
 | empreinte bancaire définition commerçant | click & collect | tous | IA | moyenne | couvert par empreinte-bancaire-no-show-commerce-restaurant (rafraîchi le 2026-10-27) |
 | site click and collect gratuit | click & collect | transverse | GS | moyenne | à faire (angle : ce qui est vraiment gratuit) |
 | application click and collect gratuite | click & collect | transverse | GS | moyenne | à faire (même article que la ligne précédente) |
@@ -68,7 +68,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS (17/10) | haute | doublon, voir ligne publiée le 2026-10-18 |
 | livraison poisson frais | livraison | poissonnerie | GS (17/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
 | création site internet pour restaurant | site | restaurant | GS (17/10) | haute | couvert par prix-site-internet-restaurant (2026-10-27) ; angle « créer » à reprendre en refresh si GSC le demande |
-| boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | variante de boucherie click and collect |
+| boucherie moderne click and collect | click & collect | boucherie | GS (17/10) | moyenne | couvert par click-and-collect-boucherie (2026-10-28) |
 | primeur en click & collect | click & collect | primeur | GSC (7 impr., 17/10 ; pos. 57,4 au 19/10) + GS (« primeur click and collect ») | haute | publié le 2026-10-19 click-and-collect-primeur |
 | poissonnier livraison domicile | livraison | poissonnerie | GS (18/10) | moyenne | couvert par poissonnerie-livraison-a-domicile (2026-10-18) |
 | livraison fruits de mer à domicile | livraison | poissonnerie | GS (18/10) | moyenne | à faire en novembre, avec l'article plateau de fruits de mer de Noël |
@@ -146,9 +146,9 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison à domicile paiement en espèces | livraison | transverse | GS (23/10) | basse | à fondre en FAQ d'un article paiement à la livraison |
 | boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | à faire avec « livraison à domicile boucherie » (boucher de quartier qui livre, pas e-boucherie qui expédie) |
 | site internet boucherie | site | boucherie | GS (24/10) + WS (1re page : portfolio de graphiste, blog d'agence à Dakar, annuaires : aucun guide pour boucher de quartier) | haute | publié le 2026-10-24 site-internet-boucherie |
-| logiciel prise de commande boucherie | click & collect | boucherie | GS (24/10) | haute | à faire : article click and collect boucherie (avec « click and collect viande ») ; en FAQ de site-internet-boucherie en attendant |
+| logiciel prise de commande boucherie | click & collect | boucherie | GS (24/10) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |
 | logiciel gestion boucherie gratuit | transverse | boucherie | GS (24/10) | basse | écarté (intention caisse et gestion de stock, hors périmètre) |
-| boucherie commande en ligne halal | click & collect | boucherie | GS (24/10) | moyenne | à faire en section de l'article click and collect boucherie |
+| boucherie commande en ligne halal | click & collect | boucherie | GS (24/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |
 | boucherie en ligne autour de moi | site | boucherie | GS (24/10) | moyenne | à fondre : fiche Google + site, déjà couvert en section de site-internet-boucherie |
 | site de boucher | site | boucherie | GS (24/10) | basse | variante, couverte par site-internet-boucherie |
 | bouquet de fleurs click and collect | click & collect | fleuriste | GS (25/10) | moyenne | couvert par click-and-collect-fleuriste |
@@ -171,9 +171,17 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer site internet restaurant gratuit | site | restaurant | GS (27/10) | moyenne | à fondre dans un article « site gratuit pour commerce : ce qui est vraiment gratuit » |
 | plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS (27/10) | haute | à faire : article application click and collect restaurant (à emporter sans commission) |
 | site commande restaurant | click & collect | restaurant | GS (27/10) | moyenne | à faire avec « application click and collect restaurant » |
-| click and collect boucherie halal | click & collect | boucherie | GS (27/10) | moyenne | section à prévoir dans l'article click and collect boucherie |
-| boucherie moderne click and collect | click & collect | boucherie | GS (27/10) | basse | variante de « click and collect viande » |
+| click and collect boucherie halal | click & collect | boucherie | GS (27/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |
+| boucherie moderne click and collect | click & collect | boucherie | GS (27/10) | basse | couvert par click-and-collect-boucherie (2026-10-28) |
 | site internet chef à domicile | site | traiteur | GS (27/10) | basse | écarté pour l'instant (hors commerce de bouche à boutique) |
 | shopify ou wix commerce de proximité | transverse | tous | IA (27/10) | haute | publié le 2026-10-27 + shopify-wix-ou-logiciel-metier-commerce-de-proximite |
 | alternative shopify commerçant | transverse | tous | IA (27/10) | moyenne | couvert par shopify-wix-ou-logiciel-metier-commerce-de-proximite |
 | marchéo avis / marchéo prix | marque | tous | IA (27/10) | haute | couvert par a-propos (10 faits, limites, FAQ alternatives) ; à suivre dans visibilite-ia.md |
+| click and collect boucherie | click & collect | boucherie | GS + WS (28/10 : 1re page = guides généralistes, HubSpot, Fiducial, aucune page boucher) | haute | publié le 2026-10-28 + click-and-collect-boucherie |
+| boucherie commande noel | click & collect | boucherie | GS (28/10) | haute | à faire mi-novembre : précommandes de Noël en boucherie (chapons, rôtis, date limite) |
+| livraison colis viande à domicile | livraison | boucherie | GS (28/10) | moyenne | à faire avec « livraison à domicile boucherie » (boucher de quartier, pas expédition) |
+| application livraison boucherie | livraison | boucherie | GS (28/10) | moyenne | à faire avec « livraison à domicile boucherie » |
+| boucherie vente en ligne | site | boucherie | GS (28/10) | basse | couvert par site-internet-boucherie et click-and-collect-boucherie |
+| logiciel caisse boucherie | transverse | boucherie | GS (28/10) | basse | écarté : intention caisse, Marchéo n'est pas une caisse ; FAQ possible « garder sa caisse » |
+| logiciel gestion boucherie gratuit | transverse | boucherie | GS (28/10) | basse | écarté : intention gestion/traçabilité, hors produit |
+| commande boucherie halal | click & collect | boucherie | GS (28/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |

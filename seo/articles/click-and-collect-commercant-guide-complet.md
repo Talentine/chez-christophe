@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-10-25
+modified: 2026-10-28
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -156,7 +156,7 @@ Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne 
 Chaque métier a ses produits qui se commandent naturellement en retrait. Un logiciel métier les prévoit déjà dans le catalogue de départ.
 
 - **Boulangerie.** Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie) et le guide du [site internet de boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne).
-- **Boucherie.** Colis, rôtis, découpes à la demande, vente au kilo. Voir [la solution pour boucherie](/solutions/boucherie).
+- **Boucherie.** Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article [click and collect boucherie](/blog/click-and-collect-boucherie) et voir [la solution pour boucherie](/solutions/boucherie).
 - **Primeur.** Paniers de la semaine, vente au kilo, fruits de saison. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Voir [la solution pour poissonnerie](/solutions/poissonnerie).
 - **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).

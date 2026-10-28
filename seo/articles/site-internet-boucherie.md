@@ -3,6 +3,7 @@ title: "Site internet boucherie : créer le site de votre boucherie de quartier"
 titre_court: "Créer le site internet de sa boucherie"
 description: "Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel."
 date: 2026-10-24
+modified: 2026-10-28
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -48,7 +49,7 @@ Un site vitrine suffit si vos clients viennent surtout en direct et n'appellent 
 | Clients âgés ou éloignés qui demandent à être livrés | Site avec click & collect et livraison locale |
 | Gros pic à Noël, Pâques ou pour les barbecues | Site de commande avec précommandes et date limite |
 
-Si vous hésitez, commencez par la vitrine et passez au site de commande quand le téléphone sonne trop. Le guide [click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet) explique le fonctionnement pas à pas.
+Si vous hésitez, commencez par la vitrine et passez au site de commande quand le téléphone sonne trop. Le guide [click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet) explique le fonctionnement pas à pas, et notre article [click and collect boucherie](/blog/click-and-collect-boucherie) détaille les créneaux, la découpe et les commandes de fêtes.
 
 ## Quelles pages mettre sur le site d'une boucherie ?
 
