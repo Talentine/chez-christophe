@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-10-27
+modified: 2026-10-28
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -120,7 +120,7 @@ Une bonne boutique en ligne de commerce contient peu de choses, mais les bonnes.
 - **Vos horaires et créneaux.** Retrait, et livraison si vous livrez.
 - **Vos coordonnées.** Adresse, téléphone, plan d'accès.
 - **Des photos réelles.** Votre vitrine, vos produits, votre équipe. Elles rassurent plus qu'un long texte.
-- **Les informations légales.** Mentions légales, conditions de vente, allergènes pour les produits concernés.
+- **Les informations légales.** Mentions légales, conditions de vente, allergènes pour les produits concernés. La liste complète est dans notre guide des [obligations légales pour ouvrir sa boutique en ligne](/blog/obligations-legales-boutique-en-ligne-commercant).
 
 Pour la vente à la pièce ou au kilo, le guide [vendre au poids en ligne](/blog/vendre-au-poids-en-ligne) explique comment afficher les prix et ajuster le montant à la pesée.
 

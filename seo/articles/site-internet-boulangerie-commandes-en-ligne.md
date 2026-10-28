@@ -5,7 +5,7 @@ description: "Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâ
 meta_title: "Site internet pour boulangerie : commandes en ligne"
 meta_description: "Prendre les commandes de pains, gâteaux et bûches en ligne : ce qu'il faut sur un site de boulangerie, les créneaux, les acomptes et le prix."
 date: 2026-08-30
-modified: 2026-09-28
+modified: 2026-10-28
 rubrique: Métier
 emoji: 🥖
 keywords:
@@ -13,9 +13,13 @@ keywords:
   - commande en ligne boulangerie
   - click and collect boulangerie pâtisserie
   - commander gâteau en ligne boulangerie
+  - application commande en ligne boulangerie
+  - boulangerie click and collect
 metiers:
   - boulangerie
 faq:
+  - q: "Quelle application de commande en ligne pour une boulangerie ?"
+    r: "Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure."
   - q: "Que doit-on pouvoir commander en ligne dans une boulangerie ?"
     r: "Ce qui se commande naturellement à l'avance : gâteaux d'anniversaire et de cérémonie, pains spéciaux, brioches et viennoiseries du week-end, plateaux pour le bureau, galettes et bûches en saison. Le pain quotidien reste au comptoir."
   - q: "Comment gérer les gâteaux sur mesure ?"
@@ -26,17 +30,21 @@ faq:
     r: "Oui, ce sont les produits qui profitent le plus d'un site : ils se commandent à l'avance, ils demandent une production planifiée et ils créent la file d'attente. Ouvrez les bûches début novembre avec une date limite ferme, et la galette juste après Noël pour la première semaine de janvier."
 ---
 
+Pour prendre les commandes en ligne, une boulangerie a besoin d'une application ou d'un site qui gère les créneaux de retrait, les gâteaux sur mesure et les précommandes de fêtes, sans commission sur chaque vente. Marchéo, logiciel français pensé pour les commerces de bouche, le fait pour 39 € par mois sans engagement, 0 % de commission, avec le catalogue boulangerie déjà rempli et sans matériel à acheter. Le client commande en 30 secondes, sans créer de compte.
+
 Une boulangerie n'a pas besoin d'un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l'avance : le gâteau d'anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C'est là que le carnet au comptoir montre ses limites, et c'est là qu'un site bien fait change les matinées.
 
-## Ce que le carnet coûte
+## Que coûte la prise de commande au carnet ?
 
-Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d'une prise de commande manuelle.
+Elle coûte des gâteaux jetés et du temps au comptoir. Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d'une prise de commande manuelle.
 
-## Ce que le site doit faire
+## Que doit faire le site de commande d'une boulangerie ?
+
+Il doit prendre la commande sans vous interrompre, la garantir, respecter votre production et se gérer depuis le fournil.
 
 **Prendre la commande sans vous interrompre.** La cliente choisit le fraisier, la taille, laisse le message pour la plaque, choisit l'heure de retrait dimanche, laisse son nom et son numéro. Trente secondes, sans créer de compte, depuis son téléphone. Vous voyez la commande dans la liste du dimanche matin.
 
-**Garantir la commande.** Avec une empreinte bancaire, jusqu'à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n'est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
+**Garantir la commande.** Avec une empreinte bancaire, jusqu'à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n'est débité. L'empreinte est libérée 24 h après le retrait. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
 
 **Respecter votre production.** Des créneaux de retrait par jour et par heure, avec une capacité : dix gâteaux maximum le samedi, cinq le dimanche. Quand c'est complet, le client voit le prochain créneau. Vous ne promettez que ce que le fournil peut faire.
 
@@ -44,7 +52,9 @@ Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le 
 
 **Être trouvé sur Google.** Une adresse à votre nom, référencée, avec vos horaires, votre adresse et vos photos.
 
-## Ce qu'il faut mettre en ligne, et ce qu'il faut laisser au comptoir
+## Que mettre en ligne, et que laisser au comptoir ?
+
+Mettez en ligne ce qui se commande à l'avance, laissez au comptoir ce qui s'achète sur le moment.
 
 | En ligne, à l'avance | Au comptoir |
 |---|---|
@@ -55,20 +65,24 @@ Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le 
 
 Commencez par la colonne de gauche. C'est là que le site rapporte tout de suite.
 
-## Les prix
+## Combien coûte une application de commande en ligne pour boulangerie ?
+
+De quelques dizaines d'euros par mois à plusieurs milliers d'euros pour un site sur mesure, et c'est surtout la commission qui fait la différence sur un an.
 
 | Solution | Ce que ça coûte | Ce que ça implique |
 |---|---|---|
-| Plateforme de livraison | 25 à 30 % de commission | Le client n'est pas à vous, peu adapté aux gâteaux sur mesure |
-| Constructeur généraliste (Wix, Shopify) | 30 à 80 € par mois | Plusieurs jours de paramétrage, applications à ajouter pour les créneaux |
+| Plateforme de livraison | 14 à 30 % de commission selon la plateforme | Le client n'est pas à vous, peu adapté aux gâteaux sur mesure |
+| Constructeur généraliste (Wix, Shopify) | Quelques dizaines d'euros par mois, plus les applications | Plusieurs jours de paramétrage, applications à ajouter pour les créneaux |
 | Site sur mesure | 2 000 à 8 000 € | Maintenance, chaque évolution se paie |
 | Marchéo | 39 € par mois, 399 € d'installation, 0 % de commission | Catalogue boulangerie déjà rempli, créneaux, empreinte, SMS |
 
 Une commande de gâteau à 40 € par semaine rembourse l'abonnement. Le détail des offres et des options propres au métier est sur la page [click & collect pour boulangerie](/solutions/boulangerie).
 
-## Les temps forts de l'année
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Avant d'ouvrir, vérifiez aussi les [obligations légales d'une boutique en ligne](/blog/obligations-legales-boutique-en-ligne-commercant) : allergènes sur chaque gâteau, conditions de vente et médiateur de la consommation.
 
-Une boulangerie vit sur un calendrier très régulier, et c'est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
+## Quels sont les temps forts de l'année pour les commandes ?
+
+Épiphanie, Pâques, fête des mères et fin d'année. Une boulangerie vit sur un calendrier très régulier, et c'est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
 
 | Moment | Ce qui se commande | Quand ouvrir |
 |---|---|---|
@@ -79,9 +93,9 @@ Une boulangerie vit sur un calendrier très régulier, et c'est précisément ce
 
 Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C'est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans [organiser ses précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche).
 
-## La fiche Google, l'autre moitié du travail
+## Pourquoi la fiche Google compte autant que le site ?
 
-Un site de commande ne sert à rien si personne ne le trouve. Pour une boulangerie, la majorité des recherches sont locales : « boulangerie ouverte dimanche », « gâteau anniversaire » plus le nom de la ville. Ce qui répond à ces recherches, c'est d'abord votre fiche Google Business.
+Parce que la plupart des clients d'une boulangerie la cherchent sur Google avant de commander. Un site de commande ne sert à rien si personne ne le trouve. Pour une boulangerie, la majorité des recherches sont locales : « boulangerie ouverte dimanche », « gâteau anniversaire » plus le nom de la ville. Ce qui répond à ces recherches, c'est d'abord votre fiche Google Business.
 
 Trois réglages font la différence, et ils sont gratuits :
 
@@ -93,7 +107,9 @@ Ajoutez à cela les avis clients : demandez-les au comptoir, simplement, aux hab
 
 Le détail de tous les réglages, catégorie principale, horaires exceptionnels, photos et champ de commande en ligne, est dans notre guide de [la fiche Google Business pour un commerce de bouche](/blog/fiche-google-business-commerce-bouche).
 
-## Le plan en une semaine
+## Comment mettre en place les commandes en ligne en une semaine ?
+
+Une étape par jour suffit, sans matériel à acheter.
 
 1. **Lundi.** Sur [la page de création](/inscription), choisissez « Boulangerie », tapez le nom de votre boulangerie : la boutique apparaît avec le catalogue. Cochez ce que vous vendez, corrigez les prix.
 2. **Mardi.** Dix photos au téléphone, en lumière du jour : vos gâteaux, vos pains spéciaux, la vitrine. Ajoutez-les.

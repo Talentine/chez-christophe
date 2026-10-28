@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-10-27
+modified: 2026-10-28
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -101,7 +101,7 @@ Un nom de domaine est l'adresse de votre site, l'hébergement est l'endroit où 
 
 **L'hébergement.** Avec un constructeur de site ou un logiciel métier, il est inclus dans l'abonnement. Avec une agence ou un site WordPress installé à part, c'est une ligne de budget distincte, à laquelle s'ajoutent les mises à jour de sécurité.
 
-**Les mentions légales.** Tout site professionnel doit indiquer l'identité de l'entreprise (nom, adresse, numéro d'immatriculation), l'hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes.
+**Les mentions légales.** Tout site professionnel doit indiquer l'identité de l'entreprise (nom, adresse, numéro d'immatriculation), l'hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes. Le détail, avec le droit de rétractation et le médiateur de la consommation, est dans notre guide des [obligations légales d'une boutique en ligne](/blog/obligations-legales-boutique-en-ligne-commercant).
 
 ## Combien coûte la création du site internet d'un commerce ?
 

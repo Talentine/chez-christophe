@@ -37,6 +37,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
+- [Ouvrir sa boutique en ligne : les obligations légales du commerçant](https://marchéo.fr/blog/obligations-legales-boutique-en-ligne-commercant) : Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
 - [Shopify, Wix ou logiciel métier pour un commerce de proximité ?](https://marchéo.fr/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) : Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne.
 - [Logiciel livraison pizza : livrer vous-même sans commission](https://marchéo.fr/blog/logiciel-livraison-pizza) : Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
@@ -919,6 +920,121 @@ R : Demandez une confirmation au moment de la commande. Marchéo propose une emp
 Q : Peut-on indiquer qu'une viande est halal sur sa boutique en ligne ?
 R : Oui, si votre viande est certifiée. Indiquez-le sur chaque fiche produit et précisez l'organisme de certification, comme vous le faites en boutique. N'utilisez la mention que pour les produits réellement certifiés.
 
+# Ouvrir sa boutique en ligne : les obligations légales du commerçant
+
+Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
+
+Pour ouvrir sa boutique en ligne, un commerçant déjà installé n&rsquo;a en général pas de nouvelle immatriculation à faire. Il doit surtout afficher des mentions légales, des conditions générales de vente, les prix TTC, les allergènes des produits alimentaires et les coordonnées d&rsquo;un médiateur de la consommation, et protéger les données de ses clients. Un logiciel métier comme Marchéo prévoit la place de ces informations, mais leur contenu reste sous votre responsabilité.
+Ce guide complète notre méthode pour créer sa boutique en ligne quand on a un commerce. Il résume les règles générales du droit français en langage simple. Il ne remplace pas un conseil juridique : pour un cas particulier, votre chambre de commerce (CCI) ou votre chambre de métiers (CMA) peut vous répondre gratuitement.
+Faut-il déclarer son activité pour vendre en ligne ?
+Non, en règle générale, si vous vendez en ligne les mêmes produits qu&rsquo;en boutique. La vente en ligne est un nouveau canal, pas une nouvelle activité. Vos règles d&rsquo;hygiène, vos déclarations sanitaires et votre statut restent les mêmes.
+Deux cas demandent une vérification. Si vous ajoutez une activité nouvelle, par exemple des plats cuisinés quand vous étiez primeur, demandez à votre CCI ou CMA si votre activité déclarée doit évoluer. Si vous vendez de l&rsquo;alcool en ligne, il vous faut une licence à emporter adaptée, et l&rsquo;interdiction de vente aux mineurs s&rsquo;applique aussi en ligne.
+Que doivent contenir les mentions légales ?
+Les mentions légales disent qui vend. C&rsquo;est une obligation pour tout site professionnel, même un simple site vitrine.
+Elles indiquent le nom de l&rsquo;entreprise ou du commerçant, l&rsquo;adresse, un téléphone ou un e-mail, le numéro d&rsquo;immatriculation (SIREN), le numéro de TVA si vous en avez un, le nom du responsable de la publication et les coordonnées de l&rsquo;hébergeur du site. Une page dédiée, accessible depuis chaque page, suffit.
+Les conditions générales de vente sont-elles obligatoires ?
+Oui, dès que vous vendez à des particuliers sur internet, y compris en click &amp; collect. Une commande passée en ligne puis retirée en boutique reste une vente à distance.
+Vos conditions de vente doivent préciser au minimum :
+
+les produits et leurs caractéristiques essentielles ;
+les prix TTC en euros, et le prix au kilo pour ce qui se vend au poids ;
+les frais de livraison s&rsquo;il y en a ;
+les modes de paiement, y compris le paiement au retrait ;
+le délai ou le créneau de retrait et de livraison ;
+le droit de rétractation ou son absence ;
+les garanties légales et les coordonnées du médiateur.
+
+Le bouton qui valide la commande doit dire clairement qu&rsquo;elle engage à payer, par exemple « Commander avec obligation de paiement ». Le client reçoit ensuite une confirmation de sa commande sur un support durable, en pratique un e-mail.
+Pour la vente au kilo, le guide vendre au poids en ligne explique comment afficher un prix indicatif et ajuster le montant à la pesée sans surprise pour le client.
+Le droit de rétractation s&rsquo;applique-t-il aux commerces de bouche ?
+Pour la plupart des produits frais, non. Le code de la consommation exclut du délai de 14 jours les biens qui se détériorent ou se périment rapidement, et ceux qui sont faits sur mesure.
+
+
+
+Produit
+Rétractation de 14 jours ?
+Ce qu&rsquo;il faut faire
+
+
+
+
+Viande, poisson, fruits et légumes frais
+Non, produit périssable
+Le dire clairement dans les CGV et avant la commande
+
+
+Gâteau personnalisé, plateau sur mesure
+Non, fait selon la demande du client
+Le dire clairement, prévoir une date limite d&rsquo;annulation
+
+
+Bouquet de fleurs coupées
+Non, produit qui se détériore vite
+Le dire clairement dans les CGV
+
+
+Épicerie sèche, vin, objet, bon cadeau
+Oui, en principe
+Prévoir les modalités de retour
+
+
+
+L&rsquo;absence de rétractation ne vous empêche pas d&rsquo;être plus souple. Beaucoup de commerçants acceptent l&rsquo;annulation jusqu&rsquo;à la veille. Pour les commandes qui ne sont jamais retirées, l&rsquo;empreinte bancaire contre les no-show est plus efficace qu&rsquo;une règle écrite.
+Faut-il afficher les allergènes sur une boutique en ligne ?
+Oui. Le règlement européen sur l&rsquo;information des consommateurs impose que les informations obligatoires, dont les 14 allergènes majeurs, soient disponibles avant l&rsquo;achat quand la vente se fait à distance. Cela vaut aussi pour les produits non emballés vendus en boutique.
+Le plus simple est de les écrire dans la description de chaque produit concerné : « contient : gluten, œufs, lait ». Pour un traiteur ou une pizzeria, c&rsquo;est souvent la première question des clients. La page click &amp; collect pour traiteur montre comment présenter un catalogue de plats.
+Qu&rsquo;est-ce que le médiateur de la consommation ?
+C&rsquo;est un organisme indépendant qui aide à régler un litige entre vous et un client, sans passer par le tribunal. Tout professionnel qui vend à des particuliers doit adhérer à un médiateur et en afficher les coordonnées.
+Le choix vous revient, parmi les médiateurs agréés. L&rsquo;adhésion coûte en général quelques dizaines d&rsquo;euros par an. Sur Marchéo, vous renseignez votre médiateur dans votre espace et ses coordonnées s&rsquo;affichent sur la page de votre boutique.
+Quelles règles pour les données de vos clients ?
+Le RGPD s&rsquo;applique dès que vous collectez un nom, un téléphone ou un e-mail. Vous devez dire à vos clients ce que vous en faites, combien de temps vous les gardez, et leur permettre de les consulter ou de les faire supprimer.
+Deux points concrets. Pour envoyer des promotions par e-mail ou par SMS, il faut l&rsquo;accord explicite du client, une case non cochée par défaut. Pour les cookies qui ne sont pas nécessaires au fonctionnement du site, il faut aussi son accord. Les données nécessaires à la commande, elles, n&rsquo;ont pas besoin de consentement.
+Ce que fait l&rsquo;outil, ce qui reste à vous : qui fait quoi ?
+Un bon outil vous donne la place et les modèles. Le contenu et certaines démarches restent à votre charge, quel que soit le logiciel.
+
+
+
+Ce que Marchéo prévoit
+Ce qui reste à faire par vous
+
+
+
+
+Un modèle de conditions de vente pour votre boutique
+Le relire et l&rsquo;adapter à vos produits
+
+
+L&rsquo;affichage des coordonnées de votre médiateur
+Adhérer à un médiateur agréé
+
+
+Des fiches produits où écrire les allergènes
+Renseigner les allergènes de chaque produit
+
+
+L&rsquo;hébergement des données dans l&rsquo;Union européenne, exportables à tout moment
+Ne pas utiliser les contacts sans accord pour la publicité
+
+
+La commande sans compte client, prix TTC affichés
+Vérifier vos prix et vos prix au kilo
+
+
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. L&rsquo;abonnement coûte 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, avec 0 % de commission.
+Par où commencer ?
+Préparez trois choses avant d&rsquo;ouvrir : vos informations d&rsquo;entreprise pour les mentions légales, la liste des allergènes de vos produits et l&rsquo;adhésion à un médiateur. Le reste se règle en une soirée.
+Pour la partie site, nom de domaine et pages utiles, lisez notre guide de la création du site internet d&rsquo;un commerce. Pour voir votre boutique avant de vous engager, ouvrez la page d&rsquo;inscription : choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement.
+
+Q : Quel logiciel choisir pour ouvrir une boutique en ligne conforme quand on est commerçant ?
+R : Choisissez un outil qui prévoit la place des mentions légales, des conditions de vente, des allergènes et du médiateur, et qui héberge les données en Europe. Shopify ou Wix conviennent si vous expédiez des colis. Pour un commerce de bouche en retrait et en livraison locale, Marchéo fournit un modèle de conditions de vente, affiche votre médiateur sur la boutique et héberge les données dans l'Union européenne, pour 19, 39 ou 59 € par mois sans engagement, 0 % de commission et des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Le droit de rétractation de 14 jours s'applique-t-il aux produits frais ?
+R : Non. Le code de la consommation exclut les biens qui se détériorent ou se périment rapidement et les produits faits sur mesure, comme un gâteau personnalisé. Vous devez cependant indiquer clairement cette absence de rétractation avant la commande, dans vos conditions de vente.
+Q : Faut-il un médiateur de la consommation pour un petit commerce ?
+R : Oui. Tout professionnel qui vend à des particuliers doit adhérer à un médiateur de la consommation et en donner les coordonnées à ses clients, sur son site et dans ses conditions de vente. L'adhésion coûte en général quelques dizaines d'euros par an selon le médiateur choisi.
+Q : Faut-il acheter du matériel pour ouvrir une boutique en ligne ?
+R : Non. Aucune obligation légale n'impose de matériel. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : la boutique se gère depuis le téléphone ou l'ordinateur que vous avez déjà.
+
 # Prix site internet restaurant : combien ça coûte vraiment en 2026
 
 Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
@@ -1747,7 +1863,7 @@ Nom de domaine, hébergement, mentions légales : que faut-il savoir ?
 Un nom de domaine est l&rsquo;adresse de votre site, l&rsquo;hébergement est l&rsquo;endroit où il est stocké, et les mentions légales sont une obligation pour tout site professionnel. Avec un logiciel métier, l&rsquo;hébergement est compris et vous n&rsquo;avez pas à vous en occuper.
 Le nom de domaine. Il n&rsquo;est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone.
 L&rsquo;hébergement. Avec un constructeur de site ou un logiciel métier, il est inclus dans l&rsquo;abonnement. Avec une agence ou un site WordPress installé à part, c&rsquo;est une ligne de budget distincte, à laquelle s&rsquo;ajoutent les mises à jour de sécurité.
-Les mentions légales. Tout site professionnel doit indiquer l&rsquo;identité de l&rsquo;entreprise (nom, adresse, numéro d&rsquo;immatriculation), l&rsquo;hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes.
+Les mentions légales. Tout site professionnel doit indiquer l&rsquo;identité de l&rsquo;entreprise (nom, adresse, numéro d&rsquo;immatriculation), l&rsquo;hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes. Le détail, avec le droit de rétractation et le médiateur de la consommation, est dans notre guide des obligations légales d&rsquo;une boutique en ligne.
 Combien coûte la création du site internet d&rsquo;un commerce ?
 La création du site internet d&rsquo;un commerce coûte de quelques centaines d&rsquo;euros par an à plusieurs milliers d&rsquo;euros, selon que vous le faites vous-même, avec un logiciel métier ou avec une agence. Le vrai coût se mesure sur trois ans, en comptant le temps passé et les éventuelles commissions.
 
@@ -2278,7 +2394,7 @@ Un catalogue court et clair. Vos produits phares, avec un prix, une photo et une
 Vos horaires et créneaux. Retrait, et livraison si vous livrez.
 Vos coordonnées. Adresse, téléphone, plan d&rsquo;accès.
 Des photos réelles. Votre vitrine, vos produits, votre équipe. Elles rassurent plus qu&rsquo;un long texte.
-Les informations légales. Mentions légales, conditions de vente, allergènes pour les produits concernés.
+Les informations légales. Mentions légales, conditions de vente, allergènes pour les produits concernés. La liste complète est dans notre guide des obligations légales pour ouvrir sa boutique en ligne.
 
 Pour la vente à la pièce ou au kilo, le guide vendre au poids en ligne explique comment afficher les prix et ajuster le montant à la pesée.
 Click &amp; collect, livraison ou simple vitrine ?
@@ -3692,16 +3808,19 @@ R : Non, ça le libère. Le client qui a commandé en ligne passe 30 secondes au
 
 Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pains spéciaux à l'avance, créneaux de retrait, protection contre les gâteaux non récupérés, photos, fiche Google. Avec les prix et un plan de mise en place en une semaine.
 
+Pour prendre les commandes en ligne, une boulangerie a besoin d&rsquo;une application ou d&rsquo;un site qui gère les créneaux de retrait, les gâteaux sur mesure et les précommandes de fêtes, sans commission sur chaque vente. Marchéo, logiciel français pensé pour les commerces de bouche, le fait pour 39 € par mois sans engagement, 0 % de commission, avec le catalogue boulangerie déjà rempli et sans matériel à acheter. Le client commande en 30 secondes, sans créer de compte.
 Une boulangerie n&rsquo;a pas besoin d&rsquo;un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l&rsquo;avance : le gâteau d&rsquo;anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C&rsquo;est là que le carnet au comptoir montre ses limites, et c&rsquo;est là qu&rsquo;un site bien fait change les matinées.
-Ce que le carnet coûte
-Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d&rsquo;une prise de commande manuelle.
-Ce que le site doit faire
+Que coûte la prise de commande au carnet ?
+Elle coûte des gâteaux jetés et du temps au comptoir. Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d&rsquo;une prise de commande manuelle.
+Que doit faire le site de commande d&rsquo;une boulangerie ?
+Il doit prendre la commande sans vous interrompre, la garantir, respecter votre production et se gérer depuis le fournil.
 Prendre la commande sans vous interrompre. La cliente choisit le fraisier, la taille, laisse le message pour la plaque, choisit l&rsquo;heure de retrait dimanche, laisse son nom et son numéro. Trente secondes, sans créer de compte, depuis son téléphone. Vous voyez la commande dans la liste du dimanche matin.
-Garantir la commande. Avec une empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n&rsquo;est débité. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
+Garantir la commande. Avec une empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Si elle vient, rien n&rsquo;est débité. L&rsquo;empreinte est libérée 24 h après le retrait. Si elle ne vient pas, vous décidez de ce que vous prélevez. Les gâteaux fantômes disparaissent dès la première saison.
 Respecter votre production. Des créneaux de retrait par jour et par heure, avec une capacité : dix gâteaux maximum le samedi, cinq le dimanche. Quand c&rsquo;est complet, le client voit le prochain créneau. Vous ne promettez que ce que le fournil peut faire.
 Se gérer depuis le fournil. Masquer un produit épuisé, changer un prix, fermer un créneau : tout depuis le téléphone, en quelques secondes.
 Être trouvé sur Google. Une adresse à votre nom, référencée, avec vos horaires, votre adresse et vos photos.
-Ce qu&rsquo;il faut mettre en ligne, et ce qu&rsquo;il faut laisser au comptoir
+Que mettre en ligne, et que laisser au comptoir ?
+Mettez en ligne ce qui se commande à l&rsquo;avance, laissez au comptoir ce qui s&rsquo;achète sur le moment.
 
 
 
@@ -3729,7 +3848,8 @@ Achats d&rsquo;impulsion
 
 
 Commencez par la colonne de gauche. C&rsquo;est là que le site rapporte tout de suite.
-Les prix
+Combien coûte une application de commande en ligne pour boulangerie ?
+De quelques dizaines d&rsquo;euros par mois à plusieurs milliers d&rsquo;euros pour un site sur mesure, et c&rsquo;est surtout la commission qui fait la différence sur un an.
 
 
 
@@ -3741,12 +3861,12 @@ Ce que ça implique
 
 
 Plateforme de livraison
-25 à 30 % de commission
+14 à 30 % de commission selon la plateforme
 Le client n&rsquo;est pas à vous, peu adapté aux gâteaux sur mesure
 
 
 Constructeur généraliste (Wix, Shopify)
-30 à 80 € par mois
+Quelques dizaines d&rsquo;euros par mois, plus les applications
 Plusieurs jours de paramétrage, applications à ajouter pour les créneaux
 
 
@@ -3762,8 +3882,9 @@ Catalogue boulangerie déjà rempli, créneaux, empreinte, SMS
 
 
 Une commande de gâteau à 40 € par semaine rembourse l&rsquo;abonnement. Le détail des offres et des options propres au métier est sur la page click &amp; collect pour boulangerie.
-Les temps forts de l&rsquo;année
-Une boulangerie vit sur un calendrier très régulier, et c&rsquo;est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Avant d&rsquo;ouvrir, vérifiez aussi les obligations légales d&rsquo;une boutique en ligne : allergènes sur chaque gâteau, conditions de vente et médiateur de la consommation.
+Quels sont les temps forts de l&rsquo;année pour les commandes ?
+Épiphanie, Pâques, fête des mères et fin d&rsquo;année. Une boulangerie vit sur un calendrier très régulier, et c&rsquo;est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
 
 
 
@@ -3796,8 +3917,8 @@ Début novembre, date limite ferme mi-décembre
 
 
 Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C&rsquo;est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans organiser ses précommandes des fêtes.
-La fiche Google, l&rsquo;autre moitié du travail
-Un site de commande ne sert à rien si personne ne le trouve. Pour une boulangerie, la majorité des recherches sont locales : « boulangerie ouverte dimanche », « gâteau anniversaire » plus le nom de la ville. Ce qui répond à ces recherches, c&rsquo;est d&rsquo;abord votre fiche Google Business.
+Pourquoi la fiche Google compte autant que le site ?
+Parce que la plupart des clients d&rsquo;une boulangerie la cherchent sur Google avant de commander. Un site de commande ne sert à rien si personne ne le trouve. Pour une boulangerie, la majorité des recherches sont locales : « boulangerie ouverte dimanche », « gâteau anniversaire » plus le nom de la ville. Ce qui répond à ces recherches, c&rsquo;est d&rsquo;abord votre fiche Google Business.
 Trois réglages font la différence, et ils sont gratuits :
 
 Le lien de commande dans la fiche pointe vers votre boutique, pas vers une plateforme. Le bouton « Commander » apparaît directement dans les résultats.
@@ -3806,7 +3927,8 @@ Les photos récentes, prises au téléphone en lumière du jour, remplacées deu
 
 Ajoutez à cela les avis clients : demandez-les au comptoir, simplement, aux habitués. Une boulangerie avec quarante avis récents passe devant une boulangerie avec six avis de 2021.
 Le détail de tous les réglages, catégorie principale, horaires exceptionnels, photos et champ de commande en ligne, est dans notre guide de la fiche Google Business pour un commerce de bouche.
-Le plan en une semaine
+Comment mettre en place les commandes en ligne en une semaine ?
+Une étape par jour suffit, sans matériel à acheter.
 
 Lundi. Sur la page de création, choisissez « Boulangerie », tapez le nom de votre boulangerie : la boutique apparaît avec le catalogue. Cochez ce que vous vendez, corrigez les prix.
 Mardi. Dix photos au téléphone, en lumière du jour : vos gâteaux, vos pains spéciaux, la vitrine. Ajoutez-les.
@@ -3816,6 +3938,8 @@ Vendredi. Un mot à chaque client au comptoir : « Pour le week-end prochain, vo
 
 Les premières commandes arrivent en général le week-end suivant. En un mois, la liste du samedi matin est faite la veille, et personne n&rsquo;attend plus pendant qu&rsquo;on note un fraisier sur un carnet.
 
+Q : Quelle application de commande en ligne pour une boulangerie ?
+R : Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure.
 Q : Que doit-on pouvoir commander en ligne dans une boulangerie ?
 R : Ce qui se commande naturellement à l'avance : gâteaux d'anniversaire et de cérémonie, pains spéciaux, brioches et viennoiseries du week-end, plateaux pour le bureau, galettes et bûches en saison. Le pain quotidien reste au comptoir.
 Q : Comment gérer les gâteaux sur mesure ?

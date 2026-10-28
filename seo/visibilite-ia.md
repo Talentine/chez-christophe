@@ -1,6 +1,6 @@
 # Visibilité de Marchéo dans les assistants IA
 
-Chaque jour : 2 questions (celle du mot-clé du jour + la suivante de la liste en rotation), posées à Perplexity (sans compte) et à Google (aperçu IA s'il s'affiche). Pas de connexion, pas de compte, cookies non essentiels refusés.
+Chaque jour : 4 questions (les 2 suivantes de la rotation, celle du mot-clé du matin, une question de marque n°23/24 en alternance), posées d'abord à ChatGPT sans compte, puis à Perplexity (sans compte) et à Google (aperçu IA s'il s'affiche). Depuis le 28/10 : ChatGPT et Perplexity sont interrogés dans le navigateur intégré de l'app (isolé, déconnecté), car Chrome est connecté au compte ChatGPT de Paul, ce qui fausserait la mesure. Perplexity sans compte n'accepte qu'une ou deux questions par session (« Inscrivez-vous et répétez votre demande »). Pas de connexion, pas de compte, cookies non essentiels refusés.
 
 ## Questions types (rotation)
 
@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°6.
+Prochaine question en rotation : n°8.
 
 ## Relevés
 
@@ -48,6 +48,14 @@ Prochaine question en rotation : n°6.
 | 2026-10-22 | Perplexity | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | non | wix, shopify (réponse : Wix, WordPress.com, Canva, Shopify Starter, « solution spécialisée » sans nom ; conseille vitrine + retrait en boutique, domaine 10 à 20 €/an) |
 | 2026-10-22 | Perplexity | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | get.chownow, chatfood (réponse : canal de commande en propre, QR code, WhatsApp ; ChatFood cité comme solution à tarif fixe) |
 | 2026-10-27 | (aucun) | mesure non faite : l'autorisation Chrome n'a pas été validée pendant le run de 16 h | - | recherche web de secours sur n°6 et n°7 : fiducial (Pointex), blog.hubspot.fr, appvizer.fr, franchise-magazine ; rotation laissée à n°6 |
+| 2026-10-28 | ChatGPT | (R) Quel logiciel de click and collect pour une boucherie ? | non | RushPilot (1er choix), monpetitdrive.fr, Heustach, so-click.com |
+| 2026-10-28 | ChatGPT | (R) Quelle application de commande en ligne pour une boulangerie ? | non | BDN Collect (1er choix), Heustach, LEMO, bonappli |
+| 2026-10-28 | ChatGPT | Comment prendre les commandes de viande en ligne pour ma boucherie sans commission ? (mot-clé du matin) | non | WhatsApp Business en 1re solution, WooCommerce, Shopify, Nodik Order, bonappli, monsieurpierrot.fr, Heustach |
+| 2026-10-28 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | marchéo.fr (3 offres, installation + abonnement, sans engagement, sans commission ; mentionne « premier mois offert ») |
+| 2026-10-28 | Perplexity | (R) Quel logiciel de click and collect pour une boucherie ? | non | Toporder by myPOS, lechommerces.fr (comparatif caisses boucherie) |
+| 2026-10-28 | Perplexity | n°7, mot-clé du matin | non mesuré | limite sans compte atteinte (« Inscrivez-vous et répétez votre demande ») |
+| 2026-10-28 | Perplexity | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | xn--marcho-fva.fr (définition + 3 offres) |
+| 2026-10-28 | Google (aperçu IA) | (R) Quel logiciel de click and collect pour une boucherie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | tool-advisor.fr (comparatif caisses boucherie 13/10/2026), rushpilot.fr, lechommerces.fr, monpetitdrive.fr, moncasierfrais.fr, orisha, woopit.fr, apitic.com, toporder.fr |
 
 ## Bilans hebdomadaires (le lundi)
 

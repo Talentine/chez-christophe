@@ -82,7 +82,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | primeur commande en ligne | click & collect | primeur | GS (19/10) | moyenne | couvert par click-and-collect-primeur (2026-10-19) |
 | maraîcher vente en ligne | site | primeur | GS (19/10) | moyenne | à faire (angle : vente directe à la ferme et points de retrait) |
 | commande fruits et légumes en ligne | click & collect | primeur | GS (19/10) | basse | dominé par la grande distribution, en variante de l'article primeur |
-| commande boulangerie en ligne | click & collect | boulangerie | GSC (pos. 14,0, 19/10) | haute | à faire : renforcer site-internet-boulangerie-commandes-en-ligne (même cible que « boulangerie click and collect ») |
+| commande boulangerie en ligne | click & collect | boulangerie | GSC (pos. 14,0, 19/10) | haute | renforcé le 2026-10-28 : site-internet-boulangerie-commandes-en-ligne (réponse directe, H2 en questions, FAQ « Quelle application… ») |
 | click and collect food truck | click & collect | fastfood | GSC (pos. 13,5, 19/10) | moyenne | publié le 2026-09-17 click-and-collect-food-truck (à enrichir lors d'un prochain lundi) |
 | fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | publié le 2026-10-25, click-and-collect-fleuriste |
 | site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
@@ -107,7 +107,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | mettre son commerce sur google | transverse | tous | GS (20/10) | moyenne | couvert par fiche-google-business-commerce-bouche |
 | mettre son commerce sur uber eats | livraison | restaurant | GS (20/10) | moyenne | couvert en section « Livrer soi-même ou passer par une plateforme ? » de la page pilier n°4 (2026-10-23) |
 | quel budget pour créer une boutique en ligne | site | tous | GS « Autres questions » (20/10) | moyenne | couvert par la page pilier (section prix) ; à reprendre en FAQ de combien-coute-un-site-de-click-and-collect |
-| conditions pour ouvrir une boutique en ligne | site | tous | GS « Autres questions » + IA (20/10, service-public en tête) | moyenne | à faire (angle commerçant déjà installé : mentions légales, CGV, allergènes, RGPD) |
+| conditions pour ouvrir une boutique en ligne | site | tous | GS « Autres questions » + IA (20/10, service-public en tête) | moyenne | publié le 2026-10-28 + obligations-legales-boutique-en-ligne-commercant |
 | meilleur outil boutique en ligne commerce de proximité | transverse | tous | IA (20/10 : Perplexity ne cite que Shopify, Wix, PrestaShop) | haute | publié le 2026-10-27 + shopify-wix-ou-logiciel-metier-commerce-de-proximite |
 | marcheo.ma | transverse | - | GSC (14 impr., 20/10) | basse | écarté : requête marocaine sans lien, rien à faire |
 | click and collect sans commission | click & collect | tous | IA + Google (20/10 : 1re page = petits blogs d'éditeurs, marchéo.fr absent) | haute | à faire : refresh de click-and-collect-sans-commission-alternative-uber-eats-deliveroo (title sur la requête exacte, réponse directe, tableau des options sans commission) au prochain lundi |
@@ -185,3 +185,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel caisse boucherie | transverse | boucherie | GS (28/10) | basse | écarté : intention caisse, Marchéo n'est pas une caisse ; FAQ possible « garder sa caisse » |
 | logiciel gestion boucherie gratuit | transverse | boucherie | GS (28/10) | basse | écarté : intention gestion/traçabilité, hors produit |
 | commande boucherie halal | click & collect | boucherie | GS (28/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |
+| application commande en ligne boulangerie | click & collect | boulangerie | IA (28/10 : ChatGPT cite BDN Collect, Heustach, LEMO, bonappli) | haute | couvert par le refresh de site-internet-boulangerie-commandes-en-ligne (2026-10-28) ; pas de nouvel article (cannibalisation) |
+| whatsapp business ou boutique en ligne commerçant | click & collect | tous | IA (28/10 : ChatGPT propose WhatsApp Business en 1re solution « sans commission ») | haute | à faire (format « X ou Y » honnête avec tableau) |
+| mentions légales cgv click and collect | site | tous | IA (28/10) | basse | couvert par obligations-legales-boutique-en-ligne-commercant |
