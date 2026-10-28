@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°8.
+Prochaine question en rotation : n°10.
 
 ## Relevés
 
@@ -56,6 +56,11 @@ Prochaine question en rotation : n°8.
 | 2026-10-28 | Perplexity | n°7, mot-clé du matin | non mesuré | limite sans compte atteinte (« Inscrivez-vous et répétez votre demande ») |
 | 2026-10-28 | Perplexity | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | xn--marcho-fva.fr (définition + 3 offres) |
 | 2026-10-28 | Google (aperçu IA) | (R) Quel logiciel de click and collect pour une boucherie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | tool-advisor.fr (comparatif caisses boucherie 13/10/2026), rushpilot.fr, lechommerces.fr, monpetitdrive.fr, moncasierfrais.fr, orisha, woopit.fr, apitic.com, toporder.fr |
+| 2026-10-28 (2e mesure, 16 h) | ChatGPT | Comment créer la boutique en ligne de mon commerce de proximité pas cher ? | non | WhatsApp Business (1er conseil), SumUp Boutique en ligne, Wix, Shopify |
+| 2026-10-28 (2e mesure, 16 h) | ChatGPT | Comment mettre en place le click and collect dans un primeur ? | en source seulement (paragraphe paniers à prix fixe), absent du tableau des solutions | Achil, Heustach, Mon Petit Drive, Soclick (tableau), CCI |
+| 2026-10-28 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (0 %, 39 à 59 €/mois, pas de livreurs, calcul 10 000 € : 9 941 € contre 7 000 €), uber.com |
+| 2026-10-28 (2e mesure, 16 h) | Perplexity | Comment mettre en place le click and collect dans un primeur ? | non | francenum.gouv, ionos (aucun outil nommé) |
+| 2026-10-28 (2e mesure, 16 h) | Google (aperçu IA) | Comment mettre en place le click and collect dans un primeur ? | pas d'aperçu IA ; marchéo.fr 1er résultat (guide primeur) et 7e (guide click & collect) | MMA, francenum, Adie, shopcaisse, monpetitdrive.fr, woopit.fr, additi |
 
 ## Bilans hebdomadaires (le lundi)
 
