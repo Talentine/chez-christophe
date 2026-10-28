@@ -1,12 +1,18 @@
 # Mise à jour de la tâche « Présence Instagram + Facebook Marchéo (horaire) »
 
-Deux sections du prompt changent. Le reste ne bouge pas.
+Trois passages du prompt changent. Le reste ne bouge pas.
 
 ---
 
 ## 1. Dans « FILTRES DE DIVERSITÉ (stricts) », ajouter en PREMIÈRE ligne :
 
 - MESSAGES PRIVÉS — RÈGLE DES 10 JOURS (instruction de Paul du 28/10/2026) : n'envoie JAMAIS de message d'ouverture (DM ou réponse de story, Instagram ou Messenger) à un compte à qui nous avons déjà envoyé un message privé dans les 10 derniers jours. Avant chaque envoi, vérifie DEUX sources : (1) le journal, actions 'dm' et 'reponse_story' sur ce @compte ET sur ce nom de commerce (un même commerce peut avoir plusieurs comptes) ; (2) le fil de conversation lui-même dans la boîte de réception (Instagram : Principal, Général et Demandes ; Facebook : Messenger de la Page). Le fil fait foi, même si le journal ne contient rien. Dans le doute, n'envoie pas. Cette règle ne bloque pas les réponses à quelqu'un qui nous a écrit (étape 1).
+
+---
+
+## 1 bis. Toujours dans « FILTRES DE DIVERSITÉ (stricts) », remplacer la ligne « Contact non sollicité… 14 derniers jours (hors 'abonnement'). » par :
+
+- Contact non sollicité (commentaire, réponse de story, like) : uniquement à un compte avec qui AUCUNE interaction (de notre part ou de la sienne) n'est notée dans le journal des 10 derniers jours (hors 'abonnement').
 
 ---
 
