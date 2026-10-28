@@ -1,6 +1,10 @@
 # Prospection Facebook & Instagram — méthode Marchéo
 
 > Objectif : ouvrir une vraie conversation avec le commerçant, **puis** présenter Marchéo et proposer une démo. Jamais de pitch dans le premier message.
+>
+> **S'applique uniquement aux messages privés** (DM, réponses de story, Messenger). Les commentaires publics ne parlent jamais de Marchéo et ne contiennent pas de lien.
+> **Ne jamais réécrire en privé à un compte qui a déjà reçu un message de notre part dans les 10 derniers jours** : vérifier le journal ET le fil dans la boîte de réception.
+> En cas de différence avec ce guide, ce sont les règles de la tâche planifiée qui s'appliquent (voir `docs/maj-tache-presence-instagram.md`) : pas d'emoji, pas de relance.
 
 ---
 
