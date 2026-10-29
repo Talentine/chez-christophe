@@ -1,6 +1,7 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
   "/blog/comment-calculer-ses-frais-de-livraison-commercant",
+  "/blog/whatsapp-ou-boutique-en-ligne-commerce",
   "/blog/click-and-collect-boucherie",
   "/blog/obligations-legales-boutique-en-ligne-commercant",
   "/blog/prix-site-internet-restaurant",

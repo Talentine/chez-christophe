@@ -14,6 +14,8 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
 - Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
+- Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.
+- WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
@@ -37,6 +39,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
+- [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
 - [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
 - [Ouvrir sa boutique en ligne : les obligations légales du commerçant](https://marchéo.fr/blog/obligations-legales-boutique-en-ligne-commercant) : Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.

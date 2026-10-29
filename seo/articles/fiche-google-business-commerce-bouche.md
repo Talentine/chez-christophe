@@ -5,6 +5,7 @@ description: "Vos clients ne cherchent pas votre nom, ils cherchent « boulanger
 meta_title: "Fiche Google Business : le guide du commerce de bouche"
 meta_description: "Régler sa fiche Google Business quand on est boulanger, boucher ou primeur : catégorie, horaires, photos, avis et lien de commande en ligne. Guide pratique."
 date: 2026-09-28
+modified: 2026-10-29
 rubrique: Guide
 emoji: 📍
 keywords:
@@ -23,6 +24,8 @@ metiers:
   - fleuriste
   - restaurant
 faq:
+  - q: "Comment être trouvé sur Google quand on a un commerce de bouche ?"
+    r: "Commencez par une fiche Google Business complète : catégorie précise (boulangerie, boucherie, primeur…), horaires à jour, photos récentes et avis réguliers. Ajoutez ensuite un site ou une boutique en ligne et mettez son lien sur la fiche. Marchéo crée ce site avec la commande en ligne pour 19 à 59 € par mois, sans engagement et sans commission ; la démo est gratuite en 30 secondes sur marchéo.fr/inscription."
   - q: "La fiche Google Business est-elle payante ?"
     r: "Non, elle est entièrement gratuite, y compris les photos, les horaires, les avis et le lien vers votre site. Si quelqu'un vous appelle pour vous vendre « le référencement de votre fiche Google » ou sa validation, méfiez-vous : c'est un démarchage classique auprès des commerçants, et Google ne facture rien pour cela."
   - q: "Combien de temps faut-il pour que la fiche remonte dans les résultats ?"
@@ -33,15 +36,15 @@ faq:
     r: "Répondez, calmement, publiquement, dans les jours qui suivent. Un avis négatif avec une réponse posée rassure souvent plus qu'une page d'avis parfaits. Vous ne pouvez pas supprimer un avis parce qu'il vous déplaît ; seuls les avis qui enfreignent les règles de Google, insultes ou contenu sans rapport, peuvent être signalés."
 ---
 
-Un client qui cherche votre boulangerie par son nom vous connaît déjà. Il n'est pas le sujet.
+Une fiche Google Business bien réglée fait apparaître un commerce de bouche dans les trois résultats affichés avec la carte quand un client cherche « boulangerie » ou « boucherie » près de chez lui. Les réglages qui comptent le plus sont la catégorie principale, des horaires à jour, des avis récents et un lien de commande qui pointe vers votre propre boutique en ligne plutôt que vers une plateforme commissionnée. La fiche est gratuite et se règle en une heure.
 
-Le sujet, c'est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n'est pas votre site : c'est votre fiche Google Business.
+Un client qui cherche votre boulangerie par son nom vous connaît déjà. Le client qui compte, c'est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n'est pas votre site : c'est votre fiche Google Business.
 
 C'est l'outil de visibilité locale le plus puissant dont dispose un commerce de quartier, il est gratuit, et il est presque toujours à moitié rempli.
 
-## Ce que la fiche décide vraiment
+## Qu'est-ce que la fiche Google Business décide vraiment ?
 
-Quand quelqu'un fait une recherche locale, Google affiche en haut un bloc de trois établissements avec la carte. Passer dans ces trois-là ou arriver quatorzième dans la liste en dessous, ce n'est pas une différence de degré, c'est une différence de nature.
+La fiche décide si vous apparaissez parmi les trois commerces affichés avec la carte. Quand quelqu'un fait une recherche locale, Google affiche en haut un bloc de trois établissements avec la carte. Passer dans ces trois-là ou arriver quatorzième dans la liste en dessous, ce n'est pas une différence de degré, c'est une différence de nature.
 
 Trois facteurs pèsent, et un seul échappe totalement à votre contrôle :
 
@@ -51,7 +54,9 @@ Trois facteurs pèsent, et un seul échappe totalement à votre contrôle :
 
 Les deux derniers se travaillent, et c'est là que la plupart des commerces laissent des places libres.
 
-## Les champs qui pèsent, dans l'ordre
+## Quels champs de la fiche comptent le plus ?
+
+La catégorie principale compte le plus, devant les horaires, le lien de commande, les photos et les avis. Voici les champs dans l'ordre de leur poids.
 
 | Champ | Pourquoi il compte | L'erreur courante |
 | --- | --- | --- |
@@ -64,22 +69,22 @@ Les deux derniers se travaillent, et c'est là que la plupart des commerces lais
 
 **Sur la catégorie principale.** C'est le réglage le plus important et le plus vite fait. Choisissez la plus précise qui vous décrive : boulangerie, boucherie, poissonnerie, fromagerie, primeur, fleuriste, traiteur. Ajoutez des catégories secondaires pour le reste de votre activité, sans les empiler : une pâtisserie et un salon de thé en secondaire pour une boulangerie qui fait les deux, pas dix catégories au hasard.
 
-## Le champ que presque personne ne remplit
+## Quel lien mettre pour la commande en ligne ?
 
-Sur une fiche de commerce de bouche, il existe un endroit où mettre l'adresse à laquelle on commande chez vous. Selon votre catégorie, cela s'appelle le site web ou un lien de commande en ligne.
+Mettez l'adresse de votre propre boutique en ligne, jamais celle d'une plateforme qui prend une commission. Sur une fiche de commerce de bouche, il existe un endroit où mettre l'adresse à laquelle on commande chez vous. Selon votre catégorie, cela s'appelle le site web ou un lien de commande en ligne.
 
 C'est le champ le plus rentable de la fiche, et c'est celui qu'on trouve vide ou mal rempli le plus souvent. Deux cas de figure :
 
 - **Il est vide.** Le client qui voulait commander vous appelle, ou ne fait rien. Vous êtes visible sans être joignable au moment où il était décidé.
 - **Il pointe vers une plateforme de livraison.** Vous payez alors une commission de 14 à 30 % sur un client qui vous avait trouvé tout seul, par une recherche où votre nom apparaissait déjà. C'est le pire cas : vous avez fait le travail d'acquisition, quelqu'un d'autre encaisse la marge.
 
-Mettez votre propre adresse de commande. Si vous avez une boutique Marchéo, c'est `marchéo.fr/votre-commerce`, et la vente se fait sans commission. Le bouton apparaît directement dans les résultats de recherche, à côté de l'itinéraire et du numéro de téléphone.
+Mettez votre propre adresse de commande. Si vous avez une boutique Marchéo, c'est `marchéo.fr/votre-commerce`, et la vente se fait sans commission. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement. Le bouton apparaît directement dans les résultats de recherche, à côté de l'itinéraire et du numéro de téléphone.
 
 Ce lien rend aussi service à Google : une fiche vérifiée qui pointe vers votre site aide ce site à être exploré et indexé.
 
-## Les avis, sans tricher
+## Comment obtenir des avis Google sans tricher ?
 
-Les avis sont le critère que le client regarde en premier, et la seule chose que vous ne pouvez pas remplir vous-même.
+Il suffit de demander, au bon moment, aux clients contents. Les avis sont le critère que le client regarde en premier, et la seule chose que vous ne pouvez pas remplir vous-même.
 
 Ce qui fonctionne est peu spectaculaire :
 
@@ -90,25 +95,29 @@ Ce qui fonctionne est peu spectaculaire :
 
 Ce qui ne fonctionne pas : acheter des avis, en offrir contre une réduction, ou ne solliciter que les clients dont vous êtes sûr. C'est contraire aux règles de Google, détectable, et la sanction porte sur la fiche entière.
 
-## Les photos
+## Quelles photos mettre sur sa fiche ?
 
-Un client choisit entre trois commerces sur un écran de téléphone. Les photos font une partie du travail.
+Mettez des photos récentes, prises en lumière du jour, de la vitrine, des produits et de l'équipe. Un client choisit entre trois commerces sur un écran de téléphone. Les photos font une partie du travail.
 
 Prenez-les vous-même, en lumière du jour, sans flash : la vitrine du matin quand elle est pleine, deux ou trois produits en gros plan, la devanture pour qu'on vous reconnaisse dans la rue, et vous ou votre équipe derrière le comptoir. Cette dernière est souvent celle qui déclenche la visite, parce qu'elle montre que c'est un vrai commerce tenu par quelqu'un.
 
 Remplacez-les deux ou trois fois par an, au rythme des saisons. Une fiche dont les photos bougent est une fiche vivante.
 
-## Les erreurs qui coûtent le plus cher
+## Quelles erreurs coûtent le plus cher ?
+
+Les horaires faux et les informations incohérentes coûtent le plus cher. Voici les quatre erreurs les plus fréquentes.
 
 - **Les horaires exceptionnels oubliés.** Le 15 août, le lundi de Pentecôte, la semaine de fermeture annuelle. Une fiche qui dit « ouvert » quand vous êtes fermé génère des clients mécontents et des avis à une étoile ; l'inverse vous fait perdre une journée entière.
 - **Les fiches en double.** Un changement de propriétaire, un déménagement, et deux fiches coexistent en se partageant les avis. Signalez le doublon à Google pour le faire fusionner.
 - **Le nom trafiqué.** « Boulangerie Dupont Pains Bio Sandwichs Toulon » n'aide pas, et c'est une infraction aux règles. Mettez votre enseigne, telle qu'elle est sur votre devanture.
 - **Des informations différentes ailleurs.** Un numéro de téléphone sur la fiche, un autre sur Facebook, une adresse écrite de trois manières sur les annuaires. Cette incohérence vous coûte des places. Alignez tout sur une seule écriture.
 
-## Le lien avec votre boutique en ligne
+## Pourquoi relier sa fiche Google à une boutique en ligne ?
 
-La fiche et la boutique se renforcent l'une l'autre. La fiche vous rend trouvable au moment de la recherche ; la boutique transforme cette visibilité en commande, à l'heure où votre magasin est fermé et où personne ne peut répondre au téléphone.
+Parce que la fiche apporte le client et que la boutique transforme sa visite en commande. La fiche et la boutique se renforcent l'une l'autre. La fiche vous rend trouvable au moment de la recherche ; la boutique transforme cette visibilité en commande, à l'heure où votre magasin est fermé et où personne ne peut répondre au téléphone.
 
 C'est le schéma qui fait la différence pour un commerce de quartier : le client cherche « boulangerie ouverte dimanche » le samedi soir, tombe sur votre fiche, clique sur « Commander », réserve son gâteau pour le lendemain 10 h, et vous le préparez au calme. Aucune commission, et un client qui reviendra directement par votre adresse la fois suivante.
+
+Si vous prenez aujourd'hui vos commandes par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le lien à mettre sur votre fiche. Pour le site lui-même, voyez le [guide de création du site internet d'un commerce](/blog/creation-site-internet-commerce).
 
 Pour la mise en place côté boutique, notre guide sur [créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) donne la marche à suivre, et la page [click & collect pour boulangerie](/solutions/boulangerie) détaille le cas d'un commerce à forte fréquentation matinale. Pour voir à quoi ressemblerait votre page de commande, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l'aperçu s'affiche. Sans carte bancaire et sans engagement.

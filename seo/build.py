@@ -415,6 +415,8 @@ REPONSES_COURTES = [
     "- Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.",
     "- Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.",
     "- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.",
+    "- Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.",
+    "- WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.",
     "- Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.",
 ]
 

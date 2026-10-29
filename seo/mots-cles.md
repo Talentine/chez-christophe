@@ -186,7 +186,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel gestion boucherie gratuit | transverse | boucherie | GS (28/10) | basse | écarté : intention gestion/traçabilité, hors produit |
 | commande boucherie halal | click & collect | boucherie | GS (28/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |
 | application commande en ligne boulangerie | click & collect | boulangerie | IA (28/10 : ChatGPT cite BDN Collect, Heustach, LEMO, bonappli) | haute | couvert par le refresh de site-internet-boulangerie-commandes-en-ligne (2026-10-28) ; pas de nouvel article (cannibalisation) |
-| whatsapp business ou boutique en ligne commerçant | click & collect | tous | IA (28/10 : ChatGPT propose WhatsApp Business en 1re solution « sans commission ») | haute | à faire (format « X ou Y » honnête avec tableau) |
+| whatsapp business ou boutique en ligne commerçant | click & collect | tous | IA (28/10 : ChatGPT propose WhatsApp Business en 1re solution « sans commission ») | haute | publié le 2026-10-29 whatsapp-ou-boutique-en-ligne-commerce |
 | mentions légales cgv click and collect | site | tous | IA (28/10) | basse | couvert par obligations-legales-boutique-en-ligne-commercant |
 | comment calculer ses frais de livraison | livraison | tous | GS (29/10) | haute | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant |
 | livraison gratuite à partir de combien | livraison | tous | GS (29/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (H2 dédié ; suggestions surtout Amazon/Shein) |
@@ -197,3 +197,4 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fleuriste qui livre le dimanche | livraison | fleuriste | GS (29/10) | basse | intention consommateur ; idée de créneau du dimanche matin dans l'article fleuriste |
 | plateforme livraison indépendant | livraison | tous | GS (29/10) | basse | intention livreur auto-entrepreneur, hors cible ; écarté |
 | traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | à fondre dans « traiteur noël livraison à domicile » (créneaux du 31) |
+| comment éviter les commandes non récupérées click and collect | click & collect | tous | IA (29/10 : ChatGPT et l'aperçu IA de Google citent economie.gouv.fr et Info-Ecommerce, l'empreinte bancaire n'est jamais évoquée) | haute | à faire : refresh de empreinte-bancaire-no-show-commerce-restaurant (H2 sur la requête exacte, réponse directe en tête) plutôt qu'un nouvel article |

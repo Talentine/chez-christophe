@@ -3,6 +3,7 @@ title: "Click and collect boucherie : prendre les commandes de viande en ligne"
 titre_court: "Click and collect pour boucherie"
 description: "Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission."
 date: 2026-10-28
+modified: 2026-10-29
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -40,6 +41,8 @@ Vous y gagnez sur trois points :
 - **Une file plus courte** : le client qui a commandé passe, paie et repart.
 
 Le client y gagne aussi. Il commande le soir, depuis son canapé, et il est sûr d'avoir sa pièce le samedi matin.
+
+Vous prenez déjà des commandes par message ? Notre comparatif [WhatsApp Business ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) explique quand WhatsApp suffit et quand une boutique fait gagner du temps.
 
 ## Comment fonctionne le click and collect pour une boucherie ?
 

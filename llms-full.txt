@@ -14,6 +14,8 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
 - Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
+- Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.
+- WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
@@ -37,6 +39,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
+- [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
 - [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
 - [Ouvrir sa boutique en ligne : les obligations légales du commerçant](https://marchéo.fr/blog/obligations-legales-boutique-en-ligne-commercant) : Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
@@ -868,6 +871,142 @@ R : Les sites e-commerce généralistes calculent surtout des frais d'expéditio
 Q : Faut-il acheter du matériel pour proposer la livraison à domicile ?
 R : Pas pour prendre les commandes ni pour calculer les frais : avec Marchéo, tout se règle depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter. Il vous faut en revanche un véhicule et des caisses isothermes pour les produits frais.
 
+# WhatsApp ou boutique en ligne : que choisir pour son commerce ?
+
+WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
+
+WhatsApp Business suffit pour démarrer les commandes à distance quand vous en recevez quelques-unes par semaine : c&rsquo;est gratuit et vos clients l&rsquo;ont déjà. Au-delà, une boutique en ligne fait gagner du temps, car le client choisit seul ses produits, son créneau et son mode de paiement. Avec Marchéo, cette boutique coûte de 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter.
+Ce comparatif complète notre guide complet du click &amp; collect pour commerçant, qui explique le retrait en boutique étape par étape. Ici, on répond à une question que beaucoup de commerçants se posent avant de se lancer : faut-il vraiment une boutique en ligne si les clients commandent déjà par message ?
+Peut-on prendre les commandes de son commerce sur WhatsApp ?
+Oui, et beaucoup de commerces de bouche le font déjà. Un boucher reçoit une photo de liste de courses, un traiteur une demande de plateau, une boulangerie une commande de gâteau pour dimanche. WhatsApp Business ajoute à l&rsquo;application classique un profil professionnel avec vos horaires et votre adresse, un catalogue de produits, des réponses rapides et un message d&rsquo;absence.
+Le client peut même composer un panier depuis votre catalogue et vous l&rsquo;envoyer. Mais c&rsquo;est vous qui confirmez à la main la disponibilité, le total, l&rsquo;heure de retrait et le paiement. Chaque commande reste une conversation.
+Quelle différence entre WhatsApp Business et une boutique en ligne ?
+La différence tient à qui fait le travail. Sur WhatsApp, vous répondez à chaque client, message après message. Sur une boutique en ligne, le client fait seul son choix, et la commande vous arrive complète, prête à préparer.
+
+
+
+Critère
+WhatsApp Business
+Boutique en ligne (ex. Marchéo)
+
+
+
+
+Prix
+Application gratuite
+19 à 59 € par mois, sans engagement, plus des frais d&rsquo;installation uniques
+
+
+Commission sur les ventes
+Aucune
+0 % de commission
+
+
+Qui saisit la commande
+Vous, à partir des messages
+Le client, seul, en 30 secondes sans compte
+
+
+Créneaux de retrait
+À négocier par message
+Choisis par le client, avec un nombre maximum par créneau
+
+
+Vente au poids
+Prix à calculer et annoncer à la main
+Prix au kilo et poids indicatif affichés
+
+
+Paiement
+En boutique, ou par un lien de paiement envoyé à part
+En ligne ou au retrait, selon vos réglages
+
+
+Commandes non récupérées
+Aucune protection
+Empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier
+
+
+Récapitulatif des commandes du jour
+À reconstituer depuis les conversations
+Liste des commandes par créneau
+
+
+Visibilité sur Google
+Aucune
+Un site internet que l&rsquo;on trouve en cherchant votre commerce
+
+
+
+Les deux outils sont sans commission. C&rsquo;est un point important : ni l&rsquo;un ni l&rsquo;autre ne prélève un pourcentage sur vos ventes, contrairement aux plateformes de livraison qui prennent en général 14 à 30 % par commande.
+Quand WhatsApp Business suffit-il ?
+WhatsApp suffit quand vous recevez peu de commandes et que vos clients sont surtout des habitués. Quelques messages par semaine se gèrent très bien entre deux clients au comptoir.
+C&rsquo;est le bon choix si :
+
+vous recevez moins d&rsquo;une dizaine de commandes à distance par semaine ;
+vos clients commandent toujours les mêmes produits ;
+vous voulez tester la demande avant de choisir un outil ;
+une commande sur deux demande un échange, par exemple un gâteau personnalisé ou un buffet sur mesure.
+
+Dans ces cas, ouvrez un compte WhatsApp Business, remplissez vos horaires, ajoutez vos produits phares au catalogue et préparez trois réponses rapides : la confirmation, l&rsquo;heure de retrait et le moyen de paiement.
+Quand passer à une boutique en ligne ?
+Passez à une boutique en ligne quand les messages commencent à vous prendre plus de temps que la préparation elle-même. Les signes ne trompent pas : des messages qui arrivent pendant le coup de feu, des commandes notées sur un carnet puis oubliées, des clients qui écrivent tard le soir et attendent une réponse.
+Faites le calcul sur votre propre semaine. Prenons un exemple : si chaque commande demande cinq messages et environ trois minutes de votre temps, quarante commandes par semaine représentent deux heures passées sur le téléphone. Sur une boutique en ligne, ce temps tombe presque à zéro, car le client choisit seul ses produits et son créneau.
+D&rsquo;autres raisons poussent aussi à franchir le pas :
+
+Les fêtes. À Noël, les commandes arrivent par dizaines. Une boutique avec une date limite et des créneaux évite les doublons. Notre guide des précommandes des fêtes détaille cette organisation.
+Les commandes non récupérées. Sur WhatsApp, rien ne vous protège si le client ne vient pas. Une empreinte bancaire le fait, comme l&rsquo;explique notre article sur l&rsquo;empreinte bancaire et le no-show.
+Les nouveaux clients. Personne ne vous trouve sur WhatsApp en cherchant « boucherie click and collect » sur Google. Une boutique en ligne, si.
+
+Combien coûte le passage de WhatsApp à une boutique en ligne ?
+Le passage coûte un abonnement fixe, sans pourcentage sur vos ventes. Avec Marchéo, comptez 39 € par mois pour le click &amp; collect avec réservation, ou 59 € par mois si vous livrez aussi vos clients vous-même, sans engagement. S&rsquo;y ajoutent des frais d&rsquo;installation uniques de 399 ou 549 €. L&rsquo;offre Vitrine, à 19 € par mois et 249 € d&rsquo;installation, présente votre commerce sans prise de commande.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Il faut aussi connaître ses limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre boutique. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.
+Faut-il choisir entre WhatsApp et une boutique en ligne ?
+Non, les deux se complètent très bien. La méthode la plus simple consiste à garder WhatsApp pour la relation et à envoyer vers la boutique pour la commande.
+
+
+
+Usage
+Outil conseillé
+
+
+
+
+Question sur un produit, demande spéciale
+WhatsApp
+
+
+Commande de la semaine
+Lien de la boutique en ligne
+
+
+Annonce d&rsquo;un arrivage ou d&rsquo;une nouveauté
+Statut WhatsApp avec le lien de la boutique
+
+
+Commande de fêtes avec date limite
+Boutique en ligne
+
+
+Client qui ne veut pas commander en ligne
+Téléphone ou WhatsApp, comme avant
+
+
+
+Ajoutez le lien de votre boutique dans votre profil WhatsApp Business et dans votre message d&rsquo;absence. Vos habitués gardent leurs réflexes, et les commandes arrivent rangées par créneau. Pour aller plus loin sur l&rsquo;absence de commission, lisez notre article sur le click and collect sans commission.
+Par où commencer ?
+Le plus simple est de comparer sur pièce. Sur la page d&rsquo;inscription de Marchéo, choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue déjà rempli. Pour voir ce qui est prévu pour un métier précis, regardez par exemple la solution pour boucherie, puis envoyez le lien de votre aperçu à deux ou trois habitués sur WhatsApp pour avoir leur avis.
+
+Q : Quel est le meilleur outil pour prendre les commandes de mon commerce sans commission ?
+R : Pour démarrer avec quelques commandes par semaine, WhatsApp Business suffit : il est gratuit et vos clients l'ont déjà. Dès que les commandes se multiplient, une boutique en ligne évite les allers-retours et les oublis. Marchéo est un logiciel français pour les commerces de bouche : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : WhatsApp Business est-il gratuit pour un commerçant ?
+R : Oui, l'application WhatsApp Business se télécharge et s'utilise gratuitement depuis votre téléphone. Des options payantes existent pour les entreprises qui envoient beaucoup de messages depuis des outils connectés, mais un commerce de quartier n'en a en général pas besoin. Le vrai coût est le temps passé à répondre à chaque message.
+Q : Faut-il acheter du matériel pour passer de WhatsApp à une boutique en ligne ?
+R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà, comme vos messages WhatsApp aujourd'hui. Si un client paie par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.
+Q : Peut-on garder WhatsApp quand on a une boutique en ligne ?
+R : Oui, et c'est souvent le meilleur choix. Gardez WhatsApp pour les questions et les demandes spéciales, et envoyez le lien de votre boutique en ligne pour les commandes. Vous gardez le contact direct avec vos clients, sans avoir à tout recopier à la main.
+
 # Click and collect boucherie : prendre les commandes de viande en ligne
 
 Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
@@ -883,6 +1022,7 @@ Moins d&rsquo;erreurs : la commande est écrite par le client, pas dictée.
 Une file plus courte : le client qui a commandé passe, paie et repart.
 
 Le client y gagne aussi. Il commande le soir, depuis son canapé, et il est sûr d&rsquo;avoir sa pièce le samedi matin.
+Vous prenez déjà des commandes par message ? Notre comparatif WhatsApp Business ou boutique en ligne explique quand WhatsApp suffit et quand une boutique fait gagner du temps.
 Comment fonctionne le click and collect pour une boucherie ?
 Le principe tient en quatre étapes. Le client choisit ses produits sur votre boutique en ligne, choisit un créneau de retrait, valide sa commande, puis vient la chercher en boutique.
 
@@ -2180,7 +2320,7 @@ La plupart de ces inconvénients se règlent avec de bons réglages : capacité 
 Comment mettre en place le click and collect dans sa boutique ?
 Mettre en place le click and collect demande quatre décisions et quelques réglages, pas un projet informatique. Comptez une journée pour être prêt à recevoir vos premières commandes.
 
-Choisir ce que vous proposez en retrait. Commencez par ce qui se commande déjà à l&rsquo;avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir.
+Choisir ce que vous proposez en retrait. Commencez par ce qui se commande déjà à l&rsquo;avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir. Si vos clients commandent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à l&rsquo;étape suivante.
 Choisir votre outil. Il doit gérer les créneaux et, si besoin, la vente au poids. Sur la page de création de Marchéo, vous choisissez votre métier, vous tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, avec un catalogue déjà rempli.
 Régler vos créneaux et votre délai de préparation. Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 Choisir le paiement. En ligne, au retrait, ou les deux. Décidez aussi si vous activez l&rsquo;empreinte bancaire.
@@ -3030,11 +3170,11 @@ R : Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par m
 
 Vos clients ne cherchent pas votre nom, ils cherchent « boulangerie ouverte dimanche ». Voici comment régler votre fiche Google Business pour apparaître dans ces recherches, et le champ que presque personne ne remplit.
 
-Un client qui cherche votre boulangerie par son nom vous connaît déjà. Il n&rsquo;est pas le sujet.
-Le sujet, c&rsquo;est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n&rsquo;est pas votre site : c&rsquo;est votre fiche Google Business.
+Une fiche Google Business bien réglée fait apparaître un commerce de bouche dans les trois résultats affichés avec la carte quand un client cherche « boulangerie » ou « boucherie » près de chez lui. Les réglages qui comptent le plus sont la catégorie principale, des horaires à jour, des avis récents et un lien de commande qui pointe vers votre propre boutique en ligne plutôt que vers une plateforme commissionnée. La fiche est gratuite et se règle en une heure.
+Un client qui cherche votre boulangerie par son nom vous connaît déjà. Le client qui compte, c&rsquo;est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n&rsquo;est pas votre site : c&rsquo;est votre fiche Google Business.
 C&rsquo;est l&rsquo;outil de visibilité locale le plus puissant dont dispose un commerce de quartier, il est gratuit, et il est presque toujours à moitié rempli.
-Ce que la fiche décide vraiment
-Quand quelqu&rsquo;un fait une recherche locale, Google affiche en haut un bloc de trois établissements avec la carte. Passer dans ces trois-là ou arriver quatorzième dans la liste en dessous, ce n&rsquo;est pas une différence de degré, c&rsquo;est une différence de nature.
+Qu&rsquo;est-ce que la fiche Google Business décide vraiment ?
+La fiche décide si vous apparaissez parmi les trois commerces affichés avec la carte. Quand quelqu&rsquo;un fait une recherche locale, Google affiche en haut un bloc de trois établissements avec la carte. Passer dans ces trois-là ou arriver quatorzième dans la liste en dessous, ce n&rsquo;est pas une différence de degré, c&rsquo;est une différence de nature.
 Trois facteurs pèsent, et un seul échappe totalement à votre contrôle :
 
 La proximité entre le client et votre commerce. Vous ne pouvez rien y faire, mais c&rsquo;est aussi ce qui vous protège : vous ne jouez pas contre la France entière, vous jouez contre les commerces de votre quartier.
@@ -3042,7 +3182,8 @@ La pertinence : est-ce que votre fiche dit clairement que vous faites ce qui est
 La notoriété : avis, ancienneté, cohérence des informations vous concernant sur le web.
 
 Les deux derniers se travaillent, et c&rsquo;est là que la plupart des commerces laissent des places libres.
-Les champs qui pèsent, dans l&rsquo;ordre
+Quels champs de la fiche comptent le plus ?
+La catégorie principale compte le plus, devant les horaires, le lien de commande, les photos et les avis. Voici les champs dans l&rsquo;ordre de leur poids.
 
 
 
@@ -3085,17 +3226,17 @@ Un paragraphe de généralités
 
 
 Sur la catégorie principale. C&rsquo;est le réglage le plus important et le plus vite fait. Choisissez la plus précise qui vous décrive : boulangerie, boucherie, poissonnerie, fromagerie, primeur, fleuriste, traiteur. Ajoutez des catégories secondaires pour le reste de votre activité, sans les empiler : une pâtisserie et un salon de thé en secondaire pour une boulangerie qui fait les deux, pas dix catégories au hasard.
-Le champ que presque personne ne remplit
-Sur une fiche de commerce de bouche, il existe un endroit où mettre l&rsquo;adresse à laquelle on commande chez vous. Selon votre catégorie, cela s&rsquo;appelle le site web ou un lien de commande en ligne.
+Quel lien mettre pour la commande en ligne ?
+Mettez l&rsquo;adresse de votre propre boutique en ligne, jamais celle d&rsquo;une plateforme qui prend une commission. Sur une fiche de commerce de bouche, il existe un endroit où mettre l&rsquo;adresse à laquelle on commande chez vous. Selon votre catégorie, cela s&rsquo;appelle le site web ou un lien de commande en ligne.
 C&rsquo;est le champ le plus rentable de la fiche, et c&rsquo;est celui qu&rsquo;on trouve vide ou mal rempli le plus souvent. Deux cas de figure :
 
 Il est vide. Le client qui voulait commander vous appelle, ou ne fait rien. Vous êtes visible sans être joignable au moment où il était décidé.
 Il pointe vers une plateforme de livraison. Vous payez alors une commission de 14 à 30 % sur un client qui vous avait trouvé tout seul, par une recherche où votre nom apparaissait déjà. C&rsquo;est le pire cas : vous avez fait le travail d&rsquo;acquisition, quelqu&rsquo;un d&rsquo;autre encaisse la marge.
 
-Mettez votre propre adresse de commande. Si vous avez une boutique Marchéo, c&rsquo;est marchéo.fr/votre-commerce, et la vente se fait sans commission. Le bouton apparaît directement dans les résultats de recherche, à côté de l&rsquo;itinéraire et du numéro de téléphone.
+Mettez votre propre adresse de commande. Si vous avez une boutique Marchéo, c&rsquo;est marchéo.fr/votre-commerce, et la vente se fait sans commission. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission : 19 € par mois (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison), sans engagement. Le bouton apparaît directement dans les résultats de recherche, à côté de l&rsquo;itinéraire et du numéro de téléphone.
 Ce lien rend aussi service à Google : une fiche vérifiée qui pointe vers votre site aide ce site à être exploré et indexé.
-Les avis, sans tricher
-Les avis sont le critère que le client regarde en premier, et la seule chose que vous ne pouvez pas remplir vous-même.
+Comment obtenir des avis Google sans tricher ?
+Il suffit de demander, au bon moment, aux clients contents. Les avis sont le critère que le client regarde en premier, et la seule chose que vous ne pouvez pas remplir vous-même.
 Ce qui fonctionne est peu spectaculaire :
 
 Demander, simplement, aux clients contents. Pas par message groupé : au comptoir, au moment où quelqu&rsquo;un vous dit que c&rsquo;était très bon. C&rsquo;est là que ça marche.
@@ -3104,22 +3245,26 @@ Répondre à tous, en deux lignes, y compris les bons. Une page où le commerça
 Étaler dans le temps. Quarante avis arrivés le même mardi, c&rsquo;est plus suspect qu&rsquo;utile. Deux ou trois par semaine, régulièrement, valent mieux.
 
 Ce qui ne fonctionne pas : acheter des avis, en offrir contre une réduction, ou ne solliciter que les clients dont vous êtes sûr. C&rsquo;est contraire aux règles de Google, détectable, et la sanction porte sur la fiche entière.
-Les photos
-Un client choisit entre trois commerces sur un écran de téléphone. Les photos font une partie du travail.
+Quelles photos mettre sur sa fiche ?
+Mettez des photos récentes, prises en lumière du jour, de la vitrine, des produits et de l&rsquo;équipe. Un client choisit entre trois commerces sur un écran de téléphone. Les photos font une partie du travail.
 Prenez-les vous-même, en lumière du jour, sans flash : la vitrine du matin quand elle est pleine, deux ou trois produits en gros plan, la devanture pour qu&rsquo;on vous reconnaisse dans la rue, et vous ou votre équipe derrière le comptoir. Cette dernière est souvent celle qui déclenche la visite, parce qu&rsquo;elle montre que c&rsquo;est un vrai commerce tenu par quelqu&rsquo;un.
 Remplacez-les deux ou trois fois par an, au rythme des saisons. Une fiche dont les photos bougent est une fiche vivante.
-Les erreurs qui coûtent le plus cher
+Quelles erreurs coûtent le plus cher ?
+Les horaires faux et les informations incohérentes coûtent le plus cher. Voici les quatre erreurs les plus fréquentes.
 
 Les horaires exceptionnels oubliés. Le 15 août, le lundi de Pentecôte, la semaine de fermeture annuelle. Une fiche qui dit « ouvert » quand vous êtes fermé génère des clients mécontents et des avis à une étoile ; l&rsquo;inverse vous fait perdre une journée entière.
 Les fiches en double. Un changement de propriétaire, un déménagement, et deux fiches coexistent en se partageant les avis. Signalez le doublon à Google pour le faire fusionner.
 Le nom trafiqué. « Boulangerie Dupont Pains Bio Sandwichs Toulon » n&rsquo;aide pas, et c&rsquo;est une infraction aux règles. Mettez votre enseigne, telle qu&rsquo;elle est sur votre devanture.
 Des informations différentes ailleurs. Un numéro de téléphone sur la fiche, un autre sur Facebook, une adresse écrite de trois manières sur les annuaires. Cette incohérence vous coûte des places. Alignez tout sur une seule écriture.
 
-Le lien avec votre boutique en ligne
-La fiche et la boutique se renforcent l&rsquo;une l&rsquo;autre. La fiche vous rend trouvable au moment de la recherche ; la boutique transforme cette visibilité en commande, à l&rsquo;heure où votre magasin est fermé et où personne ne peut répondre au téléphone.
+Pourquoi relier sa fiche Google à une boutique en ligne ?
+Parce que la fiche apporte le client et que la boutique transforme sa visite en commande. La fiche et la boutique se renforcent l&rsquo;une l&rsquo;autre. La fiche vous rend trouvable au moment de la recherche ; la boutique transforme cette visibilité en commande, à l&rsquo;heure où votre magasin est fermé et où personne ne peut répondre au téléphone.
 C&rsquo;est le schéma qui fait la différence pour un commerce de quartier : le client cherche « boulangerie ouverte dimanche » le samedi soir, tombe sur votre fiche, clique sur « Commander », réserve son gâteau pour le lendemain 10 h, et vous le préparez au calme. Aucune commission, et un client qui reviendra directement par votre adresse la fois suivante.
+Si vous prenez aujourd&rsquo;hui vos commandes par message, notre comparatif WhatsApp ou boutique en ligne vous aide à choisir le lien à mettre sur votre fiche. Pour le site lui-même, voyez le guide de création du site internet d&rsquo;un commerce.
 Pour la mise en place côté boutique, notre guide sur créer un site de click &amp; collect pour son commerce donne la marche à suivre, et la page click &amp; collect pour boulangerie détaille le cas d&rsquo;un commerce à forte fréquentation matinale. Pour voir à quoi ressemblerait votre page de commande, la démo gratuite prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
 
+Q : Comment être trouvé sur Google quand on a un commerce de bouche ?
+R : Commencez par une fiche Google Business complète : catégorie précise (boulangerie, boucherie, primeur…), horaires à jour, photos récentes et avis réguliers. Ajoutez ensuite un site ou une boutique en ligne et mettez son lien sur la fiche. Marchéo crée ce site avec la commande en ligne pour 19 à 59 € par mois, sans engagement et sans commission ; la démo est gratuite en 30 secondes sur marchéo.fr/inscription.
 Q : La fiche Google Business est-elle payante ?
 R : Non, elle est entièrement gratuite, y compris les photos, les horaires, les avis et le lien vers votre site. Si quelqu'un vous appelle pour vous vendre « le référencement de votre fiche Google » ou sa validation, méfiez-vous : c'est un démarchage classique auprès des commerçants, et Google ne facture rien pour cela.
 Q : Combien de temps faut-il pour que la fiche remonte dans les résultats ?

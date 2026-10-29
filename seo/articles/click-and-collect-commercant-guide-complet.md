@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-10-28
+modified: 2026-10-29
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -82,7 +82,7 @@ La plupart de ces inconvénients se règlent avec de bons réglages : capacité 
 
 Mettre en place le click and collect demande quatre décisions et quelques réglages, pas un projet informatique. Comptez une journée pour être prêt à recevoir vos premières commandes.
 
-1. **Choisir ce que vous proposez en retrait.** Commencez par ce qui se commande déjà à l'avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir.
+1. **Choisir ce que vous proposez en retrait.** Commencez par ce qui se commande déjà à l'avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir. Si vos clients commandent déjà par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à savoir quand passer à l'étape suivante.
 2. **Choisir votre outil.** Il doit gérer les créneaux et, si besoin, la vente au poids. Sur [la page de création de Marchéo](/inscription), vous choisissez votre métier, vous tapez le nom de votre boutique et l'aperçu s'affiche en 30 secondes, avec un catalogue déjà rempli.
 3. **Régler vos créneaux et votre délai de préparation.** Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 4. **Choisir le paiement.** En ligne, au retrait, ou les deux. Décidez aussi si vous activez l'empreinte bancaire.

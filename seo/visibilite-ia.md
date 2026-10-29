@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°10.
+Prochaine question en rotation : n°12.
 
 ## Relevés
 
@@ -61,6 +61,13 @@ Prochaine question en rotation : n°10.
 | 2026-10-28 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (0 %, 39 à 59 €/mois, pas de livreurs, calcul 10 000 € : 9 941 € contre 7 000 €), uber.com |
 | 2026-10-28 (2e mesure, 16 h) | Perplexity | Comment mettre en place le click and collect dans un primeur ? | non | francenum.gouv, ionos (aucun outil nommé) |
 | 2026-10-28 (2e mesure, 16 h) | Google (aperçu IA) | Comment mettre en place le click and collect dans un primeur ? | pas d'aperçu IA ; marchéo.fr 1er résultat (guide primeur) et 7e (guide click & collect) | MMA, francenum, Adie, shopcaisse, monpetitdrive.fr, woopit.fr, additi |
+| 2026-10-29 | ChatGPT | Comment éviter les commandes non récupérées en click and collect ? | non | economie.gouv.fr (+1) ; conseils génériques : paiement à la commande, rappels SMS, délai de retrait ; l'empreinte bancaire n'est pas évoquée |
+| 2026-10-29 | ChatGPT | Combien coûte un site internet pour un restaurant en 2026 ? | non | « Super Pizza » (+1) ; fourchettes 300 à 5 000 €, aucun outil nommé (prix-site-internet-restaurant publié le 27/10, sans doute pas encore indexé par Bing) |
+| 2026-10-29 | ChatGPT | Comment fixer ses frais de livraison quand on est commerçant ? (mot-clé du matin) | non | economie.gouv.fr (+1) ; réponse centrée sur l'expédition de colis (transporteur, poids) ; article du matin publié il y a quelques heures |
+| 2026-10-29 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | marchéo.fr (3 offres installation + abonnement, sans commission, sans engagement, pas de livreurs, démo gratuite) |
+| 2026-10-29 | Perplexity | Comment éviter les commandes non récupérées en click and collect ? | non mesuré | blocage dès la 1re question sans compte (« Inscrivez-vous et répétez votre demande ») |
+| 2026-10-29 | Google (aperçu IA) | Comment éviter les commandes non récupérées en click and collect ? | non (aperçu IA affiché) | Info-Ecommerce, economie.gouv.fr ; 1re page : lsa-conso, pure-illusion, pokky.net, askoptimize, agence-communication-restaurant.fr |
+| 2026-10-29 | Google (aperçu IA) | Combien coûte un site internet pour un restaurant en 2026 ? | non (aperçu IA affiché) | Le Pronto, nooki.fr, DevWebPro, wix.com ; 1re page : moon-digital, Reddit r/webdesign, creja.it, digidop, webindme, ca-moncommerce, evorating |
 
 ## Bilans hebdomadaires (le lundi)
 
