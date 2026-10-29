@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°12.
+Prochaine question en rotation : n°15.
 
 ## Relevés
 
@@ -68,6 +68,12 @@ Prochaine question en rotation : n°12.
 | 2026-10-29 | Perplexity | Comment éviter les commandes non récupérées en click and collect ? | non mesuré | blocage dès la 1re question sans compte (« Inscrivez-vous et répétez votre demande ») |
 | 2026-10-29 | Google (aperçu IA) | Comment éviter les commandes non récupérées en click and collect ? | non (aperçu IA affiché) | Info-Ecommerce, economie.gouv.fr ; 1re page : lsa-conso, pure-illusion, pokky.net, askoptimize, agence-communication-restaurant.fr |
 | 2026-10-29 | Google (aperçu IA) | Combien coûte un site internet pour un restaurant en 2026 ? | non (aperçu IA affiché) | Le Pronto, nooki.fr, DevWebPro, wix.com ; 1re page : moon-digital, Reddit r/webdesign, creja.it, digidop, webindme, ca-moncommerce, evorating |
+| 2026-10-29 (2e mesure, 16 h) | ChatGPT | Comment organiser la livraison à domicile pour une boucherie ? | non | agriculture.gouv.fr (+1), entreprendre.service-public.fr (+1) ; conseille WhatsApp Business, téléphone ou formulaire, grille de frais « exemple », aucun outil nommé |
+| 2026-10-29 (2e mesure, 16 h) | ChatGPT | Comment créer un site internet pour un traiteur ? (n°13 sautée : déjà posée ce jour) | non | La Fabrique du Net (+1) ; recommande Wix, Squarespace, WordPress ; budget 100 à 350 €/an en solo, 500 à 2 500 € en freelance |
+| 2026-10-29 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (0 %, 39 et 59 €/mois, livraison à organiser soi-même, simulation 5 000 € : 4 941 € contre 3 500 à 4 000 €), aide Uber (20 à 30 %) ; conclut que les deux peuvent se compléter |
+| 2026-10-29 (2e mesure, 16 h) | Perplexity | Comment créer un site internet pour un traiteur ? | non | yola, hostinger, julienchretien, webmagnet, wecomm (site vitrine + formulaire de devis ; constructeur, WordPress ou freelance) |
+| 2026-10-29 (2e mesure, 16 h) | Google (aperçu IA) | Comment créer un site internet pour un traiteur ? | non (aperçu IA affiché) | Yola, wix.com, wasabiwebdesign.fr ; 1re page : webgazelle, local.fr, webgenie, chef-traiteur.fr, faustinegarnier.fr, miamsite.com |
+| 2026-10-29 (2e mesure, 16 h) | Google (aperçu IA) | Comment organiser la livraison à domicile pour une boucherie ? | non (aperçu IA affiché) | Nelinkia ; 1re page : kontakts.pro, monouso.fr, nakide.fr, jdc.fr, shippr.io, leblogdudirigeant, monpetitdrive.fr, orisha, tactill |
 
 ## Bilans hebdomadaires (le lundi)
 
