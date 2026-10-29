@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-10-26
+modified: 2026-10-29
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -90,7 +90,7 @@ Un minimum de commande et des frais lisibles rendent chaque livraison rentable. 
 | Fleuriste | 30 € | 5 à 8 € | 60 € |
 | Pizzeria | 15 à 20 € | 2 à 3 € | 30 € |
 
-Les frais couvrent votre temps et votre carburant. La gratuité au-dessus d'un seuil pousse le panier vers le haut, ce qui est souvent plus rentable que des frais élevés.
+Les frais couvrent votre temps et votre carburant. La gratuité au-dessus d'un seuil pousse le panier vers le haut, ce qui est souvent plus rentable que des frais élevés. Pour adapter ces chiffres à votre commerce, voyez [comment calculer ses frais de livraison](/blog/comment-calculer-ses-frais-de-livraison-commercant) à partir du coût réel d'une tournée.
 
 ### 4. Sécuriser le paiement
 

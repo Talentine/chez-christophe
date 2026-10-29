@@ -3,6 +3,7 @@ title: "Logiciel livraison pizza : livrer vous-même sans commission"
 titre_court: "Le logiciel de livraison pour pizzeria"
 description: "Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission."
 date: 2026-10-26
+modified: 2026-10-29
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -71,7 +72,7 @@ La règle est de livrer court et vite. Une pizza voyage mal : au-delà d'un quar
 | Frais de livraison | 2 à 3 € | Couvrir le carburant |
 | Livraison offerte | À partir de 30 € environ | Pousser la deuxième pizza |
 
-Ces chiffres sont une base à ajuster selon votre quartier. Commencez avec une capacité basse, puis augmentez quand vous savez ce que votre équipe tient un vendredi soir.
+Ces chiffres sont une base à ajuster selon votre quartier. Pour les remplacer par les vôtres, suivez notre méthode pour [calculer ses frais de livraison](/blog/comment-calculer-ses-frais-de-livraison-commercant) à partir du coût d'une soirée de tournée. Commencez avec une capacité basse, puis augmentez quand vous savez ce que votre équipe tient un vendredi soir.
 
 ## Comment organiser la tournée du soir ?
 

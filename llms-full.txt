@@ -36,6 +36,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 - [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
 - [Ouvrir sa boutique en ligne : les obligations légales du commerçant](https://marchéo.fr/blog/obligations-legales-boutique-en-ligne-commercant) : Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
@@ -66,7 +67,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-10-28
+- Dernière mise à jour : 2026-10-29
 
 
 ---
@@ -760,6 +761,113 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Comment calculer ses frais de livraison quand on est commerçant
+
+Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
+
+Pour calculer ses frais de livraison, un commerçant additionne le coût d&rsquo;une tournée (son temps et ses kilomètres), puis le divise par le nombre de commandes livrées sur cette tournée. Ce coût par livraison sert à fixer un tarif simple, un minimum de commande et un seuil de livraison gratuite. Le but n&rsquo;est pas de gagner de l&rsquo;argent sur la livraison, mais de ne pas en perdre.
+Cet article détaille le calcul. La mise en place complète du service (zone, créneaux, paiement, chaîne du froid) est expliquée dans notre guide complet de la livraison à domicile pour commerçant.
+Pourquoi faut-il calculer ses frais de livraison avant de livrer ?
+Parce qu&rsquo;une livraison mal tarifée coûte plus qu&rsquo;elle ne rapporte. Un trajet de vingt minutes pour un panier de 15 € mange toute la marge du panier. À l&rsquo;inverse, des frais trop élevés font fuir le client, qui ira commander ailleurs ou ne commandera pas.
+Les frais de livraison d&rsquo;un commerce de proximité n&rsquo;ont rien à voir avec les frais de port d&rsquo;un site qui expédie des colis par La Poste. Vous ne payez pas de transporteur au poids : vous payez votre temps, votre véhicule et votre carburant. Le calcul est donc plus simple, et il vous appartient.
+Comment calculer le coût d&rsquo;une tournée de livraison ?
+Le coût d&rsquo;une tournée, c&rsquo;est le temps passé plus les kilomètres parcourus. Prenez une tournée type de votre commerce et notez trois chiffres.
+
+Le temps total : préparation des commandes à livrer, chargement, conduite, attente aux portes, retour. Comptez large.
+La valeur d&rsquo;une heure : ce que vous coûte l&rsquo;heure de la personne qui livre, vous ou un salarié, charges comprises.
+Les kilomètres : la distance aller-retour de la tournée, multipliée par votre coût au kilomètre (carburant, entretien, assurance du véhicule).
+
+Coût de la tournée = (temps en heures × valeur d&rsquo;une heure) + (kilomètres × coût au kilomètre).
+Pour votre coût au kilomètre, partez de vos propres factures de carburant et d&rsquo;entretien sur un mois, divisées par les kilomètres faits dans le mois. C&rsquo;est plus juste qu&rsquo;un chiffre trouvé en ligne.
+Comment passer du coût de la tournée au prix par commande ?
+On divise le coût de la tournée par le nombre de commandes livrées. C&rsquo;est là que se joue la rentabilité : une tournée de six commandes coûte presque autant qu&rsquo;une tournée de deux, mais chaque livraison revient trois fois moins cher.
+Voici un exemple pas à pas pour un primeur. Les chiffres sont des hypothèses à remplacer par les vôtres :
+
+
+
+Élément
+Hypothèse
+Calcul
+
+
+
+
+Temps de la tournée
+1 h 30, préparation comprise
+1,5 h
+
+
+Valeur d&rsquo;une heure
+16 €
+1,5 × 16 = 24 €
+
+
+Kilomètres
+20 km aller-retour
+
+
+
+Coût au kilomètre
+0,30 €
+20 × 0,30 = 6 €
+
+
+Coût de la tournée
+
+24 + 6 = 30 €
+
+
+Commandes livrées
+6
+
+
+
+Coût par livraison
+
+30 ÷ 6 = 5 €
+
+
+
+Dans cet exemple, chaque livraison coûte 5 €. Le primeur peut facturer 4 € de frais et compter sur la marge du panier pour couvrir l&rsquo;euro restant. S&rsquo;il ne livre que trois commandes, le coût passe à 10 € par livraison : c&rsquo;est le signe qu&rsquo;il faut moins de créneaux, mieux remplis.
+Quel minimum de commande fixer pour la livraison ?
+Le minimum de commande doit garantir que la marge du panier couvre ce que les frais ne paient pas. Pour le trouver, demandez-vous à partir de quel montant votre marge sur les produits dépasse la part du coût de livraison que vous ne refacturez pas.
+Dans l&rsquo;exemple du primeur, il reste 1 € par livraison à couvrir. Avec une marge de quelques euros sur un panier de 25 €, le minimum de 25 € est confortable. Pour un traiteur qui prépare un plateau repas, le minimum sera plus élevé, car la préparation prend du temps et le trajet vers les bureaux aussi.
+Quelques repères pour régler votre minimum :
+
+Panier faible et livraison longue : montez le minimum plutôt que les frais.
+Produits à forte marge (fleurs, plats préparés) : un minimum modéré suffit.
+Habitués réguliers : gardez le même minimum toute l&rsquo;année, pour ne pas les surprendre.
+
+Les bases de départ par métier (primeur, fromagerie, traiteur, fleuriste, pizzeria) sont dans le tableau de notre guide de la livraison à domicile. Ajustez-les avec votre propre calcul.
+La livraison gratuite à partir de combien ?
+Placez le seuil de gratuité un peu au-dessus de votre panier moyen en livraison. Un client à 45 € qui voit « livraison offerte dès 50 € » ajoute une barquette de fruits ou un fromage. La marge de ce produit ajouté paie la livraison, et vous livrez un panier plus gros pour le même trajet.
+Pour le régler :
+
+Calculez votre panier moyen en livraison sur un mois : total des commandes livrées divisé par leur nombre.
+Fixez le seuil 10 à 20 % au-dessus de ce panier moyen.
+Vérifiez que, au seuil, votre marge couvre bien le coût par livraison calculé plus haut.
+Revoyez le seuil après un mois : si presque personne ne l&rsquo;atteint, baissez-le ; si tout le monde l&rsquo;atteint sans effort, montez-le.
+
+La livraison offerte pour tous, sans seuil, n&rsquo;est tenable que sur une zone très courte et avec des paniers élevés. Elle se pratique surtout ponctuellement, pour lancer le service auprès de vos habitués.
+Faut-il des frais différents selon la distance ?
+Sur une zone courte, un tarif unique est plus simple et plus lisible. Le client comprend tout de suite, et vous n&rsquo;avez pas à justifier un prix au kilomètre. Si quelques adresses lointaines vous coûtent cher, mieux vaut resserrer la zone ou les réserver à un créneau dédié que multiplier les tarifs.
+Avec Marchéo, vous réglez une zone de livraison (un rayon en kilomètres ou une liste de communes), un tarif de livraison unique, un minimum de commande et un seuil de livraison gratuite. Le client voit ces conditions avant de commander, et le panier lui indique combien il lui manque pour atteindre le minimum. Tout se fait sans matériel à acheter et sans commission sur les ventes. Marchéo ne livre pas et n&rsquo;a pas de coursiers : c&rsquo;est vous qui livrez, avec la tournée préparée par créneau. Pour une pizzeria qui livre le soir, notre guide du logiciel de livraison pizza montre comment régler zone et horaires.
+Comment éviter qu&rsquo;une livraison soit faite pour rien ?
+Une livraison où personne n&rsquo;ouvre coûte le trajet et parfois le produit, surtout pour du frais. Deux protections existent : le paiement en ligne à la commande, ou l&rsquo;empreinte bancaire, qui bloque une partie du panier sans la débiter. Avec Marchéo, l&rsquo;empreinte est optionnelle et vous choisissez son niveau, jusqu&rsquo;à 75 % du panier ; elle est libérée 24 h après la remise de la commande. Notre article sur l&rsquo;empreinte bancaire et le no-show explique le fonctionnement.
+Un SMS au départ de la tournée, « Votre commande arrive dans l&rsquo;heure », évite aussi beaucoup d&rsquo;absences. Pour les produits de la mer, très sensibles, voyez notre guide de la livraison à domicile en poissonnerie.
+Par où commencer ?
+Faites le calcul sur une seule tournée réelle cette semaine, avec vos vrais chiffres. Vous obtiendrez votre coût par livraison, puis vos frais, votre minimum et votre seuil de gratuité. Notez-les, appliquez-les un mois, puis ajustez.
+Pour voir ces réglages sur votre propre boutique, essayez la démo gratuite sur marchéo.fr/inscription : vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche en 30 secondes. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. La formule avec livraison coûte 59 € par mois, sans engagement. Vous trouverez aussi les détails pour votre métier sur la page primeur ou traiteur.
+
+Q : Comment calculer ses frais de livraison quand on livre soi-même ?
+R : Additionnez le coût d'une tournée (votre temps de préparation et de conduite, plus les kilomètres), puis divisez par le nombre de commandes que vous livrez en moyenne sur cette tournée. Le résultat est votre coût par livraison : vos frais de livraison doivent s'en approcher, et le minimum de commande garantit que la marge du panier couvre le reste.
+Q : La livraison gratuite à partir de combien ?
+R : Placez le seuil de gratuité un peu au-dessus de votre panier moyen en livraison, souvent 1,5 à 2 fois le minimum de commande. Le client qui en est proche ajoute un produit pour ne pas payer les frais, et la marge de ce produit paie la livraison. Vérifiez le seuil après un mois de commandes.
+Q : Quel logiciel pour régler ses frais et son minimum de livraison ?
+R : Les sites e-commerce généralistes calculent surtout des frais d'expédition par poids ou par transporteur, pensés pour l'envoi de colis. Pour une livraison locale, il faut une zone, des créneaux, un tarif fixe, un minimum et un seuil de gratuité. Marchéo propose ces réglages dans la formule Click & Collect + Livraison à 59 € par mois, sans engagement, 0 % de commission, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez vos clients.
+Q : Faut-il acheter du matériel pour proposer la livraison à domicile ?
+R : Pas pour prendre les commandes ni pour calculer les frais : avec Marchéo, tout se règle depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter. Il vous faut en revanche un véhicule et des caisses isothermes pour les produits frais.
+
 # Click and collect boucherie : prendre les commandes de viande en ligne
 
 Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
@@ -1406,7 +1514,7 @@ Pousser la deuxième pizza
 
 
 
-Ces chiffres sont une base à ajuster selon votre quartier. Commencez avec une capacité basse, puis augmentez quand vous savez ce que votre équipe tient un vendredi soir.
+Ces chiffres sont une base à ajuster selon votre quartier. Pour les remplacer par les vôtres, suivez notre méthode pour calculer ses frais de livraison à partir du coût d&rsquo;une soirée de tournée. Commencez avec une capacité basse, puis augmentez quand vous savez ce que votre équipe tient un vendredi soir.
 Comment organiser la tournée du soir ?
 La tournée se prépare créneau par créneau : les commandes d&rsquo;un même quart d&rsquo;heure partent ensemble, dans l&rsquo;ordre des adresses. Le logiciel vous donne la liste et l&rsquo;itinéraire, le livreur charge les boîtes dans l&rsquo;ordre inverse des arrêts.
 Quelques réflexes simples :
@@ -4055,7 +4163,7 @@ Pizzeria
 
 
 
-Les frais couvrent votre temps et votre carburant. La gratuité au-dessus d&rsquo;un seuil pousse le panier vers le haut, ce qui est souvent plus rentable que des frais élevés.
+Les frais couvrent votre temps et votre carburant. La gratuité au-dessus d&rsquo;un seuil pousse le panier vers le haut, ce qui est souvent plus rentable que des frais élevés. Pour adapter ces chiffres à votre commerce, voyez comment calculer ses frais de livraison à partir du coût réel d&rsquo;une tournée.
 4. Sécuriser le paiement
 Une livraison où personne n&rsquo;ouvre, c&rsquo;est un trajet pour rien et un produit frais perdu. Deux protections existent : le paiement en ligne à la commande, ou l&rsquo;empreinte bancaire, qui bloque une partie du panier sur la carte du client sans le débiter. Avec Marchéo, l&rsquo;empreinte est optionnelle et vous choisissez le pourcentage, jusqu&rsquo;à 75 % du panier. Notre article sur l&rsquo;empreinte bancaire et le no-show explique le fonctionnement.
 Pour les produits vendus au poids, le montant final dépend de la pesée : voyez notre guide pour vendre au poids en ligne.

@@ -37,10 +37,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison traiteur à domicile | livraison | traiteur | GS | moyenne | à faire |
 | pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | couvert par logiciel-livraison-pizza (2026-10-26), angle livrer soi-même |
 | service de livraison à domicile restaurant | livraison | restaurant | GS | moyenne | à faire |
-| proposer la livraison gratuite | livraison | transverse | GS | moyenne | à faire (angle : frais et minimum de livraison) |
+| proposer la livraison gratuite | livraison | transverse | GS | moyenne | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant (section seuil de gratuité) |
 | proposer service livraison | livraison | transverse | GS | moyenne | à faire |
-| minimum de livraison | livraison | transverse | GS | basse | dominé par les enseignes, à fondre dans l'article frais de livraison |
-| zone de livraison | livraison | transverse | GS | basse | dominé par les enseignes, à fondre dans l'article frais de livraison |
+| minimum de livraison | livraison | transverse | GS | basse | couvert par comment-calculer-ses-frais-de-livraison-commercant |
+| zone de livraison | livraison | transverse | GS | basse | couvert en partie par comment-calculer-ses-frais-de-livraison-commercant (tarif unique vs distance) |
 | site vitrine ou e commerce | site | transverse | GS | moyenne | à faire (angle commerce de proximité) |
 | site vitrine ou marchand | site | transverse | GS | moyenne | même article que la ligne précédente |
 | mentions légales site internet restaurant | site | restaurant | GS | moyenne | à faire |
@@ -140,8 +140,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer un service de livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) |
 | logiciel livraison à domicile | livraison | tous | GS (23/10) | haute | couvert par la page pilier n°4 (2026-10-23) ; à renforcer par un comparatif dédié |
 | logiciel livraison pizza | livraison | pizzeria | GS (23/10) | haute | publié le 2026-10-26 logiciel-livraison-pizza |
-| comment proposer livraison gratuite | livraison | transverse | GS (23/10) | moyenne | à faire avec « proposer la livraison gratuite » (seuil de gratuité, calcul) |
-| frais de livraison comment calculer | livraison | transverse | GS (23/10) | moyenne | à faire : article frais et minimum de livraison (éviter l'intention leboncoin/ebay, viser commerçant) |
+| comment proposer livraison gratuite | livraison | transverse | GS (23/10) | moyenne | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant (section seuil de gratuité) |
+| frais de livraison comment calculer | livraison | transverse | GS (23/10) | moyenne | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant (requête principale : « comment calculer ses frais de livraison ») |
 | application tournée de livraison gratuit | livraison | transverse | GS (23/10) | moyenne | même article que « logiciel tournée de livraison gratuit commerçant » |
 | livraison à domicile paiement en espèces | livraison | transverse | GS (23/10) | basse | à fondre en FAQ d'un article paiement à la livraison |
 | boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | à faire avec « livraison à domicile boucherie » (boucher de quartier qui livre, pas e-boucherie qui expédie) |
@@ -161,8 +161,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel commande pizza | click & collect | pizzeria | GS (26/10) | moyenne | variante couverte par logiciel-livraison-pizza (2026-10-26) |
 | application pizzeria | click & collect | pizzeria | GS (26/10) | moyenne | variante couverte par logiciel-livraison-pizza ; angle « pas d'application à télécharger » à reprendre dans un article click and collect pizza |
 | logiciel caisse pizzeria | transverse | pizzeria | GS (26/10) | basse | écarté (intention caisse, hors périmètre) |
-| pizzeria livraison gratuite | livraison | pizzeria | GS (26/10) | moyenne | à fondre dans l'article frais et minimum de livraison (seuil de gratuité) |
-| prix livraison pizza | livraison | pizzeria | GS (26/10) | moyenne | à fondre dans l'article frais de livraison (suggestions dominées par Domino's et Pizza Hut) |
+| pizzeria livraison gratuite | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant + lien depuis logiciel-livraison-pizza |
+| prix livraison pizza | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (méthode) ; écarté comme article dédié (Domino's, Pizza Hut) |
 | site internet pizza livraison | site | pizzeria | GS (26/10) | haute | à faire avec « site internet pour pizzeria » (angle : site de la pizzeria avec commande et livraison) |
 | application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
 | zone de livraison restaurant | livraison | restaurant | GS (26/10) | basse | à fondre dans l'article frais et zone de livraison |
@@ -188,3 +188,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application commande en ligne boulangerie | click & collect | boulangerie | IA (28/10 : ChatGPT cite BDN Collect, Heustach, LEMO, bonappli) | haute | couvert par le refresh de site-internet-boulangerie-commandes-en-ligne (2026-10-28) ; pas de nouvel article (cannibalisation) |
 | whatsapp business ou boutique en ligne commerçant | click & collect | tous | IA (28/10 : ChatGPT propose WhatsApp Business en 1re solution « sans commission ») | haute | à faire (format « X ou Y » honnête avec tableau) |
 | mentions légales cgv click and collect | site | tous | IA (28/10) | basse | couvert par obligations-legales-boutique-en-ligne-commercant |
+| comment calculer ses frais de livraison | livraison | tous | GS (29/10) | haute | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant |
+| livraison gratuite à partir de combien | livraison | tous | GS (29/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (H2 dédié ; suggestions surtout Amazon/Shein) |
+| frais de livraison traiteur | livraison | traiteur | GS (29/10) | moyenne | à faire avec « traiteur noël livraison à domicile » début novembre |
+| tarif livraison repas à domicile | livraison | restaurant | GS (29/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
+| restaurant sans frais de livraison | livraison | restaurant | GS (29/10) | basse | intention consommateur, à garder en FAQ |
+| fleuriste livraison deuil | livraison | fleuriste | GS (29/10) | moyenne | section de l'article « fleuriste livraison à domicile » (commande pour obsèques : date, lieu, ruban) |
+| fleuriste qui livre le dimanche | livraison | fleuriste | GS (29/10) | basse | intention consommateur ; idée de créneau du dimanche matin dans l'article fleuriste |
+| plateforme livraison indépendant | livraison | tous | GS (29/10) | basse | intention livreur auto-entrepreneur, hors cible ; écarté |
+| traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | à fondre dans « traiteur noël livraison à domicile » (créneaux du 31) |
