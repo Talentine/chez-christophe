@@ -1306,7 +1306,6 @@ async function creerBoutique() {
     if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData)) + ' — vérifiez la config RLS de commercants');
     state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
     suivreConversion('demo_creee', 'CompleteRegistration');
-    enregistrerAcquisition(state.commercantId, authHeader);
 
     // 4. Lien rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
@@ -1314,6 +1313,7 @@ async function creerBoutique() {
       headers: authHeader,
       body: JSON.stringify({ user_id: userId, commercant_id: state.commercantId, role: 'commercant' })
     });
+    enregistrerAcquisition(state.commercantId, authHeader); // après le rôle : sinon la mise à jour est refusée
 
     // 4b. Créneaux par défaut selon métier × offre (sauf offre Vitrine = aucun)
     //     L'utilisateur pourra tout modifier ensuite depuis le dashboard.
@@ -1623,7 +1623,6 @@ async function reprendreInscriptionDepuisCallback() {
     const commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
     state.commercantId = commercantId;
     suivreConversion('demo_creee', 'CompleteRegistration');
-    enregistrerAcquisition(commercantId, authHeader);
 
     // c. Rôle commerçant
     await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
@@ -1631,6 +1630,7 @@ async function reprendreInscriptionDepuisCallback() {
       headers: authHeader,
       body: JSON.stringify({ user_id: userId, commercant_id: commercantId, role: 'commercant' })
     });
+    enregistrerAcquisition(commercantId, authHeader); // après le rôle : sinon la mise à jour est refusée
 
     // d. Créneaux par défaut selon métier × offre
     try {
