@@ -38,6 +38,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
 - [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 - [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
@@ -764,6 +765,139 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Comment prendre les commandes de bûches de Noël en ligne
+
+Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
+
+Pour prendre les commandes de bûches de Noël en ligne, publiez une page avec vos bûches, leur prix par nombre de parts, un stock par parfum et des créneaux de retrait. Le client choisit seul et la commande vous arrive complète, sans carnet ni téléphone. Avec une boutique Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d&rsquo;installation uniques.
+Ce guide s&rsquo;adresse aux boulangeries et aux pâtisseries, et complète notre guide complet du click &amp; collect pour commerçant. Pour voir ce qui est prévu pour votre métier, consultez la page click &amp; collect pour boulangerie.
+Quelle solution choisir pour prendre les commandes de bûches ?
+La bonne solution dépend de votre nombre de commandes. Un formulaire suffit pour quelques dizaines de bûches. Au-delà, ou si vous ne voulez rien recopier, une boutique en ligne devient plus simple.
+
+
+
+Solution
+Prix
+Ce qu&rsquo;elle fait bien
+Sa limite
+
+
+
+
+Carnet et téléphone
+Gratuit
+Aucune mise en place
+Erreurs, appels pendant le coup de feu
+
+
+Formulaire en ligne (Google Forms, Tally)
+Gratuit pour un usage simple
+Prêt en une heure
+Pas de créneaux pleins ni de stock, tout est à recopier
+
+
+WhatsApp Business
+Application gratuite
+Vos clients l&rsquo;ont déjà
+Chaque commande reste une conversation
+
+
+Site marchand généraliste (Shopify, WooCommerce)
+Quelques dizaines d&rsquo;euros par mois
+Idéal pour expédier des colis
+À configurer vous-même pour le retrait sur créneaux
+
+
+Boutique pour commerce de bouche (ex. Marchéo)
+19 à 59 € par mois, plus installation unique
+Catalogue du métier, créneaux, stock, 0 % de commission
+Pas de place de marché : c&rsquo;est à vous de faire connaître votre boutique
+
+
+
+Si vos clients vous écrivent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à décider.
+Que mettre sur la page de commande d&rsquo;une bûche ?
+Une bonne page répond à toutes les questions avant que le client ne vous appelle. Pour chaque bûche, indiquez :
+
+une photo prise chez vous, de la vraie bûche ;
+le parfum et une description courte ;
+le nombre de parts et le prix, par exemple 6 parts à 32 € ;
+les allergènes, qui doivent être consultables avant l&rsquo;achat ;
+la conservation, par exemple à garder au réfrigérateur ou au congélateur ;
+la date limite de commande.
+
+Limitez-vous à deux ou trois parfums en deux ou trois tailles. Une carte courte se produit mieux et se choisit plus vite. Les règles à connaître sont réunies dans notre article sur les obligations légales d&rsquo;une boutique en ligne.
+Quand ouvrir les commandes de bûches de Noël ?
+Ouvrez les commandes fin novembre ou début décembre, et annoncez-les dès début novembre. Vos habitués ont ainsi le temps d&rsquo;y penser sans que vos commandes restent ouvertes pendant deux mois.
+
+
+
+Période
+Ce que vous faites
+
+
+
+
+Début novembre
+Vous arrêtez vos parfums, vos tailles et vos prix
+
+
+Mi-novembre
+Vous annoncez vos bûches en vitrine, sur votre fiche Google et sur vos réseaux
+
+
+Fin novembre à début décembre
+Vous ouvrez les commandes et affichez la date limite
+
+
+18 au 20 décembre
+Vous clôturez les commandes pour le 24 et lancez la production
+
+
+24 décembre
+Vous remettez les bûches selon les créneaux
+
+
+28 au 29 décembre
+Vous clôturez les commandes pour le 31
+
+
+
+Un point à connaître sur Marchéo : les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Les créneaux du 24 décembre sont donc réservables à partir du 11 décembre environ. Annoncez cette date à vos clients. Pour les commandes plus précoces, gardez le téléphone ou un formulaire jusqu&rsquo;à cette date.
+Comment limiter le nombre de bûches par jour ?
+Limitez à la fois le stock de chaque bûche et le nombre de commandes par créneau. Le stock protège votre production, et le créneau protège votre comptoir.
+Sur Marchéo, chaque produit peut avoir un stock et chaque créneau une capacité maximale. Quand une bûche est épuisée ou qu&rsquo;un créneau est plein, le client ne peut plus le choisir.
+Prenons un exemple : vous pouvez remettre 8 commandes par demi-heure, et vous ouvrez 6 heures de retrait le 24 décembre. Cela fait 12 tranches, donc 96 commandes au maximum. Si votre équipe ne peut produire que 80 bûches, c&rsquo;est le stock de 80 qui fixe la limite, et la file reste courte.
+Comment éviter les bûches commandées et jamais retirées ?
+Le moyen le plus sûr est de faire payer la bûche en ligne à la commande. La bûche est produite, et le client qui a payé vient la chercher.
+Pour une commande passée peu de temps avant le retrait, l&rsquo;empreinte bancaire est une autre option. Avec Marchéo, elle est facultative et bloque jusqu&rsquo;à 75 % du panier sans débiter le client, puis elle est libérée 24 h après le retrait. Une empreinte reste une réservation temporaire, que les banques limitent en général à environ 7 jours : elle ne convient donc pas à une bûche commandée plusieurs semaines à l&rsquo;avance. Notre article sur l&rsquo;empreinte bancaire et le no-show détaille son fonctionnement.
+Comment organiser le retrait le 24 et le 31 décembre ?
+Faites choisir un créneau à chaque client au moment de la commande. Vous étalez ainsi les retraits sur la journée au lieu de tout concentrer en fin de matinée. En 2026, le 24 et le 31 décembre tombent un jeudi : vérifiez que vos créneaux du jeudi sont bien réglés pour ces deux dates.
+Préparez aussi le jour même :
+
+rangez les bûches par créneau dans votre chambre froide ;
+gardez une caisse séparée pour les commandes en ligne ;
+prévoyez des boîtes aux bonnes tailles avant le 20 décembre ;
+laissez une marge en fin de journée pour les retardataires.
+
+Évitez de livrer les bûches glacées, qui demandent un transport à température négative. Pour les bûches pâtissières, la livraison locale reste possible si vous l&rsquo;organisez vous-même dans une caisse isotherme.
+Combien coûte une boutique pour vendre ses bûches en ligne ?
+Une boutique Marchéo coûte 39 € par mois pour le retrait, avec 399 € de frais d&rsquo;installation uniques et 0 % de commission. La formule à 59 € par mois, avec 549 € d&rsquo;installation, ajoute la livraison que vous organisez vous-même. Elle est sans engagement, et la boutique reste utile le reste de l&rsquo;année pour les gâteaux, les pains spéciaux et la galette.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Marchéo a aussi ses limites. Il ne livre pas et n&rsquo;a pas de coursiers. Il n&rsquo;apporte pas de clients comme une place de marché. Et si vous expédiez vos bûches partout en France, Shopify vous conviendra mieux.
+Par où commencer cette semaine ?
+Commencez par fixer votre carte de bûches, puis créez votre page de commande. Sur la page d&rsquo;inscription de Marchéo, choisissez « Boulangerie », tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement.
+Pour le reste de la saison, lisez notre guide pour organiser ses précommandes des fêtes. Si vous n&rsquo;avez pas encore de site, voyez aussi le site internet pour boulangerie. Une affiche en vitrine avec un QR code fera le reste auprès de vos habitués.
+
+Q : Quel logiciel utiliser pour prendre les commandes de bûches de Noël en ligne ?
+R : Pour une vingtaine de bûches, un formulaire gratuit suffit, à condition de recopier chaque commande à la main. Si vous expédiez des colis partout en France, Shopify ou WooCommerce conviennent mieux. Pour le retrait en boutique, Marchéo est un logiciel français pensé pour les boulangeries : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Quand ouvrir les commandes de bûches de Noël ?
+R : Annoncez vos bûches début novembre, puis ouvrez les commandes fin novembre ou début décembre. Fixez une date limite autour du 18 au 20 décembre pour le 24. Plus vous connaissez tôt vos quantités, plus vos achats et votre production sont justes.
+Q : Faut-il acheter du matériel pour prendre les commandes de bûches en ligne ?
+R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client règle par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.
+Q : Peut-on demander un acompte sur une bûche de Noël ?
+R : Oui, c'est une pratique courante sur les grosses commandes, à condition de l'annoncer avant la validation. Avec Marchéo, le plus simple est le paiement en ligne de la commande. Si vous préférez un acompte partiel, encaissez-le au comptoir ou par lien de paiement, puis notez-le sur la commande.
 
 # Création site internet fleuriste : pages, prix et commandes
 
@@ -2512,7 +2646,7 @@ Des créneaux de 15 ou 30 minutes, selon le temps de préparation de vos produit
 Une capacité par créneau adaptée à votre équipe, plus faible aux heures de rush.
 Un délai minimum de préparation, par exemple deux heures pour un plateau, 48 heures pour un gâteau personnalisé.
 Des créneaux fermés quand vous êtes seul en boutique ou en pleine livraison.
-Des créneaux spéciaux pour les fêtes, ouverts plusieurs semaines à l&rsquo;avance. Notre guide des précommandes de Noël détaille cette organisation, à préparer dès maintenant.
+Des créneaux bien réglés pour les fêtes, avec une capacité adaptée au 24 et au 31 décembre. Sur Marchéo, les créneaux s&rsquo;ouvrent sur les deux semaines à venir. Notre guide des précommandes de Noël détaille cette organisation, à préparer dès maintenant.
 
 Paiement en ligne ou paiement au retrait : que choisir ?
 Le paiement en ligne sécurise la vente, le paiement au retrait rassure les clients qui n&rsquo;aiment pas payer à l&rsquo;avance. Beaucoup de commerçants proposent les deux et laissent le client choisir.
@@ -2584,7 +2718,7 @@ Marchéo ne livre pas et n&rsquo;a pas de coursiers : la formule Livraison vous 
 Le click and collect selon votre métier
 Chaque métier a ses produits qui se commandent naturellement en retrait. Un logiciel métier les prévoit déjà dans le catalogue de départ.
 
-Boulangerie. Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir la solution pour boulangerie et le guide du site internet de boulangerie.
+Boulangerie. Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir la solution pour boulangerie, le guide du site internet de boulangerie et notre méthode pour prendre les commandes de bûches de Noël en ligne.
 Boucherie. Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article click and collect boucherie et voir la solution pour boucherie.
 Primeur. Paniers de la semaine, vente au kilo, fruits de saison. Voir la solution pour primeur et le guide du click and collect primeur.
 Poissonnerie. Poisson préparé, plateaux de fruits de mer. Voir la solution pour poissonnerie.
@@ -2606,6 +2740,7 @@ Combien coûte un site de click &amp; collect
 Empreinte bancaire et no-show
 Vendre au poids en ligne
 Précommandes des fêtes de fin d&rsquo;année
+Commandes de bûches de Noël en ligne
 Click and collect primeur
 Click and collect fromagerie
 Click &amp; collect pour food-truck
@@ -3220,7 +3355,7 @@ R : Une page dédiée suffit : des exemples de menus, des photos de buffets rée
 
 Mettre en place le click and collect dans une fromagerie : vendre à la coupe, en plateaux et en formules raclette, et régler ses créneaux de retrait.
 
-Le click and collect en fromagerie, c&rsquo;est permettre à vos clients de commander leurs fromages en ligne, à la coupe ou en plateau, puis de les retirer en boutique au créneau choisi. Vous préparez à l&rsquo;avance, aux heures creuses, et le client passe devant la file. Les commandes de raclette, de plateaux et de fêtes s&rsquo;y prêtent particulièrement bien.
+Pour faire du click and collect en fromagerie, mettez en ligne vos plateaux, vos formules raclette et vos meilleures ventes, proposez la coupe avec des poids types et laissez le client choisir son créneau de retrait. Vous préparez aux heures creuses, et le client passe devant la file. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d&rsquo;installation uniques.
 Une fromagerie a une particularité que les autres commerces n&rsquo;ont pas : une bonne partie du travail se fait au fil, à la coupe, en conseillant. On pourrait croire que ce métier ne se met pas en ligne. En réalité, il s&rsquo;y prête très bien, à condition de ne pas essayer de tout mettre sur internet.
 Pourquoi mettre en place le click and collect dans une fromagerie ?
 Le samedi matin et les veilles de fête, la file s&rsquo;allonge vite. Chaque client prend du temps : il goûte, il hésite, il demande conseil. C&rsquo;est ce qui fait la valeur d&rsquo;une fromagerie, et c&rsquo;est aussi ce qui fait partir le client pressé.
@@ -3280,10 +3415,10 @@ Des jours fermés à la commande si votre boutique ne tient pas le rythme certai
 Commencez avec des créneaux larges et une capacité basse. Vous les ajusterez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
 Payer en ligne ou au retrait ?
 Les deux fonctionnent. Le paiement au retrait rassure les habitués. Le paiement en ligne est plus confortable pour les grosses commandes.
-Le vrai risque, c&rsquo;est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l&rsquo;empreinte bancaire est une bonne protection : elle bloque jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L&rsquo;option est facultative, vous pouvez l&rsquo;activer seulement sur les plateaux. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
+Le vrai risque, c&rsquo;est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, passées peu de temps avant le retrait, l&rsquo;empreinte bancaire est une bonne protection : elle bloque jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L&rsquo;option est facultative, vous pouvez l&rsquo;activer seulement sur les plateaux. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
 Comment préparer les fêtes avec le click and collect ?
 Entre mi-décembre et le 31, une fromagerie fait une part très importante de son année. C&rsquo;est là que la commande en ligne rend le plus de services.
-Ouvrez les précommandes de plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour organiser ses précommandes de Noël.
+Annoncez vos plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Sur Marchéo, les créneaux s&rsquo;ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour organiser ses précommandes de Noël.
 Comment faire connaître sa boutique en ligne aux clients ?
 Le click and collect d&rsquo;une fromagerie se remplit par les habitués, pas par la publicité.
 
@@ -3292,14 +3427,17 @@ Le lien sur votre fiche Google, dans le champ commande en ligne.
 Une phrase au moment de rendre la monnaie, surtout aux clients qui ont attendu.
 Un message avant la saison raclette, aux clients qui ont accepté d&rsquo;en recevoir.
 
-Comptez quelques semaines pour que le réflexe s&rsquo;installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
+Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif WhatsApp ou boutique en ligne vous aide à choisir le bon moment pour passer à la commande en ligne. Comptez quelques semaines pour que le réflexe s&rsquo;installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
 Ce que coûte le click and collect pour une fromagerie
 Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur un plateau à 80 €, cela représente une somme importante pour un client qui vient déjà chez vous.
-Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Il fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
 Pour commencer
 Il vous faut un catalogue court, des créneaux réglés à votre rythme, et un QR code au comptoir. Pas de développeur, pas de caisse particulière.
 La page détaillée pour votre métier est ici : click and collect pour fromagerie. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fromagerie », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
+Q : Quel logiciel de click and collect choisir pour une fromagerie ?
+R : Choisissez un outil qui gère la vente au poids, les créneaux de retrait et les plateaux. Votre logiciel de caisse propose peut-être un module à vérifier. Marchéo est un logiciel français pour les commerces de bouche : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
 Q : Comment vendre un fromage à la coupe en click and collect ?
 R : Vous affichez un prix au kilo et vous proposez des poids types, par exemple 200 g, 300 g ou 500 g. Le client choisit, vous coupez au plus près, et le montant final est ajusté à la pesée au moment du retrait. Prévenez-le simplement que le poids peut varier de quelques grammes.
 Q : Faut-il mettre tout son comptoir en ligne ?
@@ -3682,7 +3820,7 @@ Boucherie : deux ou trois volailles fermières, une pièce de bœuf, un rôti fa
 Poissonnerie : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer.
 Fromagerie : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du click and collect pour fromagerie.
 Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un buffet apéritif par tranche de 10 personnes.
-Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité.
+Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour prendre les commandes de bûches de Noël en ligne.
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
 Les produits au kilo demandent un réglage particulier, et c&rsquo;est le moment de l&rsquo;année où une erreur se paie le plus cher : un chapon ou un plateau de fruits de mer dont le poids réel s&rsquo;écarte de la commande, le 24 décembre à 11 h, avec vingt personnes derrière. La méthode pour présenter ces produits, proposer des poids d&rsquo;un clic et annoncer l&rsquo;ajustement à la pesée est détaillée dans notre guide sur vendre au poids en ligne.
@@ -3691,7 +3829,7 @@ Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du te
 Deux mécanismes fonctionnent, et ils ne s&rsquo;excluent pas :
 
 L&rsquo;acompte : 20 à 30 % à la commande, le solde au retrait. C&rsquo;est la pratique la plus répandue chez les traiteurs et sur les grosses pièces. Elle filtre les commandes qui n&rsquo;étaient qu&rsquo;une intention.
-L&rsquo;empreinte bancaire : le client n&rsquo;est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l&rsquo;empreinte couvre jusqu&rsquo;à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
+L&rsquo;empreinte bancaire : le client n&rsquo;est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l&rsquo;empreinte couvre jusqu&rsquo;à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non. Les banques limitent en général cette réservation à environ 7 jours : gardez-la pour les commandes passées peu de temps avant le retrait, et préférez le paiement en ligne pour les autres.
 
 Dans les deux cas, la condition juridique est la même : le client doit être informé avant de valider, avec le montant, le délai d&rsquo;annulation gratuite et les conditions. C&rsquo;est détaillé dans notre guide sur l&rsquo;empreinte bancaire et les no-shows.
 Étaler les retraits, la vraie difficulté
@@ -3714,7 +3852,7 @@ un planning de retraits imprimable par heure, à afficher en labo le matin du 24
 une liste de production qui totalise les quantités par référence, pour commander juste chez le fournisseur ;
 un canal de rappel (SMS ou notification) pour prévenir la veille.
 
-C&rsquo;est exactement ce que fait une boutique Marchéo : vos clients commandent depuis leur téléphone en 30 secondes, sans compte à créer, vous gardez 100 % de vos ventes puisqu&rsquo;il n&rsquo;y a aucune commission, et vous imprimez votre planning le matin. Si vous n&rsquo;avez encore rien, voyez d&rsquo;abord comment créer un site de click &amp; collect pour son commerce, puis regardez la page dédiée à votre métier, par exemple le click &amp; collect pour une boucherie.
+Une boutique Marchéo couvre l&rsquo;essentiel : vos clients commandent depuis leur téléphone en 30 secondes, sans compte à créer, choisissent un créneau avec une capacité maximale, et vous gardez 100 % de vos ventes puisqu&rsquo;il n&rsquo;y a aucune commission. Un point à prévoir : les créneaux s&rsquo;ouvrent sur les deux semaines à venir, donc vers le 11 décembre pour le 24. Pour les pièces à réserver plus tôt, gardez le téléphone jusqu&rsquo;à cette date. Si vous n&rsquo;avez encore rien, voyez d&rsquo;abord comment créer un site de click &amp; collect pour son commerce, puis regardez la page dédiée à votre métier, par exemple le click &amp; collect pour une boucherie.
 Après les fêtes, ne perdez pas ce que vous avez gagné
 Décembre vous apporte des clients que vous ne voyez pas le reste de l&rsquo;année. Deux gestes simples les font revenir :
 
@@ -3727,7 +3865,7 @@ Vous pouvez voir à quoi ressemblerait votre boutique en 30 secondes, sans engag
 Q : Quand faut-il ouvrir ses précommandes de Noël ?
 R : Début novembre pour les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines.
 Q : Faut-il demander un acompte sur une commande de fêtes ?
-R : Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait.
+R : Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option, pour une commande passée peu de temps avant le retrait, est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait.
 Q : Comment éviter la file d'attente le 24 décembre ?
 R : En imposant un créneau de retrait au moment de la commande, par tranches de 15 ou 30 minutes, avec un nombre de commandes maximum par tranche. Les clients arrivent répartis sur la journée au lieu de se présenter tous entre 10 h et midi.
 Q : Que faire des clients qui commandent encore par téléphone ?

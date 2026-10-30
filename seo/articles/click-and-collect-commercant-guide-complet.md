@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-10-29
+modified: 2026-10-30
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -115,7 +115,7 @@ Quelques réglages qui marchent bien dans les commerces de bouche :
 - **Une capacité par créneau** adaptée à votre équipe, plus faible aux heures de rush.
 - **Un délai minimum de préparation**, par exemple deux heures pour un plateau, 48 heures pour un gâteau personnalisé.
 - **Des créneaux fermés** quand vous êtes seul en boutique ou en pleine livraison.
-- **Des créneaux spéciaux pour les fêtes**, ouverts plusieurs semaines à l'avance. Notre guide des [précommandes de Noël](/blog/precommandes-fetes-noel-commerce-bouche) détaille cette organisation, à préparer dès maintenant.
+- **Des créneaux bien réglés pour les fêtes**, avec une capacité adaptée au 24 et au 31 décembre. Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir. Notre guide des [précommandes de Noël](/blog/precommandes-fetes-noel-commerce-bouche) détaille cette organisation, à préparer dès maintenant.
 
 ## Paiement en ligne ou paiement au retrait : que choisir ?
 
@@ -155,7 +155,7 @@ Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne 
 
 Chaque métier a ses produits qui se commandent naturellement en retrait. Un logiciel métier les prévoit déjà dans le catalogue de départ.
 
-- **Boulangerie.** Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie) et le guide du [site internet de boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne).
+- **Boulangerie.** Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie), le guide du [site internet de boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne) et notre méthode pour [prendre les commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne).
 - **Boucherie.** Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article [click and collect boucherie](/blog/click-and-collect-boucherie) et voir [la solution pour boucherie](/solutions/boucherie).
 - **Primeur.** Paniers de la semaine, vente au kilo, fruits de saison. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Voir [la solution pour poissonnerie](/solutions/poissonnerie).
@@ -179,6 +179,7 @@ Les autres guides du blog sur le click & collect :
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)
 - [Précommandes des fêtes de fin d'année](/blog/precommandes-fetes-noel-commerce-bouche)
+- [Commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne)
 - [Click and collect primeur](/blog/click-and-collect-primeur)
 - [Click and collect fromagerie](/blog/click-and-collect-fromagerie)
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)

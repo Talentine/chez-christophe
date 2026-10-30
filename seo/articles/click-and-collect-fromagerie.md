@@ -5,6 +5,7 @@ description: "Mettre en place le click and collect dans une fromagerie : vendre 
 meta_title: "Click and collect fromagerie : le guide pratique"
 meta_description: "Click and collect pour fromagerie : vente à la coupe, plateaux, formules raclette, créneaux de retrait et paiement. Le guide concret pour démarrer."
 date: 2026-10-16
+modified: 2026-10-30
 rubrique: Guide
 emoji: 🧀
 keywords:
@@ -17,6 +18,8 @@ keywords:
 metiers:
   - fromagerie
 faq:
+  - q: "Quel logiciel de click and collect choisir pour une fromagerie ?"
+    r: "Choisissez un outil qui gère la vente au poids, les créneaux de retrait et les plateaux. Votre logiciel de caisse propose peut-être un module à vérifier. Marchéo est un logiciel français pour les commerces de bouche : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription."
   - q: "Comment vendre un fromage à la coupe en click and collect ?"
     r: "Vous affichez un prix au kilo et vous proposez des poids types, par exemple 200 g, 300 g ou 500 g. Le client choisit, vous coupez au plus près, et le montant final est ajusté à la pesée au moment du retrait. Prévenez-le simplement que le poids peut varier de quelques grammes."
   - q: "Faut-il mettre tout son comptoir en ligne ?"
@@ -27,7 +30,7 @@ faq:
     r: "Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par mois, sans engagement et sans commission sur les ventes, avec des frais d'installation uniques de 399 €. Vous pouvez voir votre boutique gratuitement en 30 secondes avant de décider."
 ---
 
-Le click and collect en fromagerie, c'est permettre à vos clients de commander leurs fromages en ligne, à la coupe ou en plateau, puis de les retirer en boutique au créneau choisi. Vous préparez à l'avance, aux heures creuses, et le client passe devant la file. Les commandes de raclette, de plateaux et de fêtes s'y prêtent particulièrement bien.
+Pour faire du click and collect en fromagerie, mettez en ligne vos plateaux, vos formules raclette et vos meilleures ventes, proposez la coupe avec des poids types et laissez le client choisir son créneau de retrait. Vous préparez aux heures creuses, et le client passe devant la file. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d'installation uniques.
 
 Une fromagerie a une particularité que les autres commerces n'ont pas : une bonne partie du travail se fait au fil, à la coupe, en conseillant. On pourrait croire que ce métier ne se met pas en ligne. En réalité, il s'y prête très bien, à condition de ne pas essayer de tout mettre sur internet.
 
@@ -80,13 +83,13 @@ Commencez avec des créneaux larges et une capacité basse. Vous les ajusterez a
 
 Les deux fonctionnent. Le paiement au retrait rassure les habitués. Le paiement en ligne est plus confortable pour les grosses commandes.
 
-Le vrai risque, c'est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, l'empreinte bancaire est une bonne protection : elle bloque jusqu'à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L'option est facultative, vous pouvez l'activer seulement sur les plateaux. Notre article sur [l'empreinte bancaire contre les commandes non retirées](/blog/empreinte-bancaire-no-show-commerce-restaurant) détaille le fonctionnement.
+Le vrai risque, c'est le plateau de vingt personnes préparé pour un client qui ne vient pas. Le fromage est coupé, il ne se revend pas. Pour ces commandes, passées peu de temps avant le retrait, l'empreinte bancaire est une bonne protection : elle bloque jusqu'à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. Le client sérieux ne voit rien passer. L'option est facultative, vous pouvez l'activer seulement sur les plateaux. Notre article sur [l'empreinte bancaire contre les commandes non retirées](/blog/empreinte-bancaire-no-show-commerce-restaurant) détaille le fonctionnement.
 
 ## Comment préparer les fêtes avec le click and collect ?
 
 Entre mi-décembre et le 31, une fromagerie fait une part très importante de son année. C'est là que la commande en ligne rend le plus de services.
 
-Ouvrez les précommandes de plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour [organiser ses précommandes de Noël](/blog/precommandes-fetes-noel-commerce-bouche).
+Annoncez vos plateaux dès la fin novembre, fixez une date limite autour du 20 décembre et étalez les retraits sur plusieurs jours, avec un nombre de plateaux maximum par créneau. Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Vous savez exactement quoi commander à vos affineurs, et vous évitez la journée du 24 où tout le monde arrive en même temps. Nous avons écrit un guide complet pour [organiser ses précommandes de Noël](/blog/precommandes-fetes-noel-commerce-bouche).
 
 ## Comment faire connaître sa boutique en ligne aux clients ?
 
@@ -97,13 +100,15 @@ Le click and collect d'une fromagerie se remplit par les habitués, pas par la p
 - **Une phrase au moment de rendre la monnaie**, surtout aux clients qui ont attendu.
 - **Un message avant la saison raclette**, aux clients qui ont accepté d'en recevoir.
 
-Comptez quelques semaines pour que le réflexe s'installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
+Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le bon moment pour passer à la commande en ligne. Comptez quelques semaines pour que le réflexe s'installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
 
 ## Ce que coûte le click and collect pour une fromagerie
 
 Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur un plateau à 80 €, cela représente une somme importante pour un client qui vient déjà chez vous.
 
-Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+Il fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
 
 ## Pour commencer
 

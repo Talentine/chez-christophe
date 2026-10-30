@@ -5,7 +5,7 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
-modified: 2026-10-16
+modified: 2026-10-30
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -24,7 +24,7 @@ faq:
   - q: "Quand faut-il ouvrir ses précommandes de Noël ?"
     r: "Début novembre pour les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines."
   - q: "Faut-il demander un acompte sur une commande de fêtes ?"
-    r: "Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait."
+    r: "Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option, pour une commande passée peu de temps avant le retrait, est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait."
   - q: "Comment éviter la file d'attente le 24 décembre ?"
     r: "En imposant un créneau de retrait au moment de la commande, par tranches de 15 ou 30 minutes, avec un nombre de commandes maximum par tranche. Les clients arrivent répartis sur la journée au lieu de se présenter tous entre 10 h et midi."
   - q: "Que faire des clients qui commandent encore par téléphone ?"
@@ -60,7 +60,7 @@ Une bonne offre de fêtes tient sur une page :
 - **Poissonnerie** : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer.
 - **Fromagerie** : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du [click and collect pour fromagerie](/blog/click-and-collect-fromagerie).
 - **Traiteur** : un menu complet en trois plats, des entrées à l'unité, un buffet apéritif par tranche de 10 personnes.
-- **Boulangerie-pâtisserie** : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité.
+- **Boulangerie-pâtisserie** : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour [prendre les commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne).
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
 
@@ -73,7 +73,7 @@ Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du te
 Deux mécanismes fonctionnent, et ils ne s'excluent pas :
 
 1. **L'acompte** : 20 à 30 % à la commande, le solde au retrait. C'est la pratique la plus répandue chez les traiteurs et sur les grosses pièces. Elle filtre les commandes qui n'étaient qu'une intention.
-2. **L'empreinte bancaire** : le client n'est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l'empreinte couvre jusqu'à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non.
+2. **L'empreinte bancaire** : le client n'est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l'empreinte couvre jusqu'à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non. Les banques limitent en général cette réservation à environ 7 jours : gardez-la pour les commandes passées peu de temps avant le retrait, et préférez le paiement en ligne pour les autres.
 
 Dans les deux cas, la condition juridique est la même : le client doit être informé avant de valider, avec le montant, le délai d'annulation gratuite et les conditions. C'est détaillé dans notre guide sur [l'empreinte bancaire et les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
 
@@ -102,7 +102,7 @@ Un carnet papier tient jusqu'à une trentaine de commandes. Au-delà, il coûte 
 - une **liste de production** qui totalise les quantités par référence, pour commander juste chez le fournisseur ;
 - un **canal de rappel** (SMS ou notification) pour prévenir la veille.
 
-C'est exactement ce que fait une boutique Marchéo : vos clients commandent depuis leur téléphone en 30 secondes, sans compte à créer, vous gardez 100 % de vos ventes puisqu'il n'y a aucune commission, et vous imprimez votre planning le matin. Si vous n'avez encore rien, voyez d'abord [comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce), puis regardez la page dédiée à votre métier, par exemple [le click & collect pour une boucherie](/solutions/boucherie).
+Une boutique Marchéo couvre l'essentiel : vos clients commandent depuis leur téléphone en 30 secondes, sans compte à créer, choisissent un créneau avec une capacité maximale, et vous gardez 100 % de vos ventes puisqu'il n'y a aucune commission. Un point à prévoir : les créneaux s'ouvrent sur les deux semaines à venir, donc vers le 11 décembre pour le 24. Pour les pièces à réserver plus tôt, gardez le téléphone jusqu'à cette date. Si vous n'avez encore rien, voyez d'abord [comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce), puis regardez la page dédiée à votre métier, par exemple [le click & collect pour une boucherie](/solutions/boucherie).
 
 ## Après les fêtes, ne perdez pas ce que vous avez gagné
 

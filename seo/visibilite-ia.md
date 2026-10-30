@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°15.
+Prochaine question en rotation : n°18.
 
 ## Relevés
 
@@ -74,6 +74,14 @@ Prochaine question en rotation : n°15.
 | 2026-10-29 (2e mesure, 16 h) | Perplexity | Comment créer un site internet pour un traiteur ? | non | yola, hostinger, julienchretien, webmagnet, wecomm (site vitrine + formulaire de devis ; constructeur, WordPress ou freelance) |
 | 2026-10-29 (2e mesure, 16 h) | Google (aperçu IA) | Comment créer un site internet pour un traiteur ? | non (aperçu IA affiché) | Yola, wix.com, wasabiwebdesign.fr ; 1re page : webgazelle, local.fr, webgenie, chef-traiteur.fr, faustinegarnier.fr, miamsite.com |
 | 2026-10-29 (2e mesure, 16 h) | Google (aperçu IA) | Comment organiser la livraison à domicile pour une boucherie ? | non (aperçu IA affiché) | Nelinkia ; 1re page : kontakts.pro, monouso.fr, nakide.fr, jdc.fr, shippr.io, leblogdudirigeant, monpetitdrive.fr, orisha, tactill |
+| 2026-10-30 | ChatGPT | Comment prendre les commandes de bûches de Noël en ligne ? | non | Ladurée, Alain Ducasse, Carrefour Traiteur (réponse côté client, puis propose d'aider le pâtissier « même sans site internet ») |
+| 2026-10-30 | ChatGPT | Comment livrer du poisson frais à domicile en respectant la chaîne du froid ? | non | ministère de l'Agriculture (+1), Légifrance, Chronofresh ; caisses isothermes, 0 à +2 °C, tournées, aucun outil de commande nommé |
+| 2026-10-30 | ChatGPT | Quel site pour un fleuriste qui veut vendre des bouquets en ligne ? (mot-clé du matin) | non | Shopify (choix n°1), Wix, WooCommerce, Squarespace ; article du matin publié il y a quelques heures |
+| 2026-10-30 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | marchéo.fr (3 offres, 0 %, sans engagement, pas de livreurs, « premier mois offert ») |
+| 2026-10-30 | Perplexity | Quel site pour un fleuriste qui veut vendre des bouquets en ligne ? | non | shopify (+1, 10 sources) |
+| 2026-10-30 | Perplexity | Comment prendre les commandes de bûches de Noël en ligne ? | non | oaka, christopherhedon, micielopatisserie, boulangerie-chezflo, argel, agathe-olivet ; Shopify, WooCommerce, Google Forms, Tally |
+| 2026-10-30 | Google | Quel site pour un fleuriste qui veut vendre des bouquets en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | 123ventes.com (1er, 29,90 €/mois sans commission), furnoagency.com, sessile.fr, mon-comptoir.com, sitew.com, devwebpro.fr, Shopify (annonce) |
+| 2026-10-30 | Google | Comment prendre les commandes de bûches de Noël en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | surtout des pâtisseries qui vendent ; commandes-et-moi.fr (seule page pour commerçants, « Précommande de Noël ») |
 
 ## Bilans hebdomadaires (le lundi)
 

@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/commande-buche-de-noel-en-ligne",
   "/blog/creation-site-internet-fleuriste",
   "/blog/comment-calculer-ses-frais-de-livraison-commercant",
   "/blog/whatsapp-ou-boutique-en-ligne-commerce",

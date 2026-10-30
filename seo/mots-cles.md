@@ -20,7 +20,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect viande | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie (variante) |
 | boucherie click and collect | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie |
 | commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | à faire (publier début novembre) |
-| commande bûche de noël en ligne | click & collect | boulangerie | GS | haute | à faire (publier mi-novembre) |
+| commande bûche de noël en ligne | click & collect | boulangerie | GS + IA (30/10 : ChatGPT répond côté client, Perplexity cite des pâtisseries et Shopify) | haute | publié le 2026-10-30 + commande-buche-de-noel-en-ligne |
+| shopify ou logiciel local pour fleuriste | transverse | fleuriste | IA (30/10 : Shopify choix n°1 de ChatGPT et Perplexity pour un fleuriste) | haute | à faire : comparatif honnête « Shopify ou boutique locale pour un fleuriste » |
 | application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
 | logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
 | quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |

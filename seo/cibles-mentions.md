@@ -26,6 +26,11 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | nooki.fr / devwebpro.fr / le-pronto / webindme.fr / digidop.com | blog d'éditeur ou d'agence | Google aperçu IA, « Combien coûte un site internet pour un restaurant en 2026 ? » (29/10) | aucune mention possible (agences) : faire indexer prix-site-internet-restaurant par Bing et le garder frais | automatique | en cours |
 | reddit.com/r/webdesign (« Coût pour un site de restaurant ») | forum | Google, même question (29/10) | répondre honnêtement sur un fil récent en se présentant comme fondateur, seulement si la question porte sur un petit restaurant | Paul | à faire quand un fil récent existe |
 | ca-moncommerce.com (« Créer un site internet pour votre restaurant ») | média (banque) | Google, même question (29/10) | déjà listé : proposer un article de conseil (message type 2), angle « site + commande en ligne sans commission » | Paul | à faire |
+| 123ventes.com / mon-comptoir.com / commandes-et-moi.fr | blog d'éditeur (concurrents) | Google, fleuriste et bûches de Noël (30/10) ; 123ventes 1er sur le fleuriste | aucune mention possible : ils ont des pages par métier et par saison ; garder creation-site-internet-fleuriste et commande-buche-de-noel-en-ligne fraîches | automatique | en cours |
+| Shopify / Wix / WooCommerce / Squarespace | plateforme | ChatGPT + Perplexity, fleuriste (30/10) : Shopify choix n°1 | aucune mention possible : comparatif honnête « Shopify ou logiciel local pour fleuriste » ajouté aux mots-clés IA | automatique | à faire |
+| furnoagency.com / devwebpro.fr / sitew.com | blog d'agence ou constructeur | Google, fleuriste (30/10) | aucune mention possible (agences, constructeur) | automatique | sans objet |
+| oaka | à vérifier (première source de Perplexity sur les bûches) | Perplexity, bûches de Noël (30/10) | regarder ce qu'est ce site ; si c'est un média ou un comparatif, proposer un article (message type 2) | Paul | à vérifier |
+| chronofresh.fr + guide « chaîne du froid » du ministère de l'Agriculture | transporteur + institutionnel | ChatGPT, poisson frais à domicile (30/10) | aucune mention possible : citer ces règles (0 à +2 °C) dans poissonnerie-livraison-a-domicile | automatique | à faire |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
 
