@@ -5,6 +5,7 @@ description: "Fleuriste click and collect : vendre ses bouquets par budget, le m
 meta_title: "Fleuriste click and collect : le guide pour démarrer"
 meta_description: "Fleuriste click and collect : vendre ses bouquets par budget, gérer les créneaux, les grandes dates et les commandes de deuil. Sans matériel, sans commission."
 date: 2026-10-25
+modified: 2026-10-30
 rubrique: Guide
 emoji: 💐
 keywords:
@@ -119,6 +120,6 @@ Le click and collect d'un fleuriste se met en place sans matériel à acheter et
 
 ## Pour commencer
 
-Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous partez de zéro, notre guide pour [créer sa boutique en ligne](/blog/creer-sa-boutique-en-ligne-commerce) vous aide à poser les bases.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous partez de zéro, notre guide pour [créer sa boutique en ligne](/blog/creer-sa-boutique-en-ligne-commerce) vous aide à poser les bases, et notre article sur la [création d'un site internet de fleuriste](/blog/creation-site-internet-fleuriste) détaille les pages, les photos et le budget.
 
 La page détaillée pour votre métier est ici : [click and collect pour fleuriste](/solutions/fleuriste). Pour voir votre boutique avant de décider, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Fleuriste », vous tapez le nom de votre boutique, l'aperçu s'affiche.

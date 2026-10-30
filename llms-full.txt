@@ -38,6 +38,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 - [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
 - [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
@@ -70,7 +71,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-10-29
+- Dernière mise à jour : 2026-10-30
 
 
 ---
@@ -763,6 +764,148 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Création site internet fleuriste : pages, prix et commandes
+
+Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
+
+La création d&rsquo;un site internet de fleuriste consiste à mettre en ligne vos horaires, vos bouquets par budget et un moyen simple de commander, en retrait ou en livraison. Pour un fleuriste de quartier, le bon site tient en quelques pages claires, se gère depuis le téléphone et ne prend aucune commission sur vos ventes. Comptez de 19 à 59 € par mois avec un logiciel métier comme Marchéo, plus des frais d&rsquo;installation uniques.
+Ce guide s&rsquo;adresse au fleuriste indépendant qui a une boutique, pas aux sites nationaux qui expédient des fleurs partout en France. La méthode générale est détaillée dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand on vend des fleurs : des produits qui ne sont jamais identiques, des commandes offertes à quelqu&rsquo;un d&rsquo;autre et des grandes dates très concentrées.
+Pourquoi créer un site internet quand on est fleuriste ?
+Un site internet permet d&rsquo;être trouvé au moment où le client cherche un bouquet et de prendre sa commande même quand vous êtes occupé. Le besoin de fleurs est souvent urgent : un anniversaire oublié, un décès, un dîner le soir même. Le client tape « fleuriste » et sa ville sur son téléphone, puis il choisit celui dont il comprend vite les prix et les horaires.
+Le site répond à trois questions que votre compte Instagram ne règle pas bien :
+
+Êtes-vous ouvert aujourd&rsquo;hui ? Les horaires sont visibles tout de suite, y compris les jours fériés.
+Combien coûte un bouquet ? Des budgets clairs rassurent le client qui n&rsquo;ose pas appeler.
+Comment commander ? Un bouton suffit, sans échange de messages.
+
+Gardez Instagram pour montrer votre travail, et mettez dans votre profil le lien vers votre site. Les deux se complètent.
+Site vitrine ou site de commande : que choisir pour un fleuriste ?
+Un site vitrine suffit si vous voulez surtout être trouvé et présenter votre travail. Un site de commande devient utile dès que le téléphone sonne pour réserver des bouquets, ou que vous voulez vendre pendant vos heures de fermeture.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de commandes à l&rsquo;avance
+Site vitrine : horaires, adresse, photos, spécialités
+
+
+Commandes de bouquets par téléphone ou par message
+Site avec click &amp; collect et créneaux de retrait
+
+
+Clients qui offrent des fleurs à un proche du quartier
+Site avec click &amp; collect et livraison locale
+
+
+Forte activité à la Saint-Valentin ou à la fête des mères
+Site de commande avec date limite et capacité par créneau
+
+
+
+Si vous hésitez, commencez simple et faites évoluer votre formule ensuite. Le fonctionnement de la commande en ligne est détaillé dans notre guide du fleuriste en click and collect.
+Quelles pages mettre sur le site d&rsquo;un fleuriste ?
+Cinq pages suffisent dans la plupart des cas. Le client veut savoir ce que vous proposez, à quel prix, et comment il recevra ses fleurs.
+
+Accueil : nom, ville, horaires, téléphone, un bouton « Commander » bien visible.
+Bouquets par budget : le bouquet du fleuriste à plusieurs prix, les styles, les roses.
+Plantes et compositions : plantes vertes, plantes fleuries, compositions en coupe.
+Deuil et événements : gerbes, coussins, mariage, baptême, avec le délai à prévoir.
+Infos pratiques : retrait, zone de livraison, moyens de paiement, mentions légales.
+
+Les mentions légales et les conditions de vente sont obligatoires dès que vous vendez en ligne. Notre article sur les obligations légales d&rsquo;une boutique en ligne résume ce qu&rsquo;il faut prévoir.
+Quelles photos utiliser sur le site d&rsquo;un fleuriste ?
+Les meilleures photos sont celles de vos vraies créations, prises en boutique à la lumière du jour. Vos clients achètent votre style, et une image de banque d&rsquo;images ne le montre pas.
+Un téléphone récent suffit. Posez le bouquet devant un mur uni, près d&rsquo;une fenêtre, et photographiez quelques créations par budget. Précisez sur la fiche que la composition suit l&rsquo;arrivage, pour que le client sache que son bouquet aura le même esprit, sans être identique. Pensez aussi à une photo de votre vitrine : elle aide le client à vous reconnaître au moment du retrait.
+Comment organiser les commandes et la livraison sur son site ?
+Le plus simple est de démarrer avec le retrait en boutique, puis d&rsquo;ouvrir la livraison dans un rayon proche. Le client choisit son bouquet, écrit le message de la carte, indique ses précisions et sélectionne un créneau. Vous recevez une commande écrite, sans erreur de nom.
+La livraison compte beaucoup chez un fleuriste, car une partie des bouquets est offerte à quelqu&rsquo;un d&rsquo;autre. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Pour fixer un tarif juste, suivez notre méthode pour calculer ses frais de livraison.
+Pour les commandes importantes, comme une gerbe ou un bouquet de mariée, demandez le paiement en ligne ou activez l&rsquo;empreinte bancaire. Cette option bloque jusqu&rsquo;à 75 % du panier sans débiter le client, puis la somme est libérée 24 heures après le retrait.
+Combien coûte la création d&rsquo;un site internet de fleuriste ?
+Le prix dépend surtout de qui crée le site et de ce qu&rsquo;il doit faire. Voici les grandes familles de solutions, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+À configurer vous-même : créneaux, zone et message de carte à prévoir
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais les modifications peuvent être facturées
+
+
+Plateforme à commission
+14 à 30 % par commande selon les services
+Visibilité, mais le coût monte avec vos ventes
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Catalogue fleuriste prêt, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation et 549 € pour le Click &amp; Collect avec Livraison. Votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, et l&rsquo;hébergement est compris. Si vous possédez un nom de domaine, vous pouvez le garder et y placer un lien ou une redirection vers votre site.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut peu de choses, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Vos budgets et vos styles de bouquets
+Une fiche pour chaque fleur vendue à l&rsquo;unité
+
+
+Quelques photos prises en boutique
+Un photographe professionnel
+
+
+Vos horaires et vos créneaux
+Une tablette, une imprimante ou une caisse en plus
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un développeur ou une agence
+
+
+Un abonnement fixe
+Une commission sur chaque bouquet
+
+
+
+Comment être trouvé sur Google avec le site de son fleuriste ?
+Le site doit être relié à une fiche Google Business à jour, car c&rsquo;est elle qui apparaît sur la carte quand un client cherche un fleuriste près de chez lui. Ajoutez-y le lien vers votre site et vers votre page de commande.
+Écrivez aussi sur le site les mots que vos clients utilisent : votre ville, votre quartier, « bouquet », « fleurs de deuil », « livraison de fleurs ». Les réglages sont expliqués dans notre guide de la fiche Google Business.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « Fleuriste », tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Ajustez ensuite vos budgets, ajoutez vos photos et ouvrez vos créneaux à votre rythme. Pour voir tout ce qui est prévu pour votre métier, consultez la solution pour fleuriste.
+
+Q : Combien coûte la création d'un site internet pour un fleuriste ?
+R : Cela va de quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Avec Marchéo, comptez 19 € par mois pour un site vitrine, 39 € par mois avec le click & collect et 59 € par mois avec la livraison, sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Il n'y a aucune commission sur vos ventes.
+Q : Quel logiciel pour créer le site internet d'un fleuriste ?
+R : Il existe trois familles d'outils : les constructeurs généralistes comme Wix ou Shopify, les réseaux de transmission florale et les logiciels pensés pour les commerces de proximité. Marchéo fait partie de cette dernière famille : le catalogue fleuriste est déjà rempli (bouquets par budget, compositions, plantes), avec un champ pour le message de la carte, 0 % de commission et un abonnement de 19 à 59 € par mois sans engagement. La démo gratuite prend 30 secondes sur marchéo.fr/inscription.
+Q : Faut-il acheter du matériel pour créer le site internet d'un fleuriste ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez le site et les commandes depuis le téléphone ou l'ordinateur que vous avez déjà.
+Q : Un fleuriste peut-il avoir son propre site et rester dans un réseau de transmission florale ?
+R : Souvent oui, car les deux répondent à des besoins différents : le réseau transmet des commandes d'une ville à l'autre, votre site vend à vos clients du quartier. Relisez tout de même les conditions de votre contrat avant de vous lancer, car elles varient d'un réseau à l'autre.
 
 # Comment calculer ses frais de livraison quand on est commerçant
 
@@ -1886,7 +2029,7 @@ Une commission sur chaque bouquet
 
 
 Pour commencer
-Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous partez de zéro, notre guide pour créer sa boutique en ligne vous aide à poser les bases.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous partez de zéro, notre guide pour créer sa boutique en ligne vous aide à poser les bases, et notre article sur la création d&rsquo;un site internet de fleuriste détaille les pages, les photos et le budget.
 La page détaillée pour votre métier est ici : click and collect pour fleuriste. Pour voir votre boutique avant de décider, la démo gratuite prend 30 secondes : vous choisissez « Fleuriste », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
 Q : Quel logiciel de click and collect pour un fleuriste ?
@@ -2222,7 +2365,7 @@ Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur et le
 Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
-Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste.
+Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste et notre guide de création de site internet pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria.
 Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant.
 Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.

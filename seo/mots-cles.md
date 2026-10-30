@@ -14,7 +14,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet pour traiteur | site | traiteur | GS | haute | couvert par creation-site-internet-traiteur (2026-10-17) |
 | combien coûte un site internet pour un restaurant | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant |
 | site internet restaurant prix | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant (requête principale) |
-| création site internet fleuriste | site | fleuriste | GS | haute | à faire |
+| création site internet fleuriste | site | fleuriste | GS + WS (30/10 : 1re page = annonces de freelances, modèles de sites, annuaire ; aucun guide pour fleuriste) | haute | publié le 2026-10-30 creation-site-internet-fleuriste |
 | site internet pour pizzeria | site | pizzeria | GS | haute | à faire |
 | site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
 | click and collect viande | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie (variante) |
@@ -85,7 +85,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande boulangerie en ligne | click & collect | boulangerie | GSC (pos. 14,0, 19/10) | haute | renforcé le 2026-10-28 : site-internet-boulangerie-commandes-en-ligne (réponse directe, H2 en questions, FAQ « Quelle application… ») |
 | click and collect food truck | click & collect | fastfood | GSC (pos. 13,5, 19/10) | moyenne | publié le 2026-09-17 click-and-collect-food-truck (à enrichir lors d'un prochain lundi) |
 | fleuriste click and collect | click & collect | fleuriste | GS (19/10) | haute | publié le 2026-10-25, click-and-collect-fleuriste |
-| site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | à faire (avec « création site internet fleuriste ») |
+| site internet pour fleuriste | site | fleuriste | GS (19/10) | haute | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | tarif site internet restaurant | site | restaurant | GS (19/10) | haute | couvert par prix-site-internet-restaurant (2026-10-27) |
 | boucherie click and collect halal | click & collect | boucherie | GS (19/10) | basse | variante de l'article boucherie à venir |
 | créer sa boutique en ligne comment faire | site | tous | GS (19/10) | haute | publié le 2026-10-20 creer-sa-boutique-en-ligne-commerce (page pilier n°1) |
@@ -132,7 +132,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet commerce gratuit | site | tous | GS (22/10) | moyenne | à faire avec « site click and collect gratuit » (angle : ce qui est vraiment gratuit) |
 | site internet marchand gratuit | site | tous | GS (22/10) | basse | même article que la ligne précédente |
 | site web boucherie | site | boucherie | GS (22/10) | haute | couvert par site-internet-boucherie (2026-10-24) |
-| site internet fleurs | site | fleuriste | GS (22/10) | moyenne | à faire avec « création site internet fleuriste » |
+| site internet fleurs | site | fleuriste | GS (22/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | nom de domaine commercial | site | tous | GS (22/10) | basse | couvert en section et FAQ de la page pilier n°2 (2026-10-22) |
 | pourquoi créer un site web pour son entreprise | site | tous | GS (22/10) | basse | couvert par la section « Pourquoi un commerce de proximité a-t-il besoin d'un site internet ? » de la page pilier n°2 |
 | alternative uber eats pour commerçant garder ses clients | transverse | tous | IA (Perplexity 22/10 : chownow, chatfood cités) | haute | à faire : renforcer click-and-collect-sans-commission-alternative-uber-eats-deliveroo (section « garder le fichier clients », QR code, commande en propre) plutôt qu'un nouvel article |
@@ -152,7 +152,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boucherie en ligne autour de moi | site | boucherie | GS (24/10) | moyenne | à fondre : fiche Google + site, déjà couvert en section de site-internet-boucherie |
 | site de boucher | site | boucherie | GS (24/10) | basse | variante, couverte par site-internet-boucherie |
 | bouquet de fleurs click and collect | click & collect | fleuriste | GS (25/10) | moyenne | couvert par click-and-collect-fleuriste |
-| application pour fleuriste | click & collect | fleuriste | GS (25/10) | moyenne | à faire : FAQ ou section d'un futur article site internet fleuriste |
+| application pour fleuriste | click & collect | fleuriste | GS (25/10) | moyenne | couvert en variante et FAQ « Quel logiciel… » de creation-site-internet-fleuriste (2026-10-30) |
 | logiciel caisse fleuriste | transverse | fleuriste | GS (25/10) | basse | écarté (intention caisse, hors périmètre) |
 | fleuriste livraison à domicile | livraison | fleuriste | GS (25/10) | haute | à faire (angle : fleuriste de quartier qui livre lui-même, sans réseau de transmission) |
 | logiciel commande pizzeria | click & collect | pizzeria | GS (25/10) | haute | couvert par logiciel-livraison-pizza (2026-10-26, section « Que doit faire un bon logiciel de commande pour pizzeria ? ») |
@@ -198,3 +198,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | plateforme livraison indépendant | livraison | tous | GS (29/10) | basse | intention livreur auto-entrepreneur, hors cible ; écarté |
 | traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | à fondre dans « traiteur noël livraison à domicile » (créneaux du 31) |
 | comment éviter les commandes non récupérées click and collect | click & collect | tous | IA (29/10 : ChatGPT et l'aperçu IA de Google citent economie.gouv.fr et Info-Ecommerce, l'empreinte bancaire n'est jamais évoquée) | haute | à faire : refresh de empreinte-bancaire-no-show-commerce-restaurant (H2 sur la requête exacte, réponse directe en tête) plutôt qu'un nouvel article |
+| site web fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
+| site de fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
+| comment vendre des fleurs en ligne | site | fleuriste | GS (30/10) | moyenne | couvert en partie par click-and-collect-fleuriste ; à reprendre en FAQ |
+| site internet pizza | site | pizzeria | GS (30/10) | moyenne | à faire avec « site internet pour pizzeria » (1re page : grandes enseignes, modèles de sites, annonces de freelances) |
+| creation site internet pizzeria | site | pizzeria | GS (30/10) | haute | à faire avec « site internet pour pizzeria » |
+| site pizzeria menu | site | pizzeria | GS (30/10) | moyenne | section de l'article site internet pizzeria |
+| site de poissonnerie | site | poissonnerie | GS (30/10) | moyenne | à faire avec « poissonnerie en ligne livraison » (confirmé par la suggestion du jour) |
+| site de fromagerie | site | fromagerie | GS (30/10) | moyenne | à faire avec « fromagerie internet » |
+| site vitrine ou landing page | site | tous | GS (30/10) | basse | à fondre dans un article « site vitrine ou e commerce » |
