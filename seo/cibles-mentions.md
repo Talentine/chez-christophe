@@ -31,6 +31,11 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | furnoagency.com / devwebpro.fr / sitew.com | blog d'agence ou constructeur | Google, fleuriste (30/10) | aucune mention possible (agences, constructeur) | automatique | sans objet |
 | oaka | à vérifier (première source de Perplexity sur les bûches) | Perplexity, bûches de Noël (30/10) | regarder ce qu'est ce site ; si c'est un média ou un comparatif, proposer un article (message type 2) | Paul | à vérifier |
 | chronofresh.fr + guide « chaîne du froid » du ministère de l'Agriculture | transporteur + institutionnel | ChatGPT, poisson frais à domicile (30/10) | aucune mention possible : citer ces règles (0 à +2 °C) dans poissonnerie-livraison-a-domicile | automatique | à faire |
+| fromage.fr (« Fromager, comment vendre du fromage en ligne ? », 2022) | média de la filière | Google, vente au poids pour un fromager (31/10, 1er résultat) | proposer une mise à jour ou un article de conseil sur la vente à la coupe (message type 2) | Paul | à faire |
+| reussir.fr (« Vendre ses fromages sur internet », 2019) | média professionnel | Google, même question (31/10) | proposer un article récent sur la vente directe locale (message type 2) | Paul | à faire |
+| farmzz | à vérifier (première source de Perplexity sur la vente au poids) | Perplexity, même question (31/10) | regarder ce qu'est ce site ; si c'est un blog ouvert ou un comparatif, proposer un ajout (message type 1) | Paul | à vérifier |
+| lafabriquedunet.fr (guide vente alimentaire, poids variable) | comparatif | Perplexity, même question (31/10) ; déjà cité pour la boutique pas chère (20/10) et le traiteur (29/10) | même demande que la ligne déjà listée (message type 1), cité sur 3 questions | Paul | à faire (priorité relevée) |
+| mon-commerce-local.fr / devantio.fr / webtensor.fr / rekire.com | blog d'éditeur ou d'agence (concurrents) | Google, même question (31/10) ; mon-commerce-local a une page dédiée à la vente au poids | aucune mention possible : renforcer vendre-au-poids-en-ligne (ajouté aux mots-clés IA) | automatique | à faire |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
 

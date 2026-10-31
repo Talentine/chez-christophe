@@ -21,7 +21,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boucherie click and collect | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie |
 | commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | à faire (publier début novembre) |
 | commande bûche de noël en ligne | click & collect | boulangerie | GS + IA (30/10 : ChatGPT répond côté client, Perplexity cite des pâtisseries et Shopify) | haute | publié le 2026-10-30 + commande-buche-de-noel-en-ligne |
-| shopify ou logiciel local pour fleuriste | transverse | fleuriste | IA (30/10 : Shopify choix n°1 de ChatGPT et Perplexity pour un fleuriste) | haute | à faire : comparatif honnête « Shopify ou boutique locale pour un fleuriste » |
+| shopify ou logiciel local pour fleuriste | transverse | fleuriste | IA (30/10 : Shopify choix n°1 de ChatGPT et Perplexity pour un fleuriste) | haute | publié le 2026-10-31 + alternative-shopify-fleuriste |
 | application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
 | logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
 | quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |
@@ -217,3 +217,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison commerce de proximité | livraison | tous | GS (31/10) | basse | couvert par livraison-locale-commercant-comment-organiser |
 | livraison ou click and collect boucherie | transverse | boucherie | IA (31/10 : nakide.fr, page de 2021, seule à comparer les deux pour un boucher) | moyenne | à faire : comparatif court ou section à ajouter à boucherie-livraison-a-domicile |
 | hygiène haccp livraison viande | livraison | boucherie | IA (31/10 : Perplexity cite le suivi HACCP et octopus-haccp) | moyenne | à faire avec « transport de viande réglementation » |
+| alternative à shopify fleuriste | transverse | fleuriste | IA (31/10 : formulation « alternative à <plateforme> », priorité ChatGPT) | haute | publié le 2026-10-31 + alternative-shopify-fleuriste |
+| logiciel vente au poids fromagerie | click & collect | fromagerie | IA (31/10 : ChatGPT recommande WooCommerce ou PrestaShop, Perplexity cite farmzz et lafabriquedunet) | haute | à faire : refresh de vendre-au-poids-en-ligne (section fromager, tableau des outils, FAQ « Quel outil… ») |
+| click and collect définition commerçant | click & collect | tous | IA (31/10 : ChatGPT cite francenum, conseille téléphone, WhatsApp et réseaux) | moyenne | à faire : renforcer la définition en tête de click-and-collect-commercant-guide-complet avec une section « sans site marchand » |

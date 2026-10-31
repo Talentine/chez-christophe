@@ -38,6 +38,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Alternative à Shopify pour un fleuriste : que choisir ?](https://marchéo.fr/blog/alternative-shopify-fleuriste) : Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
 - [Boucherie livraison à domicile : livrer vos clients vous-même](https://marchéo.fr/blog/boucherie-livraison-a-domicile) : Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
 - [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
 - [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.

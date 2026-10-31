@@ -3,6 +3,7 @@ title: "Création site internet fleuriste : pages, prix et commandes"
 titre_court: "Créer le site internet de son fleuriste"
 description: "Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission."
 date: 2026-10-30
+modified: 2026-10-31
 rubrique: Métier
 emoji: 💐
 keywords:
@@ -91,7 +92,7 @@ Le prix dépend surtout de qui crée le site et de ce qu'il doit faire. Voici le
 | Plateforme à commission | 14 à 30 % par commande selon les services | Visibilité, mais le coût monte avec vos ventes |
 | Logiciel métier comme Marchéo | 19, 39 ou 59 € par mois, sans engagement | Catalogue fleuriste prêt, 0 % de commission |
 
-Chez Marchéo, les frais d'installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click & Collect avec Réservation et 549 € pour le Click & Collect avec Livraison. Votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, et l'hébergement est compris. Si vous possédez un nom de domaine, vous pouvez le garder et y placer un lien ou une redirection vers votre site.
+Chez Marchéo, les frais d'installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click & Collect avec Réservation et 549 € pour le Click & Collect avec Livraison. Votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, et l'hébergement est compris. Si vous possédez un nom de domaine, vous pouvez le garder et y placer un lien ou une redirection vers votre site. Si vous hésitez avec Shopify, voici notre comparatif pour choisir une [alternative à Shopify pour un fleuriste](/blog/alternative-shopify-fleuriste).
 
 ## Que faut-il pour démarrer, et que ne faut-il pas ?
 

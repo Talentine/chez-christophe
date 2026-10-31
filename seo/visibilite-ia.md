@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°19.
+Prochaine question en rotation : n°21.
 
 ## Relevés
 
@@ -85,6 +85,13 @@ Prochaine question en rotation : n°19.
 | 2026-10-31 | Perplexity | Comment organiser la livraison à domicile pour une boucherie ? (mot-clé du matin) | non | francenum.gouv (+1), sumup, mon-marche, marbledbeef, octopus-haccp ; site propre, plateformes Glovo et Uber Eats, 0 à 4 °C, suivi HACCP, aucun logiciel nommé ; article du matin pas encore en ligne |
 | 2026-10-31 | Perplexity | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? (n°18) | non | spoton, eazyclick, chatfood, agence.dynseo, menuviel, slice ; site de commande, WhatsApp Business, QR code, caisse connectée |
 | 2026-10-31 | Google | Comment organiser la livraison à domicile pour une boucherie ? | pas d'aperçu IA ; marchéo.fr absent des premiers résultats | kontakts.pro (1er), jdc.fr, monouso.fr, nakide.fr, leblogdudirigeant, tactill, orisha, lsa-conso |
+| 2026-10-31 (2e mesure, 16 h) | ChatGPT | Click and collect, ça veut dire quoi pour un commerçant ? | non | francenum.gouv (+1) ; définition, commandes par téléphone, WhatsApp, Facebook ou Instagram, aucun outil nommé |
+| 2026-10-31 (2e mesure, 16 h) | ChatGPT | Comment vendre au poids en ligne pour un fromager ? | non | economie.gouv.fr (+2) ; recommande WooCommerce ou PrestaShop, cite Shopify et le sur-mesure |
+| 2026-10-31 (2e mesure, 16 h) | ChatGPT | Comment organiser la livraison à domicile pour une boucherie ? (mot-clé du matin) | non | ministère de l'Agriculture (+2) ; WhatsApp Business en 1er conseil, aucun outil nommé ; article du matin trop récent |
+| 2026-10-31 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (0 %, 39 à 59 €/mois, fichier clients conservé, livraison à organiser soi-même), page tarifs Uber Eats (20 à 30 %) ; conseille de combiner les deux |
+| 2026-10-31 (2e mesure, 16 h) | Perplexity | Comment vendre au poids en ligne pour un fromager ? | non | farmzz, lafabriquedunet (10 sources) ; poids estimé puis ajusté, formats à prix fixe, aucun outil nommé dans le résumé |
+| 2026-10-31 (2e mesure, 16 h) | Google | Comment vendre au poids en ligne pour un fromager ? | pas d'aperçu IA ; marchéo.fr présent (page fromagerie, vers le 7e résultat), article vendre-au-poids-en-ligne absent | fromage.fr, mon-comptoir.com, devantio.fr, mon-commerce-local.fr, webtensor.fr, rekire.com, reussir.fr, moncasierfrais.fr |
+| 2026-10-31 (2e mesure, 16 h) | Google | Click and collect, ça veut dire quoi pour un commerçant ? | pas d'aperçu IA ; marchéo.fr absent du début de page | economie.gouv.fr, Solocal, Wikipédia, mypos, Generix ; annonces Shopify et Microco |
 
 ## Bilans hebdomadaires (le lundi)
 

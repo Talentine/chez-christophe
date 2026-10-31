@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/alternative-shopify-fleuriste",
   "/blog/boucherie-livraison-a-domicile",
   "/blog/commande-buche-de-noel-en-ligne",
   "/blog/creation-site-internet-fleuriste",
