@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-10-29
+modified: 2026-10-31
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -165,7 +165,7 @@ Pour le détail des prix du marché, voyez [combien coûte un site de click & co
 Chaque métier livre des produits différents, avec ses contraintes. Voici les points à régler en priorité.
 
 - **Boulangerie.** Livraison des commandes de gâteaux, de pains pour les restaurants voisins ou des petits déjeuners du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie).
-- **Boucherie.** Colis de viande et commandes de la semaine, au froid. Voir [la solution pour boucherie](/solutions/boucherie).
+- **Boucherie.** Colis de viande et commandes de la semaine, au froid. Voir [la solution pour boucherie](/solutions/boucherie) et notre guide [boucherie livraison à domicile](/blog/boucherie-livraison-a-domicile).
 - **Primeur.** Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir [la solution pour primeur](/solutions/primeur) et le [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson et plateaux de fruits de mer, tournée très courte. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre guide [poissonnerie livraison à domicile](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
@@ -186,6 +186,7 @@ Pour voir à quoi ressemblerait votre boutique avec la livraison, rendez-vous su
 Les autres guides du blog sur la livraison et la vente en ligne :
 
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](/blog/poissonnerie-livraison-a-domicile)
+- [Boucherie livraison à domicile : livrer vos clients vous-même](/blog/boucherie-livraison-a-domicile)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)

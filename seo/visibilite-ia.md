@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°18.
+Prochaine question en rotation : n°19.
 
 ## Relevés
 
@@ -82,6 +82,9 @@ Prochaine question en rotation : n°18.
 | 2026-10-30 | Perplexity | Comment prendre les commandes de bûches de Noël en ligne ? | non | oaka, christopherhedon, micielopatisserie, boulangerie-chezflo, argel, agathe-olivet ; Shopify, WooCommerce, Google Forms, Tally |
 | 2026-10-30 | Google | Quel site pour un fleuriste qui veut vendre des bouquets en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | 123ventes.com (1er, 29,90 €/mois sans commission), furnoagency.com, sessile.fr, mon-comptoir.com, sitew.com, devwebpro.fr, Shopify (annonce) |
 | 2026-10-30 | Google | Comment prendre les commandes de bûches de Noël en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | surtout des pâtisseries qui vendent ; commandes-et-moi.fr (seule page pour commerçants, « Précommande de Noël ») |
+| 2026-10-31 | Perplexity | Comment organiser la livraison à domicile pour une boucherie ? (mot-clé du matin) | non | francenum.gouv (+1), sumup, mon-marche, marbledbeef, octopus-haccp ; site propre, plateformes Glovo et Uber Eats, 0 à 4 °C, suivi HACCP, aucun logiciel nommé ; article du matin pas encore en ligne |
+| 2026-10-31 | Perplexity | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? (n°18) | non | spoton, eazyclick, chatfood, agence.dynseo, menuviel, slice ; site de commande, WhatsApp Business, QR code, caisse connectée |
+| 2026-10-31 | Google | Comment organiser la livraison à domicile pour une boucherie ? | pas d'aperçu IA ; marchéo.fr absent des premiers résultats | kontakts.pro (1er), jdc.fr, monouso.fr, nakide.fr, leblogdudirigeant, tactill, orisha, lsa-conso |
 
 ## Bilans hebdomadaires (le lundi)
 

@@ -3,7 +3,7 @@ title: "Click and collect boucherie : prendre les commandes de viande en ligne"
 titre_court: "Click and collect pour boucherie"
 description: "Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission."
 date: 2026-10-28
-modified: 2026-10-29
+modified: 2026-10-31
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -102,7 +102,7 @@ Trois réglages font la différence :
 2. **Des créneaux élargis** les jours de fête, avec un plafond par créneau.
 3. **Une liste de préparation** pour savoir combien de chapons commander à l'éleveur.
 
-Ouvrez vos précommandes de Noël dès la mi-novembre. Notre guide des [précommandes des fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) détaille le calendrier.
+Annoncez vos commandes de Noël dès la mi-novembre. Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Notre guide des [précommandes des fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) détaille le calendrier.
 
 ## Combien coûte le click and collect pour une boucherie ?
 
@@ -128,7 +128,7 @@ Il vous faut peu de choses, et rien de nouveau à acheter. Marchéo est le logic
 | Le téléphone ou l'ordinateur que vous avez déjà | Une commission sur chaque commande |
 | De la place en chambre froide pour les commandes prêtes | Un engagement de longue durée |
 
-Si vous voulez aussi un vrai site pour votre boutique, avec vos horaires, votre histoire et vos éleveurs, lisez notre guide pour créer le [site internet de votre boucherie](/blog/site-internet-boucherie).
+Si vous voulez aussi un vrai site pour votre boutique, avec vos horaires, votre histoire et vos éleveurs, lisez notre guide pour créer le [site internet de votre boucherie](/blog/site-internet-boucherie). Et si vos clients ne peuvent pas toujours passer, voyez comment lancer la [livraison à domicile dans votre boucherie](/blog/boucherie-livraison-a-domicile).
 
 ## Par où commencer ?
 

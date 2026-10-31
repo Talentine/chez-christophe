@@ -38,6 +38,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Boucherie livraison à domicile : livrer vos clients vous-même](https://marchéo.fr/blog/boucherie-livraison-a-domicile) : Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
 - [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
 - [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
@@ -72,7 +73,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-10-30
+- Dernière mise à jour : 2026-10-31
 
 
 ---
@@ -766,6 +767,162 @@ R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que l
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
+# Boucherie livraison à domicile : livrer vos clients vous-même
+
+Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
+
+Pour lancer la livraison à domicile dans votre boucherie, il faut une zone courte, deux ou trois créneaux fixes par semaine, une chaîne du froid tenue jusqu&rsquo;à la porte du client et un moyen d&rsquo;ajuster le prix au poids réel. Vous livrez vous-même vos habitués, sans plateforme et sans commission. Tout se règle depuis votre téléphone, sans matériel à acheter pour gérer les commandes.
+Le cadre général, valable pour tous les commerces, est dans notre guide complet de la livraison à domicile pour commerçant. Ici, on parle de ce qui change quand on livre de la viande : le froid, les colis, le poids variable et une clientèle qui revient chaque semaine.
+Pourquoi proposer la livraison à domicile dans une boucherie ?
+La livraison vous apporte les ventes des clients qui ne peuvent plus passer en boutique. Une partie de vos habitués vous reste fidèle, mais vient moins souvent : horaires décalés, âge, déménagement, panier lourd à porter.
+
+Les personnes âgées, fidèles au boucher mais qui se déplacent moins.
+Les familles qui remplissent le congélateur avec un colis pour la semaine.
+Les actifs qui rentrent après votre fermeture.
+
+Livrer soi-même, expédier ou passer par une plateforme ?
+Pour un boucher de quartier, livrer soi-même est souvent le meilleur choix, car vous gardez le prix, le client et la maîtrise du froid. L&rsquo;expédition de colis par transporteur, proposée par les boucheries en ligne, est un autre métier, tourné vers la vente nationale.
+
+
+
+
+Vous livrez vous-même
+Colis par transporteur
+Plateforme de livraison
+
+
+
+
+Zone
+Votre quartier, les communes voisines
+Toute la France
+Celle de la plateforme
+
+
+Froid
+Maîtrisé par vous
+Emballage isotherme spécifique à prévoir
+Pensée pour les repas chauds
+
+
+Commission
+0 % avec un abonnement fixe
+Aucune, mais un coût de port
+14 à 30 % en général
+
+
+Adapté à
+Habitués, commandes de la semaine
+Vente nationale, gros volumes
+Découverte, plats préparés
+
+
+
+Comment respecter la chaîne du froid pour livrer de la viande ?
+La viande doit rester à la bonne température du comptoir jusqu&rsquo;à la remise au client, et c&rsquo;est la première chose à régler. Les températures à respecter dépendent du produit : elles sont plus strictes pour la viande hachée et les abats que pour les pièces entières. Le texte de référence pour le commerce de détail est l&rsquo;arrêté du 21 décembre 2009. Avant de commencer, faites confirmer votre organisation par la DDPP de votre département ou votre chambre de métiers.
+Pour une tournée locale, ces réflexes couvrent l&rsquo;essentiel :
+
+Préparez au dernier moment. Gardez les commandes en chambre froide jusqu&rsquo;au départ.
+Hachez à la commande, juste avant la tournée, ou réservez la viande hachée au retrait en boutique.
+Utilisez des caisses isothermes avec des plaques eutectiques, propres et réservées à cet usage.
+Emballez chaque commande à part, étiquetée au nom du client, en séparant le cru et le cuit.
+Prenez la température au départ et à la fin de la tournée, et notez-la.
+Limitez la tournée à une heure environ, et remettez toujours la commande en main propre.
+
+Pensez aussi à prévenir votre assureur si votre véhicule sert désormais à livrer.
+Quelle zone et quels créneaux choisir pour une boucherie ?
+Une zone que vous couvrez en une heure et des créneaux fixes rendent la livraison rentable. Commencez par votre quartier et les communes voisines, là où vos clients habitent déjà.
+
+
+
+Créneau
+Pour qui
+À savoir
+
+
+
+
+Mardi ou mercredi fin de matinée
+Retraités, télétravail
+Souvent plus calme en boutique
+
+
+Jeudi ou vendredi fin d&rsquo;après-midi
+Familles, actifs
+Colis pour le week-end
+
+
+Samedi en fin de matinée
+Repas du dimanche
+À éviter si vous êtes seul au comptoir
+
+
+
+Évitez de livrer pendant vos heures de pointe, sauf si quelqu&rsquo;un tient la boutique. Fixez une heure limite, par exemple la veille à 18 h, pour commander la bonne quantité et découper à temps.
+Sur Marchéo, les créneaux s&rsquo;ouvrent sur les deux semaines à venir. Pour les fêtes, annoncez votre offre tôt, puis ouvrez les commandes de livraison du 24 décembre autour du 11 décembre. Le calendrier complet est dans notre guide des précommandes des fêtes.
+Quels produits proposer en livraison ?
+Commencez par les colis et les commandes qui reviennent, car ce sont les plus simples à préparer et à livrer.
+
+Les colis : colis familial, colis barbecue, colis volaille, avec le poids total et le prix.
+Les habitudes de la semaine : rôtis, volailles, viandes à mijoter, saucisses maison.
+La viande halal certifiée, si vous en vendez, avec l&rsquo;organisme de certification sur la fiche.
+
+Gardez au retrait en boutique ce qui voyage mal ou demande un échange avec le client. Pour tout ce qui ne se livre pas, le click and collect en boucherie prend le relais.
+Combien facturer la livraison pour une boucherie ?
+Partez du coût réel d&rsquo;une tournée, puis fixez un minimum de commande et des frais lisibles. Comptez votre temps ou celui d&rsquo;un salarié, le carburant et les emballages, puis divisez par le nombre de commandes livrées.
+Pour une boucherie, une base de départ prudente est un minimum de 30 à 40 €, des frais de 4 à 6 €, et la livraison offerte à partir de 70 €. Ajustez selon vos distances et votre clientèle. La méthode est détaillée dans notre article pour calculer ses frais de livraison.
+Comment gérer le poids réel et le paiement ?
+Le prix affiché à la commande est une estimation, et le montant final dépend de votre pesée. Le client commande un rôti d&rsquo;environ 1,2 kg, vous pesez 1,27 kg, et vous facturez le poids réel.
+
+Le paiement à la livraison se fait au montant exact, mais vous prenez le risque du client absent.
+L&rsquo;empreinte bancaire, optionnelle sur Marchéo, bloque jusqu&rsquo;à 75 % du panier sur la carte sans le débiter. Elle est libérée automatiquement 24 heures après. Vous êtes couvert si personne n&rsquo;ouvre.
+
+Les réglages par pièce, tranche ou kilo sont expliqués dans notre article pour vendre au poids en ligne.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Pour livrer vos clients, il vous faut de quoi transporter la viande au froid et un outil de commande, mais aucun équipement informatique nouveau.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Un véhicule et du temps pour la tournée
+Des coursiers ou une société de livraison
+
+
+Des caisses isothermes et un thermomètre
+Une tablette ou une imprimante à acheter
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un développeur ou une agence
+
+
+Une zone, des créneaux, un minimum et des frais
+Une commission sur chaque commande
+
+
+
+Comment Marchéo aide une boucherie à livrer ?
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : c&rsquo;est l&rsquo;outil qui vous permet d&rsquo;organiser votre propre livraison. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Vous réglez votre zone, vos créneaux et leur nombre maximum de commandes, votre minimum et vos frais. Vous retrouvez ensuite les commandes à livrer par créneau, avec les adresses pour préparer la tournée. Le client commande en 30 secondes, sans créer de compte.
+La formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, à 0 % de commission, avec 549 € de frais d&rsquo;installation uniques.
+Par où commencer ?
+Lancez un seul créneau par semaine, sur une zone courte, avec vos habitués. Au bout d&rsquo;un mois, vous saurez quel jour fonctionne.
+Si vous n&rsquo;avez pas encore de présence en ligne, commencez par le site internet de votre boucherie. Les fonctions prévues pour votre métier sont sur la solution pour boucherie. Pour voir votre boutique, la démo gratuite prend 30 secondes : choisissez « Boucherie », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Quel logiciel pour une boucherie qui veut livrer ses clients elle-même ?
+R : Il faut un outil qui prenne les commandes en ligne, gère la vente au kilo, la zone, les créneaux et la liste de tournée. Les optimiseurs de tournée comme Routific ou Shipday calculent l'itinéraire mais ne prennent pas les commandes, et les plateformes prélèvent en général 14 à 30 % de commission. Marchéo réunit le tout dans la formule Click & Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.
+Q : Faut-il acheter du matériel pour livrer à domicile quand on est boucher ?
+R : Pas pour gérer les commandes : avec Marchéo, tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter. Pour transporter la viande, il vous faut en revanche un véhicule, des caisses isothermes avec des plaques eutectiques et un thermomètre.
+Q : Un boucher a-t-il besoin d'un camion frigorifique pour livrer ?
+R : Pas forcément pour une courte tournée locale. La règle est de garder la viande à la bonne température jusqu'à la remise au client, quel que soit le véhicule. Le moyen de transport adapté dépend de vos volumes, de vos distances et de vos produits : demandez à la DDPP de votre département ce qui est attendu dans votre cas.
+Q : Que faire si le client n'est pas là à la livraison ?
+R : Ne laissez pas la viande devant la porte, car le froid n'est plus garanti. Prévenez le client avant votre passage, appelez-le s'il n'ouvre pas, puis rapportez la commande au froid. Écrivez à l'avance dans vos conditions ce qui se passe en cas d'absence. Une empreinte bancaire limite aussi le risque de commande perdue.
+
 # Comment prendre les commandes de bûches de Noël en ligne
 
 Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
@@ -1369,7 +1526,7 @@ Une date limite de commande quelques jours avant le 24 et le 31 décembre.
 Des créneaux élargis les jours de fête, avec un plafond par créneau.
 Une liste de préparation pour savoir combien de chapons commander à l&rsquo;éleveur.
 
-Ouvrez vos précommandes de Noël dès la mi-novembre. Notre guide des précommandes des fêtes pour les commerces de bouche détaille le calendrier.
+Annoncez vos commandes de Noël dès la mi-novembre. Sur Marchéo, les créneaux s&rsquo;ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Notre guide des précommandes des fêtes pour les commerces de bouche détaille le calendrier.
 Combien coûte le click and collect pour une boucherie ?
 Le coût dépend surtout du modèle choisi : abonnement fixe ou commission sur chaque commande. Voici les grandes familles, avec des fourchettes prudentes.
 
@@ -1432,7 +1589,7 @@ Un engagement de longue durée
 
 
 
-Si vous voulez aussi un vrai site pour votre boutique, avec vos horaires, votre histoire et vos éleveurs, lisez notre guide pour créer le site internet de votre boucherie.
+Si vous voulez aussi un vrai site pour votre boutique, avec vos horaires, votre histoire et vos éleveurs, lisez notre guide pour créer le site internet de votre boucherie. Et si vos clients ne peuvent pas toujours passer, voyez comment lancer la livraison à domicile dans votre boucherie.
 Par où commencer ?
 Commencez par voir à quoi ressemblerait votre boutique. Sur la page d&rsquo;inscription, choisissez « boucherie », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Ajoutez ensuite vos colis et vos créneaux à votre rythme. Toutes les fonctions prévues pour votre métier sont sur la solution pour boucherie.
 
@@ -4712,7 +4869,7 @@ La livraison à domicile selon votre métier
 Chaque métier livre des produits différents, avec ses contraintes. Voici les points à régler en priorité.
 
 Boulangerie. Livraison des commandes de gâteaux, de pains pour les restaurants voisins ou des petits déjeuners du dimanche. Voir la solution pour boulangerie.
-Boucherie. Colis de viande et commandes de la semaine, au froid. Voir la solution pour boucherie.
+Boucherie. Colis de viande et commandes de la semaine, au froid. Voir la solution pour boucherie et notre guide boucherie livraison à domicile.
 Primeur. Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir la solution pour primeur et le click and collect primeur.
 Poissonnerie. Poisson et plateaux de fruits de mer, tournée très courte. Voir la solution pour poissonnerie et notre guide poissonnerie livraison à domicile.
 Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir la solution pour traiteur et la création de site internet de traiteur.
@@ -4729,6 +4886,7 @@ Pour voir à quoi ressemblerait votre boutique avec la livraison, rendez-vous su
 Les autres guides du blog sur la livraison et la vente en ligne :
 
 Poissonnerie livraison à domicile : livrer sans casser le froid
+Boucherie livraison à domicile : livrer vos clients vous-même
 Click and collect sans commission
 Empreinte bancaire et no-show
 Vendre au poids en ligne

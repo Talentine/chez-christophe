@@ -31,7 +31,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | comment mettre en place le click and collect dans sa boutique | click & collect | transverse | GS | moyenne | publié le 2026-10-21 click-and-collect-commercant-guide-complet (section dédiée de la page pilier) |
 | qr code commande restaurant | click & collect | restaurant | GS | moyenne | à faire |
 | qr code commande à table | click & collect | restaurant | GS | moyenne | à faire |
-| livraison à domicile boucherie | livraison | boucherie | GS | haute | à faire (angle : livrer soi-même) |
+| livraison à domicile boucherie | livraison | boucherie | GS + WS (31/10 : 1re page = annuaires et boucheries parisiennes, aucun guide pour boucher) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
 | primeur livraison à domicile | livraison | primeur | GS | moyenne | partiellement couvert par livraison-locale-commercant-comment-organiser |
 | fromagerie livraison à domicile | livraison | fromagerie | GS | moyenne | à faire (pas avant novembre, fromagerie publiée le 16/10) |
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS + WS (1re page : PDF administratifs, annuaires, faible) | haute | publié le 2026-10-18 poissonnerie-livraison-a-domicile |
@@ -145,7 +145,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | frais de livraison comment calculer | livraison | transverse | GS (23/10) | moyenne | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant (requête principale : « comment calculer ses frais de livraison ») |
 | application tournée de livraison gratuit | livraison | transverse | GS (23/10) | moyenne | même article que « logiciel tournée de livraison gratuit commerçant » |
 | livraison à domicile paiement en espèces | livraison | transverse | GS (23/10) | basse | à fondre en FAQ d'un article paiement à la livraison |
-| boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | à faire avec « livraison à domicile boucherie » (boucher de quartier qui livre, pas e-boucherie qui expédie) |
+| boucherie en ligne livraison à domicile | livraison | boucherie | GS (23/10) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile (variante) |
 | site internet boucherie | site | boucherie | GS (24/10) + WS (1re page : portfolio de graphiste, blog d'agence à Dakar, annuaires : aucun guide pour boucher de quartier) | haute | publié le 2026-10-24 site-internet-boucherie |
 | logiciel prise de commande boucherie | click & collect | boucherie | GS (24/10) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |
 | logiciel gestion boucherie gratuit | transverse | boucherie | GS (24/10) | basse | écarté (intention caisse et gestion de stock, hors périmètre) |
@@ -180,8 +180,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | marchéo avis / marchéo prix | marque | tous | IA (27/10) | haute | couvert par a-propos (10 faits, limites, FAQ alternatives) ; à suivre dans visibilite-ia.md |
 | click and collect boucherie | click & collect | boucherie | GS + WS (28/10 : 1re page = guides généralistes, HubSpot, Fiducial, aucune page boucher) | haute | publié le 2026-10-28 + click-and-collect-boucherie |
 | boucherie commande noel | click & collect | boucherie | GS (28/10) | haute | à faire mi-novembre : précommandes de Noël en boucherie (chapons, rôtis, date limite) |
-| livraison colis viande à domicile | livraison | boucherie | GS (28/10) | moyenne | à faire avec « livraison à domicile boucherie » (boucher de quartier, pas expédition) |
-| application livraison boucherie | livraison | boucherie | GS (28/10) | moyenne | à faire avec « livraison à domicile boucherie » |
+| livraison colis viande à domicile | livraison | boucherie | GS (28/10) | moyenne | publié le 2026-10-31 boucherie-livraison-a-domicile (variante) |
+| application livraison boucherie | livraison | boucherie | GS (28/10) | moyenne | publié le 2026-10-31 boucherie-livraison-a-domicile (FAQ « Quel logiciel… ») |
 | boucherie vente en ligne | site | boucherie | GS (28/10) | basse | couvert par site-internet-boucherie et click-and-collect-boucherie |
 | logiciel caisse boucherie | transverse | boucherie | GS (28/10) | basse | écarté : intention caisse, Marchéo n'est pas une caisse ; FAQ possible « garder sa caisse » |
 | logiciel gestion boucherie gratuit | transverse | boucherie | GS (28/10) | basse | écarté : intention gestion/traçabilité, hors produit |
@@ -208,3 +208,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site de poissonnerie | site | poissonnerie | GS (30/10) | moyenne | à faire avec « poissonnerie en ligne livraison » (confirmé par la suggestion du jour) |
 | site de fromagerie | site | fromagerie | GS (30/10) | moyenne | à faire avec « fromagerie internet » |
 | site vitrine ou landing page | site | tous | GS (30/10) | basse | à fondre dans un article « site vitrine ou e commerce » |
+| boucherie livraison à domicile | livraison | boucherie | GS (31/10) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
+| livraison à domicile boucherie halal | livraison | boucherie | GS (31/10) | moyenne | couvert en section de boucherie-livraison-a-domicile ; article dédié possible si GSC le confirme |
+| transport de viande réglementation | livraison | boucherie | GS (31/10) | moyenne | à faire : article « transporter de la viande quand on est boucher » avec les températures vérifiées sur l'arrêté du 21/12/2009 |
+| repas noël livraison à domicile | livraison | traiteur | GS (31/10) | moyenne | à faire avec « traiteur noël livraison à domicile » (début novembre) |
+| traiteur noel en ligne | site | traiteur | GS (31/10) | moyenne | à faire avec « traiteur noël livraison à domicile » |
+| application click and collect gratuite | click & collect | tous | GS (31/10) | haute | à faire : ce qui est vraiment gratuit et ce qui ne l'est pas (vérifier l'absence de doublon) |
+| livraison commerce de proximité | livraison | tous | GS (31/10) | basse | couvert par livraison-locale-commercant-comment-organiser |
+| livraison ou click and collect boucherie | transverse | boucherie | IA (31/10 : nakide.fr, page de 2021, seule à comparer les deux pour un boucher) | moyenne | à faire : comparatif court ou section à ajouter à boucherie-livraison-a-domicile |
+| hygiène haccp livraison viande | livraison | boucherie | IA (31/10 : Perplexity cite le suivi HACCP et octopus-haccp) | moyenne | à faire avec « transport de viande réglementation » |
