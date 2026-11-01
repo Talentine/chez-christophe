@@ -19,7 +19,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
 | click and collect viande | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie (variante) |
 | boucherie click and collect | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie |
-| commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | à faire (publier début novembre) |
+| commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | couvert le 2026-11-01 par click-and-collect-poissonnerie (Google 01/11 : requête d'acheteur, vendeurs en ligne en 1re page, angle commerçant retenu) |
 | commande bûche de noël en ligne | click & collect | boulangerie | GS + IA (30/10 : ChatGPT répond côté client, Perplexity cite des pâtisseries et Shopify) | haute | publié le 2026-10-30 + commande-buche-de-noel-en-ligne |
 | shopify ou logiciel local pour fleuriste | transverse | fleuriste | IA (30/10 : Shopify choix n°1 de ChatGPT et Perplexity pour un fleuriste) | haute | publié le 2026-10-31 + alternative-shopify-fleuriste |
 | application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
@@ -125,7 +125,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | precommande noel | click & collect | tous | GS (21/10) | haute | à faire début novembre : guide des précommandes de fêtes en ligne (bûche, plateaux, foie gras, chapons), renvoie vers les articles métier de saison |
 | traiteur noël livraison à domicile | livraison | traiteur | GS (21/10) | haute | à faire début novembre : organiser la livraison des commandes de réveillon (créneaux du 24 et du 31, minimum, chaîne du froid) |
 | menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | à fondre dans l'article précédent (mettre son menu de réveillon en précommande en ligne) |
-| commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | variante de « commander un plateau de fruits de mer pour noël » (début novembre) |
+| commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | publié le 2026-11-01 click-and-collect-poissonnerie (variante) |
 | fromagerie internet | site | fromagerie | GS (21/10) | moyenne | à faire : site internet pour sa fromagerie (vente au poids, plateaux de fêtes) |
 | livraison à domicile code ape | livraison | tous | GS (21/10) | basse | écarté de la page pilier n°4 (2026-10-23) : formulation juridique non vérifiée, à ne traiter qu'avec une source officielle |
 | livreur à domicile indépendant | livraison | - | GS (21/10) | basse | écarté : intention emploi (devenir livreur), pas commerçant |
@@ -220,3 +220,14 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | alternative à shopify fleuriste | transverse | fleuriste | IA (31/10 : formulation « alternative à <plateforme> », priorité ChatGPT) | haute | publié le 2026-10-31 + alternative-shopify-fleuriste |
 | logiciel vente au poids fromagerie | click & collect | fromagerie | IA (31/10 : ChatGPT recommande WooCommerce ou PrestaShop, Perplexity cite farmzz et lafabriquedunet) | haute | à faire : refresh de vendre-au-poids-en-ligne (section fromager, tableau des outils, FAQ « Quel outil… ») |
 | click and collect définition commerçant | click & collect | tous | IA (31/10 : ChatGPT cite francenum, conseille téléphone, WhatsApp et réseaux) | moyenne | à faire : renforcer la définition en tête de click-and-collect-commercant-guide-complet avec une section « sans site marchand » |
+| click and collect poissonnerie | click & collect | poissonnerie | réserve + GS (01/11 : « poissonnerie commande en ligne ») | haute | publié le 2026-11-01 click-and-collect-poissonnerie |
+| poissonnerie commande en ligne | click & collect | poissonnerie | GS (01/11) | haute | publié le 2026-11-01 click-and-collect-poissonnerie (variante) |
+| solution click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | à faire avec « application click and collect restaurant » |
+| logiciel click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | à faire avec « application click and collect restaurant » |
+| logiciel commande restaurant gratuit | click & collect | restaurant | GS (01/11) | moyenne | à faire : angle ce qui est vraiment gratuit, avec « plateforme de commande en ligne restaurant gratuit » |
+| qr code commande restaurant | click & collect | restaurant | GS (01/11) | moyenne | à faire : QR code pour faire commander, à table ou en boutique |
+| qr code menu restaurant sans site internet | site | restaurant | GS (01/11) | moyenne | à faire |
+| commande foie gras noel | click & collect | tous | GS (01/11) | basse | à faire : requête d'acheteur, seulement si guide de saison commerçant |
+| commande non récupéré par le client | click & collect | tous | GS (01/11) | moyenne | à faire avec « comment éviter les commandes non récupérées click and collect » |
+| traiteur halal commande en ligne | click & collect | traiteur | GS (01/11) | basse | à faire |
+| formulaire google forms commande commerce limites | transverse | tous | IA (01/11 : ChatGPT conseille WhatsApp Business et Google Forms pour commencer) | moyenne | à faire : quand un formulaire suffit et quand il ne suffit plus |

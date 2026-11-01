@@ -38,6 +38,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
 - [Alternative à Shopify pour un fleuriste : que choisir ?](https://marchéo.fr/blog/alternative-shopify-fleuriste) : Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
 - [Boucherie livraison à domicile : livrer vos clients vous-même](https://marchéo.fr/blog/boucherie-livraison-a-domicile) : Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
 - [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
@@ -74,7 +75,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-10-31
+- Dernière mise à jour : 2026-11-01
 
 
 ---
@@ -767,6 +768,137 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Click and collect poissonnerie : plateaux de fruits de mer et Noël
+
+Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
+
+Le click and collect en poissonnerie consiste à laisser vos clients commander en ligne leur poisson ou leur plateau de fruits de mer, puis à le retirer en boutique au créneau choisi. Vous préparez selon les commandes, vous achetez plus juste à la marée, et les plateaux de Noël arrivent complets, sans carnet ni téléphone. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d&rsquo;installation uniques.
+Ce guide s&rsquo;adresse aux poissonniers de quartier, et complète notre guide complet du click &amp; collect pour commerçant. Pour voir ce qui est prévu pour votre métier, consultez la page click &amp; collect pour poissonnerie.
+Pourquoi proposer le click and collect dans une poissonnerie ?
+Le click and collect vous dit ce que vous devez préparer avant que le client n&rsquo;arrive. C&rsquo;est précieux dans un métier où le produit est cher, fragile et acheté le matin même. Il libère aussi le comptoir le vendredi et le samedi, quand chaque client demande de vider, d&rsquo;écailler ou de lever des filets.
+
+
+
+Sans commande en ligne
+Avec le click and collect poissonnerie
+
+
+
+
+Les commandes arrivent par téléphone, pendant le rush
+Elles arrivent par écrit, avec le créneau de retrait
+
+
+Vous achetez à la criée au jugé
+Les commandes déjà reçues vous donnent une base de quantités
+
+
+Le nom ou la quantité sont mal notés
+Le client saisit lui-même sa commande
+
+
+Le plateau préparé n&rsquo;est jamais retiré
+Il est payé d&rsquo;avance ou couvert par une empreinte
+
+
+
+Quels produits mettre en ligne dans une poissonnerie ?
+Commencez par ce qui se prépare à l&rsquo;avance et se vend régulièrement, pas par tout votre étal. Une carte courte se tient mieux, surtout avec des arrivages qui changent chaque jour.
+
+les plateaux de fruits de mer, en deux ou trois tailles ;
+le poisson du week-end, avec un choix limité d&rsquo;espèces habituelles ;
+les huîtres et coquillages à la douzaine ou au kilo ;
+le saumon fumé et les produits traiteur de la mer ;
+la soupe de poisson et les plats préparés maison.
+
+Gardez les pièces rares pour le comptoir. Quand un poisson manque, passez-le en indisponible depuis votre téléphone : il disparaît de la boutique. Ajoutez un champ de précisions pour le client (vidé, écaillé, en filets), afin de ne pas rappeler pour chaque commande.
+Comment vendre le poisson au poids en ligne ?
+Le plus simple est d&rsquo;afficher un prix au kilo et des portions types, puis d&rsquo;ajuster le montant à la pesée. Le client choisit une darne d&rsquo;environ 200 g ou un bar d&rsquo;environ 1 kg, et il sait que le poids exact peut varier.
+Dites-le clairement sur la fiche produit. Notre guide pour vendre au poids en ligne détaille les réglages et les formulations à employer.
+Comment prendre les commandes de plateaux de fruits de mer en ligne ?
+Pour prendre les commandes de plateaux de fruits de mer en ligne, créez une fiche par plateau, avec un prix fixe, un stock et un créneau de retrait obligatoire. Le plateau est le produit idéal pour le click and collect : son prix ne dépend pas d&rsquo;une pesée, et il demande de savoir à l&rsquo;avance ce qu&rsquo;il faut préparer.
+Chaque fiche doit répondre aux questions que le client vous poserait au téléphone :
+
+le nombre de personnes et le prix ;
+la composition exacte, avec les quantités ;
+une photo prise chez vous, du vrai plateau ;
+les huîtres ouvertes ou fermées, si vous proposez les deux ;
+la consigne, si vous prêtez un plateau de service ;
+les allergènes (crustacés, mollusques, poissons) ;
+la conservation et le conseil de consommer le jour du retrait ;
+la date limite de commande.
+
+Les denrées qui se périment vite échappent au droit de rétractation, à condition de l&rsquo;indiquer avant la commande. Ce point et les allergènes sont expliqués dans notre article sur les obligations légales d&rsquo;une boutique en ligne.
+Quand ouvrir les commandes de plateaux pour Noël ?
+Fixez votre carte début novembre, annoncez-la mi-novembre et ouvrez les commandes en ligne début décembre. Vos clients ont ainsi le temps de s&rsquo;organiser, et vos quantités sont connues avant vos dernières commandes à la marée.
+
+
+
+Période
+Ce que vous faites
+
+
+
+
+Début novembre
+Vous arrêtez vos plateaux, vos tailles et vos prix
+
+
+Mi-novembre
+Vous annoncez vos plateaux en vitrine, sur votre fiche Google et vos réseaux
+
+
+Début décembre
+Vous ouvrez les commandes et affichez la date limite
+
+
+18 au 20 décembre
+Vous clôturez les commandes pour le 24
+
+
+27 au 28 décembre
+Vous clôturez les commandes pour le 31
+
+
+24 et 31 décembre
+Vous remettez les plateaux selon les créneaux
+
+
+
+Un point à connaître sur Marchéo : les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Ceux du 24 décembre sont réservables à partir du 11 décembre environ, et ceux du 31 à partir du 18 décembre environ. Annoncez ces dates à vos clients. Pour les réservations plus précoces, gardez le téléphone ou un formulaire jusque-là. Le reste de la saison se prépare avec notre guide des précommandes de fêtes.
+Comment éviter les plateaux commandés et jamais retirés ?
+Le moyen le plus sûr est de faire payer le plateau en ligne à la commande. Son prix est fixe, donc rien ne reste à ajuster au retrait.
+Pour une commande passée peu de temps avant le retrait, l&rsquo;empreinte bancaire est une autre option. Avec Marchéo, elle est facultative et bloque jusqu&rsquo;à 75 % du panier sans débiter le client, puis elle est libérée 24 h après le retrait. Les banques limitent en général cette réservation à environ 7 jours : elle ne convient donc pas à une commande passée plusieurs semaines à l&rsquo;avance. Notre article sur l&rsquo;empreinte bancaire et le no-show détaille son fonctionnement.
+Comment organiser le retrait le 24 et le 31 décembre ?
+Imposez un créneau au moment de la commande et limitez le nombre de commandes par créneau. Le retrait s&rsquo;étale alors sur la journée, et les plateaux sortent du froid au bon moment.
+Prenons un exemple : vous pouvez remettre 6 commandes par demi-heure, sur 6 heures de retrait. Cela fait 12 tranches, donc 72 commandes au maximum. Si votre labo ne peut monter que 50 plateaux, c&rsquo;est le stock de 50 qui fixe la limite.
+Quelques gestes simples aident le jour même :
+
+montez les plateaux par créneau, pas tous à l&rsquo;ouverture ;
+gardez-les au froid, classés par heure de retrait ;
+ouvrez les huîtres le plus tard possible ;
+demandez au client de venir avec un sac isotherme s&rsquo;il a du trajet ;
+laissez une marge en fin de journée pour les retardataires.
+
+En 2026, le 24 et le 31 décembre tombent un jeudi : vérifiez que vos créneaux du jeudi sont bien réglés pour ces deux dates.
+Combien coûte le click and collect pour une poissonnerie ?
+Avec Marchéo, le click and collect coûte 39 € par mois et 0 % de commission, sans tablette, imprimante ou caisse à acheter. Votre téléphone suffit, et vous n&rsquo;avez pas besoin d&rsquo;un développeur.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+La formule à 39 € demande 399 € de frais d&rsquo;installation uniques et reste sans engagement. La formule à 59 € par mois, avec 549 € d&rsquo;installation, ajoute la livraison, que vous organisez vous-même : Marchéo ne livre pas et n&rsquo;a pas de coursiers. Notre guide pour livrer à domicile quand on est poissonnier explique comment tenir le froid.
+Marchéo a aussi d&rsquo;autres limites. Il n&rsquo;apporte pas de clients comme une place de marché : c&rsquo;est à vous de faire connaître votre boutique. Et si vous expédiez des colis partout en France, un site marchand généraliste vous conviendra mieux.
+Par où commencer cette semaine ?
+Commencez par fixer vos plateaux de fêtes et cinq ou six produits du week-end. Sur la page d&rsquo;inscription de Marchéo, choisissez « Poissonnerie », tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement.
+Une affiche en vitrine avec un QR code et un mot au comptoir suffisent ensuite à prévenir vos habitués. La boutique reste utile après les fêtes, pour le poisson du vendredi et les plateaux du week-end.
+
+Q : Quel logiciel de click and collect pour une poissonnerie ?
+R : Pour quelques plateaux par an, un formulaire gratuit peut suffire, à condition de recopier chaque commande. Si vous expédiez des colis partout en France, Shopify ou WooCommerce conviennent mieux. Pour le retrait en boutique, Marchéo est un logiciel français avec un catalogue poissonnerie prêt à modifier : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Faut-il acheter du matériel pour faire du click and collect en poissonnerie ?
+R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client règle par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.
+Q : Peut-on réserver un plateau de fruits de mer de Noël plusieurs semaines à l'avance ?
+R : Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ, et ceux du 31 décembre à partir du 18 décembre environ. Annoncez ces dates à vos clients.
+Q : Comment gérer un poisson vendu au poids en click and collect ?
+R : Vous affichez un prix au kilo et des portions types, par exemple une darne de 200 g ou un poisson entier d'environ 1 kg. Le client choisit, vous pesez à la préparation, et le montant final est ajusté au retrait. Une phrase sur la fiche produit suffit à prévenir que le poids peut varier.
 
 # Alternative à Shopify pour un fleuriste : que choisir ?
 
@@ -2998,7 +3130,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 Boulangerie. Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir la solution pour boulangerie, le guide du site internet de boulangerie et notre méthode pour prendre les commandes de bûches de Noël en ligne.
 Boucherie. Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article click and collect boucherie et voir la solution pour boucherie.
 Primeur. Paniers de la semaine, vente au kilo, fruits de saison. Voir la solution pour primeur et le guide du click and collect primeur.
-Poissonnerie. Poisson préparé, plateaux de fruits de mer. Voir la solution pour poissonnerie.
+Poissonnerie. Poisson préparé, plateaux de fruits de mer. Lire notre article click and collect poissonnerie et voir la solution pour poissonnerie.
 Traiteur. Plats du jour, plateaux, buffets. Voir la solution pour traiteur et la création de site internet de traiteur.
 Fromagerie. Coupes au poids, plateaux, formules raclette. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Le détail est dans notre article fleuriste click and collect. Voir aussi la solution pour fleuriste.
@@ -3020,6 +3152,7 @@ Précommandes des fêtes de fin d&rsquo;année
 Commandes de bûches de Noël en ligne
 Click and collect primeur
 Click and collect fromagerie
+Click and collect poissonnerie
 Click &amp; collect pour food-truck
 Site internet pour boulangerie
 Digitaliser son commerce de bouche
@@ -3474,7 +3607,7 @@ un catalogue poissonnerie déjà rempli, que vous ajustez selon l&rsquo;arrivage
 Le client commande en 30 secondes, sans créer de compte. La formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement et sans commission, avec 549 € de frais d&rsquo;installation uniques. Le retrait en boutique reste disponible pour ceux qui préfèrent passer.
 Par quoi commencer ?
 Lancez petit : une zone, deux créneaux par semaine, un minimum de commande. Prévenez vos clients habitués au comptoir et sur votre fiche Google. Au bout d&rsquo;un mois, vous saurez quels jours marchent et pourrez ajuster.
-La page dédiée à votre métier est ici : la solution pour poissonnerie. Pour voir à quoi ressemblerait votre boutique en ligne, la démo gratuite prend 30 secondes : vous choisissez « Poissonnerie », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
+Si vos clients préfèrent passer en boutique, notre guide du click and collect en poissonnerie explique comment prendre le poisson du week-end et les plateaux de fruits de mer en ligne. La page dédiée à votre métier est ici : la solution pour poissonnerie. Pour voir à quoi ressemblerait votre boutique en ligne, la démo gratuite prend 30 secondes : vous choisissez « Poissonnerie », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
 Q : Un poissonnier a-t-il besoin d'un camion frigorifique pour livrer ?
 R : Pas forcément pour une petite tournée locale. Beaucoup de commerçants commencent avec des caisses isothermes, de la glace et un thermomètre, sur des trajets courts. Les règles dépendent de vos volumes et de vos distances : la DDPP de votre département peut vous dire ce qui est attendu dans votre cas avant de vous lancer.
@@ -4068,18 +4201,18 @@ Vous arrêtez votre offre de fêtes : les 10 à 20 références que vous prendre
 
 
 Début novembre
-Vous ouvrez les précommandes sur les pièces qui demandent un engagement fournisseur : volailles fermières, gibier, foie gras, plateaux de fruits de mer, bûches.
+Vous prenez les premières réservations sur les pièces qui demandent un engagement fournisseur : volailles fermières, gibier, foie gras, plateaux de fruits de mer, bûches.
 
 
 Mi-novembre
-Vous ouvrez le reste et vous communiquez : affiche en vitrine, QR code sur le comptoir, SMS ou email à vos clients, publication sur votre fiche Google.
+Vous annoncez le reste et vous communiquez : affiche en vitrine, QR code sur le comptoir, SMS ou email à vos clients, publication sur votre fiche Google.
 
 
-10 au 15 décembre
-Date limite de commande pour le 24. Vous passez vos commandes fournisseurs avec des chiffres fermes.
+18 au 20 décembre
+Date limite de commande pour le 24. Vous passez vos dernières commandes fournisseurs avec des chiffres fermes.
 
 
-18 au 22 décembre
+27 au 28 décembre
 Date limite pour le 31. Vous éditez le planning de retraits et vous rappelez chaque créneau par SMS.
 
 
@@ -4094,7 +4227,7 @@ L&rsquo;erreur classique est de proposer aux fêtes tout ce qu&rsquo;on propose 
 Une bonne offre de fêtes tient sur une page :
 
 Boucherie : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
-Poissonnerie : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer.
+Poissonnerie : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer. Le réglage des plateaux est décrit dans notre guide du click and collect en poissonnerie.
 Fromagerie : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du click and collect pour fromagerie.
 Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un buffet apéritif par tranche de 10 personnes.
 Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour prendre les commandes de bûches de Noël en ligne.
@@ -4140,7 +4273,7 @@ Le vrai gain des fêtes n&rsquo;est pas seulement le chiffre de dix jours. C&rsq
 Vous pouvez voir à quoi ressemblerait votre boutique en 30 secondes, sans engagement et sans carte bancaire, depuis la page démo gratuite : choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu s&rsquo;affiche.
 
 Q : Quand faut-il ouvrir ses précommandes de Noël ?
-R : Début novembre pour les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines.
+R : Début novembre pour réserver les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste, et début décembre pour les commandes en ligne si votre outil n'ouvre les créneaux que deux semaines avant. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines.
 Q : Faut-il demander un acompte sur une commande de fêtes ?
 R : Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option, pour une commande passée peu de temps avant le retrait, est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait.
 Q : Comment éviter la file d'attente le 24 décembre ?

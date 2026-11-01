@@ -5,7 +5,7 @@ description: "Poissonnerie et livraison à domicile : zone, créneaux, glace et 
 meta_title: "Poissonnerie livraison à domicile : le guide pratique"
 meta_description: "Lancer la livraison à domicile dans votre poissonnerie : chaîne du froid, zone, créneaux, frais, poids variable et paiement. Sans plateforme ni commission."
 date: 2026-10-18
-modified: 2026-10-23
+modified: 2026-11-01
 rubrique: Métier
 emoji: 🐟
 keywords:
@@ -123,4 +123,4 @@ Le client commande en 30 secondes, sans créer de compte. La formule Click & Col
 
 Lancez petit : une zone, deux créneaux par semaine, un minimum de commande. Prévenez vos clients habitués au comptoir et sur votre fiche Google. Au bout d'un mois, vous saurez quels jours marchent et pourrez ajuster.
 
-La page dédiée à votre métier est ici : [la solution pour poissonnerie](/solutions/poissonnerie). Pour voir à quoi ressemblerait votre boutique en ligne, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Poissonnerie », vous tapez le nom de votre boutique, l'aperçu s'affiche.
+Si vos clients préfèrent passer en boutique, notre guide du [click and collect en poissonnerie](/blog/click-and-collect-poissonnerie) explique comment prendre le poisson du week-end et les plateaux de fruits de mer en ligne. La page dédiée à votre métier est ici : [la solution pour poissonnerie](/solutions/poissonnerie). Pour voir à quoi ressemblerait votre boutique en ligne, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Poissonnerie », vous tapez le nom de votre boutique, l'aperçu s'affiche.

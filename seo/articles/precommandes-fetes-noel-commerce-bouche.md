@@ -5,7 +5,7 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
-modified: 2026-10-30
+modified: 2026-11-01
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -22,7 +22,7 @@ metiers:
   - boulangerie
 faq:
   - q: "Quand faut-il ouvrir ses précommandes de Noël ?"
-    r: "Début novembre pour les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines."
+    r: "Début novembre pour réserver les pièces qui demandent une commande chez le fournisseur (volailles fermières, gibier, plateaux de fruits de mer), mi-novembre pour le reste, et début décembre pour les commandes en ligne si votre outil n'ouvre les créneaux que deux semaines avant. Ouvrir plus tôt ne sert à rien : les clients ne se projettent pas, et vous gardez des commandes en attente pendant six semaines."
   - q: "Faut-il demander un acompte sur une commande de fêtes ?"
     r: "Oui dès que la commande engage un achat de votre côté. Un acompte de 20 à 30 % suffit à filtrer les commandes fantômes. L'autre option, pour une commande passée peu de temps avant le retrait, est l'empreinte bancaire : le client n'est pas débité, le montant est simplement réservé sur sa carte et libéré après le retrait."
   - q: "Comment éviter la file d'attente le 24 décembre ?"
@@ -42,10 +42,10 @@ Voici comment structurer la saison, du premier appel fournisseur au dernier retr
 | Période | Ce que vous faites |
 | --- | --- |
 | Fin octobre | Vous arrêtez votre offre de fêtes : les 10 à 20 références que vous prendrez en précommande, et pas une de plus. Vous fixez vos prix. |
-| Début novembre | Vous ouvrez les précommandes sur les pièces qui demandent un engagement fournisseur : volailles fermières, gibier, foie gras, plateaux de fruits de mer, bûches. |
-| Mi-novembre | Vous ouvrez le reste et vous communiquez : affiche en vitrine, QR code sur le comptoir, SMS ou email à vos clients, publication sur votre fiche Google. |
-| 10 au 15 décembre | Date limite de commande pour le 24. Vous passez vos commandes fournisseurs avec des chiffres fermes. |
-| 18 au 22 décembre | Date limite pour le 31. Vous éditez le planning de retraits et vous rappelez chaque créneau par SMS. |
+| Début novembre | Vous prenez les premières réservations sur les pièces qui demandent un engagement fournisseur : volailles fermières, gibier, foie gras, plateaux de fruits de mer, bûches. |
+| Mi-novembre | Vous annoncez le reste et vous communiquez : affiche en vitrine, QR code sur le comptoir, SMS ou email à vos clients, publication sur votre fiche Google. |
+| 18 au 20 décembre | Date limite de commande pour le 24. Vous passez vos dernières commandes fournisseurs avec des chiffres fermes. |
+| 27 au 28 décembre | Date limite pour le 31. Vous éditez le planning de retraits et vous rappelez chaque créneau par SMS. |
 | 24 et 31 décembre | Vous produisez et vous distribuez selon le planning. Plus personne ne prend de commande au comptoir. |
 
 Deux dates limites valent mieux qu'une : celle du 24 et celle du 31. Elles doivent être visibles partout, affichées sur la page de commande, rappelées dans la confirmation, et tenues. Une date limite qui bouge une fois ne sera plus jamais respectée.
@@ -57,7 +57,7 @@ L'erreur classique est de proposer aux fêtes tout ce qu'on propose le reste de 
 Une bonne offre de fêtes tient sur une page :
 
 - **Boucherie** : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
-- **Poissonnerie** : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer.
+- **Poissonnerie** : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer. Le réglage des plateaux est décrit dans notre guide du [click and collect en poissonnerie](/blog/click-and-collect-poissonnerie).
 - **Fromagerie** : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du [click and collect pour fromagerie](/blog/click-and-collect-fromagerie).
 - **Traiteur** : un menu complet en trois plats, des entrées à l'unité, un buffet apéritif par tranche de 10 personnes.
 - **Boulangerie-pâtisserie** : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour [prendre les commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne).

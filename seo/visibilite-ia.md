@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°21.
+Prochaine question en rotation : n°22.
 
 ## Relevés
 
@@ -96,3 +96,7 @@ Prochaine question en rotation : n°21.
 ## Bilans hebdomadaires (le lundi)
 
 - **Semaine du 20 au 26 octobre 2026** : Marchéo cité 0 fois sur 10 relevés (7 réponses Perplexity, 3 recherches Google sans aperçu IA affiché). Les IA citent Shopify, Wix, des optimiseurs de tournée (Routific, Shipday) et des sites publics (francenum, economie.gouv). Aucun relevé du 23 au 26/10 : navigateur non disponible en run automatique. Les quatre pages piliers sont en ligne depuis le 23/10 ; les IA citent surtout ce que d'autres sites disent d'une marque, d'où l'intérêt des fiches annuaires (voir seo/fiches-annuaires.md).
+| 2026-11-01 | ChatGPT (sans compte) | (R) Shopify ou Wix pour un commerce de proximité qui fait du click and collect ? | non | help.shopify, wix.com, Shopify App Store (réponse : Shopify d'abord, Wix pour un site vitrine, créneaux précis via une application) |
+| 2026-11-01 | ChatGPT (sans compte) | Comment prendre les commandes de plateaux de fruits de mer en ligne dans une poissonnerie ? | non | service-public (réponse : commencer avec WhatsApp Business et Google Forms, délai de 24 à 48 h, plafond par créneau) |
+| 2026-11-01 | Perplexity (sans compte) | Comment prendre les commandes de plateaux de fruits de mer en ligne dans une poissonnerie ? | non mesuré | bloqué : « Inscrivez-vous et répétez votre demande » |
+| 2026-11-01 | Google (aperçu IA) | Comment mettre en place le click and collect dans une poissonnerie ? | pas d'aperçu IA ; marchéo.fr 1er (guide click & collect) | rushpilot.fr (page poissonnerie), ca-moncommerce, heustach.fr, francenum |

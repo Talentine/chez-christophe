@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-10-30
+modified: 2026-11-01
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -158,7 +158,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Boulangerie.** Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie), le guide du [site internet de boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne) et notre méthode pour [prendre les commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne).
 - **Boucherie.** Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article [click and collect boucherie](/blog/click-and-collect-boucherie) et voir [la solution pour boucherie](/solutions/boucherie).
 - **Primeur.** Paniers de la semaine, vente au kilo, fruits de saison. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
-- **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Voir [la solution pour poissonnerie](/solutions/poissonnerie).
+- **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Lire notre article [click and collect poissonnerie](/blog/click-and-collect-poissonnerie) et voir [la solution pour poissonnerie](/solutions/poissonnerie).
 - **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).
@@ -182,6 +182,7 @@ Les autres guides du blog sur le click & collect :
 - [Commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne)
 - [Click and collect primeur](/blog/click-and-collect-primeur)
 - [Click and collect fromagerie](/blog/click-and-collect-fromagerie)
+- [Click and collect poissonnerie](/blog/click-and-collect-poissonnerie)
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Digitaliser son commerce de bouche](/blog/digitaliser-commerce-bouche)
