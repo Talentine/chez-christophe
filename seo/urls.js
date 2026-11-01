@@ -1,6 +1,7 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
   "/blog/click-and-collect-poissonnerie",
+  "/blog/logiciel-vendre-en-ligne-sans-commission",
   "/blog/alternative-shopify-fleuriste",
   "/blog/boucherie-livraison-a-domicile",
   "/blog/commande-buche-de-noel-en-ligne",

@@ -16,6 +16,8 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
 - Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.
 - WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
+- Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus 399 ou 549 € d'installation unique. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
+- Quel logiciel de click and collect pour une boucherie, une poissonnerie, une boulangerie ou un primeur ? Un outil qui gère la vente au poids, les créneaux de retrait avec capacité et les commandes préparées à l'avance. Marchéo le fait sans changer de caisse : la balance et la caisse habituelles restent en place, 0 % de commission, 39 ou 59 € par mois sans engagement, plus 399 ou 549 € d'installation unique.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
@@ -39,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
+- [Quel logiciel pour vendre en ligne sans commission ni matériel ?](https://marchéo.fr/blog/logiciel-vendre-en-ligne-sans-commission) : Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas.
 - [Alternative à Shopify pour un fleuriste : que choisir ?](https://marchéo.fr/blog/alternative-shopify-fleuriste) : Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
 - [Boucherie livraison à domicile : livrer vos clients vous-même](https://marchéo.fr/blog/boucherie-livraison-a-domicile) : Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
 - [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
@@ -899,6 +902,164 @@ Q : Peut-on réserver un plateau de fruits de mer de Noël plusieurs semaines à
 R : Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ, et ceux du 31 décembre à partir du 18 décembre environ. Annoncez ces dates à vos clients.
 Q : Comment gérer un poisson vendu au poids en click and collect ?
 R : Vous affichez un prix au kilo et des portions types, par exemple une darne de 200 g ou un poisson entier d'environ 1 kg. Le client choisit, vous pesez à la préparation, et le montant final est ajusté au retrait. Une phrase sur la fiche produit suffit à prévenir que le poids peut varier.
+
+# Quel logiciel pour vendre en ligne sans commission ni matériel ?
+
+Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas.
+
+Pour vendre en ligne sans commission et sans matériel à acheter quand on tient un commerce local, le choix le plus simple est une boutique à abonnement fixe comme Marchéo : 0 % de commission, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus des frais d&rsquo;installation uniques de 399 ou 549 €. Tout se gère depuis votre téléphone. Si vous expédiez des colis dans toute la France, Shopify convient mieux.
+Ce comparatif s&rsquo;adresse au commerçant indépendant qui veut choisir un outil sans se perdre dans les offres. Pour la méthode complète, lisez notre guide pour créer sa boutique en ligne. Vous pouvez aussi regarder un exemple concret avec la solution pour primeur ou essayer la démo gratuite.
+Que veulent dire « sans commission » et « sans matériel » ?
+« Sans commission » signifie que le logiciel ne prélève aucun pourcentage sur vos ventes. « Sans matériel » signifie que vous n&rsquo;avez rien à acheter pour recevoir et gérer les commandes. Ces deux expressions sont souvent mal comprises.
+Une offre sans commission n&rsquo;est pas une offre sans frais. Vous payez en général un abonnement, et les paiements par carte en ligne restent soumis aux frais du prestataire de paiement.
+« Sans matériel » ne veut pas dire « sans stock », ni « sans terminal » pour tous les paiements. Avec Marchéo, aucune tablette, imprimante ou caisse n&rsquo;est à acheter. Si le client paie au retrait, vous encaissez comme d&rsquo;habitude, avec votre caisse et votre terminal.
+Quels logiciels permettent de vendre en ligne sans commission ?
+Plusieurs familles d&rsquo;outils ne prennent pas de commission, mais leur coût réel et le temps à y consacrer sont très différents. Les coûts sont donnés en fourchettes prudentes, car les offres changent souvent.
+
+
+
+Type d&rsquo;outil
+Exemples
+Coût indicatif
+Commission de l&rsquo;outil
+Limite à connaître
+
+
+
+
+Boutique pour commerce local
+Marchéo
+39 ou 59 € par mois pour vendre, plus l&rsquo;installation
+0 %
+Pas d&rsquo;expédition nationale ni d&rsquo;apport de clients
+
+
+Constructeur à abonnement
+Shopify, Wix
+Quelques dizaines d&rsquo;euros par mois, plus les applications
+Selon l&rsquo;offre et le moyen de paiement
+Retrait sur créneaux à configurer
+
+
+Logiciel libre
+WooCommerce, PrestaShop
+Logiciel gratuit, plus l&rsquo;hébergement et les modules
+0 %
+Mise en place et maintenance à votre charge
+
+
+Logiciel à installer, en achat unique
+Créateurs de sites sur ordinateur
+Achat unique, plus l&rsquo;hébergement
+0 %
+Hébergement et paiement à gérer vous-même
+
+
+Plateforme de livraison
+Uber Eats, Deliveroo
+Pas d&rsquo;abonnement en général
+14 à 30 % en général
+Le client reste celui de la plateforme
+
+
+
+Aucune de ces familles n&rsquo;est la meilleure dans l&rsquo;absolu. Pour un duel plus détaillé, lisez notre comparatif Shopify, Wix ou logiciel métier.
+Quels frais restent à payer avec un logiciel sans commission ?
+Il reste à payer l&rsquo;abonnement, l&rsquo;installation éventuelle et les frais de paiement par carte. Ces postes sont à additionner sur un an avant de comparer deux outils.
+
+L&rsquo;abonnement. C&rsquo;est le coût fixe, que vous vendiez peu ou beaucoup.
+L&rsquo;installation. Certains outils la facturent une fois. Chez Marchéo, elle coûte 249, 399 ou 549 € selon l&rsquo;offre.
+Les frais de paiement. Ils sont dus au prestataire de paiement, pas au logiciel. Ils ne concernent que les paiements par carte en ligne.
+Les modules. Sur un outil généraliste, les créneaux de retrait ou la vente au poids peuvent demander des applications payantes.
+Votre temps. Il compte aussi, surtout si vous devez tout régler seul le soir.
+
+Notre article sur le prix d&rsquo;un site de click &amp; collect détaille ces montants poste par poste.
+Combien économise-t-on par rapport à une plateforme ?
+L&rsquo;économie dépend de vos ventes en ligne, mais un abonnement fixe devient vite moins cher qu&rsquo;une commission. Voici un exemple, avec un chiffre choisi pour le calcul : 2 000 € de ventes en ligne par mois, hors frais de paiement.
+
+
+
+Sur un an, pour 24 000 € de ventes
+Coût la première année
+Coût les années suivantes
+
+
+
+
+Plateforme à 14 %
+3 360 €
+3 360 €
+
+
+Plateforme à 30 %
+7 200 €
+7 200 €
+
+
+Marchéo à 39 € par mois
+867 € (468 € d&rsquo;abonnement + 399 € d&rsquo;installation)
+468 €
+
+
+
+Ce calcul ne compare pas deux services identiques. Une plateforme apporte des clients et des livreurs. Marchéo ne livre pas et n&rsquo;apporte pas de clients : c&rsquo;est votre boutique, à faire connaître vous-même. Beaucoup de commerçants gagnent à garder les deux, à condition que leurs habitués passent par leur propre boutique. Notre article sur le click and collect sans commission développe ce point.
+Quel logiciel choisir selon votre façon de vendre ?
+Le bon choix dépend de l&rsquo;endroit où partent vos commandes et du temps que vous pouvez y consacrer. Partez de votre activité réelle, pas de la notoriété de l&rsquo;outil.
+
+
+
+Votre situation
+Le choix le plus simple
+
+
+
+
+Quelques commandes par semaine
+WhatsApp Business ou une petite boutique
+
+
+Vous voulez surtout être trouvé
+Un site vitrine : Marchéo Vitrine à 19 € par mois ou Wix
+
+
+Vos clients commandent puis viennent chercher
+Marchéo Click &amp; Collect + Réservation à 39 € par mois
+
+
+Vous livrez dans votre quartier
+Marchéo Click &amp; Collect + Livraison à 59 € par mois
+
+
+Vous expédiez partout en France
+Shopify
+
+
+Vous avez un prestataire technique
+WooCommerce ou PrestaShop
+
+
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes, sans créer de compte. Pour les grosses commandes, une empreinte bancaire optionnelle bloque jusqu&rsquo;à 75 % du panier, puis elle est libérée 24 heures après le retrait.
+Quelles sont les limites de Marchéo ?
+Marchéo n&rsquo;est pas fait pour tous les commerces, et il vaut mieux le savoir avant de choisir. Il est conçu pour la vente locale, surtout dans les commerces de bouche et de proximité.
+
+Pas d&rsquo;expédition de colis dans toute la France. Dans ce cas, Shopify convient mieux.
+Pas de livraison assurée par Marchéo. Marchéo n&rsquo;a pas de coursiers. Il fournit l&rsquo;outil pour organiser votre propre livraison : zone, créneaux, minimum et frais.
+Pas de place de marché. Vos clients viennent de votre fiche Google, de votre vitrine et de vos réseaux.
+L&rsquo;offre Vitrine ne suffit pas pour vendre. À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l&rsquo;offre à 39 ou 59 €.
+
+Par où commencer cette semaine ?
+Le plus simple est de comparer sur une semaine de ventes réelles. Notez le nombre de commandes que vous prenez déjà à l&rsquo;avance, le panier moyen et la part qui pourrait être retirée en boutique.
+Vous pouvez ensuite tester l&rsquo;outil sur la page d&rsquo;inscription. Choisissez votre métier, tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Comparez-le à l&rsquo;outil que vous envisagez, puis gardez celui qui vous coûte le moins sur un an, temps compris.
+
+Q : Quel est le meilleur logiciel pour vendre en ligne sans commission quand on a un commerce de proximité ?
+R : Le meilleur choix dépend de la façon dont vos produits partent. Pour du retrait en boutique et de la livraison locale, un logiciel pensé pour le commerce de proximité convient mieux. Marchéo en fait partie : 0 % de commission, 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Pour expédier des colis dans toute la France, Shopify convient mieux.
+Q : Faut-il acheter du matériel pour vendre en ligne avec Marchéo ?
+R : Non. Il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez les commandes depuis le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez comme d'habitude, avec votre caisse et votre terminal.
+Q : Existe-t-il un logiciel de vente en ligne vraiment gratuit ?
+R : Des logiciels libres comme WooCommerce ou PrestaShop sont gratuits à télécharger, mais il faut payer l'hébergement, parfois des modules, et y passer du temps. Les plateformes de livraison sont gratuites à l'entrée, mais prennent en général 14 à 30 % de chaque commande.
+Q : Un logiciel sans commission supprime-t-il tous les frais ?
+R : Non. Le logiciel ne prend rien sur vos ventes, mais les paiements par carte en ligne restent soumis aux frais du prestataire de paiement. Ces frais existent avec tous les outils. Il faut aussi compter l'abonnement et, le cas échéant, l'installation.
 
 # Alternative à Shopify pour un fleuriste : que choisir ?
 
@@ -2232,7 +2393,7 @@ Un engagement de longue durée
 
 
 
-Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect.
+Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect. Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le logiciel pour vendre en ligne sans commission.
 Par où commencer ?
 Le plus simple est de voir le résultat avant de choisir. Sur la page d&rsquo;inscription, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Vous pourrez le comparer à une boutique d&rsquo;essai sur Shopify ou Wix. Pour voir ce qui est prévu pour votre métier, commencez par exemple par la solution pour boucherie.
 
@@ -3251,7 +3412,7 @@ Oui
 
 
 
-Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez Shopify, Wix ou logiciel métier pour un commerce de proximité.
+Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez Shopify, Wix ou logiciel métier pour un commerce de proximité. Pour un avis direct sur l&rsquo;outil à prendre, voyez quel logiciel pour vendre en ligne sans commission ni matériel.
 Combien coûte une boutique en ligne pas chère et sérieuse ?
 Une boutique en ligne pas chère pour un commerce coûte en général entre 20 et 80 € par mois, plus d&rsquo;éventuels frais de mise en place. Le vrai piège n&rsquo;est pas l&rsquo;abonnement, c&rsquo;est la commission : sur un mois de ventes en ligne, un pourcentage prélevé sur chaque commande coûte vite plus qu&rsquo;un abonnement fixe.
 Chez Marchéo, les prix sont fixes et affichés :
@@ -4285,19 +4446,20 @@ R : Vous les gardez, mais vous saisissez leur commande dans le même outil que l
 
 Le guide pas à pas pour un boulanger, un boucher, un primeur ou un restaurateur qui veut prendre des commandes en ligne : les 5 options, ce qu'elles coûtent, les pièges, et la méthode pour être en ligne cette semaine.
 
-Un site de click &amp; collect, c&rsquo;est une page où vos clients choisissent leurs produits, paient ou non, et indiquent l&rsquo;heure à laquelle ils passeront chercher leur commande. Pour un commerce de bouche, c&rsquo;est la différence entre un samedi matin où l&rsquo;on note des commandes de gâteaux sur un carnet pendant que la file s&rsquo;allonge, et un samedi où tout est préparé d&rsquo;avance.
-Ce guide s&rsquo;adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s&rsquo;y prendre, avec les prix réels et les pièges, puis donne la méthode pour être en ligne cette semaine. Pour la vue d&rsquo;ensemble (vitrine, click &amp; collect, livraison, budget), commencez par notre guide pour créer sa boutique en ligne pour son commerce. Si vous êtes traiteur, notre guide dédié à la création d&rsquo;un site internet de traiteur détaille les pages, les photos et les réglages propres aux plateaux et aux buffets. Si vous tenez un primeur, notre guide du click and collect primeur traite des paniers, de la vente au kilo et des ruptures.
+Pour créer un site de click &amp; collect, le plus simple est de partir d&rsquo;une solution déjà prête pour votre métier, de vérifier le catalogue, de régler vos créneaux de retrait, puis de partager le lien et un QR code. Avec Marchéo, l&rsquo;aperçu s&rsquo;affiche en 30 secondes, sans commission et sans matériel à acheter, pour 39 ou 59 € par mois sans engagement, plus des frais d&rsquo;installation uniques de 399 ou 549 €. Un site de click &amp; collect permet à vos clients de choisir leurs produits en ligne, puis de les retirer en boutique à l&rsquo;heure choisie.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Pour un commerce de bouche, le click &amp; collect fait la différence entre un samedi matin où l&rsquo;on note des commandes de gâteaux sur un carnet pendant que la file s&rsquo;allonge, et un samedi où tout est préparé d&rsquo;avance.
+Ce guide s&rsquo;adresse aux commerçants indépendants : boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, restaurateurs. Il compare les cinq façons de s&rsquo;y prendre, avec les prix et les pièges, puis donne la méthode pour être en ligne cette semaine. Si vous cherchez d&rsquo;abord le bon outil, lisez notre comparatif pour choisir un logiciel pour vendre en ligne sans commission. Pour la vue d&rsquo;ensemble (vitrine, click &amp; collect, livraison, budget), commencez par notre guide pour créer sa boutique en ligne pour son commerce. Si vous êtes traiteur, notre guide dédié à la création d&rsquo;un site internet de traiteur détaille les pages, les photos et les réglages propres aux plateaux et aux buffets. Si vous tenez un primeur, notre guide du click and collect primeur traite des paniers, de la vente au kilo et des ruptures.
 Les 5 façons de créer un site de click &amp; collect
 1. Une plateforme de livraison (Uber Eats, Deliveroo)
-C&rsquo;est la solution la plus connue, et la plus chère à l&rsquo;usage. Vous êtes en ligne en quelques jours, la plateforme amène des clients, mais elle prend 25 à 30 % de commission sur chaque commande, et le client reste le sien : vous n&rsquo;avez ni son numéro, ni son historique. Pour un commerce de bouche traditionnel, c&rsquo;est un canal d&rsquo;acquisition, pas une boutique.
+C&rsquo;est la solution la plus connue, et la plus chère à l&rsquo;usage. Vous êtes en ligne en quelques jours, la plateforme amène des clients, mais elle prend en général 14 à 30 % de commission sur chaque commande, et le client reste le sien : vous n&rsquo;avez ni son numéro, ni son historique. Pour un commerce de bouche traditionnel, c&rsquo;est un canal d&rsquo;acquisition, pas une boutique.
 2. Un constructeur de site généraliste (Wix, Shopify, Squarespace)
-Ces outils font de très beaux sites, mais ils sont conçus pour expédier des colis, pas pour des retraits en boutique à 11 h 30 avec une capacité par créneau. Il faut ajouter des applications tierces pour les créneaux, l&rsquo;empreinte bancaire, la vente au poids. Comptez 30 à 80 € par mois d&rsquo;abonnements cumulés, plus des frais de transaction de 1 à 2 %, et plusieurs journées de paramétrage.
+Ces outils font de très beaux sites, mais ils sont conçus pour expédier des colis, pas pour des retraits en boutique à 11 h 30 avec une capacité par créneau. Il faut ajouter des applications tierces pour les créneaux, l&rsquo;empreinte bancaire, la vente au poids. Comptez quelques dizaines d&rsquo;euros par mois d&rsquo;abonnements cumulés, des frais de transaction selon l&rsquo;offre, et plusieurs journées de paramétrage.
 3. Un site sur mesure par un développeur ou une agence
 C&rsquo;est la solution la plus souple et la plus lourde : 2 000 à 8 000 € de création, puis de la maintenance, et chaque évolution se paie. Elle a du sens pour une chaîne, rarement pour un commerce.
 4. Une solution de commande en ligne pour restaurants
 Elles existent depuis longtemps pour la restauration et couvrent bien la carte à options, moins bien la vente au poids, les paniers, les commandes de fêtes ou la livraison organisée par le commerçant. Tarifs souvent entre 50 et 150 € par mois, parfois avec commission.
 5. Une solution pensée pour les commerces de bouche
-C&rsquo;est la catégorie de Marchéo : une boutique en ligne prête pour votre métier, avec le catalogue déjà rempli, les créneaux de retrait, l&rsquo;empreinte bancaire contre les commandes non retirées, la vente au poids, les SMS aux clients et, en option, la livraison locale organisée par vous. 19 à 59 € par mois, 0 % de commission, frais d&rsquo;installation uniques de 249 à 549 €.
+C&rsquo;est la catégorie de Marchéo : une boutique en ligne prête pour votre métier, avec le catalogue déjà rempli, les créneaux de retrait, l&rsquo;empreinte bancaire contre les commandes non retirées, la vente au poids, les SMS aux clients et, avec l&rsquo;offre à 59 €, la livraison locale organisée par vous. Marchéo ne livre pas : il fournit l&rsquo;outil. 39 ou 59 € par mois pour prendre des commandes, 0 % de commission, sans engagement, frais d&rsquo;installation uniques de 399 ou 549 €. L&rsquo;offre Vitrine à 19 € par mois présente votre commerce.
 Comparatif rapide
 
 
@@ -4315,15 +4477,15 @@ Empreinte anti no-show
 Plateforme de livraison
 Quelques jours
 0 €
-25 à 30 %
+14 à 30 %
 Limité
 Non
 
 
 Wix, Shopify
 Plusieurs jours
-30 à 80 €
-1 à 2 %
+Quelques dizaines d&rsquo;euros
+Selon l&rsquo;offre
 Via applications
 Via applications
 
@@ -4355,7 +4517,7 @@ Oui, réglable
 
 Ce qu&rsquo;un site de click &amp; collect doit absolument avoir
 
-Une commande sans création de compte. Chaque étape supplémentaire fait perdre un client sur trois. Nom, téléphone, créneau, c&rsquo;est tout.
+Une commande sans création de compte. Chaque étape en plus peut décourager un client pressé. Nom, téléphone, créneau, c&rsquo;est tout.
 Des créneaux de retrait avec une capacité. Sans limite par créneau, vous recevez douze commandes pour 12 h et rien pour 12 h 30.
 Une protection contre les commandes non retirées. Empreinte bancaire ou paiement en ligne, au choix, réglable par montant.
 La vente au poids et les précisions. Un boucher vend au kilo avec des consignes de découpe, un fleuriste vend un budget et un style.
@@ -4369,8 +4531,9 @@ Choisissez votre métier et voyez l&rsquo;aperçu. Sur la page de création de M
 Ajustez le catalogue. Cochez ce que vous vendez, corrigez les prix, ajoutez cinq ou six photos prises avec votre téléphone. Une heure suffit.
 Réglez les créneaux et la protection. Jours et heures de retrait, capacité par créneau, empreinte bancaire au-dessus d&rsquo;un certain montant si vous voulez.
 Affichez le lien partout. QR code sur le comptoir et en vitrine, lien sur Google Maps, Instagram et Facebook, un mot à vos habitués.
-Envoyez un premier SMS. « Vous pouvez maintenant commander vos gâteaux du week-end en ligne, retrait à l&rsquo;heure de votre choix. » Les premières commandes arrivent le week-end suivant.
+Prévenez vos clients. Aux clients qui ont accepté de recevoir vos messages, envoyez par exemple : « Vous pouvez maintenant commander vos gâteaux du week-end en ligne, retrait à l&rsquo;heure de votre choix. »
 
+Si vous recevez encore peu de commandes, notre comparatif WhatsApp ou boutique en ligne vous aidera à choisir le bon moment pour passer à une boutique.
 Les pièges à éviter
 Vouloir tout vendre en ligne dès le premier jour. Commencez par ce qui se commande naturellement à l&rsquo;avance : gâteaux, plateaux, paniers, rôtis, bouquets. Le reste viendra.
 Oublier le comptoir. Le client qui commande en ligne doit avoir un endroit ou une file dédiée pour retirer en 30 secondes. Sinon, le bénéfice disparaît pour lui comme pour vous.
@@ -4379,14 +4542,16 @@ Laisser la boutique sans photos. Trois photos de vos produits font plus que dix 
 En résumé
 Créer un site de click &amp; collect pour son commerce ne demande plus ni développeur ni budget à quatre chiffres. La bonne question n&rsquo;est plus « comment créer un site » mais « quelle solution comprend mon métier ». Prenez celle qui a déjà votre catalogue, vos créneaux, votre protection contre les no-shows, et qui ne prend pas de commission sur ce que vous vendez à vos propres clients.
 
+Q : Quel est le moyen le plus simple de créer un site de click and collect pour mon commerce ?
+R : Le plus simple est une solution déjà prête pour votre métier, plutôt qu'un site à construire. Marchéo en fait partie : le catalogue est pré-rempli, la commande se prend sans compte client et il n'y a pas de commission. L'offre Click & Collect + Réservation coûte 39 € par mois et l'offre Click & Collect + Livraison 59 € par mois, sans engagement, plus des frais d'installation uniques de 399 ou 549 €. D'autres éditeurs proposent aussi des boutiques à prix fixe : comparez-les sur les mêmes critères.
 Q : Faut-il savoir coder pour créer un site de click & collect ?
 R : Non. Les solutions dédiées aux commerçants fournissent la boutique clé en main : vous choisissez votre métier, vous ajustez le catalogue et les horaires depuis votre téléphone. Le code, l'hébergement et les paiements sont gérés pour vous.
 Q : Combien de temps faut-il pour être en ligne ?
 R : Avec une solution spécialisée, entre 30 minutes et une journée : le temps de vérifier le catalogue pré-rempli, d'ajouter quelques photos et de fixer vos créneaux de retrait. Un site sur mesure prend plusieurs semaines.
 Q : Mes clients doivent-ils télécharger une application ?
-R : Non, et c'est un critère de choix important. Une boutique accessible par un simple lien ou un QR code, sans téléchargement ni création de compte, convertit beaucoup mieux qu'une application à installer.
+R : Non, et c'est un critère de choix important. Une boutique accessible par un simple lien ou un QR code, sans téléchargement ni création de compte, est plus simple pour le client qu'une application à installer.
 Q : Que se passe-t-il si un client commande et ne vient pas ?
-R : C'est le principal risque du click & collect. Les meilleures solutions proposent une empreinte bancaire : une partie du panier est pré-autorisée à la commande, libérée si le client vient, prélevée s'il ne vient pas.
+R : C'est le principal risque du click & collect. Vous pouvez demander le paiement en ligne ou activer une empreinte bancaire. Avec Marchéo, elle est optionnelle : jusqu'à 75 % du panier est bloqué sur la carte du client, sans débit s'il vient, et la somme est libérée 24 heures après le retrait.
 
 # Click and collect sans commission : comment le proposer à vos clients
 

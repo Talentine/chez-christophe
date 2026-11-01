@@ -31,7 +31,13 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°22.
+Prochaine question en rotation : n°2 (la rotation a repris au début le 01/11 ; question de marque suivante : n°24).
+
+## Bilans hebdomadaires (le dimanche)
+
+- **Semaine du 27 octobre au 1er novembre 2026** : hors questions de marque, Marchéo cité 0 fois sur 44 relevés dans les réponses (21 ChatGPT, 9 Perplexity, 14 Google), plus une présence en simple source sur ChatGPT (primeur, 28/10). Questions de marque : cité 8 fois sur 8, avec des faits exacts. Google classique : marchéo.fr présent sur 4 recherches (1er sur primeur et sur poissonnerie, vers le 7e sur fromager, en bas de page sur le logiciel poissonnerie). ChatGPT cite des pages métier d'éditeurs avec prix en clair (Achil, RushPilot, TOWeb, Wobelio) ; Perplexity cite surtout des éditeurs de caisse. Bing, citations IA (Copilot et partenaires) : 6 citations lues le 01/11 contre 0 au 27/10, avec 6 citations sur la seule journée du 29/10 ; période affichée et détail des pages non confirmés (capture refusée faute de validation, à relire). Sitemaps soumis et valides dans Bing Webmaster Tools, dernier passage le 27/10.
+
+- **Semaine du 20 au 26 octobre 2026** : Marchéo cité 0 fois sur 10 relevés (7 réponses Perplexity, 3 recherches Google sans aperçu IA affiché). Les IA citent Shopify, Wix, des optimiseurs de tournée (Routific, Shipday) et des sites publics (francenum, economie.gouv). Aucun relevé du 23 au 26/10 : navigateur non disponible en run automatique. Les quatre pages piliers sont en ligne depuis le 23/10 ; les IA citent surtout ce que d'autres sites disent d'une marque, d'où l'intérêt des fiches annuaires (voir seo/fiches-annuaires.md).
 
 ## Relevés
 
@@ -92,11 +98,14 @@ Prochaine question en rotation : n°22.
 | 2026-10-31 (2e mesure, 16 h) | Perplexity | Comment vendre au poids en ligne pour un fromager ? | non | farmzz, lafabriquedunet (10 sources) ; poids estimé puis ajusté, formats à prix fixe, aucun outil nommé dans le résumé |
 | 2026-10-31 (2e mesure, 16 h) | Google | Comment vendre au poids en ligne pour un fromager ? | pas d'aperçu IA ; marchéo.fr présent (page fromagerie, vers le 7e résultat), article vendre-au-poids-en-ligne absent | fromage.fr, mon-comptoir.com, devantio.fr, mon-commerce-local.fr, webtensor.fr, rekire.com, reussir.fr, moncasierfrais.fr |
 | 2026-10-31 (2e mesure, 16 h) | Google | Click and collect, ça veut dire quoi pour un commerçant ? | pas d'aperçu IA ; marchéo.fr absent du début de page | economie.gouv.fr, Solocal, Wikipédia, mypos, Generix ; annonces Shopify et Microco |
-
-## Bilans hebdomadaires (le lundi)
-
-- **Semaine du 20 au 26 octobre 2026** : Marchéo cité 0 fois sur 10 relevés (7 réponses Perplexity, 3 recherches Google sans aperçu IA affiché). Les IA citent Shopify, Wix, des optimiseurs de tournée (Routific, Shipday) et des sites publics (francenum, economie.gouv). Aucun relevé du 23 au 26/10 : navigateur non disponible en run automatique. Les quatre pages piliers sont en ligne depuis le 23/10 ; les IA citent surtout ce que d'autres sites disent d'une marque, d'où l'intérêt des fiches annuaires (voir seo/fiches-annuaires.md).
 | 2026-11-01 | ChatGPT (sans compte) | (R) Shopify ou Wix pour un commerce de proximité qui fait du click and collect ? | non | help.shopify, wix.com, Shopify App Store (réponse : Shopify d'abord, Wix pour un site vitrine, créneaux précis via une application) |
 | 2026-11-01 | ChatGPT (sans compte) | Comment prendre les commandes de plateaux de fruits de mer en ligne dans une poissonnerie ? | non | service-public (réponse : commencer avec WhatsApp Business et Google Forms, délai de 24 à 48 h, plafond par créneau) |
 | 2026-11-01 | Perplexity (sans compte) | Comment prendre les commandes de plateaux de fruits de mer en ligne dans une poissonnerie ? | non mesuré | bloqué : « Inscrivez-vous et répétez votre demande » |
 | 2026-11-01 | Google (aperçu IA) | Comment mettre en place le click and collect dans une poissonnerie ? | pas d'aperçu IA ; marchéo.fr 1er (guide click & collect) | rushpilot.fr (page poissonnerie), ca-moncommerce, heustach.fr, francenum |
+| 2026-11-01 (2e mesure, 16 h) | ChatGPT | (R) Quel logiciel pour un commerçant qui veut vendre en ligne sans matériel et sans commission ? | non | TOWeb (1er choix), Wobelio, SaaSimple (sites des éditeurs) ; distingue 0 % de commission et frais bancaires |
+| 2026-11-01 (2e mesure, 16 h) | ChatGPT | (R) Quel est le meilleur outil pour créer la boutique en ligne de mon commerce sans matériel ? | non | Shopify (1er choix), Wix, WooCommerce, clubic.com ; demande ce que veut dire « sans matériel » |
+| 2026-11-01 (2e mesure, 16 h) | ChatGPT | Quel logiciel de click and collect pour une poissonnerie ? (mot-clé du matin) | non | Achil (1er choix), RushPilot, SoClick, Assyscom, Hublot (pages métier d'éditeurs) ; article du matin trop récent |
+| 2026-11-01 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | marchéo.fr (3 offres, 0 %, sans engagement, pas de livreurs, « premier mois offert ») |
+| 2026-11-01 (2e mesure, 16 h) | Perplexity | Quel logiciel de click and collect pour une poissonnerie ? | non | Artipos (nommé en 1er), orisha (10 sources) ; insiste sur la vente au poids et le lien avec la caisse |
+| 2026-11-01 (2e mesure, 16 h) | Google | Quel logiciel de click and collect pour une poissonnerie ? | pas d'aperçu IA ; marchéo.fr en bas de 1re page (guide click & collect) | assyscom.fr, artipos.fr, seg2inov.fr, orisha, carrepos.fr, woopit.fr, teg-france.fr, lumis-traiteurs.fr |
+| 2026-11-01 (2e mesure, 16 h) | Google | (R) Quel logiciel pour un commerçant qui veut vendre en ligne sans matériel et sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | codeur.com, lafabriquedunet.fr (25/09/2026), maformation.fr, shine.fr, prestashop.fr, getapp.fr, almapay.com, pennylane.com, shippingbo.com ; annonce Shopify |

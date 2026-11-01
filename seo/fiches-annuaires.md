@@ -59,7 +59,7 @@ Quand une fiche est en ligne, colle son adresse ici. Je l'ajouterai dans les don
 | Fiche | Adresse | Date |
 |---|---|---|
 | Google Business | créée par Paul (lien à ajouter) | 2026-10-27 |
-| Bing Webmaster Tools | site ajouté par Paul (sitemap à vérifier) | 2026-10-27 |
+| Bing Webmaster Tools | site ajouté par Paul, sitemaps soumis et valides (vérifié le 2026-11-01) | 2026-10-27 |
 | LinkedIn | | |
 | Capterra | | |
 | Appvizer | | |

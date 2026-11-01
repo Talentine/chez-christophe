@@ -231,3 +231,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande non récupéré par le client | click & collect | tous | GS (01/11) | moyenne | à faire avec « comment éviter les commandes non récupérées click and collect » |
 | traiteur halal commande en ligne | click & collect | traiteur | GS (01/11) | basse | à faire |
 | formulaire google forms commande commerce limites | transverse | tous | IA (01/11 : ChatGPT conseille WhatsApp Business et Google Forms pour commencer) | moyenne | à faire : quand un formulaire suffit et quand il ne suffit plus |
+| logiciel pour vendre en ligne sans commission | transverse | tous | IA (01/11 : ChatGPT cite TOWeb, Wobelio, SaaSimple ; Marchéo absent sur n°22) | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission |
+| vendre en ligne sans matériel | transverse | tous | IA (01/11 : ChatGPT et Perplexity comprennent souvent « sans stock ») | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission (variante) |
+| quel logiciel click and collect poissonnerie | click & collect | poissonnerie | IA (01/11 : ChatGPT cite Achil, RushPilot, SoClick ; Perplexity cite Artipos) | haute | couvert par click-and-collect-poissonnerie (FAQ « Quel logiciel… », 2026-11-01) ; à suivre dans les relevés |

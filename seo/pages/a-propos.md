@@ -19,6 +19,10 @@ faq:
     r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
   - q: "Marchéo est-il une alternative à Shopify ou Wix pour un commerce de proximité ?"
     r: "Oui, pour un commerce de bouche qui vend en retrait et en livraison locale. Shopify est surtout fait pour expédier des colis et Wix pour les sites vitrines ; Marchéo arrive avec le catalogue du métier pré-rempli, les créneaux de retrait, la vente au poids et l'empreinte bancaire, pour 19 à 59 € par mois sans engagement et 0 % de commission. Pour expédier des colis dans toute la France, Shopify reste plus adapté."
+  - q: "Marchéo est-il un bon logiciel pour vendre en ligne sans matériel et sans commission ?"
+    r: "Oui, pour un commerce local qui vend en retrait et en livraison dans sa zone. Marchéo ne prend aucune commission et n'impose ni tablette, ni imprimante, ni caisse à acheter. Pour prendre des commandes, il faut l'offre à 39 ou 59 € par mois, sans engagement, avec 399 ou 549 € de frais d'installation uniques. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne. Si le client paie au retrait, le commerçant encaisse avec sa caisse et son terminal habituels."
+  - q: "Marchéo remplace-t-il un logiciel de caisse ?"
+    r: "Non. Marchéo prend les commandes en ligne, gère les créneaux et la livraison organisée par le commerçant, et fonctionne sans changer de matériel. La balance et la caisse habituelles restent en place pour peser et encaisser au retrait."
   - q: "Quelle est la différence entre Marchéo et Uber Eats ou Deliveroo ?"
     r: "Uber Eats et Deliveroo sont des plateformes : elles apportent des clients et des livreurs, et prennent en général 14 à 30 % de chaque commande. Marchéo est la boutique en ligne du commerçant : 0 % de commission, abonnement fixe, les clients restent ceux du commerçant. Marchéo ne livre pas : le commerçant organise sa propre livraison avec l'outil fourni."
 ---
