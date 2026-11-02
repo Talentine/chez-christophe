@@ -89,7 +89,7 @@
     suivre('demo_pub_vue', bt);
     var envoyer = function () { try { window.MarcheoPixel && window.MarcheoPixel.track('ViewContent', { content_category: bt, content_name: 'boutique_demo' }); } catch (e) {} };
     if (window.MarcheoPixel) envoyer();
-    else { var s = document.createElement('script'); s.src = '/assets/core/meta-pixel.js?v=2'; s.onload = envoyer; document.head.appendChild(s); }
+    else { var s = document.createElement('script'); s.src = '/assets/core/meta-pixel.js?v=3'; s.onload = envoyer; document.head.appendChild(s); }
   }
 
   document.addEventListener('business:ready', function (e) { demarrer((e.detail && e.detail.business) || (window.__CONFIG__ && window.__CONFIG__.business)); });
