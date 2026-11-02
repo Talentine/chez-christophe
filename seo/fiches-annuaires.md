@@ -52,6 +52,20 @@ Tarifs : 19 € par mois (Vitrine), 39 € par mois (Click & Collect + Réservat
 
 Ne jamais rédiger de faux avis ni en demander contre une contrepartie : c'est interdit par ces plateformes et par la loi française.
 
+## Annuaires français à ajouter (repérés le 2026-11-02)
+
+À faire après LinkedIn, Capterra, Appvizer et Trustpilot. Ces inscriptions passent par un compte et se font par Paul, avec les textes ci-dessus. Vérifier les conditions sur chaque site avant de valider : plusieurs proposent une option payante, inutile au départ.
+
+| Ordre | Site | Adresse | Ce qu'on sait | Pourquoi |
+|---|---|---|---|---|
+| 1 | Tool Advisor | tool-advisor.fr/contact (annuaire : tool-advisor.fr/annuaire-logiciel-saas-b2b) | Procédure d'ajout non détaillée : passer par le contact | 1er résultat Google sur « Quel logiciel de click and collect pour une boucherie ? » le 28/10 |
+| 2 | Logiciels.pro | logiciels.pro/referencer-un-logiciel | Référencement gratuit, option Premium payante à partir de 299 € par an : prendre le gratuit | Comparateurs français |
+| 3 | LEPTIDIGITAL | leptidigital.fr/mon-compte | Annonce un référencement gratuit, avec captures et texte | Média français du numérique |
+| 4 | TrouveMonSaaS | à rechercher, adresse non vérifiée | Annonces gratuites, vérifiées avant publication d'après sa fiche Les Pépites Tech | Annuaire français de SaaS |
+| 5 | G2 | sell.g2.com | Inscription éditeur | Souvent lu par les assistants américains |
+
+Appvizer annonce un référencement de base gratuit, mais avec une sélection : préparer une démo qui fonctionne et 3 captures d'écran. L'adresse capterra.fr/vendors refuse les requêtes automatiques : à vérifier dans un navigateur.
+
 ## Ensuite
 
 Quand une fiche est en ligne, colle son adresse ici. Je l'ajouterai dans les données structurées du site (champ `sameAs`), ce qui relie le site et les fiches dans l'esprit des moteurs et des IA.
