@@ -4973,6 +4973,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+let __pollTimer = null, __minuitTimer = null, __visHandler = null, __pollCommercantId = null;
+// IDs des commandes « nouvelle » déjà signalées pour la boutique courante
+// (null = premier chargement : on mémorise sans sonner).
+let __commandesConnues = null;
+
 async function demarrerRealtime() {
   try {
     const sessionData = localStorage.getItem('session_commercant');
@@ -4990,16 +4995,26 @@ async function demarrerRealtime() {
     }
     if (!commercantId) return;
 
+    // Changement de boutique : on coupe le polling de la boutique précédente,
+    // sinon deux boucles écrivent dans toutesLesCommandes en alternance et
+    // l'alerte « Nouvelle commande » se redéclenche toutes les 5 s.
+    if (__pollTimer) { clearInterval(__pollTimer); __pollTimer = null; }
+    if (__minuitTimer) { clearTimeout(__minuitTimer); __minuitTimer = null; }
+    if (__visHandler) { document.removeEventListener('visibilitychange', __visHandler); __visHandler = null; }
+    if (__pollCommercantId !== commercantId) { __commandesConnues = null; }
+    __pollCommercantId = commercantId;
+
     await chargerCommandesSupabase(commercantId);
 
     // Poll toutes les 5s pour réactivité
-    setInterval(async () => {
+    __pollTimer = setInterval(async () => {
       await chargerCommandesSupabase(commercantId);
     }, 5000);
     // Rafraîchit immédiatement quand l'onglet redevient visible
-    document.addEventListener('visibilitychange', () => {
+    __visHandler = () => {
       if (!document.hidden) chargerCommandesSupabase(commercantId);
-    });
+    };
+    document.addEventListener('visibilitychange', __visHandler);
     // Passage de jour : à minuit, recharge + re-render pour que les commandes
     // d'hier basculent en historique et que « Aujourd'hui » soit à jour, même
     // si le commerçant a laissé le dashboard ouvert toute la nuit.
@@ -5018,7 +5033,8 @@ function programmerRefreshMinuit(commercantId) {
   const prochainMinuit = new Date(now);
   prochainMinuit.setHours(24, 0, 5, 0); // 00:00:05 pour marge d'horloge
   const ms = Math.max(1000, prochainMinuit.getTime() - now.getTime());
-  setTimeout(async () => {
+  __minuitTimer = setTimeout(async () => {
+    if (commercantId !== __pollCommercantId) return; // boutique changée entre-temps
     try {
       if (typeof chargerCommandesSupabase === 'function') await chargerCommandesSupabase(commercantId);
       if (typeof renderCommandes === 'function') renderCommandes();
@@ -5033,7 +5049,9 @@ async function chargerCommandesSupabase(commercantId) {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     const commandes = await r.json();
-    if (!commandes || commandes.error) return;
+    if (!Array.isArray(commandes)) return;
+    // Réponse d'une boutique qui n'est plus affichée (requête partie avant un switch) : on l'ignore.
+    if (__pollCommercantId && commercantId !== __pollCommercantId) return;
 
     // En mode démo (abonnement_actif=false ET pas une fixture) ET aucune vraie commande en BDD :
     // on garde les commandes démo pour que le dashboard reste vivant.
@@ -5046,10 +5064,16 @@ async function chargerCommandesSupabase(commercantId) {
     }
 
     const nouvelles = commandes.filter(c => c.statut === 'nouvelle');
-    const ancienNbNouvelles = toutesLesCommandes.filter(c => c.statut === 'nouvelle').length;
+    // Alerte uniquement pour une commande jamais vue (par ID), pas sur une
+    // simple variation du nombre de commandes « nouvelle ».
+    const inedites = __commandesConnues
+      ? nouvelles.filter(c => !__commandesConnues.has(c.id))
+      : [];
+    if (!__commandesConnues) __commandesConnues = new Set();
+    nouvelles.forEach(c => __commandesConnues.add(c.id));
 
-    if (nouvelles.length > ancienNbNouvelles && ancienNbNouvelles >= 0 && toutesLesCommandes.length > 0) {
-      const nouvelle = nouvelles[0];
+    if (inedites.length > 0) {
+      const nouvelle = inedites[0];
       afficherToast('🛒 Nouvelle commande ' + (nouvelle.numero || '') + ' !');
 
       // 🚨 Joue le son d'alarme (paramétrable dans Réglages)
