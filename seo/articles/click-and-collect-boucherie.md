@@ -1,9 +1,9 @@
 ---
 title: "Click and collect boucherie : prendre les commandes de viande en ligne"
 titre_court: "Click and collect pour boucherie"
-description: "Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission."
+description: "Click and collect boucherie : colis, découpes, vente au kilo, créneaux et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission."
 date: 2026-10-28
-modified: 2026-10-31
+modified: 2026-11-02
 rubrique: Métier
 emoji: 🥩
 keywords:

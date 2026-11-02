@@ -40,6 +40,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Traiteur Noël livraison à domicile : organiser le 24 et le 31](https://marchéo.fr/blog/traiteur-noel-livraison-a-domicile) : Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
 - [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
 - [Quel logiciel pour vendre en ligne sans commission ni matériel ?](https://marchéo.fr/blog/logiciel-vendre-en-ligne-sans-commission) : Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas.
 - [Alternative à Shopify pour un fleuriste : que choisir ?](https://marchéo.fr/blog/alternative-shopify-fleuriste) : Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
@@ -48,7 +49,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 - [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
-- [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
+- [Click and collect boucherie : prendre les commandes de viande en ligne](https://marchéo.fr/blog/click-and-collect-boucherie) : Click and collect boucherie : colis, découpes, vente au kilo, créneaux et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
 - [Ouvrir sa boutique en ligne : les obligations légales du commerçant](https://marchéo.fr/blog/obligations-legales-boutique-en-ligne-commercant) : Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 - [Prix site internet restaurant : combien ça coûte vraiment en 2026](https://marchéo.fr/blog/prix-site-internet-restaurant) : Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter.
 - [Shopify, Wix ou logiciel métier pour un commerce de proximité ?](https://marchéo.fr/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) : Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne.
@@ -78,7 +79,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-01
+- Dernière mise à jour : 2026-11-02
 
 
 ---
@@ -771,6 +772,170 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Traiteur Noël livraison à domicile : organiser le 24 et le 31
+
+Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
+
+Pour proposer une livraison à domicile de Noël quand on est traiteur, il faut une carte courte, une zone resserrée, un minimum de commande, une date limite tenue et une tournée préparée à l&rsquo;avance pour le 24 et pour le 31 décembre. Vous livrez vous-même vos clients, sans plateforme et sans commission sur vos menus. Avec Marchéo, la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement et sans matériel à acheter, avec 549 € de frais d&rsquo;installation uniques.
+Ce guide s&rsquo;adresse aux traiteurs indépendants et complète notre guide complet de la livraison à domicile pour commerçant. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce qui est prévu pour votre métier se trouve sur la page click &amp; collect pour traiteur.
+Pourquoi proposer la livraison à domicile pour les repas de Noël ?
+La livraison vous ouvre les clients qui ne se déplacent pas le jour du réveillon. Ce sont les hôtes qui ne quittent pas leur cuisine, les personnes âgées, les familles installées loin de votre boutique. Pour vous, elle évite aussi une file devant le laboratoire le 24 au matin.
+La condition est de garder la main. Vos plats sont fragiles et préparés à la commande. Vous ne pouvez pas promettre une heure précise à 40 foyers dispersés sur 20 kilomètres. Une livraison de fêtes réussie se décide donc avant les premières commandes, pas le 23 au soir.
+Quelle carte de Noël proposer en livraison ?
+La bonne carte de livraison est plus courte que votre carte de retrait. Gardez ce qui voyage bien et se réchauffe sans risque chez le client.
+
+un ou deux menus complets, avec un prix par personne et un minimum de couverts ;
+quelques entrées froides à l&rsquo;unité ou à la part ;
+un plat principal à réchauffer, avec une fiche de remise en température ;
+un plateau apéritif, par tranche de 10 personnes ;
+un dessert, si votre pâtissier ou votre laboratoire peut suivre.
+
+Écartez ce qui se dégrade pendant le transport : un plat à servir tout juste dressé, une sauce à monter, un dessert trop fragile. Indiquez les allergènes sur chaque fiche produit et précisez le nombre de personnes. Pour le menu du 31, reprenez la même base : deux cartes différentes doublent votre travail pour un gain souvent faible.
+Quelle zone et quels frais de livraison pour un traiteur à Noël ?
+Votre zone de Noël doit être celle que vous pouvez couvrir en une tournée, pas celle de l&rsquo;année. Une zone courte permet de livrer plusieurs commandes par heure et de tenir vos créneaux.
+
+
+
+Réglage
+Base de départ à ajuster
+Pourquoi
+
+
+
+
+Zone
+5 à 10 km, ou une liste de communes
+Une tournée courte protège le froid et l&rsquo;horaire
+
+
+Minimum de commande
+40 à 60 €, plus haut les jours de réveillon
+Un créneau du 24 est rare, il doit être rentable
+
+
+Frais de livraison
+5 à 10 €
+Ils couvrent votre temps et le carburant
+
+
+Gratuité
+À partir de 100 €
+Elle pousse vers un couvert de plus
+
+
+Commandes par créneau
+Ce que votre véhicule et votre équipe peuvent porter
+Le créneau plein disparaît de la liste
+
+
+
+Ces chiffres sont des points de départ prudents. Pour les adapter, reprenez la méthode de notre article comment calculer ses frais de livraison.
+Comment organiser les tournées du 24 et du 31 décembre ?
+Organisez la journée en deux ou trois tournées fixes plutôt qu&rsquo;en livraisons à la demande. En 2026, le 24 et le 31 décembre tombent un jeudi. Vos clients veulent recevoir avant le soir, sans attendre toute la journée.
+
+Choisissez vos créneaux. Par exemple 9 h à 11 h, 11 h à 13 h et 15 h à 17 h, avec un nombre maximum de commandes par créneau.
+Regroupez par secteur. Une commune ou un quartier par tournée, pour éviter de traverser la ville plusieurs fois.
+Préparez la veille. Imprimez ou affichez la liste des commandes, avec adresses, téléphones et codes d&rsquo;entrée.
+Chargez dans l&rsquo;ordre inverse des arrêts. La première livraison sort en dernier du véhicule.
+Prévenez au départ. Un SMS évite la plupart des absences et des portes closes.
+
+Gardez une marge entre deux tournées pour les retards. Si vous êtes seul, ne combinez pas retrait en boutique et livraison sur le même créneau, ou faites-vous aider une journée.
+Quand ouvrir et fermer les commandes de Noël ?
+Annoncez votre carte en novembre, puis fixez une date limite ferme pour chaque réveillon. Vos achats et votre production dépendent de ces deux dates.
+
+
+
+Période
+Ce que vous faites
+
+
+
+
+Début novembre
+Vous arrêtez la carte, les prix et la zone de livraison
+
+
+Mi-novembre
+Vous prenez les premières réservations par téléphone et vous prévenez vos clients
+
+
+À partir du 11 décembre
+Les commandes en ligne pour le 24 s&rsquo;ouvrent sur Marchéo
+
+
+À partir du 18 décembre
+Les commandes en ligne pour le 31 s&rsquo;ouvrent sur Marchéo
+
+
+18 au 20 décembre
+Date limite pour le 24
+
+
+27 au 28 décembre
+Date limite pour le 31
+
+
+
+Une précision utile : sur Marchéo, les créneaux sont hebdomadaires et s&rsquo;ouvrent sur les deux semaines à venir. Il n&rsquo;y a pas de créneau spécial posé des mois à l&rsquo;avance. Pour livrer le 24 et le 31, vous gardez donc un créneau le jeudi, et vous déclarez le 25 décembre et le 1er janvier en fermeture. Saisissez aussi dans le même outil les commandes prises plus tôt par téléphone, pour n&rsquo;avoir qu&rsquo;une seule liste. La méthode complète de la saison est dans notre guide des précommandes des fêtes.
+Comment livrer les menus de Noël sans casser le froid ?
+Les plats doivent rester au froid du laboratoire jusqu&rsquo;à la porte du client. Sortez les commandes au dernier moment, chargez-les dans des caisses isothermes avec des plaques eutectiques, et limitez chaque tournée à une heure environ.
+
+Séparez les plats froids, les plats à réchauffer et les desserts.
+Étiquetez chaque sac au nom du client, avec le nombre de sacs de la commande.
+Remettez la commande en main propre, jamais sur un palier.
+Joignez la fiche de remise en température et la date limite de consommation.
+
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers.
+Comment éviter les absences et les annulations de dernière minute ?
+Le paiement en ligne à la commande est la protection la plus simple pour un repas de fête. Le client s&rsquo;engage, et vous n&rsquo;achetez pas vos produits pour une commande fantôme.
+L&rsquo;empreinte bancaire reste une option pour les commandes passées peu de temps avant la livraison : avec Marchéo, vous choisissez le pourcentage, jusqu&rsquo;à 75 % du panier, sans débiter le client. Elle est libérée 24 heures après la remise de la commande. Comme les banques limitent cette réservation à environ 7 jours, préférez le paiement en ligne pour une commande passée plus tôt. Le détail est dans notre guide sur l&rsquo;empreinte bancaire et les no-shows.
+Quel outil pour gérer vos livraisons de Noël ?
+Le bon outil dépend du nombre de commandes que vous attendez. Au-delà d&rsquo;une dizaine, le carnet et les messages deviennent une source d&rsquo;erreurs d&rsquo;adresse et de quantité.
+
+
+
+Outil
+Ce qu&rsquo;il fait bien
+Sa limite
+
+
+
+
+Carnet ou tableur
+Gratuit, immédiat
+Adresses et commandes à recopier, aucun créneau plein
+
+
+Application d&rsquo;itinéraire
+Classe les arrêts
+Ne prend pas les commandes
+
+
+Plateforme de livraison
+Commande, paiement, coursier
+Commission de 14 à 30 %, le client reste chez elle
+
+
+Marchéo
+Boutique, zone, créneaux, minimum, frais, paiement, tournée
+Ne livre pas à votre place
+
+
+
+Avec Marchéo, le catalogue traiteur arrive déjà rempli et les commandes tombent sur votre téléphone, sans matériel à acheter et sans commission. Si vous n&rsquo;avez pas encore de site, commencez par notre guide de la création d&rsquo;un site internet de traiteur.
+Par où commencer cette semaine ?
+Commencez par trois décisions : votre carte de livraison, votre zone et vos deux dates limites. Écrivez-les sur une page, puis annoncez-les à vos clients habituels, au comptoir et sur votre fiche Google.
+Pour voir votre boutique avec la livraison, essayez la démo gratuite : vous choisissez « Traiteur », vous tapez le nom de votre maison et l&rsquo;aperçu s&rsquo;affiche en 30 secondes.
+
+Q : Quel logiciel pour gérer les livraisons de Noël d'un traiteur ?
+R : Un tableur et un groupe de messages suffisent pour une dizaine de commandes, à condition de tout recopier à la main. Un optimiseur de tournée classe les arrêts, mais ne prend pas les commandes. Marchéo réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.
+Q : Faut-il acheter du matériel pour livrer ses menus de Noël ?
+R : Pas pour prendre et gérer les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Il vous faut en revanche un véhicule et de quoi garder les plats au froid, comme des caisses isothermes et des plaques eutectiques.
+Q : Combien facturer la livraison d'un repas de Noël ?
+R : Comme base de départ, un traiteur peut retenir 5 à 10 € de frais, un minimum de 40 à 60 € et la gratuité à partir de 100 €, à ajuster selon ses distances. Les jours de réveillon, le créneau est rare : relevez le minimum plutôt que d'accepter de petites commandes éloignées.
+Q : Peut-on commander un menu de Noël plusieurs semaines à l'avance en ligne ?
+R : Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de livraison s'ouvrent sur les deux semaines à venir : ceux du jeudi 24 décembre sont réservables à partir du 11 décembre, et ceux du jeudi 31 décembre à partir du 18 décembre. Annoncez ces dates à vos clients et gardez le téléphone pour les réservations plus anciennes.
 
 # Click and collect poissonnerie : plateaux de fruits de mer et Noël
 
@@ -1856,7 +2021,7 @@ R : Oui, et c'est souvent le meilleur choix. Gardez WhatsApp pour les questions 
 
 # Click and collect boucherie : prendre les commandes de viande en ligne
 
-Click and collect boucherie : colis, découpes, vente au kilo, créneaux de retrait et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
+Click and collect boucherie : colis, découpes, vente au kilo, créneaux et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission.
 
 Le click and collect en boucherie permet à vos clients de commander en ligne leurs colis, rôtis et découpes, puis de venir les chercher à l&rsquo;heure choisie, sans attendre au comptoir. Pour un boucher de quartier, il suffit d&rsquo;une boutique en ligne avec des prix au kilo, des créneaux de retrait et une date limite pour les fêtes. Tout se gère depuis le téléphone, sans matériel à acheter et sans commission.
 Le fonctionnement général, valable pour tous les commerces, est détaillé dans notre guide complet du click &amp; collect pour commerçant. Ici, on parle de ce qui change quand on vend de la viande : le poids variable, la découpe sur demande, le froid et les gros pics de fin d&rsquo;année.
@@ -3814,6 +3979,9 @@ Un site de commande, avec une page événements à part
 
 
 La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
+Un site e-commerce est-il utile à un traiteur ?
+Oui, dès que vous vendez des plateaux, des plats du jour ou des menus de fêtes à prix fixe. Un site e-commerce de traiteur n&rsquo;est pas une grande boutique : c&rsquo;est une carte en ligne où le client choisit, paie ou garantit sa commande, puis indique une date et un créneau. Il n&rsquo;y a rien à expédier par transporteur : le client retire sa commande, ou vous la livrez vous-même dans votre zone.
+Ce qui distingue l&rsquo;e-commerce d&rsquo;un traiteur de celui d&rsquo;une boutique classique tient en trois réglages : un prix par personne avec un minimum de couverts, un délai de préparation, et un nombre maximum de commandes par créneau. Avec un logiciel métier, ces réglages sont prévus, sans matériel à acheter et sans commission sur vos ventes.
 Quelles pages mettre sur le site d&rsquo;un traiteur ?
 Inutile d&rsquo;en faire trop. Six pages couvrent l&rsquo;essentiel.
 
@@ -3900,7 +4068,7 @@ Un buffet de trente personnes annulé la veille, c&rsquo;est une journée de tra
 La première est le paiement en ligne à la commande. La seconde, plus souple, est l&rsquo;empreinte bancaire : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d&rsquo;absence. L&rsquo;option est facultative. Notre guide sur l&rsquo;empreinte bancaire et les no-shows explique comment la régler.
 Faut-il proposer la livraison sur le site ?
 Pour les plateaux repas en entreprise, souvent oui. Les bureaux veulent recevoir, pas venir chercher.
-Vous pouvez livrer vous-même, avec votre zone, vos créneaux, un minimum de commande et vos frais. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison et votre tournée. Les bonnes pratiques sont dans notre guide pour organiser une livraison locale sans plateforme.
+Vous pouvez livrer vous-même, avec votre zone, vos créneaux, un minimum de commande et vos frais. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison et votre tournée. Les bonnes pratiques sont dans notre guide pour organiser une livraison locale sans plateforme. Pour les réveillons, voyez aussi notre guide traiteur Noël livraison à domicile.
 Comment faire connaître le site de son traiteur ?
 Un site que personne ne visite ne sert à rien. Commencez par ce qui est gratuit.
 
@@ -3913,6 +4081,8 @@ Pour commencer
 Avec Marchéo, le catalogue traiteur arrive déjà rempli : plats du jour, plateaux repas, buffets, cocktails, desserts. Vous ajustez les prix et les photos, vous réglez vos créneaux, et le client commande en 30 secondes sans créer de compte.
 La page dédiée à votre métier est ici : le click and collect pour traiteur. Pour voir votre futur site, la démo gratuite prend 30 secondes : vous choisissez « Traiteur », vous tapez le nom de votre maison, l&rsquo;aperçu s&rsquo;affiche.
 
+Q : Quel outil pour créer le site e-commerce d'un traiteur ?
+R : Pour un site de présentation avec formulaire de contact, un constructeur généraliste comme Wix ou WordPress convient. Pour vendre des plateaux avec créneaux, minimum et livraison, il faut ajouter des extensions. Marchéo est un logiciel français avec un catalogue traiteur prêt à modifier : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, 0 % de commission, avec des frais d'installation uniques de 249, 399 ou 549 €.
 Q : Combien coûte la création d'un site internet pour un traiteur ?
 R : Cela va de quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Une solution pensée pour les commerces de bouche, comme Marchéo, démarre à 19 € par mois pour un site vitrine et 39 € par mois pour prendre des commandes, avec des frais d'installation uniques de 249 ou 399 €, sans commission sur les ventes.
 Q : Un traiteur doit-il afficher les allergènes sur son site ?
@@ -4390,7 +4560,7 @@ Une bonne offre de fêtes tient sur une page :
 Boucherie : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
 Poissonnerie : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer. Le réglage des plateaux est décrit dans notre guide du click and collect en poissonnerie.
 Fromagerie : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du click and collect pour fromagerie.
-Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un buffet apéritif par tranche de 10 personnes.
+Traiteur : un menu complet en trois plats, des entrées à l&rsquo;unité, un buffet apéritif par tranche de 10 personnes. Si vous livrez, voyez notre guide traiteur Noël livraison à domicile.
 Boulangerie-pâtisserie : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour prendre les commandes de bûches de Noël en ligne.
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
@@ -5293,14 +5463,14 @@ Boulangerie. Livraison des commandes de gâteaux, de pains pour les restaurants 
 Boucherie. Colis de viande et commandes de la semaine, au froid. Voir la solution pour boucherie et notre guide boucherie livraison à domicile.
 Primeur. Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir la solution pour primeur et le click and collect primeur.
 Poissonnerie. Poisson et plateaux de fruits de mer, tournée très courte. Voir la solution pour poissonnerie et notre guide poissonnerie livraison à domicile.
-Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir la solution pour traiteur et la création de site internet de traiteur.
+Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir la solution pour traiteur, la création de site internet de traiteur et notre guide traiteur Noël livraison à domicile.
 Fromagerie. Plateaux et formules raclette livrés le vendredi soir. Voir la solution pour fromagerie et le click and collect en fromagerie.
 Fleuriste. Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir la solution pour fleuriste.
 Pizzeria. Livraison du soir sur une zone courte, à heure annoncée. Voir la solution pour pizzeria et notre guide du logiciel de livraison pizza.
 Restaurant. Livraison des habitués en direct, plateforme pour la découverte si besoin. Voir la solution pour restaurant.
 Fast-food et food-truck. Livraison autour de l&rsquo;emplacement du jour. Voir la solution pour fast-food et le click &amp; collect pour food-truck.
 
-Pour les fêtes de fin d&rsquo;année, les commandes livrées du 24 et du 31 décembre se préparent dès maintenant : notre guide des précommandes de Noël explique comment ouvrir des créneaux spéciaux.
+Pour les fêtes de fin d&rsquo;année, les livraisons du 24 et du 31 décembre se préparent dès novembre : notre guide des précommandes de Noël donne le calendrier, et l&rsquo;article traiteur Noël livraison à domicile détaille les tournées de ces deux jours.
 Par où commencer cette semaine ?
 Commencez petit : un créneau par semaine, une zone de 3 kilomètres, un minimum de 25 €. Annoncez-le à vos habitués par SMS, au comptoir et sur votre fiche Google Business. Ajoutez un créneau quand le premier se remplit.
 Pour voir à quoi ressemblerait votre boutique avec la livraison, rendez-vous sur marchéo.fr/inscription : vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche en 30 secondes. C&rsquo;est gratuit et sans engagement.

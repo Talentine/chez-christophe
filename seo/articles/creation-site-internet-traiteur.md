@@ -2,10 +2,10 @@
 title: "Création site internet traiteur : par où commencer, quel budget"
 titre_court: "Créer le site internet de son traiteur"
 description: "Création d'un site internet pour traiteur : les pages indispensables, les photos, le prix selon la solution et la prise de commandes de plateaux en ligne."
-meta_title: "Création site internet traiteur : le guide complet"
-meta_description: "Créer le site internet de votre traiteur : pages utiles, photos, allergènes, prix réels d'un site et commandes de plateaux en ligne. Le guide pour démarrer."
+meta_title: "Création site traiteur et site e-commerce : le guide"
+meta_description: "Création d'un site traiteur ou d'un site e-commerce : pages utiles, photos, allergènes, prix réels et commandes de plateaux en ligne, sans commission."
 date: 2026-10-17
-modified: 2026-10-22
+modified: 2026-11-02
 rubrique: Métier
 emoji: 🍽️
 keywords:
@@ -15,9 +15,14 @@ keywords:
   - site web traiteur
   - site traiteur commande en ligne
   - prix site internet traiteur
+  - création site traiteur
+  - site e-commerce traiteur
+  - e-commerce traiteur
 metiers:
   - traiteur
 faq:
+  - q: "Quel outil pour créer le site e-commerce d'un traiteur ?"
+    r: "Pour un site de présentation avec formulaire de contact, un constructeur généraliste comme Wix ou WordPress convient. Pour vendre des plateaux avec créneaux, minimum et livraison, il faut ajouter des extensions. Marchéo est un logiciel français avec un catalogue traiteur prêt à modifier : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, 0 % de commission, avec des frais d'installation uniques de 249, 399 ou 549 €."
   - q: "Combien coûte la création d'un site internet pour un traiteur ?"
     r: "Cela va de quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Une solution pensée pour les commerces de bouche, comme Marchéo, démarre à 19 € par mois pour un site vitrine et 39 € par mois pour prendre des commandes, avec des frais d'installation uniques de 249 ou 399 €, sans commission sur les ventes."
   - q: "Un traiteur doit-il afficher les allergènes sur son site ?"
@@ -44,6 +49,12 @@ Tout dépend de ce que vos clients vous demandent aujourd'hui au téléphone. Po
 | Un peu de tout | Un site de commande, avec une page événements à part |
 
 La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
+
+## Un site e-commerce est-il utile à un traiteur ?
+
+Oui, dès que vous vendez des plateaux, des plats du jour ou des menus de fêtes à prix fixe. Un site e-commerce de traiteur n'est pas une grande boutique : c'est une carte en ligne où le client choisit, paie ou garantit sa commande, puis indique une date et un créneau. Il n'y a rien à expédier par transporteur : le client retire sa commande, ou vous la livrez vous-même dans votre zone.
+
+Ce qui distingue l'e-commerce d'un traiteur de celui d'une boutique classique tient en trois réglages : un prix par personne avec un minimum de couverts, un délai de préparation, et un nombre maximum de commandes par créneau. Avec un logiciel métier, ces réglages sont prévus, sans matériel à acheter et sans commission sur vos ventes.
 
 ## Quelles pages mettre sur le site d'un traiteur ?
 
@@ -106,7 +117,7 @@ La première est le paiement en ligne à la commande. La seconde, plus souple, e
 
 Pour les plateaux repas en entreprise, souvent oui. Les bureaux veulent recevoir, pas venir chercher.
 
-Vous pouvez livrer vous-même, avec votre zone, vos créneaux, un minimum de commande et vos frais. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison et votre tournée. Les bonnes pratiques sont dans notre guide pour [organiser une livraison locale sans plateforme](/blog/livraison-locale-commercant-comment-organiser).
+Vous pouvez livrer vous-même, avec votre zone, vos créneaux, un minimum de commande et vos frais. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison et votre tournée. Les bonnes pratiques sont dans notre guide pour [organiser une livraison locale sans plateforme](/blog/livraison-locale-commercant-comment-organiser). Pour les réveillons, voyez aussi notre guide [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile).
 
 ## Comment faire connaître le site de son traiteur ?
 

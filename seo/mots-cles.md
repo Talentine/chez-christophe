@@ -123,8 +123,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | creation site internet commerce | site | tous | GS (21/10) | haute | publié le 2026-10-22 creation-site-internet-commerce (page pilier n°2) |
 | creer site internet marchand | site | tous | GS (21/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22), section site vitrine ou site de commande |
 | precommande noel | click & collect | tous | GS (21/10) | haute | à faire début novembre : guide des précommandes de fêtes en ligne (bûche, plateaux, foie gras, chapons), renvoie vers les articles métier de saison |
-| traiteur noël livraison à domicile | livraison | traiteur | GS (21/10) | haute | à faire début novembre : organiser la livraison des commandes de réveillon (créneaux du 24 et du 31, minimum, chaîne du froid) |
-| menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | à fondre dans l'article précédent (mettre son menu de réveillon en précommande en ligne) |
+| traiteur noël livraison à domicile | livraison | traiteur | GS (21/10) | haute | publié le 2026-11-02 traiteur-noel-livraison-a-domicile |
+| menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile (2026-11-02), section carte |
 | commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | publié le 2026-11-01 click-and-collect-poissonnerie (variante) |
 | fromagerie internet | site | fromagerie | GS (21/10) | moyenne | à faire : site internet pour sa fromagerie (vente au poids, plateaux de fêtes) |
 | livraison à domicile code ape | livraison | tous | GS (21/10) | basse | écarté de la page pilier n°4 (2026-10-23) : formulation juridique non vérifiée, à ne traiter qu'avec une source officielle |
@@ -191,13 +191,13 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | mentions légales cgv click and collect | site | tous | IA (28/10) | basse | couvert par obligations-legales-boutique-en-ligne-commercant |
 | comment calculer ses frais de livraison | livraison | tous | GS (29/10) | haute | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant |
 | livraison gratuite à partir de combien | livraison | tous | GS (29/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (H2 dédié ; suggestions surtout Amazon/Shein) |
-| frais de livraison traiteur | livraison | traiteur | GS (29/10) | moyenne | à faire avec « traiteur noël livraison à domicile » début novembre |
+| frais de livraison traiteur | livraison | traiteur | GS (29/10) | moyenne | publié le 2026-11-02 traiteur-noel-livraison-a-domicile (section frais) |
 | tarif livraison repas à domicile | livraison | restaurant | GS (29/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
 | restaurant sans frais de livraison | livraison | restaurant | GS (29/10) | basse | intention consommateur, à garder en FAQ |
 | fleuriste livraison deuil | livraison | fleuriste | GS (29/10) | moyenne | section de l'article « fleuriste livraison à domicile » (commande pour obsèques : date, lieu, ruban) |
 | fleuriste qui livre le dimanche | livraison | fleuriste | GS (29/10) | basse | intention consommateur ; idée de créneau du dimanche matin dans l'article fleuriste |
 | plateforme livraison indépendant | livraison | tous | GS (29/10) | basse | intention livreur auto-entrepreneur, hors cible ; écarté |
-| traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | à fondre dans « traiteur noël livraison à domicile » (créneaux du 31) |
+| traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile (2026-11-02), tournée du 31 |
 | comment éviter les commandes non récupérées click and collect | click & collect | tous | IA (29/10 : ChatGPT et l'aperçu IA de Google citent economie.gouv.fr et Info-Ecommerce, l'empreinte bancaire n'est jamais évoquée) | haute | à faire : refresh de empreinte-bancaire-no-show-commerce-restaurant (H2 sur la requête exacte, réponse directe en tête) plutôt qu'un nouvel article |
 | site web fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | site de fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
@@ -211,8 +211,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | boucherie livraison à domicile | livraison | boucherie | GS (31/10) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
 | livraison à domicile boucherie halal | livraison | boucherie | GS (31/10) | moyenne | couvert en section de boucherie-livraison-a-domicile ; article dédié possible si GSC le confirme |
 | transport de viande réglementation | livraison | boucherie | GS (31/10) | moyenne | à faire : article « transporter de la viande quand on est boucher » avec les températures vérifiées sur l'arrêté du 21/12/2009 |
-| repas noël livraison à domicile | livraison | traiteur | GS (31/10) | moyenne | à faire avec « traiteur noël livraison à domicile » (début novembre) |
-| traiteur noel en ligne | site | traiteur | GS (31/10) | moyenne | à faire avec « traiteur noël livraison à domicile » |
+| repas noël livraison à domicile | livraison | traiteur | GS (31/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile (2026-11-02, variante, requête d'acheteur) |
+| traiteur noel en ligne | site | traiteur | GS (31/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile et creation-site-internet-traiteur (2026-11-02) |
 | application click and collect gratuite | click & collect | tous | GS (31/10) | haute | à faire : ce qui est vraiment gratuit et ce qui ne l'est pas (vérifier l'absence de doublon) |
 | livraison commerce de proximité | livraison | tous | GS (31/10) | basse | couvert par livraison-locale-commercant-comment-organiser |
 | livraison ou click and collect boucherie | transverse | boucherie | IA (31/10 : nakide.fr, page de 2021, seule à comparer les deux pour un boucher) | moyenne | à faire : comparatif court ou section à ajouter à boucherie-livraison-a-domicile |
@@ -234,3 +234,16 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel pour vendre en ligne sans commission | transverse | tous | IA (01/11 : ChatGPT cite TOWeb, Wobelio, SaaSimple ; Marchéo absent sur n°22) | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission |
 | vendre en ligne sans matériel | transverse | tous | IA (01/11 : ChatGPT et Perplexity comprennent souvent « sans stock ») | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission (variante) |
 | quel logiciel click and collect poissonnerie | click & collect | poissonnerie | IA (01/11 : ChatGPT cite Achil, RushPilot, SoClick ; Perplexity cite Artipos) | haute | couvert par click-and-collect-poissonnerie (FAQ « Quel logiciel… », 2026-11-01) ; à suivre dans les relevés |
+| traiteur noel livraison | livraison | traiteur | GS (02/11) + Google (02/11 : 1re page = Leclerc, Carrefour, traiteurs qui vendent, aucun guide pour traiteur) | haute | publié le 2026-11-02 traiteur-noel-livraison-a-domicile (variante) |
+| création site traiteur | site | traiteur | GSC (22 impr., pos. 12,3, 02/11) | haute | couvert par creation-site-internet-traiteur (title et description retravaillés le 2026-11-02, à suivre) |
+| site e-commerce traiteur | site | traiteur | GSC (16 impr., pos. 11,2, 02/11) | haute | couvert par le refresh de creation-site-internet-traiteur (2026-11-02, H2 dédié, FAQ) |
+| e-commerce traiteur | site | traiteur | GSC (13 impr., pos. 7,2, 02/11) | haute | même refresh que la ligne précédente |
+| combien coûte création site click and collect | transverse | tous | GSC (41 impr., pos. 12,9, 02/11 ; aussi « tarif » pos. 12,5, « prix » 14,7, « coût » 13,0) | haute | à faire : refresh prochain lundi de combien-coute-un-site-de-click-and-collect (0 clic sur environ 120 impressions) |
+| choisir création site click and collect | transverse | tous | GSC (47 impr., pos. 14,2, 02/11 ; « choix » pos. 16,7) | haute | à suivre sur logiciel-click-and-collect-comparatif-2026, 0 clic |
+| click and collect restaurant guide | click & collect | restaurant | GSC (« mettre en place le click and collect restaurant » 15 impr., pos. 58,5 ; « guide click and collect restauration » 6 impr., pos. 59,5) | haute | à faire avec « application click and collect restaurant » : aucun article restaurant dédié |
+| retrait magasin fromage | click & collect | fromagerie | GSC (10 impr., pos. 7,9, 02/11) | basse | couvert par click-and-collect-fromagerie |
+| livraison de poisson a domicile | livraison | poissonnerie | GSC (4 impr., pos. 13,8, 02/11) | moyenne | couvert par poissonnerie-livraison-a-domicile, à suivre |
+| traiteur livraison repas entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
+| traiteur livraison plat chaud | livraison | traiteur | GS (02/11) | basse | à fondre dans l'article plateau repas (chaud ou froid) |
+| traiteur noël entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
+| traiteur vente en ligne | click & collect | traiteur | GS (02/11, confirmé) | moyenne | couvert par le refresh de creation-site-internet-traiteur (2026-11-02) |

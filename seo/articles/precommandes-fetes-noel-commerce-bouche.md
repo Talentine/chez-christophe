@@ -5,7 +5,7 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
-modified: 2026-11-01
+modified: 2026-11-02
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -59,7 +59,7 @@ Une bonne offre de fêtes tient sur une page :
 - **Boucherie** : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
 - **Poissonnerie** : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer. Le réglage des plateaux est décrit dans notre guide du [click and collect en poissonnerie](/blog/click-and-collect-poissonnerie).
 - **Fromagerie** : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du [click and collect pour fromagerie](/blog/click-and-collect-fromagerie).
-- **Traiteur** : un menu complet en trois plats, des entrées à l'unité, un buffet apéritif par tranche de 10 personnes.
+- **Traiteur** : un menu complet en trois plats, des entrées à l'unité, un buffet apéritif par tranche de 10 personnes. Si vous livrez, voyez notre guide [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile).
 - **Boulangerie-pâtisserie** : deux ou trois bûches, une galette pour janvier, du pain spécial en grande quantité. Le détail est dans notre guide pour [prendre les commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne).
 
 Chaque référence porte un descriptif honnête, un poids ou un nombre de personnes, un prix, et pour les produits vendus au poids une mention claire du mode de calcul. « Bûche 6 parts, 32 € » ne se discute pas le jour du retrait. « Bûche 6 personnes environ » se discute.
