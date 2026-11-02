@@ -130,8 +130,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison à domicile code ape | livraison | tous | GS (21/10) | basse | écarté de la page pilier n°4 (2026-10-23) : formulation juridique non vérifiée, à ne traiter qu'avec une source officielle |
 | livreur à domicile indépendant | livraison | - | GS (21/10) | basse | écarté : intention emploi (devenir livreur), pas commerçant |
 | site vitrine vs site e commerce | site | tous | GS (22/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22) ; article dédié possible avec « site vitrine ou e commerce » |
-| site internet commerce gratuit | site | tous | GS (22/10) | moyenne | à faire avec « site click and collect gratuit » (angle : ce qui est vraiment gratuit) |
-| site internet marchand gratuit | site | tous | GS (22/10) | basse | même article que la ligne précédente |
+| site internet commerce gratuit | site | tous | GS (22/10) | moyenne | publié le 2026-11-02 + site-internet-pas-cher-commerce-de-proximite (variante) |
+| site internet marchand gratuit | site | tous | GS (22/10) | basse | couvert par site-internet-pas-cher-commerce-de-proximite (2026-11-02) |
 | site web boucherie | site | boucherie | GS (22/10) | haute | couvert par site-internet-boucherie (2026-10-24) |
 | site internet fleurs | site | fleuriste | GS (22/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | nom de domaine commercial | site | tous | GS (22/10) | basse | couvert en section et FAQ de la page pilier n°2 (2026-10-22) |
@@ -251,3 +251,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel tournée livraison traiteur | livraison | traiteur | IA (02/11 : Perplexity propose la question « Quels logiciels utiliser pour optimiser les tournées ») | moyenne | à faire ou FAQ de l'article plateau repas |
 | alternative takeasy click and collect | transverse | tous | IA (02/11 : ChatGPT cite Takeasy et Click & Croque sur « sans commission ») | moyenne | à étudier par la routine IA, comparatif factuel |
 | click and collect guide complet | click & collect | tous | GSC (703 impr., 1 clic, pos. 16,4 sur 28 j, 02/11) | haute | à faire : retravailler title et description de click-and-collect-commercant-guide-complet au prochain lundi |
+| site internet pas cher commerce de proximité | site | tous | IA (02/11 : ChatGPT conseille Wix, Google Sites, WordPress, Marchéo absent sur n°4) | haute | publié le 2026-11-02 + site-internet-pas-cher-commerce-de-proximite |
+| quel logiciel pour livrer ses clients soi-même | livraison | tous | IA (02/11 : ChatGPT et Perplexity ne citent que des optimiseurs de tournée et Shopify, rien pour le commerce de bouche) | haute | à faire : comparatif honnête optimiseur de tournée ou boutique avec livraison |
+| logiciel commandes noël traiteur | click & collect | traiteur | IA (02/11 : Lumis, Potti, Catermonkey cités ; ERP de traiteur événementiel surtout) | moyenne | à faire avec « tableur ou logiciel commandes traiteur noël » |

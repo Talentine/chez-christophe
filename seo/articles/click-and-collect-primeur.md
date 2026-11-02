@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
-modified: 2026-10-21
+modified: 2026-11-02
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -18,6 +18,10 @@ keywords:
 metiers:
   - primeur
 faq:
+  - q: "Quel logiciel de click and collect choisir pour un primeur ?"
+    r: "Choisissez un outil qui gère la vente au kilo, les paniers à prix fixe, les ruptures et la capacité par créneau. Il existe des modules liés à une caisse et des logiciels métier sans caisse à changer. Marchéo fait partie de ces derniers : 39 € par mois (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 399 ou 549 €. Si vous avez déjà une caisse, vérifiez aussi le module de votre fournisseur."
+  - q: "Faut-il acheter du matériel pour faire du click and collect chez un primeur ?"
+    r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez les commandes depuis le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez comme d'habitude, avec votre caisse et votre terminal."
   - q: "Comment vendre des fruits et légumes au kilo en click and collect ?"
     r: "Vous affichez un prix au kilo et des quantités types, par exemple 500 g, 1 kg ou 2 kg, ou un prix à la pièce pour ce qui se vend à l'unité. Le client choisit, vous préparez au plus près, et le montant final est ajusté à la pesée au retrait. Une phrase sur la fiche produit suffit à prévenir que le poids peut varier légèrement."
   - q: "Que faire quand un produit manque le jour de la préparation ?"
@@ -28,7 +32,9 @@ faq:
     r: "Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par mois, sans engagement et sans commission sur les ventes, avec des frais d'installation uniques de 399 €. Vous pouvez voir votre boutique gratuitement en 30 secondes avant de décider."
 ---
 
-Le click and collect chez un primeur, c'est laisser vos clients composer leur panier de fruits et légumes en ligne, puis le retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client pressé repart en deux minutes, et les paniers de la semaine se vendent avant même votre passage au marché de gros ou votre récolte.
+Le click and collect chez un primeur consiste à laisser les clients composer leur panier de fruits et légumes en ligne, puis à le retirer en boutique au créneau choisi. Pour le mettre en place, il suffit de commencer par deux ou trois paniers à prix fixe, d'afficher le reste à la pièce ou au kilo et de limiter le nombre de commandes par créneau. Avec Marchéo, cela coûte 39 € par mois sans engagement et sans commission, plus 399 € d'installation unique, sans matériel à acheter.
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous hésitez encore sur l'outil, notre comparatif des [logiciels pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission) situe les différentes options.
 
 Un primeur a ses propres contraintes : des produits vendus au poids, des arrivages qui changent chaque jour, des ruptures fréquentes. On pourrait croire que cela ne se met pas en ligne. En pratique, ces contraintes se règlent avec quelques réglages simples, à condition de ne pas vouloir tout mettre sur internet le premier jour.
 
@@ -101,14 +107,16 @@ Le vrai risque, c'est le panier préparé pour un client qui ne vient pas. Les f
 
 Beaucoup de primeurs ajoutent la livraison une fois le click and collect installé, souvent pour les clients âgés ou les paniers lourds. Le plus simple est de la limiter à une zone proche, à un ou deux jours de tournée, avec un minimum de commande. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux, votre minimum et vos frais. Notre guide pour [organiser sa propre livraison locale](/blog/livraison-locale-commercant-comment-organiser) donne la méthode.
 
-## Ce que coûte le click and collect pour un primeur
+## Combien coûte le click and collect pour un primeur ?
 
-Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cela se sent vite.
+Le click and collect coûte 39 € par mois avec Marchéo, alors qu'une plateforme de livraison prend en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cette différence se sent vite.
 
 Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d'installation. Le client commande en 30 secondes, sans créer de compte.
 
-## Pour commencer
+Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à savoir quand passer à une vraie boutique.
 
-Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l'étal et sur la vitrine. Pas de développeur, pas de caisse particulière.
+## Par où commencer ?
+
+Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l'étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter.
 
 La page détaillée pour votre métier est ici : [click and collect pour primeur et maraîcher](/solutions/primeur). Pour voir à quoi ressemblerait votre boutique, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l'aperçu s'affiche.

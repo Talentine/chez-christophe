@@ -18,6 +18,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
 - Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus 399 ou 549 € d'installation unique. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
 - Quel logiciel de click and collect pour une boucherie, une poissonnerie, une boulangerie ou un primeur ? Un outil qui gère la vente au poids, les créneaux de retrait avec capacité et les commandes préparées à l'avance. Marchéo le fait sans changer de caisse : la balance et la caisse habituelles restent en place, 0 % de commission, 39 ou 59 € par mois sans engagement, plus 399 ou 549 € d'installation unique.
+- Comment créer le site internet de son commerce pas cher ? Le moins cher est une fiche Google et un site gratuit (Google Sites, version gratuite de Wix) pour présenter le commerce. Pour prendre des commandes, Marchéo propose 39 ou 59 € par mois sans commission ni engagement, ou une vitrine à 19 €, avec des frais d'installation uniques de 249, 399 ou 549 €.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
@@ -40,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet pas cher pour un commerce : ce qui est vraiment gratuit](https://marchéo.fr/blog/site-internet-pas-cher-commerce-de-proximite) : Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité.
 - [Traiteur Noël livraison à domicile : organiser le 24 et le 31](https://marchéo.fr/blog/traiteur-noel-livraison-a-domicile) : Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
 - [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
 - [Quel logiciel pour vendre en ligne sans commission ni matériel ?](https://marchéo.fr/blog/logiciel-vendre-en-ligne-sans-commission) : Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas.
@@ -772,6 +774,185 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet pas cher pour un commerce : ce qui est vraiment gratuit
+
+Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité.
+
+Pour créer le site internet d&rsquo;un commerce de proximité pas cher, le plus économique est de partir d&rsquo;une fiche Google et d&rsquo;un site gratuit fait avec Google Sites ou Wix, puis d&rsquo;ajouter un nom de domaine pour une dizaine à une vingtaine d&rsquo;euros par an. Dès que vos clients doivent commander en ligne, le gratuit ne suffit plus. Marchéo propose alors la commande en ligne à 39 ou 59 € par mois, ou une simple vitrine à 19 €, sans commission et sans engagement, avec des frais d&rsquo;installation uniques de 249, 399 ou 549 €.
+Ce comparatif complète notre guide de la création du site internet d&rsquo;un commerce, qui détaille les pages à prévoir. Ici, une seule question : combien payer, et pour quoi. Pour un exemple concret, regardez la solution pour boulangerie ou essayez la démo gratuite.
+Peut-on créer le site de son commerce gratuitement ?
+Oui, on peut présenter son commerce en ligne sans rien payer, mais pas prendre de vraies commandes. Plusieurs outils gratuits suffisent pour afficher vos horaires, votre adresse et vos produits. Les offres changent souvent : vérifiez leurs conditions du moment.
+
+
+
+Option gratuite
+Ce qu&rsquo;elle permet
+Sa limite
+
+
+
+
+Fiche Google Business
+Adresse, horaires, photos, avis
+Pas de page à vous, pas de commande
+
+
+Google Sites
+Un site simple de quelques pages
+Pas de vente, peu de personnalisation
+
+
+Version gratuite de Wix
+Un site plus travaillé
+Adresse peu lisible, publicité de la plateforme, vente réservée aux offres payantes
+
+
+Page Facebook ou Instagram
+Photos et actualités
+Le client doit vous écrire pour commander
+
+
+WhatsApp Business
+Catalogue et messages
+Tout reste à gérer à la main
+
+
+
+La fiche Google passe avant tout le reste, car c&rsquo;est souvent là que le client vous trouve. Notre guide de la fiche Google Business donne les réglages utiles. Pour quelques commandes par semaine, lisez aussi notre comparatif WhatsApp ou boutique en ligne.
+Qu&rsquo;est-ce qu&rsquo;un site gratuit ne fait pas ?
+Un site gratuit ne prend pas de commandes organisées, et il ne vous dispense pas de vos obligations. C&rsquo;est là que se trouve la vraie différence avec un outil payant.
+
+Pas de créneaux de retrait. Le client ne peut pas choisir une heure, et vous ne pouvez pas limiter le nombre de commandes par créneau.
+Pas de vente au poids. La viande, le fromage ou les légumes demandent un réglage que les outils gratuits ne prévoient pas.
+Une adresse peu lisible. Elle est difficile à dire au téléphone et à retenir.
+Du temps à y passer. Le logiciel ne coûte rien, mais les réglages se font le soir, par vous.
+Les mentions légales restent obligatoires. Un site gratuit doit les afficher comme les autres. Le détail est dans notre guide des obligations légales d&rsquo;une boutique en ligne.
+
+Combien coûte vraiment un site pas cher sur trois ans ?
+Sur trois ans, un site pas cher coûte de 0 à environ 2 700 € selon ce qu&rsquo;il fait. Le calcul ci-dessous est un exemple : le constructeur est compté à 15 € par mois et le nom de domaine à 15 € par an, et ces prix varient selon les offres.
+
+
+
+Solution
+Ce qu&rsquo;elle fait
+Coût la 1re année
+Coût sur 3 ans
+Commission
+
+
+
+
+Outils gratuits
+Présenter le commerce
+0 €
+0 €
+Aucune
+
+
+Outils gratuits + nom de domaine
+Présenter, avec votre adresse
+15 €
+45 €
+Aucune
+
+
+Constructeur payant, réglé par vous
+Présenter, vendre avec des réglages
+195 €
+585 €
+Selon l&rsquo;offre
+
+
+Marchéo Vitrine
+Présenter le commerce
+477 €
+933 €
+0 %
+
+
+Marchéo Click &amp; Collect + Réservation
+Prendre des commandes
+867 €
+1 803 €
+0 %
+
+
+Marchéo Click &amp; Collect + Livraison
+Commandes et livraison
+1 257 €
+2 673 €
+0 %
+
+
+
+Ces lignes ne rendent pas le même service, et il faut le dire : pour une simple vitrine, un constructeur coûte moins cher que Marchéo. Marchéo se justifie quand vous voulez un site prêt à l&rsquo;emploi, ou quand il faut prendre des commandes. Un site vitrine fait par un prestataire coûte en général de 500 à 2 000 € à la création, plus l&rsquo;hébergement.
+Pour le détail poste par poste, lisez combien coûte un site de click &amp; collect. Si vous tenez un restaurant, notre article sur le prix d&rsquo;un site internet de restaurant reprend le calcul avec la réservation.
+Quelle solution choisir selon votre commerce ?
+La bonne solution dépend de ce que vos clients font aujourd&rsquo;hui, pas du prix affiché. Partez de ce qui se passe au comptoir et au téléphone.
+
+
+
+Votre situation
+Le choix le plus économique
+
+
+
+
+Vous vendez au comptoir, on vous cherche surtout pour les horaires
+Fiche Google, puis site gratuit
+
+
+Vous voulez une adresse propre et du temps pour régler le site
+Constructeur payant et nom de domaine
+
+
+Vous voulez une vitrine prête, sans réglages
+Marchéo Vitrine à 19 € par mois
+
+
+On vous appelle pour réserver gâteaux, plateaux ou colis
+Marchéo à 39 € par mois
+
+
+Vous livrez dans votre quartier
+Marchéo à 59 € par mois
+
+
+Vous expédiez des colis dans toute la France
+Shopify, qui convient mieux
+
+
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, et l&rsquo;hébergement est compris.
+Quand faut-il quitter le gratuit ?
+Il faut quitter le gratuit quand les commandes par téléphone ou par message vous prennent plus de temps que le site n&rsquo;en économise. Trois signes le montrent.
+
+Le téléphone sonne pendant le coup de feu pour des commandes à préparer.
+Vous recopiez des commandes sur un cahier, avec des erreurs.
+Des clients ne viennent pas chercher ce que vous avez préparé.
+
+À 39 € par mois, l&rsquo;abonnement représente environ 9 € par semaine. Comparez ce montant au temps passé au téléphone et aux produits perdus. Une plateforme de livraison, elle, ne demande souvent aucun abonnement, mais prend en général 14 à 30 % de chaque commande. C&rsquo;est le gratuit le plus cher dès que les ventes montent.
+Quelles sont les limites de Marchéo pour un petit budget ?
+Marchéo n&rsquo;est pas l&rsquo;option la moins chère, et il ne convient pas à tous les commerces. Mieux vaut le savoir avant de choisir.
+
+Ce n&rsquo;est pas gratuit. La démo l&rsquo;est, mais le service demande un abonnement et des frais d&rsquo;installation uniques.
+La Vitrine ne vend pas. À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l&rsquo;offre à 39 ou 59 €.
+Il n&rsquo;apporte pas de clients. Marchéo n&rsquo;est pas une place de marché. Votre boutique se fait connaître par votre fiche Google, votre vitrine et vos réseaux.
+Il ne livre pas. Marchéo n&rsquo;a pas de coursiers. Il fournit l&rsquo;outil pour organiser votre propre livraison.
+
+Par où commencer cette semaine ?
+Commencez par ce qui ne coûte rien : complétez votre fiche Google, vérifiez vos horaires et prenez cinq photos au téléphone. Notez ensuite le nombre d&rsquo;appels que vous recevez pour commander sur une semaine normale.
+Si ce nombre reste faible, un site gratuit suffit pour l&rsquo;instant. S&rsquo;il est élevé, regardez à quoi ressemblerait votre boutique sur la page d&rsquo;inscription : choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement.
+
+Q : Quel est le moyen le moins cher de créer le site internet de mon commerce ?
+R : Le moins cher est une fiche Google complétée par un site gratuit, par exemple avec Google Sites ou la version gratuite de Wix. Si vos clients doivent commander en ligne, le gratuit ne suffit plus. Marchéo fait partie des options dans ce cas : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Un site gratuit est-il suffisant pour un petit commerce ?
+R : Oui, si vous vendez surtout au comptoir et que le site sert à donner vos horaires, votre adresse et quelques photos. Non, si vos clients appellent déjà pour réserver ou commander : un site gratuit ne gère ni les créneaux de retrait ni la capacité par créneau.
+Q : Faut-il acheter du matériel pour créer le site de son commerce ?
+R : Non. Un téléphone ou un ordinateur que vous avez déjà suffit. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Si le client paie au retrait, vous encaissez comme d'habitude, avec votre caisse et votre terminal.
+Q : Les mentions légales sont-elles obligatoires sur un site gratuit ?
+R : Oui. Un site professionnel doit indiquer l'identité de l'entreprise, son hébergeur et un moyen de contact, même s'il ne coûte rien. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente.
 
 # Traiteur Noël livraison à domicile : organiser le 24 et le 31
 
@@ -2339,7 +2520,7 @@ Carte, réservation et vente à emporter incluses, 0 % de commission
 
 
 
-Ces fourchettes sont volontairement larges. Demandez toujours un devis écrit qui distingue la création, l&rsquo;abonnement et la maintenance.
+Ces fourchettes sont volontairement larges. Demandez toujours un devis écrit qui distingue la création, l&rsquo;abonnement et la maintenance. Pour savoir ce qu&rsquo;une offre gratuite permet vraiment, lisez notre comparatif du site internet pas cher pour un commerce.
 Que doit contenir le site d&rsquo;un restaurant ?
 Le site d&rsquo;un restaurant doit répondre en quelques secondes à trois questions : êtes-vous ouvert, qu&rsquo;est-ce qu&rsquo;on mange, comment réserver. Tout le reste est secondaire.
 
@@ -3174,7 +3355,7 @@ Une heure de réglages
 
 
 
-Les fourchettes ci-dessus sont des ordres de grandeur, qui varient selon les prestataires. Ce qui coûte le plus cher sur la durée, ce n&rsquo;est souvent pas la création, mais la commission prélevée sur chaque commande ou les modifications facturées une à une. Pour un calcul détaillé, lisez combien coûte un site de click &amp; collect et notre comparatif des logiciels de click &amp; collect.
+Les fourchettes ci-dessus sont des ordres de grandeur, qui varient selon les prestataires. Ce qui coûte le plus cher sur la durée, ce n&rsquo;est souvent pas la création, mais la commission prélevée sur chaque commande ou les modifications facturées une à une. Pour un calcul détaillé, lisez combien coûte un site de click &amp; collect et notre comparatif des logiciels de click &amp; collect. Si votre budget est serré, notre comparatif du site internet pas cher pour un commerce montre ce qui est vraiment gratuit, avec un calcul sur trois ans.
 Faire son site soi-même ou passer par un logiciel métier ?
 Faire son site soi-même avec un constructeur généraliste est possible et peu coûteux, à condition d&rsquo;avoir du temps et d&rsquo;accepter de régler soi-même tout ce qui est propre à un commerce de bouche. Un logiciel métier fait ces réglages pour vous.
 Un constructeur généraliste est pensé pour beaucoup de métiers à la fois, souvent pour l&rsquo;expédition de colis. Pour un boucher ou un primeur, il faut ajouter des extensions pour les créneaux de retrait, la vente au poids ou la limite de commandes par créneau. Un logiciel métier les prévoit dès le départ, avec un catalogue déjà rempli pour votre métier.
@@ -3719,7 +3900,8 @@ R : Avec un logiciel métier, l'aperçu apparaît en 30 secondes et une boutique
 
 Mettre en place le click and collect chez un primeur ou un maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait et produits qui manquent.
 
-Le click and collect chez un primeur, c&rsquo;est laisser vos clients composer leur panier de fruits et légumes en ligne, puis le retirer en boutique au créneau choisi. Vous préparez aux heures creuses, le client pressé repart en deux minutes, et les paniers de la semaine se vendent avant même votre passage au marché de gros ou votre récolte.
+Le click and collect chez un primeur consiste à laisser les clients composer leur panier de fruits et légumes en ligne, puis à le retirer en boutique au créneau choisi. Pour le mettre en place, il suffit de commencer par deux ou trois paniers à prix fixe, d&rsquo;afficher le reste à la pièce ou au kilo et de limiter le nombre de commandes par créneau. Avec Marchéo, cela coûte 39 € par mois sans engagement et sans commission, plus 399 € d&rsquo;installation unique, sans matériel à acheter.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous hésitez encore sur l&rsquo;outil, notre comparatif des logiciels pour vendre en ligne sans commission situe les différentes options.
 Un primeur a ses propres contraintes : des produits vendus au poids, des arrivages qui changent chaque jour, des ruptures fréquentes. On pourrait croire que cela ne se met pas en ligne. En pratique, ces contraintes se règlent avec quelques réglages simples, à condition de ne pas vouloir tout mettre sur internet le premier jour.
 Pourquoi proposer le click and collect dans un primeur ?
 Le samedi matin et en fin de journée, la boutique se remplit vite. Chaque client choisit, pèse, hésite. Pendant ce temps, celui qui voulait juste ses légumes de la semaine regarde la file et repart.
@@ -3817,13 +3999,18 @@ Les deux fonctionnent chez un primeur. Le paiement au retrait est souvent plus s
 Le vrai risque, c&rsquo;est le panier préparé pour un client qui ne vient pas. Les fruits mûrs ne se revendent pas toujours le lendemain. Pour les grosses commandes, l&rsquo;empreinte bancaire est une protection simple : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. L&rsquo;option est facultative, vous pouvez la réserver aux commandes importantes. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.
 Et si vous voulez aussi livrer dans le quartier ?
 Beaucoup de primeurs ajoutent la livraison une fois le click and collect installé, souvent pour les clients âgés ou les paniers lourds. Le plus simple est de la limiter à une zone proche, à un ou deux jours de tournée, avec un minimum de commande. Marchéo ne livre pas : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux, votre minimum et vos frais. Notre guide pour organiser sa propre livraison locale donne la méthode.
-Ce que coûte le click and collect pour un primeur
-Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cela se sent vite.
+Combien coûte le click and collect pour un primeur ?
+Le click and collect coûte 39 € par mois avec Marchéo, alors qu&rsquo;une plateforme de livraison prend en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cette différence se sent vite.
 Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d&rsquo;installation. Le client commande en 30 secondes, sans créer de compte.
-Pour commencer
-Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse particulière.
+Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à une vraie boutique.
+Par où commencer ?
+Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter.
 La page détaillée pour votre métier est ici : click and collect pour primeur et maraîcher. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
+Q : Quel logiciel de click and collect choisir pour un primeur ?
+R : Choisissez un outil qui gère la vente au kilo, les paniers à prix fixe, les ruptures et la capacité par créneau. Il existe des modules liés à une caisse et des logiciels métier sans caisse à changer. Marchéo fait partie de ces derniers : 39 € par mois (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 399 ou 549 €. Si vous avez déjà une caisse, vérifiez aussi le module de votre fournisseur.
+Q : Faut-il acheter du matériel pour faire du click and collect chez un primeur ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez les commandes depuis le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez comme d'habitude, avec votre caisse et votre terminal.
 Q : Comment vendre des fruits et légumes au kilo en click and collect ?
 R : Vous affichez un prix au kilo et des quantités types, par exemple 500 g, 1 kg ou 2 kg, ou un prix à la pièce pour ce qui se vend à l'unité. Le client choisit, vous préparez au plus près, et le montant final est ajusté à la pesée au retrait. Une phrase sur la fiche produit suffit à prévenir que le poids peut varier légèrement.
 Q : Que faire quand un produit manque le jour de la préparation ?

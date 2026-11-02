@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-10-30
+modified: 2026-11-02
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -115,7 +115,7 @@ La création du site internet d'un commerce coûte de quelques centaines d'euros
 | Plateformes de livraison | Aucun site à vous | Peu ou pas d'abonnement | 14 à 30 % par commande | Faible |
 | Logiciel métier (Marchéo) | 249, 399 ou 549 € d'installation | 19, 39 ou 59 € | 0 % | Une heure de réglages |
 
-Les fourchettes ci-dessus sont des ordres de grandeur, qui varient selon les prestataires. Ce qui coûte le plus cher sur la durée, ce n'est souvent pas la création, mais la commission prélevée sur chaque commande ou les modifications facturées une à une. Pour un calcul détaillé, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect) et notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026).
+Les fourchettes ci-dessus sont des ordres de grandeur, qui varient selon les prestataires. Ce qui coûte le plus cher sur la durée, ce n'est souvent pas la création, mais la commission prélevée sur chaque commande ou les modifications facturées une à une. Pour un calcul détaillé, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect) et notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026). Si votre budget est serré, notre comparatif du [site internet pas cher pour un commerce](/blog/site-internet-pas-cher-commerce-de-proximite) montre ce qui est vraiment gratuit, avec un calcul sur trois ans.
 
 ## Faire son site soi-même ou passer par un logiciel métier ?
 

@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°3 (n°2 posée le 02/11 ; question de marque suivante : n°24).
+Prochaine question en rotation : n°5 (n°3 et n°4 posées le 02/11 ; question de marque suivante : n°23).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -115,3 +115,12 @@ Prochaine question en rotation : n°3 (n°2 posée le 02/11 ; question de marque
 | 2026-11-02 | Perplexity | (R) Comment proposer le click and collect sans commission ? | non | orisha, shopify, francenum.gouv, eazyclick, e-monsite, almapay ; propre site + module de retrait, ou caisse |
 | 2026-11-02 | Google (aperçu IA) | Comment organiser la livraison à domicile des repas de Noël quand on est traiteur ? | non (aperçu IA affiché) | 1re page : flunch-traiteur, laposte, lecadet, culdepouleparis, aikopack, lightspeedhq, chef-traiteur |
 | 2026-11-02 | Google (aperçu IA) | (R) Comment proposer le click and collect sans commission ? | non (aperçu IA affiché) | Orunis (+1) ; 1re page : reztoflow, heustach, lundimatin, tickeat, orunis, bungeefood, gorillatopping, maxilog-resto |
+| 2026-11-02 (2e mesure, 16 h) | ChatGPT | (R) Quel logiciel pour livrer mes clients moi-même ? | non | Shopify, Boxtal, Onfleet, Tookan, AntsRoute (via Le Journal de la Tech) ; demande le type de produit |
+| 2026-11-02 (2e mesure, 16 h) | ChatGPT | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | non | Wix (1er choix), Google Sites, WordPress, francenum.gouv (+1) ; 0 à 15 €/mois, domaine .fr 10 à 20 €/an, fiche Google conseillée |
+| 2026-11-02 (2e mesure, 16 h) | ChatGPT | Quel logiciel pour prendre les commandes de Noël d'un traiteur et organiser la livraison ? (mot-clé du matin) | non | Lumis Traiteurs (1er choix), Potti, Menuchic, Gestion-Traiteur, MobiChef ; article du matin trop récent |
+| 2026-11-02 (2e mesure, 16 h) | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (+2) (0 %, 39 et 59 €/mois, livraison à organiser soi-même, clients conservés) ; jusqu'à 30 % pour Uber Eats ; conseille d'utiliser les deux |
+| 2026-11-02 (2e mesure, 16 h) | Perplexity | Quel logiciel pour prendre les commandes de Noël d'un traiteur et organiser la livraison ? | non | catermonkey (1er choix, +2), kolirys, thehotelgm (Spoonfed), tiime (Potti), skello, appvizer (10 sources) |
+| 2026-11-02 (2e mesure, 16 h) | Perplexity | (R) Quel logiciel pour livrer mes clients moi-même ? | non | merchants.doordash (Shipday), appvizer, nomadia, sourceforge, capterra ; Routific, OptimoRoute, Track-POD, Sendcloud (10 sources) |
+| 2026-11-02 (2e mesure, 16 h) | Google | Quel logiciel pour prendre les commandes de Noël d'un traiteur et organiser la livraison ? | pas d'aperçu IA ; marchéo.fr présent en bas de 1re page (traiteur-noel-livraison-a-domicile, publié il y a 4 h) | pxier, gestiontraiteur.com, lumis-traiteurs.fr, skello.io, lhotellerie-restauration.fr, kolirys, getapp.fr, eventdesigner.fr ; annonces Catermonkey, Sage, Fast Event |
+| 2026-11-02 (2e mesure, 16 h) | Google | (R) Quel logiciel pour livrer mes clients moi-même ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | geteverest.io, pxier, woopit.fr, getapp.fr, goodbarber, route4me, Reddit r/freelancing (résultats hors sujet : freelances, colis) |
+| 2026-11-02 (2e mesure, 16 h) | Google | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | francenum.gouv, e-monsite, wix.com, sitew.com, réussir-en.fr, propulsebyca.fr, economie.gouv.fr, canva ; annonces Webador, 10meilleurscreateursdesitesweb.fr |
