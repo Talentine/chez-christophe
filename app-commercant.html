@@ -4841,6 +4841,31 @@ async function demanderPermissionNotifications(reg) {
   }
 }
 
+// Affiche une notification locale. Sur Android Chrome et dans l'app installée
+// (PWA), le constructeur « new Notification() » est interdit (TypeError
+// « Illegal constructor ») : il faut passer par le Service Worker.
+async function afficherNotifLocale(titre, options) {
+  options = Object.assign({ icon: '/icon-192.png', badge: '/icon-192.png' }, options || {});
+  if ('serviceWorker' in navigator) {
+    try {
+      const reg = (await navigator.serviceWorker.getRegistration()) ||
+        (await Promise.race([navigator.serviceWorker.ready, new Promise(r => setTimeout(() => r(null), 3000))]));
+      if (reg && reg.showNotification) {
+        await reg.showNotification(titre, options);
+        return true;
+      }
+    } catch (e) { console.warn('showNotification SW:', e); }
+  }
+  try {
+    new Notification(titre, options);
+    return true;
+  } catch (e) {
+    console.warn('new Notification:', e);
+    return false;
+  }
+}
+window.afficherNotifLocale = afficherNotifLocale;
+
 async function activerNotifications() {
   if (!('Notification' in window)) {
     afficherToast('⚠️ Notifications non supportées sur ce navigateur');
@@ -4850,9 +4875,8 @@ async function activerNotifications() {
   if (permission === 'granted') {
     const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     afficherToast('🔔 Notifications activées !');
-    new Notification('✅ Notifications actives !', {
+    afficherNotifLocale('✅ Notifications actives !', {
       body: 'Vous recevrez une alerte à chaque nouvelle commande.',
-      icon: '/icon-192.png',
     });
     if ('serviceWorker' in navigator) {
       const reg = await navigator.serviceWorker.ready;
@@ -4919,29 +4943,38 @@ async function installerApp() {
   }
 }
 
-function testerNotification() {
+async function testerNotification() {
+  // iPhone : les notifications web n'existent que dans l'app ajoutée à l'écran d'accueil
   if (!('Notification' in window)) {
-    afficherToast('⚠️ Notifications non supportées');
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    afficherToast(ios
+      ? "📲 Sur iPhone : Partager → « Sur l'écran d'accueil », puis ouvrez Marchéo depuis l'icône"
+      : '⚠️ Notifications non supportées sur ce navigateur');
     return;
   }
-  if (Notification.permission === 'granted') {
-    try {
-      new Notification('🛒 Nouvelle commande !', {
-        body: 'Marie L. — 36,10€ · Retrait 10h–11h',
-        icon: '/icon-192.png',
-      });
-      afficherToast('🔔 Notification envoyée !');
-    } catch(e) {
-      afficherToast('Erreur: ' + e.message);
-    }
-  } else if (Notification.permission === 'default') {
-    Notification.requestPermission().then(p => {
-      afficherToast('Permission: ' + p);
-    });
-  } else {
-    afficherToast('❌ Notifications bloquées dans les paramètres');
+  let perm = Notification.permission;
+  if (perm === 'default') {
+    try { perm = await Notification.requestPermission(); } catch (e) { perm = Notification.permission; }
   }
+  if (perm === 'denied') {
+    afficherToast('🔕 Notifications bloquées : autorisez-les dans les réglages du navigateur pour ce site');
+    return;
+  }
+  if (perm !== 'granted') {
+    afficherToast('🔔 Autorisation non accordée');
+    return;
+  }
+  const ok = await afficherNotifLocale('🛒 Nouvelle commande !', {
+    body: 'Marie L. — 36,10€ · Retrait 10h–11h (test)',
+    tag: 'test-notif',
+    renotify: true,
+    vibrate: [300, 100, 300],
+  });
+  if (typeof jouerAlarmeNouvelleCommande === 'function') jouerAlarmeNouvelleCommande();
+  afficherToast(ok ? '🔔 Notification de test envoyée' : "❌ Impossible d'afficher la notification sur cet appareil");
+  const bn = document.getElementById('banniereNotifs'); if (bn) bn.style.display = 'none';
 }
+window.testerNotification = testerNotification;
 
 if ('Notification' in window && Notification.permission === 'granted') {
   const b = document.getElementById('banniereNotifs');
@@ -4950,27 +4983,7 @@ if ('Notification' in window && Notification.permission === 'granted') {
 
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('btnTestNotif');
-  if (btn) {
-    btn.addEventListener('click', function() {
-      if (Notification.permission === 'granted') {
-        new Notification('🛒 Nouvelle commande !', {
-          body: 'Marie L. — 36,10€ · Retrait 10h–11h',
-          icon: '/icon-192.png',
-          vibrate: [300, 100, 300],
-          requireInteraction: true,
-        });
-        afficherToast('🔔 Notification envoyée !');
-      } else {
-        Notification.requestPermission().then(p => {
-          if (p === 'granted') {
-            new Notification('✅ Notifications actives !', { body: 'Ça fonctionne !' });
-          } else {
-            afficherToast('❌ Permission refusée');
-          }
-        });
-      }
-    });
-  }
+  if (btn) btn.addEventListener('click', testerNotification);
 });
 
 let __pollTimer = null, __minuitTimer = null, __visHandler = null, __pollCommercantId = null;
@@ -5082,7 +5095,7 @@ async function chargerCommandesSupabase(commercantId) {
       }
 
       if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('🛒 Nouvelle commande !', {
+        afficherNotifLocale('🛒 Nouvelle commande !', {
           body: (nouvelle.numero || '') + ' — ' + (nouvelle.total_ttc || '') + '€',
           icon: '/icon-192.png',
           vibrate: [300, 100, 300],
@@ -9901,10 +9914,10 @@ function appliquerRestrictionsRole(role) {
               }catch(e){console.warn('Push sub save failed:',e);}
             }
             // Test notif
-            new Notification('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.',icon:'/icon-192.png'});
+            window.afficherNotifLocale&&window.afficherNotifLocale('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.'});
           });
         } else {
-          new Notification('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.'});
+          window.afficherNotifLocale&&window.afficherNotifLocale('🎉 Notifications activées !',{body:'Tu seras alerté à chaque nouvelle commande Marchéo.'});
         }
         var modal=document.querySelector('.m-pwa-modal');
         if(modal) modal.remove();
