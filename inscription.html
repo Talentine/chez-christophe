@@ -2,6 +2,16 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Créer ma boutique en ligne gratuitement en 30 secondes · Marchéo</title>
 <meta name="description" content="Choisissez votre métier, tapez le nom de votre commerce et voyez l'aperçu de votre boutique de click & collect avec le catalogue déjà rempli. Gratuit, sans carte bancaire, sans engagement.">
@@ -880,6 +890,34 @@ function suivreConversion(evenement, evenementMeta) {
   var meta = { business_type: state.type || null, offre: state.offre || null };
   try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track(evenement, meta); } catch (e) {}
   try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, { content_category: state.type || undefined }); } catch (e) {}
+  if (evenement === 'demo_creee') conversionWeeglad(state.commercantId);
+}
+
+// ── Conversion WeeglAd : formulaire d'inscription confirmé = boutique réellement créée en base.
+//    WeeglAd n'existe que si le visiteur a accepté le bandeau publicitaire. Une seule conversion par
+//    boutique (rechargement, retour depuis l'e-mail de confirmation, double clic). Aucune donnée personnelle.
+var _weegladEnvoyes = {};
+function conversionWeeglad(commercantId) {
+  var cle = String(commercantId || '');
+  if (!cle || _weegladEnvoyes[cle]) return;
+  _weegladEnvoyes[cle] = true;
+  var deja = [];
+  try { deja = JSON.parse(localStorage.getItem('marcheo_weeglad_conv') || '[]'); } catch (e) {}
+  if (!Array.isArray(deja)) deja = [];
+  if (deja.indexOf(cle) !== -1) return;
+  var essais = 0;
+  (function envoyer() {
+    if (window.WeeglAd && typeof window.WeeglAd.trackConversion === 'function') {
+      try {
+        WeeglAd.trackConversion({ event: "FORM_SUBMIT" });
+        deja.push(cle);
+        localStorage.setItem('marcheo_weeglad_conv', JSON.stringify(deja.slice(-20)));
+      } catch (e) {}
+      return;
+    }
+    // Script async encore en cours de chargement (consentement donné) : on patiente 15 s maximum
+    if (window.__weeglad && ++essais <= 30) setTimeout(envoyer, 500);
+  })();
 }
 
 // ── Source d'acquisition : campagne (UTM) de la visite + choix Pixel Meta, posés sur la boutique créée.

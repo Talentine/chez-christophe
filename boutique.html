@@ -2,6 +2,18 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  var d=false;try{d=/[?&]demo=1(&|$)/.test(location.search)||sessionStorage.getItem('marcheo_demo_pub')==='1';}catch(e){}
+  if(!d)return; /* boutiques : seulement en visite « démo » venue d'une publicité */
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="docTitle">Boutique artisanale en ligne · Click &amp; Collect et livraison · Marchéo</title>
 <meta name="description" content="Commandez en ligne chez votre commerçant artisanal favori : primeur, boucher, boulanger, fromager, poissonnier, traiteur, pizzeria, restaurant. Click & collect et livraison rapide à domicile avec Marchéo.">

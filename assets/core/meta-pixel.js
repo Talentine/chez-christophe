@@ -4,12 +4,20 @@
 // Tant que PIXEL_ID est vide, ce script ne fait rien (aucun bandeau).
 //
 // Usage : window.MarcheoPixel.track('Lead', { content_category: 'boucherie' });
+//
+// Gère aussi le consentement du pixel WeeglAd (même bandeau, même choix).
+// Le choix enregistré porte w:1 quand le bandeau mentionnait WeeglAd ; un ancien
+// « oui » donné pour Meta seul est redemandé avant d'activer WeeglAd.
+// Si le consentement existe déjà, WeeglAd est chargé de façon synchrone dans le
+// <head> de chaque page (script inline « data-weeglad-gate ») ; sinon il est
+// chargé ici, au clic sur « Accepter ».
 // ============================================================
 
 (function () {
   const PIXEL_ID = '2383980339004163'; // ← ID du Pixel Meta (Gestionnaire d'événements), ex. '123456789012345'
   const CLE = 'marcheo_consent_pub';
   const DUREE_MS = 1000 * 60 * 60 * 24 * 390; // ~13 mois
+  const WEEGLAD_VK = 'c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613';
 
   const file = [];
   let actif = false;
@@ -26,15 +34,31 @@
   const isBot = /bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent);
   if (isBot || location.hostname === 'localhost' || location.protocol === 'file:') return;
 
-  function lireChoix() {
+  function lireConsentement() {
     try {
       const v = JSON.parse(localStorage.getItem(CLE) || 'null');
-      if (v && v.t && Date.now() - v.t < DUREE_MS) return v.choix;
+      if (v && v.t && Date.now() - v.t < DUREE_MS) return v;
     } catch (e) {}
     return null;
   }
   function ecrireChoix(choix) {
-    try { localStorage.setItem(CLE, JSON.stringify({ choix: choix, t: Date.now() })); } catch (e) {}
+    try { localStorage.setItem(CLE, JSON.stringify({ choix: choix, t: Date.now(), w: 1 })); } catch (e) {}
+  }
+
+  // WeeglAd (après consentement uniquement). Si le <head> l'a déjà chargé, ne fait rien.
+  // Le 1er script est inséré avec async=false pour s'exécuter avant le 2nd (ordre garanti).
+  function chargerWeeglad() {
+    if (window.__weeglad) return;
+    window.__weeglad = 'consentement';
+    const base = 'https://www.weeglad.com/api/tracking/';
+    const s1 = document.createElement('script');
+    s1.src = base + 'pixel-inline.js?vk=' + WEEGLAD_VK;
+    s1.async = false;
+    document.head.appendChild(s1);
+    const s2 = document.createElement('script');
+    s2.src = base + 'pixel.js?vk=' + WEEGLAD_VK;
+    s2.async = true;
+    document.head.appendChild(s2);
   }
 
   function chargerPixel() {
@@ -70,8 +94,8 @@
     d.setAttribute('role', 'dialog');
     d.setAttribute('aria-label', 'Choix des cookies publicitaires');
     d.innerHTML =
-      '<p>Nous utilisons le Pixel Meta pour mesurer l\'efficacité de nos publicités Facebook et Instagram auprès des commerçants. ' +
-      'Il ne s\'active qu\'avec votre accord. <a href="/confidentialite#art8">En savoir plus</a></p>' +
+      '<p>Nous utilisons le Pixel Meta et le pixel WeeglAd pour mesurer l\'efficacité de nos publicités auprès des commerçants. ' +
+      'Ils ne s\'activent qu\'avec votre accord. <a href="/confidentialite#art8">En savoir plus</a></p>' +
       '<div class="mq-b"><button type="button" data-c="non">Refuser</button><button type="button" data-c="oui">Accepter</button></div>';
     d.addEventListener('click', function (e) {
       const b = e.target.closest('button[data-c]');
@@ -79,14 +103,17 @@
       const choix = b.getAttribute('data-c');
       ecrireChoix(choix);
       d.remove();
-      if (choix === 'oui') chargerPixel();
+      if (choix === 'oui') { chargerPixel(); chargerWeeglad(); }
     });
     document.body.appendChild(d);
   }
 
-  const choix = lireChoix();
-  if (choix === 'oui') chargerPixel();
-  else if (choix === null) {
+  const consentement = lireConsentement();
+  const choix = consentement ? consentement.choix : null;
+  const aRedemander = choix === null || (choix === 'oui' && consentement.w !== 1);
+  if (choix === 'oui') chargerPixel(); // accord déjà donné pour Meta
+  if (choix === 'oui' && consentement.w === 1) chargerWeeglad();
+  if (aRedemander) {
     if (document.body) afficherBandeau();
     else document.addEventListener('DOMContentLoaded', afficherBandeau);
   }
