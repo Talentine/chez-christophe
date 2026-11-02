@@ -890,34 +890,6 @@ function suivreConversion(evenement, evenementMeta) {
   var meta = { business_type: state.type || null, offre: state.offre || null };
   try { if (window.MarcheoAnalytics) window.MarcheoAnalytics.track(evenement, meta); } catch (e) {}
   try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, { content_category: state.type || undefined }); } catch (e) {}
-  if (evenement === 'demo_creee') conversionWeeglad(state.commercantId);
-}
-
-// ── Conversion WeeglAd : formulaire d'inscription confirmé = boutique réellement créée en base.
-//    WeeglAd n'existe que si le visiteur a accepté le bandeau publicitaire. Une seule conversion par
-//    boutique (rechargement, retour depuis l'e-mail de confirmation, double clic). Aucune donnée personnelle.
-var _weegladEnvoyes = {};
-function conversionWeeglad(commercantId) {
-  var cle = String(commercantId || '');
-  if (!cle || _weegladEnvoyes[cle]) return;
-  _weegladEnvoyes[cle] = true;
-  var deja = [];
-  try { deja = JSON.parse(localStorage.getItem('marcheo_weeglad_conv') || '[]'); } catch (e) {}
-  if (!Array.isArray(deja)) deja = [];
-  if (deja.indexOf(cle) !== -1) return;
-  var essais = 0;
-  (function envoyer() {
-    if (window.WeeglAd && typeof window.WeeglAd.trackConversion === 'function') {
-      try {
-        WeeglAd.trackConversion({ event: "FORM_SUBMIT" });
-        deja.push(cle);
-        localStorage.setItem('marcheo_weeglad_conv', JSON.stringify(deja.slice(-20)));
-      } catch (e) {}
-      return;
-    }
-    // Script async encore en cours de chargement (consentement donné) : on patiente 15 s maximum
-    if (window.__weeglad && ++essais <= 30) setTimeout(envoyer, 500);
-  })();
 }
 
 // ── Source d'acquisition : campagne (UTM) de la visite + choix Pixel Meta, posés sur la boutique créée.
