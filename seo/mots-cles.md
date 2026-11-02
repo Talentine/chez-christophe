@@ -247,3 +247,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | traiteur livraison plat chaud | livraison | traiteur | GS (02/11) | basse | à fondre dans l'article plateau repas (chaud ou froid) |
 | traiteur noël entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
 | traiteur vente en ligne | click & collect | traiteur | GS (02/11, confirmé) | moyenne | couvert par le refresh de creation-site-internet-traiteur (2026-11-02) |
+| tableur ou logiciel commandes traiteur noël | transverse | traiteur | IA (02/11 : ChatGPT conseille Excel ou Google Sheets pour les commandes de Noël) | moyenne | à faire : quand un tableur suffit et quand il ne suffit plus, avec « formulaire google forms commande commerce limites » |
+| logiciel tournée livraison traiteur | livraison | traiteur | IA (02/11 : Perplexity propose la question « Quels logiciels utiliser pour optimiser les tournées ») | moyenne | à faire ou FAQ de l'article plateau repas |
+| alternative takeasy click and collect | transverse | tous | IA (02/11 : ChatGPT cite Takeasy et Click & Croque sur « sans commission ») | moyenne | à étudier par la routine IA, comparatif factuel |
+| click and collect guide complet | click & collect | tous | GSC (703 impr., 1 clic, pos. 16,4 sur 28 j, 02/11) | haute | à faire : retravailler title et description de click-and-collect-commercant-guide-complet au prochain lundi |

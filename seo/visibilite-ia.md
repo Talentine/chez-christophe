@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°2 (la rotation a repris au début le 01/11 ; question de marque suivante : n°24).
+Prochaine question en rotation : n°3 (n°2 posée le 02/11 ; question de marque suivante : n°24).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -109,3 +109,9 @@ Prochaine question en rotation : n°2 (la rotation a repris au début le 01/11 ;
 | 2026-11-01 (2e mesure, 16 h) | Perplexity | Quel logiciel de click and collect pour une poissonnerie ? | non | Artipos (nommé en 1er), orisha (10 sources) ; insiste sur la vente au poids et le lien avec la caisse |
 | 2026-11-01 (2e mesure, 16 h) | Google | Quel logiciel de click and collect pour une poissonnerie ? | pas d'aperçu IA ; marchéo.fr en bas de 1re page (guide click & collect) | assyscom.fr, artipos.fr, seg2inov.fr, orisha, carrepos.fr, woopit.fr, teg-france.fr, lumis-traiteurs.fr |
 | 2026-11-01 (2e mesure, 16 h) | Google | (R) Quel logiciel pour un commerçant qui veut vendre en ligne sans matériel et sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | codeur.com, lafabriquedunet.fr (25/09/2026), maformation.fr, shine.fr, prestashop.fr, getapp.fr, almapay.com, pennylane.com, shippingbo.com ; annonce Shopify |
+| 2026-11-02 | ChatGPT | Comment organiser la livraison à domicile des repas de Noël quand on est traiteur ? (mot-clé du matin) | non | ministère de l'Agriculture (+2), service-public ; conseille un tableur Excel ou Google Sheets, aucun outil de commande nommé ; article du matin trop récent |
+| 2026-11-02 | ChatGPT | (R) Comment proposer le click and collect sans commission ? | non | Takeasy (+1), Click & Croque ; comprend la question comme « vendre une solution à des commerçants » |
+| 2026-11-02 | Perplexity | Comment organiser la livraison à domicile des repas de Noël quand on est traiteur ? | non | flunch-traiteur, kidiwe, 10-15 (10 sources) ; aucun outil nommé |
+| 2026-11-02 | Perplexity | (R) Comment proposer le click and collect sans commission ? | non | orisha, shopify, francenum.gouv, eazyclick, e-monsite, almapay ; propre site + module de retrait, ou caisse |
+| 2026-11-02 | Google (aperçu IA) | Comment organiser la livraison à domicile des repas de Noël quand on est traiteur ? | non (aperçu IA affiché) | 1re page : flunch-traiteur, laposte, lecadet, culdepouleparis, aikopack, lightspeedhq, chef-traiteur |
+| 2026-11-02 | Google (aperçu IA) | (R) Comment proposer le click and collect sans commission ? | non (aperçu IA affiché) | Orunis (+1) ; 1re page : reztoflow, heustach, lundimatin, tickeat, orunis, bungeefood, gorillatopping, maxilog-resto |
