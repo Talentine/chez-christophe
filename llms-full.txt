@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Application click and collect restaurant sans commission](https://marchéo.fr/blog/application-click-and-collect-restaurant) : Application click and collect restaurant : commandes à emporter en ligne, créneaux réglés sur le service, commandes non retirées évitées, sans commission.
+- [Quel logiciel pour livrer ses clients soi-même ?](https://marchéo.fr/blog/logiciel-pour-livrer-ses-clients-soi-meme) : Logiciel de tournée, plateforme ou boutique avec livraison : ce que fait chaque outil pour livrer vos clients vous-même, son coût et quand le choisir.
 - [Site internet pas cher pour un commerce : ce qui est vraiment gratuit](https://marchéo.fr/blog/site-internet-pas-cher-commerce-de-proximite) : Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité.
 - [Traiteur Noël livraison à domicile : organiser le 24 et le 31](https://marchéo.fr/blog/traiteur-noel-livraison-a-domicile) : Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
 - [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
@@ -921,6 +922,175 @@ Q : Comment éviter d'être débordé en cuisine par les commandes en ligne ?
 R : Fixez un nombre maximum de commandes par créneau de retrait, adapté à ce que votre cuisine sort en plus de la salle. Quand le créneau est plein, le client choisit le suivant. En cas de coup de feu, vous pouvez mettre la boutique en pause : plus aucune commande n'arrive jusqu'à ce que vous la rouvriez.
 Q : Une plateforme de commande en ligne gratuite suffit-elle pour un restaurant ?
 R : Une solution sans abonnement se rémunère presque toujours autrement : commission sur chaque commande, frais de paiement majorés ou fichier clients qui ne vous appartient pas. Avant de choisir, calculez ce que vous paieriez sur un mois normal de ventes à emporter, et vérifiez que vous pouvez récupérer la liste de vos clients.
+
+# Quel logiciel pour livrer ses clients soi-même ?
+
+Logiciel de tournée, plateforme ou boutique avec livraison : ce que fait chaque outil pour livrer vos clients vous-même, son coût et quand le choisir.
+
+Pour livrer vos clients vous-même, il vous faut un outil qui fait deux choses : prendre les commandes avec l&rsquo;adresse et préparer la tournée. Les optimiseurs de tournée ne font que la seconde, les plateformes font tout mais prennent 14 à 30 % de commission, et un logiciel de commande avec livraison comme Marchéo fait les deux pour 59 € par mois, sans commission.
+Ce guide s&rsquo;adresse au primeur, au boucher, au fromager, au boulanger ou au traiteur qui veut livrer son quartier sans plateforme. Il complète notre guide complet de la livraison à domicile pour commerçant, qui détaille la zone, les créneaux et les frais. Pour voir à quoi ressemble une boutique avec livraison, la démo gratuite prend 30 secondes, par exemple avec la page commande en ligne et livraison pour primeur.
+Quels types de logiciels existent pour livrer ses clients ?
+Il existe trois familles d&rsquo;outils, qui ne répondent pas au même besoin. Quand on pose la question à un assistant, il cite surtout des optimiseurs de tournée comme Routific, Shipday ou OptimoRoute, conçus d&rsquo;abord pour les transporteurs et les entreprises qui livrent beaucoup.
+
+
+
+Type d&rsquo;outil
+Ce qu&rsquo;il fait
+Ce qu&rsquo;il ne fait pas
+Coût habituel
+
+
+
+
+Optimiseur de tournée
+Calcule l&rsquo;ordre des arrêts, suit le livreur
+Ne prend pas les commandes, ne gère ni zone ni créneaux
+Version gratuite limitée, puis quelques dizaines d&rsquo;euros par mois
+
+
+Plateforme de livraison
+Commande, paiement et coursier
+Vous laisse peu de contrôle, garde le client
+Commission de l&rsquo;ordre de 14 à 30 % par commande
+
+
+Logiciel de commande avec livraison
+Boutique en ligne, zone, créneaux, frais, paiement, liste de tournée
+Ne livre pas à votre place
+Abonnement fixe, 0 % de commission
+
+
+
+Le bon choix dépend d&rsquo;une seule question : vos clients commandent-ils déjà quelque part, ou faut-il leur donner un endroit pour commander ?
+Quand un optimiseur de tournée suffit-il ?
+Un optimiseur de tournée suffit quand les commandes arrivent déjà par un autre canal et que vous faites beaucoup d&rsquo;arrêts. C&rsquo;est le cas d&rsquo;un boulanger qui livre chaque matin les mêmes restaurants, ou d&rsquo;un grossiste qui dessert des cantines.
+Ces outils sont utiles pour :
+
+une tournée fixe de plus de vingt ou trente arrêts ;
+plusieurs livreurs à répartir sur une même zone ;
+le suivi du livreur en direct et la preuve de livraison par photo ou signature.
+
+Ils ont une limite pour un commerce de bouche : vous devez encore recevoir la commande, noter l&rsquo;adresse, vérifier que le client est dans votre zone et encaisser. Si la commande arrive par téléphone, vous recopiez chaque adresse à la main dans l&rsquo;outil.
+Quand faut-il un logiciel de commande avec livraison ?
+Il faut un logiciel de commande avec livraison dès que vous voulez que vos clients commandent et paient seuls, sans vous appeler. C&rsquo;est la situation la plus courante chez un primeur, un boucher ou un fromager qui ouvre la livraison à ses habitués.
+Un tel logiciel règle en amont tout ce qu&rsquo;un optimiseur ne voit pas :
+
+La zone : par rayon ou par communes, pour refuser les adresses trop lointaines avant la commande.
+Les créneaux avec capacité : par exemple dix livraisons le vendredi de 17 h à 19 h, pas une de plus.
+Le minimum de commande et les frais, avec un seuil de livraison offerte.
+Le paiement en ligne ou l&rsquo;empreinte bancaire, pour ne pas faire un trajet pour rien.
+La liste de la tournée par créneau, avec les adresses et l&rsquo;itinéraire à ouvrir dans Google Maps ou Waze.
+Un SMS au client quand la commande part.
+
+Pour fixer les montants, notre méthode pour calculer ses frais de livraison part du coût réel d&rsquo;une tournée.
+Optimiseur de tournée ou boutique avec livraison : comment choisir ?
+Choisissez selon l&rsquo;origine de vos commandes et la taille de vos tournées. Le tableau suivant résume les cas les plus fréquents.
+
+
+
+Votre situation
+Outil adapté
+
+
+
+
+Commandes déjà reçues par un autre canal, plus de 30 arrêts par jour
+Optimiseur de tournée
+
+
+Clients du quartier qui commandent au téléphone, 5 à 25 livraisons par créneau
+Boutique en ligne avec livraison
+
+
+Vous voulez être découvert par de nouveaux clients le soir
+Plateforme, en complément
+
+
+Vous livrez des colis dans toute la France
+Site e-commerce avec transporteur, comme Shopify
+
+
+Boutique avec livraison et tournées très longues ou plusieurs livreurs
+Les deux : la boutique prend les commandes, l&rsquo;optimiseur calcule l&rsquo;ordre
+
+
+
+Pour la plupart des commerces de bouche, qui livrent quelques créneaux par semaine dans un rayon de 3 à 5 km, la liste de tournée de la boutique suffit. Un optimiseur devient utile plus tard, si le volume grossit.
+Combien coûte un logiciel pour livrer ses clients soi-même ?
+Un logiciel de commande avec livraison coûte un abonnement fixe, quel que soit le nombre de commandes. Une plateforme coûte un pourcentage de chaque vente, et un optimiseur s&rsquo;ajoute au prix de l&rsquo;outil de commande.
+Chez Marchéo, les prix sont fixes, sans engagement, avec 0 % de commission :
+
+
+
+Formule Marchéo
+Installation (une fois)
+Par mois
+Livraison à domicile
+
+
+
+
+Vitrine
+249 €
+19 €
+Non, site de présentation
+
+
+Click &amp; Collect + Réservation
+399 €
+39 €
+Non, retrait en boutique et réservation de table
+
+
+Click &amp; Collect + Livraison
+549 €
+59 €
+Oui, organisée par vous
+
+
+
+Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Si vous expédiez des colis partout en France, un site e-commerce généraliste avec transporteur vous conviendra mieux.
+Ce qu&rsquo;il vous faut pour livrer vos clients
+Pour livrer vos clients, il vous faut un véhicule, de quoi garder les produits au frais et un outil de commande. Il ne vous faut ni matériel informatique à acheter, ni développeur, ni commission à reverser.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Une tablette, une imprimante ou une caisse neuve
+
+
+Un véhicule et un créneau de tournée
+Une société de livraison ou des coursiers
+
+
+Des sacs ou caisses isothermes pour le frais
+Un développeur ou une agence
+
+
+Une zone, des créneaux, un minimum et des frais
+Une commission sur chaque commande
+
+
+
+Chaque métier a ses contraintes de froid et de délai : voyez notre guide boucherie livraison à domicile pour la viande, ou le logiciel de livraison pizza pour la livraison du soir.
+Pour commencer
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Vos clients commandent en 30 secondes, sans créer de compte, et la tournée de chaque créneau est prête sur votre téléphone.
+Commencez petit : un ou deux créneaux par semaine, une zone courte, vos habitués d&rsquo;abord. Vous pouvez tester votre boutique avec la démo gratuite avant de décider.
+
+Q : Quel est le meilleur logiciel pour livrer mes clients moi-même quand je tiens un commerce de bouche ?
+R : Cela dépend de la façon dont vos clients commandent. Si les commandes arrivent déjà par un autre canal et que vous faites beaucoup d'arrêts, un optimiseur de tournée suffit. Si vous voulez que les clients commandent et paient en ligne avec une zone et des créneaux, il faut un logiciel de commande avec livraison. Marchéo en fait partie : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui faites la tournée.
+Q : Faut-il acheter du matériel pour livrer ses clients avec un logiciel ?
+R : Pas pour recevoir et gérer les commandes : avec Marchéo, tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette, imprimante ni caisse à acheter. Pour la tournée, il vous faut un véhicule et, pour les produits frais, des sacs ou caisses isothermes. Si un client paie par carte à la porte, il utilise votre terminal de paiement habituel, à condition qu'il soit portable.
+Q : Existe-t-il un logiciel de tournée de livraison gratuit ?
+R : Oui, les applications d'itinéraire gratuites permettent d'enchaîner plusieurs arrêts, avec un nombre d'arrêts limité. Les optimiseurs de tournée proposent souvent une version d'essai ou gratuite, puis un abonnement mensuel. Aucun de ces outils ne prend les commandes de vos clients à votre place.
+Q : Un optimiseur de tournée et une boutique en ligne peuvent-ils fonctionner ensemble ?
+R : Oui. Quand une boutique avec livraison prépare déjà la liste des livraisons par créneau, l'optimiseur ne sert que si vous dépassez une trentaine d'arrêts par tournée ou si vous avez plusieurs livreurs. Dans ce cas, vous exportez les adresses de la boutique vers l'optimiseur.
 
 # Site internet pas cher pour un commerce : ce qui est vraiment gratuit
 
@@ -2950,7 +3120,7 @@ Le paiement en ligne ou l&rsquo;empreinte bancaire, pour éviter les trajets pou
 Une tournée par créneau, avec les adresses dans l&rsquo;ordre et l&rsquo;itinéraire à ouvrir dans Google Maps ou Waze.
 Un SMS au client quand la commande part.
 
-Si l&rsquo;outil ne fait que l&rsquo;itinéraire, il vous faudra encore prendre les commandes au téléphone. S&rsquo;il ne fait que la commande, vous recopierez les adresses à la main.
+Si l&rsquo;outil ne fait que l&rsquo;itinéraire, il vous faudra encore prendre les commandes au téléphone. S&rsquo;il ne fait que la commande, vous recopierez les adresses à la main. Notre comparatif entre optimiseur de tournée et boutique avec livraison répond à la question quel logiciel pour livrer ses clients soi-même.
 Comment régler la zone, les créneaux et les frais de livraison d&rsquo;une pizzeria ?
 La règle est de livrer court et vite. Une pizza voyage mal : au-delà d&rsquo;un quart d&rsquo;heure de route, elle arrive tiède et la croûte ramollit.
 
@@ -4635,7 +4805,9 @@ R : Répondez, calmement, publiquement, dans les jours qui suivent. Un avis nég
 
 Une entrecôte ne se vend pas comme une paire de chaussures. Voici comment prendre des commandes au kilo, aux 100 g ou à la pièce en ligne, et ajuster le montant à la pesée sans conflit avec le client.
 
-Un boucher qui envisage de vendre en ligne bute presque toujours sur la même question, et elle arrive dans les cinq premières minutes : comment on fait pour la viande au kilo ?
+Pour vendre au poids en ligne, affichez un prix au kilo, proposez au client des poids d&rsquo;un clic (300 g, 500 g, 1 kg), annoncez que le montant sera ajusté à la pesée, et faites payer au retrait avec une empreinte bancaire plutôt qu&rsquo;en prépaiement intégral. Un logiciel pensé pour les commerces de bouche, comme Marchéo, gère ces réglages pour 39 € par mois, sans commission et sans matériel à acheter.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Un boucher, un poissonnier ou un fromager qui envisage de vendre en ligne bute presque toujours sur la même question, et elle arrive dans les cinq premières minutes : comment on fait pour la viande ou le fromage au kilo ?
 Elle paraît anodine. Elle ne l&rsquo;est pas. C&rsquo;est exactement ce qui bloque la plupart des commerces de bouche devant les outils de vente en ligne généralistes, conçus pour des articles qui ont un prix fixe, un code et un poids constant. Un rôti de 1,3 kg n&rsquo;a rien de tout cela.
 La bonne nouvelle, c&rsquo;est que le problème est résolu depuis longtemps dans les solutions pensées pour ces métiers. Encore faut-il régler son catalogue correctement, et surtout annoncer les choses au client au bon moment.
 Pourquoi les boutiques en ligne classiques calent sur le poids
@@ -4736,6 +4908,39 @@ Parts, plats pour 4 ou 6, menus complets
 
 
 La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la livraison à domicile pour une poissonnerie explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du click and collect primeur montre comment faire cohabiter paniers de la semaine et vente au kilo.
+Quel outil choisir pour vendre du fromage ou de la viande au poids en ligne ?
+Choisissez un outil qui gère nativement le prix au kilo et l&rsquo;ajustement à la pesée, sinon vous passerez vos soirées à bricoler des variantes de produits. Les assistants citent souvent WooCommerce ou PrestaShop, qui savent le faire avec des extensions, mais demandent un hébergement, des réglages et parfois un prestataire.
+
+
+
+Type d&rsquo;outil
+Vente au poids
+Ce qu&rsquo;il faut prévoir
+Coût habituel
+
+
+
+
+Site e-commerce généraliste (WooCommerce, PrestaShop, Shopify)
+Possible avec extensions ou variantes
+Réglages techniques, créneaux de retrait à ajouter
+Quelques dizaines d&rsquo;euros par mois, plus les extensions
+
+
+Logiciel de caisse avec module en ligne
+Souvent prévu, relié à la balance
+Une caisse compatible, parfois du matériel
+Abonnement de la caisse, plus le module
+
+
+Logiciel de commande pour commerce de bouche, comme Marchéo
+Prévu : prix au kilo, poids d&rsquo;un clic, ajustement
+Votre catalogue et vos créneaux
+39 € par mois, sans commission
+
+
+
+Chez Marchéo, la formule Click &amp; Collect + Réservation coûte 39 € par mois et la formule Click &amp; Collect + Livraison 59 € par mois, avec des frais d&rsquo;installation uniques de 399 et 549 €, sans engagement et à 0 % de commission. Le client commande en 30 secondes, sans créer de compte, et l&rsquo;empreinte bancaire est optionnelle : vous choisissez le pourcentage, jusqu&rsquo;à 75 % du panier. Marchéo ne remplace pas votre caisse ni votre balance : la pesée se fait au comptoir, comme d&rsquo;habitude. Pour comparer avec d&rsquo;autres solutions sans pourcentage sur les ventes, voyez notre article quel logiciel pour vendre en ligne sans commission, et si vous voulez aussi livrer, quel logiciel pour livrer ses clients soi-même.
 Trois erreurs qui coûtent des commandes
 
 Tout mettre au kilo. C&rsquo;est le réflexe du commerçant, parce que c&rsquo;est la réalité de la balance. Mais chaque produit au poids demande une décision au client. Multipliez par quinze produits dans le panier, vous avez un abandon.
@@ -4746,6 +4951,8 @@ Pour commencer
 Vendre au poids en ligne ne demande ni développement particulier ni matériel supplémentaire. Il faut un catalogue où chaque produit porte son unité de vente, des poids proposés d&rsquo;un clic, une phrase claire sur l&rsquo;ajustement à la pesée et un mode de paiement adapté. Le reste, vous le faites déjà tous les jours derrière votre balance.
 La page dédiée au métier est là : click &amp; collect pour boucherie. Si vous partez de zéro, notre guide pour créer le site internet de votre boucherie explique les pages à prévoir et les prix. Si vos plus gros volumes sont les commandes de fêtes, notre guide des précommandes de fêtes pour les commerces de bouche complète celui-ci. Et pour voir à quoi ressemblerait votre boutique avec votre catalogue déjà rempli, la démo gratuite prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement.
 
+Q : Quel logiciel pour vendre au poids en ligne quand on est fromager ou boucher ?
+R : Un logiciel qui gère le prix au kilo, les poids proposés d'un clic et l'ajustement à la pesée sans extension à installer. Les sites généralistes comme WooCommerce ou PrestaShop le permettent avec des réglages techniques. Marchéo le prévoit pour les commerces de bouche : 39 € par mois pour le click & collect, 59 € avec la livraison, frais d'installation uniques de 399 ou 549 €, sans engagement et sans commission.
 Q : Comment le client choisit-il un poids s'il ne sait pas ce que ça représente ?
 R : En lui proposant des repères plutôt qu'un champ vide. Des boutons de poids courants pour le produit, par exemple 300 g, 500 g, 1 kg, puis un réglage par pas de 100 g pour ceux qui veulent affiner. Le prix se met à jour à chaque clic, donc le client voit tout de suite ce qu'il commande. Un champ libre sans repère est la première cause d'abandon sur ce type de produit.
 Q : Que se passe-t-il si le poids réel n'est pas exactement celui commandé ?
@@ -5724,7 +5931,7 @@ limiter la durée de la tournée à une heure environ.
 
 Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Pour les produits de la mer, notre guide de la livraison à domicile en poissonnerie détaille l&rsquo;organisation.
 Quel logiciel pour gérer la livraison à domicile ?
-Un logiciel de livraison pour commerçant doit faire deux choses : prendre les commandes en ligne et préparer la tournée. Les outils qui ne font que l&rsquo;un des deux vous obligent à recopier les adresses à la main.
+Un logiciel de livraison pour commerçant doit faire deux choses : prendre les commandes en ligne et préparer la tournée. Les outils qui ne font que l&rsquo;un des deux vous obligent à recopier les adresses à la main. Pour savoir quand un optimiseur de tournée suffit et quand il faut une boutique avec livraison, lisez notre comparatif quel logiciel pour livrer ses clients soi-même.
 
 
 

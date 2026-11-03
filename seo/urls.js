@@ -1,6 +1,7 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
   "/blog/application-click-and-collect-restaurant",
+  "/blog/logiciel-pour-livrer-ses-clients-soi-meme",
   "/blog/site-internet-pas-cher-commerce-de-proximite",
   "/blog/traiteur-noel-livraison-a-domicile",
   "/blog/click-and-collect-poissonnerie",

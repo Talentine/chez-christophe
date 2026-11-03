@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°5 (n°3 et n°4 posées le 02/11 ; question de marque suivante : n°23).
+Prochaine question en rotation : n°7 (n°5 et n°6 posées le 03/11 ; question de marque suivante : n°24).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -124,3 +124,11 @@ Prochaine question en rotation : n°5 (n°3 et n°4 posées le 02/11 ; question 
 | 2026-11-02 (2e mesure, 16 h) | Google | Quel logiciel pour prendre les commandes de Noël d'un traiteur et organiser la livraison ? | pas d'aperçu IA ; marchéo.fr présent en bas de 1re page (traiteur-noel-livraison-a-domicile, publié il y a 4 h) | pxier, gestiontraiteur.com, lumis-traiteurs.fr, skello.io, lhotellerie-restauration.fr, kolirys, getapp.fr, eventdesigner.fr ; annonces Catermonkey, Sage, Fast Event |
 | 2026-11-02 (2e mesure, 16 h) | Google | (R) Quel logiciel pour livrer mes clients moi-même ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | geteverest.io, pxier, woopit.fr, getapp.fr, goodbarber, route4me, Reddit r/freelancing (résultats hors sujet : freelances, colis) |
 | 2026-11-02 (2e mesure, 16 h) | Google | (R) Comment créer le site internet de mon commerce de proximité pas cher ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | francenum.gouv, e-monsite, wix.com, sitew.com, réussir-en.fr, propulsebyca.fr, economie.gouv.fr, canva ; annonces Webador, 10meilleurscreateursdesitesweb.fr |
+| 2026-11-03 | ChatGPT | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | recherche web en échec (« Impossible de se connecter ») ; réponse de mémoire : Deliverect, Flipdish, Wix Restaurants, GloriaFood |
+| 2026-11-03 | ChatGPT | (R) Quel logiciel de click and collect pour une boucherie ? | non | RushPilot (1er choix, 179 € HT/mois), Mon Petit Drive, Achil, Heustach (0,25 € par commande), Soclick, BDN Collect ; pose ensuite des questions de budget (30 à 80 €/mois) |
+| 2026-11-03 | ChatGPT | Quelle application de click and collect pour un restaurant sans commission ? (mot-clé du matin) | non | tableau GetEat, WeEat, ARDOIZA (29 €/mois), Click&Croque (29 € HT), Collectly (49,99 € HT) ; rappelle que 0 % ne veut pas dire zéro frais de paiement ; article du matin trop récent |
+| 2026-11-03 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts | marchéo.fr (+1) (3 offres avec installation, 0 %, sans engagement, pas de livreurs, réservation de table) |
+| 2026-11-03 | Perplexity | Quelle application de click and collect pour un restaurant sans commission ? | non | click-eat, goodbarber, lafabriquedunet (ARDOIZA), menu-touch, metro (DISH Pro Order), play.google (Collectly), chatfood (10 sources) |
+| 2026-11-03 | Perplexity | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | restolabs, bungeefood (+2), aexir, chatfood ; canal de commande direct + garder Uber Eats pour l'acquisition, aucun outil français nommé |
+| 2026-11-03 | Google | Quelle application de click and collect pour un restaurant sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | click-eat.fr (1er), yonev.com, aexir.com (26/10/2026), ordrafood.fr, blog.laddition.com, toquedechef.com, heustach.fr, lepronto.fr, onrush.fr |
+| 2026-11-03 | Google | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | bungeefood.fr (1er), heustach.fr, up-review.co, francenum.gouv, Quora, Facebook (Delicity), legalplace, menuthere.com, mobiletransaction.org |

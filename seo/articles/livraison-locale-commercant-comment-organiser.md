@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-02
+modified: 2026-11-03
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -135,7 +135,7 @@ Les règles précises dépendent de vos produits : renseignez-vous auprès de la
 
 ## Quel logiciel pour gérer la livraison à domicile ?
 
-Un logiciel de livraison pour commerçant doit faire deux choses : prendre les commandes en ligne et préparer la tournée. Les outils qui ne font que l'un des deux vous obligent à recopier les adresses à la main.
+Un logiciel de livraison pour commerçant doit faire deux choses : prendre les commandes en ligne et préparer la tournée. Les outils qui ne font que l'un des deux vous obligent à recopier les adresses à la main. Pour savoir quand un optimiseur de tournée suffit et quand il faut une boutique avec livraison, lisez notre comparatif [quel logiciel pour livrer ses clients soi-même](/blog/logiciel-pour-livrer-ses-clients-soi-meme).
 
 | Type d'outil | Ce qu'il fait | Ce qu'il ne fait pas |
 |---|---|---|

@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-10-24
+modified: 2026-11-03
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -21,6 +21,8 @@ metiers:
   - primeur
   - traiteur
 faq:
+  - q: "Quel logiciel pour vendre au poids en ligne quand on est fromager ou boucher ?"
+    r: "Un logiciel qui gère le prix au kilo, les poids proposés d'un clic et l'ajustement à la pesée sans extension à installer. Les sites généralistes comme WooCommerce ou PrestaShop le permettent avec des réglages techniques. Marchéo le prévoit pour les commerces de bouche : 39 € par mois pour le click & collect, 59 € avec la livraison, frais d'installation uniques de 399 ou 549 €, sans engagement et sans commission."
   - q: "Comment le client choisit-il un poids s'il ne sait pas ce que ça représente ?"
     r: "En lui proposant des repères plutôt qu'un champ vide. Des boutons de poids courants pour le produit, par exemple 300 g, 500 g, 1 kg, puis un réglage par pas de 100 g pour ceux qui veulent affiner. Le prix se met à jour à chaque clic, donc le client voit tout de suite ce qu'il commande. Un champ libre sans repère est la première cause d'abandon sur ce type de produit."
   - q: "Que se passe-t-il si le poids réel n'est pas exactement celui commandé ?"
@@ -31,7 +33,11 @@ faq:
     r: "Vendez-les à la pièce avec une fourchette de poids annoncée, par exemple « poulet fermier, 1,2 à 1,6 kg », et un prix au kilo affiché à côté. Le client sait ce qu'il aura et ce qu'il paiera approximativement, et vous ajustez au moment de la pesée comme pour le reste."
 ---
 
-Un boucher qui envisage de vendre en ligne bute presque toujours sur la même question, et elle arrive dans les cinq premières minutes : comment on fait pour la viande au kilo ?
+Pour vendre au poids en ligne, affichez un prix au kilo, proposez au client des poids d'un clic (300 g, 500 g, 1 kg), annoncez que le montant sera ajusté à la pesée, et faites payer au retrait avec une empreinte bancaire plutôt qu'en prépaiement intégral. Un logiciel pensé pour les commerces de bouche, comme Marchéo, gère ces réglages pour 39 € par mois, sans commission et sans matériel à acheter.
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+Un boucher, un poissonnier ou un fromager qui envisage de vendre en ligne bute presque toujours sur la même question, et elle arrive dans les cinq premières minutes : comment on fait pour la viande ou le fromage au kilo ?
 
 Elle paraît anodine. Elle ne l'est pas. C'est exactement ce qui bloque la plupart des commerces de bouche devant les outils de vente en ligne généralistes, conçus pour des articles qui ont un prix fixe, un code et un poids constant. Un rôti de 1,3 kg n'a rien de tout cela.
 
@@ -96,6 +102,18 @@ Beaucoup de commerces combinent les trois selon le produit. C'est un réglage, p
 | Traiteur | Salades et plats au poids | Parts, plats pour 4 ou 6, menus complets |
 
 La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du [click and collect primeur](/blog/click-and-collect-primeur) montre comment faire cohabiter paniers de la semaine et vente au kilo.
+
+## Quel outil choisir pour vendre du fromage ou de la viande au poids en ligne ?
+
+Choisissez un outil qui gère nativement le prix au kilo et l'ajustement à la pesée, sinon vous passerez vos soirées à bricoler des variantes de produits. Les assistants citent souvent WooCommerce ou PrestaShop, qui savent le faire avec des extensions, mais demandent un hébergement, des réglages et parfois un prestataire.
+
+| Type d'outil | Vente au poids | Ce qu'il faut prévoir | Coût habituel |
+| --- | --- | --- | --- |
+| Site e-commerce généraliste (WooCommerce, PrestaShop, Shopify) | Possible avec extensions ou variantes | Réglages techniques, créneaux de retrait à ajouter | Quelques dizaines d'euros par mois, plus les extensions |
+| Logiciel de caisse avec module en ligne | Souvent prévu, relié à la balance | Une caisse compatible, parfois du matériel | Abonnement de la caisse, plus le module |
+| Logiciel de commande pour commerce de bouche, comme Marchéo | Prévu : prix au kilo, poids d'un clic, ajustement | Votre catalogue et vos créneaux | 39 € par mois, sans commission |
+
+Chez Marchéo, la formule Click & Collect + Réservation coûte 39 € par mois et la formule Click & Collect + Livraison 59 € par mois, avec des frais d'installation uniques de 399 et 549 €, sans engagement et à 0 % de commission. Le client commande en 30 secondes, sans créer de compte, et l'empreinte bancaire est optionnelle : vous choisissez le pourcentage, jusqu'à 75 % du panier. Marchéo ne remplace pas votre caisse ni votre balance : la pesée se fait au comptoir, comme d'habitude. Pour comparer avec d'autres solutions sans pourcentage sur les ventes, voyez notre article [quel logiciel pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission), et si vous voulez aussi livrer, [quel logiciel pour livrer ses clients soi-même](/blog/logiciel-pour-livrer-ses-clients-soi-meme).
 
 ## Trois erreurs qui coûtent des commandes
 

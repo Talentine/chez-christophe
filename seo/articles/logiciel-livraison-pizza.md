@@ -3,7 +3,7 @@ title: "Logiciel livraison pizza : livrer vous-même sans commission"
 titre_court: "Le logiciel de livraison pour pizzeria"
 description: "Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission."
 date: 2026-10-26
-modified: 2026-10-29
+modified: 2026-11-03
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -57,7 +57,7 @@ Il doit prendre la commande et préparer la livraison, sans vous obliger à reco
 7. **Une tournée par créneau**, avec les adresses dans l'ordre et l'itinéraire à ouvrir dans Google Maps ou Waze.
 8. **Un SMS au client** quand la commande part.
 
-Si l'outil ne fait que l'itinéraire, il vous faudra encore prendre les commandes au téléphone. S'il ne fait que la commande, vous recopierez les adresses à la main.
+Si l'outil ne fait que l'itinéraire, il vous faudra encore prendre les commandes au téléphone. S'il ne fait que la commande, vous recopierez les adresses à la main. Notre comparatif entre optimiseur de tournée et boutique avec livraison répond à la question [quel logiciel pour livrer ses clients soi-même](/blog/logiciel-pour-livrer-ses-clients-soi-meme).
 
 ## Comment régler la zone, les créneaux et les frais de livraison d'une pizzeria ?
 
