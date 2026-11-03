@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Application click and collect restaurant sans commission](https://marchéo.fr/blog/application-click-and-collect-restaurant) : Application click and collect restaurant : commandes à emporter en ligne, créneaux réglés sur le service, commandes non retirées évitées, sans commission.
 - [Site internet pas cher pour un commerce : ce qui est vraiment gratuit](https://marchéo.fr/blog/site-internet-pas-cher-commerce-de-proximite) : Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité.
 - [Traiteur Noël livraison à domicile : organiser le 24 et le 31](https://marchéo.fr/blog/traiteur-noel-livraison-a-domicile) : Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
 - [Click and collect poissonnerie : plateaux de fruits de mer et Noël](https://marchéo.fr/blog/click-and-collect-poissonnerie) : Mettre en place le click and collect dans une poissonnerie : marée du week-end, plateaux de fruits de mer de Noël, créneaux, paiement et retrait.
@@ -81,4 +82,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-02
+- Dernière mise à jour : 2026-11-03

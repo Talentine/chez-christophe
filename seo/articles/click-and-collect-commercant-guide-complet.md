@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-11-01
+modified: 2026-11-03
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -163,7 +163,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
-- **Restaurant.** Vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant).
+- **Restaurant.** Vente à emporter et réservation de table. Lire notre guide pour choisir une [application click and collect pour restaurant](/blog/application-click-and-collect-restaurant) et voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Commandes prêtes à l'arrivée sur l'emplacement. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck).
 
 ## Par où commencer aujourd'hui ?
@@ -184,5 +184,6 @@ Les autres guides du blog sur le click & collect :
 - [Click and collect fromagerie](/blog/click-and-collect-fromagerie)
 - [Click and collect poissonnerie](/blog/click-and-collect-poissonnerie)
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)
+- [Application click and collect restaurant](/blog/application-click-and-collect-restaurant)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Digitaliser son commerce de bouche](/blog/digitaliser-commerce-bouche)

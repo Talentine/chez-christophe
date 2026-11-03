@@ -3,7 +3,7 @@ title: "Prix site internet restaurant : combien ça coûte vraiment en 2026"
 titre_court: "Prix d'un site internet de restaurant"
 description: "Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter."
 date: 2026-10-27
-modified: 2026-11-02
+modified: 2026-11-03
 rubrique: Prix
 emoji: 🍴
 keywords:
@@ -30,7 +30,7 @@ faq:
 
 Le prix d'un site internet de restaurant va de quelques dizaines d'euros par mois avec un constructeur à plusieurs milliers d'euros avec une agence. Pour un restaurant indépendant qui veut afficher sa carte, prendre des réservations et vendre à emporter, un logiciel métier comme Marchéo coûte 19 à 59 € par mois, sans engagement et sans commission. Ce qui fait vraiment varier la facture, ce sont les fonctions, pas le design.
 
-Cet article détaille les coûts propres à la restauration. La méthode générale, valable pour tous les commerces, se trouve dans notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce). Ici, on parle de carte, de couverts et de vente à emporter.
+Cet article détaille les coûts propres à la restauration. La méthode générale, valable pour tous les commerces, se trouve dans notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce). Ici, on parle de carte, de couverts et de vente à emporter. Pour la partie commandes à emporter, voyez aussi notre guide pour choisir une [application click and collect pour restaurant](/blog/application-click-and-collect-restaurant).
 
 ## Combien coûte un site internet pour un restaurant ?
 

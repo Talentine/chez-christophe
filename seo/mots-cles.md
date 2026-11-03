@@ -22,8 +22,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS | haute | couvert le 2026-11-01 par click-and-collect-poissonnerie (Google 01/11 : requête d'acheteur, vendeurs en ligne en 1re page, angle commerçant retenu) |
 | commande bûche de noël en ligne | click & collect | boulangerie | GS + IA (30/10 : ChatGPT répond côté client, Perplexity cite des pâtisseries et Shopify) | haute | publié le 2026-10-30 + commande-buche-de-noel-en-ligne |
 | shopify ou logiciel local pour fleuriste | transverse | fleuriste | IA (30/10 : Shopify choix n°1 de ChatGPT et Perplexity pour un fleuriste) | haute | publié le 2026-10-31 + alternative-shopify-fleuriste |
-| application click and collect restaurant | click & collect | restaurant | GS | haute | à faire |
-| logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | à faire (proche du comparatif existant, angle restaurant obligatoire) |
+| application click and collect restaurant | click & collect | restaurant | GS | haute | publié le 2026-11-03 application-click-and-collect-restaurant |
+| logiciel click and collect restaurant | click & collect | restaurant | GS | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | quel logiciel de click and collect pour une boucherie | click & collect | boucherie | IA (27/10 : seuls des éditeurs de caisse généralistes ressortent) | haute | publié le 2026-10-28 + click-and-collect-boucherie (FAQ « Quel logiciel… ») |
 | empreinte bancaire définition commerçant | click & collect | tous | IA | moyenne | couvert par empreinte-bancaire-no-show-commerce-restaurant (rafraîchi le 2026-10-27) |
 | site click and collect gratuit | click & collect | transverse | GS | moyenne | à faire (angle : ce qui est vraiment gratuit) |
@@ -57,7 +57,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect pizza | click & collect | pizzeria | GS | moyenne | à faire (marques en tête, angle pizzeria indépendante) |
 | click and collect produits frais | click & collect | primeur | GS | moyenne | à faire |
 | click and collect halal | click & collect | boucherie | GS | basse | niche, à garder en variante boucherie |
-| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS | moyenne | à faire |
+| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | logiciel de gestion de commande en ligne | click & collect | transverse | GS | basse | générique |
 | créer site internet restaurant gratuit | site | restaurant | GS | moyenne | à faire (angle : ce que coûte vraiment le gratuit) |
 | logiciel commande traiteur | click & collect | traiteur | GS (17/10) | moyenne | à faire (angle : outil de prise de commande, pas ERP) |
@@ -170,7 +170,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | prix d un site internet pour un restaurant | site | restaurant | GS (27/10) | haute | publié le 2026-10-27 + prix-site-internet-restaurant (variante) |
 | site internet gratuit pour restaurant | site | restaurant | GS (27/10) | moyenne | couvert en FAQ de prix-site-internet-restaurant (2026-10-27) |
 | créer site internet restaurant gratuit | site | restaurant | GS (27/10) | moyenne | à fondre dans un article « site gratuit pour commerce : ce qui est vraiment gratuit » |
-| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS (27/10) | haute | à faire : article application click and collect restaurant (à emporter sans commission) |
+| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS (27/10) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | site commande restaurant | click & collect | restaurant | GS (27/10) | moyenne | à faire avec « application click and collect restaurant » |
 | click and collect boucherie halal | click & collect | boucherie | GS (27/10) | moyenne | couvert en section et FAQ de click-and-collect-boucherie (2026-10-28) |
 | boucherie moderne click and collect | click & collect | boucherie | GS (27/10) | basse | couvert par click-and-collect-boucherie (2026-10-28) |
@@ -222,8 +222,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect définition commerçant | click & collect | tous | IA (31/10 : ChatGPT cite francenum, conseille téléphone, WhatsApp et réseaux) | moyenne | à faire : renforcer la définition en tête de click-and-collect-commercant-guide-complet avec une section « sans site marchand » |
 | click and collect poissonnerie | click & collect | poissonnerie | réserve + GS (01/11 : « poissonnerie commande en ligne ») | haute | publié le 2026-11-01 click-and-collect-poissonnerie |
 | poissonnerie commande en ligne | click & collect | poissonnerie | GS (01/11) | haute | publié le 2026-11-01 click-and-collect-poissonnerie (variante) |
-| solution click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | à faire avec « application click and collect restaurant » |
-| logiciel click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | à faire avec « application click and collect restaurant » |
+| solution click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
+| logiciel click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | logiciel commande restaurant gratuit | click & collect | restaurant | GS (01/11) | moyenne | à faire : angle ce qui est vraiment gratuit, avec « plateforme de commande en ligne restaurant gratuit » |
 | qr code commande restaurant | click & collect | restaurant | GS (01/11) | moyenne | à faire : QR code pour faire commander, à table ou en boutique |
 | qr code menu restaurant sans site internet | site | restaurant | GS (01/11) | moyenne | à faire |
@@ -240,7 +240,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | e-commerce traiteur | site | traiteur | GSC (13 impr., pos. 7,2, 02/11) | haute | même refresh que la ligne précédente |
 | combien coûte création site click and collect | transverse | tous | GSC (41 impr., pos. 12,9, 02/11 ; aussi « tarif » pos. 12,5, « prix » 14,7, « coût » 13,0) | haute | à faire : refresh prochain lundi de combien-coute-un-site-de-click-and-collect (0 clic sur environ 120 impressions) |
 | choisir création site click and collect | transverse | tous | GSC (47 impr., pos. 14,2, 02/11 ; « choix » pos. 16,7) | haute | à suivre sur logiciel-click-and-collect-comparatif-2026, 0 clic |
-| click and collect restaurant guide | click & collect | restaurant | GSC (« mettre en place le click and collect restaurant » 15 impr., pos. 58,5 ; « guide click and collect restauration » 6 impr., pos. 59,5) | haute | à faire avec « application click and collect restaurant » : aucun article restaurant dédié |
+| click and collect restaurant guide | click & collect | restaurant | GSC (« mettre en place le click and collect restaurant » 15 impr., pos. 58,5 ; « guide click and collect restauration » 6 impr., pos. 59,5) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | retrait magasin fromage | click & collect | fromagerie | GSC (10 impr., pos. 7,9, 02/11) | basse | couvert par click-and-collect-fromagerie |
 | livraison de poisson a domicile | livraison | poissonnerie | GSC (4 impr., pos. 13,8, 02/11) | moyenne | couvert par poissonnerie-livraison-a-domicile, à suivre |
 | traiteur livraison repas entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
@@ -254,3 +254,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet pas cher commerce de proximité | site | tous | IA (02/11 : ChatGPT conseille Wix, Google Sites, WordPress, Marchéo absent sur n°4) | haute | publié le 2026-11-02 + site-internet-pas-cher-commerce-de-proximite |
 | quel logiciel pour livrer ses clients soi-même | livraison | tous | IA (02/11 : ChatGPT et Perplexity ne citent que des optimiseurs de tournée et Shopify, rien pour le commerce de bouche) | haute | à faire : comparatif honnête optimiseur de tournée ou boutique avec livraison |
 | logiciel commandes noël traiteur | click & collect | traiteur | IA (02/11 : Lumis, Potti, Catermonkey cités ; ERP de traiteur événementiel surtout) | moyenne | à faire avec « tableur ou logiciel commandes traiteur noël » |
+| vente à emporter restaurant tva | transverse | restaurant | GS (03/11) | moyenne | à faire (vérifier les taux sur impots.gouv avant d'écrire, pas de chiffre approximatif) |
+| emballage vente à emporter restaurant | transverse | restaurant | GS (03/11) | basse | à faire (angle loi AGEC, contenants réemployables) |
+| click and collect restauration rapide | click & collect | fastfood | GS (03/11) | haute | à faire (angle snack et kebab, heures de pointe du midi) |
+| site click and collect restaurant | site | restaurant | GS (03/11) | moyenne | à faire : renforcer prix-site-internet-restaurant plutôt qu'un nouvel article |
+| logiciel commande en ligne restaurant | click & collect | restaurant | GS (03/11) | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant |
+| click and collect cafe | click & collect | restaurant | GS (03/11) | basse | à faire (angle coffee shop, commande avant le bureau) |
+| restaurant gastronomique click and collect | click & collect | restaurant | GS (03/11) | basse | écarté pour l'instant (volume faible, cible hors cœur) |
