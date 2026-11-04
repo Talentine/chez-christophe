@@ -3,7 +3,7 @@ title: "Logiciel livraison pizza : livrer vous-même sans commission"
 titre_court: "Le logiciel de livraison pour pizzeria"
 description: "Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission."
 date: 2026-10-26
-modified: 2026-11-03
+modified: 2026-11-04
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -48,7 +48,7 @@ Les deux peuvent cohabiter : la plateforme pour se faire découvrir, votre propr
 
 Il doit prendre la commande et préparer la livraison, sans vous obliger à recopier quoi que ce soit. Voici la liste des fonctions qui comptent vraiment le soir du coup de feu :
 
-1. **Une carte claire** : pizzas par base tomate ou crème, formats, boissons, desserts, avec un champ précisions pour « sans olives » ou « bien cuite ».
+1. **Une carte claire** : pizzas par base tomate ou crème, formats, boissons, desserts, avec un champ précisions pour « sans olives » ou « bien cuite ». La mise en ligne de la carte et les pages utiles sont détaillées dans notre guide du [site internet pour pizzeria](/blog/site-internet-pizzeria).
 2. **Une commande rapide** : chez Marchéo, le client commande en 30 secondes, sans créer de compte.
 3. **Une zone de livraison** par rayon ou par communes, pour refuser poliment les adresses trop lointaines.
 4. **Des créneaux avec capacité** : par exemple dix pizzas livrées par quart d'heure, pas plus que ce que votre four et votre livreur absorbent.

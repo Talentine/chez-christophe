@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site internet pour pizzeria : menu, commande et prix réels · Marchéo</title>
+<meta name="description" content="Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.">
+<link rel="canonical" href="https://marchéo.fr/blog/site-internet-pizzeria">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Site internet pour pizzeria : menu, commande et prix réels · Marchéo"><meta property="og:description" content="Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.">
+<meta property="og:url" content="https://marchéo.fr/blog/site-internet-pizzeria"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Créer le site internet de sa pizzeria",
+     "item": "https://marchéo.fr/blog/site-internet-pizzeria"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Site internet pour pizzeria : menu, commande et prix réels",
+   "description": "Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-04",
+   "dateModified": "2026-11-04",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/site-internet-pizzeria",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "site internet pour pizzeria, création site internet pizzeria, site internet pizza livraison, site pour pizzeria, site pizzeria menu, site internet pizza",
+   "articleSection": "Métier"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel outil pour créer le site internet d'une pizzeria indépendante ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour les tailles, les suppléments et les créneaux ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, qui fournissent un catalogue pizzeria déjà rempli. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation de table, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour prendre les commandes du site d'une pizzeria ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Vous continuez à encaisser au retrait avec votre caisse et votre terminal habituels si le client n'a pas payé en ligne."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Combien coûte un site internet pour une pizzeria ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Les plateformes de livraison ne facturent pas de site, mais prélèvent une commission de l'ordre de 14 à 30 % sur chaque commande. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mon site de pizzeria peut-il remplacer Uber Eats ou Deliveroo ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas forcément, et ce n'est pas obligatoire. Beaucoup de pizzerias gardent une plateforme pour se faire connaître et orientent leurs habitués vers leur propre site, avec un QR code sur les boîtes et les flyers. Chaque commande passée sur votre site est une commande sans commission, et le client reste chez vous."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav a{padding:8px 10px}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions">Par métier</a>
+    <a href="/#tarifs" class="hide-m">Tarifs</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Créer le site internet de sa pizzeria</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Métier</p>
+<h1>Site internet pour pizzeria : menu, commande et prix réels</h1>
+<p class="lead">Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.</p>
+<p class="meta">Par Paul Merieult · 04/11/2026 · 7 min de lecture</p>
+<p>Un site internet pour pizzeria sert à trois choses : être trouvé quand un client cherche une pizzeria près de chez lui, montrer votre carte à jour avec les prix, et prendre les commandes à emporter ou en livraison sans passer par le téléphone. Le bon site tient en quelques pages, se modifie depuis votre téléphone et ne prend aucune commission sur vos pizzas.</p>
+<p>Ce guide s&rsquo;adresse au pizzaiolo indépendant, pas aux réseaux de franchise. La méthode générale, valable pour tous les commerces, est détaillée dans notre guide de la <a href="/blog/creation-site-internet-commerce">création du site internet d&rsquo;un commerce</a>. Ici, on parle de ce qui change quand on vend des pizzas : le coup de feu du soir, les tailles, les suppléments et la livraison.</p>
+<h2>Pourquoi une pizzeria a-t-elle besoin de son propre site internet ?</h2>
+<p>Parce que la plupart des commandes de pizza se décident sur un téléphone, souvent dans la demi-heure qui précède le repas. Si votre carte n&rsquo;est visible que sur une plateforme de livraison, c&rsquo;est la plateforme qui reçoit le client, et elle prélève sa commission au passage.</p>
+<p>Un site à vous change trois choses :</p>
+<ul>
+<li><strong>Vous êtes trouvé en direct.</strong> Le client qui tape le nom de votre pizzeria tombe sur votre carte, vos horaires et votre bouton « Commander », pas sur une liste de concurrents.</li>
+<li><strong>Le téléphone sonne moins pendant le service.</strong> Les commandes arrivent par écrit, avec la taille, les suppléments et l&rsquo;heure de retrait. Moins d&rsquo;erreurs, moins d&rsquo;appels à prendre la pâte dans les mains.</li>
+<li><strong>Le client reste chez vous.</strong> Son nom et son numéro sont dans votre fichier, pas dans celui d&rsquo;une plateforme.</li>
+</ul>
+<h2>Site vitrine ou site de commande : que choisir pour une pizzeria ?</h2>
+<p>Un site vitrine suffit si vous faites surtout de la salle et peu d&rsquo;emporter. Dès que vous prenez des commandes par téléphone le soir, un site de commande avec créneaux vous fera gagner du temps.</p>
+<table>
+<thead>
+<tr>
+<th>Votre situation</th>
+<th>Le site qu&rsquo;il vous faut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Surtout de la salle, peu de vente à emporter</td>
+<td>Site vitrine : carte, horaires, adresse, réservation</td>
+</tr>
+<tr>
+<td>Beaucoup de commandes à emporter par téléphone</td>
+<td>Site avec click &amp; collect et créneaux de retrait</td>
+</tr>
+<tr>
+<td>Clients qui demandent à être livrés</td>
+<td>Site avec click &amp; collect et livraison locale</td>
+</tr>
+<tr>
+<td>Salle souvent pleine le week-end</td>
+<td>Site avec réservation de table en ligne</td>
+</tr>
+</tbody>
+</table>
+<p>Le fonctionnement du retrait en boutique est expliqué pas à pas dans notre guide du <a href="/blog/click-and-collect-commercant-guide-complet">click &amp; collect pour commerçant</a>.</p>
+<h2>Quelles pages mettre sur le site d&rsquo;une pizzeria ?</h2>
+<p>Quatre ou cinq pages suffisent. Un client de pizzeria veut savoir si vous êtes ouvert ce soir, ce qu&rsquo;il y a sur la carte et comment commander.</p>
+<ul>
+<li><strong>Accueil</strong> : nom, adresse, horaires du midi et du soir, téléphone, un bouton « Commander » visible dès l&rsquo;ouverture de la page.</li>
+<li><strong>La carte</strong> : pizzas classiques et spéciales, tailles, base tomate ou crème, suppléments, boissons, desserts, avec les prix.</li>
+<li><strong>Commande</strong> : retrait en boutique, livraison si vous livrez, créneaux disponibles.</li>
+<li><strong>Votre pizzeria</strong> : votre four, votre pâte, vos produits. C&rsquo;est ce qui vous distingue d&rsquo;une chaîne.</li>
+<li><strong>Infos pratiques</strong> : zone de livraison, moyens de paiement, allergènes, mentions légales.</li>
+</ul>
+<p>Pour les photos, prenez vos vraies pizzas à la sortie du four, en lumière du jour, et une photo de la devanture pour que le client vous reconnaisse en arrivant.</p>
+<h2>Comment mettre le menu de sa pizzeria en ligne ?</h2>
+<p>Le menu en ligne d&rsquo;une pizzeria doit gérer les tailles et les suppléments, sinon il ne sert pas à commander. Chaque pizza a un prix de base par taille, et le client ajoute ou retire des ingrédients avec un prix affiché pour chaque option.</p>
+<p>Quelques règles rendent la carte facile à utiliser sur un téléphone :</p>
+<ol>
+<li>Classez par famille : base tomate, base crème, spéciales, calzones, puis desserts et boissons.</li>
+<li>Écrivez la liste des ingrédients sous chaque pizza, en clair.</li>
+<li>Limitez les suppléments aux plus demandés, avec leur prix.</li>
+<li>Ajoutez un champ « précisions » pour les demandes du client (bien cuite, sans oignons).</li>
+<li>Mettez à jour le jour même quand une pizza n&rsquo;est plus disponible.</li>
+</ol>
+<p>Avec Marchéo, le catalogue pizzeria est déjà rempli au départ (pizzas classiques et spéciales, tailles, suppléments, boissons, desserts) : vous corrigez les noms et les prix au lieu de tout saisir.</p>
+<h2>Comment gérer le coup de feu du soir avec un site de commande ?</h2>
+<p>Le site doit répartir les commandes dans des créneaux avec un nombre maximum de commandes par créneau. Sans cette limite, vous recevez douze commandes pour 20 h et aucune pour 20 h 30.</p>
+<p>Marchéo propose des créneaux de retrait de 15 ou 30 minutes avec une capacité que vous fixez selon votre four et votre équipe. Quand un créneau est plein, le client choisit le suivant. Le client commande en 30 secondes, sans créer de compte, et reçoit un SMS quand sa commande est prête. Pour éviter les pizzas jamais récupérées, vous pouvez activer une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Le sujet est détaillé dans notre article sur l&rsquo;<a href="/blog/empreinte-bancaire-no-show-commerce-restaurant">empreinte bancaire contre les no-shows</a>.</p>
+<h2>Site internet pizza avec livraison : comment s&rsquo;organiser ?</h2>
+<p>Un site internet de pizzeria avec livraison prend la commande, l&rsquo;adresse et le créneau, puis c&rsquo;est vous qui livrez. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour régler votre zone, vos créneaux du soir, votre minimum de commande et vos frais de livraison.</p>
+<p>Sur une pizza à 14 €, une commission de 30 % représente 4,20 €. Livrer avec votre propre livreur demande de l&rsquo;organisation, mais chaque commande vous revient en entier. Le réglage de la zone, des frais et de la tournée est détaillé dans notre guide du <a href="/blog/logiciel-livraison-pizza">logiciel de livraison pour pizzeria</a>.</p>
+<h2>Combien coûte un site internet pour une pizzeria ?</h2>
+<p>Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.</p>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Coût indicatif</th>
+<th>Ce qu&rsquo;il faut savoir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constructeur généraliste (Wix, WordPress, Shopify)</td>
+<td>Quelques dizaines d&rsquo;euros par mois</td>
+<td>Tailles, suppléments et créneaux à configurer vous-même</td>
+</tr>
+<tr>
+<td>Agence ou freelance</td>
+<td>De quelques centaines à plusieurs milliers d&rsquo;euros</td>
+<td>Sur mesure, mais chaque modification se paie</td>
+</tr>
+<tr>
+<td>Plateformes de livraison</td>
+<td>14 à 30 % de commission par commande</td>
+<td>Visibilité, mais le client appartient à la plateforme</td>
+</tr>
+<tr>
+<td>Logiciel métier comme Marchéo</td>
+<td>19, 39 ou 59 € par mois, sans engagement</td>
+<td>Catalogue pizzeria prêt, 0 % de commission</td>
+</tr>
+</tbody>
+</table>
+<p>Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation de table, 549 € pour le Click &amp; Collect avec Livraison. Pour comparer avec le cas d&rsquo;un restaurant classique, voyez notre article sur le <a href="/blog/prix-site-internet-restaurant">prix d&rsquo;un site internet de restaurant</a>.</p>
+<h2>Que faut-il pour démarrer, et que ne faut-il pas ?</h2>
+<p>Il vous faut votre carte et vos horaires, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.</p>
+<table>
+<thead>
+<tr>
+<th>Ce qu&rsquo;il vous faut</th>
+<th>Ce qu&rsquo;il ne vous faut pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Votre carte avec les tailles, suppléments et prix</td>
+<td>Une tablette, une imprimante ou une caisse en plus</td>
+</tr>
+<tr>
+<td>Quelques photos de vos pizzas</td>
+<td>Un développeur ou une agence</td>
+</tr>
+<tr>
+<td>Vos horaires et le nombre de pizzas par créneau</td>
+<td>Une commission sur chaque pizza</td>
+</tr>
+<tr>
+<td>Le téléphone ou l&rsquo;ordinateur que vous avez déjà</td>
+<td>Un engagement de longue durée</td>
+</tr>
+</tbody>
+</table>
+<h2>Comment faire connaître le site de sa pizzeria ?</h2>
+<p>Le site doit être relié à votre fiche Google Business, c&rsquo;est elle qui apparaît sur la carte quand un client cherche une pizzeria près de chez lui. Ajoutez-y le lien de commande. Le réglage est expliqué dans notre guide de la <a href="/blog/fiche-google-business-commerce-bouche">fiche Google Business pour un commerce de bouche</a>.</p>
+<p>Ensuite, mettez l&rsquo;adresse partout où vos clients vous voient : un QR code sur les boîtes à pizza, les flyers et le comptoir, le lien sur Instagram et Facebook. Chaque client qui commande une fois sur votre site a de bonnes chances d&rsquo;y revenir.</p>
+<h2>Par où commencer cette semaine ?</h2>
+<p>Commencez par voir à quoi ressemblerait votre site. Sur <a href="/inscription">la page d&rsquo;inscription</a>, choisissez « pizzeria », tapez le nom de votre établissement, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement, avec la carte déjà préremplie. Vous ajustez ensuite vos pizzas, vos tailles et vos créneaux à votre rythme. Pour voir toutes les fonctions prévues pour votre métier, consultez <a href="/solutions/pizzeria">la solution pour pizzeria</a>.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel outil pour créer le site internet d'une pizzeria indépendante ?</summary><p>Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour les tailles, les suppléments et les créneaux ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, qui fournissent un catalogue pizzeria déjà rempli. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click &amp; collect et la réservation de table, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €.</p></details><details><summary>Faut-il acheter du matériel pour prendre les commandes du site d'une pizzeria ?</summary><p>Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Vous continuez à encaisser au retrait avec votre caisse et votre terminal habituels si le client n'a pas payé en ligne.</p></details><details><summary>Combien coûte un site internet pour une pizzeria ?</summary><p>De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Les plateformes de livraison ne facturent pas de site, mais prélèvent une commission de l'ordre de 14 à 30 % sur chaque commande. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission.</p></details><details><summary>Mon site de pizzeria peut-il remplacer Uber Eats ou Deliveroo ?</summary><p>Pas forcément, et ce n'est pas obligatoire. Beaucoup de pizzerias gardent une plateforme pour se faire connaître et orientent leurs habitués vers leur propre site, avec un QR code sur les boîtes et les flyers. Chaque commande passée sur votre site est une commande sans commission, et le client reste chez vous.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/application-click-and-collect-restaurant">Le click &amp; collect pour un restaurant</a><a href="/blog/logiciel-pour-livrer-ses-clients-soi-meme">Le logiciel pour livrer ses clients soi-même</a><a href="/blog/site-internet-pas-cher-commerce-de-proximite">Un site pas cher pour son commerce</a><a href="/blog/traiteur-noel-livraison-a-domicile">Livrer ses menus de Noël quand on est traiteur</a><a href="/solutions/pizzeria">Click &amp; collect pour pizzerias</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>

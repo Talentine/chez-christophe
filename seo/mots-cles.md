@@ -15,7 +15,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | combien coûte un site internet pour un restaurant | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant |
 | site internet restaurant prix | site | restaurant | GS | haute | publié le 2026-10-27 + prix-site-internet-restaurant (requête principale) |
 | création site internet fleuriste | site | fleuriste | GS + WS (30/10 : 1re page = annonces de freelances, modèles de sites, annuaire ; aucun guide pour fleuriste) | haute | publié le 2026-10-30 creation-site-internet-fleuriste |
-| site internet pour pizzeria | site | pizzeria | GS | haute | à faire |
+| site internet pour pizzeria | site | pizzeria | GS | haute | publié le 2026-11-04 site-internet-pizzeria |
 | site boucherie en ligne | site | boucherie | GS | haute | couvert par site-internet-boucherie (2026-10-24) |
 | click and collect viande | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie (variante) |
 | boucherie click and collect | click & collect | boucherie | GS | haute | publié le 2026-10-28 + click-and-collect-boucherie |
@@ -164,7 +164,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel caisse pizzeria | transverse | pizzeria | GS (26/10) | basse | écarté (intention caisse, hors périmètre) |
 | pizzeria livraison gratuite | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant + lien depuis logiciel-livraison-pizza |
 | prix livraison pizza | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (méthode) ; écarté comme article dédié (Domino's, Pizza Hut) |
-| site internet pizza livraison | site | pizzeria | GS (26/10) | haute | à faire avec « site internet pour pizzeria » (angle : site de la pizzeria avec commande et livraison) |
+| site internet pizza livraison | site | pizzeria | GS (26/10) | haute | couvert le 2026-11-04 par site-internet-pizzeria (H2 dédié) |
 | application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
 | zone de livraison restaurant | livraison | restaurant | GS (26/10) | basse | à fondre dans l'article frais et zone de livraison |
 | prix d un site internet pour un restaurant | site | restaurant | GS (27/10) | haute | publié le 2026-10-27 + prix-site-internet-restaurant (variante) |
@@ -202,9 +202,9 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site web fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | site de fleuriste | site | fleuriste | GS (30/10) | moyenne | couvert par creation-site-internet-fleuriste (2026-10-30) |
 | comment vendre des fleurs en ligne | site | fleuriste | GS (30/10) | moyenne | couvert en partie par click-and-collect-fleuriste ; à reprendre en FAQ |
-| site internet pizza | site | pizzeria | GS (30/10) | moyenne | à faire avec « site internet pour pizzeria » (1re page : grandes enseignes, modèles de sites, annonces de freelances) |
-| creation site internet pizzeria | site | pizzeria | GS (30/10) | haute | à faire avec « site internet pour pizzeria » |
-| site pizzeria menu | site | pizzeria | GS (30/10) | moyenne | section de l'article site internet pizzeria |
+| site internet pizza | site | pizzeria | GS (30/10) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
+| creation site internet pizzeria | site | pizzeria | GS (30/10) | haute | couvert le 2026-11-04 par site-internet-pizzeria |
+| site pizzeria menu | site | pizzeria | GS (30/10) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria (H2 « mettre le menu en ligne ») |
 | site de poissonnerie | site | poissonnerie | GS (30/10) | moyenne | à faire avec « poissonnerie en ligne livraison » (confirmé par la suggestion du jour) |
 | site de fromagerie | site | fromagerie | GS (30/10) | moyenne | à faire avec « fromagerie internet » |
 | site vitrine ou landing page | site | tous | GS (30/10) | basse | à fondre dans un article « site vitrine ou e commerce » |
@@ -263,3 +263,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | restaurant gastronomique click and collect | click & collect | restaurant | GS (03/11) | basse | écarté pour l'instant (volume faible, cible hors cœur) |
 | application click and collect restaurant comparatif | click & collect | restaurant | IA (03/11 : ChatGPT cite GetEat, WeEat, ARDOIZA, Click&Croque, Collectly ; Perplexity cite Click Eat, GoodBarber, MenuTouch ; Marchéo absent) | haute | à faire : enrichir application-click-and-collect-restaurant (tableau des familles d'outils, frais de paiement à part) quand Bing l'aura indexé, pas de nouvel article |
 | alternative uber eats garder ses clients qr code | transverse | restaurant | IA (03/11 : ChatGPT, Perplexity et Google citent bungeefood, restolabs, heustach ; Marchéo absent sur n°5) | haute | à faire : section « faire passer les clients de la plateforme à sa boutique » dans click-and-collect-sans-commission-alternative-uber-eats-deliveroo (déjà prévu, ligne alternative uber eats) |
+| site pour pizzeria | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
+| logiciel pizzeria gratuit | click & collect | pizzeria | GS (04/11) | moyenne | à faire : angle « ce qui est vraiment gratuit », à fusionner avec application click and collect gratuite |
+| site web food truck | site | fastfood | GS (04/11) | haute | à faire (angle : site du food-truck avec emplacements de la semaine et commande, sans doubler click-and-collect-food-truck) |
+| site de fromagerie | site | fromagerie | GS (04/11) | haute | à faire (création du site d'une fromagerie de quartier, coupes au poids, plateaux) |
+| click and collect bar | click & collect | restaurant | GS (04/11) | basse | à faire (volume probablement faible, à vérifier) |
+| site commande pizza | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
+| creation menu pizzeria | transverse | pizzeria | GS (04/11) | basse | écarté (intention graphisme de menu papier) |

@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-11-02
+modified: 2026-11-04
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -161,7 +161,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 - **Traiteur.** Plateaux, buffets, devis pour les événements. Voir [la solution pour traiteur](/solutions/traiteur) et le guide de [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids et plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Voir [la solution pour fleuriste](/solutions/fleuriste) et notre guide de [création de site internet pour fleuriste](/blog/creation-site-internet-fleuriste).
-- **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
+- **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria) et notre guide du [site internet pour pizzeria](/blog/site-internet-pizzeria).
 - **Restaurant.** Carte, vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant) et notre article sur le [prix d'un site internet de restaurant](/blog/prix-site-internet-restaurant).
 - **Fast-food et food-truck.** Emplacements de la semaine et commandes prêtes à l'arrivée. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck).
 
@@ -191,5 +191,6 @@ Pour aller plus loin, voici les guides du blog liés à la création du site de 
 - [Digitaliser son commerce de bouche : par où commencer](/blog/digitaliser-commerce-bouche)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Création de site internet pour traiteur](/blog/creation-site-internet-traiteur)
+- [Site internet pour pizzeria : menu, commande et prix réels](/blog/site-internet-pizzeria)
 - [Fiche Google Business pour un commerce de bouche](/blog/fiche-google-business-commerce-bouche)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
