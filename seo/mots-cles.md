@@ -270,3 +270,4 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect bar | click & collect | restaurant | GS (04/11) | basse | à faire (volume probablement faible, à vérifier) |
 | site commande pizza | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
 | creation menu pizzeria | transverse | pizzeria | GS (04/11) | basse | écarté (intention graphisme de menu papier) |
+| application commande en ligne boulangerie | click & collect | boulangerie | IA (04/11 : Google cite goodbarber, kazalendar, achil, wix, otami ; Marchéo absent) | haute | à faire : enrichir site-internet-boulangerie-commandes-en-ligne (H2 « quelle application de commande en ligne pour une boulangerie », tableau des familles d'outils) avec la ligne « boulangerie click and collect », pas de nouvel article |

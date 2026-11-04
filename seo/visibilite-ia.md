@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°7 (n°5 et n°6 posées le 03/11 ; question de marque suivante : n°24).
+Prochaine question en rotation : n°8 (n°7 posée le 04/11 au matin ; question de marque suivante : n°24).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -132,3 +132,6 @@ Prochaine question en rotation : n°7 (n°5 et n°6 posées le 03/11 ; question 
 | 2026-11-03 | Perplexity | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | non | restolabs, bungeefood (+2), aexir, chatfood ; canal de commande direct + garder Uber Eats pour l'acquisition, aucun outil français nommé |
 | 2026-11-03 | Google | Quelle application de click and collect pour un restaurant sans commission ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | click-eat.fr (1er), yonev.com, aexir.com (26/10/2026), ordrafood.fr, blog.laddition.com, toquedechef.com, heustach.fr, lepronto.fr, onrush.fr |
 | 2026-11-03 | Google | (R) Quelle alternative à Uber Eats pour un commerçant qui veut garder ses clients ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | bungeefood.fr (1er), heustach.fr, up-review.co, francenum.gouv, Quora, Facebook (Delicity), legalplace, menuthere.com, mobiletransaction.org |
+| 2026-11-04 | Perplexity | Quel outil pour créer le site internet de ma pizzeria avec commande en ligne ? (mot-clé du matin) | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question (navigateur intégré, sans compte) |
+| 2026-11-04 | Google | Quel outil pour créer le site internet de ma pizzeria avec commande en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page (article publié le matin même) | click-eat.fr (1er), weeat.fr, squarespace, lafabriquedunet.fr, digidream-communication.com, oxatis, YouTube, ca-moncommerce.com, wix.com ; annonces lepronto.fr (site pizzeria 29,99 € HT/mois), webador |
+| 2026-11-04 | Google | (R) Quelle application de commande en ligne pour une boulangerie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | boulangerie-ange.fr (1er), goodbarber, kazalendar.fr, achil.com, wix.com, orderlion, lesnouvellesdelaboulangerie.fr (Rapidle), appvizer.fr, otami.fr |
