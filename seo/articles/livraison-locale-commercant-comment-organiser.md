@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-03
+modified: 2026-11-05
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -61,7 +61,7 @@ Livrer soi-même revient moins cher dès que les commandes sont régulières, al
 | Coût d'une tournée | Votre temps et le carburant | Inclus, mais payé par la commission |
 | Adapté à | Habitués, quartier, produits préparés à la commande | Découverte, restauration rapide le soir |
 
-Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Le calcul détaillé est dans notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Le calcul détaillé est dans notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo). Pour un restaurant qui hésite entre les deux outils, notre comparatif [Marchéo ou Uber Eats pour un restaurant](/blog/marcheo-ou-uber-eats-restaurant) chiffre l'écart sur un exemple.
 
 ## Comment mettre en place un service de livraison à domicile, étape par étape ?
 

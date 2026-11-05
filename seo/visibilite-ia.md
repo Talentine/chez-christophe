@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°8 (n°7 posée le 04/11 au matin ; question de marque suivante : n°24).
+Prochaine question en rotation : n°11 (n°8, n°9 et n°10 posées le 05/11 ; question de marque suivante : n°23).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -135,3 +135,9 @@ Prochaine question en rotation : n°8 (n°7 posée le 04/11 au matin ; question 
 | 2026-11-04 | Perplexity | Quel outil pour créer le site internet de ma pizzeria avec commande en ligne ? (mot-clé du matin) | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question (navigateur intégré, sans compte) |
 | 2026-11-04 | Google | Quel outil pour créer le site internet de ma pizzeria avec commande en ligne ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page (article publié le matin même) | click-eat.fr (1er), weeat.fr, squarespace, lafabriquedunet.fr, digidream-communication.com, oxatis, YouTube, ca-moncommerce.com, wix.com ; annonces lepronto.fr (site pizzeria 29,99 € HT/mois), webador |
 | 2026-11-04 | Google | (R) Quelle application de commande en ligne pour une boulangerie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | boulangerie-ange.fr (1er), goodbarber, kazalendar.fr, achil.com, wix.com, orderlion, lesnouvellesdelaboulangerie.fr (Rapidle), appvizer.fr, otami.fr |
+| 2026-11-05 | ChatGPT | Comment créer la boutique en ligne de mon commerce de proximité pas cher ? | non | SumUp (1er choix, 0 €/mois + 2,5 % par vente, source « comparatif 2026 » Hack'celeration), WooCommerce (clubic.com), Wix |
+| 2026-11-05 | ChatGPT | Comment mettre en place le click and collect dans un primeur ? | non | Shopify, Wix, WooCommerce, WhatsApp Business ; francenum, economie.gouv.fr ; signale la régularisation du poids réel comme point clé |
+| 2026-11-05 | ChatGPT | Comment éviter les commandes non récupérées en click and collect ? (pas d'article du matin : n°10 posée à la place) | non | aucun éditeur nommé ; economie.gouv.fr ; paiement en ligne obligatoire et rappels SMS en tête, l'empreinte bancaire n'est pas évoquée |
+| 2026-11-05 | Perplexity | Comment éviter les commandes non récupérées en click and collect ? | non | eazyclick (1er), generixgroup, business.trustedshops, ca-moncommerce, e-monsite, chargeflow |
+| 2026-11-05 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, mais sans faits : « je ne dispose pas de suffisamment d'informations fiables » ; traite Marchéo comme une plateforme à commission « à vérifier » | Journal du CHR (commissions Uber Eats) ; aucune page marchéo.fr trouvée par la recherche |
+| 2026-11-05 | Google | (Marque) Marchéo ou Uber Eats pour un restaurant ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | ubereats.com, help.uber.com, restaurenta.fr, monouso.fr, cecca.fr, ordrafood.fr (commission Uber Eats 15/30/33 %), extencia.fr |

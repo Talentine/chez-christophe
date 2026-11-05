@@ -13,7 +13,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
-- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même.
+- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, 39 ou 59 € par mois sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.
 - Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.
 - WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
 - Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus 399 ou 549 € d'installation unique. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Marchéo ou Uber Eats pour un restaurant : lequel choisir ?](https://marchéo.fr/blog/marcheo-ou-uber-eats-restaurant) : Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.
 - [Site internet pour pizzeria : menu, commande et prix réels](https://marchéo.fr/blog/site-internet-pizzeria) : Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.
 - [Application click and collect restaurant sans commission](https://marchéo.fr/blog/application-click-and-collect-restaurant) : Application click and collect restaurant : commandes à emporter en ligne, créneaux réglés sur le service, commandes non retirées évitées, sans commission.
 - [Quel logiciel pour livrer ses clients soi-même ?](https://marchéo.fr/blog/logiciel-pour-livrer-ses-clients-soi-meme) : Logiciel de tournée, plateforme ou boutique avec livraison : ce que fait chaque outil pour livrer vos clients vous-même, son coût et quand le choisir.
@@ -84,7 +85,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-04
+- Dernière mise à jour : 2026-11-05
 
 
 ---
@@ -777,6 +778,146 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Marchéo ou Uber Eats pour un restaurant : lequel choisir ?
+
+Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.
+
+Marchéo et Uber Eats ne font pas le même métier. Uber Eats est une plateforme qui vous apporte des clients et des coursiers, contre une commission de l&rsquo;ordre de 14 à 30 % par commande. Marchéo est le site de commande de votre restaurant : 0 % de commission, 39 ou 59 € par mois sans engagement, mais c&rsquo;est vous qui livrez.
+Ce comparatif s&rsquo;adresse au restaurateur, au pizzaiolo ou au gérant de fast-food qui hésite entre les deux, ou qui se demande s&rsquo;il faut garder les deux. Il complète notre guide complet de la livraison à domicile pour commerçant et la page commande en ligne et réservation pour restaurant. Pour voir à quoi ressemble votre propre site de commande, la démo gratuite prend 30 secondes.
+Quelle est la différence entre Marchéo et Uber Eats ?
+La différence tient en une phrase : Uber Eats vend vos plats dans son application, Marchéo vous donne votre propre boutique en ligne. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Critère
+Uber Eats
+Marchéo
+
+
+
+
+Nature
+Place de marché avec des milliers de restaurants
+Site de commande à votre nom
+
+
+Nouveaux clients
+Oui, visibilité dans l&rsquo;application
+Non, vos clients viennent de chez vous (Google, Instagram, QR code)
+
+
+Livraison
+Coursiers de la plateforme
+Vous livrez vous-même, Marchéo n&rsquo;a pas de coursiers
+
+
+Coût
+Commission de l&rsquo;ordre de 14 à 30 % par commande
+0 % de commission, abonnement fixe de 19, 39 ou 59 € par mois
+
+
+Frais de départ
+Selon le contrat
+249, 399 ou 549 € une seule fois
+
+
+Engagement
+Selon le contrat
+Sans engagement
+
+
+Coordonnées des clients
+Restent chez la plateforme
+Restent chez vous
+
+
+Réservation de table
+Non
+Oui, dans la formule à 39 €
+
+
+Matériel
+Selon le contrat
+Aucun matériel à acheter, téléphone ou ordinateur suffit
+
+
+
+Les deux outils ne se remplacent donc pas l&rsquo;un l&rsquo;autre. Uber Eats sert à être trouvé par des inconnus, Marchéo sert à ne plus payer de commission sur ceux qui vous connaissent déjà.
+Combien coûte chaque solution pour un restaurant ?
+Uber Eats coûte un pourcentage de chaque commande, Marchéo coûte un montant fixe. Prenons un exemple, à adapter à vos chiffres : un restaurant qui fait 120 commandes par mois à 25 € en moyenne, soit 3 000 € de ventes.
+
+
+
+Exemple : 3 000 € de ventes par mois
+Uber Eats (livraison par la plateforme)
+Uber Eats (retrait sur place)
+Marchéo (Click &amp; Collect + Livraison)
+
+
+
+
+Coût par mois
+environ 900 € à 30 %
+environ 420 € à 14 %
+59 €
+
+
+Coût sur 12 mois
+environ 10 800 €
+environ 5 040 €
+708 € + 549 € d&rsquo;installation = 1 257 €
+
+
+Qui livre ?
+La plateforme
+Personne, le client vient
+Vous
+
+
+
+Ce calcul a une limite qu&rsquo;il faut dire clairement. Avec Marchéo, la livraison est à votre charge : le temps d&rsquo;un employé, d&rsquo;un livreur ou le vôtre, plus le carburant. Les frais bancaires du paiement en ligne s&rsquo;ajoutent aussi, comme pour tout paiement par carte. Pour le retrait sur place, l&rsquo;écart est net. Pour la livraison, il faut comparer la commission avec ce que vous coûte un livreur sur vos heures de service. Notre article sur le calcul des frais de livraison donne la méthode.
+Quand Uber Eats est-il le meilleur choix ?
+Uber Eats est le meilleur choix quand vous avez besoin de clients nouveaux ou de coursiers. C&rsquo;est souvent le cas :
+
+à l&rsquo;ouverture, quand personne ne connaît encore votre adresse ;
+dans une grande ville où les clients cherchent d&rsquo;abord dans l&rsquo;application ;
+le soir et le week-end si vous n&rsquo;avez aucun livreur ;
+pour une cuisine que les clients découvrent en faisant défiler l&rsquo;application.
+
+Dans ces cas, la commission paie un vrai service : la visibilité et la course. Un restaurant qui démarre gagne rarement à s&rsquo;en priver complètement.
+Quand Marchéo est-il le meilleur choix ?
+Marchéo est le meilleur choix pour les commandes de vos habitués, à emporter ou livrées par vous. Un client qui revient chaque semaine n&rsquo;a pas besoin d&rsquo;une plateforme pour vous trouver : il connaît déjà votre nom.
+Marchéo convient particulièrement quand :
+
+une bonne partie de vos commandes vient de clients réguliers du quartier ;
+vous voulez prendre les commandes à emporter par créneaux, pour lisser le coup de feu ;
+vous voulez aussi prendre les réservations de table en ligne, avec une empreinte bancaire optionnelle contre les absences ;
+vous livrez déjà un petit rayon, ou vous pouvez le faire aux heures calmes.
+
+Le client commande en 30 secondes, sans créer de compte. Pour une commande à emporter, vous pouvez demander une empreinte bancaire jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait : elle limite les commandes jamais récupérées sans faire payer d&rsquo;avance. Notre comparatif des applications de click and collect pour restaurant détaille les autres options du marché.
+Peut-on utiliser Marchéo et Uber Eats en même temps ?
+Oui, et c&rsquo;est souvent la stratégie la plus rentable. La plateforme sert à recruter, votre site sert à fidéliser sans commission.
+La méthode est simple :
+
+Gardez Uber Eats pour les nouveaux clients et les livraisons que vous ne pouvez pas assurer.
+Glissez dans chaque sac un flyer ou un QR code vers votre site, avec un avantage réservé aux commandes directes.
+Affichez le même QR code au comptoir, sur la vitrine et sur votre fiche Google.
+Après quelques mois, regardez la part des commandes directes et réduisez la plateforme si elle ne vous apporte plus de nouveaux clients.
+
+Notre guide pour proposer le click and collect sans commission explique comment faire passer les habitués d&rsquo;un canal à l&rsquo;autre.
+Que ne fait pas Marchéo ?
+Marchéo n&rsquo;est pas une place de marché et ne vous apportera pas de clients qui ne vous connaissent pas. Il ne livre pas et n&rsquo;a pas de coursiers. Il ne remplace pas votre caisse. Si votre restaurant vit surtout de clients de passage trouvés dans l&rsquo;application, et que vous n&rsquo;avez aucun moyen de livrer, Uber Eats reste plus adapté pour la livraison.
+En revanche, pour vos habitués, pour la vente à emporter et pour les réservations, payer 14 à 30 % sur chaque commande d&rsquo;un client qui serait venu de toute façon revient cher. C&rsquo;est là qu&rsquo;un site à vous, sans commission, change la marge.
+
+Q : Marchéo ou Uber Eats : lequel choisir pour mon restaurant ?
+R : Uber Eats convient pour toucher des clients qui ne vous connaissent pas encore et pour livrer sans livreur à vous, en échange d'une commission de l'ordre de 14 à 30 % par commande. Marchéo convient pour vos habitués : c'est votre propre site de commande, avec 0 % de commission, 39 € par mois pour le click & collect avec réservation de table ou 59 € par mois avec la livraison, sans engagement, plus 399 ou 549 € de frais d'installation uniques. Beaucoup de restaurants utilisent les deux.
+Q : Marchéo livre-t-il les commandes comme Uber Eats ?
+R : Non. Marchéo n'a pas de coursiers. Il fournit l'outil pour que le restaurant organise sa propre livraison : zone, créneaux, frais et minimum de commande. Si vous n'avez personne pour livrer, Marchéo sert au retrait sur place et à la réservation de table, et la plateforme reste utile pour la livraison.
+Q : Faut-il acheter du matériel pour utiliser Marchéo dans un restaurant ?
+R : Non. Il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes et les réservations arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Votre caisse et votre terminal de paiement restent les mêmes pour les clients qui paient sur place.
+Q : Peut-on quitter Uber Eats et garder ses clients ?
+R : Pas d'un coup. Les coordonnées des clients restent chez la plateforme. La méthode qui marche consiste à glisser un flyer ou un QR code dans chaque sac livré, pour inviter les habitués à commander la fois suivante sur votre site, puis à réduire la plateforme une fois que les commandes directes ont pris le relais.
 
 # Site internet pour pizzeria : menu, commande et prix réels
 
@@ -5115,10 +5256,13 @@ R : Vendez-les à la pièce avec une fourchette de poids annoncée, par exemple 
 
 Un food-truck vend l'essentiel de sa journée en 90 minutes. Prendre les commandes à l'avance, annoncer son emplacement du jour et servir par créneau change complètement ce que vous pouvez encaisser sur ce créneau du midi.
 
+Pour faire du click &amp; collect sur un food-truck, il faut une page de commande qui affiche l&rsquo;emplacement du jour, des créneaux de 10 à 15 minutes au midi et une capacité limitée par créneau. Vos clients commandent avant d&rsquo;arriver et repartent en 30 secondes. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Ce guide complète notre guide complet du click &amp; collect pour commerçant.
 Un food-truck ne vend pas toute la journée. Il vend entre 11 h 45 et 13 h 15. Passé 13 h 30, la zone d&rsquo;activité s&rsquo;est vidée, et ce que vous n&rsquo;avez pas servi dans cette fenêtre est perdu pour de bon.
 C&rsquo;est la particularité du métier : la demande est là, mais elle arrive toute en même temps, sur un poste de travail d&rsquo;un mètre cinquante de large, avec une file qui décourage la moitié des gens qui la voient. Le client qui a vingt minutes de pause déjeuner compte les personnes devant lui, fait le calcul, et va acheter un sandwich ailleurs.
 Prendre une partie des commandes à l&rsquo;avance ne demande pas de changer votre carte, et se fait sans matériel à acheter ni commission sur vos ventes. Cela change simplement l&rsquo;ordre dans lequel les choses se passent.
-Ce que la commande à l&rsquo;avance change concrètement
+Que change la commande à l&rsquo;avance pour un food-truck ?
+La commande à l&rsquo;avance vous fait connaître une partie de la demande avant le coup de feu, et elle désengorge la file.
 
 
 
@@ -5150,8 +5294,8 @@ Il a réservé, il viendra
 
 
 Le gain le plus net n&rsquo;est pas le chiffre d&rsquo;affaires en ligne. C&rsquo;est la fluidité. Une file qui avance donne envie de s&rsquo;y mettre ; une file qui stagne fait fuir. En servant les commandes réservées sur un côté du camion, vous accélérez aussi la file du comptoir.
-Régler ses créneaux à la bonne cadence
-C&rsquo;est le seul réglage qui compte vraiment, et c&rsquo;est là que les débuts se ratent.
+Comment régler ses créneaux de retrait ?
+Réglez des créneaux de 10 à 15 minutes avec une capacité égale à la moitié de ce que vous produisez sur ce temps. C&rsquo;est le seul réglage qui compte vraiment, et c&rsquo;est là que les débuts se ratent.
 
 Des tranches courtes. 10 ou 15 minutes, pas plus. Un client de food-truck a une pause, pas une soirée.
 Une capacité honnête par tranche. Comptez ce que vous sortez réellement en 15 minutes quand tout va bien, et réservez-en la moitié aux commandes en ligne. L&rsquo;autre moitié reste pour les gens qui arrivent au camion.
@@ -5160,8 +5304,8 @@ Des tranches pleines qui disparaissent. Le client voit le créneau suivant dispo
 Deux tranches vides en fin de service. Pour les retards, les erreurs et les imprévus. Vous vous remercierez.
 
 Commencez volontairement bas. Cinq commandes réservées par créneau la première semaine, puis vous augmentez en fonction de ce que l&rsquo;équipe encaisse. Un client qui attend un plat annoncé prêt est plus mécontent qu&rsquo;un client qui fait la queue.
-L&rsquo;emplacement du jour, le vrai sujet d&rsquo;un camion
-Un fast-food a une adresse. Vous, vous avez un planning : lundi la zone d&rsquo;activité, mardi le marché, jeudi la sortie d&rsquo;usine, vendredi soir la place du village.
+Comment annoncer l&rsquo;emplacement du jour ?
+Affichez l&rsquo;emplacement du jour en haut de votre page de commande, et prévenez vos clients habituels le matin même. Un fast-food a une adresse. Vous, vous avez un planning : lundi la zone d&rsquo;activité, mardi le marché, jeudi la sortie d&rsquo;usine, vendredi soir la place du village.
 La plupart des food-trucks annoncent cela sur Instagram ou Facebook. Le problème est connu : une story n&rsquo;est vue que par une fraction de vos abonnés, elle disparaît au bout de 24 heures, et un client qui a votre camion en tête à 11 h 30 ne pense pas à ouvrir un réseau social pour savoir où vous êtes.
 Trois canaux valent mieux qu&rsquo;un :
 
@@ -5170,12 +5314,12 @@ Une notification ou un SMS aux clients qui ont déjà commandé, le matin même,
 Les réseaux sociaux, qui continuent de servir pour les photos et pour attirer de nouveaux clients.
 
 Le planning de la semaine publié à l&rsquo;avance sur la même page évite en plus la moitié des messages privés du type « vous êtes où demain ? ».
-Les commissions, en chiffres
+Combien coûtent les commissions pour un food-truck ?
 Les plateformes de livraison prennent en général entre 14 et 30 % selon le contrat et le service. Sur une commande à emporter à 13 €, cela fait 1,80 à 3,90 € qui ne vous reviennent pas, sur un plat dont la marge brute tourne déjà autour de la moitié du prix.
-Une boutique en propre fonctionne autrement : un abonnement fixe, et 0 % sur ce que vous vendez. Chez Marchéo, c&rsquo;est 19 € par mois pour une vitrine, 39 € pour le click &amp; collect avec les créneaux et les SMS, 59 € avec la livraison, sans engagement. Une quinzaine de commandes par mois passées sur votre page plutôt que sur une plateforme couvrent l&rsquo;abonnement.
-Cela ne veut pas dire quitter les plateformes. Elles font découvrir votre camion à des gens qui ne le connaissaient pas, et c&rsquo;est leur intérêt. Ce qui coûte cher, c&rsquo;est de leur payer une commission sur le client qui vient chez vous toutes les semaines depuis deux ans. Le sujet est détaillé dans notre comparatif du click &amp; collect sans commission face à Uber Eats et Deliveroo.
-Faire basculer ses habitués
-C&rsquo;est du travail de terrain, pas du marketing.
+Une boutique en propre fonctionne autrement : un abonnement fixe, et 0 % sur ce que vous vendez. Chez Marchéo, c&rsquo;est 19 € par mois pour une vitrine, 39 € pour le click &amp; collect avec réservation, 59 € avec la livraison, sans engagement, plus des frais d&rsquo;installation uniques de 249, 399 ou 549 € selon la formule. Une quinzaine de commandes par mois passées sur votre page plutôt que sur une plateforme couvrent l&rsquo;abonnement.
+Cela ne veut pas dire quitter les plateformes. Elles font découvrir votre camion à des gens qui ne le connaissaient pas, et c&rsquo;est leur intérêt. Ce qui coûte cher, c&rsquo;est de leur payer une commission sur le client qui vient chez vous toutes les semaines depuis deux ans. Le sujet est détaillé dans notre comparatif du click &amp; collect sans commission face à Uber Eats et Deliveroo, et notre article Marchéo ou Uber Eats pour un restaurant chiffre l&rsquo;écart sur un exemple.
+Comment faire commander ses habitués en ligne ?
+Faites-les basculer avec un QR code sur le camion, un mot au comptoir et un premier message le matin. C&rsquo;est du travail de terrain, pas du marketing.
 
 Un QR code sur le camion, grand, à hauteur d&rsquo;yeux, à côté de la carte, avec une phrase simple : « Commandez avant, passez devant ».
 Un autocollant sur l&rsquo;emballage. Le client le voit au moment où il mange, c&rsquo;est-à-dire au moment où il est content.
@@ -5183,13 +5327,15 @@ Une phrase au comptoir, répétée pendant deux semaines : « La prochaine fois 
 Le premier SMS. Quand vous avez trente ou quarante clients enregistrés, un message le matin avec le plat du jour et l&rsquo;emplacement remplit vos créneaux du midi. Restez dans le cadre : consentement recueilli à la commande, désinscription en un clic.
 
 Comptez trois à quatre semaines avant que le réflexe s&rsquo;installe. Les premières commandes viennent toujours des mêmes cinq ou six habitués, et c&rsquo;est très bien : ce sont eux qui en parlent aux collègues.
-Le cas des grosses commandes
-Le bureau qui commande douze menus pour une réunion est le meilleur client d&rsquo;un food-truck, et le plus risqué. Il occupe une part entière de votre production et il annule parfois la veille au soir.
+Comment sécuriser les grosses commandes de bureau ?
+Fixez une date limite plus longue et demandez une garantie par empreinte bancaire. Le bureau qui commande douze menus pour une réunion est le meilleur client d&rsquo;un food-truck, et le plus risqué. Il occupe une part entière de votre production et il annule parfois la veille au soir.
 Deux garde-fous simples : une date limite plus longue pour ces commandes groupées, et une garantie. L&rsquo;empreinte bancaire permet de réserver jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, la somme étant libérée automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver. Si vous livrez vous-même ces commandes de bureau, notre guide sur organiser sa propre livraison locale donne la méthode pour fixer zone, minimum et frais.
-Pour commencer
+Par où commencer ?
 Vous n&rsquo;avez besoin ni d&rsquo;un site, ni d&rsquo;un développeur, ni d&rsquo;une caisse particulière. Il vous faut une page à votre nom, un catalogue, des créneaux réglés à votre cadence et un QR code sur le camion.
 La page détaillée pour ce métier est là : click &amp; collect pour fast-food et food-truck. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre camion, l&rsquo;aperçu s&rsquo;affiche. Sans carte bancaire et sans engagement. Si votre camion fait des pizzas et que vous livrez le soir, voyez aussi notre guide du logiciel de livraison pizza.
 
+Q : Quelle application de click and collect pour un food-truck, sans commission ?
+R : Il faut une application qui affiche l'emplacement du jour, propose des créneaux courts au midi et ne prend pas de pourcentage sur les ventes. Marchéo en fait partie : 39 € par mois pour le click & collect avec réservation, 59 € par mois avec la livraison, sans engagement, 0 % de commission et 399 ou 549 € de frais d'installation uniques. Le client commande en 30 secondes sans créer de compte. Marchéo ne livre pas : il fournit l'outil, vous servez au camion ou livrez vous-même.
 Q : Faut-il acheter du matériel pour faire du click and collect sur un food-truck ?
 R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone que vous avez déjà dans le camion. La formule Click & Collect + Réservation coûte 39 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 €.
 Q : Faut-il une connexion internet stable sur le spot pour prendre des commandes en ligne ?
@@ -5199,7 +5345,7 @@ R : Vous indiquez l'emplacement du jour depuis votre téléphone. Il s'affiche e
 Q : Combien de commandes à l'avance puis-je accepter sans bloquer le service au comptoir ?
 R : Comptez ce que vous produisez en 15 minutes et gardez-en la moitié pour les clients de passage. Sur un camion qui sort 20 plats par quart d'heure, 8 à 10 commandes réservées par créneau sont tenables. Les créneaux pleins disparaissent tout seuls de la liste.
 Q : Est-ce que ça remplace Uber Eats ou Deliveroo ?
-R : Ce sont deux usages différents. Les plateformes vous apportent des clients que vous ne connaissez pas, en prenant une commission de 25 à 30 %. Votre boutique sert vos habitués, sans commission. La plupart des food-trucks gardent les deux et font basculer les réguliers vers leur propre page.
+R : Ce sont deux usages différents. Les plateformes vous apportent des clients que vous ne connaissez pas, en prenant une commission de l'ordre de 14 à 30 %. Votre boutique sert vos habitués, sans commission. La plupart des food-trucks gardent les deux et font basculer les réguliers vers leur propre page.
 
 # Précommandes des fêtes : organiser Noël et le 31 décembre sans y laisser sa santé
 
@@ -5514,7 +5660,7 @@ Les commerçants qui s&rsquo;en sortent le mieux ne choisissent pas entre platef
 La plateforme sert à être découvert par des gens qui ne vous connaissent pas. C&rsquo;est de la publicité payée à la commande.
 Votre boutique en ligne sert à vos habitués et à tous ceux qui vous ont trouvé une fois. Zéro commission, et le client est à vous.
 
-Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du logiciel de livraison pizza détaille la zone, les créneaux du soir et la tournée.
+Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du logiciel de livraison pizza détaille la zone, les créneaux du soir et la tournée. Si vous tenez un restaurant et que vous comparez les deux outils point par point, lisez notre comparatif Marchéo ou Uber Eats pour un restaurant.
 Ce que doit avoir votre boutique pour tenir la comparaison
 Le client habitué à une plateforme attend une expérience aussi simple. Votre boutique doit donc offrir :
 
@@ -5970,7 +6116,7 @@ Découverte, restauration rapide le soir
 
 
 
-Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Le calcul détaillé est dans notre article sur le click and collect sans commission.
+Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Le calcul détaillé est dans notre article sur le click and collect sans commission. Pour un restaurant qui hésite entre les deux outils, notre comparatif Marchéo ou Uber Eats pour un restaurant chiffre l&rsquo;écart sur un exemple.
 Comment mettre en place un service de livraison à domicile, étape par étape ?
 Un service de livraison se met en place en six étapes, sans projet informatique. Comptez quelques heures de réglages, puis une première tournée test avec vos habitués.
 1. Définir sa zone de livraison
