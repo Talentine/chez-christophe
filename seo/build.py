@@ -127,6 +127,16 @@ aside{position:sticky;top:76px}
 .tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
 .tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
 .tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
 footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
 """
 
@@ -173,6 +183,87 @@ def faq_ld(faq: list[dict]) -> dict | None:
     if not faq:
         return None
     return {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["r"]}} for f in faq if f.get("q") and f.get("r")]}
+
+
+
+# ─────────────────────────────────────────────────────────────
+# Bloc « Ce que ça vous rapporte » : affiché en tête de chaque article et page métier.
+# Ordre imposé : 1. commandes et chiffre d'affaires  2. visibilité  3. temps gagné, puis le reste.
+# ─────────────────────────────────────────────────────────────
+GAINS = {
+    None: (
+        "Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.",
+        "Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.",
+        "Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.",
+    ),
+    "primeur": (
+        "Paniers de la semaine vendus d'avance, commandes passées le soir et le week-end : vous vendez même boutique fermée, et vous achetez en connaissant déjà une partie de la demande. Zéro commission.",
+        "Les clients qui cherchent un primeur ou un panier de fruits et légumes près de chez eux tombent sur votre boutique. Vous partagez le lien sur Instagram et annoncez vos arrivages par SMS.",
+        "Plus de commandes notées au téléphone pendant le rush du samedi : le client choisit lui-même produits et quantités, vous préparez au calme.",
+    ),
+    "boucherie": (
+        "Colis, barbecue, rôti du dimanche, commandes des fêtes : vos clients réservent à toute heure, même boutique fermée, et l'empreinte bancaire vous protège des commandes non retirées. Zéro commission.",
+        "Votre boucherie apparaît sur Google avec son catalogue, ses prix et ses créneaux. Un lien pour Instagram et votre fiche Google, des SMS pour annoncer la viande du moment.",
+        "Les commandes arrivent par écrit, avec la découpe et le poids demandés : fini les appels pendant le coup de feu et les erreurs de quantité.",
+    ),
+    "boulangerie": (
+        "Gâteaux, viennoiseries du dimanche, bûches et galettes : les commandes arrivent jour et nuit, vous vendez plus de commandes spéciales et produisez le juste nécessaire. Zéro commission.",
+        "Les clients qui cherchent une boulangerie où commander en ligne près de chez eux vous trouvent sur Google. Un lien pour Instagram, des SMS pour annoncer la galette ou la bûche.",
+        "Plus de cahier de commandes ni d'appels pendant la file du matin : tout est écrit, avec l'heure de retrait, et le client récupère sans attendre.",
+    ),
+    "poissonnerie": (
+        "Plateaux de fruits de mer, poisson du vendredi, commandes des fêtes : réservés à l'avance, ils sont vendus avant même d'arriver. Moins de perte, zéro commission.",
+        "Votre poissonnerie apparaît sur Google avec ses arrivages et ses plateaux. Vous partagez le lien sur Instagram et prévenez vos clients par SMS quand la pêche est belle.",
+        "Les plateaux arrivent avec le jour, l'heure et le nombre de personnes : plus de commandes prises au téléphone les mains dans la glace.",
+    ),
+    "fromagerie": (
+        "Plateaux, raclettes, fondues, coffrets cadeaux : vos clients commandent à toute heure, et le carnet des fêtes se remplit bien avant décembre. Zéro commission.",
+        "Votre fromagerie apparaît sur Google avec ses plateaux et ses prix. Un lien pour Instagram, des SMS pour annoncer le retour du Mont d'Or ou de la raclette.",
+        "Les plateaux arrivent avec le nombre de personnes et l'heure de retrait : vous les préparez au calme, sans appels pendant le rush.",
+    ),
+    "traiteur": (
+        "Buffets, plateaux, repas de fêtes : vos clients commandent en ligne avec le nombre de personnes, et l'empreinte bancaire sécurise les grosses commandes. Zéro commission.",
+        "On vous trouve sur Google en cherchant un traiteur près de chez soi, menus et prix à l'appui. Un lien pour Instagram et des SMS pour lancer la carte de Noël.",
+        "Fini les devis au téléphone et les allers-retours par message : la commande arrive complète et vous planifiez la production à l'avance.",
+    ),
+    "fleuriste": (
+        "Bouquets, deuils, Saint-Valentin, fête des mères : les commandes arrivent même boutique fermée, et vous livrez sans les 25 à 30 % de commission des plateformes de fleurs.",
+        "Les clients qui cherchent un fleuriste qui livre près de chez eux vous trouvent sur Google. Un lien pour Instagram et des SMS avant chaque fête.",
+        "Le message de la carte, l'adresse et le créneau arrivent par écrit : plus d'erreurs de prénom ni d'appels pendant la composition.",
+    ),
+    "pizzeria": (
+        "Vos commandes à emporter et en livraison arrivent sans les 25 à 30 % de commission d'Uber Eats et Deliveroo : à chiffre égal, vous gardez la marge.",
+        "Votre carte en ligne sur Google, un lien pour Instagram et vos clients prévenus par SMS de la pizza du moment.",
+        "Plus de téléphone qui sonne pendant le coup de feu : les commandes arrivent par écrit, réparties par créneau pour lisser le service.",
+    ),
+    "restaurant": (
+        "Vente à emporter et réservations sans commission, et l'empreinte bancaire vous protège des tables réservées qui ne viennent pas.",
+        "Votre carte et vos réservations en ligne sur Google, un lien pour Instagram et des SMS pour remplir les services creux.",
+        "Les commandes et réservations arrivent par écrit, réparties par créneau : moins d'appels pendant le service, moins d'erreurs.",
+    ),
+    "fastfood": (
+        "Les commandes à emporter arrivent sans les 25 à 30 % de commission des plateformes : à chiffre égal, vous gardez la marge.",
+        "Votre carte sur Google, un lien pour Instagram et des SMS pour annoncer vos offres et votre menu du moment.",
+        "Le client commande et paie son créneau à l'avance : plus de file au comptoir ni de téléphone pendant le rush.",
+    ),
+}
+
+GAINS_TITRES = ("Plus de commandes, plus de chiffre d'affaires", "Plus de visibilité", "Plus de temps")
+GAINS_ICONES = ("📈", "📣", "⏱️")
+
+
+def gains_html(metier: str | None = None, label: str | None = None) -> str:
+    textes = GAINS.get(metier) or GAINS[None]
+    pour = f" pour votre {label.lower()}" if label else ""
+    lien = f"/inscription?metier={metier}" if metier else "/inscription"
+    items = "".join(
+        f'<li><span class="gi">{GAINS_ICONES[i]}</span><div><strong>{esc(GAINS_TITRES[i])}</strong><p>{esc(t)}</p></div></li>'
+        for i, t in enumerate(textes))
+    return (f'<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte{esc(pour)}</h2>'
+            f'<ol>{items}</ol>'
+            '<p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · '
+            'site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p>'
+            f'<a class="btn" href="{lien}">Voir ma démo gratuite</a></section>')
 
 
 def breadcrumb_ld(items: list[tuple[str, str]]) -> dict:
@@ -228,7 +319,7 @@ def seo_desc(meta: dict) -> str:
 
 
 def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: str, eyebrow: str, crumbs: list[tuple[str, str]],
-         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article") -> str:
+         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article", gains: str = "") -> str:
     ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), logiciel_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
     crumbs_html = " › ".join(f'<a href="{esc(u)}">{esc(n)}</a>' if i < len(crumbs) - 1 else esc(n) for i, (n, u) in enumerate(crumbs))
     return f"""<!DOCTYPE html>
@@ -270,6 +361,7 @@ def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: 
 <h1>{esc(h1)}</h1>
 <p class="lead">{esc(lead)}</p>
 {f'<p class="meta">{meta_line}</p>' if meta_line else ''}
+{gains}
 {corps}
 {cta if cta is not None else cta_final()}
 </article>
@@ -321,7 +413,11 @@ def build_articles(arts: list[dict], metiers: list[dict]) -> list[str]:
         d = date.fromisoformat(a["date"]).strftime("%d/%m/%Y")
         if a.get("modified") and a["modified"] != a["date"]:
             d += " · mis à jour le " + date.fromisoformat(a["modified"]).strftime("%d/%m/%Y")
+        mets = a.get("metiers", [])
+        gm = a.get("gains_metier") or (mets[0] if len(mets) == 1 else None)
+        gm_label = next((x["label"] for x in metiers if x["slug"] == gm), None)
         html = page(titre=seo_titre(a, a["title"]), description=seo_desc(a), path=path, h1=a["title"], lead=a["description"],
+                    gains=gains_html(gm if gm_label else None, gm_label),
                     corps=a["body_html"] + faq_html(a["faq"]), eyebrow=a.get("rubrique", "Guide"),
                     crumbs=[("Accueil", "/"), ("Blog", "/blog"), (a.get("titre_court") or a["title"], path)],
                     ld=ld, aside=aside_block(liens), meta_line=f"Par {FONDATEUR} · {d} · {a['minutes']} min de lecture")
@@ -366,6 +462,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
                        "description": "Abonnement mensuel sans engagement, 0 % de commission sur les ventes"},
         }, faq_ld(m.get("faq", []))]
         html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=m["h1"], lead=m["lead"],
+                    gains=gains_html(m["slug"], m["label"]),
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
                     crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
                     ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website",
