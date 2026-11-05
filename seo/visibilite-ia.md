@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°11 (n°8, n°9 et n°10 posées le 05/11 ; question de marque suivante : n°23).
+Prochaine question en rotation : n°13 (n°11 et n°12 posées le 05/11 au second passage de 16 h ; question de marque suivante : n°24).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -141,3 +141,9 @@ Prochaine question en rotation : n°11 (n°8, n°9 et n°10 posées le 05/11 ; q
 | 2026-11-05 | Perplexity | Comment éviter les commandes non récupérées en click and collect ? | non | eazyclick (1er), generixgroup, business.trustedshops, ca-moncommerce, e-monsite, chargeflow |
 | 2026-11-05 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, mais sans faits : « je ne dispose pas de suffisamment d'informations fiables » ; traite Marchéo comme une plateforme à commission « à vérifier » | Journal du CHR (commissions Uber Eats) ; aucune page marchéo.fr trouvée par la recherche |
 | 2026-11-05 | Google | (Marque) Marchéo ou Uber Eats pour un restaurant ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | ubereats.com, help.uber.com, restaurenta.fr, monouso.fr, cecca.fr, ordrafood.fr (commission Uber Eats 15/30/33 %), extencia.fr |
+| 2026-11-05 | ChatGPT | Combien coûte un site internet pour un restaurant en 2026 ? (2e passage, 16 h) | non | ALIEVA (+2 sources) ; fourchettes agence 500 à 5 000 €, conseille un site à environ 1 500 € ; aucune solution à abonnement citée |
+| 2026-11-05 | ChatGPT | Comment organiser la livraison à domicile pour une boucherie ? | non | WhatsApp Business en 1re solution, livreur à temps partiel ; Ministère de l'Agriculture, service-public, Légifrance (chaîne du froid) ; aucun logiciel nommé |
+| 2026-11-05 | ChatGPT | Quel logiciel de click and collect pour un fast-food ou un snack ? (mot-clé du matin) | non | Heustach (0,25 € par commande), BDNCollect (30 €/mois), Click&Croque (29 € HT/mois, sans commission), Pick2Go, Zelty, Innovorder ; source mactacos.fr (+5) |
+| 2026-11-05 | Perplexity | Quel logiciel de click and collect pour un fast-food ou un snack ? | réponse non obtenue (bloquée « En cours » plus de 40 s) | - |
+| 2026-11-05 | Google | Quel logiciel de click and collect pour un fast-food ou un snack ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | eatandcollect.fr, click-eat.fr, 6xpos.fr, alttab.bar, restopos.fr, cashpad.io, tickeat.io, jdc.fr, obypay.com |
+| 2026-11-05 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts (3 offres, installation + abonnement, 0 % de commission, sans engagement, précise que Marchéo ne fournit pas les livreurs) | marchéo.fr (+1) |
