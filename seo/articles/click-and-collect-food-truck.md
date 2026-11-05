@@ -37,7 +37,7 @@ Pour faire du click & collect sur un food-truck, il faut une page de commande qu
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Ce guide complète notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet).
 
-Un food-truck ne vend pas toute la journée. Il vend entre 11 h 45 et 13 h 15. Passé 13 h 30, la zone d'activité s'est vidée, et ce que vous n'avez pas servi dans cette fenêtre est perdu pour de bon.
+Un food-truck ne vend pas toute la journée. Il vend entre 11 h 45 et 13 h 15. Passé 13 h 30, la zone d'activité s'est vidée, et ce que vous n'avez pas servi dans cette fenêtre est perdu pour de bon. Si vous tenez aussi un snack ou un fast-food en boutique, notre guide du [click and collect en restauration rapide](/blog/click-and-collect-restauration-rapide) détaille les créneaux du midi et les menus en ligne.
 
 C'est la particularité du métier : la demande est là, mais elle arrive toute en même temps, sur un poste de travail d'un mètre cinquante de large, avec une file qui décourage la moitié des gens qui la voient. Le client qui a vingt minutes de pause déjeuner compte les personnes devant lui, fait le calcul, et va acheter un sandwich ailleurs.
 

@@ -256,7 +256,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | logiciel commandes noël traiteur | click & collect | traiteur | IA (02/11 : Lumis, Potti, Catermonkey cités ; ERP de traiteur événementiel surtout) | moyenne | à faire avec « tableur ou logiciel commandes traiteur noël » |
 | vente à emporter restaurant tva | transverse | restaurant | GS (03/11) | moyenne | à faire (vérifier les taux sur impots.gouv avant d'écrire, pas de chiffre approximatif) |
 | emballage vente à emporter restaurant | transverse | restaurant | GS (03/11) | basse | à faire (angle loi AGEC, contenants réemployables) |
-| click and collect restauration rapide | click & collect | fastfood | GS (03/11) | haute | à faire (angle snack et kebab, heures de pointe du midi) |
+| click and collect restauration rapide | click & collect | fastfood | GS (03/11) + WS (05/11 : 1re page = éditeurs de caisse, SumUp, appvizer, chaînes) | haute | publié le 2026-11-05 click-and-collect-restauration-rapide |
 | site click and collect restaurant | site | restaurant | GS (03/11) | moyenne | à faire : renforcer prix-site-internet-restaurant plutôt qu'un nouvel article |
 | logiciel commande en ligne restaurant | click & collect | restaurant | GS (03/11) | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant |
 | click and collect cafe | click & collect | restaurant | GS (03/11) | basse | à faire (angle coffee shop, commande avant le bureau) |
@@ -274,3 +274,9 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | marchéo ou uber eats pour un restaurant | transverse | restaurant | IA (05/11 : ChatGPT dit ne pas avoir d'informations fiables sur Marchéo et le traite comme une plateforme à commission ; Google : marchéo.fr absent de la 1re page) | haute | publié le 2026-11-05 marcheo-ou-uber-eats-restaurant |
 | commandes non récupérées click and collect | click & collect | tous | IA (05/11 : ChatGPT et Perplexity citent eazyclick, generixgroup, economie.gouv ; l'empreinte bancaire n'est jamais citée) | haute | à faire : réponse directe et H2 « Comment éviter les commandes non récupérées ? » dans empreinte-bancaire-no-show-commerce-restaurant au prochain rafraîchissement, pas de nouvel article |
 | boutique en ligne pas chère commerce sumup | site | tous | IA (05/11 : ChatGPT met SumUp en 1er, 0 €/mois + commission par vente) | moyenne | à faire : ligne « solution gratuite avec commission par vente » dans le tableau de site-internet-pas-cher-commerce-de-proximite |
+| click and collect snack | click & collect | fastfood | GS (05/11) | moyenne | couvert le 2026-11-05 par click-and-collect-restauration-rapide |
+| click and collect fast food | click & collect | fastfood | GS (05/11) | moyenne | couvert le 2026-11-05 par click-and-collect-restauration-rapide |
+| borne de commande restauration rapide | transverse | fastfood | GS (05/11) | moyenne | à faire : angle « borne ou commande sur le téléphone du client », section déjà dans click-and-collect-restauration-rapide, article dédié seulement si GSC montre des impressions |
+| borne de commande fast food prix | transverse | fastfood | GS (05/11) | basse | à faire (vérifier les prix réels sur des sources publiques avant d'écrire, sinon écarter) |
+| borne de commande food truck | transverse | fastfood | GS (05/11) | basse | à faire (angle : pas de borne dans un camion, commande sur le téléphone) |
+| commande en ligne fast food | click & collect | fastfood | GS (05/11) | moyenne | couvert le 2026-11-05 par click-and-collect-restauration-rapide |

@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect restauration rapide : gérer le rush du midi](https://marchéo.fr/blog/click-and-collect-restauration-rapide) : Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.
 - [Marchéo ou Uber Eats pour un restaurant : lequel choisir ?](https://marchéo.fr/blog/marcheo-ou-uber-eats-restaurant) : Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.
 - [Site internet pour pizzeria : menu, commande et prix réels](https://marchéo.fr/blog/site-internet-pizzeria) : Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.
 - [Application click and collect restaurant sans commission](https://marchéo.fr/blog/application-click-and-collect-restaurant) : Application click and collect restaurant : commandes à emporter en ligne, créneaux réglés sur le service, commandes non retirées évitées, sans commission.
