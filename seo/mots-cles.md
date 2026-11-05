@@ -280,3 +280,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | borne de commande fast food prix | transverse | fastfood | GS (05/11) | basse | à faire (vérifier les prix réels sur des sources publiques avant d'écrire, sinon écarter) |
 | borne de commande food truck | transverse | fastfood | GS (05/11) | basse | à faire (angle : pas de borne dans un camion, commande sur le téléphone) |
 | commande en ligne fast food | click & collect | fastfood | GS (05/11) | moyenne | couvert le 2026-11-05 par click-and-collect-restauration-rapide |
+| commande chapon boucherie | click & collect | boucherie | GS (05/11 après-midi) | moyenne | à faire : enrichir la partie boucherie de precommandes-fetes-noel-commerce-bouche (chapons, volailles festives, date limite de commande) plutôt qu'un nouvel article |
+| prix chapon boucherie | transverse | boucherie | GS (05/11 après-midi) | basse | écarté (requête d'acheteur sur le prix au kilo) |
+| fromagerie commande en ligne | click & collect | fromagerie | GS (05/11 après-midi) | moyenne | couvert par click-and-collect-fromagerie (variante à ajouter dans ses keywords au prochain rafraîchissement) |
+| livraison fromage à domicile | livraison | fromagerie | GS (05/11 après-midi) | moyenne | à faire avec « fromagerie livraison à domicile » (variante) |
+| livraison plateau fruits de mer | livraison | poissonnerie | GS (05/11 après-midi) | moyenne | à faire avec « livraison fruits de mer à domicile » (variante, avant mi-décembre) |
+| fleuriste click and collect paris | click & collect | fleuriste | GS (05/11 après-midi) | basse | écarté (requête locale d'acheteur, déjà couvert par click-and-collect-fleuriste) |
+| chocolatier click and collect | click & collect | tous | GS (05/11 après-midi) | basse | à faire en février pour Pâques, seulement en section d'un article de saison (chocolatier hors métiers Marchéo) |
+| site internet cave à vin | site | tous | GS (05/11 après-midi) | basse | écarté (caviste hors métiers Marchéo) |
