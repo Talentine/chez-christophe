@@ -13,7 +13,7 @@
     +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
 }catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Créer ma boutique en ligne gratuitement en 30 secondes · Marchéo</title>
+<title>Créer ma boutique en ligne gratuitement en 5 minutes · Marchéo</title>
 <meta name="description" content="Choisissez votre métier, tapez le nom de votre commerce et voyez l'aperçu de votre boutique de click & collect avec le catalogue déjà rempli. Gratuit, sans carte bancaire, sans engagement.">
 <link rel="canonical" href="https://marchéo.fr/inscription">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,8 +143,8 @@
 
 <div class="wrap">
   <div class="logo">Marchéo</div>
-  <h1>Créez votre boutique en ligne</h1>
-  <p class="sub">Configurez votre site en 3 minutes — sans technique, sans engagement.</p>
+  <h1>Créez votre démo gratuite</h1>
+  <p class="sub">Configurez votre boutique en 5 minutes. Gratuit et sans carte bancaire : vous ne payez qu'au moment de la mettre en ligne.</p>
 
   <!-- Bannière offre sélectionnée -->
   <div id="offreBanner" class="offre-banner" style="display:none;">
@@ -154,7 +154,7 @@
       <button class="offre-change" onclick="window.location.href='/#tarifs'">← Changer d'offre</button>
     </div>
     <div class="offre-prix-bloc">
-      <div class="offre-setup">Installation : <strong id="offreSetup"></strong></div>
+      <div class="offre-setup">Installation : <strong id="offreSetup"></strong> à la mise en ligne</div>
       <div class="offre-mensuel">puis <strong id="offreMensuel"></strong>/mois · sans engagement</div>
     </div>
   </div>
@@ -377,7 +377,7 @@
 
       <div class="actions">
         <button class="btn btn-secondary" onclick="etape(3)">← Retour</button>
-        <button class="btn btn-primary" onclick="creerBoutique()" id="btnSubmit">Créer ma boutique</button>
+        <button class="btn btn-primary" onclick="creerBoutique()" id="btnSubmit">Créer ma démo gratuite</button>
       </div>
     </div>
 
@@ -385,7 +385,7 @@
     <div class="step" id="step5">
       <div class="success">
         <div class="success-emoji">🎉</div>
-        <div class="step-title" style="font-size:22px;">Boutique créée !</div>
+        <div class="step-title" style="font-size:22px;">Votre démo est prête !</div>
         <div class="step-sub" style="margin-top:10px;font-size:14px;">Vous allez être redirigé vers votre dashboard pour ajouter vos premiers produits.</div>
         <div class="recap" style="text-align:left;margin-top:18px;">
           <div class="recap-label">Adresse de votre site</div>
@@ -1189,7 +1189,7 @@ async function creerBoutique() {
         // Le bouton final pour aller au dashboard ne fonctionne qu'après confirmation
         // → on reste sur l'étape 6 jusqu'au callback.
         etape(6);
-        btn.disabled = false; btn.textContent = 'Créer ma boutique';
+        btn.disabled = false; btn.textContent = 'Créer ma démo gratuite';
         return;
       }
     } else {
@@ -1493,7 +1493,7 @@ async function creerBoutique() {
     err.textContent = '❌ ' + e.message;
     err.style.display = 'block';
   } finally {
-    btn.disabled = false; btn.textContent = 'Créer ma boutique';
+    btn.disabled = false; btn.textContent = 'Créer ma démo gratuite';
   }
 }
 
