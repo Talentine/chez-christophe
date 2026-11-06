@@ -78,5 +78,6 @@ Quand une fiche est en ligne, colle son adresse ici. Je l'ajouterai dans les don
 | Capterra | compte créé par Paul, fiche à remplir avec `seo/capterra-fiche.md` | 2026-11-06 |
 | Appvizer | | |
 | Trustpilot | | |
+| G2 | fiche soumise par Paul (lien à ajouter) ; Capterra, GetApp et Software Advice passeraient par la même fiche depuis le rachat par G2, à vérifier | 2026-11-06 |
 | Instagram | | |
 | Facebook | | |
