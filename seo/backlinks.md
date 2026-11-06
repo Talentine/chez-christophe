@@ -4,7 +4,7 @@ Un backlink est un lien vers marchéo.fr posé sur un autre site. Pour Google, c
 
 Règle de base : uniquement des liens obtenus honnêtement. Pas d'achat de liens, pas de réseaux de blogs, pas d'annuaires « spam » à 200 inscriptions : Google pénalise ces pratiques et le site peut perdre tout son trafic.
 
-Les messages prêts à envoyer sont dans `seo/cibles-mentions.md` (section « Messages types ») et les textes de fiche dans `seo/fiches-annuaires.md`. Rien n'est envoyé automatiquement : Paul envoie lui-même.
+La base de 46 prospects qualifiés (axes 1 à 4) est dans `seo/prospection-backlinks-marcheo.md` et `.csv`, avec les modèles dans `seo/messages-prospection-backlinks.md`. Les messages prêts à envoyer sont aussi dans `seo/cibles-mentions.md` (section « Messages types ») et les textes de fiche dans `seo/fiches-annuaires.md`. Rien n'est envoyé automatiquement : Paul envoie lui-même.
 
 ## Les 10 actions, dans l'ordre (le plus rentable d'abord)
 
