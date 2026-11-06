@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect dans une fromagerie : vendre 
 meta_title: "Click and collect fromagerie : le guide pratique"
 meta_description: "Click and collect pour fromagerie : vente à la coupe, plateaux, formules raclette, créneaux de retrait et paiement. Le guide concret pour démarrer."
 date: 2026-10-16
-modified: 2026-10-30
+modified: 2026-11-06
 rubrique: Guide
 emoji: 🧀
 keywords:
@@ -100,7 +100,7 @@ Le click and collect d'une fromagerie se remplit par les habitués, pas par la p
 - **Une phrase au moment de rendre la monnaie**, surtout aux clients qui ont attendu.
 - **Un message avant la saison raclette**, aux clients qui ont accepté d'en recevoir.
 
-Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le bon moment pour passer à la commande en ligne. Comptez quelques semaines pour que le réflexe s'installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
+Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le bon moment pour passer à la commande en ligne. Pour les pages, les photos et le prix du site lui-même, voyez notre guide du [site internet de fromagerie](/blog/site-internet-fromagerie). Comptez quelques semaines pour que le réflexe s'installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
 
 ## Ce que coûte le click and collect pour une fromagerie
 

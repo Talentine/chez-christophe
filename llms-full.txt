@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet fromagerie : pages, plateaux, commandes et prix](https://marchéo.fr/blog/site-internet-fromagerie) : Site internet pour fromagerie : quelles pages créer, comment montrer affinages et plateaux, prendre les commandes de fêtes en ligne et combien ça coûte.
 - [Click and collect restauration rapide : gérer le rush du midi](https://marchéo.fr/blog/click-and-collect-restauration-rapide) : Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.
 - [Marchéo ou Uber Eats pour un restaurant : lequel choisir ?](https://marchéo.fr/blog/marcheo-ou-uber-eats-restaurant) : Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.
 - [Site internet pour pizzeria : menu, commande et prix réels](https://marchéo.fr/blog/site-internet-pizzeria) : Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant.
@@ -86,7 +87,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-05
+- Dernière mise à jour : 2026-11-06
 
 
 ---
@@ -779,6 +780,148 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet fromagerie : pages, plateaux, commandes et prix
+
+Site internet pour fromagerie : quelles pages créer, comment montrer affinages et plateaux, prendre les commandes de fêtes en ligne et combien ça coûte.
+
+Un site internet de fromagerie sert à trois choses : être trouvé quand un client cherche une fromagerie près de chez lui, montrer vos fromages, vos affinages et vos plateaux, et prendre les commandes à l&rsquo;avance, surtout pour les fêtes et la saison de la raclette. Le bon site tient en quelques pages, se modifie depuis votre téléphone et ne prend aucune commission sur vos ventes.
+Ce guide s&rsquo;adresse au fromager ou au crémier indépendant. La méthode générale, valable pour tous les commerces, est détaillée dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand on vend du fromage : la coupe au poids, les plateaux composés, les producteurs et une saison de fin d&rsquo;année très chargée.
+Pourquoi une fromagerie a-t-elle besoin d&rsquo;un site internet ?
+Parce que vos clients préparent leurs repas à l&rsquo;avance, et qu&rsquo;ils cherchent sur leur téléphone avant de se déplacer. Un plateau pour un dîner de samedi ou une raclette pour huit se décide souvent le mercredi soir, chez soi.
+Un site à vous change trois choses :
+
+Vous êtes trouvé en direct. Le client qui tape « fromagerie » avec le nom de votre ville voit vos horaires, votre adresse et vos spécialités.
+Les commandes arrivent par écrit. Fini les plateaux notés sur un coin de papier au comptoir, avec un nombre de personnes mal compris.
+Votre savoir-faire se voit. Les affinages, les producteurs, les AOP : c&rsquo;est ce qui vous distingue d&rsquo;un rayon de supermarché, et un site permet de le raconter.
+
+Site vitrine ou site de commande : que choisir pour une fromagerie ?
+Un site vitrine suffit si vos clients viennent surtout au comptoir et commandent peu à l&rsquo;avance. Dès que vous prenez des commandes de plateaux ou de fêtes par téléphone, un site de commande avec créneaux de retrait vous fera gagner du temps.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de commandes
+Site vitrine : horaires, adresse, spécialités, photos
+
+
+Plateaux et commandes de fêtes par téléphone
+Site avec click &amp; collect et créneaux de retrait
+
+
+Clients âgés ou éloignés qui demandent à être livrés
+Site avec click &amp; collect et livraison locale
+
+
+Dégustations ou ateliers sur inscription
+Site avec réservation en ligne
+
+
+
+Le fonctionnement de la commande en ligne en fromagerie, de la coupe aux créneaux, est détaillé dans notre article sur le click and collect en fromagerie.
+Quelles pages mettre sur le site d&rsquo;une fromagerie ?
+Quatre ou cinq pages suffisent. Un client veut savoir si vous êtes ouvert, ce que vous avez en ce moment et comment commander.
+
+Accueil : nom, adresse, horaires, téléphone, et un bouton « Commander » visible dès l&rsquo;ouverture de la page.
+Les fromages : classés par famille (pâtes pressées, pâtes molles, chèvres, persillés), avec l&rsquo;origine, le lait et l&rsquo;affinage en une ligne.
+Les plateaux et formules : plateau apéritif, plateau dîner, raclette et fondue par nombre de personnes, avec le prix.
+Votre fromagerie : vos producteurs, votre cave d&rsquo;affinage si vous en avez une, votre histoire.
+Infos pratiques : moyens de paiement, zone de livraison si vous livrez, allergènes, mentions légales.
+
+Pour les mentions légales, les conditions de vente et les informations allergènes, notre article sur les obligations légales d&rsquo;une boutique en ligne fait le point.
+Quelles photos mettre sur un site de fromagerie ?
+Des photos de vos vrais fromages, de votre comptoir et de vos plateaux, prises en lumière du jour. Une meule entamée, un plateau composé et votre devanture valent mieux que des photos de banque d&rsquo;images.
+Quelques conseils simples :
+
+Photographiez les plateaux de face et d&rsquo;en haut, sur un fond neutre.
+Montrez la coupe : un morceau de comté avec sa croûte parle plus qu&rsquo;une meule entière.
+Ajoutez une photo de vous ou de votre équipe au comptoir.
+Changez la photo d&rsquo;accueil à chaque saison : raclette en hiver, chèvres frais au printemps.
+
+Comment vendre à la coupe et en plateaux sur le site ?
+Le site doit accepter un poids indicatif et des formules par personne, sinon il ne sert pas à commander du fromage. Le client choisit « 250 g de comté 18 mois » et vous ajustez le prix au moment de la coupe. Pour les plateaux et la raclette, une formule « pour 4 personnes » évite au client de deviner une quantité.
+La méthode pour afficher un prix au kilo et ajuster le montant final est expliquée dans notre guide pour vendre au poids en ligne. Avec Marchéo, le client commande en 30 secondes sans créer de compte, choisit son créneau de retrait et reçoit un SMS quand sa commande est prête.
+Comment préparer Noël avec le site de sa fromagerie ?
+En ouvrant les commandes de fêtes dès le début du mois de novembre, avec une date limite ferme vers la mi-décembre. Vous connaissez vos quantités à l&rsquo;avance, vous commandez juste ce qu&rsquo;il faut à vos producteurs, et le 24 décembre se passe en retraits au lieu d&rsquo;une file d&rsquo;attente.
+Sur le site, créez une rubrique « Fêtes » avec vos plateaux de fin d&rsquo;année, vos pièces d&rsquo;exception et vos créneaux de retrait des 23, 24 et 31 décembre. Pour éviter les plateaux jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Les autres idées de saison sont réunies dans notre guide des précommandes de fêtes pour les commerces de bouche.
+Combien coûte un site internet pour une fromagerie ?
+Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+Vente au poids, plateaux et créneaux à configurer vous-même
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification se paie
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Pensé pour les commerces de bouche, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation, 549 € pour le Click &amp; Collect avec Livraison. Le détail des postes de dépense d&rsquo;un site de commande est dans notre article sur ce que coûte un site de click and collect.
+Peut-on livrer ses clients avec le site d&rsquo;une fromagerie ?
+Oui, si vous organisez vous-même la livraison. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour fixer votre zone, vos créneaux, votre minimum de commande et vos frais. Le fromage supporte bien une courte tournée en sac isotherme, à condition de livrer dans la journée et de garder les plateaux au frais jusqu&rsquo;au départ.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut votre liste de fromages et vos horaires, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre liste de fromages, avec les prix au kilo
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de vos fromages et plateaux
+Un développeur ou une agence
+
+
+Vos horaires et vos formules de plateaux
+Une commission sur chaque vente
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Comment faire connaître le site de sa fromagerie ?
+Reliez d&rsquo;abord le site à votre fiche Google Business, c&rsquo;est elle qui apparaît sur la carte quand un client cherche une fromagerie près de chez lui. Ajoutez-y le lien de commande. Le réglage est expliqué dans notre guide de la fiche Google Business pour un commerce de bouche.
+Ensuite, mettez l&rsquo;adresse du site partout où vos clients vous voient : un QR code sur le comptoir, les sacs et les étiquettes de plateaux, le lien sur Instagram et Facebook. Un client qui a commandé son plateau de fêtes en ligne a de bonnes chances de revenir pour la raclette de janvier.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « fromagerie », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous ajoutez ensuite vos fromages, vos plateaux et vos créneaux à votre rythme, juste à temps pour les commandes de Noël. Pour voir toutes les fonctions prévues pour votre métier, consultez la solution pour fromagerie.
+
+Q : Quel outil pour créer le site internet d'une fromagerie de quartier ?
+R : Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour la vente au poids, les plateaux et les créneaux de retrait ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, pensés pour les commerces de bouche. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Faut-il acheter du matériel pour prendre les commandes du site d'une fromagerie ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client n'a pas payé en ligne, vous encaissez au retrait avec votre caisse et votre terminal habituels.
+Q : Combien coûte un site internet pour une fromagerie ?
+R : De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission et sans engagement, avec des frais d'installation uniques de 249 à 549 € selon la formule.
+Q : Peut-on vendre du fromage à la coupe sur le site d'une fromagerie ?
+R : Oui. Le client choisit un poids indicatif, par exemple 250 g de comté, et vous ajustez le prix au moment de la coupe. Pour les plateaux et la raclette, une formule par nombre de personnes est plus simple pour le client qu'un prix au kilo.
 
 # Click and collect restauration rapide : gérer le rush du midi
 
@@ -4188,7 +4331,7 @@ Boucherie. Colis, découpes sur demande, vente au kilo. Voir la solution pour bo
 Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur et le guide du click and collect primeur.
 Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
-Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
+Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie le guide du click and collect en fromagerie et notre article dédié au site internet d&rsquo;une fromagerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste et notre guide de création de site internet pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria et notre guide du site internet pour pizzeria.
 Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant.
@@ -4212,6 +4355,7 @@ Digitaliser son commerce de bouche : par où commencer
 Site internet pour boulangerie
 Création de site internet pour traiteur
 Site internet pour pizzeria : menu, commande et prix réels
+Site internet fromagerie : pages, plateaux, commandes et prix
 Fiche Google Business pour un commerce de bouche
 Click and collect sans commission
 
@@ -5132,7 +5276,7 @@ Le lien sur votre fiche Google, dans le champ commande en ligne.
 Une phrase au moment de rendre la monnaie, surtout aux clients qui ont attendu.
 Un message avant la saison raclette, aux clients qui ont accepté d&rsquo;en recevoir.
 
-Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif WhatsApp ou boutique en ligne vous aide à choisir le bon moment pour passer à la commande en ligne. Comptez quelques semaines pour que le réflexe s&rsquo;installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
+Si vos clients vous écrivent déjà pour leurs plateaux, notre comparatif WhatsApp ou boutique en ligne vous aide à choisir le bon moment pour passer à la commande en ligne. Pour les pages, les photos et le prix du site lui-même, voyez notre guide du site internet de fromagerie. Comptez quelques semaines pour que le réflexe s&rsquo;installe. Ce sont souvent les mêmes clients qui commandent les premiers, et ce sont eux qui en parlent.
 Ce que coûte le click and collect pour une fromagerie
 Les plateformes de livraison prennent en général entre 14 et 30 % de commission. Sur un plateau à 80 €, cela représente une somme importante pour un client qui vient déjà chez vous.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.

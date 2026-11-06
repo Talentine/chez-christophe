@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-11-04
+modified: 2026-11-06
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -159,7 +159,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 - **Primeur.** Paniers de saison et vente au kilo. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre article sur la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux, buffets, devis pour les événements. Voir [la solution pour traiteur](/solutions/traiteur) et le guide de [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
-- **Fromagerie.** Coupes au poids et plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
+- **Fromagerie.** Coupes au poids et plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie) et notre article dédié au [site internet d'une fromagerie](/blog/site-internet-fromagerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Voir [la solution pour fleuriste](/solutions/fleuriste) et notre guide de [création de site internet pour fleuriste](/blog/creation-site-internet-fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria) et notre guide du [site internet pour pizzeria](/blog/site-internet-pizzeria).
 - **Restaurant.** Carte, vente à emporter et réservation de table. Voir [la solution pour restaurant](/solutions/restaurant) et notre article sur le [prix d'un site internet de restaurant](/blog/prix-site-internet-restaurant).
@@ -192,5 +192,6 @@ Pour aller plus loin, voici les guides du blog liés à la création du site de 
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Création de site internet pour traiteur](/blog/creation-site-internet-traiteur)
 - [Site internet pour pizzeria : menu, commande et prix réels](/blog/site-internet-pizzeria)
+- [Site internet fromagerie : pages, plateaux, commandes et prix](/blog/site-internet-fromagerie)
 - [Fiche Google Business pour un commerce de bouche](/blog/fiche-google-business-commerce-bouche)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)

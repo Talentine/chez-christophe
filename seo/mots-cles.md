@@ -126,7 +126,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | traiteur noël livraison à domicile | livraison | traiteur | GS (21/10) | haute | publié le 2026-11-02 traiteur-noel-livraison-a-domicile |
 | menu réveillon traiteur | click & collect | traiteur | GS (21/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile (2026-11-02), section carte |
 | commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (21/10) | haute | publié le 2026-11-01 click-and-collect-poissonnerie (variante) |
-| fromagerie internet | site | fromagerie | GS (21/10) | moyenne | à faire : site internet pour sa fromagerie (vente au poids, plateaux de fêtes) |
+| fromagerie internet | site | fromagerie | GS (21/10) | moyenne | publié le 2026-11-06 site-internet-fromagerie (variante) |
 | livraison à domicile code ape | livraison | tous | GS (21/10) | basse | écarté de la page pilier n°4 (2026-10-23) : formulation juridique non vérifiée, à ne traiter qu'avec une source officielle |
 | livreur à domicile indépendant | livraison | - | GS (21/10) | basse | écarté : intention emploi (devenir livreur), pas commerçant |
 | site vitrine vs site e commerce | site | tous | GS (22/10) | moyenne | couvert par la page pilier creation-site-internet-commerce (2026-10-22) ; article dédié possible avec « site vitrine ou e commerce » |
@@ -206,7 +206,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | creation site internet pizzeria | site | pizzeria | GS (30/10) | haute | couvert le 2026-11-04 par site-internet-pizzeria |
 | site pizzeria menu | site | pizzeria | GS (30/10) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria (H2 « mettre le menu en ligne ») |
 | site de poissonnerie | site | poissonnerie | GS (30/10) | moyenne | à faire avec « poissonnerie en ligne livraison » (confirmé par la suggestion du jour) |
-| site de fromagerie | site | fromagerie | GS (30/10) | moyenne | à faire avec « fromagerie internet » |
+| site de fromagerie | site | fromagerie | GS (30/10) | moyenne | publié le 2026-11-06 site-internet-fromagerie (doublon de ligne) |
 | site vitrine ou landing page | site | tous | GS (30/10) | basse | à fondre dans un article « site vitrine ou e commerce » |
 | boucherie livraison à domicile | livraison | boucherie | GS (31/10) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
 | livraison à domicile boucherie halal | livraison | boucherie | GS (31/10) | moyenne | couvert en section de boucherie-livraison-a-domicile ; article dédié possible si GSC le confirme |
@@ -266,7 +266,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site pour pizzeria | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
 | logiciel pizzeria gratuit | click & collect | pizzeria | GS (04/11) | moyenne | à faire : angle « ce qui est vraiment gratuit », à fusionner avec application click and collect gratuite |
 | site web food truck | site | fastfood | GS (04/11) | haute | à faire (angle : site du food-truck avec emplacements de la semaine et commande, sans doubler click-and-collect-food-truck) |
-| site de fromagerie | site | fromagerie | GS (04/11) | haute | à faire (création du site d'une fromagerie de quartier, coupes au poids, plateaux) |
+| site de fromagerie | site | fromagerie | GS (04/11) | haute | publié le 2026-11-06 site-internet-fromagerie |
 | click and collect bar | click & collect | restaurant | GS (04/11) | basse | à faire (volume probablement faible, à vérifier) |
 | site commande pizza | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
 | creation menu pizzeria | transverse | pizzeria | GS (04/11) | basse | écarté (intention graphisme de menu papier) |
@@ -288,3 +288,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fleuriste click and collect paris | click & collect | fleuriste | GS (05/11 après-midi) | basse | écarté (requête locale d'acheteur, déjà couvert par click-and-collect-fleuriste) |
 | chocolatier click and collect | click & collect | tous | GS (05/11 après-midi) | basse | à faire en février pour Pâques, seulement en section d'un article de saison (chocolatier hors métiers Marchéo) |
 | site internet cave à vin | site | tous | GS (05/11 après-midi) | basse | écarté (caviste hors métiers Marchéo) |
+| site internet fromagerie | site | fromagerie | GS (06/11) + WebSearch (1re page : guides d'ouverture de fromagerie, agences, aucun guide du site) | haute | publié le 2026-11-06 site-internet-fromagerie |
+| fromagerie site web | site | fromagerie | GS (06/11) | moyenne | publié le 2026-11-06 site-internet-fromagerie (variante) |
+| site fromage en ligne | site | fromagerie | GS (06/11) | basse | écarté : intention acheteur (vente nationale par correspondance), pas commerçant |
+| fromagerie en ligne direct producteur | transverse | fromagerie | GS (06/11) | basse | écarté : intention consommateur |
+| site internet poissonnerie | site | poissonnerie | GS (06/11 : « site de poissonnerie ») | haute | à faire (angle : arrivages du jour, plateaux de fruits de mer de fêtes, pas avant mi-novembre) |
+| site vitrine vs site e commerce | site | tous | GS (06/11) | moyenne | à faire : vérifier la cannibalisation avec creation-site-internet-commerce (section vitrine ou commande) avant d'écrire |
+| site vitrine boutique | site | tous | GS (06/11) | basse | couvert par creation-site-internet-commerce |
+| nom de domaine commercial | site | tous | GS (06/11) | moyenne | à faire : nom de domaine pour un commerce (choix, prix, extension), vérifier obligations-legales-boutique-en-ligne-commercant |
