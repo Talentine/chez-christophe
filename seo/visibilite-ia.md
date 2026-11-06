@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°15 (n°13 et n°14 posées le 06/11 ; question de marque suivante : n°23).
+Prochaine question en rotation : n°17 (n°15 et n°16 posées le 06/11 au 2e passage ; n°15 comprise côté client, à poser plutôt « Comment un pâtissier peut-il prendre les commandes de bûches de Noël en ligne ? » ; question de marque suivante : n°24).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -154,3 +154,8 @@ Prochaine question en rotation : n°15 (n°13 et n°14 posées le 06/11 ; questi
 | 2026-11-06 | Perplexity | Comment créer le site internet de ma fromagerie ? | non | francenum.gouv (+1), 10 sources ; aucun outil nommé (nom de domaine, fiche Google, modalités de retrait) |
 | 2026-11-06 | Google | Comment créer le site internet de ma fromagerie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | webtensor.fr, fabrik-web.fr, fromage.fr, hellofidy.com, blog.ollca.com, rhiino.fr, devantio.fr, pontonweb.fr, weblounes.com |
 | 2026-11-06 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, avec prix (39 à 59 €/mois, sans commission, pas de livreurs) mais tableau contradictoire (« commissions à négocier / vérifier ») | marchéo.fr (+1) ; conseille d'utiliser les deux |
+| 2026-11-06 | ChatGPT | Comment prendre les commandes de bûches de Noël en ligne ? (2e passage, 16 h) | non | compris côté client : Nina Métayer, Ladurée, Pierre Hermé, Alain Ducasse, Royal Monceau ; aucun outil pour le pâtissier (question à reformuler côté commerçant) |
+| 2026-11-06 | Google (aperçu IA) | Comment prendre les commandes de bûches de Noël en ligne ? | non (aperçu IA affiché, côté client) | christopherhedon.com, Maison Pralus (Facebook), Ladurée, Argel, houra.fr, chefcookeo.fr, micielopatisserie.com ; aucun éditeur de logiciel en 1re page |
+| 2026-11-06 | ChatGPT | Comment livrer du poisson frais à domicile en respectant la chaîne du froid ? | non | Ministère de l'Agriculture (+1), Service Public ; matériel (caisses isothermes, plaques eutectiques), HACCP ; aucun logiciel nommé, propose une organisation « commande en ligne ou par téléphone » |
+| 2026-11-06 | Perplexity | Comment livrer du poisson frais à domicile en respectant la chaîne du froid ? | non | economie.gouv (+3), 10 sources ; réponse courte côté consommateur (0 à 2 °C, glace, réfrigérateur) |
+| 2026-11-06 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts (tableau des 3 offres installation + abonnement, 0 % de commission, sans engagement, pas de matériel obligatoire, démo gratuite) | marchéo.fr (+1) ; rappelle de « bien regarder les frais d'installation » |
