@@ -155,6 +155,9 @@ const NAF_BOUCHE = [
   '56.21Z', // traiteur
 ];
 
+// Tranches d'effectif INSEE : 10-19, 20-49, 50-99, 100-199, 200-249 salariés.
+const TRANCHES_10_PLUS = '11,12,21,22,31';
+
 const RE_ASSO = /commer[cç]ant|commerce|artisan|vitrine|boutique|union commerciale|march[ée]s?\b|centre[- ]ville|c[oœ]ur de ville/i;
 
 async function rechercheEntreprises(params: Record<string, string>) {
@@ -183,7 +186,7 @@ async function actionSourcer() {
   const lignes: any[] = [];
 
   // 1. Associations / unions de commerçants du département
-  for (const q of ['association commercants', 'union commerciale', 'commercants artisans', 'vitrines']) {
+  for (const q of ['association commercants', 'union commerciale', 'commercants artisans', 'vitrines', 'office du commerce', 'commerces centre ville', 'boutiques']) {
     for (let page = 1; page <= 3; page++) {
       const r = await rechercheEntreprises({ q, departement: dep, activite_principale: '94.99Z', page: String(page) });
       for (const e of r.results) {
@@ -194,9 +197,10 @@ async function actionSourcer() {
     }
   }
 
-  // 2. Propriétaires de plusieurs boutiques alimentaires
+  // 2. Propriétaires de plusieurs boutiques alimentaires, 10 salariés ou plus :
+  // en dessous, presque aucun ne publie d'email.
   for (let page = 1; page <= 8; page++) {
-    const r = await rechercheEntreprises({ activite_principale: NAF_BOUCHE.join(','), departement: dep, page: String(page) });
+    const r = await rechercheEntreprises({ activite_principale: NAF_BOUCHE.join(','), departement: dep, tranche_effectif_salarie: TRANCHES_10_PLUS, page: String(page) });
     for (const e of r.results) {
       // Au-delà de 30 établissements : enseigne nationale ou franchise, hors cible.
       const n = e.nombre_etablissements_ouverts ?? 0;
