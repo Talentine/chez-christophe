@@ -28,6 +28,22 @@ Les messages prêts à envoyer sont dans `seo/cibles-mentions.md` (section « Me
 - **Lien « Créé avec Marchéo »** en bas des boutiques des commerçants : à vérifier dans le code. Il ne compte comme backlink que si une boutique est publiée sur le nom de domaine du commerçant (pas sur marchéo.fr). Si c'est le cas, un petit lien discret dans le pied de page apporte un lien par client. À décider par Paul, car cela touche les boutiques des clients.
 - **Suivre les liens obtenus** dans le tableau ci-dessous et dans Search Console (rapport « Liens »).
 
+## Nouvelles cibles repérées le 6 novembre 2026
+
+Ces sites ne figuraient pas encore dans ce plan ni dans `seo/cibles-mentions.md`. Classés du plus utile au moins utile. Les conditions sont à vérifier sur chaque site avant de s'inscrire (certaines pages consultées sont anciennes).
+
+| # | Site | Type | Ce qu'il faut faire | Pourquoi | Statut |
+| --- | --- | --- | --- | --- | --- |
+| A | **Wikidata** (wikidata.org) | base de connaissances | Créer l'élément « Marchéo » : nature « logiciel » / « entreprise », site officiel, pays France, fondateur, date de création. Ajouter ensuite le lien Wikidata dans `sameAs`. Pas de lien suivi, mais c'est une des sources que les IA utilisent pour reconnaître une marque. Ne pas créer de page Wikipédia : la marque n'a pas encore de sources de presse, elle serait supprimée. | GEO : reconnaissance de l'entité | à faire (Paul, 20 min) |
+| B | **Les Pépites Tech** (lespepitestech.com/nos-offres, offre « Starter » gratuite, bouton « Ajouter ma pépite ») | annuaire de startups françaises | Créer un compte, ajouter Marchéo avec la description longue de `fiches-annuaires.md`. L'offre payante (499 € HT) est inutile : prendre la gratuite et accepter la file d'attente. | Annuaire français connu, souvent repris par d'autres sites | à faire |
+| C | **TrouveMonSaaS** (trouvemonsaas.fr) | comparateur de SaaS français | Déjà listé dans `fiches-annuaires.md` avec « adresse non vérifiée » : l'adresse est bien trouvemonsaas.fr, un espace éditeur existe. | Comparateur centré sur les outils français | à faire |
+| D | **Presse professionnelle des métiers** : *Profession Fromager* (profession.fromager@wanadoo.fr, à confirmer), *Les Nouvelles de la Boulangerie* (lesnouvellesdelaboulangerie.fr, revue liée à la Confédération nationale de la boulangerie), *La Boucherie Française* (éditée pour la Confédération française de la boucherie, CFBCT) | média de la filière | Proposer un article de conseil (message type 2) adapté au métier : « vente à la coupe en ligne » pour les fromagers, « commandes de bûches et de galettes » pour les boulangers, « colis et fêtes » pour les bouchers. Les articles du blog peuvent servir de base. | Lien depuis le média que lisent exactement nos clients ; très crédible pour Google et les IA | à faire |
+| E | **Confédérations de métier** (CNBPF boulangerie, CFBCT boucherie, et leurs fédérations départementales) | organisations professionnelles | Proposer un webinaire ou une fiche pratique gratuite « click & collect sans commission » pour les adhérents, avec lien sur leur site. Même logique que l'action 7 (CMA/CCI), mais au niveau du métier. | Liens institutionnels + accès direct aux commerçants | à faire |
+| F | **Maddyness** (formulaire « proposer un sujet » sur maddyness.com) | média startups | Proposer l'histoire du fondateur (angle : un logiciel à prix fixe face aux plateformes à 30 % de commission), plutôt qu'une publicité. À faire après les premiers clients et chiffres concrets. | Média très solide, souvent cité par les IA françaises | plus tard |
+| G | **Plateformes publiques de solutions numériques** : clique-mon-commerce.gouv.fr (lancée en 2020 avec les CCI et CMA) et les listes régionales des chambres (ex. guide click & collect de la CMA Grand Est, label « Les Digiteurs » de la CCI Paris, payant) | institutionnel | Vérifier si clique-mon-commerce accepte encore de nouvelles solutions (le site n'a pas pu être ouvert depuis l'environnement de Claude) ; si oui, déposer Marchéo. Pour Les Digiteurs : seulement si Paul vise l'Île-de-France, car le label est payant. | Liens .gouv.fr et chambres, les plus fiables qui soient | à vérifier |
+
+Vérifié dans le code le 6 novembre : il n'existe aucun lien « Créé avec Marchéo » dans les boutiques, et le champ `sameAs` de `landing.html` est vide. Dès qu'une fiche (LinkedIn, Capterra, Wikidata…) est en ligne, la remplir apporte un gain GEO immédiat.
+
 ## Liens obtenus
 
 | Date | Site | Page | Type | Lien suivi par Google ? |
