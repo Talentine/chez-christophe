@@ -153,17 +153,17 @@ a{color:var(--vert)}
         </div>
         <div class="calc-box good">
           <div class="k">Avec Marchéo</div>
-          <div class="v">19 à 39 €</div>
+          <div class="v">19 à 59 €</div>
           <div class="n">selon l'offre — fixe, quel que soit votre volume</div>
         </div>
       </div>
 
       <div class="calc-out">
-        <div class="v" id="ecart">6 732 €</div>
+        <div class="v" id="ecart">6 492 €</div>
         <div class="n">de différence sur un an</div>
       </div>
     </div>
-    <p class="small" style="margin-top:14px">Calcul indicatif sur la base d'une commission de 30 %, taux haut couramment pratiqué par les plateformes de livraison, comparée à notre abonnement le plus complet à 39 €/mois. Détail des offres sur la page <a href="/#tarifs">tarifs</a>.</p>
+    <p class="small" style="margin-top:14px">Calcul indicatif sur la base d'une commission de 30 %, taux haut couramment pratiqué par les plateformes de livraison, comparée à notre abonnement le plus complet, avec la livraison, à 59 €/mois. Hors frais d'installation uniques (249, 399 ou 549 € selon l'offre) et frais de paiement par carte de Stripe. Détail des offres sur la page <a href="/#tarifs">tarifs</a>.</p>
   </div>
 </section>
 
@@ -216,7 +216,7 @@ a{color:var(--vert)}
 <section>
   <div class="wrap">
     <h2>Comment on gagne notre vie, alors</h2>
-    <p class="lead">Un abonnement mensuel fixe, de 19 à 39 € selon l'offre, sans engagement. C'est tout. Pas de pourcentage caché, pas de frais par transaction, pas de palier qui se déclenche quand vous marchez bien.</p>
+    <p class="lead">Un abonnement mensuel fixe, de 19 à 59 € selon l'offre, sans engagement, et des frais d'installation payés une seule fois (249, 399 ou 549 €). Pas de pourcentage caché, pas de commission sur vos ventes, pas de palier qui se déclenche quand vous marchez bien.</p>
     <p class="lead">Notre intérêt et le vôtre vont dans le même sens : si votre boutique en ligne fonctionne, vous restez. Nous n'avons aucune raison de vous prendre une part de votre croissance.</p>
     <a class="cta vert" href="/#tarifs">Voir les tarifs</a>
   </div>
@@ -252,7 +252,7 @@ a{color:var(--vert)}
 
     <details>
       <summary>Vraiment aucune commission ?</summary>
-      <p>Aucune. Vous payez un abonnement mensuel fixe, entre 19 et 39 € selon l'offre choisie. Que vous fassiez 10 ou 200 commandes dans le mois, le montant ne bouge pas.</p>
+      <p>Aucune. Vous payez un abonnement mensuel fixe, entre 19 et 59 € selon l'offre choisie, plus des frais d'installation uniques. Que vous fassiez 10 ou 200 commandes dans le mois, le montant ne bouge pas.</p>
     </details>
 
     <details>
@@ -293,7 +293,7 @@ a{color:var(--vert)}
       ecart=document.getElementById('ecart');
   function fmt(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
   function maj(){
-    var ca=+s.value, commission=ca*0.30, diff=(commission-39)*12; // base 39 € : notre offre la plus complète
+    var ca=+s.value, commission=ca*0.30, diff=(commission-59)*12; // base 59 € : notre offre la plus complète (avec livraison)
     caVal.textContent=fmt(ca);
     perte.textContent=fmt(commission);
     ecart.textContent=fmt(diff>0?diff:0);
