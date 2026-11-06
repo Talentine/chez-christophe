@@ -13,7 +13,7 @@ Les messages prêts à envoyer sont dans `seo/cibles-mentions.md` (section « Me
 | 1 | Page LinkedIn Marchéo (linkedin.com/company/setup/new), avec le lien vers marchéo.fr | Paul | 15 min | Source « officielle » que les IA lisent ; débloque la suite | à faire |
 | 2 | Fiches Capterra (alimente aussi GetApp et Software Advice) puis Appvizer | Paul | 30 min chacune | Liens depuis des sites très solides, et ce sont les sources citées par Perplexity sur 4 questions | à faire |
 | 3 | Trustpilot + demander 3 à 5 avis à des commerçants clients (Capterra et Trustpilot) | Paul | 20 min + relances | Les avis rendent les fiches visibles et citables | à faire |
-| 4 | Demander l'ajout au comparatif de lafabriquedunet.fr (message type 1) | Paul | 10 min | Site cité sur 5 questions différentes par Google, Perplexity et ChatGPT | à faire (priorité haute) |
+| 4 | Demander l'ajout au comparatif de lafabriquedunet.fr (message type 1) | Paul | 10 min | Site cité sur 5 questions différentes par Google, Perplexity et ChatGPT | brouillon prêt dans Gmail (hello@lafabriquedunet.fr), à envoyer (06/11) |
 | 5 | Même demande à tool-advisor.fr, lechommerces.fr, up-review.co, skello.io, hack-celeration, clubic.com | Paul | 10 min chacun | Comparatifs déjà classés sur nos requêtes | à faire |
 | 6 | Proposer un article de conseil (message type 2) à ca-moncommerce.com / propulsebyca.fr, info-ecommerce.fr, fromage.fr, reussir.fr | Paul (Claude peut rédiger l'article) | 1 h par article | Lien depuis un média de la filière, dans un texte utile | à faire |
 | 7 | Chambres de métiers (CMA) et CCI de votre département : demander à figurer dans leur liste de solutions numériques pour commerçants, ou proposer un atelier gratuit « click & collect sans commission » | Paul | 2 à 3 appels | Sites publics très fiables, et des commerçants dans la salle | à faire |
@@ -43,6 +43,14 @@ Ces sites ne figuraient pas encore dans ce plan ni dans `seo/cibles-mentions.md`
 | G | **Plateformes publiques de solutions numériques** : clique-mon-commerce.gouv.fr (lancée en 2020 avec les CCI et CMA) et les listes régionales des chambres (ex. guide click & collect de la CMA Grand Est, label « Les Digiteurs » de la CCI Paris, payant) | institutionnel | Vérifier si clique-mon-commerce accepte encore de nouvelles solutions (le site n'a pas pu être ouvert depuis l'environnement de Claude) ; si oui, déposer Marchéo. Pour Les Digiteurs : seulement si Paul vise l'Île-de-France, car le label est payant. | Liens .gouv.fr et chambres, les plus fiables qui soient | à vérifier |
 
 Vérifié dans le code le 6 novembre : il n'existe aucun lien « Créé avec Marchéo » dans les boutiques, et le champ `sameAs` de `landing.html` est vide. Dès qu'une fiche (LinkedIn, Capterra, Wikidata…) est en ligne, la remplir apporte un gain GEO immédiat.
+
+## Avancement du 6 novembre 2026
+
+- Brouillons prêts dans Gmail (marcheo.contact@gmail.com), à envoyer en un clic : La Fabrique du Net (hello@lafabriquedunet.fr, référencement + comparatifs) et Profession Fromager (profession.fromager@wanadoo.fr, article complet inclus). L'envoi direct par Claude a été refusé par le contrôle de sécurité de la session.
+- Article invité prêt : `seo/articles-invites/profession-fromager-vente-coupe-en-ligne.md`.
+- Déjà contactés le 8 septembre (ne pas relancer en double) : CGAD, CFBCT (boucherie), boulangerie.org, confédération de la pâtisserie, poissonniers.com, FFAF, CMA France, CCI France.
+- Adresses e-mail non trouvées (formulaire ou compte obligatoire) : tool-advisor.fr (formulaire tool-advisor.fr/contact), LEPTIDIGITAL (adresse masquée sur leptidigital.fr/logiciels/referencer-logiciel), Appvizer, Capterra, Les Pépites Tech, TrouveMonSaaS, journal-du-chr.fr, info-ecommerce.fr, fromage.fr, Les Nouvelles de la Boulangerie. Ces sites sont bloqués par le réseau de la session cloud de Claude.
+- toquedechef.com écarté : c'est une boutique de vêtements de cuisine, pas un média.
 
 ## Liens obtenus
 
