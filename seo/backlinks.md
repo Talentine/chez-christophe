@@ -47,7 +47,14 @@ Vérifié dans le code le 6 novembre : il n'existe aucun lien « Créé avec Mar
 ## Avancement du 6 novembre 2026
 
 - Brouillons prêts dans Gmail (marcheo.contact@gmail.com), à envoyer en un clic : La Fabrique du Net (hello@lafabriquedunet.fr, référencement + comparatifs) et Profession Fromager (profession.fromager@wanadoo.fr, article complet inclus). L'envoi direct par Claude a été refusé par le contrôle de sécurité de la session.
-- Article invité prêt : `seo/articles-invites/profession-fromager-vente-coupe-en-ligne.md`.
+- Articles invités prêts dans `seo/articles-invites/`, chacun dans un brouillon Gmail à envoyer :
+  - Profession Fromager (profession.fromager@wanadoo.fr) : vente à la coupe et plateaux de fêtes ;
+  - Les Nouvelles de la Boulangerie-Pâtisserie (lcorroyer@boulangerie.org, copie sotal@boulangerie.org) : bûches, galettes et pièces montées ;
+  - La Boucherie Française (sepeta@boucherie-france.org) : colis, découpes et fêtes ;
+  - L'Hôtellerie Restauration (redaction@lhotellerie-restauration.fr) : vente à emporter et réservations en direct ;
+  - France Pizza (info@francepizza.fr) : commande à emporter sans commission.
+- Trustpilot : compte créé sur marcheo.pro (l'accent et xn-- sont refusés), vérification par DNS chez OVH mise en pause tant qu'il n'y a pas de clients pour laisser des avis.
+- LinkedIn : bloqué par le nombre de relations du profil de Paul, à réessayer.
 - Déjà contactés le 8 septembre (ne pas relancer en double) : CGAD, CFBCT (boucherie), boulangerie.org, confédération de la pâtisserie, poissonniers.com, FFAF, CMA France, CCI France.
 - Adresses e-mail non trouvées (formulaire ou compte obligatoire) : tool-advisor.fr (formulaire tool-advisor.fr/contact), LEPTIDIGITAL (adresse masquée sur leptidigital.fr/logiciels/referencer-logiciel), Appvizer, Capterra, Les Pépites Tech, TrouveMonSaaS, journal-du-chr.fr, info-ecommerce.fr, fromage.fr, Les Nouvelles de la Boulangerie. Ces sites sont bloqués par le réseau de la session cloud de Claude.
 - toquedechef.com écarté : c'est une boutique de vêtements de cuisine, pas un média.
