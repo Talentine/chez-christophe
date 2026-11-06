@@ -5,6 +5,7 @@ description: "Boucherie et livraison à domicile : zone, créneaux, froid, colis
 meta_title: "Boucherie livraison à domicile : le guide du boucher"
 meta_description: "Lancer la livraison à domicile dans votre boucherie : froid, zone, créneaux, colis, poids réel et frais. Sans plateforme, sans commission, sans matériel."
 date: 2026-10-31
+modified: 2026-11-06
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -87,7 +88,7 @@ Commencez par les colis et les commandes qui reviennent, car ce sont les plus si
 - **Les habitudes de la semaine** : rôtis, volailles, viandes à mijoter, saucisses maison.
 - **La viande halal certifiée**, si vous en vendez, avec l'organisme de certification sur la fiche.
 
-Gardez au retrait en boutique ce qui voyage mal ou demande un échange avec le client. Pour tout ce qui ne se livre pas, le [click and collect en boucherie](/blog/click-and-collect-boucherie) prend le relais.
+Gardez au retrait en boutique ce qui voyage mal ou demande un échange avec le client. Pour tout ce qui ne se livre pas, le [click and collect en boucherie](/blog/click-and-collect-boucherie) prend le relais. Pour savoir lequel lancer en premier, lisez notre comparatif [livraison ou click and collect pour une boucherie](/blog/click-and-collect-ou-livraison-a-domicile).
 
 ## Combien facturer la livraison pour une boucherie ?
 

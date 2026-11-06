@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Click and collect ou livraison à domicile : que choisir ?](https://marchéo.fr/blog/click-and-collect-ou-livraison-a-domicile) : Click and collect ou livraison à domicile pour votre commerce de bouche : coût, temps, froid, clients visés, et quand proposer les deux. Comparatif honnête.
 - [Site internet fromagerie : pages, plateaux, commandes et prix](https://marchéo.fr/blog/site-internet-fromagerie) : Site internet pour fromagerie : quelles pages créer, comment montrer affinages et plateaux, prendre les commandes de fêtes en ligne et combien ça coûte.
 - [Click and collect restauration rapide : gérer le rush du midi](https://marchéo.fr/blog/click-and-collect-restauration-rapide) : Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.
 - [Marchéo ou Uber Eats pour un restaurant : lequel choisir ?](https://marchéo.fr/blog/marcheo-ou-uber-eats-restaurant) : Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.

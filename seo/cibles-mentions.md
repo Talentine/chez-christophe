@@ -65,6 +65,9 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | business.trustedshops.fr (blog) | blog d'éditeur (avis) | Perplexity, n°10 (05/11) | proposer un exemple commerce de bouche sur les commandes non retirées (message type 2), faible chance | Paul | basse priorité |
 | journal-du-chr.fr | média professionnel (restauration) | ChatGPT, n°24 Marchéo ou Uber Eats (05/11) : seule source citée | proposer un article de conseil « commande en direct sans commission pour un restaurant de quartier » (message type 2) | Paul | à faire |
 | restaurenta.fr / monouso.fr / extencia.fr / cecca.fr | blogs (restauration, emballage, agence) | Google, n°24 (05/11) | aucune mention possible ou faible chance ; article marcheo-ou-uber-eats-restaurant publié le 05/11 pour occuper la requête de marque | automatique | en cours |
+| blog.ollca.com (site de fromagerie) | blog d'éditeur (concurrent principal) | Google, site internet fromagerie (06/11) | aucune mention possible (concurrent) : garder site-internet-fromagerie (06/11) frais et précis sur les prix | automatique | en cours |
+| hellofidy.com / fromage.fr | blog d'éditeur (fidélité) / média fromager | Google, site internet fromagerie (06/11) | fromage.fr : regarder s'il publie des conseils aux crémiers, puis proposer un article « vendre ses plateaux en ligne sans commission » (message type 2) | Paul | à vérifier |
+| abby.fr / shine.fr / bpifrance-creation.fr | blogs de banque en ligne et institutionnel | Google + aperçu IA, frais de livraison commerçant (06/11) | bpifrance-creation : faible chance ; shine et abby : proposer un encadré « livraison locale d'un commerce de bouche » (message type 2) | Paul | basse priorité |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
 

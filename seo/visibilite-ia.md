@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°13 (n°11 et n°12 posées le 05/11 au second passage de 16 h ; question de marque suivante : n°24).
+Prochaine question en rotation : n°15 (n°13 et n°14 posées le 06/11 ; question de marque suivante : n°23).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -147,3 +147,10 @@ Prochaine question en rotation : n°13 (n°11 et n°12 posées le 05/11 au secon
 | 2026-11-05 | Perplexity | Quel logiciel de click and collect pour un fast-food ou un snack ? | réponse non obtenue (bloquée « En cours » plus de 40 s) | - |
 | 2026-11-05 | Google | Quel logiciel de click and collect pour un fast-food ou un snack ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | eatandcollect.fr, click-eat.fr, 6xpos.fr, alttab.bar, restopos.fr, cashpad.io, tickeat.io, jdc.fr, obypay.com |
 | 2026-11-05 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts (3 offres, installation + abonnement, 0 % de commission, sans engagement, précise que Marchéo ne fournit pas les livreurs) | marchéo.fr (+1) |
+| 2026-11-06 | ChatGPT | Comment fixer ses frais de livraison quand on est commerçant ? | non | aucun éditeur nommé ; ministère de l'Économie, DGCCRF (affichage des prix) ; méthode coût réel + grille fixe, distance, panier, zone |
+| 2026-11-06 | Google (aperçu IA) | Comment fixer ses frais de livraison quand on est commerçant ? | non (aperçu IA affiché, centré sur l'expédition de colis) | YouTube (Aurore Elise), Shine ; 1re page : abby.fr, bpifrance-creation.fr, 8lab-ecosystem, upela, squarespace, benjaminclerget.com, shine.fr, sendcloud ; marchéo.fr absent (article du 29/10) |
+| 2026-11-06 | ChatGPT | Comment créer un site internet pour un traiteur ? | non | Wix, WordPress, Shopify ; Service Public Entreprendre (+1) ; propose de faire la maquette lui-même |
+| 2026-11-06 | ChatGPT | Comment créer le site internet de ma fromagerie ? (mot-clé du matin) | non | tableau Wix (conseillé), Shopify, WordPress, Squarespace ; aucune source affichée ; article du matin trop récent |
+| 2026-11-06 | Perplexity | Comment créer le site internet de ma fromagerie ? | non | francenum.gouv (+1), 10 sources ; aucun outil nommé (nom de domaine, fiche Google, modalités de retrait) |
+| 2026-11-06 | Google | Comment créer le site internet de ma fromagerie ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | webtensor.fr, fabrik-web.fr, fromage.fr, hellofidy.com, blog.ollca.com, rhiino.fr, devantio.fr, pontonweb.fr, weblounes.com |
+| 2026-11-06 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, avec prix (39 à 59 €/mois, sans commission, pas de livreurs) mais tableau contradictoire (« commissions à négocier / vérifier ») | marchéo.fr (+1) ; conseille d'utiliser les deux |
