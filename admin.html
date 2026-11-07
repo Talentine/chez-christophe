@@ -825,7 +825,11 @@
         .ana-pill.actif { background:rgba(201,165,75,.18); border-color:var(--or,#c9a54b); color:var(--or,#c9a54b); }
       </style>
 
-      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+        <div class="stat-card">
+          <div class="stat-card-val" id="anaVisites">—</div>
+          <div class="stat-card-lbl">Visites</div>
+        </div>
         <div class="stat-card">
           <div class="stat-card-val" id="anaPageViews">—</div>
           <div class="stat-card-lbl">Pages vues</div>
@@ -836,11 +840,11 @@
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="anaConversion">—</div>
-          <div class="stat-card-lbl">Taux conversion</div>
+          <div class="stat-card-lbl">Visites → page inscription</div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="anaMobile">—</div>
-          <div class="stat-card-lbl">% Mobile</div>
+          <div class="stat-card-lbl">% Mobile (visites)</div>
         </div>
       </div>
 
@@ -854,7 +858,7 @@
           <div id="anaTopBoutiques" style="font-size:13px;">Chargement…</div>
         </div>
         <div class="mrr-card">
-          <div class="mrr-titre">Sources</div>
+          <div class="mrr-titre">Sources (1re page de chaque visite)</div>
           <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
         </div>
       </div>
@@ -865,7 +869,7 @@
 
       <div class="mrr-section">
         <div class="mrr-card">
-          <div class="mrr-titre">Entonnoir d'inscription (visites)</div>
+          <div class="mrr-titre">Entonnoir d'inscription (visites) <span id="anaEntonnoirClics" style="opacity:.5;font-weight:400;font-size:11px;"></span></div>
           <div id="anaEntonnoir" style="font-size:13px;">Chargement…</div>
         </div>
         <div class="mrr-card">
@@ -2214,6 +2218,7 @@ async function chargerAnalytics() {
       const lot = await r.json();
       if (!Array.isArray(lot)) {
         document.getElementById('anaPageViews').textContent = '—';
+        document.getElementById('anaVisites').textContent = '—';
         return;
       }
       events.push(...lot);
@@ -2223,10 +2228,21 @@ async function chargerAnalytics() {
     // Compteurs
     const pageViews = events.filter(e => e.event === 'page_view').length;
     const inscClicks = events.filter(e => e.event === 'cta_inscription').length;
-    const conversion = pageViews > 0 ? ((inscClicks / pageViews) * 100).toFixed(1) + '%' : '—';
-    const mobile = events.filter(e => e.event === 'page_view' && e.device === 'mobile').length;
-    const mobilePct = pageViews > 0 ? Math.round((mobile / pageViews) * 100) + '%' : '—';
+    // Visites = groupes d'événements partageant le même identifiant anonyme (meta.sid).
+    // Les taux se calculent par visite (et non par page vue, qui gonfle le dénominateur).
+    const parVisite = {};
+    events.forEach(e => {
+      const sid = e.meta && e.meta.sid;
+      if (sid) (parVisite[sid] = parVisite[sid] || []).push(e);
+    });
+    const visitesListe = Object.values(parVisite).map(v => ({ evs: v, vue1: v.find(e => e.event === 'page_view') })).filter(v => v.vue1);
+    const nbVisites = visitesListe.length;
+    const visitesInsc = visitesListe.filter(v => v.evs.some(e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape')).length;
+    const conversion = nbVisites > 0 ? ((visitesInsc / nbVisites) * 100).toFixed(1) + '%' : '—';
+    const mobile = visitesListe.filter(v => v.vue1.device === 'mobile').length;
+    const mobilePct = nbVisites > 0 ? Math.round((mobile / nbVisites) * 100) + '%' : '—';
 
+    document.getElementById('anaVisites').textContent = nbVisites.toLocaleString('fr-FR');
     document.getElementById('anaPageViews').textContent = pageViews.toLocaleString('fr-FR');
     document.getElementById('anaInscClicks').textContent = inscClicks.toLocaleString('fr-FR');
     document.getElementById('anaConversion').textContent = conversion;
@@ -2244,7 +2260,9 @@ async function chargerAnalytics() {
 
     // Top boutiques (par slug)
     const slugCounts = {};
-    events.filter(e => e.event === 'page_view' && e.slug).forEach(e => {
+    // Le tracker a longtemps pris /blog, /solutions, /a-propos… pour des boutiques : on les écarte ici
+    const PAS_BOUTIQUE = new Set(['blog','solutions','a-propos','faq','sans-commission','ambassadeur','avis','litige','contester','unsubscribe','inscription','admin','app','catalogue','panier','compte','notre-histoire','cgv','confidentialite','charte','mentions-legales','legal','seo','marketing','docs','assets','api']);
+    events.filter(e => e.event === 'page_view' && e.slug && !PAS_BOUTIQUE.has(e.slug)).forEach(e => {
       slugCounts[e.slug] = (slugCounts[e.slug] || 0) + 1;
     });
     const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
@@ -2260,7 +2278,8 @@ async function chargerAnalytics() {
       if (h === 'marchéo.fr' || h === 'xn--marcho-cta.fr' || h === 'xn--marcho-fva.fr' || h.endsWith('.marchéo.fr') || h.endsWith('.xn--marcho-cta.fr') || h.endsWith('.xn--marcho-fva.fr')) return 'marchéo.fr';
       if (h === 'marcheo.fr' || h.endsWith('.marcheo.fr')) return 'marchéo.fr';
       // Google (google.fr, google.com, google.co.uk, etc.)
-      if (h === 'google' || h.startsWith('google.') || h.includes('.google.')) return 'Google';
+      if (h === 'google' || h.startsWith('google.') || h.includes('.google.') || h === 'com.google.android.googlequicksearchbox') return 'Google';
+      if (h === 'com.google.android.gm' || h.includes('mail.') || h.startsWith('outlook.')) return 'E-mail';
       // Facebook & Meta (m.facebook.com, l.facebook.com, lm.facebook.com)
       if (h === 'facebook.com' || h.endsWith('.facebook.com') || h === 'fb.com' || h.endsWith('.fb.com')) return 'Facebook';
       // Instagram (l.instagram.com)
@@ -2279,9 +2298,12 @@ async function chargerAnalytics() {
       if (h === 'duckduckgo.com' || h.endsWith('.duckduckgo.com')) return 'DuckDuckGo';
       return h;
     }
+    // Une source par visite (referrer de la 1re page vue). Un referrer marchéo.fr en 1re page
+    // = onglet ouvert depuis le site : ce n'est pas une source d'acquisition, on l'écarte.
     const refCounts = {};
-    events.filter(e => e.event === 'page_view' && e.referrer).forEach(e => {
-      const src = normaliserSource(e.referrer);
+    visitesListe.forEach(v => {
+      const src = normaliserSource(v.vue1.referrer);
+      if (src === 'marchéo.fr') return;
       refCounts[src] = (refCounts[src] || 0) + 1;
     });
     const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
@@ -2323,14 +2345,16 @@ function afficherParcours(events, normaliserSource) {
   // Entonnoir d'inscription : nombre de visites ayant atteint chaque étape
   const etapes = [
     { lbl: 'Visite du site', test: e => e.event === 'page_view' },
-    { lbl: 'Clic « S\'inscrire »', test: e => e.event === 'cta_inscription' },
-    { lbl: 'Page inscription · métier', test: e => e.event === 'page_view' && /inscription/.test(e.page || '') },
+    { lbl: 'Page inscription · métier', test: e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape' || e.event === 'demo_creee' },
     { lbl: 'Étape 2 · boutique', test: e => e.event === 'inscription_etape' && e.meta.etape >= 2 },
     { lbl: 'Étape 3 · photos', test: e => e.event === 'inscription_etape' && e.meta.etape >= 3 },
     { lbl: 'Étape 4 · compte', test: e => e.event === 'inscription_etape' && e.meta.etape >= 4 },
     { lbl: 'Boutique démo créée', test: e => e.event === 'demo_creee' },
   ];
-  const comptes = etapes.map(et => listeVisites.filter(v => v.some(et.test)).length);
+  // Une visite qui atteint une étape a forcément franchi les précédentes : l'entonnoir reste décroissant
+  const comptes = etapes.map((et, i) => listeVisites.filter(v => etapes.slice(i).some(e2 => v.some(e2.test))).length);
+  const viaClic = listeVisites.filter(v => v.some(e => e.event === 'cta_inscription')).length;
+  document.getElementById('anaEntonnoirClics').textContent = listeVisites.length ? `· ${viaClic} via un clic « S'inscrire »` : '';
   document.getElementById('anaEntonnoir').innerHTML = listeVisites.length
     ? etapes.map((et, i) => {
         const pctDebut = comptes[0] ? Math.round(comptes[i] / comptes[0] * 100) : 0;
@@ -2366,7 +2390,7 @@ function afficherParcours(events, normaliserSource) {
   const topLecture = Object.entries(lecture).sort((a,b) => b[1].n - a[1].n).slice(0,10);
   document.getElementById('anaLecture').innerHTML = topLecture.length
     ? `<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">
-        <tr style="opacity:.5;text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Vues</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
+        <tr style="opacity:.5;text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Lectures</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
         ${topLecture.map(([p,l]) => {
           const section = Object.entries(l.sections).sort((a,b) => b[1]-a[1])[0];
           const scroll = Math.round(l.scroll / l.n);

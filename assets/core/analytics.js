@@ -30,7 +30,7 @@
   function detectSlug() {
     const seg = location.pathname.split('/').filter(Boolean)[0];
     if (!seg || seg.endsWith('.html')) return null;
-    if (['inscription','admin','app','app-commercant.html','catalogue','panier','compte','notre-histoire','cgv','confidentialite','charte','mentions-legales','sitemap.xml','robots.txt','branding.html'].includes(seg)) return null;
+    if (['inscription','admin','app','catalogue','panier','compte','notre-histoire','cgv','confidentialite','charte','mentions-legales','sitemap.xml','robots.txt','blog','solutions','a-propos','faq','sans-commission','ambassadeur','avis','litige','contester','unsubscribe','legal'].includes(seg)) return null;
     return seg;
   }
 
@@ -102,11 +102,7 @@
       'Prefer': 'return=minimal',
     };
 
-    // Beacon (non-bloquant, marche même au unload de la page)
-    if (navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-      // sendBeacon ne supporte pas custom headers → fallback fetch keepalive
-    }
+    // (sendBeacon ne permet pas d'en-têtes personnalisés → fetch keepalive)
     // Fetch keepalive : non-bloquant + survit à la navigation
     try {
       fetch(url, {
