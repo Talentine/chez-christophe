@@ -461,6 +461,7 @@ CSS_METIER = """
 .calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
 .calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
 .calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
+.rassure{display:flex;gap:14px;align-items:flex-start;background:#fff;border:2px solid var(--soleil);border-radius:16px;padding:16px 18px;margin:0 0 30px}.rassure .ri{font-size:28px;line-height:1;flex:none}.rassure strong{display:block;font-size:18px;color:var(--bleu);margin:0 0 4px}.rassure p{margin:0;font-size:15px;color:#2b3a52}
 .calc-phrase{font-size:15px;margin:0 0 6px}.calc-bonus{font-size:15px;margin:0 0 10px;background:#fff;border-left:4px solid var(--soleil);border-radius:0 10px 10px 0;padding:10px 14px}.calc-note{font-size:12px;color:var(--gris);margin:0}
 .etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
 .etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
@@ -554,6 +555,8 @@ def corps_metier(m: dict) -> str:
     lien = f"/inscription?metier={m['slug']}"
     return f"""<section class="gains" aria-labelledby="apports"><h2 id="apports">Ce qu'un site à votre image change pour vous</h2><ol>{apports}</ol>
 <a class="btn" href="{lien}">Voir ma démo gratuite</a></section>
+<div class="rassure"><span class="ri">🤝</span><div><strong>Vous avez peur de ne pas y arriver ? Pas de souci.</strong>
+<p>Notre équipe vous accompagne tout au long : on installe votre site avec vos produits et vos photos, on vous montre comment tout gérer depuis votre téléphone, et on reste là après la mise en ligne pour répondre à vos questions. Pas besoin d'être à l'aise avec l'informatique.</p></div></div>
 <h2>Ce qui marche bien en ligne pour {esc(m['un'])}</h2>
 <p>{esc(m['idees_intro'])}</p>
 <ul class="idees">{idees}</ul>
