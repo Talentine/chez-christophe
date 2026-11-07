@@ -259,7 +259,7 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 .calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
 .calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
 .calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
-.calc-phrase{font-size:15px;margin:0 0 6px}.calc-note{font-size:12px;color:var(--gris);margin:0}
+.calc-phrase{font-size:15px;margin:0 0 6px}.calc-bonus{font-size:15px;margin:0 0 10px;background:#fff;border-left:4px solid var(--soleil);border-radius:0 10px 10px 0;padding:10px 14px}.calc-note{font-size:12px;color:var(--gris);margin:0}
 .etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
 .etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
 .etapes strong{display:block;font-size:17px}
@@ -307,6 +307,7 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <div class="fort"><span>Ce qu'il vous reste en plus</span><b data-r="net">–</b></div>
 </div>
 <p class="calc-phrase" data-r="phrase"></p>
+<p class="calc-bonus"><strong>Et ce n'est pas tout.</strong> Il y a un autre chiffre, difficile à calculer précisément : les gens qui découvrent votre site sans commander, mais qui passent ensuite en boutique. Ils représentent à peu près autant de monde que les commandes en plus, soit <strong data-r="visites">environ –</strong> clients en plus par mois dans votre commerce.</p>
 <p class="calc-note">Par défaut, 10 % de commandes en plus : c'est la moyenne constatée chez les commerçants qui proposent le click & collect. Mettez vos propres chiffres pour faire votre calcul.</p>
 </section>
 <script>(function(){var r=document.getElementById('calculateur');if(!r)return;
@@ -316,7 +317,7 @@ var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,net=ca-abo;
 var q=function(k){return r.querySelector('[data-r='+k+']')};
 q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
 var n=Math.max(1,Math.ceil(abo/v.panier));
-q('phrase').textContent='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en plus du mois.'}
+q('visites').textContent='environ '+f(cmd);q('phrase').textContent='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en plus du mois.'}
 r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
 <ol class="etapes">
