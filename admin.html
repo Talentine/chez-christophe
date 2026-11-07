@@ -381,6 +381,12 @@
     tr td:nth-child(5)::before { content:"Activité"; }
     tr td:nth-child(6)::before { content:"Santé"; }
     tr td:nth-child(7)::before { content:""; }
+    /* Tableaux d'analytics : restent des tableaux (défilement horizontal) */
+    table.table-brute { display:table; }
+    table.table-brute tbody { display:table-row-group; padding:0; }
+    table.table-brute tr { display:table-row; background:none; border:0; border-radius:0; padding:0; margin:0; }
+    table.table-brute th, table.table-brute td { display:table-cell; white-space:nowrap; }
+    table.table-brute td::before { content:none; }
 
     /* Action buttons en mobile */
     .action-btn {
@@ -848,6 +854,12 @@
         </div>
       </div>
 
+      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.6);margin:0 0 14px;cursor:pointer;">
+        <input type="checkbox" id="anaNePasSuivre" onchange="basculerSuiviAdmin(this.checked)">
+        Ne pas compter mes visites sur ce navigateur
+        <span style="opacity:.6;">(sur un autre appareil : ouvrir le site avec <code>?ne_pas_suivre=1</code>)</span>
+      </label>
+
       <div class="mrr-section">
         <div class="mrr-card">
           <div class="mrr-titre">Top 10 pages</div>
@@ -861,6 +873,11 @@
           <div class="mrr-titre">Sources (1re page de chaque visite)</div>
           <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
         </div>
+      </div>
+
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Campagnes (UTM) · visites, inscriptions et démos par campagne</div>
+        <div id="anaCampagnes" style="font-size:13px;">Chargement…</div>
       </div>
 
       <!-- OÙ LES VISITEURS S'ARRÊTENT -->
@@ -983,6 +1000,17 @@ let tousCommercants = [];
 let tousProduits = [];
 let sessionAdmin = null;
 
+// Échappement des données venant de la base (saisies par le public ou les commerçants)
+// avant de les insérer dans du HTML — empêche l'exécution de code dans l'admin.
+function escHtml(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+// Argument de fonction JS placé dans un attribut onclick="f(...)"
+function jsArg(v) { return escHtml(JSON.stringify(String(v == null ? '' : v))); }
+// Lien tel: / URL d'image : seulement des valeurs sûres
+function telHref(t) { return escHtml(String(t || '').replace(/[^0-9+]/g, '')); }
+function urlSure(u) { return /^(https:\/\/|data:image\/)/i.test(String(u || '')) ? escHtml(u) : ''; }
+
 async function sb(table, params='') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
     headers: {
@@ -1007,6 +1035,8 @@ async function seConnecterAdmin() {
 
   if (data.access_token) {
     sessionAdmin = data.access_token;
+    // Ce navigateur est celui de l'admin : ses visites du site ne sont plus comptées dans les analytics
+    try { localStorage.setItem('marcheo_ne_pas_suivre', '1'); } catch (e) {}
     // Persister la session pour les uploads photo (modale produit base)
     localStorage.setItem('session_admin', JSON.stringify({
       access_token: data.access_token,
@@ -1176,7 +1206,7 @@ async function chargerDashboard() {
   document.getElementById('repartitionMetiers').innerHTML = Object.entries(metierStats)
     .sort((a,b) => b[1]-a[1])
     .map(([t, n]) => {
-      const m = METIERS_DASH[t] || { emoji:'🏪', label:t };
+      const m = METIERS_DASH[t] || { emoji:'🏪', label:escHtml(t) };
       const pct = Math.round((n/total)*100);
       return `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
@@ -1292,10 +1322,10 @@ function renderInscriptions() {
     const date = new Date(c.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
     return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
       <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}</td>
-      <td style="padding:12px;"><div style="font-weight:600;color:#fff;">${m.emoji} ${c.nom_boutique || '—'}</div><div style="font-size:11.5px;color:rgba(255,255,255,.45);">${m.label}</div></td>
-      <td style="font-size:13px;"><a href="mailto:${c.email || ''}" style="color:var(--or);">${c.email || '—'}</a></td>
-      <td style="font-size:13px;color:rgba(255,255,255,.8);">${c.telephone ? '<a href="tel:' + c.telephone.replace(/\\s/g, '') + '" style="color:inherit;">' + c.telephone + '</a>' : '—'}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.7);">${c.ville || '—'}</td>
+      <td style="padding:12px;"><div style="font-weight:600;color:#fff;">${m.emoji} ${escHtml(c.nom_boutique || '—')}</div><div style="font-size:11.5px;color:rgba(255,255,255,.45);">${m.label}</div></td>
+      <td style="font-size:13px;"><a href="mailto:${escHtml(c.email || '')}" style="color:var(--or);">${escHtml(c.email || '—')}</a></td>
+      <td style="font-size:13px;color:rgba(255,255,255,.8);">${c.telephone ? '<a href="tel:' + telHref(c.telephone) + '" style="color:inherit;">' + escHtml(c.telephone) + '</a>' : '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.7);">${escHtml(c.ville || '—')}</td>
       <td style="font-size:13px;">${offreLabels[c.offre] || '—'}</td>
       <td>${statut}</td>
     </tr>`;
@@ -1316,13 +1346,13 @@ function renderLeads(leads, comptes) {
     const m = l.business_type ? (METIERS[l.business_type] || null) : null;
     const date = new Date(l.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
     return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
-      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}${l.device ? '<div style="font-size:11px;color:rgba(255,255,255,.35);">' + l.device + '</div>' : ''}</td>
-      <td style="font-size:13px;"><a href="mailto:${l.email}" style="color:var(--or);">${l.email}</a></td>
-      <td style="font-size:13px;color:#fff;">${l.nom_boutique || '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}${l.device ? '<div style="font-size:11px;color:rgba(255,255,255,.35);">' + escHtml(l.device) + '</div>' : ''}</td>
+      <td style="font-size:13px;"><a href="mailto:${escHtml(l.email)}" style="color:var(--or);">${escHtml(l.email)}</a></td>
+      <td style="font-size:13px;color:#fff;">${escHtml(l.nom_boutique || '—')}</td>
       <td style="font-size:13px;color:rgba(255,255,255,.8);">${m ? m.emoji + ' ' + m.label : '—'}</td>
       <td style="font-size:13px;">${offreLabels[l.offre] || '—'}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.7);">${l.ville || '—'}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.8);">${l.telephone ? '<a href="tel:' + l.telephone.replace(/\\s/g, '') + '" style="color:inherit;">' + l.telephone + '</a>' : '—'}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.7);">${escHtml(l.ville || '—')}</td>
+      <td style="font-size:13px;color:rgba(255,255,255,.8);">${l.telephone ? '<a href="tel:' + telHref(l.telephone) + '" style="color:inherit;">' + escHtml(l.telephone) + '</a>' : '—'}</td>
     </tr>`;
   }).join('');
 }
@@ -1425,13 +1455,13 @@ function renderTableCommercants(data) {
           <div style="font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;">
             <span style="font-size:22px;">${m.emoji}</span>
             <div>
-              <div style="color:#fff;">${c.nom_boutique}</div>
-              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${c.email || '—'}</div>
+              <div style="color:#fff;">${escHtml(c.nom_boutique)}</div>
+              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${escHtml(c.email || '—')}</div>
             </div>
           </div>
         </td>
-        <td style="color:rgba(255,255,255,0.7);font-size:13px;">${c.ville || '—'}</td>
-        <td><span class="badge ${planClass}">${plan}</span></td>
+        <td style="color:rgba(255,255,255,0.7);font-size:13px;">${escHtml(c.ville || '—')}</td>
+        <td><span class="badge ${planClass}">${escHtml(plan)}</span></td>
         <td>${statutHtml}</td>
         <td>${activiteHtml}</td>
         <td>${healthHtml}</td>
@@ -1439,12 +1469,12 @@ function renderTableCommercants(data) {
           <button class="action-menu-btn" onclick="event.stopPropagation();toggleMenuActions('${c.id}')"
             style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;color:#fff;cursor:pointer;font-size:18px;line-height:1;">⋯</button>
           <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:#1f2730;border:1px solid rgba(255,255,255,.12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
-            <button onclick="voirBoutique('${c.slug}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
+            <button onclick="voirBoutique(${jsArg(c.slug)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
             <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
             <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
             <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? '#ffd47a' : '#7fd97f'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
             <div style="height:1px;background:rgba(255,255,255,.08);"></div>
-            <button onclick="supprimerCommercant('${c.id}','${(c.nom_boutique||'').replace(/'/g, '&#39;')}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#ff8a76;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;">🗑 Supprimer définitivement</button>
+            <button onclick="supprimerCommercant(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#ff8a76;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;">🗑 Supprimer définitivement</button>
           </div>
         </td>
       </tr>
@@ -1872,27 +1902,27 @@ function renderCatalogue(produits) {
     return;
   }
   document.getElementById('catalogueGrid').innerHTML = produits.map(p => {
-    const img = p.photo_url
-      ? '<img src="' + p.photo_url + '" alt="' + p.nom + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">'
+    const img = urlSure(p.photo_url)
+      ? '<img src="' + urlSure(p.photo_url) + '" alt="' + escHtml(p.nom) + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">'
       : '<span style="font-size:36px">' + (p.categories?.emoji || '🌿') + '</span>';
-    const cat = p.categories?.nom || '—';
+    const cat = escHtml(p.categories?.nom || '—');
     return '<div class="produit-admin-card" style="position:relative;">'
-      + '<div onclick="ouvrirEditionProduit(\'' + p.id + '\')" style="cursor:pointer;">'
+      + '<div onclick="ouvrirEditionProduit(' + jsArg(p.id) + ')" style="cursor:pointer;">'
       +   '<div class="produit-admin-img">' + img + '</div>'
       +   '<div class="produit-admin-body">'
-      +     '<div class="produit-admin-nom">' + p.nom + '</div>'
-      +     '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + p.unite + '</div>'
+      +     '<div class="produit-admin-nom">' + escHtml(p.nom) + '</div>'
+      +     '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + escHtml(p.unite) + '</div>'
       +     '<div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">' + cat + '</div>'
       +     (p.global === false
-              ? '<div style="font-size:11px;color:#E8C77A;margin-top:4px;">🏪 ' + (p.commercants?.nom_boutique || 'Boutique inconnue') + '</div>'
+              ? '<div style="font-size:11px;color:#E8C77A;margin-top:4px;">🏪 ' + escHtml(p.commercants?.nom_boutique || 'Boutique inconnue') + '</div>'
               : '')
       +   '</div>'
       +   '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:white;font-size:10px;padding:3px 8px;border-radius:50px;">📷 Modifier</div>'
       + '</div>'
-      + '<button onclick="event.stopPropagation();supprimerProduitBase(\'' + p.id + '\',\'' + (p.nom||'').replace(/\'/g, '&#39;') + '\')" '
+      + '<button onclick="event.stopPropagation();supprimerProduitBase(' + jsArg(p.id) + ',' + jsArg(p.nom||'') + ')" '
       +   'title="Supprimer" style="position:absolute;top:6px;right:6px;background:rgba(159,27,31,.92);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">🗑</button>'
       + (p.global === false
-          ? '<button onclick="event.stopPropagation();ajouterAuCatalogueGeneral(\'' + p.id + '\',\'' + (p.nom||'').replace(/\'/g, '&#39;') + '\')" '
+          ? '<button onclick="event.stopPropagation();ajouterAuCatalogueGeneral(' + jsArg(p.id) + ',' + jsArg(p.nom||'') + ')" '
             + 'style="margin:0 10px 10px;width:calc(100% - 20px);background:#2D6A4F;border:none;color:#fff;padding:8px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:600;">➕ Ajouter au catalogue général</button>'
           : '')
       + '</div>';
@@ -1943,7 +1973,7 @@ function ouvrirEditionProduit(produitId) {
   document.getElementById('editPPrix').textContent = (p.prix_marche_indicatif||0).toFixed(2) + '€';
   const imgEl = document.getElementById('editPImg');
   if (p.photo_url) {
-    imgEl.innerHTML = '<img src="' + p.photo_url + '?t=' + Date.now() + '" style="width:100%;height:100%;object-fit:cover;">';
+    imgEl.innerHTML = '<img src="' + urlSure(p.photo_url) + '?t=' + Date.now() + '" style="width:100%;height:100%;object-fit:cover;">';
   } else {
     imgEl.innerHTML = '<span style="font-size:64px">' + (p.categories?.emoji || '🌿') + '</span>';
   }
@@ -2053,7 +2083,7 @@ async function ajouterProduit() {
   overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
 
   const optionsCat = cats.map(c =>
-    '<option value="' + c.id + '">' + (c.emoji || '') + ' ' + c.nom + ' (' + (c.business_type || '?') + ')</option>'
+    '<option value="' + escHtml(c.id) + '">' + escHtml(c.emoji || '') + ' ' + escHtml(c.nom) + ' (' + escHtml(c.business_type || '?') + ')</option>'
   ).join('');
 
   overlay.innerHTML = ''
@@ -2173,11 +2203,11 @@ async function chargerCommandes() {
     const color = statutColors[statut] || '#aaa';
     return `
       <tr>
-        <td style="font-weight:500;">${c.numero || '—'}</td>
-        <td style="color:rgba(255,255,255,0.7);">${c.commercants?.nom_boutique || '—'}</td>
+        <td style="font-weight:500;">${escHtml(c.numero || '—')}</td>
+        <td style="color:rgba(255,255,255,0.7);">${escHtml(c.commercants?.nom_boutique || '—')}</td>
         <td style="color:rgba(255,255,255,0.5);">—</td>
         <td style="color:var(--or);">${(c.total_ttc||0).toFixed(2)} €</td>
-        <td><span style="color:${color};font-size:12px;">${statutLabels[statut]||statut}</span></td>
+        <td><span style="color:${color};font-size:12px;">${statutLabels[statut]||escHtml(statut)}</span></td>
         <td style="color:rgba(255,255,255,0.4);font-size:12px;">${date}</td>
       </tr>
     `;
@@ -2196,6 +2226,7 @@ function changerPeriodeAnalytics(periode) {
 }
 
 async function chargerAnalytics() {
+  majCaseSuiviAdmin();
   document.getElementById('anaSousTitre').textContent = 'Trafic anonyme · ' + LIBELLES_PERIODE_ANALYTICS[periodeAnalytics];
   try {
     // Aujourd'hui = depuis minuit (heure locale), sinon 7 / 30 derniers jours
@@ -2311,14 +2342,56 @@ async function chargerAnalytics() {
       ? topRefs.map(([r,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${escHtml(r)}</span><strong>${n}</strong></div>`).join('')
       : '<div style="opacity:.5">Trafic direct uniquement</div>';
 
+    afficherCampagnes(visitesListe);
     afficherParcours(events, normaliserSource);
   } catch (e) {
     document.getElementById('anaPageViews').textContent = '⚠️';
   }
 }
 
-function escHtml(v) {
-  return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+// ── Exclusion des visites de l'admin (drapeau lu par assets/core/analytics.js) ──
+function basculerSuiviAdmin(exclure) {
+  try {
+    if (exclure) localStorage.setItem('marcheo_ne_pas_suivre', '1');
+    else localStorage.removeItem('marcheo_ne_pas_suivre');
+  } catch (e) {}
+}
+function majCaseSuiviAdmin() {
+  const cb = document.getElementById('anaNePasSuivre');
+  if (!cb) return;
+  try { cb.checked = localStorage.getItem('marcheo_ne_pas_suivre') === '1'; } catch (e) { cb.checked = false; }
+}
+
+// ── Campagnes : une visite = la campagne UTM de sa 1re page ──
+function afficherCampagnes(visitesListe) {
+  const SOURCES = { fb: 'Facebook', ig: 'Instagram', an: 'Audience Network', msg: 'Messenger' };
+  const nomSource = s => SOURCES[String(s || '').toLowerCase()] || s;
+  const camp = {};
+  visitesListe.forEach(v => {
+    const utm = (v.evs.find(e => e.meta && e.meta.utm) || {}).meta?.utm;
+    if (!utm) return;
+    const cle = utm.utm_campaign || (utm.utm_source ? '(sans nom de campagne)' : '(pub Meta sans UTM)');
+    const c = camp[cle] = camp[cle] || { n: 0, insc: 0, demo: 0, sources: {} };
+    c.n++;
+    if (v.evs.some(e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape')) c.insc++;
+    if (v.evs.some(e => e.event === 'demo_creee')) c.demo++;
+    const src = nomSource(utm.utm_source || (utm.fbclid ? 'Meta' : '?'));
+    c.sources[src] = (c.sources[src] || 0) + 1;
+  });
+  const lignes = Object.entries(camp).sort((a, b) => b[1].n - a[1].n).slice(0, 15);
+  const el = document.getElementById('anaCampagnes');
+  if (!lignes.length) { el.innerHTML = '<div style="opacity:.5">Aucune visite venant d\'une campagne sur cette période</div>'; return; }
+  const th = 'padding:6px 8px;font-weight:500;';
+  el.innerHTML = `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
+    <tr style="opacity:.5;text-align:left;"><th style="${th}padding-left:0;">Campagne</th><th style="${th}">Visites</th><th style="${th}">→ Inscription</th><th style="${th}">Démos</th><th style="${th}padding-right:0;">Sources</th></tr>
+    ${lignes.map(([nom, c]) => `<tr style="border-top:1px solid rgba(255,255,255,0.05);">
+      <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.8;">${escHtml(nom)}</td>
+      <td style="padding:6px 8px;">${c.n}</td>
+      <td style="padding:6px 8px;">${c.insc} <span style="opacity:.5;">(${Math.round(c.insc / c.n * 100)}%)</span></td>
+      <td style="padding:6px 8px;"><strong style="color:${c.demo ? '#7fd97f' : 'inherit'};">${c.demo}</strong></td>
+      <td style="padding:6px 0 6px 8px;opacity:.7;">${Object.entries(c.sources).sort((a, b) => b[1] - a[1]).map(([s, n]) => escHtml(s) + ' ' + n).join(' · ')}</td>
+    </tr>`).join('')}
+  </table></div>`;
 }
 
 function formaterDuree(sec) {
@@ -2389,7 +2462,7 @@ function afficherParcours(events, normaliserSource) {
   });
   const topLecture = Object.entries(lecture).sort((a,b) => b[1].n - a[1].n).slice(0,10);
   document.getElementById('anaLecture').innerHTML = topLecture.length
-    ? `<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">
+    ? `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
         <tr style="opacity:.5;text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Lectures</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
         ${topLecture.map(([p,l]) => {
           const section = Object.entries(l.sections).sort((a,b) => b[1]-a[1])[0];
@@ -2456,14 +2529,14 @@ async function chargerRevenus() {
     return `
       <tr>
         <td>
-          <div style="font-weight:500;">${c.nom_boutique}</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${c.email}</div>
+          <div style="font-weight:500;">${escHtml(c.nom_boutique)}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${escHtml(c.email)}</div>
         </td>
-        <td><span class="badge ${planClass}">${plan}</span></td>
+        <td><span class="badge ${planClass}">${escHtml(plan)}</span></td>
         <td style="color:var(--or);font-weight:500;">${prix} €/mois</td>
         <td style="color:rgba(255,255,255,0.5);font-size:13px;">${debut}</td>
         <td><span class="badge badge-actif">Actif</span></td>
-        <td><button class="action-btn" onclick="genererFacture('${c.id}','${c.nom_boutique}','${c.email}',${prix},'${plan}')">📄 Facture</button></td>
+        <td><button class="action-btn" onclick="genererFacture(${jsArg(c.id)},${jsArg(c.nom_boutique)},${jsArg(c.email)},${Number(prix) || 0},${jsArg(plan)})">📄 Facture</button></td>
       </tr>
     `;
   }).join('') || '<tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun abonnement actif</td></tr>';
@@ -2516,8 +2589,8 @@ function genererFacture(id, nom, email, prix, plan) {
     + '<div class="partie-detail">Paul Merieult<br>paulmerieultpro14@gmail.com<br>France</div>'
     + '</div><div>'
     + '<div class="partie-titre">Facturé à</div>'
-    + '<div class="partie-nom">' + nom + '</div>'
-    + '<div class="partie-detail">' + email + '<br>Plan ' + plan.toUpperCase() + '</div>'
+    + '<div class="partie-nom">' + escHtml(nom) + '</div>'
+    + '<div class="partie-detail">' + escHtml(email) + '<br>Plan ' + escHtml(plan.toUpperCase()) + '</div>'
     + '</div></div>'
     + '<div class="infos">'
     + '<div><label>Numéro</label><span>' + numFacture + '</span></div>'

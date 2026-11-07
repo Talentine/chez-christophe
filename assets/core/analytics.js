@@ -13,7 +13,15 @@
   // ── Skip en local et pour les bots/admins ──
   const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
   const isBot = /bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent);
-  if (isLocal || isBot) {
+  // ── Exclusion volontaire (admin) : posée à la connexion admin, ou via ?ne_pas_suivre=1 / =0 ──
+  let exclu = false;
+  try {
+    const q = new URLSearchParams(location.search).get('ne_pas_suivre');
+    if (q === '1') localStorage.setItem('marcheo_ne_pas_suivre', '1');
+    if (q === '0') localStorage.removeItem('marcheo_ne_pas_suivre');
+    exclu = localStorage.getItem('marcheo_ne_pas_suivre') === '1';
+  } catch (e) {}
+  if (isLocal || isBot || exclu) {
     window.MarcheoAnalytics = { track: function(){}, pageView: function(){} };
     return;
   }
