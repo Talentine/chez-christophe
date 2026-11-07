@@ -240,9 +240,6 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 .calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
 .calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
 .calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
-.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
-.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
-.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
 .calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
 .calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
 .calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
@@ -279,35 +276,31 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <h2>Combien ça coûte</h2>
 <table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td><td>249 €</td><td>19 €</td></tr><tr><td><strong>Click &amp; Collect</strong></td><td>Commandes en ligne avec retrait, avis clients, SMS, base clients</td><td>399 €</td><td>39 €</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td><td>549 €</td><td>59 €</td></tr></tbody></table>
 <p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
-<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+<section class="calc" id="calculateur" data-abo="39" aria-labelledby="calc-titre">
 <h3 id="calc-titre">Est-ce rentable pour votre boutique ? Faites le calcul</h3>
-<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<p>Calcul sur la formule Click &amp; Collect à 39 € par mois. Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
 <div class="calc-champs">
 <div><label for="c-clients">Clients par mois dans votre commerce</label><div class="ligne"><input type="range" id="c-clients" data-k="clients" min="100" max="6000" step="50" value="500" data-u=""><output for="c-clients"></output></div></div>
-<div><label for="c-panier">Montant moyen d'une commande en ligne</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="45" data-u=" €"><output for="c-panier"></output></div></div>
-<div><label for="c-pct">Part de vos clients qui commandent en ligne</label><div class="ligne"><input type="range" id="c-pct" data-k="pct" min="1" max="30" step="1" value="8" data-u=" %"><output for="c-pct"></output></div></div>
-<div><label for="c-marge">Votre marge moyenne sur les ventes</label><div class="ligne"><input type="range" id="c-marge" data-k="marge" min="10" max="80" step="5" value="55" data-u=" %"><output for="c-marge"></output></div></div>
+<div><label for="c-panier">Panier moyen</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="45" data-u=" €"><output for="c-panier"></output></div></div>
+<div><label for="c-pct">Commandes en plus grâce au click &amp; collect</label><div class="ligne"><input type="range" id="c-pct" data-k="pct" min="1" max="30" step="1" value="10" data-u=" %"><output for="c-pct"></output></div></div>
 </div>
-<fieldset class="calc-offres"><legend>Formule</legend><label><input type="radio" name="offre-fleuriste" value="39" data-install="399">Click &amp; Collect · 39 €/mois</label><label><input type="radio" name="offre-fleuriste" value="59" data-install="549" checked>Click &amp; Collect + Livraison · 59 €/mois</label></fieldset>
 <div class="calc-res" aria-live="polite">
-<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
-<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
-<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
-<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+<div><span>Commandes en plus par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en plus par mois</span><b data-r="ca">–</b></div>
+<div><span>Abonnement Click &amp; Collect</span><b>39 €</b></div>
+<div class="fort"><span>Ce qu'il vous reste en plus</span><b data-r="net">–</b></div>
 </div>
 <p class="calc-phrase" data-r="phrase"></p>
-<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+<p class="calc-note">Par défaut, 10 % de commandes en plus : c'est la moyenne constatée chez les commerçants qui proposent le click & collect. Mettez vos propres chiffres pour faire votre calcul.</p>
 </section>
 <script>(function(){var r=document.getElementById('calculateur');if(!r)return;
-var f=function(n){return Math.round(n).toLocaleString('fr-FR')};
+var abo=+r.dataset.abo,f=function(n){return Math.round(n).toLocaleString('fr-FR')};
 function maj(){var v={};r.querySelectorAll('input[type=range]').forEach(function(i){v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u});
-var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
-var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,net=ca-abo;
 var q=function(k){return r.querySelector('[data-r='+k+']')};
-q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
-var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
-if(net>0){var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}
-q('phrase').textContent=t}
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/v.panier));
+q('phrase').textContent='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en plus du mois.'}
 r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
 <ol class="etapes">
