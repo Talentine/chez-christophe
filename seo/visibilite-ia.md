@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°17 (n°15 et n°16 posées le 06/11 au 2e passage ; n°15 comprise côté client, à poser plutôt « Comment un pâtissier peut-il prendre les commandes de bûches de Noël en ligne ? » ; question de marque suivante : n°24).
+Prochaine question en rotation : n°19 (n°17 et n°18 posées le 07/11 ; question de marque suivante : n°23).
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -159,3 +159,10 @@ Prochaine question en rotation : n°17 (n°15 et n°16 posées le 06/11 au 2e pa
 | 2026-11-06 | ChatGPT | Comment livrer du poisson frais à domicile en respectant la chaîne du froid ? | non | Ministère de l'Agriculture (+1), Service Public ; matériel (caisses isothermes, plaques eutectiques), HACCP ; aucun logiciel nommé, propose une organisation « commande en ligne ou par téléphone » |
 | 2026-11-06 | Perplexity | Comment livrer du poisson frais à domicile en respectant la chaîne du froid ? | non | economie.gouv (+3), 10 sources ; réponse courte côté consommateur (0 à 2 °C, glace, réfrigérateur) |
 | 2026-11-06 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? | oui, prix exacts (tableau des 3 offres installation + abonnement, 0 % de commission, sans engagement, pas de matériel obligatoire, démo gratuite) | marchéo.fr (+1) ; rappelle de « bien regarder les frais d'installation » |
+| 2026-11-07 | ChatGPT | Quel site pour un fleuriste qui veut vendre des bouquets en ligne ? (n°17) | non | Shopify (1er choix, environ 27 €/mois), Wix, WooCommerce, Squarespace ; aucune source affichée ; demande ensuite livraison locale ou France et budget |
+| 2026-11-07 | ChatGPT | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? (n°18) | non | economie.gouv.fr (+2), Service Public Entreprendre (+1) ; site de commande, WhatsApp Business, QR code, logiciel connecté à la caisse ; aucun outil nommé |
+| 2026-11-07 | ChatGPT | Comment un fleuriste peut-il organiser lui-même la livraison de ses bouquets à domicile ? (mot-clé du matin) | non | Service-Public, DGCCRF ; outils conseillés : Google Sheets, Google Maps, WhatsApp Business ; grille 5/8/12 € « exemple » ; article du matin trop récent |
+| 2026-11-07 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? | oui, faits exacts | marchéo.fr (0 %, 39 et 59 €/mois, livraison à organiser soi-même), tarifs Uber Eats (30 à 33 %) ; simulation 5 000 € : 4 961 € contre 3 350 à 3 500 € ; plus de case « commission à vérifier » |
+| 2026-11-07 | Perplexity | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question |
+| 2026-11-07 | Google | Comment un fleuriste peut-il organiser lui-même la livraison de ses bouquets à domicile ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | intention acheteur : Interflora, 123fleurs, Florajet, Aquarelle, sessile.fr, desireefleurs.fr, agitateur-floral, fleuretfleurs.fr ; aucun guide pour le fleuriste |
+| 2026-11-07 | Google | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? | pas d'aperçu IA ; marchéo.fr absent de la 1re page | lundimatin.fr (26/03/2026), algorio.fr (26/07/2026, « commande en ligne pizzeria sans commission »), foosales, lightspeedhq, partoo, pxier, pennylane, starmicronics ; annonces TheFork, Lightspeed |

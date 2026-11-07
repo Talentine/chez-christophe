@@ -68,6 +68,8 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | blog.ollca.com (site de fromagerie) | blog d'éditeur (concurrent principal) | Google, site internet fromagerie (06/11) | aucune mention possible (concurrent) : garder site-internet-fromagerie (06/11) frais et précis sur les prix | automatique | en cours |
 | hellofidy.com / fromage.fr | blog d'éditeur (fidélité) / média fromager | Google, site internet fromagerie (06/11) | fromage.fr : regarder s'il publie des conseils aux crémiers, puis proposer un article « vendre ses plateaux en ligne sans commission » (message type 2) | Paul | à vérifier |
 | abby.fr / shine.fr / bpifrance-creation.fr | blogs de banque en ligne et institutionnel | Google + aperçu IA, frais de livraison commerçant (06/11) | bpifrance-creation : faible chance ; shine et abby : proposer un encadré « livraison locale d'un commerce de bouche » (message type 2) | Paul | basse priorité |
+| algorio.fr (blog « Commande en ligne pizzeria sans commission », 26/07/2026) | blog d'éditeur (concurrent) | Google, n°18 pizzeria sans plateforme (07/11) | aucune mention possible (concurrent) : site-internet-pizzeria et logiciel-livraison-pizza à garder frais, avec la requête « sans plateforme » dans une FAQ | automatique | en cours |
+| lundimatin.fr / partoo.co / pennylane.com (blogs sur la commande en ligne restaurant) | blogs d'éditeurs (caisse, avis, comptabilité) | Google, n°18 (07/11) ; lundimatin déjà vu le 20/10 et le 02/11 | partoo et pennylane : proposer un encadré « commande en direct pour un restaurant de quartier, prix fixe » (message type 2), faible chance ; lundimatin : éditeur de caisse, aucune mention | Paul | basse priorité |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
 

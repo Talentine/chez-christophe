@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Forms ou logiciel de commande ? · Marchéo</title>
+<meta name="description" content="Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.">
+<link rel="canonical" href="https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Google Forms ou logiciel de commande ? · Marchéo"><meta property="og:description" content="Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.">
+<meta property="og:url" content="https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Google Forms ou logiciel de commande ?",
+     "item": "https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Google Forms ou logiciel de commande : que choisir pour un commerce ?",
+   "description": "Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-07",
+   "dateModified": "2026-11-07",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "google forms ou logiciel de commande, formulaire google forms commande commerce, prendre les commandes avec google forms, tableur ou logiciel de commande, google sheets commandes commerce, formulaire de commande en ligne gratuit commerçant",
+   "articleSection": "Comparatif"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel outil gratuit pour prendre les commandes de mon commerce en ligne ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pour tester la demande, Google Forms est gratuit avec un compte Google et range les réponses dans un tableur Google Sheets. Il ne gère ni les créneaux complets, ni le paiement, ni le calcul du total sans module complémentaire. Quand les commandes augmentent, un logiciel de commande prend le relais : Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Google Forms peut-il limiter le nombre de commandes par créneau ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas de lui-même. Google Forms enregistre toutes les réponses, même quand un créneau est déjà plein. Des modules complémentaires permettent de fermer un formulaire après un certain nombre de réponses, mais pas de retirer un seul créneau de la liste. C'est souvent la première limite que rencontrent les traiteurs et les boulangers à l'approche des fêtes."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour passer d'un formulaire à un logiciel de commande ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous utilisez déjà pour lire vos réponses de formulaire. Si un client paie par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on encaisser un acompte avec Google Forms ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas directement. Google Forms ne propose pas de paiement : il faut envoyer à part un lien de paiement ou demander un virement, puis vérifier à la main qui a payé. Un logiciel de commande encaisse en ligne au moment de la commande, ou pose une empreinte bancaire qui protège des commandes non récupérées."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav a{padding:8px 10px}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions">Par métier</a>
+    <a href="/#tarifs" class="hide-m">Tarifs</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Google Forms ou logiciel de commande ?</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Comparatif</p>
+<h1>Google Forms ou logiciel de commande : que choisir pour un commerce ?</h1>
+<p class="lead">Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.</p>
+<p class="meta">Par Paul Merieult · 07/11/2026 · 6 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Google Forms suffit pour démarrer les commandes en ligne d&rsquo;un commerce quand vous en recevez quelques-unes par semaine : il est gratuit et les réponses arrivent dans un tableur. Il ne gère pas seul les créneaux complets, le paiement ni le calcul du total. Au-delà de quelques commandes, un logiciel de commande comme Marchéo fait ce travail pour 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter.</p>
+<p>Ce comparatif complète notre <a href="/blog/click-and-collect-commercant-guide-complet">guide complet du click &amp; collect pour commerçant</a>, qui explique le retrait en boutique étape par étape. Il répond à une question fréquente chez les traiteurs, les boulangers et les primeurs : un formulaire gratuit et un tableur peuvent-ils remplacer un vrai outil de commande ?</p>
+<h2>Peut-on prendre les commandes de son commerce avec Google Forms ?</h2>
+<p>Oui, beaucoup de commerces le font, surtout pour les commandes de fêtes. Vous créez un formulaire avec vos produits, une case pour la quantité, la date de retrait et le téléphone du client. Vous partagez le lien sur Facebook, Instagram ou par message. Chaque réponse s&rsquo;ajoute comme une ligne dans un tableur Google Sheets.</p>
+<p>Pour un traiteur qui prend vingt commandes de plateaux pour le 31 décembre, ou un primeur qui teste des paniers de la semaine, c&rsquo;est une bonne façon de vérifier que les clients sont prêts à commander à distance. L&rsquo;outil est gratuit et ne demande qu&rsquo;un compte Google.</p>
+<h2>Quelle différence entre un formulaire et un logiciel de commande ?</h2>
+<p>La différence tient à ce qui se passe après la réponse du client. Un formulaire enregistre une demande, que vous devez ensuite vérifier, confirmer et compter à la main. Un logiciel de commande vérifie seul les créneaux, calcule le total, encaisse si vous le souhaitez, et vous présente la liste des commandes prêtes à préparer.</p>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Google Forms et tableur</th>
+<th>Logiciel de commande (ex. Marchéo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prix</td>
+<td>Gratuit avec un compte Google</td>
+<td>19 à 59 € par mois, sans engagement, plus des frais d&rsquo;installation uniques</td>
+</tr>
+<tr>
+<td>Commission sur les ventes</td>
+<td>Aucune</td>
+<td>0 % de commission</td>
+</tr>
+<tr>
+<td>Créneaux de retrait</td>
+<td>Liste fixe, un créneau plein reste proposé</td>
+<td>Choisis par le client, avec un nombre maximum par créneau</td>
+</tr>
+<tr>
+<td>Produit épuisé</td>
+<td>Reste proposé tant que vous ne modifiez pas le formulaire</td>
+<td>Masqué en quelques secondes depuis le téléphone</td>
+</tr>
+<tr>
+<td>Prix et total</td>
+<td>Calculés par vous, à partir des réponses</td>
+<td>Affichés au client, total calculé automatiquement</td>
+</tr>
+<tr>
+<td>Paiement</td>
+<td>À part : lien de paiement, virement ou en boutique</td>
+<td>En ligne ou au retrait, selon vos réglages</td>
+</tr>
+<tr>
+<td>Commandes non récupérées</td>
+<td>Aucune protection</td>
+<td>Empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier</td>
+</tr>
+<tr>
+<td>Récapitulatif pour le client</td>
+<td>À envoyer vous-même</td>
+<td>Affiché au client à la fin de sa commande</td>
+</tr>
+<tr>
+<td>Visibilité sur Google</td>
+<td>Aucune, le formulaire n&rsquo;est pas un site</td>
+<td>Un site internet à votre nom, que l&rsquo;on trouve en cherchant votre commerce</td>
+</tr>
+</tbody>
+</table>
+<p>Les deux options sont sans commission. Ni l&rsquo;une ni l&rsquo;autre ne prélève un pourcentage sur vos ventes, contrairement aux plateformes de livraison qui prennent en général 14 à 30 % par commande.</p>
+<h2>Quand un formulaire Google Forms suffit-il ?</h2>
+<p>Un formulaire suffit quand les commandes sont peu nombreuses et que chacune demande de toute façon un échange avec vous. Il est aussi idéal pour tester une idée avant d&rsquo;investir.</p>
+<p>C&rsquo;est le bon choix si :</p>
+<ul>
+<li>vous recevez moins d&rsquo;une dizaine de commandes à distance par semaine ;</li>
+<li>vous proposez une offre ponctuelle, par exemple un menu de fête ou une vente de chocolats ;</li>
+<li>chaque commande est un devis, comme un buffet sur mesure ou une pièce montée ;</li>
+<li>vous voulez savoir si vos clients commanderaient en ligne avant de choisir un outil.</li>
+</ul>
+<p>Pour limiter les erreurs, ajoutez une description claire en tête du formulaire : date limite, jours de retrait, moyen de paiement. Rendez obligatoires le nom, le téléphone et la date. Et prévenez que la commande n&rsquo;est confirmée qu&rsquo;après votre réponse.</p>
+<h2>Quand passer à un logiciel de commande ?</h2>
+<p>Passez à un logiciel quand vous passez plus de temps à vérifier les réponses qu&rsquo;à préparer les commandes. Les signes sont toujours les mêmes : un créneau qui déborde, un produit vendu deux fois alors qu&rsquo;il n&rsquo;en restait qu&rsquo;un, un client qui n&rsquo;a jamais reçu de confirmation, des acomptes impossibles à pointer.</p>
+<p>Faites le calcul sur votre propre semaine. Prenons un exemple : si chaque réponse de formulaire vous demande quatre minutes pour vérifier, calculer le total, confirmer par message et noter le paiement, cinquante commandes représentent plus de trois heures. Avec un logiciel, la plupart de ces étapes disparaissent, car le client voit le prix, choisit un créneau encore libre et voit le récapitulatif de sa commande sans que vous interveniez.</p>
+<p>Les fêtes sont souvent le déclic. Une boulangerie qui prend ses commandes de bûches sur un formulaire découvre en décembre qu&rsquo;aucun créneau ne se ferme tout seul. Notre guide des <a href="/blog/precommandes-fetes-noel-commerce-bouche">précommandes des fêtes</a> détaille comment fixer une date limite et un plafond par créneau. Pour les traiteurs qui livrent, l&rsquo;article <a href="/blog/traiteur-noel-livraison-a-domicile">traiteur Noël livraison à domicile</a> montre comment organiser les tournées du 24 et du 31.</p>
+<h2>Combien coûte le passage du formulaire au logiciel ?</h2>
+<p>Le passage coûte un abonnement fixe, sans pourcentage sur vos ventes. Avec Marchéo, comptez 39 € par mois pour le click &amp; collect avec réservation, ou 59 € par mois si vous livrez aussi vos clients vous-même, sans engagement. S&rsquo;y ajoutent des frais d&rsquo;installation uniques de 399 ou 549 €. L&rsquo;offre Vitrine, à 19 € par mois et 249 € d&rsquo;installation, présente votre commerce sans prise de commande.</p>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes, sans créer de compte, ce qui reste aussi simple qu&rsquo;un formulaire pour lui.</p>
+<p>Il faut aussi connaître ses limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre boutique. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.</p>
+<h2>Faut-il abandonner le tableur quand on a un logiciel ?</h2>
+<p>Non, le tableur reste utile pour ce qu&rsquo;il fait bien : vos calculs de marge, vos listes de fournisseurs, vos devis sur mesure. Le logiciel prend en charge la commande elle-même.</p>
+<table>
+<thead>
+<tr>
+<th>Usage</th>
+<th>Outil conseillé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commande de la semaine, retrait ou livraison</td>
+<td>Logiciel de commande</td>
+</tr>
+<tr>
+<td>Commandes de fêtes avec date limite et créneaux</td>
+<td>Logiciel de commande</td>
+</tr>
+<tr>
+<td>Devis de buffet ou de pièce sur mesure</td>
+<td>Formulaire ou échange direct</td>
+</tr>
+<tr>
+<td>Sondage auprès de vos clients sur un nouveau produit</td>
+<td>Formulaire</td>
+</tr>
+<tr>
+<td>Suivi de vos coûts et de vos marges</td>
+<td>Tableur</td>
+</tr>
+</tbody>
+</table>
+<p>Si vos clients commandent aussi par message, notre comparatif <a href="/blog/whatsapp-ou-boutique-en-ligne-commerce">WhatsApp ou boutique en ligne</a> vous aide à répartir les rôles entre les deux.</p>
+<h2>Par où commencer ?</h2>
+<p>Le plus simple est de comparer sur pièce avec votre formulaire actuel. Sur <a href="/inscription">la page d&rsquo;inscription de Marchéo</a>, choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue déjà rempli. Pour voir ce qui est prévu pour un métier précis, regardez par exemple <a href="/solutions/traiteur">la solution pour traiteur</a>, puis envoyez le lien de votre aperçu à quelques clients qui commandent déjà par formulaire.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel outil gratuit pour prendre les commandes de mon commerce en ligne ?</summary><p>Pour tester la demande, Google Forms est gratuit avec un compte Google et range les réponses dans un tableur Google Sheets. Il ne gère ni les créneaux complets, ni le paiement, ni le calcul du total sans module complémentaire. Quand les commandes augmentent, un logiciel de commande prend le relais : Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.</p></details><details><summary>Google Forms peut-il limiter le nombre de commandes par créneau ?</summary><p>Pas de lui-même. Google Forms enregistre toutes les réponses, même quand un créneau est déjà plein. Des modules complémentaires permettent de fermer un formulaire après un certain nombre de réponses, mais pas de retirer un seul créneau de la liste. C'est souvent la première limite que rencontrent les traiteurs et les boulangers à l'approche des fêtes.</p></details><details><summary>Faut-il acheter du matériel pour passer d'un formulaire à un logiciel de commande ?</summary><p>Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous utilisez déjà pour lire vos réponses de formulaire. Si un client paie par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.</p></details><details><summary>Peut-on encaisser un acompte avec Google Forms ?</summary><p>Pas directement. Google Forms ne propose pas de paiement : il faut envoyer à part un lien de paiement ou demander un virement, puis vérifier à la main qui a payé. Un logiciel de commande encaisse en ligne au moment de la commande, ou pose une empreinte bancaire qui protège des commandes non récupérées.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/fleuriste-livraison-a-domicile">Livrer à domicile quand on est fleuriste</a><a href="/blog/click-and-collect-ou-livraison-a-domicile">Click and collect ou livraison ?</a><a href="/blog/site-internet-fromagerie">Créer le site internet de sa fromagerie</a><a href="/blog/click-and-collect-restauration-rapide">Le click and collect en restauration rapide</a><a href="/solutions/boulangerie">Click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/traiteur">Click &amp; collect pour traiteurs</a><a href="/solutions/pizzeria">Click &amp; collect pour pizzerias</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>

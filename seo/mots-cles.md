@@ -230,7 +230,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commande foie gras noel | click & collect | tous | GS (01/11) | basse | à faire : requête d'acheteur, seulement si guide de saison commerçant |
 | commande non récupéré par le client | click & collect | tous | GS (01/11) | moyenne | fait le 2026-11-06 dans empreinte-bancaire-no-show-commerce-restaurant (H2 « Comment éviter les commandes non récupérées en click and collect ? ») |
 | traiteur halal commande en ligne | click & collect | traiteur | GS (01/11) | basse | à faire |
-| formulaire google forms commande commerce limites | transverse | tous | IA (01/11 : ChatGPT conseille WhatsApp Business et Google Forms pour commencer) | moyenne | à faire : quand un formulaire suffit et quand il ne suffit plus |
+| formulaire google forms commande commerce limites | transverse | tous | IA (01/11 : ChatGPT conseille WhatsApp Business et Google Forms pour commencer) | moyenne | publié le 2026-11-07 + google-forms-ou-logiciel-de-commande-commerce |
 | logiciel pour vendre en ligne sans commission | transverse | tous | IA (01/11 : ChatGPT cite TOWeb, Wobelio, SaaSimple ; Marchéo absent sur n°22) | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission |
 | vendre en ligne sans matériel | transverse | tous | IA (01/11 : ChatGPT et Perplexity comprennent souvent « sans stock ») | haute | publié le 2026-11-01 + logiciel-vendre-en-ligne-sans-commission (variante) |
 | quel logiciel click and collect poissonnerie | click & collect | poissonnerie | IA (01/11 : ChatGPT cite Achil, RushPilot, SoClick ; Perplexity cite Artipos) | haute | couvert par click-and-collect-poissonnerie (FAQ « Quel logiciel… », 2026-11-01) ; à suivre dans les relevés |
@@ -247,7 +247,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | traiteur livraison plat chaud | livraison | traiteur | GS (02/11) | basse | à fondre dans l'article plateau repas (chaud ou froid) |
 | traiteur noël entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
 | traiteur vente en ligne | click & collect | traiteur | GS (02/11, confirmé) | moyenne | couvert par le refresh de creation-site-internet-traiteur (2026-11-02) |
-| tableur ou logiciel commandes traiteur noël | transverse | traiteur | IA (02/11 : ChatGPT conseille Excel ou Google Sheets pour les commandes de Noël) | moyenne | à faire : quand un tableur suffit et quand il ne suffit plus, avec « formulaire google forms commande commerce limites » |
+| tableur ou logiciel commandes traiteur noël | transverse | traiteur | IA (02/11 : ChatGPT conseille Excel ou Google Sheets pour les commandes de Noël) | moyenne | publié le 2026-11-07 + google-forms-ou-logiciel-de-commande-commerce (variante, traiteur en exemple) |
 | logiciel tournée livraison traiteur | livraison | traiteur | IA (02/11 : Perplexity propose la question « Quels logiciels utiliser pour optimiser les tournées ») | moyenne | à faire ou FAQ de l'article plateau repas |
 | alternative takeasy click and collect | transverse | tous | IA (02/11 : ChatGPT cite Takeasy et Click & Croque sur « sans commission ») | moyenne | à étudier par la routine IA, comparatif factuel |
 | click and collect guide complet | click & collect | tous | GSC (703 impr., 1 clic, pos. 16,4 sur 28 j, 02/11) | haute | à faire : retravailler title et description de click-and-collect-commercant-guide-complet au prochain lundi |
@@ -304,3 +304,4 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fleuriste livraison autour de moi | livraison | fleuriste | GS (07/11) | basse | écarté (requête locale d'acheteur) |
 | comment faire livrer des fleurs pour un enterrement | livraison | fleuriste | GS (07/11) | basse | écarté (intention acheteur ; angle commerçant couvert dans la section deuil) |
 | fleuriste sans frais de livraison | livraison | fleuriste | GS (07/11) | basse | écarté (intention acheteur) |
+| pizzeria commande en ligne sans plateforme | click & collect | pizzeria | IA (07/11 : ChatGPT ne nomme aucun outil, Google cite algorio et lundimatin ; Marchéo absent sur n°18) | haute | à faire : H2 « Comment prendre les commandes en ligne sans plateforme ? » dans site-internet-pizzeria au prochain rafraîchissement, pas de nouvel article |

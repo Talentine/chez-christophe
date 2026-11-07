@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](https://marchéo.fr/blog/fleuriste-livraison-a-domicile) : Fleuriste et livraison à domicile : zone, créneaux, frais, carte message, deuil et jours de fête. Le guide pour livrer vos bouquets vous-même, sans commission.
+- [Google Forms ou logiciel de commande : que choisir pour un commerce ?](https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce) : Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.
 - [Click and collect ou livraison à domicile : que choisir ?](https://marchéo.fr/blog/click-and-collect-ou-livraison-a-domicile) : Click and collect ou livraison à domicile pour votre commerce de bouche : coût, temps, froid, clients visés, et quand proposer les deux. Comparatif honnête.
 - [Site internet fromagerie : pages, plateaux, commandes et prix](https://marchéo.fr/blog/site-internet-fromagerie) : Site internet pour fromagerie : quelles pages créer, comment montrer affinages et plateaux, prendre les commandes de fêtes en ligne et combien ça coûte.
 - [Click and collect restauration rapide : gérer le rush du midi](https://marchéo.fr/blog/click-and-collect-restauration-rapide) : Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.

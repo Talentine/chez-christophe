@@ -3,6 +3,7 @@ title: "WhatsApp ou boutique en ligne : que choisir pour son commerce ?"
 titre_court: "WhatsApp ou boutique en ligne ?"
 description: "WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre."
 date: 2026-10-29
+modified: 2026-11-07
 rubrique: Comparatif
 emoji: 💬
 keywords:
@@ -65,7 +66,7 @@ C'est le bon choix si :
 
 - vous recevez moins d'une dizaine de commandes à distance par semaine ;
 - vos clients commandent toujours les mêmes produits ;
-- vous voulez tester la demande avant de choisir un outil ;
+- vous voulez tester la demande avant de choisir un outil (un formulaire peut aussi servir, voir notre comparatif [Google Forms ou logiciel de commande](/blog/google-forms-ou-logiciel-de-commande-commerce)) ;
 - une commande sur deux demande un échange, par exemple un gâteau personnalisé ou un buffet sur mesure.
 
 Dans ces cas, ouvrez un compte WhatsApp Business, remplissez vos horaires, ajoutez vos produits phares au catalogue et préparez trois réponses rapides : la confirmation, l'heure de retrait et le moyen de paiement.

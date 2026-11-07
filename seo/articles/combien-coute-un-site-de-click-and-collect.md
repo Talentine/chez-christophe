@@ -5,7 +5,7 @@ description: "Plateformes à commission, Wix ou Shopify, agence, solution spéci
 meta_title: "Prix d'un site de click & collect en 2026"
 meta_description: "Ce que coûte vraiment un site de click & collect : abonnement, installation, frais bancaires et commissions cachées. Les prix réels en 2026."
 date: 2026-09-02
-modified: 2026-10-27
+modified: 2026-11-07
 rubrique: Prix
 emoji: 💶
 keywords:
@@ -19,6 +19,8 @@ metiers:
   - fleuriste
   - pizzeria
 faq:
+  - q: "Quel est le logiciel de click and collect le moins cher pour un petit commerce ?"
+    r: "Sans commission, les solutions spécialisées pour commerces de bouche démarrent autour de 19 à 39 € par mois. Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €. Un formulaire Google Forms est gratuit pour tester, mais ne gère ni les créneaux complets ni le paiement. Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande."
   - q: "Quel est le prix minimum pour un site de click & collect ?"
     r: "Une solution spécialisée pour commerces de bouche démarre autour de 19 à 39 € par mois avec des frais d'installation uniques de quelques centaines d'euros. Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande."
   - q: "Y a-t-il des frais de paiement en plus ?"
@@ -27,9 +29,13 @@ faq:
     r: "Dès quelques commandes par mois. Un abonnement de 39 € est couvert par une commande de gâteau, un plateau ou dix pizzas hors plateforme. Le gain vient surtout des commandes anticipées, des no-shows évités et des commissions non payées."
 ---
 
-La question arrive toujours en premier, et la réponse honnête est : **de 0 € par mois à plusieurs milliers d'euros**, selon ce qu'on appelle un site. Ce guide donne les prix réels en 2026 pour chaque option, les frais que les grilles tarifaires ne montrent pas, et le calcul qui permet de savoir en cinq minutes si c'est rentable pour votre commerce.
+Un site de click & collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d'installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click & Collect, contre 3 400 à 7 200 € sur une plateforme.
 
-## Les prix par option
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Les prix de chaque option, les frais que les grilles tarifaires ne montrent pas et le calcul de rentabilité suivent, option par option. Pour la mise en place pas à pas, voyez notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet).
+
+## Combien coûte chaque option de click & collect ?
+
+Le prix dépend surtout du mode de facturation : commission sur chaque vente, abonnement fixe ou création sur mesure.
 
 ### Plateforme de livraison : 0 € par mois, 14 à 30 % par commande
 
@@ -49,9 +55,11 @@ Les outils historiques de commande en ligne pour restaurants coûtent entre 50 e
 
 ### Solution spécialisée commerces de bouche : 19 à 59 € par mois, 0 % de commission
 
-Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Google, sans vente), Click & Collect à 39 € par mois (commandes, réservation, empreinte bancaire, SMS, base clients), Click & Collect + Livraison à 59 € par mois. Des frais d'installation uniques de 249, 399 ou 549 € couvrent la mise en place, faite avec vous. **Aucune commission** sur les ventes, sans engagement.
+Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Google, sans vente), Click & Collect + Réservation à 39 € par mois (commandes, réservation, empreinte bancaire, SMS, base clients), Click & Collect + Livraison à 59 € par mois. Des frais d'installation uniques de 249, 399 ou 549 € couvrent la mise en place, faite avec vous. **Aucune commission** sur les ventes, sans engagement.
 
-## Tableau récapitulatif
+## Quelle option revient le moins cher sur un an ?
+
+Sur un an, l'abonnement fixe sans commission revient le moins cher dès que les ventes en ligne dépassent quelques centaines d'euros par mois.
 
 | Option | Installation | Par mois | Commission | Total la 1re année pour 2 000 €/mois de ventes en ligne |
 |---|---|---|---|---|
@@ -63,14 +71,18 @@ Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Goo
 
 Les frais de paiement par carte (environ 1,5 % + 0,25 € par transaction chez Stripe en Europe) s'ajoutent dans tous les cas où le client paie en ligne, y compris sur un site sur mesure. Ils n'existent pas si le client paie au comptoir.
 
-## Les frais cachés
+## Quels sont les frais cachés d'un site de click & collect ?
+
+Les frais cachés sont le temps de paramétrage, les options payantes, les SMS et les conditions de sortie.
 
 - **Le temps.** Une journée de paramétrage, c'est une journée sans vous en boutique. Une solution qui arrive avec le catalogue de votre métier déjà rempli vous en fait économiser plusieurs.
 - **Les options.** Sur les plateformes et certains outils, la visibilité, la mise en avant ou la suppression de la commission sur le retrait sont des options payantes.
 - **Les SMS.** Prévenir un client que sa commande est prête a un coût unitaire chez la plupart des outils. Vérifiez si un quota est inclus.
 - **La sortie.** Un engagement de 12 ou 24 mois, ou des données clients impossibles à exporter, sont des coûts différés.
 
-## Le calcul de rentabilité en cinq minutes
+## Comment savoir si le click & collect est rentable pour mon commerce ?
+
+Il est rentable dès que le gain mensuel dépasse l'abonnement, ce qui arrive souvent avec quelques commandes anticipées par mois.
 
 Additionnez trois choses par mois :
 
@@ -78,10 +90,16 @@ Additionnez trois choses par mois :
 2. **Les no-shows évités** grâce à l'empreinte bancaire : une commande de 60 € non retirée par mois, c'est courant.
 3. **Les commissions non payées** si une partie de vos clients quitte les plateformes pour votre boutique.
 
-Sur cet exemple prudent, 150 + 60 + 0 = **210 € par mois** de gain, contre 39 € d'abonnement. Avec un peu de bascule depuis les plateformes, le chiffre monte vite à plusieurs centaines d'euros.
+Sur cet exemple prudent, 150 + 60 + 0 = **210 € par mois** de gain, contre 39 € d'abonnement. Avec un peu de bascule depuis les plateformes, le chiffre monte vite à plusieurs centaines d'euros. Ce calcul est un exemple : refaites-le avec vos propres chiffres.
 
-## Ce qui justifie des frais d'installation
+Si vous ne voulez rien payer pour commencer, un formulaire gratuit permet de tester la demande. Notre comparatif [Google Forms ou logiciel de commande](/blog/google-forms-ou-logiciel-de-commande-commerce) explique jusqu'où il suffit et quand il devient plus coûteux en temps qu'un abonnement.
+
+## Pourquoi payer des frais d'installation ?
+
+Les frais d'installation paient une mise en place faite une seule fois, à votre place.
 
 Beaucoup se demandent pourquoi payer 249 à 549 € d'installation quand Wix propose zéro. La réponse est dans ce que l'installation contient : un catalogue prêt pour votre métier, la mise en place avec vous, votre thème, vos créneaux, votre QR code, votre référencement sur Google. C'est le travail que vous ne ferez pas vous-même un dimanche soir. Et c'est payé une fois. Pour un exemple concret par métier, voyez ce que coûte la [création d'un site internet de traiteur](/blog/creation-site-internet-traiteur), plateaux et buffets compris.
 
-Pour juger sur pièce, le plus simple reste de [voir votre boutique en 30 secondes](/inscription) : le métier, le nom, et l'aperçu apparaît, gratuitement.
+Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil pour organiser votre propre livraison. Si vous expédiez surtout des colis dans toute la France, Shopify vous conviendra mieux.
+
+Pour juger sur pièce, le plus simple reste de [voir votre boutique en 30 secondes](/inscription) : le métier, le nom, et l'aperçu apparaît, gratuitement. Pour un exemple par métier, regardez [la solution pour boulangerie](/solutions/boulangerie).

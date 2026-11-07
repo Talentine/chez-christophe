@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](https://marchéo.fr/blog/fleuriste-livraison-a-domicile) : Fleuriste et livraison à domicile : zone, créneaux, frais, carte message, deuil et jours de fête. Le guide pour livrer vos bouquets vous-même, sans commission.
+- [Google Forms ou logiciel de commande : que choisir pour un commerce ?](https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce) : Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.
 - [Click and collect ou livraison à domicile : que choisir ?](https://marchéo.fr/blog/click-and-collect-ou-livraison-a-domicile) : Click and collect ou livraison à domicile pour votre commerce de bouche : coût, temps, froid, clients visés, et quand proposer les deux. Comparatif honnête.
 - [Site internet fromagerie : pages, plateaux, commandes et prix](https://marchéo.fr/blog/site-internet-fromagerie) : Site internet pour fromagerie : quelles pages créer, comment montrer affinages et plateaux, prendre les commandes de fêtes en ligne et combien ça coûte.
 - [Click and collect restauration rapide : gérer le rush du midi](https://marchéo.fr/blog/click-and-collect-restauration-rapide) : Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.
@@ -928,6 +929,137 @@ Q : Combien facturer la livraison d'un bouquet ?
 R : Partez du coût réel d'une tournée (temps, carburant, emballage) divisé par le nombre de livraisons que vous faites en moyenne. Beaucoup de fleuristes de quartier fixent des frais modestes, un minimum de commande, et offrent la livraison au-delà d'un montant de commande.
 Q : Comment gérer une livraison de fleurs pour des obsèques ?
 R : Demandez à la commande le lieu exact (funérarium, église, domicile), la date et l'heure de la cérémonie, le nom du défunt et le texte du ruban. Livrez avant l'heure prévue, jamais pendant. Un créneau dédié, avec une heure limite de commande la veille, évite les oublis.
+
+# Google Forms ou logiciel de commande : que choisir pour un commerce ?
+
+Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.
+
+Google Forms suffit pour démarrer les commandes en ligne d&rsquo;un commerce quand vous en recevez quelques-unes par semaine : il est gratuit et les réponses arrivent dans un tableur. Il ne gère pas seul les créneaux complets, le paiement ni le calcul du total. Au-delà de quelques commandes, un logiciel de commande comme Marchéo fait ce travail pour 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter.
+Ce comparatif complète notre guide complet du click &amp; collect pour commerçant, qui explique le retrait en boutique étape par étape. Il répond à une question fréquente chez les traiteurs, les boulangers et les primeurs : un formulaire gratuit et un tableur peuvent-ils remplacer un vrai outil de commande ?
+Peut-on prendre les commandes de son commerce avec Google Forms ?
+Oui, beaucoup de commerces le font, surtout pour les commandes de fêtes. Vous créez un formulaire avec vos produits, une case pour la quantité, la date de retrait et le téléphone du client. Vous partagez le lien sur Facebook, Instagram ou par message. Chaque réponse s&rsquo;ajoute comme une ligne dans un tableur Google Sheets.
+Pour un traiteur qui prend vingt commandes de plateaux pour le 31 décembre, ou un primeur qui teste des paniers de la semaine, c&rsquo;est une bonne façon de vérifier que les clients sont prêts à commander à distance. L&rsquo;outil est gratuit et ne demande qu&rsquo;un compte Google.
+Quelle différence entre un formulaire et un logiciel de commande ?
+La différence tient à ce qui se passe après la réponse du client. Un formulaire enregistre une demande, que vous devez ensuite vérifier, confirmer et compter à la main. Un logiciel de commande vérifie seul les créneaux, calcule le total, encaisse si vous le souhaitez, et vous présente la liste des commandes prêtes à préparer.
+
+
+
+Critère
+Google Forms et tableur
+Logiciel de commande (ex. Marchéo)
+
+
+
+
+Prix
+Gratuit avec un compte Google
+19 à 59 € par mois, sans engagement, plus des frais d&rsquo;installation uniques
+
+
+Commission sur les ventes
+Aucune
+0 % de commission
+
+
+Créneaux de retrait
+Liste fixe, un créneau plein reste proposé
+Choisis par le client, avec un nombre maximum par créneau
+
+
+Produit épuisé
+Reste proposé tant que vous ne modifiez pas le formulaire
+Masqué en quelques secondes depuis le téléphone
+
+
+Prix et total
+Calculés par vous, à partir des réponses
+Affichés au client, total calculé automatiquement
+
+
+Paiement
+À part : lien de paiement, virement ou en boutique
+En ligne ou au retrait, selon vos réglages
+
+
+Commandes non récupérées
+Aucune protection
+Empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier
+
+
+Récapitulatif pour le client
+À envoyer vous-même
+Affiché au client à la fin de sa commande
+
+
+Visibilité sur Google
+Aucune, le formulaire n&rsquo;est pas un site
+Un site internet à votre nom, que l&rsquo;on trouve en cherchant votre commerce
+
+
+
+Les deux options sont sans commission. Ni l&rsquo;une ni l&rsquo;autre ne prélève un pourcentage sur vos ventes, contrairement aux plateformes de livraison qui prennent en général 14 à 30 % par commande.
+Quand un formulaire Google Forms suffit-il ?
+Un formulaire suffit quand les commandes sont peu nombreuses et que chacune demande de toute façon un échange avec vous. Il est aussi idéal pour tester une idée avant d&rsquo;investir.
+C&rsquo;est le bon choix si :
+
+vous recevez moins d&rsquo;une dizaine de commandes à distance par semaine ;
+vous proposez une offre ponctuelle, par exemple un menu de fête ou une vente de chocolats ;
+chaque commande est un devis, comme un buffet sur mesure ou une pièce montée ;
+vous voulez savoir si vos clients commanderaient en ligne avant de choisir un outil.
+
+Pour limiter les erreurs, ajoutez une description claire en tête du formulaire : date limite, jours de retrait, moyen de paiement. Rendez obligatoires le nom, le téléphone et la date. Et prévenez que la commande n&rsquo;est confirmée qu&rsquo;après votre réponse.
+Quand passer à un logiciel de commande ?
+Passez à un logiciel quand vous passez plus de temps à vérifier les réponses qu&rsquo;à préparer les commandes. Les signes sont toujours les mêmes : un créneau qui déborde, un produit vendu deux fois alors qu&rsquo;il n&rsquo;en restait qu&rsquo;un, un client qui n&rsquo;a jamais reçu de confirmation, des acomptes impossibles à pointer.
+Faites le calcul sur votre propre semaine. Prenons un exemple : si chaque réponse de formulaire vous demande quatre minutes pour vérifier, calculer le total, confirmer par message et noter le paiement, cinquante commandes représentent plus de trois heures. Avec un logiciel, la plupart de ces étapes disparaissent, car le client voit le prix, choisit un créneau encore libre et voit le récapitulatif de sa commande sans que vous interveniez.
+Les fêtes sont souvent le déclic. Une boulangerie qui prend ses commandes de bûches sur un formulaire découvre en décembre qu&rsquo;aucun créneau ne se ferme tout seul. Notre guide des précommandes des fêtes détaille comment fixer une date limite et un plafond par créneau. Pour les traiteurs qui livrent, l&rsquo;article traiteur Noël livraison à domicile montre comment organiser les tournées du 24 et du 31.
+Combien coûte le passage du formulaire au logiciel ?
+Le passage coûte un abonnement fixe, sans pourcentage sur vos ventes. Avec Marchéo, comptez 39 € par mois pour le click &amp; collect avec réservation, ou 59 € par mois si vous livrez aussi vos clients vous-même, sans engagement. S&rsquo;y ajoutent des frais d&rsquo;installation uniques de 399 ou 549 €. L&rsquo;offre Vitrine, à 19 € par mois et 249 € d&rsquo;installation, présente votre commerce sans prise de commande.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes, sans créer de compte, ce qui reste aussi simple qu&rsquo;un formulaire pour lui.
+Il faut aussi connaître ses limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre boutique. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.
+Faut-il abandonner le tableur quand on a un logiciel ?
+Non, le tableur reste utile pour ce qu&rsquo;il fait bien : vos calculs de marge, vos listes de fournisseurs, vos devis sur mesure. Le logiciel prend en charge la commande elle-même.
+
+
+
+Usage
+Outil conseillé
+
+
+
+
+Commande de la semaine, retrait ou livraison
+Logiciel de commande
+
+
+Commandes de fêtes avec date limite et créneaux
+Logiciel de commande
+
+
+Devis de buffet ou de pièce sur mesure
+Formulaire ou échange direct
+
+
+Sondage auprès de vos clients sur un nouveau produit
+Formulaire
+
+
+Suivi de vos coûts et de vos marges
+Tableur
+
+
+
+Si vos clients commandent aussi par message, notre comparatif WhatsApp ou boutique en ligne vous aide à répartir les rôles entre les deux.
+Par où commencer ?
+Le plus simple est de comparer sur pièce avec votre formulaire actuel. Sur la page d&rsquo;inscription de Marchéo, choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue déjà rempli. Pour voir ce qui est prévu pour un métier précis, regardez par exemple la solution pour traiteur, puis envoyez le lien de votre aperçu à quelques clients qui commandent déjà par formulaire.
+
+Q : Quel outil gratuit pour prendre les commandes de mon commerce en ligne ?
+R : Pour tester la demande, Google Forms est gratuit avec un compte Google et range les réponses dans un tableur Google Sheets. Il ne gère ni les créneaux complets, ni le paiement, ni le calcul du total sans module complémentaire. Quand les commandes augmentent, un logiciel de commande prend le relais : Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Google Forms peut-il limiter le nombre de commandes par créneau ?
+R : Pas de lui-même. Google Forms enregistre toutes les réponses, même quand un créneau est déjà plein. Des modules complémentaires permettent de fermer un formulaire après un certain nombre de réponses, mais pas de retirer un seul créneau de la liste. C'est souvent la première limite que rencontrent les traiteurs et les boulangers à l'approche des fêtes.
+Q : Faut-il acheter du matériel pour passer d'un formulaire à un logiciel de commande ?
+R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous utilisez déjà pour lire vos réponses de formulaire. Si un client paie par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.
+Q : Peut-on encaisser un acompte avec Google Forms ?
+R : Pas directement. Google Forms ne propose pas de paiement : il faut envoyer à part un lien de paiement ou demander un virement, puis vérifier à la main qui a payé. Un logiciel de commande encaisse en ligne au moment de la commande, ou pose une empreinte bancaire qui protège des commandes non récupérées.
 
 # Click and collect ou livraison à domicile : que choisir ?
 
@@ -3383,7 +3515,7 @@ C&rsquo;est le bon choix si :
 
 vous recevez moins d&rsquo;une dizaine de commandes à distance par semaine ;
 vos clients commandent toujours les mêmes produits ;
-vous voulez tester la demande avant de choisir un outil ;
+vous voulez tester la demande avant de choisir un outil (un formulaire peut aussi servir, voir notre comparatif Google Forms ou logiciel de commande) ;
 une commande sur deux demande un échange, par exemple un gâteau personnalisé ou un buffet sur mesure.
 
 Dans ces cas, ouvrez un compte WhatsApp Business, remplissez vos horaires, ajoutez vos produits phares au catalogue et préparez trois réponses rapides : la confirmation, l&rsquo;heure de retrait et le moyen de paiement.
@@ -4760,7 +4892,7 @@ La plupart de ces inconvénients se règlent avec de bons réglages : capacité 
 Comment mettre en place le click and collect dans sa boutique ?
 Mettre en place le click and collect demande quatre décisions et quelques réglages, pas un projet informatique. Comptez une journée pour être prêt à recevoir vos premières commandes.
 
-Choisir ce que vous proposez en retrait. Commencez par ce qui se commande déjà à l&rsquo;avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir. Si vos clients commandent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à l&rsquo;étape suivante.
+Choisir ce que vous proposez en retrait. Commencez par ce qui se commande déjà à l&rsquo;avance par téléphone : gâteaux, colis de viande, plateaux, paniers, bouquets, pizzas du soir. Si vos clients commandent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à l&rsquo;étape suivante. Si vous prenez déjà vos commandes sur un formulaire, lisez notre comparatif Google Forms ou logiciel de commande.
 Choisir votre outil. Il doit gérer les créneaux et, si besoin, la vente au poids. Sur la page de création de Marchéo, vous choisissez votre métier, vous tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, avec un catalogue déjà rempli.
 Régler vos créneaux et votre délai de préparation. Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 Choisir le paiement. En ligne, au retrait, ou les deux. Décidez aussi si vous activez l&rsquo;empreinte bancaire.
@@ -6435,8 +6567,10 @@ R : Les clients sérieux n'y voient pas d'inconvénient, ils y sont habitués av
 
 Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés.
 
-La question arrive toujours en premier, et la réponse honnête est : de 0 € par mois à plusieurs milliers d&rsquo;euros, selon ce qu&rsquo;on appelle un site. Ce guide donne les prix réels en 2026 pour chaque option, les frais que les grilles tarifaires ne montrent pas, et le calcul qui permet de savoir en cinq minutes si c&rsquo;est rentable pour votre commerce.
-Les prix par option
+Un site de click &amp; collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d&rsquo;installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click &amp; Collect, contre 3 400 à 7 200 € sur une plateforme.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Les prix de chaque option, les frais que les grilles tarifaires ne montrent pas et le calcul de rentabilité suivent, option par option. Pour la mise en place pas à pas, voyez notre guide complet du click &amp; collect pour commerçant.
+Combien coûte chaque option de click &amp; collect ?
+Le prix dépend surtout du mode de facturation : commission sur chaque vente, abonnement fixe ou création sur mesure.
 Plateforme de livraison : 0 € par mois, 14 à 30 % par commande
 Uber Eats, Deliveroo et consorts ne facturent pas d&rsquo;abonnement. Elles prélèvent une commission sur chaque commande : autour de 14 % pour le retrait sur place, jusqu&rsquo;à 30 % pour la livraison par leurs coursiers, hors TVA. À 2 000 € de ventes mensuelles via la plateforme, c&rsquo;est 280 à 600 € par mois. C&rsquo;est de loin l&rsquo;option la plus chère à l&rsquo;usage, et le client ne vous appartient pas.
 Constructeur généraliste : 30 à 80 € par mois, plus le temps
@@ -6446,8 +6580,9 @@ Un site sur mesure coûte entre 2 000 et 8 000 € selon les fonctions, puis 50 
 Solution de commande pour la restauration : 50 à 150 € par mois
 Les outils historiques de commande en ligne pour restaurants coûtent entre 50 et 150 € par mois, parfois avec une commission réduite en plus. Ils couvrent bien la carte à options, moins bien les métiers de bouche hors restauration. Pour un restaurant qui veut aussi la réservation de table, voyez notre article détaillé sur le prix d&rsquo;un site internet de restaurant.
 Solution spécialisée commerces de bouche : 19 à 59 € par mois, 0 % de commission
-Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Google, sans vente), Click &amp; Collect à 39 € par mois (commandes, réservation, empreinte bancaire, SMS, base clients), Click &amp; Collect + Livraison à 59 € par mois. Des frais d&rsquo;installation uniques de 249, 399 ou 549 € couvrent la mise en place, faite avec vous. Aucune commission sur les ventes, sans engagement.
-Tableau récapitulatif
+Marchéo propose trois offres : Vitrine à 19 € par mois (site visible sur Google, sans vente), Click &amp; Collect + Réservation à 39 € par mois (commandes, réservation, empreinte bancaire, SMS, base clients), Click &amp; Collect + Livraison à 59 € par mois. Des frais d&rsquo;installation uniques de 249, 399 ou 549 € couvrent la mise en place, faite avec vous. Aucune commission sur les ventes, sans engagement.
+Quelle option revient le moins cher sur un an ?
+Sur un an, l&rsquo;abonnement fixe sans commission revient le moins cher dès que les ventes en ligne dépassent quelques centaines d&rsquo;euros par mois.
 
 
 
@@ -6497,25 +6632,32 @@ Marchéo Click &amp; Collect
 
 
 Les frais de paiement par carte (environ 1,5 % + 0,25 € par transaction chez Stripe en Europe) s&rsquo;ajoutent dans tous les cas où le client paie en ligne, y compris sur un site sur mesure. Ils n&rsquo;existent pas si le client paie au comptoir.
-Les frais cachés
+Quels sont les frais cachés d&rsquo;un site de click &amp; collect ?
+Les frais cachés sont le temps de paramétrage, les options payantes, les SMS et les conditions de sortie.
 
 Le temps. Une journée de paramétrage, c&rsquo;est une journée sans vous en boutique. Une solution qui arrive avec le catalogue de votre métier déjà rempli vous en fait économiser plusieurs.
 Les options. Sur les plateformes et certains outils, la visibilité, la mise en avant ou la suppression de la commission sur le retrait sont des options payantes.
 Les SMS. Prévenir un client que sa commande est prête a un coût unitaire chez la plupart des outils. Vérifiez si un quota est inclus.
 La sortie. Un engagement de 12 ou 24 mois, ou des données clients impossibles à exporter, sont des coûts différés.
 
-Le calcul de rentabilité en cinq minutes
+Comment savoir si le click &amp; collect est rentable pour mon commerce ?
+Il est rentable dès que le gain mensuel dépasse l&rsquo;abonnement, ce qui arrive souvent avec quelques commandes anticipées par mois.
 Additionnez trois choses par mois :
 
 Les commandes anticipées que vous n&rsquo;auriez pas eues : gâteaux, plateaux, paniers commandés à l&rsquo;avance parce que c&rsquo;était possible en ligne. Prenez une hypothèse basse, cinq commandes à 30 €.
 Les no-shows évités grâce à l&rsquo;empreinte bancaire : une commande de 60 € non retirée par mois, c&rsquo;est courant.
 Les commissions non payées si une partie de vos clients quitte les plateformes pour votre boutique.
 
-Sur cet exemple prudent, 150 + 60 + 0 = 210 € par mois de gain, contre 39 € d&rsquo;abonnement. Avec un peu de bascule depuis les plateformes, le chiffre monte vite à plusieurs centaines d&rsquo;euros.
-Ce qui justifie des frais d&rsquo;installation
+Sur cet exemple prudent, 150 + 60 + 0 = 210 € par mois de gain, contre 39 € d&rsquo;abonnement. Avec un peu de bascule depuis les plateformes, le chiffre monte vite à plusieurs centaines d&rsquo;euros. Ce calcul est un exemple : refaites-le avec vos propres chiffres.
+Si vous ne voulez rien payer pour commencer, un formulaire gratuit permet de tester la demande. Notre comparatif Google Forms ou logiciel de commande explique jusqu&rsquo;où il suffit et quand il devient plus coûteux en temps qu&rsquo;un abonnement.
+Pourquoi payer des frais d&rsquo;installation ?
+Les frais d&rsquo;installation paient une mise en place faite une seule fois, à votre place.
 Beaucoup se demandent pourquoi payer 249 à 549 € d&rsquo;installation quand Wix propose zéro. La réponse est dans ce que l&rsquo;installation contient : un catalogue prêt pour votre métier, la mise en place avec vous, votre thème, vos créneaux, votre QR code, votre référencement sur Google. C&rsquo;est le travail que vous ne ferez pas vous-même un dimanche soir. Et c&rsquo;est payé une fois. Pour un exemple concret par métier, voyez ce que coûte la création d&rsquo;un site internet de traiteur, plateaux et buffets compris.
-Pour juger sur pièce, le plus simple reste de voir votre boutique en 30 secondes : le métier, le nom, et l&rsquo;aperçu apparaît, gratuitement.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : il fournit l&rsquo;outil pour organiser votre propre livraison. Si vous expédiez surtout des colis dans toute la France, Shopify vous conviendra mieux.
+Pour juger sur pièce, le plus simple reste de voir votre boutique en 30 secondes : le métier, le nom, et l&rsquo;aperçu apparaît, gratuitement. Pour un exemple par métier, regardez la solution pour boulangerie.
 
+Q : Quel est le logiciel de click and collect le moins cher pour un petit commerce ?
+R : Sans commission, les solutions spécialisées pour commerces de bouche démarrent autour de 19 à 39 € par mois. Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et sans commission, avec des frais d'installation uniques de 249, 399 ou 549 €. Un formulaire Google Forms est gratuit pour tester, mais ne gère ni les créneaux complets ni le paiement. Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande.
 Q : Quel est le prix minimum pour un site de click & collect ?
 R : Une solution spécialisée pour commerces de bouche démarre autour de 19 à 39 € par mois avec des frais d'installation uniques de quelques centaines d'euros. Les plateformes de livraison sont gratuites à l'entrée mais prennent 14 à 30 % de chaque commande.
 Q : Y a-t-il des frais de paiement en plus ?
