@@ -5,7 +5,7 @@ description: "Fleuriste click and collect : vendre ses bouquets par budget, le m
 meta_title: "Fleuriste click and collect : le guide pour démarrer"
 meta_description: "Fleuriste click and collect : vendre ses bouquets par budget, gérer les créneaux, les grandes dates et les commandes de deuil. Sans matériel, sans commission."
 date: 2026-10-25
-modified: 2026-10-30
+modified: 2026-11-07
 rubrique: Guide
 emoji: 💐
 keywords:
@@ -92,7 +92,7 @@ Le vrai risque, c'est la gerbe ou le bouquet de mariée composé pour un client 
 
 Pour un fleuriste, la livraison est souvent le complément naturel du click and collect, parce qu'une partie des bouquets est offerte à quelqu'un d'autre. Vous pouvez commencer par le retrait seul, puis ouvrir la livraison dans un rayon proche.
 
-Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Les étapes pour s'organiser sont dans notre [guide de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser).
+Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Les étapes pour s'organiser sont dans notre [guide de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser), et les points propres aux fleurs (message de la carte, deuil, jours de fête) dans notre article [fleuriste livraison à domicile](/blog/fleuriste-livraison-a-domicile).
 
 ## Combien coûte le click and collect pour un fleuriste ?
 

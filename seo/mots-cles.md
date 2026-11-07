@@ -155,7 +155,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | bouquet de fleurs click and collect | click & collect | fleuriste | GS (25/10) | moyenne | couvert par click-and-collect-fleuriste |
 | application pour fleuriste | click & collect | fleuriste | GS (25/10) | moyenne | couvert en variante et FAQ « Quel logiciel… » de creation-site-internet-fleuriste (2026-10-30) |
 | logiciel caisse fleuriste | transverse | fleuriste | GS (25/10) | basse | écarté (intention caisse, hors périmètre) |
-| fleuriste livraison à domicile | livraison | fleuriste | GS (25/10) | haute | à faire (angle : fleuriste de quartier qui livre lui-même, sans réseau de transmission) |
+| fleuriste livraison à domicile | livraison | fleuriste | GS (25/10) | haute | publié le 2026-11-07 fleuriste-livraison-a-domicile |
 | logiciel commande pizzeria | click & collect | pizzeria | GS (25/10) | haute | couvert par logiciel-livraison-pizza (2026-10-26, section « Que doit faire un bon logiciel de commande pour pizzeria ? ») |
 | logiciel livraison pizza gratuit | livraison | pizzeria | GS (25/10) | moyenne | couvert en FAQ de logiciel-livraison-pizza (2026-10-26) |
 | commande chrysanthème toussaint fleuriste | click & collect | fleuriste | réflexion saison (25/10) | basse | section de click-and-collect-fleuriste ; article dédié à envisager fin septembre 2027 |
@@ -194,7 +194,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | frais de livraison traiteur | livraison | traiteur | GS (29/10) | moyenne | publié le 2026-11-02 traiteur-noel-livraison-a-domicile (section frais) |
 | tarif livraison repas à domicile | livraison | restaurant | GS (29/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
 | restaurant sans frais de livraison | livraison | restaurant | GS (29/10) | basse | intention consommateur, à garder en FAQ |
-| fleuriste livraison deuil | livraison | fleuriste | GS (29/10) | moyenne | section de l'article « fleuriste livraison à domicile » (commande pour obsèques : date, lieu, ruban) |
+| fleuriste livraison deuil | livraison | fleuriste | GS (29/10) | moyenne | couvert le 2026-11-07 (section et FAQ de fleuriste-livraison-a-domicile) |
 | fleuriste qui livre le dimanche | livraison | fleuriste | GS (29/10) | basse | intention consommateur ; idée de créneau du dimanche matin dans l'article fleuriste |
 | plateforme livraison indépendant | livraison | tous | GS (29/10) | basse | intention livreur auto-entrepreneur, hors cible ; écarté |
 | traiteur réveillon nouvel an | livraison | traiteur | GS (29/10) | moyenne | couvert par traiteur-noel-livraison-a-domicile (2026-11-02), tournée du 31 |
@@ -297,3 +297,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site vitrine boutique | site | tous | GS (06/11) | basse | couvert par creation-site-internet-commerce |
 | nom de domaine commercial | site | tous | GS (06/11) | moyenne | à faire : nom de domaine pour un commerce (choix, prix, extension), vérifier obligations-legales-boutique-en-ligne-commercant |
 | frais de livraison commerce local (et non colis) | livraison | tous | IA (06/11 : l'aperçu IA de Google ne parle que d'expédition de colis, ChatGPT ne cite aucun outil) | moyenne | à faire : rafraîchir comment-calculer-ses-frais-de-livraison-commercant avec une réponse directe « commerce de proximité, livraison locale » et une FAQ façon assistant, pas de nouvel article |
+| fleuriste livraison gratuite | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07), angle seuil de gratuité |
+| frais de livraison bouquets de fleurs | livraison | fleuriste | GS (07/11) | moyenne | couvert par fleuriste-livraison-a-domicile (2026-11-07) |
+| livraison fleurs fleuriste local | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07) |
+| fleuriste livraison express | livraison | fleuriste | GS (07/11) | basse | écarté (intention acheteur, livraison dans l'heure hors modèle à créneaux) |
+| fleuriste livraison autour de moi | livraison | fleuriste | GS (07/11) | basse | écarté (requête locale d'acheteur) |
+| comment faire livrer des fleurs pour un enterrement | livraison | fleuriste | GS (07/11) | basse | écarté (intention acheteur ; angle commerçant couvert dans la section deuil) |
+| fleuriste sans frais de livraison | livraison | fleuriste | GS (07/11) | basse | écarté (intention acheteur) |
