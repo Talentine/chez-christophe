@@ -31,7 +31,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Pages par métier
 - [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
 - [Marchéo pour boucheries et charcuteries](https://marchéo.fr/solutions/boucherie) : Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.
-- [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Paniers de la semaine commandés en ligne, clients pressés servis en 2 minutes, livraison dans le quartier.
+- [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Vos fruits et légumes commandés en ligne, au kilo ou à la pièce, retirés en 2 minutes ou livrés dans le quartier.
 - [Marchéo pour poissonneries](https://marchéo.fr/solutions/poissonnerie) : Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.
 - [Marchéo pour traiteurs](https://marchéo.fr/solutions/traiteur) : Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.
 - [Marchéo pour fromageries et crèmeries](https://marchéo.fr/solutions/fromagerie) : Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.
@@ -97,74 +97,33 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 # Marchéo pour boulangeries et pâtisseries
 
-Vos clients commandent leur gâteau du dimanche, leur pain spécial ou leurs brioches depuis leur téléphone. Vous préparez ce qui est vendu, ils passent retirer sans attendre. Plus de carnet au comptoir, plus de gâteau oublié.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre boulangerie
-Le samedi matin, la file avance. Les commandes de gâteaux, de pains spéciaux et de viennoiseries sont prises la veille en ligne, avec l&rsquo;heure de retrait. Vous les préparez au calme, et le client repart en 30 secondes au comptoir.
-Fini le gâteau commandé et jamais récupéré. Avec l&rsquo;empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier est pré-autorisé sur la carte du client au moment de la commande. Si la commande est retirée, rien n&rsquo;est débité et l&rsquo;empreinte est libérée 24 heures après. S&rsquo;il ne vient pas, vous décidez de ce que vous prélevez.
-Vos fournées se programment. Vous ouvrez des créneaux de retrait par jour et par heure, avec une capacité maximale par créneau. Le client ne peut réserver que ce que vous pouvez produire.
-Le rush du matin, et ce que le click &amp; collect y change
-Entre 7 h et 9 h, une boulangerie fait une part importante de sa journée en vingt minutes cumulées de file d&rsquo;attente. Le client qui part au travail compte les personnes devant lui et renonce parfois. C&rsquo;est le chiffre d&rsquo;affaires le plus invisible du métier : celui qui repart sans rien dire.
-Le click &amp; collect ne supprime pas la file, il la contourne. Le client qui a commandé la veille au soir passe sur le côté, annonce son nom, repart avec son sac. Trois réglages suffisent :
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boulangerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une boulangerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Des créneaux courts le matin, de 10 ou 15 minutes, avec une capacité basse au début. Cinq commandes par tranche la première semaine.
-Une heure limite de commande la veille, pour que la fournée soit calée avant l&rsquo;ouverture.
-Un point de retrait identifié au comptoir, même une simple étagère avec une pancarte. C&rsquo;est ce que voient les clients qui font la queue, et c&rsquo;est ce qui les décide à essayer.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « boulangerie » ou « pâtisserie près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre boulangerie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le dimanche matin, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Les habitués sont les premiers à basculer, parce qu&rsquo;ils commandent toujours la même chose. Leur historique est enregistré : ils reprennent leur commande précédente en deux clics. Au bout d&rsquo;un mois, la liste du matin se remplit toute seule.
-Ce qui est inclus
+## Ce qui marche bien en ligne pour une boulangerie
+D'abord votre pain et vos viennoiseries, réservés pour ne plus jamais manquer la dernière tradition. Ensuite, des commandes qui pèsent bien plus lourd qu'une baguette :
+- Votre pain réservé : Tradition, pains spéciaux, grosses miches : réservés le matin, mis de côté, retirés sans faire la queue.
+- Gâteaux et entremets sur commande : Anniversaires, baptêmes, repas de famille : le client choisit la taille, le parfum et l'inscription.
+- Le plateau petit-déj : Croissants, pains au chocolat, mini-viennoiseries, jus : pour les réunions du bureau d'à côté ou le dimanche en famille.
+- La formule déjeuner : Sandwich, boisson et dessert commandés le matin, retirés à 12 h 15 sans attendre.
+- Le plateau de mignardises : Mini-pâtisseries et pièces salées pour un cocktail, un pot de départ, une communion.
+- Les fêtes de l'année : Galettes des rois, bûches, chocolats de Pâques : précommandés, préparés au bon nombre, sans gaspillage.
 
-Une boutique à vos couleurs, à l&rsquo;adresse marchéo.fr/votre-boulangerie, avec le catalogue boulangerie déjà rempli : pains, viennoiseries, pâtisseries, gâteaux sur commande, sandwichs. Vous cochez, vous ajustez les prix, c&rsquo;est en ligne.
-Commande en 30 secondes depuis le téléphone, sans création de compte pour le client.
-Paiement en ligne ou au retrait, au choix.
-SMS automatique au client quand sa commande est prête, base clients avec l&rsquo;historique des achats.
-Comptes pour vos vendeurs, qui gèrent les commandes sans accéder aux réglages.
-Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, la tournée est organisée par créneau.
-
-Combien ça coûte
-
-
-
-Offre
-Installation
-Par mois
-Pour
-
-
-
-
-Vitrine
-249 €
-19 €
-Être visible sur Google, présenter vos produits sans vente en ligne
-
-
-Click &amp; Collect
-399 €
-39 €
-Prendre les commandes en ligne, empreinte bancaire, SMS, base clients
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-Tout ça, plus la livraison dans votre zone
-
-
-
-Sans engagement, résiliable en un clic, 0 % de commission sur vos ventes. Une seule commande de gâteau par semaine rembourse l&rsquo;abonnement.
-Comment démarrer
-
-Sur la page d&rsquo;inscription, choisissez « Boulangerie » et tapez le nom de votre commerce : l&rsquo;aperçu de votre boutique s&rsquo;affiche.
-Ajustez le catalogue depuis votre téléphone, ajoutez vos photos.
-Imprimez le QR code pour le comptoir et la vitrine, partagez le lien sur Instagram et Facebook.
-
-L&rsquo;installation se fait avec vous en 20 minutes si vous le souhaitez. Vos premières commandes arrivent souvent le week-end suivant.
-Pour aller plus loin
-
-Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne, avec le plan de mise en place en une semaine et les réglages de la fiche Google.
-Organiser ses précommandes des fêtes, pour les bûches, les galettes et les pics de fin d&rsquo;année.
-Vendre au poids en ligne, utile dès que vous proposez des pièces montées au nombre de parts ou des plateaux à la coupe.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Mes clients doivent-ils créer un compte pour commander ?
 R : Non. Ils choisissent leurs produits, leur créneau de retrait, laissent un nom et un téléphone, et c'est fini. Le paiement en ligne est optionnel : vous pouvez laisser régler au comptoir.
@@ -185,54 +144,34 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour boucheries et charcuteries
 
-Rôtis, plateaux, volailles de fête, pièces sur mesure : vos clients commandent en ligne avec leurs précisions de découpe et de poids. Vous préparez, ils retirent à l'heure prévue. Les commandes de fêtes sont réglées d'avance.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre boucherie
-Noël, Pâques, les barbecues d&rsquo;été : plus de carnet. Chaque commande arrive avec le nom, le téléphone, le créneau de retrait et les précisions du client, épaisseur, poids, préparation. Vous imprimez la liste du jour et vous préparez dans l&rsquo;ordre.
-Les commandes de fêtes sont garanties. Un chapon à 80 € commandé et jamais retiré, ça n&rsquo;arrive plus : avec l&rsquo;empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Le client sérieux ne paie rien de plus, l&rsquo;empreinte est libérée 24 heures après le retrait.
-Vos habitués reviennent. Base clients avec l&rsquo;historique, SMS pour annoncer un arrivage, une promo sur les merguez le vendredi, ou la fermeture d&rsquo;août. Les SMS sont inclus dans l&rsquo;abonnement.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boucherie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une boucherie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue boucherie déjà rempli : bœuf, veau, agneau, porc, volaille, charcuterie, plats préparés. Vente au poids ou à la pièce, prix au kilo.
-Champ « précisions » sur chaque produit : découpe, épaisseur, cuisson, sans os.
-Commande en 30 secondes, sans compte client, paiement en ligne ou au retrait.
-Créneaux de retrait par jour et par heure, avec capacité.
-Comptes pour vos employés, calendrier partagé des commandes.
-Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, à vos conditions.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « boucherie » ou « boucher près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre boucherie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le samedi matin et la veille des fêtes, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour une boucherie
+D'abord vos viandes, au poids ou à la pièce, avec les précisions du client : épaisseur, découpe, sans os, ficelé. Ensuite, des formules qui font de belles commandes :
+- Vos pièces à la découpe : Bœuf, veau, agneau, porc, volaille : prix au kilo, poids voulu, précisions de découpe écrites par le client.
+- Le colis barbecue : Brochettes, merguez, chipolatas, côtes et marinades pour 4, 6 ou 8 personnes. Le best-seller de l'été.
+- Le colis de la semaine : Un assortiment pour la semaine d'une famille à prix fixe : vos habitués le commandent sans réfléchir.
+- Le plateau de charcuterie : Jambons, saucissons, terrines et pâtés tranchés pour l'apéro ou un buffet, par nombre de personnes.
+- La formule raclette ou fondue : Charcuterie pour raclette, viande pour fondue bourguignonne : calculée par convive, de octobre à mars.
+- Vos plats cuisinés : Bœuf bourguignon, blanquette, lasagnes, rôtis cuits : à retirer prêts à réchauffer.
+- Les commandes de fêtes : Chapon, dinde, rôti farci, foie gras : commandés des semaines à l'avance, garantis par une empreinte bancaire.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine (visible sur Google, sans commande)
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Une commande de fête couvre le mois.
-Comment démarrer
-
-Choisissez « Boucherie » sur la page d&rsquo;inscription et tapez le nom de votre commerce : votre boutique apparaît.
-Ajustez les prix au kilo, ajoutez vos spécialités et vos photos.
-Affichez le QR code en vitrine et sur le comptoir. Vos clients commandent la veille, vous préparez le matin.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment gérer la vente au poids ?
 R : Chaque produit peut être vendu au kilo, aux 100 g ou à la pièce. Le client indique la quantité et laisse ses précisions. Si le poids réel diffère, vous ajustez le montant avant l'encaissement.
@@ -247,55 +186,35 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour primeurs et maraîchers
 
-Vos clients composent leur panier depuis leur téléphone, le retirent en deux minutes ou se font livrer dans le quartier. Vous annoncez vos arrivages du jour par SMS. Rien ne se perd, tout est vendu d'avance.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change chez un primeur
-Le client pressé du midi est servi en deux minutes. Il a commandé le matin, son panier est prêt, il paie ou a déjà payé, il repart. Pendant ce temps, vous servez ceux qui prennent le temps de choisir.
-Les paniers de la semaine partent tout seuls. Un panier fixe à 15, 25 ou 35 € que vos habitués commandent chaque semaine, à retirer le samedi ou à se faire livrer le mardi soir. Vous connaissez les quantités avant d&rsquo;acheter au marché de gros ou de récolter.
-Vous annoncez l&rsquo;arrivage. Les premières fraises, les cèpes, les mirabelles : un SMS à vos clients depuis votre téléphone, en 30 secondes. Les SMS sont inclus.
-Pour les maraîchers en vente directe
-La boutique sert de point de commande pour la vente à la ferme, le marché et les dépôts : le client commande en ligne, choisit le point de retrait et le créneau, vous récoltez ce qui est vendu. La livraison locale se paramètre par zone, avec vos jours de tournée, votre minimum de commande et vos frais.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre primeur, découvrent vos produits et vous passent commande. Voici ce que ça change pour un primeur, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue primeur déjà rempli : fruits, légumes, herbes, produits d&rsquo;épicerie, paniers. Vente au kilo, à la pièce ou au panier.
-Mise en avant des produits de saison et de la provenance.
-Commande en 30 secondes sans compte client, paiement en ligne ou au retrait.
-Retrait par créneau, ou livraison locale à vos conditions : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
-Base clients, SMS d&rsquo;arrivage et de promotion inclus, comptes salariés.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « primeur » ou « fruits et légumes près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre primeur inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le samedi matin, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour un primeur
+D'abord vos fruits et légumes, au kilo ou à la pièce, comme sur votre étal : le client choisit ses produits et ses quantités. Ensuite, des formules toutes prêtes qui font grimper la commande et que vos clients n'auraient pas pensé à vous demander :
+- Vos produits du jour : Fruits, légumes, herbes, épicerie fine : au kilo ou à la pièce, avec la provenance. Un produit épuisé se masque en un geste.
+- Le panier de la semaine : Un prix fixe (15, 25 ou 35 €), la composition change selon les arrivages. Vos habitués le commandent chaque semaine.
+- Le panier salade de fruits : Tous les fruits pour une salade de fruits pour 6, la recette en description. Parfait pour un repas de famille.
+- Le panier petit-déj : Oranges à presser, fruits de saison, de quoi faire un petit-déjeuner du dimanche ou une réunion au bureau.
+- La box apéro : Tomates cerises, radis, carottes et concombre à croquer, olives, tapenade : l'apéro prêt à poser sur la table.
+- Le panier recette : Tout pour une ratatouille, une soupe d'hiver ou un pot-au-feu, avec les quantités pour 4.
+- La corbeille de fruits : En cadeau, ou livrée chaque lundi au bureau ou au cabinet d'à côté : une commande qui revient toute seule.
+- Les précommandes de saison : Premières fraises, cèpes, mirabelles, cagettes pour les confitures : réservées avant même l'arrivage.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine (visible sur Google, sans commande)
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement.
-Comment démarrer
-
-Choisissez « Primeur » à l&rsquo;inscription, tapez le nom de votre commerce : la boutique s&rsquo;affiche avec le catalogue de saison.
-Créez vos paniers, ajoutez vos photos, ouvrez vos créneaux de retrait et votre zone de livraison.
-QR code en boutique, lien sur Instagram, premier SMS à vos habitués.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment vendre des paniers dont la composition change chaque semaine ?
 R : Créez un produit « Panier de la semaine » avec un prix fixe et décrivez la composition du moment dans la fiche. Vous la mettez à jour en 30 secondes depuis votre téléphone, les clients commandent le panier sans se soucier du détail.
@@ -308,53 +227,33 @@ R : Oui. Les maraîchers utilisent la boutique pour prendre les commandes à l'a
 
 # Marchéo pour poissonneries
 
-Plateaux de fruits de mer, poisson pour le week-end, commandes des fêtes : vos clients commandent en ligne, règlent d'avance, retirent à l'heure prévue. La marée du matin part par SMS à vos habitués.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre poissonnerie
-Plus de plateau préparé pour rien. Un plateau de fruits de mer commandé pour le samedi soir et jamais retiré, c&rsquo;est une perte sèche. Avec l&rsquo;empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Le client qui vient ne paie rien de plus, celui qui ne vient pas vous rembourse.
-Le vendredi et le samedi se préparent la veille. Les commandes arrivent avec le créneau de retrait et les précisions, écaillé, vidé, en filets. Vous savez ce que vous devez commander à la criée.
-La marée se vend le matin même. Un SMS à vos clients quand le bar de ligne ou les coquilles arrivent. Ceux qui commandent dans l&rsquo;heure sont servis en premier.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre poissonnerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une poissonnerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue poissonnerie déjà rempli : poissons entiers, filets, crustacés, coquillages, plateaux, traiteur de la mer. Vente au kilo ou à la pièce.
-Champ « précisions » : écaillé, vidé, en filets, en darnes.
-Commande en 30 secondes sans compte, paiement en ligne ou au retrait, retrait par créneau avec capacité.
-Empreinte bancaire réglable, SMS d&rsquo;arrivage inclus, base clients.
-Livraison locale en option pour les plateaux à domicile : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « poissonnerie » ou « poissonnier près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre poissonnerie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le vendredi et la veille des fêtes, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour une poissonnerie
+D'abord votre marée du jour, entière ou préparée comme le client le veut : vidée, en filets, écaillée. Ensuite, des formules faciles à commander :
+- Votre marée du jour : Poissons, coquillages, crustacés avec le prix au kilo et la préparation souhaitée. Les arrivages du matin partent par SMS.
+- Le plateau de fruits de mer : Pour 2, 4 ou 6 : huîtres, crevettes, bulots, langoustines, préparé et réglé d'avance.
+- La box apéro de la mer : Crevettes, bulots, rillettes de poisson, tarama, saumon fumé : l'apéro du samedi en une commande.
+- Le kit à griller ou en papillote : Poisson préparé, citron, herbes, la recette : prêt à mettre au four ou sur le barbecue.
+- Vos plats cuisinés : Paëlla, soupe de poisson, brandade, à retirer le vendredi ou pour le week-end.
+- Les commandes des fêtes : Huîtres, homards, saumon, foie gras : réservés des semaines à l'avance, garantis par une empreinte bancaire.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine (visible sur Google, sans commande)
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Deux plateaux par mois couvrent l&rsquo;abonnement.
-Comment démarrer
-
-Choisissez « Poissonnerie » à l&rsquo;inscription, tapez le nom de votre commerce.
-Ajustez le catalogue, fixez vos créneaux du vendredi et du samedi, activez l&rsquo;empreinte sur les plateaux.
-QR code en vitrine, premier SMS d&rsquo;arrivage.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Le prix du poisson change tous les jours, comment gérer ?
 R : Vous modifiez les prix depuis votre téléphone en quelques secondes, et vous masquez d'un geste ce qui n'est pas arrivé. Pour les plateaux, le prix est fixe et la composition décrite dans la fiche.
@@ -367,53 +266,33 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour traiteurs
 
-Plateaux repas pour le bureau d'à côté, buffets d'anniversaire, plats du jour à emporter : vos clients commandent en ligne, garantissent leur commande, et vous savez exactement quoi préparer pour quand.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change chez un traiteur
-Chaque commande est garantie. Un buffet pour 30 personnes commandé et annulé la veille, ça ne se produit plus : l&rsquo;empreinte bancaire pré-autorise jusqu&rsquo;à 75 % du panier à la commande, et vous fixez votre politique d&rsquo;annulation. Le client peut aussi payer intégralement en ligne.
-Le planning se remplit tout seul. Chaque commande a sa date, son créneau de retrait ou de livraison, ses quantités et ses précisions. Le calendrier de la semaine vous dit ce que vous produisez chaque jour.
-Les plats du jour partent le matin. Vous publiez le menu de la semaine, les bureaux du quartier commandent avant 11 h, vous préparez les quantités vendues. Un SMS annonce le menu du lendemain.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre maison, découvrent vos produits et vous passent commande. Voici ce que ça change pour un traiteur, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue traiteur déjà rempli : plats du jour, plateaux repas, buffets, cocktails, desserts, menus événementiels.
-Quantités par personne, précisions et allergènes sur chaque produit.
-Commande en 30 secondes sans compte, paiement en ligne ou au retrait, acompte via empreinte.
-Retrait par créneau, livraison locale à vos conditions avec tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison.
-Base clients entreprises et particuliers, SMS inclus, comptes salariés.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « traiteur » ou « plateau repas près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre maison inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le devis demandé le dimanche soir, la réunion de bureau prévue la veille pour le lendemain, l'anniversaire organisé tard le soir : la commande arrive quand même, par écrit, avec la date et le nombre de personnes.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Pendant le service du midi, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour un traiteur
+D'abord vos plats du jour et votre carte, à emporter. Ensuite, ce qui fait les grosses commandes d'un traiteur :
+- Les plateaux repas : Pour les entreprises et les réunions : commandés la veille par nombre de personnes, livrés ou retirés à l'heure.
+- Buffets et cocktails : Pièces cocktail par 20, 50 ou 100, buffets froids : avec une empreinte bancaire pour garantir la commande.
+- Les plats du jour à emporter : Votre menu du jour en ligne le matin, retiré sans attendre à midi.
+- La box apéro : Planches de charcuterie et fromages, verrines, mini-quiches : l'apéritif d'un samedi soir prêt à servir.
+- Les formules événements : Anniversaires, communions, mariages, départs en retraite : formules par personne, réservées avec acompte.
+- Les menus de fêtes : Réveillons de Noël et du Nouvel An, Pâques : menus complets précommandés au bon nombre.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Un seul buffet couvre plusieurs mois.
-Comment démarrer
-
-Choisissez « Traiteur » à l&rsquo;inscription et tapez le nom de votre commerce.
-Publiez vos plateaux et votre menu de la semaine, ouvrez vos créneaux et votre zone de livraison.
-Envoyez le lien aux entreprises du quartier, imprimez le QR code.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Peut-on demander un acompte sur les grosses commandes ?
 R : Oui, de deux façons : le paiement intégral en ligne, ou l'empreinte bancaire qui pré-autorise jusqu'à 75 % du panier et vous laisse prélever selon votre politique d'annulation en cas de désistement.
@@ -426,97 +305,34 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour fromageries et crèmeries
 
-Plateaux de fromages pour un dîner, commandes de raclette et de fondue en hiver, fêtes de fin d'année : vos clients commandent en ligne, vous composez au calme, ils retirent à l'heure prévue.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre fromagerie
-Les plateaux se commandent à l&rsquo;avance. Un plateau pour 6 personnes, avec les préférences du client, commandé pour le samedi 18 h. Vous le composez le samedi matin, avec les affinages du moment.
-L&rsquo;hiver se prépare. Raclette, fondue, tartiflette : des produits saisonniers commandés en ligne au poids ou par personne, avec le créneau de retrait. Vous anticipez les quantités.
-Vos affinages se racontent. Chaque fiche produit a sa description, son origine, son AOP. Les clients découvrent, commandent, reviennent.
-Le calendrier d&rsquo;une fromagerie
-Peu de métiers de bouche ont une saisonnalité aussi marquée, et c&rsquo;est exactement ce qui rend la commande à l&rsquo;avance rentable : vous savez des mois d&rsquo;avance quand la demande va monter.
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre fromagerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une fromagerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « fromagerie » ou « fromager près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre fromagerie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le samedi matin et en décembre, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
+## Ce qui marche bien en ligne pour une fromagerie
+D'abord vos fromages à la coupe, au poids, avec l'affinage et la provenance. Ensuite, les formules qui font de belles commandes :
+- Vos fromages à la coupe : Pâtes molles, pressées, chèvres, AOP : au poids, avec vos conseils d'affinage et d'accord.
+- Le plateau de fromages : Composé par vos soins pour 4, 8 ou 12 convives, pour un dîner, un buffet ou une fin de repas.
+- Raclette, fondue, tartiflette : Fromage et charcuterie calculés par personne, d'octobre à mars : la commande d'hiver par excellence.
+- La planche fromage et charcuterie : L'apéro dînatoire prêt à poser sur la table, avec le pain et la confiture de figue.
+- Le coffret cadeau : Trois ou quatre fromages, une confiture, un vin ou un cidre : pour les cadeaux d'entreprise et les fêtes.
+- La crèmerie : Beurre à la motte, crème crue, œufs, yaourts fermiers : réservés pour le week-end.
+- Les plateaux de fêtes : Pièces d'exception et plateaux de Noël, commandés dès novembre, garantis par une empreinte bancaire.
 
-Période
-Ce qui se commande
-À ouvrir
-
-
-
-
-Octobre à mars
-Raclette, fondue, tartiflette, au poids ou par personne
-Dès les premiers froids, avec une formule par nombre de convives
-
-
-Décembre
-Plateaux de fêtes, pièces d&rsquo;exception, beurres et crèmes
-Début novembre, date limite ferme mi-décembre
-
-
-Printemps et été
-Plateaux d&rsquo;apéritif, chèvres frais, fromages de pique-nique
-Aux beaux jours, avec des formats plus petits
-
-
-Toute l&rsquo;année
-Plateaux pour dîners, cadeaux, buffets d&rsquo;entreprise
-En permanence, par nombre de personnes
-
-
-
-La formule par nombre de convives est le format qui marche le mieux en fromagerie. « Raclette pour 4, 250 g par personne » ne demande aucun calcul au client, alors qu&rsquo;un prix au kilo l&rsquo;oblige à deviner une quantité qu&rsquo;il ne connaît pas. Gardez la vente au poids pour la coupe, et proposez des formules pour tout ce qui se consomme à plusieurs.
-Ce qui est inclus
-
-Boutique à vos couleurs avec le catalogue fromagerie déjà rempli : pâtes molles, pressées, persillées, chèvres, brebis, crèmerie, plateaux.
-Vente au poids, à la pièce ou par personne, mise en avant des produits de saison.
-Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte bancaire réglable.
-Retrait par créneau, livraison locale en option.
-Base clients, SMS inclus pour annoncer un affinage ou une promotion.
-
-Combien ça coûte
-
-
-
-Offre
-Installation
-Par mois
-Pour
-
-
-
-
-Vitrine
-249 €
-19 €
-Être visible sur Google et présenter vos fromages, sans vente en ligne
-
-
-Click &amp; Collect
-399 €
-39 €
-Plateaux et formules commandés à l&rsquo;avance, créneaux, empreinte, SMS
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-Tout ça, plus la livraison dans votre zone
-
-
-
-0 % de commission, sans engagement. Deux plateaux de fêtes par mois remboursent l&rsquo;abonnement.
-Comment démarrer
-
-Choisissez « Fromagerie » à l&rsquo;inscription, tapez le nom de votre commerce.
-Ajustez le catalogue, créez vos plateaux et vos formules raclette.
-QR code en boutique, lien sur vos réseaux.
-
-Pour aller plus loin
-
-Vendre au poids en ligne : proposer des poids d&rsquo;un clic, annoncer l&rsquo;ajustement à la pesée et choisir le bon mode de paiement pour la coupe.
-Organiser ses précommandes des fêtes : dates limites, créneaux et acomptes pour décembre.
-Régler sa fiche Google Business : être trouvé sur « fromagerie » plus le nom de votre ville, et mettre le lien de commande au bon endroit.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment vendre un plateau dont la composition dépend des affinages du moment ?
 R : Créez des plateaux par nombre de personnes avec un prix fixe et un champ où le client indique ses préférences. Vous composez avec ce que vous avez de meilleur le jour du retrait.
@@ -533,53 +349,33 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour fleuristes
 
-Un bouquet commandé à 9 h, prêt à 12 h, retiré en 30 secondes. Les grandes dates se préparent la veille au lieu de se subir au téléphone. Et vous livrez dans votre zone, à vos conditions, sans plateforme qui prend 30 %.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change chez un fleuriste
-La Saint-Valentin et la fête des mères se préparent. Les commandes arrivent en ligne plusieurs jours avant, avec le budget, le style et l&rsquo;heure de retrait ou de livraison. Vous composez la veille, vous ne répondez plus au téléphone pendant que vous servez.
-Zéro commission sur la livraison. Les plateformes de fleurs prennent 25 à 30 % de chaque bouquet livré. Avec Marchéo, vous livrez vous-même dans votre zone, avec vos frais, vos créneaux et votre minimum de commande.
-Deuil, mariage, événements : des commandes garanties. L&rsquo;empreinte bancaire ou le paiement en ligne sécurisent les grosses commandes et les compositions sur mesure.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boutique, découvrent vos produits et vous passent commande. Voici ce que ça change pour un fleuriste, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue fleuriste déjà rempli : bouquets par budget, compositions, plantes, roses à l&rsquo;unité, événements. Le client choisit un budget et un style, vous composez.
-Champ « message pour la carte » et « précisions » sur chaque commande.
-Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte réglable.
-Retrait par créneau, livraison locale avec adresse et itinéraire, tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour livrer vous-même.
-Base clients, SMS inclus pour rappeler les grandes dates à vos habitués.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « fleuriste » ou « livraison de fleurs près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre boutique inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : À la Saint-Valentin, à la fête des mères et à la Toussaint, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour un fleuriste
+D'abord vos bouquets et vos plantes, avec des prix clairs. Ensuite, les commandes qui font l'année d'un fleuriste :
+- Les bouquets à prix fixe : Le bouquet du moment à 25, 35 ou 50 € : vous composez selon vos arrivages, le client choisit le budget.
+- Les grandes dates précommandées : Saint-Valentin, fête des mères, fête des grands-mères : commandées la semaine d'avant, préparées la veille.
+- Le deuil : Gerbes, couronnes, coussins : commandés par la famille à distance et livrés au funérarium ou à l'église.
+- Mariages et événements : Bouquet de mariée, boutonnières, centres de table, avec un acompte pour bloquer la date.
+- Plantes et compositions cadeaux : Orchidées, plantes vertes, compositions en coupe, avec une carte message écrite par le client.
+- Les fleurs des entreprises : Le bouquet de l'accueil, du restaurant ou de l'hôtel d'à côté, livré chaque semaine.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Un bouquet livré par semaine sans commission couvre l&rsquo;abonnement.
-Comment démarrer
-
-Choisissez « Fleuriste » à l&rsquo;inscription, tapez le nom de votre boutique.
-Ajustez vos bouquets par budget, ajoutez vos photos, ouvrez votre zone de livraison.
-QR code en vitrine, lien sur Instagram, SMS de rappel avant les grandes dates.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Mes bouquets ne sont jamais identiques, comment les vendre en ligne ?
 R : Vendez par budget et par style : « Bouquet du fleuriste, 35 € », « Composition champêtre, 50 € ». Le client précise ses couleurs préférées et le message de la carte, vous composez.
@@ -590,55 +386,33 @@ R : Ouvrez des créneaux de retrait et de livraison avec une capacité maximale 
 
 # Marchéo pour pizzerias
 
-Vos clients commandent leurs pizzas depuis leur téléphone, choisissent leur heure, viennent chercher. Vous gardez 100 % du prix au lieu de 70 % sur les plateformes, et la base clients vous appartient.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre pizzeria
-Vous récupérez la commission. Sur une pizza à 14 € vendue via une plateforme de livraison, 3,50 à 4,20 € partent en commission. Sur Marchéo, c&rsquo;est 0 €. Cent pizzas par semaine, c&rsquo;est 350 à 420 € de marge retrouvés chaque semaine.
-Le coup de feu du soir se lisse. Les commandes en ligne sont réparties dans des créneaux de 15 minutes avec une capacité maximale. Vous n&rsquo;avez plus 12 pizzas commandées pour 20 h et rien pour 20 h 30.
-Le téléphone arrête de sonner. Le client commande seul, avec ses suppléments et ses précisions, paie en ligne ou au retrait, et reçoit un SMS quand c&rsquo;est prêt.
-Vous gardez le contact. Sur une plateforme, le client est le sien. Sur votre boutique, vous avez son numéro, son historique, et vous pouvez lui envoyer une promo le mardi soir.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre pizzeria, découvrent vos produits et vous passent commande. Voici ce que ça change pour une pizzeria, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue pizzeria déjà rempli : pizzas classiques et spéciales, tailles, suppléments, boissons, desserts.
-Options et suppléments sur chaque produit, précisions du client.
-Créneaux de retrait de 15 ou 30 minutes avec capacité, commande en 30 secondes sans compte.
-Réservation de table en ligne avec empreinte anti no-show, pour la salle.
-Base clients, SMS inclus, comptes pour l&rsquo;équipe.
-Livraison locale en option : Marchéo ne livre pas à votre place, vous livrez vous-même avec l&rsquo;outil, à vos conditions.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « pizzeria » ou « pizza à emporter près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre pizzeria inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le client qui tombe sur occupé et commande ailleurs, la commande passée à 17 h pour 20 h : elle arrive par écrit, avec l'heure choisie. Et sans les 25 à 30 % de commission des plateformes.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Pendant le coup de feu du soir, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour une pizzeria
+D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce qui fait monter le montant de chaque commande :
+- Votre carte et vos suppléments : Bases, tailles, ingrédients en plus ou en moins : le client compose sans erreur, vous lisez la commande écrite.
+- Les formules famille : Trois pizzas, une boisson et un dessert à prix rond : le vendredi soir réglé en un clic.
+- La pizza du moment : Une recette de saison mise en avant en haut de la carte et annoncée par SMS à vos habitués.
+- Desserts, boissons, entrées : Tiramisu, boissons fraîches, salades : proposés au moment de valider, ils augmentent chaque commande.
+- Les commandes groupées : Anniversaires, soirées match, équipes de bureau : dix pizzas commandées à l'avance pour une heure précise.
+- La réservation de table : Pour ceux qui mangent sur place, avec une empreinte bancaire pour les grandes tablées.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine
-249 €
-19 €
-
-
-Click &amp; Collect + Réservation
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Dix pizzas par mois hors plateforme remboursent l&rsquo;abonnement.
-Comment démarrer
-
-Choisissez « Pizzeria » à l&rsquo;inscription, tapez le nom de votre établissement.
-Ajustez la carte, les tailles et les suppléments, réglez vos créneaux du soir.
-QR code sur les flyers et les boîtes à pizza, lien sur Instagram et Google Maps.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect + Réservation : 399 € d'installation, 39 € par mois. Commandes à emporter avec créneaux, réservation de table, avis clients, SMS.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Dois-je quitter Uber Eats ou Deliveroo ?
 R : Non. Beaucoup de pizzerias gardent les plateformes pour les nouveaux clients et orientent leurs habitués vers leur boutique Marchéo, où il n'y a pas de commission. Un flyer dans chaque boîte suffit.
@@ -651,54 +425,33 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour restaurants
 
-Vos clients réservent une table en ligne à toute heure, et une empreinte bancaire garantit qu'ils viennent. Ceux qui préfèrent emporter commandent sans commission. Vous gardez la main sur votre salle et sur vos clients.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change dans votre restaurant
-Le no-show ne vous coûte plus rien. Une table de 6 réservée un samedi soir et jamais honorée, c&rsquo;est un service perdu. Avec l&rsquo;empreinte bancaire par couvert, réglable, le client s&rsquo;engage. Vous fixez votre politique d&rsquo;annulation et le montant retenu en cas d&rsquo;absence.
-Les réservations arrivent la nuit. Le client réserve depuis Google, Instagram ou votre site, à 23 h, sans vous appeler. Vous voyez le plan de salle du lendemain le matin.
-Le à emporter sans commission. Vos plats du jour et vos menus à emporter se commandent en ligne, avec un créneau de retrait. Aucune commission, contre 25 à 30 % sur les plateformes.
-Vos clients sont à vous. Historique, préférences, anniversaires. Un SMS pour annoncer le nouveau menu ou remplir un mardi soir.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre restaurant, découvrent vos produits et vous passent commande. Voici ce que ça change pour un restaurant, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Page à vos couleurs avec vos horaires, votre carte et le bouton « Réserver ».
-Réservation en ligne 24 h/24, gestion des couverts et des services, empreinte bancaire par couvert réglable, politique d&rsquo;annulation paramétrable.
-Click &amp; collect pour la vente à emporter, avec le catalogue restaurant déjà rempli à adapter.
-SMS de rappel de réservation inclus, base clients, comptes pour l&rsquo;équipe.
-Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, à vos conditions.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « restaurant » ou « restaurant ouvert ce soir près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre restaurant inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : La réservation faite à 23 h pour le lendemain, le client qui tombe sur le répondeur pendant le service, celui qui veut emporter : tout arrive par écrit, à toute heure.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Pendant le service, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Combien ça coûte
+## Ce qui marche bien en ligne pour un restaurant
+D'abord la réservation de table, ouverte 24 h sur 24. Ensuite, tout ce que votre cuisine peut vendre en dehors de la salle :
+- La réservation de table : En ligne à toute heure, avec une empreinte bancaire contre les tables qui ne viennent pas.
+- Votre carte à emporter : Vos plats phares commandés et réglés d'avance, retirés à l'heure, sans commission de plateforme.
+- Le menu du midi à emporter : Pour les bureaux d'à côté : commandé le matin, prêt à 12 h 15.
+- Groupes et soirées : Menus de groupe, privatisations, Saint-Valentin, réveillon : réservés avec empreinte et menu choisi à l'avance.
+- La box du week-end : Brunch du dimanche, plat signature à réchauffer, box apéro : une recette en plus les jours de fermeture.
+- Les services creux : Un SMS à vos clients le mardi soir pour remplir la salle avec le plat du jour.
 
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine
-249 €
-19 €
-
-
-Click &amp; Collect + Réservation
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Une table de 4 sauvée d&rsquo;un no-show couvre le mois.
-Comment démarrer
-
-Choisissez « Restaurant » à l&rsquo;inscription, tapez le nom de votre établissement.
-Réglez vos services, vos couverts, votre politique d&rsquo;annulation et l&rsquo;empreinte.
-Ajoutez le bouton « Réserver » sur Google Maps et Instagram.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect + Réservation : 399 € d'installation, 39 € par mois. Réservation de table avec empreinte anti no-show, vente à emporter, avis clients, SMS.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : L'empreinte bancaire fait-elle fuir les clients ?
 R : Les restaurants qui l'utilisent constatent l'inverse : les clients sérieux ne sont pas gênés, et les no-shows disparaissent. Vous pouvez la limiter aux grandes tables ou aux soirs de forte affluence.
@@ -711,65 +464,33 @@ R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil p
 
 # Marchéo pour fast-foods et food-trucks
 
-Burgers, tacos, kebabs, bowls : vos clients commandent depuis leur téléphone et viennent chercher au créneau choisi. Pour les food-trucks, vos habitués savent où vous êtes chaque jour. Sans commission.
+Développer son commerce grâce à internet : ça consiste en quoi ?
 
-Ce que ça change pour un fast-food ou un food-truck
-Le midi se lisse. Les commandes en ligne sont réparties par créneau de 10 ou 15 minutes avec une capacité. Le client qui a commandé à 11 h 40 pour 12 h 30 passe devant la file, récupère, repart.
-Vous gardez la commission. Les plateformes prennent 25 à 30 % sur chaque commande. Sur votre boutique, c&rsquo;est 0 %. Sur un menu à 12 €, ce sont 3 à 3,60 € par commande qui restent chez vous.
-Vos clients savent où vous êtes. Pour un food-truck, l&rsquo;emplacement du jour est annoncé en 30 secondes par SMS et par notification à vos habitués. Le menu du jour est publié en même temps.
-Ce qui est inclus
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre enseigne, découvrent vos produits et vous passent commande. Voici ce que ça change pour un fast-food ou un food-truck, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
 
-Boutique à vos couleurs avec le catalogue fast-food déjà rempli : menus, burgers, tacos, sandwichs, boissons, desserts, suppléments.
-Options et suppléments sur chaque produit, commande en 30 secondes sans compte, paiement en ligne ou au retrait.
-Créneaux de retrait courts avec capacité, SMS quand la commande est prête.
-Menu du jour et emplacement du jour, notifications push et SMS inclus.
-Base clients, comptes pour l&rsquo;équipe, livraison locale en option.
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « fast-food » ou « burger à emporter près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre enseigne inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : La commande passée pendant le cours ou la réunion pour midi pile, le client qui voit la file et repart : la commande arrive par écrit, payée, avec le créneau choisi. Et sans les commissions des plateformes.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Pendant le rush du midi, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
 
-Régler ses créneaux du midi
-Sur un service qui dure 90 minutes, c&rsquo;est le seul réglage qui compte vraiment. Trois repères :
+## Ce qui marche bien en ligne pour un fast-food ou un food-truck
+D'abord votre carte et vos menus, avec les sauces et les suppléments. Ensuite, ce qui fait revenir et monter les commandes :
+- Votre carte et vos menus : Burgers, tacos, kebabs, bowls, avec sauces, suppléments et formules : la commande arrive sans erreur.
+- La commande pour la pause déj : Commandée à 11 h, prête à 12 h 10 : le client passe devant la file.
+- L'emplacement du jour : Pour les food-trucks : vos habitués savent où vous êtes aujourd'hui et commandent avant d'arriver.
+- Les commandes de groupe : L'équipe du chantier, le bureau, les étudiants : quinze menus commandés d'un coup pour une heure précise.
+- L'offre du moment : Le burger du mois, le menu étudiant, la formule du vendredi : annoncés par SMS à vos clients.
+- Desserts et boissons : Proposés au moment de valider, ils augmentent chaque commande sans effort.
 
-Des tranches de 10 ou 15 minutes, jamais plus. Votre client a une pause déjeuner, pas une soirée.
-La moitié de votre capacité ouverte en ligne, l&rsquo;autre moitié gardée pour les clients qui arrivent au comptoir. Sur un poste qui sort 20 plats par quart d&rsquo;heure, cela fait 8 à 10 commandes réservées par créneau.
-Une heure limite de commande, 11 h ou 11 h 15 pour le midi. Au-delà vous êtes en production, vous n&rsquo;avez plus les mains libres pour absorber un imprévu.
-
-Commencez bas et augmentez semaine après semaine : un client qui attend un plat annoncé prêt est plus mécontent qu&rsquo;un client qui fait la queue. Les créneaux pleins disparaissent tout seuls de la liste, personne ne réserve un horaire que vous ne pouvez pas tenir.
-Les commandes de bureau
-La réunion qui commande douze menus est votre meilleure vente de la semaine, et la plus risquée : elle occupe une part entière de votre production et elle s&rsquo;annule parfois la veille au soir. L&rsquo;empreinte bancaire optionnelle réserve jusqu&rsquo;à 75 % du panier sur la carte du client sans le débiter, et libère la somme automatiquement 24 heures après le retrait. Le client sérieux n&rsquo;y voit rien passer, l&rsquo;autre réfléchit avant de réserver.
-Combien ça coûte
-
-
-
-Offre
-Installation
-Par mois
-
-
-
-
-Vitrine
-249 €
-19 €
-
-
-Click &amp; Collect
-399 €
-39 €
-
-
-Click &amp; Collect + Livraison
-549 €
-59 €
-
-
-
-0 % de commission, sans engagement. Une quinzaine de commandes par mois passées sur votre boutique plutôt que sur une plateforme couvrent l&rsquo;abonnement.
-Comment démarrer
-
-Choisissez « Fast-food » à l&rsquo;inscription, tapez le nom de votre enseigne.
-Ajustez la carte, les menus et les suppléments, réglez vos créneaux du midi.
-QR code sur le comptoir et le camion, lien sur Instagram, premier SMS à vos habitués.
-
-Pour un camion, la méthode complète est détaillée dans notre guide du click &amp; collect pour food-truck : emplacement du jour, cadence des créneaux et passage des habitués. Si vous comparez encore avec les plateformes, voyez le click &amp; collect sans commission face à Uber Eats et Deliveroo.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment gérer un emplacement qui change chaque jour ?
 R : Vous indiquez l'emplacement du jour depuis votre téléphone, il s'affiche sur votre boutique et part en notification à vos clients. Les commandes sont retirées sur place au créneau choisi.

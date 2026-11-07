@@ -244,6 +244,28 @@ aside{position:sticky;top:76px}
 .gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
 @media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
 footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.idees{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:14px 0 22px;padding:0;list-style:none}
+.idees li{background:#fff;border:1px solid var(--creme-fonce);border-radius:14px;padding:14px 16px;margin:0}
+.idees .ie{font-size:24px;line-height:1;display:block;margin:0 0 6px}.idees strong{display:block;font-size:16px;color:var(--bleu);margin:0 0 4px;line-height:1.3}
+.idees p{margin:0;font-size:14px;color:#2b3a52;line-height:1.5}
+.calc{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px;margin:10px 0 26px}
+.calc h3{margin:0 0 4px;font-size:20px}.calc>p{margin:0 0 16px;font-size:15px;color:var(--gris)}
+.calc-champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;margin:0 0 16px}@media(max-width:640px){.calc-champs{grid-template-columns:1fr}.calc{padding:18px 14px}}
+.calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
+.calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
+.calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
+.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
+.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
+.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
+.calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
+.calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
+.calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
+.calc-phrase{font-size:15px;margin:0 0 6px}.calc-note{font-size:12px;color:var(--gris);margin:0}
+.etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
+.etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.etapes strong{display:block;font-size:17px}
 </style>
 </head>
 <body>
@@ -260,58 +282,58 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <div class="grid">
 <article>
 <p class="eyebrow">🥩 Boucherie</p>
-<h1>Le click &amp; collect fait pour les boucheries</h1>
-<p class="lead">Rôtis, plateaux, volailles de fête, pièces sur mesure : vos clients commandent en ligne avec leurs précisions de découpe et de poids. Vous préparez, ils retirent à l'heure prévue. Les commandes de fêtes sont réglées d'avance.</p>
+<h1>Développer son commerce grâce à internet : ça consiste en quoi ?</h1>
+<p class="lead">Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boucherie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une boucherie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.</p>
 
-<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte pour votre boucherie</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Colis, barbecue, rôti du dimanche, commandes des fêtes : vos clients réservent à toute heure, même boutique fermée, et l'empreinte bancaire vous protège des commandes non retirées. Zéro commission.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre boucherie apparaît sur Google avec son catalogue, ses prix et ses créneaux. Un lien pour Instagram et votre fiche Google, des SMS pour annoncer la viande du moment.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Les commandes arrivent par écrit, avec la découpe et le poids demandés : fini les appels pendant le coup de feu et les erreurs de quantité.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription?metier=boucherie">Voir ma démo gratuite</a></section>
-<h2>Ce que ça change dans votre boucherie</h2>
-<p><strong>Noël, Pâques, les barbecues d&rsquo;été : plus de carnet.</strong> Chaque commande arrive avec le nom, le téléphone, le créneau de retrait et les précisions du client, épaisseur, poids, préparation. Vous imprimez la liste du jour et vous préparez dans l&rsquo;ordre.</p>
-<p><strong>Les commandes de fêtes sont garanties.</strong> Un chapon à 80 € commandé et jamais retiré, ça n&rsquo;arrive plus : avec l&rsquo;empreinte bancaire, jusqu&rsquo;à 75 % du panier est pré-autorisé à la commande. Le client sérieux ne paie rien de plus, l&rsquo;empreinte est libérée 24 heures après le retrait.</p>
-<p><strong>Vos habitués reviennent.</strong> Base clients avec l&rsquo;historique, SMS pour annoncer un arrivage, une promo sur les merguez le vendredi, ou la fermeture d&rsquo;août. Les SMS sont inclus dans l&rsquo;abonnement.</p>
-<h2>Ce qui est inclus</h2>
-<ul>
-<li>Boutique à vos couleurs avec le <strong>catalogue boucherie déjà rempli</strong> : bœuf, veau, agneau, porc, volaille, charcuterie, plats préparés. Vente au poids ou à la pièce, prix au kilo.</li>
-<li>Champ « précisions » sur chaque produit : découpe, épaisseur, cuisson, sans os.</li>
-<li>Commande en 30 secondes, sans compte client, paiement en ligne ou au retrait.</li>
-<li>Créneaux de retrait par jour et par heure, avec capacité.</li>
-<li>Comptes pour vos employés, calendrier partagé des commandes.</li>
-<li>Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l&rsquo;outil pour organiser votre propre livraison, à vos conditions.</li>
-</ul>
+
+<section class="gains" aria-labelledby="apports"><h2 id="apports">Ce qu'un site à votre image change pour vous</h2><ol><li><span class="gi">📍</span><div><strong>Les clients du coin vous trouvent</strong><p>Quand quelqu'un cherche « boucherie » ou « boucher près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.</p></div></li><li><span class="gi">✨</span><div><strong>Une image pro</strong><p>Un site à votre nom, à vos couleurs, avec vos photos : votre boucherie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.</p></div></li><li><span class="gi">🛍️</span><div><strong>Le click &amp; collect, et la livraison si vous le voulez</strong><p>Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.</p></div></li><li><span class="gi">📱</span><div><strong>Vous vous modernisez</strong><p>Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.</p></div></li><li><span class="gi">➕</span><div><strong>Des commandes que vous n'auriez pas prises</strong><p>Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.</p></div></li><li><span class="gi">⭐</span><div><strong>Des avis clients, automatiquement</strong><p>Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.</p></div></li><li><span class="gi">☎️</span><div><strong>En prime : fini le téléphone pendant le rush</strong><p>Le samedi matin et la veille des fêtes, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.</p></div></li></ol>
+<a class="btn" href="/inscription?metier=boucherie">Voir ma démo gratuite</a></section>
+<h2>Ce qui marche bien en ligne pour une boucherie</h2>
+<p>D'abord vos viandes, au poids ou à la pièce, avec les précisions du client : épaisseur, découpe, sans os, ficelé. Ensuite, des formules qui font de belles commandes :</p>
+<ul class="idees"><li><span class="ie">🥩</span><strong>Vos pièces à la découpe</strong><p>Bœuf, veau, agneau, porc, volaille : prix au kilo, poids voulu, précisions de découpe écrites par le client.</p></li><li><span class="ie">🔥</span><strong>Le colis barbecue</strong><p>Brochettes, merguez, chipolatas, côtes et marinades pour 4, 6 ou 8 personnes. Le best-seller de l'été.</p></li><li><span class="ie">📦</span><strong>Le colis de la semaine</strong><p>Un assortiment pour la semaine d'une famille à prix fixe : vos habitués le commandent sans réfléchir.</p></li><li><span class="ie">🥓</span><strong>Le plateau de charcuterie</strong><p>Jambons, saucissons, terrines et pâtés tranchés pour l'apéro ou un buffet, par nombre de personnes.</p></li><li><span class="ie">🫕</span><strong>La formule raclette ou fondue</strong><p>Charcuterie pour raclette, viande pour fondue bourguignonne : calculée par convive, de octobre à mars.</p></li><li><span class="ie">🍲</span><strong>Vos plats cuisinés</strong><p>Bœuf bourguignon, blanquette, lasagnes, rôtis cuits : à retirer prêts à réchauffer.</p></li><li><span class="ie">🦃</span><strong>Les commandes de fêtes</strong><p>Chapon, dinde, rôti farci, foie gras : commandés des semaines à l'avance, garantis par une empreinte bancaire.</p></li></ul>
+<p>Toutes ces idées sont des produits comme les autres sur votre site : vous les créez, les modifiez ou les retirez en quelques secondes depuis votre téléphone.</p>
 <h2>Combien ça coûte</h2>
-<table>
-<thead>
-<tr>
-<th>Offre</th>
-<th>Installation</th>
-<th>Par mois</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vitrine (visible sur Google, sans commande)</td>
-<td>249 €</td>
-<td>19 €</td>
-</tr>
-<tr>
-<td>Click &amp; Collect</td>
-<td>399 €</td>
-<td>39 €</td>
-</tr>
-<tr>
-<td>Click &amp; Collect + Livraison</td>
-<td>549 €</td>
-<td>59 €</td>
-</tr>
-</tbody>
-</table>
-<p><strong>0 % de commission</strong>, sans engagement. Une commande de fête couvre le mois.</p>
+<table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td><td>249 €</td><td>19 €</td></tr><tr><td><strong>Click &amp; Collect</strong></td><td>Commandes en ligne avec retrait, avis clients, SMS, base clients</td><td>399 €</td><td>39 €</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td><td>549 €</td><td>59 €</td></tr></tbody></table>
+<p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
+<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+<h3 id="calc-titre">Est-ce rentable pour votre boucherie ? Faites le calcul</h3>
+<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<div class="calc-champs">
+<div><label for="c-clients">Clients par mois dans votre commerce</label><div class="ligne"><input type="range" id="c-clients" data-k="clients" min="100" max="6000" step="50" value="1000" data-u=""><output for="c-clients"></output></div></div>
+<div><label for="c-panier">Montant moyen d'une commande en ligne</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="40" data-u=" €"><output for="c-panier"></output></div></div>
+<div><label for="c-pct">Part de vos clients qui commandent en ligne</label><div class="ligne"><input type="range" id="c-pct" data-k="pct" min="1" max="30" step="1" value="5" data-u=" %"><output for="c-pct"></output></div></div>
+<div><label for="c-marge">Votre marge moyenne sur les ventes</label><div class="ligne"><input type="range" id="c-marge" data-k="marge" min="10" max="80" step="5" value="30" data-u=" %"><output for="c-marge"></output></div></div>
+</div>
+<fieldset class="calc-offres"><legend>Formule</legend><label><input type="radio" name="offre-boucherie" value="39" data-install="399" checked>Click &amp; Collect · 39 €/mois</label><label><input type="radio" name="offre-boucherie" value="59" data-install="549">Click &amp; Collect + Livraison · 59 €/mois</label></fieldset>
+<div class="calc-res" aria-live="polite">
+<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
+<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
+<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+</div>
+<p class="calc-phrase" data-r="phrase"></p>
+<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+</section>
+<script>(function(){var r=document.getElementById('calculateur');if(!r)return;
+var f=function(n){return Math.round(n).toLocaleString('fr-FR')};
+function maj(){var v={};r.querySelectorAll('input[type=range]').forEach(function(i){v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u});
+var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var q=function(k){return r.querySelector('[data-r='+k+']')};
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
+if(net>0){var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}
+q('phrase').textContent=t}
+r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
-<ol>
-<li>Choisissez « Boucherie » sur la page d&rsquo;inscription et tapez le nom de votre commerce : votre boutique apparaît.</li>
-<li>Ajustez les prix au kilo, ajoutez vos spécialités et vos photos.</li>
-<li>Affichez le QR code en vitrine et sur le comptoir. Vos clients commandent la veille, vous préparez le matin.</li>
-</ol><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Comment gérer la vente au poids ?</summary><p>Chaque produit peut être vendu au kilo, aux 100 g ou à la pièce. Le client indique la quantité et laisse ses précisions. Si le poids réel diffère, vous ajustez le montant avant l'encaissement.</p></details><details><summary>Peut-on prendre les commandes de Noël plusieurs semaines à l'avance ?</summary><p>Oui. Vous ouvrez des créneaux de retrait à la date voulue, par exemple les 23 et 24 décembre de 8 h à 13 h, avec une capacité par créneau. Les commandes se réservent dès que le créneau est ouvert.</p></details><details><summary>Que se passe-t-il si un client ne vient pas chercher sa commande de fête ?</summary><p>Avec l'empreinte bancaire activée, jusqu'à 75 % du panier a été pré-autorisé à la commande. Vous décidez du montant prélevé en cas d'absence, selon votre politique d'annulation affichée au client.</p></details><details><summary>Mes clients âgés commandent par téléphone, ça change quoi ?</summary><p>Rien pour eux. La boutique en ligne s'ajoute au téléphone, elle ne le remplace pas. En pratique, ce sont souvent leurs enfants qui commandent pour eux depuis la boutique.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
-<section class="cta-final"><h2>Votre boutique, prête en 30 secondes</h2><p>Choisissez « Boucherie », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+<ol class="etapes">
+<li><strong>Créez votre démo gratuite et sans engagement</strong>Sur la page d'inscription, choisissez « Boucherie » et tapez le nom de votre commerce. En 30 secondes, votre site apparaît à votre nom, avec un catalogue boucherie et charcuterie déjà rempli. Pas de carte bancaire, rien à installer.</li>
+<li><strong>Regardez-la, testez-la, ajustez-la</strong>Passez une commande comme le ferait un client. Changez les prix, ajoutez vos photos et vos spécialités, les idées ci-dessus, vos horaires de retrait et votre zone de livraison. Prenez le temps qu'il faut : la démo ne vous engage à rien.</li>
+<li><strong>Mettez-la en ligne quand vous êtes prêt</strong>Vous choisissez votre formule, et votre site est publié. On vous aide au lancement : QR code pour la vitrine, lien pour Google Maps et Instagram, premier SMS à vos habitués.</li>
+</ol>
+<p><a class="btn" href="/inscription?metier=boucherie">Créer ma démo gratuite</a></p>
+<h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Comment gérer la vente au poids ?</summary><p>Chaque produit peut être vendu au kilo, aux 100 g ou à la pièce. Le client indique la quantité et laisse ses précisions. Si le poids réel diffère, vous ajustez le montant avant l'encaissement.</p></details><details><summary>Peut-on prendre les commandes de Noël plusieurs semaines à l'avance ?</summary><p>Oui. Vous ouvrez des créneaux de retrait à la date voulue, par exemple les 23 et 24 décembre de 8 h à 13 h, avec une capacité par créneau. Les commandes se réservent dès que le créneau est ouvert.</p></details><details><summary>Que se passe-t-il si un client ne vient pas chercher sa commande de fête ?</summary><p>Avec l'empreinte bancaire activée, jusqu'à 75 % du panier a été pré-autorisé à la commande. Vous décidez du montant prélevé en cas d'absence, selon votre politique d'annulation affichée au client.</p></details><details><summary>Mes clients âgés commandent par téléphone, ça change quoi ?</summary><p>Rien pour eux. La boutique en ligne s'ajoute au téléphone, elle ne le remplace pas. En pratique, ce sont souvent leurs enfants qui commandent pour eux depuis la boutique.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
+<section class="cta-final"><h2>Voyez votre site avant de décider</h2><p>Choisissez « Boucherie », tapez le nom de votre commerce : votre démo s'affiche en 30 secondes. Gratuite, sans engagement, sans carte bancaire. Vous la mettez en ligne quand vous êtes prêt.</p>
   <a class="btn soleil" href="/inscription?metier=boucherie">Créer ma démo gratuite</a></section>
 </article>
 <aside>

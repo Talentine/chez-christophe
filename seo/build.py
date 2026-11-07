@@ -4,7 +4,7 @@
 Sources (à éditer, jamais les HTML générés) :
   seo/articles/*.md      articles de blog (front matter YAML minimal + Markdown)
   seo/pages/*.md         pages éditoriales (À propos…)
-  seo/metiers.json       pages métier « Click & collect pour <métier> »
+  seo/metiers.json       pages métier « Développer son commerce grâce à internet » (une par métier)
 
 Sorties :
   blog/<slug>.html, solutions/<metier>.html, solutions/index.html, a-propos.html, blog.html (liste),
@@ -319,7 +319,7 @@ def seo_desc(meta: dict) -> str:
 
 
 def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: str, eyebrow: str, crumbs: list[tuple[str, str]],
-         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article", gains: str = "") -> str:
+         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article", gains: str = "", css_extra: str = "") -> str:
     ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), logiciel_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
     crumbs_html = " › ".join(f'<a href="{esc(u)}">{esc(n)}</a>' if i < len(crumbs) - 1 else esc(n) for i, (n, u) in enumerate(crumbs))
     return f"""<!DOCTYPE html>
@@ -349,7 +349,7 @@ def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: 
 <link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
 {HEAD_FONTS}
 {jsonld(ld_graph)}
-<style>{CSS}</style>
+<style>{CSS}{css_extra}</style>
 </head>
 <body>
 {header()}
@@ -442,6 +442,154 @@ def build_blog_index(arts: list[dict]) -> None:
         print("blog.html : balises SEO:ARTICLES absentes, liste non remplacée")
 
 
+
+# ─────────────────────────────────────────────────────────────
+# Pages métier « Développer son commerce grâce à internet »
+# ─────────────────────────────────────────────────────────────
+CSS_METIER = """
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.idees{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:14px 0 22px;padding:0;list-style:none}
+.idees li{background:#fff;border:1px solid var(--creme-fonce);border-radius:14px;padding:14px 16px;margin:0}
+.idees .ie{font-size:24px;line-height:1;display:block;margin:0 0 6px}.idees strong{display:block;font-size:16px;color:var(--bleu);margin:0 0 4px;line-height:1.3}
+.idees p{margin:0;font-size:14px;color:#2b3a52;line-height:1.5}
+.calc{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px;margin:10px 0 26px}
+.calc h3{margin:0 0 4px;font-size:20px}.calc>p{margin:0 0 16px;font-size:15px;color:var(--gris)}
+.calc-champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;margin:0 0 16px}@media(max-width:640px){.calc-champs{grid-template-columns:1fr}.calc{padding:18px 14px}}
+.calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
+.calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
+.calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
+.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
+.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
+.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
+.calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
+.calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
+.calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
+.calc-phrase{font-size:15px;margin:0 0 6px}.calc-note{font-size:12px;color:var(--gris);margin:0}
+.etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
+.etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.etapes strong{display:block;font-size:17px}
+"""
+
+H1_METIER = "Développer son commerce grâce à internet : ça consiste en quoi ?"
+
+# (installation, mensuel) ; le nom de la formule à 39 € dépend du métier (voir m["offre_39"])
+OFFRES = (("Vitrine", 249, 19, "Être trouvé sur Google et présenter vos produits, sans vente en ligne"),
+          (None, 399, 39, "Commandes en ligne avec retrait, avis clients, SMS, base clients"),
+          ("Click & Collect + Livraison", 549, 59, "Tout ça, plus la livraison à domicile que vous faites vous-même"))
+
+
+def offres_metier(m: dict) -> list[tuple[str, int, int, str]]:
+    return [(n or m.get("offre_39", "Click & Collect"), i, mo, (m.get("offre_39_desc", d) if n is None else d)) for n, i, mo, d in OFFRES]
+
+
+def apports_metier(m: dict) -> list[tuple[str, str, str]]:
+    """Ce qu'un site à son image apporte au commerçant : même plan pour tous les métiers, mots du métier."""
+    q1, q2 = m["recherche"]
+    return [
+        ("📍", "Les clients du coin vous trouvent",
+         f"Quand quelqu'un cherche « {q1} » ou « {q2} près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, "
+         "vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine."),
+        ("✨", "Une image pro",
+         f"Un site à votre nom, à vos couleurs, avec vos photos : {m['votre']} inspire confiance avant même que le client pousse la porte. "
+         "Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine."),
+        ("🛍️", "Le click & collect, et la livraison si vous le voulez",
+         "Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, "
+         "avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission."),
+        ("📱", "Vous vous modernisez",
+         "Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : "
+         "vos produits, vos conseils, le lien avec vos habitués."),
+        ("➕", "Des commandes que vous n'auriez pas prises",
+         m.get("commandes_en_plus", "Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, "
+                                     "par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.")),
+        ("⭐", "Des avis clients, automatiquement",
+         "Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : "
+         "c'est ce qui décide les nouveaux clients qui hésitent."),
+        ("☎️", "En prime : fini le téléphone pendant le rush",
+         f"{m['rush']}, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, "
+         "et vous servez vos clients au comptoir sans être interrompu."),
+    ]
+
+
+def calculateur_html(m: dict) -> str:
+    c = m["calc"]
+    offres = [o for o in offres_metier(m) if o[2] > 19]
+    radios = "".join(
+        f'<label><input type="radio" name="offre-{m["slug"]}" value="{mo}" data-install="{i}"{" checked" if mo == c["offre"] else ""}>{esc(n)} · {mo} €/mois</label>'
+        for n, i, mo, _ in offres)
+
+    def champ(nom: str, label: str, mini: int, maxi: int, pas: int, val: int, unite: str) -> str:
+        return (f'<div><label for="c-{nom}">{esc(label)}</label><div class="ligne">'
+                f'<input type="range" id="c-{nom}" data-k="{nom}" min="{mini}" max="{maxi}" step="{pas}" value="{val}" data-u="{unite}">'
+                f'<output for="c-{nom}"></output></div></div>')
+
+    return f"""<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+<h3 id="calc-titre">Est-ce rentable pour {esc(m['votre'])} ? Faites le calcul</h3>
+<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<div class="calc-champs">
+{champ("clients", m.get("calc_label_clients", "Clients par mois dans votre commerce"), 100, 6000, 50, c["clients"], "")}
+{champ("panier", "Montant moyen d'une commande en ligne", 5, 200, 1, c["panier"], " €")}
+{champ("pct", "Part de vos clients qui commandent en ligne", 1, 30, 1, c["pct"], " %")}
+{champ("marge", "Votre marge moyenne sur les ventes", 10, 80, 5, c["marge"], " %")}
+</div>
+<fieldset class="calc-offres"><legend>Formule</legend>{radios}</fieldset>
+<div class="calc-res" aria-live="polite">
+<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
+<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
+<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+</div>
+<p class="calc-phrase" data-r="phrase"></p>
+<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+</section>
+<script>(function(){{var r=document.getElementById('calculateur');if(!r)return;
+var f=function(n){{return Math.round(n).toLocaleString('fr-FR')}};
+function maj(){{var v={{}};r.querySelectorAll('input[type=range]').forEach(function(i){{v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u}});
+var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var q=function(k){{return r.querySelector('[data-r='+k+']')}};
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
+if(net>0){{var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}}
+q('phrase').textContent=t}}
+r.addEventListener('input',maj);maj()}})();</script>"""
+
+
+def corps_metier(m: dict) -> str:
+    """Corps de la page métier : explication, idées du métier, prix + calculateur, démarrage, FAQ."""
+    apports = "".join(f'<li><span class="gi">{e}</span><div><strong>{esc(t)}</strong><p>{esc(p)}</p></div></li>' for e, t, p in apports_metier(m))
+    idees = "".join(f'<li><span class="ie">{x["e"]}</span><strong>{esc(x["t"])}</strong><p>{esc(x["p"])}</p></li>' for x in m["idees"])
+    lignes = "".join(f"<tr><td><strong>{esc(n)}</strong></td><td>{esc(d)}</td><td>{i} €</td><td>{mo} €</td></tr>" for n, i, mo, d in offres_metier(m))
+    lien = f"/inscription?metier={m['slug']}"
+    return f"""<section class="gains" aria-labelledby="apports"><h2 id="apports">Ce qu'un site à votre image change pour vous</h2><ol>{apports}</ol>
+<a class="btn" href="{lien}">Voir ma démo gratuite</a></section>
+<h2>Ce qui marche bien en ligne pour {esc(m['un'])}</h2>
+<p>{esc(m['idees_intro'])}</p>
+<ul class="idees">{idees}</ul>
+<p>{esc(m.get('idees_fin', "Toutes ces idées sont des produits comme les autres sur votre site : vous les créez, les modifiez ou les retirez en quelques secondes depuis votre téléphone."))}</p>
+<h2>Combien ça coûte</h2>
+<table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody>{lignes}</tbody></table>
+<p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
+{calculateur_html(m)}
+<h2>Comment démarrer</h2>
+<ol class="etapes">
+<li><strong>Créez votre démo gratuite et sans engagement</strong>Sur la page d'inscription, choisissez « {esc(m['label'])} » et tapez le nom de votre commerce. En 30 secondes, votre site apparaît à votre nom, avec un catalogue {esc(m['catalogue'])} déjà rempli. Pas de carte bancaire, rien à installer.</li>
+<li><strong>Regardez-la, testez-la, ajustez-la</strong>Passez une commande comme le ferait un client. Changez les prix, ajoutez vos photos et vos spécialités, les idées ci-dessus, vos horaires de retrait{esc(" et votre zone de livraison" if m.get("livraison", True) else "")}. Prenez le temps qu'il faut : la démo ne vous engage à rien.</li>
+<li><strong>Mettez-la en ligne quand vous êtes prêt</strong>Vous choisissez votre formule, et votre site est publié. On vous aide au lancement : QR code pour la vitrine, lien pour Google Maps et Instagram, premier SMS à vos habitués.</li>
+</ol>
+<p><a class="btn" href="{lien}">Créer ma démo gratuite</a></p>
+"""
+
+
+def texte_metier(m: dict) -> str:
+    """Version texte de la page métier, pour llms-full.txt."""
+    out = [H1_METIER, "", m["lead"], "", "## Ce qu'un site à votre image change pour vous"]
+    out += [f"- {t} : {p}" for _, t, p in apports_metier(m)]
+    out += ["", f"## Ce qui marche bien en ligne pour {m['un']}", m["idees_intro"]]
+    out += [f"- {x['t']} : {x['p']}" for x in m["idees"]]
+    out += ["", "## Combien ça coûte"] + [f"- {n} : {i} € d'installation, {mo} € par mois. {d}." for n, i, mo, d in offres_metier(m)]
+    out += ["0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt."]
+    return "\n".join(out)
+
 # ─────────────────────────────────────────────────────────────
 # Pages métier
 # ─────────────────────────────────────────────────────────────
@@ -451,7 +599,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
     urls = []
     for m in metiers:
         path = f"/solutions/{m['slug']}"
-        corps = md_to_html(m["corps"])
+        corps = corps_metier(m)
         liens = [(f"Click & collect pour {x['pluriel']}", f"/solutions/{x['slug']}") for x in metiers if x["slug"] != m["slug"]][:5]
         liens += [(a.get("titre_court") or a["title"], f"/blog/{a['slug']}") for a in arts if m["slug"] in a.get("metiers", [])][:3]
         ld = [{
@@ -461,12 +609,11 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
             "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR", "lowPrice": "19", "highPrice": "59", "offerCount": "3",
                        "description": "Abonnement mensuel sans engagement, 0 % de commission sur les ventes"},
         }, faq_ld(m.get("faq", []))]
-        html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=m["h1"], lead=m["lead"],
-                    gains=gains_html(m["slug"], m["label"]),
+        html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=H1_METIER, lead=m["lead"],
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
                     crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
-                    ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website",
-                    cta=cta_final(m.get("cta_titre", "Votre boutique, prête en 30 secondes"), m.get("cta_texte", "Choisissez « " + m["label"] + " », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire."), f"/inscription?metier={m['slug']}"))
+                    ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website", css_extra=CSS_METIER,
+                    cta=cta_final("Voyez votre site avant de décider", "Choisissez « " + m["label"] + " », tapez le nom de votre commerce : votre démo s'affiche en 30 secondes. Gratuite, sans engagement, sans carte bancaire. Vous la mettez en ligne quand vous êtes prêt.", f"/inscription?metier={m['slug']}"))
         (out_dir / f"{m['slug']}.html").write_text(html, encoding="utf-8")
         urls.append(path)
     # index
@@ -552,7 +699,7 @@ def build_llms(arts: list[dict], metiers: list[dict]) -> None:
     # version complète : le contenu des pages métier et des articles, en texte
     full = ["\n".join(lignes), "", "---", ""]
     for m in metiers:
-        full += [f"# Marchéo pour {m['pluriel']}", "", m["lead"], "", re.sub(r"<[^>]+>", "", md_to_html(m["corps"])).strip(), ""]
+        full += [f"# Marchéo pour {m['pluriel']}", "", texte_metier(m), ""]
         full += [f"Q : {x['q']}\nR : {x['r']}" for x in m.get("faq", [])] + [""]
     for a in arts:
         full += [f"# {a['title']}", "", a["description"], "", re.sub(r"<[^>]+>", "", a["body_html"]).strip(), ""]
