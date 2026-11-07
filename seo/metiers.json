@@ -54,10 +54,7 @@
     "rush": "Le dimanche matin",
     "calc": {
       "clients": 3000,
-      "panier": 20,
-      "pct": 3,
-      "marge": 55,
-      "offre": 39
+      "panier": 20
     },
     "idees_intro": "D'abord votre pain et vos viennoiseries, réservés pour ne plus jamais manquer la dernière tradition. Ensuite, des commandes qui pèsent bien plus lourd qu'une baguette :",
     "idees": [
@@ -136,10 +133,7 @@
     "rush": "Le samedi matin et la veille des fêtes",
     "calc": {
       "clients": 1000,
-      "panier": 40,
-      "pct": 5,
-      "marge": 30,
-      "offre": 39
+      "panier": 40
     },
     "idees_intro": "D'abord vos viandes, au poids ou à la pièce, avec les précisions du client : épaisseur, découpe, sans os, ficelé. Ensuite, des formules qui font de belles commandes :",
     "idees": [
@@ -219,10 +213,7 @@
     "rush": "Le samedi matin",
     "calc": {
       "clients": 1200,
-      "panier": 25,
-      "pct": 5,
-      "marge": 30,
-      "offre": 59
+      "panier": 25
     },
     "idees_intro": "D'abord vos fruits et légumes, au kilo ou à la pièce, comme sur votre étal : le client choisit ses produits et ses quantités. Ensuite, des formules toutes prêtes qui font grimper la commande et que vos clients n'auraient pas pensé à vous demander :",
     "idees": [
@@ -307,10 +298,7 @@
     "rush": "Le vendredi et la veille des fêtes",
     "calc": {
       "clients": 800,
-      "panier": 45,
-      "pct": 5,
-      "marge": 30,
-      "offre": 39
+      "panier": 45
     },
     "idees_intro": "D'abord votre marée du jour, entière ou préparée comme le client le veut : vidée, en filets, écaillée. Ensuite, des formules faciles à commander :",
     "idees": [
@@ -385,10 +373,7 @@
     "rush": "Pendant le service du midi",
     "calc": {
       "clients": 400,
-      "panier": 70,
-      "pct": 10,
-      "marge": 40,
-      "offre": 59
+      "panier": 70
     },
     "commandes_en_plus": "Le devis demandé le dimanche soir, la réunion de bureau prévue la veille pour le lendemain, l'anniversaire organisé tard le soir : la commande arrive quand même, par écrit, avec la date et le nombre de personnes.",
     "idees_intro": "D'abord vos plats du jour et votre carte, à emporter. Ensuite, ce qui fait les grosses commandes d'un traiteur :",
@@ -472,10 +457,7 @@
     "rush": "Le samedi matin et en décembre",
     "calc": {
       "clients": 700,
-      "panier": 40,
-      "pct": 5,
-      "marge": 35,
-      "offre": 39
+      "panier": 40
     },
     "idees_intro": "D'abord vos fromages à la coupe, au poids, avec l'affinage et la provenance. Ensuite, les formules qui font de belles commandes :",
     "idees": [
@@ -551,10 +533,7 @@
     "rush": "À la Saint-Valentin, à la fête des mères et à la Toussaint",
     "calc": {
       "clients": 500,
-      "panier": 45,
-      "pct": 8,
-      "marge": 55,
-      "offre": 59
+      "panier": 45
     },
     "idees_intro": "D'abord vos bouquets et vos plantes, avec des prix clairs. Ensuite, les commandes qui font l'année d'un fleuriste :",
     "idees": [
@@ -631,10 +610,7 @@
     "offre_39_desc": "Commandes à emporter avec créneaux, réservation de table, avis clients, SMS",
     "calc": {
       "clients": 900,
-      "panier": 30,
-      "pct": 10,
-      "marge": 65,
-      "offre": 59
+      "panier": 30
     },
     "commandes_en_plus": "Le client qui tombe sur occupé et commande ailleurs, la commande passée à 17 h pour 20 h : elle arrive par écrit, avec l'heure choisie. Et sans les 25 à 30 % de commission des plateformes.",
     "idees_intro": "D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce qui fait monter le montant de chaque commande :",
@@ -712,10 +688,7 @@
     "offre_39_desc": "Réservation de table avec empreinte anti no-show, vente à emporter, avis clients, SMS",
     "calc": {
       "clients": 1200,
-      "panier": 35,
-      "pct": 5,
-      "marge": 65,
-      "offre": 39
+      "panier": 35
     },
     "calc_label_clients": "Couverts par mois dans votre restaurant",
     "commandes_en_plus": "La réservation faite à 23 h pour le lendemain, le client qui tombe sur le répondeur pendant le service, celui qui veut emporter : tout arrive par écrit, à toute heure.",
@@ -800,10 +773,7 @@
     "rush": "Pendant le rush du midi",
     "calc": {
       "clients": 1500,
-      "panier": 16,
-      "pct": 10,
-      "marge": 60,
-      "offre": 39
+      "panier": 16
     },
     "commandes_en_plus": "La commande passée pendant le cours ou la réunion pour midi pile, le client qui voit la file et repart : la commande arrive par écrit, payée, avec le créneau choisi. Et sans les commissions des plateformes.",
     "idees_intro": "D'abord votre carte et vos menus, avec les sauces et les suppléments. Ensuite, ce qui fait revenir et monter les commandes :",

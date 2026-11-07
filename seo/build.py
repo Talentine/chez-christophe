@@ -458,9 +458,6 @@ CSS_METIER = """
 .calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
 .calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
 .calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
-.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
-.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
-.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
 .calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
 .calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
 .calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
@@ -511,46 +508,40 @@ def apports_metier(m: dict) -> list[tuple[str, str, str]]:
 
 
 def calculateur_html(m: dict) -> str:
+    """Calculateur sur la formule Click & Collect : commandes en plus × panier moyen, moins l'abonnement."""
     c = m["calc"]
-    offres = [o for o in offres_metier(m) if o[2] > 19]
-    radios = "".join(
-        f'<label><input type="radio" name="offre-{m["slug"]}" value="{mo}" data-install="{i}"{" checked" if mo == c["offre"] else ""}>{esc(n)} · {mo} €/mois</label>'
-        for n, i, mo, _ in offres)
+    nom_offre, _, abo, _ = offres_metier(m)[1]
 
     def champ(nom: str, label: str, mini: int, maxi: int, pas: int, val: int, unite: str) -> str:
         return (f'<div><label for="c-{nom}">{esc(label)}</label><div class="ligne">'
                 f'<input type="range" id="c-{nom}" data-k="{nom}" min="{mini}" max="{maxi}" step="{pas}" value="{val}" data-u="{unite}">'
                 f'<output for="c-{nom}"></output></div></div>')
 
-    return f"""<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+    return f"""<section class="calc" id="calculateur" data-abo="{abo}" aria-labelledby="calc-titre">
 <h3 id="calc-titre">Est-ce rentable pour {esc(m['votre'])} ? Faites le calcul</h3>
-<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<p>Calcul sur la formule {esc(nom_offre)} à {abo} € par mois. Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
 <div class="calc-champs">
 {champ("clients", m.get("calc_label_clients", "Clients par mois dans votre commerce"), 100, 6000, 50, c["clients"], "")}
-{champ("panier", "Montant moyen d'une commande en ligne", 5, 200, 1, c["panier"], " €")}
-{champ("pct", "Part de vos clients qui commandent en ligne", 1, 30, 1, c["pct"], " %")}
-{champ("marge", "Votre marge moyenne sur les ventes", 10, 80, 5, c["marge"], " %")}
+{champ("panier", "Panier moyen", 5, 200, 1, c["panier"], " €")}
+{champ("pct", "Commandes en plus grâce au click & collect", 1, 30, 1, 10, " %")}
 </div>
-<fieldset class="calc-offres"><legend>Formule</legend>{radios}</fieldset>
 <div class="calc-res" aria-live="polite">
-<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
-<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
-<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
-<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+<div><span>Commandes en plus par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en plus par mois</span><b data-r="ca">–</b></div>
+<div><span>Abonnement {esc(nom_offre)}</span><b>{abo} €</b></div>
+<div class="fort"><span>Ce qu'il vous reste en plus</span><b data-r="net">–</b></div>
 </div>
 <p class="calc-phrase" data-r="phrase"></p>
-<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+<p class="calc-note">Par défaut, 10 % de commandes en plus : c'est la moyenne constatée chez les commerçants qui proposent le click & collect. Mettez vos propres chiffres pour faire votre calcul.</p>
 </section>
 <script>(function(){{var r=document.getElementById('calculateur');if(!r)return;
-var f=function(n){{return Math.round(n).toLocaleString('fr-FR')}};
+var abo=+r.dataset.abo,f=function(n){{return Math.round(n).toLocaleString('fr-FR')}};
 function maj(){{var v={{}};r.querySelectorAll('input[type=range]').forEach(function(i){{v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u}});
-var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
-var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,net=ca-abo;
 var q=function(k){{return r.querySelector('[data-r='+k+']')}};
-q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
-var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
-if(net>0){{var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}}
-q('phrase').textContent=t}}
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/v.panier));
+q('phrase').textContent='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en plus du mois.'}}
 r.addEventListener('input',maj);maj()}})();</script>"""
 
 
