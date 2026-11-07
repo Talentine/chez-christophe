@@ -7,9 +7,7 @@
     "accroche": "Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.",
     "title": "Click & collect pour boulangerie : site de commande en ligne sans commission · Marchéo",
     "description": "Créez le site de commande en ligne de votre boulangerie en 30 secondes : gâteaux et pains spéciaux commandés à l'avance, retrait à l'heure choisie, empreinte bancaire contre les commandes non retirées, 0 % de commission.",
-    "h1": "Le click & collect fait pour les boulangeries",
-    "lead": "Vos clients commandent leur gâteau du dimanche, leur pain spécial ou leurs brioches depuis leur téléphone. Vous préparez ce qui est vendu, ils passent retirer sans attendre. Plus de carnet au comptoir, plus de gâteau oublié.",
-    "corps": "## Ce que ça change dans votre boulangerie\n\n**Le samedi matin, la file avance.** Les commandes de gâteaux, de pains spéciaux et de viennoiseries sont prises la veille en ligne, avec l'heure de retrait. Vous les préparez au calme, et le client repart en 30 secondes au comptoir.\n\n**Fini le gâteau commandé et jamais récupéré.** Avec l'empreinte bancaire optionnelle, jusqu'à 75 % du panier est pré-autorisé sur la carte du client au moment de la commande. Si la commande est retirée, rien n'est débité et l'empreinte est libérée 24 heures après. S'il ne vient pas, vous décidez de ce que vous prélevez.\n\n**Vos fournées se programment.** Vous ouvrez des créneaux de retrait par jour et par heure, avec une capacité maximale par créneau. Le client ne peut réserver que ce que vous pouvez produire.\n\n## Le rush du matin, et ce que le click & collect y change\n\nEntre 7 h et 9 h, une boulangerie fait une part importante de sa journée en vingt minutes cumulées de file d'attente. Le client qui part au travail compte les personnes devant lui et renonce parfois. C'est le chiffre d'affaires le plus invisible du métier : celui qui repart sans rien dire.\n\nLe click & collect ne supprime pas la file, il la contourne. Le client qui a commandé la veille au soir passe sur le côté, annonce son nom, repart avec son sac. Trois réglages suffisent :\n\n- **Des créneaux courts le matin**, de 10 ou 15 minutes, avec une capacité basse au début. Cinq commandes par tranche la première semaine.\n- **Une heure limite de commande la veille**, pour que la fournée soit calée avant l'ouverture.\n- **Un point de retrait identifié** au comptoir, même une simple étagère avec une pancarte. C'est ce que voient les clients qui font la queue, et c'est ce qui les décide à essayer.\n\nLes habitués sont les premiers à basculer, parce qu'ils commandent toujours la même chose. Leur historique est enregistré : ils reprennent leur commande précédente en deux clics. Au bout d'un mois, la liste du matin se remplit toute seule.\n\n## Ce qui est inclus\n\n- Une boutique à vos couleurs, à l'adresse marchéo.fr/votre-boulangerie, avec le **catalogue boulangerie déjà rempli** : pains, viennoiseries, pâtisseries, gâteaux sur commande, sandwichs. Vous cochez, vous ajustez les prix, c'est en ligne.\n- Commande en 30 secondes depuis le téléphone, **sans création de compte** pour le client.\n- Paiement en ligne ou au retrait, au choix.\n- SMS automatique au client quand sa commande est prête, base clients avec l'historique des achats.\n- Comptes pour vos vendeurs, qui gèrent les commandes sans accéder aux réglages.\n- Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, la tournée est organisée par créneau.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois | Pour |\n|---|---|---|---|\n| Vitrine | 249 € | 19 € | Être visible sur Google, présenter vos produits sans vente en ligne |\n| Click & Collect | 399 € | 39 € | Prendre les commandes en ligne, empreinte bancaire, SMS, base clients |\n| Click & Collect + Livraison | 549 € | 59 € | Tout ça, plus la livraison dans votre zone |\n\nSans engagement, résiliable en un clic, **0 % de commission** sur vos ventes. Une seule commande de gâteau par semaine rembourse l'abonnement.\n\n## Comment démarrer\n\n1. Sur la page d'inscription, choisissez « Boulangerie » et tapez le nom de votre commerce : l'aperçu de votre boutique s'affiche.\n2. Ajustez le catalogue depuis votre téléphone, ajoutez vos photos.\n3. Imprimez le QR code pour le comptoir et la vitrine, partagez le lien sur Instagram et Facebook.\n\nL'installation se fait avec vous en 20 minutes si vous le souhaitez. Vos premières commandes arrivent souvent le week-end suivant.\n\n## Pour aller plus loin\n\n- [Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne](/blog/site-internet-boulangerie-commandes-en-ligne), avec le plan de mise en place en une semaine et les réglages de la fiche Google.\n- [Organiser ses précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche), pour les bûches, les galettes et les pics de fin d'année.\n- [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne), utile dès que vous proposez des pièces montées au nombre de parts ou des plateaux à la coupe.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boulangerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une boulangerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Mes clients doivent-ils créer un compte pour commander ?",
@@ -45,7 +43,55 @@
       }
     ],
     "meta_title": "Click & collect pour boulangerie et pâtisserie",
-    "meta_description": "Faites commander pains, gâteaux et brioches en ligne, avec créneaux de retrait et acomptes. 0 % de commission, dès 19 € par mois, sans engagement."
+    "meta_description": "Faites commander pains, gâteaux et brioches en ligne, avec créneaux de retrait et acomptes. 0 % de commission, dès 19 € par mois, sans engagement.",
+    "un": "une boulangerie",
+    "votre": "votre boulangerie",
+    "catalogue": "boulangerie et pâtisserie",
+    "recherche": [
+      "boulangerie",
+      "pâtisserie"
+    ],
+    "rush": "Le dimanche matin",
+    "calc": {
+      "clients": 3000,
+      "panier": 20,
+      "pct": 3,
+      "marge": 55,
+      "offre": 39
+    },
+    "idees_intro": "D'abord votre pain et vos viennoiseries, réservés pour ne plus jamais manquer la dernière tradition. Ensuite, des commandes qui pèsent bien plus lourd qu'une baguette :",
+    "idees": [
+      {
+        "e": "🥖",
+        "t": "Votre pain réservé",
+        "p": "Tradition, pains spéciaux, grosses miches : réservés le matin, mis de côté, retirés sans faire la queue."
+      },
+      {
+        "e": "🎂",
+        "t": "Gâteaux et entremets sur commande",
+        "p": "Anniversaires, baptêmes, repas de famille : le client choisit la taille, le parfum et l'inscription."
+      },
+      {
+        "e": "🥐",
+        "t": "Le plateau petit-déj",
+        "p": "Croissants, pains au chocolat, mini-viennoiseries, jus : pour les réunions du bureau d'à côté ou le dimanche en famille."
+      },
+      {
+        "e": "🥪",
+        "t": "La formule déjeuner",
+        "p": "Sandwich, boisson et dessert commandés le matin, retirés à 12 h 15 sans attendre."
+      },
+      {
+        "e": "🍰",
+        "t": "Le plateau de mignardises",
+        "p": "Mini-pâtisseries et pièces salées pour un cocktail, un pot de départ, une communion."
+      },
+      {
+        "e": "👑",
+        "t": "Les fêtes de l'année",
+        "p": "Galettes des rois, bûches, chocolats de Pâques : précommandés, préparés au bon nombre, sans gaspillage."
+      }
+    ]
   },
   {
     "slug": "boucherie",
@@ -55,9 +101,7 @@
     "accroche": "Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.",
     "title": "Click & collect pour boucherie : commandes en ligne, découpe, fêtes · Marchéo",
     "description": "Le site de commande en ligne de votre boucherie en 30 secondes : pièces à la découpe, commandes de Noël et Pâques réglées d'avance, retraits par créneau, SMS aux clients pour les arrivages. 0 % de commission.",
-    "h1": "Le click & collect fait pour les boucheries",
-    "lead": "Rôtis, plateaux, volailles de fête, pièces sur mesure : vos clients commandent en ligne avec leurs précisions de découpe et de poids. Vous préparez, ils retirent à l'heure prévue. Les commandes de fêtes sont réglées d'avance.",
-    "corps": "## Ce que ça change dans votre boucherie\n\n**Noël, Pâques, les barbecues d'été : plus de carnet.** Chaque commande arrive avec le nom, le téléphone, le créneau de retrait et les précisions du client, épaisseur, poids, préparation. Vous imprimez la liste du jour et vous préparez dans l'ordre.\n\n**Les commandes de fêtes sont garanties.** Un chapon à 80 € commandé et jamais retiré, ça n'arrive plus : avec l'empreinte bancaire, jusqu'à 75 % du panier est pré-autorisé à la commande. Le client sérieux ne paie rien de plus, l'empreinte est libérée 24 heures après le retrait.\n\n**Vos habitués reviennent.** Base clients avec l'historique, SMS pour annoncer un arrivage, une promo sur les merguez le vendredi, ou la fermeture d'août. Les SMS sont inclus dans l'abonnement.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue boucherie déjà rempli** : bœuf, veau, agneau, porc, volaille, charcuterie, plats préparés. Vente au poids ou à la pièce, prix au kilo.\n- Champ « précisions » sur chaque produit : découpe, épaisseur, cuisson, sans os.\n- Commande en 30 secondes, sans compte client, paiement en ligne ou au retrait.\n- Créneaux de retrait par jour et par heure, avec capacité.\n- Comptes pour vos employés, calendrier partagé des commandes.\n- Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison, à vos conditions.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine (visible sur Google, sans commande) | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Une commande de fête couvre le mois.\n\n## Comment démarrer\n\n1. Choisissez « Boucherie » sur la page d'inscription et tapez le nom de votre commerce : votre boutique apparaît.\n2. Ajustez les prix au kilo, ajoutez vos spécialités et vos photos.\n3. Affichez le QR code en vitrine et sur le comptoir. Vos clients commandent la veille, vous préparez le matin.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boucherie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une boucherie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Comment gérer la vente au poids ?",
@@ -81,19 +125,70 @@
       }
     ],
     "meta_title": "Click & collect pour boucherie et charcuterie",
-    "meta_description": "Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneaux. 0 % de commission, dès 19 € par mois."
+    "meta_description": "Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneaux. 0 % de commission, dès 19 € par mois.",
+    "un": "une boucherie",
+    "votre": "votre boucherie",
+    "catalogue": "boucherie et charcuterie",
+    "recherche": [
+      "boucherie",
+      "boucher"
+    ],
+    "rush": "Le samedi matin et la veille des fêtes",
+    "calc": {
+      "clients": 1000,
+      "panier": 40,
+      "pct": 5,
+      "marge": 30,
+      "offre": 39
+    },
+    "idees_intro": "D'abord vos viandes, au poids ou à la pièce, avec les précisions du client : épaisseur, découpe, sans os, ficelé. Ensuite, des formules qui font de belles commandes :",
+    "idees": [
+      {
+        "e": "🥩",
+        "t": "Vos pièces à la découpe",
+        "p": "Bœuf, veau, agneau, porc, volaille : prix au kilo, poids voulu, précisions de découpe écrites par le client."
+      },
+      {
+        "e": "🔥",
+        "t": "Le colis barbecue",
+        "p": "Brochettes, merguez, chipolatas, côtes et marinades pour 4, 6 ou 8 personnes. Le best-seller de l'été."
+      },
+      {
+        "e": "📦",
+        "t": "Le colis de la semaine",
+        "p": "Un assortiment pour la semaine d'une famille à prix fixe : vos habitués le commandent sans réfléchir."
+      },
+      {
+        "e": "🥓",
+        "t": "Le plateau de charcuterie",
+        "p": "Jambons, saucissons, terrines et pâtés tranchés pour l'apéro ou un buffet, par nombre de personnes."
+      },
+      {
+        "e": "🫕",
+        "t": "La formule raclette ou fondue",
+        "p": "Charcuterie pour raclette, viande pour fondue bourguignonne : calculée par convive, de octobre à mars."
+      },
+      {
+        "e": "🍲",
+        "t": "Vos plats cuisinés",
+        "p": "Bœuf bourguignon, blanquette, lasagnes, rôtis cuits : à retirer prêts à réchauffer."
+      },
+      {
+        "e": "🦃",
+        "t": "Les commandes de fêtes",
+        "p": "Chapon, dinde, rôti farci, foie gras : commandés des semaines à l'avance, garantis par une empreinte bancaire."
+      }
+    ]
   },
   {
     "slug": "primeur",
     "label": "Primeur",
     "pluriel": "primeurs et maraîchers",
     "emoji": "🌿",
-    "accroche": "Paniers de la semaine commandés en ligne, clients pressés servis en 2 minutes, livraison dans le quartier.",
+    "accroche": "Vos fruits et légumes commandés en ligne, au kilo ou à la pièce, retirés en 2 minutes ou livrés dans le quartier.",
     "title": "Click & collect pour primeur et maraîcher : paniers en ligne, livraison locale · Marchéo",
-    "description": "Créez la boutique en ligne de votre primeur ou de votre ferme en 30 secondes : paniers de fruits et légumes commandés à l'avance, retrait rapide, livraison locale à vos conditions, arrivages annoncés par SMS. 0 % de commission.",
-    "h1": "Le click & collect fait pour les primeurs et les maraîchers",
-    "lead": "Vos clients composent leur panier depuis leur téléphone, le retirent en deux minutes ou se font livrer dans le quartier. Vous annoncez vos arrivages du jour par SMS. Rien ne se perd, tout est vendu d'avance.",
-    "corps": "## Ce que ça change chez un primeur\n\n**Le client pressé du midi est servi en deux minutes.** Il a commandé le matin, son panier est prêt, il paie ou a déjà payé, il repart. Pendant ce temps, vous servez ceux qui prennent le temps de choisir.\n\n**Les paniers de la semaine partent tout seuls.** Un panier fixe à 15, 25 ou 35 € que vos habitués commandent chaque semaine, à retirer le samedi ou à se faire livrer le mardi soir. Vous connaissez les quantités avant d'acheter au marché de gros ou de récolter.\n\n**Vous annoncez l'arrivage.** Les premières fraises, les cèpes, les mirabelles : un SMS à vos clients depuis votre téléphone, en 30 secondes. Les SMS sont inclus.\n\n## Pour les maraîchers en vente directe\n\nLa boutique sert de point de commande pour la vente à la ferme, le marché et les dépôts : le client commande en ligne, choisit le point de retrait et le créneau, vous récoltez ce qui est vendu. La livraison locale se paramètre par zone, avec vos jours de tournée, votre minimum de commande et vos frais.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue primeur déjà rempli** : fruits, légumes, herbes, produits d'épicerie, paniers. Vente au kilo, à la pièce ou au panier.\n- Mise en avant des produits de saison et de la provenance.\n- Commande en 30 secondes sans compte client, paiement en ligne ou au retrait.\n- Retrait par créneau, ou livraison locale à vos conditions : Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison.\n- Base clients, SMS d'arrivage et de promotion inclus, comptes salariés.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine (visible sur Google, sans commande) | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement.\n\n## Comment démarrer\n\n1. Choisissez « Primeur » à l'inscription, tapez le nom de votre commerce : la boutique s'affiche avec le catalogue de saison.\n2. Créez vos paniers, ajoutez vos photos, ouvrez vos créneaux de retrait et votre zone de livraison.\n3. QR code en boutique, lien sur Instagram, premier SMS à vos habitués.",
+    "description": "Créez la boutique en ligne de votre primeur en 30 secondes : fruits et légumes vendus au kilo ou à la pièce, formules toutes prêtes, retrait rapide, livraison locale à vos conditions, avis clients automatiques. 0 % de commission.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre primeur, découvrent vos produits et vous passent commande. Voici ce que ça change pour un primeur, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Comment vendre des paniers dont la composition change chaque semaine ?",
@@ -113,7 +208,65 @@
       }
     ],
     "meta_title": "Click & collect pour primeur et maraîcher",
-    "meta_description": "Paniers de la semaine commandés en ligne, vente au poids, livraison dans votre quartier. 0 % de commission, dès 19 € par mois, sans engagement."
+    "meta_description": "Vos fruits et légumes commandés en ligne au kilo ou à la pièce, retrait rapide ou livraison dans le quartier. 0 % de commission, dès 19 € par mois.",
+    "un": "un primeur",
+    "votre": "votre primeur",
+    "catalogue": "fruits et légumes de saison",
+    "recherche": [
+      "primeur",
+      "fruits et légumes"
+    ],
+    "rush": "Le samedi matin",
+    "calc": {
+      "clients": 1200,
+      "panier": 25,
+      "pct": 5,
+      "marge": 30,
+      "offre": 59
+    },
+    "idees_intro": "D'abord vos fruits et légumes, au kilo ou à la pièce, comme sur votre étal : le client choisit ses produits et ses quantités. Ensuite, des formules toutes prêtes qui font grimper la commande et que vos clients n'auraient pas pensé à vous demander :",
+    "idees": [
+      {
+        "e": "🍎",
+        "t": "Vos produits du jour",
+        "p": "Fruits, légumes, herbes, épicerie fine : au kilo ou à la pièce, avec la provenance. Un produit épuisé se masque en un geste."
+      },
+      {
+        "e": "🧺",
+        "t": "Le panier de la semaine",
+        "p": "Un prix fixe (15, 25 ou 35 €), la composition change selon les arrivages. Vos habitués le commandent chaque semaine."
+      },
+      {
+        "e": "🍓",
+        "t": "Le panier salade de fruits",
+        "p": "Tous les fruits pour une salade de fruits pour 6, la recette en description. Parfait pour un repas de famille."
+      },
+      {
+        "e": "🥐",
+        "t": "Le panier petit-déj",
+        "p": "Oranges à presser, fruits de saison, de quoi faire un petit-déjeuner du dimanche ou une réunion au bureau."
+      },
+      {
+        "e": "🫒",
+        "t": "La box apéro",
+        "p": "Tomates cerises, radis, carottes et concombre à croquer, olives, tapenade : l'apéro prêt à poser sur la table."
+      },
+      {
+        "e": "🍲",
+        "t": "Le panier recette",
+        "p": "Tout pour une ratatouille, une soupe d'hiver ou un pot-au-feu, avec les quantités pour 4."
+      },
+      {
+        "e": "🎁",
+        "t": "La corbeille de fruits",
+        "p": "En cadeau, ou livrée chaque lundi au bureau ou au cabinet d'à côté : une commande qui revient toute seule."
+      },
+      {
+        "e": "🍒",
+        "t": "Les précommandes de saison",
+        "p": "Premières fraises, cèpes, mirabelles, cagettes pour les confitures : réservées avant même l'arrivage."
+      }
+    ]
   },
   {
     "slug": "poissonnerie",
@@ -123,9 +276,7 @@
     "accroche": "Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.",
     "title": "Click & collect pour poissonnerie : plateaux et commandes en ligne · Marchéo",
     "description": "Le site de commande en ligne de votre poissonnerie en 30 secondes : plateaux de fruits de mer et poisson du week-end commandés et réglés d'avance, retrait par créneau, marée du matin annoncée par SMS, empreinte contre les plateaux non retirés.",
-    "h1": "Le click & collect fait pour les poissonneries",
-    "lead": "Plateaux de fruits de mer, poisson pour le week-end, commandes des fêtes : vos clients commandent en ligne, règlent d'avance, retirent à l'heure prévue. La marée du matin part par SMS à vos habitués.",
-    "corps": "## Ce que ça change dans votre poissonnerie\n\n**Plus de plateau préparé pour rien.** Un plateau de fruits de mer commandé pour le samedi soir et jamais retiré, c'est une perte sèche. Avec l'empreinte bancaire, jusqu'à 75 % du panier est pré-autorisé à la commande. Le client qui vient ne paie rien de plus, celui qui ne vient pas vous rembourse.\n\n**Le vendredi et le samedi se préparent la veille.** Les commandes arrivent avec le créneau de retrait et les précisions, écaillé, vidé, en filets. Vous savez ce que vous devez commander à la criée.\n\n**La marée se vend le matin même.** Un SMS à vos clients quand le bar de ligne ou les coquilles arrivent. Ceux qui commandent dans l'heure sont servis en premier.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue poissonnerie déjà rempli** : poissons entiers, filets, crustacés, coquillages, plateaux, traiteur de la mer. Vente au kilo ou à la pièce.\n- Champ « précisions » : écaillé, vidé, en filets, en darnes.\n- Commande en 30 secondes sans compte, paiement en ligne ou au retrait, retrait par créneau avec capacité.\n- Empreinte bancaire réglable, SMS d'arrivage inclus, base clients.\n- Livraison locale en option pour les plateaux à domicile : Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine (visible sur Google, sans commande) | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Deux plateaux par mois couvrent l'abonnement.\n\n## Comment démarrer\n\n1. Choisissez « Poissonnerie » à l'inscription, tapez le nom de votre commerce.\n2. Ajustez le catalogue, fixez vos créneaux du vendredi et du samedi, activez l'empreinte sur les plateaux.\n3. QR code en vitrine, premier SMS d'arrivage.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre poissonnerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une poissonnerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Le prix du poisson change tous les jours, comment gérer ?",
@@ -145,7 +296,55 @@
       }
     ],
     "meta_title": "Click & collect pour poissonnerie",
-    "meta_description": "Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages annoncés le matin. 0 % de commission, dès 19 € par mois, sans engagement."
+    "meta_description": "Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages annoncés le matin. 0 % de commission, dès 19 € par mois, sans engagement.",
+    "un": "une poissonnerie",
+    "votre": "votre poissonnerie",
+    "catalogue": "poissonnerie",
+    "recherche": [
+      "poissonnerie",
+      "poissonnier"
+    ],
+    "rush": "Le vendredi et la veille des fêtes",
+    "calc": {
+      "clients": 800,
+      "panier": 45,
+      "pct": 5,
+      "marge": 30,
+      "offre": 39
+    },
+    "idees_intro": "D'abord votre marée du jour, entière ou préparée comme le client le veut : vidée, en filets, écaillée. Ensuite, des formules faciles à commander :",
+    "idees": [
+      {
+        "e": "🐟",
+        "t": "Votre marée du jour",
+        "p": "Poissons, coquillages, crustacés avec le prix au kilo et la préparation souhaitée. Les arrivages du matin partent par SMS."
+      },
+      {
+        "e": "🦪",
+        "t": "Le plateau de fruits de mer",
+        "p": "Pour 2, 4 ou 6 : huîtres, crevettes, bulots, langoustines, préparé et réglé d'avance."
+      },
+      {
+        "e": "🍤",
+        "t": "La box apéro de la mer",
+        "p": "Crevettes, bulots, rillettes de poisson, tarama, saumon fumé : l'apéro du samedi en une commande."
+      },
+      {
+        "e": "🔥",
+        "t": "Le kit à griller ou en papillote",
+        "p": "Poisson préparé, citron, herbes, la recette : prêt à mettre au four ou sur le barbecue."
+      },
+      {
+        "e": "🥘",
+        "t": "Vos plats cuisinés",
+        "p": "Paëlla, soupe de poisson, brandade, à retirer le vendredi ou pour le week-end."
+      },
+      {
+        "e": "🎄",
+        "t": "Les commandes des fêtes",
+        "p": "Huîtres, homards, saumon, foie gras : réservés des semaines à l'avance, garantis par une empreinte bancaire."
+      }
+    ]
   },
   {
     "slug": "traiteur",
@@ -155,9 +354,7 @@
     "accroche": "Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.",
     "title": "Click & collect pour traiteur : commandes de plateaux et buffets en ligne · Marchéo",
     "description": "Créez le site de commande de votre traiteur en 30 secondes : plateaux, buffets et plats du jour commandés en ligne avec acompte ou empreinte bancaire, planning des retraits par créneau, livraison locale. 0 % de commission.",
-    "h1": "Le click & collect fait pour les traiteurs",
-    "lead": "Plateaux repas pour le bureau d'à côté, buffets d'anniversaire, plats du jour à emporter : vos clients commandent en ligne, garantissent leur commande, et vous savez exactement quoi préparer pour quand.",
-    "corps": "## Ce que ça change chez un traiteur\n\n**Chaque commande est garantie.** Un buffet pour 30 personnes commandé et annulé la veille, ça ne se produit plus : l'empreinte bancaire pré-autorise jusqu'à 75 % du panier à la commande, et vous fixez votre politique d'annulation. Le client peut aussi payer intégralement en ligne.\n\n**Le planning se remplit tout seul.** Chaque commande a sa date, son créneau de retrait ou de livraison, ses quantités et ses précisions. Le calendrier de la semaine vous dit ce que vous produisez chaque jour.\n\n**Les plats du jour partent le matin.** Vous publiez le menu de la semaine, les bureaux du quartier commandent avant 11 h, vous préparez les quantités vendues. Un SMS annonce le menu du lendemain.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue traiteur déjà rempli** : plats du jour, plateaux repas, buffets, cocktails, desserts, menus événementiels.\n- Quantités par personne, précisions et allergènes sur chaque produit.\n- Commande en 30 secondes sans compte, paiement en ligne ou au retrait, acompte via empreinte.\n- Retrait par créneau, livraison locale à vos conditions avec tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison.\n- Base clients entreprises et particuliers, SMS inclus, comptes salariés.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Un seul buffet couvre plusieurs mois.\n\n## Comment démarrer\n\n1. Choisissez « Traiteur » à l'inscription et tapez le nom de votre commerce.\n2. Publiez vos plateaux et votre menu de la semaine, ouvrez vos créneaux et votre zone de livraison.\n3. Envoyez le lien aux entreprises du quartier, imprimez le QR code.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre maison, découvrent vos produits et vous passent commande. Voici ce que ça change pour un traiteur, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Peut-on demander un acompte sur les grosses commandes ?",
@@ -177,7 +374,56 @@
       }
     ],
     "meta_title": "Click & collect et commandes pour traiteur",
-    "meta_description": "Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits et livraison locale. 0 % de commission, dès 19 € par mois."
+    "meta_description": "Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits et livraison locale. 0 % de commission, dès 19 € par mois.",
+    "un": "un traiteur",
+    "votre": "votre maison",
+    "catalogue": "traiteur",
+    "recherche": [
+      "traiteur",
+      "plateau repas"
+    ],
+    "rush": "Pendant le service du midi",
+    "calc": {
+      "clients": 400,
+      "panier": 70,
+      "pct": 10,
+      "marge": 40,
+      "offre": 59
+    },
+    "commandes_en_plus": "Le devis demandé le dimanche soir, la réunion de bureau prévue la veille pour le lendemain, l'anniversaire organisé tard le soir : la commande arrive quand même, par écrit, avec la date et le nombre de personnes.",
+    "idees_intro": "D'abord vos plats du jour et votre carte, à emporter. Ensuite, ce qui fait les grosses commandes d'un traiteur :",
+    "idees": [
+      {
+        "e": "🍱",
+        "t": "Les plateaux repas",
+        "p": "Pour les entreprises et les réunions : commandés la veille par nombre de personnes, livrés ou retirés à l'heure."
+      },
+      {
+        "e": "🥂",
+        "t": "Buffets et cocktails",
+        "p": "Pièces cocktail par 20, 50 ou 100, buffets froids : avec une empreinte bancaire pour garantir la commande."
+      },
+      {
+        "e": "🍲",
+        "t": "Les plats du jour à emporter",
+        "p": "Votre menu du jour en ligne le matin, retiré sans attendre à midi."
+      },
+      {
+        "e": "🧀",
+        "t": "La box apéro",
+        "p": "Planches de charcuterie et fromages, verrines, mini-quiches : l'apéritif d'un samedi soir prêt à servir."
+      },
+      {
+        "e": "🎉",
+        "t": "Les formules événements",
+        "p": "Anniversaires, communions, mariages, départs en retraite : formules par personne, réservées avec acompte."
+      },
+      {
+        "e": "🎄",
+        "t": "Les menus de fêtes",
+        "p": "Réveillons de Noël et du Nouvel An, Pâques : menus complets précommandés au bon nombre."
+      }
+    ]
   },
   {
     "slug": "fromagerie",
@@ -187,9 +433,7 @@
     "accroche": "Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.",
     "title": "Click & collect pour fromagerie : plateaux et commandes en ligne · Marchéo",
     "description": "Le site de commande en ligne de votre fromagerie en 30 secondes : plateaux sur mesure, commandes de Noël et de raclette, affinages et AOP mis en avant, retrait par créneau, SMS aux clients. 0 % de commission.",
-    "h1": "Le click & collect fait pour les fromageries",
-    "lead": "Plateaux de fromages pour un dîner, commandes de raclette et de fondue en hiver, fêtes de fin d'année : vos clients commandent en ligne, vous composez au calme, ils retirent à l'heure prévue.",
-    "corps": "## Ce que ça change dans votre fromagerie\n\n**Les plateaux se commandent à l'avance.** Un plateau pour 6 personnes, avec les préférences du client, commandé pour le samedi 18 h. Vous le composez le samedi matin, avec les affinages du moment.\n\n**L'hiver se prépare.** Raclette, fondue, tartiflette : des produits saisonniers commandés en ligne au poids ou par personne, avec le créneau de retrait. Vous anticipez les quantités.\n\n**Vos affinages se racontent.** Chaque fiche produit a sa description, son origine, son AOP. Les clients découvrent, commandent, reviennent.\n\n## Le calendrier d'une fromagerie\n\nPeu de métiers de bouche ont une saisonnalité aussi marquée, et c'est exactement ce qui rend la commande à l'avance rentable : vous savez des mois d'avance quand la demande va monter.\n\n| Période | Ce qui se commande | À ouvrir |\n|---|---|---|\n| Octobre à mars | Raclette, fondue, tartiflette, au poids ou par personne | Dès les premiers froids, avec une formule par nombre de convives |\n| Décembre | Plateaux de fêtes, pièces d'exception, beurres et crèmes | Début novembre, date limite ferme mi-décembre |\n| Printemps et été | Plateaux d'apéritif, chèvres frais, fromages de pique-nique | Aux beaux jours, avec des formats plus petits |\n| Toute l'année | Plateaux pour dîners, cadeaux, buffets d'entreprise | En permanence, par nombre de personnes |\n\nLa formule par nombre de convives est le format qui marche le mieux en fromagerie. « Raclette pour 4, 250 g par personne » ne demande aucun calcul au client, alors qu'un prix au kilo l'oblige à deviner une quantité qu'il ne connaît pas. Gardez la vente au poids pour la coupe, et proposez des formules pour tout ce qui se consomme à plusieurs.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue fromagerie déjà rempli** : pâtes molles, pressées, persillées, chèvres, brebis, crèmerie, plateaux.\n- Vente au poids, à la pièce ou par personne, mise en avant des produits de saison.\n- Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte bancaire réglable.\n- Retrait par créneau, livraison locale en option.\n- Base clients, SMS inclus pour annoncer un affinage ou une promotion.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois | Pour |\n|---|---|---|---|\n| Vitrine | 249 € | 19 € | Être visible sur Google et présenter vos fromages, sans vente en ligne |\n| Click & Collect | 399 € | 39 € | Plateaux et formules commandés à l'avance, créneaux, empreinte, SMS |\n| Click & Collect + Livraison | 549 € | 59 € | Tout ça, plus la livraison dans votre zone |\n\n**0 % de commission**, sans engagement. Deux plateaux de fêtes par mois remboursent l'abonnement.\n\n## Comment démarrer\n\n1. Choisissez « Fromagerie » à l'inscription, tapez le nom de votre commerce.\n2. Ajustez le catalogue, créez vos plateaux et vos formules raclette.\n3. QR code en boutique, lien sur vos réseaux.\n\n## Pour aller plus loin\n\n- [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne) : proposer des poids d'un clic, annoncer l'ajustement à la pesée et choisir le bon mode de paiement pour la coupe.\n- [Organiser ses précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche) : dates limites, créneaux et acomptes pour décembre.\n- [Régler sa fiche Google Business](/blog/fiche-google-business-commerce-bouche) : être trouvé sur « fromagerie » plus le nom de votre ville, et mettre le lien de commande au bon endroit.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre fromagerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une fromagerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Comment vendre un plateau dont la composition dépend des affinages du moment ?",
@@ -217,7 +461,60 @@
       }
     ],
     "meta_title": "Click & collect pour fromagerie et crémerie",
-    "meta_description": "Plateaux sur mesure et commandes de fêtes en ligne, vente au poids, retraits par créneaux. 0 % de commission, dès 19 € par mois, sans engagement."
+    "meta_description": "Plateaux sur mesure et commandes de fêtes en ligne, vente au poids, retraits par créneaux. 0 % de commission, dès 19 € par mois, sans engagement.",
+    "un": "une fromagerie",
+    "votre": "votre fromagerie",
+    "catalogue": "fromagerie et crèmerie",
+    "recherche": [
+      "fromagerie",
+      "fromager"
+    ],
+    "rush": "Le samedi matin et en décembre",
+    "calc": {
+      "clients": 700,
+      "panier": 40,
+      "pct": 5,
+      "marge": 35,
+      "offre": 39
+    },
+    "idees_intro": "D'abord vos fromages à la coupe, au poids, avec l'affinage et la provenance. Ensuite, les formules qui font de belles commandes :",
+    "idees": [
+      {
+        "e": "🧀",
+        "t": "Vos fromages à la coupe",
+        "p": "Pâtes molles, pressées, chèvres, AOP : au poids, avec vos conseils d'affinage et d'accord."
+      },
+      {
+        "e": "🍽️",
+        "t": "Le plateau de fromages",
+        "p": "Composé par vos soins pour 4, 8 ou 12 convives, pour un dîner, un buffet ou une fin de repas."
+      },
+      {
+        "e": "🫕",
+        "t": "Raclette, fondue, tartiflette",
+        "p": "Fromage et charcuterie calculés par personne, d'octobre à mars : la commande d'hiver par excellence."
+      },
+      {
+        "e": "🥓",
+        "t": "La planche fromage et charcuterie",
+        "p": "L'apéro dînatoire prêt à poser sur la table, avec le pain et la confiture de figue."
+      },
+      {
+        "e": "🎁",
+        "t": "Le coffret cadeau",
+        "p": "Trois ou quatre fromages, une confiture, un vin ou un cidre : pour les cadeaux d'entreprise et les fêtes."
+      },
+      {
+        "e": "🥛",
+        "t": "La crèmerie",
+        "p": "Beurre à la motte, crème crue, œufs, yaourts fermiers : réservés pour le week-end."
+      },
+      {
+        "e": "🎄",
+        "t": "Les plateaux de fêtes",
+        "p": "Pièces d'exception et plateaux de Noël, commandés dès novembre, garantis par une empreinte bancaire."
+      }
+    ]
   },
   {
     "slug": "fleuriste",
@@ -227,9 +524,7 @@
     "accroche": "Bouquets commandés en ligne et retirés à l'heure, Saint-Valentin et fête des mères sans téléphone qui sonne, livraison locale.",
     "title": "Click & collect pour fleuriste : bouquets en ligne et livraison locale · Marchéo",
     "description": "Créez la boutique en ligne de votre fleuriste en 30 secondes : bouquets et compositions commandés à l'avance, retrait à l'heure choisie, livraison dans votre zone, Saint-Valentin et fête des mères sans surcharge. 0 % de commission.",
-    "h1": "Le click & collect fait pour les fleuristes",
-    "lead": "Un bouquet commandé à 9 h, prêt à 12 h, retiré en 30 secondes. Les grandes dates se préparent la veille au lieu de se subir au téléphone. Et vous livrez dans votre zone, à vos conditions, sans plateforme qui prend 30 %.",
-    "corps": "## Ce que ça change chez un fleuriste\n\n**La Saint-Valentin et la fête des mères se préparent.** Les commandes arrivent en ligne plusieurs jours avant, avec le budget, le style et l'heure de retrait ou de livraison. Vous composez la veille, vous ne répondez plus au téléphone pendant que vous servez.\n\n**Zéro commission sur la livraison.** Les plateformes de fleurs prennent 25 à 30 % de chaque bouquet livré. Avec Marchéo, vous livrez vous-même dans votre zone, avec vos frais, vos créneaux et votre minimum de commande.\n\n**Deuil, mariage, événements : des commandes garanties.** L'empreinte bancaire ou le paiement en ligne sécurisent les grosses commandes et les compositions sur mesure.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue fleuriste déjà rempli** : bouquets par budget, compositions, plantes, roses à l'unité, événements. Le client choisit un budget et un style, vous composez.\n- Champ « message pour la carte » et « précisions » sur chaque commande.\n- Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte réglable.\n- Retrait par créneau, livraison locale avec adresse et itinéraire, tournée par créneau. Marchéo ne livre pas à votre place, il vous donne l'outil pour livrer vous-même.\n- Base clients, SMS inclus pour rappeler les grandes dates à vos habitués.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Un bouquet livré par semaine sans commission couvre l'abonnement.\n\n## Comment démarrer\n\n1. Choisissez « Fleuriste » à l'inscription, tapez le nom de votre boutique.\n2. Ajustez vos bouquets par budget, ajoutez vos photos, ouvrez votre zone de livraison.\n3. QR code en vitrine, lien sur Instagram, SMS de rappel avant les grandes dates.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre boutique, découvrent vos produits et vous passent commande. Voici ce que ça change pour un fleuriste, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Mes bouquets ne sont jamais identiques, comment les vendre en ligne ?",
@@ -245,7 +540,55 @@
       }
     ],
     "meta_title": "Click & collect pour fleuriste",
-    "meta_description": "Bouquets commandés en ligne et retirés à l'heure, Saint-Valentin et fête des mères sans téléphone qui sonne. 0 % de commission, dès 19 € par mois."
+    "meta_description": "Bouquets commandés en ligne et retirés à l'heure, Saint-Valentin et fête des mères sans téléphone qui sonne. 0 % de commission, dès 19 € par mois.",
+    "un": "un fleuriste",
+    "votre": "votre boutique",
+    "catalogue": "fleuriste",
+    "recherche": [
+      "fleuriste",
+      "livraison de fleurs"
+    ],
+    "rush": "À la Saint-Valentin, à la fête des mères et à la Toussaint",
+    "calc": {
+      "clients": 500,
+      "panier": 45,
+      "pct": 8,
+      "marge": 55,
+      "offre": 59
+    },
+    "idees_intro": "D'abord vos bouquets et vos plantes, avec des prix clairs. Ensuite, les commandes qui font l'année d'un fleuriste :",
+    "idees": [
+      {
+        "e": "💐",
+        "t": "Les bouquets à prix fixe",
+        "p": "Le bouquet du moment à 25, 35 ou 50 € : vous composez selon vos arrivages, le client choisit le budget."
+      },
+      {
+        "e": "🌹",
+        "t": "Les grandes dates précommandées",
+        "p": "Saint-Valentin, fête des mères, fête des grands-mères : commandées la semaine d'avant, préparées la veille."
+      },
+      {
+        "e": "🕊️",
+        "t": "Le deuil",
+        "p": "Gerbes, couronnes, coussins : commandés par la famille à distance et livrés au funérarium ou à l'église."
+      },
+      {
+        "e": "💍",
+        "t": "Mariages et événements",
+        "p": "Bouquet de mariée, boutonnières, centres de table, avec un acompte pour bloquer la date."
+      },
+      {
+        "e": "🪴",
+        "t": "Plantes et compositions cadeaux",
+        "p": "Orchidées, plantes vertes, compositions en coupe, avec une carte message écrite par le client."
+      },
+      {
+        "e": "🏢",
+        "t": "Les fleurs des entreprises",
+        "p": "Le bouquet de l'accueil, du restaurant ou de l'hôtel d'à côté, livré chaque semaine."
+      }
+    ]
   },
   {
     "slug": "pizzeria",
@@ -255,9 +598,7 @@
     "accroche": "Commandes à emporter sans les 25 à 30 % d'Uber Eats et Deliveroo, coup de feu du soir lissé par créneau.",
     "title": "Click & collect pour pizzeria : commandes en ligne sans commission · Marchéo",
     "description": "Le site de commande en ligne de votre pizzeria en 30 secondes : commandes à emporter sans les 25 à 30 % de commission des plateformes, créneaux de retrait pour lisser le coup de feu, réservation de table, base clients à vous.",
-    "h1": "Le click & collect fait pour les pizzerias",
-    "lead": "Vos clients commandent leurs pizzas depuis leur téléphone, choisissent leur heure, viennent chercher. Vous gardez 100 % du prix au lieu de 70 % sur les plateformes, et la base clients vous appartient.",
-    "corps": "## Ce que ça change dans votre pizzeria\n\n**Vous récupérez la commission.** Sur une pizza à 14 € vendue via une plateforme de livraison, 3,50 à 4,20 € partent en commission. Sur Marchéo, c'est 0 €. Cent pizzas par semaine, c'est 350 à 420 € de marge retrouvés chaque semaine.\n\n**Le coup de feu du soir se lisse.** Les commandes en ligne sont réparties dans des créneaux de 15 minutes avec une capacité maximale. Vous n'avez plus 12 pizzas commandées pour 20 h et rien pour 20 h 30.\n\n**Le téléphone arrête de sonner.** Le client commande seul, avec ses suppléments et ses précisions, paie en ligne ou au retrait, et reçoit un SMS quand c'est prêt.\n\n**Vous gardez le contact.** Sur une plateforme, le client est le sien. Sur votre boutique, vous avez son numéro, son historique, et vous pouvez lui envoyer une promo le mardi soir.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue pizzeria déjà rempli** : pizzas classiques et spéciales, tailles, suppléments, boissons, desserts.\n- Options et suppléments sur chaque produit, précisions du client.\n- Créneaux de retrait de 15 ou 30 minutes avec capacité, commande en 30 secondes sans compte.\n- Réservation de table en ligne avec empreinte anti no-show, pour la salle.\n- Base clients, SMS inclus, comptes pour l'équipe.\n- Livraison locale en option : Marchéo ne livre pas à votre place, vous livrez vous-même avec l'outil, à vos conditions.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine | 249 € | 19 € |\n| Click & Collect + Réservation | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Dix pizzas par mois hors plateforme remboursent l'abonnement.\n\n## Comment démarrer\n\n1. Choisissez « Pizzeria » à l'inscription, tapez le nom de votre établissement.\n2. Ajustez la carte, les tailles et les suppléments, réglez vos créneaux du soir.\n3. QR code sur les flyers et les boîtes à pizza, lien sur Instagram et Google Maps.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre pizzeria, découvrent vos produits et vous passent commande. Voici ce que ça change pour une pizzeria, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Dois-je quitter Uber Eats ou Deliveroo ?",
@@ -277,7 +618,58 @@
       }
     ],
     "meta_title": "Commande en ligne pour pizzeria, sans commission",
-    "meta_description": "Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, dès 19 € par mois."
+    "meta_description": "Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, dès 19 € par mois.",
+    "un": "une pizzeria",
+    "votre": "votre pizzeria",
+    "catalogue": "pizzeria",
+    "recherche": [
+      "pizzeria",
+      "pizza à emporter"
+    ],
+    "rush": "Pendant le coup de feu du soir",
+    "offre_39": "Click & Collect + Réservation",
+    "offre_39_desc": "Commandes à emporter avec créneaux, réservation de table, avis clients, SMS",
+    "calc": {
+      "clients": 900,
+      "panier": 30,
+      "pct": 10,
+      "marge": 65,
+      "offre": 59
+    },
+    "commandes_en_plus": "Le client qui tombe sur occupé et commande ailleurs, la commande passée à 17 h pour 20 h : elle arrive par écrit, avec l'heure choisie. Et sans les 25 à 30 % de commission des plateformes.",
+    "idees_intro": "D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce qui fait monter le montant de chaque commande :",
+    "idees": [
+      {
+        "e": "🍕",
+        "t": "Votre carte et vos suppléments",
+        "p": "Bases, tailles, ingrédients en plus ou en moins : le client compose sans erreur, vous lisez la commande écrite."
+      },
+      {
+        "e": "👨‍👩‍👧",
+        "t": "Les formules famille",
+        "p": "Trois pizzas, une boisson et un dessert à prix rond : le vendredi soir réglé en un clic."
+      },
+      {
+        "e": "⭐",
+        "t": "La pizza du moment",
+        "p": "Une recette de saison mise en avant en haut de la carte et annoncée par SMS à vos habitués."
+      },
+      {
+        "e": "🍰",
+        "t": "Desserts, boissons, entrées",
+        "p": "Tiramisu, boissons fraîches, salades : proposés au moment de valider, ils augmentent chaque commande."
+      },
+      {
+        "e": "🎉",
+        "t": "Les commandes groupées",
+        "p": "Anniversaires, soirées match, équipes de bureau : dix pizzas commandées à l'avance pour une heure précise."
+      },
+      {
+        "e": "🪑",
+        "t": "La réservation de table",
+        "p": "Pour ceux qui mangent sur place, avec une empreinte bancaire pour les grandes tablées."
+      }
+    ]
   },
   {
     "slug": "restaurant",
@@ -287,9 +679,7 @@
     "accroche": "Réservation de table en ligne avec empreinte anti no-show, plats à emporter sans commission.",
     "title": "Réservation de table et click & collect pour restaurant, anti no-show · Marchéo",
     "description": "Réservation de table en ligne 24 h/24 avec empreinte bancaire contre les no-shows, plats à emporter commandés sans commission, base clients à vous. Créez la page de votre restaurant en 30 secondes.",
-    "h1": "Réservation et click & collect faits pour les restaurants",
-    "lead": "Vos clients réservent une table en ligne à toute heure, et une empreinte bancaire garantit qu'ils viennent. Ceux qui préfèrent emporter commandent sans commission. Vous gardez la main sur votre salle et sur vos clients.",
-    "corps": "## Ce que ça change dans votre restaurant\n\n**Le no-show ne vous coûte plus rien.** Une table de 6 réservée un samedi soir et jamais honorée, c'est un service perdu. Avec l'empreinte bancaire par couvert, réglable, le client s'engage. Vous fixez votre politique d'annulation et le montant retenu en cas d'absence.\n\n**Les réservations arrivent la nuit.** Le client réserve depuis Google, Instagram ou votre site, à 23 h, sans vous appeler. Vous voyez le plan de salle du lendemain le matin.\n\n**Le à emporter sans commission.** Vos plats du jour et vos menus à emporter se commandent en ligne, avec un créneau de retrait. Aucune commission, contre 25 à 30 % sur les plateformes.\n\n**Vos clients sont à vous.** Historique, préférences, anniversaires. Un SMS pour annoncer le nouveau menu ou remplir un mardi soir.\n\n## Ce qui est inclus\n\n- Page à vos couleurs avec vos horaires, votre carte et le bouton « Réserver ».\n- Réservation en ligne 24 h/24, gestion des couverts et des services, empreinte bancaire par couvert réglable, politique d'annulation paramétrable.\n- Click & collect pour la vente à emporter, avec le **catalogue restaurant déjà rempli** à adapter.\n- SMS de rappel de réservation inclus, base clients, comptes pour l'équipe.\n- Livraison locale en option : Marchéo ne livre pas à votre place, il vous donne l'outil pour organiser votre propre livraison, à vos conditions.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine | 249 € | 19 € |\n| Click & Collect + Réservation | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Une table de 4 sauvée d'un no-show couvre le mois.\n\n## Comment démarrer\n\n1. Choisissez « Restaurant » à l'inscription, tapez le nom de votre établissement.\n2. Réglez vos services, vos couverts, votre politique d'annulation et l'empreinte.\n3. Ajoutez le bouton « Réserver » sur Google Maps et Instagram.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre restaurant, découvrent vos produits et vous passent commande. Voici ce que ça change pour un restaurant, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "L'empreinte bancaire fait-elle fuir les clients ?",
@@ -309,7 +699,59 @@
       }
     ],
     "meta_title": "Réservation et commande en ligne pour restaurant",
-    "meta_description": "Réservation de table avec empreinte anti no-show et plats à emporter sans commission. Dès 19 € par mois, sans engagement, 0 % sur vos ventes."
+    "meta_description": "Réservation de table avec empreinte anti no-show et plats à emporter sans commission. Dès 19 € par mois, sans engagement, 0 % sur vos ventes.",
+    "un": "un restaurant",
+    "votre": "votre restaurant",
+    "catalogue": "restaurant",
+    "recherche": [
+      "restaurant",
+      "restaurant ouvert ce soir"
+    ],
+    "rush": "Pendant le service",
+    "offre_39": "Click & Collect + Réservation",
+    "offre_39_desc": "Réservation de table avec empreinte anti no-show, vente à emporter, avis clients, SMS",
+    "calc": {
+      "clients": 1200,
+      "panier": 35,
+      "pct": 5,
+      "marge": 65,
+      "offre": 39
+    },
+    "calc_label_clients": "Couverts par mois dans votre restaurant",
+    "commandes_en_plus": "La réservation faite à 23 h pour le lendemain, le client qui tombe sur le répondeur pendant le service, celui qui veut emporter : tout arrive par écrit, à toute heure.",
+    "idees_intro": "D'abord la réservation de table, ouverte 24 h sur 24. Ensuite, tout ce que votre cuisine peut vendre en dehors de la salle :",
+    "idees": [
+      {
+        "e": "📅",
+        "t": "La réservation de table",
+        "p": "En ligne à toute heure, avec une empreinte bancaire contre les tables qui ne viennent pas."
+      },
+      {
+        "e": "🥡",
+        "t": "Votre carte à emporter",
+        "p": "Vos plats phares commandés et réglés d'avance, retirés à l'heure, sans commission de plateforme."
+      },
+      {
+        "e": "🍽️",
+        "t": "Le menu du midi à emporter",
+        "p": "Pour les bureaux d'à côté : commandé le matin, prêt à 12 h 15."
+      },
+      {
+        "e": "🥂",
+        "t": "Groupes et soirées",
+        "p": "Menus de groupe, privatisations, Saint-Valentin, réveillon : réservés avec empreinte et menu choisi à l'avance."
+      },
+      {
+        "e": "🧺",
+        "t": "La box du week-end",
+        "p": "Brunch du dimanche, plat signature à réchauffer, box apéro : une recette en plus les jours de fermeture."
+      },
+      {
+        "e": "📣",
+        "t": "Les services creux",
+        "p": "Un SMS à vos clients le mardi soir pour remplir la salle avec le plat du jour."
+      }
+    ]
   },
   {
     "slug": "fastfood",
@@ -319,9 +761,7 @@
     "accroche": "Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.",
     "title": "Click & collect pour fast-food et food-truck : commandes en ligne sans commission · Marchéo",
     "description": "Le site de commande en ligne de votre fast-food ou food-truck en 30 secondes : commandes à emporter sans les commissions des plateformes, menu du jour, clients prévenus de votre emplacement par SMS et notification.",
-    "h1": "Le click & collect fait pour les fast-foods et les food-trucks",
-    "lead": "Burgers, tacos, kebabs, bowls : vos clients commandent depuis leur téléphone et viennent chercher au créneau choisi. Pour les food-trucks, vos habitués savent où vous êtes chaque jour. Sans commission.",
-    "corps": "## Ce que ça change pour un fast-food ou un food-truck\n\n**Le midi se lisse.** Les commandes en ligne sont réparties par créneau de 10 ou 15 minutes avec une capacité. Le client qui a commandé à 11 h 40 pour 12 h 30 passe devant la file, récupère, repart.\n\n**Vous gardez la commission.** Les plateformes prennent 25 à 30 % sur chaque commande. Sur votre boutique, c'est 0 %. Sur un menu à 12 €, ce sont 3 à 3,60 € par commande qui restent chez vous.\n\n**Vos clients savent où vous êtes.** Pour un food-truck, l'emplacement du jour est annoncé en 30 secondes par SMS et par notification à vos habitués. Le menu du jour est publié en même temps.\n\n## Ce qui est inclus\n\n- Boutique à vos couleurs avec le **catalogue fast-food déjà rempli** : menus, burgers, tacos, sandwichs, boissons, desserts, suppléments.\n- Options et suppléments sur chaque produit, commande en 30 secondes sans compte, paiement en ligne ou au retrait.\n- Créneaux de retrait courts avec capacité, SMS quand la commande est prête.\n- Menu du jour et emplacement du jour, notifications push et SMS inclus.\n- Base clients, comptes pour l'équipe, livraison locale en option.\n\n## Régler ses créneaux du midi\n\nSur un service qui dure 90 minutes, c'est le seul réglage qui compte vraiment. Trois repères :\n\n- **Des tranches de 10 ou 15 minutes**, jamais plus. Votre client a une pause déjeuner, pas une soirée.\n- **La moitié de votre capacité ouverte en ligne**, l'autre moitié gardée pour les clients qui arrivent au comptoir. Sur un poste qui sort 20 plats par quart d'heure, cela fait 8 à 10 commandes réservées par créneau.\n- **Une heure limite de commande**, 11 h ou 11 h 15 pour le midi. Au-delà vous êtes en production, vous n'avez plus les mains libres pour absorber un imprévu.\n\nCommencez bas et augmentez semaine après semaine : un client qui attend un plat annoncé prêt est plus mécontent qu'un client qui fait la queue. Les créneaux pleins disparaissent tout seuls de la liste, personne ne réserve un horaire que vous ne pouvez pas tenir.\n\n## Les commandes de bureau\n\nLa réunion qui commande douze menus est votre meilleure vente de la semaine, et la plus risquée : elle occupe une part entière de votre production et elle s'annule parfois la veille au soir. L'empreinte bancaire optionnelle réserve jusqu'à 75 % du panier sur la carte du client sans le débiter, et libère la somme automatiquement 24 heures après le retrait. Le client sérieux n'y voit rien passer, l'autre réfléchit avant de réserver.\n\n## Combien ça coûte\n\n| Offre | Installation | Par mois |\n|---|---|---|\n| Vitrine | 249 € | 19 € |\n| Click & Collect | 399 € | 39 € |\n| Click & Collect + Livraison | 549 € | 59 € |\n\n**0 % de commission**, sans engagement. Une quinzaine de commandes par mois passées sur votre boutique plutôt que sur une plateforme couvrent l'abonnement.\n\n## Comment démarrer\n\n1. Choisissez « Fast-food » à l'inscription, tapez le nom de votre enseigne.\n2. Ajustez la carte, les menus et les suppléments, réglez vos créneaux du midi.\n3. QR code sur le comptoir et le camion, lien sur Instagram, premier SMS à vos habitués.\n\nPour un camion, la méthode complète est détaillée dans notre guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck) : emplacement du jour, cadence des créneaux et passage des habitués. Si vous comparez encore avec les plateformes, voyez [le click & collect sans commission face à Uber Eats et Deliveroo](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre enseigne, découvrent vos produits et vous passent commande. Voici ce que ça change pour un fast-food ou un food-truck, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
     "faq": [
       {
         "q": "Comment gérer un emplacement qui change chaque jour ?",
@@ -349,6 +789,55 @@
       }
     ],
     "meta_title": "Commande en ligne pour fast-food et food-truck",
-    "meta_description": "Commandes en ligne sans commission, menu du jour, clients prévenus par SMS quand c'est prêt. Dès 19 € par mois, sans engagement, 0 % sur vos ventes."
+    "meta_description": "Commandes en ligne sans commission, menu du jour, clients prévenus par SMS quand c'est prêt. Dès 19 € par mois, sans engagement, 0 % sur vos ventes.",
+    "un": "un fast-food ou un food-truck",
+    "votre": "votre enseigne",
+    "catalogue": "fast-food",
+    "recherche": [
+      "fast-food",
+      "burger à emporter"
+    ],
+    "rush": "Pendant le rush du midi",
+    "calc": {
+      "clients": 1500,
+      "panier": 16,
+      "pct": 10,
+      "marge": 60,
+      "offre": 39
+    },
+    "commandes_en_plus": "La commande passée pendant le cours ou la réunion pour midi pile, le client qui voit la file et repart : la commande arrive par écrit, payée, avec le créneau choisi. Et sans les commissions des plateformes.",
+    "idees_intro": "D'abord votre carte et vos menus, avec les sauces et les suppléments. Ensuite, ce qui fait revenir et monter les commandes :",
+    "idees": [
+      {
+        "e": "🍔",
+        "t": "Votre carte et vos menus",
+        "p": "Burgers, tacos, kebabs, bowls, avec sauces, suppléments et formules : la commande arrive sans erreur."
+      },
+      {
+        "e": "🕛",
+        "t": "La commande pour la pause déj",
+        "p": "Commandée à 11 h, prête à 12 h 10 : le client passe devant la file."
+      },
+      {
+        "e": "🚚",
+        "t": "L'emplacement du jour",
+        "p": "Pour les food-trucks : vos habitués savent où vous êtes aujourd'hui et commandent avant d'arriver."
+      },
+      {
+        "e": "👥",
+        "t": "Les commandes de groupe",
+        "p": "L'équipe du chantier, le bureau, les étudiants : quinze menus commandés d'un coup pour une heure précise."
+      },
+      {
+        "e": "🔥",
+        "t": "L'offre du moment",
+        "p": "Le burger du mois, le menu étudiant, la formule du vendredi : annoncés par SMS à vos clients."
+      },
+      {
+        "e": "🍟",
+        "t": "Desserts et boissons",
+        "p": "Proposés au moment de valider, ils augmentent chaque commande sans effort."
+      }
+    ]
   }
 ]

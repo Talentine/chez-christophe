@@ -252,6 +252,28 @@ aside{position:sticky;top:76px}
 .gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
 @media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
 footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.idees{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:14px 0 22px;padding:0;list-style:none}
+.idees li{background:#fff;border:1px solid var(--creme-fonce);border-radius:14px;padding:14px 16px;margin:0}
+.idees .ie{font-size:24px;line-height:1;display:block;margin:0 0 6px}.idees strong{display:block;font-size:16px;color:var(--bleu);margin:0 0 4px;line-height:1.3}
+.idees p{margin:0;font-size:14px;color:#2b3a52;line-height:1.5}
+.calc{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px;margin:10px 0 26px}
+.calc h3{margin:0 0 4px;font-size:20px}.calc>p{margin:0 0 16px;font-size:15px;color:var(--gris)}
+.calc-champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;margin:0 0 16px}@media(max-width:640px){.calc-champs{grid-template-columns:1fr}.calc{padding:18px 14px}}
+.calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
+.calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
+.calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
+.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
+.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
+.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
+.calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
+.calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
+.calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
+.calc-phrase{font-size:15px;margin:0 0 6px}.calc-note{font-size:12px;color:var(--gris);margin:0}
+.etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
+.etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.etapes strong{display:block;font-size:17px}
 </style>
 </head>
 <body>
@@ -268,101 +290,58 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <div class="grid">
 <article>
 <p class="eyebrow">🧀 Fromagerie</p>
-<h1>Le click &amp; collect fait pour les fromageries</h1>
-<p class="lead">Plateaux de fromages pour un dîner, commandes de raclette et de fondue en hiver, fêtes de fin d'année : vos clients commandent en ligne, vous composez au calme, ils retirent à l'heure prévue.</p>
+<h1>Développer son commerce grâce à internet : ça consiste en quoi ?</h1>
+<p class="lead">Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre fromagerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une fromagerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.</p>
 
-<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte pour votre fromagerie</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Plateaux, raclettes, fondues, coffrets cadeaux : vos clients commandent à toute heure, et le carnet des fêtes se remplit bien avant décembre. Zéro commission.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre fromagerie apparaît sur Google avec ses plateaux et ses prix. Un lien pour Instagram, des SMS pour annoncer le retour du Mont d'Or ou de la raclette.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Les plateaux arrivent avec le nombre de personnes et l'heure de retrait : vous les préparez au calme, sans appels pendant le rush.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription?metier=fromagerie">Voir ma démo gratuite</a></section>
-<h2>Ce que ça change dans votre fromagerie</h2>
-<p><strong>Les plateaux se commandent à l&rsquo;avance.</strong> Un plateau pour 6 personnes, avec les préférences du client, commandé pour le samedi 18 h. Vous le composez le samedi matin, avec les affinages du moment.</p>
-<p><strong>L&rsquo;hiver se prépare.</strong> Raclette, fondue, tartiflette : des produits saisonniers commandés en ligne au poids ou par personne, avec le créneau de retrait. Vous anticipez les quantités.</p>
-<p><strong>Vos affinages se racontent.</strong> Chaque fiche produit a sa description, son origine, son AOP. Les clients découvrent, commandent, reviennent.</p>
-<h2>Le calendrier d&rsquo;une fromagerie</h2>
-<p>Peu de métiers de bouche ont une saisonnalité aussi marquée, et c&rsquo;est exactement ce qui rend la commande à l&rsquo;avance rentable : vous savez des mois d&rsquo;avance quand la demande va monter.</p>
-<table>
-<thead>
-<tr>
-<th>Période</th>
-<th>Ce qui se commande</th>
-<th>À ouvrir</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Octobre à mars</td>
-<td>Raclette, fondue, tartiflette, au poids ou par personne</td>
-<td>Dès les premiers froids, avec une formule par nombre de convives</td>
-</tr>
-<tr>
-<td>Décembre</td>
-<td>Plateaux de fêtes, pièces d&rsquo;exception, beurres et crèmes</td>
-<td>Début novembre, date limite ferme mi-décembre</td>
-</tr>
-<tr>
-<td>Printemps et été</td>
-<td>Plateaux d&rsquo;apéritif, chèvres frais, fromages de pique-nique</td>
-<td>Aux beaux jours, avec des formats plus petits</td>
-</tr>
-<tr>
-<td>Toute l&rsquo;année</td>
-<td>Plateaux pour dîners, cadeaux, buffets d&rsquo;entreprise</td>
-<td>En permanence, par nombre de personnes</td>
-</tr>
-</tbody>
-</table>
-<p>La formule par nombre de convives est le format qui marche le mieux en fromagerie. « Raclette pour 4, 250 g par personne » ne demande aucun calcul au client, alors qu&rsquo;un prix au kilo l&rsquo;oblige à deviner une quantité qu&rsquo;il ne connaît pas. Gardez la vente au poids pour la coupe, et proposez des formules pour tout ce qui se consomme à plusieurs.</p>
-<h2>Ce qui est inclus</h2>
-<ul>
-<li>Boutique à vos couleurs avec le <strong>catalogue fromagerie déjà rempli</strong> : pâtes molles, pressées, persillées, chèvres, brebis, crèmerie, plateaux.</li>
-<li>Vente au poids, à la pièce ou par personne, mise en avant des produits de saison.</li>
-<li>Commande en 30 secondes sans compte, paiement en ligne ou au retrait, empreinte bancaire réglable.</li>
-<li>Retrait par créneau, livraison locale en option.</li>
-<li>Base clients, SMS inclus pour annoncer un affinage ou une promotion.</li>
-</ul>
+
+<section class="gains" aria-labelledby="apports"><h2 id="apports">Ce qu'un site à votre image change pour vous</h2><ol><li><span class="gi">📍</span><div><strong>Les clients du coin vous trouvent</strong><p>Quand quelqu'un cherche « fromagerie » ou « fromager près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.</p></div></li><li><span class="gi">✨</span><div><strong>Une image pro</strong><p>Un site à votre nom, à vos couleurs, avec vos photos : votre fromagerie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.</p></div></li><li><span class="gi">🛍️</span><div><strong>Le click &amp; collect, et la livraison si vous le voulez</strong><p>Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.</p></div></li><li><span class="gi">📱</span><div><strong>Vous vous modernisez</strong><p>Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.</p></div></li><li><span class="gi">➕</span><div><strong>Des commandes que vous n'auriez pas prises</strong><p>Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.</p></div></li><li><span class="gi">⭐</span><div><strong>Des avis clients, automatiquement</strong><p>Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.</p></div></li><li><span class="gi">☎️</span><div><strong>En prime : fini le téléphone pendant le rush</strong><p>Le samedi matin et en décembre, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.</p></div></li></ol>
+<a class="btn" href="/inscription?metier=fromagerie">Voir ma démo gratuite</a></section>
+<h2>Ce qui marche bien en ligne pour une fromagerie</h2>
+<p>D'abord vos fromages à la coupe, au poids, avec l'affinage et la provenance. Ensuite, les formules qui font de belles commandes :</p>
+<ul class="idees"><li><span class="ie">🧀</span><strong>Vos fromages à la coupe</strong><p>Pâtes molles, pressées, chèvres, AOP : au poids, avec vos conseils d'affinage et d'accord.</p></li><li><span class="ie">🍽️</span><strong>Le plateau de fromages</strong><p>Composé par vos soins pour 4, 8 ou 12 convives, pour un dîner, un buffet ou une fin de repas.</p></li><li><span class="ie">🫕</span><strong>Raclette, fondue, tartiflette</strong><p>Fromage et charcuterie calculés par personne, d'octobre à mars : la commande d'hiver par excellence.</p></li><li><span class="ie">🥓</span><strong>La planche fromage et charcuterie</strong><p>L'apéro dînatoire prêt à poser sur la table, avec le pain et la confiture de figue.</p></li><li><span class="ie">🎁</span><strong>Le coffret cadeau</strong><p>Trois ou quatre fromages, une confiture, un vin ou un cidre : pour les cadeaux d'entreprise et les fêtes.</p></li><li><span class="ie">🥛</span><strong>La crèmerie</strong><p>Beurre à la motte, crème crue, œufs, yaourts fermiers : réservés pour le week-end.</p></li><li><span class="ie">🎄</span><strong>Les plateaux de fêtes</strong><p>Pièces d'exception et plateaux de Noël, commandés dès novembre, garantis par une empreinte bancaire.</p></li></ul>
+<p>Toutes ces idées sont des produits comme les autres sur votre site : vous les créez, les modifiez ou les retirez en quelques secondes depuis votre téléphone.</p>
 <h2>Combien ça coûte</h2>
-<table>
-<thead>
-<tr>
-<th>Offre</th>
-<th>Installation</th>
-<th>Par mois</th>
-<th>Pour</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vitrine</td>
-<td>249 €</td>
-<td>19 €</td>
-<td>Être visible sur Google et présenter vos fromages, sans vente en ligne</td>
-</tr>
-<tr>
-<td>Click &amp; Collect</td>
-<td>399 €</td>
-<td>39 €</td>
-<td>Plateaux et formules commandés à l&rsquo;avance, créneaux, empreinte, SMS</td>
-</tr>
-<tr>
-<td>Click &amp; Collect + Livraison</td>
-<td>549 €</td>
-<td>59 €</td>
-<td>Tout ça, plus la livraison dans votre zone</td>
-</tr>
-</tbody>
-</table>
-<p><strong>0 % de commission</strong>, sans engagement. Deux plateaux de fêtes par mois remboursent l&rsquo;abonnement.</p>
+<table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td><td>249 €</td><td>19 €</td></tr><tr><td><strong>Click &amp; Collect</strong></td><td>Commandes en ligne avec retrait, avis clients, SMS, base clients</td><td>399 €</td><td>39 €</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td><td>549 €</td><td>59 €</td></tr></tbody></table>
+<p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
+<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+<h3 id="calc-titre">Est-ce rentable pour votre fromagerie ? Faites le calcul</h3>
+<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<div class="calc-champs">
+<div><label for="c-clients">Clients par mois dans votre commerce</label><div class="ligne"><input type="range" id="c-clients" data-k="clients" min="100" max="6000" step="50" value="700" data-u=""><output for="c-clients"></output></div></div>
+<div><label for="c-panier">Montant moyen d'une commande en ligne</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="40" data-u=" €"><output for="c-panier"></output></div></div>
+<div><label for="c-pct">Part de vos clients qui commandent en ligne</label><div class="ligne"><input type="range" id="c-pct" data-k="pct" min="1" max="30" step="1" value="5" data-u=" %"><output for="c-pct"></output></div></div>
+<div><label for="c-marge">Votre marge moyenne sur les ventes</label><div class="ligne"><input type="range" id="c-marge" data-k="marge" min="10" max="80" step="5" value="35" data-u=" %"><output for="c-marge"></output></div></div>
+</div>
+<fieldset class="calc-offres"><legend>Formule</legend><label><input type="radio" name="offre-fromagerie" value="39" data-install="399" checked>Click &amp; Collect · 39 €/mois</label><label><input type="radio" name="offre-fromagerie" value="59" data-install="549">Click &amp; Collect + Livraison · 59 €/mois</label></fieldset>
+<div class="calc-res" aria-live="polite">
+<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
+<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
+<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+</div>
+<p class="calc-phrase" data-r="phrase"></p>
+<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+</section>
+<script>(function(){var r=document.getElementById('calculateur');if(!r)return;
+var f=function(n){return Math.round(n).toLocaleString('fr-FR')};
+function maj(){var v={};r.querySelectorAll('input[type=range]').forEach(function(i){v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u});
+var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var q=function(k){return r.querySelector('[data-r='+k+']')};
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
+if(net>0){var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}
+q('phrase').textContent=t}
+r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
-<ol>
-<li>Choisissez « Fromagerie » à l&rsquo;inscription, tapez le nom de votre commerce.</li>
-<li>Ajustez le catalogue, créez vos plateaux et vos formules raclette.</li>
-<li>QR code en boutique, lien sur vos réseaux.</li>
+<ol class="etapes">
+<li><strong>Créez votre démo gratuite et sans engagement</strong>Sur la page d'inscription, choisissez « Fromagerie » et tapez le nom de votre commerce. En 30 secondes, votre site apparaît à votre nom, avec un catalogue fromagerie et crèmerie déjà rempli. Pas de carte bancaire, rien à installer.</li>
+<li><strong>Regardez-la, testez-la, ajustez-la</strong>Passez une commande comme le ferait un client. Changez les prix, ajoutez vos photos et vos spécialités, les idées ci-dessus, vos horaires de retrait et votre zone de livraison. Prenez le temps qu'il faut : la démo ne vous engage à rien.</li>
+<li><strong>Mettez-la en ligne quand vous êtes prêt</strong>Vous choisissez votre formule, et votre site est publié. On vous aide au lancement : QR code pour la vitrine, lien pour Google Maps et Instagram, premier SMS à vos habitués.</li>
 </ol>
-<h2>Pour aller plus loin</h2>
-<ul>
-<li><a href="/blog/vendre-au-poids-en-ligne">Vendre au poids en ligne</a> : proposer des poids d&rsquo;un clic, annoncer l&rsquo;ajustement à la pesée et choisir le bon mode de paiement pour la coupe.</li>
-<li><a href="/blog/precommandes-fetes-noel-commerce-bouche">Organiser ses précommandes des fêtes</a> : dates limites, créneaux et acomptes pour décembre.</li>
-<li><a href="/blog/fiche-google-business-commerce-bouche">Régler sa fiche Google Business</a> : être trouvé sur « fromagerie » plus le nom de votre ville, et mettre le lien de commande au bon endroit.</li>
-</ul><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Comment vendre un plateau dont la composition dépend des affinages du moment ?</summary><p>Créez des plateaux par nombre de personnes avec un prix fixe et un champ où le client indique ses préférences. Vous composez avec ce que vous avez de meilleur le jour du retrait.</p></details><details><summary>Puis-je vendre au poids en ligne ?</summary><p>Oui. Le client choisit un poids approximatif, vous ajustez le montant au poids réel avant l'encaissement si nécessaire.</p></details><details><summary>Comment vendre la raclette et la fondue en ligne ?</summary><p>Par formule plutôt qu'au kilo. Créez des produits « raclette pour 2, 4 ou 6 personnes » avec une quantité annoncée par convive, et proposez la charcuterie et les pommes de terre en options. Le client n'a aucune quantité à estimer, et vous connaissez vos volumes à l'avance.</p></details><details><summary>Mes arrivages changent toutes les semaines, comment tenir le catalogue à jour ?</summary><p>Vous masquez un produit en un geste depuis votre téléphone quand il n'est plus disponible, et vous le réaffichez à l'arrivage suivant sans avoir à le recréer. Pour les pièces d'exception qui tournent souvent, une seule fiche « le fromage de la semaine » dont vous changez la description évite de refaire un produit à chaque fois.</p></details><details><summary>Faut-il payer en ligne ?</summary><p>C'est votre choix par produit. Beaucoup de fromageries laissent payer au retrait et activent l'empreinte bancaire uniquement sur les plateaux et les commandes de fêtes.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
-<section class="cta-final"><h2>Votre boutique, prête en 30 secondes</h2><p>Choisissez « Fromagerie », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+<p><a class="btn" href="/inscription?metier=fromagerie">Créer ma démo gratuite</a></p>
+<h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Comment vendre un plateau dont la composition dépend des affinages du moment ?</summary><p>Créez des plateaux par nombre de personnes avec un prix fixe et un champ où le client indique ses préférences. Vous composez avec ce que vous avez de meilleur le jour du retrait.</p></details><details><summary>Puis-je vendre au poids en ligne ?</summary><p>Oui. Le client choisit un poids approximatif, vous ajustez le montant au poids réel avant l'encaissement si nécessaire.</p></details><details><summary>Comment vendre la raclette et la fondue en ligne ?</summary><p>Par formule plutôt qu'au kilo. Créez des produits « raclette pour 2, 4 ou 6 personnes » avec une quantité annoncée par convive, et proposez la charcuterie et les pommes de terre en options. Le client n'a aucune quantité à estimer, et vous connaissez vos volumes à l'avance.</p></details><details><summary>Mes arrivages changent toutes les semaines, comment tenir le catalogue à jour ?</summary><p>Vous masquez un produit en un geste depuis votre téléphone quand il n'est plus disponible, et vous le réaffichez à l'arrivage suivant sans avoir à le recréer. Pour les pièces d'exception qui tournent souvent, une seule fiche « le fromage de la semaine » dont vous changez la description évite de refaire un produit à chaque fois.</p></details><details><summary>Faut-il payer en ligne ?</summary><p>C'est votre choix par produit. Beaucoup de fromageries laissent payer au retrait et activent l'empreinte bancaire uniquement sur les plateaux et les commandes de fêtes.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
+<section class="cta-final"><h2>Voyez votre site avant de décider</h2><p>Choisissez « Fromagerie », tapez le nom de votre commerce : votre démo s'affiche en 30 secondes. Gratuite, sans engagement, sans carte bancaire. Vous la mettez en ligne quand vous êtes prêt.</p>
   <a class="btn soleil" href="/inscription?metier=fromagerie">Créer ma démo gratuite</a></section>
 </article>
 <aside>

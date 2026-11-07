@@ -236,6 +236,28 @@ aside{position:sticky;top:76px}
 .gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
 @media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
 footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.idees{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:14px 0 22px;padding:0;list-style:none}
+.idees li{background:#fff;border:1px solid var(--creme-fonce);border-radius:14px;padding:14px 16px;margin:0}
+.idees .ie{font-size:24px;line-height:1;display:block;margin:0 0 6px}.idees strong{display:block;font-size:16px;color:var(--bleu);margin:0 0 4px;line-height:1.3}
+.idees p{margin:0;font-size:14px;color:#2b3a52;line-height:1.5}
+.calc{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px;margin:10px 0 26px}
+.calc h3{margin:0 0 4px;font-size:20px}.calc>p{margin:0 0 16px;font-size:15px;color:var(--gris)}
+.calc-champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;margin:0 0 16px}@media(max-width:640px){.calc-champs{grid-template-columns:1fr}.calc{padding:18px 14px}}
+.calc label{display:block;font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 4px}
+.calc .ligne{display:flex;align-items:center;gap:10px}.calc input[type=range]{flex:1;min-width:0;accent-color:var(--vert)}
+.calc output{min-width:74px;text-align:right;font-weight:800;color:var(--bleu);font-variant-numeric:tabular-nums}
+.calc-offres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;border:0;padding:0;min-width:0}.calc-offres legend{font-size:14px;font-weight:700;color:var(--bleu);margin:0 0 6px;padding:0}
+.calc-offres label{font-weight:600;font-size:14px;background:#fff;border:1px solid var(--creme-fonce);border-radius:50px;padding:7px 14px;cursor:pointer;margin:0}
+.calc-offres input{accent-color:var(--vert);margin:0 6px 0 0}
+.calc-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}
+.calc-res div{background:#fff;border-radius:12px;padding:12px 14px}.calc-res span{display:block;font-size:13px;color:var(--gris)}
+.calc-res b{display:block;font-size:22px;color:var(--bleu);font-variant-numeric:tabular-nums}.calc-res .fort{border:2px solid var(--vert)}.calc-res .fort b{color:var(--vert-fonce)}
+.calc-phrase{font-size:15px;margin:0 0 6px}.calc-note{font-size:12px;color:var(--gris);margin:0}
+.etapes{list-style:none;padding:0;margin:14px 0 20px;counter-reset:e}.etapes li{counter-increment:e;position:relative;padding:0 0 0 48px;margin:0 0 18px}
+.etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--vert);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.etapes strong{display:block;font-size:17px}
 </style>
 </head>
 <body>
@@ -252,59 +274,58 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <div class="grid">
 <article>
 <p class="eyebrow">🍕 Pizzeria</p>
-<h1>Le click &amp; collect fait pour les pizzerias</h1>
-<p class="lead">Vos clients commandent leurs pizzas depuis leur téléphone, choisissent leur heure, viennent chercher. Vous gardez 100 % du prix au lieu de 70 % sur les plateformes, et la base clients vous appartient.</p>
+<h1>Développer son commerce grâce à internet : ça consiste en quoi ?</h1>
+<p class="lead">Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre pizzeria, découvrent vos produits et vous passent commande. Voici ce que ça change pour une pizzeria, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.</p>
 
-<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte pour votre pizzeria</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos commandes à emporter et en livraison arrivent sans les 25 à 30 % de commission d'Uber Eats et Deliveroo : à chiffre égal, vous gardez la marge.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre carte en ligne sur Google, un lien pour Instagram et vos clients prévenus par SMS de la pizza du moment.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Plus de téléphone qui sonne pendant le coup de feu : les commandes arrivent par écrit, réparties par créneau pour lisser le service.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription?metier=pizzeria">Voir ma démo gratuite</a></section>
-<h2>Ce que ça change dans votre pizzeria</h2>
-<p><strong>Vous récupérez la commission.</strong> Sur une pizza à 14 € vendue via une plateforme de livraison, 3,50 à 4,20 € partent en commission. Sur Marchéo, c&rsquo;est 0 €. Cent pizzas par semaine, c&rsquo;est 350 à 420 € de marge retrouvés chaque semaine.</p>
-<p><strong>Le coup de feu du soir se lisse.</strong> Les commandes en ligne sont réparties dans des créneaux de 15 minutes avec une capacité maximale. Vous n&rsquo;avez plus 12 pizzas commandées pour 20 h et rien pour 20 h 30.</p>
-<p><strong>Le téléphone arrête de sonner.</strong> Le client commande seul, avec ses suppléments et ses précisions, paie en ligne ou au retrait, et reçoit un SMS quand c&rsquo;est prêt.</p>
-<p><strong>Vous gardez le contact.</strong> Sur une plateforme, le client est le sien. Sur votre boutique, vous avez son numéro, son historique, et vous pouvez lui envoyer une promo le mardi soir.</p>
-<h2>Ce qui est inclus</h2>
-<ul>
-<li>Boutique à vos couleurs avec le <strong>catalogue pizzeria déjà rempli</strong> : pizzas classiques et spéciales, tailles, suppléments, boissons, desserts.</li>
-<li>Options et suppléments sur chaque produit, précisions du client.</li>
-<li>Créneaux de retrait de 15 ou 30 minutes avec capacité, commande en 30 secondes sans compte.</li>
-<li>Réservation de table en ligne avec empreinte anti no-show, pour la salle.</li>
-<li>Base clients, SMS inclus, comptes pour l&rsquo;équipe.</li>
-<li>Livraison locale en option : Marchéo ne livre pas à votre place, vous livrez vous-même avec l&rsquo;outil, à vos conditions.</li>
-</ul>
+
+<section class="gains" aria-labelledby="apports"><h2 id="apports">Ce qu'un site à votre image change pour vous</h2><ol><li><span class="gi">📍</span><div><strong>Les clients du coin vous trouvent</strong><p>Quand quelqu'un cherche « pizzeria » ou « pizza à emporter près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.</p></div></li><li><span class="gi">✨</span><div><strong>Une image pro</strong><p>Un site à votre nom, à vos couleurs, avec vos photos : votre pizzeria inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.</p></div></li><li><span class="gi">🛍️</span><div><strong>Le click &amp; collect, et la livraison si vous le voulez</strong><p>Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.</p></div></li><li><span class="gi">📱</span><div><strong>Vous vous modernisez</strong><p>Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.</p></div></li><li><span class="gi">➕</span><div><strong>Des commandes que vous n'auriez pas prises</strong><p>Le client qui tombe sur occupé et commande ailleurs, la commande passée à 17 h pour 20 h : elle arrive par écrit, avec l'heure choisie. Et sans les 25 à 30 % de commission des plateformes.</p></div></li><li><span class="gi">⭐</span><div><strong>Des avis clients, automatiquement</strong><p>Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.</p></div></li><li><span class="gi">☎️</span><div><strong>En prime : fini le téléphone pendant le rush</strong><p>Pendant le coup de feu du soir, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.</p></div></li></ol>
+<a class="btn" href="/inscription?metier=pizzeria">Voir ma démo gratuite</a></section>
+<h2>Ce qui marche bien en ligne pour une pizzeria</h2>
+<p>D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce qui fait monter le montant de chaque commande :</p>
+<ul class="idees"><li><span class="ie">🍕</span><strong>Votre carte et vos suppléments</strong><p>Bases, tailles, ingrédients en plus ou en moins : le client compose sans erreur, vous lisez la commande écrite.</p></li><li><span class="ie">👨‍👩‍👧</span><strong>Les formules famille</strong><p>Trois pizzas, une boisson et un dessert à prix rond : le vendredi soir réglé en un clic.</p></li><li><span class="ie">⭐</span><strong>La pizza du moment</strong><p>Une recette de saison mise en avant en haut de la carte et annoncée par SMS à vos habitués.</p></li><li><span class="ie">🍰</span><strong>Desserts, boissons, entrées</strong><p>Tiramisu, boissons fraîches, salades : proposés au moment de valider, ils augmentent chaque commande.</p></li><li><span class="ie">🎉</span><strong>Les commandes groupées</strong><p>Anniversaires, soirées match, équipes de bureau : dix pizzas commandées à l'avance pour une heure précise.</p></li><li><span class="ie">🪑</span><strong>La réservation de table</strong><p>Pour ceux qui mangent sur place, avec une empreinte bancaire pour les grandes tablées.</p></li></ul>
+<p>Toutes ces idées sont des produits comme les autres sur votre site : vous les créez, les modifiez ou les retirez en quelques secondes depuis votre téléphone.</p>
 <h2>Combien ça coûte</h2>
-<table>
-<thead>
-<tr>
-<th>Offre</th>
-<th>Installation</th>
-<th>Par mois</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vitrine</td>
-<td>249 €</td>
-<td>19 €</td>
-</tr>
-<tr>
-<td>Click &amp; Collect + Réservation</td>
-<td>399 €</td>
-<td>39 €</td>
-</tr>
-<tr>
-<td>Click &amp; Collect + Livraison</td>
-<td>549 €</td>
-<td>59 €</td>
-</tr>
-</tbody>
-</table>
-<p><strong>0 % de commission</strong>, sans engagement. Dix pizzas par mois hors plateforme remboursent l&rsquo;abonnement.</p>
+<table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td><td>249 €</td><td>19 €</td></tr><tr><td><strong>Click &amp; Collect + Réservation</strong></td><td>Commandes à emporter avec créneaux, réservation de table, avis clients, SMS</td><td>399 €</td><td>39 €</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td><td>549 €</td><td>59 €</td></tr></tbody></table>
+<p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
+<section class="calc" id="calculateur" aria-labelledby="calc-titre">
+<h3 id="calc-titre">Est-ce rentable pour votre pizzeria ? Faites le calcul</h3>
+<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<div class="calc-champs">
+<div><label for="c-clients">Clients par mois dans votre commerce</label><div class="ligne"><input type="range" id="c-clients" data-k="clients" min="100" max="6000" step="50" value="900" data-u=""><output for="c-clients"></output></div></div>
+<div><label for="c-panier">Montant moyen d'une commande en ligne</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="30" data-u=" €"><output for="c-panier"></output></div></div>
+<div><label for="c-pct">Part de vos clients qui commandent en ligne</label><div class="ligne"><input type="range" id="c-pct" data-k="pct" min="1" max="30" step="1" value="10" data-u=" %"><output for="c-pct"></output></div></div>
+<div><label for="c-marge">Votre marge moyenne sur les ventes</label><div class="ligne"><input type="range" id="c-marge" data-k="marge" min="10" max="80" step="5" value="65" data-u=" %"><output for="c-marge"></output></div></div>
+</div>
+<fieldset class="calc-offres"><legend>Formule</legend><label><input type="radio" name="offre-pizzeria" value="39" data-install="399">Click &amp; Collect + Réservation · 39 €/mois</label><label><input type="radio" name="offre-pizzeria" value="59" data-install="549" checked>Click &amp; Collect + Livraison · 59 €/mois</label></fieldset>
+<div class="calc-res" aria-live="polite">
+<div><span>Commandes en ligne par mois</span><b data-r="cmd">–</b></div>
+<div><span>Chiffre d'affaires en ligne par mois</span><b data-r="ca">–</b></div>
+<div><span>Marge sur ces commandes</span><b data-r="mg">–</b></div>
+<div class="fort"><span>Gain net après abonnement</span><b data-r="net">–</b></div>
+</div>
+<p class="calc-phrase" data-r="phrase"></p>
+<p class="calc-note">Simulation indicative, calculée sur vos propres chiffres. Elle ne compte pas les nouveaux clients qui vous découvrent sur Google : c'est du bonus.</p>
+</section>
+<script>(function(){var r=document.getElementById('calculateur');if(!r)return;
+var f=function(n){return Math.round(n).toLocaleString('fr-FR')};
+function maj(){var v={};r.querySelectorAll('input[type=range]').forEach(function(i){v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u});
+var o=r.querySelector('input[type=radio]:checked'),abo=+o.value,ins=+o.dataset.install;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,mg=ca*v.marge/100,net=mg-abo,parcmd=v.panier*v.marge/100;
+var q=function(k){return r.querySelector('[data-r='+k+']')};
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('mg').textContent=f(mg)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/parcmd)),t='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en ligne du mois.';
+if(net>0){var mois=Math.ceil(ins/net);t+=' Les frais d’installation ('+ins+' €, payés une seule fois) sont remboursés en '+(mois<=1?'moins d’un mois':'environ '+mois+' mois')+'.'}
+q('phrase').textContent=t}
+r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
-<ol>
-<li>Choisissez « Pizzeria » à l&rsquo;inscription, tapez le nom de votre établissement.</li>
-<li>Ajustez la carte, les tailles et les suppléments, réglez vos créneaux du soir.</li>
-<li>QR code sur les flyers et les boîtes à pizza, lien sur Instagram et Google Maps.</li>
-</ol><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Dois-je quitter Uber Eats ou Deliveroo ?</summary><p>Non. Beaucoup de pizzerias gardent les plateformes pour les nouveaux clients et orientent leurs habitués vers leur boutique Marchéo, où il n'y a pas de commission. Un flyer dans chaque boîte suffit.</p></details><details><summary>Comment éviter d'être débordé à 20 h ?</summary><p>Chaque créneau de retrait a une capacité maximale, par exemple 6 pizzas par quart d'heure. Quand c'est plein, le client voit le créneau suivant.</p></details><details><summary>Peut-on gérer les réservations de table aussi ?</summary><p>Oui, l'offre Click &amp; Collect inclut la réservation de table en ligne avec empreinte bancaire optionnelle contre les no-shows.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
-<section class="cta-final"><h2>Votre boutique, prête en 30 secondes</h2><p>Choisissez « Pizzeria », tapez le nom de votre commerce, et voyez votre site avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+<ol class="etapes">
+<li><strong>Créez votre démo gratuite et sans engagement</strong>Sur la page d'inscription, choisissez « Pizzeria » et tapez le nom de votre commerce. En 30 secondes, votre site apparaît à votre nom, avec un catalogue pizzeria déjà rempli. Pas de carte bancaire, rien à installer.</li>
+<li><strong>Regardez-la, testez-la, ajustez-la</strong>Passez une commande comme le ferait un client. Changez les prix, ajoutez vos photos et vos spécialités, les idées ci-dessus, vos horaires de retrait et votre zone de livraison. Prenez le temps qu'il faut : la démo ne vous engage à rien.</li>
+<li><strong>Mettez-la en ligne quand vous êtes prêt</strong>Vous choisissez votre formule, et votre site est publié. On vous aide au lancement : QR code pour la vitrine, lien pour Google Maps et Instagram, premier SMS à vos habitués.</li>
+</ol>
+<p><a class="btn" href="/inscription?metier=pizzeria">Créer ma démo gratuite</a></p>
+<h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Dois-je quitter Uber Eats ou Deliveroo ?</summary><p>Non. Beaucoup de pizzerias gardent les plateformes pour les nouveaux clients et orientent leurs habitués vers leur boutique Marchéo, où il n'y a pas de commission. Un flyer dans chaque boîte suffit.</p></details><details><summary>Comment éviter d'être débordé à 20 h ?</summary><p>Chaque créneau de retrait a une capacité maximale, par exemple 6 pizzas par quart d'heure. Quand c'est plein, le client voit le créneau suivant.</p></details><details><summary>Peut-on gérer les réservations de table aussi ?</summary><p>Oui, l'offre Click &amp; Collect inclut la réservation de table en ligne avec empreinte bancaire optionnelle contre les no-shows.</p></details><details><summary>Marchéo livre-t-il les commandes ?</summary><p>Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.</p></details></div>
+<section class="cta-final"><h2>Voyez votre site avant de décider</h2><p>Choisissez « Pizzeria », tapez le nom de votre commerce : votre démo s'affiche en 30 secondes. Gratuite, sans engagement, sans carte bancaire. Vous la mettez en ligne quand vous êtes prêt.</p>
   <a class="btn soleil" href="/inscription?metier=pizzeria">Créer ma démo gratuite</a></section>
 </article>
 <aside>

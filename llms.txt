@@ -31,7 +31,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Pages par métier
 - [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
 - [Marchéo pour boucheries et charcuteries](https://marchéo.fr/solutions/boucherie) : Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.
-- [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Paniers de la semaine commandés en ligne, clients pressés servis en 2 minutes, livraison dans le quartier.
+- [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Vos fruits et légumes commandés en ligne, au kilo ou à la pièce, retirés en 2 minutes ou livrés dans le quartier.
 - [Marchéo pour poissonneries](https://marchéo.fr/solutions/poissonnerie) : Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.
 - [Marchéo pour traiteurs](https://marchéo.fr/solutions/traiteur) : Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.
 - [Marchéo pour fromageries et crèmeries](https://marchéo.fr/solutions/fromagerie) : Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.
