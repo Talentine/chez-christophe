@@ -12,7 +12,8 @@
   try { if (params.get('demo') === '1') sessionStorage.setItem(CLE, '1'); } catch (e) {}
   var actif = false;
   try { actif = sessionStorage.getItem(CLE) === '1'; } catch (e) {}
-  if (!actif) return;
+  // Les boutiques de démonstration Marchéo (is_fixture) ne prennent jamais de commande,
+  // même hors visite publicitaire : la validation finale ouvre l'invitation à créer sa démo.
 
   var NOMS = { primeur: 'primeur', boucherie: 'boucherie', boulangerie: 'boulangerie', poissonnerie: 'poissonnerie',
     fromagerie: 'fromagerie', traiteur: 'traiteur', fleuriste: 'fleuriste', pizzeria: 'pizzeria', restaurant: 'restaurant', fastfood: 'fast-food' };
@@ -26,6 +27,17 @@
 
   function ouvrirInvitation(bt) {
     if (document.getElementById('mq-demo-modal')) return;
+    if (!document.getElementById('mq-demo-modal-style')) {
+      var ms = document.createElement('style');
+      ms.id = 'mq-demo-modal-style';
+      ms.textContent = '#mq-demo-modal{position:fixed;inset:0;z-index:2147482000;background:rgba(15,44,82,.6);display:flex;align-items:center;justify-content:center;padding:20px}'
+        + '#mq-demo-modal .mq-dm-box{background:#fff;border-radius:22px;max-width:420px;width:100%;padding:26px 22px;text-align:center;font-family:Manrope,system-ui,sans-serif;color:#0F2C52}'
+        + '#mq-demo-modal .mq-dm-t{font-weight:800;font-size:20px;margin-bottom:8px}'
+        + '#mq-demo-modal p{font-size:16px;line-height:1.45;margin:0 0 18px;color:#2B3A55}'
+        + '#mq-demo-modal .mq-dm-cta{display:block;background:#5BBE3A;color:#fff;border-radius:50px;padding:16px;font-weight:800;font-size:17px;text-decoration:none}'
+        + '#mq-demo-modal .mq-dm-close{margin-top:10px;background:none;border:none;color:#5A6478;font:600 14px Manrope,system-ui,sans-serif;padding:10px;cursor:pointer;text-decoration:underline}';
+      document.head.appendChild(ms);
+    }
     var m = document.createElement('div');
     m.id = 'mq-demo-modal';
     m.innerHTML = '<div class="mq-dm-box"><div class="mq-dm-t">Ceci est une boutique de démonstration</div>'
@@ -40,12 +52,26 @@
     document.body.appendChild(m);
   }
 
+  function bloquerCommande(bt, aussiSansCompte) {
+    if (typeof window.etapeSuivante !== 'function' || window.etapeSuivante.__demoBloque) return;
+    var origine = window.etapeSuivante;
+    window.etapeSuivante = function () {
+      var e = 0; try { e = etape; } catch (x) {}
+      var connecte = false; try { connecte = !!(typeof getSession === 'function' && getSession()); } catch (x) {}
+      if (e >= 4 || (aussiSansCompte && e === 1 && !connecte)) return ouvrirInvitation(bt);
+      return origine.apply(this, arguments);
+    };
+    window.etapeSuivante.__demoBloque = true;
+  }
+
   function demarrer(biz) {
     if (demarre || !biz) return;
     if (biz.is_fixture !== true) { try { sessionStorage.removeItem(CLE); } catch (e) {} return; }
-    demarre = true;
     var bt = biz.business_type || 'primeur';
     var surPanier = /panier/.test(location.pathname);
+    if (surPanier) bloquerCommande(bt, actif);
+    if (!actif) { demarre = true; return; }
+    demarre = true;
     var aNav = !!document.querySelector('.bottom-nav');
 
     var st = document.createElement('style');
@@ -76,15 +102,6 @@
     else document.body.style.paddingBottom = (parseInt(getComputedStyle(document.body).paddingBottom, 10) || 0) + h + 'px';
 
     // Aucune commande ne part d'une visite publicitaire : la validation ouvre l'invitation
-    if (surPanier && typeof window.etapeSuivante === 'function') {
-      var origine = window.etapeSuivante;
-      window.etapeSuivante = function () {
-        var e = 0; try { e = etape; } catch (x) {}
-        var connecte = false; try { connecte = !!(typeof getSession === 'function' && getSession()); } catch (x) {}
-        if (e >= 4 || (e === 1 && !connecte)) return ouvrirInvitation(bt);
-        return origine.apply(this, arguments);
-      };
-    }
 
     suivre('demo_pub_vue', bt);
     var envoyer = function () { try { window.MarcheoPixel && window.MarcheoPixel.track('ViewContent', { content_category: bt, content_name: 'boutique_demo' }); } catch (e) {} };
