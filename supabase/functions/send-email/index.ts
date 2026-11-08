@@ -113,6 +113,18 @@ function buildLayout(title: string, body: string, boutique: string) {
 </body></html>`;
 }
 
+// Lieu de retrait précis (boutiques à plusieurs points de retrait / marchés).
+// Les colonnes sont remplies par le trigger commandes_set_point_retrait.
+function lieuRetraitHtml(c: any): string {
+  if (!c.point_retrait_nom) return '';
+  const esc = (v: string) => String(v || '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as any)[ch]);
+  const adr = c.point_retrait_adresse
+    ? `<div style="font-size:13px;color:#5a6a62;margin-top:2px;">${esc(c.point_retrait_adresse)}</div>
+       <div style="margin-top:6px;font-size:13px;"><a href="https://maps.google.com/?q=${encodeURIComponent(c.point_retrait_adresse)}" style="color:#2A4535;">Itinéraire →</a></div>`
+    : '';
+  return `<div style="margin-top:10px;font-size:15px;font-weight:600;">📍 ${esc(c.point_retrait_nom)}</div>${adr}`;
+}
+
 // ── ACTION : commande confirmée ─────────────────────────────
 async function actionConfirmee({ commande_id }: any) {
   const c = await loadCommande(commande_id);
@@ -136,6 +148,7 @@ async function actionConfirmee({ commande_id }: any) {
     <div style="background:#FAF7F0;border-radius:10px;padding:14px 16px;margin:16px 0;">
       <div style="font-size:12px;color:#7a8a82;text-transform:uppercase;letter-spacing:0.5px;">Retrait</div>
       <div style="font-size:16px;font-weight:600;margin-top:2px;text-transform:capitalize;">${fmtDate(c.date_retrait)}</div>
+      ${lieuRetraitHtml(c)}
     </div>
     <table width="100%" style="border-top:1px solid #EAE4D6;border-bottom:1px solid #EAE4D6;margin:14px 0;">
       ${lignes}
@@ -162,6 +175,7 @@ async function actionRappelJ1({ commande_id }: any) {
     <div style="background:#FAF7F0;border-radius:10px;padding:14px 16px;margin:16px 0;">
       <div style="font-size:12px;color:#7a8a82;text-transform:uppercase;letter-spacing:0.5px;">Retrait</div>
       <div style="font-size:16px;font-weight:600;margin-top:2px;text-transform:capitalize;">${fmtDate(c.date_retrait)}</div>
+      ${lieuRetraitHtml(c)}
     </div>
     <p style="color:#7a8a82;font-size:13px;">À demain !</p>
   `;

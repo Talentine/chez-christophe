@@ -2556,6 +2556,20 @@ function appliquerConfigUI(cfg) {
     setText('heroAdresse', '📍 ' + b.adresse + (b.ville ? ', ' + b.ville : ''));
     showIf('heroAdresse', true);
   }
+  // Points de retrait multiples (configurés par l'admin) : la pill liste les lieux
+  if (b.id && typeof SUPABASE_URL !== 'undefined') {
+    fetch(SUPABASE_URL + '/rest/v1/points_retrait?commercant_id=eq.' + b.id + '&actif=eq.true&order=ordre.asc,nom.asc&select=nom,ville', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.ok ? r.json() : []).then(pts => {
+      if (!Array.isArray(pts) || pts.length === 0) return;
+      const noms = pts.map(p => p.nom).filter(Boolean);
+      const court = noms.slice(0, 3).join(' · ') + (noms.length > 3 ? ' +' + (noms.length - 3) : '');
+      setText('heroAdresse', '📍 ' + (pts.length > 1 ? pts.length + ' points de retrait : ' : 'Retrait : ') + court);
+      const pill = el('heroAdresse');
+      if (pill) pill.title = noms.join(', ');
+      showIf('heroAdresse', true);
+    }).catch(() => {});
+  }
   if (b.telephone) {
     // Téléphone cliquable : tap pour appeler (mobile = lance l'app téléphone)
     const telDigits = String(b.telephone).replace(/[^0-9+]/g, '');

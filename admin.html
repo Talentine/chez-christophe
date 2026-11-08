@@ -1470,6 +1470,7 @@ function renderTableCommercants(data) {
             style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;color:#fff;cursor:pointer;font-size:18px;line-height:1;">⋯</button>
           <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:#1f2730;border:1px solid rgba(255,255,255,.12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
             <button onclick="voirBoutique(${jsArg(c.slug)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
+            <button onclick="ouvrirPointsRetrait(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">📍 Points de retrait</button>
             <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
             <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
             <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? '#ffd47a' : '#7fd97f'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
@@ -2638,6 +2639,292 @@ document.getElementById('adminMdp').addEventListener('keypress', e => {
     <button class="modal-edit-close" onclick="fermerEditionProduit()">Fermer</button>
   </div>
 </div>
+
+
+<!-- POINTS DE RETRAIT MULTIPLES (réservé admin Marchéo) -->
+<style>
+  #prOverlay{position:fixed;inset:0;background:rgba(10,20,30,.72);display:flex;align-items:flex-start;justify-content:center;z-index:9999;padding:24px 16px;overflow-y:auto;}
+  #prOverlay .pr-card{background:#fff;color:#1a2e26;max-width:680px;width:100%;border-radius:18px;padding:22px;font-size:14px;}
+  #prOverlay h3{font-size:19px;font-weight:800;margin:0 0 4px;}
+  #prOverlay .pr-sub{font-size:13px;color:#667;margin-bottom:16px;line-height:1.5;}
+  #prOverlay .pr-bloc{border:1.5px solid #e8dfc9;border-radius:14px;padding:14px;margin-bottom:12px;}
+  #prOverlay .pr-bloc.inactif{opacity:.55;}
+  #prOverlay .pr-label{font-size:12px;font-weight:700;color:#556;margin:8px 0 4px;display:block;}
+  #prOverlay input[type=text],#prOverlay input[type=time],#prOverlay select{width:100%;padding:9px 10px;border:1.5px solid #e8dfc9;border-radius:10px;font-size:14px;font-family:inherit;background:#fbf8f1;color:#1a2e26;box-sizing:border-box;}
+  #prOverlay .pr-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  #prOverlay .pr-btn{padding:8px 12px;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;background:#F7F2E8;color:#1a2e26;}
+  #prOverlay .pr-btn.prim{background:#2d4a3e;color:#fff;}
+  #prOverlay .pr-btn.danger{background:#fdecea;color:#9a2d24;}
+  #prOverlay .pr-slot{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid #f0e9d8;}
+  #prOverlay .pr-slot:first-child{border-top:none;}
+  #prOverlay .pr-slot-h{flex:0 0 150px;font-weight:600;}
+  #prOverlay .pr-slot select{flex:1;padding:6px 8px;font-size:13px;}
+  #prOverlay .pr-jours{display:flex;flex-wrap:wrap;gap:6px;}
+  #prOverlay .pr-jours label{display:flex;align-items:center;gap:4px;background:#F7F2E8;border-radius:8px;padding:5px 8px;font-size:12.5px;cursor:pointer;}
+  #prOverlay .pr-err{color:#9a2d24;font-size:13px;margin-top:8px;display:none;}
+  @media (max-width:520px){ #prOverlay .pr-slot{flex-wrap:wrap;} #prOverlay .pr-slot-h{flex-basis:100%;} }
+</style>
+<script>
+(function () {
+  const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const ORDRE_JOURS = [1,2,3,4,5,6,0];
+  let pr = { cid: null, nom: '', points: [], creneaux: [], affichage: 'par_point', editId: null };
+
+  async function api(method, path, body) {
+    if (!sessionAdmin) throw new Error('Session admin expirée — reconnectez-vous.');
+    const r = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      method,
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + sessionAdmin,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    const txt = await r.text();
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + txt);
+    const data = txt ? JSON.parse(txt) : null;
+    // RLS : une écriture refusée renvoie 0 ligne au lieu d'une erreur
+    if (method !== 'GET' && method !== 'DELETE' && Array.isArray(data) && data.length === 0) {
+      throw new Error('Écriture refusée (rôle admin manquant ?)');
+    }
+    return data;
+  }
+
+  const h = escHtml;
+  const hhmm = t => String(t || '').slice(0, 5);
+  const adresse = p => [p.adresse, [p.code_postal, p.ville].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+
+  async function recharger() {
+    const [points, creneaux, com] = await Promise.all([
+      api('GET', 'points_retrait?commercant_id=eq.' + pr.cid + '&order=ordre.asc,nom.asc&select=*'),
+      api('GET', 'creneaux?commercant_id=eq.' + pr.cid + '&type=eq.retrait&order=jour_semaine.asc,heure_debut.asc&select=*'),
+      api('GET', 'commercants?id=eq.' + pr.cid + '&select=points_retrait_affichage'),
+    ]);
+    pr.points = points || [];
+    pr.creneaux = creneaux || [];
+    pr.affichage = (com && com[0] && com[0].points_retrait_affichage) || 'par_point';
+    render();
+  }
+
+  function trierCreneaux(liste) {
+    return liste.slice().sort((a, b) =>
+      ORDRE_JOURS.indexOf(a.jour_semaine) - ORDRE_JOURS.indexOf(b.jour_semaine)
+      || String(a.heure_debut).localeCompare(String(b.heure_debut)));
+  }
+
+  function slotHtml(c) {
+    const opts = '<option value="">— Adresse de la fiche boutique</option>'
+      + pr.points.map(p => '<option value="' + p.id + '"' + (p.id === c.point_retrait_id ? ' selected' : '') + '>📍 ' + h(p.nom) + '</option>').join('');
+    return '<div class="pr-slot">'
+      + '<div class="pr-slot-h">' + JOURS[c.jour_semaine] + ' ' + hhmm(c.heure_debut) + '–' + hhmm(c.heure_fin) + (c.actif ? '' : ' <span style="color:#999;font-weight:400">(off)</span>') + '</div>'
+      + '<select onchange="prRattacher(\'' + c.id + '\', this.value)">' + opts + '</select>'
+      + '<button class="pr-btn danger" title="Supprimer ce créneau" onclick="prSupprimerCreneau(\'' + c.id + '\')">🗑</button>'
+      + '</div>';
+  }
+
+  function formPointHtml(p) {
+    p = p || {};
+    return '<label class="pr-label">Nom du lieu *</label>'
+      + '<input type="text" id="prNom" placeholder="Ex. Marché de Caen — Saint-Sauveur, Boutique Centre-ville" value="' + h(p.nom) + '">'
+      + '<label class="pr-label">Adresse</label>'
+      + '<input type="text" id="prAdresse" placeholder="Place Saint-Sauveur" value="' + h(p.adresse) + '">'
+      + '<div class="pr-row">'
+      +   '<div><label class="pr-label">Code postal</label><input type="text" id="prCP" value="' + h(p.code_postal) + '"></div>'
+      +   '<div><label class="pr-label">Ville</label><input type="text" id="prVille" value="' + h(p.ville) + '"></div>'
+      + '</div>'
+      + '<label class="pr-label">Précisions (facultatif)</label>'
+      + '<input type="text" id="prInfos" placeholder="Ex. stand n°12, à côté de la fontaine" value="' + h(p.infos) + '">';
+  }
+
+  function formCreneauHtml(pointId) {
+    return '<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #e8dfc9;">'
+      + '<div style="font-size:12px;font-weight:700;color:#556;margin-bottom:6px;">+ Ajouter des créneaux à ce lieu</div>'
+      + '<div class="pr-jours">' + ORDRE_JOURS.map(j => '<label><input type="checkbox" class="prJour-' + pointId + '" value="' + j + '"> ' + JOURS[j].slice(0, 3) + '</label>').join('') + '</div>'
+      + '<div class="pr-row" style="margin-top:8px;grid-template-columns:1fr 1fr auto;align-items:end;">'
+      +   '<div><label class="pr-label">De</label><input type="time" id="prDeb-' + pointId + '" value="08:00"></div>'
+      +   '<div><label class="pr-label">À</label><input type="time" id="prFin-' + pointId + '" value="12:30"></div>'
+      +   '<button class="pr-btn prim" onclick="prAjouterCreneaux(\'' + pointId + '\')">Ajouter</button>'
+      + '</div></div>';
+  }
+
+  function render() {
+    const ov = document.getElementById('prOverlay');
+    if (!ov) return;
+    const sansPoint = trierCreneaux(pr.creneaux.filter(c => !c.point_retrait_id || !pr.points.some(p => p.id === c.point_retrait_id)));
+
+    let html = '<div class="pr-card">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">'
+      +   '<div><h3>📍 Points de retrait</h3><div class="pr-sub">' + h(pr.nom) + '</div></div>'
+      +   '<button class="pr-btn" onclick="prFermer()">Fermer</button>'
+      + '</div>'
+      + '<div class="pr-sub">Plusieurs boutiques ou des marchés itinérants sur un seul site. Chaque créneau de retrait est rattaché à un lieu. '
+      + 'Sans aucun point actif, la boutique fonctionne comme avant (adresse de la fiche).</div>';
+
+    // Mode d'affichage côté client
+    html += '<div class="pr-bloc">'
+      + '<label class="pr-label" style="margin-top:0">Affichage des créneaux pour le client</label>'
+      + '<select onchange="prChangerAffichage(this.value)">'
+      +   '<option value="par_point"' + (pr.affichage === 'par_point' ? ' selected' : '') + '>🏪 Par lieu — les créneaux de chaque boutique regroupés</option>'
+      +   '<option value="chronologique"' + (pr.affichage === 'chronologique' ? ' selected' : '') + '>🧺 Par date — lun. Marché de Caen, mar. Marché du Havre… (itinérants)</option>'
+      + '</select></div>';
+
+    // Liste des points
+    pr.points.forEach(p => {
+      const slots = trierCreneaux(pr.creneaux.filter(c => c.point_retrait_id === p.id));
+      if (pr.editId === p.id) {
+        html += '<div class="pr-bloc">' + formPointHtml(p)
+          + '<div class="pr-err" id="prErr"></div>'
+          + '<div style="display:flex;gap:8px;margin-top:12px;">'
+          +   '<button class="pr-btn prim" onclick="prEnregistrerPoint(\'' + p.id + '\')">Enregistrer</button>'
+          +   '<button class="pr-btn" onclick="prEditer(null)">Annuler</button>'
+          + '</div></div>';
+        return;
+      }
+      html += '<div class="pr-bloc' + (p.actif ? '' : ' inactif') + '">'
+        + '<div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start;">'
+        +   '<div><div style="font-weight:700;font-size:15px;">📍 ' + h(p.nom) + (p.actif ? '' : ' <span style="font-size:12px;color:#999;">(masqué)</span>') + '</div>'
+        +   '<div style="font-size:12.5px;color:#667;margin-top:2px;">' + (h(adresse(p)) || '<em>Adresse non renseignée</em>') + (p.infos ? ' · ' + h(p.infos) : '') + '</div></div>'
+        +   '<div style="display:flex;gap:6px;flex-shrink:0;">'
+        +     '<button class="pr-btn" title="Monter" onclick="prDeplacer(\'' + p.id + '\',-1)">↑</button>'
+        +     '<button class="pr-btn" onclick="prEditer(\'' + p.id + '\')">✏️</button>'
+        +     '<button class="pr-btn" onclick="prBasculer(\'' + p.id + '\',' + !p.actif + ')">' + (p.actif ? 'Masquer' : 'Afficher') + '</button>'
+        +     '<button class="pr-btn danger" onclick="prSupprimerPoint(\'' + p.id + '\')">🗑</button>'
+        +   '</div>'
+        + '</div>'
+        + '<div style="margin-top:10px;">' + (slots.length ? slots.map(slotHtml).join('') : '<div style="font-size:13px;color:#9a8a6a;">Aucun créneau pour ce lieu — les clients ne le verront pas.</div>') + '</div>'
+        + formCreneauHtml(p.id)
+        + '</div>';
+    });
+
+    // Nouveau point
+    if (pr.editId === 'nouveau') {
+      html += '<div class="pr-bloc" style="border-color:#2d4a3e;"><div style="font-weight:700;margin-bottom:4px;">Nouveau point de retrait</div>'
+        + formPointHtml(null)
+        + '<div class="pr-err" id="prErr"></div>'
+        + '<div style="display:flex;gap:8px;margin-top:12px;">'
+        +   '<button class="pr-btn prim" onclick="prEnregistrerPoint(null)">Créer le point</button>'
+        +   '<button class="pr-btn" onclick="prEditer(null)">Annuler</button>'
+        + '</div></div>';
+    } else {
+      html += '<button class="pr-btn prim" style="width:100%;padding:12px;margin-bottom:12px;" onclick="prEditer(\'nouveau\')">+ Ajouter un point de retrait</button>';
+    }
+
+    // Créneaux non rattachés
+    if (sansPoint.length) {
+      html += '<div class="pr-bloc" style="background:#fbf8f1;">'
+        + '<div style="font-weight:700;margin-bottom:2px;">Créneaux de retrait non rattachés</div>'
+        + '<div style="font-size:12.5px;color:#667;margin-bottom:8px;">Retrait à l\'adresse de la fiche boutique. Choisissez un lieu pour les rattacher.</div>'
+        + sansPoint.map(slotHtml).join('')
+        + '</div>';
+    }
+
+    html += '</div>';
+    ov.innerHTML = html;
+  }
+
+  function erreur(msg) {
+    const e = document.getElementById('prErr');
+    if (e) { e.textContent = '❌ ' + msg; e.style.display = 'block'; } else { alert('❌ ' + msg); }
+  }
+
+  async function action(fn) {
+    try { await fn(); await recharger(); }
+    catch (e) { erreur(e.message); }
+  }
+
+  window.ouvrirPointsRetrait = async function (cid, nom) {
+    pr = { cid, nom, points: [], creneaux: [], affichage: 'par_point', editId: null };
+    document.getElementById('prOverlay')?.remove();
+    const ov = document.createElement('div');
+    ov.id = 'prOverlay';
+    ov.innerHTML = '<div class="pr-card">Chargement…</div>';
+    ov.addEventListener('click', e => { if (e.target === ov) prFermer(); });
+    document.body.appendChild(ov);
+    try { await recharger(); }
+    catch (e) {
+      ov.innerHTML = '<div class="pr-card"><h3>📍 Points de retrait</h3><p style="color:#9a2d24">❌ ' + h(e.message)
+        + '</p><p class="pr-sub">Si la table <code>points_retrait</code> est introuvable, appliquez la migration '
+        + '<code>supabase/migrations/20261108_points_retrait_multiples.sql</code>.</p>'
+        + '<button class="pr-btn" onclick="prFermer()">Fermer</button></div>';
+    }
+  };
+
+  window.prFermer = function () { document.getElementById('prOverlay')?.remove(); };
+  window.prEditer = function (id) { pr.editId = id; render(); document.getElementById('prNom')?.focus(); };
+
+  window.prEnregistrerPoint = async function (id) {
+    const val = k => (document.getElementById(k)?.value || '').trim();
+    const payload = {
+      nom: val('prNom'),
+      adresse: val('prAdresse') || null,
+      code_postal: val('prCP') || null,
+      ville: val('prVille') || null,
+      infos: val('prInfos') || null,
+    };
+    if (!payload.nom) return erreur('Le nom du lieu est obligatoire.');
+    await action(async () => {
+      if (id) {
+        await api('PATCH', 'points_retrait?id=eq.' + id, payload);
+      } else {
+        const ordre = pr.points.reduce((m, p) => Math.max(m, p.ordre || 0), 0) + 1;
+        await api('POST', 'points_retrait', { ...payload, commercant_id: pr.cid, ordre, actif: true });
+      }
+      pr.editId = null;
+    });
+  };
+
+  window.prBasculer = (id, actif) => action(() => api('PATCH', 'points_retrait?id=eq.' + id, { actif }));
+
+  window.prDeplacer = (id, sens) => action(async () => {
+    const liste = pr.points.slice();
+    const i = liste.findIndex(p => p.id === id);
+    const j = i + sens;
+    if (i < 0 || j < 0 || j >= liste.length) return;
+    [liste[i], liste[j]] = [liste[j], liste[i]];
+    await Promise.all(liste.map((p, k) => api('PATCH', 'points_retrait?id=eq.' + p.id, { ordre: k + 1 })));
+  });
+
+  window.prSupprimerPoint = function (id) {
+    const p = pr.points.find(x => x.id === id);
+    const n = pr.creneaux.filter(c => c.point_retrait_id === id).length;
+    if (!confirm('Supprimer « ' + (p ? p.nom : '') + ' » ?\n\n'
+      + (n ? n + ' créneau(x) rattaché(s) repasseront sur l\'adresse de la fiche boutique.\n' : '')
+      + 'Les commandes passées gardent le nom et l\'adresse du lieu.')) return;
+    action(() => api('DELETE', 'points_retrait?id=eq.' + id));
+  };
+
+  window.prRattacher = (creneauId, pointId) =>
+    action(() => api('PATCH', 'creneaux?id=eq.' + creneauId, { point_retrait_id: pointId || null }));
+
+  window.prSupprimerCreneau = function (creneauId) {
+    if (!confirm('Supprimer ce créneau de retrait ?')) return;
+    action(() => api('DELETE', 'creneaux?id=eq.' + creneauId));
+  };
+
+  window.prAjouterCreneaux = function (pointId) {
+    const jours = Array.from(document.querySelectorAll('.prJour-' + pointId + ':checked')).map(x => parseInt(x.value, 10));
+    const deb = document.getElementById('prDeb-' + pointId)?.value;
+    const fin = document.getElementById('prFin-' + pointId)?.value;
+    if (!jours.length) return alert('Cochez au moins un jour.');
+    if (!deb || !fin || fin <= deb) return alert("L'heure de fin doit être après l'heure de début.");
+    action(() => api('POST', 'creneaux', jours.map(j => ({
+      commercant_id: pr.cid,
+      type: 'retrait',
+      jour_semaine: j,
+      heure_debut: deb + ':00',
+      heure_fin: fin + ':00',
+      capacite_max: 10,
+      actif: true,
+      point_retrait_id: pointId,
+    }))));
+  };
+
+  window.prChangerAffichage = affichage =>
+    action(() => api('PATCH', 'commercants?id=eq.' + pr.cid, { points_retrait_affichage: affichage }));
+})();
+</script>
 
 </body>
 </html>
