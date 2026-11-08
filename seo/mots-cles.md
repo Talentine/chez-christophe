@@ -316,3 +316,5 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application localisation food truck | transverse | fastfood | GS (08/11) | basse | écarté (intention client qui cherche un camion) |
 | food truck emplacement prix | transverse | fastfood | GS (08/11) | basse | écarté (location d'emplacement, hors sujet) |
 | template site web fast food | site | fastfood | GS (08/11) | basse | écarté (intention développeur ou graphiste) |
+| click and collect sans changer de caisse | click & collect | tous | IA (ChatGPT conseille « un logiciel connecté à la caisse » le 07/11 ; Perplexity et Google citent des éditeurs de caisse : Artipos, Toporder, tool-advisor, lechommerces, 28/10 et 01/11) | haute | publié le 2026-11-08 + click-and-collect-sans-changer-de-caisse |
+| site internet food truck outil | site | fastfood | IA (08/11 : ChatGPT conseille Wix, Squarespace, WordPress, Canva ; Google cite yola, lewebfrancais, moncamionresto) | moyenne | couvert par site-internet-food-truck (2026-11-08) : à rafraîchir dans 2 semaines avec une FAQ « Wix ou outil de commande ? » |

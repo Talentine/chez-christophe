@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faut-il changer de caisse pour faire du click and collect ? · Marchéo</title>
+<meta name="description" content="Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.">
+<link rel="canonical" href="https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Faut-il changer de caisse pour faire du click and collect ? · Marchéo"><meta property="og:description" content="Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.">
+<meta property="og:url" content="https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Click and collect sans changer de caisse",
+     "item": "https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Faut-il changer de caisse pour faire du click and collect ?",
+   "description": "Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-08",
+   "dateModified": "2026-11-08",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "click and collect sans changer de caisse, faut-il changer de caisse pour le click and collect, caisse enregistreuse click and collect, logiciel de caisse avec click and collect, click and collect sans logiciel de caisse, module click and collect caisse",
+   "articleSection": "Guide"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel logiciel de click and collect fonctionne avec la caisse que j'ai déjà ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Un outil de commande en ligne séparé fonctionne à côté de n'importe quelle caisse, puisqu'il ne s'y branche pas : les commandes arrivent sur votre téléphone ou votre ordinateur, et vous encaissez au comptoir comme d'habitude. Marchéo est l'une de ces options : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement et sans commission, avec 399 ou 549 € de frais d'installation uniques. Si vous voulez tout dans un seul écran, le module de click and collect de votre éditeur de caisse est l'autre option à demander."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour faire du click and collect ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Votre balance et votre caisse restent en place pour peser et encaisser au retrait, et si le client paie par carte en boutique, il utilise le terminal de paiement que vous avez déjà."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Les commandes en ligne apparaissent-elles dans ma caisse ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Seulement si l'outil de commande est celui de votre éditeur de caisse ou s'il existe une connexion entre les deux. Avec un outil séparé, une commande payée au retrait passe en caisse au moment du paiement, comme une vente au comptoir. Une commande payée en ligne arrive directement sur votre compte bancaire et se retrouve dans le suivi des paiements de l'outil."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mon logiciel de caisse propose un module click and collect : est-ce mieux ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "C'est pratique si le module est inclus ou peu cher et qu'il couvre vos besoins : créneaux, vente au poids, paiement en ligne. Demandez son prix mensuel exact, s'il prend une commission par commande, et s'il crée un vrai site à votre nom. Si l'une de ces réponses ne vous convient pas, un outil séparé reste possible sans toucher à votre caisse."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav a{padding:8px 10px}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions">Par métier</a>
+    <a href="/#tarifs" class="hide-m">Tarifs</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Click and collect sans changer de caisse</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Guide</p>
+<h1>Faut-il changer de caisse pour faire du click and collect ?</h1>
+<p class="lead">Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.</p>
+<p class="meta">Par Paul Merieult · 08/11/2026 · 6 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Non, vous n&rsquo;avez pas besoin de changer de caisse pour proposer le click and collect. Un outil de commande en ligne séparé fonctionne à côté de la caisse que vous avez déjà : le client commande sur votre site, vous préparez, puis vous encaissez au retrait comme une vente habituelle. Marchéo fonctionne ainsi, pour 39 ou 59 € par mois, sans commission, sans engagement et sans matériel à acheter.</p>
+<p>Ce guide complète notre <a href="/blog/click-and-collect-commercant-guide-complet">guide complet du click &amp; collect pour commerçant</a>, qui explique le retrait en boutique étape par étape. Il répond à une question que se posent beaucoup de bouchers, boulangers, primeurs et fromagers quand un vendeur de caisse leur propose un module de commande en ligne : faut-il tout changer pour vendre en ligne ?</p>
+<h2>Pourquoi pense-t-on qu&rsquo;il faut une nouvelle caisse ?</h2>
+<p>On le pense parce que beaucoup d&rsquo;éditeurs de caisse vendent le click and collect comme une option de leur logiciel. Quand vous cherchez « logiciel click and collect boucherie » ou « click and collect boulangerie », une bonne partie des résultats viennent de ces éditeurs. Les assistants IA conseillent souvent, eux aussi, « un logiciel connecté à la caisse ».</p>
+<p>C&rsquo;est une solution possible, pas une obligation. Le click and collect, c&rsquo;est trois choses : une page où le client choisit ses produits et son heure de retrait, une liste de commandes à préparer, et un encaissement. Les deux premières n&rsquo;ont rien à voir avec votre caisse. La troisième, vous la faites déjà tous les jours.</p>
+<h2>Comment fonctionne le click and collect avec la caisse que vous avez déjà ?</h2>
+<p>Il fonctionne en deux temps séparés : la commande se passe en ligne, l&rsquo;encaissement se fait en boutique ou en ligne. Votre caisse n&rsquo;intervient qu&rsquo;au moment où le client paie au comptoir.</p>
+<p>Voici le parcours type d&rsquo;une commande dans une boucherie qui garde sa caisse :</p>
+<ol>
+<li>Le client choisit ses produits sur votre site, à partir de son téléphone, et réserve un créneau de retrait.</li>
+<li>La commande s&rsquo;affiche sur votre téléphone ou votre ordinateur, avec le nom du client et l&rsquo;heure.</li>
+<li>Vous préparez et pesez sur votre balance habituelle.</li>
+<li>Le client passe au comptoir : vous encaissez sur votre caisse et votre terminal de paiement, comme pour une vente normale.</li>
+</ol>
+<p>Si vous préférez faire payer en ligne, la commande est réglée avant le retrait et l&rsquo;argent arrive directement sur votre compte. Rien ne passe alors par la caisse.</p>
+<h2>Module de caisse ou outil séparé : quelles différences ?</h2>
+<p>La différence principale tient à ce que vous payez et à ce que vous gardez. Un module de caisse regroupe tout dans un seul logiciel, un outil séparé vous laisse libre de garder votre caisse ou d&rsquo;en changer plus tard.</p>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Module click and collect de votre caisse</th>
+<th>Outil séparé (ex. Marchéo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Changer de caisse</td>
+<td>Oui, si votre caisse actuelle n&rsquo;a pas ce module</td>
+<td>Non, l&rsquo;outil fonctionne à côté de n&rsquo;importe quelle caisse</td>
+</tr>
+<tr>
+<td>Matériel</td>
+<td>Souvent une tablette ou une caisse de l&rsquo;éditeur</td>
+<td>Aucun matériel à acheter, le téléphone ou l&rsquo;ordinateur suffit</td>
+</tr>
+<tr>
+<td>Prix</td>
+<td>Variable : option incluse ou quelques dizaines d&rsquo;euros par mois en plus</td>
+<td>39 ou 59 € par mois, sans engagement, plus 399 ou 549 € d&rsquo;installation unique</td>
+</tr>
+<tr>
+<td>Commission par commande</td>
+<td>À vérifier, certains modules en prennent une</td>
+<td>0 % de commission</td>
+</tr>
+<tr>
+<td>Commandes visibles en caisse</td>
+<td>Oui, dans le même écran</td>
+<td>Non, sur le téléphone ou l&rsquo;ordinateur</td>
+</tr>
+<tr>
+<td>Site internet à votre nom</td>
+<td>Pas toujours, parfois une simple page de commande</td>
+<td>Oui, un site et une boutique en ligne à votre nom</td>
+</tr>
+<tr>
+<td>Si vous changez de caisse</td>
+<td>Le click and collect change avec elle</td>
+<td>Rien ne change pour vos clients</td>
+</tr>
+</tbody>
+</table>
+<p>Aucune des deux options n&rsquo;est mauvaise. Le module de caisse convient au commerçant qui veut un seul écran et dont l&rsquo;éditeur propose déjà la fonction à bon prix. L&rsquo;outil séparé convient à celui qui est satisfait de sa caisse et ne veut pas la remplacer pour ajouter les commandes en ligne.</p>
+<h2>Comment gérer la pesée et le prix au kilo sans caisse connectée ?</h2>
+<p>Vous pesez au retrait, sur votre balance habituelle, et vous encaissez le prix réel en caisse. Pour le boucher, le fromager ou le primeur, c&rsquo;est souvent la méthode la plus simple : le client commande un poids indicatif, par exemple 500 g de bavette, et paie ce que la balance affiche.</p>
+<p>Si le client paie en ligne, il faut prévoir l&rsquo;écart entre le poids commandé et le poids coupé. Notre article sur la <a href="/blog/vendre-au-poids-en-ligne">vente au poids en ligne</a> détaille les trois méthodes possibles : prix fixe par portion, poids indicatif payé au retrait, ou ajustement après pesée.</p>
+<p>Pour éviter les commandes jamais retirées sans faire payer d&rsquo;avance, Marchéo propose une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait. Le client ne paie rien tant que vous n&rsquo;encaissez pas, et votre caisse reste l&rsquo;endroit où se fait la vente.</p>
+<h2>Combien coûte le click and collect sans changer de caisse ?</h2>
+<p>Il coûte le prix de l&rsquo;outil de commande, rien de plus. Avec Marchéo, comptez 39 € par mois pour le click &amp; collect avec réservation de table, ou 59 € par mois si vous livrez aussi vos clients vous-même, sans engagement. S&rsquo;y ajoutent des frais d&rsquo;installation uniques de 399 ou 549 €. L&rsquo;offre Vitrine, à 19 € par mois et 249 € d&rsquo;installation, présente votre commerce en ligne sans prise de commande.</p>
+<p>Comparez avec ce que coûterait un changement de caisse : un nouveau matériel, une reprise de vos articles, parfois un nouvel engagement de plusieurs années. Pour un commerçant satisfait de sa caisse, l&rsquo;outil séparé évite ces frais. Les plateformes de livraison, elles, ne demandent pas de changer de caisse, mais prennent en général 14 à 30 % de commission sur chaque commande.</p>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes, sans créer de compte.</p>
+<h2>Quelles sont les limites d&rsquo;un outil séparé ?</h2>
+<p>La limite principale est que les commandes en ligne n&rsquo;apparaissent pas dans votre caisse. Si vous tenez à suivre toutes vos ventes dans un seul écran, ou si vous gérez un stock précis article par article depuis la caisse, un module intégré vous conviendra mieux.</p>
+<p>Il faut aussi connaître les limites de Marchéo. Il ne remplace pas votre logiciel de caisse : celui-ci continue d&rsquo;enregistrer les ventes du comptoir. Marchéo ne livre pas et n&rsquo;a pas de coursiers, il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre boutique. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.</p>
+<p>Pour comparer les principales solutions de commande en ligne, consultez notre <a href="/blog/logiciel-click-and-collect-comparatif-2026">comparatif des logiciels de click &amp; collect</a>. Si vous hésitez encore entre un formulaire gratuit et un vrai outil, lisez <a href="/blog/google-forms-ou-logiciel-de-commande-commerce">Google Forms ou logiciel de commande</a>.</p>
+<h2>Par où commencer ?</h2>
+<p>Le plus simple est de garder votre caisse et de tester la commande en ligne à côté. Sur <a href="/inscription">la page d&rsquo;inscription de Marchéo</a>, choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue déjà rempli. Pour voir ce qui est prévu pour votre métier, regardez par exemple <a href="/solutions/boucherie">la solution pour boucherie</a>, puis montrez l&rsquo;aperçu à deux ou trois clients fidèles avant de décider.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel logiciel de click and collect fonctionne avec la caisse que j'ai déjà ?</summary><p>Un outil de commande en ligne séparé fonctionne à côté de n'importe quelle caisse, puisqu'il ne s'y branche pas : les commandes arrivent sur votre téléphone ou votre ordinateur, et vous encaissez au comptoir comme d'habitude. Marchéo est l'une de ces options : 39 € par mois (Click &amp; Collect + Réservation) ou 59 € par mois (Click &amp; Collect + Livraison), sans engagement et sans commission, avec 399 ou 549 € de frais d'installation uniques. Si vous voulez tout dans un seul écran, le module de click and collect de votre éditeur de caisse est l'autre option à demander.</p></details><details><summary>Faut-il acheter du matériel pour faire du click and collect ?</summary><p>Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Votre balance et votre caisse restent en place pour peser et encaisser au retrait, et si le client paie par carte en boutique, il utilise le terminal de paiement que vous avez déjà.</p></details><details><summary>Les commandes en ligne apparaissent-elles dans ma caisse ?</summary><p>Seulement si l'outil de commande est celui de votre éditeur de caisse ou s'il existe une connexion entre les deux. Avec un outil séparé, une commande payée au retrait passe en caisse au moment du paiement, comme une vente au comptoir. Une commande payée en ligne arrive directement sur votre compte bancaire et se retrouve dans le suivi des paiements de l'outil.</p></details><details><summary>Mon logiciel de caisse propose un module click and collect : est-ce mieux ?</summary><p>C'est pratique si le module est inclus ou peu cher et qu'il couvre vos besoins : créneaux, vente au poids, paiement en ligne. Demandez son prix mensuel exact, s'il prend une commission par commande, et s'il crée un vrai site à votre nom. Si l'une de ces réponses ne vous convient pas, un outil séparé reste possible sans toucher à votre caisse.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/site-internet-food-truck">Créer le site internet de son food-truck</a><a href="/blog/fleuriste-livraison-a-domicile">Livrer à domicile quand on est fleuriste</a><a href="/blog/google-forms-ou-logiciel-de-commande-commerce">Google Forms ou logiciel de commande ?</a><a href="/blog/click-and-collect-ou-livraison-a-domicile">Click and collect ou livraison ?</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/poissonnerie">Site et click &amp; collect pour poissonneries</a><a href="/solutions/fromagerie">Site et click &amp; collect pour fromageries et crèmeries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>

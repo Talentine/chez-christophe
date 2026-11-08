@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Faut-il changer de caisse pour faire du click and collect ?](https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse) : Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.
 - [Site internet food truck : emplacements, menu, commandes et prix](https://marchéo.fr/blog/site-internet-food-truck) : Site internet food truck : quelles pages créer, comment afficher vos emplacements de la semaine, prendre les commandes à l'avance et combien ça coûte.
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](https://marchéo.fr/blog/fleuriste-livraison-a-domicile) : Fleuriste et livraison à domicile : zone, créneaux, frais, carte message, deuil et jours de fête. Le guide pour livrer vos bouquets vous-même, sans commission.
 - [Google Forms ou logiciel de commande : que choisir pour un commerce ?](https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce) : Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.

@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-11-03
+modified: 2026-11-08
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -113,7 +113,7 @@ Choisissez un outil qui gère nativement le prix au kilo et l'ajustement à la p
 | Logiciel de caisse avec module en ligne | Souvent prévu, relié à la balance | Une caisse compatible, parfois du matériel | Abonnement de la caisse, plus le module |
 | Logiciel de commande pour commerce de bouche, comme Marchéo | Prévu : prix au kilo, poids d'un clic, ajustement | Votre catalogue et vos créneaux | 39 € par mois, sans commission |
 
-Chez Marchéo, la formule Click & Collect + Réservation coûte 39 € par mois et la formule Click & Collect + Livraison 59 € par mois, avec des frais d'installation uniques de 399 et 549 €, sans engagement et à 0 % de commission. Le client commande en 30 secondes, sans créer de compte, et l'empreinte bancaire est optionnelle : vous choisissez le pourcentage, jusqu'à 75 % du panier. Marchéo ne remplace pas votre caisse ni votre balance : la pesée se fait au comptoir, comme d'habitude. Pour comparer avec d'autres solutions sans pourcentage sur les ventes, voyez notre article [quel logiciel pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission), et si vous voulez aussi livrer, [quel logiciel pour livrer ses clients soi-même](/blog/logiciel-pour-livrer-ses-clients-soi-meme).
+Chez Marchéo, la formule Click & Collect + Réservation coûte 39 € par mois et la formule Click & Collect + Livraison 59 € par mois, avec des frais d'installation uniques de 399 et 549 €, sans engagement et à 0 % de commission. Le client commande en 30 secondes, sans créer de compte, et l'empreinte bancaire est optionnelle : vous choisissez le pourcentage, jusqu'à 75 % du panier. Marchéo ne remplace pas votre caisse ni votre balance : la pesée se fait au comptoir, comme d'habitude. Si un vendeur vous propose de changer de matériel, lisez d'abord [faut-il changer de caisse pour faire du click and collect](/blog/click-and-collect-sans-changer-de-caisse). Pour comparer avec d'autres solutions sans pourcentage sur les ventes, voyez notre article [quel logiciel pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission), et si vous voulez aussi livrer, [quel logiciel pour livrer ses clients soi-même](/blog/logiciel-pour-livrer-ses-clients-soi-meme).
 
 ## Trois erreurs qui coûtent des commandes
 

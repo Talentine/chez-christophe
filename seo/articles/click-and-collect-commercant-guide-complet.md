@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect : définition et mise en place"
 meta_description: "Click and collect, ça veut dire quoi ? Définition simple, fonctionnement, créneaux, paiement et no-show : le guide complet pour un commerce de proximité."
 date: 2026-10-21
-modified: 2026-11-07
+modified: 2026-11-08
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -103,7 +103,7 @@ Pour faire du click and collect, il vous faut un téléphone, une liste de produ
 | Un coin de la boutique pour les commandes prêtes | Pas d'application à faire télécharger à vos clients |
 | Un QR code et un lien à partager | Pas de compte à créer pour vos clients |
 
-Attention à une confusion fréquente : « sans matériel » veut dire que vous n'achetez pas d'équipement pour recevoir et gérer les commandes. Si un client paie par carte au retrait, il le fait avec le terminal de paiement que vous utilisez déjà en boutique.
+Attention à une confusion fréquente : « sans matériel » veut dire que vous n'achetez pas d'équipement pour recevoir et gérer les commandes. Si un client paie par carte au retrait, il le fait avec le terminal de paiement que vous utilisez déjà en boutique. Et vous gardez votre caisse actuelle : notre article [faut-il changer de caisse pour faire du click and collect](/blog/click-and-collect-sans-changer-de-caisse) compare le module de caisse et l'outil séparé.
 
 ## Comment gérer les créneaux de retrait et les heures de pointe ?
 
