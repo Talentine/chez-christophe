@@ -99,6 +99,7 @@ main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
 .crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
 .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
 h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
 .lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
 .meta{font-size:13px;color:var(--gris);margin:0 0 28px}
 .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -319,7 +320,7 @@ def seo_desc(meta: dict) -> str:
 
 
 def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: str, eyebrow: str, crumbs: list[tuple[str, str]],
-         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article", gains: str = "", css_extra: str = "") -> str:
+         ld: list[dict], aside: str, meta_line: str = "", cta: str | None = None, og_type: str = "article", gains: str = "", css_extra: str = "", sous_titre: str = "") -> str:
     ld_graph = {"@context": "https://schema.org", "@graph": [org_ld(), logiciel_ld(), breadcrumb_ld(crumbs), *[x for x in ld if x]]}
     crumbs_html = " › ".join(f'<a href="{esc(u)}">{esc(n)}</a>' if i < len(crumbs) - 1 else esc(n) for i, (n, u) in enumerate(crumbs))
     return f"""<!DOCTYPE html>
@@ -359,7 +360,7 @@ def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: 
 <article>
 <p class="eyebrow">{esc(eyebrow)}</p>
 <h1>{esc(h1)}</h1>
-<p class="lead">{esc(lead)}</p>
+{f'<p class="sous-titre">{esc(sous_titre)}</p>' if sous_titre else ""}<p class="lead">{esc(lead)}</p>
 {f'<p class="meta">{meta_line}</p>' if meta_line else ''}
 {gains}
 {corps}
@@ -402,7 +403,7 @@ def build_articles(arts: list[dict], metiers: list[dict]) -> list[str]:
         liens = [(x["titre_court"] if x.get("titre_court") else x["title"], f"/blog/{x['slug']}") for x in autres]
         for m in metiers:
             if m["slug"] in a.get("metiers", []):
-                liens.append((f"Click & collect pour {m['pluriel']}", f"/solutions/{m['slug']}"))
+                liens.append((f"Site et click & collect pour {m['pluriel']}", f"/solutions/{m['slug']}"))
         ld = [{
             "@type": "Article", "headline": a["title"], "description": a["description"], "inLanguage": "fr-FR",
             "datePublished": a["date"], "dateModified": a.get("modified", a["date"]),
@@ -468,7 +469,8 @@ CSS_METIER = """
 .etapes strong{display:block;font-size:17px}
 """
 
-H1_METIER = "Développer son commerce grâce à internet : ça consiste en quoi ?"
+# Le H1 porte la recherche du commerçant (« création site primeur ») ; la question générale vient en sous-titre.
+SOUS_TITRE_METIER = "Développer son commerce grâce à internet : ça consiste en quoi ?"
 
 # (installation, mensuel) ; le nom de la formule à 39 € dépend du métier (voir m["offre_39"])
 OFFRES = (("Vitrine", 249, 19, "Être trouvé sur Google et présenter vos produits, sans vente en ligne"),
@@ -577,7 +579,7 @@ def corps_metier(m: dict) -> str:
 
 def texte_metier(m: dict) -> str:
     """Version texte de la page métier, pour llms-full.txt."""
-    out = [H1_METIER, "", m["lead"], "", "## Ce qu'un site à votre image change pour vous"]
+    out = [m["h1"], SOUS_TITRE_METIER, "", m["lead"], "", "## Ce qu'un site à votre image change pour vous"]
     out += [f"- {t} : {p}" for _, t, p in apports_metier(m)]
     out += ["", f"## Ce qui marche bien en ligne pour {m['un']}", m["idees_intro"]]
     out += [f"- {x['t']} : {x['p']}" for x in m["idees"]]
@@ -595,7 +597,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
     for m in metiers:
         path = f"/solutions/{m['slug']}"
         corps = corps_metier(m)
-        liens = [(f"Click & collect pour {x['pluriel']}", f"/solutions/{x['slug']}") for x in metiers if x["slug"] != m["slug"]][:5]
+        liens = [(f"Site et click & collect pour {x['pluriel']}", f"/solutions/{x['slug']}") for x in metiers if x["slug"] != m["slug"]][:5]
         liens += [(a.get("titre_court") or a["title"], f"/blog/{a['slug']}") for a in arts if m["slug"] in a.get("metiers", [])][:3]
         ld = [{
             "@type": "Service", "name": f"Marchéo pour {m['pluriel']}", "serviceType": "Boutique en ligne click & collect et livraison locale",
@@ -604,7 +606,7 @@ def build_metiers(metiers: list[dict], arts: list[dict]) -> list[str]:
             "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR", "lowPrice": "19", "highPrice": "59", "offerCount": "3",
                        "description": "Abonnement mensuel sans engagement, 0 % de commission sur les ventes"},
         }, faq_ld(m.get("faq", []))]
-        html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=H1_METIER, lead=m["lead"],
+        html = page(titre=seo_titre(m, m["title"]), description=seo_desc(m), path=path, h1=m["h1"], sous_titre=SOUS_TITRE_METIER, lead=m["lead"],
                     corps=corps + faq_html(m.get("faq", [])), eyebrow=f"{m['emoji']} {m['label']}",
                     crumbs=[("Accueil", "/"), ("Par métier", "/solutions"), (m["label"], path)],
                     ld=ld, aside=aside_block(liens, "Autres métiers"), og_type="website", css_extra=CSS_METIER,
