@@ -12,8 +12,9 @@
   try { if (params.get('demo') === '1') sessionStorage.setItem(CLE, '1'); } catch (e) {}
   var actif = false;
   try { actif = sessionStorage.getItem(CLE) === '1'; } catch (e) {}
-  // Les boutiques de démonstration Marchéo (is_fixture) ne prennent jamais de commande,
-  // même hors visite publicitaire : la validation finale ouvre l'invitation à créer sa démo.
+  // Une boutique sans abonnement actif est une démo : elle ne prend aucune commande de visiteur,
+  // même hors visite publicitaire. La validation finale ouvre l'invitation à créer sa démo.
+  // Seul le commerçant connecté sur SA démo (hors boutiques Marchéo is_fixture) peut passer une commande test.
 
   var NOMS = { primeur: 'primeur', boucherie: 'boucherie', boulangerie: 'boulangerie', poissonnerie: 'poissonnerie',
     fromagerie: 'fromagerie', traiteur: 'traiteur', fleuriste: 'fleuriste', pizzeria: 'pizzeria', restaurant: 'restaurant', fastfood: 'fast-food' };
@@ -64,12 +65,21 @@
     window.etapeSuivante.__demoBloque = true;
   }
 
+  function estProprietaire(biz) {
+    try {
+      var s = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+      var cid = s.commercant_id || s.id;
+      return !!(biz.id && (cid === biz.id || (s.slug && s.slug === biz.slug)));
+    } catch (e) { return false; }
+  }
+
   function demarrer(biz) {
     if (demarre || !biz) return;
-    if (biz.is_fixture !== true) { try { sessionStorage.removeItem(CLE); } catch (e) {} return; }
     var bt = biz.business_type || 'primeur';
     var surPanier = /panier/.test(location.pathname);
-    if (surPanier) bloquerCommande(bt, actif);
+    var enDemo = biz.abonnement_actif !== true;
+    if (surPanier && enDemo && (biz.is_fixture === true || !estProprietaire(biz))) bloquerCommande(bt, actif);
+    if (biz.is_fixture !== true) { demarre = true; try { sessionStorage.removeItem(CLE); } catch (e) {} return; }
     if (!actif) { demarre = true; return; }
     demarre = true;
     var aNav = !!document.querySelector('.bottom-nav');
