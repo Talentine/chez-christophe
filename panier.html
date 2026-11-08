@@ -86,6 +86,11 @@
   .creneau-date{font-size:13px;font-weight:500;margin-bottom:4px;}
   .creneau-heure{font-size:14px;font-weight:500;color:var(--vert);}
   .creneau-dispo{font-size:11px;color:var(--texte-doux);margin-top:2px;}
+  .creneau-lieu{font-size:11.5px;font-weight:600;color:var(--texte);margin-top:6px;line-height:1.3;}
+  .point-groupe{margin-bottom:18px;}
+  .point-groupe:last-child{margin-bottom:0;}
+  .point-groupe-titre{font-size:14px;font-weight:600;margin-bottom:2px;}
+  .point-groupe-adr{font-size:12px;color:var(--texte-doux);margin-bottom:10px;line-height:1.4;}
 
   /* EMPREINTE */
   .empreinte-info{background:#fff8e7;border:1px solid #f0d080;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;line-height:1.6;}
@@ -382,6 +387,7 @@ let etape = 1;
 let modeCommande = 'retrait';
 let creneaux = [];
 let creneauSelectionne = null;
+let pointsRetrait = []; // points de retrait multiples (configurés par l'admin Marchéo)
 let stripe = null;
 let stripeCard = null;
 let stripeSecret = null;
@@ -418,6 +424,39 @@ function adresseBoutique() {
   return [b.adresse, b.code_postal, b.ville].filter(Boolean).join(', ');
 }
 
+function escHtml(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+// ── POINTS DE RETRAIT MULTIPLES ───────────────────────
+// Une boutique peut avoir plusieurs lieux de retrait (plusieurs magasins, ou
+// marchés itinérants : lundi Caen, mardi Le Havre…). Chaque créneau de retrait
+// est rattaché à un point ; sans point = adresse de la fiche boutique.
+async function chargerPointsRetrait() {
+  pointsRetrait = [];
+  if (!__CID__) return;
+  try {
+    const data = await sb('points_retrait', `?commercant_id=eq.${__CID__}&actif=eq.true&order=ordre.asc,nom.asc&select=*`);
+    if (Array.isArray(data)) pointsRetrait = data;
+  } catch (e) { pointsRetrait = []; }
+}
+
+function multiPointsActif() {
+  return pointsRetrait.length > 0;
+}
+
+function adressePoint(p) {
+  if (!p) return '';
+  return [p.adresse, [p.code_postal, p.ville].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+}
+
+// Lieu de retrait d'un créneau : { nom, adresse, infos }
+function lieuCreneau(c) {
+  const p = c && c.pointId ? pointsRetrait.find(x => x.id === c.pointId) : null;
+  if (p) return { nom: p.nom, adresse: adressePoint(p), infos: p.infos || '' };
+  return { nom: (__BIZ__ && __BIZ__.nom_boutique) || 'La boutique', adresse: adresseBoutique(), infos: '' };
+}
+
 async function bootCommerce() {
   const cfg = await window.CC.initBusiness();
   if (!cfg) return null;
@@ -436,6 +475,14 @@ async function bootCommerce() {
   // Note pour le commerçant
   const noteLabel = document.querySelector('.form-label-note');
   if (noteLabel) noteLabel.textContent = 'Note pour ' + (cfg.business.nom_boutique || 'le commerçant');
+  // Points de retrait multiples
+  await chargerPointsRetrait();
+  if (multiPointsActif()) {
+    const t = document.querySelector('#modeRetrait .mode-card-titre');
+    if (t) t.textContent = pointsRetrait.length > 1 ? 'Retrait sur place' : 'Retrait';
+    const ic = document.querySelector('#modeRetrait .mode-card-icon');
+    if (ic) ic.textContent = '📍';
+  }
   return cfg;
 }
 
@@ -826,8 +873,14 @@ async function chargerCreneaux() {
     document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
   } else {
     document.getElementById('creneauTitre').textContent = '🕐 Créneau de retrait';
-    const adrRetrait = adresseBoutique();
-    document.getElementById('creneauSub').textContent = 'Retrait en boutique' + (adrRetrait ? ' — ' + adrRetrait : '');
+    if (multiPointsActif()) {
+      document.getElementById('creneauSub').textContent = pointsRetrait.length > 1
+        ? 'Choisissez le lieu et l\'horaire qui vous conviennent'
+        : 'Retrait — ' + pointsRetrait[0].nom + (adressePoint(pointsRetrait[0]) ? ' · ' + adressePoint(pointsRetrait[0]) : '');
+    } else {
+      const adrRetrait = adresseBoutique();
+      document.getElementById('creneauSub').textContent = 'Retrait en boutique' + (adrRetrait ? ' — ' + adrRetrait : '');
+    }
   }
 
   const commercantId = __CID__;
@@ -841,12 +894,19 @@ async function chargerCreneaux() {
   }
 
   await chargerDatesFermees(commercantId); // congés → dates à exclure
-  creneaux = genererCreneauxSemaine(data);
+  // Plusieurs points : on garde plus de créneaux (répartis ensuite par lieu)
+  const multi = type === 'retrait' && multiPointsActif();
+  // Créneau rattaché à un point désactivé / supprimé → masqué
+  const dataVisibles = multi
+    ? data.filter(c => !c.point_retrait_id || pointsRetrait.some(p => p.id === c.point_retrait_id))
+    : data;
+  creneaux = genererCreneauxSemaine(dataVisibles, multi ? 200 : 12);
   renderCreneaux();
 }
 
-function genererCreneauxSemaine(data) {
-  const jours = ['', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+function genererCreneauxSemaine(data, limite) {
+  // jour_semaine suit la convention JS : 0 = dimanche … 6 = samedi
+  const jours = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   const now = new Date();
   const result = [];
 
@@ -901,6 +961,7 @@ function genererCreneauxSemaine(data) {
         fin: c.heure_fin.slice(0,5),
         emoji: c.emoji || '🕐',
         type: c.type || 'retrait',
+        pointId: c.point_retrait_id || null,
       });
     }
   });
@@ -914,24 +975,68 @@ function genererCreneauxSemaine(data) {
     return true;
   });
 
-  return unique.sort((a,b) => new Date(a.dateISO) - new Date(b.dateISO)).slice(0, 12);
+  return unique.sort((a,b) => new Date(a.dateISO) - new Date(b.dateISO)).slice(0, limite || 12);
+}
+
+function carteCreneauHtml(c, i, avecLieu) {
+  const lieu = avecLieu ? lieuCreneau(c) : null;
+  return `
+    <div class="creneau-card" id="creneau-${i}" data-idx="${i}" onclick="selectionnerCreneau(${i})">
+      <div class="creneau-jour">${c.jour}</div>
+      <div class="creneau-date">${c.date}</div>
+      <div class="creneau-heure">${c.debut} – ${c.fin}</div>
+      ${lieu ? `<div class="creneau-lieu">📍 ${escHtml(lieu.nom)}</div>` : ''}
+    </div>`;
 }
 
 function renderCreneaux() {
   const grid = document.getElementById('creneauxGrid');
-  grid.innerHTML = creneaux.map((c, i) => `
-    <div class="creneau-card" id="creneau-${i}" onclick="selectionnerCreneau(${i})">
-      <div class="creneau-jour">${c.jour}</div>
-      <div class="creneau-date">${c.date}</div>
-      <div class="creneau-heure">${c.debut} – ${c.fin}</div>
-    </div>
-  `).join('');
+  const multi = modeCommande !== 'livraison' && multiPointsActif();
+
+  if (!multi) {
+    grid.style.display = '';
+    grid.innerHTML = creneaux.map((c, i) => carteCreneauHtml(c, i, false)).join('');
+    return;
+  }
+
+  if (creneaux.length === 0) {
+    grid.style.display = '';
+    grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Aucun créneau disponible</div>';
+    return;
+  }
+
+  const affichage = (__BIZ__ && __BIZ__.points_retrait_affichage) || 'par_point';
+
+  // Mode « marchés » : liste par date, le lieu du jour sur chaque créneau
+  if (affichage === 'chronologique') {
+    grid.style.display = '';
+    grid.innerHTML = creneaux.slice(0, 16).map((c, i) => carteCreneauHtml(c, i, true)).join('');
+    return;
+  }
+
+  // Mode « boutiques » : créneaux regroupés par point de retrait
+  const groupes = pointsRetrait.map(p => ({ id: p.id, nom: p.nom, adresse: adressePoint(p), infos: p.infos || '' }));
+  if (creneaux.some(c => !c.pointId)) {
+    groupes.push({ id: null, nom: (__BIZ__ && __BIZ__.nom_boutique) || 'La boutique', adresse: adresseBoutique(), infos: '' });
+  }
+  const html = groupes.map(g => {
+    const items = creneaux.map((c, i) => ({ c, i })).filter(x => (x.c.pointId || null) === g.id).slice(0, 8);
+    if (items.length === 0) return '';
+    return `
+      <div class="point-groupe">
+        <div class="point-groupe-titre">📍 ${escHtml(g.nom)}</div>
+        <div class="point-groupe-adr">${escHtml(g.adresse)}${g.infos ? (g.adresse ? ' · ' : '') + escHtml(g.infos) : ''}</div>
+        <div class="creneaux-grid">${items.map(x => carteCreneauHtml(x.c, x.i, false)).join('')}</div>
+      </div>`;
+  }).join('');
+  grid.style.display = 'block';
+  grid.innerHTML = html || '<div style="text-align:center;padding:20px;color:var(--texte-doux)">Aucun créneau disponible</div>';
 }
 
 function selectionnerCreneau(i) {
   creneauSelectionne = i;
-  document.querySelectorAll('.creneau-card').forEach((el, idx) => {
-    el.classList.toggle('actif', idx === i);
+  document.querySelectorAll('.creneau-card').forEach(el => {
+    el.classList.toggle('actif', Number(el.dataset.idx) === i);
   });
   mettreAJourCTA();
 }
@@ -1251,7 +1356,13 @@ async function confirmerCommande() {
   if (tel) {
     const cMsg = modeCommande === 'livraison'
       ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. À bientôt !`
-      : `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}.${adresseBoutique() ? ' ' + adresseBoutique() + '.' : ''} À bientôt !`;
+      : (() => {
+          const lieu = lieuCreneau(creneau);
+          const lieuTxt = multiPointsActif()
+            ? ' Lieu : ' + lieu.nom + (lieu.adresse ? ', ' + lieu.adresse : '') + '.'
+            : (lieu.adresse ? ' ' + lieu.adresse + '.' : '');
+          return `Bonjour ${prenom} ! Commande ${numero} confirmée. Retrait : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}.${lieuTxt} À bientôt !`;
+        })();
     fetch(SUPABASE_URL + '/functions/v1/send-sms', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
@@ -1292,6 +1403,19 @@ async function confirmerCommande() {
     document.getElementById('adresseConfirmTxt').textContent = adresse;
     document.getElementById('lienMaps').href = 'https://maps.google.com/?q=' + encodeURIComponent(adresse);
     document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + encodeURIComponent(adresse) + '&navigate=yes';
+  } else if (multiPointsActif()) {
+    // Retrait sur un point précis : on rappelle le lieu + liens GPS
+    const lieu = lieuCreneau(creneau);
+    document.getElementById('succesRetrait').textContent += ' · ' + lieu.nom;
+    if (lieu.adresse) {
+      const nav = document.getElementById('navMaps');
+      nav.style.display = 'block';
+      const t = nav.querySelector('div');
+      if (t) t.textContent = '🗺️ Se rendre au point de retrait';
+      document.getElementById('adresseConfirmTxt').textContent = lieu.nom + ' — ' + lieu.adresse + (lieu.infos ? ' (' + lieu.infos + ')' : '');
+      document.getElementById('lienMaps').href = 'https://maps.google.com/?q=' + encodeURIComponent(lieu.adresse);
+      document.getElementById('lienWaze').href = 'https://waze.com/ul?q=' + encodeURIComponent(lieu.adresse) + '&navigate=yes';
+    }
   }
 
   localStorage.removeItem('panier');

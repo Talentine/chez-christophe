@@ -2397,7 +2397,9 @@ function renderCarteCommande(c) {
   // - Retrait   : bord gauche vert (var(--vert)), badge fond crème
   const estLivraison = c.type === 'livraison';
   const typeCouleur  = estLivraison ? '#185fa5' : 'var(--vert)';
-  const typeIcon     = estLivraison ? '🚚 Livraison' : '📍 Retrait';
+  // Boutiques à plusieurs points de retrait : on affiche le lieu choisi
+  const lieuTxt      = !estLivraison && c.lieu ? String(c.lieu).replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch])) : '';
+  const typeIcon     = estLivraison ? '🚚 Livraison' : (lieuTxt ? '📍 ' + lieuTxt : '📍 Retrait');
   const typeBadgeStyle = estLivraison
     ? 'background:#e8f4fd;color:#185fa5;'
     : 'background:#eaf7ee;color:var(--vert-fonce);';
@@ -5115,6 +5117,7 @@ async function chargerCommandesSupabase(commercantId) {
       type: c.type || 'retrait',
       note: c.note_client || null,
       adresse: c.adresse_livraison || null,
+      lieu: c.point_retrait_nom || null,
       date_retrait: c.date_retrait || null,
       created_at: c.created_at || null,
       confirmee_le: c.confirmee_le || null,
@@ -7205,6 +7208,7 @@ const DUREE_CRENEAU = 2; // heures
 
 let typeCreneauActif = 'retrait';
 let creneauxData = []; // données Supabase
+let pointsRetraitNoms = {}; // id → nom du point de retrait (échappé)
 
 function switchTypeCreneaux(type) {
   typeCreneauActif = type;
@@ -7671,6 +7675,19 @@ async function chargerCreneaux() {
     });
     const data = await r.json();
     creneauxData = Array.isArray(data) ? data : [];
+    // Noms des points de retrait (configurés par Marchéo) pour les afficher sur les créneaux
+    pointsRetraitNoms = {};
+    if (creneauxData.some(c => c.point_retrait_id)) {
+      try {
+        const rp = await fetch(SUPABASE_URL + '/rest/v1/points_retrait?commercant_id=eq.' + commercantId + '&select=id,nom', {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
+        });
+        const pts = await rp.json();
+        if (Array.isArray(pts)) pts.forEach(p => {
+          pointsRetraitNoms[p.id] = String(p.nom || '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+        });
+      } catch (e) { /* noms facultatifs */ }
+    }
   } catch(e) {
     console.log('Erreur créneaux:', e);
     creneauxData = [];
@@ -7735,7 +7752,8 @@ function renderCreneaux() {
         html += '<div style="background:var(--blanc);border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--creme-fonce);display:flex;align-items:center;justify-content:space-between;">'
           + '<div>'
           + '<div style="font-size:14px;font-weight:500;">🕐 ' + heureDebut + ' – ' + heureFin + '</div>'
-          + '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Max ' + (c.capacite_max || '—') + ' commandes</div>'
+          + '<div style="font-size:12px;color:var(--texte-doux);margin-top:2px;">Max ' + (c.capacite_max || '—') + ' commandes'
+          + (c.point_retrait_id && pointsRetraitNoms[c.point_retrait_id] ? ' · 📍 ' + pointsRetraitNoms[c.point_retrait_id] : '') + '</div>'
           + '</div>'
           + '<div style="display:flex;align-items:center;gap:10px;">'
           + '<button onclick="ouvrirEditionCreneau(\'' + c.id + '\')" style="background:var(--creme);border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-family:Manrope,system-ui,sans-serif;cursor:pointer;">✏️ Modifier</button>'
