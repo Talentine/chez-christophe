@@ -187,7 +187,7 @@
       min-height: 100dvh;
       display: flex; align-items: center; justify-content: center;
       padding: 120px 24px 80px;
-      background: linear-gradient(160deg, var(--cream) 0%, #fff 60%, #F0F7F3 100%);
+      background: linear-gradient(180deg, #fff 0%, #F4F8F1 45%, var(--cream) 100%);
       position: relative; overflow: hidden;
     }
 
@@ -208,6 +208,56 @@
 
     .hero-inner {
       max-width: 760px; text-align: center; position: relative; z-index: 1;
+    }
+    .hero-grid { display: block; }
+    .hero-kicker {
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: clamp(20px, 2.6vw, 30px); font-weight: 700; line-height: 1.25;
+      color: var(--brand); margin: -8px 0 18px;
+    }
+    .hero-kicker em { font-style: normal; color: var(--gold); }
+    .hero-sub .hero-sub-lead { display: block; color: var(--brand); font-weight: 700; margin-bottom: 6px; }
+
+    /* Aperçu de la boutique Chez Christophe (ordi + téléphone) */
+    .hero-devices {
+      position: relative; display: block; max-width: 440px;
+      margin: 44px auto 8px; padding: 0 0 34px 0; text-decoration: none; color: inherit;
+    }
+    .device-laptop { width: 90%; position: relative; z-index: 1; }
+    .device-laptop-screen {
+      background: #0B1220; border-radius: 12px 12px 4px 4px; padding: 7px 7px 9px;
+      box-shadow: 0 18px 50px rgba(15,44,82,.18);
+    }
+    .device-laptop-screen img { width: 100%; aspect-ratio: 8 / 5; object-fit: cover; object-position: top; border-radius: 4px; }
+    .device-laptop-base {
+      height: 10px; margin: 0 -7%; border-radius: 0 0 14px 14px;
+      background: linear-gradient(180deg, #D8DCE3 0%, #AEB4BF 100%);
+    }
+    .device-phone {
+      position: absolute; right: 0; bottom: 0; width: 34%; z-index: 2;
+      background: #0B1220; border-radius: 26px; padding: 6px;
+      box-shadow: 0 20px 44px rgba(15,44,82,.28);
+    }
+    .device-phone img { width: 100%; aspect-ratio: 9 / 18.5; object-fit: cover; object-position: top; border-radius: 20px; }
+    .device-caption {
+      display: block; margin-top: 16px; padding-right: 38%; text-align: left;
+      font-size: 12.5px; line-height: 1.45; color: var(--text-muted); font-weight: 500;
+    }
+    .device-caption b { color: var(--brand); }
+    .hero-devices:hover .device-caption b { text-decoration: underline; }
+
+    @media (min-width: 1024px) {
+      .hero-inner { max-width: 1200px; }
+      .hero-grid {
+        display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        gap: 56px; align-items: center; text-align: left;
+      }
+      .hero-grid .hero-sub { margin-left: 0; }
+      .hero-grid .hero-actions { justify-content: flex-start; }
+      .hero-grid .hero-note { margin-left: 0 !important; }
+      .hero .hero-grid h1 { font-size: clamp(36px, 3.4vw, 48px); }
+      .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+      .hero-devices { max-width: none; margin: 0; }
     }
 
     .hero-badge {
@@ -258,8 +308,7 @@
 
     .hero-stats {
       display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
-      margin-top: 64px; padding-top: 48px;
-      border-top: 1px solid var(--cream-dark);
+      margin-top: 56px;
     }
     .hero-stat-num { font-family: 'Manrope', system-ui, sans-serif; font-size: 32px; font-weight: 700; color: var(--brand); }
     .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
@@ -773,7 +822,7 @@
       .hero-sub { font-size: 15px; margin-bottom: 36px; }
       .hero-actions { flex-direction: column; align-items: center; }
       .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; min-height: 52px; padding: 14px 28px; }
-      .hero-stats { gap: 16px; margin-top: 40px; padding-top: 32px; }
+      .hero-stats { gap: 16px; margin-top: 32px; }
       .hero-stat-num { font-size: 26px; }
 
       /* Sections */
@@ -854,10 +903,14 @@
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-inner">
+    <div class="hero-grid">
+    <div class="hero-copy">
     <h1 id="hero-title" class="reveal reveal-delay-1">
-      Vendez en ligne,<br><em>retrait ou livraison</em>
+      Site web spécialisé en <em>commerce de bouche</em>
     </h1>
+    <p class="hero-kicker reveal reveal-delay-1">Vendez en ligne, <em>retrait ou livraison</em></p>
     <p class="hero-sub reveal reveal-delay-2">
+      <span class="hero-sub-lead">Création rapide, sans technique, accompagnement pas à pas.</span>
       La boutique en ligne et le site internet de votre commerce, avec click &amp; collect et livraison à domicile. <b>Sans matériel, sans commission</b>, tout se gère depuis votre téléphone. Une empreinte bancaire protège vos commandes contre les clients qui ne viennent pas.
     </p>
     <div class="hero-actions reveal reveal-delay-3">
@@ -867,9 +920,26 @@
       </a>
       <a href="#exemples" class="btn-secondary" role="button">Voir un exemple</a>
     </div>
-    <p class="reveal reveal-delay-3" style="font-size:13px;color:var(--text-muted);margin-top:18px;max-width:520px;margin-left:auto;margin-right:auto;">
+    <p class="hero-note reveal reveal-delay-3" style="font-size:13px;color:var(--text-muted);margin-top:18px;max-width:520px;margin-left:auto;margin-right:auto;">
       ✅ <strong>Démo 100 % gratuite</strong>, sans carte bancaire. Vous ne payez les frais d'installation <strong>qu'au moment de mettre votre boutique en ligne</strong>.
     </p>
+    </div>
+
+    <!-- Aperçu réel : boutique Chez Christophe (accueil sur ordi + panier rempli sur téléphone) -->
+    <a href="/chez-christophe" target="_blank" rel="noopener" class="hero-devices reveal reveal-delay-3" aria-label="Voir la boutique Chez Christophe, primeur à Blonville-sur-Mer" data-track="hero_apercu_boutique">
+      <div class="device-laptop">
+        <div class="device-laptop-screen">
+          <img src="/assets/demos/chez-christophe-desktop.webp" width="1200" height="750" alt="Page d'accueil de la boutique en ligne Chez Christophe sur ordinateur" fetchpriority="high" decoding="async">
+        </div>
+        <div class="device-laptop-base" aria-hidden="true"></div>
+      </div>
+      <div class="device-phone">
+        <img src="/assets/demos/chez-christophe-panier-mobile.webp" width="540" height="1168" alt="Panier rempli sur téléphone : abricots, ananas, asperges, basilic, brocoli" decoding="async">
+      </div>
+      <span class="device-caption">🍑 Boutique réelle : <b>Chez Christophe</b>, primeur à Blonville-sur-Mer</span>
+    </a>
+    </div>
+
     <div class="hero-stats reveal reveal-delay-4">
       <div class="hero-stat">
         <div class="hero-stat-num">5 min</div>
