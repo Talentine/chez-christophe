@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet food truck : emplacements, menu, commandes et prix](https://marchéo.fr/blog/site-internet-food-truck) : Site internet food truck : quelles pages créer, comment afficher vos emplacements de la semaine, prendre les commandes à l'avance et combien ça coûte.
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](https://marchéo.fr/blog/fleuriste-livraison-a-domicile) : Fleuriste et livraison à domicile : zone, créneaux, frais, carte message, deuil et jours de fête. Le guide pour livrer vos bouquets vous-même, sans commission.
 - [Google Forms ou logiciel de commande : que choisir pour un commerce ?](https://marchéo.fr/blog/google-forms-ou-logiciel-de-commande-commerce) : Google Forms et un tableur suffisent-ils pour prendre les commandes de votre commerce ? Comparatif honnête : coût, créneaux, paiement, et quand changer d'outil.
 - [Click and collect ou livraison à domicile : que choisir ?](https://marchéo.fr/blog/click-and-collect-ou-livraison-a-domicile) : Click and collect ou livraison à domicile pour votre commerce de bouche : coût, temps, froid, clients visés, et quand proposer les deux. Comparatif honnête.
@@ -514,6 +515,173 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet food truck : emplacements, menu, commandes et prix
+
+Site internet food truck : quelles pages créer, comment afficher vos emplacements de la semaine, prendre les commandes à l'avance et combien ça coûte.
+
+Un site internet de food-truck sert à trois choses : dire où vous êtes aujourd&rsquo;hui et cette semaine, montrer votre menu avec les prix, et prendre les commandes avant votre arrivée sur l&rsquo;emplacement. Le bon site tient en trois ou quatre pages, se met à jour depuis votre téléphone en une minute et ne prend aucune commission sur vos ventes.
+Ce guide s&rsquo;adresse au gérant d&rsquo;un food-truck, d&rsquo;un camion pizza ou d&rsquo;un stand de rue. La méthode générale, valable pour tous les commerces, est détaillée dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand votre commerce roule : un emplacement différent selon les jours, un service du midi très court et des clients qui vous cherchent sur leur téléphone.
+Pourquoi un food-truck a-t-il besoin d&rsquo;un site internet ?
+Parce que votre client ne peut pas deviner où vous êtes. Un restaurant a une adresse fixe, un food-truck change de place plusieurs fois par semaine. La première question d&rsquo;un client est donc « où est le camion aujourd&rsquo;hui ? », et la réponse doit se trouver en dix secondes.
+Un site à vous change trois choses :
+
+Vous êtes trouvé en direct. Le client qui tape le nom de votre camion ou « food truck » avec le nom de sa ville tombe sur votre planning, pas sur une publication d&rsquo;il y a trois semaines.
+Les commandes arrivent avant le rush. Entre 12 h et 13 h 30, chaque minute passée à prendre une commande au comptoir est une minute de cuisine en moins.
+Les entreprises vous trouvent. Comités d&rsquo;entreprise, mariages, fêtes de quartier : ces demandes passent souvent par un formulaire ou un numéro trouvé sur un site.
+
+Site vitrine ou site de commande : que choisir pour un food-truck ?
+Un site vitrine suffit si vous faites surtout de l&rsquo;événementiel et peu de service du midi. Dès que vous avez une file d&rsquo;attente régulière sur vos emplacements, un site de commande avec créneaux de retrait vous fera servir plus de clients dans la même fenêtre.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Surtout des mariages et des événements privés
+Site vitrine : menu, photos, formulaire de demande de devis
+
+
+Emplacements fixes en semaine avec une file au midi
+Site avec click &amp; collect et créneaux de retrait
+
+
+Commandes de bureaux groupées
+Site avec click &amp; collect et minimum de commande
+
+
+Soirées où vous livrez autour de votre emplacement
+Site avec click &amp; collect et livraison locale
+
+
+
+Le fonctionnement de la commande à l&rsquo;avance sur un camion, des créneaux de 10 à 15 minutes à la capacité par créneau, est détaillé dans notre guide du click &amp; collect pour food-truck.
+Quelles pages mettre sur le site d&rsquo;un food-truck ?
+Trois ou quatre pages suffisent. Votre client veut savoir où vous êtes, ce que vous servez et comment commander, souvent debout, sur son téléphone, dix minutes avant sa pause.
+
+Accueil : l&rsquo;emplacement du jour tout en haut, vos horaires de service et un bouton « Commander » visible sans faire défiler.
+Planning de la semaine : un tableau simple, jour par jour, avec le lieu, l&rsquo;adresse précise et les horaires.
+Le menu : vos plats, vos formules et vos prix, avec les allergènes et les options végétariennes.
+Événements et privatisation : les formules pour les entreprises et les particuliers, et un moyen de vous contacter.
+
+Exemple de planning lisible d&rsquo;un coup d&rsquo;œil :
+
+
+
+Jour
+Emplacement
+Horaires
+
+
+
+
+Lundi
+Parking de la zone d&rsquo;activité, entrée nord
+11 h 30 à 14 h
+
+
+Mardi
+Place du marché
+11 h 30 à 14 h
+
+
+Jeudi
+Devant la mairie
+18 h 30 à 21 h 30
+
+
+Samedi
+Marché du centre
+10 h à 14 h
+
+
+
+Pour les mentions légales, les conditions de vente et les informations allergènes, notre article sur les obligations légales d&rsquo;une boutique en ligne fait le point.
+Comment afficher l&rsquo;emplacement du jour sur son site ?
+En le changeant depuis votre téléphone, au même endroit, chaque matin, en haut de la page d&rsquo;accueil. Si vos clients doivent chercher l&rsquo;information dans une page secondaire, ils iront voir Instagram, et ils risquent d&rsquo;y trouver une information périmée.
+Avec Marchéo, vous indiquez l&rsquo;emplacement du jour depuis votre téléphone et il s&rsquo;affiche en haut de votre page de commande. Si vous annulez un emplacement à cause de la pluie ou d&rsquo;une panne, dites-le au même endroit, dès que vous le savez.
+Comment prendre des commandes à l&rsquo;avance depuis le site ?
+En proposant des créneaux de retrait courts et une capacité limitée par créneau. Le client choisit son plat, son créneau de 12 h 15, et vient le chercher sans faire la queue. Vous préparez dans l&rsquo;ordre des créneaux au lieu de subir la file.
+Avec Marchéo, le client commande en 30 secondes, sans créer de compte, et reçoit un SMS quand sa commande est prête. Pour les grosses commandes de bureau, prises la veille ou le matin, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait : elle évite de préparer quinze burgers que personne ne vient chercher. Si vous tenez aussi un snack ou un fast-food en boutique, notre guide du click and collect en restauration rapide détaille les menus et les heures de pointe.
+Combien coûte un site internet pour un food-truck ?
+Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+Planning, créneaux et capacité à configurer vous-même
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification se paie
+
+
+Plateformes de livraison
+Commission de l&rsquo;ordre de 14 à 30 % par commande
+Pas de site à vous, les clients restent ceux de la plateforme
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Pensé pour les commerces de bouche, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation, 549 € pour le Click &amp; Collect avec Livraison. Le détail des postes de dépense d&rsquo;un site de commande est dans notre article sur ce que coûte un site de click and collect.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut votre menu, vos prix et votre planning, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre menu avec les prix et les allergènes
+Une borne de commande, une tablette ou une imprimante
+
+
+Votre planning d&rsquo;emplacements de la semaine
+Un développeur ou une agence
+
+
+Quelques photos de vos plats et du camion
+Une commission sur chaque vente
+
+
+Le téléphone que vous avez déjà dans le camion
+Un engagement de longue durée
+
+
+
+Comment faire connaître le site de son food-truck ?
+Reliez d&rsquo;abord le site à votre fiche Google Business, en indiquant que vous êtes un commerce sans adresse fixe ouverte au public si c&rsquo;est votre cas. Ajoutez-y le lien de commande. Le réglage est expliqué dans notre guide de la fiche Google Business pour un commerce de bouche.
+Ensuite, mettez l&rsquo;adresse du site partout où vos clients vous voient : un QR code collé sur le camion et sur le comptoir, imprimé sur les sacs et les tickets, le lien dans votre bio Instagram et sur Facebook. Le client qui a commandé une fois depuis le QR code a toutes les chances de recommencer la semaine suivante, sans passer par la file.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « Fast-food &amp; food-truck », tapez le nom de votre camion, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous ajoutez ensuite votre menu, vos emplacements et vos créneaux à votre rythme. Pour voir toutes les fonctions prévues pour votre métier, consultez la solution pour fast-food et food-truck.
+
+Q : Quel outil pour créer le site internet d'un food-truck ?
+R : Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour les emplacements et les créneaux ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, pensés pour les commerces de bouche. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Faut-il acheter du matériel pour prendre des commandes en ligne dans un food-truck ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone que vous avez déjà dans le camion. Si le client n'a pas payé en ligne, vous encaissez au comptoir avec votre caisse et votre terminal habituels.
+Q : Combien coûte un site internet pour un food-truck ?
+R : De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission et sans engagement, avec des frais d'installation uniques de 249 à 549 € selon la formule.
+Q : Un compte Instagram suffit-il pour un food-truck ?
+R : Instagram est utile pour montrer vos plats, mais il ne remplace pas un site. Une publication ne touche qu'une partie de vos abonnés, une story disparaît au bout de 24 heures, et Instagram ne prend pas de commandes avec créneau de retrait. Le plus simple est de garder Instagram et de mettre le lien de votre site dans la bio.
 
 # Fleuriste livraison à domicile : livrer vos bouquets vous-même
 
@@ -4526,7 +4694,7 @@ Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fro
 Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste et notre guide de création de site internet pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria et notre guide du site internet pour pizzeria.
 Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant.
-Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food et le guide du click &amp; collect pour food-truck.
+Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food le guide du click &amp; collect pour food-truck et notre article dédié au site internet d&rsquo;un food truck.
 
 Les erreurs à éviter lors de la création du site
 La plupart des sites de commerce qui ne servent à rien ont été faits une fois, puis oubliés. Quelques règles évitent l&rsquo;essentiel.
@@ -4547,6 +4715,7 @@ Site internet pour boulangerie
 Création de site internet pour traiteur
 Site internet pour pizzeria : menu, commande et prix réels
 Site internet fromagerie : pages, plateaux, commandes et prix
+Site internet food truck : emplacements, menu, commandes et prix
 Fiche Google Business pour un commerce de bouche
 Click and collect sans commission
 
@@ -5817,7 +5986,7 @@ Une page fixe à votre nom, où l&rsquo;emplacement du jour s&rsquo;affiche en h
 Une notification ou un SMS aux clients qui ont déjà commandé, le matin même, avec l&rsquo;emplacement et le plat du jour. C&rsquo;est le canal qui déclenche les commandes.
 Les réseaux sociaux, qui continuent de servir pour les photos et pour attirer de nouveaux clients.
 
-Le planning de la semaine publié à l&rsquo;avance sur la même page évite en plus la moitié des messages privés du type « vous êtes où demain ? ».
+Le planning de la semaine publié à l&rsquo;avance sur la même page évite en plus la moitié des messages privés du type « vous êtes où demain ? ». Les pages à prévoir et la présentation de ce planning sont détaillées dans notre guide du site internet pour food truck.
 Combien coûtent les commissions pour un food-truck ?
 Les plateformes de livraison prennent en général entre 14 et 30 % selon le contrat et le service. Sur une commande à emporter à 13 €, cela fait 1,80 à 3,90 € qui ne vous reviennent pas, sur un plat dont la marge brute tourne déjà autour de la moitié du prix.
 Une boutique en propre fonctionne autrement : un abonnement fixe, et 0 % sur ce que vous vendez. Chez Marchéo, c&rsquo;est 19 € par mois pour une vitrine, 39 € pour le click &amp; collect avec réservation, 59 € avec la livraison, sans engagement, plus des frais d&rsquo;installation uniques de 249, 399 ou 549 € selon la formule. Une quinzaine de commandes par mois passées sur votre page plutôt que sur une plateforme couvrent l&rsquo;abonnement.

@@ -265,7 +265,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | alternative uber eats garder ses clients qr code | transverse | restaurant | IA (03/11 : ChatGPT, Perplexity et Google citent bungeefood, restolabs, heustach ; Marchéo absent sur n°5) | haute | à faire : section « faire passer les clients de la plateforme à sa boutique » dans click-and-collect-sans-commission-alternative-uber-eats-deliveroo (déjà prévu, ligne alternative uber eats) |
 | site pour pizzeria | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
 | logiciel pizzeria gratuit | click & collect | pizzeria | GS (04/11) | moyenne | à faire : angle « ce qui est vraiment gratuit », à fusionner avec application click and collect gratuite |
-| site web food truck | site | fastfood | GS (04/11) | haute | à faire (angle : site du food-truck avec emplacements de la semaine et commande, sans doubler click-and-collect-food-truck) |
+| site web food truck | site | fastfood | GS (04/11) + WS (08/11 : 1re page = annonces Codeur.com et guides en anglais) | haute | publié le 2026-11-08 site-internet-food-truck (requête principale « site internet food truck ») |
 | site de fromagerie | site | fromagerie | GS (04/11) | haute | publié le 2026-11-06 site-internet-fromagerie |
 | click and collect bar | click & collect | restaurant | GS (04/11) | basse | à faire (volume probablement faible, à vérifier) |
 | site commande pizza | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
@@ -308,3 +308,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | création site primeur | site | primeur | Paul (08/11 : Marchéo introuvable sur Google) | haute | couvert le 2026-11-08 : title et H1 de /solutions/primeur passés en « Création de site internet pour primeur », ancre de l'accueil idem ; article dédié « site internet primeur » à écrire si la page ne remonte pas |
 | création site [métier] (boucherie, boulangerie, poissonnerie, fromagerie, pizzeria, restaurant, fast-food) | site | tous | Paul (08/11) | haute | couvert le 2026-11-08 : title et H1 des 10 pages métier en « Création de site internet pour… », ancres de l'accueil et liens « Autres métiers » idem. À suivre dans Search Console (requêtes « création site … ») |
 | création site click and collect | transverse | tous | Paul (08/11) + GSC (comparatif pos. 3,5 au 19/10) | haute | title de l'accueil passé en « Création de site click & collect pour commerçants » le 2026-11-08 ; pages d'appui : comment-creer-un-site-click-and-collect-pour-son-commerce, logiciel-click-and-collect-comparatif-2026 |
+| site internet food truck | site | fastfood | GS (08/11) | haute | publié le 2026-11-08 site-internet-food-truck |
+| site pour food truck | site | fastfood | GS (08/11) | moyenne | couvert le 2026-11-08 par site-internet-food-truck |
+| application pour food truck | click & collect | fastfood | GS (08/11) | moyenne | couvert le 2026-11-08 par site-internet-food-truck et click-and-collect-food-truck (variante en keywords) |
+| logiciel gestion food truck | transverse | fastfood | GS (08/11) | basse | à faire : angle gestion (stock, planning, caisse) trop large, à revoir seulement si GSC montre des impressions |
+| logiciel caisse food truck | transverse | fastfood | GS (08/11) | basse | écarté (Marchéo n'est pas une caisse) |
+| application localisation food truck | transverse | fastfood | GS (08/11) | basse | écarté (intention client qui cherche un camion) |
+| food truck emplacement prix | transverse | fastfood | GS (08/11) | basse | écarté (location d'emplacement, hors sujet) |
+| template site web fast food | site | fastfood | GS (08/11) | basse | écarté (intention développeur ou graphiste) |

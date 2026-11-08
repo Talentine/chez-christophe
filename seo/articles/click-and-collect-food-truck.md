@@ -5,7 +5,7 @@ description: "Un food-truck vend l'essentiel de sa journée en 90 minutes. Prend
 meta_title: "Click & collect pour food-truck : le guide pratique"
 meta_description: "Prendre les commandes à l'avance sur un food-truck : emplacement du jour, créneaux de retrait, commissions évitées et passage des habitués. Guide concret."
 date: 2026-09-17
-modified: 2026-11-05
+modified: 2026-11-08
 rubrique: Guide
 emoji: 🚚
 keywords:
@@ -81,7 +81,7 @@ Trois canaux valent mieux qu'un :
 2. **Une notification ou un SMS** aux clients qui ont déjà commandé, le matin même, avec l'emplacement et le plat du jour. C'est le canal qui déclenche les commandes.
 3. **Les réseaux sociaux**, qui continuent de servir pour les photos et pour attirer de nouveaux clients.
 
-Le planning de la semaine publié à l'avance sur la même page évite en plus la moitié des messages privés du type « vous êtes où demain ? ».
+Le planning de la semaine publié à l'avance sur la même page évite en plus la moitié des messages privés du type « vous êtes où demain ? ». Les pages à prévoir et la présentation de ce planning sont détaillées dans notre guide du [site internet pour food truck](/blog/site-internet-food-truck).
 
 ## Combien coûtent les commissions pour un food-truck ?
 

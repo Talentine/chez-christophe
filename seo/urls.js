@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/site-internet-food-truck",
   "/blog/fleuriste-livraison-a-domicile",
   "/blog/google-forms-ou-logiciel-de-commande-commerce",
   "/blog/click-and-collect-ou-livraison-a-domicile",
