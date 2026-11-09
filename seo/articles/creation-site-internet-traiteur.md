@@ -5,7 +5,7 @@ description: "Création d'un site internet pour traiteur : les pages indispensab
 meta_title: "Création site traiteur et site e-commerce : le guide"
 meta_description: "Création d'un site traiteur ou d'un site e-commerce : pages utiles, photos, allergènes, prix réels et commandes de plateaux en ligne, sans commission."
 date: 2026-10-17
-modified: 2026-11-02
+modified: 2026-11-09
 rubrique: Métier
 emoji: 🍽️
 keywords:
@@ -48,7 +48,7 @@ Tout dépend de ce que vos clients vous demandent aujourd'hui au téléphone. Po
 | Plateaux repas pour les entreprises | Un site de commande avec minimum par commande et livraison |
 | Un peu de tout | Un site de commande, avec une page événements à part |
 
-La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
+La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne : notre guide de la [livraison de plateaux repas en entreprise](/blog/livraison-plateau-repas-entreprise-traiteur) détaille le minimum, l'heure limite et la tournée du midi. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
 
 ## Un site e-commerce est-il utile à un traiteur ?
 

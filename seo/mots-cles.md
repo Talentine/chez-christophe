@@ -62,8 +62,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer site internet restaurant gratuit | site | restaurant | GS | moyenne | à faire (angle : ce que coûte vraiment le gratuit) |
 | logiciel commande traiteur | click & collect | traiteur | GS (17/10) | moyenne | à faire (angle : outil de prise de commande, pas ERP) |
 | logiciel traiteur gratuit | click & collect | traiteur | GS (17/10) | basse | à faire (beaucoup d'ERP/devis en face, à fondre dans l'article précédent) |
-| livraison plateau repas traiteur | livraison | traiteur | GS (17/10) | haute | à faire (pas avant novembre, traiteur publié le 17/10) |
-| traiteur livraison repas entreprise | livraison | traiteur | GS (17/10) | moyenne | même article que la ligne précédente |
+| livraison plateau repas traiteur | livraison | traiteur | GS (17/10) | haute | publié le 2026-11-09 + livraison-plateau-repas-entreprise-traiteur |
+| traiteur livraison repas entreprise | livraison | traiteur | GS (17/10) | moyenne | couvert par livraison-plateau-repas-entreprise-traiteur (2026-11-09) |
 | traiteur vente en ligne | click & collect | traiteur | GS (17/10) | moyenne | à faire |
 | devis traiteur en ligne | transverse | traiteur | GS (17/10) | basse | écarté : Marchéo ne fait pas de devis, intention annuaires |
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS (17/10) | haute | doublon, voir ligne publiée le 2026-10-18 |
@@ -243,14 +243,14 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect restaurant guide | click & collect | restaurant | GSC (« mettre en place le click and collect restaurant » 15 impr., pos. 58,5 ; « guide click and collect restauration » 6 impr., pos. 59,5) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | retrait magasin fromage | click & collect | fromagerie | GSC (10 impr., pos. 7,9, 02/11) | basse | couvert par click-and-collect-fromagerie |
 | livraison de poisson a domicile | livraison | poissonnerie | GSC (4 impr., pos. 13,8, 02/11) | moyenne | couvert par poissonnerie-livraison-a-domicile, à suivre |
-| traiteur livraison repas entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
+| traiteur livraison repas entreprise | livraison | traiteur | GS (02/11) | moyenne | couvert par livraison-plateau-repas-entreprise-traiteur (2026-11-09) |
 | traiteur livraison plat chaud | livraison | traiteur | GS (02/11) | basse | à fondre dans l'article plateau repas (chaud ou froid) |
-| traiteur noël entreprise | livraison | traiteur | GS (02/11) | moyenne | à faire avec « livraison plateau repas traiteur » |
+| traiteur noël entreprise | livraison | traiteur | GS (02/11) | moyenne | couvert en partie par livraison-plateau-repas-entreprise-traiteur (2026-11-09) ; repas de fin d'année d'entreprise à traiter en FAQ fin novembre |
 | traiteur vente en ligne | click & collect | traiteur | GS (02/11, confirmé) | moyenne | couvert par le refresh de creation-site-internet-traiteur (2026-11-02) |
 | tableur ou logiciel commandes traiteur noël | transverse | traiteur | IA (02/11 : ChatGPT conseille Excel ou Google Sheets pour les commandes de Noël) | moyenne | publié le 2026-11-07 + google-forms-ou-logiciel-de-commande-commerce (variante, traiteur en exemple) |
-| logiciel tournée livraison traiteur | livraison | traiteur | IA (02/11 : Perplexity propose la question « Quels logiciels utiliser pour optimiser les tournées ») | moyenne | à faire ou FAQ de l'article plateau repas |
+| logiciel tournée livraison traiteur | livraison | traiteur | IA (02/11 : Perplexity propose la question « Quels logiciels utiliser pour optimiser les tournées ») | moyenne | couvert par la FAQ et la section tournée de livraison-plateau-repas-entreprise-traiteur (2026-11-09) |
 | alternative takeasy click and collect | transverse | tous | IA (02/11 : ChatGPT cite Takeasy et Click & Croque sur « sans commission ») | moyenne | à étudier par la routine IA, comparatif factuel |
-| click and collect guide complet | click & collect | tous | GSC (703 impr., 1 clic, pos. 16,4 sur 28 j, 02/11) | haute | à faire : retravailler title et description de click-and-collect-commercant-guide-complet au prochain lundi |
+| click and collect guide complet | click & collect | tous | GSC (703 impr., 1 clic, pos. 16,4 sur 28 j, 02/11) | haute | title et description retravaillés le 2026-11-09 (« Click and collect, c'est quoi ? Définition et mise en place ») : mesurer le CTR lundi 16/11 |
 | site internet pas cher commerce de proximité | site | tous | IA (02/11 : ChatGPT conseille Wix, Google Sites, WordPress, Marchéo absent sur n°4) | haute | publié le 2026-11-02 + site-internet-pas-cher-commerce-de-proximite |
 | quel logiciel pour livrer ses clients soi-même | livraison | tous | IA (02/11 : ChatGPT et Perplexity ne citent que des optimiseurs de tournée et Shopify, rien pour le commerce de bouche) | haute | publié le 2026-11-03 + logiciel-pour-livrer-ses-clients-soi-meme |
 | logiciel commandes noël traiteur | click & collect | traiteur | IA (02/11 : Lumis, Potti, Catermonkey cités ; ERP de traiteur événementiel surtout) | moyenne | à faire avec « tableur ou logiciel commandes traiteur noël » |
@@ -318,3 +318,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | template site web fast food | site | fastfood | GS (08/11) | basse | écarté (intention développeur ou graphiste) |
 | click and collect sans changer de caisse | click & collect | tous | IA (ChatGPT conseille « un logiciel connecté à la caisse » le 07/11 ; Perplexity et Google citent des éditeurs de caisse : Artipos, Toporder, tool-advisor, lechommerces, 28/10 et 01/11) | haute | publié le 2026-11-08 + click-and-collect-sans-changer-de-caisse |
 | site internet food truck outil | site | fastfood | IA (08/11 : ChatGPT conseille Wix, Squarespace, WordPress, Canva ; Google cite yola, lewebfrancais, moncamionresto) | moyenne | couvert par site-internet-food-truck (2026-11-08) : à rafraîchir dans 2 semaines avec une FAQ « Wix ou outil de commande ? » |
+| livraison plateau repas entreprise | livraison | traiteur | GS (09/11) | haute | publié le 2026-11-09 + livraison-plateau-repas-entreprise-traiteur |
+| plateau repas entreprise prix | livraison | traiteur | GS (09/11) | basse | écarté (intention acheteur, couvert par la section minimum et frais) |
+| traiteur livraison bureau | livraison | traiteur | GS (09/11) | moyenne | couvert par livraison-plateau-repas-entreprise-traiteur (2026-11-09) |
+| livraison plateau repas particulier | livraison | traiteur | GS (09/11) | basse | à faire en section d'un futur article traiteur (repas de famille livrés) |
+| livraison plateau repas personnes agées | livraison | traiteur | GS (09/11) | basse | écarté (portage de repas, service social, hors cible) |
+| frais de livraison traiteur | livraison | traiteur | GS (09/11) | moyenne | à faire : FAQ de comment-calculer-ses-frais-de-livraison-commercant au prochain rafraîchissement |
+| primeurs livraison à domicile | livraison | primeur | GS (09/11) | moyenne | à faire : vérifier la cannibalisation avec logiciel-pour-livrer-ses-clients-soi-meme, angle « primeur qui livre ses paniers » |
+| livraison à domicile produit frais | livraison | tous | GS (09/11) | moyenne | à faire avec « transport de produits frais réglementation » |
+| site internet boulangerie patisserie | site | boulangerie | GS (09/11) | moyenne | couvert par site-internet-boulangerie-commandes-en-ligne : ajouter « pâtisserie » aux keywords au prochain rafraîchissement |

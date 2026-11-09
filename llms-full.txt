@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Livraison plateau repas entreprise : le guide du traiteur](https://marchéo.fr/blog/livraison-plateau-repas-entreprise-traiteur) : Traiteur, lancez la livraison de plateaux repas en entreprise : carte, prix par personne, minimum, heure limite, tournée du midi et froid, sans commission.
 - [Faut-il changer de caisse pour faire du click and collect ?](https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse) : Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.
 - [Site internet food truck : emplacements, menu, commandes et prix](https://marchéo.fr/blog/site-internet-food-truck) : Site internet food truck : quelles pages créer, comment afficher vos emplacements de la semaine, prendre les commandes à l'avance et combien ça coûte.
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](https://marchéo.fr/blog/fleuriste-livraison-a-domicile) : Fleuriste et livraison à domicile : zone, créneaux, frais, carte message, deuil et jours de fête. Le guide pour livrer vos bouquets vous-même, sans commission.
@@ -92,7 +93,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-08
+- Dernière mise à jour : 2026-11-09
 
 
 ---
@@ -303,10 +304,10 @@ D'abord vos plats du jour et votre carte, à emporter. Ensuite, ce qui fait les 
 
 Q : Peut-on demander un acompte sur les grosses commandes ?
 R : Oui, de deux façons : le paiement intégral en ligne, ou l'empreinte bancaire qui pré-autorise jusqu'à 75 % du panier et vous laisse prélever selon votre politique d'annulation en cas de désistement.
-Q : Comment gérer un délai de préparation de 48 heures ?
-R : Chaque produit peut avoir un délai minimum de commande. Un buffet demandé à 48 heures ne pourra être commandé que pour un créneau au-delà de ce délai.
+Q : Comment gérer un délai de préparation ?
+R : Vous réglez un délai minimum avant le retrait et avant la livraison, de 30 minutes à 24 heures. Pour un buffet à préparer plus longtemps à l'avance, prenez la commande par téléphone ou par devis.
 Q : Les entreprises peuvent-elles commander pour plusieurs personnes ?
-R : Oui. Les quantités sont libres, la commande porte le nom de l'entreprise et du contact, et la facture est disponible dans l'historique.
+R : Oui. Les quantités sont libres : une entreprise commande 15 plateaux comme un particulier en commande un, avec le nom et le téléphone du contact sur la commande. Si l'entreprise demande une facture à régler par virement, établissez-la avec votre outil de facturation habituel.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
@@ -516,6 +517,136 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Livraison plateau repas entreprise : le guide du traiteur
+
+Traiteur, lancez la livraison de plateaux repas en entreprise : carte, prix par personne, minimum, heure limite, tournée du midi et froid, sans commission.
+
+La livraison de plateaux repas en entreprise, pour un traiteur, repose sur cinq réglages : une carte courte avec un prix par personne, un minimum de commande, une heure limite la veille, une zone que vous couvrez en une tournée du midi, et des plateaux gardés au froid jusqu&rsquo;au bureau. Vous livrez vous-même vos clients, sans plateforme et sans commission. Avec Marchéo, la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement et sans matériel à acheter, avec 549 € de frais d&rsquo;installation uniques.
+Ce guide s&rsquo;adresse aux traiteurs indépendants et complète notre guide complet de la livraison à domicile pour commerçant. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce qui est prévu pour votre métier se trouve sur la page click &amp; collect pour traiteur.
+Pourquoi proposer la livraison de plateaux repas aux entreprises ?
+Les entreprises commandent souvent, en nombre, et aux mêmes heures. Une réunion, une formation, un comité de direction ou un accueil de clients se traduisent par 8, 15 ou 30 plateaux livrés à midi, dans un rayon proche de votre laboratoire.
+C&rsquo;est un complément utile à vos prestations sur mesure. Les plateaux se préparent en série, avec une carte stable, et remplissent les jours de semaine où les mariages et les repas de famille ne tombent pas. Une entreprise satisfaite revient, et l&rsquo;assistante qui commande une fois commande souvent pour tout le service.
+Quelle carte de plateaux repas proposer aux entreprises ?
+La bonne carte d&rsquo;entreprise tient en quatre à six plateaux, renouvelés par saison. Le client doit choisir vite, souvent pour plusieurs personnes à la fois.
+
+un plateau classique, avec entrée, plat froid, fromage et dessert ;
+un plateau végétarien, de plus en plus demandé ;
+un plateau poisson ;
+un plateau léger ou une formule salade ;
+des options à l&rsquo;unité : boissons, pain, corbeille de fruits, café.
+
+Donnez un prix par personne et indiquez clairement ce que contient chaque plateau. Vous devez aussi informer le client des allergènes présents dans chaque plateau : mettez-les sur la fiche produit, pas seulement sur l&rsquo;étiquette. Prévoyez enfin des couverts, des serviettes et un emballage qui se ferme bien, car le plateau sera souvent ouvert sur une table de réunion.
+Quel minimum et quels frais pour livrer une entreprise ?
+Le minimum de commande protège votre tournée du midi. Une livraison pour un seul plateau à 10 kilomètres vous coûte plus qu&rsquo;elle ne rapporte.
+
+
+
+Réglage
+Base de départ à ajuster
+Pourquoi
+
+
+
+
+Minimum de commande
+L&rsquo;équivalent de 5 à 10 plateaux
+Le déplacement doit être rentable
+
+
+Frais de livraison
+Forfait fixe, ou offert au-delà d&rsquo;un montant
+L&rsquo;entreprise compare un prix total
+
+
+Zone
+Les communes ou zones d&rsquo;activité proches
+Une tournée courte protège le froid et l&rsquo;horaire
+
+
+Délai de commande
+La veille, avant une heure fixe
+Vous achetez et préparez le matin
+
+
+Commandes par créneau
+Ce que votre équipe et votre véhicule peuvent porter
+Le créneau plein disparaît de la liste
+
+
+
+Ces chiffres sont des points de départ prudents, pas des moyennes du marché. Pour les adapter à vos distances, reprenez la méthode de notre article comment calculer ses frais de livraison.
+Comment fixer l&rsquo;heure limite de commande ?
+L&rsquo;heure limite se fixe à partir de votre production, pas de la demande du client. Si vous achetez et préparez le matin, il vous faut toutes les commandes du lendemain la veille au soir.
+Sur Marchéo, vous réglez un délai minimum avant livraison, de 30 minutes à 24 heures. Avec 24 heures, le client qui veut être livré demain à 12 h doit commander avant 12 h aujourd&rsquo;hui. Les créneaux s&rsquo;ouvrent sur les deux semaines à venir : une entreprise peut donc commander pour une réunion prévue la semaine suivante, pas pour un séminaire dans trois mois. Pour ces demandes lointaines ou sur mesure, gardez le devis par téléphone ou par mail.
+Comment organiser la tournée de livraison du midi ?
+Organisez une ou deux tournées fixes plutôt que des livraisons à la demande. Les entreprises veulent recevoir avant midi, à l&rsquo;accueil, à l&rsquo;heure annoncée.
+
+Ouvrez des créneaux courts. Par exemple 11 h à 11 h 45 et 11 h 45 à 12 h 30, avec un nombre maximum de commandes par créneau.
+Regroupez par zone. Une zone d&rsquo;activité ou un quartier de bureaux par tournée.
+Préparez la liste la veille. Adresse, étage, nom du contact, téléphone, code d&rsquo;accès et consigne de l&rsquo;accueil.
+Chargez dans l&rsquo;ordre inverse des arrêts. La première livraison sort en dernier du véhicule.
+Appelez en arrivant si besoin. Un contact joignable évite d&rsquo;attendre devant un badge.
+
+Notez dans chaque commande le nom de l&rsquo;entreprise et la personne à qui remettre les plateaux. Pour comparer les outils qui classent les arrêts, voyez notre article sur le logiciel pour livrer ses clients soi-même.
+Comment garder les plateaux au froid jusqu&rsquo;au bureau ?
+Les plateaux doivent rester au froid du laboratoire jusqu&rsquo;à la remise au client. Sortez-les au dernier moment, chargez-les dans des caisses isothermes avec des plaques eutectiques, et limitez la tournée à une heure environ.
+
+Étiquetez chaque plateau avec son contenu et la date limite de consommation.
+Comptez les plateaux à la remise, devant le client.
+Remettez la commande en main propre, jamais déposée sans personne à l&rsquo;accueil.
+Conseillez de mettre au frais les plateaux qui ne sont pas consommés tout de suite.
+
+Les règles précises dépendent de vos produits et de votre véhicule : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers.
+Comment être payé par une entreprise ?
+Le paiement en ligne à la commande est le plus simple : la commande est réglée avant la préparation et vous n&rsquo;avez rien à relancer. Avec Marchéo, il arrive sur votre propre compte, sans commission de Marchéo sur vos ventes (seuls les frais du prestataire de paiement s&rsquo;appliquent).
+Pour une commande passée peu de temps avant la livraison, l&rsquo;empreinte bancaire est une autre option : vous choisissez le pourcentage, jusqu&rsquo;à 75 % du panier, sans débiter le client, et elle est libérée 24 heures après la remise de la commande. Certaines entreprises demandent à payer sur facture, par virement : établissez alors la facture avec votre outil de facturation habituel. Le détail des protections est dans notre guide sur l&rsquo;empreinte bancaire et les no-shows.
+Quel outil pour gérer les commandes de plateaux repas ?
+Le bon outil dépend du nombre de commandes et du nombre de clients. Au-delà de quelques commandes par semaine, le mail et le tableur deviennent une source d&rsquo;erreurs de quantité et d&rsquo;adresse.
+
+
+
+Outil
+Ce qu&rsquo;il fait bien
+Sa limite
+
+
+
+
+Mail et tableur
+Gratuit, immédiat
+Tout se recopie, aucun créneau plein
+
+
+Logiciel de traiteur événementiel
+Devis, banquets, fiches techniques
+Souvent plus lourd qu&rsquo;une commande de plateaux
+
+
+Plateforme de livraison
+Commande, paiement, coursier
+Commission de 14 à 30 %, le client reste chez elle
+
+
+Marchéo
+Boutique, zone, créneaux, minimum, frais, délai, paiement, tournée
+Ne livre pas à votre place
+
+
+
+Avec Marchéo, le catalogue traiteur arrive déjà rempli, et les commandes tombent sur votre téléphone, sans matériel à acheter et sans commission. Si vous n&rsquo;avez pas encore de site, commencez par notre guide de la création d&rsquo;un site internet de traiteur. Pour les menus de fin d&rsquo;année livrés aux particuliers, voyez aussi traiteur Noël livraison à domicile.
+Par où commencer cette semaine ?
+Commencez par trois décisions : vos quatre à six plateaux, votre minimum de commande et votre heure limite. Écrivez-les sur une page, puis présentez-les aux entreprises de votre quartier qui vous commandent déjà par téléphone.
+Pour voir votre boutique avec la livraison, essayez la démo gratuite : vous choisissez « Traiteur », vous tapez le nom de votre maison et l&rsquo;aperçu s&rsquo;affiche en 30 secondes.
+
+Q : Quel logiciel pour prendre les commandes de plateaux repas d'entreprise ?
+R : Pour quelques commandes par semaine, un formulaire et un tableur suffisent, à condition de tout recopier. Les logiciels de traiteur événementiel gèrent devis et banquets, souvent au-delà du besoin d'un plateau du midi. Marchéo est un logiciel français qui réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais, le délai minimum avant livraison et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.
+Q : Faut-il acheter du matériel pour livrer des plateaux repas en entreprise ?
+R : Pas pour prendre les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Pour livrer, il vous faut un véhicule et de quoi garder les plateaux au froid, comme des caisses isothermes et des plaques eutectiques.
+Q : Combien de temps à l'avance faire commander un plateau repas ?
+R : La plupart des traiteurs demandent une commande la veille, pour acheter et préparer le matin. Sur Marchéo, vous réglez un délai minimum avant livraison, de 30 minutes à 24 heures : à 24 heures, un client ne peut plus réserver un créneau du lendemain midi après la même heure aujourd'hui.
+Q : Quel minimum de commande fixer pour livrer une entreprise ?
+R : Fixez un minimum qui rend le déplacement rentable, par exemple l'équivalent de 5 à 10 plateaux, et ajustez-le selon vos distances. En dessous, proposez le retrait au laboratoire plutôt que la livraison.
 
 # Faut-il changer de caisse pour faire du click and collect ?
 
@@ -5539,7 +5670,7 @@ Un site de commande, avec une page événements à part
 
 
 
-La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
+La plupart des traiteurs indépendants sont dans le dernier cas. Le plateau repas et le plat du jour se commandent très bien en ligne : notre guide de la livraison de plateaux repas en entreprise détaille le minimum, l&rsquo;heure limite et la tournée du midi. Le mariage, lui, se vend en rendez-vous. Un bon site laisse le client commander seul ce qui est simple, et vous amène les demandes qui méritent une discussion.
 Un site e-commerce est-il utile à un traiteur ?
 Oui, dès que vous vendez des plateaux, des plats du jour ou des menus de fêtes à prix fixe. Un site e-commerce de traiteur n&rsquo;est pas une grande boutique : c&rsquo;est une carte en ligne où le client choisit, paie ou garantit sa commande, puis indique une date et un créneau. Il n&rsquo;y a rien à expédier par transporteur : le client retire sa commande, ou vous la livrez vous-même dans votre zone.
 Ce qui distingue l&rsquo;e-commerce d&rsquo;un traiteur de celui d&rsquo;une boutique classique tient en trois réglages : un prix par personne avec un minimum de couverts, un délai de préparation, et un nombre maximum de commandes par créneau. Avec un logiciel métier, ces réglages sont prévus, sans matériel à acheter et sans commission sur vos ventes.
@@ -7088,7 +7219,7 @@ Boulangerie. Livraison des commandes de gâteaux, de pains pour les restaurants 
 Boucherie. Colis de viande et commandes de la semaine, au froid. Voir la solution pour boucherie et notre guide boucherie livraison à domicile.
 Primeur. Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir la solution pour primeur et le click and collect primeur.
 Poissonnerie. Poisson et plateaux de fruits de mer, tournée très courte. Voir la solution pour poissonnerie et notre guide poissonnerie livraison à domicile.
-Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Voir la solution pour traiteur, la création de site internet de traiteur et notre guide traiteur Noël livraison à domicile.
+Traiteur. Plateaux repas pour les entreprises, buffets, menus de fêtes. Pour les bureaux, suivez notre guide de la livraison de plateaux repas en entreprise. Voir aussi la solution pour traiteur, la création de site internet de traiteur et notre guide traiteur Noël livraison à domicile.
 Fromagerie. Plateaux et formules raclette livrés le vendredi soir. Voir la solution pour fromagerie et le click and collect en fromagerie.
 Fleuriste. Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir la solution pour fleuriste et notre guide fleuriste livraison à domicile.
 Pizzeria. Livraison du soir sur une zone courte, à heure annoncée. Voir la solution pour pizzeria et notre guide du logiciel de livraison pizza.
