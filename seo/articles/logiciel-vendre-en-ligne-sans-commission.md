@@ -3,6 +3,7 @@ title: "Quel logiciel pour vendre en ligne sans commission ni matériel ?"
 titre_court: "Vendre en ligne sans commission"
 description: "Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas."
 date: 2026-11-01
+modified: 2026-11-12
 rubrique: Comparatif
 emoji: 🧾
 keywords:
@@ -57,7 +58,7 @@ Il reste à payer l'abonnement, l'installation éventuelle et les frais de paiem
 
 - **L'abonnement.** C'est le coût fixe, que vous vendiez peu ou beaucoup.
 - **L'installation.** Certains outils la facturent une fois. Chez Marchéo, elle coûte 249, 399 ou 549 € selon l'offre.
-- **Les frais de paiement.** Ils sont dus au prestataire de paiement, pas au logiciel. Ils ne concernent que les paiements par carte en ligne.
+- **Les frais de paiement.** Ils sont dus au prestataire de paiement, pas au logiciel. Ils ne concernent que les paiements par carte en ligne. Le détail est dans notre page sur [la différence entre commission et frais bancaires](/blog/commission-ou-frais-bancaires-vente-en-ligne).
 - **Les modules.** Sur un outil généraliste, les créneaux de retrait ou la vente au poids peuvent demander des applications payantes.
 - **Votre temps.** Il compte aussi, surtout si vous devez tout régler seul le soir.
 

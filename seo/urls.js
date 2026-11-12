@@ -1,5 +1,7 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/commande-boucherie-noel-en-ligne",
+  "/blog/commission-ou-frais-bancaires-vente-en-ligne",
   "/blog/livraison-plateau-repas-entreprise-traiteur",
   "/blog/click-and-collect-sans-changer-de-caisse",
   "/blog/site-internet-food-truck",

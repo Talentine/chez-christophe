@@ -5,11 +5,11 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
-modified: 2026-11-02
+modified: 2026-11-12
 rubrique: Guide
 emoji: 🎄
 keywords:
-  - précommande Noël boucherie
+  - précommande Noël commerce de bouche
   - commande de fêtes en ligne
   - acompte commande de Noël
   - click and collect fêtes de fin d'année
@@ -56,7 +56,7 @@ L'erreur classique est de proposer aux fêtes tout ce qu'on propose le reste de 
 
 Une bonne offre de fêtes tient sur une page :
 
-- **Boucherie** : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine.
+- **Boucherie** : deux ou trois volailles fermières, une pièce de bœuf, un rôti farci, un plateau de charcuterie fine. Le détail est dans notre guide sur la [commande de Noël en boucherie](/blog/commande-boucherie-noel-en-ligne).
 - **Poissonnerie** : deux tailles de plateau de fruits de mer, du saumon fumé à la coupe, des coquilles Saint-Jacques, éventuellement une formule à composer. Le réglage des plateaux est décrit dans notre guide du [click and collect en poissonnerie](/blog/click-and-collect-poissonnerie).
 - **Fromagerie** : deux ou trois plateaux prêts (4, 6, 10 personnes) et un plateau sur mesure au poids. Le réglage complet est décrit dans notre guide du [click and collect pour fromagerie](/blog/click-and-collect-fromagerie).
 - **Traiteur** : un menu complet en trois plats, des entrées à l'unité, un buffet apéritif par tranche de 10 personnes. Si vous livrez, voyez notre guide [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile).
