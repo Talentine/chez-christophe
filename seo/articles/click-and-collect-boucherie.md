@@ -3,7 +3,7 @@ title: "Click and collect boucherie : prendre les commandes de viande en ligne"
 titre_court: "Click and collect pour boucherie"
 description: "Click and collect boucherie : colis, découpes, vente au kilo, créneaux et fêtes. Comment un boucher de quartier s'organise sans matériel ni commission."
 date: 2026-10-28
-modified: 2026-11-02
+modified: 2026-11-12
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -102,7 +102,7 @@ Trois réglages font la différence :
 2. **Des créneaux élargis** les jours de fête, avec un plafond par créneau.
 3. **Une liste de préparation** pour savoir combien de chapons commander à l'éleveur.
 
-Annoncez vos commandes de Noël dès la mi-novembre. Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Notre guide des [précommandes des fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) détaille le calendrier.
+Annoncez vos commandes de Noël dès la mi-novembre. Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Notre guide des [précommandes des fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche) détaille le calendrier. Pour la carte de fêtes, les volailles vendues au poids et la date limite, lisez notre guide pour prendre une [commande de boucherie à Noël en ligne](/blog/commande-boucherie-noel-en-ligne).
 
 ## Combien coûte le click and collect pour une boucherie ?
 

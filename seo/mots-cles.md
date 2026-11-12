@@ -179,7 +179,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | alternative shopify commerçant | transverse | tous | IA (27/10) | moyenne | couvert par shopify-wix-ou-logiciel-metier-commerce-de-proximite |
 | marchéo avis / marchéo prix | marque | tous | IA (27/10) | haute | couvert par a-propos (10 faits, limites, FAQ alternatives) ; à suivre dans visibilite-ia.md |
 | click and collect boucherie | click & collect | boucherie | GS + WS (28/10 : 1re page = guides généralistes, HubSpot, Fiducial, aucune page boucher) | haute | publié le 2026-10-28 + click-and-collect-boucherie |
-| boucherie commande noel | click & collect | boucherie | GS (28/10) | haute | à faire mi-novembre : précommandes de Noël en boucherie (chapons, rôtis, date limite) |
+| boucherie commande noel | click & collect | boucherie | GS (28/10, 12/11 : « commande boucherie noel », « commande viande noel ») | haute | publié le 2026-11-12 commande-boucherie-noel-en-ligne |
 | livraison colis viande à domicile | livraison | boucherie | GS (28/10) | moyenne | publié le 2026-10-31 boucherie-livraison-a-domicile (variante) |
 | application livraison boucherie | livraison | boucherie | GS (28/10) | moyenne | publié le 2026-10-31 boucherie-livraison-a-domicile (FAQ « Quel logiciel… ») |
 | boucherie vente en ligne | site | boucherie | GS (28/10) | basse | couvert par site-internet-boucherie et click-and-collect-boucherie |
@@ -280,7 +280,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | borne de commande fast food prix | transverse | fastfood | GS (05/11) | basse | à faire (vérifier les prix réels sur des sources publiques avant d'écrire, sinon écarter) |
 | borne de commande food truck | transverse | fastfood | GS (05/11) | basse | à faire (angle : pas de borne dans un camion, commande sur le téléphone) |
 | commande en ligne fast food | click & collect | fastfood | GS (05/11) | moyenne | couvert le 2026-11-05 par click-and-collect-restauration-rapide |
-| commande chapon boucherie | click & collect | boucherie | GS (05/11 après-midi) | moyenne | à faire : enrichir la partie boucherie de precommandes-fetes-noel-commerce-bouche (chapons, volailles festives, date limite de commande) plutôt qu'un nouvel article |
+| commande chapon boucherie | click & collect | boucherie | GS (05/11 après-midi) | moyenne | publié le 2026-11-12 commande-boucherie-noel-en-ligne (section vente au poids d'un chapon) |
 | prix chapon boucherie | transverse | boucherie | GS (05/11 après-midi) | basse | écarté (requête d'acheteur sur le prix au kilo) |
 | fromagerie commande en ligne | click & collect | fromagerie | GS (05/11 après-midi) | moyenne | couvert par click-and-collect-fromagerie (variante à ajouter dans ses keywords au prochain rafraîchissement) |
 | livraison fromage à domicile | livraison | fromagerie | GS (05/11 après-midi) | moyenne | à faire avec « fromagerie livraison à domicile » (variante) |
@@ -327,3 +327,10 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | primeurs livraison à domicile | livraison | primeur | GS (09/11) | moyenne | à faire : vérifier la cannibalisation avec logiciel-pour-livrer-ses-clients-soi-meme, angle « primeur qui livre ses paniers » |
 | livraison à domicile produit frais | livraison | tous | GS (09/11) | moyenne | à faire avec « transport de produits frais réglementation » |
 | site internet boulangerie patisserie | site | boulangerie | GS (09/11) | moyenne | couvert par site-internet-boulangerie-commandes-en-ligne : ajouter « pâtisserie » aux keywords au prochain rafraîchissement |
+| bon de commande noel boucherie | click & collect | boucherie | GS (12/11 : « bon de commande noel ») | moyenne | publié le 2026-11-12 commande-boucherie-noel-en-ligne (H2 papier ou en ligne) |
+| menu noel boucherie | click & collect | boucherie | GS (12/11) | moyenne | couvert par commande-boucherie-noel-en-ligne (2026-11-12, section carte de Noël) ; requête surtout d'acheteur |
+| commande viande noel | click & collect | boucherie | GS (12/11) | moyenne | couvert par commande-boucherie-noel-en-ligne (2026-11-12, dans les keywords) |
+| commande dinde noel | click & collect | boucherie | GS (12/11) | basse | écarté (requête d'acheteur, la dinde est citée dans commande-boucherie-noel-en-ligne) |
+| bon de commande noel boulangerie | click & collect | boulangerie | GS (12/11) | moyenne | à faire : ajouter un H2 « bon de commande papier ou en ligne » dans commande-buche-de-noel-en-ligne au prochain rafraîchissement |
+| commande plateau de fruits de mer en ligne | click & collect | poissonnerie | GS (12/11) | moyenne | à faire avec « site internet poissonnerie » (section plateaux de fêtes) |
+| préparation bouchère noël | transverse | boucherie | GS (12/11) | basse | écarté (recettes et idées de produits, pas une recherche d'outil) |
