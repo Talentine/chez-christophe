@@ -163,8 +163,8 @@
       <button class="offre-change" onclick="window.location.href='/#tarifs'">← Changer d'offre</button>
     </div>
     <div class="offre-prix-bloc">
-      <div class="offre-setup"><strong>Démo gratuite</strong></div>
-      <div class="offre-mensuel">sans carte bancaire · sans engagement</div>
+      <div class="offre-setup">Installation : <strong id="offreSetup"></strong> à la mise en ligne</div>
+      <div class="offre-mensuel">puis <strong id="offreMensuel"></strong>/mois · sans engagement</div>
     </div>
   </div>
 
@@ -449,9 +449,9 @@ const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 const OFFRES = {
-  vitrine:      { nom:'Vitrine',                  label:'VITRINE',          cls:'vitrine' },
-  clickcollect: { nom:'Click & Collect',           label:'CLICK & COLLECT',  cls:'clickcollect' },
-  livraison:    { nom:'Click & Collect + Livraison', label:'LIVRAISON',      cls:'livraison' },
+  vitrine:      { nom:'Vitrine',                  setup:'249€', mensuel:'19€', label:'VITRINE',          cls:'vitrine' },
+  clickcollect: { nom:'Click & Collect',           setup:'399€', mensuel:'39€', label:'CLICK & COLLECT',  cls:'clickcollect' },
+  livraison:    { nom:'Click & Collect + Livraison', setup:'549€', mensuel:'59€', label:'LIVRAISON',      cls:'livraison' },
 };
 
 const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null, codePromo:null, logoFile:null, horaires:null };
@@ -672,6 +672,8 @@ async function verifierCodePromo() {
     banner.style.display = 'flex';
     document.getElementById('offreBadge').textContent = o.label;
     document.getElementById('offreNom').textContent = o.nom;
+    document.getElementById('offreSetup').textContent = o.setup;
+    document.getElementById('offreMensuel').textContent = o.mensuel;
   }
   const emailExistant = params.get('email_existant');
   if (emailExistant) {
@@ -742,7 +744,7 @@ function etape(n) {
       `<div class="recap-label">Métier</div><div>${state.type}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marchéo.fr/${state.slug}</div>` +
-      `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} · démo gratuite</div>`;
+      `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
   document.getElementById('step' + n).classList.add('actif');
