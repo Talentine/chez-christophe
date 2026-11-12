@@ -1,6 +1,7 @@
 // ============================================================
 // /sitemap.xml — généré dynamiquement depuis Supabase
-// Liste toutes les boutiques actives + pages publiques
+// Liste les boutiques en ligne (abonnement actif) et les boutiques d'exemple + pages publiques.
+// Les démos non mises en ligne restent privées : elles n'y figurent pas.
 // Cache 1h sur Vercel Edge
 // ============================================================
 
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
   let boutiques = [];
   try {
     const r = await fetch(
-      SUPABASE_URL + '/rest/v1/commercants?actif=eq.true&select=slug,created_at',
+      SUPABASE_URL + '/rest/v1/commercants?actif=eq.true&or=(abonnement_actif.is.true,is_fixture.is.true)&select=slug,created_at',
       { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
     );
     if (r.ok) boutiques = await r.json();

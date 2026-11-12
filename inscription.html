@@ -77,6 +77,9 @@
   .livraison .offre-badge{background:rgba(122,92,62,0.25);color:#7A5C3E;}
   .offre-nom{font-size:14px;font-weight:600;color:#2A211A;margin:4px 0 2px;}
   .offre-prix-bloc{text-align:right;flex-shrink:0;}
+  .prive-note{display:flex;gap:12px;align-items:flex-start;background:#EEF7EA;border:1.5px solid #5BBE3A;border-radius:14px;padding:13px 15px;margin:0 0 18px;font-size:13.5px;line-height:1.5;color:#0F2C52;text-align:left;}
+  .prive-note strong{display:block;font-size:14.5px;margin-bottom:2px;}
+  .prive-ico{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#5BBE3A;color:#fff;display:flex;align-items:center;justify-content:center;}
   .offre-setup{font-size:11px;color:rgba(42,33,26,.45);margin-bottom:2px;}
   .offre-setup strong{color:rgba(42,33,26,.75);font-size:13px;}
   .offre-mensuel{font-size:12px;color:rgba(42,33,26,.4);}
@@ -146,6 +149,12 @@
   <h1>Créez votre démo gratuite</h1>
   <p class="sub">Configurez votre boutique en 5 minutes. Gratuit et sans carte bancaire : vous ne payez qu'au moment de la mettre en ligne.</p>
 
+  <div class="prive-note" role="note">
+    <span class="prive-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span>
+    <div><strong>Votre démo n'est visible que par vous.</strong>
+    Elle n'apparaît ni sur Google ni pour vos clients tant que vous ne l'avez pas mise en ligne. Vous la testez tranquillement, à votre rythme.</div>
+  </div>
+
   <!-- Bannière offre sélectionnée -->
   <div id="offreBanner" class="offre-banner" style="display:none;">
     <div>
@@ -154,8 +163,8 @@
       <button class="offre-change" onclick="window.location.href='/#tarifs'">← Changer d'offre</button>
     </div>
     <div class="offre-prix-bloc">
-      <div class="offre-setup">Installation : <strong id="offreSetup"></strong> à la mise en ligne</div>
-      <div class="offre-mensuel">puis <strong id="offreMensuel"></strong>/mois · sans engagement</div>
+      <div class="offre-setup"><strong>Démo gratuite</strong></div>
+      <div class="offre-mensuel">sans carte bancaire · sans engagement</div>
     </div>
   </div>
 
@@ -387,8 +396,13 @@
         <div class="success-emoji">🎉</div>
         <div class="step-title" style="font-size:22px;">Votre démo est prête !</div>
         <div class="step-sub" style="margin-top:10px;font-size:14px;">Vous allez être redirigé vers votre dashboard pour ajouter vos premiers produits.</div>
-        <div class="recap" style="text-align:left;margin-top:18px;">
-          <div class="recap-label">Adresse de votre site</div>
+        <div class="prive-note" role="note" style="text-align:left;margin-top:18px;">
+          <span class="prive-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span>
+          <div><strong>Vous seul pouvez la voir pour l'instant.</strong>
+          Personne d'autre n'y a accès : ni vos clients, ni Google. Elle devient publique le jour où vous choisissez de la mettre en ligne.</div>
+        </div>
+        <div class="recap" style="text-align:left;margin-top:12px;">
+          <div class="recap-label">Adresse de votre site (privée pour l'instant)</div>
           <div id="successUrl" style="font-family:monospace;font-size:14px;"></div>
         </div>
         <button class="btn btn-primary" style="margin-top:20px;" onclick="redirigerDashboard()">Aller au dashboard →</button>
@@ -435,9 +449,9 @@ const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 
 const OFFRES = {
-  vitrine:      { nom:'Vitrine',                  setup:'249€', mensuel:'19€', label:'VITRINE',          cls:'vitrine' },
-  clickcollect: { nom:'Click & Collect',           setup:'399€', mensuel:'39€', label:'CLICK & COLLECT',  cls:'clickcollect' },
-  livraison:    { nom:'Click & Collect + Livraison', setup:'549€', mensuel:'59€', label:'LIVRAISON',      cls:'livraison' },
+  vitrine:      { nom:'Vitrine',                  label:'VITRINE',          cls:'vitrine' },
+  clickcollect: { nom:'Click & Collect',           label:'CLICK & COLLECT',  cls:'clickcollect' },
+  livraison:    { nom:'Click & Collect + Livraison', label:'LIVRAISON',      cls:'livraison' },
 };
 
 const state = { type:null, nom:'', slug:'', ville:'', tel:'', adresse:'', email:'', mdp:'', offre: null, commercantId:null, accessToken:null, codePromo:null, logoFile:null, horaires:null };
@@ -658,8 +672,6 @@ async function verifierCodePromo() {
     banner.style.display = 'flex';
     document.getElementById('offreBadge').textContent = o.label;
     document.getElementById('offreNom').textContent = o.nom;
-    document.getElementById('offreSetup').textContent = o.setup;
-    document.getElementById('offreMensuel').textContent = o.mensuel;
   }
   const emailExistant = params.get('email_existant');
   if (emailExistant) {
@@ -730,7 +742,7 @@ function etape(n) {
       `<div class="recap-label">Métier</div><div>${state.type}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marchéo.fr/${state.slug}</div>` +
-      `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
+      `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} · démo gratuite</div>`;
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
   document.getElementById('step' + n).classList.add('actif');
