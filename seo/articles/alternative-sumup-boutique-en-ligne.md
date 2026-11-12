@@ -35,16 +35,16 @@ L'éditeur de cet article est Marchéo, un concurrent de SumUp sur la boutique e
 
 ## Pourquoi chercher une alternative à la boutique en ligne SumUp ?
 
-On cherche une alternative à la boutique en ligne SumUp quand on veut des réglages propres aux commerces de bouche, ou un prix fixe plutôt qu'un pourcentage. La [boutique en ligne SumUp](https://www.sumup.com/fr-fr/boutique-en-ligne/) (sumup.com) est proposée par le prestataire de paiement SumUp. Elle est sans abonnement et facturée par transaction.
+On cherche une alternative à la boutique en ligne SumUp quand on veut des réglages propres aux commerces de bouche, ou un prix fixe plutôt qu'un pourcentage. La [boutique en ligne SumUp](https://www.sumup.com/fr-fr/boutique-en-ligne/) (sumup.com) est proposée par le prestataire de paiement SumUp.
 
-Voici les raisons que l'on peut tirer de ses pages publiques :
+Ses pages publiques donnent quatre raisons possibles :
 
 - **Le modèle de prix.** 0 € pour créer la boutique, 0 € de frais mensuels, puis 2,5 % par transaction en ligne. Sur 2 000 € de ventes en ligne dans le mois, cela fait 50 €. SumUp est à la fois la plateforme et le prestataire de paiement : sa page ne sépare pas la commission des frais bancaires.
 - **Le périmètre.** C'est un outil généraliste. Son site ne dit pas à quels métiers il s'adresse.
 - **Les réglages du frais.** Le retrait en magasin et la livraison à domicile sont mentionnés. Les créneaux avec un nombre maximum de commandes, la vente au poids, les zones de livraison et l'empreinte bancaire ne sont pas précisés sur son site.
 - **L'engagement.** Il n'est pas indiqué sur son site pour la boutique en ligne.
 
-« Non précisé » ne veut pas dire « absent ». Si un de ces points compte pour vous, posez la question à SumUp avant de décider.
+« Non précisé » ne veut pas dire « absent ».
 
 ## Quelles sont les alternatives à la boutique en ligne SumUp ?
 
@@ -52,7 +52,7 @@ Il y a quatre alternatives, classées ici par prix d'abonnement croissant.
 
 | Outil | Idéal pour | Prix relevé | Commission | Limite à connaître |
 | --- | --- | --- | --- | --- |
-| GetEat | Garder SumUp pour le paiement, avec un outil de commande gratuit | 0 € d'abonnement, 0 € d'installation | 0 % ; frais Stripe ou SumUp, montant non indiqué | Vente au poids non précisée sur son site |
+| GetEat | Garder SumUp pour le paiement, avec un outil de commande gratuit | 0 € d'abonnement, 0 € d'installation | 0 % ; frais Stripe ou SumUp, montant non indiqué | Application mobile et lien avec une caisse non précisés sur son site |
 | bonappli | Un site simple, avec paiement au retrait | 8 € par mois pour le click and collect (HT ou TTC non précisé) | Aucune | Pas de paiement en ligne ; livraison non précisée sur son site |
 | Achil | Une boutique et une application client | 0 € par mois, ou 19,99 € par mois (14,99 € en annuel), HT ou TTC non précisé | Sans commission ; 1,9 % + 0,19 € ou 1,7 % + 0,17 € par paiement en ligne | Vente au poids et capacité par créneau non précisées sur son site |
 | Marchéo | Un commerce de bouche : vente au poids, créneaux, livraison locale | 39 ou 59 € par mois, plus 399 ou 549 € d'installation | 0 % ; frais Stripe sur les paiements par carte en ligne | Abonnement et installation à payer, même avec peu de ventes |
@@ -71,9 +71,9 @@ L'outil vise les restaurants, les bars, les cafés, les boulangeries, les food t
 
 bonappli est le bon choix si vos clients paient au comptoir et que vous voulez seulement un site et une prise de commande.
 
-[bonappli](https://bonappli.fr/tarifs) (bonappli.fr) s'adresse aux restaurants et aux commerces de proximité, dont les boulangeries, les boucheries, les fromageries et les traiteurs. La formule Starter, à 0 €, donne un catalogue en ligne et un QR code. Le click and collect commence à la formule Classique, à 8 € par mois par établissement. La formule Premium est à 12 € par mois. Le site ne précise pas si ces prix sont HT ou TTC.
+[bonappli](https://bonappli.fr/tarifs) (bonappli.fr) s'adresse aux restaurants et aux commerces de proximité, dont les boulangeries, les boucheries et les traiteurs. La formule Starter, à 0 €, donne un catalogue en ligne et un QR code. Le click and collect commence à la formule Classique, à 8 € par mois par établissement. Le site ne précise pas si ces prix sont HT ou TTC.
 
-Il n'y a ni commission ni engagement. Vous réglez le nombre de commandes par créneau. Le paiement se fait au retrait : vous encaissez donc avec votre terminal habituel, SumUp compris.
+Il n'y a ni commission ni engagement. Vous réglez le nombre de commandes par créneau. Le paiement se fait au retrait : vous encaissez donc avec votre terminal habituel.
 
 ## Achil : pour qui est-ce le bon choix ?
 
@@ -95,15 +95,15 @@ Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est
 
 La boutique en ligne SumUp reste le bon choix si vous vendez peu en ligne, ou si vous voulez un seul fournisseur pour tout. Vous n'avez ni abonnement ni frais d'inscription : vous ne payez que lorsque vous vendez.
 
-Elle a aussi un avantage que Marchéo n'a pas : le même fournisseur que vos terminaux de paiement et que la caisse SumUp (Caisse Plus, affichée à 49 € par mois hors TVA). Son site mentionne également la livraison à domicile avec « Suivi des livraisons ». Pour un commerce qui débute en ligne avec quelques commandes par semaine, c'est une façon simple de tester. Notre classement des [meilleurs outils de boutique en ligne pour un commerce de proximité](/blog/meilleurs-outils-boutique-en-ligne-commerce-de-proximite) la situe parmi les autres.
+Elle a aussi un avantage que Marchéo n'a pas : le même fournisseur que vos terminaux de paiement et que la caisse SumUp (Caisse Plus, affichée à 49 € par mois hors TVA). Son site mentionne également la livraison à domicile avec « Suivi des livraisons ». Notre classement des [meilleurs outils de boutique en ligne pour un commerce de proximité](/blog/meilleurs-outils-boutique-en-ligne-commerce-de-proximite) la situe parmi les autres.
 
 ## Comment changer d'outil sans perdre ses clients ?
 
 Pour changer d'outil sans perdre de clients, gardez votre fichier, prévenez vos habitués et laissez l'ancien lien actif quelques semaines.
 
-1. **Exportez votre base clients** depuis l'ancien outil avant de le fermer. Demandez à l'éditeur comment faire si ce n'est pas indiqué.
-2. **Prévenez vos habitués** : un mot au comptoir, une affichette, un papier dans le sac, un message.
-3. **Gardez l'ancien lien** quelques semaines, avec un renvoi vers la nouvelle adresse. Mettez à jour votre fiche Google et vos réseaux.
+1. **Exportez votre base clients** avant de fermer l'ancienne boutique.
+2. **Prévenez vos habitués** au comptoir, sur le sac et par message.
+3. **Gardez l'ancien lien** quelques semaines et mettez à jour votre fiche Google.
 4. **Gardez votre terminal.** Changer de boutique en ligne n'oblige pas à changer de moyen d'encaissement au comptoir.
 
 Pour une liste plus large d'outils à prix fixe, lisez notre article sur les [logiciels pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission). Pour voir un résultat réel, créez un aperçu gratuit de votre boutique sur [la page d'inscription](/inscription).

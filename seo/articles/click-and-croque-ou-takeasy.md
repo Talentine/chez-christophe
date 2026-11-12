@@ -50,7 +50,7 @@ Les deux outils font le même métier : la commande en ligne en direct pour un r
 | Livraison | Par le restaurant : zones, frais, minimums, horaires, suivi | Par le restaurant : zones, frais, horaires | Par le restaurant, avec l'offre à 59 € |
 | Livreurs fournis | Non | Non | Non |
 | Réservation de table | Non précisé sur son site | Non, indiqué par l'éditeur | Oui, dès 39 € |
-| Commande à table par QR code | Non précisé sur son site | Non, indiqué par l'éditeur | Non |
+| Commande à table par QR code | Non précisé sur son site | Non, indiqué par l'éditeur | Non (QR code vers la boutique en ligne) |
 | Notifications | « Commande prête » | SMS, e-mail et push | SMS et notifications inclus |
 | Site | Module à intégrer à votre site, ou page de commande dédiée | Page de commande à votre marque | Site et boutique à votre nom |
 

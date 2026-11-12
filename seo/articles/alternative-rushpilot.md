@@ -34,9 +34,9 @@ L'éditeur de cet article est Marchéo, un concurrent de RushPilot. Nous n'avons
 
 ## Pourquoi chercher une alternative à RushPilot ?
 
-On cherche en général une alternative à RushPilot pour une question de budget, de matériel ou de périmètre, pas parce que l'outil serait mauvais. [RushPilot](https://rushpilot.fr/tarifs) (rushpilot.fr) est un logiciel de gestion des commandes au comptoir : prise de commande sur tablette, besoins, préparation, étiquettes. Un site de click and collect à votre marque existe en option.
+On cherche en général une alternative à RushPilot pour une question de budget, de matériel ou de périmètre. [RushPilot](https://rushpilot.fr/tarifs) (rushpilot.fr) est un logiciel de gestion des commandes au comptoir : prise de commande sur tablette, besoins, préparation, étiquettes. Un site de click and collect à votre marque existe en option.
 
-Voici les raisons que l'on peut tirer de ses pages publiques :
+Ses pages publiques donnent cinq raisons possibles :
 
 - **Le prix.** 99 € HT par mois pour le comptoir, 199 € HT par mois avec le click and collect (89 et 179 € HT par mois en annuel), par point de vente.
 - **Le matériel.** L'imprimante à étiquettes coûte 379 € HT en achat unique. La tablette n'est pas fournie.
@@ -59,7 +59,7 @@ Pour une vue plus large, lisez notre classement du [meilleur logiciel de click a
 
 ## Lumis Traiteurs : pour qui est-ce le bon choix ?
 
-Lumis Traiteurs est le bon choix si vous cherchez surtout un outil pour les commandes prises en magasin et pour le laboratoire. C'est l'outil le plus proche de RushPilot dans cette liste.
+Lumis Traiteurs est le bon choix si vous cherchez surtout un outil pour les commandes prises en magasin et pour le laboratoire.
 
 [Lumis Traiteurs](https://lumis-traiteurs.fr/) (lumis-traiteurs.fr) est édité par ACS Informatique, à Angers. Il s'adresse aux bouchers, charcutiers, traiteurs, pâtissiers, fromagers et poissonniers. Son site affiche la prise de commande sur ordinateur ou tablette, l'édition d'étiquettes et de bons de commande, des fiches récapitulatives pour le laboratoire et un module SMS. Une boutique en ligne, Lumis E-commerce, est reliée au logiciel : le client choisit le jour et l'heure de retrait.
 
@@ -69,7 +69,7 @@ Le prix n'est pas affiché sur son site au 12/11/2026. Une démo gratuite est pr
 
 Mon Petit Drive est le bon choix si vous voulez un site de vente complet, relié à votre logiciel de caisse ou de gestion.
 
-[Mon Petit Drive](https://www.monpetitdrive.fr) (monpetitdrive.fr) est édité par 42stores et existe depuis 2015 selon son site. Il vise notamment les bouchers-traiteurs, les fromageries et les primeurs. Son site affiche le click and collect, le drive, la vente au kilo, un nombre de commandes limité par créneau, un module de livraison par zones et le paiement en ligne avec acompte ou titres-restaurant. Des connecteurs sont cités avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft. La gestion des stocks est aussi prévue.
+[Mon Petit Drive](https://www.monpetitdrive.fr) (monpetitdrive.fr) est édité par 42stores et existe depuis 2015 selon son site. Il vise notamment les bouchers-traiteurs, les fromageries et les primeurs. Son site affiche le click and collect, le drive, la vente au kilo, un nombre de commandes limité par créneau, un module de livraison par zones et le paiement en ligne avec acompte ou titres-restaurant. Des connecteurs sont cités avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft.
 
 Le prix n'est pas affiché sur son site au 12/11/2026 : il faut demander un devis par téléphone. La durée d'engagement n'est pas indiquée sur ses pages web.
 
@@ -77,9 +77,9 @@ Le prix n'est pas affiché sur son site au 12/11/2026 : il faut demander un devi
 
 Achil est le bon choix si vous voulez tester la commande en ligne sans abonnement, avec une application que vos clients peuvent télécharger.
 
-[Achil](https://achil.com/web/tarifs/) (achil.com) est une plateforme et une application de commande locale : click and collect, drive et livraison gérée par le commerçant. Chaque commerce a sa boutique en ligne, et les clients peuvent aussi chercher un commerce sur la plateforme commune. Les boucheries-charcuteries-traiteurs et les fromageries font partie des métiers cités.
+[Achil](https://achil.com/web/tarifs/) (achil.com) est une plateforme et une application de commande locale : click and collect, drive et livraison gérée par le commerçant. Les boucheries-charcuteries-traiteurs et les fromageries font partie des métiers cités.
 
-La formule Free est à 0 € par mois. La formule Standard est à 19,99 € par mois, ou 14,99 € par mois en annuel (HT ou TTC non précisé). Le paiement en ligne est une option : 1,9 % + 0,19 € par transaction en Free, 1,7 % + 0,17 € en Standard. La mise en place coûte 249 € HT en Free et 199 € HT en Standard ; elle est offerte si vous activez le paiement en ligne. Les abonnements sont sans engagement. Une tablette Android ou iPad suffit. Notre comparaison [RushPilot ou Achil](/blog/rushpilot-ou-achil) détaille les deux outils.
+La formule Free est à 0 € par mois. La formule Standard est à 19,99 € par mois, ou 14,99 € par mois en annuel (HT ou TTC non précisé). Le paiement en ligne est une option : 1,9 % + 0,19 € par transaction en Free, 1,7 % + 0,17 € en Standard. La mise en place coûte 249 € HT en Free et 199 € HT en Standard ; elle est offerte si vous activez le paiement en ligne. Les abonnements sont sans engagement. Notre comparaison [RushPilot ou Achil](/blog/rushpilot-ou-achil) détaille les deux outils.
 
 ## Marchéo : pour qui est-ce le bon choix ?
 
@@ -87,7 +87,7 @@ Marchéo est le bon choix si votre besoin est la commande en ligne, avec paiemen
 
 Marchéo est un logiciel français de boutique en ligne et de site internet pour commerçants indépendants. L'offre Click & Collect + Réservation coûte 39 € par mois (399 € d'installation) et l'offre Click & Collect + Livraison 59 € par mois (549 €). C'est sans engagement et à 0 % de commission. Les frais bancaires du prestataire de paiement (Stripe) s'appliquent aux paiements par carte en ligne.
 
-Le client commande sans créer de compte. Vous réglez des créneaux de retrait avec une capacité, la [vente au poids](/blog/vendre-au-poids-en-ligne) et les options. Une empreinte bancaire optionnelle bloque jusqu'à 75 % du panier. Les SMS sont inclus et le catalogue boucherie, traiteur ou fromagerie est déjà rempli. Voyez [la solution pour boucherie](/solutions/boucherie) ou [pour traiteur](/solutions/traiteur).
+Le client commande sans créer de compte. Vous réglez des créneaux de retrait avec une capacité, la [vente au poids](/blog/vendre-au-poids-en-ligne) et les options. Une empreinte bancaire optionnelle bloque jusqu'à 75 % du panier. Les SMS sont inclus et le catalogue de votre métier est déjà rempli. Voyez [la solution pour boucherie](/solutions/boucherie) ou [pour traiteur](/solutions/traiteur).
 
 Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est pas une place de marché : il n'apporte pas de clients. Il ne remplace pas la caisse. Il ne fait ni étiquettes, ni gestion de production, ni devis événementiel. Il n'expédie pas de colis dans toute la France.
 
@@ -95,15 +95,15 @@ Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est
 
 RushPilot reste le bon choix si votre difficulté se trouve au comptoir et au laboratoire, surtout pendant les fêtes. Il fait plusieurs choses que Marchéo ne fait pas : la prise de commande au comptoir sur tablette, les besoins regroupés par produit et par période, le suivi de préparation par rayon et les étiquettes de commande avec code de rangement.
 
-Ses conditions sont claires : aucun frais d'installation, aucune commission, aucun engagement et un essai de 14 jours sans carte bancaire. Les produits au kilo sont facturés après la pesée en caisse. Pour une boucherie qui prépare des centaines de commandes à Noël, ces fonctions peuvent valoir leur prix. Notre [avis sur RushPilot](/blog/avis-rushpilot) reprend ces points en détail.
+Aucun frais d'installation, aucune commission, aucun engagement, et un essai de 14 jours sans carte bancaire. Les produits au kilo sont facturés après la pesée en caisse. Notre [avis sur RushPilot](/blog/avis-rushpilot) reprend ces points en détail.
 
 ## Comment changer d'outil sans perdre ses clients ?
 
 Pour changer d'outil sans perdre de clients, gardez votre fichier, prévenez vos habitués et laissez l'ancien lien actif quelques semaines.
 
-1. **Exportez votre base clients** depuis l'ancien outil avant de résilier. Demandez à l'éditeur comment faire si ce n'est pas indiqué.
-2. **Prévenez vos habitués** : un mot au comptoir, une affichette, un papier dans le sac, un message.
-3. **Gardez l'ancien lien** quelques semaines, avec un renvoi vers la nouvelle adresse. Mettez à jour votre fiche Google et vos réseaux.
+1. **Exportez votre base clients** avant de résilier.
+2. **Prévenez vos habitués** au comptoir, sur le sac et par message.
+3. **Gardez l'ancien lien** quelques semaines et mettez à jour votre fiche Google.
 4. **Choisissez une période calme.** Ne changez pas en décembre : préparez plutôt vos [commandes de Noël](/blog/commande-boucherie-noel-en-ligne) sur un outil déjà rodé.
 
 Pour comparer sur pièces, créez un aperçu de votre boutique sur [la page d'inscription](/inscription) : la démo est gratuite et prend 30 secondes.

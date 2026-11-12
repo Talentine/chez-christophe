@@ -36,10 +36,10 @@ L'éditeur de cet article est Marchéo, un concurrent de Heustach. Nous n'avons 
 
 On cherche une alternative à Heustach surtout quand on préfère un coût fixe à un coût par commande, ou une boutique à soi plutôt qu'une page sur une plateforme commune. [Heustach](https://heustach.fr/je-suis-commercant/tarifs/) (heustach.fr) est une plateforme de click and collect sans abonnement. Elle vise les food trucks, les restaurants, les boulangeries, les snacks et la restauration rapide.
 
-Voici les raisons que l'on peut tirer de ses pages publiques :
+Ses pages publiques donnent quatre raisons possibles :
 
 - **Le modèle de prix.** 0,25 € HT par commande payée en ligne, plus des frais de paiement de 0,25 € TTC + 1,5 % de la commande (Stripe). À 100 commandes payées en ligne dans le mois, cela fait 25 € HT hors frais de paiement. À 400 commandes, 100 € HT.
-- **Les options.** Les SMS de notification coûtent 0,10 € HT par SMS. Les e-mails de notification sont gratuits pour deux adresses.
+- **Les options.** Les SMS de notification coûtent 0,10 € HT par SMS.
 - **L'engagement.** La page tarifs indique « 0 mois » d'engagement. Les conditions générales indiquent un préavis d'un mois. Les deux pages ne disent pas la même chose.
 - **Le périmètre.** Heustach est une plateforme commune qui liste les commerces, avec un lien de commande à partager. La capacité par créneau, la vente au poids et l'empreinte bancaire ne sont pas précisées sur son site.
 
@@ -76,7 +76,7 @@ Vous réglez la durée des créneaux et le nombre de commandes par créneau. Le 
 
 Achil est le bon choix si vous voulez une formule gratuite et une application que vos clients installent.
 
-[Achil](https://achil.com/web/tarifs/) (achil.com) propose une boutique en ligne par commerce et une plateforme commune où les clients cherchent un commerce. La formule Free est à 0 € par mois, la formule Standard à 19,99 € par mois (14,99 € en annuel). Le paiement en ligne est une option, à 1,9 % + 0,19 € par transaction en Free et 1,7 % + 0,17 € en Standard. La mise en place (249 € HT en Free, 199 € HT en Standard) est offerte si vous activez le paiement en ligne. La livraison locale gérée par le commerçant est un module gratuit. Notre comparaison [Heustach ou Achil](/blog/heustach-ou-achil) va plus loin.
+[Achil](https://achil.com/web/tarifs/) (achil.com) propose une boutique en ligne par commerce et une plateforme commune où les clients cherchent un commerce. La formule Free est à 0 € par mois, la formule Standard à 19,99 € par mois (14,99 € en annuel). Le paiement en ligne est une option, à 1,9 % + 0,19 € par transaction en Free et 1,7 % + 0,17 € en Standard. La mise en place (249 € HT en Free, 199 € HT en Standard) est offerte si vous activez le paiement en ligne. Notre comparaison [Heustach ou Achil](/blog/heustach-ou-achil) va plus loin.
 
 ## Marchéo : pour qui est-ce le bon choix ?
 
@@ -98,9 +98,9 @@ Heustach fait aussi des choses que Marchéo ne fait pas : une carte de fidélit�
 
 Pour changer d'outil sans perdre de clients, gardez votre fichier, prévenez vos habitués et laissez l'ancien lien actif quelques semaines.
 
-1. **Exportez votre base clients** depuis l'ancien outil avant de résilier. Demandez à l'éditeur comment faire si ce n'est pas indiqué.
+1. **Exportez votre base clients** avant de résilier.
 2. **Vérifiez le préavis** dans vos conditions avant de fixer la date du changement.
-3. **Prévenez vos habitués** : un mot au comptoir, une affichette, un papier dans le sac, un message.
-4. **Gardez l'ancien lien** quelques semaines, avec un renvoi vers la nouvelle adresse. Mettez à jour votre fiche Google et vos réseaux.
+3. **Prévenez vos habitués** au comptoir, sur le sac et par message.
+4. **Gardez l'ancien lien** quelques semaines et mettez à jour votre fiche Google.
 
 Pour chiffrer votre cas, lisez [combien coûte un site de click and collect](/blog/combien-coute-un-site-de-click-and-collect), puis créez un aperçu gratuit de votre boutique sur [la page d'inscription](/inscription).

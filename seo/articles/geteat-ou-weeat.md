@@ -50,9 +50,9 @@ La différence principale est ce que la gratuité comprend. GetEat a une seule o
 | Livraison | Par le restaurant : zones, frais, minimum de commande | Par le restaurant : zones et frais par zone | Par le restaurant, avec l'offre à 59 € |
 | Réservation de table | Oui, incluse | Oui, avec commande à l'avance | Oui, dès 39 € |
 | Paiement en ligne | Oui : carte, Apple Pay, Google Pay, ou paiement au comptoir | En option payante : carte ou PayPal | Oui, ou paiement au retrait |
-| Commande à table par QR code | Oui, QR codes illimités | Non précisé sur son site | Non |
+| Commande à table par QR code | Oui, QR codes illimités | Non précisé sur son site | Non (QR code vers la boutique en ligne) |
 | Application | Non précisé sur son site | Application gratuite pour le restaurateur, iPhone et Android | Pas d'application, gestion depuis le téléphone |
-| Fidélité et promotions | Carte à tampons, codes promo, offres automatiques | Offres promotionnelles et coupons | Non |
+| Fidélité et promotions | Carte à tampons, codes promo, offres automatiques | Offres promotionnelles et coupons | Carte de fidélité simple (récompense après un nombre de commandes) |
 | Site | Adresse GetEat, site web gratuit, extension WordPress, bouton à intégrer | Bouton à intégrer à votre site, commande depuis une page Facebook | Site et boutique à votre nom |
 | Assistance | Non précisé sur son site | Réservée aux options payantes | Par e-mail et par téléphone |
 
@@ -105,7 +105,7 @@ Il comprend la commande sans compte client, des créneaux de retrait avec capaci
 Ses limites doivent être dites :
 
 - il est payant, alors que GetEat et la base de WeEat sont gratuits ;
-- il n'a ni commande à table par QR code, ni carte de fidélité ;
+- il n'a pas de commande à table par QR code (son QR code ouvre la boutique en ligne), et sa carte de fidélité reste simple : une récompense après un nombre de commandes ;
 - il ne livre pas et n'a pas de coursiers, comme ces deux outils ;
 - ce n'est pas une place de marché, il n'apporte pas de clients ;
 - il ne remplace pas la caisse ;

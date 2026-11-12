@@ -49,7 +49,7 @@ Les deux outils se ressemblent : une plateforme commune où figurent les commerc
 | Applications | Application commerçant sur Google Play. Version iPhone « en préparation » | Applications client et commerçant, sur iPhone et Android | Pas d'application, gestion depuis le téléphone |
 | Visibilité | Plateforme commune qui liste les commerces, lien de commande à partager | Plateforme et application où les clients cherchent un commerce, boutique propre | Boutique à votre nom. Pas de place de marché |
 | SMS | En option : 0,10 € HT par SMS | Non précisé sur son site | Inclus |
-| Fidélité | Carte de fidélité, codes de réduction | Non précisé sur son site | Non |
+| Fidélité | Carte de fidélité, codes de réduction | Non précisé sur son site | Carte de fidélité simple (récompense après un nombre de commandes) |
 | Capacité par créneau, vente au poids | Non précisé sur son site | Non précisé sur son site | Oui |
 
 ## Quelle différence de prix ?

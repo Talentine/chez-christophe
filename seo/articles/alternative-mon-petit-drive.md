@@ -35,11 +35,11 @@ L'éditeur de cet article est Marchéo, un concurrent de Mon Petit Drive. Nous n
 
 ## Pourquoi chercher une alternative à Mon Petit Drive ?
 
-On cherche une alternative à Mon Petit Drive le plus souvent pour comparer des prix publics avant de décrocher le téléphone, ou parce qu'on a besoin d'un outil plus léger. [Mon Petit Drive](https://www.monpetitdrive.fr) (monpetitdrive.fr) est un logiciel de site de vente en ligne à la marque du commerçant : e-commerce, drive et click and collect. Il est édité par 42stores et existe depuis 2015 selon son site.
+On cherche une alternative à Mon Petit Drive le plus souvent pour comparer des prix publics avant de décrocher le téléphone, ou parce qu'on a besoin d'un outil plus léger. [Mon Petit Drive](https://www.monpetitdrive.fr) (monpetitdrive.fr) est un logiciel de site de vente en ligne à la marque du commerçant : e-commerce, drive et click and collect.
 
-Voici les raisons que l'on peut tirer de ses pages publiques :
+Ses pages publiques donnent quatre raisons possibles :
 
-- **Le prix.** Il n'est pas affiché sur son site. Il n'y a pas de page tarifs. Beaucoup d'éditeurs travaillent sur devis : ce n'est pas un défaut, mais cela rend la comparaison plus longue.
+- **Le prix.** Il n'est pas affiché sur son site. Il n'y a pas de page tarifs. Travailler sur devis n'est pas un défaut, mais la comparaison prend plus de temps.
 - **L'engagement.** Il n'est pas indiqué sur ses pages web. Les conditions renvoient à des documents contractuels selon l'offre.
 - **Le matériel.** Une tablette connectée qui imprime les tickets de commande est citée. Son prix n'est pas indiqué.
 - **Le périmètre.** L'outil est large : stocks, connecteurs avec des logiciels de caisse, fidélité. Un commerce qui veut seulement prendre des commandes en ligne n'a pas forcément besoin de tout cela.
@@ -61,7 +61,7 @@ Notre classement des [meilleurs outils de boutique en ligne pour un commerce de 
 
 bonappli est le bon choix si vous voulez un site simple et un click and collect à très petit prix, avec un paiement au retrait.
 
-[bonappli](https://bonappli.fr/tarifs) (bonappli.fr) est édité par Porte 7. Il s'adresse aux restaurants et aux commerces de proximité, dont les boulangeries, les boucheries, les fromageries et les traiteurs. La formule Starter est à 0 € sans limite de durée : catalogue en ligne et QR code. Le click and collect commence à la formule Classique, à 8 € par mois par établissement. La formule Premium, à 12 € par mois, ajoute des pages et un nom de domaine propre. Le site ne précise pas si ces prix sont HT ou TTC.
+[bonappli](https://bonappli.fr/tarifs) (bonappli.fr) est édité par Porte 7. Il s'adresse aux restaurants et aux commerces de proximité. La formule Starter est à 0 € sans limite de durée : catalogue en ligne et QR code. Le click and collect commence à la formule Classique, à 8 € par mois par établissement. La formule Premium, à 12 € par mois, ajoute des pages et un nom de domaine propre. Le site ne précise pas si ces prix sont HT ou TTC.
 
 L'essai dure 14 jours et l'abonnement est sans engagement. Vous réglez le nombre de commandes par créneau. Le paiement se fait au retrait. La vente au poids n'est pas précisée sur son site.
 
@@ -69,7 +69,7 @@ L'essai dure 14 jours et l'abonnement est sans engagement. Vous réglez le nombr
 
 Achil est le bon choix si vous voulez démarrer sans abonnement, avec une application que vos clients installent.
 
-[Achil](https://achil.com/web/tarifs/) (achil.com) est une plateforme et une application de commande locale : click and collect, drive et livraison gérée par le commerçant. Chaque commerce a sa boutique, et les clients peuvent aussi le trouver sur la plateforme commune. La formule Free est à 0 € par mois, la formule Standard à 19,99 € par mois (14,99 € en annuel).
+[Achil](https://achil.com/web/tarifs/) (achil.com) est une plateforme et une application de commande locale : click and collect, drive et livraison gérée par le commerçant. La formule Free est à 0 € par mois, la formule Standard à 19,99 € par mois (14,99 € en annuel).
 
 Le paiement en ligne est une option : 1,9 % + 0,19 € par transaction en Free, 1,7 % + 0,17 € en Standard. La mise en place coûte 249 € HT en Free et 199 € HT en Standard ; elle est offerte si vous activez le paiement en ligne. Les abonnements sont sans engagement.
 
@@ -81,27 +81,27 @@ Marchéo est un logiciel français de boutique en ligne et de site internet pour
 
 Le client commande sans créer de compte. Vous réglez des créneaux de retrait avec une capacité, la vente au poids et les options. Une empreinte bancaire optionnelle bloque jusqu'à 75 % du panier. Les SMS sont inclus, la base clients est exportable et le catalogue de votre métier est déjà rempli. Voyez [la solution pour boucherie](/solutions/boucherie), [pour primeur](/solutions/primeur) ou [pour fromagerie](/solutions/fromagerie).
 
-Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est pas une place de marché : il n'apporte pas de clients. Il ne remplace pas la caisse et ne s'y connecte pas : les deux fonctionnent côte à côte, comme l'explique notre article sur le [click and collect sans changer de caisse](/blog/click-and-collect-sans-changer-de-caisse). Il ne fait ni étiquettes, ni gestion de production, ni devis événementiel. Il n'expédie pas de colis dans toute la France.
+Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est pas une place de marché : il n'apporte pas de clients. Il ne remplace pas la caisse et ne s'y connecte pas (voir [le click and collect sans changer de caisse](/blog/click-and-collect-sans-changer-de-caisse)). Il ne fait ni étiquettes, ni gestion de production, ni devis événementiel. Il n'expédie pas de colis dans toute la France.
 
 ## RushPilot : pour qui est-ce le bon choix ?
 
 RushPilot est le bon choix si vous êtes boucher, charcutier, fromager ou traiteur et que vous voulez d'abord organiser les commandes prises au comptoir.
 
-[RushPilot](https://rushpilot.fr/tarifs) (rushpilot.fr) gère la prise de commande sur tablette, les besoins par produit, le suivi de préparation et les étiquettes. La formule Comptoir est à 99 € HT par mois. Avec le site de click and collect, elle passe à 199 € HT par mois. Il n'y a ni frais d'installation, ni commission, ni engagement, et l'essai dure 14 jours. L'imprimante à étiquettes coûte 379 € HT et la tablette n'est pas fournie. La livraison et le paiement en ligne ne sont pas précisés sur son site. Pour d'autres pistes dans cette famille, lisez notre page [alternative à RushPilot](/blog/alternative-rushpilot).
+[RushPilot](https://rushpilot.fr/tarifs) (rushpilot.fr) gère la prise de commande sur tablette, les besoins par produit, le suivi de préparation et les étiquettes. La formule Comptoir est à 99 € HT par mois. Avec le site de click and collect, elle passe à 199 € HT par mois. Il n'y a ni frais d'installation, ni commission, ni engagement, et l'essai dure 14 jours. L'imprimante à étiquettes coûte 379 € HT et la tablette n'est pas fournie. Pour d'autres pistes dans cette famille, lisez notre page [alternative à RushPilot](/blog/alternative-rushpilot).
 
 ## Quand Mon Petit Drive reste-t-il le bon choix ?
 
 Mon Petit Drive reste le bon choix si votre site doit dialoguer avec votre logiciel de caisse ou de gestion. Son site cite des connecteurs avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft, pour les articles, les stocks, les comptes clients et les commandes. Aucun des quatre outils ci-dessus n'affiche cela.
 
-Il fait aussi d'autres choses que Marchéo ne fait pas : la gestion des stocks, l'acompte, les titres-restaurant et un programme de fidélité. Son site affiche également la vente au kilo, plusieurs points de retrait, un module de livraison par zones et un module bancaire au choix. Il annonce une solution sans commission sur les ventes. Si ces points comptent pour vous, demandez le devis : c'est le seul moyen de comparer.
+Il fait aussi d'autres choses que Marchéo ne fait pas : la gestion des stocks, l'acompte, les titres-restaurant et un programme de fidélité. Son site affiche également la vente au kilo, plusieurs points de retrait, un module de livraison par zones et un module bancaire au choix.
 
 ## Comment changer d'outil sans perdre ses clients ?
 
 Pour changer d'outil sans perdre de clients, gardez votre fichier, prévenez vos habitués et laissez l'ancien lien actif quelques semaines.
 
-1. **Exportez votre base clients** depuis l'ancien outil avant de résilier. Le site de Mon Petit Drive indique que le commerçant reste propriétaire de son fichier client.
+1. **Exportez votre base clients** avant de résilier. Le site de Mon Petit Drive indique que le commerçant reste propriétaire de son fichier client.
 2. **Relisez votre contrat** pour connaître la durée d'engagement et le préavis.
-3. **Prévenez vos habitués** : un mot au comptoir, une affichette, un papier dans le sac, un message.
-4. **Gardez l'ancien lien** quelques semaines, avec un renvoi vers la nouvelle adresse. Mettez à jour votre fiche Google et vos réseaux.
+3. **Prévenez vos habitués** au comptoir, sur le sac et par message.
+4. **Gardez l'ancien lien** quelques semaines et mettez à jour votre fiche Google.
 
 Pour situer les familles d'outils, lisez notre [comparatif des logiciels de click and collect](/blog/logiciel-click-and-collect-comparatif-2026). Pour voir un résultat réel, créez un aperçu gratuit de votre boutique sur [la page d'inscription](/inscription).

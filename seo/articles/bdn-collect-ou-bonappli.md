@@ -50,7 +50,7 @@ La première différence est le paiement. Avec BDN Collect, le client peut payer
 | Paiement en ligne | Oui : carte, Apple Pay, Google Pay (Stripe) | Non, paiement au retrait | Oui, ou paiement au retrait |
 | Livraison | En option. Qui livre : non précisé sur son site | Non précisé sur son site | Avec l'offre à 59 €, organisée par le commerçant |
 | Application | Application web à installer sur le téléphone, sans passer par un store | Non, les clients passent par le navigateur | Non, commande depuis le navigateur |
-| Fidélité | Points, tampons ou cashback, paliers, parrainage | Non précisé sur son site | Non |
+| Fidélité | Points, tampons ou cashback, paliers, parrainage | Non précisé sur son site | Carte de fidélité simple (récompense après un nombre de commandes) |
 | Vente au poids | Non précisé sur son site | Non précisé sur son site (plusieurs tarifs par produit possibles) | Oui |
 | Autres fonctions | Notifications push, mini-jeux, codes promo, campagnes ciblées, avis clients, QR code | Allergènes, formules, QR code, plusieurs établissements sur un compte | Catalogue de boulangerie pré-rempli, empreinte bancaire, SMS inclus |
 
@@ -99,7 +99,7 @@ Pour les commandes de fêtes, l'empreinte bancaire optionnelle bloque jusqu'à 7
 
 Ses limites sont claires :
 
-- pas de programme de fidélité ni de mini-jeux, contrairement à BDN Collect ;
+- une carte de fidélité simple (une récompense après un nombre de commandes), sans points, cashback ni mini-jeux comme chez BDN Collect ;
 - pas de formule gratuite, contrairement à bonappli ;
 - il ne livre pas et n'a pas de coursiers ;
 - ce n'est pas une place de marché, il n'apporte pas de clients ;
