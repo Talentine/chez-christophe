@@ -1083,6 +1083,7 @@
         <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Type de commerce *</label>
         <select id="ncType" onchange="ncSlugAuto()" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
           <option value="primeur">🌿 Primeur</option>
+          <option value="epicerie">🫒 Épicerie</option>
           <option value="boucherie">🥩 Boucherie</option>
           <option value="boulangerie">🥖 Boulangerie</option>
           <option value="poissonnerie">🐟 Poissonnerie</option>
@@ -1355,7 +1356,7 @@ async function chargerDashboard() {
     metierStats[t] = (metierStats[t] || 0) + 1;
   });
   const METIERS_DASH = {
-    primeur:{emoji:'🌿',label:'Primeur'}, boucherie:{emoji:'🥩',label:'Boucherie'},
+    primeur:{emoji:'🌿',label:'Primeur'}, epicerie:{emoji:'🫒',label:'Épicerie'}, boucherie:{emoji:'🥩',label:'Boucherie'},
     boulangerie:{emoji:'🥖',label:'Boulangerie'}, poissonnerie:{emoji:'🐟',label:'Poissonnerie'},
     traiteur:{emoji:'🍽️',label:'Traiteur'}, fromagerie:{emoji:'🧀',label:'Fromagerie'},
     fleuriste:{emoji:'💐',label:'Fleuriste'},
@@ -1420,6 +1421,7 @@ async function chargerDashboard() {
 // ── COMMERÇANTS ───────────────────────────────────────
 const METIERS = {
   primeur:      { emoji:'🌿', label:'Primeur' },
+  epicerie:     { emoji:'🫒', label:'Épicerie' },
   boucherie:    { emoji:'🥩', label:'Boucherie' },
   boulangerie:  { emoji:'🥖', label:'Boulangerie' },
   poissonnerie: { emoji:'🐟', label:'Poissonnerie' },

@@ -9,6 +9,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const METIERS = {
   primeur:      { emoji: '🌿', label: 'Primeur' },
+  epicerie:     { emoji: '🫒', label: 'Épicerie' },
   boucherie:    { emoji: '🥩', label: 'Boucherie' },
   boulangerie:  { emoji: '🥖', label: 'Boulangerie' },
   poissonnerie: { emoji: '🐟', label: 'Poissonnerie' },

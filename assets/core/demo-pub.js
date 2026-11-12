@@ -16,7 +16,7 @@
   // même hors visite publicitaire. La validation finale ouvre l'invitation à créer sa démo.
   // Seul le commerçant connecté sur SA démo (hors boutiques Marchéo is_fixture) peut passer une commande test.
 
-  var NOMS = { primeur: 'primeur', boucherie: 'boucherie', boulangerie: 'boulangerie', poissonnerie: 'poissonnerie',
+  var NOMS = { primeur: 'primeur', epicerie: 'épicerie', boucherie: 'boucherie', boulangerie: 'boulangerie', poissonnerie: 'poissonnerie',
     fromagerie: 'fromagerie', traiteur: 'traiteur', fleuriste: 'fleuriste', pizzeria: 'pizzeria', restaurant: 'restaurant', fastfood: 'fast-food' };
   var demarre = false;
 

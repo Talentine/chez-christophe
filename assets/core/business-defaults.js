@@ -63,6 +63,16 @@
       samedi:   { ouvert: true,  debut: '08:00', fin: '13:00', debut2: '15:00', fin2: '19:00' },
       dimanche: { ouvert: true,  debut: '08:00', fin: '13:00' },
     },
+    epicerie: {
+      // Épicerie : fermée le lundi, ouverte le dimanche matin.
+      lundi:    { ouvert: false },
+      mardi:    { ouvert: true,  debut: '08:00', fin: '12:30', debut2: '15:00', fin2: '19:00' },
+      mercredi: { ouvert: true,  debut: '08:00', fin: '12:30', debut2: '15:00', fin2: '19:00' },
+      jeudi:    { ouvert: true,  debut: '08:00', fin: '12:30', debut2: '15:00', fin2: '19:00' },
+      vendredi: { ouvert: true,  debut: '08:00', fin: '12:30', debut2: '15:00', fin2: '19:30' },
+      samedi:   { ouvert: true,  debut: '08:00', fin: '13:00', debut2: '15:00', fin2: '19:00' },
+      dimanche: { ouvert: true,  debut: '08:00', fin: '13:00' },
+    },
     poissonnerie: {
       // Souvent uniquement le matin (produit frais, peu de stock l'après-midi).
       lundi:    { ouvert: false },
@@ -153,7 +163,7 @@
   // CRÉNEAUX — granularité par métier (en minutes)
   // ──────────────────────────────────────────────────────────
   var GRAIN_RETRAIT = {
-    boulangerie:  60, boucherie: 60, primeur: 60, poissonnerie: 60,
+    boulangerie:  60, boucherie: 60, primeur: 60, epicerie: 60, poissonnerie: 60,
     fromagerie:   60, traiteur: 60, fleuriste: 60,
     pizzeria:     30, restaurant: 30, fastfood: 15,
   };
@@ -161,7 +171,7 @@
   // commerces de bouche (1 tournée par heure), 30min pour la restauration
   // (services rapides), 15min pour le fastfood (livraison continue).
   var GRAIN_LIVRAISON = {
-    boulangerie: 60, boucherie: 60, primeur: 60, poissonnerie: 60,
+    boulangerie: 60, boucherie: 60, primeur: 60, epicerie: 60, poissonnerie: 60,
     fromagerie: 60, fleuriste: 60, traiteur: 60,
     pizzeria: 30, restaurant: 30, fastfood: 15,
   };
@@ -171,7 +181,7 @@
 
   // Capacités par défaut (commande/couverts par créneau)
   var CAP_RETRAIT = {
-    boulangerie: 8, boucherie: 5, primeur: 5, poissonnerie: 5,
+    boulangerie: 8, boucherie: 5, primeur: 5, epicerie: 5, poissonnerie: 5,
     fromagerie: 5, traiteur: 4, fleuriste: 5,
     pizzeria: 6, restaurant: 4, fastfood: 10,
   };
@@ -182,7 +192,7 @@
   //   - 4-5 pour les boulangeries (paniers légers)
   //   - 4-5 pour la restauration rapide
   var CAP_LIVRAISON = {
-    boulangerie: 5, boucherie: 3, primeur: 3, poissonnerie: 3,
+    boulangerie: 5, boucherie: 3, primeur: 3, epicerie: 3, poissonnerie: 3,
     fromagerie: 3, fleuriste: 4, traiteur: 2,
     pizzeria: 4, restaurant: 3, fastfood: 5,
   };
@@ -202,6 +212,7 @@
     boulangerie: [{ debut:'07:30', fin:'09:00' }, { debut:'16:00', fin:'19:00' }],
     boucherie:    [{ debut:'16:00', fin:'19:00' }],
     primeur:      [{ debut:'16:00', fin:'19:00' }],
+    epicerie:     [{ debut:'16:00', fin:'19:00' }],
     fromagerie:   [{ debut:'16:00', fin:'19:00' }],
     poissonnerie: [{ debut:'08:00', fin:'10:00' }], // produit frais : matinée uniquement
     fleuriste:    [{ debut:'09:00', fin:'13:00' }, { debut:'14:00', fin:'18:00' }],

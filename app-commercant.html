@@ -1432,6 +1432,7 @@
           <label style="font-size:13px;color:var(--texte-doux);display:block;margin-bottom:6px;">Métier principal</label>
           <select id="businessType" onchange="onBusinessTypeChange()" style="width:100%;padding:12px;border:1.5px solid var(--creme-fonce);border-radius:12px;font-size:14px;font-family:'Manrope', system-ui, sans-serif;background:var(--creme);outline:none;">
             <option value="primeur">🌿 Primeur</option>
+            <option value="epicerie">🫒 Épicerie</option>
             <option value="boucherie">🥩 Boucherie</option>
             <option value="boulangerie">🥖 Boulangerie</option>
             <option value="poissonnerie">🐟 Poissonnerie</option>
@@ -1456,6 +1457,9 @@
           <div style="display:flex;flex-wrap:wrap;gap:8px;" id="businessTypesSecondairesList">
             <label class="bt-chip" data-type="primeur" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
               <input type="checkbox" value="primeur" style="margin:0;"> 🌿 Primeur
+            </label>
+            <label class="bt-chip" data-type="epicerie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
+              <input type="checkbox" value="epicerie" style="margin:0;"> 🫒 Épicerie
             </label>
             <label class="bt-chip" data-type="boucherie" style="display:flex;align-items:center;gap:6px;background:var(--creme);padding:8px 14px;border-radius:20px;border:1.5px solid var(--creme-fonce);cursor:pointer;font-size:13px;">
               <input type="checkbox" value="boucherie" style="margin:0;"> 🥩 Boucherie
@@ -5268,7 +5272,7 @@ function seDeconnecterCommercant() {
 // SÉLECTEUR DE BOUTIQUE (multi-comptes pour un même email)
 // ====================================================================
 function afficherSelecteurBoutique(roles, sessionBase) {
-  const emojis = { primeur:'🌿', boucherie:'🥩', boulangerie:'🥖', poissonnerie:'🐟', traiteur:'🍽️', fromagerie:'🧀', fleuriste:'💐', restaurant:'🍽️', pizzeria:'🍕', fastfood:'🍔' };
+  const emojis = { primeur:'🌿', epicerie:'🫒', boucherie:'🥩', boulangerie:'🥖', poissonnerie:'🐟', traiteur:'🍽️', fromagerie:'🧀', fleuriste:'💐', restaurant:'🍽️', pizzeria:'🍕', fastfood:'🍔' };
   const html = `
     <div id="selecteurBoutiqueOverlay" style="position:fixed;inset:0;background:#1a2e26;z-index:99999;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;display:flex;align-items:flex-start;justify-content:center;">
       <div style="background:#243d32;border-radius:24px;padding:28px 22px;width:100%;max-width:420px;border:1px solid rgba(255,255,255,0.1);margin:auto 0;">

@@ -2412,6 +2412,7 @@ function appliquerPalette(key) {
 // ── HEROES PAR MÉTIER ─────────────────────────────────────────────
 const HEROES_PAR_METIER = {
   primeur:      { titre: 'Fruits & Légumes', sousTitre: 'Sélectionnés chaque matin avec soin.', label: 'Primeur' },
+  epicerie:     { titre: 'Épicerie<br>& vrac', sousTitre: 'Olives, épices, fruits secs et produits fins.', label: 'Épicerie' },
   boucherie:    { titre: 'Viandes &<br>Charcuterie', sousTitre: 'Découpes du jour, qualité artisanale.', label: 'Boucherie' },
   poissonnerie: { titre: 'Poissons<br>& Coquillages', sousTitre: 'Marée fraîche, arrivages quotidiens.', label: 'Poissonnerie' },
   fromagerie:   { titre: 'Fromages<br>affinés', sousTitre: 'Sélection d\'artisans, AOP & terroirs.', label: 'Fromagerie' },
@@ -2883,13 +2884,13 @@ if ('serviceWorker' in navigator) {
 // ─── PWA + SEO : meta tags + JSON-LD LocalBusiness dynamiques par boutique ───
 (function setPwaMeta(){
   var METIER_LABELS = {
-    primeur: 'Primeur', boucherie: 'Boucher Artisanal', boulangerie: 'Boulanger Artisan',
+    primeur: 'Primeur', epicerie: 'Épicerie fine', boucherie: 'Boucher Artisanal', boulangerie: 'Boulanger Artisan',
     poissonnerie: 'Poissonnier', traiteur: 'Traiteur', fromagerie: 'Fromagerie Artisanale',
     pizzeria: 'Pizzeria', restaurant: 'Restaurant', fastfood: 'Fast-food',
     fleuriste: 'Fleuriste Artisanal'
   };
   var METIER_TYPES_SCHEMA = {
-    primeur: 'GroceryStore', boucherie: 'Store', boulangerie: 'Bakery',
+    primeur: 'GroceryStore', epicerie: 'GroceryStore', boucherie: 'Store', boulangerie: 'Bakery',
     poissonnerie: 'Store', traiteur: 'Restaurant', fromagerie: 'Store',
     pizzeria: 'Restaurant', restaurant: 'Restaurant', fastfood: 'FastFoodRestaurant',
     fleuriste: 'Florist'
