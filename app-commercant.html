@@ -6058,12 +6058,13 @@ function afficherBandeauDemoDashboard() {
   const banner = document.createElement('div');
   banner.id = 'demo-dash-banner';
   banner.innerHTML = `
-    <span style="font-size:18px;flex-shrink:0;">🎯</span>
+    <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#5BBE3A;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span>
     <div style="flex:1;min-width:0;line-height:1.35;">
-      <div style="font-weight:700;font-size:13px;">Mode démo · toutes les fonctionnalités débloquées</div>
-      <div style="font-size:11.5px;opacity:.85;">Testez tout, puis mettez votre boutique en ligne : 1er mois offert.</div>
+      <div style="font-weight:700;font-size:13px;">Démo privée · visible uniquement par vous</div>
+      <div style="font-size:11.5px;opacity:.85;">Ni vos clients ni Google ne la voient. Tout est débloqué : testez, puis mettez-la en ligne.</div>
     </div>
-    <button onclick="ouvrirAbonnementDepuisBandeau()" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Activer →</button>
+    <button onclick="copierLienApercuPrive(this)" title="Copier un lien privé pour montrer votre démo à un proche" style="flex-shrink:0;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Lien privé</button>
+    <button onclick="ouvrirAbonnementDepuisBandeau()" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Mettre en ligne →</button>
   `;
   banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:101;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
   document.body.appendChild(banner);
@@ -6075,6 +6076,15 @@ function retirerBandeauDemoDashboard() {
   if (b) b.remove();
   document.body.style.paddingTop = '';
 }
+// Lien d'aperçu privé : permet au commerçant de montrer sa démo (non publique) à un proche ou de l'ouvrir sur un autre appareil.
+window.copierLienApercuPrive = function(btn) {
+  const biz = window.__CONFIG__?.business || {};
+  if (!biz.id || !biz.slug) return;
+  const lien = location.origin + '/' + biz.slug + '?apercu=' + String(biz.id).replace(/-/g, '').slice(0, 10);
+  const ok = () => { if (btn) { const t = btn.textContent; btn.textContent = 'Lien copié ✓'; setTimeout(() => { btn.textContent = t; }, 1800); } };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(lien).then(ok).catch(() => prompt('Votre lien privé :', lien));
+  else prompt('Votre lien privé :', lien);
+};
 window.ouvrirAbonnementDepuisBandeau = function() {
   try { if (typeof allerOnglet === 'function') allerOnglet('reglages'); } catch(e){}
   setTimeout(function(){

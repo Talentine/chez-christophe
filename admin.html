@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f1a14">
 <title>Admin — Marchéo</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
@@ -465,6 +466,119 @@
     padding:10px; font-size:13px; cursor:pointer;
     width:100%; margin-top:10px; font-family:'Manrope', system-ui, sans-serif;
   }
+
+  /* ═══════════════════════════════════════════════════
+     ADMIN v3 — habillage (surcouche)
+     ═══════════════════════════════════════════════════ */
+  :root {
+    --a-bg:#0A1322; --a-surface:#111E33; --a-surface-2:#172A46; --a-line:rgba(255,255,255,.08);
+    --a-ink:#F2F5FA; --a-ink-2:rgba(255,255,255,.68); --a-ink-3:rgba(255,255,255,.46);
+    --a-vert:#5BBE3A; --a-vert-clair:#8BE06C; --a-data:#6FA8FF;
+  }
+  body { background:var(--a-bg); color:var(--a-ink); font-family:'Manrope',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .login-screen { background:radial-gradient(900px 500px at 50% -10%, #1B3F6E 0%, transparent 70%), var(--a-bg); }
+  .login-card { background:var(--a-surface); border-color:var(--a-line); box-shadow:0 30px 80px rgba(0,0,0,.45); }
+  .login-logo img { width:56px; height:56px; border-radius:16px; }
+  .login-titre { font-weight:800; letter-spacing:-.01em; }
+  .btn-login { font-weight:800; }
+  .login-prive { display:flex; gap:8px; align-items:center; justify-content:center; margin-top:18px; font-size:12px; color:var(--a-ink-3); }
+
+  .sidebar { background:var(--a-surface); border-right-color:var(--a-line); padding:20px 0; display:flex; flex-direction:column; }
+  .sidebar-logo { display:flex; align-items:center; gap:10px; padding:0 18px 18px; margin-bottom:12px; }
+  .sidebar-logo img { width:34px; height:34px; border-radius:10px; flex-shrink:0; }
+  .sidebar-logo-titre { font-weight:800; font-size:15px; letter-spacing:-.01em; }
+  .sidebar-logo-sub { font-size:11px; color:var(--a-ink-3); }
+  .nav-groupe { padding:14px 20px 6px; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--a-ink-3); font-weight:700; }
+  .nav-link { margin:1px 10px; padding:9px 12px; border-left:0; border-radius:10px; font-weight:600; font-size:13.5px; color:var(--a-ink-2); }
+  .nav-link:hover { background:rgba(255,255,255,.05); }
+  .nav-link.actif { background:rgba(244,185,66,.13); color:#fff; box-shadow:inset 3px 0 0 var(--or); }
+  .nav-link-icon { font-size:16px; width:20px; text-align:center; }
+  .nav-pastille { margin-left:auto; background:var(--or); color:#0A1428; font-size:11px; font-weight:800; border-radius:20px; padding:1px 7px; }
+  .sidebar-footer { position:static; margin-top:auto; padding:16px 14px 0; }
+  .prive-carte { display:flex; gap:9px; align-items:flex-start; background:rgba(91,190,58,.1); border:1px solid rgba(91,190,58,.35); border-radius:12px; padding:10px 11px; margin-bottom:10px; font-size:11.5px; line-height:1.4; color:var(--a-ink-2); }
+  .prive-carte strong { display:block; color:#fff; font-size:12px; }
+  .prive-carte svg { flex-shrink:0; color:var(--a-vert-clair); margin-top:1px; }
+  .btn-deco { font-weight:600; }
+  .btn-deco:hover { background:rgba(255,255,255,.1); color:#fff; }
+
+  .main { padding:22px 30px 60px; max-width:1500px; }
+  .topbar { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+  .chip-prive { display:inline-flex; align-items:center; gap:6px; background:rgba(91,190,58,.12); border:1px solid rgba(91,190,58,.4); color:var(--a-vert-clair); border-radius:50px; padding:6px 12px; font-size:12px; font-weight:700; }
+  .topbar-maj { font-size:12px; color:var(--a-ink-3); margin-right:auto; }
+  .btn-ghost { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#fff; border-radius:50px; padding:7px 14px; font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; transition:background .15s; }
+  .btn-ghost:hover { background:rgba(255,255,255,.12); }
+  .btn-ghost:focus-visible, .nav-link:focus-visible, .action-btn:focus-visible, .btn-ajouter:focus-visible { outline:2px solid var(--or); outline-offset:2px; }
+  .page-titre { font-weight:800; letter-spacing:-.02em; font-size:27px; }
+  .page-sub { color:var(--a-ink-3); margin-bottom:22px; }
+
+  .stats-grid { grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:22px; }
+  @media (min-width:901px) { #page-overview > .stats-grid { grid-template-columns:repeat(3,1fr); } }
+  .action-menu { text-align:left; }
+  .action-menu a:hover, .action-menu button:hover { background:rgba(255,255,255,.06) !important; }
+  .stat-card { background:var(--a-surface); border-color:var(--a-line); border-radius:16px; padding:16px 18px 15px; display:flex; flex-direction:column; transition:border-color .15s, transform .15s; border-left-width:1px !important; border-left-color:var(--a-line) !important; }
+  .stat-card[onclick]:hover { border-color:rgba(244,185,66,.5) !important; transform:translateY(-1px); }
+  .stat-card-lbl { order:-1; font-size:12px; font-weight:600; color:var(--a-ink-2); margin-bottom:8px; }
+  .stat-card-val { font-size:30px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1; margin-bottom:0; }
+  .stat-card-delta { font-size:12px; color:var(--a-ink-3); margin-top:6px; min-height:15px; }
+  .delta-up { color:var(--a-vert-clair); } .delta-down { color:#FF9B87; }
+
+  .table-card, .mrr-card { background:var(--a-surface); border-color:var(--a-line); }
+  .mrr-card { padding:18px 20px; }
+  .mrr-titre { font-size:13px; font-weight:700; color:#fff; margin-bottom:12px; }
+  .mrr-titre small { display:block; font-weight:500; color:var(--a-ink-3); font-size:11.5px; margin-top:2px; }
+  .mrr-section { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  th { font-weight:700; color:var(--a-ink-3); letter-spacing:.06em; background:rgba(255,255,255,.02); }
+  .search-input { background:var(--a-surface); border-color:rgba(255,255,255,.14); border-radius:12px; }
+  .search-input:focus { border-color:var(--or); }
+  .btn-ajouter { font-weight:800; }
+  select.a-select { width:auto; flex:0 0 auto; background:var(--a-surface); color:#fff; border:1px solid rgba(255,255,255,.14); border-radius:50px; padding:8px 14px; font:600 13px 'Manrope',system-ui,sans-serif; }
+
+  /* À faire */
+  .todo-ligne { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-top:1px solid var(--a-line); }
+  .todo-ligne:first-child { border-top:0; padding-top:2px; }
+  .todo-nb { flex-shrink:0; min-width:38px; height:38px; border-radius:11px; background:var(--a-surface-2); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; font-variant-numeric:tabular-nums; }
+  .todo-nb.chaud { background:rgba(244,185,66,.2); color:var(--or); }
+  .todo-t { font-size:13.5px; font-weight:700; }
+  .todo-d { font-size:12px; color:var(--a-ink-3); margin-top:2px; line-height:1.45; }
+  .todo-noms { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .todo-noms a, .todo-noms button { background:rgba(255,255,255,.06); border:1px solid var(--a-line); color:#fff; border-radius:50px; padding:4px 10px; font:600 11.5px 'Manrope',system-ui,sans-serif; text-decoration:none; cursor:pointer; }
+  .todo-noms a:hover, .todo-noms button:hover { background:rgba(255,255,255,.13); }
+
+  /* Graphique en barres (une seule série) */
+  .gb { display:flex; align-items:flex-end; gap:2px; height:150px; padding-top:18px; border-bottom:1px solid rgba(255,255,255,.16); }
+  .gb-col { flex:1; min-width:0; height:100%; display:flex; align-items:flex-end; justify-content:center; position:relative; }
+  .gb-bar { width:100%; max-width:26px; background:var(--a-data); border-radius:4px 4px 0 0; min-height:0; transition:opacity .12s; }
+  .gb-col.vide .gb-bar { height:2px !important; background:rgba(255,255,255,.14); border-radius:0; }
+  .gb-col:hover .gb-bar { opacity:.75; }
+  .gb-col:hover::after { content:attr(data-tip); position:absolute; bottom:calc(100% - 14px); left:50%; transform:translateX(-50%); background:#fff; color:#0A1428; font-size:11.5px; font-weight:700; padding:5px 9px; border-radius:8px; white-space:nowrap; z-index:5; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+  .gb-col:first-child:hover::after, .gb-col:nth-child(2):hover::after { left:0; transform:none; }
+  .gb-col:last-child:hover::after, .gb-col:nth-last-child(2):hover::after { left:auto; right:0; transform:none; }
+  .gb-val { position:absolute; bottom:100%; font-size:10.5px; font-weight:700; color:var(--a-ink-2); margin-bottom:2px; }
+  .gb-axe { display:flex; gap:2px; margin-top:6px; }
+  .gb-axe span { flex:1; min-width:0; text-align:center; font-size:10.5px; color:var(--a-ink-3); white-space:nowrap; overflow:visible; }
+
+  /* Listes à barres (classements) */
+  .lb { position:relative; display:flex; justify-content:space-between; gap:10px; align-items:center; padding:7px 9px; margin-bottom:3px; border-radius:7px; font-size:12.5px; overflow:hidden; }
+  .lb i { position:absolute; left:0; top:0; bottom:0; background:rgba(111,168,255,.17); border-radius:7px; }
+  .lb span, .lb strong { position:relative; }
+  .lb span { color:var(--a-ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
+  .lb span.mono { font-family:ui-monospace,Menlo,monospace; font-size:12px; }
+  .lb strong { font-variant-numeric:tabular-nums; flex-shrink:0; }
+
+  .main input[type=checkbox] { width:16px; height:16px; min-height:0; flex:0 0 16px; padding:0; margin:0; accent-color:var(--or); }
+  .main label { justify-content:flex-start; }
+  .vis-ligne { display:flex; align-items:center; gap:5px; font-size:11px; margin-top:5px; color:var(--a-ink-3); white-space:nowrap; }
+  .vis-ligne.prive { color:var(--a-vert-clair); }
+  .ana-pill, .filter-pill { font-weight:700 !important; }
+
+  @media (max-width:900px) {
+    .main { padding:14px 12px 80px; }
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .topbar { justify-content:space-between; }
+    .gb { height:120px; }
+    .emp-grid { grid-template-columns:1fr 1fr !important; }
+  }
+  @media (max-width:480px) { .stats-grid { grid-template-columns:1fr 1fr; } .stat-card-val { font-size:23px; } }
 </style>
 </head>
 <body>
@@ -472,15 +586,16 @@
 <!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="login-logo">🌿</div>
-    <div class="login-titre">Primeur SaaS</div>
-    <div class="login-sub">Espace administration — Paul</div>
+    <div class="login-logo"><img src="/assets/brand/logo-square.svg" alt=""></div>
+    <div class="login-titre">Marchéo Admin</div>
+    <div class="login-sub">Espace d'administration</div>
     <input class="login-input" type="email" id="adminEmail" placeholder="Email admin" value="paulmerieultpro14@gmail.com">
     <input class="login-input" type="password" id="adminMdp" placeholder="Mot de passe">
     <button class="btn-login" onclick="seConnecterAdmin()">Accéder au dashboard</button>
     <div style="text-align:center;margin-top:14px;">
-      <a href="/reset-password.html" style="color:rgba(0,0,0,0.5);font-size:13px;text-decoration:underline;">Mot de passe oublié ?</a>
+      <a href="/reset-password.html" style="color:rgba(255,255,255,0.55);font-size:13px;text-decoration:underline;">Mot de passe oublié ?</a>
     </div>
+    <div class="login-prive"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg> Espace privé : seul votre compte administrateur y a accès.</div>
   </div>
 </div>
 
@@ -500,9 +615,13 @@
   <!-- SIDEBAR (drawer sur mobile, fixe sur desktop) -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <div class="sidebar-logo-titre">🌿 Marchéo Admin</div>
-      <div class="sidebar-logo-sub">Back-office plateforme</div>
+      <img src="/assets/brand/logo-square.svg" alt="">
+      <div>
+        <div class="sidebar-logo-titre">Marchéo Admin</div>
+        <div class="sidebar-logo-sub">Pilotage de la plateforme</div>
+      </div>
     </div>
+    <div class="nav-groupe">Pilotage</div>
 
     <div class="nav-link actif" onclick="allerPage('overview')" id="nav-overview">
       <span class="nav-link-icon">📊</span> Vue d'ensemble
@@ -511,8 +630,12 @@
       <span class="nav-link-icon">🏪</span> Commerçants
     </div>
     <div class="nav-link" onclick="allerPage('inscriptions')" id="nav-inscriptions">
-      <span class="nav-link-icon">📝</span> Inscriptions
+      <span class="nav-link-icon">📝</span> Inscriptions <span class="nav-pastille" id="navPastilleInsc" hidden></span>
     </div>
+    <div class="nav-link" onclick="allerPage('analytics')" id="nav-analytics">
+      <span class="nav-link-icon">📈</span> Analytics
+    </div>
+    <div class="nav-groupe">Activité</div>
     <div class="nav-link" onclick="allerPage('catalogue')" id="nav-catalogue">
       <span class="nav-link-icon">🥕</span> Catalogue base
     </div>
@@ -522,17 +645,20 @@
     <div class="nav-link" onclick="allerPage('revenus')" id="nav-revenus">
       <span class="nav-link-icon">💰</span> Revenus SaaS
     </div>
-    <div class="nav-link" onclick="allerPage('analytics')" id="nav-analytics">
-      <span class="nav-link-icon">📈</span> Analytics
-    </div>
 
     <div class="sidebar-footer">
+      <div class="prive-carte"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><div><strong>Espace privé</strong>Ce tableau de bord et vos analytics ne sont visibles que par vous.</div></div>
       <button class="btn-deco" onclick="seDeconnecterAdmin()">Se déconnecter</button>
     </div>
   </div>
 
   <!-- MAIN -->
   <div class="main">
+    <div class="topbar">
+      <span class="topbar-maj" id="topbarMaj"></span>
+      <span class="chip-prive" title="Accès protégé par votre compte administrateur, page non référencée"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg> Visible uniquement par vous</span>
+      <button class="btn-ghost" onclick="actualiserAdmin(this)">↻ Actualiser</button>
+    </div>
 
     <!-- PAGE OVERVIEW -->
     <div class="page actif" id="page-overview">
@@ -542,22 +668,22 @@
       <div class="stats-grid">
         <div class="stat-card" style="cursor:pointer;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('actif'),100)">
           <div class="stat-card-val" id="statCommerçants" style="color:#7fd97f;">—</div>
-          <div class="stat-card-lbl">✅ Boutiques actives (payantes)</div>
+          <div class="stat-card-lbl">Boutiques en ligne (payantes)</div>
           <div class="stat-card-delta delta-up" id="deltaCommerçants"></div>
         </div>
         <div class="stat-card" style="cursor:pointer;border-left:3px solid #ffd47a;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('demo'),100)">
           <div class="stat-card-val" id="statDemos" style="color:#ffd47a;">—</div>
-          <div class="stat-card-lbl">🎯 En mode démo (pas encore activées)</div>
+          <div class="stat-card-lbl">Démos (pas encore en ligne)</div>
           <div class="stat-card-delta" id="conversionDemo" style="color:rgba(255,255,255,0.5);"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="statMRR" style="color:var(--or)">—</div>
-          <div class="stat-card-lbl">MRR (revenus mensuels)</div>
+          <div class="stat-card-lbl">Revenu mensuel récurrent</div>
           <div class="stat-card-delta delta-up" id="deltaMRR"></div>
         </div>
         <div class="stat-card" style="border-left:3px solid #c9a54b;">
           <div class="stat-card-val" id="statAcquisition" style="color:#c9a54b;">—</div>
-          <div class="stat-card-lbl">💼 Frais d'acquisition encaissés</div>
+          <div class="stat-card-lbl">Frais d'installation encaissés</div>
           <div class="stat-card-delta" id="deltaAcquisition" style="color:rgba(255,255,255,0.5);"></div>
         </div>
         <div class="stat-card">
@@ -570,15 +696,28 @@
         </div>
       </div>
 
+      <div class="mrr-section" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+        <div class="mrr-card">
+          <div class="mrr-titre">À faire aujourd'hui <small>Les actions qui font avancer les mises en ligne</small></div>
+          <div id="adminTodo" style="font-size:13px;color:var(--a-ink-3);">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Démos créées par semaine <small id="demosSemSub">12 dernières semaines</small></div>
+          <div id="demosSemaine"></div>
+          <div class="mrr-titre" style="margin-top:20px;">De la démo à la mise en ligne</div>
+          <div id="entonnoirDemo"></div>
+        </div>
+      </div>
+
       <!-- BLOC ANTI NO-SHOW (Stripe) -->
-      <div style="background:linear-gradient(135deg,rgba(201,165,75,0.1),rgba(201,165,75,0.02));border:1px solid rgba(201,165,75,0.25);border-radius:16px;padding:20px;margin-top:20px;">
+      <div style="background:linear-gradient(135deg,rgba(201,165,75,0.1),rgba(201,165,75,0.02));border:1px solid rgba(201,165,75,0.25);border-radius:16px;padding:20px;margin:0 0 16px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
           <div>
             <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--or);font-weight:600;">🔒 Anti no-show — Stripe</div>
             <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:2px;">Empreintes bancaires sur la plateforme</div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+        <div class="emp-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
           <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
             <div style="font-size:22px;font-weight:600;color:#ffd47a;" id="empBloquees">—</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Bloqué actuellement</div>
@@ -621,7 +760,7 @@
     <!-- PAGE COMMERCANTS -->
     <div class="page" id="page-commercants">
       <div class="page-titre">Commerçants</div>
-      <div class="page-sub">Gérez vos boutiques clientes</div>
+      <div class="page-sub">Une démo reste privée (visible par son commerçant uniquement) tant qu'elle n'est pas mise en ligne</div>
 
       <div class="search-bar">
         <input class="search-input" id="searchCommercants" placeholder="🔍 Rechercher (nom, ville, email)..." oninput="filtrerCommercants(this.value)">
@@ -636,12 +775,20 @@
         </button>
         <button id="filter-demo" class="filter-pill" onclick="filtrerStatutDemo('demo')"
           style="background:rgba(255,212,122,.12);border:1.5px solid rgba(255,212,122,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#ffd47a;cursor:pointer;font-family:inherit;">
-          🎯 En démo <span id="count-demo" style="opacity:.7;margin-left:4px;"></span>
+          🎯 Démos <span id="count-demo" style="opacity:.7;margin-left:4px;"></span>
         </button>
         <button id="filter-actif" class="filter-pill" onclick="filtrerStatutDemo('actif')"
           style="background:rgba(127,217,127,.12);border:1.5px solid rgba(127,217,127,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#7fd97f;cursor:pointer;font-family:inherit;">
           ✅ Payantes <span id="count-actif" style="opacity:.7;margin-left:4px;"></span>
         </button>
+        <span style="flex:1"></span>
+        <select class="a-select" id="triCommercants" onchange="filtrerCommercants(document.getElementById('searchCommercants').value)" aria-label="Trier les boutiques">
+          <option value="recent">Plus récentes</option>
+          <option value="ancien">Plus anciennes</option>
+          <option value="nom">Nom (A → Z)</option>
+          <option value="activite">Activité 30 j</option>
+        </select>
+        <button class="btn-ghost" onclick="exporterCommercantsCsv()">⬇ Exporter (CSV)</button>
       </div>
       <style>
         .filter-pill.actif { background:rgba(201,165,75,.18) !important; border-color:var(--or,#c9a54b) !important; color:var(--or,#c9a54b) !important; }
@@ -819,6 +966,7 @@
     <div class="page" id="page-analytics">
       <div class="page-titre">Analytics</div>
       <div class="page-sub" id="anaSousTitre">Trafic anonyme · aujourd'hui</div>
+      <div style="margin:-12px 0 6px;"><span class="chip-prive"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg> Vos analytics ne sont visibles que par vous</span></div>
 
       <!-- PÉRIODE (Aujourd'hui / 7 j / 30 j) -->
       <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
@@ -835,14 +983,22 @@
         <div class="stat-card">
           <div class="stat-card-val" id="anaVisites">—</div>
           <div class="stat-card-lbl">Visites</div>
+          <div class="stat-card-delta" id="anaVisitesDelta"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="anaPageViews">—</div>
           <div class="stat-card-lbl">Pages vues</div>
+          <div class="stat-card-delta" id="anaPageViewsDelta"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" style="color:var(--or)" id="anaInscClicks">—</div>
           <div class="stat-card-lbl">Clics « S'inscrire »</div>
+          <div class="stat-card-delta" id="anaInscClicksDelta"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:var(--a-vert-clair)" id="anaDemos">—</div>
+          <div class="stat-card-lbl">Démos créées</div>
+          <div class="stat-card-delta" id="anaDemosDelta"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="anaConversion">—</div>
@@ -852,6 +1008,11 @@
           <div class="stat-card-val" id="anaMobile">—</div>
           <div class="stat-card-lbl">% Mobile (visites)</div>
         </div>
+      </div>
+
+      <div class="mrr-card" style="margin-bottom:16px;">
+        <div class="mrr-titre"><span id="anaTendanceTitre">Visites par jour</span> <small id="anaTendanceSub"></small></div>
+        <div id="anaTendance"></div>
       </div>
 
       <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.6);margin:0 0 14px;cursor:pointer;">
@@ -994,7 +1155,6 @@
 <script>
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
-const ADMIN_PASSWORD = 'admin2026paul';
 
 let tousCommercants = [];
 let tousProduits = [];
@@ -1138,7 +1298,7 @@ async function chargerDashboard() {
   if (conv) {
     if (actifs.length > 0) {
       const tauxConv = ((payants.length / actifs.length) * 100).toFixed(0);
-      conv.textContent = 'Conversion : ' + tauxConv + '% activés';
+      conv.textContent = '🔒 ' + demos.filter(estDemoPriveeAdmin).length + ' privées (vues par leur commerçant seul) · ' + tauxConv + ' % des boutiques en ligne';
     } else {
       conv.textContent = 'Aucune boutique encore';
     }
@@ -1252,6 +1412,9 @@ async function chargerDashboard() {
   const totalRegle = released30.length + captured30.length;
   const tauxNoShow = totalRegle > 0 ? Math.round(100 * captured30.length / totalRegle) : 0;
   document.getElementById('empNoShowPct').textContent = totalRegle > 0 ? tauxNoShow + '%' : '—';
+
+  marquerMaj();
+  try { await afficherPilotage(reels, cmds); } catch (e) { console.warn('pilotage', e); }
 }
 
 // ── COMMERÇANTS ───────────────────────────────────────
@@ -1425,6 +1588,12 @@ function renderTableCommercants(data) {
       statutHtml = '<span class="badge" style="background:rgba(127,217,127,.18);color:#7fd97f;border:1px solid rgba(127,217,127,.4);font-weight:700;">✅ Payant</span>';
     }
     const m = METIERS[c.business_type] || METIERS.primeur;
+    const prive = estDemoPriveeAdmin(c);
+    if (c.actif) statutHtml += prive
+      ? '<div class="vis-ligne prive" title="Non référencée, mur « boutique en préparation » pour les visiteurs">🔒 Visible par le commerçant seul</div>'
+      : '<div class="vis-ligne" title="' + (c.is_fixture ? 'Boutique d\'exemple Marchéo' : c.abonnement_actif ? 'Boutique en ligne' : 'Démo sans compte lié ou démo ambassadeur') + '">🌐 Publique' + (c.is_fixture ? ' · exemple' : '') + '</div>';
+    const ageJ = c.created_at ? Math.floor((now - new Date(c.created_at).getTime()) / 86400_000) : null;
+    const ageTxt = ageJ === null ? '' : ' · créée ' + (ageJ === 0 ? "aujourd'hui" : 'il y a ' + ageJ + ' j');
 
     // Activité 30j
     const a = (_activite30jParCommercant && _activite30jParCommercant[c.id]) || { ca:0, nb:0, captured:0, lastDate:null };
@@ -1434,6 +1603,8 @@ function renderTableCommercants(data) {
     let healthHtml = '';
     if (!c.actif) {
       healthHtml = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">Suspendu</span>';
+    } else if (!c.abonnement_actif) {
+      healthHtml = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">En démo</span>';
     } else if (a.nb === 0) {
       healthHtml = '<span style="color:#ff8a76;font-size:12px;">⚠️ Aucune commande 30j</span>';
     } else if (ageJours !== null && ageJours > 7) {
@@ -1456,7 +1627,7 @@ function renderTableCommercants(data) {
             <span style="font-size:22px;">${m.emoji}</span>
             <div>
               <div style="color:#fff;">${escHtml(c.nom_boutique)}</div>
-              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${escHtml(c.email || '—')}</div>
+              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${escHtml(c.email || '—')}${ageTxt}</div>
             </div>
           </div>
         </td>
@@ -1470,6 +1641,9 @@ function renderTableCommercants(data) {
             style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;color:#fff;cursor:pointer;font-size:18px;line-height:1;">⋯</button>
           <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:#1f2730;border:1px solid rgba(255,255,255,.12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
             <button onclick="voirBoutique(${jsArg(c.slug)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
+            ${prive ? `<button onclick="copierLienApercu(${jsArg(c.slug)},${jsArg(c.id)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🔗 Copier le lien d'aperçu privé</button>` : ''}
+            ${c.telephone ? `<a href="tel:${telHref(c.telephone)}" style="display:block;padding:10px 14px;color:#fff;font-size:13px;text-decoration:none;">📞 Appeler ${escHtml(c.telephone)}</a>` : ''}
+            ${c.email ? `<a href="mailto:${escHtml(c.email)}" style="display:block;padding:10px 14px;color:#fff;font-size:13px;text-decoration:none;">✉️ Écrire un e-mail</a>` : ''}
             <button onclick="ouvrirPointsRetrait(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">📍 Points de retrait</button>
             <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
             <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
@@ -1602,11 +1776,19 @@ function filtrerCommercants(q) {
   if (q) {
     const ql = q.toLowerCase();
     filtres = filtres.filter(c =>
-      c.nom_boutique.toLowerCase().includes(ql) ||
+      String(c.nom_boutique || '').toLowerCase().includes(ql) ||
       (c.ville || '').toLowerCase().includes(ql) ||
       (c.email || '').toLowerCase().includes(ql)
     );
   }
+  const tri = (document.getElementById('triCommercants') || {}).value || 'recent';
+  const act = c => ((_activite30jParCommercant || {})[c.id] || {}).nb || 0;
+  filtres.sort((a, b) =>
+    tri === 'nom' ? String(a.nom_boutique || '').localeCompare(String(b.nom_boutique || ''), 'fr')
+    : tri === 'ancien' ? String(a.created_at || '').localeCompare(String(b.created_at || ''))
+    : tri === 'activite' ? act(b) - act(a)
+    : String(b.created_at || '').localeCompare(String(a.created_at || '')));
+  _commercantsAffiches = filtres;
   renderTableCommercants(filtres);
 }
 
@@ -2241,8 +2423,11 @@ async function chargerAnalytics() {
       since = new Date(Date.now() - jours*86400000).toISOString();
     }
     // Récupère par paquets de 1000 (limite par requête de Supabase)
-    const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(since) + '&select=created_at,event,page,slug,referrer,device,meta&order=created_at.asc';
-    const events = [];
+    // On charge aussi la période précédente (même durée) pour afficher l'évolution
+    const debutPeriode = new Date(since);
+    const sincePrev = new Date(debutPeriode.getTime() - (Date.now() - debutPeriode.getTime())).toISOString();
+    const url = SUPABASE_URL + '/rest/v1/analytics_events?created_at=gte.' + encodeURIComponent(sincePrev) + '&select=created_at,event,page,slug,referrer,device,meta&order=created_at.asc';
+    const eventsTous = [];
     for (let debut = 0; debut < 50000; debut += 1000) {
       const r = await fetch(url, {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY), 'Range': debut + '-' + (debut + 999) }
@@ -2253,9 +2438,11 @@ async function chargerAnalytics() {
         document.getElementById('anaVisites').textContent = '—';
         return;
       }
-      events.push(...lot);
+      eventsTous.push(...lot);
       if (lot.length < 1000) break;
     }
+    const events = eventsTous.filter(e => new Date(e.created_at) >= debutPeriode);
+    const eventsAvant = eventsTous.filter(e => new Date(e.created_at) < debutPeriode);
 
     // Compteurs
     const pageViews = events.filter(e => e.event === 'page_view').length;
@@ -2279,6 +2466,15 @@ async function chargerAnalytics() {
     document.getElementById('anaInscClicks').textContent = inscClicks.toLocaleString('fr-FR');
     document.getElementById('anaConversion').textContent = conversion;
     document.getElementById('anaMobile').textContent = mobilePct;
+    const demosCreees = events.filter(e => e.event === 'demo_creee').length;
+    document.getElementById('anaDemos').textContent = demosCreees.toLocaleString('fr-FR');
+    // Évolution par rapport à la période précédente
+    const sidsAvant = new Set(eventsAvant.filter(e => e.event === 'page_view' && e.meta && e.meta.sid).map(e => e.meta.sid));
+    afficherEvolution('anaVisitesDelta', nbVisites, sidsAvant.size);
+    afficherEvolution('anaPageViewsDelta', pageViews, eventsAvant.filter(e => e.event === 'page_view').length);
+    afficherEvolution('anaInscClicksDelta', inscClicks, eventsAvant.filter(e => e.event === 'cta_inscription').length);
+    afficherEvolution('anaDemosDelta', demosCreees, eventsAvant.filter(e => e.event === 'demo_creee').length);
+    afficherTendance(visitesListe, debutPeriode);
 
     // Top 10 pages
     const pageCounts = {};
@@ -2287,7 +2483,7 @@ async function chargerAnalytics() {
     });
     const topPages = Object.entries(pageCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopPages').innerHTML = topPages.length
-      ? topPages.map(([p,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-family:monospace;font-size:12px;">${escHtml(p)}</span><strong>${n}</strong></div>`).join('')
+      ? listeBarres(topPages, true)
       : '<div style="opacity:.5">Aucune donnée</div>';
 
     // Top boutiques (par slug)
@@ -2299,7 +2495,7 @@ async function chargerAnalytics() {
     });
     const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopBoutiques').innerHTML = topSlugs.length
-      ? topSlugs.map(([s,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${escHtml(s)}</span><strong>${n}</strong></div>`).join('')
+      ? listeBarres(topSlugs, false)
       : '<div style="opacity:.5">Aucune visite de boutique</div>';
 
     // Top referrers — normalisation des sources
@@ -2340,7 +2536,7 @@ async function chargerAnalytics() {
     });
     const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaReferrers').innerHTML = topRefs.length
-      ? topRefs.map(([r,n]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.7;font-size:12px;">${escHtml(r)}</span><strong>${n}</strong></div>`).join('')
+      ? listeBarres(topRefs, false)
       : '<div style="opacity:.5">Trafic direct uniquement</div>';
 
     afficherCampagnes(visitesListe);
@@ -2924,6 +3120,224 @@ document.getElementById('adminMdp').addEventListener('keypress', e => {
   window.prChangerAffichage = affichage =>
     action(() => api('PATCH', 'commercants?id=eq.' + pr.cid, { points_retrait_affichage: affichage }));
 })();
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// ADMIN v3 — pilotage, visibilité des démos, graphiques, export
+// ═══════════════════════════════════════════════════════
+let _commercantsAffiches = [];
+
+// Même règle que assets/core/demo-prive.js : une démo créée par un commerçant et pas encore
+// mise en ligne n'est visible que par lui.
+function estDemoPriveeAdmin(c) {
+  return !!c && c.abonnement_actif !== true && c.is_fixture !== true && c.est_demo_ambassadeur !== true && !!c.auth_user_id;
+}
+function lienApercu(slug, id) {
+  return location.origin + '/' + encodeURIComponent(slug) + '?apercu=' + String(id || '').replace(/-/g, '').slice(0, 10);
+}
+function copierTexte(texte, message) {
+  const ok = () => toastAdmin(message || 'Copié');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(ok).catch(() => prompt('À copier :', texte));
+  else prompt('À copier :', texte);
+}
+function copierLienApercu(slug, id) { copierTexte(lienApercu(slug, id), "Lien d'aperçu privé copié"); }
+function toastAdmin(msg) {
+  let t = document.getElementById('toastAdmin');
+  if (!t) {
+    t = document.createElement('div'); t.id = 'toastAdmin'; t.setAttribute('role', 'status');
+    t.style.cssText = 'position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#fff;color:#0A1428;font:700 13px Manrope,system-ui,sans-serif;padding:11px 18px;border-radius:50px;z-index:5000;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .2s;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._h); t._h = setTimeout(() => { t.style.opacity = '0'; }, 2000);
+}
+
+function marquerMaj() {
+  const el = document.getElementById('topbarMaj');
+  if (el) el.textContent = 'Mis à jour à ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+}
+async function actualiserAdmin(btn) {
+  if (btn) { btn.disabled = true; btn.textContent = '↻ Actualisation…'; }
+  try {
+    tousCommercants = []; _activite30jParCommercant = null;
+    await chargerDashboard();
+    const page = (document.querySelector('.page.actif') || {}).id || '';
+    const id = page.replace('page-', '');
+    if (id === 'commercants') await chargerCommercants();
+    if (id === 'inscriptions') await chargerInscriptions();
+    if (id === 'analytics') await chargerAnalytics();
+    if (id === 'commandes') await chargerCommandes();
+    if (id === 'revenus') await chargerRevenus();
+    toastAdmin('Données à jour');
+  } finally { if (btn) { btn.disabled = false; btn.textContent = '↻ Actualiser'; } }
+}
+
+// ── Graphique en barres, une seule série. points = [{ label, v, tip }]
+function barresHtml(points, opts) {
+  opts = opts || {};
+  const max = Math.max(1, ...points.map(p => p.v));
+  const pas = opts.pasLabel || Math.ceil(points.length / 8);
+  const iMax = points.reduce((m, p, i) => (p.v > points[m].v ? i : m), 0);
+  return '<div class="gb" role="img" aria-label="' + escHtml(opts.aria || '') + '">'
+    + points.map((p, i) => '<div class="gb-col' + (p.v ? '' : ' vide') + '" data-tip="' + escHtml(p.tip) + '">'
+      + (p.v && (i === iMax || i === points.length - 1) ? '<span class="gb-val" style="bottom:' + Math.round(p.v / max * 100) + '%">' + p.v + '</span>' : '')
+      + '<div class="gb-bar" style="height:' + (p.v / max * 100).toFixed(1) + '%"></div></div>').join('')
+    + '</div><div class="gb-axe">' + points.map((p, i) => '<span>' + (i % pas === 0 ? escHtml(p.label) : '') + '</span>').join('') + '</div>';
+}
+// ── Classement avec barre de proportion. entrees = [[libellé, nombre]]
+function listeBarres(entrees, mono) {
+  const max = Math.max(1, ...entrees.map(e => e[1]));
+  return entrees.map(([l, n]) => '<div class="lb"><i style="width:' + (n / max * 100).toFixed(1) + '%"></i><span' + (mono ? ' class="mono"' : '') + ' title="' + escHtml(l) + '">' + escHtml(l) + '</span><strong>' + n + '</strong></div>').join('');
+}
+function afficherEvolution(id, actuel, avant) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'stat-card-delta';
+  if (!avant) { el.textContent = actuel ? 'Rien sur la période précédente' : ''; return; }
+  const pct = Math.round((actuel - avant) / avant * 100);
+  el.textContent = (pct > 0 ? '▲ +' : pct < 0 ? '▼ ' : '= ') + pct + ' % vs période précédente (' + avant + ')';
+  if (pct > 0) el.classList.add('delta-up'); else if (pct < 0) el.classList.add('delta-down');
+}
+function afficherTendance(visitesListe, debut) {
+  const parHeure = periodeAnalytics === 'jour';
+  const n = parHeure ? 24 : (periodeAnalytics === '7j' ? 7 : 30);
+  const points = [];
+  if (parHeure) {
+    for (let h = 0; h < 24; h++) points.push({ label: h + ' h', v: 0, tip: '' });
+    visitesListe.forEach(v => { points[new Date(v.vue1.created_at).getHours()].v++; });
+    points.forEach((p, h) => { p.tip = h + ' h – ' + (h + 1) + ' h : ' + p.v + ' visite' + (p.v > 1 ? 's' : ''); });
+  } else {
+    const j0 = new Date(); j0.setHours(0, 0, 0, 0); j0.setDate(j0.getDate() - (n - 1));
+    for (let i = 0; i < n; i++) {
+      const d = new Date(j0); d.setDate(j0.getDate() + i);
+      points.push({ label: d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }), v: 0, tip: '', _d: d });
+    }
+    visitesListe.forEach(v => {
+      const d = new Date(v.vue1.created_at); d.setHours(0, 0, 0, 0);
+      const i = Math.round((d - j0) / 86400000);
+      if (i >= 0 && i < n) points[i].v++;
+    });
+    points.forEach(p => { p.tip = p._d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) + ' : ' + p.v + ' visite' + (p.v > 1 ? 's' : ''); });
+  }
+  const total = points.reduce((s, p) => s + p.v, 0);
+  document.getElementById('anaTendanceTitre').textContent = parHeure ? 'Visites par heure' : 'Visites par jour';
+  document.getElementById('anaTendanceSub').textContent = total
+    ? 'Moyenne : ' + (total / n).toFixed(1).replace('.', ',') + (parHeure ? ' par heure' : ' par jour') + ' · survolez une barre pour le détail'
+    : 'Aucune visite sur la période';
+  document.getElementById('anaTendance').innerHTML = barresHtml(points, { aria: 'Visites ' + (parHeure ? 'par heure' : 'par jour'), pasLabel: parHeure ? 3 : (n === 7 ? 1 : 5) });
+}
+
+// ── Vue d'ensemble : à faire, démos par semaine, entonnoir
+async function afficherPilotage(reels, cmds) {
+  const now = Date.now();
+  const J = 86400000;
+  const vivants = reels.filter(c => c.actif && !c.supprime_at);
+  const demos = vivants.filter(c => c.abonnement_actif !== true);
+  const payants = vivants.filter(c => c.abonnement_actif === true);
+  const age = c => (now - new Date(c.created_at).getTime()) / J;
+  const chaudes = demos.filter(c => age(c) <= 7).sort((a, b) => age(a) - age(b));
+  const tiedes = demos.filter(c => age(c) > 7 && age(c) <= 30).sort((a, b) => age(a) - age(b));
+
+  // Leads : e-mail saisi à l'inscription, compte jamais créé (7 derniers jours)
+  let leads = [];
+  try {
+    const l = await sb('leads_inscription', '?select=email,nom_boutique,telephone,created_at&order=created_at.desc&limit=200');
+    const emails = new Set(reels.map(c => String(c.email || '').toLowerCase()));
+    const vus = new Set();
+    leads = (Array.isArray(l) ? l : []).filter(x => {
+      const e = String(x.email || '').toLowerCase();
+      if (!e || emails.has(e) || vus.has(e) || now - new Date(x.created_at).getTime() > 7 * J) return false;
+      vus.add(e); return true;
+    });
+  } catch (e) {}
+
+  const cmd30 = new Set(cmds.filter(c => now - new Date(c.created_at).getTime() <= 30 * J).map(c => c.commercant_id));
+  const payantsCalmes = payants.filter(c => !cmd30.has(c.id) && c.offre !== 'vitrine');
+
+  const puce = c => c.telephone
+    ? '<a href="tel:' + telHref(c.telephone) + '" title="Appeler ' + escHtml(c.telephone) + '">📞 ' + escHtml(c.nom_boutique) + '</a>'
+    : '<a href="mailto:' + escHtml(c.email || '') + '">✉️ ' + escHtml(c.nom_boutique) + '</a>';
+  const ligne = (nb, chaud, titre, detail, noms) => '<div class="todo-ligne"><div class="todo-nb' + (chaud ? ' chaud' : '') + '">' + nb + '</div><div style="min-width:0;flex:1;">'
+    + '<div class="todo-t">' + titre + '</div><div class="todo-d">' + detail + '</div>' + (noms ? '<div class="todo-noms">' + noms + '</div>' : '') + '</div></div>';
+  const lignes = [];
+  if (chaudes.length) lignes.push(ligne(chaudes.length, true, 'Démo' + (chaudes.length > 1 ? 's' : '') + ' créée' + (chaudes.length > 1 ? 's' : '') + ' cette semaine', 'À appeler tant que c\'est frais : c\'est là que la mise en ligne se décide.', chaudes.slice(0, 6).map(puce).join('')));
+  if (leads.length) lignes.push(ligne(leads.length, true, 'Inscription' + (leads.length > 1 ? 's' : '') + ' commencée' + (leads.length > 1 ? 's' : '') + ' sans finir (7 j)', 'E-mail saisi, démo jamais créée.',
+    leads.slice(0, 5).map(x => '<a href="mailto:' + escHtml(x.email) + '">✉️ ' + escHtml(x.nom_boutique || x.email) + '</a>').join('') + '<button onclick="allerPage(\'inscriptions\')">Tout voir →</button>'));
+  if (tiedes.length) lignes.push(ligne(tiedes.length, false, 'Démo' + (tiedes.length > 1 ? 's' : '') + ' de 8 à 30 jours, toujours privée' + (tiedes.length > 1 ? 's' : ''), 'À relancer avant qu\'elles ne refroidissent.', tiedes.slice(0, 6).map(puce).join('')));
+  if (payantsCalmes.length) lignes.push(ligne(payantsCalmes.length, false, 'Boutique' + (payantsCalmes.length > 1 ? 's' : '') + ' en ligne sans commande depuis 30 j', 'Un coup de fil pour les aider à lancer.', payantsCalmes.slice(0, 6).map(puce).join('')));
+  document.getElementById('adminTodo').innerHTML = lignes.join('') || '<div style="padding:8px 0;">Rien d\'urgent : aucune démo récente ni inscription abandonnée.</div>';
+
+  const pastille = document.getElementById('navPastilleInsc');
+  if (pastille) { pastille.hidden = !leads.length; pastille.textContent = leads.length; }
+
+  // Démos créées par semaine (toutes les boutiques réelles créées, y compris celles passées en ligne depuis)
+  const lundi = new Date(); lundi.setHours(0, 0, 0, 0); lundi.setDate(lundi.getDate() - ((lundi.getDay() + 6) % 7));
+  const sem = [];
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(lundi); d.setDate(lundi.getDate() - i * 7);
+    sem.push({ d: d, v: 0, label: d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) });
+  }
+  reels.filter(c => !c.supprime_at && c.created_at).forEach(c => {
+    const i = Math.floor((new Date(c.created_at) - sem[0].d) / (7 * J));
+    if (i >= 0 && i < 12) sem[i].v++;
+  });
+  sem.forEach(p => { p.tip = 'Semaine du ' + p.label + ' : ' + p.v + ' démo' + (p.v > 1 ? 's' : ''); });
+  const tot = sem.reduce((s, p) => s + p.v, 0);
+  document.getElementById('demosSemSub').textContent = '12 dernières semaines · ' + tot + ' au total';
+  document.getElementById('demosSemaine').innerHTML = barresHtml(sem, { aria: 'Démos créées par semaine', pasLabel: 2 });
+
+  const crees = vivants.length;
+  const liees = vivants.filter(c => c.auth_user_id).length;
+  document.getElementById('entonnoirDemo').innerHTML = listeBarres([
+    ['Boutiques créées', crees],
+    ['Avec un compte commerçant', liees],
+    ['Mises en ligne (payantes)', payants.length],
+  ]) + '<div style="font-size:12px;color:var(--a-ink-3);margin-top:8px;">' + (crees ? Math.round(payants.length / crees * 100) : 0) + ' % des boutiques créées sont en ligne.</div>';
+}
+
+// ── Export CSV de la liste affichée (filtre et recherche compris)
+function exporterCommercantsCsv() {
+  const lignes = _commercantsAffiches.length ? _commercantsAffiches : tousCommercants.filter(c => !c.supprime_at);
+  const col = v => '"' + String(v == null ? '' : v).replace(/"/g, '""').replace(/^([=+\-@])/, "'$1") + '"';
+  const entete = ['Boutique', 'Métier', 'Gérant', 'Email', 'Téléphone', 'Ville', 'Offre', 'Statut', 'Visibilité', 'Créée le', 'Adresse du site'];
+  const corps = lignes.map(c => [
+    c.nom_boutique, c.business_type, c.nom_gerant, c.email, c.telephone, c.ville, c.offre,
+    !c.actif ? 'Suspendue' : c.abonnement_actif ? 'En ligne (payante)' : 'Démo',
+    estDemoPriveeAdmin(c) ? 'Privée' : 'Publique',
+    c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR') : '',
+    location.origin + '/' + c.slug,
+  ].map(col).join(';'));
+  const blob = new Blob(['﻿' + [entete.map(col).join(';')].concat(corps).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'marcheo-boutiques-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toastAdmin(lignes.length + ' boutique' + (lignes.length > 1 ? 's' : '') + ' exportée' + (lignes.length > 1 ? 's' : ''));
+}
+
+// ── Rester connecté : la session admin est reprise au rechargement de la page
+(async function reprendreSessionAdmin() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem('session_admin') || 'null'); } catch (e) {}
+  if (!s || !s.refresh_token) return;
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: s.refresh_token })
+    });
+    const data = await r.json();
+    if (!data.access_token) { localStorage.removeItem('session_admin'); return; }
+    sessionAdmin = data.access_token;
+    localStorage.setItem('session_admin', JSON.stringify(Object.assign({}, s, { access_token: data.access_token, refresh_token: data.refresh_token || s.refresh_token })));
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('actif');
+    chargerDashboard();
+  } catch (e) {}
+})();
+// Entrée dans le champ mot de passe = connexion
+document.getElementById('adminMdp')?.addEventListener('keydown', e => { if (e.key === 'Enter') seConnecterAdmin(); });
 </script>
 
 </body>
