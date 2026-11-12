@@ -760,7 +760,7 @@
     <!-- PAGE COMMERCANTS -->
     <div class="page" id="page-commercants">
       <div class="page-titre">Commerçants</div>
-      <div class="page-sub">Une démo reste privée (visible par son commerçant uniquement) tant qu'elle n'est pas mise en ligne</div>
+      <div class="page-sub">Une démo est accessible par son adresse mais non référencée (ni Google ni sitemap) tant qu'elle n'est pas mise en ligne</div>
 
       <div class="search-bar">
         <input class="search-input" id="searchCommercants" placeholder="🔍 Rechercher (nom, ville, email)..." oninput="filtrerCommercants(this.value)">
@@ -1299,7 +1299,7 @@ async function chargerDashboard() {
   if (conv) {
     if (actifs.length > 0) {
       const tauxConv = ((payants.length / actifs.length) * 100).toFixed(0);
-      conv.textContent = '🔒 ' + demos.filter(estDemoPriveeAdmin).length + ' privées (vues par leur commerçant seul) · ' + tauxConv + ' % des boutiques en ligne';
+      conv.textContent = '🔒 ' + demos.filter(estDemoPriveeAdmin).length + ' non référencées (accessibles par leur lien) · ' + tauxConv + ' % des boutiques en ligne';
     } else {
       conv.textContent = 'Aucune boutique encore';
     }
@@ -1592,7 +1592,7 @@ function renderTableCommercants(data) {
     const m = METIERS[c.business_type] || METIERS.primeur;
     const prive = estDemoPriveeAdmin(c);
     if (c.actif) statutHtml += prive
-      ? '<div class="vis-ligne prive" title="Non référencée, mur « boutique en préparation » pour les visiteurs">🔒 Visible par le commerçant seul</div>'
+      ? '<div class="vis-ligne prive" title="Accessible à qui a l\'adresse, absente de Google et du sitemap">🔗 Publique par lien · non référencée</div>'
       : '<div class="vis-ligne" title="' + (c.is_fixture ? 'Boutique d\'exemple Marchéo' : c.abonnement_actif ? 'Boutique en ligne' : 'Démo sans compte lié ou démo ambassadeur') + '">🌐 Publique' + (c.is_fixture ? ' · exemple' : '') + '</div>';
     const ageJ = c.created_at ? Math.floor((now - new Date(c.created_at).getTime()) / 86400_000) : null;
     const ageTxt = ageJ === null ? '' : ' · créée ' + (ageJ === 0 ? "aujourd'hui" : 'il y a ' + ageJ + ' j');
@@ -3131,7 +3131,7 @@ document.getElementById('adminMdp').addEventListener('keypress', e => {
 let _commercantsAffiches = [];
 
 // Même règle que assets/core/demo-prive.js : une démo créée par un commerçant et pas encore
-// mise en ligne n'est visible que par lui.
+// mise en ligne est accessible par son adresse mais n'est pas référencée.
 function estDemoPriveeAdmin(c) {
   return !!c && c.abonnement_actif !== true && c.is_fixture !== true && c.est_demo_ambassadeur !== true && !!c.auth_user_id;
 }
@@ -3266,7 +3266,7 @@ async function afficherPilotage(reels, cmds) {
   if (chaudes.length) lignes.push(ligne(chaudes.length, true, 'Démo' + (chaudes.length > 1 ? 's' : '') + ' créée' + (chaudes.length > 1 ? 's' : '') + ' cette semaine', 'À appeler tant que c\'est frais : c\'est là que la mise en ligne se décide.', chaudes.slice(0, 6).map(puce).join('')));
   if (leads.length) lignes.push(ligne(leads.length, true, 'Inscription' + (leads.length > 1 ? 's' : '') + ' commencée' + (leads.length > 1 ? 's' : '') + ' sans finir (7 j)', 'E-mail saisi, démo jamais créée.',
     leads.slice(0, 5).map(x => '<a href="mailto:' + escHtml(x.email) + '">✉️ ' + escHtml(x.nom_boutique || x.email) + '</a>').join('') + '<button onclick="allerPage(\'inscriptions\')">Tout voir →</button>'));
-  if (tiedes.length) lignes.push(ligne(tiedes.length, false, 'Démo' + (tiedes.length > 1 ? 's' : '') + ' de 8 à 30 jours, toujours privée' + (tiedes.length > 1 ? 's' : ''), 'À relancer avant qu\'elles ne refroidissent.', tiedes.slice(0, 6).map(puce).join('')));
+  if (tiedes.length) lignes.push(ligne(tiedes.length, false, 'Démo' + (tiedes.length > 1 ? 's' : '') + ' de 8 à 30 jours, pas encore en ligne', 'À relancer avant qu\'elles ne refroidissent.', tiedes.slice(0, 6).map(puce).join('')));
   if (payantsCalmes.length) lignes.push(ligne(payantsCalmes.length, false, 'Boutique' + (payantsCalmes.length > 1 ? 's' : '') + ' en ligne sans commande depuis 30 j', 'Un coup de fil pour les aider à lancer.', payantsCalmes.slice(0, 6).map(puce).join('')));
   document.getElementById('adminTodo').innerHTML = lignes.join('') || '<div style="padding:8px 0;">Rien d\'urgent : aucune démo récente ni inscription abandonnée.</div>';
 
@@ -3306,7 +3306,7 @@ function exporterCommercantsCsv() {
   const corps = lignes.map(c => [
     c.nom_boutique, c.business_type, c.nom_gerant, c.email, c.telephone, c.ville, c.offre,
     !c.actif ? 'Suspendue' : c.abonnement_actif ? 'En ligne (payante)' : 'Démo',
-    estDemoPriveeAdmin(c) ? 'Privée' : 'Publique',
+    estDemoPriveeAdmin(c) ? 'Publique par lien (non référencée)' : 'Publique',
     c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR') : '',
     location.origin + '/' + c.slug,
   ].map(col).join(';'));

@@ -1,7 +1,7 @@
 // ============================================================
 // /sitemap.xml — généré dynamiquement depuis Supabase
 // Liste les boutiques en ligne (abonnement actif) et les boutiques d'exemple + pages publiques.
-// Les démos non mises en ligne restent privées : elles n'y figurent pas.
+// Les démos non mises en ligne ne sont pas référencées : elles n'y figurent pas.
 // Cache 1h sur Vercel Edge
 // ============================================================
 
