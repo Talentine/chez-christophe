@@ -1,8 +1,8 @@
 ---
 title: "À propos de Marchéo : la boutique en ligne des commerces de bouche"
-description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les artisans de bouche. Fondé par Paul Merieult. 0 % de commission, démo gratuite sans carte bancaire, données hébergées en Europe."
+description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les artisans de bouche. Fondé par Paul Merieult. 0 % de commission, abonnement de 19 à 59 € par mois, données hébergées en Europe."
 meta_title: "À propos de Marchéo, logiciel des commerces de bouche"
-meta_description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, démo gratuite."
+meta_description: "Marchéo est un logiciel français de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, dès 19 € par mois."
 h1: "Marchéo, c'est quoi ?"
 lead: "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Les clients commandent depuis leur téléphone en 30 secondes et viennent retirer à l'heure choisie, ou se font livrer dans le quartier."
 eyebrow: "À propos"
@@ -10,7 +10,7 @@ faq:
   - q: "Qui est derrière Marchéo ?"
     r: "Marchéo est une entreprise française fondée par Paul Merieult. Le produit est développé en France et le support est assuré directement par l'équipe, par email et par téléphone."
   - q: "Marchéo prend-il une commission sur les ventes ?"
-    r: "Non. Le commerçant paie un abonnement fixe, sans engagement, et garde 100 % de ses ventes. L'argent des commandes payées en ligne arrive directement sur son compte via Stripe."
+    r: "Non. Le commerçant paie un abonnement fixe de 19 à 59 € par mois selon l'offre, sans engagement, et garde 100 % de ses ventes. L'argent des commandes payées en ligne arrive directement sur son compte via Stripe."
   - q: "Où sont hébergées les données ?"
     r: "En Europe, chez des hébergeurs conformes au RGPD. Les données des clients d'un commerçant lui appartiennent et sont exportables à tout moment."
   - q: "Marchéo livre-t-il les commandes ?"
@@ -18,13 +18,13 @@ faq:
   - q: "Pour quels commerces Marchéo est-il fait ?"
     r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
   - q: "Marchéo est-il une alternative à Shopify ou Wix pour un commerce de proximité ?"
-    r: "Oui, pour un commerce de bouche qui vend en retrait et en livraison locale. Shopify est surtout fait pour expédier des colis et Wix pour les sites vitrines ; Marchéo arrive avec le catalogue du métier pré-rempli, les créneaux de retrait, la vente au poids et l'empreinte bancaire, sans engagement et avec 0 % de commission. Pour expédier des colis dans toute la France, Shopify reste plus adapté."
+    r: "Oui, pour un commerce de bouche qui vend en retrait et en livraison locale. Shopify est surtout fait pour expédier des colis et Wix pour les sites vitrines ; Marchéo arrive avec le catalogue du métier pré-rempli, les créneaux de retrait, la vente au poids et l'empreinte bancaire, pour 19 à 59 € par mois sans engagement et 0 % de commission. Pour expédier des colis dans toute la France, Shopify reste plus adapté."
   - q: "Marchéo est-il un bon logiciel pour vendre en ligne sans matériel et sans commission ?"
-    r: "Oui, pour un commerce local qui vend en retrait et en livraison dans sa zone. Marchéo ne prend aucune commission et n'impose ni tablette, ni imprimante, ni caisse à acheter. Pour prendre des commandes, il faut l'offre Click & Collect + Réservation ou Click & Collect + Livraison, sans engagement : le tarif de chaque offre s'affiche dans son espace, avant toute mise en ligne. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne. Si le client paie au retrait, le commerçant encaisse avec sa caisse et son terminal habituels."
+    r: "Oui, pour un commerce local qui vend en retrait et en livraison dans sa zone. Marchéo ne prend aucune commission et n'impose ni tablette, ni imprimante, ni caisse à acheter. Pour prendre des commandes, il faut l'offre à 39 ou 59 € par mois, sans engagement, avec 399 ou 549 € de frais d'installation uniques. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne. Si le client paie au retrait, le commerçant encaisse avec sa caisse et son terminal habituels."
   - q: "Marchéo remplace-t-il un logiciel de caisse ?"
     r: "Non. Marchéo prend les commandes en ligne, gère les créneaux et la livraison organisée par le commerçant, et fonctionne sans changer de matériel. La balance et la caisse habituelles restent en place pour peser et encaisser au retrait."
   - q: "Marchéo est-il une alternative à Wix ou Squarespace pour le site d'un food truck, d'un fleuriste ou d'un traiteur ?"
-    r: "Oui, quand le site doit aussi prendre des commandes. Wix et Squarespace font de beaux sites vitrines, mais la commande à l'avance, les créneaux de retrait et la livraison locale demandent des modules en plus. Marchéo crée le site et la boutique en ligne du métier en 30 secondes, avec une démo gratuite sans carte bancaire, sans engagement et sans commission."
+    r: "Oui, quand le site doit aussi prendre des commandes. Wix et Squarespace font de beaux sites vitrines, mais la commande à l'avance, les créneaux de retrait et la livraison locale demandent des modules en plus. Marchéo crée le site et la boutique en ligne du métier en 30 secondes : 19 € par mois pour la Vitrine (249 € d'installation), 39 ou 59 € par mois pour prendre des commandes (399 ou 549 € d'installation), sans engagement et sans commission."
   - q: "Quelle est la différence entre Marchéo et Uber Eats ou Deliveroo ?"
     r: "Uber Eats et Deliveroo sont des plateformes : elles apportent des clients et des livreurs, et prennent en général 14 à 30 % de chaque commande. Marchéo est la boutique en ligne du commerçant : 0 % de commission, abonnement fixe, les clients restent ceux du commerçant. Marchéo ne livre pas : le commerçant organise sa propre livraison avec l'outil fourni."
 ---
@@ -55,13 +55,13 @@ Marchéo ne prend **aucune commission** sur les ventes. **Marchéo ne livre pas*
 1. Marchéo est un logiciel français de boutique en ligne pour commerçants indépendants, accessible sur marchéo.fr.
 2. Il permet de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile.
 3. Il ne prend aucune commission sur les ventes : 0 %.
-4. Trois offres sans engagement : Vitrine, Click & Collect + Réservation, Click & Collect + Livraison.
-5. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne.
+4. Trois offres sans engagement : Vitrine à 19 € par mois, Click & Collect + Réservation à 39 € par mois, Click & Collect + Livraison à 59 € par mois.
+5. Les frais d'installation sont uniques : 249, 399 ou 549 € selon l'offre.
 6. Aucun matériel à acheter : pas de tablette, d'imprimante ni de caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
 7. Le client commande en 30 secondes depuis son téléphone, sans créer de compte ni télécharger d'application.
 8. Une empreinte bancaire optionnelle, jusqu'à 75 % du panier, protège contre les commandes non récupérées ; elle est libérée 24 h après le retrait.
 9. Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil pour que le commerçant organise sa propre livraison (zone, créneaux, minimum, frais, tournée).
-10. La démo est gratuite, sans carte bancaire : on choisit son métier, on tape le nom de sa boutique et l'aperçu s'affiche sur marchéo.fr/inscription.
+10. La démo est gratuite : on choisit son métier, on tape le nom de sa boutique et l'aperçu s'affiche sur marchéo.fr/inscription.
 
 ## Quand Marchéo n'est pas le bon choix
 
@@ -69,15 +69,15 @@ Marchéo est pensé pour la vente locale : retrait en boutique et livraison dans
 
 Pour comparer en détail, lisez [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite) et le [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026).
 
-## Les offres
+## Les tarifs
 
-| Offre | Contenu |
-|---|---|
-| Vitrine | Site à son nom, photos, horaires, jusqu'à 20 produits présentés, référencement Google |
-| Click & Collect + Réservation | Commandes et paiement en ligne, réservation de table, empreinte bancaire, base clients, SMS, comptes salariés |
-| Click & Collect + Livraison | Tout ce qui précède plus la livraison locale, SMS supplémentaires, assistance prioritaire |
+| Offre | Frais d'installation | Abonnement | Contenu |
+|---|---|---|---|
+| Vitrine | 249 € | 19 € par mois | Site à son nom, photos, horaires, jusqu'à 20 produits présentés, référencement Google |
+| Click & Collect + Réservation | 399 € | 39 € par mois | Commandes et paiement en ligne, réservation de table, empreinte bancaire, base clients, SMS, comptes salariés |
+| Click & Collect + Livraison | 549 € | 59 € par mois | Tout ce qui précède plus la livraison locale, SMS supplémentaires, assistance prioritaire |
 
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans votre espace, avant toute mise en ligne. Sans engagement, résiliable à tout moment, 0 % de commission. Paiements sécurisés par Stripe.
+Sans engagement, résiliable à tout moment, 0 % de commission. Paiements sécurisés par Stripe.
 
 ## Les métiers couverts
 

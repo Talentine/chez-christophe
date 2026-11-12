@@ -14,11 +14,11 @@
 }catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Création de site pizzeria, commande en ligne sans commission · Marchéo</title>
-<meta name="description" content="Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, démo gratuite.">
+<meta name="description" content="Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, dès 19 € par mois.">
 <link rel="canonical" href="https://marchéo.fr/solutions/pizzeria">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Marchéo">
-<meta property="og:title" content="Création de site pizzeria, commande en ligne sans commission · Marchéo"><meta property="og:description" content="Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, démo gratuite.">
+<meta property="og:title" content="Création de site pizzeria, commande en ligne sans commission · Marchéo"><meta property="og:description" content="Prenez vos commandes à emporter et en livraison sans les 25 à 30 % des plateformes. Coup de feu lissé par créneaux, dès 19 € par mois.">
 <meta property="og:url" content="https://marchéo.fr/solutions/pizzeria"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F2C52">
@@ -53,7 +53,48 @@
    "publisher": {
     "@id": "https://marchéo.fr/#org"
    },
-   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Démo gratuite, sans carte bancaire. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison."
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
   },
   {
    "@type": "BreadcrumbList",
@@ -91,7 +132,15 @@
     "audienceType": "pizzerias"
    },
    "description": "Le site de commande en ligne de votre pizzeria en 30 secondes : commandes à emporter sans les 25 à 30 % de commission des plateformes, créneaux de retrait pour lisser le coup de feu, réservation de table, base clients à vous.",
-   "url": "https://marchéo.fr/solutions/pizzeria"
+   "url": "https://marchéo.fr/solutions/pizzeria",
+   "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "19",
+    "highPrice": "59",
+    "offerCount": "3",
+    "description": "Abonnement mensuel sans engagement, 0 % de commission sur les ventes"
+   }
   },
   {
    "@type": "FAQPage",
@@ -215,7 +264,7 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
   <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
   <nav class="nav" aria-label="Navigation">
     <a href="/solutions">Par métier</a>
-    <a href="/#tarifs" class="hide-m">Offres</a>
+    <a href="/#tarifs" class="hide-m">Tarifs</a>
     <a href="/faq" class="hide-m">FAQ</a>
     <a href="/inscription" class="cta">Créer ma boutique</a>
   </nav></div></header>
@@ -236,12 +285,12 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 <p>D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce qui fait monter le montant de chaque commande :</p>
 <ul class="idees"><li><span class="ie">🍕</span><strong>Votre carte et vos suppléments</strong><p>Bases, tailles, ingrédients en plus ou en moins : le client compose sans erreur, vous lisez la commande écrite.</p></li><li><span class="ie">👨‍👩‍👧</span><strong>Les formules famille</strong><p>Trois pizzas, une boisson et un dessert à prix rond : le vendredi soir réglé en un clic.</p></li><li><span class="ie">⭐</span><strong>La pizza du moment</strong><p>Une recette de saison mise en avant en haut de la carte et annoncée par SMS à vos habitués.</p></li><li><span class="ie">🍰</span><strong>Desserts, boissons, entrées</strong><p>Tiramisu, boissons fraîches, salades : proposés au moment de valider, ils augmentent chaque commande.</p></li><li><span class="ie">🎉</span><strong>Les commandes groupées</strong><p>Anniversaires, soirées match, équipes de bureau : dix pizzas commandées à l'avance pour une heure précise.</p></li><li><span class="ie">🪑</span><strong>La réservation de table</strong><p>Pour ceux qui mangent sur place, avec une empreinte bancaire pour les grandes tablées.</p></li></ul>
 <p>Toutes ces idées sont des produits comme les autres sur votre site : vous les créez, les modifiez ou les retirez en quelques secondes depuis votre téléphone.</p>
-<h2>Les formules</h2>
-<table><thead><tr><th>Formule</th><th>Pour</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td></tr><tr><td><strong>Click &amp; Collect + Réservation</strong></td><td>Commandes à emporter avec créneaux, réservation de table, avis clients, SMS</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td></tr></tbody></table>
-<p><strong>Démo gratuite, sans carte bancaire.</strong> Le tarif de chaque offre s'affiche dans votre espace, avant toute mise en ligne : vous décidez en connaissant le montant exact. <strong>0 % de commission</strong> sur vos ventes, sans engagement. Le site vous est livré clé en main, avec vos produits et vos photos.</p>
-<section class="calc" id="calculateur" aria-labelledby="calc-titre">
-<h3 id="calc-titre">Ce que le click & collect peut rapporter à votre pizzeria : faites le calcul</h3>
-<p>Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
+<h2>Combien ça coûte</h2>
+<table><thead><tr><th>Formule</th><th>Pour</th><th>Installation</th><th>Par mois</th></tr></thead><tbody><tr><td><strong>Vitrine</strong></td><td>Être trouvé sur Google et présenter vos produits, sans vente en ligne</td><td>249 €</td><td>19 €</td></tr><tr><td><strong>Click &amp; Collect + Réservation</strong></td><td>Commandes à emporter avec créneaux, réservation de table, avis clients, SMS</td><td>399 €</td><td>39 €</td></tr><tr><td><strong>Click &amp; Collect + Livraison</strong></td><td>Tout ça, plus la livraison à domicile que vous faites vous-même</td><td>549 €</td><td>59 €</td></tr></tbody></table>
+<p><strong>0 % de commission</strong> sur vos ventes, sans engagement. Les frais d'installation ne sont payés qu'une fois, au moment de la mise en ligne : le site vous est livré clé en main, avec vos produits et vos photos.</p>
+<section class="calc" id="calculateur" data-abo="39" aria-labelledby="calc-titre">
+<h3 id="calc-titre">Est-ce rentable pour votre pizzeria ? Faites le calcul</h3>
+<p>Calcul sur la formule Click &amp; Collect + Réservation à 39 € par mois. Bougez les curseurs avec vos chiffres : le résultat se met à jour tout seul.</p>
 <div class="calc-champs">
 <div><label for="c-clients">Clients par mois dans votre commerce</label><div class="ligne"><input type="range" id="c-clients" data-k="clients" min="100" max="6000" step="50" value="900" data-u=""><output for="c-clients"></output></div></div>
 <div><label for="c-panier">Panier moyen</label><div class="ligne"><input type="range" id="c-panier" data-k="panier" min="5" max="200" step="1" value="30" data-u=" €"><output for="c-panier"></output></div></div>
@@ -249,21 +298,22 @@ footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:
 </div>
 <div class="calc-res" aria-live="polite">
 <div><span>Commandes en plus par mois</span><b data-r="cmd">–</b></div>
-<div><span>Commission prélevée sur ces ventes</span><b>0 €</b></div>
-<div class="fort"><span>Chiffre d'affaires en plus par mois</span><b data-r="ca">–</b></div>
-<div><span>Chiffre d'affaires en plus sur un an</span><b data-r="an">–</b></div>
+<div><span>Chiffre d'affaires en plus par mois</span><b data-r="ca">–</b></div>
+<div><span>Abonnement Click &amp; Collect + Réservation</span><b>39 €</b></div>
+<div class="fort"><span>Ce qu'il vous reste en plus</span><b data-r="net">–</b></div>
 </div>
 <p class="calc-phrase" data-r="phrase"></p>
 <p class="calc-bonus"><strong>Et ce n'est pas tout.</strong> Il y a un autre chiffre, difficile à calculer précisément : les gens qui découvrent votre site sans commander, mais qui passent ensuite en boutique. Ils représentent à peu près autant de monde que les commandes en plus, soit <strong data-r="visites">environ –</strong> clients en plus par mois dans votre commerce.</p>
 <p class="calc-note">Par défaut, 10 % de commandes en plus : c'est la moyenne constatée chez les commerçants qui proposent le click & collect. Mettez vos propres chiffres pour faire votre calcul.</p>
 </section>
 <script>(function(){var r=document.getElementById('calculateur');if(!r)return;
-var f=function(n){return Math.round(n).toLocaleString('fr-FR')};
+var abo=+r.dataset.abo,f=function(n){return Math.round(n).toLocaleString('fr-FR')};
 function maj(){var v={};r.querySelectorAll('input[type=range]').forEach(function(i){v[i.dataset.k]=+i.value;i.nextElementSibling.textContent=f(+i.value)+i.dataset.u});
-var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier;
+var cmd=Math.round(v.clients*v.pct/100),ca=cmd*v.panier,net=ca-abo;
 var q=function(k){return r.querySelector('[data-r='+k+']')};
-q('cmd').textContent=f(cmd);q('ca').textContent='+'+f(ca)+' €';q('an').textContent='+'+f(ca*12)+' €';
-q('visites').textContent='environ '+f(cmd);q('phrase').textContent='Aucune commission prélevée sur ces '+f(ca)+' € de ventes en plus chaque mois.'}
+q('cmd').textContent=f(cmd);q('ca').textContent=f(ca)+' €';q('net').textContent=(net>0?'+':'')+f(net)+' €';
+var n=Math.max(1,Math.ceil(abo/v.panier));
+q('visites').textContent='environ '+f(cmd);q('phrase').textContent='Votre abonnement est payé dès la '+(n===1?'1re':n+'e')+' commande en plus du mois.'}
 r.addEventListener('input',maj);maj()})();</script>
 <h2>Comment démarrer</h2>
 <ol class="etapes">
@@ -277,7 +327,7 @@ r.addEventListener('input',maj);maj()})();</script>
   <a class="btn soleil" href="/inscription?metier=pizzeria">Créer ma démo gratuite</a></section>
 </article>
 <aside>
-  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. Démo gratuite, sans carte bancaire. 0 % de commission, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
   <div class="lien-liste"><h3>Autres métiers</h3><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/poissonnerie">Site et click &amp; collect pour poissonneries</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a><a href="/blog/google-forms-ou-logiciel-de-commande-commerce">Google Forms ou logiciel de commande ?</a><a href="/blog/marcheo-ou-uber-eats-restaurant">Marchéo ou Uber Eats pour un restaurant</a><a href="/blog/site-internet-pizzeria">Créer le site internet de sa pizzeria</a></div>
 </aside>
 </div>

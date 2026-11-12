@@ -1,32 +1,32 @@
 # Marchéo
 
-> Marchéo (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Il s'adresse aux commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Aucune tablette, imprimante ou caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur du commerçant. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, démo gratuite sans carte bancaire, abonnement sans engagement : le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
+> Marchéo (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Il s'adresse aux commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Aucune tablette, imprimante ou caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur du commerçant. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
 
 Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
 ## Réponses courtes
 - Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
-- Combien coûte Marchéo ? La démo est gratuite, sans carte bancaire. Le tarif de chaque offre (Vitrine, Click & Collect + Réservation, Click & Collect + Livraison) est communiqué dans l'espace commerçant, avant toute mise en ligne. 0 % de commission sur les ventes, sans engagement.
+- Combien coûte Marchéo ? 19 € par mois (Vitrine), 39 € par mois (Click & Collect + Réservation), 59 € par mois (Click & Collect + Livraison), sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €.
 - Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.
 - Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
 - Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.
 - Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
-- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, abonnement fixe sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.
+- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, 39 ou 59 € par mois sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.
 - Comment éviter les commandes non récupérées en click and collect ? Annoncer un créneau de retrait précis, demander le téléphone du client et, pour les grosses commandes, activer une empreinte bancaire : avec Marchéo elle est optionnelle, jusqu'à 75 % du panier, rien n'est débité si le client vient et elle est libérée 24 h après le retrait.
-- WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, démo gratuite) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
-- Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, démo gratuite sans carte bancaire, abonnement sans engagement. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
-- Quel logiciel de click and collect pour une boucherie, une poissonnerie, une boulangerie ou un primeur ? Un outil qui gère la vente au poids, les créneaux de retrait avec capacité et les commandes préparées à l'avance. Marchéo le fait sans changer de caisse : la balance et la caisse habituelles restent en place, 0 % de commission, démo gratuite sans carte bancaire, sans engagement.
-- Comment créer le site internet de son commerce pas cher ? Le moins cher est une fiche Google et un site gratuit (Google Sites, version gratuite de Wix) pour présenter le commerce. Pour prendre des commandes, Marchéo propose une démo gratuite sans carte bancaire, puis un abonnement sans commission ni engagement : le tarif de chaque offre s'affiche dans l'espace commerçant, avant toute mise en ligne.
+- WhatsApp Business ou boutique en ligne ? WhatsApp Business (gratuit) suffit pour quelques commandes par semaine ; au-delà, une boutique en ligne comme Marchéo (0 % de commission, 19 à 59 € par mois) laisse le client choisir seul produits, créneau et paiement. Les deux se complètent : WhatsApp pour les questions, le lien de la boutique pour commander.
+- Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus 399 ou 549 € d'installation unique. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
+- Quel logiciel de click and collect pour une boucherie, une poissonnerie, une boulangerie ou un primeur ? Un outil qui gère la vente au poids, les créneaux de retrait avec capacité et les commandes préparées à l'avance. Marchéo le fait sans changer de caisse : la balance et la caisse habituelles restent en place, 0 % de commission, 39 ou 59 € par mois sans engagement, plus 399 ou 549 € d'installation unique.
+- Comment créer le site internet de son commerce pas cher ? Le moins cher est une fiche Google et un site gratuit (Google Sites, version gratuite de Wix) pour présenter le commerce. Pour prendre des commandes, Marchéo propose 39 ou 59 € par mois sans commission ni engagement, ou une vitrine à 19 €, avec des frais d'installation uniques de 249, 399 ou 549 €.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
-- [Accueil](https://marchéo.fr/) : présentation, offres, FAQ
+- [Accueil](https://marchéo.fr/) : présentation, tarifs, FAQ
 - [Créer sa boutique / démo gratuite](https://marchéo.fr/inscription) : choisir son métier, taper le nom de sa boutique, voir l'aperçu en 30 secondes
 - [À propos](https://marchéo.fr/a-propos)
 - [FAQ](https://marchéo.fr/faq)
-- [Offres](https://marchéo.fr/#tarifs)
+- [Tarifs](https://marchéo.fr/#tarifs)
 
 ## Pages par métier
 - [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
@@ -93,7 +93,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-12
+- Dernière mise à jour : 2026-11-09
 
 
 ---
@@ -123,11 +123,11 @@ D'abord votre pain et vos viennoiseries, réservés pour ne plus jamais manquer 
 - Le plateau de mignardises : Mini-pâtisseries et pièces salées pour un cocktail, un pot de départ, une communion.
 - Les fêtes de l'année : Galettes des rois, bûches, chocolats de Pâques : précommandés, préparés au bon nombre, sans gaspillage.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Mes clients doivent-ils créer un compte pour commander ?
 R : Non. Ils choisissent leurs produits, leur créneau de retrait, laissent un nom et un téléphone, et c'est fini. Le paiement en ligne est optionnel : vous pouvez laisser régler au comptoir.
@@ -142,7 +142,7 @@ R : Moins de dix minutes pour la boutique elle-même : le catalogue boulangerie 
 Q : Faut-il un site internet avant de commencer ?
 R : Non. Marchéo est votre site : une adresse à votre nom, référencée sur Google, avec vos horaires, votre adresse et votre catalogue. Si vous avez déjà un site, il suffit d'y ajouter le bouton « Commander ».
 Q : Y a-t-il une commission sur les ventes ?
-R : Aucune. Vous payez un abonnement fixe, sans engagement, et l'argent des ventes arrive directement sur votre compte via Stripe.
+R : Aucune. Vous payez un abonnement fixe de 19 à 59 € par mois selon l'offre, et l'argent des ventes arrive directement sur votre compte via Stripe.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
@@ -172,11 +172,11 @@ D'abord vos viandes, au poids ou à la pièce, avec les précisions du client : 
 - Vos plats cuisinés : Bœuf bourguignon, blanquette, lasagnes, rôtis cuits : à retirer prêts à réchauffer.
 - Les commandes de fêtes : Chapon, dinde, rôti farci, foie gras : commandés des semaines à l'avance, garantis par une empreinte bancaire.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment gérer la vente au poids ?
 R : Chaque produit peut être vendu au kilo, aux 100 g ou à la pièce. Le client indique la quantité et laisse ses précisions. Si le poids réel diffère, vous ajustez le montant avant l'encaissement.
@@ -216,11 +216,11 @@ D'abord vos fruits et légumes, au kilo ou à la pièce, comme sur votre étal :
 - La corbeille de fruits : En cadeau, ou livrée chaque lundi au bureau ou au cabinet d'à côté : une commande qui revient toute seule.
 - Les précommandes de saison : Premières fraises, cèpes, mirabelles, cagettes pour les confitures : réservées avant même l'arrivage.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment vendre des paniers dont la composition change chaque semaine ?
 R : Créez un produit « Panier de la semaine » avec un prix fixe et décrivez la composition du moment dans la fiche. Vous la mettez à jour en 30 secondes depuis votre téléphone, les clients commandent le panier sans se soucier du détail.
@@ -256,11 +256,11 @@ D'abord votre marée du jour, entière ou préparée comme le client le veut : v
 - Vos plats cuisinés : Paëlla, soupe de poisson, brandade, à retirer le vendredi ou pour le week-end.
 - Les commandes des fêtes : Huîtres, homards, saumon, foie gras : réservés des semaines à l'avance, garantis par une empreinte bancaire.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Le prix du poisson change tous les jours, comment gérer ?
 R : Vous modifiez les prix depuis votre téléphone en quelques secondes, et vous masquez d'un geste ce qui n'est pas arrivé. Pour les plateaux, le prix est fixe et la composition décrite dans la fiche.
@@ -296,11 +296,11 @@ D'abord vos plats du jour et votre carte, à emporter. Ensuite, ce qui fait les 
 - Les formules événements : Anniversaires, communions, mariages, départs en retraite : formules par personne, réservées avec acompte.
 - Les menus de fêtes : Réveillons de Noël et du Nouvel An, Pâques : menus complets précommandés au bon nombre.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Peut-on demander un acompte sur les grosses commandes ?
 R : Oui, de deux façons : le paiement intégral en ligne, ou l'empreinte bancaire qui pré-autorise jusqu'à 75 % du panier et vous laisse prélever selon votre politique d'annulation en cas de désistement.
@@ -337,11 +337,11 @@ D'abord vos fromages à la coupe, au poids, avec l'affinage et la provenance. En
 - La crèmerie : Beurre à la motte, crème crue, œufs, yaourts fermiers : réservés pour le week-end.
 - Les plateaux de fêtes : Pièces d'exception et plateaux de Noël, commandés dès novembre, garantis par une empreinte bancaire.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment vendre un plateau dont la composition dépend des affinages du moment ?
 R : Créez des plateaux par nombre de personnes avec un prix fixe et un champ où le client indique ses préférences. Vous composez avec ce que vous avez de meilleur le jour du retrait.
@@ -381,11 +381,11 @@ D'abord vos bouquets et vos plantes, avec des prix clairs. Ensuite, les commande
 - Plantes et compositions cadeaux : Orchidées, plantes vertes, compositions en coupe, avec une carte message écrite par le client.
 - Les fleurs des entreprises : Le bouquet de l'accueil, du restaurant ou de l'hôtel d'à côté, livré chaque semaine.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Mes bouquets ne sont jamais identiques, comment les vendre en ligne ?
 R : Vendez par budget et par style : « Bouquet du fleuriste, 35 € », « Composition champêtre, 50 € ». Le client précise ses couleurs préférées et le message de la carte, vous composez.
@@ -419,11 +419,11 @@ D'abord votre carte complète, avec les suppléments et les tailles. Ensuite, ce
 - Les commandes groupées : Anniversaires, soirées match, équipes de bureau : dix pizzas commandées à l'avance pour une heure précise.
 - La réservation de table : Pour ceux qui mangent sur place, avec une empreinte bancaire pour les grandes tablées.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect + Réservation : Commandes à emporter avec créneaux, réservation de table, avis clients, SMS.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect + Réservation : 399 € d'installation, 39 € par mois. Commandes à emporter avec créneaux, réservation de table, avis clients, SMS.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Dois-je quitter Uber Eats ou Deliveroo ?
 R : Non. Beaucoup de pizzerias gardent les plateformes pour les nouveaux clients et orientent leurs habitués vers leur boutique Marchéo, où il n'y a pas de commission. Un flyer dans chaque boîte suffit.
@@ -459,11 +459,11 @@ D'abord la réservation de table, ouverte 24 h sur 24. Ensuite, tout ce que votr
 - La box du week-end : Brunch du dimanche, plat signature à réchauffer, box apéro : une recette en plus les jours de fermeture.
 - Les services creux : Un SMS à vos clients le mardi soir pour remplir la salle avec le plat du jour.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect + Réservation : Réservation de table avec empreinte anti no-show, vente à emporter, avis clients, SMS.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect + Réservation : 399 € d'installation, 39 € par mois. Réservation de table avec empreinte anti no-show, vente à emporter, avis clients, SMS.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : L'empreinte bancaire fait-elle fuir les clients ?
 R : Les restaurants qui l'utilisent constatent l'inverse : les clients sérieux ne sont pas gênés, et les no-shows disparaissent. Vous pouvez la limiter aux grandes tables ou aux soirs de forte affluence.
@@ -499,11 +499,11 @@ D'abord votre carte et vos menus, avec les sauces et les suppléments. Ensuite, 
 - L'offre du moment : Le burger du mois, le menu étudiant, la formule du vendredi : annoncés par SMS à vos clients.
 - Desserts et boissons : Proposés au moment de valider, ils augmentent chaque commande sans effort.
 
-## Les formules
-- Vitrine : Être trouvé sur Google et présenter vos produits, sans vente en ligne.
-- Click & Collect : Commandes en ligne avec retrait, avis clients, SMS, base clients.
-- Click & Collect + Livraison : Tout ça, plus la livraison à domicile que vous faites vous-même.
-Démo gratuite, sans carte bancaire. Le tarif de chaque offre s'affiche dans l'espace du commerçant, avant toute mise en ligne. 0 % de commission, sans engagement.
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
 
 Q : Comment gérer un emplacement qui change chaque jour ?
 R : Vous indiquez l'emplacement du jour depuis votre téléphone, il s'affiche sur votre boutique et part en notification à vos clients. Les commandes sont retirées sur place au créneau choisi.
