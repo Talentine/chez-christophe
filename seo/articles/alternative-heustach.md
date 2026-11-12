@@ -25,7 +25,7 @@ faq:
   - q: "Heustach est-il sans engagement ?"
     r: "Sa page tarifs indique 0 mois d'engagement, sans durée minimale ni frais de résiliation. Ses conditions générales indiquent un contrat à durée indéterminée résiliable avec un préavis d'un mois. Les deux pages ne disent pas la même chose sur le préavis : vérifiez ce point avec l'éditeur."
   - q: "Quand vaut-il mieux garder Heustach ?"
-    r: "Quand vous avez peu de commandes en ligne ou une activité saisonnière. Sans abonnement ni frais d'installation, vous ne payez que 0,25 € HT par commande payée en ligne, et rien pour les commandes réglées au retrait. Heustach propose aussi une carte de fidélité et une application pour le commerçant, ce que Marchéo ne propose pas."
+    r: "Quand vous avez peu de commandes en ligne ou une activité saisonnière. Sans abonnement ni frais d'installation, vous ne payez que 0,25 € HT par commande payée en ligne, et rien pour les commandes réglées au retrait. Heustach propose aussi une application Android pour le commerçant et une plateforme qui liste plusieurs commerces, ce que Marchéo ne propose pas."
 ---
 
 Les quatre alternatives à Heustach sont GetEat (0 € d'abonnement), bonappli (0, 8 ou 12 € par mois), Achil (0 € ou 19,99 € par mois) et Marchéo (39 ou 59 € par mois pour prendre des commandes, plus 399 ou 549 € d'installation). Heustach, lui, ne facture pas d'abonnement : il prend 0,25 € HT par commande payée en ligne.
@@ -92,7 +92,7 @@ Ses limites sont nettes. Marchéo ne livre pas et n'a pas de coursiers. Ce n'est
 
 Heustach reste le bon choix si vous avez peu de commandes en ligne, une activité saisonnière ou un [food truck](/blog/click-and-collect-food-truck) qui ne tourne pas toute l'année. Sans abonnement ni frais d'installation, vous ne payez que lorsqu'une commande est payée en ligne. Les commandes réglées au retrait coûtent 0 €.
 
-Heustach fait aussi des choses que Marchéo ne fait pas : une carte de fidélité, une application pour le commerçant (Heustach Pro, sur Google Play ; la version iPhone est annoncée « en préparation ») et une plateforme qui liste plusieurs commerces. La livraison est possible en option, par vous ou votre livreur, avec jusqu'à 6 zones tarifées. Notre [avis sur Heustach](/blog/avis-heustach) détaille ces points.
+Heustach fait aussi des choses que Marchéo ne fait pas : une application à installer pour le commerçant (Heustach Pro, sur Google Play ; la version iPhone est annoncée « en préparation ») et une plateforme qui liste plusieurs commerces. Il propose aussi une carte de fidélité, comme Marchéo. La livraison est possible en option, par vous ou votre livreur, avec jusqu'à 6 zones tarifées. Notre [avis sur Heustach](/blog/avis-heustach) détaille ces points.
 
 ## Comment changer d'outil sans perdre ses clients ?
 

@@ -1,0 +1,10 @@
+# Rapport — 12 novembre 2026 : pages concurrents et campagne de mentions
+
+Demande de Paul : appliquer la méthode « être recommandé par ChatGPT » (questions, robots IA, pages par question, sites cités à la place, e-mails d'échange de mentions, puis listes, avis, comparaisons et alternatives).
+
+- **Déjà en place avant ce jour** : les 24 questions (`seo/visibilite-ia.md`), les robots IA autorisés (`robots.txt`, `llms.txt`), 50 articles, l'envoi à Bing par IndexNow, la liste des sites cités à notre place (`seo/cibles-mentions.md`).
+- **Fiches concurrents** (`seo/concurrents/`) : 34 outils relevés sur les sites des éditeurs le 12/11, avec les URL lues. Sans prix vérifiable en euros : Shopify, Wix, SiteW, WooCommerce (affichés en dollars), e-monsite et SoClick (sites injoignables), Mon Petit Drive, Ollca, Bungeefood, Lumis, Potti (prix non publics), Uber Eats, Deliveroo, Just Eat (commissions non publiées pour la France). Epicery : arrêt annoncé fin 2024.
+- **20 articles publiés** : 5 classements, 5 avis, 5 comparaisons, 5 alternatives (liste dans le comparatif `logiciel-click-and-collect-comparatif-2026`, section « Où trouver les comparatifs outil par outil ? »). Chaque page dit que Marchéo en est l'éditeur et un concurrent, date les prix du 12/11 et n'écrit que ce qui est dans les fiches.
+- **À revérifier à l'écran avant de s'appuyer dessus** : les citations entre guillemets reprises des sites des concurrents (lecture automatique), l'identité de BDN Collect (bdncollect.fr) et de LEMO (lemo-food.com), et la base HT ou TTC des prix de Marchéo, laissée sans mention.
+- **Campagne de mentions** (`seo/emails-mentions.md`, contacts dans `seo/contacts-mentions.md`) : 16 brouillons Gmail à envoyer, 10 messages pour formulaires, rien d'envoyé. Aucune offre payante proposée (règle de `seo/backlinks.md`).
+- **Reste à faire** : mettre la branche en ligne, puis lancer `python seo/indexnow.py` (Bing) et demander l'indexation des 20 pages dans Search Console (Google) ; mesurer ces pages dans la rotation de `seo/visibilite-ia.md` (questions n°6, n°7 et n°2 d'abord) ; rafraîchir les prix des fiches chaque mois.

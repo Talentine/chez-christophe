@@ -24,9 +24,9 @@ faq:
   - q: "Combien coûte Mon Petit Drive ?"
     r: "Le prix n'est pas affiché sur son site au 12 novembre 2026 : il n'y a pas de page tarifs et le devis se demande par téléphone. Les frais d'installation et la durée d'engagement ne sont pas indiqués non plus sur ses pages web. Le site précise en revanche que la solution est sans commission sur les ventes."
   - q: "Quand vaut-il mieux garder Mon Petit Drive ?"
-    r: "Quand vous avez besoin de relier votre site à votre logiciel de caisse ou de gestion. Son site cite des connecteurs avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft, ainsi que la gestion des stocks, l'acompte et les titres-restaurant. Marchéo ne propose pas ces fonctions et ne remplace pas la caisse."
+    r: "Quand vous avez besoin de relier votre site à votre logiciel de caisse ou de gestion. Son site cite des connecteurs avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft, ainsi que l'acompte et les titres-restaurant. Marchéo ne propose ni ces connecteurs, ni l'acompte, ni les titres-restaurant, et ne remplace pas la caisse."
   - q: "Marchéo est-il une alternative à Mon Petit Drive pour une boucherie ou un primeur ?"
-    r: "Oui, si votre besoin est la commande en ligne avec retrait ou livraison locale organisée par vous. Marchéo coûte 39 € par mois (399 € d'installation) ou 59 € par mois avec la livraison (549 €), sans engagement et sans commission, avec la vente au poids et des créneaux à capacité limitée. Il ne gère ni les stocks, ni les étiquettes, ni la production, et ne se connecte pas à une caisse."
+    r: "Oui, si votre besoin est la commande en ligne avec retrait ou livraison locale organisée par vous. Marchéo coûte 39 € par mois (399 € d'installation) ou 59 € par mois avec la livraison (549 €), sans engagement et sans commission, avec la vente au poids et des créneaux à capacité limitée. Il ne gère ni les étiquettes, ni la production, et ne se connecte pas à une caisse."
 ---
 
 Les quatre alternatives à Mon Petit Drive qui affichent leurs prix sont bonappli (0, 8 ou 12 € par mois), Achil (0 € ou 19,99 € par mois), Marchéo (19, 39 ou 59 € par mois, plus 249, 399 ou 549 € d'installation) et RushPilot (99 € HT par mois, ou 199 € HT par mois avec le click and collect). Mon Petit Drive, lui, n'affiche pas de prix sur son site au 12/11/2026 : le devis se demande par téléphone.
@@ -52,7 +52,7 @@ Il y a quatre alternatives aux prix publics, classées ici par prix d'entrée cr
 | --- | --- | --- | --- | --- |
 | bonappli | Un site simple et un petit budget | 0 €, 8 € ou 12 € par mois (HT ou TTC non précisé) | Aucune | Pas de paiement en ligne ; livraison non précisée sur son site |
 | Achil | Une boutique et une application client | 0 € par mois, ou 19,99 € par mois (14,99 € en annuel), HT ou TTC non précisé | Sans commission ; 1,9 % + 0,19 € ou 1,7 % + 0,17 € par paiement en ligne | Vente au poids et capacité par créneau non précisées sur son site |
-| Marchéo | La commande en ligne d'un commerce de bouche, retrait et livraison locale | 19, 39 ou 59 € par mois, plus 249, 399 ou 549 € d'installation | 0 % ; frais Stripe sur les paiements par carte en ligne | Pas de lien avec la caisse, pas de gestion des stocks |
+| Marchéo | La commande en ligne d'un commerce de bouche, retrait et livraison locale | 19, 39 ou 59 € par mois, plus 249, 399 ou 549 € d'installation | 0 % ; frais Stripe sur les paiements par carte en ligne | Pas de lien avec la caisse, pas de titres-restaurant |
 | RushPilot | Les commandes au comptoir et la préparation | 99 € HT par mois, ou 199 € HT par mois avec le click and collect | 0 % | Imprimante à 379 € HT ; tablette non fournie |
 
 Notre classement des [meilleurs outils de boutique en ligne pour un commerce de proximité](/blog/meilleurs-outils-boutique-en-ligne-commerce-de-proximite) élargit la liste.
@@ -93,7 +93,7 @@ RushPilot est le bon choix si vous êtes boucher, charcutier, fromager ou traite
 
 Mon Petit Drive reste le bon choix si votre site doit dialoguer avec votre logiciel de caisse ou de gestion. Son site cite des connecteurs avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft, pour les articles, les stocks, les comptes clients et les commandes. Aucun des quatre outils ci-dessus n'affiche cela.
 
-Il fait aussi d'autres choses que Marchéo ne fait pas : la gestion des stocks, l'acompte, les titres-restaurant et un programme de fidélité. Son site affiche également la vente au kilo, plusieurs points de retrait, un module de livraison par zones et un module bancaire au choix.
+Il fait aussi d'autres choses que Marchéo ne fait pas : l'acompte et les titres-restaurant. Son site affiche aussi la gestion des stocks et un programme de fidélité, que Marchéo propose sous une forme simple (quantité en stock par produit, carte de fidélité). Son site affiche également la vente au kilo, plusieurs points de retrait, un module de livraison par zones et un module bancaire au choix.
 
 ## Comment changer d'outil sans perdre ses clients ?
 

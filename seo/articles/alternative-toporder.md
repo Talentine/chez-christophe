@@ -25,7 +25,7 @@ faq:
   - q: "Faut-il changer de caisse pour faire du click and collect ?"
     r: "Non. Un outil de commande en ligne séparé fonctionne à côté de votre caisse : les commandes arrivent sur votre téléphone ou votre ordinateur et vous encaissez au comptoir comme d'habitude. Marchéo, par exemple, ne remplace pas la caisse et ne demande aucun matériel."
   - q: "Quand Toporder reste-t-il le bon choix ?"
-    r: "Quand vous cherchez aussi une caisse. Toporder propose une caisse certifiée NF525 avec matériel, un paiement en magasin intégré, des bornes de commande, une connexion à la balance, des listings de production et un programme de fidélité. Le click and collect partage alors le catalogue de la caisse et les commandes y arrivent en temps réel. Marchéo ne propose rien de cela."
+    r: "Quand vous cherchez aussi une caisse. Toporder propose une caisse certifiée NF525 avec matériel, un paiement en magasin intégré, des bornes de commande, une connexion à la balance, des listings de production et un programme de fidélité. Le click and collect partage alors le catalogue de la caisse et les commandes y arrivent en temps réel. Marchéo ne propose ni caisse, ni bornes, ni lien avec la balance."
 ---
 
 Les quatre alternatives à Toporder pour faire du click and collect sans changer de caisse sont Heustach (0 € d'abonnement, 0,25 € HT par commande payée en ligne), Achil (0 € ou 19,99 € par mois), bonappli (8 € par mois) et Marchéo (39 ou 59 € par mois, plus 399 ou 549 € d'installation). Toporder, lui, est d'abord un logiciel de caisse : son click and collect est accessible gratuitement, avec 10 % prélevés sur les paniers vendus par ce canal.
@@ -97,7 +97,7 @@ Ses limites sont nettes. Marchéo ne remplace pas la caisse. Il ne livre pas et 
 
 Toporder reste le bon choix si vous cherchez aussi une caisse, ou si vous voulez que la caisse et la commande en ligne ne fassent qu'un. Son site affiche un catalogue partagé et des commandes qui arrivent dans la caisse en temps réel.
 
-Toporder propose aussi ce que Marchéo ne propose pas : une caisse certifiée NF525 avec matériel, un paiement en magasin intégré, des bornes de commande, une connexion à la balance, des listings de production, un programme de fidélité et des campagnes SMS. Et si vous vendez très peu en ligne, un pourcentage sans frais fixe peut revenir moins cher qu'un abonnement.
+Toporder propose aussi ce que Marchéo ne propose pas : une caisse certifiée NF525 avec matériel, un paiement en magasin intégré, des bornes de commande, une connexion à la balance, des listings de production et des campagnes SMS. Son programme de fidélité a un équivalent simple chez Marchéo (une carte de fidélité). Et si vous vendez très peu en ligne, un pourcentage sans frais fixe peut revenir moins cher qu'un abonnement.
 
 ## Comment changer d'outil sans perdre ses clients ?
 

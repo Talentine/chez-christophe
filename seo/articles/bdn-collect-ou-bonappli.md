@@ -23,7 +23,7 @@ faq:
   - q: "Peut-on payer en ligne avec bonappli ?"
     r: "Non. Le site de bonappli indique que le paiement se fait au retrait. BDN Collect propose le paiement en ligne par Stripe, avec la carte, Apple Pay et Google Pay. Si vous voulez encaisser à la commande, par exemple pour des gâteaux sur mesure, bonappli ne le prévoit pas d'après son site."
   - q: "Quelle alternative à BDN Collect et bonappli pour une boulangerie ?"
-    r: "Marchéo propose un catalogue de boulangerie pré-rempli, le paiement en ligne ou au retrait, des créneaux avec capacité et une empreinte bancaire optionnelle : 39 € par mois avec le click & collect (399 € d'installation) ou 59 € par mois avec la livraison locale (549 €), sans engagement et à 0 % de commission. Marchéo n'a pas de programme de fidélité ni de formule gratuite, ne livre pas et ne remplace pas la caisse."
+    r: "Marchéo propose un catalogue de boulangerie pré-rempli, le paiement en ligne ou au retrait, des créneaux avec capacité et une empreinte bancaire optionnelle : 39 € par mois avec le click & collect (399 € d'installation) ou 59 € par mois avec la livraison locale (549 €), sans engagement et à 0 % de commission. Marchéo a une carte de fidélité simple, mais pas de formule gratuite ; il ne livre pas et ne remplace pas la caisse."
 ---
 
 BDN Collect convient si vous voulez le paiement en ligne et un programme de fidélité dans une application à votre marque (47 € TTC par mois, 97 € d'installation, 0,50 € par commande payé par le client), et bonappli convient si vous voulez un site simple avec des commandes payées au retrait, pour un petit budget (0 €, 8 € ou 12 € par mois). Les deux sont sans engagement.

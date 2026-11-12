@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alternative à RushPilot : 4 logiciels de commande · Marchéo</title>
+<meta name="description" content="4 alternatives à RushPilot pour boucherie et traiteur : Lumis Traiteurs, Mon Petit Drive, Achil, Marchéo. Prix relevés le 12 novembre 2026.">
+<link rel="canonical" href="https://marchéo.fr/blog/alternative-rushpilot">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Alternative à RushPilot : 4 logiciels de commande · Marchéo"><meta property="og:description" content="4 alternatives à RushPilot pour boucherie et traiteur : Lumis Traiteurs, Mon Petit Drive, Achil, Marchéo. Prix relevés le 12 novembre 2026.">
+<meta property="og:url" content="https://marchéo.fr/blog/alternative-rushpilot"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Alternative à RushPilot",
+     "item": "https://marchéo.fr/blog/alternative-rushpilot"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Alternative à RushPilot : 4 logiciels de commande pour boucherie et traiteur",
+   "description": "Quelle alternative à RushPilot pour une boucherie ou un traiteur ? Lumis Traiteurs, Mon Petit Drive, Achil et Marchéo : prix, commission et limites.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-12",
+   "dateModified": "2026-11-12",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/alternative-rushpilot",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "alternative à rushpilot, alternative rushpilot boucherie, logiciel de commande boucherie, logiciel de commande traiteur, rushpilot prix",
+   "articleSection": "Alternative"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quelles sont les alternatives à RushPilot pour une boucherie ou un traiteur ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Quatre outils reviennent : Lumis Traiteurs (prix non affiché sur son site au 12/11/2026), Mon Petit Drive (prix non affiché, devis par téléphone), Achil (0 € par mois, ou 19,99 € par mois en formule Standard) et Marchéo (39 ou 59 € par mois pour prendre des commandes, plus 399 ou 549 € d'installation, sans engagement et sans commission). Les deux premiers gèrent aussi les commandes du magasin, les deux derniers sont centrés sur la commande en ligne."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Combien coûte RushPilot ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "D'après son site au 12 novembre 2026 : 99 € HT par mois pour la formule Comptoir et 199 € HT par mois avec le click and collect, ou 89 et 179 € HT par mois en paiement annuel. Une boutique supplémentaire coûte 79 € HT par mois. Il n'y a ni frais d'installation, ni commission, ni engagement. L'imprimante à étiquettes coûte 379 € HT en achat unique et la tablette n'est pas fournie. L'essai dure 14 jours."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Marchéo remplace-t-il RushPilot au comptoir ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Marchéo prend les commandes en ligne, gère les créneaux de retrait et la livraison locale organisée par le commerçant. Il n'imprime pas d'étiquettes, ne gère pas la production et ne remplace pas la caisse. Si vous cherchez la prise de commande au comptoir sur tablette et le suivi de préparation, RushPilot ou Lumis Traiteurs correspondent mieux."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment changer de logiciel de commande sans perdre ses clients ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Exportez d'abord votre base clients depuis l'ancien outil. Prévenez vos habitués au comptoir, sur le sac et par message. Gardez l'ancien lien actif quelques semaines avec un renvoi vers la nouvelle adresse, et mettez à jour le lien de votre fiche Google. Évitez de changer juste avant les fêtes."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Alternative à RushPilot</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Alternative</p>
+<h1>Alternative à RushPilot : 4 logiciels de commande pour boucherie et traiteur</h1>
+<p class="lead">Quelle alternative à RushPilot pour une boucherie ou un traiteur ? Lumis Traiteurs, Mon Petit Drive, Achil et Marchéo : prix, commission et limites.</p>
+<p class="meta">Par Paul Merieult · 12/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Les quatre alternatives à RushPilot pour une boucherie ou un traiteur sont Lumis Traiteurs (prix non affiché sur son site), Mon Petit Drive (prix non affiché), Achil (0 € ou 19,99 € par mois) et Marchéo (39 ou 59 € par mois pour prendre des commandes, plus 399 ou 549 € d&rsquo;installation). RushPilot, lui, est affiché à 99 € HT par mois pour le comptoir et à 199 € HT par mois avec le click and collect.</p>
+<p>L&rsquo;éditeur de cet article est Marchéo, un concurrent de RushPilot. Nous n&rsquo;avons été clients d&rsquo;aucun de ces outils : tout vient des informations publiques des éditeurs. Prix relevés sur les sites des éditeurs le 12 novembre 2026 ; ils peuvent avoir changé, vérifiez sur leur site.</p>
+<h2>Pourquoi chercher une alternative à RushPilot ?</h2>
+<p>On cherche en général une alternative à RushPilot pour une question de budget, de matériel ou de périmètre. <a href="https://rushpilot.fr/tarifs">RushPilot</a> (rushpilot.fr) est un logiciel de gestion des commandes au comptoir : prise de commande sur tablette, besoins, préparation, étiquettes. Un site de click and collect à votre marque existe en option.</p>
+<p>Ses pages publiques donnent cinq raisons possibles :</p>
+<ul>
+<li><strong>Le prix.</strong> 99 € HT par mois pour le comptoir, 199 € HT par mois avec le click and collect (89 et 179 € HT par mois en annuel), par point de vente.</li>
+<li><strong>Le matériel.</strong> L&rsquo;imprimante à étiquettes coûte 379 € HT en achat unique. La tablette n&rsquo;est pas fournie.</li>
+<li><strong>Le paiement.</strong> Sa page click and collect indique que le client commande en ligne et paie en magasin. Le paiement en ligne et l&rsquo;empreinte bancaire ne sont pas précisés sur son site.</li>
+<li><strong>La livraison.</strong> Elle n&rsquo;est pas précisée sur son site : seul le retrait est décrit.</li>
+<li><strong>Le périmètre.</strong> Si vous voulez seulement prendre des commandes en ligne, vous n&rsquo;avez pas forcément besoin d&rsquo;un outil de comptoir.</li>
+</ul>
+<h2>Quelles sont les alternatives à RushPilot ?</h2>
+<p>Il y a quatre alternatives, classées ici de la plus proche de RushPilot (commandes du magasin et production) à la plus centrée sur la commande en ligne.</p>
+<table>
+<thead>
+<tr>
+<th>Outil</th>
+<th>Idéal pour</th>
+<th>Prix relevé</th>
+<th>Commission</th>
+<th>Limite à connaître</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lumis Traiteurs</td>
+<td>Gérer les commandes du magasin et le laboratoire</td>
+<td>Non affiché sur son site</td>
+<td>Aucune sur les ventes en ligne, selon l&rsquo;éditeur</td>
+<td>Prix et engagement non publiés</td>
+</tr>
+<tr>
+<td>Mon Petit Drive</td>
+<td>Un site de vente relié à votre logiciel de caisse</td>
+<td>Non affiché sur son site (devis par téléphone)</td>
+<td>Sans commission, selon l&rsquo;éditeur</td>
+<td>Prix et engagement non publiés sur ses pages web</td>
+</tr>
+<tr>
+<td>Achil</td>
+<td>Démarrer sans abonnement</td>
+<td>0 € par mois, ou 19,99 € par mois (14,99 € en annuel), HT ou TTC non précisé</td>
+<td>Sans commission ; 1,9 % + 0,19 € ou 1,7 % + 0,17 € par paiement en ligne</td>
+<td>Vente au poids et capacité par créneau non précisées sur son site</td>
+</tr>
+<tr>
+<td>Marchéo</td>
+<td>La commande en ligne, le retrait et la livraison locale</td>
+<td>39 ou 59 € par mois, plus 399 ou 549 € d&rsquo;installation</td>
+<td>0 % ; frais Stripe sur les paiements par carte en ligne</td>
+<td>Pas d&rsquo;étiquettes ni de gestion de production</td>
+</tr>
+</tbody>
+</table>
+<p>Pour une vue plus large, lisez notre classement du <a href="/blog/meilleur-logiciel-click-and-collect-boucherie">meilleur logiciel de click and collect pour boucherie</a>.</p>
+<h2>Lumis Traiteurs : pour qui est-ce le bon choix ?</h2>
+<p>Lumis Traiteurs est le bon choix si vous cherchez surtout un outil pour les commandes prises en magasin et pour le laboratoire.</p>
+<p><a href="https://lumis-traiteurs.fr/">Lumis Traiteurs</a> (lumis-traiteurs.fr) est édité par ACS Informatique, à Angers. Il s&rsquo;adresse aux bouchers, charcutiers, traiteurs, pâtissiers, fromagers et poissonniers. Son site affiche la prise de commande sur ordinateur ou tablette, l&rsquo;édition d&rsquo;étiquettes et de bons de commande, des fiches récapitulatives pour le laboratoire et un module SMS. Une boutique en ligne, Lumis E-commerce, est reliée au logiciel : le client choisit le jour et l&rsquo;heure de retrait.</p>
+<p>Le prix n&rsquo;est pas affiché sur son site au 12/11/2026. Une démo gratuite est proposée. Le paiement en ligne, la livraison et la durée d&rsquo;engagement ne sont pas précisés sur son site.</p>
+<h2>Mon Petit Drive : pour qui est-ce le bon choix ?</h2>
+<p>Mon Petit Drive est le bon choix si vous voulez un site de vente complet, relié à votre logiciel de caisse ou de gestion.</p>
+<p><a href="https://www.monpetitdrive.fr">Mon Petit Drive</a> (monpetitdrive.fr) est édité par 42stores et existe depuis 2015 selon son site. Il vise notamment les bouchers-traiteurs, les fromageries et les primeurs. Son site affiche le click and collect, le drive, la vente au kilo, un nombre de commandes limité par créneau, un module de livraison par zones et le paiement en ligne avec acompte ou titres-restaurant. Des connecteurs sont cités avec Divalto, Sage, JDC (Kezia II), XLSoft et LinéoSoft.</p>
+<p>Le prix n&rsquo;est pas affiché sur son site au 12/11/2026 : il faut demander un devis par téléphone. La durée d&rsquo;engagement n&rsquo;est pas indiquée sur ses pages web.</p>
+<h2>Achil : pour qui est-ce le bon choix ?</h2>
+<p>Achil est le bon choix si vous voulez tester la commande en ligne sans abonnement, avec une application que vos clients peuvent télécharger.</p>
+<p><a href="https://achil.com/web/tarifs/">Achil</a> (achil.com) est une plateforme et une application de commande locale : click and collect, drive et livraison gérée par le commerçant. Les boucheries-charcuteries-traiteurs et les fromageries font partie des métiers cités.</p>
+<p>La formule Free est à 0 € par mois. La formule Standard est à 19,99 € par mois, ou 14,99 € par mois en annuel (HT ou TTC non précisé). Le paiement en ligne est une option : 1,9 % + 0,19 € par transaction en Free, 1,7 % + 0,17 € en Standard. La mise en place coûte 249 € HT en Free et 199 € HT en Standard ; elle est offerte si vous activez le paiement en ligne. Les abonnements sont sans engagement. Notre comparaison <a href="/blog/rushpilot-ou-achil">RushPilot ou Achil</a> détaille les deux outils.</p>
+<h2>Marchéo : pour qui est-ce le bon choix ?</h2>
+<p>Marchéo est le bon choix si votre besoin est la commande en ligne, avec paiement en ligne possible et livraison dans votre quartier, sans matériel à acheter.</p>
+<p>Marchéo est un logiciel français de boutique en ligne et de site internet pour commerçants indépendants. L&rsquo;offre Click &amp; Collect + Réservation coûte 39 € par mois (399 € d&rsquo;installation) et l&rsquo;offre Click &amp; Collect + Livraison 59 € par mois (549 €). C&rsquo;est sans engagement et à 0 % de commission. Les frais bancaires du prestataire de paiement (Stripe) s&rsquo;appliquent aux paiements par carte en ligne.</p>
+<p>Le client commande sans créer de compte. Vous réglez des créneaux de retrait avec une capacité, la <a href="/blog/vendre-au-poids-en-ligne">vente au poids</a> et les options. Une empreinte bancaire optionnelle bloque jusqu&rsquo;à 75 % du panier. Les SMS sont inclus et le catalogue de votre métier est déjà rempli. Voyez <a href="/solutions/boucherie">la solution pour boucherie</a> ou <a href="/solutions/traiteur">pour traiteur</a>.</p>
+<p>Ses limites sont nettes. Marchéo ne livre pas et n&rsquo;a pas de coursiers. Ce n&rsquo;est pas une place de marché : il n&rsquo;apporte pas de clients. Il ne remplace pas la caisse. Il ne fait ni étiquettes, ni gestion de production, ni devis événementiel. Il n&rsquo;expédie pas de colis dans toute la France.</p>
+<h2>Quand RushPilot reste-t-il le bon choix ?</h2>
+<p>RushPilot reste le bon choix si votre difficulté se trouve au comptoir et au laboratoire, surtout pendant les fêtes. Il fait plusieurs choses que Marchéo ne fait pas : la prise de commande au comptoir sur tablette, les besoins regroupés par produit et par période, le suivi de préparation par rayon et les étiquettes de commande avec code de rangement.</p>
+<p>Aucun frais d&rsquo;installation, aucune commission, aucun engagement, et un essai de 14 jours sans carte bancaire. Les produits au kilo sont facturés après la pesée en caisse. Notre <a href="/blog/avis-rushpilot">avis sur RushPilot</a> reprend ces points en détail.</p>
+<h2>Comment changer d&rsquo;outil sans perdre ses clients ?</h2>
+<p>Pour changer d&rsquo;outil sans perdre de clients, gardez votre fichier, prévenez vos habitués et laissez l&rsquo;ancien lien actif quelques semaines.</p>
+<ol>
+<li><strong>Exportez votre base clients</strong> avant de résilier.</li>
+<li><strong>Prévenez vos habitués</strong> au comptoir, sur le sac et par message.</li>
+<li><strong>Gardez l&rsquo;ancien lien</strong> quelques semaines et mettez à jour votre fiche Google.</li>
+<li><strong>Choisissez une période calme.</strong> Ne changez pas en décembre : préparez plutôt vos <a href="/blog/commande-boucherie-noel-en-ligne">commandes de Noël</a> sur un outil déjà rodé.</li>
+</ol>
+<p>Pour comparer sur pièces, créez un aperçu de votre boutique sur <a href="/inscription">la page d&rsquo;inscription</a> : la démo est gratuite et prend 30 secondes.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quelles sont les alternatives à RushPilot pour une boucherie ou un traiteur ?</summary><p>Quatre outils reviennent : Lumis Traiteurs (prix non affiché sur son site au 12/11/2026), Mon Petit Drive (prix non affiché, devis par téléphone), Achil (0 € par mois, ou 19,99 € par mois en formule Standard) et Marchéo (39 ou 59 € par mois pour prendre des commandes, plus 399 ou 549 € d'installation, sans engagement et sans commission). Les deux premiers gèrent aussi les commandes du magasin, les deux derniers sont centrés sur la commande en ligne.</p></details><details><summary>Combien coûte RushPilot ?</summary><p>D'après son site au 12 novembre 2026 : 99 € HT par mois pour la formule Comptoir et 199 € HT par mois avec le click and collect, ou 89 et 179 € HT par mois en paiement annuel. Une boutique supplémentaire coûte 79 € HT par mois. Il n'y a ni frais d'installation, ni commission, ni engagement. L'imprimante à étiquettes coûte 379 € HT en achat unique et la tablette n'est pas fournie. L'essai dure 14 jours.</p></details><details><summary>Marchéo remplace-t-il RushPilot au comptoir ?</summary><p>Non. Marchéo prend les commandes en ligne, gère les créneaux de retrait et la livraison locale organisée par le commerçant. Il n'imprime pas d'étiquettes, ne gère pas la production et ne remplace pas la caisse. Si vous cherchez la prise de commande au comptoir sur tablette et le suivi de préparation, RushPilot ou Lumis Traiteurs correspondent mieux.</p></details><details><summary>Comment changer de logiciel de commande sans perdre ses clients ?</summary><p>Exportez d'abord votre base clients depuis l'ancien outil. Prévenez vos habitués au comptoir, sur le sac et par message. Gardez l'ancien lien actif quelques semaines avec un renvoi vers la nouvelle adresse, et mettez à jour le lien de votre fiche Google. Évitez de changer juste avant les fêtes.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/alternative-heustach">Alternative à Heustach</a><a href="/blog/alternative-mon-petit-drive">Alternative à Mon Petit Drive</a><a href="/blog/alternative-sumup-boutique-en-ligne">Alternative à la boutique en ligne SumUp</a><a href="/blog/alternative-toporder">Alternative à Toporder</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a><a href="/solutions/fromagerie">Site et click &amp; collect pour fromageries et crèmeries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>

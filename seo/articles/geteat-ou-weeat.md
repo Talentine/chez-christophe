@@ -24,7 +24,7 @@ faq:
   - q: "Combien coûte WeEat sur un an avec le paiement en ligne ?"
     r: "L'option de paiement en ligne de WeEat coûte 39 € HT par mois, soit 39 x 12 = 468 € HT sur douze mois (561,60 € TTC). Avec les quatre options, le total affiché est de 156 € HT par mois, soit 1 872 € HT sur douze mois. Les frais par transaction de cette option ne sont pas indiqués sur son site."
   - q: "Pourquoi payer Marchéo alors que GetEat et WeEat sont gratuits ?"
-    r: "Sur le prix, les offres gratuites gagnent : Marchéo coûte 39 € par mois avec le click & collect et la réservation (399 € d'installation) ou 59 € par mois avec la livraison (549 €), sans engagement et à 0 % de commission. Marchéo se choisit pour d'autres raisons : carte pré-remplie par métier, SMS inclus, empreinte bancaire optionnelle, créneaux avec capacité. Il n'a ni commande à table par QR code, ni carte de fidélité, ni coursiers."
+    r: "Sur le prix, les offres gratuites gagnent : Marchéo coûte 39 € par mois avec le click & collect et la réservation (399 € d'installation) ou 59 € par mois avec la livraison (549 €), sans engagement et à 0 % de commission. Marchéo se choisit pour d'autres raisons : carte pré-remplie par métier, SMS inclus, empreinte bancaire optionnelle, créneaux avec capacité. Il n'a ni commande à table par QR code, ni coursiers."
 ---
 
 GetEat convient si vous voulez tout garder gratuit, paiement en ligne compris (0 € d'abonnement, 0 € d'installation, 0 % de commission), et WeEat convient si vous voulez une application pour recevoir les commandes et si vos clients paient sur place (offre de base à 0 €, mais paiement en ligne en option à 39 € HT par mois, soit 46,80 € TTC). Aucun des deux ne prend de commission ni n'impose d'engagement.

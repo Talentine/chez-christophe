@@ -5,7 +5,7 @@ description: "Plateformes, constructeurs de sites, outils de restauration, solut
 meta_title: "Comparatif création site click and collect 2026"
 meta_description: "Comparatif pour créer un site de click and collect en 2026 : commissions, abonnements, fonctions utiles à un commerce de bouche et grille de choix."
 date: 2026-08-26
-modified: 2026-11-08
+modified: 2026-11-12
 rubrique: Comparatif
 emoji: 🔍
 keywords:
@@ -93,6 +93,15 @@ Elles se distinguent surtout par la commission, l'abonnement et ce qui est prév
 | Engagement | Variable | Mensuel | Souvent 12 mois | Sans engagement |
 
 Pour le duel le plus fréquent, la comparaison détaillée est dans notre article [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite). Si un éditeur de caisse vous propose son module, lisez d'abord [faut-il changer de caisse pour faire du click and collect](/blog/click-and-collect-sans-changer-de-caisse).
+
+## Où trouver les comparatifs outil par outil ?
+
+Ce guide compare des familles de solutions. Pour des noms et des prix relevés sur les sites des éditeurs, voyez nos pages détaillées :
+
+- **Classements par métier** : [boucherie](/blog/meilleur-logiciel-click-and-collect-boucherie), [boulangerie](/blog/meilleure-application-commande-en-ligne-boulangerie), [restaurant sans commission](/blog/meilleur-logiciel-commande-en-ligne-restaurant-sans-commission), [traiteur](/blog/meilleur-logiciel-commande-traiteur) et [boutique en ligne d'un commerce de proximité](/blog/meilleurs-outils-boutique-en-ligne-commerce-de-proximite).
+- **Avis** : [RushPilot](/blog/avis-rushpilot), [Heustach](/blog/avis-heustach), [Achil](/blog/avis-achil), [Click&Croque](/blog/avis-click-and-croque) et [Takeasy](/blog/avis-takeasy).
+- **Comparaisons** : [RushPilot ou Achil](/blog/rushpilot-ou-achil), [Heustach ou Achil](/blog/heustach-ou-achil), [Click&Croque ou Takeasy](/blog/click-and-croque-ou-takeasy), [BDN Collect ou bonappli](/blog/bdn-collect-ou-bonappli) et [GetEat ou WeEat](/blog/geteat-ou-weeat).
+- **Alternatives** : à [RushPilot](/blog/alternative-rushpilot), [Heustach](/blog/alternative-heustach), [Mon Petit Drive](/blog/alternative-mon-petit-drive), [Toporder](/blog/alternative-toporder) et [la boutique en ligne SumUp](/blog/alternative-sumup-boutique-en-ligne).
 
 ## Comment choisir en dix minutes ?
 
