@@ -15,6 +15,8 @@ faq:
     r: "En Europe, chez des hébergeurs conformes au RGPD. Les données des clients d'un commerçant lui appartiennent et sont exportables à tout moment."
   - q: "Marchéo livre-t-il les commandes ?"
     r: "Non. Marchéo ne livre pas et n'a pas de coursiers. Il fournit l'outil qui permet au commerçant de mettre en place son propre système de livraison : zone, créneaux, minimum de commande, frais, tournée organisée par créneau avec les adresses et l'itinéraire. La livraison est faite par le commerçant ou son livreur, sans commission."
+  - q: "Marchéo est-il une plateforme de livraison comme Uber Eats ?"
+    r: "Non. Marchéo n'est ni une plateforme de livraison ni une place de marché : c'est un logiciel qui crée la boutique en ligne et le site internet du commerçant. Il ne prend aucune commission sur les ventes (0 %), n'a pas de livreurs et ne référence pas les commerces dans une application commune. Le commerçant paie un abonnement fixe de 19, 39 ou 59 € par mois, sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €."
   - q: "Pour quels commerces Marchéo est-il fait ?"
     r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
   - q: "Marchéo est-il une alternative à Shopify ou Wix pour un commerce de proximité ?"

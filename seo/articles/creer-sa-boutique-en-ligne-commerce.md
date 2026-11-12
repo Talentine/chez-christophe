@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-11-01
+modified: 2026-11-12
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -95,7 +95,7 @@ Chez Marchéo, les prix sont fixes et affichés :
 | Click & Collect + Réservation | 39 € | 399 € | Commande en ligne avec retrait, réservation de table |
 | Click & Collect + Livraison | 59 € | 549 € | Commande en ligne avec retrait et livraison organisée par vous |
 
-Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect).
+Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect). Pour ne pas confondre les trois coûts d'une vente en ligne, lisez aussi [la différence entre commission et frais bancaires](/blog/commission-ou-frais-bancaires-vente-en-ligne).
 
 ## Ce qu'il vous faut, et ce qu'il ne vous faut pas
 

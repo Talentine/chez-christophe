@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Commande boucherie Noël : prendre les commandes en ligne](https://marchéo.fr/blog/commande-boucherie-noel-en-ligne) : Commande boucherie Noël : bon de commande papier ou en ligne, chapons vendus au poids, date limite, acompte et retraits du 24. Le guide du boucher.
+- [Commission ou frais bancaires : quelle différence en vente en ligne ?](https://marchéo.fr/blog/commission-ou-frais-bancaires-vente-en-ligne) : Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.
 - [Livraison plateau repas entreprise : le guide du traiteur](https://marchéo.fr/blog/livraison-plateau-repas-entreprise-traiteur) : Traiteur, lancez la livraison de plateaux repas en entreprise : carte, prix par personne, minimum, heure limite, tournée du midi et froid, sans commission.
 - [Faut-il changer de caisse pour faire du click and collect ?](https://marchéo.fr/blog/click-and-collect-sans-changer-de-caisse) : Faut-il une nouvelle caisse pour proposer le click and collect ? Non : comparatif honnête entre module de caisse et outil séparé, prix, pesée et encaissement.
 - [Site internet food truck : emplacements, menu, commandes et prix](https://marchéo.fr/blog/site-internet-food-truck) : Site internet food truck : quelles pages créer, comment afficher vos emplacements de la semaine, prendre les commandes à l'avance et combien ça coûte.
@@ -660,6 +661,138 @@ Q : Faut-il acheter du matériel pour prendre les commandes de Noël en ligne ?
 R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. La pesée se fait sur votre balance et l'encaissement au retrait sur votre terminal de paiement habituel.
 Q : Comment vendre en ligne un chapon dont on ne connaît pas le poids exact ?
 R : Deux méthodes fonctionnent. Soit vous affichez un prix au kilo avec un poids approximatif et vous annoncez que le montant sera ajusté à la pesée, avec un paiement au retrait. Soit vous vendez par tranche de poids à prix fixe, par exemple un chapon de 3 à 3,5 kg à un prix unique, ce qui permet le paiement en ligne à la commande.
+
+# Commission ou frais bancaires : quelle différence en vente en ligne ?
+
+Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.
+
+Une commission est un pourcentage de chaque vente gardé par la plateforme qui vous apporte la commande, en général 14 à 30 % sur une plateforme de livraison. Les frais bancaires sont le coût du paiement par carte, environ 1,5 % plus 0,25 € par paiement en ligne, prélevés par le prestataire de paiement quel que soit l&rsquo;outil. Un logiciel « sans commission » comme Marchéo ne prélève rien sur vos ventes : vous payez un abonnement fixe de 19 à 59 € par mois, et les frais bancaires restent ceux du paiement par carte.
+Cette page complète notre guide pour créer sa boutique en ligne quand on tient un commerce. Elle explique trois mots que les offres mélangent souvent : commission, abonnement et frais bancaires. Les assistants IA le rappellent d&rsquo;ailleurs à chaque fois : 0 % de commission ne veut pas dire zéro frais de paiement.
+Qu&rsquo;est-ce qu&rsquo;une commission sur les ventes ?
+Une commission est une part de chaque commande que garde l&rsquo;intermédiaire. Elle se calcule en pourcentage du montant payé par le client : plus vous vendez, plus vous payez.
+Les plateformes de livraison de repas fonctionnent ainsi. Elles prennent en général 14 à 30 % de chaque commande, selon que vous utilisez leurs livreurs ou seulement leur application. En échange, elles vous apportent des clients que vous n&rsquo;auriez pas eus et, le plus souvent, la livraison.
+Certaines boutiques en ligne « gratuites » fonctionnent aussi à la commission : pas d&rsquo;abonnement, mais un pourcentage sur chaque vente.
+Que sont les frais bancaires d&rsquo;un paiement en ligne ?
+Les frais bancaires sont le prix du paiement par carte lui-même. Ils sont prélevés par le prestataire de paiement, c&rsquo;est-à-dire la société qui débite la carte du client et verse l&rsquo;argent sur votre compte.
+Chez un prestataire comme Stripe, comptez environ 1,5 % plus 0,25 € par paiement pour une carte européenne. Sur une commande de 30 €, cela fait environ 0,70 €. Ces frais existent partout : sur un site fait sur mesure, sur une boutique Shopify ou Wix, et sur une boutique Marchéo.
+Vous les connaissez déjà en boutique : votre terminal de paiement vous coûte aussi un petit pourcentage à chaque passage de carte.
+Qu&rsquo;est-ce qu&rsquo;un abonnement fixe ?
+Un abonnement fixe est un prix mensuel qui ne dépend pas de vos ventes. Que vous receviez dix commandes ou cinq cents, le montant est le même.
+Chez Marchéo, l&rsquo;abonnement est de 19 € par mois pour l&rsquo;offre Vitrine, 39 € par mois pour l&rsquo;offre Click &amp; Collect + Réservation et 59 € par mois pour l&rsquo;offre Click &amp; Collect + Livraison, sans engagement. Des frais d&rsquo;installation uniques s&rsquo;ajoutent au départ : 249, 399 ou 549 € selon l&rsquo;offre.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Commission, abonnement, frais bancaires : quelles différences ?
+La différence tient à trois points : qui touche l&rsquo;argent, comment le montant est calculé, et ce que vous recevez en échange.
+
+
+
+
+Commission
+Abonnement fixe
+Frais bancaires
+
+
+
+
+Qui la touche
+La plateforme ou l&rsquo;outil
+L&rsquo;éditeur du logiciel
+Le prestataire de paiement
+
+
+Mode de calcul
+Pourcentage de chaque vente
+Prix fixe par mois
+Petit pourcentage plus un montant fixe par paiement
+
+
+Ordre de grandeur
+14 à 30 % sur une plateforme de livraison
+Quelques dizaines d&rsquo;euros par mois
+Environ 1,5 % + 0,25 € par paiement en ligne
+
+
+Augmente avec vos ventes
+Oui, fortement
+Non
+Oui, faiblement
+
+
+Ce que vous recevez
+Des clients, souvent des livreurs
+Un outil de commande à votre nom
+L&rsquo;encaissement par carte
+
+
+Peut-on l&rsquo;éviter
+Oui, en vendant sur sa propre boutique
+Non, c&rsquo;est le prix de l&rsquo;outil
+Oui, si le client paie au retrait
+
+
+
+Combien cela représente-t-il sur un exemple chiffré ?
+Sur un exemple de 3 000 € de ventes en ligne par mois, une commission de 14 à 30 % coûte 420 à 900 €, alors qu&rsquo;un abonnement fixe de 39 € avec les frais bancaires coûte environ 109 €. Les chiffres qui suivent sont un exemple choisi pour le calcul, pas une moyenne constatée.
+Prenons un commerce qui reçoit 100 commandes de 30 € dans le mois, toutes payées par carte en ligne.
+
+
+
+Poste
+Plateforme à commission
+Boutique à abonnement fixe (ex. Marchéo à 39 €)
+
+
+
+
+Commission sur 3 000 €
+420 à 900 € (14 à 30 %)
+0 €
+
+
+Abonnement du mois
+Variable selon la plateforme
+39 €
+
+
+Frais bancaires (1,5 % + 0,25 € × 100 paiements)
+Souvent compris dans la commission, à vérifier
+Environ 70 €
+
+
+Total du mois
+420 à 900 €
+Environ 109 €
+
+
+
+La première année, il faut ajouter les frais d&rsquo;installation uniques de Marchéo, 399 € pour cette offre. Si les clients paient au retrait, les 70 € de frais de paiement en ligne disparaissent : il reste les frais habituels de votre terminal pour ceux qui règlent par carte au comptoir.
+Ce calcul ne dit pas tout. La plateforme apporte des clients nouveaux et des livreurs, ce qu&rsquo;un abonnement ne fait pas. Notre comparaison Marchéo ou Uber Eats pour un restaurant détaille ce choix, et beaucoup de restaurants utilisent les deux.
+À partir de combien de ventes l&rsquo;abonnement fixe revient-il moins cher ?
+Un abonnement de 39 € par mois revient moins cher qu&rsquo;une commission de 14 % dès 280 € de ventes en ligne par mois environ. Le calcul est simple : 39 € divisés par 14 % donnent 279 €.
+En comptant les frais d&rsquo;installation la première année, le seuil monte un peu. Douze mois à 39 € plus 399 € d&rsquo;installation font 867 € sur l&rsquo;année, soit environ 72 € par mois. À 14 % de commission, cela correspond à un peu plus de 500 € de ventes en ligne par mois. Avec une commission de 30 %, le seuil descend à 240 € environ.
+En dessous de ces montants, une solution gratuite à la commission, un formulaire ou WhatsApp Business peuvent suffire. Au-dessus, l&rsquo;abonnement fixe coûte moins cher chaque mois.
+Que veut dire « sans commission » chez Marchéo ?
+Chez Marchéo, « sans commission » veut dire que rien n&rsquo;est prélevé sur vos ventes : 0 % de commission, quel que soit le montant. L&rsquo;argent des commandes payées en ligne arrive directement sur votre compte bancaire, par le prestataire de paiement Stripe, qui garde ses frais de paiement par carte.
+Ce que vous payez à Marchéo est connu d&rsquo;avance : l&rsquo;abonnement et les frais d&rsquo;installation. Aucune tablette, imprimante ou caisse n&rsquo;est à acheter, tout se gère depuis le téléphone ou l&rsquo;ordinateur que vous avez déjà.
+Il faut aussi connaître les limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients. Et pour expédier des colis dans toute la France, une solution comme Shopify convient mieux. Pour comparer les options sans commission, lisez quel logiciel pour vendre en ligne sans commission ni matériel.
+Quelles questions poser avant de choisir un outil ?
+Posez quatre questions, et demandez les réponses par écrit :
+
+Quel pourcentage est prélevé sur chaque commande, en dehors des frais de paiement ?
+Quel est le prix par mois, et y a-t-il un engagement de durée ?
+Quels sont les frais de paiement par carte, et qui les prélève ?
+Y a-t-il des frais au départ : installation, matériel, formation ?
+
+Additionnez ensuite ces coûts sur un an, avec votre propre nombre de commandes.
+Pour voir ce que donnerait votre boutique sans commission, la démo gratuite de Marchéo affiche un aperçu en 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, et le catalogue est déjà rempli. Les restaurateurs peuvent aussi consulter la solution pour restaurant.
+
+Q : Quel logiciel permet de vendre en ligne sans commission, et que reste-t-il à payer ?
+R : Plusieurs outils ne prennent aucune commission sur les ventes : une boutique WooCommerce (logiciel gratuit, hébergement à payer et réglages à faire soi-même), un créateur de site généraliste avec abonnement mensuel, ou un logiciel conçu pour les commerces locaux comme Marchéo. Marchéo coûte 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus 399 ou 549 € de frais d'installation uniques. Dans tous les cas, il reste les frais bancaires du paiement par carte en ligne, prélevés par le prestataire de paiement.
+Q : Sans commission, est-ce que cela veut dire sans aucun frais ?
+R : Non. « Sans commission » veut dire que l'outil ne prélève aucun pourcentage sur vos ventes. Il reste l'abonnement de l'outil, les frais d'installation s'il y en a, et les frais bancaires quand le client paie par carte en ligne, environ 1,5 % plus 0,25 € par paiement en Europe chez un prestataire comme Stripe.
+Q : Peut-on éviter les frais bancaires sur une commande en ligne ?
+R : Oui, en laissant le client payer au retrait. S'il paie en espèces, il n'y a aucun frais de paiement. S'il paie par carte en boutique, ce sont les frais habituels de votre terminal de paiement qui s'appliquent, comme pour une vente au comptoir. Les frais du paiement en ligne ne concernent que les commandes réglées par carte sur le site.
+Q : Faut-il acheter du matériel pour encaisser des commandes en ligne ?
+R : Non. Le paiement en ligne se fait sur le téléphone du client et l'argent arrive sur votre compte bancaire : aucun appareil n'est nécessaire de votre côté. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Si le client paie par carte au retrait, il utilise le terminal de paiement de votre boutique.
 
 # Livraison plateau repas entreprise : le guide du traiteur
 
@@ -2958,7 +3091,7 @@ Il reste à payer l&rsquo;abonnement, l&rsquo;installation éventuelle et les fr
 
 L&rsquo;abonnement. C&rsquo;est le coût fixe, que vous vendiez peu ou beaucoup.
 L&rsquo;installation. Certains outils la facturent une fois. Chez Marchéo, elle coûte 249, 399 ou 549 € selon l&rsquo;offre.
-Les frais de paiement. Ils sont dus au prestataire de paiement, pas au logiciel. Ils ne concernent que les paiements par carte en ligne.
+Les frais de paiement. Ils sont dus au prestataire de paiement, pas au logiciel. Ils ne concernent que les paiements par carte en ligne. Le détail est dans notre page sur la différence entre commission et frais bancaires.
 Les modules. Sur un outil généraliste, les créneaux de retrait ou la vente au poids peuvent demander des applications payantes.
 Votre temps. Il compte aussi, surtout si vous devez tout régler seul le soir.
 
@@ -5440,7 +5573,7 @@ Commande en ligne avec retrait et livraison organisée par vous
 
 
 
-Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez combien coûte un site de click &amp; collect.
+Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez combien coûte un site de click &amp; collect. Pour ne pas confondre les trois coûts d&rsquo;une vente en ligne, lisez aussi la différence entre commission et frais bancaires.
 Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
 Pour créer sa boutique en ligne, il vous faut un téléphone, vos produits et une heure de réglages. Beaucoup de commerçants repoussent le projet en pensant qu&rsquo;il faut du matériel, un développeur ou un gros budget. Ce n&rsquo;est plus le cas.
 
@@ -6989,7 +7122,7 @@ R : Non, ça le libère. Le client qui a commandé en ligne passe 30 secondes au
 
 Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pains spéciaux à l'avance, créneaux de retrait, protection contre les gâteaux non récupérés, photos, fiche Google. Avec les prix et un plan de mise en place en une semaine.
 
-Pour prendre les commandes en ligne, une boulangerie a besoin d&rsquo;une application ou d&rsquo;un site qui gère les créneaux de retrait, les gâteaux sur mesure et les précommandes de fêtes, sans commission sur chaque vente. Marchéo, logiciel français pensé pour les commerces de bouche, le fait pour 39 € par mois sans engagement, 0 % de commission, avec le catalogue boulangerie déjà rempli et sans matériel à acheter. Le client commande en 30 secondes, sans créer de compte.
+Le site internet d&rsquo;une boulangerie sert à prendre les commandes de gâteaux, de pains spéciaux et de produits de fêtes à l&rsquo;avance, avec une heure de retrait choisie par le client. Il lui faut trois choses : des créneaux de retrait avec une capacité, des gâteaux sur mesure faciles à commander, et aucune commission sur chaque vente. Marchéo, logiciel français pour les commerces de bouche, le fait pour 39 € par mois sans engagement, avec 0 % de commission, 399 € d&rsquo;installation unique, le catalogue boulangerie déjà rempli et sans matériel à acheter.
 Une boulangerie n&rsquo;a pas besoin d&rsquo;un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l&rsquo;avance : le gâteau d&rsquo;anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C&rsquo;est là que le carnet au comptoir montre ses limites, et c&rsquo;est là qu&rsquo;un site bien fait change les matinées.
 Que coûte la prise de commande au carnet ?
 Elle coûte des gâteaux jetés et du temps au comptoir. Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d&rsquo;une prise de commande manuelle.
@@ -7062,7 +7195,7 @@ Catalogue boulangerie déjà rempli, créneaux, empreinte, SMS
 
 
 
-Une commande de gâteau à 40 € par semaine rembourse l&rsquo;abonnement. Le détail des offres et des options propres au métier est sur la page click &amp; collect pour boulangerie.
+Une commande de gâteau à 40 € par semaine rembourse l&rsquo;abonnement. Les frais bancaires du paiement par carte s&rsquo;ajoutent quel que soit l&rsquo;outil : la différence avec une commission est expliquée dans commission ou frais bancaires en vente en ligne. Le détail des offres et des options propres au métier est sur la page click &amp; collect pour boulangerie.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Avant d&rsquo;ouvrir, vérifiez aussi les obligations légales d&rsquo;une boutique en ligne : allergènes sur chaque gâteau, conditions de vente et médiateur de la consommation.
 Quels sont les temps forts de l&rsquo;année pour les commandes ?
 Épiphanie, Pâques, fête des mères et fin d&rsquo;année. Une boulangerie vit sur un calendrier très régulier, et c&rsquo;est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
@@ -7071,7 +7204,7 @@ Quels sont les temps forts de l&rsquo;année pour les commandes ?
 
 Moment
 Ce qui se commande
-Quand ouvrir
+Quand l&rsquo;annoncer
 
 
 
@@ -7083,21 +7216,21 @@ Juste après Noël, pour la première semaine de janvier
 
 Pâques
 Œufs, sujets en chocolat, brioches
-Trois semaines avant
+Trois semaines avant, commandes en ligne deux semaines avant
 
 
 Fête des mères, communions
 Gâteaux de cérémonie, pièces montées
-Un mois avant
+Un mois avant, commandes en ligne deux semaines avant
 
 
 Fin d&rsquo;année
 Bûches, pains spéciaux, plateaux
-Début novembre, date limite ferme mi-décembre
+Carte annoncée en novembre, commandes en ligne vers le 11 décembre pour le 24
 
 
 
-Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C&rsquo;est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans organiser ses précommandes des fêtes.
+Sur Marchéo, les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir : annoncez la carte plus tôt, et donnez à vos clients la date d&rsquo;ouverture des commandes. Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C&rsquo;est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans organiser ses précommandes des fêtes.
 Pourquoi la fiche Google compte autant que le site ?
 Parce que la plupart des clients d&rsquo;une boulangerie la cherchent sur Google avant de commander. Un site de commande ne sert à rien si personne ne le trouve. Pour une boulangerie, la majorité des recherches sont locales : « boulangerie ouverte dimanche », « gâteau anniversaire » plus le nom de la ville. Ce qui répond à ces recherches, c&rsquo;est d&rsquo;abord votre fiche Google Business.
 Trois réglages font la différence, et ils sont gratuits :
@@ -7119,6 +7252,8 @@ Vendredi. Un mot à chaque client au comptoir : « Pour le week-end prochain, vo
 
 Les premières commandes arrivent en général le week-end suivant. En un mois, la liste du samedi matin est faite la veille, et personne n&rsquo;attend plus pendant qu&rsquo;on note un fraisier sur un carnet.
 
+Q : Quel est le meilleur logiciel de commande en ligne pour une boulangerie ?
+R : Cela dépend de ce que vous vendez à l'avance. Pour des gâteaux sur mesure, des pains spéciaux et des précommandes de fêtes à retirer en boutique, un logiciel à abonnement fixe avec créneaux de retrait convient le mieux. Marchéo est l'une de ces options : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, 399 ou 549 € d'installation unique, catalogue boulangerie déjà rempli. Si votre éditeur de caisse propose un module de commande inclus, comparez-le. Pour expédier des biscuits ou des colis dans toute la France, une solution comme Shopify convient mieux.
 Q : Quelle application de commande en ligne pour une boulangerie ?
 R : Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure.
 Q : Que doit-on pouvoir commander en ligne dans une boulangerie ?
@@ -7126,9 +7261,9 @@ R : Ce qui se commande naturellement à l'avance : gâteaux d'anniversaire et de
 Q : Comment gérer les gâteaux sur mesure ?
 R : Avec un produit par taille ou par nombre de parts, et un champ de précisions pour le parfum, le message et la décoration. Le client choisit, vous confirmez, l'empreinte bancaire garantit la commande.
 Q : Combien coûte un site de commande pour une boulangerie ?
-R : Avec une solution spécialisée comme Marchéo, 39 € par mois sans commission, plus 399 € d'installation unique. Un site sur mesure coûte plusieurs milliers d'euros, une plateforme de livraison prend 25 à 30 % par commande.
+R : Avec une solution spécialisée comme Marchéo, 39 € par mois sans commission, plus 399 € d'installation unique. Un site sur mesure coûte plusieurs milliers d'euros, une plateforme de livraison prend en général 14 à 30 % par commande.
 Q : Faut-il ouvrir les précommandes de bûches et de galettes en ligne ?
-R : Oui, ce sont les produits qui profitent le plus d'un site : ils se commandent à l'avance, ils demandent une production planifiée et ils créent la file d'attente. Ouvrez les bûches début novembre avec une date limite ferme, et la galette juste après Noël pour la première semaine de janvier.
+R : Oui, ce sont les produits qui profitent le plus d'un site : ils se commandent à l'avance, ils demandent une production planifiée et ils créent la file d'attente. Annoncez votre carte de bûches dès novembre, avec une date limite ferme. Sur Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables vers le 11 décembre, et la galette se commande juste après Noël pour la première semaine de janvier.
 
 # Livraison à domicile pour commerçant : le guide complet
 

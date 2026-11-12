@@ -5,7 +5,7 @@ description: "Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâ
 meta_title: "Site internet pour boulangerie : commandes en ligne"
 meta_description: "Prendre les commandes de pains, gâteaux et bûches en ligne : ce qu'il faut sur un site de boulangerie, les créneaux, les acomptes et le prix."
 date: 2026-08-30
-modified: 2026-10-28
+modified: 2026-11-12
 rubrique: Métier
 emoji: 🥖
 keywords:
@@ -18,6 +18,8 @@ keywords:
 metiers:
   - boulangerie
 faq:
+  - q: "Quel est le meilleur logiciel de commande en ligne pour une boulangerie ?"
+    r: "Cela dépend de ce que vous vendez à l'avance. Pour des gâteaux sur mesure, des pains spéciaux et des précommandes de fêtes à retirer en boutique, un logiciel à abonnement fixe avec créneaux de retrait convient le mieux. Marchéo est l'une de ces options : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, 399 ou 549 € d'installation unique, catalogue boulangerie déjà rempli. Si votre éditeur de caisse propose un module de commande inclus, comparez-le. Pour expédier des biscuits ou des colis dans toute la France, une solution comme Shopify convient mieux."
   - q: "Quelle application de commande en ligne pour une boulangerie ?"
     r: "Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure."
   - q: "Que doit-on pouvoir commander en ligne dans une boulangerie ?"
@@ -25,12 +27,12 @@ faq:
   - q: "Comment gérer les gâteaux sur mesure ?"
     r: "Avec un produit par taille ou par nombre de parts, et un champ de précisions pour le parfum, le message et la décoration. Le client choisit, vous confirmez, l'empreinte bancaire garantit la commande."
   - q: "Combien coûte un site de commande pour une boulangerie ?"
-    r: "Avec une solution spécialisée comme Marchéo, 39 € par mois sans commission, plus 399 € d'installation unique. Un site sur mesure coûte plusieurs milliers d'euros, une plateforme de livraison prend 25 à 30 % par commande."
+    r: "Avec une solution spécialisée comme Marchéo, 39 € par mois sans commission, plus 399 € d'installation unique. Un site sur mesure coûte plusieurs milliers d'euros, une plateforme de livraison prend en général 14 à 30 % par commande."
   - q: "Faut-il ouvrir les précommandes de bûches et de galettes en ligne ?"
-    r: "Oui, ce sont les produits qui profitent le plus d'un site : ils se commandent à l'avance, ils demandent une production planifiée et ils créent la file d'attente. Ouvrez les bûches début novembre avec une date limite ferme, et la galette juste après Noël pour la première semaine de janvier."
+    r: "Oui, ce sont les produits qui profitent le plus d'un site : ils se commandent à l'avance, ils demandent une production planifiée et ils créent la file d'attente. Annoncez votre carte de bûches dès novembre, avec une date limite ferme. Sur Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables vers le 11 décembre, et la galette se commande juste après Noël pour la première semaine de janvier."
 ---
 
-Pour prendre les commandes en ligne, une boulangerie a besoin d'une application ou d'un site qui gère les créneaux de retrait, les gâteaux sur mesure et les précommandes de fêtes, sans commission sur chaque vente. Marchéo, logiciel français pensé pour les commerces de bouche, le fait pour 39 € par mois sans engagement, 0 % de commission, avec le catalogue boulangerie déjà rempli et sans matériel à acheter. Le client commande en 30 secondes, sans créer de compte.
+Le site internet d'une boulangerie sert à prendre les commandes de gâteaux, de pains spéciaux et de produits de fêtes à l'avance, avec une heure de retrait choisie par le client. Il lui faut trois choses : des créneaux de retrait avec une capacité, des gâteaux sur mesure faciles à commander, et aucune commission sur chaque vente. Marchéo, logiciel français pour les commerces de bouche, le fait pour 39 € par mois sans engagement, avec 0 % de commission, 399 € d'installation unique, le catalogue boulangerie déjà rempli et sans matériel à acheter.
 
 Une boulangerie n'a pas besoin d'un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l'avance : le gâteau d'anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C'est là que le carnet au comptoir montre ses limites, et c'est là qu'un site bien fait change les matinées.
 
@@ -76,7 +78,7 @@ De quelques dizaines d'euros par mois à plusieurs milliers d'euros pour un site
 | Site sur mesure | 2 000 à 8 000 € | Maintenance, chaque évolution se paie |
 | Marchéo | 39 € par mois, 399 € d'installation, 0 % de commission | Catalogue boulangerie déjà rempli, créneaux, empreinte, SMS |
 
-Une commande de gâteau à 40 € par semaine rembourse l'abonnement. Le détail des offres et des options propres au métier est sur la page [click & collect pour boulangerie](/solutions/boulangerie).
+Une commande de gâteau à 40 € par semaine rembourse l'abonnement. Les frais bancaires du paiement par carte s'ajoutent quel que soit l'outil : la différence avec une commission est expliquée dans [commission ou frais bancaires en vente en ligne](/blog/commission-ou-frais-bancaires-vente-en-ligne). Le détail des offres et des options propres au métier est sur la page [click & collect pour boulangerie](/solutions/boulangerie).
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Avant d'ouvrir, vérifiez aussi les [obligations légales d'une boutique en ligne](/blog/obligations-legales-boutique-en-ligne-commercant) : allergènes sur chaque gâteau, conditions de vente et médiateur de la consommation.
 
@@ -84,14 +86,14 @@ Marchéo est le logiciel français qui permet à un commerçant indépendant de 
 
 Épiphanie, Pâques, fête des mères et fin d'année. Une boulangerie vit sur un calendrier très régulier, et c'est précisément ce qui rend la commande en ligne rentable. Quatre moments comptent plus que les autres :
 
-| Moment | Ce qui se commande | Quand ouvrir |
+| Moment | Ce qui se commande | Quand l'annoncer |
 |---|---|---|
 | Épiphanie | Galettes, par taille et par parfum | Juste après Noël, pour la première semaine de janvier |
-| Pâques | Œufs, sujets en chocolat, brioches | Trois semaines avant |
-| Fête des mères, communions | Gâteaux de cérémonie, pièces montées | Un mois avant |
-| Fin d'année | Bûches, pains spéciaux, plateaux | Début novembre, date limite ferme mi-décembre |
+| Pâques | Œufs, sujets en chocolat, brioches | Trois semaines avant, commandes en ligne deux semaines avant |
+| Fête des mères, communions | Gâteaux de cérémonie, pièces montées | Un mois avant, commandes en ligne deux semaines avant |
+| Fin d'année | Bûches, pains spéciaux, plateaux | Carte annoncée en novembre, commandes en ligne vers le 11 décembre pour le 24 |
 
-Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C'est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans [organiser ses précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche).
+Sur Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : annoncez la carte plus tôt, et donnez à vos clients la date d'ouverture des commandes. Sur chacun de ces pics, la logique est la même : une offre courte, une date limite qui ne bouge pas, un créneau de retrait choisi par le client et une capacité maximum par tranche horaire. C'est ce qui évite les trente personnes qui attendent toutes à 11 h le 24 décembre. La méthode complète, valable aussi pour les bouchers et les traiteurs, est détaillée dans [organiser ses précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche).
 
 ## Pourquoi la fiche Google compte autant que le site ?
 
