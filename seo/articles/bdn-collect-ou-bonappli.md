@@ -71,7 +71,7 @@ Pour Marchéo, l'offre Click & Collect + Réservation coûte 39 € x 12 = 468 �
 
 ## Quand choisir BDN Collect ?
 
-BDN Collect est le bon choix si vous voulez fidéliser une clientèle qui commande souvent. Son programme de fidélité est le plus fourni des trois : points, tampons ou cashback, paliers et parrainage.
+BDN Collect est le bon choix si vous voulez fidéliser une clientèle qui commande souvent. Il affiche un programme de fidélité complet : points, tampons ou cashback, paliers et parrainage.
 
 L'outil prend la forme d'une application web à votre marque, avec votre nom, votre logo et vos couleurs. Le client l'installe sur son téléphone sans passer par un store et reçoit des notifications push. Le paiement en ligne passe par Stripe, avec la carte, Apple Pay et Google Pay. Les créneaux ont une capacité, et vous pouvez mettre les commandes en pause.
 

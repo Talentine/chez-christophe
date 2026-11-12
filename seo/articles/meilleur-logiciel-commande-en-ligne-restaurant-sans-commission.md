@@ -52,11 +52,11 @@ Ces outils ne sont pas des plateformes de livraison. Les plateformes apportent d
 
 ### 2. Weeat : une base gratuite, des options payantes
 
-**Ce que c'est.** Sur weeat.fr, un système gratuit de commande en ligne (à emporter, livraison) et de réservation de table, avec options payantes ([weeat.fr](https://www.weeat.fr/fonctionnalites-et-tarification/)).
+**Ce que c'est.** WeEat, que son site écrit « Weeat », est un système gratuit de commande en ligne (à emporter, livraison) et de réservation de table, avec options payantes ([weeat.fr](https://www.weeat.fr/fonctionnalites-et-tarification/)).
 
 **Prix relevé.** Offre de base gratuite, sans frais mensuels ni frais d'installation. Options par mois : paiement en ligne 39 € HT (46,80 € TTC), site web personnalisé 19 € HT, application mobile dédiée (Android) 69 € HT, outils de promotion 29 € HT. Sans commission, sans engagement.
 
-**Pour qui c'est le bon choix.** Le restaurant qui encaisse au comptoir et veut prendre commandes et réservations sans abonnement. Plusieurs restaurants se gèrent depuis un seul compte.
+**Pour qui c'est le bon choix.** Le restaurant qui n'a pas besoin du paiement en ligne et veut prendre commandes et réservations sans abonnement. Plusieurs restaurants se gèrent depuis un seul compte.
 
 **Limite à connaître.** Le paiement en ligne n'est pas compris dans l'offre gratuite. Avec les quatre options, le total affiché est de 156 € HT par mois. Selon la page d'accueil, l'assistance est réservée aux options payantes.
 
@@ -76,7 +76,7 @@ Ces outils ne sont pas des plateformes de livraison. Les plateformes apportent d
 
 **Prix relevé.** « À partir de 29 € HT par mois et par établissement », commandes illimitées. Création de site sur devis. 0 % de commission, frais de Stripe ou SumUp à votre charge. Sans engagement, résiliation sans préavis ni frais.
 
-**Pour qui c'est le bon choix.** Le restaurant qui a déjà un site et veut y ajouter un module de commande, avec retrait et livraison organisée par ses soins, pour un prix d'entrée inférieur à celui de Marchéo.
+**Pour qui c'est le bon choix.** Le restaurant qui a déjà un site et veut y ajouter un module de commande, avec retrait et livraison organisée par ses soins, pour un prix d'entrée affiché inférieur à celui de Marchéo.
 
 **Limite à connaître.** Le prix est donné « à partir de », sans grille. Les CGV indiquent qu'il n'y a pas de période d'essai ; une démonstration gratuite est proposée. La réservation et le QR code ne sont pas précisés sur son site. Voir notre [avis sur Click&Croque](/blog/avis-click-and-croque).
 
@@ -88,7 +88,7 @@ Ces outils ne sont pas des plateformes de livraison. Les plateformes apportent d
 
 **Pour qui c'est le bon choix.** Le restaurant, la pizzeria ou le fast-food qui veut un site et une carte pré-remplie pour son métier : commande sans compte client, créneaux avec capacité, options, empreinte bancaire jusqu'à 75 % du panier contre les réservations non honorées, SMS inclus.
 
-**Limite à connaître.** Marchéo ne livre pas et n'a pas de coursiers. Ce n'est pas une place de marché : il n'apporte pas de clients. Il ne remplace pas la caisse, ne fait ni étiquettes, ni gestion de production, ni devis événementiel, ni expédition de colis en France entière. Il facture des frais d'installation, et les cinq autres outils affichent un prix d'entrée plus bas ou pas de frais d'installation.
+**Limite à connaître.** Marchéo ne livre pas et n'a pas de coursiers. Ce n'est pas une place de marché : il n'apporte pas de clients. Il ne remplace pas la caisse, ne fait ni étiquettes, ni gestion de production, ni devis événementiel, ni expédition de colis en France entière. Il facture des frais d'installation, alors qu'aucun des cinq autres outils n'en affiche.
 
 ### 6. Takeasy : click and collect et livraison dans un seul prix
 
@@ -96,7 +96,7 @@ Ces outils ne sont pas des plateformes de livraison. Les plateformes apportent d
 
 **Prix relevé.** 49 € HT par mois, soit 58,80 € TTC, commandes illimitées et configuration incluse. Nom de domaine personnalisé : 9 € HT par mois en plus. 7 jours d'essai. 0 % de commission. Sans engagement.
 
-**Pour qui c'est le bon choix.** Le restaurant qui fait de la vente à emporter et livre lui-même : impression automatique des tickets, notifications par SMS, e-mail et push, le tout pour moins cher que la formule livraison de Marchéo.
+**Pour qui c'est le bon choix.** Le restaurant qui fait de la vente à emporter et livre lui-même : impression automatique des tickets, notifications par SMS, e-mail et push. Click and collect et livraison sont réunis à 49 € HT par mois, quand la formule livraison de Marchéo est à 59 €.
 
 **Limite à connaître.** L'éditeur l'écrit lui-même : pas de QR code, pas de bornes, pas de réservation. Les frais Stripe sont indiqués de deux façons selon la page (environ 1,5 % + 0,25 € dans les CGU, environ 0,30 € de frais fixes en accueil). Voir notre [avis sur Takeasy](/blog/avis-takeasy).
 
@@ -105,7 +105,7 @@ Ces outils ne sont pas des plateformes de livraison. Les plateformes apportent d
 | Outil | Prix relevé | Commission | Engagement | Pour qui |
 | --- | --- | --- | --- | --- |
 | GetEat | 0 € d'abonnement, 0 € d'installation | 0 % | Aucun | Démarrer sans coût fixe |
-| Weeat | Base gratuite ; paiement en ligne 39 € HT/mois | Sans commission | Aucun | Commandes payées au comptoir |
+| Weeat | Base gratuite ; paiement en ligne 39 € HT/mois | Sans commission | Aucun | Commandes sans paiement en ligne |
 | ARDOIZA | 29, 40 ou 89 €/mois (TVA non applicable) | 0 % | Aucun | Réservation et vente à emporter |
 | Click&Croque | À partir de 29 € HT/mois | 0 % | Aucun | Module de commande sur un site existant |
 | Marchéo | 39 ou 59 €/mois ; installation 399 ou 549 € | 0 % | Aucun | Site, carte pré-remplie, réservation |

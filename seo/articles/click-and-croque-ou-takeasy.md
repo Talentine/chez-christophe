@@ -39,7 +39,7 @@ Les deux outils font le même métier : la commande en ligne en direct pour un r
 | Critère | Click&Croque | Takeasy | Marchéo |
 | --- | --- | --- | --- |
 | Prix par mois | À partir de 29 € HT par établissement. Le prix applicable est communiqué à la souscription | 49 € HT, soit 58,80 € TTC. Nom de domaine personnalisé : + 9 € HT | 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) |
-| Commandes | Illimitées | Illimitées | Illimitées, sans commission |
+| Commandes | Illimitées | Illimitées | Pas de frais par commande |
 | Commission sur les ventes | 0 % | 0 % | 0 % |
 | Frais de paiement | Ceux de Stripe ou SumUp, montant non affiché | Ceux de Stripe : environ 1,5 % + 0,25 € par transaction à titre indicatif | Ceux de Stripe |
 | Engagement | Sans engagement, résiliation sans préavis ni frais, effet à la fin du mois payé | Sans engagement, résiliation à effet à la fin du mois en cours | Sans engagement |
@@ -99,7 +99,7 @@ Il ajoute la commande sans compte client, des créneaux de retrait avec capacit�
 
 Ses limites sont les suivantes :
 
-- il est plus cher la première année que Click&Croque et Takeasy, à cause des frais d'installation ;
+- il est plus cher la première année que Click&Croque et Takeasy, frais d'installation compris ;
 - il ne livre pas et n'a pas de coursiers, comme ces deux outils ;
 - ce n'est pas une place de marché, il n'apporte pas de clients ;
 - il ne remplace pas la caisse ;

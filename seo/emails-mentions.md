@@ -10,19 +10,19 @@ Règles :
 - Quand un site accepte : ajouter la mention promise sur la page Marchéo indiquée, puis redemander l'indexation (IndexNow pour Bing, Search Console pour Google) et prévenir le site pour qu'il fasse de même.
 - Relance : une seule, 7 jours après l'envoi, en réponse au même fil.
 
-## Brouillons créés dans Gmail (17)
+## Brouillons créés dans Gmail (16 à envoyer)
 
 | # | Site | Adresse | Ce qui est demandé | Page Marchéo où citer le site en échange | Statut |
 | --- | --- | --- | --- | --- | --- |
 | 1 | tool-advisor.fr | hello@tool-advisor.fr | fiche dans l'annuaire (gratuit) + ligne « click & collect sans changer de caisse » dans le comparatif des caisses pour boucheries | /blog/click-and-collect-sans-changer-de-caisse | brouillon |
 | 2 | lechommerces.fr | info@b2minfo.fr | article de conseil sur les commandes de Noël en boucherie + ligne dans le comparatif (attention : leur comparatif est un article sponsorisé, dès 1 090 € HT) | /blog/click-and-collect-boucherie | brouillon |
-| 3 | up-review.co | contact@upreview.fr | ligne « commande en direct sans commission » dans le top 5 des plateformes de livraison | /blog/fiche-google-business-commerce-bouche | brouillon |
+| 3 | up-review.co | contact@upreview.fr | ligne « commande en direct sans commission » dans le top 5 des plateformes de livraison | /blog/fiche-google-business-commerce-bouche | brouillon (garder celui dont l'objet finit par « version corrigée », supprimer l'autre : il disait à tort que Marchéo n'a pas de fidélité) |
 | 4 | skello.io | marketing@skello.io | cas « petit traiteur » dans le comparatif des logiciels pour traiteurs | /blog/traiteur-noel-livraison-a-domicile | brouillon |
 | 5 | moncamionresto.com | contact@moncamionresto.fr | mention dans leurs guides food truck (adresse indiquée pour les données personnelles : à défaut, téléphoner au 01 42 04 79 17) | /blog/site-internet-food-truck | brouillon |
 | 6 | fromage.fr | Contact@laboitedufromager.com | Marchéo en exemple de la voie « son propre site » | /blog/site-internet-fromagerie | brouillon |
 | 7 | toquedechef.com | contact@toquedechef.com | Marchéo en exemple de « forfait mensuel fixe » | /blog/application-click-and-collect-restaurant | brouillon |
 | 8 | abby.fr | hello@abby.fr | encadré « livraison locale » dans l'article sur les frais de port | /blog/comment-calculer-ses-frais-de-livraison-commercant | brouillon |
-| 9 | hellofidy.com | bonjour@hellofidy.com | mention dans le guide « digitaliser sa fromagerie » (concurrent partiel : chance faible) | /blog/site-internet-fromagerie | brouillon |
+| 9 | hellofidy.com | bonjour@hellofidy.com | mention dans le guide « digitaliser sa fromagerie » (concurrent partiel : chance faible) | /blog/site-internet-fromagerie | brouillon à supprimer : il dit à tort que Marchéo n'a pas de carte de fidélité, et Hellofidy est concurrent sur ce point |
 | 10 | kontakts.pro | charles@kontakts.pro | mention dans un article pour commerçants | /blog/digitaliser-commerce-bouche | brouillon |
 | 11 | nakide.fr | contact@nakide.fr | mention sur leur blog, ou article commun sur le coin retrait | /blog/click-and-collect-boucherie | brouillon |
 | 12 | restaurenta.fr | contact@restaurenta.com | mention dans l'article sur la commission Uber Eats | /blog/marcheo-ou-uber-eats-restaurant | brouillon |

@@ -34,12 +34,12 @@ L'éditeur de cet article est Marchéo, un concurrent de ces deux outils. Nous n
 
 ## Quelles sont les différences entre Heustach et Achil ?
 
-Les deux outils se ressemblent : une plateforme qui liste des commerces, une boutique pour chacun, le click & collect et la livraison par le commerçant. Ils diffèrent surtout par la façon de facturer et par les applications.
+Les deux outils se ressemblent : une plateforme commune où figurent les commerces, le click & collect et la livraison par le commerçant. Ils diffèrent surtout par la façon de facturer et par les applications.
 
 | Critère | Heustach | Achil | Marchéo |
 | --- | --- | --- | --- |
 | Abonnement | 0 € | Free : 0 € par mois. Standard : 19,99 € par mois, ou 14,99 € en facturation annuelle. HT ou TTC non précisé | 19 € (Vitrine), 39 € (Click & Collect + Réservation), 59 € (Click & Collect + Livraison) par mois |
-| Frais par commande | 0,25 € HT par commande payée en ligne. 0 € pour une commande réglée au retrait | Aucun hors paiement en ligne | Aucun |
+| Frais par commande | 0,25 € HT par commande payée en ligne. 0 € pour une commande réglée au retrait | Aucun affiché en dehors des frais de paiement en ligne | Aucun |
 | Frais de paiement en ligne | 0,25 € TTC + 1,5 % de la commande (Stripe, refacturés sans marge) | 1,9 % + 0,19 € par transaction en Free, 1,7 % + 0,17 € en Standard | Frais bancaires de Stripe |
 | Commission sur les ventes | 0 % | Sans commission | 0 % |
 | Engagement | « 0 mois » sur la page tarifs. Préavis d'un mois dans les conditions générales | Sans engagement | Sans engagement |
@@ -72,7 +72,7 @@ La première ligne est affichée hors taxes et la seconde part d'un montant TTC.
 
 Le site d'Achil ne précise pas si ces montants sont HT ou TTC.
 
-**Marchéo.** L'offre Click & Collect + Réservation coûte 39 € x 12 = 468 €, plus 399 € d'installation, soit 867 € la première année. Les frais bancaires de Stripe s'ajoutent pour les paiements par carte en ligne. Avec ce volume et ce panier, Marchéo ne revient pas moins cher que ces deux outils.
+**Marchéo.** L'offre Click & Collect + Réservation coûte 39 € x 12 = 468 €, plus 399 € d'installation, soit 867 € la première année. Les frais bancaires de Stripe s'ajoutent pour les paiements par carte en ligne. Dans cet exemple, Marchéo n'est pas l'option la moins chère, surtout la première année.
 
 Un point à garder en tête : chez Heustach, les frais de paiement ne sont pas remboursés quand vous remboursez un client. Pour bien distinguer ces frais d'une commission, lisez [commission ou frais bancaires](/blog/commission-ou-frais-bancaires-vente-en-ligne).
 

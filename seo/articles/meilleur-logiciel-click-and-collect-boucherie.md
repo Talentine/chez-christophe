@@ -88,7 +88,7 @@ Ils sont classés du plus équipé pour le comptoir et le laboratoire au plus l�
 
 ### 6. Heustach : payer à la commande
 
-**Ce que c'est.** Une plateforme de click and collect sans abonnement, facturée à la commande ([heustach.fr](https://heustach.fr/je-suis-commercant/tarifs/)). Son site cite d'abord les food trucks, restaurants et boulangeries, puis les producteurs et « autres boutiques ».
+**Ce que c'est.** Une plateforme de click and collect sans abonnement, facturée à la commande ([heustach.fr](https://heustach.fr/je-suis-commercant/tarifs/)). Son site cite d'abord les food trucks, restaurants et boulangeries, puis les producteurs, les fleuristes et d'autres boutiques ; la boucherie n'y est pas nommée.
 
 **Prix relevé.** 0 € d'abonnement et d'installation. 0,25 € HT par commande payée en ligne, plus des frais de paiement de 0,25 € TTC + 1,5 %. Commande réglée au retrait : 0 €. SMS en option : 0,10 € HT.
 
