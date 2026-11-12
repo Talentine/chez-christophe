@@ -153,17 +153,17 @@ a{color:var(--vert)}
         </div>
         <div class="calc-box good">
           <div class="k">Avec Marchéo</div>
-          <div class="v">19 à 39 €</div>
-          <div class="n">selon l'offre — fixe, quel que soit votre volume</div>
+          <div class="v">0 €</div>
+          <div class="n">de commission, quel que soit votre volume</div>
         </div>
       </div>
 
       <div class="calc-out">
-        <div class="v" id="ecart">6 732 €</div>
-        <div class="n">de différence sur un an</div>
+        <div class="v" id="ecart">7 200 €</div>
+        <div class="n">de commission versés à la plateforme sur un an. Avec Marchéo : 0 € de commission</div>
       </div>
     </div>
-    <p class="small" style="margin-top:14px">Calcul indicatif sur la base d'une commission de 30 %, taux haut couramment pratiqué par les plateformes de livraison, comparée à notre abonnement le plus complet à 39 €/mois. Détail des offres sur la page <a href="/#tarifs">tarifs</a>.</p>
+    <p class="small" style="margin-top:14px">Calcul indicatif sur la base d'une commission de 30 %, taux haut couramment pratiqué par les plateformes de livraison. Marchéo fonctionne avec un abonnement fixe, sans engagement : le tarif de chaque offre s'affiche dans votre espace, avant toute mise en ligne. <a href="/#tarifs">Voir les offres</a>.</p>
   </div>
 </section>
 
@@ -216,9 +216,10 @@ a{color:var(--vert)}
 <section>
   <div class="wrap">
     <h2>Comment on gagne notre vie, alors</h2>
-    <p class="lead">Un abonnement mensuel fixe, de 19 à 39 € selon l'offre, sans engagement. C'est tout. Pas de pourcentage caché, pas de frais par transaction, pas de palier qui se déclenche quand vous marchez bien.</p>
+    <p class="lead">Un abonnement mensuel fixe, sans engagement. C'est tout. Pas de pourcentage caché, pas de frais par transaction, pas de palier qui se déclenche quand vous marchez bien.</p>
     <p class="lead">Notre intérêt et le vôtre vont dans le même sens : si votre boutique en ligne fonctionne, vous restez. Nous n'avons aucune raison de vous prendre une part de votre croissance.</p>
-    <a class="cta vert" href="/#tarifs">Voir les tarifs</a>
+    <p class="lead">La démo est gratuite, sans carte bancaire, et le tarif de chaque offre s'affiche dans votre espace, avant toute mise en ligne.</p>
+    <a class="cta vert" href="/#tarifs">Voir les offres</a>
   </div>
 </section>
 
@@ -252,7 +253,7 @@ a{color:var(--vert)}
 
     <details>
       <summary>Vraiment aucune commission ?</summary>
-      <p>Aucune. Vous payez un abonnement mensuel fixe, entre 19 et 39 € selon l'offre choisie. Que vous fassiez 10 ou 200 commandes dans le mois, le montant ne bouge pas.</p>
+      <p>Aucune. Vous payez un abonnement mensuel fixe, sans engagement, dont le montant s'affiche dans votre espace avant toute mise en ligne. Que vous fassiez 10 ou 200 commandes dans le mois, le montant ne bouge pas.</p>
     </details>
 
     <details>
@@ -293,10 +294,10 @@ a{color:var(--vert)}
       ecart=document.getElementById('ecart');
   function fmt(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
   function maj(){
-    var ca=+s.value, commission=ca*0.30, diff=(commission-39)*12; // base 39 € : notre offre la plus complète
+    var ca=+s.value, commission=ca*0.30, annuel=commission*12; // commission versée à une plateforme à 30 %, sur un an
     caVal.textContent=fmt(ca);
     perte.textContent=fmt(commission);
-    ecart.textContent=fmt(diff>0?diff:0);
+    ecart.textContent=fmt(annuel);
   }
   s.addEventListener('input',maj); maj();
 })();

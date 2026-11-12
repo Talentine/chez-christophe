@@ -17,10 +17,10 @@
   <!-- Redirect Supabase Auth recovery/invite links vers la page reset dédiée -->
   <script>(function(){var h=location.hash||'',s=location.search||'';var reFrag=/(?:^|[#&])type=(recovery|invite|magiclink|signup)(?:&|$)/,reQuery=/(?:^|[?&])type=(recovery|invite|magiclink|signup)(?:&|$)/;if(reFrag.test(h)){location.replace('/reset-password.html'+h);return;}if(reQuery.test(s)){location.replace('/reset-password.html'+s+h);return;}})();</script>
   <title>Création de site click & collect pour commerçants · Marchéo</title>
-  <meta name="description" content="Créez la boutique en ligne et le site de votre commerce : click & collect et livraison à domicile, sans matériel à acheter, 0 % de commission, dès 19 €/mois.">
+  <meta name="description" content="Créez la boutique en ligne et le site de votre commerce : click & collect et livraison à domicile, sans matériel à acheter, 0 % de commission, démo gratuite sans carte bancaire.">
   <meta name="keywords" content="digitaliser son commerce de bouche, application commerçant marché, logiciel gestion food-truck, fidéliser clients marché local, click and collect marché, alerter clients absence marché, producteurs locaux vente directe, manger local, panier primeur, réservation pizzeria en ligne, fleuriste en ligne, bouquet livraison, marché horaires, où trouver un food-truck">
   <meta property="og:title" content="Marchéo · Boutique en ligne, click & collect et livraison, sans matériel">
-  <meta property="og:description" content="Boutique en ligne avec retrait boutique et livraison à domicile. Protection anti no-show incluse. À partir de 249€ · 19€/mois sans engagement.">
+  <meta property="og:description" content="Boutique en ligne avec retrait boutique et livraison à domicile. Protection anti no-show incluse. Démo gratuite, 0 % de commission, sans engagement.">
   <meta property="og:image" content="https://marchéo.fr/api/og">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://marchéo.fr/">
@@ -91,15 +91,8 @@
         "name": "Marchéo",
         "applicationCategory": "BusinessApplication",
         "url": "https://marchéo.fr/",
-        "description": "Boutique en ligne de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, abonnement de 19 à 59 € par mois sans engagement.",
-        "operatingSystem": "Web, iOS, Android",
-        "offers": {
-          "@type": "AggregateOffer",
-          "priceCurrency": "EUR",
-          "lowPrice": "19",
-          "highPrice": "59",
-          "offerCount": "3"
-        }
+        "description": "Boutique en ligne de click & collect, livraison locale et réservation pour les commerces de bouche. 0 % de commission, démo gratuite sans carte bancaire, sans engagement.",
+        "operatingSystem": "Web, iOS, Android"
       }
     ]
   }
@@ -533,10 +526,11 @@
       font-weight: 700; color: var(--brand); line-height: 1;
     }
     .pricing-card.popular .pricing-setup-amount { color: #fff; }
+    .pricing-setup-amount.is-free { font-size: 30px; line-height: 1.15; }
     .pricing-setup-note {
-      font-size: 12px; color: var(--text-muted); margin-top: 3px;
+      font-size: 12.5px; line-height: 1.5; color: var(--text-muted); margin-top: 8px;
     }
-    .pricing-card.popular .pricing-setup-note { color: rgba(255,255,255,.5); }
+    .pricing-card.popular .pricing-setup-note { color: rgba(255,255,255,.72); }
     .pricing-divider {
       height: 1px; background: var(--cream-dark);
       margin: 14px 0;
@@ -562,12 +556,13 @@
     /* Features */
     .pricing-features { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
     .pricing-features li {
-      display: flex; align-items: flex-start; gap: 10px;
+      position: relative; padding-left: 28px; text-align: left;
       font-size: 13.5px; line-height: 1.4;
     }
     .pricing-features li::before {
       content: '';
-      width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+      position: absolute; left: 0; top: 1px;
+      width: 18px; height: 18px;
       border-radius: 50%;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C3D2E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/13px no-repeat;
       background-color: rgba(28,61,46,.1);
@@ -850,6 +845,7 @@
       .pricing-card.popular { transform: none; }
       .pricing-card { padding: 28px 22px; }
       .pricing-setup-amount { font-size: 36px; }
+      .pricing-setup-amount.is-free { font-size: 28px; }
 
       /* Témoignages */
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -892,7 +888,7 @@
     <a href="#exemples" class="nav-link">Exemples</a>
     <a href="#fonctionnement" class="nav-link">Comment ça marche</a>
     <a href="/sans-commission" class="nav-link">Sans commission</a>
-    <a href="#tarifs" class="nav-link">Tarifs</a>
+    <a href="#tarifs" class="nav-link">Offres</a>
     <a href="/faq" class="nav-link">FAQ</a>
     <a href="#contact" class="nav-link">Contact</a>
   </div>
@@ -1619,7 +1615,7 @@ function afficherPlusDeSites() {
       <details class="faq-item">
         <summary>Combien ça coûte vraiment ?</summary>
         <div class="faq-answer">
-          Frais d'installation unique entre <strong>249 € et 549 €</strong> selon votre offre, payés <strong>uniquement à la mise en ligne</strong> (la démo est gratuite), puis <strong>19 à 59 € par mois</strong> sans engagement. <strong>0 % de commission</strong> sur vos ventes — vous gardez 100 % du panier. Pas de frais cachés, pas d'augmentation surprise.
+          <strong>La démo est gratuite, sans carte bancaire.</strong> Vous créez votre boutique et vous la testez tranquillement. Le tarif de chaque offre s'affiche dans votre espace, <strong>avant toute mise en ligne</strong> : vous décidez en connaissant le montant exact. Ensuite, c'est <strong>sans engagement</strong> et <strong>0 % de commission</strong> sur vos ventes, vous gardez 100 % du panier. Pas de frais cachés, pas d'augmentation surprise.
         </div>
       </details>
 
@@ -1707,9 +1703,9 @@ function afficherPlusDeSites() {
 <!-- PRICING -->
 <section class="section section-center" id="tarifs" aria-labelledby="tarifs-title">
   <div class="container">
-    <p class="section-label reveal">Tarifs</p>
-    <h2 id="tarifs-title" class="reveal reveal-delay-1">Transparent, sans commission</h2>
-    <p class="section-sub reveal reveal-delay-2">Démo gratuite d'abord · frais d'installation payés seulement à la mise en ligne · abonnement sans engagement · <a href="/sans-commission" style="color:var(--brand);font-weight:700;text-decoration:underline;">0% de commission</a> sur vos ventes.</p>
+    <p class="section-label reveal">Offres</p>
+    <h2 id="tarifs-title" class="reveal reveal-delay-1">Trois offres, zéro commission</h2>
+    <p class="section-sub reveal reveal-delay-2">Démo gratuite, sans carte bancaire · le tarif de chaque offre s'affiche dans votre espace, avant toute mise en ligne · sans engagement · <a href="/sans-commission" style="color:var(--brand);font-weight:700;text-decoration:underline;">0% de commission</a> sur vos ventes.</p>
 
     <div class="pricing-grid">
 
@@ -1718,15 +1714,9 @@ function afficherPlusDeSites() {
         <div class="pricing-name">Offre 1</div>
         <div class="pricing-headline">Vitrine</div>
         <div class="pricing-price-block">
-          <div class="pricing-setup-label">Frais d'installation</div>
-          <div class="pricing-setup-amount">249€</div>
-          <div class="pricing-setup-note">payés une seule fois, à la mise en ligne</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-monthly">
-            <span class="pricing-monthly-amount">19€</span>
-            <span class="pricing-monthly-label">/mois</span>
-          </div>
-          <div class="pricing-no-commit">sans engagement · résiliable à tout moment</div>
+          <div class="pricing-setup-label">Pour commencer</div>
+          <div class="pricing-setup-amount is-free">Démo gratuite</div>
+          <div class="pricing-setup-note">Sans carte bancaire. Tarif affiché dans votre espace, avant toute mise en ligne · sans engagement</div>
         </div>
         <div style="font-size:12.5px;color:var(--text-muted);margin:0 0 14px;">Pour être visible sur Google, sans gérer de commandes en ligne.</div>
         <ul class="pricing-features" aria-label="Inclus">
@@ -1746,16 +1736,11 @@ function afficherPlusDeSites() {
         <div class="pricing-name">Offre 2</div>
         <div class="pricing-headline">Click &amp; Collect<br>+ Réservation</div>
         <div class="pricing-price-block">
-          <div class="pricing-setup-label">Frais d'installation</div>
-          <div class="pricing-setup-amount">399€</div>
-          <div class="pricing-setup-note">payés une seule fois, à la mise en ligne</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-monthly">
-            <span class="pricing-monthly-amount" style="color:var(--gold,#F4B942)">🎁 1er mois OFFERT</span>
-          </div>
-          <div class="pricing-no-commit" style="margin-top:6px"><strong>39€</strong>/mois à partir du 2e mois · sans engagement</div>
+          <div class="pricing-setup-label">Pour commencer</div>
+          <div class="pricing-setup-amount is-free">Démo gratuite</div>
+          <div class="pricing-setup-note">Sans carte bancaire. Tarif affiché dans votre espace, avant toute mise en ligne · sans engagement</div>
         </div>
-        <div style="font-size:12.5px;color:var(--text-muted);margin:0 0 14px;">Pour vendre en ligne, accepter les réservations et fidéliser vos clients.</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,.72);margin:0 0 14px;">Pour vendre en ligne, accepter les réservations et fidéliser vos clients.</div>
         <ul class="pricing-features" aria-label="Inclus">
           <li>✨ <strong>Toute l'offre Vitrine</strong> +</li>
           <li><strong>Catalogue illimité</strong> (35 produits prêts à l'emploi)</li>
@@ -1766,7 +1751,7 @@ function afficherPlusDeSites() {
           <li>Notifications gratuites (vous + vos clients)</li>
           <li>Calendrier de vos commandes</li>
           <li>Comptes salariés (3 max)</li>
-          <li>🎁 <strong>1er mois OFFERT</strong> · <strong>0% commission</strong></li>
+          <li><strong>0 % de commission</strong> · sans engagement</li>
         </ul>
         <a href="inscription.html?offre=clickcollect" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta='{"placement":"tarifs_clickcollect"}'>Créer ma démo gratuite</a>
       </div>
@@ -1776,14 +1761,9 @@ function afficherPlusDeSites() {
         <div class="pricing-name">Offre 3</div>
         <div class="pricing-headline">Tout-en-un<br>+ Livraison</div>
         <div class="pricing-price-block">
-          <div class="pricing-setup-label">Frais d'installation</div>
-          <div class="pricing-setup-amount">549€</div>
-          <div class="pricing-setup-note">payés une seule fois, à la mise en ligne</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-monthly">
-            <span class="pricing-monthly-amount" style="color:#5BBE3A">🎁 1er mois OFFERT</span>
-          </div>
-          <div class="pricing-no-commit" style="margin-top:6px"><strong>59€</strong>/mois à partir du 2e mois · sans engagement</div>
+          <div class="pricing-setup-label">Pour commencer</div>
+          <div class="pricing-setup-amount is-free">Démo gratuite</div>
+          <div class="pricing-setup-note">Sans carte bancaire. Tarif affiché dans votre espace, avant toute mise en ligne · sans engagement</div>
         </div>
         <div style="font-size:12.5px;color:var(--text-muted);margin:0 0 14px;">Toute l'offre 2 + livraison à domicile dans votre zone.</div>
         <ul class="pricing-features" aria-label="Inclus">
@@ -1793,7 +1773,7 @@ function afficherPlusDeSites() {
           <li><strong>100 SMS/mois</strong> + packs illimités</li>
           <li>Comptes salariés illimités</li>
           <li>Assistance VIP (téléphone, &lt; 2h)</li>
-          <li>🎁 <strong>1er mois OFFERT</strong> · <strong>0% commission</strong></li>
+          <li><strong>0 % de commission</strong> · sans engagement</li>
         </ul>
         <a href="inscription.html?offre=livraison" class="btn-pricing" role="button" data-track="cta_inscription" data-track-meta='{"placement":"tarifs_livraison"}'>Créer ma démo gratuite</a>
       </div>
@@ -2016,7 +1996,7 @@ function afficherPlusDeSites() {
 <section class="definition" aria-labelledby="def-title" style="max-width:860px;margin:0 auto;padding:28px 24px 34px;border-top:1px solid rgba(15,44,82,.08);">
   <h2 id="def-title" style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#5B6472;margin:0 0 10px;font-weight:700;">À propos de Marchéo</h2>
   <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:0 0 8px;">Marchéo est un logiciel français de click &amp; collect, de livraison locale et de réservation de table pour les commerces de bouche : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Le commerçant obtient une boutique en ligne à son nom, prête en quelques minutes avec le catalogue de son métier déjà rempli ; ses clients commandent depuis leur téléphone en 30 secondes, sans créer de compte, et retirent à l'heure choisie ou se font livrer dans le quartier.</p>
-  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:0;">Aucune commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, empreinte bancaire optionnelle contre les commandes non retirées. Marchéo ne livre pas à la place du commerçant : il fournit l'outil pour organiser sa propre livraison. <a href="/solutions" style="color:#0F2C52;">Par métier</a> · <a href="/a-propos" style="color:#0F2C52;">À propos</a></p>
+  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:0;">Aucune commission sur les ventes, démo gratuite sans carte bancaire, abonnement sans engagement, empreinte bancaire optionnelle contre les commandes non retirées. Marchéo ne livre pas à la place du commerçant : il fournit l'outil pour organiser sa propre livraison. <a href="/solutions" style="color:#0F2C52;">Par métier</a> · <a href="/a-propos" style="color:#0F2C52;">À propos</a></p>
 </section>
 <footer class="footer">
   <div class="footer-logo">
@@ -2030,7 +2010,7 @@ function afficherPlusDeSites() {
   </div>
   <nav class="footer-links" aria-label="Liens du pied de page">
     <a href="inscription.html" class="footer-link">S'inscrire</a>
-    <a href="#tarifs" class="footer-link">Tarifs</a>
+    <a href="#tarifs" class="footer-link">Offres</a>
     <a href="/solutions" class="footer-link">Par métier</a>
     <a href="/a-propos" class="footer-link">À propos</a>
     <a href="/blog" class="footer-link">Blog</a>
