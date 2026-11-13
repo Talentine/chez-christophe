@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/alternative-uber-eats-garder-ses-clients",
   "/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche",
   "/blog/commande-boucherie-noel-en-ligne",
   "/blog/commission-ou-frais-bancaires-vente-en-ligne",

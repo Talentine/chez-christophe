@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Alternative à Uber Eats : comment garder vos clients en direct](https://marchéo.fr/blog/alternative-uber-eats-garder-ses-clients) : Quelle alternative à Uber Eats pour garder ses clients ? Les cinq solutions de commande en direct, leurs coûts, et la méthode pour faire revenir les habitués.
 - [Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026](https://marchéo.fr/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) : Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche.
 - [Commande boucherie Noël : prendre les commandes en ligne](https://marchéo.fr/blog/commande-boucherie-noel-en-ligne) : Commande boucherie Noël : bon de commande papier ou en ligne, chapons vendus au poids, date limite, acompte et retraits du 24. Le guide du boucher.
 - [Commission ou frais bancaires : quelle différence en vente en ligne ?](https://marchéo.fr/blog/commission-ou-frais-bancaires-vente-en-ligne) : Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.
@@ -568,6 +569,144 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Alternative à Uber Eats : comment garder vos clients en direct
+
+Quelle alternative à Uber Eats pour garder ses clients ? Les cinq solutions de commande en direct, leurs coûts, et la méthode pour faire revenir les habitués.
+
+La meilleure alternative à Uber Eats pour garder vos clients est un canal de commande à votre nom : le client commande sur votre boutique en ligne, vous payez un prix fixe au lieu d&rsquo;une commission de 14 à 30 %, et ses coordonnées restent chez vous. Marchéo, par exemple, coûte 39 ou 59 € par mois sans engagement, avec 0 % de commission et sans matériel à acheter. La plateforme peut rester en complément pour attirer de nouveaux clients.
+Cette page complète notre guide complet du click &amp; collect pour commerçant. Elle compare les solutions qui existent en France pour vendre en direct, puis donne la méthode pour faire passer les habitués de l&rsquo;application à votre boutique. Pour un face-à-face chiffré, lisez aussi Marchéo ou Uber Eats pour un restaurant.
+Pourquoi perd-on ses clients sur une plateforme de livraison ?
+Sur une plateforme, le client appartient à la plateforme, pas à votre commerce. Il commande dans son application, avec son compte, et ses coordonnées ne vous sont pas transmises.
+Trois conséquences en découlent :
+
+vous ne pouvez pas le relancer, ni par SMS ni par e-mail ;
+à chaque nouvelle commande, vous payez de nouveau la commission, même pour un habitué qui vous connaît depuis des années ;
+le jour où il ouvre l&rsquo;application, vos concurrents s&rsquo;affichent juste à côté de vous.
+
+La plateforme rend un vrai service : elle vous fait connaître et fournit les livreurs. Le problème commence quand vos clients fidèles passent par elle alors qu&rsquo;ils viendraient de toute façon.
+Quelles sont les alternatives à Uber Eats pour vendre en direct ?
+Il existe cinq familles de solutions, qui ne répondent pas au même besoin. Le tableau les compare sur ce qui compte pour garder ses clients.
+
+
+
+Solution
+Ce que vous payez
+Les clients restent chez vous
+Qui livre
+
+
+
+
+Autre plateforme de livraison
+Commission sur chaque commande
+Non
+Les livreurs de la plateforme
+
+
+Site de commande pour restaurant
+Abonnement, parfois un coût par commande
+Oui
+Vous, ou un coursier payé à la course
+
+
+Commande par messagerie (WhatsApp, Instagram)
+Gratuit ou petit coût par commande
+Oui
+Vous
+
+
+Coursiers à la course, sans vitrine
+Un prix par livraison
+Oui, si la commande vient de votre site
+Le coursier
+
+
+Logiciel pour commerces locaux (ex. Marchéo)
+Abonnement fixe, 0 % de commission
+Oui
+Vous
+
+
+
+Changer de plateforme ne règle pas le problème : la commission change, mais la relation reste chez l&rsquo;intermédiaire. Les quatre autres solutions vous laissent la commande et le contact.
+Les coursiers à la course sont un complément, pas une boutique. Des services comme Stuart ou Uber Direct livrent une commande passée chez vous, contre un prix par course. Il vous faut donc d&rsquo;abord un endroit où le client commande.
+Que doit permettre un outil de commande en direct ?
+Un outil de commande en direct doit être aussi rapide que l&rsquo;application pour le client, et simple pour vous. Vérifiez six points avant de choisir :
+
+Le client commande sans télécharger d&rsquo;application et sans créer de compte.
+Vous fixez vos créneaux de retrait et un nombre maximum de commandes par créneau.
+Le paiement se fait en ligne ou au retrait, à votre choix.
+Vous êtes protégé contre les commandes non récupérées.
+Le prix est connu d&rsquo;avance, sans pourcentage sur vos ventes.
+Aucun appareil n&rsquo;est imposé.
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes sans compte. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, protège contre les commandes non retirées : elle est libérée 24 h après le retrait.
+Combien coûte la commande en direct par rapport à une commission ?
+Sur un exemple de 2 000 € de commandes d&rsquo;habitués par mois, une commission de 14 à 30 % coûte 280 à 600 €, alors qu&rsquo;un abonnement fixe coûte 39 ou 59 €. Ces chiffres sont un exemple choisi pour le calcul, pas une moyenne constatée.
+
+
+
+Poste, sur 2 000 € de commandes par mois
+Plateforme à commission
+Boutique en direct (ex. Marchéo)
+
+
+
+
+Commission
+280 à 600 € (14 à 30 %)
+0 €
+
+
+Abonnement
+Variable
+39 € (retrait et réservation) ou 59 € (avec livraison)
+
+
+Frais d&rsquo;installation
+Variable
+399 ou 549 €, une seule fois
+
+
+Livraison
+Comprise le plus souvent
+À votre charge : votre temps, votre véhicule
+
+
+
+Il reste les frais bancaires du paiement par carte en ligne, qui existent avec tous les outils. Notre page commission ou frais bancaires explique la différence.
+Le calcul n&rsquo;est honnête que si l&rsquo;on compte la livraison. Livrer vous-même prend du temps. Si vous n&rsquo;avez personne pour livrer, commencez par le retrait sur place, qui ne coûte rien de plus.
+Comment faire passer vos clients de la plateforme à votre boutique ?
+La méthode consiste à inviter chaque client servi à commander chez vous la fois suivante, sans rien retirer de la plateforme au départ. Elle tient en cinq étapes.
+
+Créez votre boutique avec la même carte et les mêmes photos que sur l&rsquo;application.
+Imprimez un QR code qui ouvre votre boutique, et posez-le au comptoir, sur la vitrine et sur vos emballages.
+Ajoutez le lien de votre boutique sur votre fiche Google et dans votre profil Instagram. Ce sont les deux endroits où vos habitués vous cherchent.
+Donnez une raison de commander en direct : un prix un peu plus bas que sur l&rsquo;application, ou un créneau de retrait prioritaire.
+Comptez chaque mois les commandes directes. Quand elles suffisent, vous pouvez réduire la plateforme.
+
+Deux précautions. Relisez votre contrat avec la plateforme avant de glisser un flyer dans les sacs qu&rsquo;elle livre ou d&rsquo;afficher des prix différents : certaines conditions l&rsquo;encadrent. Et ne recontactez un client par SMS ou par e-mail que s&rsquo;il a donné son accord.
+Dans quels cas vaut-il mieux garder Uber Eats ?
+Gardez la plateforme si vous avez besoin d&rsquo;elle pour trouver des clients ou pour livrer. C&rsquo;est le cas dans trois situations :
+
+vous venez d&rsquo;ouvrir et personne ne vous connaît encore dans le quartier ;
+vous n&rsquo;avez ni le temps ni le personnel pour livrer vous-même ;
+une grande part de vos commandes vient de clients de passage qui ne recommandent jamais.
+
+Marchéo ne remplace pas ces services. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il fournit l&rsquo;outil pour organiser votre propre livraison, comme l&rsquo;explique notre article sur le logiciel pour livrer ses clients soi-même. Ce n&rsquo;est pas non plus une place de marché qui vous apporte des clients nouveaux. Et pour expédier des colis dans toute la France, une solution comme Shopify convient mieux.
+Par où commencer cette semaine ?
+Commencez par ouvrir votre canal en direct, sans toucher à la plateforme. La démo gratuite de Marchéo affiche un aperçu de votre boutique en 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, et la carte est déjà préremplie. Les restaurateurs trouveront le détail des fonctions, réservation de table comprise, sur la solution pour restaurant.
+Imprimez ensuite votre QR code et tenez le compte pendant un mois. Vous saurez alors combien d&rsquo;habitués ont changé de canal, et ce que cela vous a fait économiser.
+
+Q : Quelle est la meilleure alternative à Uber Eats pour un commerçant qui veut garder ses clients ?
+R : La meilleure alternative est un canal de commande à votre nom, sur lequel le client commande et paie chez vous. Plusieurs outils le permettent : un site de commande pour restaurant, une commande par messagerie, ou un logiciel pour commerces locaux comme Marchéo. Marchéo coûte 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus 399 ou 549 € de frais d'installation uniques. Marchéo ne fournit pas de livreurs : la livraison se fait avec vos propres moyens.
+Q : Peut-on récupérer les coordonnées de ses clients Uber Eats ?
+R : Non. Les coordonnées des clients qui commandent sur une plateforme restent chez la plateforme. La seule façon de les connaître est de les amener à commander une fois chez vous, sur votre propre boutique, avec leur accord pour être recontactés.
+Q : Faut-il quitter Uber Eats pour vendre en direct ?
+R : Non, et ce n'est pas conseillé au départ. La plateforme continue d'apporter des clients qui ne vous connaissent pas. Votre boutique en direct sert aux habitués. Beaucoup de restaurants gardent les deux, puis réduisent la plateforme une fois que les commandes directes suffisent.
+Q : Faut-il acheter du matériel pour prendre des commandes en direct ?
+R : Non, pas avec un outil comme Marchéo : aucune tablette, imprimante ou caisse n'est à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Certains sites de commande pour restaurant proposent en option une tablette ou une imprimante de tickets : demandez si elles sont obligatoires.
 
 # Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026
 
@@ -4604,8 +4743,8 @@ R : Oui, si votre viande est certifiée. Indiquez-le sur chaque fiche produit et
 
 Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon.
 
-Pour ouvrir sa boutique en ligne, un commerçant déjà installé n&rsquo;a en général pas de nouvelle immatriculation à faire. Il doit surtout afficher des mentions légales, des conditions générales de vente, les prix TTC, les allergènes des produits alimentaires et les coordonnées d&rsquo;un médiateur de la consommation, et protéger les données de ses clients. Un logiciel métier comme Marchéo prévoit la place de ces informations, mais leur contenu reste sous votre responsabilité.
-Ce guide complète notre méthode pour créer sa boutique en ligne quand on a un commerce. Il résume les règles générales du droit français en langage simple. Il ne remplace pas un conseil juridique : pour un cas particulier, votre chambre de commerce (CCI) ou votre chambre de métiers (CMA) peut vous répondre gratuitement.
+Un commerçant déjà installé qui ouvre une boutique en ligne n&rsquo;a en général aucune nouvelle immatriculation à faire, mais il a six obligations : afficher des mentions légales, des conditions générales de vente, les prix TTC, les allergènes des produits alimentaires et les coordonnées d&rsquo;un médiateur de la consommation, et protéger les données de ses clients. Ces règles valent aussi pour le click and collect, qui est une vente à distance. Un logiciel comme Marchéo prévoit la place de ces informations et fournit un modèle de conditions de vente, mais leur contenu reste sous la responsabilité du commerçant.
+Ce guide complète notre méthode pour créer sa boutique en ligne quand on a un commerce. Si vous n&rsquo;avez pas encore choisi votre outil, notre comparatif quelle plateforme pour vendre en ligne passe en revue les grandes familles de solutions. Cette page résume les règles générales du droit français en langage simple. Il ne remplace pas un conseil juridique : pour un cas particulier, votre chambre de commerce (CCI) ou votre chambre de métiers (CMA) peut vous répondre gratuitement.
 Faut-il déclarer son activité pour vendre en ligne ?
 Non, en règle générale, si vous vendez en ligne les mêmes produits qu&rsquo;en boutique. La vente en ligne est un nouveau canal, pas une nouvelle activité. Vos règles d&rsquo;hygiène, vos déclarations sanitaires et votre statut restent les mêmes.
 Deux cas demandent une vérification. Si vous ajoutez une activité nouvelle, par exemple des plats cuisinés quand vous étiez primeur, demandez à votre CCI ou CMA si votre activité déclarée doit évoluer. Si vous vendez de l&rsquo;alcool en ligne, il vous faut une licence à emporter adaptée, et l&rsquo;interdiction de vente aux mineurs s&rsquo;applique aussi en ligne.
@@ -4701,13 +4840,15 @@ Vérifier vos prix et vos prix au kilo
 
 
 
-Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. L&rsquo;abonnement coûte 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, avec 0 % de commission.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. L&rsquo;abonnement coûte 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, avec 0 % de commission. Les frais d&rsquo;installation, payés une seule fois, sont de 249, 399 ou 549 € selon l&rsquo;offre.
 Par où commencer ?
 Préparez trois choses avant d&rsquo;ouvrir : vos informations d&rsquo;entreprise pour les mentions légales, la liste des allergènes de vos produits et l&rsquo;adhésion à un médiateur. Le reste se règle en une soirée.
 Pour la partie site, nom de domaine et pages utiles, lisez notre guide de la création du site internet d&rsquo;un commerce. Pour voir votre boutique avant de vous engager, ouvrez la page d&rsquo;inscription : choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement.
 
 Q : Quel logiciel choisir pour ouvrir une boutique en ligne conforme quand on est commerçant ?
 R : Choisissez un outil qui prévoit la place des mentions légales, des conditions de vente, des allergènes et du médiateur, et qui héberge les données en Europe. Shopify ou Wix conviennent si vous expédiez des colis. Pour un commerce de bouche en retrait et en livraison locale, Marchéo fournit un modèle de conditions de vente, affiche votre médiateur sur la boutique et héberge les données dans l'Union européenne, pour 19, 39 ou 59 € par mois sans engagement, 0 % de commission et des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Quelles sont les obligations légales pour faire du click and collect quand on est commerçant ?
+R : Une commande passée en ligne puis retirée en boutique est une vente à distance. Le commerçant doit donc afficher des mentions légales, des conditions générales de vente, les prix TTC (et le prix au kilo pour ce qui se vend au poids), les allergènes des produits alimentaires et les coordonnées de son médiateur de la consommation. Il doit aussi dire avant la commande si le droit de rétractation s'applique, et n'utiliser les coordonnées des clients pour de la publicité qu'avec leur accord.
 Q : Le droit de rétractation de 14 jours s'applique-t-il aux produits frais ?
 R : Non. Le code de la consommation exclut les biens qui se détériorent ou se périment rapidement et les produits faits sur mesure, comme un gâteau personnalisé. Vous devez cependant indiquer clairement cette absence de rétractation avant la commande, dans vos conditions de vente.
 Q : Faut-il un médiateur de la consommation pour un petit commerce ?
@@ -5894,6 +6035,7 @@ Les autres guides du blog sur le click &amp; collect :
 Comment créer un site de click &amp; collect pour son commerce
 Logiciel de click &amp; collect : comparatif 2026
 Click and collect sans commission
+Alternative à Uber Eats pour garder ses clients
 Combien coûte un site de click &amp; collect
 Empreinte bancaire et no-show
 Vendre au poids en ligne
@@ -7297,7 +7439,7 @@ Les commerçants qui s&rsquo;en sortent le mieux ne choisissent pas entre platef
 La plateforme sert à être découvert par des gens qui ne vous connaissent pas. C&rsquo;est de la publicité payée à la commande.
 Votre boutique en ligne sert à vos habitués et à tous ceux qui vous ont trouvé une fois. Zéro commission, et le client est à vous.
 
-Le travail consiste alors à faire passer les clients du premier canal au second. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du logiciel de livraison pizza détaille la zone, les créneaux du soir et la tournée. Si vous tenez un restaurant et que vous comparez les deux outils point par point, lisez notre comparatif Marchéo ou Uber Eats pour un restaurant.
+Le travail consiste alors à faire passer les clients du premier canal au second. Notre page sur l&rsquo;alternative à Uber Eats pour garder ses clients compare les solutions de commande en direct et détaille la méthode en cinq étapes. Un flyer dans chaque boîte à pizza avec un QR code, une phrase sur le ticket, un mot au comptoir : « La prochaine fois, commandez directement sur notre boutique, vous aurez le même prix et nous gardons 100 %. » Beaucoup de clients préfèrent, surtout quand ils comprennent ce que la commission représente pour un indépendant. Pour une pizzeria qui veut livrer ses habitués elle-même, notre guide du logiciel de livraison pizza détaille la zone, les créneaux du soir et la tournée. Si vous tenez un restaurant et que vous comparez les deux outils point par point, lisez notre comparatif Marchéo ou Uber Eats pour un restaurant.
 Ce que doit avoir votre boutique pour tenir la comparaison
 Le client habitué à une plateforme attend une expérience aussi simple. Votre boutique doit donc offrir :
 

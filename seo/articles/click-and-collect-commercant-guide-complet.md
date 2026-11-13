@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-12
+modified: 2026-11-13
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -175,6 +175,7 @@ Les autres guides du blog sur le click & collect :
 - [Comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce)
 - [Logiciel de click & collect : comparatif 2026](/blog/logiciel-click-and-collect-comparatif-2026)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
+- [Alternative à Uber Eats pour garder ses clients](/blog/alternative-uber-eats-garder-ses-clients)
 - [Combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)

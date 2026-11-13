@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Alternative à Uber Eats : comment garder vos clients en direct](https://marchéo.fr/blog/alternative-uber-eats-garder-ses-clients) : Quelle alternative à Uber Eats pour garder ses clients ? Les cinq solutions de commande en direct, leurs coûts, et la méthode pour faire revenir les habitués.
 - [Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026](https://marchéo.fr/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) : Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche.
 - [Commande boucherie Noël : prendre les commandes en ligne](https://marchéo.fr/blog/commande-boucherie-noel-en-ligne) : Commande boucherie Noël : bon de commande papier ou en ligne, chapons vendus au poids, date limite, acompte et retraits du 24. Le guide du boucher.
 - [Commission ou frais bancaires : quelle différence en vente en ligne ?](https://marchéo.fr/blog/commission-ou-frais-bancaires-vente-en-ligne) : Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.

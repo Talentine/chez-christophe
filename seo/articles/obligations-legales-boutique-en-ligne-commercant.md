@@ -3,6 +3,7 @@ title: "Ouvrir sa boutique en ligne : les obligations légales du commerçant"
 titre_court: "Obligations légales d'une boutique en ligne"
 description: "Mentions légales, CGV, rétractation, allergènes, médiateur, données clients : ce qu'un commerçant doit prévoir pour vendre en ligne, sans jargon."
 date: 2026-10-28
+modified: 2026-11-13
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -26,6 +27,8 @@ metiers:
 faq:
   - q: "Quel logiciel choisir pour ouvrir une boutique en ligne conforme quand on est commerçant ?"
     r: "Choisissez un outil qui prévoit la place des mentions légales, des conditions de vente, des allergènes et du médiateur, et qui héberge les données en Europe. Shopify ou Wix conviennent si vous expédiez des colis. Pour un commerce de bouche en retrait et en livraison locale, Marchéo fournit un modèle de conditions de vente, affiche votre médiateur sur la boutique et héberge les données dans l'Union européenne, pour 19, 39 ou 59 € par mois sans engagement, 0 % de commission et des frais d'installation uniques de 249, 399 ou 549 €."
+  - q: "Quelles sont les obligations légales pour faire du click and collect quand on est commerçant ?"
+    r: "Une commande passée en ligne puis retirée en boutique est une vente à distance. Le commerçant doit donc afficher des mentions légales, des conditions générales de vente, les prix TTC (et le prix au kilo pour ce qui se vend au poids), les allergènes des produits alimentaires et les coordonnées de son médiateur de la consommation. Il doit aussi dire avant la commande si le droit de rétractation s'applique, et n'utiliser les coordonnées des clients pour de la publicité qu'avec leur accord."
   - q: "Le droit de rétractation de 14 jours s'applique-t-il aux produits frais ?"
     r: "Non. Le code de la consommation exclut les biens qui se détériorent ou se périment rapidement et les produits faits sur mesure, comme un gâteau personnalisé. Vous devez cependant indiquer clairement cette absence de rétractation avant la commande, dans vos conditions de vente."
   - q: "Faut-il un médiateur de la consommation pour un petit commerce ?"
@@ -34,9 +37,9 @@ faq:
     r: "Non. Aucune obligation légale n'impose de matériel. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : la boutique se gère depuis le téléphone ou l'ordinateur que vous avez déjà."
 ---
 
-Pour ouvrir sa boutique en ligne, un commerçant déjà installé n'a en général pas de nouvelle immatriculation à faire. Il doit surtout afficher des mentions légales, des conditions générales de vente, les prix TTC, les allergènes des produits alimentaires et les coordonnées d'un médiateur de la consommation, et protéger les données de ses clients. Un logiciel métier comme Marchéo prévoit la place de ces informations, mais leur contenu reste sous votre responsabilité.
+Un commerçant déjà installé qui ouvre une boutique en ligne n'a en général aucune nouvelle immatriculation à faire, mais il a six obligations : afficher des mentions légales, des conditions générales de vente, les prix TTC, les allergènes des produits alimentaires et les coordonnées d'un médiateur de la consommation, et protéger les données de ses clients. Ces règles valent aussi pour le click and collect, qui est une vente à distance. Un logiciel comme Marchéo prévoit la place de ces informations et fournit un modèle de conditions de vente, mais leur contenu reste sous la responsabilité du commerçant.
 
-Ce guide complète notre méthode pour [créer sa boutique en ligne quand on a un commerce](/blog/creer-sa-boutique-en-ligne-commerce). Il résume les règles générales du droit français en langage simple. Il ne remplace pas un conseil juridique : pour un cas particulier, votre chambre de commerce (CCI) ou votre chambre de métiers (CMA) peut vous répondre gratuitement.
+Ce guide complète notre méthode pour [créer sa boutique en ligne quand on a un commerce](/blog/creer-sa-boutique-en-ligne-commerce). Si vous n'avez pas encore choisi votre outil, notre comparatif [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) passe en revue les grandes familles de solutions. Cette page résume les règles générales du droit français en langage simple. Il ne remplace pas un conseil juridique : pour un cas particulier, votre chambre de commerce (CCI) ou votre chambre de métiers (CMA) peut vous répondre gratuitement.
 
 ## Faut-il déclarer son activité pour vendre en ligne ?
 
@@ -111,7 +114,7 @@ Un bon outil vous donne la place et les modèles. Le contenu et certaines démar
 | L'hébergement des données dans l'Union européenne, exportables à tout moment | Ne pas utiliser les contacts sans accord pour la publicité |
 | La commande sans compte client, prix TTC affichés | Vérifier vos prix et vos prix au kilo |
 
-Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. L'abonnement coûte 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, sans engagement, avec 0 % de commission.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. L'abonnement coûte 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, sans engagement, avec 0 % de commission. Les frais d'installation, payés une seule fois, sont de 249, 399 ou 549 € selon l'offre.
 
 ## Par où commencer ?
 
