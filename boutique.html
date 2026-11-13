@@ -164,7 +164,7 @@
     to { transform: translateX(-100%); }
   }
 
-  /* HERO — la photo de la boutique reste nette et dégagée ; toutes les infos sont dans la fiche posée dessous */
+  /* HERO — la photo de la boutique reste nette et dégagée ; les infos sont écrites à même la page, juste dessous, sans carte */
   .hero {
     position: relative;
     background: var(--creme);
@@ -193,31 +193,32 @@
 
   /* Boutique sans photo : pas de bloc vide, la fiche remonte */
   .hero--sans-photo .hero-photo { display: none; }
-  .hero--sans-photo .hero-fiche { margin-top: 12px; }
+  .hero--sans-photo .hero-fiche { padding-top: 18px; }
+  .hero--sans-photo .hero-logo { margin-top: 0; }
 
   .hero-fiche {
     position: relative;
     z-index: 1;
-    margin: -34px 12px 0;
-    padding: 16px 16px 16px;
-    background: var(--blanc);
-    border-radius: 22px;
-    box-shadow: 0 10px 30px rgba(10,20,40,0.10), 0 1px 2px rgba(10,20,40,0.06);
+    padding: 0 20px 4px;
   }
 
+  /* Le logo mord sur le bas de la photo : c'est lui qui relie l'image au texte */
   .hero-identite {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .hero-logo {
     flex-shrink: 0;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--creme);
-    border: 1px solid var(--creme-fonce);
+    width: 64px;
+    height: 64px;
+    margin-top: -32px;
+    border-radius: 18px;
+    background: var(--blanc);
+    border: 3px solid var(--creme);
+    box-shadow: 0 4px 14px rgba(10,20,40,0.14);
     color: var(--vert-fonce);
     display: flex;
     align-items: center;
@@ -248,7 +249,7 @@
 
   .hero-nom {
     font-family: 'Manrope', system-ui, sans-serif;
-    font-size: clamp(18px, 5.2vw, 22px);
+    font-size: clamp(22px, 6.4vw, 28px);
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -258,10 +259,7 @@
 
   .hero-statut {
     flex-shrink: 0;
-    padding: 3px 9px;
-    border-radius: 50px;
-    background: var(--creme);
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--texte);
     white-space: nowrap;
@@ -308,8 +306,8 @@
     font-weight: 600;
     white-space: nowrap;
     color: var(--texte);
-    background: var(--blanc);
-    border-color: var(--creme-fonce);
+    background: transparent;
+    border-color: var(--texte-leger);
   }
 
   .btn-primary {
@@ -342,62 +340,58 @@
     transition: all 0.15s;
   }
 
-  /* Infos pratiques : pastilles claires dans la fiche, plus rien sur la photo */
+  /* Infos pratiques : de simples lignes de texte, sans pastille ni fond */
   .hero-infos {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    padding-top: 12px;
+    align-items: baseline;
+    gap: 6px 18px;
+    padding-top: 14px;
     border-top: 1px solid var(--creme-fonce);
   }
 
   .hero-info-pill {
-    display: inline-flex;
-    align-items: center;
-    min-height: 30px;
-    padding: 5px 11px;
-    border-radius: 50px;
-    background: var(--creme);
-    font-size: 12.5px;
-    font-weight: 600;
-    line-height: 1.25;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.35;
     color: var(--texte);
   }
 
-  /* Tablette : photo plus haute, fiche centrée */
+  /* Tablette : photo plus haute */
   @media (min-width: 600px) {
     .hero-photo { height: clamp(260px, 42vh, 440px); }
-    .hero-fiche { max-width: 640px; margin: -48px auto 0; padding: 22px; }
-    .hero-btns .btn-primary { flex: 1 1 auto; }
-    .hero-btns .btn-secondary { flex: 0 1 auto; padding: 10px 20px; }
+    .hero-fiche { padding: 0 28px 8px; }
+    .hero-btns .btn-primary { flex: 0 1 280px; }
+    .hero-btns .btn-secondary { flex: 0 1 auto; padding: 10px 22px; }
   }
 
-  /* Ordinateur : fiche à gauche, photo entière à droite, rien ne se chevauche */
+  /* Ordinateur : le texte à gauche à même la page, la photo entière à droite */
   @media (min-width: 900px) {
     .hero {
       display: grid;
-      grid-template-columns: minmax(360px, 440px) 1fr;
-      gap: 24px;
+      grid-template-columns: minmax(340px, 460px) 1fr;
+      gap: 40px;
       align-items: stretch;
-      padding: 24px 20px 8px;
+      padding: 24px 20px 12px 32px;
     }
-    .hero-photo { order: 2; height: auto; min-height: 440px; border-radius: 28px; }
+    .hero-photo { order: 2; height: auto; min-height: 460px; border-radius: 28px; }
     .hero-fiche {
       order: 1;
-      max-width: none;
-      margin: 0;
-      padding: 28px;
-      border-radius: 28px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    .hero-nom { font-size: 30px; }
-    .hero-accroche { font-size: 15.5px; margin: 14px 0 20px; }
-    .hero-btns { margin-bottom: 20px; }
-    .hero-infos { padding-top: 16px; }
-    .hero--sans-photo { grid-template-columns: minmax(360px, 640px); }
+    .hero-logo { margin-top: 0; width: 72px; height: 72px; }
+    .hero-identite { gap: 16px; }
+    .hero-nom { font-size: 40px; line-height: 1.08; }
+    .hero-accroche { font-size: 17px; margin: 16px 0 24px; }
+    .hero-btns { margin-bottom: 26px; }
+    .hero-btns .btn-primary { flex: 0 1 220px; }
+    .hero-infos { padding-top: 18px; gap: 8px 22px; }
+    .hero-info-pill { font-size: 14.5px; }
+    .hero--sans-photo { grid-template-columns: minmax(340px, 640px); }
+    .hero--sans-photo .hero-fiche { padding-top: 0; }
   }
 
   /* SECTION COMMUNE */
