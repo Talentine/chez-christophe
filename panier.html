@@ -205,7 +205,7 @@
       </div>
     </div>
     <div class="form-erreur" id="adresseErreur">⚠️ Veuillez remplir votre adresse complète</div>
-    <div class="info-box">🚚 Livraison dans un rayon de 10 km · Frais : 3,90 €</div>
+    <div class="info-box" id="livraisonInfo">🚚 Frais de livraison</div>
   </div>
 </div>
 
@@ -369,7 +369,66 @@
 const SUPABASE_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
 const STRIPE_PK = 'pk_live_51TNZXSEFuhD5VmbykaqK1Bwbs7Jhq3mZHPXNazRTK8WqVL1dbIWXnBdRMCL0TzCaRGlex38ZKzhWh0Ke3mTjXOSo00tL0YAlLt';
-const FRAIS_LIVRAISON = 3.90;
+// ── LIVRAISON : réglages du commerçant (Réglages → Livraison) ──
+// Proposée seulement si l'offre l'inclut (commercants.offre === 'livraison',
+// même règle que boutique.html / app-commercant.html — option_livraison n'est
+// pas fiable) ET si au moins un créneau actif de type 'livraison' existe.
+let LIVRAISON_DISPO = false;
+
+function fmtEuro(n) { return Number(n || 0).toFixed(2).replace('.', ','); }
+
+function fraisLivraisonBase() {
+  const f = Number(__BIZ__ && __BIZ__.frais_livraison);
+  return isFinite(f) && f > 0 ? f : 0;
+}
+
+function seuilLivraisonGratuite() {
+  const s = Number(__BIZ__ && __BIZ__.seuil_livraison_gratuite);
+  return isFinite(s) && s > 0 ? s : null;
+}
+
+// Frais réellement facturés : 0 en retrait, 0 au-dessus du seuil de gratuité.
+// Seule source de vérité pour l'affichage, le CTA et la commande envoyée.
+function calcFraisLivraison(sousTotal) {
+  if (modeCommande !== 'livraison') return 0;
+  const seuil = seuilLivraisonGratuite();
+  if (seuil !== null && Number(sousTotal) >= seuil) return 0;
+  return fraisLivraisonBase();
+}
+
+async function chargerDispoLivraison() {
+  LIVRAISON_DISPO = false;
+  if (!__CID__ || !__BIZ__ || __BIZ__.offre !== 'livraison') return;
+  try {
+    const data = await sb('creneaux', `?actif=eq.true&commercant_id=eq.${__CID__}&type=eq.livraison&select=id&limit=1`);
+    LIVRAISON_DISPO = Array.isArray(data) && data.length > 0;
+  } catch (e) { LIVRAISON_DISPO = false; }
+}
+
+function appliquerConfigLivraison() {
+  const carte = document.getElementById('modeLivraison');
+  const grille = carte && carte.parentElement;
+  if (!LIVRAISON_DISPO) {
+    if (carte) carte.style.display = 'none';
+    if (grille) grille.style.gridTemplateColumns = '1fr';
+    if (modeCommande === 'livraison') choisirMode('retrait');
+    return;
+  }
+  if (carte) carte.style.display = '';
+  if (grille) grille.style.gridTemplateColumns = '';
+  const base = fraisLivraisonBase();
+  const seuil = seuilLivraisonGratuite();
+  const prixEl = carte.querySelector('.mode-card-prix');
+  if (prixEl) {
+    prixEl.textContent = (base > 0 ? '+' + fmtEuro(base) + ' €' : 'Gratuite')
+      + (base > 0 && seuil !== null ? ' · offerte dès ' + fmtEuro(seuil) + ' €' : '');
+  }
+  const info = document.getElementById('livraisonInfo');
+  if (info) {
+    info.textContent = '🚚 Frais de livraison : ' + (base > 0 ? fmtEuro(base) + ' €' : 'gratuits')
+      + (base > 0 && seuil !== null ? ' · offerts dès ' + fmtEuro(seuil) + ' € d\'achat' : '');
+  }
+}
 
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
 
@@ -476,6 +535,9 @@ async function bootCommerce() {
   // Note pour le commerçant
   const noteLabel = document.querySelector('.form-label-note');
   if (noteLabel) noteLabel.textContent = 'Note pour ' + (cfg.business.nom_boutique || 'le commerçant');
+  // Livraison : uniquement si l'offre l'inclut et que des créneaux existent
+  await chargerDispoLivraison();
+  appliquerConfigLivraison();
   // Points de retrait multiples
   await chargerPointsRetrait();
   if (multiPointsActif()) {
@@ -627,12 +689,15 @@ function modifierQte(idx, delta) {
 
 function renderRecap() {
   const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
-  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const frais = calcFraisLivraison(sous_total);
   const total = sous_total + frais;
+  const seuilLiv = seuilLivraisonGratuite();
+  const livOfferte = modeCommande === 'livraison' && frais === 0 && fraisLivraisonBase() > 0;
 
   const html = `
     <div class="total-ligne"><span>Sous-total (${panier.length} article${panier.length>1?'s':''})</span><span>${sous_total.toFixed(2).replace('.',',')} €</span></div>
-    ${frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison</span><span class="total-livraison">+${frais.toFixed(2).replace('.',',')} €</span></div>` : ''}
+    ${frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison${seuilLiv !== null ? ` <small>(offerte dès ${fmtEuro(seuilLiv)} €)</small>` : ''}</span><span class="total-livraison">+${fmtEuro(frais)} €</span></div>` : ''}
+    ${livOfferte ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison</span><span class="total-livraison">Offerte</span></div>` : ''}
     <div class="total-ligne" style="font-weight:500;font-size:15px;padding-top:10px;"><span>${panier.some(p => p.poids_indicatif) ? 'Total estimé' : 'Total'}</span><span style="color:var(--vert)">${total.toFixed(2).replace('.',',')} €</span></div>
     ${window.PoidsIndicatif ? PoidsIndicatif.notePanier(panier) : ''}
   `;
@@ -645,6 +710,7 @@ function renderRecap() {
 
 // ── MODE ──────────────────────────────────────────────
 function choisirMode(mode) {
+  if (mode === 'livraison' && !LIVRAISON_DISPO) mode = 'retrait';
   modeCommande = mode;
   document.getElementById('modeRetrait').classList.toggle('actif', mode === 'retrait');
   document.getElementById('modeLivraison').classList.toggle('actif', mode === 'livraison');
@@ -783,6 +849,16 @@ async function etapeSuivante() {
       }
       document.getElementById('adresseErreur').classList.remove('visible');
 
+      // Minimum de commande pour la livraison (Réglages → Livraison)
+      const minLiv = Number(__BIZ__ && __BIZ__.min_commande_livraison);
+      const sousTotalLiv = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
+      if (isFinite(minLiv) && minLiv > 0 && sousTotalLiv < minLiv) {
+        const erreur = document.getElementById('adresseErreur');
+        erreur.textContent = '⚠️ Livraison possible dès ' + fmtEuro(minLiv) + ' € d\'achat — il manque ' + fmtEuro(minLiv - sousTotalLiv) + ' €';
+        erreur.classList.add('visible');
+        return;
+      }
+
       // Vérification zone de livraison — ne pas écraser innerHTML du btnAction (sinon btnTxt/btnMontant disparaissent)
       const btn = document.getElementById('btnAction');
       const btnTxtEl = document.getElementById('btnTxt');
@@ -828,7 +904,7 @@ function mettreAJourCTA() {
   if (!btn || !btnTxt || !btnMontant) return; // Protection null
   
   const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
-  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const frais = calcFraisLivraison(sous_total);
   const total = (sous_total + frais).toFixed(2).replace('.',',') + ' €';
 
   if (etape === 1) {
@@ -1149,7 +1225,7 @@ async function confirmerCommande() {
 
   const creneau = creneaux[creneauSelectionne];
   const sous_total = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
-  const frais = modeCommande === 'livraison' ? FRAIS_LIVRAISON : 0;
+  const frais = calcFraisLivraison(sous_total);
   const total = sous_total + frais;
   const numero = 'CCB-' + new Date().getFullYear() + '-' + Date.now().toString().slice(-4);
   const prenom = document.getElementById('prenom').value.trim();
