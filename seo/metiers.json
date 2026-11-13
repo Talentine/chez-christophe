@@ -263,6 +263,99 @@
     ]
   },
   {
+    "slug": "epicerie",
+    "label": "Épicerie",
+    "pluriel": "épiceries fines et épiceries de quartier",
+    "emoji": "🫒",
+    "accroche": "Paniers garnis, coffrets cadeaux et produits au poids commandés en ligne, retirés en boutique ou livrés dans le quartier.",
+    "title": "Click & collect pour épicerie : boutique en ligne sans commission · Marchéo",
+    "description": "Créez la boutique en ligne de votre épicerie en 30 secondes : épices, huiles, olives et fruits secs vendus à la pièce ou au poids, paniers garnis et coffrets cadeaux, retrait par créneau, livraison locale à vos conditions. 0 % de commission.",
+    "lead": "Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre épicerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une épicerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.",
+    "faq": [
+      {
+        "q": "Comment vendre du vrac et des produits au poids en ligne ?",
+        "r": "Vous créez le produit avec un prix au kilo ou aux 100 g. Le client choisit un poids approximatif, vous pesez à la préparation et vous ajustez le montant au poids réel avant l'encaissement si nécessaire. Pour les épices et les fruits secs, des sachets à poids fixe (100 g, 250 g, 500 g) sont souvent plus simples à commander."
+      },
+      {
+        "q": "Faut-il mettre toutes mes références en ligne ?",
+        "r": "Non. Commencez par vos meilleures ventes, vos spécialités et vos paniers garnis : quelques dizaines de produits suffisent pour recevoir des commandes. Votre démo arrive avec un catalogue d'épicerie déjà rempli (épices, huiles et vinaigres, olives, fruits secs, pâtes et conserves) que vous corrigez et complétez ensuite, à votre rythme."
+      },
+      {
+        "q": "Quel logiciel de click and collect pour une épicerie ?",
+        "r": "Un outil qui gère la vente à la pièce et au poids, les créneaux de retrait et les commandes de coffrets préparées à l'avance. Marchéo le fait sans matériel à acheter et sans changer de caisse : 0 % de commission, 39 € par mois pour le click & collect ou 59 € par mois avec la livraison, sans engagement, plus 399 ou 549 € de frais d'installation uniques. Si vous expédiez surtout des colis dans toute la France, une solution d'e-commerce classique comme Shopify est plus adaptée."
+      },
+      {
+        "q": "Puis-je envoyer des colis partout en France avec Marchéo ?",
+        "r": "Marchéo est conçu pour la vente locale : retrait en boutique et livraison dans votre zone, par vos soins. Il ne calcule pas de frais de transporteur et n'édite pas d'étiquettes d'expédition. Pour une épicerie dont l'essentiel des ventes en ligne part par colis, un outil d'e-commerce classique convient mieux ; les deux peuvent se compléter."
+      },
+      {
+        "q": "Comment éviter qu'un coffret cadeau commandé ne soit pas retiré ?",
+        "r": "Activez l'empreinte bancaire sur les coffrets et les paniers garnis : elle est optionnelle, peut couvrir jusqu'à 75 % du panier, rien n'est débité si le client vient, et elle est libérée 24 h après le retrait. Pour les achats courants, le paiement au retrait suffit le plus souvent."
+      },
+      {
+        "q": "Faut-il acheter du matériel pour vendre en ligne dans une épicerie ?",
+        "r": "Non. Aucune tablette, imprimante ou caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et votre caisse comme votre balance restent en place."
+      },
+      {
+        "q": "Marchéo livre-t-il les commandes ?",
+        "r": "Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission."
+      }
+    ],
+    "meta_title": "Création de site internet pour épicerie, click & collect",
+    "h1": "Création de site internet pour épicerie fine et épicerie de quartier",
+    "meta_description": "Paniers garnis et coffrets cadeaux en ligne, vente au poids pour le vrac, retrait par créneaux. 0 % de commission, dès 19 € par mois, sans engagement.",
+    "un": "une épicerie",
+    "votre": "votre épicerie",
+    "catalogue": "d'épicerie",
+    "recherche": [
+      "épicerie fine",
+      "épicerie"
+    ],
+    "rush": "Le samedi et en décembre",
+    "calc": {
+      "clients": 700,
+      "panier": 30
+    },
+    "idees_intro": "D'abord vos produits du quotidien et vos spécialités, à la pièce ou au poids, avec la provenance et vos conseils. Ensuite, les formules qui font de belles commandes :",
+    "idees": [
+      {
+        "e": "🫒",
+        "t": "Olives, tapenades et apéritif",
+        "p": "Au poids ou en barquette, avec les tartinables et les biscuits salés : l'apéro commandé d'avance pour le week-end."
+      },
+      {
+        "e": "🌶️",
+        "t": "Épices, aromates et mélanges",
+        "p": "En sachet de 50, 100 ou 250 g, avec l'origine et une idée de recette pour donner envie d'essayer."
+      },
+      {
+        "e": "🥜",
+        "t": "Fruits secs et vrac",
+        "p": "Amandes, noix, dattes, céréales : vendus au poids ou en sachets à poids fixe, plus simples à commander."
+      },
+      {
+        "e": "🍝",
+        "t": "Huiles, pâtes et conserves",
+        "p": "Huiles d'olive, vinaigres, pâtes artisanales, sauces et bocaux : le fond de placard réservé en ligne et prêt au comptoir."
+      },
+      {
+        "e": "🧺",
+        "t": "Le panier garni",
+        "p": "Composé par vos soins à prix fixe, en trois tailles : le client choisit un budget, vous choisissez les produits."
+      },
+      {
+        "e": "🎁",
+        "t": "Le coffret cadeau",
+        "p": "Pour un anniversaire, une invitation ou un cadeau d'entreprise, avec un champ pour le message à glisser dedans."
+      },
+      {
+        "e": "🎄",
+        "t": "Les coffrets de fêtes",
+        "p": "Commandés dès novembre, préparés à l'avance et garantis par une empreinte bancaire sur les grosses commandes."
+      }
+    ]
+  },
+  {
     "slug": "poissonnerie",
     "label": "Poissonnerie",
     "pluriel": "poissonneries",

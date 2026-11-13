@@ -2,7 +2,7 @@
 
 > Marchéo (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Il s'adresse aux commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Aucune tablette, imprimante ou caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur du commerçant. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
 
-Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, épiceries fines et épiceries de quartier, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
 ## Réponses courtes
 - Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
@@ -10,7 +10,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.
 - Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
 - Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.
-- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, épiceries, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
 - Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, 39 ou 59 € par mois sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.
@@ -32,6 +32,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
 - [Marchéo pour boucheries et charcuteries](https://marchéo.fr/solutions/boucherie) : Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.
 - [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Vos fruits et légumes commandés en ligne, au kilo ou à la pièce, retirés en 2 minutes ou livrés dans le quartier.
+- [Marchéo pour épiceries fines et épiceries de quartier](https://marchéo.fr/solutions/epicerie) : Paniers garnis, coffrets cadeaux et produits au poids commandés en ligne, retirés en boutique ou livrés dans le quartier.
 - [Marchéo pour poissonneries](https://marchéo.fr/solutions/poissonnerie) : Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.
 - [Marchéo pour traiteurs](https://marchéo.fr/solutions/traiteur) : Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.
 - [Marchéo pour fromageries et crèmeries](https://marchéo.fr/solutions/fromagerie) : Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.

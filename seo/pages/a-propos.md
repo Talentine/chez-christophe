@@ -18,7 +18,7 @@ faq:
   - q: "Marchéo est-il une plateforme de livraison comme Uber Eats ?"
     r: "Non. Marchéo n'est ni une plateforme de livraison ni une place de marché : c'est un logiciel qui crée la boutique en ligne et le site internet du commerçant. Il ne prend aucune commission sur les ventes (0 %), n'a pas de livreurs et ne référence pas les commerces dans une application commune. Le commerçant paie un abonnement fixe de 19, 39 ou 59 € par mois, sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €."
   - q: "Pour quels commerces Marchéo est-il fait ?"
-    r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
+    r: "Les commerces de bouche et artisans indépendants : boulangeries, boucheries, primeurs et maraîchers, épiceries, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks. Chaque métier a son catalogue pré-rempli et son thème."
   - q: "Marchéo est-il une alternative à Shopify ou Wix pour un commerce de proximité ?"
     r: "Oui, pour un commerce de bouche qui vend en retrait et en livraison locale. Shopify est surtout fait pour expédier des colis et Wix pour les sites vitrines ; Marchéo arrive avec le catalogue du métier pré-rempli, les créneaux de retrait, la vente au poids et l'empreinte bancaire, pour 19 à 59 € par mois sans engagement et 0 % de commission. Pour expédier des colis dans toute la France, Shopify reste plus adapté."
   - q: "Marchéo est-il un bon logiciel pour vendre en ligne sans matériel et sans commission ?"

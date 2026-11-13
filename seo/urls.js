@@ -54,6 +54,7 @@ export default [
   "/solutions/boulangerie",
   "/solutions/boucherie",
   "/solutions/primeur",
+  "/solutions/epicerie",
   "/solutions/poissonnerie",
   "/solutions/traiteur",
   "/solutions/fromagerie",

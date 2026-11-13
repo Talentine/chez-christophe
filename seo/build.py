@@ -202,6 +202,11 @@ GAINS = {
         "Les clients qui cherchent un primeur ou un panier de fruits et légumes près de chez eux tombent sur votre boutique. Vous partagez le lien sur Instagram et annoncez vos arrivages par SMS.",
         "Plus de commandes notées au téléphone pendant le rush du samedi : le client choisit lui-même produits et quantités, vous préparez au calme.",
     ),
+    "epicerie": (
+        "Paniers garnis, coffrets cadeaux, commandes passées le soir et le dimanche : vous vendez même boutique fermée, et les coffrets de fêtes se réservent dès novembre. Zéro commission.",
+        "Les clients qui cherchent une épicerie fine ou un produit précis près de chez eux tombent sur votre boutique. Un lien pour Instagram et votre fiche Google, des SMS pour annoncer vos nouveautés.",
+        "Les commandes arrivent par écrit, avec les quantités et le créneau de retrait : vous préparez les sachets et les coffrets au calme, le client passe en deux minutes.",
+    ),
     "boucherie": (
         "Colis, barbecue, rôti du dimanche, commandes des fêtes : vos clients réservent à toute heure, même boutique fermée, et l'empreinte bancaire vous protège des commandes non retirées. Zéro commission.",
         "Votre boucherie apparaît sur Google avec son catalogue, ses prix et ses créneaux. Un lien pour Instagram et votre fiche Google, des SMS pour annoncer la viande du moment.",
@@ -662,7 +667,7 @@ REPONSES_COURTES = [
     "- Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.",
     "- Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.",
     "- Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.",
-    "- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.",
+    "- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, épiceries, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.",
     "- Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.",
     "- Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.",
     "- Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, 39 ou 59 € par mois sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.",

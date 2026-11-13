@@ -2,7 +2,7 @@
 
 > Marchéo (marchéo.fr) est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Il s'adresse aux commerces de bouche et artisans indépendants : click & collect, livraison locale et réservation de table. Aucune tablette, imprimante ou caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur du commerçant. Les clients commandent depuis leur téléphone en 30 secondes sans créer de compte et retirent à l'heure choisie. 0 % de commission sur les ventes, abonnement de 19 à 59 € par mois sans engagement, frais d'installation uniques de 249 à 549 €. Empreinte bancaire anti no-show optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait). Marchéo ne livre pas et n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum de commande, frais, tournée) pour que le commerçant organise sa propre livraison. Fondé par Paul Merieult. Données hébergées en Europe, paiements Stripe.
 
-Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, primeurs et maraîchers, épiceries fines et épiceries de quartier, poissonneries, traiteurs, fromageries et crèmeries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 
 ## Réponses courtes
 - Qu'est-ce que Marchéo ? Le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
@@ -10,7 +10,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Marchéo prend-il une commission ? Non, 0 % de commission sur les ventes.
 - Faut-il acheter du matériel ? Non : aucune tablette, imprimante ou caisse. Tout se gère depuis le téléphone ou l'ordinateur du commerçant.
 - Marchéo livre-t-il ? Non. Marchéo n'a pas de coursiers : il fournit l'outil (zone, créneaux, minimum, frais, tournée) pour que le commerçant livre lui-même.
-- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
+- Pour qui ? Boulangeries, boucheries, primeurs et maraîchers, épiceries, poissonneries, traiteurs, fromageries, fleuristes, pizzerias, restaurants, fast-foods et food-trucks.
 - Comment proposer le click and collect sans commission ? Avec une boutique en ligne à soi plutôt qu'une plateforme : Marchéo, par exemple, permet le retrait sur créneaux, le paiement en ligne ou au retrait et une empreinte bancaire optionnelle (jusqu'à 75 % du panier, libérée 24 h après le retrait), pour un abonnement fixe.
 - Marchéo ou Shopify / Wix ? Shopify convient à l'expédition de colis, Wix aux sites vitrines ; Marchéo est conçu pour les commerces de bouche qui vendent en retrait et en livraison locale, avec le catalogue du métier pré-rempli.
 - Marchéo ou Uber Eats / Deliveroo ? Les plateformes apportent clients et livreurs contre 14 à 30 % de commission ; avec Marchéo (0 % de commission, 39 ou 59 € par mois sans engagement) le commerçant garde 100 % de ses ventes et ses clients, et organise sa livraison lui-même : Marchéo n'a pas de coursiers. Beaucoup de restaurants utilisent les deux.
@@ -32,6 +32,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour boulangeries et pâtisseries](https://marchéo.fr/solutions/boulangerie) : Gâteaux, pains spéciaux et brioches du week-end commandés en ligne, préparés d'avance, retirés sans file.
 - [Marchéo pour boucheries et charcuteries](https://marchéo.fr/solutions/boucherie) : Commandes des fêtes, pièces à la découpe et plateaux réglés d'avance, retraits organisés par créneau.
 - [Marchéo pour primeurs et maraîchers](https://marchéo.fr/solutions/primeur) : Vos fruits et légumes commandés en ligne, au kilo ou à la pièce, retirés en 2 minutes ou livrés dans le quartier.
+- [Marchéo pour épiceries fines et épiceries de quartier](https://marchéo.fr/solutions/epicerie) : Paniers garnis, coffrets cadeaux et produits au poids commandés en ligne, retirés en boutique ou livrés dans le quartier.
 - [Marchéo pour poissonneries](https://marchéo.fr/solutions/poissonnerie) : Plateaux de fruits de mer et poisson du week-end réglés d'avance, arrivages du matin annoncés par SMS.
 - [Marchéo pour traiteurs](https://marchéo.fr/solutions/traiteur) : Plateaux, buffets et plats du jour commandés avec acompte, planning des retraits, plus de no-show.
 - [Marchéo pour fromageries et crèmeries](https://marchéo.fr/solutions/fromagerie) : Plateaux sur mesure et commandes de fêtes en ligne, affinages mis en avant, retraits organisés.
@@ -233,6 +234,53 @@ Q : Mes prix changent selon les arrivages, comment faire ?
 R : Vous modifiez un prix en quelques secondes depuis le tableau de bord sur votre téléphone. Vous pouvez aussi masquer un produit épuisé en un geste.
 Q : Est-ce que ça marche pour la vente à la ferme ?
 R : Oui. Les maraîchers utilisent la boutique pour prendre les commandes à l'avance et les faire retirer à la ferme, au marché ou dans un point de dépôt, ou pour organiser une tournée de livraison.
+
+# Marchéo pour épiceries fines et épiceries de quartier
+
+Création de site internet pour épicerie fine et épicerie de quartier
+Développer son commerce grâce à internet : ça consiste en quoi ?
+
+Concrètement, c'est avoir votre propre site, à votre nom et à vos couleurs, où les gens du coin trouvent votre épicerie, découvrent vos produits et vous passent commande. Voici ce que ça change pour une épicerie, ce qui se vend bien en ligne dans votre métier, et combien ça peut vous rapporter.
+
+## Ce qu'un site à votre image change pour vous
+- Les clients du coin vous trouvent : Quand quelqu'un cherche « épicerie fine » ou « épicerie près de chez moi » sur Google, c'est votre site qui ressort, avec vos produits, vos horaires et votre adresse. Ce sont de nouveaux clients, qui ne seraient peut-être jamais passés devant votre vitrine.
+- Une image pro : Un site à votre nom, à vos couleurs, avec vos photos : votre épicerie inspire confiance avant même que le client pousse la porte. Un seul lien à mettre sur Google Maps, Instagram et Facebook, et un QR code en vitrine.
+- Le click & collect, et la livraison si vous le voulez : Le client commande en ligne et passe retirer à l'heure qu'il a choisie. Si vous le souhaitez, vous livrez vous-même dans votre secteur, avec vos jours, vos créneaux et vos frais. Vous gardez tout le prix : 0 % de commission.
+- Vous vous modernisez : Vos clients commandent déjà en ligne pour tout le reste. Vous leur offrez la même facilité, sans rien perdre de ce qui fait votre commerce : vos produits, vos conseils, le lien avec vos habitués.
+- Des commandes que vous n'auriez pas prises : Le soir, le dimanche, boutique fermée, ou le client pressé qui n'a pas le temps d'appeler : la commande arrive quand même, par écrit, avec le créneau choisi. C'est du chiffre d'affaires en plus.
+- Des avis clients, automatiquement : Après chaque commande retirée, le client reçoit tout seul une demande d'avis par email. Vous validez, les avis s'affichent sur votre site : c'est ce qui décide les nouveaux clients qui hésitent.
+- En prime : fini le téléphone pendant le rush : Le samedi et en décembre, le téléphone ne sonne plus toutes les deux minutes : les commandes arrivent sur votre téléphone, triées par créneau, et vous servez vos clients au comptoir sans être interrompu.
+
+## Ce qui marche bien en ligne pour une épicerie
+D'abord vos produits du quotidien et vos spécialités, à la pièce ou au poids, avec la provenance et vos conseils. Ensuite, les formules qui font de belles commandes :
+- Olives, tapenades et apéritif : Au poids ou en barquette, avec les tartinables et les biscuits salés : l'apéro commandé d'avance pour le week-end.
+- Épices, aromates et mélanges : En sachet de 50, 100 ou 250 g, avec l'origine et une idée de recette pour donner envie d'essayer.
+- Fruits secs et vrac : Amandes, noix, dattes, céréales : vendus au poids ou en sachets à poids fixe, plus simples à commander.
+- Huiles, pâtes et conserves : Huiles d'olive, vinaigres, pâtes artisanales, sauces et bocaux : le fond de placard réservé en ligne et prêt au comptoir.
+- Le panier garni : Composé par vos soins à prix fixe, en trois tailles : le client choisit un budget, vous choisissez les produits.
+- Le coffret cadeau : Pour un anniversaire, une invitation ou un cadeau d'entreprise, avec un champ pour le message à glisser dedans.
+- Les coffrets de fêtes : Commandés dès novembre, préparés à l'avance et garantis par une empreinte bancaire sur les grosses commandes.
+
+## Combien ça coûte
+- Vitrine : 249 € d'installation, 19 € par mois. Être trouvé sur Google et présenter vos produits, sans vente en ligne.
+- Click & Collect : 399 € d'installation, 39 € par mois. Commandes en ligne avec retrait, avis clients, SMS, base clients.
+- Click & Collect + Livraison : 549 € d'installation, 59 € par mois. Tout ça, plus la livraison à domicile que vous faites vous-même.
+0 % de commission, sans engagement. Démo gratuite et sans engagement, mise en ligne quand le commerçant est prêt.
+
+Q : Comment vendre du vrac et des produits au poids en ligne ?
+R : Vous créez le produit avec un prix au kilo ou aux 100 g. Le client choisit un poids approximatif, vous pesez à la préparation et vous ajustez le montant au poids réel avant l'encaissement si nécessaire. Pour les épices et les fruits secs, des sachets à poids fixe (100 g, 250 g, 500 g) sont souvent plus simples à commander.
+Q : Faut-il mettre toutes mes références en ligne ?
+R : Non. Commencez par vos meilleures ventes, vos spécialités et vos paniers garnis : quelques dizaines de produits suffisent pour recevoir des commandes. Votre démo arrive avec un catalogue d'épicerie déjà rempli (épices, huiles et vinaigres, olives, fruits secs, pâtes et conserves) que vous corrigez et complétez ensuite, à votre rythme.
+Q : Quel logiciel de click and collect pour une épicerie ?
+R : Un outil qui gère la vente à la pièce et au poids, les créneaux de retrait et les commandes de coffrets préparées à l'avance. Marchéo le fait sans matériel à acheter et sans changer de caisse : 0 % de commission, 39 € par mois pour le click & collect ou 59 € par mois avec la livraison, sans engagement, plus 399 ou 549 € de frais d'installation uniques. Si vous expédiez surtout des colis dans toute la France, une solution d'e-commerce classique comme Shopify est plus adaptée.
+Q : Puis-je envoyer des colis partout en France avec Marchéo ?
+R : Marchéo est conçu pour la vente locale : retrait en boutique et livraison dans votre zone, par vos soins. Il ne calcule pas de frais de transporteur et n'édite pas d'étiquettes d'expédition. Pour une épicerie dont l'essentiel des ventes en ligne part par colis, un outil d'e-commerce classique convient mieux ; les deux peuvent se compléter.
+Q : Comment éviter qu'un coffret cadeau commandé ne soit pas retiré ?
+R : Activez l'empreinte bancaire sur les coffrets et les paniers garnis : elle est optionnelle, peut couvrir jusqu'à 75 % du panier, rien n'est débité si le client vient, et elle est libérée 24 h après le retrait. Pour les achats courants, le paiement au retrait suffit le plus souvent.
+Q : Faut-il acheter du matériel pour vendre en ligne dans une épicerie ?
+R : Non. Aucune tablette, imprimante ou caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et votre caisse comme votre balance restent en place.
+Q : Marchéo livre-t-il les commandes ?
+R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
 
 # Marchéo pour poissonneries
 
