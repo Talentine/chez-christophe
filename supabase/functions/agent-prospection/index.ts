@@ -720,7 +720,222 @@ const THEMES_POSTS = [
   "Le commerce de proximité a un avantage que les plateformes n'auront jamais : la relation. Comment la prolonger en ligne",
 ];
 
+// Posts déjà écrits, publiés tels quels quand l'API Claude n'est pas disponible.
+// Uniquement des faits de FAITS_MARCHEO : aucun client, chiffre ou témoignage inventé.
+const POSTS_MODELES = [
+  {
+    theme: 'modele-commission',
+    contenu: `Une boulangerie qui vend en ligne via une plateforme laisse souvent 25 à 30 % de chaque commande.
+
+Sur un panier de 40 €, ça fait 10 à 12 € qui partent avant même d'avoir payé la farine.
+
+Avec Marchéo, le commerçant a sa propre boutique en ligne, à son nom :
+– click & collect et livraison locale qu'il organise lui-même
+– 0 % de commission sur les ventes
+– un abonnement fixe, dès 19 €/mois
+– ses clients restent les siens : le fichier client lui appartient
+
+Un exemple de boutique : marchéo.fr/chez-christophe
+
+Qu'est-ce qui vous freine pour prendre des commandes en ligne ?
+
+#commerce #commercedeproximite #artisan #boulangerie #clickandcollect`,
+  },
+  {
+    theme: 'modele-associations',
+    contenu: `Message aux présidents d'associations et d'unions de commerçants.
+
+Vos adhérents veulent vendre en ligne, mais ne savent pas par où commencer. Et ils n'ont pas envie de céder un quart de leur chiffre à une plateforme.
+
+J'ai prévu un tarif partenaire pour eux, sans convention lourde de votre côté, juste un code adhérent :
+– Vitrine : installation à 149 € au lieu de 249 €
+– Click & Collect : 199 € au lieu de 399 €
+– Tout-en-un + livraison : 299 € au lieu de 549 €
+– un audit digital offert à chaque commerce qui se lance
+
+Si votre association est concernée, écrivez-moi en message privé.
+
+#associationdecommercants #unioncommerciale #commercedeproximite #centreville`,
+  },
+  {
+    theme: 'modele-fetes',
+    contenu: `Noël approche, et avec lui le cahier des commandes de bûches, de chapons et de plateaux.
+
+Un cahier papier, c'est :
+– des numéros mal recopiés
+– des créneaux de retrait qui se chevauchent
+– des clients qui ne viennent jamais chercher leur commande
+
+Une boutique en ligne à votre nom règle ça : le client choisit son produit et son heure de retrait en 30 secondes, sans créer de compte.
+
+Et pour les commandes qui ne sont jamais récupérées : une empreinte bancaire optionnelle, jusqu'à 75 % du panier, libérée 24 h après le retrait.
+
+Comment gérez-vous vos précommandes de fêtes aujourd'hui ?
+
+#noel #boulangerie #boucherie #traiteur #commercedeproximite`,
+  },
+  {
+    theme: 'modele-no-show',
+    contenu: `Le no-show, ce n'est pas qu'un problème de restaurant.
+
+Une commande de 12 parts de fraisier jamais récupérée, c'est une matinée de travail à la poubelle.
+
+Une solution simple : l'empreinte bancaire.
+Le client réserve en ligne, sa carte est vérifiée, rien n'est débité.
+S'il ne vient pas, vous pouvez retenir jusqu'à 75 % du panier.
+S'il vient, l'empreinte est libérée 24 h après le retrait.
+
+C'est optionnel, et c'est vous qui décidez pour quels produits l'activer.
+
+Vous avez déjà eu des commandes jamais récupérées ?
+
+#patisserie #traiteur #artisan #commercedeproximite`,
+  },
+  {
+    theme: 'modele-fichier-client',
+    contenu: `Quand vous vendez via une plateforme, à qui appartiennent vos clients ?
+
+Souvent, pas à vous. La plateforme garde l'adresse email, l'historique, les habitudes. Le jour où vous partez, vous repartez de zéro.
+
+Pour un commerce de proximité, le client est la vraie richesse. Celui qui vient chaque samedi, celui qui commande sa galette chaque année.
+
+Avec Marchéo, le fichier client appartient au commerçant. Les données sont hébergées en Europe et les paiements passent par Stripe.
+
+Vos clients, c'est votre fonds de commerce. Gardez-les.
+
+#commercedeproximite #artisan #commercant #independant`,
+  },
+  {
+    theme: 'modele-plusieurs-boutiques',
+    contenu: `Vous avez deux, trois ou quatre boutiques ?
+
+Prendre les commandes en ligne devient vite un casse-tête : un outil par boutique, des stocks différents, des horaires différents.
+
+Marchéo crée une boutique en ligne au nom de chacun de vos commerces, et tout se gère depuis une seule interface.
+
+À partir de la 2e boutique, les frais d'installation passent au tarif partenaire (149 / 199 / 299 €).
+
+Et toujours 0 % de commission sur les ventes.
+
+Propriétaires de plusieurs commerces : qu'est-ce qui vous prend le plus de temps aujourd'hui ?
+
+#boulangerie #boucherie #primeur #commerce #entrepreneur`,
+  },
+  {
+    theme: 'modele-livraison-locale',
+    contenu: `Livrer ses clients sans passer par des coursiers de plateforme, c'est possible.
+
+Beaucoup de commerçants livrent déjà : le boucher qui dépose les colis le vendredi, le primeur qui fait sa tournée du jeudi.
+
+Ce qui manque, c'est la prise de commande :
+– une zone de livraison définie
+– des créneaux clairs
+– un minimum de commande
+
+Avec Marchéo, la livraison reste organisée par le commerçant. Marchéo ne livre pas : il vous donne l'outil pour prendre les commandes proprement, sans commission.
+
+Vous livrez déjà certains clients ?
+
+#livraisonlocale #primeur #boucherie #commercedeproximite`,
+  },
+  {
+    theme: 'modele-click-collect',
+    contenu: `Ce que vos clients attendent d'un click & collect, en 3 points :
+
+1. Commander en 30 secondes, depuis leur téléphone
+2. Sans créer de compte ni retenir un mot de passe
+3. Une heure de retrait précise, et la commande prête quand ils arrivent
+
+Tout le reste est secondaire.
+
+C'est exactement ce que fait une boutique Marchéo : simple pour le client, simple pour le commerçant.
+
+Un exemple : marchéo.fr/chez-christophe
+
+#clickandcollect #commerce #artisan #boulangerie`,
+  },
+  {
+    theme: 'modele-formules',
+    contenu: `Combien coûte une boutique en ligne pour un commerce de bouche ?
+
+Chez Marchéo, trois formules, sans engagement :
+– Vitrine : 19 €/mois
+– Click & Collect + Réservation : 39 €/mois
+– Tout-en-un + Livraison : 59 €/mois
+
+Et 0 % de commission sur les ventes, quelle que soit la formule.
+
+Un abonnement fixe, c'est un coût que vous connaissez à l'avance. Une commission, c'est un coût qui grandit à chaque fois que vous vendez plus.
+
+La démo est gratuite et prend 30 secondes : marchéo.fr/inscription
+
+#commerce #artisan #commercedeproximite #independant`,
+  },
+  {
+    theme: 'modele-fondateur',
+    contenu: `Pourquoi j'ai créé Marchéo.
+
+Parce que les commerçants de quartier font un travail remarquable, et que les outils pour vendre en ligne ont été pensés pour d'autres.
+
+Les plateformes prennent une part de chaque vente. Les sites sur mesure coûtent cher et demandent du temps qu'un artisan n'a pas.
+
+Je voulais quelque chose de simple : une boutique en ligne au nom du commerçant, un abonnement fixe, aucune commission, et des clients qui restent les siens.
+
+Boulangers, bouchers, primeurs, fromagers, traiteurs : c'est pour vous.
+
+#entrepreneur #commercedeproximite #artisan #fondateur`,
+  },
+  {
+    theme: 'modele-centre-ville',
+    contenu: `Trois idées concrètes pour un centre-ville face aux zones commerciales.
+
+1. Rendre l'offre visible en ligne : un client qui ne trouve pas la boulangerie sur son téléphone va ailleurs.
+2. Permettre de commander avant de venir : on récupère sa commande en 2 minutes, sans faire la queue.
+3. Agir ensemble : une association de commerçants peut négocier des conditions pour tous ses adhérents.
+
+Sur le troisième point, Marchéo propose un tarif partenaire aux adhérents des associations et unions de commerçants.
+
+Présidents d'associations, parlons-en en message privé.
+
+#centreville #unioncommerciale #associationdecommercants #commercedeproximite`,
+  },
+  {
+    theme: 'modele-question',
+    contenu: `Question ouverte aux commerçants et artisans :
+
+Qu'est-ce qui vous freine pour prendre des commandes en ligne ?
+
+– le prix des outils ?
+– les commissions des plateformes ?
+– le temps qu'il faut pour s'en occuper ?
+– la peur que ce soit compliqué pour vos clients ?
+– autre chose ?
+
+Je lis toutes les réponses en commentaire.
+
+#commerce #artisan #commercedeproximite #boulangerie #boucherie`,
+  },
+];
+
+async function postModele() {
+  const { data: publies } = await supabase.from('linkedin_posts').select('theme').eq('statut', 'publie');
+  const dejaFaits = new Set((publies ?? []).map((p) => p.theme));
+  const restants = POSTS_MODELES.filter((p) => !dejaFaits.has(p.theme));
+  // Tous publiés : on recommence le cycle dans l'ordre.
+  return restants[0] ?? POSTS_MODELES[(publies?.length ?? 0) % POSTS_MODELES.length];
+}
+
 async function genererPost() {
+  try {
+    return await genererPostClaude();
+  } catch (e) {
+    console.warn('[post] modèle utilisé :', (e as Error).message);
+    return await postModele();
+  }
+}
+
+async function genererPostClaude() {
+  if (!env('ANTHROPIC_API_KEY') || env('REDACTION') === 'modele') throw new Error('API Claude désactivée');
   const { data: derniers } = await supabase.from('linkedin_posts').select('theme, contenu').eq('statut', 'publie')
     .order('created_at', { ascending: false }).limit(12);
   const { count } = await supabase.from('linkedin_posts').select('id', { count: 'exact', head: true });
