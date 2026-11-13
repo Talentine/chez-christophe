@@ -292,7 +292,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fromagerie site web | site | fromagerie | GS (06/11) | moyenne | publié le 2026-11-06 site-internet-fromagerie (variante) |
 | site fromage en ligne | site | fromagerie | GS (06/11) | basse | écarté : intention acheteur (vente nationale par correspondance), pas commerçant |
 | fromagerie en ligne direct producteur | transverse | fromagerie | GS (06/11) | basse | écarté : intention consommateur |
-| site internet poissonnerie | site | poissonnerie | GS (06/11 : « site de poissonnerie ») | haute | à faire (angle : arrivages du jour, plateaux de fruits de mer de fêtes, pas avant mi-novembre) |
+| site internet poissonnerie | site | poissonnerie | GS (06/11 : « site de poissonnerie » ; 13/11 : « site de poissonnerie en ligne », « site web poissonnerie ») | haute | à faire en priorité au prochain run (prévu le 13/11, remplacé par le grand comparatif demandé par Paul) : arrivages du jour, plateaux de fruits de mer de fêtes |
 | site vitrine vs site e commerce | site | tous | GS (06/11) | moyenne | à faire : vérifier la cannibalisation avec creation-site-internet-commerce (section vitrine ou commande) avant d'écrire |
 | site vitrine boutique | site | tous | GS (06/11) | basse | couvert par creation-site-internet-commerce |
 | nom de domaine commercial | site | tous | GS (06/11) | moyenne | à faire : nom de domaine pour un commerce (choix, prix, extension), vérifier obligations-legales-boutique-en-ligne-commercant |
@@ -351,3 +351,15 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | click and collect local | click & collect | tous | GS (12/11 après-midi) | basse | à faire en variante dans les keywords du pilier click and collect |
 | site internet épicerie fine | site | hors liste (épicerie) | GS (12/11 après-midi) | basse | écarté pour l'instant : l'épicerie n'est pas un métier proposé par Marchéo, à revoir si Paul l'ajoute |
 | créer un site de vente en ligne sans siret | site | tous | GS (12/11 après-midi) | basse | écarté (hors cible : Marchéo s'adresse à des commerces déclarés) |
+| quelle plateforme pour vendre en ligne | site | tous (commerces de bouche) | Paul (13/11) + GS (13/11 : « quelle plateforme pour vendre en ligne », « meilleur plateforme pour vendre en ligne », « quel site pour vendre en ligne ») | haute | publié le 2026-11-13 quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche |
+| comparatif site de vente en ligne | site | tous | GS (13/11) | moyenne | publié le 2026-11-13 quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche (variante) |
+| vendre ses fruits et légumes en ligne | site | primeur | Paul (13/11), aucune suggestion Google | moyenne | couvert le 2026-11-13 par le grand comparatif (FAQ primeur) ; article dédié possible plus tard |
+| meilleur site de vente en ligne gratuit | site | tous | GS (13/11) | moyenne | couvert par site-internet-pas-cher-commerce-de-proximite et la FAQ du comparatif du 13/11 |
+| créer un site de vente en ligne prix | site | tous | GS (13/11) | moyenne | à faire : vérifier la cannibalisation avec combien-coute-un-site-de-click-and-collect, sinon variante dans ses keywords |
+| creer un site de vente en ligne avec wordpress | site | tous | GS (13/11) | basse | écarté : requête technique dominée par les tutoriels WordPress ; traitée en section du comparatif du 13/11 |
+| comparatif création de site internet | site | tous | GS (13/11) | basse | variante du comparatif du 13/11, dominée par les grands comparateurs |
+| site de poissonnerie en ligne | site | poissonnerie | GS (13/11) | haute | à faire avec « site internet poissonnerie » (même article) |
+| logiciel caisse poissonnerie | transverse | poissonnerie | GS (13/11) | basse | écarté : Marchéo ne remplace pas une caisse ; à citer dans l'article site internet poissonnerie (pas besoin de changer de caisse) |
+| click and collect produits frais | click & collect | tous | GS (13/11) | moyenne | à faire avec « click and collect alimentaire » (même article : frais, poids, DLC) |
+| vendre ses produits alimentaires sur une marketplace (Pourdebon, Ollca) ou sur sa propre boutique | transverse | tous | IA (13/11 : l'aperçu IA de Google cite Pourdebon, Les Grappes, Faire, Ollca, Epicery à côté de Marchéo) | haute | à faire : comparatif « place de marché alimentaire ou boutique à soi » (expédition nationale contre vente locale), réservé IA |
+| logiciel tournée de livraison commerçant | livraison | tous | IA (13/11 : Perplexity cite Zeo, RouteLogic, Nomadia ; Google cite Circuit, AntsRoute, Tookan ; Marchéo absent sur n°3) | moyenne | à faire : renforcer logiciel-pour-livrer-ses-clients-soi-meme (tableau optimiseur de tournée ou boutique avec livraison, quand l'un suffit) |

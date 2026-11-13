@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026](https://marchéo.fr/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) : Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche.
 - [Commande boucherie Noël : prendre les commandes en ligne](https://marchéo.fr/blog/commande-boucherie-noel-en-ligne) : Commande boucherie Noël : bon de commande papier ou en ligne, chapons vendus au poids, date limite, acompte et retraits du 24. Le guide du boucher.
 - [Commission ou frais bancaires : quelle différence en vente en ligne ?](https://marchéo.fr/blog/commission-ou-frais-bancaires-vente-en-ligne) : Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.
 - [Livraison plateau repas entreprise : le guide du traiteur](https://marchéo.fr/blog/livraison-plateau-repas-entreprise-traiteur) : Traiteur, lancez la livraison de plateaux repas en entreprise : carte, prix par personne, minimum, heure limite, tournée du midi et froid, sans commission.
@@ -95,4 +96,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-12
+- Dernière mise à jour : 2026-11-13

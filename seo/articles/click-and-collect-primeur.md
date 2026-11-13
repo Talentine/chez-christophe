@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
-modified: 2026-11-02
+modified: 2026-11-13
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -113,7 +113,7 @@ Le click and collect coûte 39 € par mois avec Marchéo, alors qu'une platefor
 
 Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d'installation. Le client commande en 30 secondes, sans créer de compte.
 
-Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à savoir quand passer à une vraie boutique.
+Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à savoir quand passer à une vraie boutique. Et si vous hésitez entre plusieurs outils, notre grand comparatif explique [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) ses fruits et légumes.
 
 ## Par où commencer ?
 

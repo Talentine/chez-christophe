@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-11-12
+modified: 2026-11-13
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -81,7 +81,7 @@ Il existe cinq grandes familles de solutions, et aucune n'est mauvaise en soi : 
 | Site sur mesure par une agence | Projets spécifiques | 2 000 à 8 000 € de création, puis maintenance | Aucune | Selon devis | Selon devis |
 | Logiciel métier (Marchéo) | Commerces de bouche et de proximité | 19 à 59 € par mois | 0 % | Oui, avec capacité par créneau | Oui |
 
-Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) détaille les options une par une, et l'article sur le [click & collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo) fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite). Pour un avis direct sur l'outil à prendre, voyez [quel logiciel pour vendre en ligne sans commission ni matériel](/blog/logiciel-vendre-en-ligne-sans-commission).
+Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) détaille les options une par une, et l'article sur le [click & collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo) fait le calcul face aux plateformes. Pour savoir [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) convient à votre commerce, notre grand comparatif passe en revue toutes les familles, de Shopify aux places de marché. Si vous hésitez entre les deux grands constructeurs, lisez [Shopify, Wix ou logiciel métier pour un commerce de proximité](/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite). Pour un avis direct sur l'outil à prendre, voyez [quel logiciel pour vendre en ligne sans commission ni matériel](/blog/logiciel-vendre-en-ligne-sans-commission).
 
 ## Combien coûte une boutique en ligne pas chère et sérieuse ?
 
@@ -180,6 +180,7 @@ Pour aller plus loin sur un point précis, voici les guides du blog liés à la 
 
 - [Comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce)
 - [Combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect)
+- [Quelle plateforme pour vendre en ligne ? Le grand comparatif](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche)
 - [Comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026)
 - [Digitaliser son commerce de bouche : par où commencer](/blog/digitaliser-commerce-bouche)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)

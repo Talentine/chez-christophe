@@ -3,7 +3,7 @@ title: "Shopify, Wix ou logiciel métier pour un commerce de proximité ?"
 titre_court: "Shopify, Wix ou logiciel métier ?"
 description: "Shopify, Wix ou logiciel métier : quel outil choisir pour la boutique en ligne d'un commerce de proximité ? Comparatif honnête, coûts et cas où chacun gagne."
 date: 2026-10-27
-modified: 2026-11-01
+modified: 2026-11-13
 rubrique: Comparatif
 emoji: ⚖️
 keywords:
@@ -98,7 +98,7 @@ Il vous faut surtout votre catalogue, vos prix et vos horaires. Le reste dépend
 | Vos horaires et vos créneaux de retrait | Une commission sur chaque commande |
 | Le téléphone ou l'ordinateur que vous avez déjà | Un engagement de longue durée |
 
-Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026). Pour le calcul des coûts sur un an, voyez le [prix d'un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect). Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le [logiciel pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission).
+Si vous hésitez aussi avec WooCommerce, PrestaShop, une place de marché ou une plateforme de livraison, notre grand comparatif répond à la question [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche). Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026). Pour le calcul des coûts sur un an, voyez le [prix d'un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect). Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le [logiciel pour vendre en ligne sans commission](/blog/logiciel-vendre-en-ligne-sans-commission).
 
 ## Par où commencer ?
 

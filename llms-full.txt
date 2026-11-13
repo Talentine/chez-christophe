@@ -41,6 +41,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026](https://marchéo.fr/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) : Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche.
 - [Commande boucherie Noël : prendre les commandes en ligne](https://marchéo.fr/blog/commande-boucherie-noel-en-ligne) : Commande boucherie Noël : bon de commande papier ou en ligne, chapons vendus au poids, date limite, acompte et retraits du 24. Le guide du boucher.
 - [Commission ou frais bancaires : quelle différence en vente en ligne ?](https://marchéo.fr/blog/commission-ou-frais-bancaires-vente-en-ligne) : Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer.
 - [Livraison plateau repas entreprise : le guide du traiteur](https://marchéo.fr/blog/livraison-plateau-repas-entreprise-traiteur) : Traiteur, lancez la livraison de plateaux repas en entreprise : carte, prix par personne, minimum, heure limite, tournée du midi et froid, sans commission.
@@ -95,7 +96,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-12
+- Dernière mise à jour : 2026-11-13
 
 
 ---
@@ -519,6 +520,420 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026
+
+Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche.
+
+La bonne plateforme pour vendre en ligne dépend de ce que vous vendez et de la façon dont vos clients récupèrent leurs achats. Shopify, WooCommerce et PrestaShop sont faits pour expédier des colis, Wix et Squarespace pour un beau site vitrine, les plateformes de livraison pour trouver de nouveaux clients contre une commission. Pour un commerce de bouche qui vend des produits frais en retrait et en livraison locale, un logiciel métier comme Marchéo est le plus direct : sans matériel à acheter et sans commission.
+Ce comparatif passe en revue toutes les familles de solutions, explique comment on crée un site avec chacune et ce que cela coûte vraiment. Il complète notre guide pour créer la boutique en ligne de son commerce, qui détaille la méthode pas à pas. Nous éditons Marchéo, nous le disons clairement, et nous indiquons aussi les cas où une autre plateforme est un meilleur choix.
+Quelles sont les grandes familles de plateformes pour vendre en ligne ?
+Il existe sept familles de solutions, et elles ne répondent pas au même besoin. Les confondre est la première cause de sites abandonnés au bout de trois mois.
+
+
+
+Famille
+Exemples
+Faite d&rsquo;abord pour
+
+
+
+
+Plateformes e-commerce
+Shopify, WooCommerce (WordPress), PrestaShop
+Vendre à distance et expédier des colis
+
+
+Créateurs de sites
+Wix, Squarespace, SiteW, e-monsite
+Un site vitrine, avec une boutique en option
+
+
+Boutiques des terminaux de paiement
+SumUp, Square
+Une petite boutique simple reliée à l&rsquo;encaissement
+
+
+Plateformes de livraison
+Uber Eats, Deliveroo
+La restauration livrée par coursier
+
+
+Places de marché de commerçants
+Ollca et sites locaux équivalents
+Regrouper plusieurs commerces sur un même site
+
+
+Outils gratuits détournés
+WhatsApp Business, Instagram, Facebook, Google Forms
+Dépanner avec quelques commandes par semaine
+
+
+Logiciels métier
+Marchéo pour les commerces de bouche, modules des éditeurs de caisse
+Un type de commerce précis, avec ses habitudes
+
+
+
+À cette liste s&rsquo;ajoute le site sur mesure, réalisé par une agence ou un freelance, qui s&rsquo;appuie presque toujours sur l&rsquo;une des plateformes ci-dessus.
+Pourquoi un commerce de bouche ne vend-il pas en ligne comme les autres ?
+Parce qu&rsquo;il vend du frais, souvent au poids, à des clients du quartier qui passent le chercher à une heure précise. Une boutique en ligne classique est pensée pour un produit emballé, à prix fixe, envoyé par transporteur. Rien de cela ne ressemble à un kilo de tomates, une côte de bœuf ou un plateau de fruits de mer.
+Voici ce qu&rsquo;un primeur, un boucher, un poissonnier ou un boulanger demande à sa plateforme :
+
+La vente au poids : le client choisit un poids indicatif, le prix final s&rsquo;ajuste à la pesée.
+Des prix qui bougent : un primeur change ses prix selon les arrivages, parfois chaque matin.
+Des produits qui manquent : il faut pouvoir masquer un produit épuisé en un geste.
+Des créneaux de retrait avec une capacité, pour ne pas recevoir trente commandes pour 11 h le samedi.
+Une commande rapide, sans compte client, car personne ne crée un compte pour acheter des poireaux.
+Une protection contre les commandes non récupérées, parce qu&rsquo;un plateau préparé ne se remet pas en rayon.
+La livraison locale dans une zone choisie, avec un minimum de commande, et non l&rsquo;expédition en colis.
+Un outil qui se gère depuis le téléphone, entre deux clients, sans ordinateur dans l&rsquo;arrière-boutique.
+
+Toutes les plateformes ne couvrent pas ces points d&rsquo;origine. C&rsquo;est le vrai critère de choix, bien avant le design.
+Comment créer un site avec Shopify, et pour qui est-ce le bon choix ?
+Shopify est le bon choix si une grande partie de vos ventes part en colis. C&rsquo;est une plateforme très solide pour l&rsquo;épicerie fine, le vin, les confiseries ou les produits secs vendus partout en France.
+Pour créer sa boutique, on ouvre un compte, on choisit un thème, on saisit ses produits un par un avec photos et prix, on règle les modes de livraison et le paiement, puis on relie son nom de domaine. Comptez plusieurs jours de réglages pour un résultat propre.
+Le retrait en magasin et la livraison locale existent. En revanche, les créneaux avec capacité, la vente au poids ou les précommandes de fêtes passent en général par des applications à ajouter, chacune avec son abonnement. L&rsquo;abonnement de base coûte quelques dizaines d&rsquo;euros par mois, auxquels s&rsquo;ajoutent ces applications et les frais de paiement.
+Comment créer un site avec Wix ou Squarespace ?
+Wix et Squarespace conviennent si vous voulez d&rsquo;abord un site vitrine soigné, avec une petite boutique à côté. On choisit un modèle, on déplace les blocs à la souris, on écrit ses textes et on ajoute ses photos. Un site simple se monte en quelques jours.
+Pour vendre, il faut prendre une offre payante avec boutique, puis créer chaque produit. Wix propose aussi un module de commande pour les restaurants. Pour un commerce de bouche, l&rsquo;organisation des créneaux, du poids et des préparations reste largement à construire soi-même. Les constructeurs français plus simples, comme SiteW ou e-monsite, suivent la même logique : un site facile à monter, une boutique généraliste.
+Comment créer un site avec WordPress et WooCommerce, ou PrestaShop ?
+WooCommerce et PrestaShop sont gratuits à télécharger, mais c&rsquo;est vous qui assemblez tout. Il faut louer un hébergement, acheter un nom de domaine, installer le logiciel, choisir un thème, ajouter des extensions pour le paiement, les créneaux ou le poids, puis faire les mises à jour et les sauvegardes dans la durée.
+C&rsquo;est la solution la plus souple : on peut tout faire, à condition d&rsquo;avoir le temps ou de payer quelqu&rsquo;un pour le faire. PrestaShop vise plutôt les catalogues importants et se met souvent en place avec une agence. Pour un artisan seul derrière son comptoir, le coût caché est la maintenance : une extension qui casse un vendredi soir est votre problème, pas celui d&rsquo;un éditeur.
+Que valent les boutiques en ligne des terminaux de paiement ?
+Elles dépannent bien pour vendre quelques produits à prix fixe. SumUp ou Square proposent une boutique en ligne simple, souvent sans abonnement au départ, avec des frais prélevés sur chaque paiement.
+La mise en route est rapide : on ajoute ses produits depuis l&rsquo;application du terminal et on partage le lien. Les limites arrivent vite pour un commerce de bouche : peu de réglages pour les créneaux, la vente au poids ou les commandes de fêtes.
+Faut-il vendre sur Uber Eats, Deliveroo ou une place de marché ?
+Oui si vous cherchez de nouveaux clients et acceptez de payer une commission, non si vous voulez surtout servir vos clients actuels. Ces plateformes ne créent pas votre site : elles vous référencent dans leur application, à côté de vos concurrents.
+Les plateformes de livraison comme Uber Eats et Deliveroo apportent des clients et des coursiers, et prennent en général 14 à 30 % de chaque commande. On s&rsquo;inscrit, on envoie son menu, on reçoit une tablette et les commandes arrivent. Elles sont pensées pour la restauration, beaucoup moins pour un étal de fruits et légumes vendu au kilo.
+Les places de marché de commerçants, comme Ollca, regroupent plusieurs commerces d&rsquo;une ville sur un même site, avec une rémunération par commission ou par abonnement selon les cas. Vous gagnez en visibilité, mais le client est d&rsquo;abord celui de la plateforme. Beaucoup de commerçants utilisent les deux : une plateforme pour se faire connaître, et leur propre boutique pour leurs habitués. Le calcul complet est dans notre article sur le click and collect sans commission.
+WhatsApp, Instagram ou Google Forms suffisent-ils ?
+Oui pour quelques commandes par semaine, non au-delà. Ces outils sont gratuits et vos clients les connaissent déjà. Ils ne gèrent ni les créneaux complets, ni le paiement, ni le récapitulatif des quantités à préparer : c&rsquo;est vous qui recopiez tout.
+Nous avons comparé ces options en détail dans WhatsApp ou boutique en ligne et dans Google Forms ou logiciel de commande.
+Qu&rsquo;apporte un logiciel spécialisé dans les commerces de bouche ?
+Il apporte une boutique déjà pensée pour votre métier, au lieu d&rsquo;une page blanche à remplir. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+La différence avec un créateur de sites tient en une phrase : Marchéo n&rsquo;est pas une bibliothèque de modèles vides. Un créateur de sites vous donne un beau modèle et vous laisse saisir vos produits un par un. Marchéo arrive avec le catalogue de votre métier déjà rempli. Un primeur trouve ses fruits et légumes de saison, au kilo ou à la pièce. Vous cochez ce que vous vendez, vous ajustez vos prix, et la boutique est prête.
+L&rsquo;application du commerçant a été conçue derrière le comptoir d&rsquo;un primeur normand, pour être utilisée d&rsquo;une main, entre deux clients. Voici ce qu&rsquo;elle contient.
+
+
+
+Fonction
+Ce que cela change pour vous
+
+
+
+
+Catalogue du métier pré-rempli
+Pas de saisie produit par produit, vous cochez et vous ajustez les prix
+
+
+Vente au poids et à la pièce
+Le client choisit un poids indicatif, le prix s&rsquo;ajuste à la pesée
+
+
+Prix modifiables depuis le téléphone
+Vous suivez vos arrivages en quelques secondes
+
+
+Produit épuisé masqué en un geste
+Plus de commande sur un produit que vous n&rsquo;avez plus
+
+
+Créneaux de retrait avec capacité
+Le samedi matin se lisse au lieu de déborder
+
+
+Commande en 30 secondes sans compte
+Vos clients vont au bout de leur commande
+
+
+Paiement en ligne ou au retrait
+L&rsquo;argent des paiements en ligne arrive sur votre compte via Stripe
+
+
+Empreinte bancaire optionnelle
+Jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait, contre les commandes non récupérées
+
+
+Livraison locale
+Zone, créneaux, minimum, frais, tournée avec les adresses et l&rsquo;itinéraire
+
+
+Réservation de table
+Pour les restaurants, avec la même protection contre les absences
+
+
+Fichier clients, SMS et notifications
+Vos clients restent les vôtres, vous les prévenez d&rsquo;un arrivage ou d&rsquo;une offre
+
+
+Comptes salariés et statistiques
+Votre équipe prépare les commandes, vous suivez vos ventes
+
+
+Bouton pause
+Vous arrêtez les commandes d&rsquo;un geste, et vous les rouvrez quand vous voulez
+
+
+
+Deux précisions honnêtes. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Et ce n&rsquo;est pas une place de marché : c&rsquo;est votre boutique, à faire connaître par votre fiche Google, vos réseaux et votre vitrine.
+Les éditeurs de logiciels de caisse proposent aussi des modules de commande en ligne. Ils sont intéressants si vous changez de caisse de toute façon. Sinon, lisez notre article faut-il changer de caisse pour faire du click and collect.
+Comment se comparent toutes ces plateformes pour un commerce de bouche ?
+Aucune plateforme n&rsquo;est la meilleure partout : chacune gagne sur son terrain. Le tableau suivant résume les points qui comptent pour un commerce de produits frais.
+
+
+
+Critère
+Shopify, WooCommerce, PrestaShop
+Wix, Squarespace
+Plateformes de livraison
+Places de marché
+Marchéo
+
+
+
+
+Conçu pour
+Expédier des colis
+Site vitrine
+Repas livrés par coursier
+Regrouper des commerces
+Commerces de bouche en retrait et livraison locale
+
+
+Catalogue de départ
+À créer
+À créer
+Menu à fournir
+À fournir
+Catalogue du métier déjà rempli
+
+
+Vente au poids
+Par extension
+Limitée
+Peu adaptée
+Selon le site
+Prévue d&rsquo;origine
+
+
+Créneaux de retrait avec capacité
+Par extension
+À construire
+Non, livraison rapide
+Selon le site
+Prévus d&rsquo;origine
+
+
+Commission sur les ventes
+Non, hors frais de paiement
+Non, hors frais de paiement
+14 à 30 % en général
+Commission ou abonnement
+0 %
+
+
+À qui sont les clients
+À vous
+À vous
+À la plateforme
+Surtout à la plateforme
+À vous
+
+
+Qui livre
+Transporteurs
+Vous
+Coursiers de la plateforme
+Selon le site
+Vous, avec l&rsquo;outil de tournée
+
+
+Matériel
+Aucun imposé
+Aucun imposé
+Tablette fournie en général
+Variable
+Aucun, votre téléphone suffit
+
+
+Temps de mise en place
+Plusieurs jours
+Quelques jours
+Quelques jours à quelques semaines
+Variable
+Aperçu en 30 secondes
+
+
+Engagement
+Mensuel ou annuel selon l&rsquo;offre
+Souvent annuel
+Contrat de partenariat
+Variable
+Sans engagement
+
+
+
+Les frais du prestataire de paiement s&rsquo;appliquent aux paiements par carte en ligne avec tous les outils, Marchéo compris. Ce ne sont pas des commissions de plateforme. La différence est expliquée dans notre article commission ou frais bancaires.
+Combien coûte chaque plateforme ?
+Le prix affiché n&rsquo;est qu&rsquo;une partie du coût : il faut ajouter les extensions, le temps passé et ce qui est prélevé sur vos ventes. Les fourchettes ci-dessous sont volontairement prudentes, car les offres changent souvent. Vérifiez toujours le tarif à jour sur le site de chaque éditeur.
+
+
+
+Solution
+Ce que vous payez
+À ne pas oublier
+
+
+
+
+Shopify
+Quelques dizaines d&rsquo;euros par mois
+Applications payantes, frais de paiement
+
+
+Wix, Squarespace
+Quelques dizaines d&rsquo;euros par mois pour une offre avec boutique
+Paiement à l&rsquo;année fréquent
+
+
+WooCommerce, PrestaShop
+Logiciel gratuit, hébergement et nom de domaine à payer
+Extensions, maintenance, temps ou prestataire
+
+
+Boutique d&rsquo;un terminal de paiement
+Peu ou pas d&rsquo;abonnement
+Frais sur chaque paiement, fonctions limitées
+
+
+Uber Eats, Deliveroo
+Pas d&rsquo;abonnement classique
+14 à 30 % de chaque commande en général
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Chaque modification se paie
+
+
+Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Frais d&rsquo;installation uniques de 249, 399 ou 549 €
+
+
+
+Chez Marchéo, les trois offres sont : Vitrine à 19 € par mois, Click &amp; Collect + Réservation à 39 € par mois, Click &amp; Collect + Livraison à 59 € par mois. Les frais d&rsquo;installation couvrent le paramétrage de la boutique, l&rsquo;intégration de vos photos et de vos produits, une formation d&rsquo;une heure en visio et un accompagnement pendant les 30 premiers jours. Pour un calcul sur un an, voyez combien coûte un site de click and collect et notre guide du site internet pas cher pour un commerce.
+Peut-on arrêter ou mettre en pause sa boutique quand on veut ?
+Oui avec certaines solutions, non avec d&rsquo;autres : c&rsquo;est un point à vérifier avant de signer. Une offre payée à l&rsquo;année ou un contrat de partenariat ne s&rsquo;arrête pas du jour au lendemain.
+Avec Marchéo, vous gardez la main à deux niveaux :
+
+Au quotidien : un bouton pause dans l&rsquo;application coupe les commandes immédiatement, pendant un coup de feu, une rupture ou vos congés. Vous rouvrez d&rsquo;un geste.
+Sur la durée : l&rsquo;abonnement est sans engagement et résiliable à tout moment. Votre fichier clients vous appartient et reste exportable.
+
+Quelle plateforme choisir selon votre situation ?
+Partez de votre façon de vendre, pas de la notoriété de l&rsquo;outil.
+
+
+
+Votre situation
+Le choix le plus logique
+
+
+
+
+Vous expédiez des colis dans toute la France
+Shopify, ou WooCommerce si vous êtes à l&rsquo;aise avec la technique
+
+
+Vous voulez seulement présenter votre commerce
+Une fiche Google bien remplie, puis Wix, Squarespace ou une offre vitrine
+
+
+Vous êtes restaurateur et cherchez de nouveaux clients
+Une plateforme de livraison, en plus de votre propre boutique
+
+
+Vous prenez trois commandes par semaine
+WhatsApp Business ou un formulaire, pour commencer
+
+
+Vous vendez du frais en retrait et en livraison de quartier
+Un logiciel métier comme Marchéo
+
+
+Vous changez de caisse cette année
+Regardez d&rsquo;abord le module de votre éditeur de caisse
+
+
+
+Le duel le plus fréquent est détaillé dans notre article Shopify, Wix ou logiciel métier, et les outils de retrait en boutique dans le comparatif des logiciels de click &amp; collect.
+Que change la spécialisation pour chaque métier ?
+Elle change le catalogue de départ et les réglages, qui sont différents pour chaque métier de bouche.
+
+Primeur et maraîcher : fruits et légumes au kilo ou à la pièce, panier de la semaine, prix du jour. Voir la solution pour primeur et le click and collect primeur.
+Boucherie : découpes au poids, colis, commandes de fêtes. Voir la solution pour boucherie.
+Boulangerie et pâtisserie : gâteaux sur commande, pains spéciaux, bûches et galettes. Voir la solution pour boulangerie.
+Poissonnerie : plateaux de fruits de mer, poisson du week-end selon l&rsquo;arrivage. Voir la solution pour poissonnerie.
+Fromagerie : coupe au poids, plateaux par nombre de personnes. Voir la solution pour fromagerie.
+Traiteur : plateaux et buffets avec empreinte bancaire. Voir la solution pour traiteur.
+Fleuriste : bouquets par budget, message de la carte, livraison locale. Voir la solution pour fleuriste.
+Pizzeria, restaurant, fast-food et food-truck : vente à emporter sans commission et réservation de table. Voir les solutions pour pizzeria, restaurant et fast-food.
+
+Pour la méthode de pesée et d&rsquo;ajustement du prix, lisez notre guide pour vendre au poids en ligne.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut vos produits, vos prix et vos horaires, et rien de nouveau à acheter.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+La liste de ce que vous vendez, avec vos prix
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de votre boutique et de vos produits
+Un développeur ou une agence
+
+
+Vos horaires et vos créneaux de retrait
+Une commission sur chaque vente
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Que vérifier avant de choisir une plateforme ?
+Posez ces huit questions à chaque solution, la nôtre comprise.
+
+Combien est prélevé sur chaque vente, en dehors des frais de paiement ?
+Quelle est la durée d&rsquo;engagement, et comment résilie-t-on ?
+Le catalogue est-il à créer de zéro ou déjà rempli pour mon métier ?
+La vente au poids est-elle prévue, ou faut-il une extension ?
+Puis-je limiter le nombre de commandes par créneau ?
+À qui appartient le fichier clients, et puis-je l&rsquo;exporter ?
+Faut-il acheter ou louer du matériel ?
+Puis-je tout gérer depuis mon téléphone, et couper les commandes en un geste ?
+
+Par où commencer ?
+Le plus simple est de voir le résultat avant de choisir. Sur la page d&rsquo;inscription, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement, avec le catalogue de votre métier. Vous pouvez ensuite le comparer à une boutique d&rsquo;essai montée sur une autre plateforme, et garder celle qui vous fait gagner du temps le samedi matin.
+
+Q : Quelle est la meilleure plateforme pour vendre en ligne quand on tient un commerce de bouche ?
+R : Cela dépend de la façon dont vous vendez. Pour expédier des colis dans toute la France, Shopify ou WooCommerce sont les plus adaptés. Pour un site vitrine soigné, Wix ou Squarespace conviennent bien. Pour vendre des produits frais en retrait et en livraison dans votre quartier, un logiciel métier comme Marchéo est plus direct : catalogue du métier déjà rempli, vente au poids, créneaux de retrait, 0 % de commission, 19, 39 ou 59 € par mois sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Quel site choisir pour vendre ses fruits et légumes en ligne ?
+R : Un primeur ou un maraîcher a besoin de la vente au kilo et à la pièce, de prix modifiables chaque matin, d'un produit épuisé masqué en un geste et de créneaux de retrait. Les constructeurs généralistes y arrivent avec des réglages et des extensions. Marchéo le prévoit d'origine, avec un catalogue de fruits et légumes de saison déjà rempli, pour 39 € par mois en click & collect ou 59 € par mois avec la livraison locale, sans commission et sans engagement.
+Q : Faut-il acheter du matériel pour vendre en ligne ?
+R : Non, pas pour prendre des commandes en ligne. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Les plateformes de livraison et certains éditeurs de caisse fournissent ou vendent du matériel, ce qui est utile seulement si vous voulez changer votre équipement.
+Q : Peut-on arrêter sa boutique en ligne quand on veut ?
+R : Cela dépend du contrat. Vérifiez toujours la durée d'engagement avant de signer. Chez Marchéo, l'abonnement est sans engagement et résiliable à tout moment. Vous pouvez aussi mettre la boutique en pause d'un geste depuis votre téléphone, par exemple pendant un coup de feu ou des congés : plus aucune commande n'arrive tant que vous ne la rouvrez pas.
+Q : Existe-t-il une plateforme gratuite pour vendre en ligne ?
+R : Il existe des entrées gratuites : une page de réseau social, WhatsApp Business, un formulaire, ou la boutique simple de certains terminaux de paiement. Elles se paient autrement, en temps passé, en frais sur chaque vente ou en fonctions manquantes comme les créneaux et la vente au poids. Les plateformes de livraison sont gratuites à l'entrée mais prennent en général 14 à 30 % de chaque commande.
 
 # Commande boucherie Noël : prendre les commandes en ligne
 
@@ -4515,7 +4930,7 @@ Un engagement de longue durée
 
 
 
-Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect. Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le logiciel pour vendre en ligne sans commission.
+Si vous hésitez aussi avec WooCommerce, PrestaShop, une place de marché ou une plateforme de livraison, notre grand comparatif répond à la question quelle plateforme pour vendre en ligne. Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect. Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le logiciel pour vendre en ligne sans commission.
 Par où commencer ?
 Le plus simple est de voir le résultat avant de choisir. Sur la page d&rsquo;inscription, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Vous pourrez le comparer à une boutique d&rsquo;essai sur Shopify ou Wix. Pour voir ce qui est prévu pour votre métier, commencez par exemple par la solution pour boucherie.
 
@@ -5539,7 +5954,7 @@ Oui
 
 
 
-Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes. Si vous hésitez entre les deux grands constructeurs, lisez Shopify, Wix ou logiciel métier pour un commerce de proximité. Pour un avis direct sur l&rsquo;outil à prendre, voyez quel logiciel pour vendre en ligne sans commission ni matériel.
+Les plateformes de livraison apportent de la visibilité, mais la commission pèse lourd sur des marges de commerce de bouche, et le client reste celui de la plateforme. Les constructeurs généralistes font de beaux sites, mais demandent du temps de paramétrage pour gérer des retraits à heure fixe. Les réseaux sociaux sont utiles pour se faire connaître, pas pour prendre cinquante commandes un samedi. Notre comparatif des logiciels de click &amp; collect détaille les options une par une, et l&rsquo;article sur le click &amp; collect sans commission fait le calcul face aux plateformes. Pour savoir quelle plateforme pour vendre en ligne convient à votre commerce, notre grand comparatif passe en revue toutes les familles, de Shopify aux places de marché. Si vous hésitez entre les deux grands constructeurs, lisez Shopify, Wix ou logiciel métier pour un commerce de proximité. Pour un avis direct sur l&rsquo;outil à prendre, voyez quel logiciel pour vendre en ligne sans commission ni matériel.
 Combien coûte une boutique en ligne pas chère et sérieuse ?
 Une boutique en ligne pas chère pour un commerce coûte en général entre 20 et 80 € par mois, plus d&rsquo;éventuels frais de mise en place. Le vrai piège n&rsquo;est pas l&rsquo;abonnement, c&rsquo;est la commission : sur un mois de ventes en ligne, un pourcentage prélevé sur chaque commande coûte vite plus qu&rsquo;un abonnement fixe.
 Chez Marchéo, les prix sont fixes et affichés :
@@ -5661,6 +6076,7 @@ Pour aller plus loin sur un point précis, voici les guides du blog liés à la 
 
 Comment créer un site de click &amp; collect pour son commerce
 Combien coûte un site de click &amp; collect
+Quelle plateforme pour vendre en ligne ? Le grand comparatif
 Comparatif des logiciels de click &amp; collect
 Digitaliser son commerce de bouche : par où commencer
 Site internet pour boulangerie
@@ -5783,7 +6199,7 @@ Beaucoup de primeurs ajoutent la livraison une fois le click and collect install
 Combien coûte le click and collect pour un primeur ?
 Le click and collect coûte 39 € par mois avec Marchéo, alors qu&rsquo;une plateforme de livraison prend en général entre 14 et 30 % de commission. Sur des paniers de fruits et légumes, où les marges sont serrées, cette différence se sent vite.
 Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d&rsquo;installation. Le client commande en 30 secondes, sans créer de compte.
-Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à une vraie boutique.
+Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à une vraie boutique. Et si vous hésitez entre plusieurs outils, notre grand comparatif explique quelle plateforme pour vendre en ligne ses fruits et légumes.
 Par où commencer ?
 Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter.
 La page détaillée pour votre métier est ici : click and collect pour primeur et maraîcher. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
