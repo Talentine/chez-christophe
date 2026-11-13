@@ -238,6 +238,9 @@
 
   .hero-meta {
     min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -1271,8 +1274,7 @@
         <div class="hero-info-pill" id="heroAdresse" style="display:none">&nbsp;</div>
         <div class="hero-info-pill" id="heroTel" style="display:none">&nbsp;</div>
         <div class="hero-info-pill" id="heroHoraires" style="display:none">&nbsp;</div>
-        <div class="hero-info-pill">🚚&nbsp;<span id="pillLivraison">Livraison offerte dès 25€</span></div>
-        <div class="hero-info-pill">⏰&nbsp;Commandez avant 16h pour être livré demain</div>
+        <div class="hero-info-pill" id="heroLivraison" style="display:none">🚚&nbsp;<span id="pillLivraison"></span></div>
       </div>
     </div>
   </div>
@@ -1437,9 +1439,9 @@
   </div>
 
   <div id="panierTotal" style="display:none">
-    <div id="barreProgression" style="padding:0 20px 12px;">
+    <div id="barreProgression" style="display:none;padding:0 20px 12px;">
       <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--texte-doux);margin-bottom:6px;">
-        <span id="progressionTxt">Livraison offerte dès 25€</span>
+        <span id="progressionTxt"></span>
         <span id="progressionMontant"></span>
       </div>
       <div style="height:6px;background:var(--creme-fonce);border-radius:3px;overflow:hidden;">
@@ -1780,16 +1782,71 @@ async function chargerPaniers(commercantId) {
   }
 }
 
-// Statut ouverture
-function statutOuverture() {
-  const now = new Date();
-  const jour = now.getDay(); // 0=dim, 1=lun...
-  const h = now.getHours();
-  // Mar(2)-Sam(6) de 8h à 19h
-  const ouvert = jour >= 2 && jour <= 6 && h >= 8 && h < 19;
-  const el = document.getElementById('statutOuverture');
-  el.textContent = ouvert ? '🟢 Ouvert' : '🔴 Fermé';
+// ── STATUT OUVERT / FERMÉ ─────────────────────────────────────────
+// Calculé depuis business.horaires ({ lundi: {ouvert, debut, fin, debut2?, fin2?}, ... })
+// à l'heure de Paris, quel que soit le fuseau du visiteur. Horaires inconnus : pastille masquée.
+const JOURS_SEMAINE = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+let _fermeturePlanifieeEnCours = false;
+
+function _minutes(hhmm) {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(String(hhmm || '').trim());
+  return m ? (+m[1]) * 60 + (+m[2]) : null;
 }
+function _heure(min) {
+  const h = Math.floor(min / 60), m = min % 60;
+  return h + 'h' + (m ? String(m).padStart(2, '0') : '');
+}
+// Plages d'ouverture d'un jour, en minutes depuis minuit
+function _plagesJour(j) {
+  if (!j || typeof j !== 'object' || !j.ouvert) return [];
+  return [[j.debut, j.fin], [j.debut2, j.fin2]]
+    .map(([d, f]) => [_minutes(d), _minutes(f)])
+    .filter(([d, f]) => d != null && f != null && f > d)
+    .sort((a, b) => a[0] - b[0]);
+}
+function _maintenantParis() {
+  try {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(new Date()).reduce((o, x) => (o[x.type] = x.value, o), {});
+    const jour = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(parts.weekday);
+    if (jour >= 0) return { jour, min: (+parts.hour) * 60 + (+parts.minute) };
+  } catch (e) {}
+  const d = new Date();
+  return { jour: d.getDay(), min: d.getHours() * 60 + d.getMinutes() };
+}
+
+// Renvoie { ouvert, texte } ou null si les horaires ne permettent pas de conclure
+function calculerStatutOuverture(horaires, now) {
+  if (!horaires || typeof horaires !== 'object') return null;
+  const semaine = JOURS_SEMAINE.map(j => _plagesJour(horaires[j]));
+  if (!semaine.some(p => p.length)) return null;
+  now = now || _maintenantParis();
+
+  const enCours = semaine[now.jour].find(([d, f]) => now.min >= d && now.min < f);
+  if (enCours) return { ouvert: true, texte: 'Ouvert · ferme à ' + _heure(enCours[1]) };
+
+  for (let k = 0; k < 7; k++) {
+    const jour = (now.jour + k) % 7;
+    const prochaine = semaine[jour].find(([d]) => k > 0 || d > now.min);
+    if (!prochaine) continue;
+    const quand = k === 0 ? 'ouvre à ' : k === 1 ? 'ouvre demain ' : 'ouvre ' + JOURS_SEMAINE[jour] + ' ';
+    return { ouvert: false, texte: 'Fermé · ' + quand + _heure(prochaine[0]) };
+  }
+  return { ouvert: false, texte: 'Fermé' };
+}
+
+function statutOuverture() {
+  const el = document.getElementById('statutOuverture');
+  const b = window.__CONFIG__ && window.__CONFIG__.business;
+  if (!el || !b) return;
+  let st = calculerStatutOuverture(b.horaires);
+  if (_fermeturePlanifieeEnCours) st = { ouvert: false, texte: 'Fermé' };
+  if (!st) { el.style.display = 'none'; return; }
+  el.textContent = (st.ouvert ? '🟢 ' : '🔴 ') + st.texte;
+  el.style.display = '';
+}
+// Le statut bascule tout seul si la page reste ouverte au moment de l'ouverture ou de la fermeture
+setInterval(statutOuverture, 60 * 1000);
 
 // Panier
 
@@ -2259,7 +2316,10 @@ function fermerPanier() {
 }
 
 function mettreAJourProgression(total) {
-  const seuil = window.__seuilLivraison || 25;
+  const seuil = window.__seuilLivraison;
+  const bloc = document.getElementById('barreProgression');
+  if (bloc) bloc.style.display = seuil ? '' : 'none';
+  if (!seuil) return;
   const restant = Math.max(0, seuil - total);
   const pct = Math.min(100, (total / seuil) * 100);
   const txtEl = document.getElementById('progressionTxt');
@@ -2271,7 +2331,7 @@ function mettreAJourProgression(total) {
     txtEl.style.color = 'var(--vert-clair)';
     montantEl.textContent = '';
   } else {
-    txtEl.textContent = 'Livraison offerte dès ' + seuil + '€';
+    txtEl.textContent = 'Livraison offerte dès ' + String(seuil).replace('.', ',') + ' €';
     txtEl.style.color = '';
     montantEl.textContent = 'Plus que ' + restant.toFixed(2).replace('.',',') + '€';
   }
@@ -2699,7 +2759,7 @@ function appliquerConfigUI(cfg) {
       showIf('heroHoraires', true);
     }
   }
-  showIf('statutOuverture', true);
+  statutOuverture();
 
   // Labels sections
   setText('titreRayons',    cfg.labels?.produits    || 'Nos rayons');
@@ -2707,11 +2767,15 @@ function appliquerConfigUI(cfg) {
   setText('titreCoupsCoeur', cfg.labels?.coups_coeur || 'Nos sélections');
   setText('badgeArrivage',  cfg.labels?.arrivage    || 'Arrivage du jour');
 
-  // Seuil livraison
-  const seuil = b.seuil_livraison_gratuite || b.min_commande_livraison || 25;
-  window.__seuilLivraison = seuil;
-  const pill = el('pillLivraison');
-  if (pill) pill.textContent = 'Livraison offerte dès ' + seuil + '€';
+  // Livraison : uniquement si l'offre du commerçant l'inclut. La livraison offerte
+  // n'est annoncée que si le commerçant a réglé un seuil (Réglages → Livraison).
+  const livre = b.offre === 'livraison';
+  const seuil = Number(b.seuil_livraison_gratuite) > 0 ? Number(b.seuil_livraison_gratuite) : null;
+  window.__seuilLivraison = livre ? seuil : null;
+  if (livre) {
+    setText('pillLivraison', seuil ? 'Livraison offerte dès ' + String(seuil).replace('.', ',') + ' €' : 'Livraison à domicile');
+    showIf('heroLivraison', true);
+  }
 
   // Hero photo — affichée nette, sans voile. Sans photo (ou photo cassée), le bloc disparaît.
   const hero = el('heroPrincipal'), bg = el('heroBgPhoto');
@@ -2891,6 +2955,7 @@ async function afficherFermetures(commercantId) {
   if (!f) return;
   const fmt = s => new Date(s + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
   const enCours = f.date_debut <= today;
+  if (enCours) { _fermeturePlanifieeEnCours = true; statutOuverture(); }
   bandeau.textContent = f.message_client || (enCours
     ? '🌴 Boutique fermée jusqu\'au ' + fmt(f.date_fin) + ' (' + (f.motif || 'congés') + '). Les commandes reprennent ensuite.'
     : '📅 ' + (f.motif || 'Fermeture') + ' : nous serons fermés du ' + fmt(f.date_debut) + ' au ' + fmt(f.date_fin) + '. Anticipez vos commandes !');
@@ -2899,7 +2964,6 @@ async function afficherFermetures(commercantId) {
 
 // ── INIT PRINCIPAL (async) ────────────────────────────────────────
 (async () => {
-  statutOuverture();
   mettreAJourBadge();
 
   const cfg = await window.CC.initBusiness();
