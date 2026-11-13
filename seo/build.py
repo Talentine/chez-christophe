@@ -279,7 +279,7 @@ def breadcrumb_ld(items: list[tuple[str, str]]) -> dict:
 
 # Fiches officielles de Marchéo sur d'autres sites (Google Business, LinkedIn, annuaires) : les moteurs et les IA
 # relient ainsi la marque à ce que d'autres sites disent d'elle. Ajouter chaque URL dès qu'elle est connue.
-SAME_AS: list[str] = []
+SAME_AS: list[str] = ["https://www.linkedin.com/company/146944714/"]
 
 
 def org_ld() -> dict:
