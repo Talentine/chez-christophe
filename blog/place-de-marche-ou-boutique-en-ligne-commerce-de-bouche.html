@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Place de marché ou boutique en ligne · Marchéo</title>
+<meta name="description" content="Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.">
+<link rel="canonical" href="https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Place de marché ou boutique en ligne · Marchéo"><meta property="og:description" content="Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.">
+<meta property="og:url" content="https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Place de marché ou boutique en ligne",
+     "item": "https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Place de marché ou boutique en ligne pour un commerce de bouche",
+   "description": "Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-14",
+   "dateModified": "2026-11-14",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "place de marché ou boutique en ligne, marketplace alimentaire ou site à soi, vendre ses produits alimentaires en ligne, place de marché produits alimentaires commerçant, vendre sur une marketplace ou sur son site, boutique en ligne commerce de bouche sans commission",
+   "articleSection": "Comparatif"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Pour vendre mes produits alimentaires en ligne, vaut-il mieux une place de marché ou une boutique à mon nom ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Cela dépend de vos clients. Si vous voulez expédier des colis dans toute la France à des gens qui ne vous connaissent pas, une place de marché ou un constructeur comme Shopify convient mieux. Si vos clients habitent autour de votre commerce, une boutique à votre nom avec retrait et livraison locale coûte moins cher et garde le client chez vous. Marchéo fait partie de ces options : 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus 249, 399 ou 549 € de frais d'installation uniques. Beaucoup de commerçants combinent les deux."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Marchéo est-il une place de marché ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Marchéo n'est pas une place de marché : il ne regroupe pas plusieurs commerces sur un même site et ne vous apporte pas de clients nouveaux. C'est un logiciel qui crée votre propre boutique en ligne, à votre nom, que vous faites connaître par votre fiche Google, vos réseaux et votre vitrine. Marchéo ne livre pas non plus : il fournit l'outil pour organiser votre propre livraison."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour ouvrir sa boutique en ligne ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non, pas avec un outil comme Marchéo : aucune tablette, imprimante ou caisse n'est à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Sur une place de marché, vérifiez aussi ce qui est demandé : certaines imposent des emballages ou un mode d'expédition précis."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on vendre sur une place de marché et sur sa propre boutique en même temps ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, et c'est souvent la meilleure solution au début. La place de marché sert à se faire connaître loin de chez soi, la boutique à son nom sert aux habitués du quartier. Relisez simplement le contrat de la place de marché : certaines encadrent les écarts de prix ou les messages glissés dans les colis."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Place de marché ou boutique en ligne</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Comparatif</p>
+<h1>Place de marché ou boutique en ligne pour un commerce de bouche</h1>
+<p class="lead">Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.</p>
+<p class="meta">Par Paul Merieult · 14/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Une place de marché vous apporte des clients qui ne vous connaissent pas, contre une commission sur chaque vente, alors qu&rsquo;une boutique en ligne à votre nom garde le client chez vous pour un prix fixe. Pour un commerce de bouche qui vend surtout autour de chez lui, la boutique à soi est presque toujours la moins chère : Marchéo, par exemple, coûte 19 à 59 € par mois sans engagement, avec 0 % de commission et sans matériel à acheter. Pour expédier des colis dans toute la France, une place de marché ou Shopify convient mieux.</p>
+<p>Cette page complète notre guide pour <a href="/blog/creer-sa-boutique-en-ligne-commerce">créer sa boutique en ligne pour son commerce</a>. Elle compare les deux modèles sur ce qui compte pour un primeur, un fromager, un boucher ou un poissonnier : le coût, la relation client, l&rsquo;expédition et le temps passé. Les primeurs trouveront le détail des fonctions sur <a href="/solutions/primeur">la solution pour primeur</a>.</p>
+<h2>Qu&rsquo;est-ce qu&rsquo;une place de marché alimentaire ?</h2>
+<p>Une place de marché alimentaire est un site qui regroupe les produits de nombreux vendeurs sous sa propre marque. Le client y crée un compte, remplit un panier qui peut mélanger plusieurs commerces, et paie la place de marché, qui reverse ensuite au vendeur sa part.</p>
+<p>On en trouve deux grandes familles en France :</p>
+<ul>
+<li><strong>les places de marché nationales</strong>, qui vendent des produits de producteurs ou d&rsquo;épiceries fines et les expédient en colis dans tout le pays ;</li>
+<li><strong>les places de marché locales</strong>, qui réunissent les commerces d&rsquo;une ville ou d&rsquo;un quartier sur un même site, avec retrait ou livraison sur place.</li>
+</ul>
+<p>Dans les deux cas, la plateforme fournit la vitrine, le paiement et souvent la visibilité. En échange, elle prend un pourcentage sur chaque vente ou un abonnement, et le client reste d&rsquo;abord le sien.</p>
+<h2>Quelle différence entre une place de marché et une boutique en ligne à soi ?</h2>
+<p>La différence tient en une question : à qui appartient le client ? Sur une place de marché, il appartient à la plateforme. Sur votre boutique, il est à vous. Le reste en découle, comme le montre ce tableau.</p>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Place de marché alimentaire</th>
+<th>Boutique en ligne à votre nom (ex. Marchéo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ce que vous payez</td>
+<td>Une commission sur chaque vente, parfois un abonnement</td>
+<td>Un abonnement fixe : 19, 39 ou 59 € par mois, 0 % de commission</td>
+</tr>
+<tr>
+<td>Nouveaux clients</td>
+<td>Oui, la plateforme a son propre public</td>
+<td>Non, vous les attirez vous-même (Google, réseaux, vitrine)</td>
+</tr>
+<tr>
+<td>Coordonnées des clients</td>
+<td>Gardées par la plateforme</td>
+<td>Chez vous</td>
+</tr>
+<tr>
+<td>Concurrents affichés à côté de vous</td>
+<td>Oui</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Expédition dans toute la France</td>
+<td>Souvent prévue</td>
+<td>Non, Marchéo n&rsquo;est pas fait pour les colis</td>
+</tr>
+<tr>
+<td>Retrait en boutique par créneaux</td>
+<td>Rarement</td>
+<td>Oui, avec un nombre maximum de commandes par créneau</td>
+</tr>
+<tr>
+<td>Livraison locale par vos soins</td>
+<td>Selon la plateforme</td>
+<td>Oui, avec l&rsquo;offre à 59 €</td>
+</tr>
+<tr>
+<td>Vos prix et votre catalogue</td>
+<td>Encadrés par les règles de la plateforme</td>
+<td>Libres</td>
+</tr>
+</tbody>
+</table>
+<p>Aucun des deux modèles n&rsquo;est mauvais. Ils ne répondent simplement pas au même besoin : trouver des clients lointains, ou servir mieux ceux du quartier.</p>
+<h2>Combien coûte une place de marché par rapport à une boutique à votre nom ?</h2>
+<p>Une commission coûte d&rsquo;autant plus cher que vous vendez, alors qu&rsquo;un abonnement fixe reste le même. Prenons un exemple choisi pour le calcul, pas une moyenne constatée : 1 500 € de ventes en ligne par mois, et une commission de 20 %. Remplacez ce taux par celui de votre contrat, il varie selon les places de marché et les services inclus.</p>
+<table>
+<thead>
+<tr>
+<th>Sur 1 500 € de ventes par mois</th>
+<th>Place de marché (exemple à 20 %)</th>
+<th>Boutique à votre nom (Marchéo, Click &amp; Collect + Réservation)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commission</td>
+<td>300 €</td>
+<td>0 €</td>
+</tr>
+<tr>
+<td>Abonnement</td>
+<td>Selon la plateforme</td>
+<td>39 €</td>
+</tr>
+<tr>
+<td>Frais d&rsquo;installation</td>
+<td>Selon la plateforme</td>
+<td>399 €, une seule fois</td>
+</tr>
+<tr>
+<td>Coût sur un an, hors frais bancaires</td>
+<td>3 600 €</td>
+<td>867 € la première année, 468 € les suivantes</td>
+</tr>
+</tbody>
+</table>
+<p>Les frais bancaires du paiement par carte existent dans les deux cas. Notre article <a href="/blog/commission-ou-frais-bancaires-vente-en-ligne">commission ou frais bancaires</a> explique pourquoi il ne faut pas les confondre.</p>
+<p>Le calcul n&rsquo;est complet que si l&rsquo;on compte ce que la place de marché apporte. Si elle vous fait vendre à des clients que vous n&rsquo;auriez jamais eus, sa commission paie un vrai service. Si elle sert surtout à vos habitués, vous payez pour des ventes que vous auriez faites de toute façon.</p>
+<h2>Dans quels cas une place de marché est-elle le bon choix ?</h2>
+<p>Une place de marché est le bon choix quand vous avez besoin de clients que vous ne pouvez pas toucher seul. C&rsquo;est le cas dans trois situations :</p>
+<ul>
+<li>vous produisez des produits qui voyagent bien (épicerie fine, conserves, fromages affinés emballés) et vous voulez les vendre dans toute la France ;</li>
+<li>vous venez d&rsquo;ouvrir et personne ne vous connaît encore ;</li>
+<li>vous n&rsquo;avez ni le temps ni l&rsquo;envie de faire connaître votre propre boutique.</li>
+</ul>
+<p>Si vous voulez expédier partout en France mais sous votre propre nom, un constructeur généraliste comme Shopify convient mieux qu&rsquo;un logiciel pensé pour le commerce de proximité. Notre <a href="/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche">comparatif des plateformes pour vendre en ligne</a> détaille ces options.</p>
+<h2>Dans quels cas vaut-il mieux une boutique en ligne à soi ?</h2>
+<p>La boutique à votre nom est le meilleur choix quand vos clients habitent autour de votre commerce. C&rsquo;est la situation de la plupart des boulangeries, boucheries, primeurs, poissonneries et fromageries.</p>
+<p>Dans ce cas, vos clients vous connaissent déjà. Ils veulent commander leur panier ou leur plateau, puis le retirer à l&rsquo;heure dite ou se le faire livrer. Une commission sur ces ventes n&rsquo;apporte rien de plus.</p>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes sans créer de compte. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, protège contre les commandes non retirées : elle est libérée 24 h après le retrait.</p>
+<p>Deux précisions honnêtes. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il fournit l&rsquo;outil pour que vous organisiez votre propre livraison. Et ce n&rsquo;est pas une place de marché : il ne vous apporte pas de clients, il vous donne un endroit à vous où vos clients commandent.</p>
+<h2>Peut-on utiliser les deux en même temps ?</h2>
+<p>Oui, et c&rsquo;est souvent la meilleure façon de démarrer. La place de marché vous fait connaître loin de chez vous, la boutique à votre nom sert les habitués et ceux qui vous découvrent en vitrine.</p>
+<p>Pour que cela fonctionne, trois règles suffisent :</p>
+<ol>
+<li>Tenez vos stocks à jour des deux côtés, surtout pour les produits frais en petite quantité.</li>
+<li>Donnez à vos habitués une raison de commander chez vous : un créneau de retrait, un panier qui n&rsquo;existe qu&rsquo;en boutique.</li>
+<li>Relisez le contrat de la place de marché avant d&rsquo;afficher des prix différents ou de glisser un message dans les colis.</li>
+</ol>
+<h2>Que vérifier avant de s&rsquo;inscrire sur une place de marché ?</h2>
+<p>Avant de signer, demandez par écrit ce que vous paierez réellement et ce que vous garderez. Cinq points comptent :</p>
+<ul>
+<li>le taux de commission, et s&rsquo;il s&rsquo;applique aussi aux frais de port ;</li>
+<li>le délai au bout duquel l&rsquo;argent vous est reversé ;</li>
+<li>qui fixe les prix, et si les promotions vous sont imposées ;</li>
+<li>si vous pouvez récupérer les coordonnées de vos clients, avec leur accord ;</li>
+<li>la durée d&rsquo;engagement et les conditions pour partir.</li>
+</ul>
+<h2>Par où commencer ?</h2>
+<p>Commencez par ce qui ne coûte presque rien : votre boutique à votre nom pour les clients du quartier. La <a href="/inscription">démo gratuite de Marchéo</a> affiche un aperçu de votre boutique en 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, et le catalogue est déjà prérempli. Ajoutez ensuite le lien sur votre fiche Google et en vitrine.</p>
+<p>Si, au bout de quelques mois, vous voulez toucher des clients dans toute la France, une place de marché ou une boutique d&rsquo;expédition viendra en complément. Vous saurez alors ce que chaque canal vous rapporte vraiment.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Pour vendre mes produits alimentaires en ligne, vaut-il mieux une place de marché ou une boutique à mon nom ?</summary><p>Cela dépend de vos clients. Si vous voulez expédier des colis dans toute la France à des gens qui ne vous connaissent pas, une place de marché ou un constructeur comme Shopify convient mieux. Si vos clients habitent autour de votre commerce, une boutique à votre nom avec retrait et livraison locale coûte moins cher et garde le client chez vous. Marchéo fait partie de ces options : 19 € par mois (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison), sans engagement et avec 0 % de commission, plus 249, 399 ou 549 € de frais d'installation uniques. Beaucoup de commerçants combinent les deux.</p></details><details><summary>Marchéo est-il une place de marché ?</summary><p>Non. Marchéo n'est pas une place de marché : il ne regroupe pas plusieurs commerces sur un même site et ne vous apporte pas de clients nouveaux. C'est un logiciel qui crée votre propre boutique en ligne, à votre nom, que vous faites connaître par votre fiche Google, vos réseaux et votre vitrine. Marchéo ne livre pas non plus : il fournit l'outil pour organiser votre propre livraison.</p></details><details><summary>Faut-il acheter du matériel pour ouvrir sa boutique en ligne ?</summary><p>Non, pas avec un outil comme Marchéo : aucune tablette, imprimante ou caisse n'est à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Sur une place de marché, vérifiez aussi ce qui est demandé : certaines imposent des emballages ou un mode d'expédition précis.</p></details><details><summary>Peut-on vendre sur une place de marché et sur sa propre boutique en même temps ?</summary><p>Oui, et c'est souvent la meilleure solution au début. La place de marché sert à se faire connaître loin de chez soi, la boutique à son nom sert aux habitués du quartier. Relisez simplement le contrat de la place de marché : certaines encadrent les écarts de prix ou les messages glissés dans les colis.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/click-and-collect-epicerie">Le click &amp; collect pour une épicerie</a><a href="/blog/alternative-uber-eats-garder-ses-clients">Alternative à Uber Eats : garder ses clients</a><a href="/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche">Quelle plateforme pour vendre en ligne ?</a><a href="/blog/commande-boucherie-noel-en-ligne">Commandes de Noël en boucherie</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/poissonnerie">Site et click &amp; collect pour poissonneries</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a><a href="/solutions/fromagerie">Site et click &amp; collect pour fromageries et crèmeries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>

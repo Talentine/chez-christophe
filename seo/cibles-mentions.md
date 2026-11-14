@@ -88,6 +88,9 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | Afnic (site « Réussir en .fr ») | institutionnel | Google aperçu IA, « Comment créer le site internet de mon commerce de proximité pas cher ? » (13/11) | aucune inscription possible ; citer le conseil du nom de domaine en .fr dans site-internet-pas-cher-commerce-de-proximite pour s'aligner sur la source | automatique | à faire |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
+| solocal.com (blog « Les solutions de click-and-collect : laquelle choisir ? », 2021) | média / blog d'annuaire | Google aperçu IA, « Quel logiciel de click and collect pour une épicerie fine ? » (14/11) : 1re source citée | article ancien que l'aperçu IA cite encore : proposer à la rédaction une mise à jour 2026 avec un cas « logiciel métier sans commission » (message type 1) | Paul | à faire |
+| lafabriquedunet.fr (comparatif e-commerce) | comparatif | ChatGPT, « Quel logiciel de click and collect pour une épicerie fine ? » (14/11) : seule source citée sous le tableau | déjà dans la liste (20/10) ; 2e question où il est cité : à faire passer en priorité parmi les comparatifs (message type 1) | Paul | à faire |
+| YouTube (tutoriels « créer une boutique en ligne », Google Ateliers Numériques) | média vidéo | Google aperçu IA, n°8 boutique pas chère et épicerie fine (14/11) : vidéos citées en sources | publier sur une chaîne YouTube Marchéo une démo courte « créer la boutique de mon commerce en 30 secondes » avec un titre en forme de question (les Reels existants peuvent servir) | Paul | à faire |
 
 **Message type 1 : ajout à un comparatif**
 

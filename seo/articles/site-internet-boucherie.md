@@ -3,7 +3,7 @@ title: "Site internet boucherie : créer le site de votre boucherie de quartier"
 titre_court: "Créer le site internet de sa boucherie"
 description: "Site internet boucherie : pages utiles, vente au kilo, colis, commandes en ligne et prix réels. Le guide du boucher de quartier pour démarrer sans matériel."
 date: 2026-10-24
-modified: 2026-10-28
+modified: 2026-11-14
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -22,11 +22,13 @@ faq:
     r: "Il faut un outil qui gère la vente au kilo, les colis, les créneaux de retrait et les commandes de fêtes. Les constructeurs généralistes (Wix, Shopify) le permettent avec des réglages et des extensions. Les logiciels métier comme Marchéo le proposent directement : 0 % de commission, abonnement de 19 à 59 € par mois sans engagement, démo gratuite en 30 secondes sur marchéo.fr/inscription."
   - q: "Faut-il acheter du matériel pour prendre des commandes en ligne dans une boucherie ?"
     r: "Non. Avec un logiciel comme Marchéo, il n'y a pas de tablette, d'imprimante ou de caisse à acheter. Vous recevez et gérez les commandes depuis le téléphone ou l'ordinateur que vous avez déjà. Votre balance et votre caisse habituelles restent en place pour peser et encaisser au retrait."
+  - q: "Wix ou logiciel métier : que choisir pour le site d'une boucherie qui prend des commandes ?"
+    r: "Wix convient si vous voulez surtout un beau site vitrine et que vous avez le temps de le régler vous-même ; la vente au kilo et les créneaux de retrait demandent alors des extensions. Un logiciel métier les prévoit d'origine. Marchéo, par exemple, coûte 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus 249, 399 ou 549 € de frais d'installation uniques. Marchéo ne livre pas : il fournit l'outil pour organiser votre propre livraison."
   - q: "Comment gérer le poids réel quand un client commande une pièce de viande en ligne ?"
     r: "Le client commande un poids indicatif (par exemple un rôti d'environ 1 kg) et le prix affiché est une estimation. Vous pesez au moment de la préparation et le prix final est ajusté au poids réel. Il suffit de l'indiquer clairement sur la fiche produit pour éviter les surprises."
 ---
 
-Un site internet de boucherie sert d'abord à être trouvé par les clients du quartier, puis à prendre leurs commandes : colis, rôtis, découpes sur demande et commandes de fêtes, à retirer en boutique ou à livrer. Pour un boucher indépendant, le bon site est simple : vos horaires, vos produits au kilo, un bouton pour commander, et rien à installer en boutique.
+Le site internet d'une boucherie de quartier doit faire deux choses : être trouvé sur Google par les clients du coin, et prendre leurs commandes de colis, de rôtis et de fêtes au kilo, à retirer en boutique ou à livrer. Un logiciel pensé pour les commerces de bouche comme Marchéo le fait pour 19 à 59 € par mois sans engagement, avec 0 % de commission et sans matériel à acheter, plus 249 à 549 € de frais d'installation uniques. Un constructeur généraliste ou une agence restent possibles, mais demandent plus de réglages ou un budget plus élevé.
 
 Ce guide s'adresse au boucher de quartier, pas aux boucheries en ligne qui expédient des colis dans toute la France. La méthode générale, valable pour tous les commerces de bouche, est détaillée dans notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce). Ici, on parle de ce qui change quand on vend de la viande.
 
@@ -36,7 +38,7 @@ Parce que vos clients cherchent d'abord sur leur téléphone. Quand quelqu'un ta
 
 Un site vous fait aussi gagner du temps au comptoir. Les commandes qui arrivent par téléphone, souvent pendant le coup de feu du samedi, peuvent arriver par écrit, avec le nom, les quantités et l'heure de retrait. Moins d'erreurs, moins d'appels, et une file d'attente plus courte.
 
-Enfin, il fixe vos commandes de fêtes. Chapons, gigots de Pâques, rôtis de Noël : tout ce que vous notiez sur un carnet peut être pris en ligne, avec une date limite de commande.
+Enfin, il fixe vos commandes de fêtes. Chapons, gigots de Pâques, rôtis de Noël : tout ce que vous notiez sur un carnet peut être pris en ligne, avec une date limite de commande. Pour décembre, notre guide de la [commande de boucherie pour Noël en ligne](/blog/commande-boucherie-noel-en-ligne) détaille les dates limites et les acomptes. Et si l'on vous propose plutôt de vendre sur un site qui regroupe plusieurs commerces, comparez avec notre article [place de marché ou boutique en ligne](/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche).
 
 ## Site vitrine ou site de commande : que choisir pour une boucherie ?
 
@@ -77,7 +79,7 @@ Le sujet est détaillé dans notre guide pour [vendre au poids en ligne](/blog/v
 
 ## Retrait en boutique ou livraison : comment organiser les commandes ?
 
-Le retrait en boutique est le plus simple à démarrer : le client choisit un créneau, vous préparez à l'avance, il passe récupérer sa commande. Pour limiter les commandes non récupérées, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait.
+Le retrait en boutique est le plus simple à démarrer : le client choisit un créneau, vous préparez à l'avance, il passe récupérer sa commande. Pour limiter les commandes non récupérées, Marchéo propose une empreinte bancaire optionnelle, jusqu'à 75 % du panier, libérée 24 h après le retrait.
 
 La livraison vient ensuite, si vos clients la demandent. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre tournée (zone, créneaux, minimum de commande, frais). Pour la viande, la chaîne du froid compte plus que tout : sacs isothermes, plaques eutectiques, tournée courte. Tout est expliqué dans le guide de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser).
 
