@@ -1241,7 +1241,7 @@
       </div>
 
       <div>
-        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Email contact</label>
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Email contact <span style="opacity:.7;">(vide = votre email)</span></label>
         <input id="ncEmail" type="email" placeholder="contact@boutique.fr" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
       </div>
 
@@ -2125,7 +2125,13 @@ async function creerCommerce() {
   btn.textContent = 'Création…';
 
   try {
-    const exist = await sb('commercants', '?slug=eq.' + encodeURIComponent(slug) + '&select=id');
+    // Compte admin connecté : la boutique lui est rattachée, pour qu'elle apparaisse dans son dashboard (/app)
+    let moi = {};
+    try { moi = JSON.parse(localStorage.getItem('session_admin') || '{}') || {}; } catch (e) {}
+    if (!sessionAdmin || !moi.user_id) throw new Error('Session admin expirée — reconnectez-vous puis réessayez.');
+
+    // Les boutiques supprimées libèrent leur adresse
+    const exist = await sb('commercants', '?slug=eq.' + encodeURIComponent(slug) + '&supprime_at=is.null&select=id');
     if (exist && exist.length) {
       errEl.textContent = 'Ce slug existe déjà — choisissez-en un autre.';
       errEl.style.display = 'block';
@@ -2140,7 +2146,8 @@ async function creerCommerce() {
       ville: ville || null,
       adresse: adresse || null,
       telephone: telephone || null,
-      email: email || null,
+      email: email || moi.email, // obligatoire en base : à défaut, l'email du compte admin
+      auth_user_id: moi.user_id,
       actif: true,
       offre,
       business_config: { offre },
@@ -2152,7 +2159,7 @@ async function creerCommerce() {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + (sessionAdmin || SUPABASE_KEY),
+        'Authorization': 'Bearer ' + sessionAdmin,
         'Content-Type': 'application/json',
         'Prefer': 'return=representation'
       },
@@ -2167,11 +2174,24 @@ async function creerCommerce() {
       return;
     }
 
+    // Rattachement au compte admin : sans ce rôle, la boutique n'apparaît pas dans /app
+    const cree = await r.json().catch(() => null);
+    const nouveauId = Array.isArray(cree) ? cree[0]?.id : cree?.id;
+    let rattachee = false;
+    if (nouveauId) {
+      const rr = await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + sessionAdmin, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ user_id: moi.user_id, commercant_id: nouveauId, role: 'commercant' })
+      }).catch(() => null);
+      rattachee = !!rr && (rr.ok || rr.status === 409);
+    }
+
     fermerModalCommerce();
     tousCommercants = []; // vide le cache, sinon la nouvelle boutique n'apparaît qu'après F5
     await chargerCommercants();
     filtrerStatutDemo('tous');
-    alert('✅ Commerce créé !\n\nURL boutique : /' + slug + '/\nDashboard commerçant : /app');
+    alert('✅ Commerce créé !\n\nURL boutique : /' + slug + '/\nDashboard commerçant : /app' + (rattachee ? '' : '\n\n⚠️ Le rattachement à votre compte a échoué : la boutique n\'apparaîtra pas dans /app. Prévenez le support technique.'));
   } catch (e) {
     errEl.textContent = '❌ ' + e.message;
     errEl.style.display = 'block';

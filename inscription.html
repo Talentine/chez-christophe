@@ -270,12 +270,6 @@
       <div class="step-title">Photos de votre boutique</div>
       <div class="step-sub">2 photos minimum · Plus vous en ajoutez, plus votre boutique donne envie.</div>
 
-      <!-- Sélection groupée : plusieurs photos en un seul geste (pratique sur téléphone) -->
-      <div class="media-add-row" style="margin-bottom:12px;">
-        <button type="button" class="media-add-btn" onclick="document.getElementById('mediaInputMulti').click()">📸 Choisir plusieurs photos d'un coup</button>
-        <input type="file" id="mediaInputMulti" accept="image/*,video/*" multiple style="display:none" onchange="onMediaMulti(this)">
-      </div>
-
       <div class="media-grid" id="mediaRequired">
         <!-- Slot 0 : hero -->
         <div class="media-slot" id="slot0" onclick="triggerMedia(0)">
@@ -839,19 +833,6 @@ function addExtraSlot() {
   slotDiv.innerHTML = `<div class="media-slot-icon">📸</div><div class="media-slot-title">Photo supplémentaire</div><div class="media-slot-sub">Ambiance, équipe, savoir-faire…</div><input type="file" id="mediaInput${idx}" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(${idx},this)">`;
   slotDiv.onclick = () => triggerMedia(idx);
   container.appendChild(slotDiv);
-}
-
-// Plusieurs photos choisies en une fois : elles remplissent les emplacements libres dans l'ordre
-// (la 1re devient la photo d'accueil), en créant des emplacements supplémentaires si besoin.
-function onMediaMulti(input) {
-  Array.from(input.files || []).forEach(file => {
-    let idx = mediaFiles.findIndex(f => !f);
-    if (idx < 0) { addExtraSlot(); idx = mediaFiles.length - 1; }
-    mediaFiles[idx] = file;
-    renderSlot(idx, file);
-  });
-  input.value = ''; // permet de re-choisir les mêmes fichiers
-  refreshMediaCount();
 }
 
 function refreshMediaCount() {
@@ -1560,7 +1541,7 @@ async function creerBoutique() {
         let ext = (state.logoFile.name.split('.').pop() || 'png').toLowerCase();
         let contentType = state.logoFile.type || 'image/png';
         try {
-          logoBody = await compresserPhoto(state.logoFile, 512, 0.9, false); // logo : on garde la transparence
+          logoBody = await compresserPhoto(state.logoFile, 512, 0.9);
           ext = 'webp';
           contentType = 'image/webp';
         } catch(_) { /* fallback brut si compression échoue */ }
@@ -1876,7 +1857,7 @@ async function reprendreInscriptionDepuisCallback() {
 // Retourne { urls: [...], errors: [{ filename, status, body }] }
 // Compresse une image en WebP via canvas (ignore les vidéos).
 // En cas d'échec de décodage (HEIC Safari, fichier corrompu…), rejette.
-async function compresserPhoto(file, maxSize = 1200, quality = 0.85, jpegSiPasWebp = true) {
+async function compresserPhoto(file, maxSize = 1200, quality = 0.85) {
   if (file.type && file.type.startsWith('video/')) return file;
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1891,10 +1872,7 @@ async function compresserPhoto(file, maxSize = 1200, quality = 0.85, jpegSiPasWe
         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
         canvas.toBlob(blob => {
           if (!blob) return reject(new Error('Compression impossible'));
-          // Safari (iPhone) ne sait pas produire du WebP : il renvoie un PNG plusieurs fois
-          // plus lourd. Pour les photos, on bascule alors en JPEG (léger partout).
-          if (blob.type === 'image/webp' || !jpegSiPasWebp) return resolve(blob);
-          canvas.toBlob(b2 => resolve(b2 || blob), 'image/jpeg', quality);
+          resolve(blob);
         }, 'image/webp', quality);
       };
       img.onerror = () => reject(new Error('Image illisible (format non supporté ?)'));
@@ -1946,8 +1924,8 @@ async function uploadMedia(accessToken, slug) {
     if (estImage) {
       try {
         body = await compresserPhoto(file, 1200, 0.85);
-        contentType = body.type || 'image/webp';
-        ext = contentType === 'image/jpeg' ? 'jpg' : (contentType === 'image/png' ? 'png' : 'webp');
+        ext = 'webp';
+        contentType = 'image/webp';
       } catch (e) {
         const msg = estHeic
           ? 'Format HEIC d\'iPhone non supporté. Dans Réglages iPhone → Appareil photo → Formats, choisissez « Le plus compatible » (JPEG), puis reprenez la photo.'
@@ -1967,7 +1945,7 @@ async function uploadMedia(accessToken, slug) {
       'x-upsert': 'true',
     };
 
-    const res = await uploadAvecRetry(url, headers, body, 3);
+    const res = await uploadAvecRetry(url, headers, body, 2);
     if (res.ok) {
       uploaded.push(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
     } else {
