@@ -60,7 +60,10 @@
     cadenas: '<rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>',
     sommeil: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
     sansTel: '<path d="M10.7 13.3a16 16 0 0 0 3.4 2.6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8"/><path d="M22 2 2 22"/>',
-    desinscrit: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m9 10 6 6M15 10l-6 6"/>'
+    desinscrit: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m9 10 6 6M15 10l-6 6"/>',
+    google: '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><path d="M14.6 8.6a3 3 0 1 0 .4 2.4H12"/>',
+    instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+    facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>'
   };
 
   function ic(nom, taille) {
@@ -383,7 +386,10 @@
       cle: null, origine: null, chaine: null,
       scoreOuvert: false, modele: null, filComplet: false, faitesOuvertes: false,
       suite: null, perdu: null, epingleEdition: false,
-      brouillons: { note: '', noteAppel: '', tacheTitre: '', tacheDate: '', epingle: '', suiteTitre: '', suiteDate: '', suiteNote: '', telephone: '' }
+      // Présence en ligne : réseaux dont le lien est en cours de modification, et message d'erreur par réseau.
+      lienEdition: {}, lienErreur: {},
+      brouillons: { note: '', noteAppel: '', tacheTitre: '', tacheDate: '', epingle: '', suiteTitre: '', suiteDate: '', suiteNote: '', telephone: '',
+        lienGoogle: '', lienInstagram: '', lienFacebook: '' }
     };
   }
 
@@ -686,6 +692,83 @@
       (liens ? '<div class="crm-sec-pied">' + liens + '</div>' : ''));
   }
 
+  // ───────────────────────────── Rendu : présence en ligne ─────────────────────────────
+
+  var CHAMPS_LIEN = { google: 'lienGoogle', instagram: 'lienInstagram', facebook: 'lienFacebook' };
+  var LIBELLES_ORIGINE_LIEN = { manuel: 'saisi', trouve: 'trouvé automatiquement', boutique: 'depuis la boutique' };
+
+  /* Lien prêt pour un href : repassé par la validation du cœur (https uniquement), puis échappé à l'affichage. */
+  function lienSur(reseau, url) { return CRM.normaliserLien(reseau, url); }
+
+  // « @lefournil », « facebook.com/lefournil » : ce que l'on reconnaît d'un coup d'œil, pas l'adresse entière.
+  function lienCourt(reseau, url) {
+    var court = url.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '');
+    if (reseau === 'instagram') return '@' + court.replace(/^instagram\.com\//, '');
+    if (reseau === 'google') {
+      var hote = court.split(/[/?]/)[0];
+      return /(^|\.)google\./.test(hote) || hote === 'maps.app.goo.gl' ? 'Google Maps' : hote;
+    }
+    return court;
+  }
+
+  function liensInactifs() { return !lectureSeule() && !CRM.etat.liens; }
+  function attrLien() {
+    if (liensInactifs()) return ' disabled title="Inactif : la migration des liens n\'est pas encore appliquée"';
+    return attrEcriture();
+  }
+
+  function htmlLigneLien(f, r) {
+    var p = f.presence[r.id];
+    var url = lienSur(r.id, p.url), recherche = /^https:\/\/www\.google\.com\//.test(p.recherche) ? p.recherche : '';
+    var edition = !!ui.lienEdition[r.id], erreur = ui.lienErreur[r.id];
+    var champ = CHAMPS_LIEN[r.id];
+    var chercher = recherche ? '<a class="crm-btn" href="' + esc(recherche) + '" target="_blank" rel="noopener noreferrer" data-lien="chercher">' +
+      ic('recherche', 13) + 'Chercher<span class="crm-sr"> ' + esc(r.libelle) + ' (nouvel onglet)</span></a>' : '';
+    var html = '<li class="crm-pres' + (url ? ' crm-pres-connu' : '') + '" data-reseau="' + r.id + '">' +
+      '<div class="crm-pres-tete"><span class="crm-pres-ic">' + ic(r.id, 16) + '</span>' +
+      '<div class="crm-pres-txt"><b>' + esc(r.libelle) + '</b>';
+    if (url) {
+      html += '<small><span class="crm-pres-adresse">' + esc(lienCourt(r.id, url)) + '</span>' +
+        '<span class="crm-pres-origine">' + esc(LIBELLES_ORIGINE_LIEN[p.origine] || '') + '</span></small></div>';
+      if (!edition) {
+        html += '<div class="crm-pres-actions">' +
+          '<a class="crm-btn crm-btn-or" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" data-lien="ouvrir">Ouvrir' + ic('externe', 13) +
+          '<span class="crm-sr"> ' + esc(r.libelle) + ' (nouvel onglet)</span></a>' +
+          '<button type="button" class="crm-btn crm-btn-discret" data-action="lien-modifier" data-id="' + r.id + '"' + attrLien() + '>Modifier' +
+          '<span class="crm-sr"> le lien ' + esc(r.libelle) + '</span></button></div>';
+      }
+    } else {
+      html += '<small>Pas encore renseigné</small></div><div class="crm-pres-actions">' + chercher + '</div>';
+    }
+    html += '</div>';
+    if (!url || edition) {
+      html += '<div class="crm-pres-saisie"><input class="crm-champ" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="500" ' +
+        'data-champ="' + champ + '" value="' + esc(ui.brouillons[champ]) + '" placeholder="' + esc(r.exemple) + '" aria-label="' + esc('Lien ' + r.libelle) + '"' +
+        (erreur ? ' aria-invalid="true" aria-describedby="crmLienErreur-' + r.id + '"' : '') + attrLien() + '>' +
+        '<button type="button" class="crm-btn crm-btn-or" data-action="lien-enregistrer" data-id="' + r.id + '"' + attrLien() + '>Enregistrer</button></div>';
+      if (erreur) html += '<p class="crm-pres-erreur" id="crmLienErreur-' + r.id + '" role="alert">' + ic('alerte', 13) + '<span>' + esc(erreur) + '</span></p>';
+      if (edition) {
+        html += '<div class="crm-pres-pied">' + (url ? chercher : '') +
+          (p.origine === 'manuel' ? '<button type="button" class="crm-btn crm-btn-danger" data-action="lien-effacer" data-id="' + r.id + '"' + attrLien() + '>' +
+            ic('corbeille', 13) + 'Effacer<span class="crm-sr"> le lien ' + esc(r.libelle) + '</span></button>' : '') +
+          '<button type="button" class="crm-btn crm-btn-discret" data-action="lien-annuler" data-id="' + r.id + '">Annuler</button></div>';
+      }
+    }
+    return html + '</li>';
+  }
+
+  /* Fiche Google, Instagram, Facebook : le lien connu s'ouvre d'un toucher ; sinon une recherche toute prête
+     et un champ pour coller le lien trouvé. Présent sur toutes les fiches. */
+  function htmlPresence(f) {
+    if (!f.presence) return '';
+    var corps = '<ul class="crm-presence">' + CRM.RESEAUX.map(function (r) { return htmlLigneLien(f, r); }).join('') + '</ul>';
+    if (liensInactifs()) {
+      corps += '<p class="crm-aide crm-pres-aide">' + ic('alerte', 13) + '<span>L\'enregistrement des liens sera actif une fois la migration des liens appliquée. ' +
+        'Les recherches et les liens déjà connus restent utilisables.</span></p>';
+    }
+    return section('Présence en ligne', corps, { id: 'crmSecPresence' });
+  }
+
   var LIBELLES_SOURCE = { osm: 'OpenStreetMap', mairie: 'Mairie', import: 'Liste importée', manuel: 'Saisie à la main' };
 
   function htmlProspection(f) {
@@ -828,7 +911,7 @@
     return htmlChaine() + htmlTete(f) +
       '<div class="crm-pan-corps">' +
       '<div class="crm-pan-haut">' + htmlBadges(f) + htmlRapides(f) + htmlResultat(f) + htmlAction(f) + '</div>' +
-      htmlModeles(f) + htmlTaches(f) + htmlEpingle(f) + htmlInfos(f) + htmlProspection(f) + htmlAudit(f) + htmlSignaux(f) + htmlFil(f) + htmlBas(f) +
+      htmlModeles(f) + htmlTaches(f) + htmlEpingle(f) + htmlInfos(f) + htmlPresence(f) + htmlProspection(f) + htmlAudit(f) + htmlSignaux(f) + htmlFil(f) + htmlBas(f) +
       '</div>' + htmlFeuillePerdu();
   }
 
@@ -943,6 +1026,9 @@
     if (!champ) return;
     if (champ === 'perduRecontact') { if (ui.perdu) ui.perdu.recontact = e.target.checked; return; }
     ui.brouillons[champ] = e.target.value;
+    // Seulement sur une vraie frappe : redessiner le panneau fait partir un « change » du champ remplacé,
+    // qui effacerait l'erreur que l'on vient d'afficher.
+    if (e.type === 'input' && champ.indexOf('lien') === 0) effacerErreurLien(e.target);
     // Changer la date à la main doit aussi mettre à jour les puces « Demain », « +3 j »…
     if (e.type === 'change' && (champ === 'tacheDate' || champ === 'suiteDate')) rendre();
   }
@@ -969,6 +1055,7 @@
     if (champ === 'tacheTitre') { e.preventDefault(); ajouterTache(); }
     else if (champ === 'suiteTitre') { e.preventDefault(); creerSuite(); }
     else if (champ === 'telephone') { e.preventDefault(); enregistrerTelephone(); }
+    else if (reseauDuChamp(champ)) { e.preventDefault(); enregistrerLien(reseauDuChamp(champ)); }
     else if ((champ === 'note' || champ === 'suiteNote' || champ === 'epingle') && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       if (champ === 'note') enregistrerNote(); else if (champ === 'suiteNote') enregistrerNoteSuite(); else enregistrerEpingle();
@@ -983,6 +1070,7 @@
     e.preventDefault();
     if (ui.perdu) { fermerPerdu(); return; }
     if (ui.epingleEdition) { ui.epingleEdition = false; rendre(); return; }
+    if (Object.keys(ui.lienEdition).length) { ui.lienEdition = {}; ui.lienErreur = {}; rendre(); return; }
     demanderFermeture();
   });
 
@@ -1023,6 +1111,10 @@
       case 'copier-apercu': if (f) copierApercu(f); break;
       case 'gerer-compte': if (f) gererCompte(f); break;
       case 'telephone-enregistrer': enregistrerTelephone(); break;
+      case 'lien-modifier': if (f) modifierLien(f, id); break;
+      case 'lien-annuler': annulerLien(id); break;
+      case 'lien-enregistrer': enregistrerLien(id); break;
+      case 'lien-effacer': if (f) effacerLien(f, id); break;
       case 'note-enregistrer': enregistrerNote(); break;
       case 'fil-supprimer': if (f) supprimerInteraction(f, id); break;
       case 'fil-tout': ui.filComplet = !ui.filComplet; rendre(); break;
@@ -1315,6 +1407,95 @@
     ecrire(CRM.majProspect(id, { telephone: saisi }), 'Numéro enregistré', function () {
       return CRM.majProspect(id, { telephone: '' });
     }).then(function (r) { if (r.ok) ui.brouillons.telephone = ''; });
+  }
+
+  // ───────────────────────────── Présence en ligne : saisie des liens ─────────────────────────────
+
+  function reseauDuChamp(champ) {
+    for (var id in CHAMPS_LIEN) if (CHAMPS_LIEN[id] === champ) return id;
+    return null;
+  }
+  function reseauCrm(id) {
+    for (var i = 0; i < CRM.RESEAUX.length; i++) if (CRM.RESEAUX[i].id === id) return CRM.RESEAUX[i];
+    return null;
+  }
+  function champLienDom(id) { return '[data-champ="' + CHAMPS_LIEN[id] + '"]'; }
+
+  // Dès que l'on corrige la saisie, le message d'erreur s'en va (sans redessiner : le curseur ne bouge pas).
+  function effacerErreurLien(champ) {
+    var id = reseauDuChamp(champ.dataset.champ);
+    if (!id || !ui.lienErreur[id]) return;
+    delete ui.lienErreur[id];
+    champ.removeAttribute('aria-invalid');
+    champ.removeAttribute('aria-describedby');
+    var message = panneau.querySelector('#crmLienErreur-' + id);
+    if (message) message.remove();
+  }
+
+  function modifierLien(f, id) {
+    if (!reseauCrm(id) || !f.presence) return;
+    ui.lienEdition[id] = true;
+    delete ui.lienErreur[id];
+    ui.brouillons[CHAMPS_LIEN[id]] = f.presence[id].url || '';
+    rendre();
+    var champ = panneau.querySelector(champLienDom(id));
+    if (champ && !champ.disabled) { champ.focus({ preventScroll: true }); champ.select(); }
+  }
+
+  function annulerLien(id) {
+    if (!reseauCrm(id)) return;
+    delete ui.lienEdition[id];
+    delete ui.lienErreur[id];
+    ui.brouillons[CHAMPS_LIEN[id]] = '';
+    rendre();
+    var bouton = panneau.querySelector('[data-action="lien-modifier"][data-id="' + id + '"]');
+    if (bouton) bouton.focus({ preventScroll: true });
+  }
+
+  function refuserLien(id, message) {
+    ui.lienErreur[id] = message;
+    rendre();
+    var champ = panneau.querySelector(champLienDom(id));
+    if (champ && !champ.disabled) champ.focus({ preventScroll: true });
+  }
+
+  function enregistrerLien(id) {
+    var f = ficheOuverte(), r = reseauCrm(id);
+    if (!f || !r || !f.presence || lectureSeule() || !CRM.etat.liens) return;
+    var saisi = ui.brouillons[CHAMPS_LIEN[id]].trim();
+    if (!saisi) { refuserLien(id, 'Collez d\'abord le lien.'); return; }
+    var url = CRM.normaliserLien(id, saisi);
+    if (!url) { refuserLien(id, r.erreur); return; }
+    var cle = f.cle, actuel = f.presence[id];
+    // Rien à écrire si le lien est déjà celui-là (trouvé ou saisi) : on referme simplement l'édition.
+    if (actuel.url === url) { annulerLien(id); return; }
+    var avant = actuel.origine === 'manuel' ? actuel.url : null;
+    var edition = !!ui.lienEdition[id], liens = {}, retour = {};
+    liens[id] = url; retour[id] = avant;
+    delete ui.lienEdition[id];
+    delete ui.lienErreur[id];
+    ui.brouillons[CHAMPS_LIEN[id]] = '';
+    ecrire(CRM.majLiens(cle, liens), 'Lien ' + r.libelle + ' enregistré', function () { return CRM.majLiens(cle, retour); }).then(function (res) {
+      // Échec : la saisie revient, sauf si l'utilisateur a déjà recommencé à écrire.
+      if (!res.ok && ui.cle === cle && !ui.brouillons[CHAMPS_LIEN[id]]) {
+        ui.brouillons[CHAMPS_LIEN[id]] = saisi;
+        if (edition) ui.lienEdition[id] = true;
+        rendre();
+      }
+    });
+    rendre();
+  }
+
+  function effacerLien(f, id) {
+    var r = reseauCrm(id);
+    if (!r || !f.presence || f.presence[id].origine !== 'manuel') return;
+    var cle = f.cle, avant = f.presence[id].url, liens = {}, retour = {};
+    liens[id] = null; retour[id] = avant;
+    delete ui.lienEdition[id];
+    delete ui.lienErreur[id];
+    ui.brouillons[CHAMPS_LIEN[id]] = '';
+    ecrire(CRM.majLiens(cle, liens), 'Lien ' + r.libelle + ' effacé', function () { return CRM.majLiens(cle, retour); });
+    rendre();
   }
 
   // ───────────────────────────── Interface publique ─────────────────────────────

@@ -572,6 +572,8 @@
     }).map(function (i) { return i.fait_at; }));
 
     var etat = sources.etats.get(cles[0]) || {};
+    // Les liens saisis à la main suivent le commerce même si sa clé principale a changé depuis (prospect devenu démo).
+    var etatsLiens = cles.map(function (cle) { return sources.etats.get(cle); });
     var origines = [];
     if (prospect) origines.push('prospection');
     if (lead) origines.push('inscription');
@@ -607,6 +609,11 @@
         perdu_at: etat.perdu_at || null, motif_perte: etat.motif_perte || null,
         reporte_jusqua: etat.reporte_jusqua || null, note_epinglee: etat.note_epinglee || null
       },
+      presence: presence({
+        nom: premier(c && c.nom_boutique, audit && audit.nom_commerce, lead && lead.nom_boutique, prospect && prospect.nom),
+        commune: premier(c && c.ville, lead && lead.ville, prospect && prospect.commune, villeDepuisAdresse(audit && audit.ville)),
+        etats: etatsLiens, prospects: [prospect].concat(brute.prospects), commercant: c
+      }),
       interactions: listeInteractions, taches: listeTaches,
       dernierContact: dernierContact, derniereInteraction: derniereInteraction,
       // Sources non lues (commandes, evenements, interactions) : voir unifier.
@@ -1130,6 +1137,135 @@
     };
   }
 
+  // ───────────────────────────── Présence en ligne : fiche Google, Instagram, Facebook ─────────────────────────────
+
+  var RESEAUX = [
+    { id: 'google', libelle: 'Fiche Google', court: 'Google', colonne: 'lien_google', colonneProspect: 'google_url',
+      exemple: 'Coller le lien Google Maps',
+      erreur: 'Ce n\'est pas un lien Google valable. Collez le lien de partage de la fiche (Google Maps, bouton « Partager »).' },
+    { id: 'instagram', libelle: 'Instagram', court: 'Instagram', colonne: 'lien_instagram', colonneProspect: 'instagram',
+      exemple: 'Coller le lien ou l\'@identifiant',
+      erreur: 'Ce n\'est pas un lien Instagram valable. Collez l\'adresse du profil (https://www.instagram.com/nom) ou son @identifiant.' },
+    { id: 'facebook', libelle: 'Facebook', court: 'Facebook', colonne: 'lien_facebook', colonneProspect: 'facebook',
+      exemple: 'Coller le lien Facebook',
+      erreur: 'Ce n\'est pas un lien Facebook valable. Collez l\'adresse de la page (https://www.facebook.com/nom).' }
+  ];
+  var LONGUEUR_LIEN = 500;
+  // Premiers segments d'une adresse Instagram qui ne désignent pas un profil.
+  var RESERVES_INSTAGRAM = ['p', 'reel', 'reels', 'explore', 'stories', 'accounts', 'tv', 'direct', 'about', 'developer', 'legal', 'share'];
+  var HOTES_GOOGLE_COURTS = ['maps.app.goo.gl', 'goo.gl', 'g.page', 'g.co', 'share.google'];
+
+  function reseauDe(id) {
+    for (var i = 0; i < RESEAUX.length; i++) if (RESEAUX[i].id === id) return RESEAUX[i];
+    return null;
+  }
+
+  function analyserUrl(v) {
+    if (typeof URL === 'undefined') return null;
+    try { return new URL(v); } catch (e) { return null; }
+  }
+
+  /* Rend l'adresse https normalisée d'une fiche Google, d'un profil Instagram ou d'une page Facebook, ou une
+     chaîne vide si la valeur n'en est pas une. Accepte une URL (http ou https, avec ou sans « https:// ») et,
+     pour Instagram et Facebook, un identifiant (« @nom » ou « nom »). Tout autre schéma (javascript:, data:…),
+     tout autre site et toute valeur trop longue sont refusés : le résultat peut aller dans un href. */
+  function normaliserLien(reseau, valeur) {
+    var v = texte(valeur);
+    if (!reseauDe(reseau) || !v || v.length > LONGUEUR_LIEN || /[\s\u0000-\u001f\u007f<>"'`\\]/.test(v)) return '';
+    var schema = /^([a-z][a-z0-9+.\-]*):/i.exec(v);
+    var url = null;
+    if (schema) {
+      if (!/^https?$/i.test(schema[1]) || !/^https?:\/\/[^\/]/i.test(v)) return '';
+      url = analyserUrl(v);
+      if (!url) return '';
+    } else if (v.indexOf('/') >= 0) {
+      // « www.instagram.com/nom », « //facebook.com/nom » : une adresse écrite sans son schéma.
+      url = analyserUrl('https://' + v.replace(/^\/+/, ''));
+      if (!url) return '';
+    }
+    var lien = url ? lienDepuisUrl(reseau, url) : lienDepuisIdentifiant(reseau, v);
+    return lien && lien.length <= LONGUEUR_LIEN ? lien : '';
+  }
+
+  function lienDepuisIdentifiant(reseau, v) {
+    var id = v.replace(/^@/, '');
+    // Un nom de site tapé seul (« instagram.com ») n'est pas un identifiant.
+    if (/^(www\.|m\.)?(instagram|facebook|fb|google)\.[a-z]{2,6}$/i.test(id)) return '';
+    if (reseau === 'instagram') {
+      return /^[a-z0-9._]{1,30}$/i.test(id) && /[a-z0-9]/i.test(id) ? 'https://www.instagram.com/' + id.toLowerCase() + '/' : '';
+    }
+    if (reseau === 'facebook') {
+      return /^[a-z0-9.\-]{2,80}$/i.test(id) && /[a-z0-9]/i.test(id) ? 'https://www.facebook.com/' + id : '';
+    }
+    return '';
+  }
+
+  function lienDepuisUrl(reseau, url) {
+    if (url.username || url.password || url.port) return '';
+    var hote = url.hostname.toLowerCase().replace(/\.$/, '');
+    var chemin = url.pathname.replace(/\/+$/, '');
+    if (reseau === 'instagram') {
+      if (!/^((www|m)\.)?instagram\.com$/.test(hote) && hote !== 'instagr.am') return '';
+      var id = chemin.split('/')[1] || '';
+      if (!/^[a-z0-9._]{1,30}$/i.test(id) || RESERVES_INSTAGRAM.indexOf(id.toLowerCase()) >= 0) return '';
+      return 'https://www.instagram.com/' + id.toLowerCase() + '/';
+    }
+    if (reseau === 'facebook') {
+      if (!/^([a-z0-9\-]+\.)?facebook\.com$/.test(hote) && !/^(www\.)?fb\.(com|me)$/.test(hote)) return '';
+      if (!chemin || !/^[\/A-Za-z0-9._~%\-]+$/.test(chemin)) return '';
+      // Les anciens profils n'ont pas de nom : « profile.php?id=123 ».
+      var numero = /^\/(profile|people)\.php$/i.test(chemin) ? /^\d{3,25}$/.exec(url.searchParams.get('id') || '') : null;
+      if (/\.php$/i.test(chemin) && !numero) return '';
+      return 'https://www.facebook.com' + chemin + (numero ? '?id=' + numero[0] : '');
+    }
+    var google = /^([a-z0-9\-]+\.)*google\.(com|fr|be|ch|lu|ca|es|it|de|co\.uk)$/.test(hote) || HOTES_GOOGLE_COURTS.indexOf(hote) >= 0;
+    if (!google || (!chemin && !url.search)) return '';
+    return 'https://' + hote + url.pathname + url.search;
+  }
+
+  // Première valeur de la liste qui donne un lien valable (une étiquette peut en contenir plusieurs, séparées par « ; »).
+  function premierLien(reseau, valeurs) {
+    for (var i = 0; i < valeurs.length; i++) {
+      var morceaux = texte(valeurs[i]).split(/\s*;\s*/);
+      for (var k = 0; k < morceaux.length; k++) {
+        var lien = normaliserLien(reseau, morceaux[k]);
+        if (lien) return lien;
+      }
+    }
+    return '';
+  }
+
+  /* Recherches toutes prêtes pour retrouver un commerce : sa fiche sur Google Maps, puis son profil Instagram
+     et sa page Facebook par une recherche Google ciblée. Elles existent toujours, même sans commune. */
+  function recherchesPresence(nom, commune) {
+    var n = texte(nom);
+    var quoi = [n === 'Sans nom' ? '' : n, texte(commune)].filter(Boolean).join(' ');
+    return {
+      google: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(quoi),
+      instagram: 'https://www.google.com/search?q=' + encodeURIComponent((quoi + ' instagram').trim()),
+      facebook: 'https://www.google.com/search?q=' + encodeURIComponent((quoi + ' facebook').trim())
+    };
+  }
+
+  /* Présence en ligne d'un commerce. `sources` : { nom, commune, etats (lignes crm_fiches), prospects, commercant }.
+     Pour chaque réseau : { url, origine, recherche }. Priorité : lien saisi à la main (crm_fiches) > lien trouvé
+     à la recherche (crm_prospects) > lien de la boutique (commercants). origine ∈ 'manuel', 'trouve', 'boutique',
+     ou null quand rien n'est connu (url vaut alors ''). */
+  function presence(sources) {
+    sources = sources || {};
+    var recherches = recherchesPresence(sources.nom, sources.commune);
+    var etats = (sources.etats || []).filter(Boolean), prospects = (sources.prospects || []).filter(Boolean);
+    var c = sources.commercant || null;
+    var resultat = {};
+    RESEAUX.forEach(function (r) {
+      var url = premierLien(r.id, etats.map(function (e) { return e[r.colonne]; })), origine = url ? 'manuel' : null;
+      if (!url) { url = premierLien(r.id, prospects.map(function (p) { return p[r.colonneProspect]; })); if (url) origine = 'trouve'; }
+      if (!url && c && r.id !== 'google') { url = premierLien(r.id, [c[r.id]]); if (url) origine = 'boutique'; }
+      resultat[r.id] = { url: url, origine: origine, recherche: recherches[r.id] };
+    });
+    return resultat;
+  }
+
   // ───────────────────────────── Prospection : OpenStreetMap, import, récap ─────────────────────────────
 
   function versEnsemble(v) {
@@ -1213,7 +1349,11 @@
         commune: premier(e['addr:city'], options.commune) || null,
         code_postal: codePostal, departement: departementDe(codePostal, depRecherche),
         telephone: telephone, email: normaliserEmail(premier(e.email, e['contact:email'])) || null,
-        site_web: site || null, source: 'osm', source_ref: ref,
+        site_web: site || null,
+        // Beaucoup de commerces n'ont pour « site » que leur page Facebook ou leur profil Instagram.
+        instagram: premierLien('instagram', [e['contact:instagram'], e.instagram, site]) || null,
+        facebook: premierLien('facebook', [e['contact:facebook'], e.facebook, site]) || null,
+        source: 'osm', source_ref: ref,
         dejaConnu: !!raison, raisonDejaConnu: raison,
         libelleDejaConnu: raison === 'file' ? 'Déjà dans la file' : raison === 'crm' ? 'Déjà client ou en démo' : null
       });
@@ -1354,10 +1494,12 @@
   }
 
   /* ecriturePanne : la lecture seule vient d'une panne passagère (réseau, serveur), pas d'une migration absente.
-     sourcesTronquees : sources si volumineuses que la lecture s'est arrêtée avant la fin. */
+     sourcesTronquees : sources si volumineuses que la lecture s'est arrêtée avant la fin.
+     liens / liensProspects : faux dès que l'on sait que les colonnes de la migration « liens » manquent dans
+     crm_fiches / crm_prospects (vu à la lecture ou au premier refus d'écriture). Le reste du CRM n'en dépend pas. */
   function etatInitial() {
     return { charge: false, ecriture: false, ecriturePanne: false, prospection: false, sourcesKo: [], sourcesTronquees: [],
-      erreur: null, chargeLe: null };
+      liens: true, liensProspects: true, erreur: null, chargeLe: null };
   }
 
   var brut = brutVide();
@@ -1376,7 +1518,7 @@
     config: { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' },
     etat: etatInitial(),
     OFFRES: OFFRES, ETAPES: ETAPES, MOTIFS_PERTE: MOTIFS_PERTE, RESULTATS_APPEL: RESULTATS_APPEL,
-    RESULTATS_PROSPECT: RESULTATS_PROSPECT, DEPARTEMENTS: DEPARTEMENTS, METIERS_OSM: METIERS_OSM,
+    RESULTATS_PROSPECT: RESULTATS_PROSPECT, DEPARTEMENTS: DEPARTEMENTS, METIERS_OSM: METIERS_OSM, RESEAUX: RESEAUX,
     SERVEURS_OVERPASS: SERVEURS_OVERPASS,
     fiches: [], prospects: brut.prospects,
     // Horloge remplaçable (tests).
@@ -1547,6 +1689,17 @@
     return { lignes: toutes, tronque: true };
   }
 
+  // Une table vide ne dit rien de ses colonnes : dans le doute, on les suppose là (l'écriture tranchera).
+  function colonnePresente(lignes, colonne) { return !lignes.length || colonne in lignes[0]; }
+
+  /* Refus de l'API parce qu'une colonne n'existe pas (migration « liens » non appliquée) : PGRST204 à l'écriture,
+     42703 dans une requête. */
+  function estColonneAbsente(e) {
+    return !!e && (e.code === 'PGRST204' || e.code === '42703' ||
+      (e.statut === 400 && /column|colonne/i.test(texte(e.detail)) && /lien_|google_url|instagram|facebook/.test(texte(e.detail))));
+  }
+  var MIGRATION_LIENS = 'la migration des liens (20261114_crm_liens.sql) n\'est pas encore appliquée';
+
   // Panne passagère (réseau coupé, serveur en erreur), par opposition à une table absente ou à des droits refusés.
   function estPanne(e) { return !!e && (e.reseau === true || e.statut >= 500 || e.statut === 408 || e.statut === 429); }
 
@@ -1594,6 +1747,9 @@
       CRM.etat.ecriture = ecriture;
       CRM.etat.ecriturePanne = !ecriture && panne;
       CRM.etat.prospection = prospection;
+      // Une table lue sans les colonnes de la migration « liens » : on le sait avant même d'essayer d'écrire.
+      CRM.etat.liens = colonnePresente(nouveau.fiches, 'lien_google');
+      CRM.etat.liensProspects = colonnePresente(nouveau.prospects, 'google_url');
       CRM.etat.erreur = erreur;
       CRM.etat.charge = true;
       CRM.etat.chargeLe = CRM.horloge();
@@ -1681,6 +1837,15 @@
   CRM.liens = liens;
   CRM.lienBoutique = function (fiche) { return lienBoutique(fiche, CRM.config.origine); };
   CRM.nomDepartement = nomDepartement;
+  CRM.normaliserLien = normaliserLien;
+
+  /* Présence en ligne d'un prospect de la file d'appels : celle de sa fiche quand il en a une (liens saisis
+     compris), sinon ce que la recherche a trouvé, et toujours les recherches automatiques. */
+  CRM.presenceProspect = function (p) {
+    if (!p) return presence({});
+    var f = p.id != null ? parCle.get(cleDe('p', p.id)) : null;
+    return f ? f.presence : presence({ nom: p.nom, commune: p.commune, prospects: [p] });
+  };
 
   // ───────────────────────────── Écritures du CRM ─────────────────────────────
 
@@ -1880,6 +2045,34 @@
     return ecrireEtat(cle, { note_epinglee: texte(contenu).slice(0, 4000) || null });
   };
 
+  /* Enregistre les liens saisis à la main sur une fiche : { google, instagram, facebook }. Seuls les réseaux
+     fournis sont touchés ; null ou une chaîne vide efface le lien saisi (le lien trouvé automatiquement, s'il
+     existe, redevient visible). Une valeur qui n'est pas un lien valable fait rejeter tout l'appel. */
+  CRM.majLiens = async function (cle, liens) {
+    verifierEcriture(); verifierCle(cle);
+    if (!CRM.etat.liens) throw new Error('L\'enregistrement des liens est inactif : ' + MIGRATION_LIENS + '.');
+    liens = liens || {};
+    var champs = {};
+    RESEAUX.forEach(function (r) {
+      if (!(r.id in liens)) return;
+      var saisi = texte(liens[r.id]);
+      if (!saisi) { champs[r.colonne] = null; return; }
+      var lien = normaliserLien(r.id, saisi);
+      if (!lien) throw new Error(r.erreur);
+      champs[r.colonne] = lien;
+    });
+    if (!Object.keys(champs).length) return null;
+    try {
+      return await ecrireEtat(cle, champs);
+    } catch (e) {
+      if (!estColonneAbsente(e)) throw e;
+      // Les colonnes manquent en base : on le retient pour ne plus proposer l'enregistrement, le reste continue.
+      CRM.etat.liens = false;
+      recalculer();
+      throw new Error('Lien non enregistré : ' + MIGRATION_LIENS + '.');
+    }
+  };
+
   // Le changement d'état est l'essentiel ; sa trace dans le fil est du confort et ne doit pas le faire échouer.
   async function consignerEtape(cle, resultat, contenu) {
     try {
@@ -1939,7 +2132,14 @@
     p.departement = p.departement ? p.departement.toUpperCase() : null;
     p.source = SOURCES_PROSPECT.indexOf(ligne.source) >= 0 ? ligne.source : 'manuel';
     p.liste = p.liste || 'Prospection';
+    RESEAUX.forEach(function (r) { p[r.colonneProspect] = normaliserLien(r.id, ligne[r.colonneProspect]) || null; });
     return p;
+  }
+
+  function sansLiens(p) {
+    var copie = Object.assign({}, p);
+    RESEAUX.forEach(function (r) { delete copie[r.colonneProspect]; });
+    return copie;
   }
 
   function filtrerNouveaux(lignes) {
@@ -1971,10 +2171,20 @@
   async function ajouterProspectsSansSuivi(lignes) {
     var tri = filtrerNouveaux(lignes);
     var crees = [];
+    function poster(lot) {
+      return crmFetch('POST', '/rest/v1/crm_prospects', lot, 'resolution=ignore-duplicates,return=representation', { videPermis: true });
+    }
     async function envoyer(lot) {
       if (!lot.length) return [];
-      return (await crmFetch('POST', '/rest/v1/crm_prospects', lot, 'resolution=ignore-duplicates,return=representation',
-        { videPermis: true })) || [];
+      if (!CRM.etat.liensProspects) return (await poster(lot.map(sansLiens))) || [];
+      try {
+        return (await poster(lot)) || [];
+      } catch (e) {
+        if (!estColonneAbsente(e)) throw e;
+        // Migration « liens » non appliquée : les prospects sont ajoutés quand même, sans leurs liens.
+        CRM.etat.liensProspects = false;
+        return (await poster(lot.map(sansLiens))) || [];
+      }
     }
     for (var debut = 0; debut < tri.gardes.length; debut += 200) {
       var lot = tri.gardes.slice(debut, debut + 200), recus;
@@ -2040,8 +2250,24 @@
     if ('nom' in propres && !propres.nom) throw new Error('Le nom est obligatoire.');
     if ('liste' in propres && !propres.liste) propres.liste = 'Prospection';
     if ('email' in propres) propres.email = normaliserEmail(propres.email) || null;
+    var avecLiens = false;
+    RESEAUX.forEach(function (r) {
+      if (!(r.colonneProspect in champs)) return;
+      var saisi = texte(champs[r.colonneProspect]);
+      propres[r.colonneProspect] = saisi ? normaliserLien(r.id, saisi) : null;
+      if (saisi && !propres[r.colonneProspect]) throw new Error(r.erreur);
+      avecLiens = true;
+    });
+    if (avecLiens && !CRM.etat.liensProspects) throw new Error('L\'enregistrement des liens est inactif : ' + MIGRATION_LIENS + '.');
     if (!Object.keys(propres).length) return trouverParId(brut.prospects, id);
-    return patchProspect(id, propres, options);
+    if (!avecLiens) return patchProspect(id, propres, options);
+    try {
+      return await patchProspect(id, propres, options);
+    } catch (e) {
+      if (!estColonneAbsente(e)) throw e;
+      CRM.etat.liensProspects = false;
+      throw new Error('Lien non enregistré : ' + MIGRATION_LIENS + '.');
+    }
   };
 
   /* Pose le résultat d'un appel (appele_at = maintenant, nb_appels + 1). null efface le résultat
@@ -2166,7 +2392,8 @@
     jours: jours, dateLocaleISO: dateLocaleISO, ajouterJours: ajouterJours, versDate: versDate,
     unifier: unifier, etape: etape, score: score, prochaineAction: prochaineAction, fil: fil,
     modeles: modeles, liens: liens, lienBoutique: lienBoutique,
-    prospectsDepuisOsm: prospectsDepuisOsm, requeteOverpass: requeteOverpass, analyserImport: analyserImport, recap: recap
+    prospectsDepuisOsm: prospectsDepuisOsm, requeteOverpass: requeteOverpass, analyserImport: analyserImport, recap: recap,
+    normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence
   };
 
   // Réservé aux tests : remet le cœur à neuf, ou injecte des données sans passer par le réseau.

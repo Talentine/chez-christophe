@@ -5,16 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0f1a14">
+<meta name="theme-color" content="#0f1a14" id="metaThemeColor">
 <title>Admin — Marchéo</title>
+<script>
+/* Thème de l'admin : appliqué avant le premier affichage (pas de flash). Sombre par défaut. */
+(function () {
+  var theme = 'sombre';
+  try { if (localStorage.getItem('marcheo_admin_theme') === 'clair') theme = 'clair'; } catch (e) {}
+  if (theme === 'clair') {
+    document.documentElement.setAttribute('data-theme', 'clair');
+    var meta = document.getElementById('metaThemeColor');
+    if (meta) meta.setAttribute('content', '#F3F5F9');
+  }
+})();
+</script>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
 <link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
-<link rel="stylesheet" href="/assets/admin/crm.css?v=crm2">
-<link rel="stylesheet" href="/assets/admin/crm-prospection.css?v=crm2">
+<link rel="stylesheet" href="/assets/admin/crm.css?v=crm4">
+<link rel="stylesheet" href="/assets/admin/crm-prospection.css?v=crm4">
 <style>
   :root {
     /* Marchéo brand v2 — admin foncé */
@@ -25,7 +37,7 @@
     --vert-ok: #5BBE3A; --vert-clair: #5BBE3A;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Inter','Manrope', system-ui, sans-serif; background:#080F1F; color:white; min-height:100vh; }
+  body { font-family:'Inter','Manrope', system-ui, sans-serif; background:var(--a-fond0); color:white; min-height:100vh; }
 
   /* LOGIN */
   .login-screen {
@@ -34,8 +46,8 @@
   }
 
   .login-card {
-    background:#102441; border-radius:20px; padding:40px 32px;
-    width:100%; max-width:380px; border:1px solid rgba(255,255,255,0.1);
+    background:var(--a-carte); border-radius:20px; padding:40px 32px;
+    width:100%; max-width:380px; border:1px solid var(--a-l10);
   }
 
   .login-logo { font-size:32px; margin-bottom:8px; text-align:center; }
@@ -43,16 +55,16 @@
     font-family:'Manrope', system-ui, sans-serif; font-size:24px;
     text-align:center; margin-bottom:4px;
   }
-  .login-sub { font-size:13px; color:rgba(255,255,255,0.5); text-align:center; margin-bottom:28px; }
+  .login-sub { font-size:13px; color:var(--a-t50); text-align:center; margin-bottom:28px; }
 
   .login-input {
-    width:100%; padding:13px 16px; background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.15); border-radius:12px;
-    color:white; font-size:15px; font-family:'Manrope', system-ui, sans-serif;
+    width:100%; padding:13px 16px; background:var(--a-v08);
+    border:1px solid var(--a-l15); border-radius:12px;
+    color:var(--a-blanc); font-size:15px; font-family:'Manrope', system-ui, sans-serif;
     outline:none; margin-bottom:12px; transition:border-color .15s;
   }
-  .login-input:focus { border-color:var(--or); }
-  .login-input::placeholder { color:rgba(255,255,255,0.3); }
+  .login-input:focus { border-color:var(--or-t); }
+  .login-input::placeholder { color:var(--a-t30); }
 
   .btn-login {
     width:100%; background:var(--or); color:var(--vert-fonce);
@@ -69,26 +81,26 @@
   /* SIDEBAR */
   .sidebar {
     position:fixed; left:0; top:0; bottom:0; width:220px;
-    background:#102441; border-right:1px solid rgba(255,255,255,0.08);
+    background:var(--a-carte); border-right:1px solid var(--a-l08);
     padding:24px 0; z-index:200;
     overflow-y:auto;
   }
 
   .sidebar-logo {
     padding:0 20px 24px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid var(--a-l08);
     margin-bottom:16px;
   }
 
   .sidebar-logo-titre {
-    font-family:'Manrope', system-ui, sans-serif; font-size:16px; color:white;
+    font-family:'Manrope', system-ui, sans-serif; font-size:16px; color:var(--a-blanc);
   }
 
-  .sidebar-logo-sub { font-size:11px; color:var(--or); }
+  .sidebar-logo-sub { font-size:11px; color:var(--or-t); }
 
   .nav-link {
     display:flex; align-items:center; gap:10px;
-    padding:10px 20px; font-size:14px; color:rgba(255,255,255,0.6);
+    padding:10px 20px; font-size:14px; color:var(--a-t60);
     cursor:pointer; transition:all .15s; border-radius:0;
     border-left:3px solid transparent;
     -webkit-tap-highlight-color:rgba(201,168,76,0.3);
@@ -96,8 +108,8 @@
     position:relative; z-index:1;
   }
 
-  .nav-link:hover { background:rgba(255,255,255,0.05); color:white; }
-  .nav-link.actif { color:white; border-left-color:var(--or); background:rgba(244,185,66,0.1); }
+  .nav-link:hover { background:var(--a-v05); color:var(--a-blanc); }
+  .nav-link.actif { color:var(--a-blanc); border-left-color:var(--or-t); background:rgba(var(--c-or),0.1); }
   .nav-link-icon { font-size:18px; }
 
   .sidebar-footer {
@@ -105,8 +117,8 @@
   }
 
   .btn-deco {
-    width:100%; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.5);
-    border:1px solid rgba(255,255,255,0.1); border-radius:10px;
+    width:100%; background:var(--a-v06); color:var(--a-t50);
+    border:1px solid var(--a-l10); border-radius:10px;
     padding:10px; font-size:13px; font-family:'Manrope', system-ui, sans-serif;
     cursor:pointer; transition:all .15s;
   }
@@ -119,7 +131,7 @@
     margin-bottom:6px;
   }
 
-  .page-sub { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:28px; }
+  .page-sub { font-size:13px; color:var(--a-t50); margin-bottom:28px; }
 
   /* STATS GLOBALES */
   .stats-grid {
@@ -128,25 +140,25 @@
   }
 
   .stat-card {
-    background:#102441; border-radius:16px; padding:20px;
-    border:1px solid rgba(255,255,255,0.08);
+    background:var(--a-carte); border-radius:16px; padding:20px;
+    border:1px solid var(--a-l08);
   }
 
   .stat-card-val { font-size:28px; font-weight:500; margin-bottom:4px; }
-  .stat-card-lbl { font-size:12px; color:rgba(255,255,255,0.5); }
+  .stat-card-lbl { font-size:12px; color:var(--a-t50); }
   .stat-card-delta { font-size:12px; margin-top:6px; }
-  .delta-up { color:#27ae60; }
+  .delta-up { color:rgb(var(--c-vert2)); }
   .delta-down { color:var(--rouge); }
 
   /* TABLE COMMERCANTS */
   .table-card {
-    background:#102441; border-radius:16px;
-    border:1px solid rgba(255,255,255,0.08); overflow:hidden;
+    background:var(--a-carte); border-radius:16px;
+    border:1px solid var(--a-l08); overflow:hidden;
     margin-bottom:20px;
   }
 
   .table-header {
-    padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08);
+    padding:16px 20px; border-bottom:1px solid var(--a-l08);
     display:flex; align-items:center; justify-content:space-between;
   }
 
@@ -161,37 +173,37 @@
   table { width:100%; border-collapse:collapse; }
   th {
     padding:12px 20px; text-align:left; font-size:11px;
-    font-weight:500; color:rgba(255,255,255,0.4);
+    font-weight:500; color:var(--a-t40);
     text-transform:uppercase; letter-spacing:0.5px;
-    border-bottom:1px solid rgba(255,255,255,0.06);
+    border-bottom:1px solid var(--a-l06);
   }
 
   td {
     padding:14px 20px; font-size:14px;
-    border-bottom:1px solid rgba(255,255,255,0.06);
+    border-bottom:1px solid var(--a-l06);
   }
 
   tr:last-child td { border-bottom:none; }
-  tr:hover td { background:rgba(255,255,255,0.03); }
+  tr:hover td { background:var(--a-v03); }
 
   .badge {
     display:inline-block; padding:3px 10px; border-radius:20px;
     font-size:11px; font-weight:500;
   }
-  .badge-actif { background:rgba(39,174,96,0.2); color:#27ae60; }
-  .badge-inactif { background:rgba(231,76,60,0.2); color:#e74c3c; }
-  .badge-starter { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); }
-  .badge-pro { background:rgba(244,185,66,0.2); color:var(--or); }
-  .badge-premium { background:rgba(155,89,182,0.2); color:#9b59b6; }
+  .badge-actif { background:rgba(var(--c-vert2),0.2); color:rgb(var(--c-vert2)); }
+  .badge-inactif { background:rgba(var(--c-rouge2),0.2); color:rgb(var(--c-rouge2)); }
+  .badge-starter { background:var(--a-v10); color:var(--a-t70); }
+  .badge-pro { background:rgba(var(--c-or),0.2); color:var(--or-t); }
+  .badge-premium { background:rgba(var(--c-violet),0.2); color:rgb(var(--c-violet)); }
 
   .action-btn {
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-    color:rgba(255,255,255,0.7); border-radius:8px; padding:5px 12px;
+    background:var(--a-v06); border:1px solid var(--a-l10);
+    color:var(--a-t70); border-radius:8px; padding:5px 12px;
     font-size:12px; cursor:pointer; font-family:'Manrope', system-ui, sans-serif;
     transition:all .15s; margin-right:4px;
   }
-  .action-btn:hover { background:rgba(255,255,255,0.12); color:white; }
-  .action-btn.danger { color:#e74c3c; border-color:rgba(231,76,60,0.3); }
+  .action-btn:hover { background:var(--a-v12); color:var(--a-blanc); }
+  .action-btn.danger { color:rgb(var(--c-rouge2)); border-color:rgba(var(--c-rouge2),0.3); }
 
   /* MRR */
   .mrr-section {
@@ -199,13 +211,13 @@
   }
 
   .mrr-card {
-    background:#102441; border-radius:16px; padding:20px;
-    border:1px solid rgba(255,255,255,0.08);
+    background:var(--a-carte); border-radius:16px; padding:20px;
+    border:1px solid var(--a-l08);
   }
 
-  .mrr-titre { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:8px; }
-  .mrr-val { font-size:32px; font-weight:500; color:var(--or); }
-  .mrr-sub { font-size:12px; color:rgba(255,255,255,0.4); margin-top:4px; }
+  .mrr-titre { font-size:13px; color:var(--a-t50); margin-bottom:8px; }
+  .mrr-val { font-size:32px; font-weight:500; color:var(--or-t); }
+  .mrr-sub { font-size:12px; color:var(--a-t40); margin-top:4px; }
 
   /* PAGES */
   .page { display:none; }
@@ -218,19 +230,19 @@
   }
 
   .catalogue-onglet {
-    background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 50px;
+    background: var(--a-v06); color: var(--a-t70);
+    border: 1px solid var(--a-l12); border-radius: 50px;
     padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
   }
-  .catalogue-onglet.actif { background: #fff; color: #1a2e26; border-color: #fff; }
+  .catalogue-onglet.actif { background: var(--a-inv-fond); color: var(--a-inv-encre-2); border-color: var(--a-inv-fond); }
   .produit-admin-card {
-    background:#102441; border-radius:12px; overflow:hidden;
-    border:1px solid rgba(255,255,255,0.08);
+    background:var(--a-carte); border-radius:12px; overflow:hidden;
+    border:1px solid var(--a-l08);
   }
 
   .produit-admin-img {
     width:100%; height:120px; object-fit:cover;
-    background:rgba(255,255,255,0.05);
+    background:var(--a-v05);
     display:flex; align-items:center; justify-content:center;
     font-size:36px;
   }
@@ -239,7 +251,7 @@
 
   .produit-admin-body { padding:10px 12px; }
   .produit-admin-nom { font-size:13px; font-weight:500; margin-bottom:2px; }
-  .produit-admin-prix { font-size:12px; color:rgba(255,255,255,0.5); }
+  .produit-admin-prix { font-size:12px; color:var(--a-t50); }
 
   /* RECHERCHE */
   .search-bar {
@@ -247,12 +259,12 @@
   }
 
   .search-input {
-    flex:1; padding:10px 16px; background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.12); border-radius:10px;
-    color:white; font-size:14px; font-family:'Manrope', system-ui, sans-serif; outline:none;
+    flex:1; padding:10px 16px; background:var(--a-v08);
+    border:1px solid var(--a-l12); border-radius:10px;
+    color:var(--a-blanc); font-size:14px; font-family:'Manrope', system-ui, sans-serif; outline:none;
   }
 
-  .search-input::placeholder { color:rgba(255,255,255,0.3); }
+  .search-input::placeholder { color:var(--a-t30); }
 
   /* ───────────────────────────────────────────────────
      MOBILE — Optimisation tactile complète
@@ -261,19 +273,19 @@
   .mobile-header {
     display:none;
     position:sticky; top:0; z-index:200;
-    background:#102441; padding:12px 16px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background:var(--a-carte); padding:12px 16px;
+    border-bottom:1px solid var(--a-l08);
     align-items:center; justify-content:space-between;
   }
   .mobile-header-titre {
     font-family:'Manrope', system-ui, sans-serif;
-    font-size:16px; color:white;
+    font-size:16px; color:var(--a-blanc);
   }
-  .mobile-header-titre b { color:var(--or); }
+  .mobile-header-titre b { color:var(--or-t); }
   .burger-btn {
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.12);
-    color:white; width:40px; height:40px;
+    background:var(--a-v08);
+    border:1px solid var(--a-l12);
+    color:var(--a-blanc); width:40px; height:40px;
     border-radius:10px; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     font-size:18px;
@@ -356,14 +368,14 @@
     }
     tbody { padding:10px; }
     tr {
-      background:rgba(255,255,255,0.03);
+      background:var(--a-v03);
       border-radius:10px;
       padding:12px 14px;
       margin-bottom:10px;
-      border:1px solid rgba(255,255,255,0.06);
+      border:1px solid var(--a-l06);
     }
     td {
-      border-bottom:1px solid rgba(255,255,255,0.05);
+      border-bottom:1px solid var(--a-l05);
       padding:8px 0;
       font-size:13px;
       display:flex; justify-content:space-between; align-items:center;
@@ -372,7 +384,7 @@
     td:last-child { border-bottom:none; padding-top:10px; flex-wrap:wrap; }
     td::before {
       content:attr(data-label);
-      font-size:11px; color:rgba(255,255,255,0.4);
+      font-size:11px; color:var(--a-t40);
       text-transform:uppercase; letter-spacing:.04em;
       flex-shrink:0;
     }
@@ -438,23 +450,23 @@
   }
   .modal-edit-overlay.open { display:flex; }
   .modal-edit-card {
-    background:#102441; border-radius:18px; padding:24px;
+    background:var(--a-carte); border-radius:18px; padding:24px;
     width:100%; max-width:420px;
-    border:1px solid rgba(255,255,255,0.1);
+    border:1px solid var(--a-l10);
     max-height:90vh; overflow-y:auto;
   }
   .modal-edit-img {
     width:100%; aspect-ratio:1; border-radius:14px; overflow:hidden;
-    background:rgba(255,255,255,0.05);
+    background:var(--a-v05);
     display:flex; align-items:center; justify-content:center;
     margin-bottom:14px;
   }
   .modal-edit-titre {
     font-family:'Manrope', system-ui, sans-serif; font-size:20px;
-    color:white; margin-bottom:4px; line-height:1.2;
+    color:var(--a-blanc); margin-bottom:4px; line-height:1.2;
   }
-  .modal-edit-meta { font-size:12px; color:rgba(255,255,255,0.5); margin-bottom:14px; }
-  .modal-edit-prix { font-size:18px; color:var(--or); font-weight:500; margin-bottom:18px; }
+  .modal-edit-meta { font-size:12px; color:var(--a-t50); margin-bottom:14px; }
+  .modal-edit-prix { font-size:18px; color:var(--or-t); font-weight:500; margin-bottom:18px; }
   .modal-edit-btn {
     width:100%; background:var(--or); color:var(--vert-fonce);
     border:none; border-radius:50px; padding:14px;
@@ -463,8 +475,8 @@
   }
   .modal-edit-btn:disabled { opacity:0.6; }
   .modal-edit-close {
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-    color:rgba(255,255,255,0.7); border-radius:10px;
+    background:var(--a-v06); border:1px solid var(--a-l10);
+    color:var(--a-t70); border-radius:10px;
     padding:10px; font-size:13px; cursor:pointer;
     width:100%; margin-top:10px; font-family:'Manrope', system-ui, sans-serif;
   }
@@ -476,9 +488,53 @@
     --a-bg:#0A1322; --a-surface:#111E33; --a-surface-2:#172A46; --a-line:rgba(255,255,255,.08);
     --a-ink:#F2F5FA; --a-ink-2:rgba(255,255,255,.68); --a-ink-3:rgba(255,255,255,.46);
     --a-vert:#5BBE3A; --a-vert-clair:#8BE06C; --a-data:#6FA8FF;
+    /* Jetons de thème. En sombre, chacun vaut exactement la couleur écrite en dur à l'origine.
+       --a-tNN : texte blanc à NN % · --a-vNN : voile de fond · --a-lNN : trait (bordure) ·
+       --c-xxx : triplet rgb d'une teinte d'accent (texte, fond teinté, trait) ·
+       --or-t : or pour le texte, les icônes et les traits · --a-inv-* : élément inversé (bulle, toast). */
+    --a-blanc:#fff; --a-inv-fond:#fff; --a-inv-encre:#0A1428; --a-inv-encre-2:#1a2e26;
+    --a-carte:#102441; --a-pop:#1f2730; --a-pop-2:#1a1a2e; --a-fond0:#080F1F; --a-creux:rgba(0,0,0,.3);
+    --a-halo:#1B3F6E; --or-t:#F4B942; --a-champ-trait:rgba(255,255,255,.14);
+    --a-t30:rgba(255,255,255,.3); --a-t35:rgba(255,255,255,.35); --a-t40:rgba(255,255,255,.4); --a-t45:rgba(255,255,255,.45);
+    --a-t50:rgba(255,255,255,.5); --a-t55:rgba(255,255,255,.55); --a-t60:rgba(255,255,255,.6); --a-t70:rgba(255,255,255,.7);
+    --a-t80:rgba(255,255,255,.8); --a-t85:rgba(255,255,255,.85);
+    --a-v02:rgba(255,255,255,.02); --a-v03:rgba(255,255,255,.03); --a-v05:rgba(255,255,255,.05); --a-v06:rgba(255,255,255,.06);
+    --a-v08:rgba(255,255,255,.08); --a-v10:rgba(255,255,255,.1); --a-v12:rgba(255,255,255,.12); --a-v13:rgba(255,255,255,.13);
+    --a-v14:rgba(255,255,255,.14);
+    --a-l05:rgba(255,255,255,.05); --a-l06:rgba(255,255,255,.06); --a-l08:rgba(255,255,255,.08); --a-l10:rgba(255,255,255,.1);
+    --a-l12:rgba(255,255,255,.12); --a-l14:rgba(255,255,255,.14); --a-l15:rgba(255,255,255,.15); --a-l16:rgba(255,255,255,.16);
+    --a-l20:rgba(255,255,255,.2);
+    --c-or:244,185,66; --c-or2:201,165,75; --c-or3:232,199,122; --c-jaune:255,212,122;
+    --c-vert:91,190,58; --c-vert2:39,174,96; --c-vertp:127,217,127;
+    --c-rouge1:255,138,118; --c-rouge2:231,76,60; --c-rouge3:255,155,135; --c-rouge4:196,97,74; --c-rouge5:159,27,31;
+    --c-rouge6:255,170,154; --c-rouge7:255,138,138; --c-violet:155,89,182; --c-data:111,168,255; --c-vertc:139,224,108;
+    --c-bleu2:41,128,185; --c-orange:230,126,34; --a-gris-t:#aaa;
+  }
+  /* ── Thème clair : mêmes jetons, autres valeurs (contraste AA vérifié par le banc) ── */
+  html[data-theme="clair"] {
+    color-scheme:light;
+    --a-bg:#F3F5F9; --a-surface:#FFFFFF; --a-surface-2:#E9EEF5; --a-line:rgba(15,44,82,.15);
+    --a-ink:#0A1428; --a-ink-2:#3B4A61; --a-ink-3:#56647A;
+    --a-vert:#2A7F18; --a-vert-clair:#18620E; --a-data:#1A54AD;
+    --a-blanc:#0A1428; --a-inv-fond:#0F2C52; --a-inv-encre:#fff; --a-inv-encre-2:#fff;
+    --a-carte:#FFFFFF; --a-pop:#FFFFFF; --a-pop-2:#FFFFFF; --a-fond0:#F3F5F9; --a-creux:#FFFFFF;
+    --a-halo:#D5E1F2; --or-t:#7A4E00; --a-champ-trait:#7C8AA0;
+    --a-t30:#56647A; --a-t35:#56647A; --a-t40:#56647A; --a-t45:#56647A; --a-t50:#56647A;
+    --a-t55:#3B4A61; --a-t60:#3B4A61; --a-t70:#3B4A61; --a-t80:#1B2940; --a-t85:#1B2940;
+    --a-v02:rgba(15,44,82,.03); --a-v03:rgba(15,44,82,.035); --a-v05:rgba(15,44,82,.05); --a-v06:rgba(15,44,82,.06);
+    --a-v08:rgba(15,44,82,.08); --a-v10:rgba(15,44,82,.1); --a-v12:rgba(15,44,82,.12); --a-v13:rgba(15,44,82,.13);
+    --a-v14:rgba(15,44,82,.14);
+    --a-l05:rgba(15,44,82,.11); --a-l06:rgba(15,44,82,.12); --a-l08:rgba(15,44,82,.15); --a-l10:rgba(15,44,82,.18);
+    --a-l12:rgba(15,44,82,.22); --a-l14:rgba(15,44,82,.26); --a-l15:rgba(15,44,82,.28); --a-l16:rgba(15,44,82,.3);
+    --a-l20:rgba(15,44,82,.36);
+    --c-or:122,78,0; --c-or2:122,78,0; --c-or3:122,78,0; --c-jaune:125,72,0;
+    --c-vert:24,98,14; --c-vert2:24,98,14; --c-vertp:24,100,30;
+    --c-rouge1:165,40,20; --c-rouge2:165,40,20; --c-rouge3:165,40,20; --c-rouge4:165,40,20; --c-rouge5:159,27,31;
+    --c-rouge6:165,40,20; --c-rouge7:165,40,20; --c-violet:110,54,138; --c-data:26,84,173; --c-vertc:24,98,14;
+    --c-bleu2:26,84,173; --c-orange:140,66,0; --a-gris-t:#56647A;
   }
   body { background:var(--a-bg); color:var(--a-ink); font-family:'Manrope',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
-  .login-screen { background:radial-gradient(900px 500px at 50% -10%, #1B3F6E 0%, transparent 70%), var(--a-bg); }
+  .login-screen { background:radial-gradient(900px 500px at 50% -10%, var(--a-halo) 0%, transparent 70%), var(--a-bg); }
   .login-card { background:var(--a-surface); border-color:var(--a-line); box-shadow:0 30px 80px rgba(0,0,0,.45); }
   .login-logo img { width:56px; height:56px; border-radius:16px; }
   .login-titre { font-weight:800; letter-spacing:-.01em; }
@@ -492,67 +548,67 @@
   .sidebar-logo-sub { font-size:11px; color:var(--a-ink-3); }
   .nav-groupe { padding:14px 20px 6px; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--a-ink-3); font-weight:700; }
   .nav-link { margin:1px 10px; padding:9px 12px; border-left:0; border-radius:10px; font-weight:600; font-size:13.5px; color:var(--a-ink-2); }
-  .nav-link:hover { background:rgba(255,255,255,.05); }
-  .nav-link.actif { background:rgba(244,185,66,.13); color:#fff; box-shadow:inset 3px 0 0 var(--or); }
+  .nav-link:hover { background:var(--a-v05); }
+  .nav-link.actif { background:rgba(var(--c-or),.13); color:var(--a-blanc); box-shadow:inset 3px 0 0 var(--or); }
   .nav-link-icon { font-size:16px; width:20px; text-align:center; }
   .nav-pastille { margin-left:auto; background:var(--or); color:#0A1428; font-size:11px; font-weight:800; border-radius:20px; padding:1px 7px; }
   .sidebar-footer { position:static; margin-top:auto; padding:16px 14px 0; }
-  .prive-carte { display:flex; gap:9px; align-items:flex-start; background:rgba(91,190,58,.1); border:1px solid rgba(91,190,58,.35); border-radius:12px; padding:10px 11px; margin-bottom:10px; font-size:11.5px; line-height:1.4; color:var(--a-ink-2); }
-  .prive-carte strong { display:block; color:#fff; font-size:12px; }
+  .prive-carte { display:flex; gap:9px; align-items:flex-start; background:rgba(var(--c-vert),.1); border:1px solid rgba(var(--c-vert),.35); border-radius:12px; padding:10px 11px; margin-bottom:10px; font-size:11.5px; line-height:1.4; color:var(--a-ink-2); }
+  .prive-carte strong { display:block; color:var(--a-blanc); font-size:12px; }
   .prive-carte svg { flex-shrink:0; color:var(--a-vert-clair); margin-top:1px; }
   .btn-deco { font-weight:600; }
-  .btn-deco:hover { background:rgba(255,255,255,.1); color:#fff; }
+  .btn-deco:hover { background:var(--a-v10); color:var(--a-blanc); }
 
   .main { padding:22px 30px 60px; max-width:1500px; }
   .topbar { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
-  .chip-prive { display:inline-flex; align-items:center; gap:6px; background:rgba(91,190,58,.12); border:1px solid rgba(91,190,58,.4); color:var(--a-vert-clair); border-radius:50px; padding:6px 12px; font-size:12px; font-weight:700; }
+  .chip-prive { display:inline-flex; align-items:center; gap:6px; background:rgba(var(--c-vert),.12); border:1px solid rgba(var(--c-vert),.4); color:var(--a-vert-clair); border-radius:50px; padding:6px 12px; font-size:12px; font-weight:700; }
   .topbar-maj { font-size:12px; color:var(--a-ink-3); margin-right:auto; }
-  .btn-ghost { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#fff; border-radius:50px; padding:7px 14px; font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; transition:background .15s; }
-  .btn-ghost:hover { background:rgba(255,255,255,.12); }
-  .btn-ghost:focus-visible, .nav-link:focus-visible, .action-btn:focus-visible, .btn-ajouter:focus-visible { outline:2px solid var(--or); outline-offset:2px; }
+  .btn-ghost { background:var(--a-v06); border:1px solid var(--a-l14); color:var(--a-blanc); border-radius:50px; padding:7px 14px; font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; transition:background .15s; }
+  .btn-ghost:hover { background:var(--a-v12); }
+  .btn-ghost:focus-visible, .nav-link:focus-visible, .action-btn:focus-visible, .btn-ajouter:focus-visible { outline:2px solid var(--or-t); outline-offset:2px; }
   .page-titre { font-weight:800; letter-spacing:-.02em; font-size:27px; }
   .page-sub { color:var(--a-ink-3); margin-bottom:22px; }
 
   .stats-grid { grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:22px; }
   @media (min-width:901px) { #page-overview > .stats-grid { grid-template-columns:repeat(3,1fr); } }
   .action-menu { text-align:left; }
-  .action-menu a:hover, .action-menu button:hover { background:rgba(255,255,255,.06) !important; }
+  .action-menu a:hover, .action-menu button:hover { background:var(--a-v06) !important; }
   .stat-card { background:var(--a-surface); border-color:var(--a-line); border-radius:16px; padding:16px 18px 15px; display:flex; flex-direction:column; transition:border-color .15s, transform .15s; border-left-width:1px !important; border-left-color:var(--a-line) !important; }
-  .stat-card[onclick]:hover { border-color:rgba(244,185,66,.5) !important; transform:translateY(-1px); }
+  .stat-card[onclick]:hover { border-color:rgba(var(--c-or),.5) !important; transform:translateY(-1px); }
   .stat-card-lbl { order:-1; font-size:12px; font-weight:600; color:var(--a-ink-2); margin-bottom:8px; }
   .stat-card-val { font-size:30px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1; margin-bottom:0; }
   .stat-card-delta { font-size:12px; color:var(--a-ink-3); margin-top:6px; min-height:15px; }
-  .delta-up { color:var(--a-vert-clair); } .delta-down { color:#FF9B87; }
+  .delta-up { color:var(--a-vert-clair); } .delta-down { color:rgb(var(--c-rouge3)); }
 
   .table-card, .mrr-card { background:var(--a-surface); border-color:var(--a-line); }
   .mrr-card { padding:18px 20px; }
-  .mrr-titre { font-size:13px; font-weight:700; color:#fff; margin-bottom:12px; }
+  .mrr-titre { font-size:13px; font-weight:700; color:var(--a-blanc); margin-bottom:12px; }
   .mrr-titre small { display:block; font-weight:500; color:var(--a-ink-3); font-size:11.5px; margin-top:2px; }
   .mrr-section { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
-  th { font-weight:700; color:var(--a-ink-3); letter-spacing:.06em; background:rgba(255,255,255,.02); }
-  .search-input { background:var(--a-surface); border-color:rgba(255,255,255,.14); border-radius:12px; }
-  .search-input:focus { border-color:var(--or); }
+  th { font-weight:700; color:var(--a-ink-3); letter-spacing:.06em; background:var(--a-v02); }
+  .search-input { background:var(--a-surface); border-color:var(--a-l14); border-radius:12px; }
+  .search-input:focus { border-color:var(--or-t); }
   .btn-ajouter { font-weight:800; }
-  select.a-select { width:auto; flex:0 0 auto; background:var(--a-surface); color:#fff; border:1px solid rgba(255,255,255,.14); border-radius:50px; padding:8px 14px; font:600 13px 'Manrope',system-ui,sans-serif; }
+  select.a-select { width:auto; flex:0 0 auto; background:var(--a-surface); color:var(--a-blanc); border:1px solid var(--a-l14); border-radius:50px; padding:8px 14px; font:600 13px 'Manrope',system-ui,sans-serif; }
 
   /* À faire */
   .todo-ligne { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-top:1px solid var(--a-line); }
   .todo-ligne:first-child { border-top:0; padding-top:2px; }
   .todo-nb { flex-shrink:0; min-width:38px; height:38px; border-radius:11px; background:var(--a-surface-2); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; font-variant-numeric:tabular-nums; }
-  .todo-nb.chaud { background:rgba(244,185,66,.2); color:var(--or); }
+  .todo-nb.chaud { background:rgba(var(--c-or),.2); color:var(--or-t); }
   .todo-t { font-size:13.5px; font-weight:700; }
   .todo-d { font-size:12px; color:var(--a-ink-3); margin-top:2px; line-height:1.45; }
   .todo-noms { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-  .todo-noms a, .todo-noms button { background:rgba(255,255,255,.06); border:1px solid var(--a-line); color:#fff; border-radius:50px; padding:4px 10px; font:600 11.5px 'Manrope',system-ui,sans-serif; text-decoration:none; cursor:pointer; }
-  .todo-noms a:hover, .todo-noms button:hover { background:rgba(255,255,255,.13); }
+  .todo-noms a, .todo-noms button { background:var(--a-v06); border:1px solid var(--a-line); color:var(--a-blanc); border-radius:50px; padding:4px 10px; font:600 11.5px 'Manrope',system-ui,sans-serif; text-decoration:none; cursor:pointer; }
+  .todo-noms a:hover, .todo-noms button:hover { background:var(--a-v13); }
 
   /* Graphique en barres (une seule série) */
-  .gb { display:flex; align-items:flex-end; gap:2px; height:150px; padding-top:18px; border-bottom:1px solid rgba(255,255,255,.16); }
+  .gb { display:flex; align-items:flex-end; gap:2px; height:150px; padding-top:18px; border-bottom:1px solid var(--a-l16); }
   .gb-col { flex:1; min-width:0; height:100%; display:flex; align-items:flex-end; justify-content:center; position:relative; }
   .gb-bar { width:100%; max-width:26px; background:var(--a-data); border-radius:4px 4px 0 0; min-height:0; transition:opacity .12s; }
-  .gb-col.vide .gb-bar { height:2px !important; background:rgba(255,255,255,.14); border-radius:0; }
+  .gb-col.vide .gb-bar { height:2px !important; background:var(--a-v14); border-radius:0; }
   .gb-col:hover .gb-bar { opacity:.75; }
-  .gb-col:hover::after { content:attr(data-tip); position:absolute; bottom:calc(100% - 14px); left:50%; transform:translateX(-50%); background:#fff; color:#0A1428; font-size:11.5px; font-weight:700; padding:5px 9px; border-radius:8px; white-space:nowrap; z-index:5; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+  .gb-col:hover::after { content:attr(data-tip); position:absolute; bottom:calc(100% - 14px); left:50%; transform:translateX(-50%); background:var(--a-inv-fond); color:var(--a-inv-encre); font-size:11.5px; font-weight:700; padding:5px 9px; border-radius:8px; white-space:nowrap; z-index:5; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.35); }
   .gb-col:first-child:hover::after, .gb-col:nth-child(2):hover::after { left:0; transform:none; }
   .gb-col:last-child:hover::after, .gb-col:nth-last-child(2):hover::after { left:auto; right:0; transform:none; }
   .gb-val { position:absolute; bottom:100%; font-size:10.5px; font-weight:700; color:var(--a-ink-2); margin-bottom:2px; }
@@ -561,13 +617,13 @@
 
   /* Listes à barres (classements) */
   .lb { position:relative; display:flex; justify-content:space-between; gap:10px; align-items:center; padding:7px 9px; margin-bottom:3px; border-radius:7px; font-size:12.5px; overflow:hidden; }
-  .lb i { position:absolute; left:0; top:0; bottom:0; background:rgba(111,168,255,.17); border-radius:7px; }
+  .lb i { position:absolute; left:0; top:0; bottom:0; background:rgba(var(--c-data),.17); border-radius:7px; }
   .lb span, .lb strong { position:relative; }
   .lb span { color:var(--a-ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
   .lb span.mono { font-family:ui-monospace,Menlo,monospace; font-size:12px; }
   .lb strong { font-variant-numeric:tabular-nums; flex-shrink:0; }
 
-  .main input[type=checkbox] { width:16px; height:16px; min-height:0; flex:0 0 16px; padding:0; margin:0; accent-color:var(--or); }
+  .main input[type=checkbox] { width:16px; height:16px; min-height:0; flex:0 0 16px; padding:0; margin:0; accent-color:var(--or-t); }
   .main label { justify-content:flex-start; }
   .vis-ligne { display:flex; align-items:center; gap:5px; font-size:11px; margin-top:5px; color:var(--a-ink-3); white-space:nowrap; }
   .vis-ligne.prive { color:var(--a-vert-clair); }
@@ -581,12 +637,52 @@
     .emp-grid { grid-template-columns:1fr 1fr !important; }
   }
   @media (max-width:480px) { .stats-grid { grid-template-columns:1fr 1fr; } .stat-card-val { font-size:23px; } }
+
+  /* ── Bascule de thème (interrupteur) ── */
+  .theme-bascule { display:flex; align-items:center; gap:9px; width:100%; min-height:40px; margin-bottom:10px; padding:8px 11px; background:var(--a-v06); border:1px solid var(--a-l10); border-radius:12px; color:var(--a-ink-2); font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; text-align:left; transition:background .15s, color .15s; }
+  .theme-bascule:hover { background:var(--a-v10); color:var(--a-blanc); }
+  .theme-bascule:focus-visible, .theme-bascule-icone:focus-visible { outline:2px solid var(--or-t); outline-offset:2px; }
+  .theme-bascule > span { flex:1; min-width:0; }
+  .theme-icone { flex-shrink:0; }
+  .theme-piste { position:relative; flex:0 0 34px; width:34px; height:20px; border-radius:20px; background:var(--a-v14); box-shadow:inset 0 0 0 1px var(--a-champ-trait); transition:background .15s; }
+  .theme-piste::after { content:''; position:absolute; top:3px; left:3px; width:14px; height:14px; border-radius:50%; background:var(--a-ink-2); transition:transform .15s, background .15s; }
+  .theme-bascule[aria-checked=true] .theme-piste { background:var(--a-vert); box-shadow:none; }
+  .theme-bascule[aria-checked=true] .theme-piste::after { transform:translateX(14px); background:#fff; }
+  .theme-bascule-login { position:absolute; top:16px; right:16px; width:auto; margin:0; background:var(--a-surface); }
+  .login-screen { position:relative; }
+  .mobile-header-actions { display:flex; gap:8px; }
+  .theme-bascule-icone[aria-checked=true] { color:var(--or-t); border-color:var(--or-t); }
+  @media (prefers-reduced-motion:reduce) { .theme-bascule, .theme-piste, .theme-piste::after { transition:none; } }
+
+  /* ── Thème clair : retouches que les jetons seuls ne couvrent pas ── */
+  html[data-theme="clair"] .login-card { box-shadow:0 24px 60px rgba(15,44,82,.14); }
+  html[data-theme="clair"] .sidebar { box-shadow:1px 0 0 rgba(15,44,82,.04); }
+  html[data-theme="clair"] .stat-card, html[data-theme="clair"] .table-card, html[data-theme="clair"] .mrr-card, html[data-theme="clair"] .produit-admin-card { box-shadow:0 1px 2px rgba(15,44,82,.05); }
+  html[data-theme="clair"] .login-input, html[data-theme="clair"] .search-input, html[data-theme="clair"] select.a-select { background:#fff; border-color:var(--a-champ-trait); color:var(--a-ink); }
+  html[data-theme="clair"] :is(.main, #modalNouveauCommerce, #admin-add-prod-overlay, .modal-edit-card) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]), select, textarea):not(.crm-racine *) { background-color:#fff !important; border-color:var(--a-champ-trait) !important; color:var(--a-ink) !important; }
+  html[data-theme="clair"] .login-input:focus, html[data-theme="clair"] .search-input:focus { border-color:var(--or-t); }
+  html[data-theme="clair"] input:-webkit-autofill, html[data-theme="clair"] textarea:-webkit-autofill, html[data-theme="clair"] select:-webkit-autofill { -webkit-text-fill-color:var(--a-ink); box-shadow:inset 0 0 0 1000px #FFF8E6; caret-color:var(--a-ink); }
+  html[data-theme="clair"] .nav-link.actif { background:rgba(244,185,66,.22); box-shadow:inset 3px 0 0 var(--or-t); }
+  html[data-theme="clair"] .todo-nb.chaud, html[data-theme="clair"] .badge-pro { background:rgba(244,185,66,.24); }
+  html[data-theme="clair"] .bloc-noshow { background:linear-gradient(135deg,#FFF4D9,#FFFBF0) !important; border-color:rgba(122,78,0,.28) !important; }
+  html[data-theme="clair"] .bloc-noshow .emp-grid > div { background:#fff !important; box-shadow:inset 0 0 0 1px rgba(122,78,0,.14); }
+  html[data-theme="clair"] .filter-pill.actif, html[data-theme="clair"] .ana-pill.actif { background:rgba(244,185,66,.26) !important; }
+  html[data-theme="clair"] .gb { border-bottom-color:var(--a-champ-trait); }
+  html[data-theme="clair"] .gb-col.vide .gb-bar { background:rgba(15,44,82,.22); }
+  html[data-theme="clair"] .gb-col:hover::after { box-shadow:0 6px 18px rgba(15,44,82,.25); }
+  html[data-theme="clair"] .lb i { background:rgba(26,84,173,.13); }
+  html[data-theme="clair"] .nav-overlay { background:rgba(10,20,40,.45); }
+  html[data-theme="clair"] .action-menu { box-shadow:0 12px 32px rgba(15,44,82,.2) !important; }
+  html[data-theme="clair"] ::-webkit-scrollbar-thumb { background:rgba(15,44,82,.28); }
+  html[data-theme="clair"] ::-webkit-scrollbar-thumb:hover { background:rgba(15,44,82,.45); }
+  html[data-theme="clair"] #toastAdmin { box-shadow:0 10px 30px rgba(15,44,82,.3) !important; }
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
+  <button type="button" class="theme-bascule theme-bascule-login" data-bascule-theme role="switch" aria-checked="false" onclick="basculerThemeAdmin()"><svg class="theme-icone" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span>Thème clair</span><i class="theme-piste" aria-hidden="true"></i></button>
   <div class="login-card">
     <div class="login-logo"><img src="/assets/brand/logo-square.svg" alt=""></div>
     <div class="login-titre">Marchéo Admin</div>
@@ -595,7 +691,7 @@
     <input class="login-input" type="password" id="adminMdp" placeholder="Mot de passe">
     <button class="btn-login" onclick="seConnecterAdmin()">Accéder au dashboard</button>
     <div style="text-align:center;margin-top:14px;">
-      <a href="/reset-password.html" style="color:rgba(255,255,255,0.55);font-size:13px;text-decoration:underline;">Mot de passe oublié ?</a>
+      <a href="/reset-password.html" style="color:var(--a-t55);font-size:13px;text-decoration:underline;">Mot de passe oublié ?</a>
     </div>
     <div class="login-prive"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg> Espace privé : seul votre compte administrateur y a accès.</div>
   </div>
@@ -608,7 +704,10 @@
   <header class="mobile-header">
     <button class="burger-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
     <div class="mobile-header-titre">Marchéo <b>Admin</b></div>
-    <button class="burger-btn" onclick="seDeconnecterAdmin()" title="Se déconnecter" aria-label="Déconnexion">⏻</button>
+    <div class="mobile-header-actions">
+      <button type="button" class="burger-btn theme-bascule-icone" data-bascule-theme role="switch" aria-checked="false" aria-label="Thème clair" title="Thème clair" onclick="basculerThemeAdmin()"><svg class="theme-icone" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+      <button class="burger-btn" onclick="seDeconnecterAdmin()" title="Se déconnecter" aria-label="Déconnexion">⏻</button>
+    </div>
   </header>
 
   <!-- Overlay drawer mobile -->
@@ -652,6 +751,7 @@
     </div>
 
     <div class="sidebar-footer">
+      <button type="button" class="theme-bascule" data-bascule-theme role="switch" aria-checked="false" onclick="basculerThemeAdmin()"><svg class="theme-icone" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span>Thème clair</span><i class="theme-piste" aria-hidden="true"></i></button>
       <div class="prive-carte"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><div><strong>Espace privé</strong>Ce tableau de bord et vos analytics ne sont visibles que par vous.</div></div>
       <button class="btn-deco" onclick="seDeconnecterAdmin()">Se déconnecter</button>
     </div>
@@ -672,24 +772,24 @@
 
       <div class="stats-grid">
         <div class="stat-card" style="cursor:pointer;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('actif'),100)">
-          <div class="stat-card-val" id="statCommerçants" style="color:#7fd97f;">—</div>
+          <div class="stat-card-val" id="statCommerçants" style="color:rgb(var(--c-vertp));">—</div>
           <div class="stat-card-lbl">Boutiques en ligne (payantes)</div>
           <div class="stat-card-delta delta-up" id="deltaCommerçants"></div>
         </div>
-        <div class="stat-card" style="cursor:pointer;border-left:3px solid #ffd47a;" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('demo'),100)">
-          <div class="stat-card-val" id="statDemos" style="color:#ffd47a;">—</div>
+        <div class="stat-card" style="cursor:pointer;border-left:3px solid rgb(var(--c-jaune));" onclick="allerPage('commercants');setTimeout(()=>filtrerStatutDemo('demo'),100)">
+          <div class="stat-card-val" id="statDemos" style="color:rgb(var(--c-jaune));">—</div>
           <div class="stat-card-lbl">Démos (pas encore en ligne)</div>
-          <div class="stat-card-delta" id="conversionDemo" style="color:rgba(255,255,255,0.5);"></div>
+          <div class="stat-card-delta" id="conversionDemo" style="color:var(--a-t50);"></div>
         </div>
         <div class="stat-card">
-          <div class="stat-card-val" id="statMRR" style="color:var(--or)">—</div>
+          <div class="stat-card-val" id="statMRR" style="color:var(--or-t)">—</div>
           <div class="stat-card-lbl">Revenu mensuel récurrent</div>
           <div class="stat-card-delta delta-up" id="deltaMRR"></div>
         </div>
-        <div class="stat-card" style="border-left:3px solid #c9a54b;">
-          <div class="stat-card-val" id="statAcquisition" style="color:#c9a54b;">—</div>
+        <div class="stat-card" style="border-left:3px solid rgb(var(--c-or2));">
+          <div class="stat-card-val" id="statAcquisition" style="color:rgb(var(--c-or2));">—</div>
           <div class="stat-card-lbl">Frais d'installation encaissés</div>
-          <div class="stat-card-delta" id="deltaAcquisition" style="color:rgba(255,255,255,0.5);"></div>
+          <div class="stat-card-delta" id="deltaAcquisition" style="color:var(--a-t50);"></div>
         </div>
         <div class="stat-card">
           <div class="stat-card-val" id="statCommandes">—</div>
@@ -716,33 +816,33 @@
       </div>
 
       <!-- BLOC ANTI NO-SHOW (Stripe) -->
-      <div style="background:linear-gradient(135deg,rgba(201,165,75,0.1),rgba(201,165,75,0.02));border:1px solid rgba(201,165,75,0.25);border-radius:16px;padding:20px;margin:0 0 16px;">
+      <div class="bloc-noshow" style="background:linear-gradient(135deg,rgba(var(--c-or2),0.1),rgba(var(--c-or2),0.02));border:1px solid rgba(var(--c-or2),0.25);border-radius:16px;padding:20px;margin:0 0 16px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
           <div>
-            <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--or);font-weight:600;">🔒 Anti no-show — Stripe</div>
-            <div style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:2px;">Empreintes bancaires sur la plateforme</div>
+            <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--or-t);font-weight:600;">🔒 Anti no-show — Stripe</div>
+            <div style="font-size:14px;color:var(--a-t50);margin-top:2px;">Empreintes bancaires sur la plateforme</div>
           </div>
         </div>
         <div class="emp-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
-          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
-            <div style="font-size:22px;font-weight:600;color:#ffd47a;" id="empBloquees">—</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Bloqué actuellement</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empBloqueesNb">—</div>
+          <div style="background:var(--a-v03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:rgb(var(--c-jaune));" id="empBloquees">—</div>
+            <div style="font-size:11px;color:var(--a-t50);margin-top:4px;">Bloqué actuellement</div>
+            <div style="font-size:10px;color:var(--a-t35);margin-top:2px;" id="empBloqueesNb">—</div>
           </div>
-          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
-            <div style="font-size:22px;font-weight:600;color:#7fd97f;" id="empLiberees">—</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Libéré (30j)</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empLibereesNb">—</div>
+          <div style="background:var(--a-v03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:rgb(var(--c-vertp));" id="empLiberees">—</div>
+            <div style="font-size:11px;color:var(--a-t50);margin-top:4px;">Libéré (30j)</div>
+            <div style="font-size:10px;color:var(--a-t35);margin-top:2px;" id="empLibereesNb">—</div>
           </div>
-          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
-            <div style="font-size:22px;font-weight:600;color:#ff8a76;" id="empCapturees">—</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Capturé (30j)</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;" id="empCaptureesNb">—</div>
+          <div style="background:var(--a-v03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:rgb(var(--c-rouge1));" id="empCapturees">—</div>
+            <div style="font-size:11px;color:var(--a-t50);margin-top:4px;">Capturé (30j)</div>
+            <div style="font-size:10px;color:var(--a-t35);margin-top:2px;" id="empCaptureesNb">—</div>
           </div>
-          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;">
-            <div style="font-size:22px;font-weight:600;color:rgba(255,255,255,0.85);" id="empNoShowPct">—</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Taux no-show 30j</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;">capturé / total</div>
+          <div style="background:var(--a-v03);border-radius:10px;padding:14px;">
+            <div style="font-size:22px;font-weight:600;color:var(--a-t85);" id="empNoShowPct">—</div>
+            <div style="font-size:11px;color:var(--a-t50);margin-top:4px;">Taux no-show 30j</div>
+            <div style="font-size:10px;color:var(--a-t35);margin-top:2px;">capturé / total</div>
           </div>
         </div>
       </div>
@@ -776,15 +876,15 @@
       <!-- FILTRE STATUT (Tous / Démo / Payants) -->
       <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
         <button id="filter-tous" class="filter-pill actif" onclick="filtrerStatutDemo('tous')"
-          style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit;">
+          style="background:var(--a-v06);border:1.5px solid var(--a-l12);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--a-blanc);cursor:pointer;font-family:inherit;">
           Tous <span id="count-tous" style="opacity:.5;margin-left:4px;"></span>
         </button>
         <button id="filter-demo" class="filter-pill" onclick="filtrerStatutDemo('demo')"
-          style="background:rgba(255,212,122,.12);border:1.5px solid rgba(255,212,122,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#ffd47a;cursor:pointer;font-family:inherit;">
+          style="background:rgba(var(--c-jaune),.12);border:1.5px solid rgba(var(--c-jaune),.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:rgb(var(--c-jaune));cursor:pointer;font-family:inherit;">
           🎯 Démos <span id="count-demo" style="opacity:.7;margin-left:4px;"></span>
         </button>
         <button id="filter-actif" class="filter-pill" onclick="filtrerStatutDemo('actif')"
-          style="background:rgba(127,217,127,.12);border:1.5px solid rgba(127,217,127,.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:#7fd97f;cursor:pointer;font-family:inherit;">
+          style="background:rgba(var(--c-vertp),.12);border:1.5px solid rgba(var(--c-vertp),.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:rgb(var(--c-vertp));cursor:pointer;font-family:inherit;">
           ✅ Payantes <span id="count-actif" style="opacity:.7;margin-left:4px;"></span>
         </button>
         <span style="flex:1"></span>
@@ -797,7 +897,7 @@
         <button class="btn-ghost" onclick="exporterCommercantsCsv()">⬇ Exporter (CSV)</button>
       </div>
       <style>
-        .filter-pill.actif { background:rgba(201,165,75,.18) !important; border-color:var(--or,#c9a54b) !important; color:var(--or,#c9a54b) !important; }
+        .filter-pill.actif { background:rgba(var(--c-or2),.18) !important; border-color:var(--or-t) !important; color:var(--or-t) !important; }
       </style>
 
       <div class="table-card">
@@ -814,7 +914,7 @@
             </tr>
           </thead>
           <tbody id="tableCommercants">
-            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
@@ -828,13 +928,13 @@
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-card-val" id="insc-clics">—</div><div class="stat-card-lbl">🖱️ Clics « S'inscrire » · 7 j / 30 j</div></div>
         <div class="stat-card"><div class="stat-card-val" id="insc-vues">—</div><div class="stat-card-lbl">👀 Page inscription vue · 7 j / 30 j</div></div>
-        <div class="stat-card" style="border-left:3px solid #7fd97f;"><div class="stat-card-val" id="insc-comptes" style="color:#7fd97f;">—</div><div class="stat-card-lbl">✅ Comptes créés · 7 j / 30 j</div></div>
-        <div class="stat-card" style="border-left:3px solid #ffd47a;"><div class="stat-card-val" id="insc-dernier" style="font-size:16px;color:#ffd47a;">—</div><div class="stat-card-lbl">🕒 Dernier clic « S'inscrire »</div></div>
+        <div class="stat-card" style="border-left:3px solid rgb(var(--c-vertp));"><div class="stat-card-val" id="insc-comptes" style="color:rgb(var(--c-vertp));">—</div><div class="stat-card-lbl">✅ Comptes créés · 7 j / 30 j</div></div>
+        <div class="stat-card" style="border-left:3px solid rgb(var(--c-jaune));"><div class="stat-card-val" id="insc-dernier" style="font-size:16px;color:rgb(var(--c-jaune));">—</div><div class="stat-card-lbl">🕒 Dernier clic « S'inscrire »</div></div>
       </div>
 
       <div class="search-bar" style="align-items:center;">
         <input class="search-input" id="searchInscriptions" placeholder="🔍 Filtrer (nom, email, ville)..." oninput="renderInscriptions()">
-        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--a-t70);white-space:nowrap;">
           <input type="checkbox" id="insc-masquer-tests" checked onchange="renderInscriptions()"> Masquer mes comptes de test
         </label>
         <button class="btn-ajouter" onclick="copierEmailsInscriptions()">📋 Copier les emails</button>
@@ -854,11 +954,11 @@
             </tr>
           </thead>
           <tbody id="tableInscriptions">
-            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;">Un compte apparaît ici dès que le formulaire d'inscription est validé.</p>
+      <p style="font-size:12px;color:var(--a-t40);margin-top:10px;">Un compte apparaît ici dès que le formulaire d'inscription est validé.</p>
 
       <div class="page-titre" style="font-size:18px;margin-top:28px;">Ont commencé sans finir</div>
       <div class="page-sub">Email saisi sur le formulaire d'inscription, mais compte jamais créé. À recontacter.</div>
@@ -876,7 +976,7 @@
             </tr>
           </thead>
           <tbody id="tableLeads">
-            <tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
@@ -898,7 +998,7 @@
       </div>
 
       <div class="catalogue-grid" id="catalogueGrid">
-        <div style="color:rgba(255,255,255,0.4);padding:20px;">Chargement...</div>
+        <div style="color:var(--a-t40);padding:20px;">Chargement...</div>
       </div>
     </div>
 
@@ -920,7 +1020,7 @@
             </tr>
           </thead>
           <tbody id="tableCommandes">
-            <tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="6" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
@@ -933,7 +1033,7 @@
 
       <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
         <div class="stat-card">
-          <div class="stat-card-val" style="color:var(--or)" id="revMRR">—</div>
+          <div class="stat-card-val" style="color:var(--or-t)" id="revMRR">—</div>
           <div class="stat-card-lbl">MRR actuel</div>
         </div>
         <div class="stat-card">
@@ -962,7 +1062,7 @@
             </tr>
           </thead>
           <tbody id="tableRevenus">
-            <tr><td colspan="5" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>
+            <tr><td colspan="5" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
@@ -981,8 +1081,8 @@
         <button class="ana-pill" data-periode="30j" onclick="changerPeriodeAnalytics('30j')">30 jours</button>
       </div>
       <style>
-        .ana-pill { background:rgba(255,255,255,.06); border:1.5px solid rgba(255,255,255,.12); border-radius:50px; padding:8px 16px; font-size:13px; font-weight:600; color:#fff; cursor:pointer; font-family:inherit; }
-        .ana-pill.actif { background:rgba(201,165,75,.18); border-color:var(--or,#c9a54b); color:var(--or,#c9a54b); }
+        .ana-pill { background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:50px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--a-blanc); cursor:pointer; font-family:inherit; }
+        .ana-pill.actif { background:rgba(var(--c-or2),.18); border-color:var(--or-t); color:var(--or-t); }
       </style>
 
       <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
@@ -997,7 +1097,7 @@
           <div class="stat-card-delta" id="anaPageViewsDelta"></div>
         </div>
         <div class="stat-card">
-          <div class="stat-card-val" style="color:var(--or)" id="anaInscClicks">—</div>
+          <div class="stat-card-val" style="color:var(--or-t)" id="anaInscClicks">—</div>
           <div class="stat-card-lbl">Clics « S'inscrire »</div>
           <div class="stat-card-delta" id="anaInscClicksDelta"></div>
         </div>
@@ -1021,7 +1121,7 @@
         <div id="anaTendance"></div>
       </div>
 
-      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.6);margin:0 0 14px;cursor:pointer;">
+      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--a-t60);margin:0 0 14px;cursor:pointer;">
         <input type="checkbox" id="anaNePasSuivre" onchange="basculerSuiviAdmin(this.checked)">
         Ne pas compter mes visites sur ce navigateur
         <span style="opacity:.6;">(sur un autre appareil : ouvrir le site avec <code>?ne_pas_suivre=1</code>)</span>
@@ -1081,16 +1181,16 @@
 
 <!-- MODAL AJOUT COMMERÇANT -->
 <div id="modalNouveauCommerce" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#1a1a2e;border-radius:18px;padding:28px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;color:white;border:1px solid rgba(255,255,255,0.08);">
+  <div style="background:var(--a-pop-2);border-radius:18px;padding:28px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;color:var(--a-blanc);border:1px solid var(--a-l08);">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
       <h2 style="margin:0;font-size:20px;">Nouveau commerce</h2>
-      <button onclick="fermerModalCommerce()" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:24px;cursor:pointer;">×</button>
+      <button onclick="fermerModalCommerce()" style="background:none;border:none;color:var(--a-t50);font-size:24px;cursor:pointer;">×</button>
     </div>
 
     <div style="display:grid;gap:12px;">
       <div>
-        <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Type de commerce *</label>
-        <select id="ncType" onchange="ncSlugAuto()" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Type de commerce *</label>
+        <select id="ncType" onchange="ncSlugAuto()" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
           <option value="primeur">🌿 Primeur</option>
           <option value="epicerie">🫒 Épicerie</option>
           <option value="boucherie">🥩 Boucherie</option>
@@ -1102,47 +1202,47 @@
       </div>
 
       <div>
-        <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Nom de la boutique *</label>
-        <input id="ncNom" oninput="ncSlugAuto()" placeholder="Paul Primeur" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Nom de la boutique *</label>
+        <input id="ncNom" oninput="ncSlugAuto()" placeholder="Paul Primeur" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
       </div>
 
       <div>
-        <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Slug URL * <span style="color:rgba(255,255,255,0.4);font-weight:normal;">(ex: paul-primeur)</span></label>
-        <input id="ncSlug" placeholder="paul-primeur" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;font-family:monospace;">
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Slug URL * <span style="color:var(--a-t40);font-weight:normal;">(ex: paul-primeur)</span></label>
+        <input id="ncSlug" placeholder="paul-primeur" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;font-family:monospace;">
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div>
-          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Ville</label>
-          <input id="ncVille" placeholder="Caen" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+          <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Ville</label>
+          <input id="ncVille" placeholder="Caen" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
         </div>
         <div>
-          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Téléphone</label>
-          <input id="ncTel" placeholder="02 31 00 00 00" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+          <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Téléphone</label>
+          <input id="ncTel" placeholder="02 31 00 00 00" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
         </div>
       </div>
 
       <div>
-        <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Adresse</label>
-        <input id="ncAdresse" placeholder="2 rue de la Mer" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Adresse</label>
+        <input id="ncAdresse" placeholder="2 rue de la Mer" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
       </div>
 
       <div>
-        <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Email contact</label>
-        <input id="ncEmail" type="email" placeholder="contact@boutique.fr" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+        <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Email contact</label>
+        <input id="ncEmail" type="email" placeholder="contact@boutique.fr" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
       </div>
 
       <div style="display:flex;gap:10px;">
         <div style="flex:1;">
-          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Statut</label>
-          <select id="ncStatut" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+          <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Statut</label>
+          <select id="ncStatut" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
             <option value="demo" selected>🎯 Démo</option>
             <option value="payant">✅ Payant</option>
           </select>
         </div>
         <div style="flex:1;">
-          <label style="font-size:12px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">Offre</label>
-          <select id="ncOffre" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:white;font-size:14px;">
+          <label style="font-size:12px;color:var(--a-t60);display:block;margin-bottom:4px;">Offre</label>
+          <select id="ncOffre" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--a-l12);background:var(--a-v05);color:var(--a-blanc);font-size:14px;">
             <option value="vitrine">Vitrine</option>
             <option value="clickcollect" selected>Click&amp;Collect</option>
             <option value="livraison">Livraison</option>
@@ -1150,12 +1250,12 @@
         </div>
       </div>
 
-      <div id="ncErr" style="display:none;background:rgba(196,97,74,0.15);border:1px solid rgba(196,97,74,0.4);border-radius:8px;padding:10px;font-size:13px;color:#ffaa9a;"></div>
+      <div id="ncErr" style="display:none;background:rgba(var(--c-rouge4),0.15);border:1px solid rgba(var(--c-rouge4),0.4);border-radius:8px;padding:10px;font-size:13px;color:rgb(var(--c-rouge6));"></div>
 
       <button onclick="creerCommerce()" id="ncSubmit" style="width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#5c8a6e,#3d5446);color:white;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;">
         Créer le commerce
       </button>
-      <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;line-height:1.4;">
+      <div style="font-size:11px;color:var(--a-t40);text-align:center;line-height:1.4;">
         En « Démo », la boutique est en ligne sans abonnement ; passez-la en « Payant » depuis la liste quand le commerçant signe. Le commerçant pourra ensuite se connecter à <code>/app</code> pour configurer ses produits, créneaux et galerie.
       </div>
     </div>
@@ -1254,6 +1354,29 @@ function allerPage(id) {
 }
 
 // ── MOBILE DRAWER ─────────────────────────────────────
+// ── Thème sombre / clair ──
+// Le choix est mémorisé dans localStorage (clé marcheo_admin_theme) et posé sur <html data-theme>.
+// Le script en tête de page l'applique avant le premier affichage ; ici on tient les boutons à jour.
+function themeAdmin() { return document.documentElement.getAttribute('data-theme') === 'clair' ? 'clair' : 'sombre'; }
+function appliquerThemeAdmin(theme, memoriser) {
+  const clair = theme === 'clair';
+  if (clair) document.documentElement.setAttribute('data-theme', 'clair');
+  else document.documentElement.removeAttribute('data-theme');
+  if (memoriser) { try { localStorage.setItem('marcheo_admin_theme', clair ? 'clair' : 'sombre'); } catch (e) {} }
+  const meta = document.getElementById('metaThemeColor');
+  if (meta) meta.setAttribute('content', clair ? '#F3F5F9' : '#0f1a14');
+  document.querySelectorAll('[data-bascule-theme]').forEach(b => {
+    b.setAttribute('aria-checked', clair ? 'true' : 'false');
+    b.title = clair ? 'Revenir au thème sombre' : 'Passer au thème clair';
+  });
+  // Tout ce qui se dessine avec des couleurs calculées peut se redessiner sur cet évènement.
+  try { document.dispatchEvent(new CustomEvent('admin:theme', { detail: { theme: clair ? 'clair' : 'sombre' } })); } catch (e) {}
+}
+function basculerThemeAdmin() { appliquerThemeAdmin(themeAdmin() === 'clair' ? 'sombre' : 'clair', true); }
+appliquerThemeAdmin(themeAdmin(), false);
+// Un autre onglet de l'admin change de thème : on suit.
+window.addEventListener('storage', e => { if (e.key === 'marcheo_admin_theme') appliquerThemeAdmin(e.newValue === 'clair' ? 'clair' : 'sombre', false); });
+
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('navOverlay');
@@ -1354,11 +1477,11 @@ async function chargerDashboard() {
   });
 
   document.getElementById('mrrParPlan').innerHTML = Object.entries(planStats).map(([plan, val]) => `
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
-      <span style="color:rgba(255,255,255,0.7);text-transform:capitalize;">${plan}</span>
-      <span style="color:var(--or);font-weight:500;">${val.toFixed(0)} €/mois</span>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--a-l06);font-size:14px;">
+      <span style="color:var(--a-t70);text-transform:capitalize;">${plan}</span>
+      <span style="color:var(--or-t);font-weight:500;">${val.toFixed(0)} €/mois</span>
     </div>
-  `).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucun abonnement actif</p>';
+  `).join('') || '<p style="color:var(--a-t30);font-size:13px;">Aucun abonnement actif</p>';
 
   // Répartition par métier
   const metierStats = {};
@@ -1380,22 +1503,22 @@ async function chargerDashboard() {
     .map(([t, n]) => {
       const m = METIERS_DASH[t] || { emoji:'🏪', label:escHtml(t) };
       const pct = Math.round((n/total)*100);
-      return `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
+      return `<div style="padding:8px 0;border-bottom:1px solid var(--a-l06);font-size:14px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-          <span style="color:rgba(255,255,255,0.85);">${m.emoji} ${m.label}</span>
-          <span style="color:var(--or);font-weight:500;">${n} · ${pct}%</span>
+          <span style="color:var(--a-t85);">${m.emoji} ${m.label}</span>
+          <span style="color:var(--or-t);font-weight:500;">${n} · ${pct}%</span>
         </div>
-        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;">
+        <div style="height:4px;background:var(--a-v06);border-radius:2px;overflow:hidden;">
           <div style="height:100%;width:${pct}%;background:var(--or);"></div>
         </div>
       </div>`;
-    }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucun commerce</p>';
+    }).join('') || '<p style="color:var(--a-t30);font-size:13px;">Aucun commerce</p>';
 
   // Activité récente
   document.getElementById('activiteRecente').innerHTML = (commandes || []).slice(0,5).map(c => {
     const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
-    return '<div style="font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);">📦 Nouvelle commande · ' + date + '</div>';
-  }).join('') || '<p style="color:rgba(255,255,255,0.3);font-size:13px;">Aucune commande récente</p>';
+    return '<div style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--a-l06);color:var(--a-t60);">📦 Nouvelle commande · ' + date + '</div>';
+  }).join('') || '<p style="color:var(--a-t30);font-size:13px;">Aucune commande récente</p>';
 
   // ── ANTI NO-SHOW : empreintes bancaires Stripe ──
   const j30 = new Date(now.getTime() - 30 * 86400_000);
@@ -1450,7 +1573,7 @@ let _activite30jParCommercant = null;
 let _inscriptions = [];
 async function chargerInscriptions() {
   const tbody = document.getElementById('tableInscriptions');
-  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Chargement...</td></tr>';
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>';
   const depuis30 = new Date(Date.now() - 30 * 86400_000).toISOString();
   const [comptes, events, leads] = await Promise.all([
     sb('commercants', '?select=id,nom_boutique,email,telephone,ville,business_type,offre,actif,abonnement_actif,is_fixture,est_demo_ambassadeur,code_promo_utilise,created_at&supprime_at=is.null&order=created_at.desc&limit=200'),
@@ -1487,21 +1610,21 @@ function renderInscriptions() {
     return [c.nom_boutique, c.email, c.ville, c.telephone].some(v => (v || '').toLowerCase().includes(q));
   });
   if (!data.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucune inscription' + (masquerTests ? ' (hors comptes de test)' : '') + '</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Aucune inscription' + (masquerTests ? ' (hors comptes de test)' : '') + '</td></tr>';
     return;
   }
   tbody.innerHTML = data.map(c => {
     const m = METIERS[c.business_type] || METIERS.primeur;
     const statut = !c.actif ? '<span class="badge badge-inactif">⛔ Suspendu</span>'
-      : !c.abonnement_actif ? '<span class="badge" style="background:rgba(255,212,122,.18);color:#ffd47a;border:1px solid rgba(255,212,122,.4);font-weight:700;">🎯 Démo</span>'
-      : '<span class="badge" style="background:rgba(127,217,127,.18);color:#7fd97f;border:1px solid rgba(127,217,127,.4);font-weight:700;">✅ Payant</span>';
+      : !c.abonnement_actif ? '<span class="badge" style="background:rgba(var(--c-jaune),.18);color:rgb(var(--c-jaune));border:1px solid rgba(var(--c-jaune),.4);font-weight:700;">🎯 Démo</span>'
+      : '<span class="badge" style="background:rgba(var(--c-vertp),.18);color:rgb(var(--c-vertp));border:1px solid rgba(var(--c-vertp),.4);font-weight:700;">✅ Payant</span>';
     const date = new Date(c.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
-    return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
-      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}</td>
-      <td style="padding:12px;"><div style="font-weight:600;color:#fff;">${m.emoji} ${escHtml(c.nom_boutique || '—')}</div><div style="font-size:11.5px;color:rgba(255,255,255,.45);">${m.label}</div></td>
-      <td style="font-size:13px;"><a href="mailto:${escHtml(c.email || '')}" style="color:var(--or);">${escHtml(c.email || '—')}</a></td>
-      <td style="font-size:13px;color:rgba(255,255,255,.8);">${c.telephone ? '<a href="tel:' + telHref(c.telephone) + '" style="color:inherit;">' + escHtml(c.telephone) + '</a>' : '—'}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.7);">${escHtml(c.ville || '—')}</td>
+    return `<tr style="border-bottom:1px solid var(--a-l05);">
+      <td style="font-size:13px;color:var(--a-t70);white-space:nowrap;">${date}</td>
+      <td style="padding:12px;"><div style="font-weight:600;color:var(--a-blanc);">${m.emoji} ${escHtml(c.nom_boutique || '—')}</div><div style="font-size:11.5px;color:var(--a-t45);">${m.label}</div></td>
+      <td style="font-size:13px;"><a href="mailto:${escHtml(c.email || '')}" style="color:var(--or-t);">${escHtml(c.email || '—')}</a></td>
+      <td style="font-size:13px;color:var(--a-t80);">${c.telephone ? '<a href="tel:' + telHref(c.telephone) + '" style="color:inherit;">' + escHtml(c.telephone) + '</a>' : '—'}</td>
+      <td style="font-size:13px;color:var(--a-t70);">${escHtml(c.ville || '—')}</td>
       <td style="font-size:13px;">${offreLabels[c.offre] || '—'}</td>
       <td>${statut}</td>
     </tr>`;
@@ -1515,20 +1638,20 @@ function renderLeads(leads, comptes) {
   const offreLabels = { vitrine: 'Vitrine', clickcollect: 'Click&Collect', livraison: 'Livraison' };
   const data = leads.filter(l => l.email && !dejaInscrits.has(l.email.toLowerCase()) && l.email.toLowerCase() !== 'paulpromerieult@gmail.com');
   if (!data.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Personne pour l\'instant</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Personne pour l\'instant</td></tr>';
     return;
   }
   tbody.innerHTML = data.map(l => {
     const m = l.business_type ? (METIERS[l.business_type] || null) : null;
     const date = new Date(l.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
-    return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);">
-      <td style="font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;">${date}${l.device ? '<div style="font-size:11px;color:rgba(255,255,255,.35);">' + escHtml(l.device) + '</div>' : ''}</td>
-      <td style="font-size:13px;"><a href="mailto:${escHtml(l.email)}" style="color:var(--or);">${escHtml(l.email)}</a></td>
-      <td style="font-size:13px;color:#fff;">${escHtml(l.nom_boutique || '—')}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.8);">${m ? m.emoji + ' ' + m.label : '—'}</td>
+    return `<tr style="border-bottom:1px solid var(--a-l05);">
+      <td style="font-size:13px;color:var(--a-t70);white-space:nowrap;">${date}${l.device ? '<div style="font-size:11px;color:var(--a-t35);">' + escHtml(l.device) + '</div>' : ''}</td>
+      <td style="font-size:13px;"><a href="mailto:${escHtml(l.email)}" style="color:var(--or-t);">${escHtml(l.email)}</a></td>
+      <td style="font-size:13px;color:var(--a-blanc);">${escHtml(l.nom_boutique || '—')}</td>
+      <td style="font-size:13px;color:var(--a-t80);">${m ? m.emoji + ' ' + m.label : '—'}</td>
       <td style="font-size:13px;">${offreLabels[l.offre] || '—'}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.7);">${escHtml(l.ville || '—')}</td>
-      <td style="font-size:13px;color:rgba(255,255,255,.8);">${l.telephone ? '<a href="tel:' + telHref(l.telephone) + '" style="color:inherit;">' + escHtml(l.telephone) + '</a>' : '—'}</td>
+      <td style="font-size:13px;color:var(--a-t70);">${escHtml(l.ville || '—')}</td>
+      <td style="font-size:13px;color:var(--a-t80);">${l.telephone ? '<a href="tel:' + telHref(l.telephone) + '" style="color:inherit;">' + escHtml(l.telephone) + '</a>' : '—'}</td>
     </tr>`;
   }).join('');
 }
@@ -1579,7 +1702,7 @@ async function chargerCommercants() {
 function renderTableCommercants(data) {
   const tbody = document.getElementById('tableCommercants');
   if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun commerçant</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Aucun commerçant</td></tr>';
     return;
   }
 
@@ -1596,9 +1719,9 @@ function renderTableCommercants(data) {
     if (!c.actif) {
       statutHtml = '<span class="badge badge-inactif">⛔ Suspendu</span>';
     } else if (!c.abonnement_actif) {
-      statutHtml = '<span class="badge" style="background:rgba(255,212,122,.18);color:#ffd47a;border:1px solid rgba(255,212,122,.4);font-weight:700;">🎯 DÉMO</span>';
+      statutHtml = '<span class="badge" style="background:rgba(var(--c-jaune),.18);color:rgb(var(--c-jaune));border:1px solid rgba(var(--c-jaune),.4);font-weight:700;">🎯 DÉMO</span>';
     } else {
-      statutHtml = '<span class="badge" style="background:rgba(127,217,127,.18);color:#7fd97f;border:1px solid rgba(127,217,127,.4);font-weight:700;">✅ Payant</span>';
+      statutHtml = '<span class="badge" style="background:rgba(var(--c-vertp),.18);color:rgb(var(--c-vertp));border:1px solid rgba(var(--c-vertp),.4);font-weight:700;">✅ Payant</span>';
     }
     const m = METIERS[c.business_type] || METIERS.primeur;
     const prive = estDemoPriveeAdmin(c);
@@ -1615,55 +1738,55 @@ function renderTableCommercants(data) {
     // Health : actif récemment ? combien de no-shows ?
     let healthHtml = '';
     if (!c.actif) {
-      healthHtml = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">Suspendu</span>';
+      healthHtml = '<span style="color:var(--a-t40);font-size:12px;">Suspendu</span>';
     } else if (!c.abonnement_actif) {
-      healthHtml = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">En démo</span>';
+      healthHtml = '<span style="color:var(--a-t40);font-size:12px;">En démo</span>';
     } else if (a.nb === 0) {
-      healthHtml = '<span style="color:#ff8a76;font-size:12px;">⚠️ Aucune commande 30j</span>';
+      healthHtml = '<span style="color:rgb(var(--c-rouge1));font-size:12px;">⚠️ Aucune commande 30j</span>';
     } else if (ageJours !== null && ageJours > 7) {
-      healthHtml = '<span style="color:#ffd47a;font-size:12px;">⚠️ Inactif ' + ageJours + 'j</span>';
+      healthHtml = '<span style="color:rgb(var(--c-jaune));font-size:12px;">⚠️ Inactif ' + ageJours + 'j</span>';
     } else if (a.captured > 0) {
-      healthHtml = '<span style="color:#ff8a76;font-size:12px;">' + a.captured + ' no-show' + (a.captured>1?'s':'') + '</span>';
+      healthHtml = '<span style="color:rgb(var(--c-rouge1));font-size:12px;">' + a.captured + ' no-show' + (a.captured>1?'s':'') + '</span>';
     } else {
-      healthHtml = '<span style="color:#7fd97f;font-size:12px;">✓ OK</span>';
+      healthHtml = '<span style="color:rgb(var(--c-vertp));font-size:12px;">✓ OK</span>';
     }
 
     const activiteHtml = a.nb === 0
-      ? '<span style="color:rgba(255,255,255,0.3);font-size:13px;">—</span>'
-      : '<div style="font-size:13px;color:rgba(255,255,255,0.85);">' + a.nb + ' cmd</div>'
-        + '<div style="font-size:11px;color:var(--or);">' + a.ca.toFixed(0) + '€</div>';
+      ? '<span style="color:var(--a-t30);font-size:13px;">—</span>'
+      : '<div style="font-size:13px;color:var(--a-t85);">' + a.nb + ' cmd</div>'
+        + '<div style="font-size:11px;color:var(--or-t);">' + a.ca.toFixed(0) + '€</div>';
 
     return `
-      <tr style="border-bottom:1px solid rgba(255,255,255,.05);">
+      <tr style="border-bottom:1px solid var(--a-l05);">
         <td style="padding:14px 12px;">
           <div style="font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;">
             <span style="font-size:22px;">${m.emoji}</span>
             <div>
-              <div style="color:#fff;">${escHtml(c.nom_boutique)}</div>
-              <div style="font-size:11.5px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:2px;">${m.label} · ${escHtml(c.email || '—')}${ageTxt}</div>
+              <div style="color:var(--a-blanc);">${escHtml(c.nom_boutique)}</div>
+              <div style="font-size:11.5px;color:var(--a-t45);font-weight:400;margin-top:2px;">${m.label} · ${escHtml(c.email || '—')}${ageTxt}</div>
             </div>
           </div>
         </td>
-        <td style="color:rgba(255,255,255,0.7);font-size:13px;">${escHtml(c.ville || '—')}</td>
+        <td style="color:var(--a-t70);font-size:13px;">${escHtml(c.ville || '—')}</td>
         <td><span class="badge ${planClass}">${escHtml(plan)}</span></td>
         <td>${statutHtml}</td>
         <td>${activiteHtml}</td>
         <td>${healthHtml}</td>
         <td style="text-align:right;position:relative;">
           <button class="action-menu-btn" onclick="event.stopPropagation();toggleMenuActions('${c.id}')"
-            style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;color:#fff;cursor:pointer;font-size:18px;line-height:1;">⋯</button>
-          <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:#1f2730;border:1px solid rgba(255,255,255,.12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
-            <button onclick="voirBoutique(${jsArg(c.slug)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
-            ${prive ? `<button onclick="copierLienApercu(${jsArg(c.slug)},${jsArg(c.id)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🔗 Copier le lien d'aperçu privé</button>` : ''}
-            ${c.telephone ? `<a href="tel:${telHref(c.telephone)}" style="display:block;padding:10px 14px;color:#fff;font-size:13px;text-decoration:none;">📞 Appeler ${escHtml(c.telephone)}</a>` : ''}
-            ${c.email ? `<a href="mailto:${escHtml(c.email)}" style="display:block;padding:10px 14px;color:#fff;font-size:13px;text-decoration:none;">✉️ Écrire un e-mail</a>` : ''}
-            <button onclick="fermerMenuActions('${c.id}');window.crmOuvrirFiche&&window.crmOuvrirFiche('c:'+${jsArg(c.id)})" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🗂 Fiche CRM</button>
-            <button onclick="ouvrirPointsRetrait(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">📍 Points de retrait</button>
-            <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
-            <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#fff;font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
-            <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? '#ffd47a' : '#7fd97f'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
-            <div style="height:1px;background:rgba(255,255,255,.08);"></div>
-            <button onclick="supprimerCommercant(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:#ff8a76;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;">🗑 Supprimer définitivement</button>
+            style="background:var(--a-v08);border:1px solid var(--a-l12);border-radius:8px;padding:6px 12px;color:var(--a-blanc);cursor:pointer;font-size:18px;line-height:1;">⋯</button>
+          <div id="menu-actions-${c.id}" class="action-menu" style="display:none;position:absolute;right:8px;top:42px;z-index:100;background:var(--a-pop);border:1px solid var(--a-l12);border-radius:10px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);overflow:hidden;">
+            <button onclick="voirBoutique(${jsArg(c.slug)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">👁 Voir la boutique</button>
+            ${prive ? `<button onclick="copierLienApercu(${jsArg(c.slug)},${jsArg(c.id)});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">🔗 Copier le lien d'aperçu privé</button>` : ''}
+            ${c.telephone ? `<a href="tel:${telHref(c.telephone)}" style="display:block;padding:10px 14px;color:var(--a-blanc);font-size:13px;text-decoration:none;">📞 Appeler ${escHtml(c.telephone)}</a>` : ''}
+            ${c.email ? `<a href="mailto:${escHtml(c.email)}" style="display:block;padding:10px 14px;color:var(--a-blanc);font-size:13px;text-decoration:none;">✉️ Écrire un e-mail</a>` : ''}
+            <button onclick="fermerMenuActions('${c.id}');window.crmOuvrirFiche&&window.crmOuvrirFiche('c:'+${jsArg(c.id)})" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">🗂 Fiche CRM</button>
+            <button onclick="ouvrirPointsRetrait(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">📍 Points de retrait</button>
+            <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
+            <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
+            <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? 'rgb(var(--c-jaune))' : 'rgb(var(--c-vertp))'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
+            <div style="height:1px;background:var(--a-v08);"></div>
+            <button onclick="supprimerCommercant(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:rgb(var(--c-rouge1));font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;">🗑 Supprimer définitivement</button>
           </div>
         </td>
       </tr>
@@ -2094,7 +2217,7 @@ window.ajouterAuCatalogueGeneral = async function(id, nom) {
 
 function renderCatalogue(produits) {
   if (!produits.length) {
-    document.getElementById('catalogueGrid').innerHTML = '<div style="color:rgba(255,255,255,0.4);padding:20px;">'
+    document.getElementById('catalogueGrid').innerHTML = '<div style="color:var(--a-t40);padding:20px;">'
       + (sourceCatalogue === 'global' ? 'Aucun produit.' : 'Aucun produit ajouté par un commerçant.') + '</div>';
     return;
   }
@@ -2109,15 +2232,15 @@ function renderCatalogue(produits) {
       +   '<div class="produit-admin-body">'
       +     '<div class="produit-admin-nom">' + escHtml(p.nom) + '</div>'
       +     '<div class="produit-admin-prix">' + (p.prix_marche_indicatif||0).toFixed(2) + '€ / ' + escHtml(p.unite) + '</div>'
-      +     '<div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">' + cat + '</div>'
+      +     '<div style="font-size:11px;color:var(--a-t45);margin-top:4px;">' + cat + '</div>'
       +     (p.global === false
-              ? '<div style="font-size:11px;color:#E8C77A;margin-top:4px;">🏪 ' + escHtml(p.commercants?.nom_boutique || 'Boutique inconnue') + '</div>'
+              ? '<div style="font-size:11px;color:rgb(var(--c-or3));margin-top:4px;">🏪 ' + escHtml(p.commercants?.nom_boutique || 'Boutique inconnue') + '</div>'
               : '')
       +   '</div>'
-      +   '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:white;font-size:10px;padding:3px 8px;border-radius:50px;">📷 Modifier</div>'
+      +   '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:#fff;font-size:10px;padding:3px 8px;border-radius:50px;">📷 Modifier</div>'
       + '</div>'
       + '<button onclick="event.stopPropagation();supprimerProduitBase(' + jsArg(p.id) + ',' + jsArg(p.nom||'') + ')" '
-      +   'title="Supprimer" style="position:absolute;top:6px;right:6px;background:rgba(159,27,31,.92);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">🗑</button>'
+      +   'title="Supprimer" style="position:absolute;top:6px;right:6px;background:rgba(var(--c-rouge5),.92);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">🗑</button>'
       + (p.global === false
           ? '<button onclick="event.stopPropagation();ajouterAuCatalogueGeneral(' + jsArg(p.id) + ',' + jsArg(p.nom||'') + ')" '
             + 'style="margin:0 10px 10px;width:calc(100% - 20px);background:#2D6A4F;border:none;color:#fff;padding:8px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:600;">➕ Ajouter au catalogue général</button>'
@@ -2284,45 +2407,45 @@ async function ajouterProduit() {
   ).join('');
 
   overlay.innerHTML = ''
-    + '<div style="background:#1f2730;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px rgba(0,0,0,.5);">'
+    + '<div style="background:var(--a-pop);border:1px solid var(--a-l08);border-radius:18px;padding:28px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px rgba(0,0,0,.5);">'
     +   '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">'
-    +     '<div><h2 style="margin:0 0 4px;color:#fff;font-size:20px;">+ Ajouter un produit de base</h2>'
-    +     '<p style="margin:0;color:rgba(255,255,255,.5);font-size:13px;">Sera disponible pour tous les commerçants du métier choisi.</p></div>'
-    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:rgba(255,255,255,.08);border:none;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;">✕</button>'
+    +     '<div><h2 style="margin:0 0 4px;color:var(--a-blanc);font-size:20px;">+ Ajouter un produit de base</h2>'
+    +     '<p style="margin:0;color:var(--a-t50);font-size:13px;">Sera disponible pour tous les commerçants du métier choisi.</p></div>'
+    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:var(--a-v08);border:none;color:var(--a-blanc);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;">✕</button>'
     +   '</div>'
 
-    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Nom du produit *</label>'
+    +   '<label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Nom du produit *</label>'
     +   '<input id="ap-nom" placeholder="Ex: Tomate Cœur de Bœuf"'
-    +     ' style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:14px;">'
+    +     ' style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:14px;font-family:inherit;margin-bottom:14px;">'
 
-    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Catégorie *</label>'
-    +   '<select id="ap-cat" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:14px;">'
+    +   '<label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Catégorie *</label>'
+    +   '<select id="ap-cat" style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:14px;font-family:inherit;margin-bottom:14px;">'
     +     '<option value="">— Choisir —</option>' + optionsCat
     +   '</select>'
 
     +   '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">'
-    +     '<div><label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Unité *</label>'
-    +     '<input id="ap-unite" placeholder="kg, pc, pers, plateau…" value="kg" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;"></div>'
-    +     '<div><label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Prix indicatif (€) *</label>'
-    +     '<input id="ap-prix" type="number" step="0.10" min="0" placeholder="2.50" style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;"></div>'
+    +     '<div><label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Unité *</label>'
+    +     '<input id="ap-unite" placeholder="kg, pc, pers, plateau…" value="kg" style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:14px;font-family:inherit;"></div>'
+    +     '<div><label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Prix indicatif (€) *</label>'
+    +     '<input id="ap-prix" type="number" step="0.10" min="0" placeholder="2.50" style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:14px;font-family:inherit;"></div>'
     +   '</div>'
 
-    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">URL Photo (Unsplash recommandé)</label>'
+    +   '<label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">URL Photo (Unsplash recommandé)</label>'
     +   '<input id="ap-photo" placeholder="https://images.unsplash.com/photo-..." '
-    +     'style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:13px;font-family:monospace;margin-bottom:8px;">'
-    +   '<div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.5;">'
+    +     'style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:13px;font-family:monospace;margin-bottom:8px;">'
+    +   '<div style="font-size:11px;color:var(--a-t45);margin-bottom:14px;line-height:1.5;">'
     +     '💡 Va sur <strong>unsplash.com</strong>, copie l\'URL de la photo. Format recommandé : <code>https://images.unsplash.com/photo-XXX?w=800&q=80&fit=crop</code>'
     +   '</div>'
 
-    +   '<label style="color:#fff;font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Description (optionnel)</label>'
+    +   '<label style="color:var(--a-blanc);font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Description (optionnel)</label>'
     +   '<textarea id="ap-desc" rows="2" placeholder="Origine, particularité, conseil de préparation…"'
-    +     ' style="width:100%;padding:11px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(0,0,0,.3);color:#fff;font-size:14px;font-family:inherit;margin-bottom:18px;resize:vertical;"></textarea>'
+    +     ' style="width:100%;padding:11px;border:1px solid var(--a-l15);border-radius:10px;background:var(--a-creux);color:var(--a-blanc);font-size:14px;font-family:inherit;margin-bottom:18px;resize:vertical;"></textarea>'
 
-    +   '<div id="ap-error" style="display:none;background:rgba(159,27,31,.2);border:1px solid rgba(159,27,31,.5);color:#ff8a76;padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px;"></div>'
+    +   '<div id="ap-error" style="display:none;background:rgba(var(--c-rouge5),.2);border:1px solid rgba(var(--c-rouge5),.5);color:rgb(var(--c-rouge1));padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px;"></div>'
 
     +   '<div style="display:flex;gap:10px;justify-content:flex-end;">'
-    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 20px;border-radius:50px;cursor:pointer;font-size:13px;font-family:inherit;">Annuler</button>'
-    +     '<button id="ap-submit" onclick="creerProduitBase()" style="background:linear-gradient(135deg,var(--or,#c9a54b),#a48438);border:none;color:#fff;padding:10px 22px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;">+ Créer le produit</button>'
+    +     '<button onclick="document.getElementById(\'admin-add-prod-overlay\').remove()" style="background:transparent;border:1px solid var(--a-l20);color:var(--a-blanc);padding:10px 20px;border-radius:50px;cursor:pointer;font-size:13px;font-family:inherit;">Annuler</button>'
+    +     '<button id="ap-submit" onclick="creerProduitBase()" style="background:linear-gradient(135deg,var(--or,rgb(var(--c-or2))),#a48438);border:none;color:#fff;padding:10px 22px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;">+ Créer le produit</button>'
     +   '</div>'
 
     + '</div>';
@@ -2392,20 +2515,20 @@ async function chargerCommandes() {
 
   const tbody = document.getElementById('tableCommandes');
   const statutLabels = { nouvelle:'En attente', en_preparation:'En prépa', prete:'Prête', remise:'Récupérée', annulee:'Annulée' };
-  const statutColors = { nouvelle:'#2980b9', en_preparation:'#e67e22', prete:'#27ae60', remise:'rgba(255,255,255,0.3)', annulee:'#e74c3c' };
+  const statutColors = { nouvelle:'rgb(var(--c-bleu2))', en_preparation:'rgb(var(--c-orange))', prete:'rgb(var(--c-vert2))', remise:'var(--a-t30)', annulee:'rgb(var(--c-rouge2))' };
 
   tbody.innerHTML = commandes.map(c => {
     const date = new Date(c.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
     const statut = c.statut || 'nouvelle';
-    const color = statutColors[statut] || '#aaa';
+    const color = statutColors[statut] || 'var(--a-gris-t)';
     return `
       <tr>
         <td style="font-weight:500;">${escHtml(c.numero || '—')}</td>
-        <td style="color:rgba(255,255,255,0.7);">${escHtml(c.commercants?.nom_boutique || '—')}</td>
-        <td style="color:rgba(255,255,255,0.5);">—</td>
-        <td style="color:var(--or);">${(c.total_ttc||0).toFixed(2)} €</td>
+        <td style="color:var(--a-t70);">${escHtml(c.commercants?.nom_boutique || '—')}</td>
+        <td style="color:var(--a-t50);">—</td>
+        <td style="color:var(--or-t);">${(c.total_ttc||0).toFixed(2)} €</td>
         <td><span style="color:${color};font-size:12px;">${statutLabels[statut]||escHtml(statut)}</span></td>
-        <td style="color:rgba(255,255,255,0.4);font-size:12px;">${date}</td>
+        <td style="color:var(--a-t40);font-size:12px;">${date}</td>
       </tr>
     `;
   }).join('');
@@ -2595,11 +2718,11 @@ function afficherCampagnes(visitesListe) {
   const th = 'padding:6px 8px;font-weight:500;';
   el.innerHTML = `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
     <tr style="opacity:.5;text-align:left;"><th style="${th}padding-left:0;">Campagne</th><th style="${th}">Visites</th><th style="${th}">→ Inscription</th><th style="${th}">Démos</th><th style="${th}padding-right:0;">Sources</th></tr>
-    ${lignes.map(([nom, c]) => `<tr style="border-top:1px solid rgba(255,255,255,0.05);">
+    ${lignes.map(([nom, c]) => `<tr style="border-top:1px solid var(--a-l05);">
       <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.8;">${escHtml(nom)}</td>
       <td style="padding:6px 8px;">${c.n}</td>
       <td style="padding:6px 8px;">${c.insc} <span style="opacity:.5;">(${Math.round(c.insc / c.n * 100)}%)</span></td>
-      <td style="padding:6px 8px;"><strong style="color:${c.demo ? '#7fd97f' : 'inherit'};">${c.demo}</strong></td>
+      <td style="padding:6px 8px;"><strong style="color:${c.demo ? 'rgb(var(--c-vertp))' : 'inherit'};">${c.demo}</strong></td>
       <td style="padding:6px 0 6px 8px;opacity:.7;">${Object.entries(c.sources).sort((a, b) => b[1] - a[1]).map(([s, n]) => escHtml(s) + ' ' + n).join(' · ')}</td>
     </tr>`).join('')}
   </table></div>`;
@@ -2614,7 +2737,7 @@ function formaterDuree(sec) {
 
 // ── Où les visiteurs s'arrêtent : visites reliées par l'identifiant anonyme meta.sid ──
 function afficherParcours(events, normaliserSource) {
-  const ligne = (gauche, droite) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="opacity:.75;font-size:12px;">${gauche}</span><strong style="white-space:nowrap;">${droite}</strong></div>`;
+  const ligne = (gauche, droite) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--a-l05);"><span style="opacity:.75;font-size:12px;">${gauche}</span><strong style="white-space:nowrap;">${droite}</strong></div>`;
   const vide = '<div style="opacity:.5">Pas encore de visite suivie sur cette période</div>';
 
   // Regroupe par visite
@@ -2643,9 +2766,9 @@ function afficherParcours(events, normaliserSource) {
     ? etapes.map((et, i) => {
         const pctDebut = comptes[0] ? Math.round(comptes[i] / comptes[0] * 100) : 0;
         const perte = i > 0 && comptes[i-1] ? Math.round((1 - comptes[i] / comptes[i-1]) * 100) : null;
-        return `<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-          <div style="display:flex;justify-content:space-between;gap:12px;"><span style="opacity:.75;font-size:12px;">${et.lbl}</span><strong>${comptes[i]}${perte != null && perte > 0 ? ` <span style="color:#ff8a8a;font-weight:400;font-size:11px;">−${perte}%</span>` : ''}</strong></div>
-          <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:4px;"><div style="height:4px;width:${pctDebut}%;background:var(--or);border-radius:2px;"></div></div>
+        return `<div style="padding:6px 0;border-bottom:1px solid var(--a-l05);">
+          <div style="display:flex;justify-content:space-between;gap:12px;"><span style="opacity:.75;font-size:12px;">${et.lbl}</span><strong>${comptes[i]}${perte != null && perte > 0 ? ` <span style="color:rgb(var(--c-rouge7));font-weight:400;font-size:11px;">−${perte}%</span>` : ''}</strong></div>
+          <div style="height:4px;background:var(--a-v06);border-radius:2px;margin-top:4px;"><div style="height:4px;width:${pctDebut}%;background:var(--or);border-radius:2px;"></div></div>
         </div>`;
       }).join('')
     : vide;
@@ -2678,10 +2801,10 @@ function afficherParcours(events, normaliserSource) {
         ${topLecture.map(([p,l]) => {
           const section = Object.entries(l.sections).sort((a,b) => b[1]-a[1])[0];
           const scroll = Math.round(l.scroll / l.n);
-          return `<tr style="border-top:1px solid rgba(255,255,255,0.05);">
+          return `<tr style="border-top:1px solid var(--a-l05);">
             <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.75;">${escHtml(p)}</td>
             <td style="padding:6px 8px;">${l.n}</td>
-            <td style="padding:6px 8px;"><strong style="color:${scroll < 30 ? '#ff8a8a' : scroll < 70 ? '#ffd47a' : '#7fd97f'};">${scroll}%</strong></td>
+            <td style="padding:6px 8px;"><strong style="color:${scroll < 30 ? 'rgb(var(--c-rouge7))' : scroll < 70 ? 'rgb(var(--c-jaune))' : 'rgb(var(--c-vertp))'};">${scroll}%</strong></td>
             <td style="padding:6px 8px;">${formaterDuree(l.duree / l.n)}</td>
             <td style="padding:6px 0 6px 8px;opacity:.75;">${section ? escHtml(section[0]) : '—'}</td>
           </tr>`;
@@ -2709,13 +2832,13 @@ function afficherParcours(events, normaliserSource) {
         const arret = sortie
           ? `arrêt à ${Number(sortie.meta.scroll) || 0}%${sortie.meta.section ? ' · « ' + escHtml(sortie.meta.section) + ' »' : ''}`
           : '';
-        return `<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+        return `<div style="padding:10px 0;border-bottom:1px solid var(--a-l05);">
           <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;opacity:.55;margin-bottom:4px;">
             <span>${debut.toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' })} · ${escHtml(vues[0].device || '?')} · ${escHtml(source)}</span>
             <span>${formaterDuree((fin - debut) / 1000)} · ${vues.length} page${vues.length > 1 ? 's' : ''}</span>
           </div>
           <div style="font-size:12px;line-height:1.6;">${chemin}</div>
-          ${arret || badges.length ? `<div style="font-size:11px;margin-top:4px;"><span style="color:#ffd47a;">${arret}</span>${badges.length ? ` <span style="opacity:.7;">${badges.join(' · ')}</span>` : ''}</div>` : ''}
+          ${arret || badges.length ? `<div style="font-size:11px;margin-top:4px;"><span style="color:rgb(var(--c-jaune));">${arret}</span>${badges.length ? ` <span style="opacity:.7;">${badges.join(' · ')}</span>` : ''}</div>` : ''}
         </div>`;
       }).join('')
     : vide;
@@ -2741,16 +2864,16 @@ async function chargerRevenus() {
       <tr>
         <td>
           <div style="font-weight:500;">${escHtml(c.nom_boutique)}</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.4);">${escHtml(c.email)}</div>
+          <div style="font-size:12px;color:var(--a-t40);">${escHtml(c.email)}</div>
         </td>
         <td><span class="badge ${planClass}">${escHtml(plan)}</span></td>
-        <td style="color:var(--or);font-weight:500;">${prix} €/mois</td>
-        <td style="color:rgba(255,255,255,0.5);font-size:13px;">${debut}</td>
+        <td style="color:var(--or-t);font-weight:500;">${prix} €/mois</td>
+        <td style="color:var(--a-t50);font-size:13px;">${debut}</td>
         <td><span class="badge badge-actif">Actif</span></td>
         <td><button class="action-btn" onclick="genererFacture(${jsArg(c.id)},${jsArg(c.nom_boutique)},${jsArg(c.email)},${Number(prix) || 0},${jsArg(plan)})">📄 Facture</button></td>
       </tr>
     `;
-  }).join('') || '<tr><td colspan="6" style="text-align:center;padding:30px;color:rgba(255,255,255,0.4);">Aucun abonnement actif</td></tr>';
+  }).join('') || '<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--a-t40);">Aucun abonnement actif</td></tr>';
 }
 
 
@@ -2845,7 +2968,7 @@ document.getElementById('adminMdp').addEventListener('keypress', e => {
     <div class="modal-edit-prix" id="editPPrix">—</div>
     <input type="file" id="editPFile" accept="image/*" style="display:none" onchange="uploaderPhotoProduit(this)">
     <button class="modal-edit-btn" id="editPBtn" onclick="document.getElementById('editPFile').click()">📷 Choisir une photo</button>
-    <div id="editPErr" style="color:#ff8a76;font-size:13px;margin-top:10px;display:none;text-align:center;"></div>
+    <div id="editPErr" style="color:rgb(var(--c-rouge1));font-size:13px;margin-top:10px;display:none;text-align:center;"></div>
     <button class="modal-edit-close" onclick="fermerEditionProduit()">Fermer</button>
   </div>
 </div>
@@ -3160,7 +3283,7 @@ function toastAdmin(msg) {
   let t = document.getElementById('toastAdmin');
   if (!t) {
     t = document.createElement('div'); t.id = 'toastAdmin'; t.setAttribute('role', 'status');
-    t.style.cssText = 'position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#fff;color:#0A1428;font:700 13px Manrope,system-ui,sans-serif;padding:11px 18px;border-radius:50px;z-index:5000;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .2s;';
+    t.style.cssText = 'position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--a-inv-fond);color:var(--a-inv-encre);font:700 13px Manrope,system-ui,sans-serif;padding:11px 18px;border-radius:50px;z-index:5000;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .2s;';
     document.body.appendChild(t);
   }
   t.textContent = msg; t.style.opacity = '1';
@@ -3357,10 +3480,10 @@ document.getElementById('adminMdp')?.addEventListener('keydown', e => { if (e.ke
 </script>
 
 <!-- CRM : cœur (données et règles), fiche, vues, prospection -->
-<script src="/assets/admin/crm-coeur.js?v=crm2"></script>
-<script src="/assets/admin/crm-fiche.js?v=crm2"></script>
-<script src="/assets/admin/crm-vues.js?v=crm2"></script>
-<script src="/assets/admin/crm-prospection.js?v=crm2"></script>
+<script src="/assets/admin/crm-coeur.js?v=crm4"></script>
+<script src="/assets/admin/crm-fiche.js?v=crm4"></script>
+<script src="/assets/admin/crm-vues.js?v=crm4"></script>
+<script src="/assets/admin/crm-prospection.js?v=crm4"></script>
 
 </body>
 </html>

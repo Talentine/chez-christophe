@@ -158,6 +158,33 @@
     return '<a class="' + (classe || 'crm-btn') + '" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + libelle + ic('externe', 13) + '</a>';
   }
 
+  /* Raccourcis vers la fiche Google, l'Instagram et le Facebook du commerce : le lien quand il est connu
+     (trouvé à la recherche ou saisi sur la fiche CRM), sinon la recherche toute prête. Les adresses sont
+     repassées par la validation du cœur (https uniquement) avant d'aller dans un href. */
+  function htmlPresence(p) {
+    var presence = CRM.presenceProspect(p);
+    return '<div class="crm-pro-presence" id="crmProPresence" role="group" aria-label="Présence en ligne">' + CRM.RESEAUX.map(function (r) {
+      var etat = presence[r.id] || {};
+      var url = CRM.normaliserLien(r.id, etat.url);
+      var href = url || (/^https:\/\/www\.google\.com\//.test(etat.recherche || '') ? etat.recherche : '');
+      if (!href) return '';
+      var titre = (url ? 'Ouvrir : ' : 'Chercher : ') + r.libelle;
+      return '<a class="crm-pro-pres' + (url ? ' crm-pro-pres-connu' : '') + '" data-reseau="' + r.id + '" href="' + esc(href) +
+        '" target="_blank" rel="noopener noreferrer" title="' + esc(titre) + '" aria-label="' + esc(titre + ' (nouvel onglet)') + '">' +
+        ic(r.id, 15) + '<span>' + esc(r.court) + '</span>' + ic(url ? 'coche' : 'recherche', 12) + '</a>';
+    }).join('') + '</div>';
+  }
+
+  // Petits pictogrammes des réseaux trouvés par la recherche (résultats de « Trouver des numéros »).
+  function htmlReseauxTrouves(p) {
+    var trouves = CRM.RESEAUX.filter(function (r) { return r.id !== 'google' && CRM.normaliserLien(r.id, p[r.colonneProspect]); });
+    if (!trouves.length) return '';
+    return '<span class="crm-pro-reseaux">' + trouves.map(function (r) {
+      return '<span class="crm-pro-reseau" data-reseau="' + r.id + '" title="' + esc(r.libelle + ' trouvé') + '">' + ic(r.id, 13) +
+        '<span class="crm-sr">' + esc(r.libelle + ' trouvé') + '</span></span>';
+    }).join('') + '</span>';
+  }
+
   // ───────────────────────────── Position mémorisée ─────────────────────────────
 
   function lirePositions() {
@@ -373,6 +400,7 @@
     } else {
       html += htmlTrouverNumero(p) + appels;
     }
+    html += htmlPresence(p);
 
     html += '<div class="crm-pro-resultats" role="group" aria-label="Résultat de l\'appel">' + CRM.RESULTATS_PROSPECT.map(function (r) {
       var choisi = p.resultat === r.id;
@@ -1062,7 +1090,7 @@
         '<label class="crm-pro-trouve-corps"><input type="checkbox" id="crmProSel-' + i + '" data-champ="selection" data-id="' + i + '"' +
           (r.selection.has(i) ? ' checked' : '') + (p.dejaConnu ? ' disabled' : '') + '>' +
           '<span class="crm-pro-trouve-txt"><b>' + esc(p.nom) + '</b><small>' + esc(detail) + '</small></span>' +
-          '<span class="crm-pro-trouve-tel">' + esc(pur.formaterTel(p.telephone)) + (p.dejaConnu ? '<em>' + esc(p.libelleDejaConnu || 'Déjà connu') + '</em>' : '') + '</span></label>' +
+          '<span class="crm-pro-trouve-tel">' + esc(pur.formaterTel(p.telephone)) + htmlReseauxTrouves(p) + (p.dejaConnu ? '<em>' + esc(p.libelleDejaConnu || 'Déjà connu') + '</em>' : '') + '</span></label>' +
         lienExterne(lienGoogle(p), '<span>Vérifier</span>', 'crm-btn crm-btn-discret crm-pro-verifier') + '</div>';
     }).join('') + '</div>';
     if (r.resultats.length > r.limite) {

@@ -23,7 +23,7 @@
 }
 .crm-pro .crm-pro-onglet::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: transparent; transition: background var(--crm-duree); }
 .crm-pro .crm-pro-onglet:hover { color: var(--a-ink); }
-.crm-pro .crm-pro-onglet[aria-selected=true] { color: var(--crm-clair); font-weight: 700; }
+.crm-pro .crm-pro-onglet[aria-selected=true] { color: var(--a-blanc); font-weight: 700; }
 .crm-pro .crm-pro-onglet[aria-selected=true]::after { background: var(--or); }
 .crm-pro .crm-pro-onglet-nb { font-size: 11.5px; font-weight: 700; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
 
@@ -107,6 +107,18 @@
 .crm-pro .crm-pro-saisie-tel input { flex: 1; min-width: 0; height: 40px; padding: 0 12px; font-variant-numeric: tabular-nums; }
 .crm-pro .crm-pro-saisie-tel .crm-btn { height: 40px; }
 
+/* Raccourcis Google / Instagram / Facebook : plein quand le lien est connu, en pointillé quand il reste à chercher. */
+.crm-pro .crm-pro-presence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.crm-pro .crm-pro-pres {
+  display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 0; height: 36px; padding: 0 6px;
+  border: 1px dashed var(--a-ink-3); border-radius: 10px; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); white-space: nowrap;
+  transition: background var(--crm-duree), color var(--crm-duree), border-color var(--crm-duree);
+}
+.crm-pro .crm-pro-pres > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.crm-pro .crm-pro-pres:hover { background: var(--a-surface-2); color: var(--a-ink); }
+.crm-pro .crm-pro-pres-connu { border: 1px solid var(--a-ink-3); background: var(--a-bg); color: var(--a-ink); font-weight: 700; }
+.crm-pro .crm-pro-pres-connu .crm-ic:last-child { color: var(--a-vert-clair); }
+
 .crm-pro .crm-pro-resultats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .crm-pro .crm-pro-res {
   display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 50px; padding: 6px 8px;
@@ -139,14 +151,14 @@
   border: 1px solid var(--crm-controle); border-radius: 12px; background: var(--crm-survol); font-size: 14px; font-weight: 700; white-space: nowrap;
   transition: background var(--crm-duree), filter var(--crm-duree), transform var(--crm-duree);
 }
-.crm-pro .crm-pro-nav button:hover { background: rgba(255, 255, 255, .11); }
+.crm-pro .crm-pro-nav button:hover { background: var(--crm-survol-fort); }
 .crm-pro .crm-pro-nav button:active { transform: scale(.98); }
 .crm-pro .crm-pro-nav .crm-pro-suivant { flex: 1.7; border-color: var(--a-ink); background: var(--a-ink); color: var(--a-bg); }
 .crm-pro .crm-pro-nav .crm-pro-suivant:hover { background: var(--a-ink); filter: brightness(.92); }
 
 .crm-pro .crm-pro-outils { margin-top: 12px; }
 .crm-pro .crm-pro-accroche { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 14px 16px; background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 14px; animation: crm-apparait .18s var(--crm-courbe); }
-.crm-pro .crm-pro-accroche p { padding-left: 12px; border-left: 3px solid var(--or); font-size: 14px; line-height: 1.5; color: var(--a-ink); }
+.crm-pro .crm-pro-accroche p { padding-left: 12px; border-left: 3px solid var(--or-t); font-size: 14px; line-height: 1.5; color: var(--a-ink); }
 .crm-pro .crm-pro-accroche p + p { border-left-color: var(--crm-controle); font-size: 13px; color: var(--a-ink-2); }
 
 /* ───────────────────────────── Appeler : file d'appels ───────────────────────────── */
@@ -159,7 +171,7 @@
 .crm-pro .crm-pro-filtres select { height: 34px; border-radius: 50px; font-size: 12.5px; }
 .crm-pro .crm-pro-rappels {
   display: flex; align-items: center; gap: 9px; width: 100%; min-height: 40px; margin-bottom: 10px; padding: 6px 14px; text-align: left;
-  border: 1px solid var(--crm-or-trait); border-radius: 12px; background: var(--crm-or-fond); color: var(--or); font-size: 13px; font-weight: 700;
+  border: 1px solid var(--crm-or-trait); border-radius: 12px; background: var(--crm-or-fond); color: var(--or-t); font-size: 13px; font-weight: 700;
   transition: background var(--crm-duree);
 }
 .crm-pro .crm-pro-rappels span { flex: 1; min-width: 0; }
@@ -191,7 +203,7 @@
 .crm-pro legend { margin-bottom: 9px; padding: 0; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--a-ink-3); }
 .crm-pro .crm-pro-segment { display: inline-flex; gap: 2px; margin-bottom: 10px; padding: 3px; background: var(--a-bg); border: 1px solid var(--a-line); border-radius: 10px; }
 .crm-pro .crm-pro-segment button { height: 30px; padding: 0 14px; border: 0; border-radius: 8px; background: none; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); transition: background var(--crm-duree), color var(--crm-duree); }
-.crm-pro .crm-pro-segment button[aria-pressed=true] { background: var(--a-surface-2); color: var(--crm-clair); font-weight: 700; }
+.crm-pro .crm-pro-segment button[aria-pressed=true] { background: var(--a-surface-2); color: var(--a-blanc); font-weight: 700; }
 .crm-pro fieldset > select { display: block; width: 100%; height: 40px; }
 .crm-pro .crm-pro-combo { position: relative; }
 .crm-pro .crm-pro-combo > .crm-ic { position: absolute; left: 12px; top: 12px; color: var(--a-ink-3); pointer-events: none; }
@@ -215,16 +227,16 @@
 .crm-pro .crm-pro-attente { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 12px; padding: 14px 16px; border: 1px solid var(--crm-or-trait); border-radius: 14px; background: var(--crm-or-fond); }
 .crm-pro .crm-pro-attente > div { flex: 1 1 220px; min-width: 0; }
 .crm-pro .crm-pro-attente-titre { font-size: 14px; font-weight: 700; }
-.crm-pro .crm-pro-attente-titre span { margin-left: 4px; font-weight: 600; color: var(--or); font-variant-numeric: tabular-nums; }
+.crm-pro .crm-pro-attente-titre span { margin-left: 4px; font-weight: 600; color: var(--or-t); font-variant-numeric: tabular-nums; }
 .crm-pro .crm-pro-vide-discret { background: none; border-style: dashed; }
 .crm-pro .crm-pro-resume { margin: 2px 2px 12px; }
 .crm-pro .crm-pro-resume-titre { font-size: 16px; font-weight: 800; letter-spacing: -.01em; line-height: 1.3; text-wrap: balance; }
 .crm-pro .crm-pro-resume .crm-aide { margin-top: 3px; }
-.crm-pro .crm-pro-ajoute { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 12px; padding: 12px 14px; border: 1px solid rgba(139, 224, 108, .34); border-radius: 14px; background: rgba(139, 224, 108, .08); }
+.crm-pro .crm-pro-ajoute { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 12px; padding: 12px 14px; border: 1px solid rgba(var(--c-vertc), .34); border-radius: 14px; background: rgba(var(--c-vertc), .08); }
 .crm-pro .crm-pro-ajoute p { display: flex; align-items: flex-start; gap: 8px; flex: 1 1 200px; min-width: 0; font-size: 13.5px; }
 .crm-pro .crm-pro-ajoute p .crm-ic { margin-top: 3px; color: var(--a-vert-clair); }
 .crm-pro .crm-pro-selection { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 6px; font-size: 12.5px; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
-.crm-pro .crm-pro-selection .crm-lien { color: var(--or) !important; }
+.crm-pro .crm-pro-selection .crm-lien { color: var(--or-t) !important; }
 
 .crm-pro .crm-pro-trouve { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--a-line); transition: background var(--crm-duree); }
 .crm-pro .crm-pro-trouve:first-child { border-top: 0; }
@@ -236,6 +248,8 @@
 .crm-pro .crm-pro-trouve-txt small { margin-top: 1px; font-size: 12px; color: var(--a-ink-3); }
 .crm-pro .crm-pro-trouve-tel { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 13.5px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .crm-pro .crm-pro-trouve-tel em { font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--crm-pro-rappel); }
+.crm-pro .crm-pro-reseaux { display: inline-flex; align-items: center; gap: 5px; color: var(--a-ink-2); }
+.crm-pro .crm-pro-reseau { display: inline-flex; }
 .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-corps { cursor: default; }
 .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-txt, .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-tel { opacity: .6; }
 .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-tel em { opacity: 1; }
@@ -311,7 +325,7 @@
 .crm-pro .crm-pro-rang-rien { font-size: 12.5px; color: var(--a-ink-3); }
 .crm-pro .crm-pro-rang-actions { display: flex; align-items: center; gap: 2px; flex: none; padding-right: 10px; }
 .crm-pro .crm-pro-rang-vide { width: 32px; }
-.crm-pro .crm-icone-or { color: var(--or) !important; }
+.crm-pro .crm-icone-or { color: var(--or-t) !important; }
 
 /* ───────────────────────────── Écrans larges, étroits et tactiles ───────────────────────────── */
 
@@ -347,6 +361,7 @@
   .crm-pro .crm-pro-appeler { min-height: 68px; }
   .crm-pro .crm-pro-rangee > .crm-btn { flex: 1 1 auto; }
   .crm-pro .crm-pro-res { min-height: 54px; font-size: 14.5px; }
+  .crm-pro .crm-pro-pres { height: 44px; padding: 0 4px; gap: 4px; }
   .crm-pro .crm-pro-saisie-tel .crm-btn { height: 46px; }
   .crm-pro .crm-pro-nav button { height: 52px; }
   .crm-pro .crm-pro-suite .crm-btn { flex: 1 1 100%; }
