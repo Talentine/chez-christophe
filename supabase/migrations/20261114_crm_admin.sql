@@ -3,13 +3,13 @@
 -- Rien n'est modifié dans les tables existantes : l'étape, le score et la prochaine action sont calculés
 -- dans le navigateur à partir de commercants, leads_inscription, audits_prospects, commandes et analytics_events.
 --
--- Clé de fiche « cle » :  c:<commercants.id>  |  a:<audits_prospects.fiche_id>  |  l:<e-mail en minuscules>
+-- Clé de fiche « cle » :  c:<commercants.id>  |  a:<audits_prospects.fiche_id>  |  l:<e-mail en minuscules>  |  p:<crm_prospects.id>
 -- Une même personne peut avoir plusieurs clés (inscription, puis audit, puis démo) : le navigateur les regroupe,
 -- il n'y a donc ni clé étrangère ni fusion à faire ici.
 
 create table if not exists public.crm_fiches (
   id uuid primary key default gen_random_uuid(),
-  cle text not null unique check (cle ~ '^[cal]:.+' and length(cle) <= 260),
+  cle text not null unique check (cle ~ '^[calp]:.+' and length(cle) <= 260),
   perdu_at timestamptz,
   motif_perte text check (motif_perte is null or length(motif_perte) <= 200),
   reporte_jusqua date,
@@ -21,7 +21,7 @@ comment on table public.crm_fiches is 'CRM admin : état manuel d''une fiche (pe
 
 create table if not exists public.crm_interactions (
   id uuid primary key default gen_random_uuid(),
-  cle text not null check (cle ~ '^[cal]:.+' and length(cle) <= 260),
+  cle text not null check (cle ~ '^[calp]:.+' and length(cle) <= 260),
   type text not null check (type in ('note', 'appel', 'email', 'sms', 'whatsapp', 'rdv', 'visite', 'etape')),
   resultat text check (resultat is null or resultat in
     ('joint', 'messagerie', 'pas_de_reponse', 'a_rappeler', 'rdv_pris', 'pas_interesse', 'perdu', 'rouvert')),
@@ -34,7 +34,7 @@ create index if not exists crm_interactions_cle_idx on public.crm_interactions (
 
 create table if not exists public.crm_taches (
   id uuid primary key default gen_random_uuid(),
-  cle text not null check (cle ~ '^[cal]:.+' and length(cle) <= 260),
+  cle text not null check (cle ~ '^[calp]:.+' and length(cle) <= 260),
   titre text not null check (length(titre) between 1 and 300),
   echeance date not null default current_date,
   fait_at timestamptz,
