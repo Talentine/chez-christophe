@@ -188,6 +188,17 @@
     transition: opacity .5s ease;
   }
 
+  /* Fond flou : comble le vide quand le commerçant a choisi d'afficher la photo entière */
+  .hero-bg-flou {
+    position: absolute;
+    inset: -24px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(22px) brightness(.92);
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+
   /* Démo : le bandeau du haut prend 64px, on les reprend sur la photo pour garder les infos à l'écran */
   @media (max-width: 599px) { body.mode-demo .hero-photo { height: clamp(170px, 25vh, 280px); } }
 
@@ -1206,6 +1217,7 @@
 <meta id="m-apple-title" name="apple-mobile-web-app-title" content="Marchéo">
 <script src="assets/core/init.js?v=resto3"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
+<script src="/assets/core/hero-cadrage.js?v=1"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=4" defer></script>
 <script src="/assets/core/demo-prive.js?v=1" defer></script>
@@ -1246,6 +1258,7 @@
   <!-- HERO -->
   <div class="hero" id="heroPrincipal">
     <div class="hero-photo">
+      <div class="hero-bg-flou" id="heroBgFlou" aria-hidden="true"></div>
       <div class="hero-bg-photo" id="heroBgPhoto" role="img" aria-label="Photo de la boutique"></div>
     </div>
     <div class="hero-fiche">
@@ -2722,6 +2735,16 @@ function appliquerConfigUI(cfg) {
       bg.style.backgroundImage = 'url("' + b.hero_photo_url + '")';
       bg.style.opacity = '1';
       bg.setAttribute('aria-label', 'Photo de ' + nom);
+      // Cadrage réglé par le commerçant (dashboard > Photos) — ignoré s'il concerne une autre photo
+      const cadrage = b.business_config && b.business_config.hero_cadrage;
+      if (window.HeroCadrage && cadrage && cadrage.url === b.hero_photo_url) {
+        const cadre = bg.parentElement, flou = el('heroBgFlou');
+        if (flou) flou.style.backgroundImage = bg.style.backgroundImage;
+        const recadrer = () => HeroCadrage.appliquer(cadre, bg, flou, img.naturalWidth, img.naturalHeight, cadrage);
+        recadrer();
+        if (window.ResizeObserver) new ResizeObserver(recadrer).observe(cadre);
+        else window.addEventListener('resize', recadrer);
+      }
     };
     img.onerror = sansPhoto;
     img.src = b.hero_photo_url;
