@@ -270,6 +270,12 @@
       <div class="step-title">Photos de votre boutique</div>
       <div class="step-sub">2 photos minimum · Plus vous en ajoutez, plus votre boutique donne envie.</div>
 
+      <!-- Sélection groupée : plusieurs photos en un seul geste (pratique sur téléphone) -->
+      <div class="media-add-row" style="margin-bottom:12px;">
+        <button type="button" class="media-add-btn" onclick="document.getElementById('mediaInputMulti').click()">📸 Choisir plusieurs photos d'un coup</button>
+        <input type="file" id="mediaInputMulti" accept="image/*,video/*" multiple style="display:none" onchange="onMediaMulti(this)">
+      </div>
+
       <div class="media-grid" id="mediaRequired">
         <!-- Slot 0 : hero -->
         <div class="media-slot" id="slot0" onclick="triggerMedia(0)">
@@ -334,11 +340,15 @@
 
       <div class="field">
         <label>Email *</label>
-        <input id="iEmail" type="email" placeholder="paul@boutique.fr" autocomplete="email" onblur="verifierEmailUI()" oninput="resetEmailFeedback()">
+        <input id="iEmail" type="email" placeholder="paul@boutique.fr" autocomplete="email" onblur="verifierEmailUI()" oninput="resetEmailFeedback();majBlocMotDePasse()">
         <div id="emailFeedback" style="font-size:12px;margin-top:6px;display:none;line-height:1.4;"></div>
+        <!-- Affiché quand on est déjà connecté avec cet email : la boutique s'ajoute au compte sans ressaisir le mot de passe -->
+        <div id="sessionNote" style="display:none;font-size:13px;margin-top:8px;line-height:1.45;color:#8A3D1E;background:rgba(180,83,42,0.08);border:1px solid rgba(180,83,42,0.3);border-radius:10px;padding:10px 12px;">
+          ✓ Vous êtes déjà connecté avec ce compte : la boutique y sera ajoutée, <b>pas besoin de mot de passe</b>.
+        </div>
       </div>
 
-      <div class="field">
+      <div class="field" id="blocMdp">
         <label>Mot de passe *</label>
         <div style="position:relative;">
           <input id="iMdp" type="password" placeholder="10 caractères minimum" oninput="evaluerForceMdp()" autocomplete="new-password" style="padding-right:42px;">
@@ -746,6 +756,11 @@ function etape(n) {
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marchéo.fr/${state.slug}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
+    // Déjà connecté sur cet appareil : l'email du compte est proposé d'office
+    const champEmail = document.getElementById('iEmail');
+    const sessionConnue = lireSessionExistante();
+    if (champEmail && !champEmail.value && sessionConnue) champEmail.value = sessionConnue.email;
+    majBlocMotDePasse();
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
   document.getElementById('step' + n).classList.add('actif');
@@ -824,6 +839,19 @@ function addExtraSlot() {
   slotDiv.innerHTML = `<div class="media-slot-icon">📸</div><div class="media-slot-title">Photo supplémentaire</div><div class="media-slot-sub">Ambiance, équipe, savoir-faire…</div><input type="file" id="mediaInput${idx}" accept="image/*,video/*" style="display:none" onchange="onMediaSelected(${idx},this)">`;
   slotDiv.onclick = () => triggerMedia(idx);
   container.appendChild(slotDiv);
+}
+
+// Plusieurs photos choisies en une fois : elles remplissent les emplacements libres dans l'ordre
+// (la 1re devient la photo d'accueil), en créant des emplacements supplémentaires si besoin.
+function onMediaMulti(input) {
+  Array.from(input.files || []).forEach(file => {
+    let idx = mediaFiles.findIndex(f => !f);
+    if (idx < 0) { addExtraSlot(); idx = mediaFiles.length - 1; }
+    mediaFiles[idx] = file;
+    renderSlot(idx, file);
+  });
+  input.value = ''; // permet de re-choisir les mêmes fichiers
+  refreshMediaCount();
 }
 
 function refreshMediaCount() {
@@ -1107,6 +1135,57 @@ window.annulerInscriptionPending = function() {
   location.href = '/inscription'; // reset complet
 };
 
+// ── Réseau : nouvelles tentatives automatiques quand la connexion flanche (4G sur un marché)
+function estErreurReseau(e) {
+  return (e instanceof TypeError) || /Failed to fetch|Load failed|NetworkError|network/i.test(String((e && e.message) || e));
+}
+async function fetchSolide(url, opts, essais) {
+  essais = essais || 3;
+  for (let i = 0; ; i++) {
+    try {
+      const r = await fetch(url, opts);
+      if (r.status < 500 || i >= essais - 1) return r;
+    } catch (e) {
+      if (i >= essais - 1) throw e;
+    }
+    await new Promise(ok => setTimeout(ok, 700 * (i + 1)));
+  }
+}
+
+// ── Session déjà ouverte sur cet appareil (dashboard) : permet d'ajouter une boutique
+//    au compte sans ressaisir le mot de passe.
+function lireSessionExistante() {
+  try {
+    const s = JSON.parse(localStorage.getItem('session_commercant') || 'null');
+    return (s && s.refresh_token && s.email) ? s : null;
+  } catch (_) { return null; }
+}
+function sessionPourEmail(email) {
+  const s = lireSessionExistante();
+  return (s && !state.sessionRefusee && s.email.toLowerCase() === String(email || '').trim().toLowerCase()) ? s : null;
+}
+function majBlocMotDePasse() {
+  const connecte = !!sessionPourEmail(document.getElementById('iEmail')?.value);
+  const bloc = document.getElementById('blocMdp');
+  const note = document.getElementById('sessionNote');
+  if (bloc) bloc.style.display = connecte ? 'none' : '';
+  if (note) note.style.display = connecte ? 'block' : 'none';
+}
+async function reprendreSession(s) {
+  const r = await fetchSolide(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+    method: 'POST',
+    headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refresh_token: s.refresh_token })
+  });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok || !d.access_token) return null;
+  const refresh = d.refresh_token || s.refresh_token;
+  // Le jeton de rafraîchissement change à chaque usage : on le range tout de suite,
+  // sinon le dashboard serait déconnecté si la création s'interrompt ensuite.
+  try { localStorage.setItem('session_commercant', JSON.stringify(Object.assign({}, s, { access_token: d.access_token, refresh_token: refresh }))); } catch (_) {}
+  return { userId: (d.user && d.user.id) || s.user_id, accessToken: d.access_token, refreshToken: refresh };
+}
+
 // ── Création
 async function creerBoutique() {
   const err = document.getElementById('err');
@@ -1114,9 +1193,10 @@ async function creerBoutique() {
   err.style.display = 'none';
 
   state.email = document.getElementById('iEmail').value.trim();
-  state.mdp = document.getElementById('iMdp').value;
+  const sessionOuverte = sessionPourEmail(state.email);
+  state.mdp = sessionOuverte ? '' : document.getElementById('iMdp').value;
 
-  if (!state.email || !state.mdp) {
+  if (!state.email || (!state.mdp && !sessionOuverte)) {
     err.textContent = 'Email et mot de passe obligatoires.';
     err.style.display = 'block';
     return;
@@ -1134,7 +1214,7 @@ async function creerBoutique() {
   // avant la règle 10 chars) doivent pouvoir s'authentifier pour ajouter une boutique.
   // Pour les nouveaux comptes faibles, Supabase rejettera côté serveur (HaveIBeenPwned)
   // et notre handler d'erreur affichera un message clair.
-  if (state.mdp.length < 6) {
+  if (!sessionOuverte && state.mdp.length < 6) {
     err.textContent = '🔒 Mot de passe trop court : 6 caractères minimum.';
     err.style.display = 'block';
     return;
@@ -1148,122 +1228,152 @@ async function creerBoutique() {
   btn.disabled = true; btn.textContent = 'Création…';
 
   try {
-    // 1. Vérif slug libre (ignore les boutiques soft-deleted pour libérer leurs slugs)
-    const exist = await fetch(SUPABASE_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(state.slug) + '&supprime_at=is.null&select=id', {
+    // 1. Vérif slug libre (ignore les boutiques soft-deleted pour libérer leurs slugs).
+    //    Une boutique du même nom créée il y a quelques minutes peut être la nôtre
+    //    (essai précédent coupé par le réseau) : on tranche après la connexion.
+    const exist = await fetchSolide(SUPABASE_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(state.slug) + '&supprime_at=is.null&select=id,auth_user_id,created_at', {
       headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
     }).then(r => r.json());
-    if (exist?.length) throw new Error('L\'URL de site « ' + state.slug + ' » est déjà prise. Modifiez le champ « Adresse de votre site » plus haut.');
+    const dejaLa = Array.isArray(exist) ? (exist[0] || null) : null;
+    const MSG_SLUG_PRIS = 'L\'URL de site « ' + state.slug + ' » est déjà prise. Revenez à l\'étape « boutique » et modifiez le champ « Adresse de votre site ».';
+    const estRecente = !!dejaLa && (Date.now() - new Date(dejaLa.created_at).getTime() < 30 * 60 * 1000);
+    if (state.commercantId && state.commercantSlug !== state.slug) state.commercantId = null; // l'adresse a été changée entre deux essais
+    if (dejaLa && dejaLa.id !== state.commercantId && !estRecente) throw new Error(MSG_SLUG_PRIS);
 
-    // 2. Signup auth — si l'email existe déjà, on tente un signin pour récupérer le user_id
-    //    Passe redirect_to pour que le lien email pointe vers la page d'inscription en
-    //    finalize=1 (permet de reprendre la création commerçant après confirmation).
-    let userId, accessToken;
-    const sup = await fetch(SUPABASE_URL + '/auth/v1/signup?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
-      method: 'POST',
-      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: state.email, password: state.mdp })
-    });
-    const supData = await sup.json();
-    console.log('[signup response]', sup.status, supData);
-
-    let refreshToken = null;
-    if (sup.ok) {
-      userId = supData.user?.id || supData.id;
-      accessToken = supData.access_token || supData.session?.access_token || null;
-      refreshToken = supData.refresh_token || supData.session?.refresh_token || null;
-
-      // ── Flow « Confirm email » Supabase activé ──
-      // Quand Supabase exige une confirmation email, la réponse signup contient
-      // bien user.id mais PAS de session (access_token). Dans ce cas on
-      // sauvegarde tout l'état d'inscription en localStorage et on bascule sur
-      // l'étape 6 (« vérifiez votre email »). La création du commerçant se fera
-      // au retour du clic sur le lien email — voir reprendreInscriptionDepuisCallback().
-      if (userId && !accessToken) {
-        state.userId = userId;
-        sauverEtatPending();
-        const emailEl = document.getElementById('pendingEmailDisplay');
-        if (emailEl) emailEl.textContent = state.email;
-
-        // Détection « user_repeated_signup » : Supabase retourne 200 OK avec
-        // user.id mais identities: [] quand l'email existe déjà non confirmé.
-        // Dans ce cas Supabase n'envoie PAS de nouvel email (protection enum).
-        // → on déclenche explicitement /auth/v1/resend pour garantir l'envoi.
-        const estRepeatedSignup = Array.isArray(supData.user?.identities) && supData.user.identities.length === 0;
-        if (estRepeatedSignup) {
-          // Resend silencieux en arrière-plan (rate-limited par Supabase à 1/min)
-          fetch(SUPABASE_URL + '/auth/v1/resend?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
-            method: 'POST',
-            headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ type: 'signup', email: state.email })
-          }).catch(()=>{});
-          // Affiche un message spécifique sur l'étape 6
-          const subEl = document.getElementById('pendingEmailSousTitre');
-          if (subEl) subEl.innerHTML = '⚠️ Vous avez <b>déjà commencé</b> une inscription avec cet email. Si vous n\'avez pas reçu le 1<sup>er</sup> mail, vérifiez vos <b>spams</b> ou cliquez sur « Renvoyer l\'email » ci-dessous.';
-        }
-
-        // Le bouton final pour aller au dashboard ne fonctionne qu'après confirmation
-        // → on reste sur l'étape 6 jusqu'au callback.
-        etape(6);
-        btn.disabled = false; btn.textContent = 'Créer ma démo gratuite';
-        return;
+    // 2. Connexion au compte. Ordre : (a) déjà connecté lors d'un essai précédent,
+    //    (b) session du dashboard encore ouverte, (c) email + mot de passe d'un compte
+    //    existant, (d) création d'un nouveau compte.
+    let userId, accessToken, refreshToken = null;
+    if (state.accessToken && state.userId && state.emailConnecte === state.email) {
+      userId = state.userId; accessToken = state.accessToken; refreshToken = state.refreshToken || null;
+    } else if (sessionOuverte) {
+      const reprise = await reprendreSession(sessionOuverte);
+      if (!reprise) {
+        state.sessionRefusee = true;
+        majBlocMotDePasse();
+        throw new Error('Votre session a expiré. Saisissez votre mot de passe ci-dessus, puis appuyez à nouveau sur le bouton.');
       }
+      userId = reprise.userId; accessToken = reprise.accessToken; refreshToken = reprise.refreshToken;
+      btn.textContent = 'Boutique additionnelle…';
     } else {
-      // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
-      const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
-      if (!isExisting) {
-        // Traduit les codes d'erreur courants Supabase auth en messages clairs
-        const code = supData.error_code || supData.code || '';
-        const rawMsg = supData.msg || supData.message || supData.error_description || supData.error || '';
-        let msgUtilisateur;
-        if (/weak_password|password.*weak|breach/i.test(code + ' ' + rawMsg)) {
-          msgUtilisateur = '🔒 Ce mot de passe a été trouvé dans une fuite publique de mots de passe (Supabase vérifie via HaveIBeenPwned). Choisissez un mot de passe inédit, jamais utilisé sur un autre site.';
-        } else if (/validation_failed|invalid.*email|email.*invalid/i.test(code + ' ' + rawMsg)) {
-          msgUtilisateur = '📧 Email invalide ou mot de passe non conforme. Vérifiez le format de l\'email et la force du mot de passe.';
-        } else if (/signup_disabled|disabled/i.test(code + ' ' + rawMsg)) {
-          msgUtilisateur = '🚫 Les inscriptions sont temporairement désactivées. Réessayez dans quelques minutes ou contactez marcheo.contact@gmail.com.';
-        } else if (/over_email_send_rate|rate_limit/i.test(code + ' ' + rawMsg)) {
-          msgUtilisateur = '⏱ Trop de tentatives récentes avec cet email. Patientez 60 secondes puis réessayez.';
-        } else if (/captcha/i.test(code + ' ' + rawMsg)) {
-          msgUtilisateur = '🤖 Vérification anti-bot échouée. Rafraîchissez la page et réessayez.';
-        } else {
-          msgUtilisateur = 'Échec de la création du compte : ' + (rawMsg || ('HTTP ' + sup.status));
-        }
-        throw new Error(msgUtilisateur);
-      }
-      // Tenter signin
-      const signin = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+      // (c) Compte existant : la connexion suffit, la boutique s'ajoute au compte
+      const signin = await fetchSolide(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
         method: 'POST',
         headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: state.email, password: state.mdp })
       });
-      const siData = await signin.json();
-      if (!signin.ok || !siData.access_token) {
-        // Ce mail a déjà un compte mais le mot de passe ne correspond pas.
-        // Propose : se connecter au dashboard OU réinitialiser le mdp
-        const useExisting = confirm(
-          "📧 Cet email (" + state.email + ") a DÉJÀ un compte Marchéo, mais le mot de passe ne correspond pas.\n\n" +
-          "Veux-tu te connecter avec ton mot de passe HABITUEL pour ajouter cette nouvelle boutique à ton compte existant ?\n\n" +
-          "OK → Aller à la connexion du dashboard\n" +
-          "Annuler → Rester ici (utiliser un autre email)"
-        );
-        if (useExisting) {
-          window.location.href = '/app-commercant.html?email=' + encodeURIComponent(state.email) + '&from=inscription';
-          return;
+      const siData = await signin.json().catch(() => ({}));
+      if (signin.ok && siData.access_token) {
+        userId = siData.user.id;
+        accessToken = siData.access_token;
+        refreshToken = siData.refresh_token;
+        btn.textContent = 'Boutique additionnelle…';
+      } else {
+        // (d) Pas de connexion possible → création du compte.
+        //     Passe redirect_to pour que le lien email pointe vers la page d'inscription en
+        //     finalize=1 (permet de reprendre la création commerçant après confirmation).
+        const sup = await fetchSolide(SUPABASE_URL + '/auth/v1/signup?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
+          method: 'POST',
+          headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: state.email, password: state.mdp })
+        });
+        const supData = await sup.json();
+        console.log('[signup response]', sup.status, supData);
+
+        if (sup.ok) {
+          userId = supData.user?.id || supData.id;
+          accessToken = supData.access_token || supData.session?.access_token || null;
+          refreshToken = supData.refresh_token || supData.session?.refresh_token || null;
+
+          // ── Flow « Confirm email » Supabase activé ──
+          // Quand Supabase exige une confirmation email, la réponse signup contient
+          // bien user.id mais PAS de session (access_token). Dans ce cas on
+          // sauvegarde tout l'état d'inscription en localStorage et on bascule sur
+          // l'étape 6 (« vérifiez votre email »). La création du commerçant se fera
+          // au retour du clic sur le lien email — voir reprendreInscriptionDepuisCallback().
+          if (userId && !accessToken) {
+            state.userId = userId;
+            sauverEtatPending();
+            const emailEl = document.getElementById('pendingEmailDisplay');
+            if (emailEl) emailEl.textContent = state.email;
+
+            // Détection « user_repeated_signup » : Supabase retourne 200 OK avec
+            // user.id mais identities: [] quand l'email existe déjà non confirmé.
+            // Dans ce cas Supabase n'envoie PAS de nouvel email (protection enum).
+            // → on déclenche explicitement /auth/v1/resend pour garantir l'envoi.
+            const estRepeatedSignup = Array.isArray(supData.user?.identities) && supData.user.identities.length === 0;
+            if (estRepeatedSignup) {
+              // Resend silencieux en arrière-plan (rate-limited par Supabase à 1/min)
+              fetch(SUPABASE_URL + '/auth/v1/resend?redirect_to=' + encodeURIComponent(REDIRECT_URL), {
+                method: 'POST',
+                headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'signup', email: state.email })
+              }).catch(()=>{});
+              // Affiche un message spécifique sur l'étape 6
+              const subEl = document.getElementById('pendingEmailSousTitre');
+              if (subEl) subEl.innerHTML = '⚠️ Vous avez <b>déjà commencé</b> une inscription avec cet email. Si vous n\'avez pas reçu le 1<sup>er</sup> mail, vérifiez vos <b>spams</b> ou cliquez sur « Renvoyer l\'email » ci-dessous.';
+            }
+
+            // Le bouton final pour aller au dashboard ne fonctionne qu'après confirmation
+            // → on reste sur l'étape 6 jusqu'au callback.
+            etape(6);
+            btn.disabled = false; btn.textContent = 'Créer ma démo gratuite';
+            return;
+          }
+        } else {
+          // Email déjà utilisé → tenter un signin pour ajouter une boutique au compte existant
+          const isExisting = /already|registered|exists|user_already_exists/i.test(JSON.stringify(supData));
+          if (!isExisting) {
+            // Traduit les codes d'erreur courants Supabase auth en messages clairs
+            const code = supData.error_code || supData.code || '';
+            const rawMsg = supData.msg || supData.message || supData.error_description || supData.error || '';
+            let msgUtilisateur;
+            if (/weak_password|password.*weak|breach/i.test(code + ' ' + rawMsg)) {
+              msgUtilisateur = '🔒 Ce mot de passe a été trouvé dans une fuite publique de mots de passe (Supabase vérifie via HaveIBeenPwned). Choisissez un mot de passe inédit, jamais utilisé sur un autre site.';
+            } else if (/validation_failed|invalid.*email|email.*invalid/i.test(code + ' ' + rawMsg)) {
+              msgUtilisateur = '📧 Email invalide ou mot de passe non conforme. Vérifiez le format de l\'email et la force du mot de passe.';
+            } else if (/signup_disabled|disabled/i.test(code + ' ' + rawMsg)) {
+              msgUtilisateur = '🚫 Les inscriptions sont temporairement désactivées. Réessayez dans quelques minutes ou contactez marcheo.contact@gmail.com.';
+            } else if (/over_email_send_rate|rate_limit/i.test(code + ' ' + rawMsg)) {
+              msgUtilisateur = '⏱ Trop de tentatives récentes avec cet email. Patientez 60 secondes puis réessayez.';
+            } else if (/captcha/i.test(code + ' ' + rawMsg)) {
+              msgUtilisateur = '🤖 Vérification anti-bot échouée. Rafraîchissez la page et réessayez.';
+            } else {
+              msgUtilisateur = 'Échec de la création du compte : ' + (rawMsg || ('HTTP ' + sup.status));
+            }
+            throw new Error(msgUtilisateur);
+          }
+          // Ce mail a déjà un compte mais le mot de passe ne correspond pas.
+          // Propose : se connecter au dashboard OU réinitialiser le mdp
+          const useExisting = confirm(
+            "📧 Cet email (" + state.email + ") a DÉJÀ un compte Marchéo, mais le mot de passe ne correspond pas.\n\n" +
+            "Veux-tu te connecter avec ton mot de passe HABITUEL pour ajouter cette nouvelle boutique à ton compte existant ?\n\n" +
+            "OK → Aller à la connexion du dashboard\n" +
+            "Annuler → Rester ici (utiliser un autre email)"
+          );
+          if (useExisting) {
+            window.location.href = '/app-commercant.html?email=' + encodeURIComponent(state.email) + '&from=inscription';
+            return;
+          }
+          throw new Error('Mot de passe incorrect pour ' + state.email + '. Soit utilise un AUTRE email, soit retourne au dashboard pour te connecter avec ton mdp habituel.');
         }
-        throw new Error('Mot de passe incorrect pour ' + state.email + '. Soit utilise un AUTRE email, soit retourne au dashboard pour te connecter avec ton mdp habituel.');
       }
-      userId = siData.user.id;
-      accessToken = siData.access_token;
-      refreshToken = siData.refresh_token;
-      btn.textContent = 'Boutique additionnelle…';
     }
 
-    if (!userId) throw new Error('Signup: réponse sans user id — ' + JSON.stringify(supData).slice(0, 200));
+    if (!userId) throw new Error('Connexion au compte impossible (réponse sans identifiant). Appuyez à nouveau sur le bouton.');
     state.accessToken = accessToken;
     state.refreshToken = refreshToken;
+    state.userId = userId;
+    state.emailConnecte = state.email;
 
-    // Pré-remplir l'email si fourni en URL (création de boutique additionnelle)
-    // (déjà géré au chargement initial)
+    // Reprise d'une création interrompue : la boutique existe déjà et nous appartient
+    let reprise = !!state.commercantId;
+    if (!state.commercantId && dejaLa) {
+      if (dejaLa.auth_user_id !== userId) throw new Error(MSG_SLUG_PRIS);
+      state.commercantId = dejaLa.id;
+      state.commercantSlug = state.slug;
+      reprise = true;
+    }
 
     const authHeader = state.accessToken
       ? { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + state.accessToken, 'Content-Type': 'application/json', Prefer: 'return=representation' }
@@ -1303,47 +1413,77 @@ async function creerBoutique() {
     // Lire les horaires depuis l'UI
     state.horaires = lireHoraires();
 
-    const cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', {
-      method: 'POST',
-      headers: authHeader,
-      body: JSON.stringify({
-        ...promoPayload,
-        auth_user_id: userId, // requis par la RLS commercants_insert_self
-        slug: state.slug,
-        nom_boutique: state.nom,
-        business_type: state.type,
-        ville: state.ville || null,
-        adresse: state.adresse || null,
-        telephone: state.tel || null,
-        horaires: state.horaires,
-        email: state.email,
-        actif: true,
-        offre: state.offre || 'clickcollect',
-        business_config: { offre: state.offre || 'clickcollect' },
-        cgv_plateforme_acceptees: true,
-        cgv_plateforme_version: '2026-04',
-        cgv_plateforme_acceptees_at: new Date().toISOString(),
-        charte_acceptee: true,
-        charte_acceptee_at: new Date().toISOString(),
-      })
-    });
-    const cData = await cRes.json();
-    if (!cRes.ok) throw new Error((cData?.message || JSON.stringify(cData)) + ' — vérifiez la config RLS de commercants');
-    state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData.id;
-    suivreConversion('demo_creee', 'CompleteRegistration');
+    if (!state.commercantId) {
+      const corpsBoutique = JSON.stringify({
+          ...promoPayload,
+          auth_user_id: userId, // requis par la RLS commercants_insert_self
+          slug: state.slug,
+          nom_boutique: state.nom,
+          business_type: state.type,
+          ville: state.ville || null,
+          adresse: state.adresse || null,
+          telephone: state.tel || null,
+          horaires: state.horaires,
+          email: state.email,
+          actif: true,
+          offre: state.offre || 'clickcollect',
+          business_config: { offre: state.offre || 'clickcollect' },
+          cgv_plateforme_acceptees: true,
+          cgv_plateforme_version: '2026-04',
+          cgv_plateforme_acceptees_at: new Date().toISOString(),
+          charte_acceptee: true,
+          charte_acceptee_at: new Date().toISOString(),
+        });
+      // Retrouve une boutique à nous portant déjà cette adresse (envoi parti mais réponse perdue)
+      const retrouverBoutique = async () => {
+        try {
+          const l = await fetchSolide(SUPABASE_URL + '/rest/v1/commercants?slug=eq.' + encodeURIComponent(state.slug) + '&auth_user_id=eq.' + userId + '&supprime_at=is.null&select=id', { headers: authHeader }).then(r => r.json());
+          return (Array.isArray(l) && l[0]) ? l[0].id : null;
+        } catch (_) { return null; }
+      };
+      let cRes = null, cData = null;
+      try {
+        cRes = await fetch(SUPABASE_URL + '/rest/v1/commercants', { method: 'POST', headers: authHeader, body: corpsBoutique });
+        cData = await cRes.json().catch(() => null);
+      } catch (e) {
+        const id = await retrouverBoutique();
+        if (!id) throw e;
+        state.commercantId = id; reprise = true;
+      }
+      if (cRes && cRes.ok) {
+        state.commercantId = Array.isArray(cData) ? cData[0]?.id : cData?.id;
+      } else if (cRes) {
+        const doublon = cRes.status === 409 || cData?.code === '23505';
+        const id = doublon ? await retrouverBoutique() : null;
+        if (id) { state.commercantId = id; reprise = true; }
+        else if (doublon) throw new Error(MSG_SLUG_PRIS);
+        else throw new Error('Création de la boutique refusée : ' + (cData?.message || ('erreur ' + cRes.status)));
+      }
+      if (!state.commercantId) throw new Error('Création de la boutique : réponse inattendue. Appuyez à nouveau sur le bouton.');
+      state.commercantSlug = state.slug;
+      if (!reprise) suivreConversion('demo_creee', 'CompleteRegistration');
+    }
 
-    // 4. Lien rôle commerçant
-    await fetch(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
+    // 4. Lien rôle commerçant (409 = déjà rattachée lors d'un essai précédent)
+    const rRole = await fetchSolide(SUPABASE_URL + '/rest/v1/roles_utilisateurs', {
       method: 'POST',
       headers: authHeader,
       body: JSON.stringify({ user_id: userId, commercant_id: state.commercantId, role: 'commercant' })
     });
+    if (!rRole.ok && rRole.status !== 409) {
+      throw new Error('La boutique est créée, mais son rattachement à votre compte a échoué (erreur ' + rRole.status + '). Appuyez à nouveau sur le bouton pour terminer.');
+    }
     enregistrerAcquisition(state.commercantId, authHeader); // après le rôle : sinon la mise à jour est refusée
 
     // 4b. Créneaux par défaut selon métier × offre (sauf offre Vitrine = aucun)
     //     L'utilisateur pourra tout modifier ensuite depuis le dashboard.
     try {
-      if (window.MarcheoBusinessDefaults) {
+      let creneauxDejaCrees = false;
+      if (reprise) {
+        const deja = await fetchSolide(SUPABASE_URL + '/rest/v1/creneaux?commercant_id=eq.' + state.commercantId + '&select=id&limit=1', { headers: authHeader }).then(r => r.json());
+        creneauxDejaCrees = Array.isArray(deja) && deja.length > 0;
+      }
+      if (window.MarcheoBusinessDefaults && !creneauxDejaCrees) {
         const creneauxParDefaut = window.MarcheoBusinessDefaults.getDefaultCreneaux(
           state.type,
           state.offre || 'clickcollect',
@@ -1354,7 +1494,7 @@ async function creerBoutique() {
           const payload = creneauxParDefaut.map(c => Object.assign({ commercant_id: state.commercantId }, c));
           // Insertion par batch de 100 pour éviter une payload trop grosse
           for (let i = 0; i < payload.length; i += 100) {
-            await fetch(SUPABASE_URL + '/rest/v1/creneaux', {
+            await fetchSolide(SUPABASE_URL + '/rest/v1/creneaux', {
               method: 'POST',
               headers: Object.assign({}, authHeader, { 'Prefer': 'return=minimal' }),
               body: JSON.stringify(payload.slice(i, i + 100))
@@ -1420,7 +1560,7 @@ async function creerBoutique() {
         let ext = (state.logoFile.name.split('.').pop() || 'png').toLowerCase();
         let contentType = state.logoFile.type || 'image/png';
         try {
-          logoBody = await compresserPhoto(state.logoFile, 512, 0.9);
+          logoBody = await compresserPhoto(state.logoFile, 512, 0.9, false); // logo : on garde la transparence
           ext = 'webp';
           contentType = 'image/webp';
         } catch(_) { /* fallback brut si compression échoue */ }
@@ -1505,7 +1645,9 @@ async function creerBoutique() {
     etape(5);
 
   } catch (e) {
-    err.textContent = '❌ ' + e.message;
+    err.textContent = estErreurReseau(e)
+      ? '📶 Connexion internet instable. Rien n\'est perdu : appuyez à nouveau sur « Créer ma démo gratuite ».'
+      : '❌ ' + e.message;
     err.style.display = 'block';
   } finally {
     btn.disabled = false; btn.textContent = 'Créer ma démo gratuite';
@@ -1734,7 +1876,7 @@ async function reprendreInscriptionDepuisCallback() {
 // Retourne { urls: [...], errors: [{ filename, status, body }] }
 // Compresse une image en WebP via canvas (ignore les vidéos).
 // En cas d'échec de décodage (HEIC Safari, fichier corrompu…), rejette.
-async function compresserPhoto(file, maxSize = 1200, quality = 0.85) {
+async function compresserPhoto(file, maxSize = 1200, quality = 0.85, jpegSiPasWebp = true) {
   if (file.type && file.type.startsWith('video/')) return file;
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1749,7 +1891,10 @@ async function compresserPhoto(file, maxSize = 1200, quality = 0.85) {
         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
         canvas.toBlob(blob => {
           if (!blob) return reject(new Error('Compression impossible'));
-          resolve(blob);
+          // Safari (iPhone) ne sait pas produire du WebP : il renvoie un PNG plusieurs fois
+          // plus lourd. Pour les photos, on bascule alors en JPEG (léger partout).
+          if (blob.type === 'image/webp' || !jpegSiPasWebp) return resolve(blob);
+          canvas.toBlob(b2 => resolve(b2 || blob), 'image/jpeg', quality);
         }, 'image/webp', quality);
       };
       img.onerror = () => reject(new Error('Image illisible (format non supporté ?)'));
@@ -1801,8 +1946,8 @@ async function uploadMedia(accessToken, slug) {
     if (estImage) {
       try {
         body = await compresserPhoto(file, 1200, 0.85);
-        ext = 'webp';
-        contentType = 'image/webp';
+        contentType = body.type || 'image/webp';
+        ext = contentType === 'image/jpeg' ? 'jpg' : (contentType === 'image/png' ? 'png' : 'webp');
       } catch (e) {
         const msg = estHeic
           ? 'Format HEIC d\'iPhone non supporté. Dans Réglages iPhone → Appareil photo → Formats, choisissez « Le plus compatible » (JPEG), puis reprenez la photo.'
@@ -1822,7 +1967,7 @@ async function uploadMedia(accessToken, slug) {
       'x-upsert': 'true',
     };
 
-    const res = await uploadAvecRetry(url, headers, body, 2);
+    const res = await uploadAvecRetry(url, headers, body, 3);
     if (res.ok) {
       uploaded.push(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
     } else {
