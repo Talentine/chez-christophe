@@ -8752,10 +8752,27 @@ async function supprimerMedia(nom) {
     if (!token) return;
 
   try {
-    await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media/' + slug + '/' + nom, {
+    // Suppression groupée (prefixes) : renvoie la liste des fichiers réellement supprimés,
+    // ce qui permet de détecter un refus silencieux (droits insuffisants).
+    const r = await fetch(SUPABASE_URL + '/storage/v1/object/boutiques-media', {
       method: 'DELETE',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefixes: [slug + '/' + nom] })
     });
+    const supprimes = r.ok ? await r.json() : null;
+    if (!Array.isArray(supprimes) || !supprimes.length) {
+      afficherToast('❌ Suppression impossible' + (r.ok ? '' : ' (' + r.status + ')'));
+      return;
+    }
+    // Si c'était la photo d'accueil, on la retire aussi de la boutique
+    const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + slug + '/' + nom;
+    if (url === window.__heroActuelle && session.commercant_id) {
+      await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + session.commercant_id, {
+        method: 'PATCH',
+        headers: await mWriteAuth({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ hero_photo_url: null })
+      });
+    }
     afficherToast('🗑 Média supprimé');
     chargerGalerie();
   } catch(e) { afficherToast('❌ Erreur : ' + e.message); }
