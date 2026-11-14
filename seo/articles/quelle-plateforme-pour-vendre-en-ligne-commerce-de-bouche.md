@@ -3,6 +3,7 @@ title: "Quelle plateforme pour vendre en ligne ? Le grand comparatif 2026"
 titre_court: "Quelle plateforme pour vendre en ligne ?"
 description: "Shopify, Wix, WooCommerce, Uber Eats, places de marché ou logiciel métier : le grand comparatif des plateformes pour vendre en ligne en commerce de bouche."
 date: 2026-11-13
+modified: 2026-11-14
 rubrique: Comparatif
 emoji: 🧭
 keywords:
@@ -102,7 +103,7 @@ Oui si vous cherchez de nouveaux clients et acceptez de payer une commission, no
 
 Les plateformes de livraison comme Uber Eats et Deliveroo apportent des clients et des coursiers, et prennent en général 14 à 30 % de chaque commande. On s'inscrit, on envoie son menu, on reçoit une tablette et les commandes arrivent. Elles sont pensées pour la restauration, beaucoup moins pour un étal de fruits et légumes vendu au kilo.
 
-Les places de marché de commerçants, comme Ollca, regroupent plusieurs commerces d'une ville sur un même site, avec une rémunération par commission ou par abonnement selon les cas. Vous gagnez en visibilité, mais le client est d'abord celui de la plateforme. Beaucoup de commerçants utilisent les deux : une plateforme pour se faire connaître, et leur propre boutique pour leurs habitués. Le calcul complet est dans notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Les places de marché de commerçants, comme Ollca, regroupent plusieurs commerces d'une ville sur un même site, avec une rémunération par commission ou par abonnement selon les cas. Vous gagnez en visibilité, mais le client est d'abord celui de la plateforme. Beaucoup de commerçants utilisent les deux : une plateforme pour se faire connaître, et leur propre boutique pour leurs habitués. Le calcul complet est dans notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo). Pour les places de marché de produits alimentaires, qui expédient parfois dans toute la France, lisez notre comparatif [place de marché ou boutique en ligne pour un commerce de bouche](/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche).
 
 ## WhatsApp, Instagram ou Google Forms suffisent-ils ?
 
