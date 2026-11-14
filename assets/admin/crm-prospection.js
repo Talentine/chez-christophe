@@ -18,9 +18,12 @@
   var SOUS_VUES = [['appeler', 'Appeler'], ['trouver', 'Trouver des numéros'], ['liste', 'Liste']];
   var SOURCES = { osm: 'OpenStreetMap', mairie: 'Mairie', import: 'Liste importée', manuel: 'Saisie à la main' };
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-  var RAISONS_IMPORT = { sans_nom: 'nom manquant', numero_invalide: 'numéro invalide', doublon: 'déjà présent' };
-  var CLE_POSITION = 'crm_pro_position';
+  var RAISONS_IMPORT = { sans_nom: 'nom manquant', numero_invalide: 'numéro invalide', doublon: 'déjà présent',
+    format: 'colonnes non reconnues (séparez par « | » ou « ; »)' };
+  var CLE_POSITION = 'crm_pro_position', CLE_BROUILLONS = 'crm_pro_brouillons';
   var DELAI_AVANCE = 350, DELAI_SAISIE = 700, DELAI_COMMUNES = 250;
+  // Nouvel essai automatique d'une note refusée : de plus en plus espacé tant que ça échoue.
+  var DELAI_RELANCE = 8000, DELAI_RELANCE_MAX = 120000;
   var PAS_FILE = 80, PAS_RESULTATS = 150, PAS_LISTE = 100;
   var LISTE_DEFAUT = 'Prospection';
 
@@ -77,6 +80,10 @@
 
   // Saisie de la note et de la recommandation : brouillon par prospect, envoyé après une pause.
   var brouillons = {}, minuteries = {}, envois = {}, aRenvoyer = {}, erreursSaisie = {}, enregistres = {};
+  // Échecs déjà signalés par une notification (une seule par champ), et nouvel essai programmé.
+  var signales = {}, relance = null, delaiRelance = DELAI_RELANCE;
+  // Version du prospect (updated_at) sur laquelle chaque brouillon a été tapé : voir reprendreBrouillons.
+  var basesBrouillons = {}, brouillonsRepris = false;
 
   // ───────────────────────────── Lectures ─────────────────────────────
 
@@ -487,17 +494,67 @@
     if (zone.__html !== html) { zone.__html = html; zone.innerHTML = html; }
   }
 
+  /* Filet pour la page fermée avant l'enregistrement (panne de réseau, changement de site) : les brouillons
+     sont aussi gardés dans le navigateur et renvoyés à l'ouverture suivante. */
+  function memoriserBrouillons() {
+    try {
+      var ids = Object.keys(brouillons);
+      if (!ids.length) { localStorage.removeItem(CLE_BROUILLONS); return; }
+      var o = {};
+      ids.forEach(function (id) { o[id] = { champs: brouillons[id], base: basesBrouillons[id] || '' }; });
+      localStorage.setItem(CLE_BROUILLONS, JSON.stringify(o));
+    } catch (e) { /* stockage bloqué : les brouillons valent pour la session */ }
+  }
+
+  /* À faire une fois la file chargée. Un brouillon n'est repris que si le prospect n'a pas changé depuis qu'il
+     a été tapé : sinon il écraserait une note plus récente, saisie depuis un autre appareil. */
+  function reprendreBrouillons() {
+    if (brouillonsRepris || !CRM.etat.charge || !actif()) return;
+    brouillonsRepris = true;
+    var gardes;
+    try { gardes = JSON.parse(localStorage.getItem(CLE_BROUILLONS) || 'null'); } catch (e) { gardes = null; }
+    if (!gardes || typeof gardes !== 'object') return;
+    Object.keys(gardes).forEach(function (id) {
+      var p = parId(id), g = gardes[id];
+      if (!p || !g || !g.champs || brouillons[id] || String(p.updated_at || '') !== String(g.base || '')) return;
+      ['note', 'recommandation'].forEach(function (champ) {
+        var valeur = g.champs[champ];
+        if (typeof valeur !== 'string' || (p[champ] || '') === valeur.trim()) return;
+        (brouillons[id] = brouillons[id] || {})[champ] = valeur;
+        basesBrouillons[id] = g.base || '';
+      });
+    });
+    memoriserBrouillons();
+    viderSaisies();
+  }
+
   function saisir(id, champ, valeur) {
-    (brouillons[id] = brouillons[id] || {})[champ] = valeur;
+    if (!brouillons[id]) { brouillons[id] = {}; basesBrouillons[id] = (parId(id) || {}).updated_at || ''; }
+    brouillons[id][champ] = valeur;
+    memoriserBrouillons();
     var k = id + '|' + champ;
     clearTimeout(minuteries[k]);
     minuteries[k] = setTimeout(function () { enregistrer(id, champ); }, DELAI_SAISIE);
     majEtatSaisie();
   }
 
+  /* Un enregistrement refusé alors que sa fiche n'est plus à l'écran passerait inaperçu : on le dit une fois,
+     et on réessaie tout seul. */
+  function signalerEchec(id, k) {
+    if (!signales[k] && !(id === etat.courant && monte() && etat.sousVue === 'appeler')) {
+      signales[k] = true;
+      var p = parId(id);
+      toast('Note de «\u00a0' + (p ? p.nom : 'ce prospect') + '\u00a0» non enregistrée', { type: 'erreur', action: 'Réessayer', surAction: function () { viderSaisies(); } });
+    }
+    clearTimeout(relance);
+    relance = setTimeout(function () { relance = null; viderSaisies(); }, delaiRelance);
+    delaiRelance = Math.min(DELAI_RELANCE_MAX, delaiRelance * 2);
+  }
+
   /* Envoie le brouillon d'un champ. Un seul envoi à la fois par champ : ce qui est tapé pendant l'envoi
-     part juste après. En cas d'échec le brouillon reste, rien n'est perdu. */
-  function enregistrer(id, champ) {
+     part juste après. En cas d'échec le brouillon reste, rien n'est perdu. `urgent` : la page se ferme,
+     l'envoi doit lui survivre. */
+  function enregistrer(id, champ, urgent) {
     var k = id + '|' + champ;
     clearTimeout(minuteries[k]);
     delete minuteries[k];
@@ -508,23 +565,30 @@
     function oublier() {
       if (brouillons[id] && brouillons[id][champ] === valeur && !enSaisie(id, champ)) {
         delete brouillons[id][champ];
-        if (!Object.keys(brouillons[id]).length) delete brouillons[id];
+        if (!Object.keys(brouillons[id]).length) { delete brouillons[id]; delete basesBrouillons[id]; }
       }
+      memoriserBrouillons();
     }
     if (!p || (p[champ] || '') === valeur.trim()) {
-      if (!p) delete brouillons[id]; else oublier();
+      if (!p) { delete brouillons[id]; delete basesBrouillons[id]; memoriserBrouillons(); } else oublier();
       delete erreursSaisie[k];
+      delete signales[k];
       majEtatSaisie();
       return;
     }
     var champs = {};
     champs[champ] = valeur;
-    envois[k] = CRM.majProspect(id, champs).then(function () {
+    envois[k] = CRM.majProspect(id, champs, { keepalive: !!urgent }).then(function () {
       delete erreursSaisie[k];
+      delete signales[k];
+      delaiRelance = DELAI_RELANCE;
       enregistres[id] = true;
+      // Le brouillon qui resterait (champ encore en saisie) repose désormais sur la version enregistrée.
+      if (brouillons[id]) basesBrouillons[id] = (parId(id) || {}).updated_at || '';
       oublier();
     }, function (e) {
       erreursSaisie[k] = (e && e.message) || 'connexion impossible';
+      signalerEchec(id, k);
     }).then(function () {
       delete envois[k];
       if (aRenvoyer[k]) { delete aRenvoyer[k]; enregistrer(id, champ); }
@@ -534,9 +598,10 @@
   }
 
   /* Envoie tout de suite ce qui attendait la fin de la pause (changement de fiche, d'onglet, page masquée). */
-  function viderSaisies() {
+  function viderSaisies(urgent) {
+    urgent = urgent === true;
     Object.keys(brouillons).forEach(function (id) {
-      Object.keys(brouillons[id] || {}).forEach(function (champ) { enregistrer(id, champ); });
+      Object.keys(brouillons[id] || {}).forEach(function (champ) { enregistrer(id, champ, urgent); });
     });
   }
 
@@ -602,8 +667,12 @@
   function choisirResultat(resultat) {
     var p = courant();
     if (!p) return;
+    // Double toucher : le second arrive pendant le passage au suivant et effacerait le résultat à peine posé.
+    if (avance && p.resultat === resultat) return;
     annulerAvance();
     var id = p.id, nouveau = p.resultat === resultat ? null : resultat, def = resultatDe(nouveau);
+    // Résultat effacé : une notification « … : fiche suivante » encore affichée dirait le contraire.
+    if (nouveau === null && window.crmToast.masquer) window.crmToast.masquer();
     var promesse = CRM.resultatProspect(id, nouveau);
     promesse.then(null, function (e) {
       annulerAvance();
@@ -1068,7 +1137,14 @@
     var analyse = pur.analyserImport(imp.texte, CRM.dejaConnus());
     var n = analyse.lignes.length, m = analyse.ignorees.length;
     var html = '<p class="crm-pro-apercu-titre"><b>' + UI.pluriel(n, 'ligne valide', 'lignes valides') + '</b>' +
-      (m ? ', ' + UI.pluriel(m, 'ignorée', 'ignorées') + ' (numéro invalide ou déjà présent)' : '') + '</p>';
+      (m ? ', ' + UI.pluriel(m, 'ignorée', 'ignorées') : '') + '</p>';
+    if (n) {
+      // Ce qui sera créé, tel que lu : une colonne mal placée se voit ici, pas après l'ajout.
+      html += '<ul class="crm-pro-apercu-lignes" aria-label="Premiers prospects lus">' + analyse.lignes.slice(0, 3).map(function (l) {
+        var suite = [l.metier, l.commune, l.telephone ? pur.formaterTel(l.telephone) : 'sans numéro'].filter(Boolean).join(' · ');
+        return '<li><b>' + esc(l.nom) + '</b><small>' + esc(suite) + '</small></li>';
+      }).join('') + (n > 3 ? '<li><small>… et ' + (n - 3) + ' de plus</small></li>' : '') + '</ul>';
+    }
     if (m) {
       html += '<ul class="crm-pro-ignorees">' + analyse.ignorees.slice(0, 5).map(function (l) {
         return '<li><span>Ligne ' + l.numero + ' : ' + esc(RAISONS_IMPORT[l.raison] || l.raison) + '</span><small>' + esc(l.texte) + '</small></li>';
@@ -1141,7 +1217,7 @@
       } else if (g.action && g.action.type === 'supprimer-liste' && g.action.liste === l.nom) {
         var pipeline = l.prospects.filter(function (p) { var r = resultatDe(p.resultat); return r && r.fiche; }).length;
         html += '<div class="crm-pro-confirmation" role="alertdialog" aria-label="Confirmer la suppression de la liste">' +
-          '<p>Supprimer ' + (s.total > 1 ? 'les ' + s.total + ' prospects' : 'le prospect') + ' de « ' + esc(l.nom) + ' » ? Résultats et notes d\'appel seront effacés.' +
+          '<p>Supprimer ' + (s.total > 1 ? 'les ' + s.total + ' prospects' : 'le prospect') + ' de «&nbsp;' + esc(l.nom) + '&nbsp;»&nbsp;? Résultats et notes d\'appel seront effacés.' +
           (pipeline ? ' ' + (pipeline > 1 ? pipeline + ' sont dans le pipeline : ils' : 'Un est dans le pipeline : il') + ' en sortir' + (pipeline > 1 ? 'ont' : 'a') + '.' : '') + '</p>' +
           '<div class="crm-pro-rangee"><button type="button" class="crm-btn crm-btn-danger" data-pro="liste-supprimer-confirmer" id="crmProConfirmerListe">' + ic('corbeille', 14) +
             'Supprimer ' + UI.pluriel(s.total, 'prospect') + '</button>' +
@@ -1169,7 +1245,7 @@
         '<button type="button" class="crm-icone-btn" data-pro="rang-menu" id="crmProMenu-' + esc(p.id) + '" aria-haspopup="menu" aria-expanded="false" aria-label="Actions pour ' + esc(p.nom) + '">' + ic('points', 18) + '</button>' +
       '</div></div>';
     if (action && action.type === 'supprimer') {
-      html += '<div class="crm-pro-confirmation" role="alertdialog" aria-label="Confirmer la suppression"><p>Supprimer « ' + esc(p.nom) + ' » de la file ?' +
+      html += '<div class="crm-pro-confirmation" role="alertdialog" aria-label="Confirmer la suppression"><p>Supprimer «&nbsp;' + esc(p.nom) + '&nbsp;» de la file&nbsp;?' +
         (p.resultat ? ' Son résultat et sa note d\'appel seront effacés.' : '') + '</p>' +
         '<div class="crm-pro-rangee"><button type="button" class="crm-btn crm-btn-danger" data-pro="supprimer-confirmer" id="crmProConfirmer">' + ic('corbeille', 14) + 'Supprimer</button>' +
         '<button type="button" class="crm-btn" data-pro="action-annuler">Annuler</button></div></div>';
@@ -1244,7 +1320,7 @@
       if (!res.ajoutes) return refuser('Ce numéro est déjà dans la file ou appartient à un commerce déjà dans le CRM.', 'crmProAjoutTel');
       var cree = res.prospects[0];
       g.ajout = ajoutNeuf(liste);
-      toast('Prospect ajouté à « ' + liste + ' »', { action: 'Appeler', surAction: function () { ouvrirDansAppeler(cree.id); } });
+      toast('Prospect ajouté à «\u00a0' + liste + '\u00a0»', { action: 'Appeler', surAction: function () { ouvrirDansAppeler(cree.id); } });
       rendre();
       var nom = document.getElementById('crmProAjoutNom');
       if (nom) nom.focus();
@@ -1268,7 +1344,7 @@
         imp.texte = '';
         g.panneau = null;
         g.liste = '';
-        toast(UI.pluriel(res.ajoutes, 'prospect ajouté', 'prospects ajoutés') + ' à « ' + liste + ' »' + (res.doublons ? ', ' + res.doublons + ' déjà connu' + (res.doublons > 1 ? 's' : '') : ''),
+        toast(UI.pluriel(res.ajoutes, 'prospect ajouté', 'prospects ajoutés') + ' à «\u00a0' + liste + '\u00a0»' + (res.doublons ? ', ' + res.doublons + ' déjà connu' + (res.doublons > 1 ? 's' : '') : ''),
           { action: 'Commencer à appeler', surAction: function () { commencer(liste); } });
       } else toast('Rien de nouveau : ces commerces étaient déjà connus.');
       rendre();
@@ -1303,7 +1379,7 @@
     var nom = p.nom;
     CRM.supprimerProspect(id).then(function () {
       delete brouillons[id];
-      toast('« ' + nom + ' » supprimé de la file');
+      toast('«\u00a0' + nom + '\u00a0» supprimé de la file');
     }, erreur);
     rendre();
   }
@@ -1313,7 +1389,7 @@
     etat.gestion.action = null;
     var cible = action && String(action.valeur || '').trim();
     if (!p || !cible || cible === nomListeDe(p)) { rendre(); return; }
-    CRM.majProspect(id, { liste: cible }).then(function () { toast('Déplacé vers « ' + cible + ' »'); }, erreur);
+    CRM.majProspect(id, { liste: cible }).then(function () { toast('Déplacé vers «\u00a0' + cible + '\u00a0»'); }, erreur);
     rendre();
   }
 
@@ -1337,7 +1413,7 @@
       g.suppression = null;
       if (g.liste === nom) g.liste = '';
       if (rates) toast(UI.pluriel(rates, 'prospect n\'a pas pu être supprimé', 'prospects n\'ont pas pu être supprimés') + '. Réessayez.', { type: 'erreur' });
-      else toast('Liste « ' + nom + ' » supprimée');
+      else toast('Liste «\u00a0' + nom + '\u00a0» supprimée');
       rendre();
     });
     rendre();
@@ -1517,6 +1593,7 @@
     if (el !== conteneur) { conteneur = el; brancher(el); }
     var demandee = SOUS_VUES.filter(function (v) { return v[0] === opts.sousVue; })[0];
     etat.sousVue = demandee ? demandee[0] : 'appeler';
+    reprendreBrouillons();
     if (!etat.pret) {
       etat.pret = true;
       var memo = lirePositions();
@@ -1529,11 +1606,13 @@
     rendre();
   }
 
-  CRM.surChangement(function () { if (monte()) planifier(); });
+  CRM.surChangement(function () { reprendreBrouillons(); if (monte()) planifier(); });
 
-  // Une note en cours de frappe part avant que l'onglet ne passe en arrière-plan ou que la page ne se ferme.
-  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') viderSaisies(); });
-  window.addEventListener('pagehide', viderSaisies);
+  // Une note en cours de frappe part avant que l'onglet ne passe en arrière-plan ou que la page ne se ferme,
+  // par un envoi que le navigateur mène à son terme même si la page disparaît.
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') viderSaisies(true); });
+  window.addEventListener('pagehide', function () { viderSaisies(true); });
+  window.addEventListener('online', function () { viderSaisies(); });
 
   window.crmProspectionAfficher = afficher;
 })();

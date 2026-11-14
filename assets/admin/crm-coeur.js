@@ -242,24 +242,42 @@
 
   var EXCLU = { exclu: true };
 
-  function estExclu(c, emailAdmin) {
-    if (c.is_fixture || c.est_demo_ambassadeur || c.supprime_at || c.code_promo_utilise === 'TEST_ADMIN') return true;
+  // Compte de test, démo d'ambassadeur ou compte de l'admin : jamais dans le CRM, ni ce qui s'y rattache.
+  function estHorsCrm(c, emailAdmin) {
+    if (c.is_fixture || c.est_demo_ambassadeur || c.code_promo_utilise === 'TEST_ADMIN') return true;
     if (!emailAdmin) return false;
     return normaliserEmail(c.email) === emailAdmin || normaliserEmail(c.demo_prospect_email) === emailAdmin;
   }
 
-  // Une vraie fiche ne doit pas être masquée par un compte de test qui partagerait la même coordonnée.
+  function estExclu(c, emailAdmin) { return !!c.supprime_at || estHorsCrm(c, emailAdmin); }
+
+  /* Ce qu'un compte exclu laisse dans les index. Un compte supprimé n'écarte que ce qui date d'avant sa
+     suppression : le même commerce qui se réinscrit ou qu'on rappelle ensuite ouvre une fiche neuve. */
+  function marqueExclusion(c, emailAdmin) {
+    if (estHorsCrm(c, emailAdmin) || !ms(c.supprime_at)) return EXCLU;
+    return { exclu: true, jusqua: ms(c.supprime_at) };
+  }
+
+  // Une vraie fiche ne doit pas être masquée par un compte exclu qui partagerait la même coordonnée,
+  // et une exclusion définitive prime sur une exclusion datée.
+  function rangCible(cible) { return !cible.exclu ? 2 : cible.jusqua == null ? 1 : 0; }
   function indexer(carte, cle, cible) {
     if (!cle) return;
     var existant = carte.get(cle);
-    if (!existant || (existant === EXCLU && cible !== EXCLU)) carte.set(cle, cible);
+    if (!existant || rangCible(cible) > rangCible(existant)) carte.set(cle, cible);
   }
 
-  function trouver(cartes, emails, tels) {
+  // Une exclusion datée ne vaut plus pour une ligne postérieure à la suppression du compte.
+  function encoreValable(cible, date) {
+    return !!cible && !(cible.exclu && cible.jusqua != null && ms(date) > cible.jusqua);
+  }
+
+  /* Première fiche (ou exclusion) qui partage un e-mail ou un téléphone. `date` : date de la ligne à rattacher. */
+  function trouver(cartes, emails, tels, date) {
     for (var i = 0; i < cartes.length; i++) {
       var k, cible;
-      for (k = 0; k < emails.length; k++) { cible = emails[k] && cartes[i].email.get(emails[k]); if (cible) return cible; }
-      for (k = 0; k < tels.length; k++) { cible = tels[k] && cartes[i].tel.get(tels[k]); if (cible) return cible; }
+      for (k = 0; k < emails.length; k++) { cible = emails[k] && cartes[i].email.get(emails[k]); if (encoreValable(cible, date)) return cible; }
+      for (k = 0; k < tels.length; k++) { cible = tels[k] && cartes[i].tel.get(tels[k]); if (encoreValable(cible, date)) return cible; }
     }
     return null;
   }
@@ -390,8 +408,9 @@
     //    l'audit ou l'inscription de test qui s'y rattache.
     (donnees.commercants || []).forEach(function (c) {
       if (!c || c.id == null) return;
-      var cible = EXCLU;
-      if (!estExclu(c, emailAdmin)) { cible = creer(); cible.commercant = c; }
+      var cible;
+      if (estExclu(c, emailAdmin)) cible = marqueExclusion(c, emailAdmin);
+      else { cible = creer(); cible.commercant = c; }
       indexer(cartes.slug, texte(c.slug), cible);
       indexer(cartes.c.email, normaliserEmail(c.email), cible);
       indexer(cartes.c.email, normaliserEmail(c.demo_prospect_email), cible);
@@ -403,9 +422,10 @@
     (donnees.audits || []).slice().sort(function (a, b) { return ms(a.created_at) - ms(b.created_at); }).forEach(function (a) {
       if (!a || a.fiche_id == null) return;
       var email = normaliserEmail(a.email), tel = normaliserTel(a.telephone);
-      var cible = (a.demo_slug && cartes.slug.get(texte(a.demo_slug))) ||
-        trouver([cartes.c, cartes.a], [email], [tel]);
-      if (cible === EXCLU || (!cible && emailAdmin && email === emailAdmin)) return;
+      var parSlug = a.demo_slug && cartes.slug.get(texte(a.demo_slug));
+      var cible = (encoreValable(parSlug, a.created_at) && parSlug) ||
+        trouver([cartes.c, cartes.a], [email], [tel], a.created_at);
+      if ((cible && cible.exclu) || (!cible && emailAdmin && email === emailAdmin)) return;
       if (!cible) cible = creer();
       cible.audits.push(a);
       indexer(cartes.a.email, email, cible);
@@ -416,23 +436,32 @@
     dedoublonnerLeads(donnees.leads).forEach(function (l) {
       if (emailAdmin && l.email === emailAdmin) return;
       var tel = normaliserTel(l.telephone);
-      var cible = trouver([cartes.c, cartes.a, cartes.l], [l.email], [tel]);
-      if (cible === EXCLU) return;
+      var cible = trouver([cartes.c, cartes.a, cartes.l], [l.email], [tel], l.derniere_tentative);
+      if (cible && cible.exclu) return;
       if (!cible) cible = creer();
       cible.leads.push(l);
       indexer(cartes.l.email, l.email, cible);
       indexer(cartes.l.tel, tel, cible);
     });
 
+    // Données du CRM regroupées par clé (lues dès l'étape 4, rattachées aux fiches à l'étape 5).
+    var etats = new Map();
+    (donnees.fiches || []).forEach(function (e) { if (e && e.cle) etats.set(e.cle, e); });
+    var interactions = grouperParCle(donnees.interactions);
+    var taches = grouperParCle(donnees.taches);
+
     // 4. Prospects appelés à froid : ils rejoignent une fiche existante par téléphone ou e-mail ;
-    //    seuls, ils n'entrent dans le pipeline que si l'appel a donné une suite.
+    //    seuls, ils n'entrent dans le pipeline que si l'appel a donné une suite. Une fiche qui porte déjà
+    //    des notes, des tâches ou un état y reste même si le résultat change : sinon ce suivi disparaîtrait.
     (donnees.prospects || []).forEach(function (p) {
       if (!p || p.id == null) return;
       var email = normaliserEmail(p.email), tel = normaliserTel(p.telephone);
-      var cible = trouver([cartes.c, cartes.a, cartes.l, cartes.p], [email], [tel]);
-      if (cible === EXCLU) return;
+      var cible = trouver([cartes.c, cartes.a, cartes.l, cartes.p], [email], [tel], p.appele_at || p.created_at);
+      if (cible && cible.exclu) return;
       if (!cible) {
-        if (!resultatProspectDe(p.resultat) || !resultatProspectDe(p.resultat).fiche) return;
+        var suite = resultatProspectDe(p.resultat), cleP = cleDe('p', p.id);
+        var aDesDonnees = etats.has(cleP) || interactions.has(cleP) || taches.has(cleP);
+        if (!(suite && suite.fiche) && !aDesDonnees) return;
         cible = creer();
       }
       cible.prospects.push(p);
@@ -440,11 +469,7 @@
       indexer(cartes.p.tel, tel, cible);
     });
 
-    // 5. Données rattachées par clé.
-    var etats = new Map();
-    (donnees.fiches || []).forEach(function (e) { if (e && e.cle) etats.set(e.cle, e); });
-    var interactions = grouperParCle(donnees.interactions);
-    var taches = grouperParCle(donnees.taches);
+    // 5. Signaux rattachés par boutique.
     var evenements = indexerEvenements(donnees.evenements, maintenant);
     var commandes = new Map();
     (donnees.commandes || []).forEach(function (c) {
@@ -454,9 +479,14 @@
       liste.push(c);
     });
 
+    // Une source qui n'a pas pu être lue n'est pas une source vide : les règles qui en dépendent se taisent.
+    var inconnu = {};
+    ((config && config.sourcesKo) || []).forEach(function (nom) { inconnu[nom] = true; });
+
     return fiches.map(function (brute) {
       return completerFiche(brute, {
-        etats: etats, interactions: interactions, taches: taches, evenements: evenements, commandes: commandes
+        etats: etats, interactions: interactions, taches: taches, evenements: evenements, commandes: commandes,
+        inconnu: inconnu
       }, maintenant);
     });
   }
@@ -578,7 +608,9 @@
         reporte_jusqua: etat.reporte_jusqua || null, note_epinglee: etat.note_epinglee || null
       },
       interactions: listeInteractions, taches: listeTaches,
-      dernierContact: dernierContact, derniereInteraction: derniereInteraction
+      dernierContact: dernierContact, derniereInteraction: derniereInteraction,
+      // Sources non lues (commandes, evenements, interactions) : voir unifier.
+      inconnu: sources.inconnu || {}
     };
 
     fiche.etape = etape(fiche, maintenant);
@@ -627,11 +659,20 @@
     return isNaN(n) ? null : Math.max(0, n);
   }
 
+  /* Jours écoulés depuis la dernière tentative d'inscription, ou null sans inscription. */
+  function ageInscription(fiche, maintenant) {
+    var l = fiche.lead;
+    var n = l ? jours(l.derniere_tentative || l.created_at, maintenant) : NaN;
+    return isNaN(n) ? null : Math.max(0, n);
+  }
+
   /* Démo de plus de 30 jours, sans visite ni interaction depuis 14 jours. */
   function estDormante(fiche, maintenant) {
     if (!estDemo(fiche.etape || etape(fiche))) return false;
     var age = ageFiche(fiche, maintenant);
     if (age == null || age <= 30) return false;
+    // Sans les visites, impossible de dire qu'il ne se passe rien.
+    if (fiche.inconnu && fiche.inconnu.evenements) return false;
     var visite = fiche.signaux && fiche.signaux.derniereVisite;
     if (visite && jours(visite, maintenant) < 14) return false;
     return !(fiche.derniereInteraction && jours(fiche.derniereInteraction, maintenant) < 14);
@@ -656,6 +697,9 @@
     function plus(points, libelle) { if (points) { total += points; raisons.push({ points: points, texte: libelle }); } }
     var aujourdhui = dateLocaleISO(maintenant);
     var age = ageFiche(fiche, maintenant);
+    // Quelqu'un qui retente de s'inscrire redevient un contact frais, même si sa première tentative est ancienne.
+    var ageLead = c ? null : ageInscription(fiche, maintenant);
+    if (age != null && ageLead != null) age = Math.min(age, ageLead);
 
     if (a) {
       plus(15, 'Audit terrain réalisé');
@@ -692,7 +736,8 @@
       if (age <= 7) plus(15, recent);
       else if (age <= 14) plus(8, recent);
       else plus(-Math.min(25, 5 * Math.floor((age - 14) / 7)), (c ? 'Démo créée' : 'Premier contact') + ' il y a ' + age + ' jours');
-      if (c && age > 10 && !(s.derniereVisite && jours(s.derniereVisite, maintenant) < 7)) {
+      var visitesConnues = !(fiche.inconnu && fiche.inconnu.evenements);
+      if (c && age > 10 && visitesConnues && !(s.derniereVisite && jours(s.derniereVisite, maintenant) < 7)) {
         plus(-10, 'Aucune visite de sa démo depuis 7 jours');
       }
     }
@@ -711,7 +756,7 @@
      (vitrine, mise en ligne de moins de 14 jours, commande récente). */
   function joursSansCommande(fiche, maintenant) {
     var c = fiche.commercant, s = fiche.signaux || signauxVides();
-    if (!c || c.offre === 'vitrine') return null;
+    if (!c || c.offre === 'vitrine' || (fiche.inconnu && fiche.inconnu.commandes)) return null;
     var enLigneDepuis = jours(c.abonnement_debut || c.created_at, maintenant);
     if (!(enLigneDepuis > 14)) return null;
     if (!s.derniereCommande) return Math.min(60, enLigneDepuis);
@@ -795,6 +840,14 @@
     }
     if (p.resultat === 'a_rappeler' && !enSilence(fiche, 2, maintenant, true)) {
       var rappel = texte(p.rappel_le).slice(0, 10);
+      // Un échange abouti le jour du rappel ou après l'honore : sans cela il reviendrait « en retard » à vie.
+      // Un appel tombé sur la messagerie ou resté sans réponse ne compte pas, le rappel reste dû.
+      var honore = (fiche.interactions || []).some(function (i) {
+        if (TYPES_CONTACT.indexOf(i.type) < 0 || !i.fait_at) return false;
+        if (i.resultat === 'messagerie' || i.resultat === 'pas_de_reponse') return false;
+        return rappel ? dateLocaleISO(i.fait_at) >= rappel : ms(i.fait_at) > ms(p.appele_at);
+      });
+      if (honore) return null;
       if (rappel) {
         if (rappel > ajouterJours(aujourdhui, 7)) return null;
         var retard = jours(rappel, aujourdhui);
@@ -847,7 +900,9 @@
         canal: canalContact(fiche) };
     }
 
-    if (estDemo(nomEtape) && !enSilence(fiche, 3, maintenant)) {
+    // Règles 4 à 6 : elles reposent sur les échanges consignés, donc muettes si on n'a pas pu les lire.
+    var echangesConnus = !(fiche.inconnu && fiche.inconnu.interactions);
+    if (estDemo(nomEtape) && echangesConnus && !enSilence(fiche, 3, maintenant)) {
       // 4. Signalée « à appeler » par le suivi automatique, jamais appelée.
       var dejaAppelee = interactions.some(function (i) { return i.type === 'appel'; });
       if (fiche.relances && fiche.relances.appel && !dejaAppelee) {
@@ -874,9 +929,11 @@
       var prospection = actionProspection(fiche, aujourdhui, maintenant);
       if (prospection) return prospection;
       // 7. Inscription commencée sans compte.
-      if (fiche.lead && !c && age != null && age <= 7 && !enSilence(fiche, 3, maintenant)) {
+      var ageLead = c ? null : ageInscription(fiche, maintenant);
+      if (ageLead != null && ageLead <= 7 && !enSilence(fiche, 3, maintenant)) {
         return { id: 'inscription', urgence: 'aujourdhui', titre: 'Inscription commencée sans finir',
-          raison: 'A commencé son inscription ' + ilYA(age), canal: fiche.telNormalise ? 'appel' : 'email' };
+          raison: (fiche.lead.tentatives > 1 ? 'A retenté son inscription ' : 'A commencé son inscription ') + ilYA(ageLead),
+          canal: fiche.telNormalise ? 'appel' : 'email' };
       }
     }
 
@@ -937,6 +994,9 @@
       var offre = OFFRES[l.offre] ? 'Offre ' + OFFRES[l.offre].nom : '';
       var tentatives = l.tentatives > 1 ? l.tentatives + ' tentatives' : '';
       auto('inscription', l.created_at, 'Inscription commencée', [offre, tentatives].filter(Boolean).join(' · '));
+      if (l.tentatives > 1 && ms(l.derniere_tentative) > ms(l.created_at)) {
+        auto('inscription', l.derniere_tentative, 'Nouvelle tentative d\'inscription');
+      }
     });
     (fiche.audits || (fiche.audit ? [fiche.audit] : [])).forEach(function (a) {
       auto('audit', a.created_at, 'Audit terrain', a.mode ? 'Audit ' + a.mode : '');
@@ -1187,6 +1247,17 @@
       'out center tags ' + LIMITE_OVERPASS + ';';
   }
 
+  /* Code d'un département saisi librement : « 34 », « 2a », « 34 Hérault », « 30 - Gard » ou le nom seul.
+     Chaîne vide si rien n'est reconnu (l'appelant retombe alors sur le code postal). */
+  function codeDepartement(v) {
+    var saisie = texte(v).toUpperCase();
+    var code = /^(2[AB]|\d{2,3})(?!\d)/.exec(saisie);
+    if (code) return code[1];
+    var nom = sansAccents(saisie);
+    for (var i = 0; nom && i < DEPARTEMENTS.length; i++) if (sansAccents(DEPARTEMENTS[i].nom) === nom) return DEPARTEMENTS[i].code;
+    return '';
+  }
+
   function decouperLigne(ligne) {
     var separateur = ligne.indexOf('|') >= 0 ? '|' : ligne.indexOf(';') >= 0 ? ';' : ligne.indexOf('\t') >= 0 ? '\t' : null;
     var cellules = separateur ? ligne.split(separateur) : [ligne];
@@ -1195,7 +1266,7 @@
 
   /* Lit des lignes collées « nom | métier | adresse | commune | département | téléphone | remarque »
      (ou la même chose séparée par des points-virgules ; la colonne « source » M/O de l'ancien outil est tolérée).
-     Renvoie { lignes, ignorees:[{ numero, texte, raison }] } ; raison ∈ sans_nom, numero_invalide, doublon. */
+     Renvoie { lignes, ignorees:[{ numero, texte, raison }] } ; raison ∈ sans_nom, format, numero_invalide, doublon. */
   function analyserImport(contenu, dejaConnus) {
     dejaConnus = dejaConnus || {};
     var connus = new Set();
@@ -1228,6 +1299,9 @@
         metier = reste[0]; lieu = reste[1]; remarque = reste.slice(2).join(' ').trim();
       }
       if (!nom) return ignorer('sans_nom');
+      // Une seule cellule qui contient un numéro : les colonnes n'ont pas été reconnues (CSV à virgules…).
+      // L'accepter créerait un prospect sans téléphone dont le nom serait la ligne entière.
+      if (c.length === 1 && /\d{9}/.test(nom.replace(/[\s.\-()]/g, ''))) return ignorer('format');
       var telephone = null;
       if (texte(tel)) {
         telephone = telFrancais(tel);
@@ -1237,7 +1311,7 @@
       }
       var cp = /\b(\d{5})\b/.exec(texte(lieu));
       var commune = texte(lieu).replace(/\b\d{5}\b/, '').replace(/^code postal\s*/i, '').trim();
-      var departement = texte(dep).toUpperCase().replace(/[^0-9AB]/g, '').slice(0, 3) || (cp ? departementDe(cp[1]) : null);
+      var departement = codeDepartement(dep) || (cp ? departementDe(cp[1]) : null);
       lignes.push({
         nom: nom.slice(0, 200), metier: texte(metier) || null, adresse: texte(adresse) || null,
         commune: commune || null, code_postal: cp ? cp[1] : null, departement: departement || null,
@@ -1279,17 +1353,28 @@
     return { commercants: [], leads: [], audits: [], prospects: [], commandes: [], evenements: [], fiches: [], interactions: [], taches: [] };
   }
 
+  /* ecriturePanne : la lecture seule vient d'une panne passagère (réseau, serveur), pas d'une migration absente.
+     sourcesTronquees : sources si volumineuses que la lecture s'est arrêtée avant la fin. */
+  function etatInitial() {
+    return { charge: false, ecriture: false, ecriturePanne: false, prospection: false, sourcesKo: [], sourcesTronquees: [],
+      erreur: null, chargeLe: null };
+  }
+
   var brut = brutVide();
   var parCle = new Map();
   var abonnes = [];
   var chargement = null;
+  // Suivi des écritures en cours, pour rattraper celles qu'un rechargement aurait croisées (voir suivreEcriture).
+  var ecrituresEnVol = 0, generation = 0, rechargementDu = false;
+  // Sources dont on n'a aucune donnée, même ancienne : leurs règles se taisent (voir unifier).
+  var sourcesSansDonnees = [];
   var rafraichissement = null;
   var jetonMemoire = null;
   var compteurProvisoire = 0;
 
   var CRM = {
     config: { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' },
-    etat: { charge: false, ecriture: false, prospection: false, sourcesKo: [], erreur: null, chargeLe: null },
+    etat: etatInitial(),
     OFFRES: OFFRES, ETAPES: ETAPES, MOTIFS_PERTE: MOTIFS_PERTE, RESULTATS_APPEL: RESULTATS_APPEL,
     RESULTATS_PROSPECT: RESULTATS_PROSPECT, DEPARTEMENTS: DEPARTEMENTS, METIERS_OSM: METIERS_OSM,
     SERVEURS_OVERPASS: SERVEURS_OVERPASS,
@@ -1326,7 +1411,7 @@
 
   function recalculer() {
     CRM.prospects = brut.prospects;
-    CRM.fiches = unifier(brut, CRM.config, CRM.horloge());
+    CRM.fiches = unifier(brut, Object.assign({}, CRM.config, { sourcesKo: sourcesSansDonnees }), CRM.horloge());
     parCle = new Map();
     CRM.fiches.forEach(function (f) { f.cles.forEach(function (cle) { parCle.set(cle, f); }); });
     abonnes.slice().forEach(function (fn) {
@@ -1390,10 +1475,11 @@
       var entetes = { apikey: CRM.config.cleAnon, Authorization: 'Bearer ' + jetonCourant() };
       if (corps !== undefined && corps !== null) entetes['Content-Type'] = 'application/json';
       if (prefer) entetes.Prefer = prefer;
-      return fetch(CRM.config.url + chemin, {
-        method: methode, headers: entetes,
-        body: corps !== undefined && corps !== null ? JSON.stringify(corps) : undefined
-      });
+      var requete = { method: methode, headers: entetes,
+        body: corps !== undefined && corps !== null ? JSON.stringify(corps) : undefined };
+      // Demandé pour une écriture lancée pendant que la page se ferme : sans cela le navigateur l'abandonne.
+      if (options.keepalive) requete.keepalive = true;
+      return fetch(CRM.config.url + chemin, requete);
     }
     var r;
     try {
@@ -1423,19 +1509,46 @@
         'business_type,offre,abonnement_actif,abonnement_debut,abonnement_fin,stripe_customer_id,stripe_connect_actif,auth_user_id,' +
         'actif,en_pause,code_promo_utilise,frais_acquisition_paye,mois_offerts,supprime_at,is_fixture,est_demo_ambassadeur,' +
         'ambassadeur_prenom,ambassadeur_code_referral,demo_prospect_email,demo_prospect_telephone,acquisition,relances_demo,' +
-        'logo_url,instagram,facebook',
+        'logo_url,instagram,facebook&order=id',
       leads: '/rest/v1/leads_inscription?select=email,nom_boutique,business_type,offre,ville,telephone,device,created_at&order=created_at.desc&limit=500',
       audits: '/rest/v1/audits_prospects?select=fiche_id,mode,nom_commerce,type_commerce,ville,email,telephone,scores,manque_eur,' +
-        'temperature,rdv2_date,demo_slug,data,created_at,updated_at',
-      commandes: '/rest/v1/commandes?select=commercant_id,created_at,total_ttc,statut&created_at=gte.' + encodeURIComponent(j60) + '&limit=5000',
+        'temperature,rdv2_date,demo_slug,data,created_at,updated_at&order=fiche_id',
+      commandes: '/rest/v1/commandes?select=commercant_id,created_at,total_ttc,statut&created_at=gte.' + encodeURIComponent(j60) +
+        '&order=created_at.desc,id.desc',
       evenements: '/rest/v1/analytics_events?select=event,slug,created_at,meta&created_at=gte.' + encodeURIComponent(j30) +
-        '&event=in.(page_view,page_exit,paiement_commence,demo_privee_bloquee)&slug=not.is.null&order=created_at.desc&limit=5000',
-      fiches: '/rest/v1/crm_fiches?select=*',
-      interactions: '/rest/v1/crm_interactions?select=*&order=fait_at.desc&limit=5000',
-      taches: '/rest/v1/crm_taches?select=*',
-      prospects: '/rest/v1/crm_prospects?select=*&order=created_at.asc&limit=5000'
+        '&event=in.(page_view,page_exit,paiement_commence,demo_privee_bloquee)&slug=not.is.null&order=created_at.desc',
+      fiches: '/rest/v1/crm_fiches?select=*&order=id',
+      interactions: '/rest/v1/crm_interactions?select=*&order=fait_at.desc,id.desc',
+      taches: '/rest/v1/crm_taches?select=*&order=id',
+      prospects: '/rest/v1/crm_prospects?select=*&order=created_at.asc,id.asc'
     };
   }
+
+  /* L'API ne rend pas plus de 1000 lignes par requête, quelle que soit la limite demandée : on lit par paquets
+     jusqu'à un paquet incomplet. Chaque requête doit donc porter un ordre stable, sinon des lignes sauteraient
+     d'un paquet à l'autre. Au-delà de PAGES_MAX paquets on s'arrête et on le signale (`tronque`). */
+  var TAILLE_PAGE = 1000, PAGES_MAX = 30;
+
+  async function lireTout(chemin) {
+    // Une requête déjà bornée sous la taille d'un paquet tient en un seul appel.
+    var limite = /[?&]limit=(\d+)/.exec(chemin);
+    if (limite && +limite[1] <= TAILLE_PAGE) {
+      var lignes = await crmFetch('GET', chemin);
+      if (!Array.isArray(lignes)) throw new Error('Réponse inattendue');
+      return { lignes: lignes, tronque: false };
+    }
+    var toutes = [];
+    for (var page = 0; page < PAGES_MAX; page++) {
+      var lot = await crmFetch('GET', chemin + '&limit=' + TAILLE_PAGE + '&offset=' + page * TAILLE_PAGE);
+      if (!Array.isArray(lot)) throw new Error('Réponse inattendue');
+      toutes = toutes.concat(lot);
+      if (lot.length < TAILLE_PAGE) return { lignes: toutes, tronque: false };
+    }
+    return { lignes: toutes, tronque: true };
+  }
+
+  // Panne passagère (réseau coupé, serveur en erreur), par opposition à une table absente ou à des droits refusés.
+  function estPanne(e) { return !!e && (e.reseau === true || e.statut >= 500 || e.statut === 408 || e.statut === 429); }
 
   /* Charge toutes les sources en parallèle. Ne rejette jamais : une source en échec est notée dans
      CRM.etat (sourcesKo, ecriture, prospection, erreur) et le reste continue. */
@@ -1446,23 +1559,40 @@
     CRM.init();
     var requetes = requetesLecture(CRM.horloge());
     var noms = Object.keys(requetes);
+    // Ce qu'on savait lire avant ce chargement : une source qui échoue cette fois-ci garde ses dernières lignes.
+    var dejaLues = CRM.etat.charge ? noms.filter(function (nom) { return sourcesSansDonnees.indexOf(nom) < 0; }) : [];
     chargement = Promise.all(noms.map(function (nom) {
-      return crmFetch('GET', requetes[nom]).then(function (lignes) {
-        if (!Array.isArray(lignes)) throw new Error('Réponse inattendue');
-        return { nom: nom, lignes: lignes };
+      return lireTout(requetes[nom]).then(function (lu) {
+        return { nom: nom, lignes: lu.lignes, tronque: lu.tronque };
       }, function (erreur) { return { nom: nom, erreur: erreur }; });
     })).then(function (resultats) {
-      var nouveau = brutVide(), ko = [], ecriture = true, prospection = true, erreur = null;
+      var nouveau = brutVide(), ko = [], sansDonnees = [], tronquees = [];
+      var ecriture = true, panne = true, prospection = true, erreur = null;
       resultats.forEach(function (r) {
-        if (!r.erreur) { nouveau[r.nom] = r.lignes; return; }
+        if (!r.erreur) {
+          nouveau[r.nom] = r.lignes;
+          if (r.tronque) tronquees.push(r.nom);
+          return;
+        }
         ko.push(r.nom);
         if (r.nom === 'prospects') prospection = false;
-        else if (r.nom === 'fiches' || r.nom === 'interactions' || r.nom === 'taches') ecriture = false;
-        else if (r.nom === 'commercants') erreur = r.erreur.message || 'Chargement impossible';
+        else if (r.nom === 'fiches' || r.nom === 'interactions' || r.nom === 'taches') {
+          ecriture = false;
+          if (!estPanne(r.erreur)) panne = false;
+        } else if (r.nom === 'commercants') erreur = r.erreur.message || 'Chargement impossible';
+        // Mieux vaut des lignes d'il y a quelques minutes qu'une source prise pour vide. Les commerçants font
+        // exception : sans eux, l'échec doit rester une erreur visible.
+        if (r.nom !== 'commercants' && dejaLues.indexOf(r.nom) >= 0) nouveau[r.nom] = brut[r.nom];
+        // Une table du CRM absente (migration non appliquée) est réellement vide, pas « inconnue ».
+        else if (!/^(fiches|interactions|taches|prospects)$/.test(r.nom) || estPanne(r.erreur)) sansDonnees.push(r.nom);
       });
       brut = nouveau;
+      generation++;
+      sourcesSansDonnees = sansDonnees;
       CRM.etat.sourcesKo = ko;
+      CRM.etat.sourcesTronquees = tronquees;
       CRM.etat.ecriture = ecriture;
+      CRM.etat.ecriturePanne = !ecriture && panne;
       CRM.etat.prospection = prospection;
       CRM.etat.erreur = erreur;
       CRM.etat.charge = true;
@@ -1557,7 +1687,10 @@
   function refuser(message) { return Promise.reject(new Error(message)); }
 
   function verifierEcriture() {
-    if (!CRM.etat.ecriture) throw new Error('Le CRM est en lecture seule : la migration CRM n\'est pas encore appliquée.');
+    if (CRM.etat.ecriture) return;
+    throw new Error(CRM.etat.ecriturePanne
+      ? 'Le CRM est en lecture seule pour l\'instant : actualisez la page dans un instant.'
+      : 'Le CRM est en lecture seule : la migration CRM n\'est pas encore appliquée.');
   }
 
   function verifierCle(cle) {
@@ -1589,9 +1722,30 @@
     return null;
   }
 
+  /* Entoure une écriture optimiste. Un chargement qui la croise peut lire la base sans elle, ou remplacer
+     `brut` pendant qu'elle attend sa réponse : l'écriture réussit en base mais disparaît de l'écran. Dans ce
+     cas, une relecture part dès que plus rien n'est en vol (réussite ou échec : le retour arrière se fait
+     lui aussi sur les anciennes données). */
+  function suivreEcriture(executer) {
+    var generationDepart = generation, chevauche = !!chargement;
+    ecrituresEnVol++;
+    function fin() {
+      if (chevauche || chargement || generation !== generationDepart) rechargementDu = true;
+      if (--ecrituresEnVol === 0 && rechargementDu) {
+        rechargementDu = false;
+        // Après le chargement en cours, sinon charger() rendrait cette lecture déjà périmée.
+        (chargement || Promise.resolve()).then(function () { return CRM.charger({ force: true }); });
+      }
+    }
+    return executer().then(function (v) { fin(); return v; }, function (e) { fin(); throw e; });
+  }
+
   /* Insertion optimiste : la ligne provisoire est visible tout de suite, remplacée par celle de la base
      à la réponse, retirée si l'écriture échoue. */
-  async function inserer(liste, table, ligne) {
+  function inserer(liste, table, ligne) {
+    return suivreEcriture(function () { return insererSansSuivi(liste, table, ligne); });
+  }
+  async function insererSansSuivi(liste, table, ligne) {
     var provisoire = Object.assign({ id: idProvisoire(), created_at: CRM.horloge().toISOString(), enAttente: true }, ligne);
     liste.push(provisoire);
     recalculer();
@@ -1607,7 +1761,10 @@
     }
   }
 
-  async function modifier(liste, table, id, champs) {
+  function modifier(liste, table, id, champs) {
+    return suivreEcriture(function () { return modifierSansSuivi(liste, table, id, champs); });
+  }
+  async function modifierSansSuivi(liste, table, id, champs) {
     var avant = trouverParId(liste, id);
     if (!avant) throw new Error('Élément introuvable.');
     var apres = Object.assign({}, avant, champs);
@@ -1626,7 +1783,10 @@
     }
   }
 
-  async function supprimer(liste, table, id) {
+  function supprimer(liste, table, id) {
+    return suivreEcriture(function () { return supprimerSansSuivi(liste, table, id); });
+  }
+  async function supprimerSansSuivi(liste, table, id) {
     var ligne = trouverParId(liste, id);
     if (!ligne) throw new Error('Élément introuvable.');
     var position = retirer(liste, ligne);
@@ -1689,6 +1849,9 @@
      on passe par un upsert sur la clé, qui ne touche que les colonnes envoyées. */
   async function ecrireEtat(cle, champs) {
     verifierEcriture(); verifierCle(cle);
+    return suivreEcriture(function () { return ecrireEtatSansSuivi(cle, champs); });
+  }
+  async function ecrireEtatSansSuivi(cle, champs) {
     var principale = clePrincipale(cle);
     var avant = null;
     for (var i = 0; i < brut.fiches.length; i++) if (brut.fiches[i].cle === principale) avant = brut.fiches[i];
@@ -1803,6 +1966,9 @@
   CRM.ajouterProspects = async function (lignes) {
     verifierProspection();
     lignes = Array.isArray(lignes) ? lignes : [];
+    return suivreEcriture(function () { return ajouterProspectsSansSuivi(lignes); });
+  };
+  async function ajouterProspectsSansSuivi(lignes) {
     var tri = filtrerNouveaux(lignes);
     var crees = [];
     async function envoyer(lot) {
@@ -1817,7 +1983,7 @@
       } catch (e) {
         // Les lots déjà enregistrés restent acquis : on les montre avant de signaler l'échec.
         if (!estConflit(e)) { if (crees.length) recalculer(); throw e; }
-        brut.prospects = await crmFetch('GET', requetesLecture(CRM.horloge()).prospects);
+        brut.prospects = (await lireTout(requetesLecture(CRM.horloge()).prospects)).lignes;
         recus = await envoyer(filtrerNouveaux(lot).gardes);
       }
       recus.forEach(function (p) { brut.prospects.push(p); crees.push(p); });
@@ -1827,11 +1993,14 @@
       ajoutes: crees.length, doublons: Math.max(0, lignes.length - tri.ignores - crees.length),
       ignores: tri.ignores, prospects: crees
     };
-  };
+  }
 
   /* Modification optimiste d'un prospect. Le retour arrière ne touche que les champs de CET appel, et
      seulement s'ils n'ont pas été modifiés depuis : une note tapée pendant l'envoi n'est jamais écrasée. */
-  async function patchProspect(id, champs) {
+  function patchProspect(id, champs, options) {
+    return suivreEcriture(function () { return patchProspectSansSuivi(id, champs, options); });
+  }
+  async function patchProspectSansSuivi(id, champs, options) {
     var p = trouverParId(brut.prospects, id);
     if (!p) throw new Error('Prospect introuvable.');
     var avant = {};
@@ -1839,7 +2008,8 @@
     Object.assign(p, champs);
     recalculer();
     try {
-      var lignes = await crmFetch('PATCH', '/rest/v1/crm_prospects?id=eq.' + encodeURIComponent(id), champs, 'return=representation');
+      var lignes = await crmFetch('PATCH', '/rest/v1/crm_prospects?id=eq.' + encodeURIComponent(id), champs, 'return=representation',
+        { keepalive: !!(options && options.keepalive) });
       if (lignes[0] && lignes[0].updated_at) p.updated_at = lignes[0].updated_at;
       return p;
     } catch (e) {
@@ -1849,7 +2019,8 @@
     }
   }
 
-  CRM.majProspect = async function (id, champs) {
+  /* `options.keepalive` : à demander pour un enregistrement lancé pendant que la page se ferme. */
+  CRM.majProspect = async function (id, champs, options) {
     verifierProspection();
     champs = champs || {};
     var propres = {};
@@ -1870,7 +2041,7 @@
     if ('liste' in propres && !propres.liste) propres.liste = 'Prospection';
     if ('email' in propres) propres.email = normaliserEmail(propres.email) || null;
     if (!Object.keys(propres).length) return trouverParId(brut.prospects, id);
-    return patchProspect(id, propres);
+    return patchProspect(id, propres, options);
   };
 
   /* Pose le résultat d'un appel (appele_at = maintenant, nb_appels + 1). null efface le résultat
@@ -1929,8 +2100,10 @@
         if (signal && signal.aborted && !horsDelai) throw erreurAnnulation();
         throw repli(horsDelai ? 'Délai dépassé' : 'Serveur injoignable');
       }
-      if (r.status === 429 || r.status >= 500) throw repli('Serveur occupé (' + r.status + ')');
-      if (!r.ok) throw new Error('La recherche a été refusée par OpenStreetMap (' + r.status + ').');
+      // Une requête mal formée le sera partout. Tout autre refus (accès réservé, 404, 429, 5xx) est propre
+      // à ce serveur : on essaie le suivant.
+      if (r.status === 400) throw new Error('La recherche a été refusée par OpenStreetMap (400).');
+      if (!r.ok) throw repli('Serveur indisponible (' + r.status + ')');
       var d;
       try { d = await r.json(); } catch (e) {
         if (signal && signal.aborted && !horsDelai) throw erreurAnnulation();
@@ -2002,7 +2175,8 @@
       brut = brutVide(); parCle = new Map(); abonnes = []; chargement = null; rafraichissement = null; jetonMemoire = null;
       CRM.fiches = []; CRM.prospects = brut.prospects;
       CRM.config = { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' };
-      CRM.etat = { charge: false, ecriture: false, prospection: false, sourcesKo: [], erreur: null, chargeLe: null };
+      ecrituresEnVol = 0; generation = 0; rechargementDu = false; sourcesSansDonnees = [];
+      CRM.etat = etatInitial();
       CRM.horloge = function () { return new Date(); };
     },
     brut: function () { return brut; },

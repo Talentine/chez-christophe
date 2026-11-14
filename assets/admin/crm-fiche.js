@@ -166,8 +166,12 @@
   function offreNom(fiche) { return LIBELLES_OFFRE_COURT[fiche.offre] || ''; }
 
   function lectureSeule() { return !CRM.etat.ecriture; }
+  // Une panne passagère n'est pas une migration manquante : ne pas envoyer le fondateur la chercher.
+  function raisonLectureSeule() {
+    return CRM.etat.ecriturePanne ? 'le suivi ne répond pas pour l\'instant, actualisez dans un instant' : 'la migration CRM n\'est pas encore appliquée';
+  }
   function attrEcriture() {
-    return lectureSeule() ? ' disabled title="Inactif tant que la migration CRM n\'est pas appliquée"' : '';
+    return lectureSeule() ? ' disabled title="Inactif : ' + esc(raisonLectureSeule()) + '"' : '';
   }
 
   // ───────────────────────────── Notification ─────────────────────────────
@@ -336,6 +340,10 @@
     return ecrire(CRM.reporter(cleFiche, date), message, function () { return CRM.reporter(cleFiche, reportAvant); });
   }
 
+  // Fiches dont le « Fait » est en cours d'écriture. Certaines règles (2ᵉ rendez-vous) ne se taisent qu'une fois
+  // le report enregistré : sans ce verrou, un double-clic consignerait deux notes.
+  var faitEnCours = {};
+
   /* « Fait » : termine la tâche, ou consigne que l'action calculée a été traitée pour qu'elle se taise. */
   function faitAction(cle) {
     var f = CRM.fiche(cle);
@@ -344,6 +352,8 @@
     if (action.tacheId) {
       return ecrire(CRM.terminerTache(action.tacheId), 'Tâche terminée', function () { return CRM.terminerTache(action.tacheId, false); });
     }
+    if (faitEnCours[cleFiche]) return Promise.resolve({ ok: false });
+    faitEnCours[cleFiche] = true;
     return ecrire(CRM.ajouterInteraction(cleFiche, { type: 'note', contenu: 'Fait : ' + action.titre }).then(function (interaction) {
       // Certaines règles ne se taisent pas après une simple note (2ᵉ rendez-vous) : on les reporte au lendemain.
       var apres = CRM.fiche(cleFiche);
@@ -356,7 +366,7 @@
       return CRM.supprimerInteraction(r.interaction.id).then(function () {
         if (r.report) return CRM.reporter(cleFiche, r.reportAvant);
       });
-    });
+    }).then(function (r) { delete faitEnCours[cleFiche]; return r; });
   }
 
   // ───────────────────────────── État du panneau ─────────────────────────────
@@ -526,7 +536,7 @@
         return '<button type="button" class="crm-choix" data-action="resultat" data-id="' + esc(r.id) + '"' + attrEcriture() + '>' + esc(r.libelle) + '</button>';
       }).join('') + '</div>' +
       '<input class="crm-champ" data-champ="noteAppel" value="' + esc(ui.brouillons.noteAppel) + '" placeholder="Note sur l\'appel (facultatif)" aria-label="Note sur l\'appel" maxlength="2000">' +
-      (lectureSeule() ? '<p class="crm-aide">Le suivi d\'appels est inactif : la migration CRM n\'est pas encore appliquée.</p>' : '') +
+      (lectureSeule() ? '<p class="crm-aide">Le suivi d\'appels est inactif : ' + esc(raisonLectureSeule()) + '.</p>' : '') +
       '</section>';
   }
 
@@ -764,7 +774,7 @@
     var entrees = CRM.fil(f);
     var visibles = ui.filComplet ? entrees : entrees.slice(0, FIL_REPLIE);
     var corps = '<div class="crm-note-saisie"><textarea class="crm-champ" id="crmNote" data-champ="note" rows="2" maxlength="8000" placeholder="Écrire une note…" aria-label="Nouvelle note"' + attrEcriture() + '>' + esc(ui.brouillons.note) + '</textarea>' +
-      '<div class="crm-note-pied"><span class="crm-aide">' + (lectureSeule() ? 'Notes inactives : migration CRM non appliquée.' : 'Ctrl + Entrée pour enregistrer') + '</span>' +
+      '<div class="crm-note-pied"><span class="crm-aide">' + (lectureSeule() ? 'Notes inactives : ' + esc(raisonLectureSeule()) + '.' : 'Ctrl + Entrée pour enregistrer') + '</span>' +
       '<button type="button" class="crm-btn crm-btn-or" data-action="note-enregistrer"' + attrEcriture() + '>Enregistrer la note</button></div></div>';
     if (!entrees.length) {
       corps += '<p class="crm-vide-ligne">Rien encore dans le fil. La première note ou le premier appel apparaîtra ici.</p>';
@@ -1279,12 +1289,18 @@
     var champ = document.getElementById('searchCommercants');
     var tableau = document.getElementById('tableCommercants');
     if (!champ || typeof window.filtrerCommercants !== 'function') return;
+    function appliquer() {
+      // Un filtre de statut resté actif (pilule, ou carte de la Vue d'ensemble) masquerait la boutique cherchée.
+      // La fonction de l'admin remet « Tous » puis relit le champ de recherche.
+      if (typeof window.filtrerStatutDemo === 'function') window.filtrerStatutDemo('tous');
+      else window.filtrerCommercants(nom);
+    }
     champ.value = nom;
-    window.filtrerCommercants(nom);
+    appliquer();
     if (!tableau || typeof MutationObserver === 'undefined') return;
     var observateur = new MutationObserver(function () {
       observateur.disconnect();
-      if (champ.value === nom) window.filtrerCommercants(nom);
+      if (champ.value === nom) appliquer();
     });
     observateur.observe(tableau, { childList: true });
     setTimeout(function () { observateur.disconnect(); }, 8000);
@@ -1315,6 +1331,7 @@
   // Le cœur prévient après chaque chargement et chaque écriture.
   CRM.surChangement(function () { if (api.estOuverte()) rendre(); });
 
+  crmToast.masquer = masquerToast;
   window.crmToast = crmToast;
   window.crmFiche = api;
   window.crmUI = {

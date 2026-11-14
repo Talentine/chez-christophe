@@ -33,6 +33,8 @@
   var TRIS = [['score', 'Score'], ['recentes', 'Plus récentes'], ['nom', 'Nom'], ['contact', 'Dernier contact']];
   var GROUPES = [['retard', 'En retard'], ['aujourdhui', 'Aujourd\'hui'], ['semaine', 'Cette semaine']];
   var PAS_FICHES = 80, PAS_COLONNE = 25;
+  var LIBELLES_TRONQUE = { commercants: 'boutiques', leads: 'inscriptions', audits: 'audits terrain', commandes: 'commandes',
+    evenements: 'visites des boutiques', prospects: 'prospects', fiches: 'suivi des fiches', interactions: 'notes et appels', taches: 'tâches' };
   var LIBELLES_SOURCE = { leads: 'inscriptions', audits: 'audits terrain', commandes: 'commandes', evenements: 'visites des boutiques', prospects: 'prospection' };
 
   var etat = {
@@ -205,13 +207,21 @@
         '<p><b>Les boutiques n\'ont pas pu être chargées.</b> ' + esc(e.erreur) + '</p>' +
         '<button type="button" class="crm-btn" data-action="recharger">Réessayer</button></div>';
     }
-    if (!e.ecriture) {
+    if (!e.ecriture && e.ecriturePanne) {
+      html += '<div class="crm-bandeau" role="status">' + ic('cadenas', 16) +
+        '<p><b>Lecture seule pour l\'instant.</b> Notes, tâches et suivi d\'appels ne répondent pas. Ce qui était déjà chargé reste affiché.</p>' +
+        '<button type="button" class="crm-btn" data-action="recharger">Réessayer</button></div>';
+    } else if (!e.ecriture) {
       html += '<div class="crm-bandeau" role="status">' + ic('cadenas', 16) +
         '<p><b>Lecture seule.</b> Notes, tâches et suivi d\'appels inactifs : la migration CRM n\'est pas encore appliquée.</p></div>';
     }
     var manquantes = e.sourcesKo.filter(function (s) { return LIBELLES_SOURCE[s]; }).map(function (s) { return LIBELLES_SOURCE[s]; });
     if (manquantes.length) {
       html += '<p class="crm-sources">' + ic('alerte', 13) + 'Données indisponibles pour l\'instant : ' + esc(manquantes.join(', ')) + '. Le reste est à jour.</p>';
+    }
+    var partielles = (e.sourcesTronquees || []).map(function (s) { return LIBELLES_TRONQUE[s] || s; });
+    if (partielles.length) {
+      html += '<p class="crm-sources">' + ic('alerte', 13) + 'Trop de lignes pour tout lire : ' + esc(partielles.join(', ')) + ' en partie seulement.</p>';
     }
     return html;
   }
@@ -620,7 +630,9 @@
 
   /* Appelé après la connexion : charge en arrière-plan pour la pastille du menu, et ouvre le CRM
      si l'adresse le demande (#crm…). Ne doit jamais lever d'erreur visible. */
+  var prechargeFait = false;
   function precharger() {
+    prechargeFait = true;
     try {
       if (lireHash() && typeof window.allerPage === 'function') { window.allerPage('crm'); return; }
       CRM.charger().then(majPastille, function () {});
@@ -641,4 +653,14 @@
   window.crmActualiser = actualiser;
   window.crmPrecharger = precharger;
   window.crmOuvrirFiche = ouvrirFicheDepuisAdmin;
+
+  // La reprise de session d'admin.html peut aboutir avant le chargement de ce fichier : son appel de préchargement
+  // est alors perdu (ni pastille, ni ouverture par #crm…). On le rejoue une fois tous les scripts du CRM lus,
+  // pour que la vue Prospection soit là si l'adresse la demande.
+  function rattraper() {
+    var tableau = document.getElementById('dashboard');
+    if (!prechargeFait && tableau && tableau.classList.contains('actif')) precharger();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rattraper);
+  else rattraper();
 })();
