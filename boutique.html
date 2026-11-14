@@ -2387,8 +2387,12 @@ async function chargerGalerieBoutique() {
     }
 
     // Filtrer le logo (commence par "logo.") + dossiers
+    // Ordre choisi par le commerçant (dashboard > Photos), les fichiers non classés à la suite
+    const ordreGalerie = cfg?.business?.business_config?.galerie_ordre || [];
+    const rang = n => { const i = ordreGalerie.indexOf(n); return i < 0 ? Infinity : i; };
     galerieItems = files
       .filter(f => f.name && !f.name.endsWith('/') && !/^logo\./.test(f.name))
+      .sort((a, b) => (rang(a.name) - rang(b.name)) || a.name.localeCompare(b.name))
       .map(f => {
         const url = SUPABASE_URL + '/storage/v1/object/public/boutiques-media/' + slug + '/' + f.name;
         const isVideo = f.name.match(/\.(mp4|mov|webm)$/i);

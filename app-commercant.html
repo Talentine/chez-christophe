@@ -925,7 +925,7 @@
         </label>
       </div>
       <div style="font-size:12px;color:var(--texte-doux);background:rgba(184,131,42,0.08);border:1px dashed rgba(184,131,42,0.35);border-radius:10px;padding:10px 12px;margin-bottom:10px;line-height:1.5;">
-        <b>★ Photo d'accueil</b> — Cliquez sur l'étoile d'une image pour l'utiliser en bannière principale de la page d'accueil client, puis réglez son cadrage. <a href="#" onclick="event.preventDefault();ouvrirCadrageHero()" style="color:var(--or);text-decoration:underline;white-space:nowrap;">Régler le cadrage</a> · <a href="#" onclick="event.preventDefault();retirerPhotoHero()" style="color:var(--or);text-decoration:underline;white-space:nowrap;">Retirer la photo actuelle</a>
+        <b>★ Photo d'accueil</b> — Cliquez sur l'étoile d'une image pour l'utiliser en bannière principale de la page d'accueil client, puis réglez son cadrage. Les flèches ◀ ▶ changent l'ordre d'affichage dans la galerie de la boutique. <a href="#" onclick="event.preventDefault();ouvrirCadrageHero()" style="color:var(--or);text-decoration:underline;white-space:nowrap;">Régler le cadrage</a> · <a href="#" onclick="event.preventDefault();retirerPhotoHero()" style="color:var(--or);text-decoration:underline;white-space:nowrap;">Retirer la photo actuelle</a>
       </div>
       <div id="galerieListe" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
         <div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;">Chargement...</div>
@@ -8275,20 +8275,21 @@ async function chargerGalerie() {
     const r = await fetch(SUPABASE_URL + '/storage/v1/object/list/boutiques-media', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prefix: slug + '/', limit: 50, sortBy: { column: 'created_at', order: 'desc' } })
+      body: JSON.stringify({ prefix: slug + '/', limit: 50, sortBy: { column: 'name', order: 'asc' } })
     });
     const files = await r.json();
 
     // Charger hero + logo actuels pour les indicateurs
-    let heroActuelle = '', logoActuel = '';
+    let heroActuelle = '', logoActuel = '', ordreGalerie = [];
     try {
       const token = await getValidToken();
-      const rH = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=hero_photo_url,logo_url', {
+      const rH = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=hero_photo_url,logo_url,business_config', {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
       });
       const dH = await rH.json();
       heroActuelle = dH?.[0]?.hero_photo_url || '';
       logoActuel = dH?.[0]?.logo_url || '';
+      ordreGalerie = dH?.[0]?.business_config?.galerie_ordre || [];
     } catch(e) {}
     window.__heroActuelle = heroActuelle;
 
@@ -8301,7 +8302,12 @@ async function chargerGalerie() {
     }
 
     // Filtrer logo (affiché à part) + dossiers
+    // Même ordre que sur la boutique : ordre choisi par le commerçant, puis les nouveaux fichiers à la suite
     const mediaFiles = files.filter(f => f.name && !f.name.endsWith('/') && !/^logo\./.test(f.name));
+    const rang = n => { const i = ordreGalerie.indexOf(n); return i < 0 ? Infinity : i; };
+    mediaFiles.sort((a, b) => (rang(a.name) - rang(b.name)) || a.name.localeCompare(b.name));
+    window.__galerieNoms = mediaFiles.map(f => f.name);
+    const fleche = 'position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:26px;height:26px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;';
     container.innerHTML = mediaFiles.length === 0
       ? '<div style="text-align:center;padding:30px;color:var(--texte-doux);grid-column:span 3;"><p style="font-size:28px;">📸</p><p style="margin-top:8px;">Aucune photo</p></div>'
       : mediaFiles.map((f, idx) => {
@@ -8314,6 +8320,8 @@ async function chargerGalerie() {
           : '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy">')
         + '<div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,0.5);color:white;font-size:11px;padding:2px 8px;border-radius:10px;">' + (idx + 1) + '</div>'
         + (isHero ? '<button onclick="ouvrirCadrageHero()" title="Régler le cadrage de la photo d\'accueil" style="position:absolute;bottom:4px;right:4px;background:var(--or);color:white;border:none;font-family:inherit;font-size:10px;font-weight:600;padding:4px 9px;border-radius:10px;cursor:pointer;">★ Accueil · Cadrer</button>' : '')
+        + (idx > 0 ? '<button onclick="deplacerMedia(\'' + f.name + '\',-1)" title="Afficher plus tôt" aria-label="Déplacer vers le début" style="' + fleche + 'left:4px;">◀</button>' : '')
+        + (idx < mediaFiles.length - 1 ? '<button onclick="deplacerMedia(\'' + f.name + '\',1)" title="Afficher plus tard" aria-label="Déplacer vers la fin" style="' + fleche + 'right:4px;">▶</button>' : '')
         + '<button onclick="supprimerMedia(\'' + f.name + '\')" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.5);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>'
         + (isVideo ? '' : '<button onclick="definirPhotoHero(\'' + url.replace(/'/g, "\\'") + '\')" title="Utiliser comme photo d\'accueil" style="position:absolute;top:4px;left:4px;background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">★</button>')
         + '</div>';
@@ -8776,6 +8784,35 @@ async function supprimerMedia(nom) {
     afficherToast('🗑 Média supprimé');
     chargerGalerie();
   } catch(e) { afficherToast('❌ Erreur : ' + e.message); }
+}
+
+// Ordre d'affichage de la galerie : stocké dans business_config.galerie_ordre
+// (liste de noms de fichiers), lu par boutique.html. On ne renomme aucun fichier,
+// donc les adresses des photos (photo d'accueil, cadrage) restent valables.
+let deplacementEnCours = false;
+async function deplacerMedia(nom, sens) {
+  const noms = (window.__galerieNoms || []).slice();
+  const i = noms.indexOf(nom), j = i + sens;
+  if (deplacementEnCours || i < 0 || j < 0 || j >= noms.length) return;
+  const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+  const commercantId = session.commercant_id;
+  if (!commercantId) return;
+  [noms[i], noms[j]] = [noms[j], noms[i]];
+  deplacementEnCours = true;
+  try {
+    // Relire la config avant d'écrire pour ne pas écraser les autres réglages (cadrage…)
+    const lecture = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId + '&select=business_config', { headers: await mWriteAuth() });
+    const config = (await lecture.json())?.[0]?.business_config || {};
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + commercantId, {
+      method: 'PATCH',
+      headers: await mWriteAuth({ 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+      body: JSON.stringify({ business_config: Object.assign({}, config, { galerie_ordre: noms }) })
+    });
+    const lignes = r.ok ? await r.json() : null;
+    if (!Array.isArray(lignes) || !lignes.length) throw new Error('ordre non enregistré');
+    await chargerGalerie();
+  } catch(e) { afficherToast('❌ ' + e.message); }
+  deplacementEnCours = false;
 }
 
 async function definirPhotoHero(url) {
