@@ -5,7 +5,7 @@ description: "Une entrecôte ne se vend pas comme une paire de chaussures. Voici
 meta_title: "Vendre au poids en ligne : le guide des métiers de bouche"
 meta_description: "Prendre des commandes au kilo, aux 100 g ou à la pièce en ligne : unités de vente, prix affiché, ajustement à la pesée et paiement. Guide pratique."
 date: 2026-09-21
-modified: 2026-11-08
+modified: 2026-11-14
 rubrique: Guide
 emoji: ⚖️
 keywords:
@@ -100,8 +100,9 @@ Beaucoup de commerces combinent les trois selon le produit. C'est un réglage, p
 | Fromagerie | Fromages à la coupe | Barquettes 125 et 250 g, plateaux par nombre de personnes |
 | Primeur | Fruits et légumes au kilo | Paniers de saison, bottes, corbeilles |
 | Traiteur | Salades et plats au poids | Parts, plats pour 4 ou 6, menus complets |
+| Épicerie | Olives, fruits secs, épices en vrac | Sachets de 100, 250 ou 500 g, paniers garnis |
 
-La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du [click and collect primeur](/blog/click-and-collect-primeur) montre comment faire cohabiter paniers de la semaine et vente au kilo.
+La logique est toujours la même : le poids pour ce que le client veut doser lui-même, le format fixe pour tout le reste. Si vous êtes poissonnier et que vous voulez aussi livrer, notre guide sur la [livraison à domicile pour une poissonnerie](/blog/poissonnerie-livraison-a-domicile) explique comment combiner pesée, paiement et tournée. Pour un primeur, notre guide du [click and collect primeur](/blog/click-and-collect-primeur) montre comment faire cohabiter paniers de la semaine et vente au kilo. Pour le vrac d'une épicerie, voyez notre article [click and collect épicerie](/blog/click-and-collect-epicerie).
 
 ## Quel outil choisir pour vendre du fromage ou de la viande au poids en ligne ?
 

@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-13
+modified: 2026-11-14
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -161,6 +161,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Lire notre article [click and collect poissonnerie](/blog/click-and-collect-poissonnerie) et voir [la solution pour poissonnerie](/solutions/poissonnerie).
 - **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
+- **Épicerie.** Vrac en sachets, produits au poids, paniers garnis et coffrets cadeaux. Lire notre article [click and collect épicerie](/blog/click-and-collect-epicerie) et voir [la solution pour épicerie](/solutions/epicerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).
 - **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
 - **Restaurant.** Vente à emporter et réservation de table. Lire notre guide pour choisir une [application click and collect pour restaurant](/blog/application-click-and-collect-restaurant) et voir [la solution pour restaurant](/solutions/restaurant).
@@ -184,6 +185,7 @@ Les autres guides du blog sur le click & collect :
 - [Click and collect primeur](/blog/click-and-collect-primeur)
 - [Click and collect fromagerie](/blog/click-and-collect-fromagerie)
 - [Click and collect poissonnerie](/blog/click-and-collect-poissonnerie)
+- [Click and collect épicerie](/blog/click-and-collect-epicerie)
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)
 - [Click and collect restauration rapide](/blog/click-and-collect-restauration-rapide)
 - [Application click and collect restaurant](/blog/application-click-and-collect-restaurant)
