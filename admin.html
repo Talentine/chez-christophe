@@ -305,11 +305,13 @@
     /* Sidebar devient un drawer caché par défaut */
     .sidebar {
       transform:translateX(-100%);
-      transition:transform .25s ease;
+      /* Fermé, le tiroir est aussi retiré de la tabulation et des lecteurs d'écran (après le glissement). */
+      visibility:hidden;
+      transition:transform .25s ease, visibility 0s linear .25s;
       width:260px;
       box-shadow:0 0 30px rgba(0,0,0,0.4);
     }
-    .sidebar.open { transform:translateX(0); }
+    .sidebar.open { transform:translateX(0); visibility:visible; transition:transform .25s ease, visibility 0s; }
 
     .sidebar-footer { position:absolute; }
 
@@ -639,7 +641,7 @@
   @media (max-width:480px) { .stats-grid { grid-template-columns:1fr 1fr; } .stat-card-val { font-size:23px; } }
 
   /* ── Bascule de thème (interrupteur) ── */
-  .theme-bascule { display:flex; align-items:center; gap:9px; width:100%; min-height:40px; margin-bottom:10px; padding:8px 11px; background:var(--a-v06); border:1px solid var(--a-l10); border-radius:12px; color:var(--a-ink-2); font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; text-align:left; transition:background .15s, color .15s; }
+  .theme-bascule { display:flex; align-items:center; gap:9px; width:100%; min-height:44px; margin-bottom:10px; padding:8px 11px; background:var(--a-v06); border:1px solid var(--a-l10); border-radius:12px; color:var(--a-ink-2); font:600 12.5px 'Manrope',system-ui,sans-serif; cursor:pointer; text-align:left; transition:background .15s, color .15s; }
   .theme-bascule:hover { background:var(--a-v10); color:var(--a-blanc); }
   .theme-bascule:focus-visible, .theme-bascule-icone:focus-visible { outline:2px solid var(--or-t); outline-offset:2px; }
   .theme-bascule > span { flex:1; min-width:0; }
@@ -650,6 +652,14 @@
   .theme-bascule[aria-checked=true] .theme-piste::after { transform:translateX(14px); background:#fff; }
   .theme-bascule-login { position:absolute; top:16px; right:16px; width:auto; margin:0; background:var(--a-surface); }
   .login-screen { position:relative; }
+  /* Fenêtre étroite : la carte passerait sous l'interrupteur, qui prend alors sa place au-dessus d'elle. */
+  @media (max-width:760px) {
+    .login-screen { flex-direction:column; gap:14px; }
+    .theme-bascule-login { position:static; align-self:flex-end; flex:none; }
+  }
+  /* Texte secondaire : une couleur pleine (lisible dans les deux thèmes) plutôt qu'une opacité. */
+  .a-att { color:var(--a-ink-3); }
+  .a-compte { margin-left:4px; font-weight:500; }
   .mobile-header-actions { display:flex; gap:8px; }
   .theme-bascule-icone[aria-checked=true] { color:var(--or-t); border-color:var(--or-t); }
   @media (prefers-reduced-motion:reduce) { .theme-bascule, .theme-piste, .theme-piste::after { transition:none; } }
@@ -660,7 +670,10 @@
   html[data-theme="clair"] .stat-card, html[data-theme="clair"] .table-card, html[data-theme="clair"] .mrr-card, html[data-theme="clair"] .produit-admin-card { box-shadow:0 1px 2px rgba(15,44,82,.05); }
   html[data-theme="clair"] .login-input, html[data-theme="clair"] .search-input, html[data-theme="clair"] select.a-select { background:#fff; border-color:var(--a-champ-trait); color:var(--a-ink); }
   html[data-theme="clair"] :is(.main, #modalNouveauCommerce, #admin-add-prod-overlay, .modal-edit-card) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]), select, textarea):not(.crm-racine *) { background-color:#fff !important; border-color:var(--a-champ-trait) !important; color:var(--a-ink) !important; }
+  html[data-theme="clair"] :is(.main, #modalNouveauCommerce, #admin-add-prod-overlay, .modal-edit-card) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]), textarea):not(.crm-racine *)::placeholder { color:var(--a-ink-3); opacity:1; }
   html[data-theme="clair"] .login-input:focus, html[data-theme="clair"] .search-input:focus { border-color:var(--or-t); }
+  /* Anneau de focus clavier : le vert vif du socle est trop pâle sur fond clair. Le CRM garde ses propres anneaux. */
+  html[data-theme="clair"] :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible:not(.crm-racine, .crm-racine *) { outline-color:var(--or-t); }
   html[data-theme="clair"] input:-webkit-autofill, html[data-theme="clair"] textarea:-webkit-autofill, html[data-theme="clair"] select:-webkit-autofill { -webkit-text-fill-color:var(--a-ink); box-shadow:inset 0 0 0 1000px #FFF8E6; caret-color:var(--a-ink); }
   html[data-theme="clair"] .nav-link.actif { background:rgba(244,185,66,.22); box-shadow:inset 3px 0 0 var(--or-t); }
   html[data-theme="clair"] .todo-nb.chaud, html[data-theme="clair"] .badge-pro { background:rgba(244,185,66,.24); }
@@ -877,15 +890,15 @@
       <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
         <button id="filter-tous" class="filter-pill actif" onclick="filtrerStatutDemo('tous')"
           style="background:var(--a-v06);border:1.5px solid var(--a-l12);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--a-blanc);cursor:pointer;font-family:inherit;">
-          Tous <span id="count-tous" style="opacity:.5;margin-left:4px;"></span>
+          Tous <span id="count-tous" class="a-compte"></span>
         </button>
         <button id="filter-demo" class="filter-pill" onclick="filtrerStatutDemo('demo')"
           style="background:rgba(var(--c-jaune),.12);border:1.5px solid rgba(var(--c-jaune),.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:rgb(var(--c-jaune));cursor:pointer;font-family:inherit;">
-          🎯 Démos <span id="count-demo" style="opacity:.7;margin-left:4px;"></span>
+          🎯 Démos <span id="count-demo" class="a-compte"></span>
         </button>
         <button id="filter-actif" class="filter-pill" onclick="filtrerStatutDemo('actif')"
           style="background:rgba(var(--c-vertp),.12);border:1.5px solid rgba(var(--c-vertp),.4);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:600;color:rgb(var(--c-vertp));cursor:pointer;font-family:inherit;">
-          ✅ Payantes <span id="count-actif" style="opacity:.7;margin-left:4px;"></span>
+          ✅ Payantes <span id="count-actif" class="a-compte"></span>
         </button>
         <span style="flex:1"></span>
         <select class="a-select" id="triCommercants" onchange="filtrerCommercants(document.getElementById('searchCommercants').value)" aria-label="Trier les boutiques">
@@ -1124,7 +1137,7 @@
       <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--a-t60);margin:0 0 14px;cursor:pointer;">
         <input type="checkbox" id="anaNePasSuivre" onchange="basculerSuiviAdmin(this.checked)">
         Ne pas compter mes visites sur ce navigateur
-        <span style="opacity:.6;">(sur un autre appareil : ouvrir le site avec <code>?ne_pas_suivre=1</code>)</span>
+        <span class="a-att">(sur un autre appareil : ouvrir le site avec <code>?ne_pas_suivre=1</code>)</span>
       </label>
 
       <div class="mrr-section">
@@ -1153,7 +1166,7 @@
 
       <div class="mrr-section">
         <div class="mrr-card">
-          <div class="mrr-titre">Entonnoir d'inscription (visites) <span id="anaEntonnoirClics" style="opacity:.5;font-weight:400;font-size:11px;"></span></div>
+          <div class="mrr-titre">Entonnoir d'inscription (visites) <span id="anaEntonnoirClics" class="a-att" style="font-weight:400;font-size:11px;"></span></div>
           <div id="anaEntonnoir" style="font-size:13px;">Chargement…</div>
         </div>
         <div class="mrr-card">
@@ -2621,7 +2634,7 @@ async function chargerAnalytics() {
     const topPages = Object.entries(pageCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopPages').innerHTML = topPages.length
       ? listeBarres(topPages, true)
-      : '<div style="opacity:.5">Aucune donnée</div>';
+      : '<div class="a-att">Aucune donnée</div>';
 
     // Top boutiques (par slug)
     const slugCounts = {};
@@ -2633,7 +2646,7 @@ async function chargerAnalytics() {
     const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaTopBoutiques').innerHTML = topSlugs.length
       ? listeBarres(topSlugs, false)
-      : '<div style="opacity:.5">Aucune visite de boutique</div>';
+      : '<div class="a-att">Aucune visite de boutique</div>';
 
     // Top referrers — normalisation des sources
     function normaliserSource(host) {
@@ -2674,7 +2687,7 @@ async function chargerAnalytics() {
     const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
     document.getElementById('anaReferrers').innerHTML = topRefs.length
       ? listeBarres(topRefs, false)
-      : '<div style="opacity:.5">Trafic direct uniquement</div>';
+      : '<div class="a-att">Trafic direct uniquement</div>';
 
     afficherCampagnes(visitesListe);
     afficherParcours(events, normaliserSource);
@@ -2714,14 +2727,14 @@ function afficherCampagnes(visitesListe) {
   });
   const lignes = Object.entries(camp).sort((a, b) => b[1].n - a[1].n).slice(0, 15);
   const el = document.getElementById('anaCampagnes');
-  if (!lignes.length) { el.innerHTML = '<div style="opacity:.5">Aucune visite venant d\'une campagne sur cette période</div>'; return; }
+  if (!lignes.length) { el.innerHTML = '<div class="a-att">Aucune visite venant d\'une campagne sur cette période</div>'; return; }
   const th = 'padding:6px 8px;font-weight:500;';
   el.innerHTML = `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
-    <tr style="opacity:.5;text-align:left;"><th style="${th}padding-left:0;">Campagne</th><th style="${th}">Visites</th><th style="${th}">→ Inscription</th><th style="${th}">Démos</th><th style="${th}padding-right:0;">Sources</th></tr>
+    <tr class="a-att" style="text-align:left;"><th style="${th}padding-left:0;">Campagne</th><th style="${th}">Visites</th><th style="${th}">→ Inscription</th><th style="${th}">Démos</th><th style="${th}padding-right:0;">Sources</th></tr>
     ${lignes.map(([nom, c]) => `<tr style="border-top:1px solid var(--a-l05);">
       <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.8;">${escHtml(nom)}</td>
       <td style="padding:6px 8px;">${c.n}</td>
-      <td style="padding:6px 8px;">${c.insc} <span style="opacity:.5;">(${Math.round(c.insc / c.n * 100)}%)</span></td>
+      <td style="padding:6px 8px;">${c.insc} <span class="a-att">(${Math.round(c.insc / c.n * 100)}%)</span></td>
       <td style="padding:6px 8px;"><strong style="color:${c.demo ? 'rgb(var(--c-vertp))' : 'inherit'};">${c.demo}</strong></td>
       <td style="padding:6px 0 6px 8px;opacity:.7;">${Object.entries(c.sources).sort((a, b) => b[1] - a[1]).map(([s, n]) => escHtml(s) + ' ' + n).join(' · ')}</td>
     </tr>`).join('')}
@@ -2738,7 +2751,7 @@ function formaterDuree(sec) {
 // ── Où les visiteurs s'arrêtent : visites reliées par l'identifiant anonyme meta.sid ──
 function afficherParcours(events, normaliserSource) {
   const ligne = (gauche, droite) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--a-l05);"><span style="opacity:.75;font-size:12px;">${gauche}</span><strong style="white-space:nowrap;">${droite}</strong></div>`;
-  const vide = '<div style="opacity:.5">Pas encore de visite suivie sur cette période</div>';
+  const vide = '<div class="a-att">Pas encore de visite suivie sur cette période</div>';
 
   // Regroupe par visite
   const visites = {};
@@ -2782,7 +2795,7 @@ function afficherParcours(events, normaliserSource) {
   });
   const topSorties = Object.entries(sorties).sort((a,b) => b[1]-a[1]).slice(0,10);
   document.getElementById('anaSorties').innerHTML = topSorties.length
-    ? topSorties.map(([p,n]) => ligne(`<span style="font-family:monospace;">${escHtml(p)}</span>`, `${n} <span style="opacity:.5;font-weight:400;font-size:11px;">(${Math.round(n / listeVisites.length * 100)}%)</span>`)).join('')
+    ? topSorties.map(([p,n]) => ligne(`<span style="font-family:monospace;">${escHtml(p)}</span>`, `${n} <span class="a-att" style="font-weight:400;font-size:11px;">(${Math.round(n / listeVisites.length * 100)}%)</span>`)).join('')
     : vide;
 
   // Lecture par page (événements page_exit)
@@ -2797,7 +2810,7 @@ function afficherParcours(events, normaliserSource) {
   const topLecture = Object.entries(lecture).sort((a,b) => b[1].n - a[1].n).slice(0,10);
   document.getElementById('anaLecture').innerHTML = topLecture.length
     ? `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
-        <tr style="opacity:.5;text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Lectures</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
+        <tr class="a-att" style="text-align:left;"><th style="padding:6px 8px 6px 0;font-weight:500;">Page</th><th style="padding:6px 8px;font-weight:500;">Lectures</th><th style="padding:6px 8px;font-weight:500;">Défilement</th><th style="padding:6px 8px;font-weight:500;">Temps</th><th style="padding:6px 0 6px 8px;font-weight:500;">Arrêt le plus fréquent</th></tr>
         ${topLecture.map(([p,l]) => {
           const section = Object.entries(l.sections).sort((a,b) => b[1]-a[1])[0];
           const scroll = Math.round(l.scroll / l.n);
@@ -2828,12 +2841,12 @@ function afficherParcours(events, normaliserSource) {
         if (v.some(e => e.event === 'cta_inscription')) badges.push('🖱️ clic S\'inscrire');
         if (etapeMax) badges.push('📝 inscription étape ' + etapeMax);
         if (v.some(e => e.event === 'demo_creee')) badges.push('✅ démo créée');
-        const chemin = vues.map(e => `<span style="font-family:monospace;">${escHtml(e.page || '/')}</span>`).join(' <span style="opacity:.4;">→</span> ');
+        const chemin = vues.map(e => `<span style="font-family:monospace;">${escHtml(e.page || '/')}</span>`).join(' <span class="a-att" aria-hidden="true">→</span> ');
         const arret = sortie
           ? `arrêt à ${Number(sortie.meta.scroll) || 0}%${sortie.meta.section ? ' · « ' + escHtml(sortie.meta.section) + ' »' : ''}`
           : '';
         return `<div style="padding:10px 0;border-bottom:1px solid var(--a-l05);">
-          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;opacity:.55;margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--a-ink-3);margin-bottom:4px;">
             <span>${debut.toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' })} · ${escHtml(vues[0].device || '?')} · ${escHtml(source)}</span>
             <span>${formaterDuree((fin - debut) / 1000)} · ${vues.length} page${vues.length > 1 ? 's' : ''}</span>
           </div>

@@ -705,8 +705,10 @@
     var court = url.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '');
     if (reseau === 'instagram') return '@' + court.replace(/^instagram\.com\//, '');
     if (reseau === 'google') {
+      // « Google Maps » seulement quand l'adresse y mène à coup sûr ; sinon ce que l'on ouvrira vraiment.
       var hote = court.split(/[/?]/)[0];
-      return /(^|\.)google\./.test(hote) || hote === 'maps.app.goo.gl' ? 'Google Maps' : hote;
+      if (CRM.estLienMaps(url)) return 'Google Maps';
+      return /^google\./.test(hote) ? 'Recherche Google' : hote;
     }
     return court;
   }
@@ -1070,7 +1072,12 @@
     e.preventDefault();
     if (ui.perdu) { fermerPerdu(); return; }
     if (ui.epingleEdition) { ui.epingleEdition = false; rendre(); return; }
-    if (Object.keys(ui.lienEdition).length) { ui.lienEdition = {}; ui.lienErreur = {}; rendre(); return; }
+    if (Object.keys(ui.lienEdition).length) {
+      // Le focus revient sur la ligne que l'on quittait (celle du champ actif, sinon la première en édition).
+      var actif = document.activeElement, ligne = actif && actif.closest ? actif.closest('.crm-pres[data-reseau]') : null;
+      var idLien = ligne ? ligne.dataset.reseau : Object.keys(ui.lienEdition)[0];
+      ui.lienEdition = {}; ui.lienErreur = {}; rendre(); foyerLien(idLien); return;
+    }
     demanderFermeture();
   });
 
@@ -1448,8 +1455,18 @@
     delete ui.lienErreur[id];
     ui.brouillons[CHAMPS_LIEN[id]] = '';
     rendre();
-    var bouton = panneau.querySelector('[data-action="lien-modifier"][data-id="' + id + '"]');
-    if (bouton) bouton.focus({ preventScroll: true });
+    foyerLien(id);
+  }
+
+  /* Après un rendu qui fait disparaître le champ ou le bouton actif, le focus reste sur la ligne du réseau :
+     le bouton « Modifier » si le lien est connu, sinon le champ de saisie. Sans cela il repartirait en tête de fiche. */
+  function foyerLien(id) {
+    if (!panneau || !reseauCrm(id)) return;
+    var cibles = [panneau.querySelector('[data-action="lien-modifier"][data-id="' + id + '"]'), panneau.querySelector(champLienDom(id)),
+      panneau.querySelector('.crm-pres[data-reseau="' + id + '"] a[data-lien]')];
+    for (var i = 0; i < cibles.length; i++) {
+      if (cibles[i] && !cibles[i].disabled) { cibles[i].focus({ preventScroll: true }); return; }
+    }
   }
 
   function refuserLien(id, message) {
@@ -1484,6 +1501,7 @@
       }
     });
     rendre();
+    foyerLien(id);
   }
 
   function effacerLien(f, id) {
@@ -1496,6 +1514,7 @@
     ui.brouillons[CHAMPS_LIEN[id]] = '';
     ecrire(CRM.majLiens(cle, liens), 'Lien ' + r.libelle + ' effacé', function () { return CRM.majLiens(cle, retour); });
     rendre();
+    foyerLien(id);
   }
 
   // ───────────────────────────── Interface publique ─────────────────────────────

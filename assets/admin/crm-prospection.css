@@ -251,8 +251,9 @@
 .crm-pro .crm-pro-reseaux { display: inline-flex; align-items: center; gap: 5px; color: var(--a-ink-2); }
 .crm-pro .crm-pro-reseau { display: inline-flex; }
 .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-corps { cursor: default; }
-.crm-pro .crm-pro-trouve-connu .crm-pro-trouve-txt, .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-tel { opacity: .6; }
-.crm-pro .crm-pro-trouve-connu .crm-pro-trouve-tel em { opacity: 1; }
+/* Ligne déjà connue : atténuée par une couleur pleine (lisible dans les deux thèmes), pas par une opacité qui
+   diluerait aussi la mention « Déjà dans la file ». */
+.crm-pro .crm-pro-trouve-connu .crm-pro-trouve-txt b, .crm-pro .crm-pro-trouve-connu .crm-pro-trouve-tel, .crm-pro .crm-pro-trouve-connu .crm-pro-reseaux { font-weight: 600; color: var(--a-ink-3); }
 .crm-pro .crm-pro-verifier { margin-right: 8px; }
 
 .crm-pro .crm-pro-ajout-barre {
@@ -271,6 +272,7 @@
 .crm-pro .crm-pro-cherche .crm-ic { position: absolute; left: 12px; pointer-events: none; }
 .crm-pro .crm-pro-cherche input { width: 100%; height: 36px; padding: 0 12px 0 36px; border-radius: 12px; background: var(--a-surface); }
 .crm-pro .crm-pro-cherche input::-webkit-search-cancel-button { filter: invert(1); opacity: .5; }
+html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-button { filter: none; opacity: 1; }
 
 .crm-pro .crm-pro-panneau { margin-top: 14px; animation: crm-apparait .18s var(--crm-courbe); }
 .crm-pro .crm-pro-panneau-tete { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: -6px -8px 8px 0; }

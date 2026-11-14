@@ -1152,8 +1152,20 @@
   ];
   var LONGUEUR_LIEN = 500;
   // Premiers segments d'une adresse Instagram qui ne désignent pas un profil.
-  var RESERVES_INSTAGRAM = ['p', 'reel', 'reels', 'explore', 'stories', 'accounts', 'tv', 'direct', 'about', 'developer', 'legal', 'share'];
-  var HOTES_GOOGLE_COURTS = ['maps.app.goo.gl', 'goo.gl', 'g.page', 'g.co', 'share.google'];
+  var RESERVES_INSTAGRAM = ['p', 'reel', 'reels', 'explore', 'stories', 'accounts', 'tv', 'direct', 'about', 'developer', 'legal', 'share', '_u', '_n'];
+  // Premiers segments qui précèdent le nom du profil dans un lien d'application (« instagram.com/_u/nom »).
+  var PREFIXES_INSTAGRAM = ['_u', '_n'];
+  var DOMAINES_GOOGLE = '(com|fr|be|ch|lu|ca|es|it|de|co\\.uk)';
+  var HOTE_GOOGLE = new RegExp('^(www\\.)?google\\.' + DOMAINES_GOOGLE + '$');
+  var HOTE_GOOGLE_MAPS = new RegExp('^maps\\.google\\.' + DOMAINES_GOOGLE + '$');
+  /* Liens courts de partage d'une fiche : pour chaque hôte, le chemin exigé. Un raccourcisseur générique
+     (« goo.gl/abc », « g.co/abc ») peut mener n'importe où : seules les formes propres aux fiches passent. */
+  var HOTES_GOOGLE_COURTS = {
+    'maps.app.goo.gl': /^\/[^\/]/, 'g.page': /^\/[^\/]/, 'share.google': /^\/[^\/]/,
+    'goo.gl': /^\/maps\/[^\/]/i, 'g.co': /^\/kgs\/[^\/]/i
+  };
+  // Fins de nom de domaine courantes : « lefournil.fr » tapé seul est un site, pas un identifiant.
+  var FIN_DOMAINE = /\.(fr|com|net|org|eu|be|ch|lu|de|es|it|uk|io|co|me|shop|store|site|online|info|biz|bzh|paris|boutique|restaurant|pro|app|page)$/i;
 
   function reseauDe(id) {
     for (var i = 0; i < RESEAUX.length; i++) if (RESEAUX[i].id === id) return RESEAUX[i];
@@ -1168,10 +1180,13 @@
   /* Rend l'adresse https normalisée d'une fiche Google, d'un profil Instagram ou d'une page Facebook, ou une
      chaîne vide si la valeur n'en est pas une. Accepte une URL (http ou https, avec ou sans « https:// ») et,
      pour Instagram et Facebook, un identifiant (« @nom » ou « nom »). Tout autre schéma (javascript:, data:…),
-     tout autre site et toute valeur trop longue sont refusés : le résultat peut aller dans un href. */
+     tout autre site et toute valeur trop longue sont refusés : le résultat peut aller dans un href.
+     L'apostrophe est admise à l'entrée (« …/maps/place/L'Épi+d'Or/… ») mais ne sort jamais : elle est réécrite
+     en %27 pour Google et refusée par les règles d'Instagram et de Facebook. Le résultat est stable : le
+     repasser par la fonction rend la même adresse. */
   function normaliserLien(reseau, valeur) {
     var v = texte(valeur);
-    if (!reseauDe(reseau) || !v || v.length > LONGUEUR_LIEN || /[\s\u0000-\u001f\u007f<>"'`\\]/.test(v)) return '';
+    if (!reseauDe(reseau) || !v || v.length > LONGUEUR_LIEN || /[\s\u0000-\u001f\u007f<>"`\\]/.test(v)) return '';
     var schema = /^([a-z][a-z0-9+.\-]*):/i.exec(v);
     var url = null;
     if (schema) {
@@ -1184,6 +1199,11 @@
       if (!url) return '';
     }
     var lien = url ? lienDepuisUrl(reseau, url) : lienDepuisIdentifiant(reseau, v);
+    if (lien && !url) {
+      // Un identifiant suit les mêmes règles qu'une adresse (segments réservés, « .php »…) : on repasse par elles.
+      url = analyserUrl(lien);
+      lien = url ? lienDepuisUrl(reseau, url) : '';
+    }
     return lien && lien.length <= LONGUEUR_LIEN ? lien : '';
   }
 
@@ -1191,6 +1211,9 @@
     var id = v.replace(/^@/, '');
     // Un nom de site tapé seul (« instagram.com ») n'est pas un identifiant.
     if (/^(www\.|m\.)?(instagram|facebook|fb|google)\.[a-z]{2,6}$/i.test(id)) return '';
+    /* Ni un nom de domaine quelconque (« www.lefournil.fr », « lefournil.fr ») : sans cela le site du commerce
+       deviendrait un faux profil. Un identifiant qui finit vraiment ainsi se saisit avec son « @ ». */
+    if (/^(www|m)\./i.test(id) || (v.charAt(0) !== '@' && FIN_DOMAINE.test(id))) return '';
     if (reseau === 'instagram') {
       return /^[a-z0-9._]{1,30}$/i.test(id) && /[a-z0-9]/i.test(id) ? 'https://www.instagram.com/' + id.toLowerCase() + '/' : '';
     }
@@ -1206,21 +1229,47 @@
     var chemin = url.pathname.replace(/\/+$/, '');
     if (reseau === 'instagram') {
       if (!/^((www|m)\.)?instagram\.com$/.test(hote) && hote !== 'instagr.am') return '';
-      var id = chemin.split('/')[1] || '';
+      var segments = chemin.split('/');
+      var id = (PREFIXES_INSTAGRAM.indexOf((segments[1] || '').toLowerCase()) >= 0 ? segments[2] : segments[1]) || '';
       if (!/^[a-z0-9._]{1,30}$/i.test(id) || RESERVES_INSTAGRAM.indexOf(id.toLowerCase()) >= 0) return '';
       return 'https://www.instagram.com/' + id.toLowerCase() + '/';
     }
     if (reseau === 'facebook') {
-      if (!/^([a-z0-9\-]+\.)?facebook\.com$/.test(hote) && !/^(www\.)?fb\.(com|me)$/.test(hote)) return '';
+      // « fb.me » est un raccourcisseur : son code n'est pas un chemin de facebook.com, l'hôte est donc gardé.
+      var courtFb = /^(www\.)?fb\.me$/.test(hote);
+      if (!/^([a-z0-9\-]+\.)?facebook\.com$/.test(hote) && !/^(www\.)?fb\.com$/.test(hote) && !courtFb) return '';
       if (!chemin || !/^[\/A-Za-z0-9._~%\-]+$/.test(chemin)) return '';
       // Les anciens profils n'ont pas de nom : « profile.php?id=123 ».
       var numero = /^\/(profile|people)\.php$/i.test(chemin) ? /^\d{3,25}$/.exec(url.searchParams.get('id') || '') : null;
-      if (/\.php$/i.test(chemin) && !numero) return '';
+      if (/\.php$/i.test(chemin) && (!numero || courtFb)) return '';
+      if (courtFb) return 'https://fb.me' + chemin;
       return 'https://www.facebook.com' + chemin + (numero ? '?id=' + numero[0] : '');
     }
-    var google = /^([a-z0-9\-]+\.)*google\.(com|fr|be|ch|lu|ca|es|it|de|co\.uk)$/.test(hote) || HOTES_GOOGLE_COURTS.indexOf(hote) >= 0;
-    if (!google || (!chemin && !url.search)) return '';
-    return 'https://' + hote + url.pathname + url.search;
+    /* Google : l'hôte ne suffit pas (« google.com/url?q=… » redirige n'importe où, « sites.google.com » héberge
+       des pages de tiers). Seules passent les adresses de Maps, une recherche Google, et les liens courts de
+       partage d'une fiche. Le chemin testé est celui que `URL` a déjà normalisé (« /maps/../url » vaut « /url »). */
+    var q = url.searchParams;
+    var ok = false;
+    if (HOTE_GOOGLE.test(hote)) {
+      ok = /^\/maps(\/|$)/i.test(url.pathname) ? (chemin.length > 5 || !!url.search)
+        : /^\/search\/?$/i.test(url.pathname) && !!(q.get('q') || q.get('kgmid') || q.get('ludocid'));
+    } else if (HOTE_GOOGLE_MAPS.test(hote)) {
+      ok = /^\/maps(\/|$)/i.test(url.pathname) ? (chemin.length > 5 || !!url.search)
+        : url.pathname === '/' && !!(q.get('cid') || q.get('q'));
+    } else if (Object.prototype.hasOwnProperty.call(HOTES_GOOGLE_COURTS, hote)) {
+      ok = HOTES_GOOGLE_COURTS[hote].test(url.pathname);
+    }
+    if (!ok) return '';
+    return ('https://' + hote + url.pathname + url.search).replace(/'/g, '%27');
+  }
+
+  // Lien court Google dont la destination n'est pas forcément Maps : l'affichage montre alors son hôte.
+  function estLienMaps(url) {
+    var u = analyserUrl(texte(url));
+    if (!u) return false;
+    var hote = u.hostname.toLowerCase();
+    return hote === 'maps.app.goo.gl' || hote === 'g.page' || HOTE_GOOGLE_MAPS.test(hote) ||
+      ((HOTE_GOOGLE.test(hote) || hote === 'goo.gl') && /^\/maps(\/|$)/i.test(u.pathname));
   }
 
   // Première valeur de la liste qui donne un lien valable (une étiquette peut en contenir plusieurs, séparées par « ; »).
@@ -1231,6 +1280,16 @@
         var lien = normaliserLien(reseau, morceaux[k]);
         if (lien) return lien;
       }
+    }
+    return '';
+  }
+
+  /* Premier lien valable parmi des colonnes déjà normalisées (crm_fiches, crm_prospects, commercants) : la
+     valeur est relue entière, sans découpage sur « ; » (une adresse Google peut en contenir). */
+  function premierLienEntier(reseau, valeurs) {
+    for (var i = 0; i < valeurs.length; i++) {
+      var lien = normaliserLien(reseau, valeurs[i]);
+      if (lien) return lien;
     }
     return '';
   }
@@ -1258,9 +1317,9 @@
     var c = sources.commercant || null;
     var resultat = {};
     RESEAUX.forEach(function (r) {
-      var url = premierLien(r.id, etats.map(function (e) { return e[r.colonne]; })), origine = url ? 'manuel' : null;
-      if (!url) { url = premierLien(r.id, prospects.map(function (p) { return p[r.colonneProspect]; })); if (url) origine = 'trouve'; }
-      if (!url && c && r.id !== 'google') { url = premierLien(r.id, [c[r.id]]); if (url) origine = 'boutique'; }
+      var url = premierLienEntier(r.id, etats.map(function (e) { return e[r.colonne]; })), origine = url ? 'manuel' : null;
+      if (!url) { url = premierLienEntier(r.id, prospects.map(function (p) { return p[r.colonneProspect]; })); if (url) origine = 'trouve'; }
+      if (!url && c && r.id !== 'google') { url = premierLienEntier(r.id, [c[r.id]]); if (url) origine = 'boutique'; }
       resultat[r.id] = { url: url, origine: origine, recherche: recherches[r.id] };
     });
     return resultat;
@@ -1351,14 +1410,22 @@
         telephone: telephone, email: normaliserEmail(premier(e.email, e['contact:email'])) || null,
         site_web: site || null,
         // Beaucoup de commerces n'ont pour « site » que leur page Facebook ou leur profil Instagram.
-        instagram: premierLien('instagram', [e['contact:instagram'], e.instagram, site]) || null,
-        facebook: premierLien('facebook', [e['contact:facebook'], e.facebook, site]) || null,
+        instagram: premierLien('instagram', [e['contact:instagram'], e.instagram, siteEnUrl(site)]) || null,
+        facebook: premierLien('facebook', [e['contact:facebook'], e.facebook, siteEnUrl(site)]) || null,
         source: 'osm', source_ref: ref,
         dejaConnu: !!raison, raisonDejaConnu: raison,
         libelleDejaConnu: raison === 'file' ? 'Déjà dans la file' : raison === 'crm' ? 'Déjà client ou en démo' : null
       });
     });
     return lignes.sort(function (a, b) { return sansAccents(a.nom) < sansAccents(b.nom) ? -1 : 1; });
+  }
+
+  /* Le site d'un commerce est toujours une adresse, jamais un identifiant : « www.lefournil.fr » écrit sans
+     « https:// » ne doit pas être lu comme un nom de profil Instagram ou de page Facebook. */
+  function siteEnUrl(site) {
+    return texte(site).split(/\s*;\s*/).filter(Boolean).map(function (s) {
+      return /^[a-z][a-z0-9+.\-]*:/i.test(s) || s.indexOf('/') >= 0 ? s : 'https://' + s;
+    }).join(';');
   }
 
   function requeteOverpass(parametres) {
@@ -1838,6 +1905,7 @@
   CRM.lienBoutique = function (fiche) { return lienBoutique(fiche, CRM.config.origine); };
   CRM.nomDepartement = nomDepartement;
   CRM.normaliserLien = normaliserLien;
+  CRM.estLienMaps = estLienMaps;
 
   /* Présence en ligne d'un prospect de la file d'appels : celle de sa fiche quand il en a une (liens saisis
      compris), sinon ce que la recherche a trouvé, et toujours les recherches automatiques. */
@@ -2016,8 +2084,9 @@
     verifierEcriture(); verifierCle(cle);
     return suivreEcriture(function () { return ecrireEtatSansSuivi(cle, champs); });
   }
-  async function ecrireEtatSansSuivi(cle, champs) {
-    var principale = clePrincipale(cle);
+  async function ecrireEtatSansSuivi(cle, champs) { return ecrireLigneEtat(clePrincipale(cle), champs); }
+  // Écrit sur la ligne de cette clé exacte (principale, ou secondaire quand il faut y effacer un lien).
+  async function ecrireLigneEtat(principale, champs) {
     var avant = null;
     for (var i = 0; i < brut.fiches.length; i++) if (brut.fiches[i].cle === principale) avant = brut.fiches[i];
     var apres = Object.assign({ cle: principale, perdu_at: null, motif_perte: null, reporte_jusqua: null, note_epinglee: null }, avant, champs);
@@ -2062,8 +2131,25 @@
       champs[r.colonne] = lien;
     });
     if (!Object.keys(champs).length) return null;
+    /* La présence lit les liens saisis sur toutes les clés de la fiche (un lead ou un prospect devenu démo garde
+       les siens sur son ancienne clé). Effacer, c'est donc aussi vider la colonne sur les clés secondaires qui la
+       portent, sinon l'ancien lien réapparaîtrait aussitôt. Aucune ligne n'est créée pour cela. */
+    var principale = clePrincipale(cle), f = parCle.get(cle);
+    var secondaires = [];
+    (f ? f.cles : []).forEach(function (autre) {
+      if (autre === principale) return;
+      var ligne = null, aVider = {};
+      for (var i = 0; i < brut.fiches.length; i++) if (brut.fiches[i].cle === autre) ligne = brut.fiches[i];
+      if (!ligne) return;
+      Object.keys(champs).forEach(function (colonne) { if (champs[colonne] === null && ligne[colonne] != null) aVider[colonne] = null; });
+      if (Object.keys(aVider).length) secondaires.push({ cle: autre, champs: aVider });
+    });
     try {
-      return await ecrireEtat(cle, champs);
+      return await suivreEcriture(async function () {
+        var resultat = await ecrireLigneEtat(principale, champs);
+        for (var i = 0; i < secondaires.length; i++) await ecrireLigneEtat(secondaires[i].cle, secondaires[i].champs);
+        return resultat;
+      });
     } catch (e) {
       if (!estColonneAbsente(e)) throw e;
       // Les colonnes manquent en base : on le retient pour ne plus proposer l'enregistrement, le reste continue.
@@ -2393,7 +2479,7 @@
     unifier: unifier, etape: etape, score: score, prochaineAction: prochaineAction, fil: fil,
     modeles: modeles, liens: liens, lienBoutique: lienBoutique,
     prospectsDepuisOsm: prospectsDepuisOsm, requeteOverpass: requeteOverpass, analyserImport: analyserImport, recap: recap,
-    normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence
+    normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence, estLienMaps: estLienMaps
   };
 
   // Réservé aux tests : remet le cœur à neuf, ou injecte des données sans passer par le réseau.

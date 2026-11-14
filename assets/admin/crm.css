@@ -77,6 +77,8 @@ html[data-theme="clair"] {
 }
 html[data-theme="clair"] .crm-racine input, html[data-theme="clair"] .crm-racine select, html[data-theme="clair"] .crm-racine textarea { background-color: #FFFFFF; border-color: var(--a-champ-trait); color-scheme: light; }
 html[data-theme="clair"] .crm-racine input:focus, html[data-theme="clair"] .crm-racine textarea:focus, html[data-theme="clair"] .crm-racine select:focus { border-color: var(--or-t); }
+/* Un lien refusé garde sa bordure d'alerte même quand le champ a le focus (la règle ci-dessus l'emporterait). */
+html[data-theme="clair"] .crm-racine .crm-pres-saisie .crm-champ[aria-invalid=true], html[data-theme="clair"] .crm-racine .crm-pres-saisie .crm-champ[aria-invalid=true]:focus { border-color: var(--crm-alerte); }
 html[data-theme="clair"] .crm-panneau { box-shadow: -24px 0 60px rgba(15, 44, 82, .18); }
 html[data-theme="clair"] .crm-toast { box-shadow: 0 10px 30px rgba(15, 44, 82, .3); }
 
@@ -265,7 +267,7 @@ button.crm-ind:hover { border-color: var(--crm-or-trait); transform: translateY(
 .crm-filtre span { color: var(--a-ink-3); font-variant-numeric: tabular-nums; font-weight: 700; }
 .crm-filtre:hover { background: var(--crm-survol); }
 .crm-filtre[aria-pressed=true] { background: var(--crm-or-fond); border-color: var(--crm-or-trait); color: var(--or-t) !important; }
-.crm-filtre[aria-pressed=true] span { color: inherit; opacity: .75; }
+.crm-filtre[aria-pressed=true] span { color: inherit; }
 .crm-tri { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--a-ink-3); }
 .crm-tri select { height: 32px; padding: 0 30px 0 12px; border-radius: 50px; background-color: var(--a-surface); font-size: 12.5px; font-weight: 600; color-scheme: dark; }
 .crm-compte { margin: 0 2px 8px; font-size: 12px; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
