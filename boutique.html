@@ -3709,7 +3709,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
     var envoyer = function () { try { if (window.MarcheoPixel) window.MarcheoPixel.track(evenementMeta, params); } catch (e) {} };
     if (window.MarcheoPixel) return envoyer();
     var s = document.createElement('script');
-    s.src = '/assets/core/meta-pixel.js?v=3'; s.onload = envoyer;
+    s.src = '/assets/core/meta-pixel.js?v=4'; s.onload = envoyer;
     document.head.appendChild(s);
   }
 

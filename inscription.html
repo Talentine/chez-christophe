@@ -139,7 +139,7 @@
   .media-count strong{color:#8A3D1E;}
 </style>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
-<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
 <script src="/assets/core/business-defaults.js?v=1" defer></script>
 </head>
 <body>
@@ -1333,7 +1333,7 @@ async function creerBoutique() {
             "Annuler → Rester ici (utiliser un autre email)"
           );
           if (useExisting) {
-            window.location.href = '/app-commercant.html?email=' + encodeURIComponent(state.email) + '&from=inscription';
+            window.location.href = '/app-commercant.html?from=inscription';
             return;
           }
           throw new Error('Mot de passe incorrect pour ' + state.email + '. Soit utilise un AUTRE email, soit retourne au dashboard pour te connecter avec ton mdp habituel.');
@@ -1963,11 +1963,8 @@ async function uploadMedia(accessToken, slug) {
 }
 
 function redirigerDashboard() {
-  if (state.accessToken) {
-    location.href = 'app-commercant.html';
-  } else {
-    location.href = 'app-commercant.html?email=' + encodeURIComponent(state.email);
-  }
+  // Jamais d'e-mail dans l'URL : elle est lue par les outils de mesure (balise Google).
+  location.href = 'app-commercant.html';
 }
 </script>
 </body>
