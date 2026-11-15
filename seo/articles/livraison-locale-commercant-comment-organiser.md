@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-09
+modified: 2026-11-15
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -166,7 +166,7 @@ Chaque métier livre des produits différents, avec ses contraintes. Voici les p
 
 - **Boulangerie.** Livraison des commandes de gâteaux, de pains pour les restaurants voisins ou des petits déjeuners du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie).
 - **Boucherie.** Colis de viande et commandes de la semaine, au froid. Voir [la solution pour boucherie](/solutions/boucherie) et notre guide [boucherie livraison à domicile](/blog/boucherie-livraison-a-domicile).
-- **Primeur.** Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir [la solution pour primeur](/solutions/primeur) et le [click and collect primeur](/blog/click-and-collect-primeur).
+- **Primeur.** Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir [la solution pour primeur](/solutions/primeur), le [click and collect primeur](/blog/click-and-collect-primeur) et notre guide [primeur et livraison à domicile des paniers de légumes](/blog/primeur-livraison-a-domicile).
 - **Poissonnerie.** Poisson et plateaux de fruits de mer, tournée très courte. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre guide [poissonnerie livraison à domicile](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux repas pour les entreprises, buffets, menus de fêtes. Pour les bureaux, suivez notre guide de la [livraison de plateaux repas en entreprise](/blog/livraison-plateau-repas-entreprise-traiteur). Voir aussi [la solution pour traiteur](/solutions/traiteur), la [création de site internet de traiteur](/blog/creation-site-internet-traiteur) et notre guide [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile).
 - **Fromagerie.** Plateaux et formules raclette livrés le vendredi soir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le [click and collect en fromagerie](/blog/click-and-collect-fromagerie).

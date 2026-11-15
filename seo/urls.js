@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/primeur-livraison-a-domicile",
   "/blog/click-and-collect-epicerie",
   "/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche",
   "/blog/alternative-uber-eats-garder-ses-clients",

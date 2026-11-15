@@ -16,6 +16,7 @@ const PRECACHE_URLS = [
   '/assets/css/marcheo-base.css',
   '/assets/css/marcheo-components.css',
   '/assets/core/init.js',
+  '/assets/core/hero-cadrage.js',
   '/assets/brand/logo.svg',
   '/assets/brand/logo-light.svg',
   '/assets/brand/monogram.svg',
