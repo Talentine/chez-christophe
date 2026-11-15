@@ -46,8 +46,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site vitrine ou marchand | site | transverse | GS | moyenne | même article que la ligne précédente |
 | mentions légales site internet restaurant | site | restaurant | GS | moyenne | à faire |
 | mentions obligatoires carte restaurant | transverse | restaurant | GS | basse | hors sujet produit, écarté |
-| logiciel réservation restaurant gratuit | transverse | restaurant | GS | moyenne | à faire |
-| meilleur logiciel de réservation restaurant | transverse | restaurant | GS | moyenne | à faire (comparatif factuel) |
+| logiciel réservation restaurant gratuit | transverse | restaurant | GS | moyenne | publié le 2026-11-15 + meilleur-logiciel-reservation-restaurant (FAQ « Existe-t-il un logiciel de réservation de restaurant gratuit ? ») |
+| meilleur logiciel de réservation restaurant | transverse | restaurant | GS + IA (formulation « meilleur logiciel de … pour <métier> ») | moyenne | publié le 2026-11-15 + meilleur-logiciel-reservation-restaurant |
 | frais no show restaurant | transverse | restaurant | GS | moyenne | partiellement couvert par empreinte-bancaire-no-show-commerce-restaurant |
 | loi no show restaurant | transverse | restaurant | GS | moyenne | à faire (angle légal, vérifier les sources avant d'écrire) |
 | avis google restaurant | transverse | restaurant | GS | basse | partiellement couvert par fiche-google-business-commerce-bouche |
@@ -296,7 +296,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site vitrine vs site e commerce | site | tous | GS (06/11) | moyenne | à faire : vérifier la cannibalisation avec creation-site-internet-commerce (section vitrine ou commande) avant d'écrire |
 | site vitrine boutique | site | tous | GS (06/11) | basse | couvert par creation-site-internet-commerce |
 | nom de domaine commercial | site | tous | GS (06/11) | moyenne | à faire : nom de domaine pour un commerce (choix, prix, extension), vérifier obligations-legales-boutique-en-ligne-commercant |
-| frais de livraison commerce local (et non colis) | livraison | tous | IA (06/11 : l'aperçu IA de Google ne parle que d'expédition de colis, ChatGPT ne cite aucun outil) | moyenne | à faire : rafraîchir comment-calculer-ses-frais-de-livraison-commercant avec une réponse directe « commerce de proximité, livraison locale » et une FAQ façon assistant, pas de nouvel article |
+| frais de livraison commerce local (et non colis) | livraison | tous | IA (06/11 : l'aperçu IA de Google ne parle que d'expédition de colis, ChatGPT ne cite aucun outil) | moyenne | fait le 2026-11-15 : refresh de comment-calculer-ses-frais-de-livraison-commercant (réponse directe « livraison locale, pas de colis », FAQ « Combien facturer la livraison… ») |
 | fleuriste livraison gratuite | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07), angle seuil de gratuité |
 | frais de livraison bouquets de fleurs | livraison | fleuriste | GS (07/11) | moyenne | couvert par fleuriste-livraison-a-domicile (2026-11-07) |
 | livraison fleurs fleuriste local | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07) |
@@ -393,3 +393,5 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | panier de fruits et légumes locaux | transverse | primeur | GS (15/11 : « panier de fruits et légumes locaux », « panier légumes producteurs locaux ») | basse | à étudier : mettre en avant l'origine locale sur la fiche produit, requête surtout d'acheteur |
 | livraison fruits et légumes pas cher | livraison | primeur | GS (15/11) | basse | écarté : requête d'acheteur dominée par les sites nationaux |
 | primeur domicile | livraison | primeur | GS (15/11) | basse | couvert par primeur-livraison-a-domicile (2026-11-15) |
+| logiciel livraison paniers primeur | livraison | primeur | IA (15/11 : ChatGPT cite Achil en 1er, Ciboulette, Socleo ; Marchéo absent malgré l'article du matin) | haute | à faire dans une semaine : FAQ « Quel logiciel pour livrer ses paniers quand on est primeur ? » dans primeur-livraison-a-domicile (abonnement fixe contre part du chiffre d'affaires), pas de nouvel article |
+| logiciel réservation restaurant no-show empreinte | transverse | restaurant | IA (15/11 : ChatGPT évoque l'empreinte « si la solution de paiement le permet » sans nommer d'outil sur n°10) | moyenne | couvert par meilleur-logiciel-reservation-restaurant et empreinte-bancaire-no-show-commerce-restaurant ; à suivre dans les relevés |

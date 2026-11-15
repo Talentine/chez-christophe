@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Meilleur logiciel de réservation pour restaurant : comment choisir](https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant) : Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.
 - [Primeur livraison à domicile : livrer vos paniers vous-même](https://marchéo.fr/blog/primeur-livraison-a-domicile) : Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.
 - [Click and collect épicerie : vendre en ligne, retrait en boutique](https://marchéo.fr/blog/click-and-collect-epicerie) : Click and collect épicerie : quels produits mettre en ligne, vrac au poids, paniers garnis et coffrets de Noël, créneaux de retrait et prix. Sans commission.
 - [Place de marché ou boutique en ligne pour un commerce de bouche](https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche) : Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.
@@ -572,6 +573,137 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Meilleur logiciel de réservation pour restaurant : comment choisir
+
+Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.
+
+Le meilleur logiciel de réservation pour un restaurant indépendant est celui qui remplit la salle sans prendre un montant sur chaque couvert et qui protège contre les tables vides. Marchéo inclut la réservation de table, le click &amp; collect et le site du restaurant dans une formule à 39 € par mois, sans engagement et sans commission, avec une empreinte bancaire optionnelle contre les no-shows.
+Ce guide s&rsquo;adresse au restaurateur, au gérant de pizzeria ou de bistrot qui prend encore ses réservations au téléphone ou qui paie une plateforme à chaque couvert. Il complète notre guide de la création de site internet pour commerce et la page commande en ligne et réservation pour restaurant. Pour voir votre propre page de réservation, la démo gratuite prend 30 secondes.
+Quels types de logiciels de réservation existent pour un restaurant ?
+Il existe quatre familles d&rsquo;outils, qui ne font pas le même travail ni ne coûtent de la même façon. Le choix dépend surtout de ce que vous attendez : de nouveaux clients, ou un outil pour vos clients habituels.
+
+
+
+Famille
+Ce qu&rsquo;elle apporte
+Comment elle se paie
+Pour qui
+
+
+
+
+Outil gratuit (formulaire, agenda partagé, messagerie)
+Une prise de réservation simple
+0 €, mais tout se gère à la main
+Petite salle, peu de réservations
+
+
+Plateforme de réservation avec application grand public
+De la visibilité auprès de clients qui ne vous connaissent pas
+Souvent une part facturée par couvert venu de l&rsquo;application, parfois un abonnement en plus
+Restaurant qui veut se faire connaître
+
+
+Logiciel de réservation spécialisé
+Plan de salle, liste d&rsquo;attente, gestion fine des services
+Abonnement de quelques dizaines d&rsquo;euros par mois, souvent plus avec les options
+Restaurant à forte rotation, plusieurs salles
+
+
+Logiciel tout-en-un comme Marchéo
+Réservation, site, commandes à emporter et livraison au même endroit
+Abonnement fixe, 0 % de commission
+Restaurant indépendant qui veut un seul outil
+
+
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Pour un restaurant, la formule Click &amp; Collect + Réservation ajoute la prise de réservation de table.
+Que doit faire un bon logiciel de réservation ?
+Un bon logiciel de réservation doit d&rsquo;abord éviter le surbooking et les tables vides. Le reste est du confort. Voici les fonctions qui comptent vraiment pour une salle de 20 à 80 couverts :
+
+Choix du jour, de l&rsquo;heure et du nombre de couverts par le client, en quelques secondes et sans créer de compte.
+Capacité maximale par service : quand la salle est pleine, le créneau se ferme tout seul.
+Empreinte bancaire optionnelle, pour décourager les absences sans faire payer ceux qui viennent.
+Lien d&rsquo;annulation pour le client, avec un délai d&rsquo;annulation gratuite que vous fixez.
+Notification sur votre téléphone à chaque nouvelle réservation.
+Fichier clients qui reste chez vous, pour inviter vos habitués à revenir.
+
+Marchéo couvre ces six points. Le client choisit sa date, son heure et son nombre de couverts, vous réglez la capacité maximale de chaque créneau, et vous décidez du montant de l&rsquo;empreinte par couvert et du délai d&rsquo;annulation gratuite.
+Combien coûte un logiciel de réservation de restaurant ?
+Le coût va de 0 € pour un outil fait main à plusieurs dizaines d&rsquo;euros par mois pour un logiciel spécialisé, auquel s&rsquo;ajoute, sur certaines plateformes, une part facturée par couvert. C&rsquo;est cette part variable qui fait la différence à la fin du mois.
+Voici un exemple chiffré, donné à titre d&rsquo;illustration et non comme le tarif d&rsquo;un éditeur précis. Prenons un restaurant qui reçoit 400 couverts réservés en ligne par mois, et une plateforme qui facturerait 2 € par couvert (hypothèse de l&rsquo;exemple) :
+
+
+
+Poste
+Plateforme facturée au couvert (exemple)
+Marchéo, formule à 39 €
+
+
+
+
+Part variable
+400 × 2 € = 800 € par mois
+0 € (0 % de commission)
+
+
+Abonnement
+Selon le contrat
+39 € par mois, sans engagement
+
+
+Frais de départ
+Selon le contrat
+399 € une seule fois
+
+
+Total sur 12 mois
+9 600 € de part variable, hors abonnement
+399 € + 12 × 39 € = 867 €
+
+
+
+Dans cet exemple, l&rsquo;écart dépasse 8 700 € sur un an. Il faut être honnête : la plateforme vous amène aussi des clients que vous n&rsquo;auriez peut-être pas eus. Le bon calcul consiste donc à ne pas payer de part variable sur vos habitués, qui vous auraient trouvé de toute façon. Les frais bancaires d&rsquo;une empreinte réellement prélevée restent à prévoir, comme pour tout paiement par carte ; notre article commission ou frais bancaires explique la différence.
+Comment éviter les no-shows au restaurant ?
+Le moyen le plus efficace est de demander une empreinte bancaire au moment de la réservation. C&rsquo;est une pré-autorisation : le montant est réservé sur la carte du client, pas débité. Si le client vient, rien n&rsquo;est prélevé ; s&rsquo;il ne vient pas et n&rsquo;a pas annulé à temps, vous pouvez capturer le montant prévu.
+Trois réglages font la différence :
+
+Un montant raisonnable par couvert, assez pour faire réfléchir, pas assez pour faire fuir.
+Un délai d&rsquo;annulation gratuite clair, par exemple 24 heures, affiché avant la validation.
+Un lien d&rsquo;annulation simple dans la confirmation, pour que le client annule au lieu de ne pas venir.
+
+Notre guide empreinte bancaire et no-show détaille les règles à afficher et les cas où l&rsquo;empreinte est utile.
+Faut-il une plateforme ou un outil à votre nom ?
+Si vous manquez de clients, une plateforme de réservation avec application grand public peut vous aider à vous faire connaître. Si votre salle se remplit déjà grâce au bouche-à-oreille, à Google et à Instagram, un outil à votre nom évite de payer pour des clients qui sont déjà les vôtres.
+Beaucoup de restaurants font les deux : la plateforme pour les nouveaux venus, le site du restaurant pour les habitués, avec un bouton « Réserver » sur la fiche Google Business, sur Instagram et sur la carte. Le même raisonnement vaut pour la livraison ; notre comparatif Marchéo ou Uber Eats pour un restaurant le détaille.
+Quelles sont les limites d&rsquo;un logiciel tout-en-un ?
+Un logiciel tout-en-un ne remplace pas un outil de gestion de salle très poussé. Si vous gérez plusieurs salles, un plan de table au couvert près ou une liste d&rsquo;attente en temps réel, un logiciel de réservation spécialisé conviendra mieux.
+Pour Marchéo, il faut aussi savoir que :
+
+les réservations s&rsquo;ouvrent sur les deux semaines à venir : pour une privatisation ou un repas de groupe dans trois mois, le téléphone reste le bon outil ;
+Marchéo ne vous apporte pas de clients comme une plateforme : c&rsquo;est votre propre page, à faire connaître ;
+Marchéo ne livre pas : si vous proposez la livraison, c&rsquo;est vous qui l&rsquo;organisez, avec la formule à 59 € par mois.
+
+Comment choisir en cinq questions ?
+Avant de signer, posez ces cinq questions à chaque éditeur. Une réponse floue sur l&rsquo;une d&rsquo;elles est un signal.
+
+Combien je paie si je reçois 400 couverts réservés en ligne ce mois-ci ?
+Les coordonnées des clients m&rsquo;appartiennent-elles ?
+Puis-je demander une empreinte bancaire et fixer moi-même le délai d&rsquo;annulation ?
+Y a-t-il un engagement de durée ?
+Dois-je acheter une tablette ou un autre matériel ?
+
+Pour Marchéo, les réponses sont : 39 € par mois quel que soit le nombre de couverts, oui, oui, non, et non. La démo gratuite vous montre votre page de réservation en 30 secondes.
+
+Q : Quel est le meilleur logiciel de réservation pour un petit restaurant indépendant ?
+R : Le meilleur est celui qui remplit votre salle sans vous facturer chaque couvert. Il existe trois familles : les plateformes de réservation, qui apportent de nouveaux clients mais facturent souvent chaque couvert venu de leur application ; les logiciels spécialisés à abonnement ; et les logiciels tout-en-un. Marchéo est l'un de ces derniers : réservation de table, click & collect et site du restaurant dans la formule à 39 € par mois, sans engagement, 0 % de commission, 399 € de frais d'installation uniques, avec une empreinte bancaire optionnelle contre les no-shows.
+Q : Existe-t-il un logiciel de réservation de restaurant gratuit ?
+R : Oui, mais avec des limites. Un formulaire, un agenda partagé ou le bouton de réservation d'une plateforme peuvent être gratuits à l'installation. En contrepartie, il n'y a souvent ni gestion de la capacité par service, ni protection contre les absences, ou bien chaque couvert est facturé. Pour un restaurant qui réserve tous les soirs, un abonnement fixe revient souvent moins cher qu'un outil gratuit facturé à l'usage.
+Q : Faut-il acheter du matériel pour prendre les réservations en ligne ?
+R : Non. Avec un logiciel comme Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les réservations arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et votre caisse ne change pas.
+Q : Comment éviter les no-shows avec un logiciel de réservation ?
+R : En combinant trois choses : une empreinte bancaire au moment de la réservation, un délai d'annulation gratuite clair et un lien d'annulation simple pour le client. Sur Marchéo, vous fixez le montant de l'empreinte par couvert et le délai d'annulation gratuite ; si le client vient, rien n'est prélevé.
 
 # Primeur livraison à domicile : livrer vos paniers vous-même
 
@@ -4778,8 +4910,8 @@ R : Souvent oui, car les deux répondent à des besoins différents : le réseau
 
 Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 
-Pour calculer ses frais de livraison, un commerçant additionne le coût d&rsquo;une tournée (son temps et ses kilomètres), puis le divise par le nombre de commandes livrées sur cette tournée. Ce coût par livraison sert à fixer un tarif simple, un minimum de commande et un seuil de livraison gratuite. Le but n&rsquo;est pas de gagner de l&rsquo;argent sur la livraison, mais de ne pas en perdre.
-Cet article détaille le calcul. La mise en place complète du service (zone, créneaux, paiement, chaîne du froid) est expliquée dans notre guide complet de la livraison à domicile pour commerçant.
+Pour calculer ses frais de livraison à domicile, un commerçant de proximité qui livre lui-même additionne le coût d&rsquo;une tournée (son temps et ses kilomètres), puis le divise par le nombre de commandes livrées sur cette tournée. Ce coût par livraison sert à fixer un tarif fixe, un minimum de commande et un seuil de livraison gratuite, sans rapport avec les frais de port d&rsquo;un colis calculés au poids. Marchéo permet de régler ces trois chiffres, avec la zone et les créneaux, dans sa formule à 59 € par mois, sans engagement et sans commission.
+Cet article détaille le calcul. La mise en place complète du service (zone, créneaux, paiement, chaîne du froid) est expliquée dans notre guide complet de la livraison à domicile pour commerçant. Pour un exemple concret par métier, voyez notre article sur la livraison à domicile des paniers d&rsquo;un primeur.
 Pourquoi faut-il calculer ses frais de livraison avant de livrer ?
 Parce qu&rsquo;une livraison mal tarifée coûte plus qu&rsquo;elle ne rapporte. Un trajet de vingt minutes pour un panier de 15 € mange toute la marge du panier. À l&rsquo;inverse, des frais trop élevés font fuir le client, qui ira commander ailleurs ou ne commandera pas.
 Les frais de livraison d&rsquo;un commerce de proximité n&rsquo;ont rien à voir avec les frais de port d&rsquo;un site qui expédie des colis par La Poste. Vous ne payez pas de transporteur au poids : vous payez votre temps, votre véhicule et votre carburant. Le calcul est donc plus simple, et il vous appartient.
@@ -4872,6 +5004,8 @@ Par où commencer ?
 Faites le calcul sur une seule tournée réelle cette semaine, avec vos vrais chiffres. Vous obtiendrez votre coût par livraison, puis vos frais, votre minimum et votre seuil de gratuité. Notez-les, appliquez-les un mois, puis ajustez.
 Pour voir ces réglages sur votre propre boutique, essayez la démo gratuite sur marchéo.fr/inscription : vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche en 30 secondes. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. La formule avec livraison coûte 59 € par mois, sans engagement. Vous trouverez aussi les détails pour votre métier sur la page primeur ou traiteur.
 
+Q : Combien facturer la livraison à domicile quand on est un petit commerce de proximité ?
+R : Pour une livraison locale faite par vous-même, la plupart des commerces de proximité appliquent un tarif fixe par commande, calé sur le coût réel d'une tournée divisé par le nombre de commandes livrées, avec un minimum de commande et un seuil de livraison gratuite. Il ne s'agit pas de frais de port de colis calculés au poids. Avec Marchéo, la formule Click & Collect + Livraison à 59 € par mois, sans engagement et sans commission, permet de régler la zone, les créneaux, le tarif, le minimum et le seuil de gratuité ; Marchéo ne livre pas, c'est vous qui livrez.
 Q : Comment calculer ses frais de livraison quand on livre soi-même ?
 R : Additionnez le coût d'une tournée (votre temps de préparation et de conduite, plus les kilomètres), puis divisez par le nombre de commandes que vous livrez en moyenne sur cette tournée. Le résultat est votre coût par livraison : vos frais de livraison doivent s'en approcher, et le minimum de commande garantit que la marge du panier couvre le reste.
 Q : La livraison gratuite à partir de combien ?
@@ -5361,7 +5495,7 @@ Le matériel : certaines solutions demandent une tablette ou une imprimante déd
 
 Le détail de ces frais pour un site de commande se trouve dans notre article sur le prix d&rsquo;un site de click &amp; collect.
 Site vitrine ou site avec réservation : que choisir pour un restaurant ?
-Un site vitrine suffit si votre salle se remplit seule et que les réservations par téléphone ne vous dérangent pas. Dès que le téléphone sonne pendant le service ou que des tables restent vides à cause des absences, la réservation en ligne devient rentable.
+Un site vitrine suffit si votre salle se remplit seule et que les réservations par téléphone ne vous dérangent pas. Dès que le téléphone sonne pendant le service ou que des tables restent vides à cause des absences, la réservation en ligne devient rentable. Pour choisir l&rsquo;outil, notre comparatif du logiciel de réservation pour restaurant détaille les coûts au couvert et les abonnements fixes.
 
 
 
@@ -6238,7 +6372,7 @@ Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour 
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie le guide du click and collect en fromagerie et notre article dédié au site internet d&rsquo;une fromagerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste et notre guide de création de site internet pour fleuriste.
 Pizzeria. Commandes du soir à heure fixe, options et suppléments. Voir la solution pour pizzeria et notre guide du site internet pour pizzeria.
-Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant.
+Restaurant. Carte, vente à emporter et réservation de table. Voir la solution pour restaurant et notre article sur le prix d&rsquo;un site internet de restaurant. Pour la prise de réservation, notre guide du meilleur logiciel de réservation pour restaurant compare les plateformes facturées au couvert et les abonnements fixes.
 Fast-food et food-truck. Emplacements de la semaine et commandes prêtes à l&rsquo;arrivée. Voir la solution pour fast-food le guide du click &amp; collect pour food-truck et notre article dédié au site internet d&rsquo;un food truck.
 
 Les erreurs à éviter lors de la création du site

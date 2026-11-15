@@ -3,6 +3,7 @@ title: "Comment calculer ses frais de livraison quand on est commerçant"
 titre_court: "Calculer ses frais de livraison"
 description: "Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas."
 date: 2026-10-29
+modified: 2026-11-15
 rubrique: Guide
 emoji: 🧮
 keywords:
@@ -19,6 +20,8 @@ metiers:
   - fleuriste
   - pizzeria
 faq:
+  - q: "Combien facturer la livraison à domicile quand on est un petit commerce de proximité ?"
+    r: "Pour une livraison locale faite par vous-même, la plupart des commerces de proximité appliquent un tarif fixe par commande, calé sur le coût réel d'une tournée divisé par le nombre de commandes livrées, avec un minimum de commande et un seuil de livraison gratuite. Il ne s'agit pas de frais de port de colis calculés au poids. Avec Marchéo, la formule Click & Collect + Livraison à 59 € par mois, sans engagement et sans commission, permet de régler la zone, les créneaux, le tarif, le minimum et le seuil de gratuité ; Marchéo ne livre pas, c'est vous qui livrez."
   - q: "Comment calculer ses frais de livraison quand on livre soi-même ?"
     r: "Additionnez le coût d'une tournée (votre temps de préparation et de conduite, plus les kilomètres), puis divisez par le nombre de commandes que vous livrez en moyenne sur cette tournée. Le résultat est votre coût par livraison : vos frais de livraison doivent s'en approcher, et le minimum de commande garantit que la marge du panier couvre le reste."
   - q: "La livraison gratuite à partir de combien ?"
@@ -29,9 +32,9 @@ faq:
     r: "Pas pour prendre les commandes ni pour calculer les frais : avec Marchéo, tout se règle depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter. Il vous faut en revanche un véhicule et des caisses isothermes pour les produits frais."
 ---
 
-Pour calculer ses frais de livraison, un commerçant additionne le coût d'une tournée (son temps et ses kilomètres), puis le divise par le nombre de commandes livrées sur cette tournée. Ce coût par livraison sert à fixer un tarif simple, un minimum de commande et un seuil de livraison gratuite. Le but n'est pas de gagner de l'argent sur la livraison, mais de ne pas en perdre.
+Pour calculer ses frais de livraison à domicile, un commerçant de proximité qui livre lui-même additionne le coût d'une tournée (son temps et ses kilomètres), puis le divise par le nombre de commandes livrées sur cette tournée. Ce coût par livraison sert à fixer un tarif fixe, un minimum de commande et un seuil de livraison gratuite, sans rapport avec les frais de port d'un colis calculés au poids. Marchéo permet de régler ces trois chiffres, avec la zone et les créneaux, dans sa formule à 59 € par mois, sans engagement et sans commission.
 
-Cet article détaille le calcul. La mise en place complète du service (zone, créneaux, paiement, chaîne du froid) est expliquée dans notre [guide complet de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser).
+Cet article détaille le calcul. La mise en place complète du service (zone, créneaux, paiement, chaîne du froid) est expliquée dans notre [guide complet de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour un exemple concret par métier, voyez notre article sur la [livraison à domicile des paniers d'un primeur](/blog/primeur-livraison-a-domicile).
 
 ## Pourquoi faut-il calculer ses frais de livraison avant de livrer ?
 
