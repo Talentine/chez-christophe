@@ -750,10 +750,7 @@ function etape(n) {
       `<div class="recap-label" style="margin-top:8px;">Boutique</div><div>${state.nom}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Site</div><div style="font-family:monospace;">marchéo.fr/${state.slug}</div>` +
       `<div class="recap-label" style="margin-top:8px;">Offre</div><div>${OFFRES[state.offre]?.nom || 'Non sélectionnée'} — ${OFFRES[state.offre]?.setup || ''} + ${OFFRES[state.offre]?.mensuel || ''}/mois</div>`;
-    // Déjà connecté sur cet appareil : l'email du compte est proposé d'office
-    const champEmail = document.getElementById('iEmail');
-    const sessionConnue = lireSessionExistante();
-    if (champEmail && !champEmail.value && sessionConnue) champEmail.value = sessionConnue.email;
+    // Le champ email reste vide : on ne propose jamais l'email d'une session ouverte sur l'appareil
     majBlocMotDePasse();
   }
   document.querySelectorAll('.step').forEach(s => s.classList.remove('actif'));
