@@ -4,6 +4,10 @@
  * la vue. Trois sous-onglets : « Appeler » (une fiche d'appel, la file dessous), « Trouver des numéros »
  * (recherche OpenStreetMap par commune ou département) et « Liste » (toute la file, ajout, import).
  *
+ * Dans « Appeler », la fiche est doublée d'un assistant d'appel (crm-assistant.js : quoi dire, réponses du
+ * commerçant, objections, rendez-vous), de « Mes appels » et de l'écran « Modifier mon script ». Chaque
+ * résultat posé écrit une ligne dans le journal d'appels (`CRM.journaliserAppel`), sans jamais bloquer.
+ *
  * Les données vivent dans le cœur (`CRM.prospects`) ; ce fichier ne garde que l'état d'écran. La vue se
  * redessine par zones, et seulement quand leur contenu change : le fondateur tape ses notes pendant que
  * les écritures arrivent, une zone redessinée pour rien lui ferait perdre le curseur.
@@ -27,9 +31,10 @@
   var PAS_FILE = 80, PAS_RESULTATS = 150, PAS_LISTE = 100;
   var LISTE_DEFAUT = 'Prospection';
 
-  // Texte validé par le fondateur : à reprendre mot pour mot.
-  var ACCROCHE = '« Bonjour, Paul Merieult. Je dirige une agence web spécialisée dans les commerces de bouche et le click-and-collect. ' +
-    'Je suis moi-même primeur depuis 19 ans. Je vous propose une démo gratuite avec votre boutique : vous avez deux minutes ? »';
+  // Texte du fondateur, mot pour mot. L'accroche affichée est l'ouverture du guide (crm-guide.js, « Version de Paul »),
+  // au nom du commerce ; celle-ci ne sert que si le guide n'a pas pu être chargé.
+  var ACCROCHE = '« Bonjour, Paul Merieult, euh, j\'ai été primeur pendant 19 ans, et aujourd\'hui je suis dirigeant d\'une entreprise de développement ' +
+    'de sites web spécialisée dans les commerces de bouche et le click-and-collect. Vous allez bien ? »';
   var ACCROCHE_REFUS = 'Refus : demander s\'il a une entreprise à recommander, puis si tu peux appeler de sa part.';
 
   var ICONES = {
@@ -77,6 +82,14 @@
   };
   var communes = { minuterie: null, jeton: 0, controleur: null, liste: [], actif: -1, ouvert: false, message: '' };
   var chrono = null, avance = null;
+  // Dernière ligne du journal d'appels écrite pour chaque prospect, pour la corriger si le résultat change aussitôt.
+  var journal = {};
+  var DELAI_CORRECTION = 180000, DELAI_MEME_APPEL = 1800000;
+  // Dernier résultat posé sur chaque prospect depuis cette page : { le, seance }. Sert à ne pas compter deux
+  // appels quand un résultat est corrigé ou précisé pendant le même appel.
+  var poses = {};
+  var enRendu = false, renduARefaire = false;
+  var grandEcran = typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 1101px)') : null;
 
   // Saisie de la note et de la recommandation : brouillon par prospect, envoyé après une pause.
   var brouillons = {}, minuteries = {}, envois = {}, aRenvoyer = {}, erreursSaisie = {}, enregistres = {};
@@ -253,16 +266,30 @@
 
   function rendre() {
     if (!monte()) return;
+    // Une date ou une heure en cours de frappe dans le guide : redessiner remplacerait le champ sous le curseur.
+    // Le guide redemande le dessin à la sortie du champ.
+    if (assistant && assistant.saisieEnCours()) return;
+    // Retirer un champ qui a le curseur peut déclencher son événement « change », donc un nouveau dessin pendant
+    // celui-ci : il attend la fin du premier.
+    if (enRendu) { renduARefaire = true; return; }
+    enRendu = true;
+    try { dessiner(); } finally { enRendu = false; }
+    if (renduARefaire) { renduARefaire = false; planifier(); }
+  }
+
+  function dessiner() {
     assurerCourant();
     poser('crmProBandeau', htmlBandeau());
     poser('crmProOnglets', htmlOnglets());
     var corps = document.getElementById('crmProCorps');
-    var vide = etat.sousVue === 'appeler' && !tous().length;
-    var structure = etat.sousVue + (vide ? '|vide' : '');
+    var script = etat.sousVue === 'appeler' && !!assistant && assistant.editeurOuvert();
+    var vide = !script && etat.sousVue === 'appeler' && !tous().length;
+    var structure = etat.sousVue + (script ? '|script' : vide ? '|vide' : '');
     if (corps.dataset.structure !== structure) {
       corps.dataset.structure = structure;
-      corps.innerHTML = vide ? '<div id="crmProVide"></div>' : COQUILLES[etat.sousVue];
+      corps.innerHTML = script ? '<div id="crmProEditeur"></div>' : vide ? '<div id="crmProVide"></div>' : COQUILLES[etat.sousVue];
     }
+    if (script) { poser('crmProEditeur', assistant.htmlEditeur()); return; }
     if (vide) { poser('crmProVide', htmlFileVide()); return; }
     if (etat.sousVue === 'appeler') rendreAppeler();
     else if (etat.sousVue === 'trouver') rendreTrouver();
@@ -270,11 +297,14 @@
   }
 
   var COQUILLES = {
-    appeler: '<div class="crm-pro-entete" id="crmProEntete"></div>' +
+    // Le guide d'appel a deux places : à côté de la fiche sur grand écran, dans la fiche (sous le bouton Appeler)
+    // sur téléphone. Une seule est remplie à la fois (voir rendreGuide).
+    appeler: '<div id="crmProMesure"></div><div class="crm-pro-entete" id="crmProEntete"></div>' +
       '<div class="crm-pro-cols"><div class="crm-pro-col">' +
         '<section class="crm-pro-carte" id="crmProCarte" aria-label="Fiche d\'appel"></section>' +
         '<div class="crm-pro-outils" id="crmProOutils"></div></div>' +
-      '<section class="crm-pro-file" id="crmProFile" aria-label="File d\'appels"></section></div>',
+      '<div class="crm-pro-col crm-pro-col-file"><div class="crm-pro-guide-zone" id="crmProGuideCote"></div>' +
+        '<section class="crm-pro-file" id="crmProFile" aria-label="File d\'appels"></section></div></div>',
     trouver: '<div class="crm-pro-trouver"><div class="crm-pro-bloc" id="crmProRecherche"></div>' +
       '<section id="crmProResultats" aria-label="Commerces trouvés" aria-live="polite"></section></div>',
     liste: '<div id="crmProGestionOutils"></div><div id="crmProPanneau"></div>' +
@@ -401,6 +431,7 @@
       html += htmlTrouverNumero(p) + appels;
     }
     html += htmlPresence(p);
+    html += '<div class="crm-pro-guide-zone" id="crmProGuideCarte"></div>';
 
     html += '<div class="crm-pro-resultats" role="group" aria-label="Résultat de l\'appel">' + CRM.RESULTATS_PROSPECT.map(function (r) {
       var choisi = p.resultat === r.id;
@@ -422,11 +453,14 @@
   }
 
   function htmlOutils() {
+    // L'accroche est l'ouverture du guide d'appel (version de Paul), au nom du commerce affiché.
+    var accroche = (assistant && assistant.htmlAccroche(courant())) || '<p>' + esc(ACCROCHE) + '</p>';
     return '<div class="crm-pro-rangee">' +
         '<button type="button" class="crm-btn" data-pro="recap">' + ic('copier', 14) + 'Copier le récap</button>' +
         '<button type="button" class="crm-btn" data-pro="accroche" aria-expanded="' + etat.accroche + '" aria-controls="crmProAccroche">' + ic('sms', 14) +
-          (etat.accroche ? 'Masquer l\'accroche' : 'Voir l\'accroche') + '</button></div>' +
-      (etat.accroche ? '<div class="crm-pro-accroche" id="crmProAccroche"><p>' + esc(ACCROCHE) + '</p><p>' + esc(ACCROCHE_REFUS) + '</p></div>' : '');
+          (etat.accroche ? 'Masquer l\'accroche' : 'Voir l\'accroche') + '</button>' +
+        (assistant ? '<button type="button" class="crm-btn" data-gd="editeur-ouvrir">' + ic('note', 14) + 'Modifier mon script</button>' : '') + '</div>' +
+      (etat.accroche ? '<div class="crm-pro-accroche" id="crmProAccroche">' + accroche + '<p class="crm-pro-accroche-refus">' + esc(ACCROCHE_REFUS) + '</p></div>' : '');
   }
 
   function htmlFile() {
@@ -474,10 +508,31 @@
     return html;
   }
 
+  /* Le guide d'appel va dans la zone visible à cette largeur ; l'autre reste vide. Quand la fiche vient d'être
+     redessinée, sa zone est neuve : le champ du guide qui avait le curseur le retrouve. */
+  function rendreGuide(memo) {
+    if (!assistant) return;
+    var cote = !grandEcran || grandEcran.matches;
+    poser(cote ? 'crmProGuideCarte' : 'crmProGuideCote', '');
+    poser(cote ? 'crmProGuideCote' : 'crmProGuideCarte', assistant.htmlGuide());
+    if (!memo || document.activeElement === document.getElementById(memo.id)) return;
+    var champ = document.getElementById(memo.id);
+    if (!champ || champ.disabled) return;
+    champ.focus({ preventScroll: true });
+    try { if (memo.debut != null) champ.setSelectionRange(memo.debut, memo.fin); } catch (e) { /* champ sans sélection */ }
+  }
+
   function rendreAppeler() {
+    if (assistant) poser('crmProMesure', assistant.htmlMesure());
     poser('crmProEntete', htmlEnteteAppel());
+    var foyer = document.activeElement, memo = null;
+    if (foyer && foyer.id && foyer.closest && foyer.closest('#crmProGuideCarte')) {
+      memo = { id: foyer.id };
+      try { memo.debut = foyer.selectionStart; memo.fin = foyer.selectionEnd; } catch (e) { /* champ sans sélection */ }
+    }
     poser('crmProCarte', htmlCarte());
     synchroniserSaisie();
+    rendreGuide(memo);
     poser('crmProOutils', htmlOutils());
     poser('crmProFile', htmlFile());
   }
@@ -625,6 +680,24 @@
     majEtatSaisie();
   }
 
+  /* La note telle qu'elle est à l'écran : le brouillon en cours s'il y en a un, sinon la valeur enregistrée. */
+  function noteDe(p) {
+    var b = p && brouillons[p.id];
+    return b && 'note' in b ? b.note : ((p && p.note) || '');
+  }
+
+  /* Le guide d'appel complète la note (prénom du patron, rendez-vous, rappel) : la nouvelle valeur passe par le
+     même chemin qu'une frappe, pour ne jamais écraser ce qui est en cours de saisie ni perdre un envoi. */
+  function completerNote(id, transformer) {
+    var p = parId(id);
+    if (!p) return;
+    var avant = noteDe(p), apres = String(transformer(avant) || '').slice(0, 4000);
+    if (apres === avant) return;
+    saisir(id, 'note', apres);
+    enregistrer(id, 'note');
+    synchroniserSaisie();
+  }
+
   /* Envoie tout de suite ce qui attendait la fin de la pause (changement de fiche, d'onglet, page masquée). */
   function viderSaisies(urgent) {
     urgent = urgent === true;
@@ -690,30 +763,88 @@
     aller(liste[(i - 1 + n) % n].id, { remonter: true });
   }
 
+  /* Journal d'appels : une ligne par résultat posé (prospect, résultat, interlocuteur, dernière étape du guide,
+     objections entendues, version du script). Un résultat changé pendant le même appel corrige la ligne, un
+     résultat effacé la retire : un pouce qui glisse ne compte pas pour deux appels, même après un passage
+     automatique à la fiche suivante et un retour par « Précédent ». Rien ici ne bloque ni ne s'affiche : si la
+     table manque, le cœur se tait. `infos` est relevé au moment du toucher, l'écriture part après le résultat. */
+  function contexteJournal(id, resultat) {
+    if (assistant) return assistant.contexteAppel(id, resultat);
+    return { seance: 0, interlocuteur: null, etape: null, objections: [], version_script: null };
+  }
+  /* Est-ce encore le même appel que `trace` ({ le, seance }) ? Oui dans les trois minutes, quelle que soit la
+     fiche affichée entre-temps ; oui aussi tant que le guide n'a pas quitté cet appel (même séance), dans la
+     demi-heure : un « Intéressé » devenu « Démo / RDV » dix minutes plus tard reste un seul appel. */
+  function memeAppel(trace, seance, maintenant) {
+    if (!trace) return false;
+    var ecart = maintenant - trace.le;
+    return ecart < DELAI_CORRECTION || (!!seance && trace.seance === seance && ecart < DELAI_MEME_APPEL);
+  }
+  function journaliser(id, resultat, infos) {
+    if (typeof CRM.journaliserAppel !== 'function') return;
+    var precedent = journal[id], maintenant = Date.now();
+    if (resultat == null) {
+      // La ligne du jour part avec le résultat : une fiche sans résultat ne garde ni appel ni rendez-vous au
+      // compteur. Celle d'un autre jour reste : cet appel-là a bien eu lieu.
+      if (precedent && pur.dateLocaleISO(new Date(precedent.le)) === pur.dateLocaleISO(new Date(maintenant))) {
+        precedent.promesse.then(function (ligne) { if (ligne) CRM.supprimerAppel(ligne.id); });
+      }
+      delete journal[id];
+      return;
+    }
+    var donnees = { prospect_id: id, resultat: resultat, interlocuteur: infos.interlocuteur, etape: infos.etape,
+      objections: infos.objections, version_script: infos.version_script };
+    if (memeAppel(precedent, infos.seance, maintenant)) {
+      precedent.le = maintenant;
+      precedent.seance = infos.seance;
+      precedent.promesse = precedent.promesse.then(function (ligne) {
+        return ligne ? CRM.corrigerAppel(ligne.id, donnees).then(function (corrigee) { return corrigee || ligne; }) : CRM.journaliserAppel(donnees);
+      });
+      return;
+    }
+    journal[id] = { le: maintenant, seance: infos.seance, promesse: CRM.journaliserAppel(donnees) };
+  }
+
   /* Un toucher pose le résultat, un second sur le même l'efface. Quand l'appel n'a rien donné, on passe
-     tout seul au suivant, avec un « Annuler » pour le pouce qui a glissé. */
-  function choisirResultat(resultat) {
+     tout seul au suivant, avec un « Annuler » pour le pouce qui a glissé. `opts.poser` (guide d'appel) :
+     le résultat est posé même s'il l'était déjà, sans bascule. Un résultat corrigé ou reposé pendant le même
+     appel ne compte pas un appel de plus. Rend la promesse de l'enregistrement. */
+  function choisirResultat(resultat, opts) {
     var p = courant();
-    if (!p) return;
+    if (!p) return Promise.reject(new Error('Aucune fiche en cours.'));
     // Double toucher : le second arrive pendant le passage au suivant et effacerait le résultat à peine posé.
-    if (avance && p.resultat === resultat) return;
+    if (avance && p.resultat === resultat) return Promise.resolve(p);
     annulerAvance();
-    var id = p.id, nouveau = p.resultat === resultat ? null : resultat, def = resultatDe(nouveau);
+    var id = p.id, ancien = p.resultat || null;
+    var nouveau = p.resultat === resultat && !(opts && opts.poser) ? null : resultat, def = resultatDe(nouveau);
     // Résultat effacé : une notification « … : fiche suivante » encore affichée dirait le contraire.
     if (nouveau === null && window.crmToast.masquer) window.crmToast.masquer();
-    var promesse = CRM.resultatProspect(id, nouveau);
-    promesse.then(null, function (e) {
+    var infos = contexteJournal(id, nouveau);
+    var trace = poses[id], maintenant = Date.now();
+    var correction = nouveau !== null && memeAppel(trace, infos.seance, maintenant);
+    if (nouveau !== null) poses[id] = { le: maintenant, seance: infos.seance };
+    // Le guide repose un résultat que la fiche vient de poser (« Démo / RDV » puis « Enregistrer le rendez-vous ») : rien à renvoyer.
+    var promesse = correction && ancien === nouveau ? Promise.resolve(p) : CRM.resultatProspect(id, nouveau, { correction: correction });
+    if (assistant) assistant.surResultat(id, nouveau);
+    promesse.then(function () {
+      journaliser(id, nouveau, infos);
+      if (assistant) assistant.apresResultat(id, nouveau);
+    }, function (e) {
       annulerAvance();
+      if (nouveau !== null) { if (trace) poses[id] = trace; else delete poses[id]; }
+      if (assistant) assistant.surResultat(id, ancien);
       erreur(e, 'Le résultat n\'a pas pu être enregistré.');
       // Si l'on était déjà passé au suivant, on revient sur la fiche dont le résultat a été refusé.
       if (parId(id) && etat.courant !== id) aller(id, { remonter: true });
     });
-    if (!def || !def.suivant) return;
+    if (!def || !def.suivant) return promesse;
     toast(def.libelle + ' : fiche suivante', {
       action: 'Annuler',
       surAction: function () {
         annulerAvance();
         promesse.then(function () { return CRM.resultatProspect(id, null); }).then(function () {
+          journaliser(id, null);
+          if (assistant) { assistant.surResultat(id, null); assistant.apresResultat(id, null); }
           if (parId(id)) aller(id, { remonter: true });
         }, erreur);
       }
@@ -722,6 +853,7 @@
       avance = null;
       if (etat.courant === id && etat.sousVue === 'appeler') suivant({ auto: true });
     }, DELAI_AVANCE);
+    return promesse;
   }
 
   function poserRappel(date) {
@@ -1458,7 +1590,7 @@
       case 'onglet': if (id !== etat.sousVue) changerSousVue(id); break;
 
       // Appeler
-      case 'resultat': choisirResultat(id); break;
+      case 'resultat': choisirResultat(id).then(null, function () { /* refus déjà signalé */ }); break;
       case 'rappel': poserRappel(el.getAttribute('aria-pressed') === 'true' ? null : id); break;
       case 'precedent': precedent(); break;
       case 'suivant': suivant(); break;
@@ -1607,6 +1739,13 @@
     el.addEventListener('input', surSaisie);
     el.addEventListener('change', surSaisie);
     el.addEventListener('focusout', surPerteFoyer);
+    if (assistant) {
+      el.addEventListener('click', assistant.surClic);
+      el.addEventListener('input', assistant.surSaisie);
+      el.addEventListener('change', assistant.surSaisie);
+      el.addEventListener('keydown', assistant.surFrappe);
+      el.addEventListener('focusout', assistant.surSortie);
+    }
     el.addEventListener('keydown', surTouche);
     // Toucher une commune proposée ne doit pas retirer le curseur du champ avant que le clic n'arrive.
     el.addEventListener('mousedown', function (e) { if (e.target.closest('.crm-pro-suggestions')) e.preventDefault(); });
@@ -1632,6 +1771,30 @@
       '<p class="crm-sr" id="crmProAnnonce" role="status"></p>' +
       '<div id="crmProCorps"></div>';
     rendre();
+  }
+
+  /* L'assistant d'appel (crm-assistant.js) reçoit ici les outils de la vue. Sans lui (fichier absent), la fiche
+     d'appel simple marche comme avant. */
+  var assistant = typeof window.crmAssistantCreer === 'function' ? window.crmAssistantCreer({
+    ic: ic, toast: toast, erreur: erreur, courant: courant, ficheCrm: ficheCrm, noteDe: noteDe, completerNote: completerNote,
+    rendre: function () { rendre(); },
+    // Les raccourcis du guide ne valent que sur l'onglet « Appeler » affiché, sans fiche CRM ni menu par-dessus.
+    actif: function () {
+      return monte() && etat.sousVue === 'appeler' && conteneur.offsetParent !== null &&
+        !(window.crmFiche && window.crmFiche.estOuverte()) && !UI.menuOuvert();
+    },
+    resultat: function (resultat) { return choisirResultat(resultat, { poser: true }); },
+    // Efface le résultat de la fiche courante (annulation d'un rendez-vous ou d'un rappel enregistré par le guide).
+    effacerResultat: function () {
+      var p = courant();
+      return p && p.resultat ? choisirResultat(p.resultat) : Promise.resolve(p);
+    },
+    suivant: function () { suivant(); },
+    ouvrirFicheCrm: function (id) { ouvrirFicheCrm(id); }
+  }) : null;
+  if (grandEcran) {
+    var surLargeur = function () { if (monte()) planifier(); };
+    if (grandEcran.addEventListener) grandEcran.addEventListener('change', surLargeur); else if (grandEcran.addListener) grandEcran.addListener(surLargeur);
   }
 
   CRM.surChangement(function () { reprendreBrouillons(); if (monte()) planifier(); });

@@ -159,7 +159,8 @@
 .crm-pro .crm-pro-outils { margin-top: 12px; }
 .crm-pro .crm-pro-accroche { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 14px 16px; background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 14px; animation: crm-apparait .18s var(--crm-courbe); }
 .crm-pro .crm-pro-accroche p { padding-left: 12px; border-left: 3px solid var(--or-t); font-size: 14px; line-height: 1.5; color: var(--a-ink); }
-.crm-pro .crm-pro-accroche p + p { border-left-color: var(--crm-controle); font-size: 13px; color: var(--a-ink-2); }
+/* La consigne en cas de refus, sous l'ouverture du guide d'appel (une ou plusieurs répliques). */
+.crm-pro .crm-pro-accroche .crm-pro-accroche-refus { border-left-color: var(--crm-controle); font-size: 13px; color: var(--a-ink-2); }
 
 /* ───────────────────────────── Appeler : file d'appels ───────────────────────────── */
 

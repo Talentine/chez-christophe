@@ -1557,16 +1557,20 @@
   // ───────────────────────────── État, configuration, notifications ─────────────────────────────
 
   function brutVide() {
-    return { commercants: [], leads: [], audits: [], prospects: [], commandes: [], evenements: [], fiches: [], interactions: [], taches: [] };
+    return { commercants: [], leads: [], audits: [], prospects: [], commandes: [], evenements: [], fiches: [], interactions: [], taches: [],
+      appels: [], reglages: [] };
   }
 
   /* ecriturePanne : la lecture seule vient d'une panne passagère (réseau, serveur), pas d'une migration absente.
      sourcesTronquees : sources si volumineuses que la lecture s'est arrêtée avant la fin.
      liens / liensProspects : faux dès que l'on sait que les colonnes de la migration « liens » manquent dans
-     crm_fiches / crm_prospects (vu à la lecture ou au premier refus d'écriture). Le reste du CRM n'en dépend pas. */
+     crm_fiches / crm_prospects (vu à la lecture ou au premier refus d'écriture). Le reste du CRM n'en dépend pas.
+     appels / reglages : faux quand la table du journal d'appels ou celle des réglages n'existe pas (migration
+     20261114_crm_appels.sql non appliquée). Rien d'autre n'en dépend : le journal se tait, les réglages restent
+     sur l'appareil. */
   function etatInitial() {
     return { charge: false, ecriture: false, ecriturePanne: false, prospection: false, sourcesKo: [], sourcesTronquees: [],
-      liens: true, liensProspects: true, erreur: null, chargeLe: null };
+      liens: true, liensProspects: true, appels: false, reglages: false, erreur: null, chargeLe: null };
   }
 
   var brut = brutVide();
@@ -1587,7 +1591,7 @@
     OFFRES: OFFRES, ETAPES: ETAPES, MOTIFS_PERTE: MOTIFS_PERTE, RESULTATS_APPEL: RESULTATS_APPEL,
     RESULTATS_PROSPECT: RESULTATS_PROSPECT, DEPARTEMENTS: DEPARTEMENTS, METIERS_OSM: METIERS_OSM, RESEAUX: RESEAUX,
     SERVEURS_OVERPASS: SERVEURS_OVERPASS,
-    fiches: [], prospects: brut.prospects,
+    fiches: [], prospects: brut.prospects, appels: brut.appels,
     // Horloge remplaçable (tests).
     horloge: function () { return new Date(); }
   };
@@ -1620,6 +1624,7 @@
 
   function recalculer() {
     CRM.prospects = brut.prospects;
+    CRM.appels = brut.appels;
     CRM.fiches = unifier(brut, Object.assign({}, CRM.config, { sourcesKo: sourcesSansDonnees }), CRM.horloge());
     parCle = new Map();
     CRM.fiches.forEach(function (f) { f.cles.forEach(function (cle) { parCle.set(cle, f); }); });
@@ -1711,6 +1716,7 @@
   }
 
   function requetesLecture(maintenant) {
+    var j90 = new Date(maintenant.getTime() - 90 * JOUR).toISOString();
     var j60 = new Date(maintenant.getTime() - 60 * JOUR).toISOString();
     var j30 = new Date(maintenant.getTime() - 30 * JOUR).toISOString();
     return {
@@ -1729,7 +1735,10 @@
       fiches: '/rest/v1/crm_fiches?select=*&order=id',
       interactions: '/rest/v1/crm_interactions?select=*&order=fait_at.desc,id.desc',
       taches: '/rest/v1/crm_taches?select=*&order=id',
-      prospects: '/rest/v1/crm_prospects?select=*&order=created_at.asc,id.asc'
+      prospects: '/rest/v1/crm_prospects?select=*&order=created_at.asc,id.asc',
+      // Journal d'appels : les 90 derniers jours suffisent à la mesure (jour, semaine, créneaux constatés).
+      appels: '/rest/v1/crm_appels?select=*&fait_at=gte.' + encodeURIComponent(j90) + '&order=fait_at.desc,id.desc',
+      reglages: '/rest/v1/crm_reglages?select=cle,valeur,updated_at&order=cle'
     };
   }
 
@@ -1788,10 +1797,18 @@
     })).then(function (resultats) {
       var nouveau = brutVide(), ko = [], sansDonnees = [], tronquees = [];
       var ecriture = true, panne = true, prospection = true, erreur = null;
+      var annexes = { appels: true, reglages: true };
       resultats.forEach(function (r) {
         if (!r.erreur) {
           nouveau[r.nom] = r.lignes;
           if (r.tronque) tronquees.push(r.nom);
+          return;
+        }
+        // Journal d'appels et réglages : des à-côtés. Leur absence ne compte pas parmi les sources en échec ;
+        // une panne passagère garde les dernières lignes lues et laisse l'écriture tenter sa chance.
+        if (r.nom in annexes) {
+          annexes[r.nom] = estPanne(r.erreur);
+          if (dejaLues.indexOf(r.nom) >= 0 && estPanne(r.erreur)) nouveau[r.nom] = brut[r.nom];
           return;
         }
         ko.push(r.nom);
@@ -1817,11 +1834,14 @@
       // Une table lue sans les colonnes de la migration « liens » : on le sait avant même d'essayer d'écrire.
       CRM.etat.liens = colonnePresente(nouveau.fiches, 'lien_google');
       CRM.etat.liensProspects = colonnePresente(nouveau.prospects, 'google_url');
+      CRM.etat.appels = annexes.appels;
+      CRM.etat.reglages = annexes.reglages;
       CRM.etat.erreur = erreur;
       CRM.etat.charge = true;
       CRM.etat.chargeLe = CRM.horloge();
       chargement = null;
       recalculer();
+      envoyerReglagesLocaux();
       return CRM.fiches;
     });
     return chargement;
@@ -2357,14 +2377,17 @@
   };
 
   /* Pose le résultat d'un appel (appele_at = maintenant, nb_appels + 1). null efface le résultat
-     sans effacer la trace de l'appel. */
-  CRM.resultatProspect = async function (id, resultat) {
+     sans effacer la trace de l'appel. `opts.correction` : le résultat d'un appel déjà compté est corrigé
+     (pouce qui a glissé, résultat précisé pendant le même appel) : ni nouvel appel, ni nouvelle heure. */
+  CRM.resultatProspect = async function (id, resultat, opts) {
     verifierProspection();
     var p = trouverParId(brut.prospects, id);
     if (!p) throw new Error('Prospect introuvable.');
     if (resultat == null || resultat === '') return patchProspect(id, { resultat: null, rappel_le: null });
     if (!resultatProspectDe(resultat)) throw new Error('Résultat inconnu.');
-    var champs = { resultat: resultat, appele_at: CRM.horloge().toISOString(), nb_appels: (Number(p.nb_appels) || 0) + 1 };
+    var correction = !!(opts && opts.correction) && Number(p.nb_appels) > 0 && !!p.appele_at;
+    var champs = correction ? { resultat: resultat }
+      : { resultat: resultat, appele_at: CRM.horloge().toISOString(), nb_appels: (Number(p.nb_appels) || 0) + 1 };
     // Une date de rappel n'a de sens que pour « À rappeler ».
     if (resultat !== 'a_rappeler' && p.rappel_le) champs.rappel_le = null;
     return patchProspect(id, champs);
@@ -2381,6 +2404,147 @@
     var nom = texte(liste);
     return recap(nom ? brut.prospects.filter(function (p) { return p.liste === nom; }) : brut.prospects, titre || nom);
   };
+
+  // ───────────────────────────── Journal d'appels et réglages ─────────────────────────────
+
+  var INTERLOCUTEURS = ['patron', 'barrage', 'inconnu'];
+  var CLE_REGLAGE = /^[a-z0-9_]{1,60}$/, PREFIXE_REGLAGE = 'crm_reglage_', TAILLE_REGLAGE = 150000;
+
+  // Table inconnue de l'API (migration non appliquée) : PGRST205, ou 42P01 dans une requête.
+  function estTableAbsente(e) { return !!e && (e.code === 'PGRST205' || e.code === '42P01' || e.statut === 404); }
+
+  function champsAppel(donnees) {
+    var champs = {};
+    if ('resultat' in donnees) champs.resultat = donnees.resultat;
+    if ('interlocuteur' in donnees) champs.interlocuteur = INTERLOCUTEURS.indexOf(donnees.interlocuteur) >= 0 ? donnees.interlocuteur : null;
+    if ('etape' in donnees) champs.etape = texte(donnees.etape).slice(0, 40) || null;
+    if ('objections' in donnees) {
+      champs.objections = (Array.isArray(donnees.objections) ? donnees.objections : []).map(function (o) { return texte(o).slice(0, 40); })
+        .filter(Boolean).slice(0, 20);
+    }
+    if ('version_script' in donnees) champs.version_script = texte(donnees.version_script).slice(0, 40) || null;
+    return champs;
+  }
+
+  /* Ajoute une ligne au journal d'appels (prospect, résultat, interlocuteur, dernière étape du guide, objections
+     entendues, version du script). Le journal sert à mesurer, pas à travailler : cette écriture ne rejette
+     jamais et ne bloque rien. Rend la ligne enregistrée, ou null (journal inactif, prospect pas encore en base, échec). */
+  CRM.journaliserAppel = function (donnees) {
+    donnees = donnees || {};
+    var prospect = texte(donnees.prospect_id);
+    if (!CRM.etat.appels || !resultatProspectDe(donnees.resultat) || !prospect || /^provisoire-/.test(prospect)) return Promise.resolve(null);
+    var ligne = Object.assign({ prospect_id: prospect, interlocuteur: null, etape: null, objections: [], version_script: null },
+      champsAppel(donnees), { fait_at: CRM.horloge().toISOString() });
+    return inserer(brut.appels, 'crm_appels', ligne).then(null, function (e) {
+      if (estTableAbsente(e)) CRM.etat.appels = false;
+      return null;
+    });
+  };
+
+  /* Corrige la ligne d'un appel dont le résultat vient d'être changé (pouce qui a glissé). Ne rejette jamais. */
+  CRM.corrigerAppel = function (id, donnees) {
+    var champs = champsAppel(donnees || {});
+    if (!CRM.etat.appels || !trouverParId(brut.appels, id) || ('resultat' in champs && !resultatProspectDe(champs.resultat))) return Promise.resolve(null);
+    return modifier(brut.appels, 'crm_appels', id, champs).then(null, function () { return null; });
+  };
+
+  /* Retire la ligne d'un appel dont le résultat vient d'être effacé. Ne rejette jamais. */
+  CRM.supprimerAppel = function (id) {
+    if (!CRM.etat.appels || !trouverParId(brut.appels, id)) return Promise.resolve(null);
+    return supprimer(brut.appels, 'crm_appels', id).then(null, function () { return null; });
+  };
+
+  function reglageLocal(cle) {
+    if (typeof localStorage === 'undefined') return null;
+    try {
+      var o = JSON.parse(localStorage.getItem(PREFIXE_REGLAGE + cle) || 'null');
+      return o && typeof o === 'object' && 'valeur' in o ? o : null;
+    } catch (e) { return null; }
+  }
+  function ecrireReglageLocal(cle, valeur) {
+    if (typeof localStorage === 'undefined') return false;
+    // `le` : l'heure de l'écriture, pour qu'une vieille copie ne passe jamais devant une valeur plus récente de la base.
+    try { localStorage.setItem(PREFIXE_REGLAGE + cle, JSON.stringify({ valeur: valeur, le: CRM.horloge().toISOString() })); return true; } catch (e) { return false; }
+  }
+  function oublierReglageLocal(cle) {
+    if (typeof localStorage === 'undefined') return;
+    try { localStorage.removeItem(PREFIXE_REGLAGE + cle); } catch (e) { /* stockage bloqué : rien à oublier */ }
+  }
+  function ligneReglage(cle) {
+    for (var i = 0; i < brut.reglages.length; i++) if (brut.reglages[i].cle === cle) return brut.reglages[i];
+    return null;
+  }
+
+  /* La copie de cet appareil encore valable, ou null. Elle cède devant la ligne de la base quand celle-ci est
+     plus récente (réglage modifié depuis un autre appareil), ou quand la copie n'est pas datée (ancien format). */
+  function reglageLocalValable(cle) {
+    var local = reglageLocal(cle), ligne = local && ligneReglage(cle);
+    if (!local || !ligne) return local;
+    var le = Date.parse(local.le), base = Date.parse(ligne.updated_at);
+    if (isNaN(le)) return null;
+    return isNaN(base) || le >= base ? local : null;
+  }
+
+  /* Valeur d'un réglage (script d'appel, objectif du jour), ou null. La copie gardée sur cet appareil
+     l'emporte tant que la base n'a pas pu la recevoir, sauf si la base a reçu depuis une valeur plus récente. */
+  CRM.reglage = function (cle) {
+    var local = reglageLocalValable(cle);
+    if (local) return local.valeur;
+    var ligne = ligneReglage(cle);
+    return ligne ? ligne.valeur : null;
+  };
+  /* Vrai quand ce réglage n'est enregistré que sur cet appareil. */
+  CRM.reglageSurAppareil = function (cle) { return !!reglageLocalValable(cle); };
+
+  /* `le` : l'heure à laquelle la valeur a été choisie. Elle est écrite dans updated_at, que rien d'autre ne met à jour. */
+  async function envoyerReglage(cle, valeur, le) {
+    var quand = isNaN(Date.parse(le)) ? CRM.horloge().toISOString() : new Date(Date.parse(le)).toISOString();
+    var lignes = await crmFetch('POST', '/rest/v1/crm_reglages?on_conflict=cle', { cle: cle, valeur: valeur, updated_at: quand },
+      'resolution=merge-duplicates,return=representation');
+    var ligne = ligneReglage(cle), recue = lignes[0] || { cle: cle, valeur: valeur, updated_at: quand };
+    if (ligne) remplacer(brut.reglages, ligne, recue); else brut.reglages.push(recue);
+    oublierReglageLocal(cle);
+  }
+
+  /* Enregistre un réglage dans crm_reglages. Si la table manque ou si l'envoi échoue, la valeur reste sur cet
+     appareil (localStorage) et sera renvoyée au prochain chargement réussi. Rend { ou : 'base' | 'appareil' } ;
+     ne rejette que si rien n'a pu être gardé nulle part. */
+  CRM.ecrireReglage = async function (cle, valeur) {
+    if (!CLE_REGLAGE.test(texte(cle))) throw new Error('Réglage inconnu.');
+    if (valeur === undefined || JSON.stringify(valeur).length > TAILLE_REGLAGE) throw new Error('Réglage trop volumineux.');
+    var garde = ecrireReglageLocal(cle, valeur);
+    recalculer();
+    if (CRM.etat.reglages) {
+      try {
+        await envoyerReglage(cle, valeur);
+        recalculer();
+        return { ou: 'base' };
+      } catch (e) {
+        if (estTableAbsente(e)) CRM.etat.reglages = false;
+        if (!garde) throw e;
+      }
+    }
+    if (!garde) throw new Error('Réglage non enregistré : le stockage de cet appareil est bloqué.');
+    return { ou: 'appareil' };
+  };
+
+  // Après un chargement réussi : les réglages restés sur cet appareil rejoignent la base, sans rien bloquer.
+  // Une copie plus ancienne que la ligne de la base est oubliée : elle n'écrase pas ce qu'un autre appareil a enregistré depuis.
+  function envoyerReglagesLocaux() {
+    if (!CRM.etat.reglages || typeof localStorage === 'undefined') return;
+    var cles = [];
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(PREFIXE_REGLAGE) === 0 && CLE_REGLAGE.test(k.slice(PREFIXE_REGLAGE.length))) cles.push(k.slice(PREFIXE_REGLAGE.length));
+      }
+    } catch (e) { return; }
+    cles.forEach(function (cle) {
+      var local = reglageLocalValable(cle);
+      if (!local) { oublierReglageLocal(cle); return; }
+      envoyerReglage(cle, local.valeur, local.le).then(recalculer, function (e) { if (estTableAbsente(e)) CRM.etat.reglages = false; });
+    });
+  }
 
   // ───────────────────────────── Recherche de numéros (services tiers) ─────────────────────────────
 
@@ -2486,7 +2650,7 @@
   CRM._test = {
     reinitialiser: function () {
       brut = brutVide(); parCle = new Map(); abonnes = []; chargement = null; rafraichissement = null; jetonMemoire = null;
-      CRM.fiches = []; CRM.prospects = brut.prospects;
+      CRM.fiches = []; CRM.prospects = brut.prospects; CRM.appels = brut.appels;
       CRM.config = { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' };
       ecrituresEnVol = 0; generation = 0; rechargementDu = false; sourcesSansDonnees = [];
       CRM.etat = etatInitial();

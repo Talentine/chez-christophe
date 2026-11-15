@@ -1,0 +1,297 @@
+/* CRM admin Marchéo — assistant d'appel de la vue « Prospection » (guide d'appel, « Mes appels », « Modifier mon script »).
+ *
+ * Complète crm.css et crm-prospection.css : mêmes jetons (--a-*, --crm-*), aucune couleur en dur, donc les deux
+ * thèmes (sombre par défaut, clair) suivent sans règle propre. Tout est écrit sous .crm-pro, comme le reste de la vue.
+ * Sur un fond teinté, le texte secondaire prend --a-ink-2 (et non --a-ink-3) pour garder un contraste AA.
+ */
+
+/* ───────────────────────────── Place du guide ───────────────────────────── */
+
+.crm-pro .crm-pro-guide-zone:empty { display: none; }
+.crm-pro .crm-pro-col-file { display: flex; flex-direction: column; gap: 20px; }
+
+.crm-pro .crm-gd { background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 16px; }
+.crm-pro .crm-gd-tete { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 14px; padding: 8px 14px 8px 8px; }
+.crm-pro .crm-gd-repli {
+  display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 8px; border: 0; border-radius: 10px; background: none;
+  font-size: 14.5px; font-weight: 800; letter-spacing: -.01em; transition: background var(--crm-duree);
+}
+.crm-pro .crm-gd-repli:hover { background: var(--crm-survol); }
+.crm-pro .crm-gd-corps { display: flex; flex-direction: column; gap: 14px; padding: 14px 16px 16px; border-top: 1px solid var(--a-line); scroll-margin-top: 16px; }
+
+/* Touche du raccourci, montrée sur les écrans à clavier seulement. */
+.crm-pro .crm-gd-kbd {
+  display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 22px; height: 22px; padding: 0 5px;
+  border: 1px solid var(--crm-controle); border-radius: 6px; background: var(--crm-survol);
+  font: 700 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--a-ink-2); white-space: nowrap;
+}
+.crm-pro .crm-gd-kbd-vide { flex: none; width: 22px; }
+
+/* Repère « bon moment pour appeler » : une pastille et une ligne, rien de plus. */
+.crm-pro .crm-gd-moment { display: flex; align-items: baseline; gap: 8px; flex: 1 1 240px; min-width: 0; font-size: 12.5px; line-height: 1.4; color: var(--a-ink-2); }
+.crm-pro .crm-gd-moment i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--a-ink-3); }
+.crm-pro .crm-gd-moment-bon i { background: var(--a-vert-clair); }
+.crm-pro .crm-gd-moment-possible i { background: var(--crm-surveiller); }
+.crm-pro .crm-gd-moment-eviter i { background: var(--crm-alerte); }
+.crm-pro .crm-gd-moment b { font-weight: 700; color: var(--a-ink); }
+.crm-pro .crm-gd-moment > span { min-width: 0; overflow-wrap: anywhere; }
+
+/* ───────────────────────────── Fil des étapes ───────────────────────────── */
+
+.crm-pro .crm-gd-fil { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.crm-pro .crm-gd-pas, .crm-pro .crm-gd-branche {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px 0 5px; border: 1px solid var(--crm-controle); border-radius: 50px;
+  background: none; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); white-space: nowrap;
+  transition: background var(--crm-duree), border-color var(--crm-duree), color var(--crm-duree);
+}
+.crm-pro .crm-gd-pas:hover { background: var(--crm-survol); }
+.crm-pro .crm-gd-pas-n {
+  display: inline-flex; align-items: center; justify-content: center; flex: none; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--crm-survol-fort); font-size: 11.5px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--a-ink);
+}
+.crm-pro .crm-gd-pas-fait .crm-gd-pas-n { background: var(--crm-survol-fort); background: color-mix(in srgb, var(--a-vert-clair) 20%, transparent); color: var(--a-vert-clair); }
+.crm-pro .crm-gd-pas[aria-current], .crm-pro .crm-gd-branche { border-color: var(--crm-or-trait); background: var(--crm-or-fond); color: var(--or-t); font-weight: 800; }
+.crm-pro .crm-gd-pas[aria-current] .crm-gd-pas-n { background: var(--or); color: var(--crm-sur-or); }
+.crm-pro .crm-gd-branche { padding: 0 13px; }
+
+/* ───────────────────────────── Étape : titre, texte à dire, réponses ───────────────────────────── */
+
+.crm-pro .crm-gd-etape { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.crm-pro .crm-gd-etape-tete { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.crm-pro .crm-gd-etape-tete h3 { flex: 1 1 160px; min-width: 0; font-size: 17px; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; border-radius: 4px; overflow-wrap: anywhere; }
+.crm-pro .crm-gd-etape-tete h3:focus { outline: none; }
+.crm-pro .crm-gd-etape-tete h3:focus-visible { outline: 2px solid var(--or-t); outline-offset: 4px; }
+.crm-pro .crm-gd-variante { flex: 0 1 280px; min-width: 0; }
+.crm-pro .crm-gd-retour {
+  display: inline-flex; align-items: center; gap: 4px; flex: none; height: 32px; padding: 0 12px 0 7px; border: 1px solid var(--crm-controle); border-radius: 50px;
+  background: none; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); transition: background var(--crm-duree);
+}
+.crm-pro .crm-gd-retour:hover { background: var(--crm-survol); color: var(--a-ink); }
+
+.crm-pro .crm-gd-courte {
+  display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 14px 6px 9px; border: 1px dashed var(--crm-or-trait); border-radius: 12px;
+  background: none; text-align: left; transition: background var(--crm-duree);
+}
+.crm-pro .crm-gd-courte:hover { background: var(--crm-survol); }
+.crm-pro .crm-gd-courte[aria-pressed=true] { border-style: solid; background: var(--crm-or-fond); }
+.crm-pro .crm-gd-courte b { display: block; font-size: 13.5px; font-weight: 800; color: var(--or-t); }
+.crm-pro .crm-gd-courte i { display: block; font-style: normal; font-size: 12px; color: var(--a-ink-2); }
+
+/* Le texte à dire : gros, lisible d'un coup d'œil, une réplique par paragraphe. */
+.crm-pro .crm-gd-script { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-left: 3px solid var(--or); border-radius: 4px 12px 12px 4px; background: var(--crm-creux); }
+.crm-pro .crm-gd-script p { font-size: 19px; font-weight: 600; line-height: 1.45; color: var(--a-ink); overflow-wrap: anywhere; text-wrap: pretty; }
+.crm-pro .crm-gd-pause { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--a-ink-2); }
+.crm-pro .crm-gd-script-suite { border-left-color: var(--crm-controle); }
+.crm-pro .crm-gd-script-suite p { font-size: 17px; font-weight: 500; }
+
+.crm-pro .crm-gd-soustitre, .crm-pro .crm-gd-etiquette { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--a-ink-2); }
+.crm-pro .crm-gd-soustitre { margin-top: 2px; }
+.crm-pro .crm-gd-conseil, .crm-pro .crm-gd-sens { font-size: 13px; line-height: 1.5; color: var(--a-ink-2); }
+.crm-pro .crm-gd-conseil { display: flex; align-items: flex-start; gap: 8px; }
+.crm-pro .crm-gd-conseil .crm-ic { flex: none; margin-top: 3px; color: var(--or-t); }
+.crm-pro .crm-gd-sens b { font-weight: 700; color: var(--a-ink); }
+.crm-pro .crm-gd-limite { display: flex; align-items: flex-start; gap: 9px; padding: 10px 12px; border: 1px solid var(--crm-alerte-trait); border-radius: 12px; background: var(--crm-alerte-fond); font-size: 13px; line-height: 1.45; color: var(--a-ink); }
+.crm-pro .crm-gd-limite .crm-ic { flex: none; margin-top: 2px; color: var(--crm-alerte); }
+.crm-pro .crm-gd-avert { font-size: 12.5px; line-height: 1.5; color: var(--a-ink-2); }
+.crm-pro .crm-gd-avert summary { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; font-weight: 700; color: var(--crm-surveiller); cursor: pointer; border-radius: 6px; }
+.crm-pro .crm-gd-avert p { margin-top: 6px; }
+
+.crm-pro .crm-gd-reactions, .crm-pro .crm-gd-qui { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.crm-pro .crm-gd-reaction {
+  display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 44px; padding: 7px 12px 7px 9px; border: 1px solid var(--crm-controle); border-radius: 12px;
+  background: var(--crm-creux); text-align: left; font-size: 13.5px; font-weight: 600; line-height: 1.25;
+  transition: background var(--crm-duree), border-color var(--crm-duree), transform var(--crm-duree);
+}
+.crm-pro .crm-gd-reaction:hover { background: var(--crm-survol); }
+.crm-pro .crm-gd-reaction:active { transform: scale(.985); }
+.crm-pro .crm-gd-reaction-l { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.crm-pro .crm-gd-reaction-l b { display: block; font-weight: 700; }
+.crm-pro .crm-gd-reaction-l i { display: block; font-style: normal; font-size: 12px; font-weight: 500; color: var(--a-ink-2); }
+.crm-pro .crm-gd-reaction small { flex: none; max-width: 42%; font-size: 11.5px; font-weight: 600; color: var(--a-ink-2); text-align: right; }
+.crm-pro .crm-gd-reaction-oui { border-color: var(--crm-controle); border-color: color-mix(in srgb, var(--a-vert-clair) 55%, transparent); }
+.crm-pro .crm-gd-reaction-oui small { color: var(--a-vert-clair); }
+.crm-pro .crm-gd-reaction-non { border-color: var(--crm-alerte-trait); }
+.crm-pro .crm-gd-reaction-non small { color: var(--crm-alerte); }
+
+/* ───────────────────────────── Rendez-vous, rappel, résultat proposé, SMS ───────────────────────────── */
+
+.crm-pro .crm-gd-form { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-bg); }
+.crm-pro .crm-gd-form .crm-puces { margin-top: 0; }
+/* Pendant la proposition du rendez-vous : une ligne de jours (puis d'heures), sans cadre, pour laisser les réponses à l'écran. */
+.crm-pro .crm-gd-form-court { gap: 8px; padding: 0; border: 0; border-radius: 0; background: none; }
+.crm-pro .crm-gd-annuler { align-self: flex-start; }
+.crm-pro .crm-gd-hors-bouche .crm-ic { color: var(--crm-surveiller); }
+.crm-pro .crm-gd-form-titre { display: flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 800; }
+.crm-pro .crm-gd-form-titre .crm-ic { color: var(--or-t); }
+.crm-pro .crm-gd-segment { display: flex; border: 1px solid var(--crm-controle); border-radius: 10px; overflow: hidden; }
+.crm-pro .crm-gd-segment button { flex: 1; min-width: 0; height: 36px; border: 0; border-left: 1px solid var(--crm-controle); border-radius: 0; background: none; font-size: 13px; font-weight: 600; color: var(--a-ink-2); transition: background var(--crm-duree); }
+.crm-pro .crm-gd-segment button:first-child { border-left: 0; }
+.crm-pro .crm-gd-segment button:hover { background: var(--crm-survol); }
+.crm-pro .crm-gd-segment button[aria-pressed=true] { background: var(--crm-or-fond); color: var(--or-t); font-weight: 800; }
+.crm-pro .crm-gd-segment button:focus-visible { outline-offset: -2px; }
+.crm-pro .crm-gd-valider { align-self: flex-start; height: 44px; padding: 0 18px; gap: 8px; font-size: 14px; }
+.crm-pro .crm-gd-valider .crm-gd-kbd { border-color: currentColor; background: none; color: inherit; opacity: .72; }
+.crm-pro .crm-gd-fait-titre { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; font-weight: 700; line-height: 1.4; }
+.crm-pro .crm-gd-fait-titre .crm-ic { flex: none; margin-top: 2px; color: var(--a-vert-clair); }
+.crm-pro .crm-gd-propose { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; padding: 12px 14px; border: 1px solid var(--crm-or-trait); border-radius: 12px; background: var(--crm-or-fond); }
+.crm-pro .crm-gd-propose > span { font-size: 12.5px; font-weight: 700; color: var(--a-ink); }
+.crm-pro .crm-gd-propose.crm-gd-fait { flex-direction: column; align-items: stretch; border-color: var(--a-line); background: var(--a-bg); }
+.crm-pro .crm-gd-sms { display: flex; flex-direction: column; gap: 8px; }
+.crm-pro .crm-gd-sms-texte { padding: 10px 12px; border: 1px solid var(--a-line); border-radius: 10px; background: var(--a-surface); font-size: 14px; line-height: 1.5; color: var(--a-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.crm-pro .crm-gd-sms-bascule { align-self: flex-start; }
+
+/* ───────────────────────────── Objections, conseils ───────────────────────────── */
+
+.crm-pro .crm-gd-objections { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px solid var(--a-line); }
+.crm-pro .crm-gd-obj-tete { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; }
+.crm-pro .crm-gd-obj-tete h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 9px; font-size: 14px; font-weight: 800; }
+.crm-pro .crm-gd-obj-tete h3 span { font-size: 12px; font-weight: 600; color: var(--a-ink-2); }
+.crm-pro .crm-gd-obj-cherche { position: relative; display: flex; align-items: center; flex: 0 1 270px; min-width: 0; }
+.crm-pro .crm-gd-obj-cherche > .crm-ic { position: absolute; left: 11px; color: var(--a-ink-3); pointer-events: none; }
+.crm-pro .crm-gd-obj-cherche input { width: 100%; height: 34px; padding: 0 36px 0 31px; border-radius: 50px; font-size: 13px; }
+.crm-pro .crm-gd-obj-cherche .crm-gd-kbd { position: absolute; right: 7px; pointer-events: none; }
+.crm-pro .crm-gd-obj-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+.crm-pro .crm-gd-obj {
+  min-width: 0; min-height: 36px; padding: 6px 11px; border: 1px solid var(--crm-controle); border-radius: 10px; background: none; text-align: left;
+  font-size: 12.5px; font-weight: 600; line-height: 1.25; color: var(--a-ink-2); overflow-wrap: anywhere;
+  transition: background var(--crm-duree), border-color var(--crm-duree), color var(--crm-duree);
+}
+.crm-pro .crm-gd-obj:hover { background: var(--crm-survol); color: var(--a-ink); }
+.crm-pro .crm-gd-obj-entendue { border-color: var(--crm-alerte-trait); color: var(--a-ink); }
+.crm-pro .crm-gd-obj[aria-pressed=true] { border-color: var(--crm-or-trait); background: var(--crm-or-fond); color: var(--or-t); font-weight: 800; }
+.crm-pro .crm-gd-pied { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.crm-pro .crm-gd-conseils ul { margin: 6px 0 14px; padding-left: 18px; list-style: disc; font-size: 13px; line-height: 1.5; color: var(--a-ink-2); }
+.crm-pro .crm-gd-conseils li + li { margin-top: 4px; }
+
+/* Dans la fiche d'appel (écran étroit) : le guide n'ajoute pas un cadre dans le cadre. */
+.crm-pro .crm-pro-carte .crm-gd { border: 0; border-top: 1px solid var(--a-line); border-bottom: 1px solid var(--a-line); border-radius: 0; background: none; }
+.crm-pro .crm-pro-carte .crm-gd-tete { padding: 6px 0; }
+.crm-pro .crm-pro-carte .crm-gd-corps { padding: 12px 0 14px; }
+
+/* ───────────────────────────── « Mes appels » ───────────────────────────── */
+
+.crm-pro .crm-ms { margin-bottom: 14px; border: 1px solid var(--a-line); border-radius: 14px; background: var(--a-surface); }
+.crm-pro .crm-ms-tete {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 6px 16px 6px 10px; border: 0; border-radius: 14px; background: none;
+  text-align: left; font-size: 13px; color: var(--a-ink-2); font-variant-numeric: tabular-nums; transition: background var(--crm-duree);
+}
+.crm-pro .crm-ms-tete:hover { background: var(--crm-creux); }
+.crm-pro .crm-ms-tete b { flex: none; font-size: 14px; font-weight: 800; color: var(--a-ink); }
+.crm-pro .crm-ms-tete > span:not(.crm-ms-jauge) { flex: 1; min-width: 0; }
+.crm-pro .crm-ms-jauge { display: block; flex: 0 0 130px; }
+.crm-pro .crm-ms-corps { display: flex; flex-direction: column; gap: 18px; padding: 6px 16px 16px; }
+.crm-pro .crm-ms-periodes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.crm-pro .crm-ms-tuiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.crm-pro .crm-ms-tuile { display: flex; flex-direction: column; gap: 1px; min-width: 0; padding: 10px 12px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-bg); }
+.crm-pro .crm-ms-tuile b { font-size: 22px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ms-tuile span { font-size: 12px; color: var(--a-ink-2); overflow-wrap: anywhere; }
+.crm-pro .crm-ms-tuile small { font-size: 11.5px; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ms-objectif-ligne { display: flex; gap: 8px; max-width: 340px; margin: 6px 0; }
+.crm-pro .crm-ms-objectif-ligne input { flex: 1; min-width: 0; height: 36px; padding: 0 12px; font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ms-objectif-ligne .crm-btn { height: 36px; }
+.crm-pro .crm-ms-bloc { max-width: 680px; }
+.crm-pro .crm-ms-liste { display: flex; flex-direction: column; margin: 8px 0 0; padding: 0; list-style: none; }
+.crm-pro .crm-ms-liste li { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 12px; padding: 7px 0; border-top: 1px solid var(--a-line); font-size: 13px; }
+.crm-pro .crm-ms-liste li span { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; }
+.crm-pro .crm-ms-liste li b { font-weight: 800; font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ms-liste li small { font-size: 12px; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ms-bloc .crm-aide, .crm-pro .crm-ms-corps > .crm-aide { margin-top: 6px; font-size: 12.5px; line-height: 1.5; }
+.crm-pro .crm-ms-note { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; line-height: 1.5; color: var(--a-ink-2); }
+.crm-pro .crm-ms-note .crm-ic { flex: none; margin-top: 3px; color: var(--or-t); }
+
+/* ───────────────────────────── « Modifier mon script » ───────────────────────────── */
+
+.crm-pro .crm-ed { display: flex; flex-direction: column; gap: 14px; max-width: 880px; }
+.crm-pro .crm-ed-tete { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; }
+.crm-pro .crm-ed-tete h2 { font-size: 20px; font-weight: 800; letter-spacing: -.015em; }
+.crm-pro .crm-ed-tete h2:focus { outline: none; }
+.crm-pro .crm-ed > .crm-aide { font-size: 13px; line-height: 1.5; color: var(--a-ink-2); }
+.crm-pro .crm-ed > .crm-aide b { color: var(--a-ink); }
+.crm-pro .crm-ed-barre { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; padding: 10px 14px; border: 1px solid var(--a-line); border-radius: 14px; background: var(--a-surface); }
+.crm-pro .crm-ed-barre p { display: flex; align-items: flex-start; gap: 7px; flex: 1 1 240px; min-width: 0; font-size: 13px; line-height: 1.45; color: var(--a-ink-2); }
+.crm-pro .crm-ed-barre p .crm-ic { flex: none; margin-top: 2px; color: var(--or-t); }
+.crm-pro .crm-ed-barre .crm-btn { height: 40px; padding: 0 18px; font-size: 13.5px; }
+.crm-pro .crm-ed-tel { max-width: 440px; }
+.crm-pro .crm-ed-groupes { display: flex; flex-wrap: wrap; gap: 6px; }
+.crm-pro .crm-ed-nb { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; margin-left: 7px; padding: 0 5px; border-radius: 50px; background: var(--or); color: var(--crm-sur-or); font-size: 11px; font-weight: 800; }
+.crm-pro .crm-ed-blocs { display: flex; flex-direction: column; gap: 14px; }
+.crm-pro .crm-ed-bloc { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 14px 16px; border: 1px solid var(--a-line); border-radius: 14px; background: var(--a-surface); }
+.crm-pro .crm-ed-bloc-modifie { border-color: var(--crm-or-trait); }
+.crm-pro .crm-ed-bloc-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.crm-pro .crm-ed-bloc-tete label { min-width: 0; font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
+.crm-pro .crm-ed-bloc-tete label i { margin-left: 8px; font-style: normal; font-size: 12px; font-weight: 600; color: var(--a-ink-2); }
+.crm-pro .crm-ed-bloc-tete label em { margin-left: 8px; font-style: normal; font-size: 11.5px; font-weight: 800; color: var(--or-t); }
+.crm-pro .crm-ed-compteur { flex: none; font-size: 12px; color: var(--a-ink-3); font-variant-numeric: tabular-nums; }
+.crm-pro .crm-ed-compteur.crm-ed-trop { font-weight: 700; color: var(--crm-alerte); }
+.crm-pro .crm-ed-bloc textarea { width: 100%; min-height: 104px; padding: 10px 12px; font-size: 14px; line-height: 1.5; resize: vertical; }
+.crm-pro .crm-ed-bloc textarea[aria-invalid=true], html[data-theme="clair"] .crm-pro .crm-ed-bloc textarea[aria-invalid=true] { border-color: var(--crm-alerte); }
+.crm-pro .crm-ed-erreur { display: flex; flex-direction: column; gap: 3px; font-size: 12.5px; line-height: 1.4; color: var(--crm-alerte); }
+.crm-pro .crm-ed-erreur:empty { display: none; }
+.crm-pro .crm-ed-erreur span { display: flex; align-items: flex-start; gap: 6px; }
+.crm-pro .crm-ed-erreur .crm-ic { flex: none; margin-top: 2px; }
+.crm-pro .crm-ed-apercu { display: flex; flex-direction: column; gap: 6px; }
+.crm-pro .crm-ed-script { padding: 10px 14px; }
+.crm-pro .crm-ed-script p { font-size: 15px; font-weight: 500; }
+.crm-pro .crm-ed-variables ul { columns: 2; column-gap: 28px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.7; color: var(--a-ink-2); }
+.crm-pro .crm-ed-variables code { font-size: 12px; font-weight: 700; color: var(--a-ink); }
+
+/* ───────────────────────────── Écrans étroits et tactiles ───────────────────────────── */
+
+@media (hover: none), (max-width: 900px) {
+  .crm-pro .crm-gd-kbd, .crm-pro .crm-gd-kbd-vide { display: none; }
+  .crm-pro .crm-gd-obj-cherche input { padding-right: 14px; }
+}
+
+@media (max-width: 1100px) {
+  .crm-pro .crm-pro-col-file { gap: 14px; }
+}
+
+@media (max-width: 900px) {
+  .crm-pro .crm-gd-repli { height: 44px; }
+  .crm-pro .crm-gd-corps, .crm-pro .crm-pro-carte .crm-gd-corps { gap: 12px; scroll-margin-top: 76px; }
+  .crm-pro .crm-gd-pas { height: 44px; padding: 0 12px 0 10px; }
+  /* Étapes non courantes : une cible de 44 px de côté, sans cadre, autour du numéro. Sans espace entre elles, le fil
+     ne prend pas une ligne de plus sur un écran de 360 px. */
+  .crm-pro .crm-gd-fil { gap: 0; }
+  .crm-pro .crm-gd-pas:not([aria-current]) { width: 44px; padding: 0; justify-content: center; border-color: transparent; }
+  .crm-pro .crm-gd-pas:not([aria-current]) .crm-gd-pas-n { width: 28px; height: 28px; font-size: 12.5px; }
+  .crm-pro .crm-gd-pas:not([aria-current]) .crm-gd-pas-l { display: none; }
+  .crm-pro .crm-gd-branche { height: 44px; }
+  .crm-pro .crm-gd-retour { height: 44px; }
+  .crm-pro .crm-gd-variante { flex: 1 1 100%; }
+  .crm-pro .crm-gd-courte { min-height: 50px; }
+  .crm-pro .crm-gd-script { padding: 12px 14px; }
+  .crm-pro .crm-gd-script p { font-size: 18px; }
+  .crm-pro .crm-gd-script-suite p { font-size: 17px; }
+  .crm-pro .crm-gd-reactions { grid-template-columns: minmax(0, 1fr); }
+  .crm-pro .crm-gd-reaction { min-height: 50px; padding: 8px 12px; font-size: 14.5px; }
+  .crm-pro .crm-gd-qui .crm-gd-reaction { min-height: 60px; }
+  .crm-pro .crm-gd-segment button { height: 44px; font-size: 13.5px; }
+  .crm-pro .crm-gd-form .crm-champ-date { flex: 1 1 120px; }
+  .crm-pro .crm-gd-valider { align-self: stretch; height: 50px; font-size: 15px; }
+  .crm-pro .crm-gd-annuler { min-height: 44px; }
+  .crm-pro .crm-gd-propose .crm-btn { flex: 1 1 100%; }
+  .crm-pro .crm-gd-avert summary { min-height: 44px; }
+  .crm-pro .crm-gd-obj-cherche { flex: 1 1 100%; }
+  .crm-pro .crm-gd-obj-cherche input { height: 44px; }
+  .crm-pro .crm-gd-obj-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .crm-pro .crm-gd-obj { min-height: 44px; font-size: 13px; }
+
+  .crm-pro .crm-ms-tete { flex-wrap: wrap; min-height: 48px; padding: 8px 12px 8px 8px; }
+  .crm-pro .crm-ms-jauge { flex: 1 1 100%; margin: 2px 0 4px 26px; }
+  .crm-pro .crm-ms-corps { padding: 4px 12px 14px; }
+  .crm-pro .crm-ms-periodes { grid-template-columns: minmax(0, 1fr); }
+  .crm-pro .crm-ms-tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .crm-pro .crm-ms-objectif-ligne { max-width: none; }
+  .crm-pro .crm-ms-objectif-ligne input, .crm-pro .crm-ms-objectif-ligne .crm-btn { height: 46px; }
+
+  .crm-pro .crm-ed-barre .crm-btn { flex: 1 1 100%; height: 50px; }
+  .crm-pro .crm-ed-tel { max-width: none; }
+  .crm-pro .crm-ed-bloc { padding: 12px; }
+  .crm-pro .crm-ed-bloc textarea { min-height: 150px; }
+  .crm-pro .crm-ed-variables ul { columns: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crm-pro .crm-gd-reaction, .crm-pro .crm-gd-pas, .crm-pro .crm-gd-obj { transition: none; }
+}
