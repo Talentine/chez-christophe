@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
-modified: 2026-11-13
+modified: 2026-11-15
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -105,7 +105,7 @@ Le vrai risque, c'est le panier préparé pour un client qui ne vient pas. Les f
 
 ## Et si vous voulez aussi livrer dans le quartier ?
 
-Beaucoup de primeurs ajoutent la livraison une fois le click and collect installé, souvent pour les clients âgés ou les paniers lourds. Le plus simple est de la limiter à une zone proche, à un ou deux jours de tournée, avec un minimum de commande. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux, votre minimum et vos frais. Notre guide pour [organiser sa propre livraison locale](/blog/livraison-locale-commercant-comment-organiser) donne la méthode.
+Beaucoup de primeurs ajoutent la livraison une fois le click and collect installé, souvent pour les clients âgés ou les paniers lourds. Le plus simple est de la limiter à une zone proche, à un ou deux jours de tournée, avec un minimum de commande. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux, votre minimum et vos frais. Notre guide pour [organiser sa propre livraison locale](/blog/livraison-locale-commercant-comment-organiser) donne la méthode, et notre article [primeur : livraison à domicile de vos paniers](/blog/primeur-livraison-a-domicile) détaille les formules de paniers, les créneaux et les frais.
 
 ## Combien coûte le click and collect pour un primeur ?
 

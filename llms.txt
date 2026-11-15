@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Primeur livraison à domicile : livrer vos paniers vous-même](https://marchéo.fr/blog/primeur-livraison-a-domicile) : Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.
 - [Click and collect épicerie : vendre en ligne, retrait en boutique](https://marchéo.fr/blog/click-and-collect-epicerie) : Click and collect épicerie : quels produits mettre en ligne, vrac au poids, paniers garnis et coffrets de Noël, créneaux de retrait et prix. Sans commission.
 - [Place de marché ou boutique en ligne pour un commerce de bouche](https://marchéo.fr/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche) : Place de marché alimentaire ou boutique en ligne à votre nom ? Coûts, clients, expédition ou retrait : le comparatif honnête pour un commerce de bouche.
 - [Alternative à Uber Eats : comment garder vos clients en direct](https://marchéo.fr/blog/alternative-uber-eats-garder-ses-clients) : Quelle alternative à Uber Eats pour garder ses clients ? Les cinq solutions de commande en direct, leurs coûts, et la méthode pour faire revenir les habitués.
@@ -100,4 +101,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-14
+- Dernière mise à jour : 2026-11-15

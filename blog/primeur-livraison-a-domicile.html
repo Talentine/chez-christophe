@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primeur livraison à domicile : le guide des paniers livrés · Marchéo</title>
+<meta name="description" content="Lancer la livraison à domicile chez un primeur : paniers de légumes, zone, créneaux, prix au poids et frais. Sans plateforme, sans commission, sans matériel.">
+<link rel="canonical" href="https://marchéo.fr/blog/primeur-livraison-a-domicile">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Primeur livraison à domicile : le guide des paniers livrés · Marchéo"><meta property="og:description" content="Lancer la livraison à domicile chez un primeur : paniers de légumes, zone, créneaux, prix au poids et frais. Sans plateforme, sans commission, sans matériel.">
+<meta property="og:url" content="https://marchéo.fr/blog/primeur-livraison-a-domicile"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Livrer à domicile quand on est primeur",
+     "item": "https://marchéo.fr/blog/primeur-livraison-a-domicile"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Primeur livraison à domicile : livrer vos paniers vous-même",
+   "description": "Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-15",
+   "dateModified": "2026-11-15",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/primeur-livraison-a-domicile",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "primeur livraison à domicile, panier de légumes livraison à domicile, livraison fruits et légumes à domicile primeur, primeurs livraison à domicile, panier fruits et légumes livraison, maraîcher livraison à domicile",
+   "articleSection": "Métier"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel logiciel pour un primeur qui veut livrer ses paniers lui-même ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Il faut un outil qui prenne les commandes en ligne, gère les paniers à prix fixe et la vente au kilo, la zone, les créneaux et la liste des commandes à livrer. Les optimiseurs de tournée calculent l'itinéraire mais ne prennent pas les commandes, et les plateformes de livraison prélèvent en général 14 à 30 % de commission. Marchéo réunit commande et organisation dans la formule Click & Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour livrer à domicile quand on est primeur ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas pour gérer les commandes : avec Marchéo, tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette, imprimante ou caisse à acheter. Pour la tournée, il vous faut un véhicule, des cagettes ou des sacs solides, et une caisse isotherme si vous livrez aussi des produits frais comme les œufs, le fromage ou les jus."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Panier fixe ou panier composé par le client : que choisir ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Le panier fixe est le plus simple à préparer et à livrer : un prix rond, un contenu de saison que vous choisissez selon vos arrivages. Le panier composé plaît aux clients qui ont leurs habitudes, mais demande plus de temps de préparation. Beaucoup de primeurs commencent par deux ou trois paniers fixes, puis ajoutent quelques produits à la pièce ou au kilo."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment facturer les fruits et légumes vendus au poids en livraison ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Affichez un prix estimé à la commande, pesez au moment de la préparation et facturez le poids réel. Avec l'empreinte bancaire optionnelle de Marchéo, jusqu'à 75 % du panier sont bloqués sur la carte sans être débités, puis libérés automatiquement 24 heures après : vous êtes couvert si le client n'est pas là."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Livrer à domicile quand on est primeur</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Métier</p>
+<h1>Primeur livraison à domicile : livrer vos paniers vous-même</h1>
+<p class="lead">Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.</p>
+<p class="meta">Par Paul Merieult · 15/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte pour votre primeur</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Paniers de la semaine vendus d'avance, commandes passées le soir et le week-end : vous vendez même boutique fermée, et vous achetez en connaissant déjà une partie de la demande. Zéro commission.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Les clients qui cherchent un primeur ou un panier de fruits et légumes près de chez eux tombent sur votre boutique. Vous partagez le lien sur Instagram et annoncez vos arrivages par SMS.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Plus de commandes notées au téléphone pendant le rush du samedi : le client choisit lui-même produits et quantités, vous préparez au calme.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription?metier=primeur">Voir ma démo gratuite</a></section>
+<p>Pour lancer la livraison à domicile chez un primeur, le plus simple est de proposer deux ou trois paniers de légumes à prix fixe, livrés sur une zone courte, un ou deux jours par semaine, avec une heure limite de commande la veille. Vous livrez vous-même vos clients, sans plateforme et sans commission. Les commandes se gèrent depuis votre téléphone, sans matériel à acheter.</p>
+<p>Le cadre général, valable pour tous les commerces, est dans notre <a href="/blog/livraison-locale-commercant-comment-organiser">guide complet de la livraison à domicile pour commerçant</a>. Ici, on parle de ce qui change quand on livre des fruits et légumes : des produits qui changent chaque semaine, des prix au kilo, des cagettes lourdes et une clientèle qui recommande souvent le même panier.</p>
+<h2>Pourquoi proposer la livraison à domicile quand on est primeur ?</h2>
+<p>La livraison vous apporte les clients qui aiment vos produits mais ne peuvent pas porter un sac de 5 kilos chaque semaine. Les fruits et légumes sont lourds, encombrants et achetés souvent : c&rsquo;est exactement ce qu&rsquo;on aime se faire livrer.</p>
+<ul>
+<li><strong>Les personnes âgées</strong>, fidèles à leur primeur mais qui se déplacent moins.</li>
+<li><strong>Les familles</strong>, qui veulent les légumes de la semaine sans passer après le travail.</li>
+<li><strong>Les actifs en télétravail</strong>, disponibles en fin de matinée pour recevoir leur panier.</li>
+</ul>
+<h2>Panier de légumes livré à domicile : quelle formule proposer ?</h2>
+<p>Pour démarrer, la formule la plus efficace est le panier fixe de saison, à prix rond, que vous composez selon vos arrivages. Le client n&rsquo;a qu&rsquo;un choix à faire, et vous préparez vingt paniers identiques au lieu de vingt commandes différentes.</p>
+<table>
+<thead>
+<tr>
+<th>Formule</th>
+<th>Pour le client</th>
+<th>Pour vous</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Panier fixe de saison (petit, moyen, familial)</td>
+<td>Un seul clic, la surprise des produits du moment</td>
+<td>Préparation rapide, invendus mieux écoulés</td>
+</tr>
+<tr>
+<td>Panier fixe + produits au choix</td>
+<td>Il ajoute ses fruits préférés, des œufs, un jus</td>
+<td>Un peu plus de préparation, panier moyen plus élevé</td>
+</tr>
+<tr>
+<td>Commande libre au kilo</td>
+<td>Il choisit tout, comme en boutique</td>
+<td>Préparation plus longue, pesée de chaque article</td>
+</tr>
+</tbody>
+</table>
+<p>Indiquez sur chaque panier un contenu indicatif et le poids total approximatif, par exemple « environ 4 kg, 6 à 8 variétés selon arrivage ». Le client sait ce qu&rsquo;il achète, et vous gardez la liberté d&rsquo;adapter selon le marché.</p>
+<h2>Livrer soi-même ou passer par une plateforme ?</h2>
+<p>Pour un primeur de quartier, livrer soi-même est souvent le meilleur choix, car vous gardez votre prix, votre client et la qualité de vos produits jusqu&rsquo;à la porte. Les plateformes de livraison sont pensées pour les repas chauds et prennent une commission sur chaque commande.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vous livrez vous-même</th>
+<th>Plateforme de livraison</th>
+<th>Site national de paniers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zone</td>
+<td>Votre quartier, les communes voisines</td>
+<td>Celle de la plateforme</td>
+<td>Toute la France ou grandes villes</td>
+</tr>
+<tr>
+<td>Commission</td>
+<td>0 % avec un abonnement fixe</td>
+<td>14 à 30 % en général</td>
+<td>Vous n&rsquo;êtes pas le vendeur</td>
+</tr>
+<tr>
+<td>Relation client</td>
+<td>Vous connaissez chaque client</td>
+<td>Le client appartient à la plateforme</td>
+<td>Aucune</td>
+</tr>
+<tr>
+<td>Adapté aux paniers lourds</td>
+<td>Oui</td>
+<td>Peu, coursiers à vélo ou scooter</td>
+<td>Oui, mais ce n&rsquo;est pas votre commerce</td>
+</tr>
+</tbody>
+</table>
+<p>Pour comparer les outils qui permettent de livrer vous-même, lisez notre article sur le <a href="/blog/logiciel-pour-livrer-ses-clients-soi-meme">logiciel pour livrer ses clients soi-même</a>.</p>
+<h2>Quelle zone et quels créneaux choisir pour un primeur ?</h2>
+<p>Choisissez une zone que vous couvrez en une heure environ et des créneaux fixes, en dehors de vos heures de pointe. La fraîcheur se joue sur la durée de la tournée : plus elle est courte, plus les salades et les fruits mûrs arrivent en bon état.</p>
+<table>
+<thead>
+<tr>
+<th>Créneau</th>
+<th>Pour qui</th>
+<th>À savoir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mardi ou mercredi fin de matinée</td>
+<td>Retraités, télétravail</td>
+<td>Après l&rsquo;arrivage, boutique souvent plus calme</td>
+</tr>
+<tr>
+<td>Jeudi ou vendredi fin d&rsquo;après-midi</td>
+<td>Familles, actifs</td>
+<td>Panier pour le week-end</td>
+</tr>
+<tr>
+<td>Samedi matin</td>
+<td>Tout le monde</td>
+<td>À éviter si vous êtes seul au comptoir</td>
+</tr>
+</tbody>
+</table>
+<p>Fixez une heure limite, par exemple la veille à 14 h, pour passer votre commande au grossiste ou au producteur avec les bonnes quantités. Sur Marchéo, les créneaux s&rsquo;ouvrent sur les deux semaines à venir, et vous limitez le nombre de commandes par créneau pour ne jamais dépasser ce que votre véhicule peut porter.</p>
+<h2>Comment préserver la fraîcheur pendant la livraison ?</h2>
+<p>Préparez les paniers au dernier moment et rangez-les pour que rien ne s&rsquo;écrase. Les fruits et légumes ne demandent pas la même chaîne du froid que la viande, mais les produits frais vendus à côté, comme le fromage ou les jus, doivent rester au frais.</p>
+<ol>
+<li><strong>Préparez juste avant la tournée</strong>, à partir de la liste des commandes du créneau.</li>
+<li><strong>Mettez le lourd en bas</strong> : pommes de terre, courges, oignons, puis les fruits fragiles et les herbes au-dessus.</li>
+<li><strong>Séparez les produits frais</strong> dans une caisse isotherme si vous en livrez.</li>
+<li><strong>Étiquetez chaque panier</strong> au nom du client, avec son adresse.</li>
+<li><strong>Évitez de laisser un panier au soleil</strong> devant une porte : prévenez le client avant votre passage.</li>
+</ol>
+<p>Pensez aussi à prévenir votre assureur si votre véhicule sert désormais à livrer.</p>
+<h2>Combien facturer la livraison de paniers de fruits et légumes ?</h2>
+<p>Partez du coût réel d&rsquo;une tournée, puis fixez un minimum de commande et des frais lisibles. Comptez votre temps ou celui d&rsquo;un salarié, le carburant et les sacs, puis divisez par le nombre de paniers livrés.</p>
+<p>Pour un primeur, une base de départ prudente est un minimum de commande de 20 à 30 €, des frais de 3 à 5 €, et la livraison offerte à partir de 50 € environ. Ajustez selon vos distances et votre clientèle. La méthode complète est dans notre article pour <a href="/blog/comment-calculer-ses-frais-de-livraison-commercant">calculer ses frais de livraison</a>.</p>
+<h2>Comment gérer le poids réel et le paiement ?</h2>
+<p>Pour les paniers à prix fixe, le prix est connu d&rsquo;avance. Pour les produits vendus au kilo, le montant final dépend de votre pesée : le client commande environ 1 kg de tomates, vous pesez 1,08 kg, et vous facturez le poids réel.</p>
+<ul>
+<li><strong>Le paiement à la livraison</strong> se fait au montant exact, mais vous prenez le risque du client absent.</li>
+<li><strong>L&rsquo;empreinte bancaire</strong>, optionnelle sur Marchéo, bloque jusqu&rsquo;à 75 % du panier sur la carte sans le débiter, puis elle est libérée automatiquement 24 heures après. Vous êtes couvert si personne n&rsquo;ouvre.</li>
+</ul>
+<p>Les réglages par pièce, botte ou kilo sont expliqués dans notre article pour <a href="/blog/vendre-au-poids-en-ligne">vendre au poids en ligne</a>.</p>
+<h2>Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas</h2>
+<p>Pour livrer vos paniers, il vous faut un véhicule, de quoi transporter les produits sans les abîmer et un outil de commande, mais aucun équipement informatique nouveau.</p>
+<table>
+<thead>
+<tr>
+<th>Ce qu&rsquo;il vous faut</th>
+<th>Ce qu&rsquo;il ne vous faut pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un véhicule et du temps pour la tournée</td>
+<td>Des coursiers ou une société de livraison</td>
+</tr>
+<tr>
+<td>Des cagettes ou des sacs solides, une caisse isotherme pour le frais</td>
+<td>Une tablette ou une imprimante à acheter</td>
+</tr>
+<tr>
+<td>Le téléphone ou l&rsquo;ordinateur que vous avez déjà</td>
+<td>Un développeur ou une agence</td>
+</tr>
+<tr>
+<td>Une zone, des créneaux, un minimum et des frais</td>
+<td>Une commission sur chaque commande</td>
+</tr>
+</tbody>
+</table>
+<h2>Comment Marchéo aide un primeur à livrer ?</h2>
+<p>Marchéo ne livre pas et n&rsquo;a pas de coursiers : c&rsquo;est l&rsquo;outil qui vous permet d&rsquo;organiser votre propre livraison. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.</p>
+<p>Vous mettez en ligne vos paniers à prix fixe et vos produits au kilo, puis vous réglez votre zone, vos créneaux et leur nombre maximum de commandes, votre minimum et vos frais. Vous retrouvez ensuite les commandes à livrer par créneau, avec les adresses pour préparer la tournée. Le client commande en 30 secondes, sans créer de compte.</p>
+<p>La formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, à 0 % de commission, avec 549 € de frais d&rsquo;installation uniques.</p>
+<h2>Par où commencer ?</h2>
+<p>Lancez un seul créneau par semaine, avec deux paniers fixes, sur une zone courte, et parlez-en à vos habitués au comptoir. Au bout d&rsquo;un mois, vous saurez quel jour et quel panier fonctionnent.</p>
+<p>Pour les clients qui préfèrent passer prendre leur panier, le <a href="/blog/click-and-collect-primeur">click and collect pour primeur</a> fonctionne avec le même outil. Les fonctions prévues pour votre métier sont sur <a href="/solutions/primeur">la solution pour primeur</a>. Pour voir votre boutique, la <a href="/inscription">démo gratuite</a> prend 30 secondes : choisissez « Primeur », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel logiciel pour un primeur qui veut livrer ses paniers lui-même ?</summary><p>Il faut un outil qui prenne les commandes en ligne, gère les paniers à prix fixe et la vente au kilo, la zone, les créneaux et la liste des commandes à livrer. Les optimiseurs de tournée calculent l'itinéraire mais ne prennent pas les commandes, et les plateformes de livraison prélèvent en général 14 à 30 % de commission. Marchéo réunit commande et organisation dans la formule Click &amp; Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.</p></details><details><summary>Faut-il acheter du matériel pour livrer à domicile quand on est primeur ?</summary><p>Pas pour gérer les commandes : avec Marchéo, tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette, imprimante ou caisse à acheter. Pour la tournée, il vous faut un véhicule, des cagettes ou des sacs solides, et une caisse isotherme si vous livrez aussi des produits frais comme les œufs, le fromage ou les jus.</p></details><details><summary>Panier fixe ou panier composé par le client : que choisir ?</summary><p>Le panier fixe est le plus simple à préparer et à livrer : un prix rond, un contenu de saison que vous choisissez selon vos arrivages. Le panier composé plaît aux clients qui ont leurs habitudes, mais demande plus de temps de préparation. Beaucoup de primeurs commencent par deux ou trois paniers fixes, puis ajoutent quelques produits à la pièce ou au kilo.</p></details><details><summary>Comment facturer les fruits et légumes vendus au poids en livraison ?</summary><p>Affichez un prix estimé à la commande, pesez au moment de la préparation et facturez le poids réel. Avec l'empreinte bancaire optionnelle de Marchéo, jusqu'à 75 % du panier sont bloqués sur la carte sans être débités, puis libérés automatiquement 24 heures après : vous êtes couvert si le client n'est pas là.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/click-and-collect-epicerie">Le click &amp; collect pour une épicerie</a><a href="/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche">Place de marché ou boutique en ligne</a><a href="/blog/alternative-uber-eats-garder-ses-clients">Alternative à Uber Eats : garder ses clients</a><a href="/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche">Quelle plateforme pour vendre en ligne ?</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+</body>
+</html>
