@@ -1589,7 +1589,8 @@
       points_de_vente: nombreBorne(e.points_de_vente, 1, 9999, 0),
       reseaux: { instagram: parmi(re.instagram, ACTIVITES_ETUDE) || 'inconnu', facebook: parmi(re.facebook, ACTIVITES_ETUDE) || 'inconnu' },
       dirigeant: textePropre(e.dirigeant, BORNES_ETUDE.dirigeant),
-      anciennete: nombreBorne(e.anciennete, 1800, 2200, 0),
+      // Année de création : de 1800 à l'année en cours, comme crm_etude_ecrire.
+      anciennete: nombreBorne(e.anciennete, 1800, new Date().getFullYear(), 0),
       points_forts: textesBornes(e.points_forts, BORNES_ETUDE.points, BORNES_ETUDE.point),
       points_faibles: textesBornes(e.points_faibles, BORNES_ETUDE.points, BORNES_ETUDE.point),
       angle: textePropre(e.angle, BORNES_ETUDE.angle),
@@ -1618,6 +1619,8 @@
      pas distinguer le prénom du nom (tout en capitales, un seul mot). */
   function prenomDirigeant(nom) {
     var t = textePropre(nom, BORNES_ETUDE.dirigeant).replace(/\([^)]*\)/g, ' ').split(/\s*[,;\/&]\s*|\s+et\s+/i)[0] || '';
+    // Une société (« SARL Dupont ») n'a pas de prénom.
+    if (/(^|\s)(sarl|sas|sasu|eurl|sa|snc|sci|selarl|ei|eirl|scop)(\s|$)/i.test(t)) return '';
     var mots = t.split(/\s+/).filter(function (m) { return /^[\p{L}][\p{L}'’\-]*$/u.test(m) && !/^(m|mr|mme|mlle|monsieur|madame|mademoiselle)$/i.test(m); });
     if (mots.length < 2) return '';
     var prenom = mots.filter(function (m) { return /^\p{Lu}[\p{L}'’\-]*\p{Ll}/u.test(m); })[0] || '';

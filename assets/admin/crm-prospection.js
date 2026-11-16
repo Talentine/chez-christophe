@@ -2251,7 +2251,7 @@
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') { viderSaisies(true); return; }
     // De retour sur l'onglet : les études arrivées entre-temps sont relevées tout de suite, puis la veille reprend.
-    if (etudeActive() && vueVisible() && CRM.enFileEtude().length && !veilleEtudes) releverEtudes().then(veillerEtudes);
+    if (etudeActive() && vueVisible() && CRM.enFileEtude().length) releverEtudes().then(veillerEtudes);
   });
   window.addEventListener('pagehide', function () { viderSaisies(true); });
   window.addEventListener('online', function () { viderSaisies(); });
