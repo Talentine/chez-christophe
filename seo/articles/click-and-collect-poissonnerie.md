@@ -5,6 +5,7 @@ description: "Mettre en place le click and collect dans une poissonnerie : maré
 meta_title: "Click and collect poissonnerie : plateaux et Noël"
 meta_description: "Click and collect poissonnerie : prendre en ligne le poisson du week-end et les plateaux de Noël, régler les créneaux et éviter les plateaux non retirés."
 date: 2026-11-01
+modified: 2026-11-16
 rubrique: Métier
 emoji: 🦞
 keywords:
@@ -128,4 +129,4 @@ Marchéo a aussi d'autres limites. Il n'apporte pas de clients comme une place d
 
 Commencez par fixer vos plateaux de fêtes et cinq ou six produits du week-end. Sur [la page d'inscription de Marchéo](/inscription), choisissez « Poissonnerie », tapez le nom de votre commerce, et l'aperçu de votre boutique s'affiche en 30 secondes, gratuitement.
 
-Une affiche en vitrine avec un QR code et un mot au comptoir suffisent ensuite à prévenir vos habitués. La boutique reste utile après les fêtes, pour le poisson du vendredi et les plateaux du week-end.
+Pour les pages, les photos et l'arrivage du jour, voyez notre guide pour créer le [site internet de votre poissonnerie](/blog/site-internet-poissonnerie). Une affiche en vitrine avec un QR code et un mot au comptoir suffisent ensuite à prévenir vos habitués. La boutique reste utile après les fêtes, pour le poisson du vendredi et les plateaux du week-end.

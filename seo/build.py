@@ -376,7 +376,7 @@ def page(*, titre: str, description: str, path: str, h1: str, lead: str, corps: 
 </main>
 {footer()}
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
-<script src="/assets/core/meta-pixel.js?v=3" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
 </body>
 </html>
 """

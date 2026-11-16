@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet poissonnerie : pages, arrivages, commandes et prix](https://marchéo.fr/blog/site-internet-poissonnerie) : Site internet pour poissonnerie : quelles pages créer, comment montrer les arrivages, prendre les commandes de plateaux en ligne et combien ça coûte.
 - [Meilleur logiciel de réservation pour restaurant : comment choisir](https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant) : Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.
 - [Primeur livraison à domicile : livrer vos paniers vous-même](https://marchéo.fr/blog/primeur-livraison-a-domicile) : Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.
 - [Click and collect épicerie : vendre en ligne, retrait en boutique](https://marchéo.fr/blog/click-and-collect-epicerie) : Click and collect épicerie : quels produits mettre en ligne, vrac au poids, paniers garnis et coffrets de Noël, créneaux de retrait et prix. Sans commission.
@@ -102,7 +103,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-15
+- Dernière mise à jour : 2026-11-16
 
 
 ---
@@ -573,6 +574,149 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet poissonnerie : pages, arrivages, commandes et prix
+
+Site internet pour poissonnerie : quelles pages créer, comment montrer les arrivages, prendre les commandes de plateaux en ligne et combien ça coûte.
+
+Un site internet de poissonnerie sert à trois choses : être trouvé quand un client cherche une poissonnerie près de chez lui, montrer ce qui est arrivé de la criée, et prendre les commandes à l&rsquo;avance, surtout les plateaux de fruits de mer du week-end et des fêtes. Le bon site tient en quelques pages, se modifie depuis votre téléphone et ne prend aucune commission sur vos ventes.
+Ce guide s&rsquo;adresse au poissonnier indépendant. La méthode générale, valable pour tous les commerces, est détaillée dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand on vend du poisson frais : un étal qui change chaque matin, des prix au kilo qui bougent, des plateaux préparés sur commande et un mois de décembre très chargé.
+Pourquoi une poissonnerie a-t-elle besoin d&rsquo;un site internet ?
+Parce que le client veut savoir ce qu&rsquo;il trouvera avant de se déplacer. Le poisson est un achat qu&rsquo;on prépare : un bar pour le dîner de samedi, des huîtres pour l&rsquo;apéritif, un plateau pour six. Cette décision se prend souvent chez soi, sur le téléphone.
+Un site à vous change trois choses :
+
+Vous êtes trouvé en direct. Le client qui tape « poissonnerie » avec le nom de votre ville voit vos horaires, votre adresse et vos jours d&rsquo;ouverture, y compris les jours de fermeture après la marée.
+Les commandes arrivent par écrit. Fini les plateaux notés au dos d&rsquo;un ticket, avec un nombre de douzaines mal compris au téléphone.
+Votre fraîcheur se voit. Les bateaux, les criées, la saison des coquilles Saint-Jacques : c&rsquo;est ce qui vous distingue d&rsquo;un rayon de supermarché.
+
+Site vitrine ou site de commande : que choisir pour une poissonnerie ?
+Un site vitrine suffit si vos clients viennent surtout à l&rsquo;étal et commandent peu à l&rsquo;avance. Dès que vous prenez des plateaux ou des commandes de fêtes par téléphone, un site de commande avec créneaux de retrait vous fera gagner du temps.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de commandes
+Site vitrine : horaires, adresse, spécialités, photos
+
+
+Plateaux et commandes du week-end par téléphone
+Site avec click &amp; collect et créneaux de retrait
+
+
+Clients âgés ou restaurants voisins qui demandent à être livrés
+Site avec click &amp; collect et livraison locale
+
+
+Dégustations d&rsquo;huîtres sur place sur inscription
+Site avec réservation en ligne
+
+
+
+Le fonctionnement de la commande en ligne, des portions au retrait du 24 décembre, est détaillé dans notre article sur le click and collect en poissonnerie.
+Quelles pages mettre sur le site d&rsquo;une poissonnerie ?
+Quatre ou cinq pages suffisent. Un client veut savoir si vous êtes ouvert, ce que vous avez en ce moment et comment commander.
+
+Accueil : nom, adresse, horaires, téléphone, et un bouton « Commander » visible dès l&rsquo;ouverture de la page.
+L&rsquo;étal : poissons, coquillages et crustacés classés par famille, avec le prix au kilo, l&rsquo;origine et la zone de pêche quand vous la connaissez.
+Les plateaux : plateau de fruits de mer par nombre de personnes, huîtres à la douzaine, poissons préparés (filets, darnes, pavés), avec le prix.
+Votre poissonnerie : vos fournisseurs, les criées où vous achetez, votre façon de travailler.
+Infos pratiques : moyens de paiement, zone de livraison si vous livrez, allergènes, mentions légales.
+
+Pour les mentions légales, les conditions de vente et les allergènes (poissons, crustacés et mollusques en font partie), notre article sur les obligations légales d&rsquo;une boutique en ligne fait le point.
+Comment montrer l&rsquo;arrivage du jour sur le site ?
+En gardant au catalogue vos produits de base et en ajustant le reste selon la marée. Un poissonnier ne sait pas toujours la veille ce qu&rsquo;il aura le lendemain : le site doit suivre l&rsquo;étal, pas l&rsquo;inverse.
+Une méthode simple :
+
+Mettez en ligne les produits que vous avez presque toujours : saumon, cabillaud, crevettes, moules, huîtres.
+Ajoutez les poissons de saison quand ils arrivent, et retirez-les quand ils sont finis, depuis votre téléphone.
+Prévenez sur chaque fiche que le poids est indicatif et que le prix final est ajusté à la pesée.
+Publiez l&rsquo;arrivage du matin sur Instagram ou Facebook avec le lien du site : c&rsquo;est la vitrine qui change chaque jour, le site prend la commande.
+
+La méthode pour afficher un prix au kilo et ajuster le montant final est expliquée dans notre guide pour vendre au poids en ligne.
+Quelles photos mettre sur un site de poissonnerie ?
+Des photos de votre vrai étal, de vos plateaux et de votre équipe, prises en lumière du jour. Un plateau dressé sur la glace, un poisson entier à l&rsquo;œil brillant et votre devanture valent mieux que des photos de banque d&rsquo;images.
+Photographiez les plateaux d&rsquo;en haut, pour que le client voie ce qu&rsquo;il recevra vraiment, et changez la photo d&rsquo;accueil à chaque saison.
+Comment préparer Noël avec le site de sa poissonnerie ?
+En créant une rubrique « Fêtes » dès la mi-novembre, avec vos plateaux, vos huîtres et vos crustacés de fin d&rsquo;année, et en annonçant clairement les dates de commande. Vous connaissez vos quantités à l&rsquo;avance, vous achetez plus juste, et le 24 décembre se passe en retraits au lieu d&rsquo;une file sur le trottoir.
+Sur Marchéo, les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir : ceux du 24 décembre sont réservables à partir du 11 décembre environ. Pour éviter les plateaux jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Les autres idées de saison sont réunies dans notre guide des précommandes de fêtes pour les commerces de bouche.
+Combien coûte un site internet pour une poissonnerie ?
+Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+Vente au poids, plateaux et créneaux à configurer vous-même
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification se paie
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Pensé pour les commerces de bouche, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation, 549 € pour le Click &amp; Collect avec Livraison. Le détail des postes de dépense d&rsquo;un site de commande est dans notre article sur ce que coûte un site de click and collect.
+Peut-on livrer ses clients avec le site d&rsquo;une poissonnerie ?
+Oui, si vous organisez vous-même la livraison autour de votre boutique. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour fixer votre zone, vos créneaux, votre minimum de commande et vos frais. Le poisson demande une chaîne du froid sans faille : glace, caisse isotherme et tournée courte. Tout est expliqué dans notre article sur la livraison à domicile en poissonnerie.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut votre liste de produits et vos horaires, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre liste de produits, avec les prix au kilo
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de votre étal et de vos plateaux
+Un développeur ou une agence
+
+
+Vos horaires et vos formules de plateaux
+Une commission sur chaque vente
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Comment faire connaître le site de sa poissonnerie ?
+Reliez d&rsquo;abord le site à votre fiche Google Business, c&rsquo;est elle qui apparaît sur la carte quand un client cherche une poissonnerie près de chez lui. Ajoutez-y le lien de commande. Le réglage est expliqué dans notre guide de la fiche Google Business pour un commerce de bouche.
+Ensuite, mettez l&rsquo;adresse du site partout où vos clients vous voient : un QR code sur l&rsquo;étal et à la caisse, les sacs, le lien sur Instagram et Facebook avec l&rsquo;arrivage du matin. Un client qui a commandé son plateau de Noël en ligne a de bonnes chances de revenir pour les huîtres du 31.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « poissonnerie », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous ajoutez ensuite vos produits, vos plateaux et vos créneaux à votre rythme, juste à temps pour les commandes de fêtes. Pour voir toutes les fonctions prévues pour votre métier, consultez la solution pour poissonnerie.
+
+Q : Quel outil pour créer le site internet d'une poissonnerie ?
+R : Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour la vente au poids et les créneaux de retrait ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, pensés pour les commerces de bouche. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Faut-il acheter du matériel pour prendre les commandes du site d'une poissonnerie ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client n'a pas payé en ligne, vous encaissez au retrait avec votre caisse et votre terminal habituels.
+Q : Combien coûte un site internet pour une poissonnerie ?
+R : De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission et sans engagement, avec des frais d'installation uniques de 249 à 549 € selon la formule.
+Q : Un site de poissonnerie peut-il expédier du poisson partout en France ?
+R : C'est possible avec un site e-commerce et un transporteur frigorifique, mais c'est un autre métier : emballages isothermes, délais, coût du transport. Marchéo est fait pour la clientèle locale : retrait en boutique et livraison que vous organisez vous-même autour de chez vous. Marchéo n'expédie pas de colis et ne livre pas.
 
 # Meilleur logiciel de réservation pour restaurant : comment choisir
 
@@ -4187,7 +4331,7 @@ La formule à 39 € demande 399 € de frais d&rsquo;installation uniques et re
 Marchéo a aussi d&rsquo;autres limites. Il n&rsquo;apporte pas de clients comme une place de marché : c&rsquo;est à vous de faire connaître votre boutique. Et si vous expédiez des colis partout en France, un site marchand généraliste vous conviendra mieux.
 Par où commencer cette semaine ?
 Commencez par fixer vos plateaux de fêtes et cinq ou six produits du week-end. Sur la page d&rsquo;inscription de Marchéo, choisissez « Poissonnerie », tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement.
-Une affiche en vitrine avec un QR code et un mot au comptoir suffisent ensuite à prévenir vos habitués. La boutique reste utile après les fêtes, pour le poisson du vendredi et les plateaux du week-end.
+Pour les pages, les photos et l&rsquo;arrivage du jour, voyez notre guide pour créer le site internet de votre poissonnerie. Une affiche en vitrine avec un QR code et un mot au comptoir suffisent ensuite à prévenir vos habitués. La boutique reste utile après les fêtes, pour le poisson du vendredi et les plateaux du week-end.
 
 Q : Quel logiciel de click and collect pour une poissonnerie ?
 R : Pour quelques plateaux par an, un formulaire gratuit peut suffire, à condition de recopier chaque commande. Si vous expédiez des colis partout en France, Shopify ou WooCommerce conviennent mieux. Pour le retrait en boutique, Marchéo est un logiciel français avec un catalogue poissonnerie prêt à modifier : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
@@ -6367,7 +6511,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 Boulangerie. Gâteaux sur commande et pains spéciaux. Voir la solution pour boulangerie et notre guide du site internet de boulangerie.
 Boucherie. Colis, découpes sur demande, vente au kilo. Voir la solution pour boucherie le guide pour vendre au poids en ligne et notre article dédié au site internet d&rsquo;une boucherie.
 Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur et le guide du click and collect primeur.
-Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
+Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie, notre guide du site internet pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie le guide du click and collect en fromagerie et notre article dédié au site internet d&rsquo;une fromagerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Voir la solution pour fleuriste et notre guide de création de site internet pour fleuriste.
@@ -8155,7 +8299,7 @@ R : Les clients sérieux n'y voient pas d'inconvénient, ils y sont habitués av
 
 Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés.
 
-Un site de click &amp; collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d&rsquo;installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click &amp; Collect, contre 3 400 à 7 200 € sur une plateforme.
+La création d&rsquo;un site de click &amp; collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d&rsquo;installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click &amp; Collect, contre 3 400 à 7 200 € sur une plateforme.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Les prix de chaque option, les frais que les grilles tarifaires ne montrent pas et le calcul de rentabilité suivent, option par option. Pour la mise en place pas à pas, voyez notre guide complet du click &amp; collect pour commerçant.
 Combien coûte chaque option de click &amp; collect ?
 Le prix dépend surtout du mode de facturation : commission sur chaque vente, abonnement fixe ou création sur mesure.

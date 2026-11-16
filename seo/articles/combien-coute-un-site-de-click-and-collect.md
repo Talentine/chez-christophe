@@ -2,10 +2,10 @@
 title: "Combien coûte un site de click & collect pour un commerce ? Prix réels en 2026"
 titre_court: "Prix d'un site de click & collect"
 description: "Plateformes à commission, Wix ou Shopify, agence, solution spécialisée : les vrais coûts d'un site de commande en ligne pour un boulanger, un boucher ou un restaurant, avec le calcul de rentabilité et les frais cachés."
-meta_title: "Prix d'un site de click & collect en 2026"
-meta_description: "Ce que coûte vraiment un site de click & collect : abonnement, installation, frais bancaires et commissions cachées. Les prix réels en 2026."
+meta_title: "Combien coûte un site de click and collect ? Prix 2026"
+meta_description: "Combien coûte la création d'un site de click and collect : abonnement, installation, frais bancaires et commissions. Les prix réels en 2026."
 date: 2026-09-02
-modified: 2026-11-07
+modified: 2026-11-16
 rubrique: Prix
 emoji: 💶
 keywords:
@@ -29,7 +29,7 @@ faq:
     r: "Dès quelques commandes par mois. Un abonnement de 39 € est couvert par une commande de gâteau, un plateau ou dix pizzas hors plateforme. Le gain vient surtout des commandes anticipées, des no-shows évités et des commissions non payées."
 ---
 
-Un site de click & collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d'installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click & Collect, contre 3 400 à 7 200 € sur une plateforme.
+La création d'un site de click & collect coûte de 0 € par mois avec 14 à 30 % de commission sur une plateforme de livraison, à 2 000 à 8 000 € chez une agence. Entre les deux, une solution spécialisée pour commerces de bouche comme Marchéo coûte 19 à 59 € par mois, sans commission, sans engagement et sans matériel à acheter, avec des frais d'installation uniques de 249 à 549 €. Pour un commerce qui vend 2 000 € par mois en ligne, la première année revient à environ 867 € avec Marchéo Click & Collect, contre 3 400 à 7 200 € sur une plateforme.
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Les prix de chaque option, les frais que les grilles tarifaires ne montrent pas et le calcul de rentabilité suivent, option par option. Pour la mise en place pas à pas, voyez notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet).
 
