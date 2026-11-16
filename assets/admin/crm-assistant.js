@@ -89,7 +89,14 @@
     function demo(p) { return G.demoExiste(ctx.ficheCrm(p)); }
     /* Un SMS ne se promet que sur un portable : sur un fixe, les textes prennent leur version sans SMS. */
     function smsPossible(p) { return pur.estMobile(p.telephone); }
-    function prenomDe(p, a) { return a && a.prenom != null ? a.prenom.trim() : G.prenomDepuisNote(ctx.noteDe(p)); }
+    /* Prénom du dirigeant relevé par l'étude du commerce (annuaire des entreprises) : il ne sert que si aucun prénom
+       n'est saisi dans le guide ni noté sur la fiche, et seulement quand l'étude est fiable. */
+    function prenomEtude(p) {
+      var ep = typeof CRM.etudeProspect === 'function' ? CRM.etudeProspect(p) : null;
+      return ep && ep.fiable && ep.etude.dirigeant ? pur.prenomDirigeant(ep.etude.dirigeant) : '';
+    }
+    function prenomConnu(p) { return G.prenomDepuisNote(ctx.noteDe(p)) || prenomEtude(p); }
+    function prenomDe(p, a) { return a && a.prenom != null ? a.prenom.trim() : prenomConnu(p); }
     function vals(p, a) {
       return G.valeurs(p, {
         maintenant: CRM.horloge(), guide: guide(), offres: CRM.OFFRES, demo: demo(p), telPaul: telPaul(),
@@ -198,7 +205,9 @@
     }
     function htmlPrenom(p, a) {
       return '<label class="crm-pro-champ"><span>Prénom du patron</span><input type="text" id="crmGdPrenom" data-gdc="prenom" maxlength="60" autocomplete="off" ' +
-        'autocapitalize="words" value="' + esc(a.prenom != null ? a.prenom : G.prenomDepuisNote(ctx.noteDe(p))) + '" placeholder="Demandez-le avant de raccrocher"></label>';
+        'autocapitalize="words" value="' + esc(a.prenom != null ? a.prenom : prenomConnu(p)) + '" placeholder="Demandez-le avant de raccrocher">' +
+        (a.prenom == null && !G.prenomDepuisNote(ctx.noteDe(p)) && prenomEtude(p)
+          ? '<small class="crm-gd-prenom-source" id="crmGdPrenomSource">D\'après l\'étude (annuaire des entreprises) : à confirmer au téléphone.</small>' : '') + '</label>';
     }
     function htmlSuite(avecFiche) {
       return '<div class="crm-pro-rangee">' + (avecFiche ? '<button type="button" class="crm-btn" data-gd="fiche-crm">Ouvrir la fiche CRM' + ic('fleche', 14) + '</button>' : '') +
@@ -475,9 +484,10 @@
         : a.etape === 'qui' ? htmlQui(p, a)
           : a.etape === 'messagerie' ? htmlMessagerie(p, a)
             : a.etape === 'rappel' ? htmlEtapeRappel(p, a) : htmlEtape(p, a);
-      // « Angle conseillé » : par où commencer, d'après les signaux de chaleur du prospect (site, fiche Google, OpenStreetMap).
+      // « Angle conseillé » : par où commencer, d'après l'étude du commerce quand elle en propose un (et qu'elle est
+      // fiable), sinon d'après les signaux de chaleur du prospect (site, fiche Google, OpenStreetMap).
       var angle = typeof CRM.angleProspect === 'function' ? CRM.angleProspect(p) : null;
-      var htmlAngle = angle ? '<p class="crm-gd-angle" id="crmGdAngle" data-angle="' + esc(angle.cle) + '"><span class="crm-gd-etiquette">Angle conseillé</span><span>' + esc(angle.texte) + '</span></p>' : '';
+      var htmlAngle = angle ? '<p class="crm-gd-angle" id="crmGdAngle" data-angle="' + esc(angle.cle) + '"><span class="crm-gd-etiquette">Angle conseillé' + (angle.source === 'etude' ? ' · d\'après l\'étude' : '') + '</span><span>' + esc(angle.texte) + '</span></p>' : '';
       return '<section class="crm-gd" aria-label="Guide d\'appel">' + tete + htmlAngle + '<div class="crm-gd-corps" id="crmGdCorps">' + htmlFil(a) + corps + htmlObjections(a) +
         '<div class="crm-gd-pied"><button type="button" class="crm-lien" data-gd="conseils" aria-expanded="' + a.conseils + '" aria-controls="crmGdConseils">' + ic('note', 13) +
             (a.conseils ? 'Masquer les conseils' : 'Conseils et repères') + '</button>' +

@@ -20,6 +20,7 @@
 /* « Angle conseillé » : par où commencer l'appel, d'après les signaux de chaleur du prospect. */
 .crm-pro .crm-gd-angle { display: flex; flex-direction: column; gap: 3px; margin: 0 14px 12px; padding: 9px 12px; border-left: 3px solid var(--or); border-radius: 0 10px 10px 0; background: var(--crm-or-fond); font-size: 13px; line-height: 1.45; color: var(--a-ink); }
 .crm-pro .crm-pro-carte .crm-gd-angle { margin: 0 0 12px; }
+.crm-pro .crm-gd-prenom-source { font-size: 12px; line-height: 1.4; color: var(--a-ink-2); }
 .crm-pro .crm-gd-corps { display: flex; flex-direction: column; gap: 14px; padding: 14px 16px 16px; border-top: 1px solid var(--a-line); scroll-margin-top: 16px; }
 
 /* Touche du raccourci, montrée sur les écrans à clavier seulement. */

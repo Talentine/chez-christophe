@@ -228,7 +228,8 @@
     var e = ch.etats || {}, site = (p.signaux && p.signaux.site) || {}, morceaux = [];
     if (!e.analyseLe) {
       return '<p class="crm-chal-etat">' + esc(ch.partiel ? 'D\'après OpenStreetMap seulement : site et fiche Google pas encore regardés.'
-        : 'Pas encore analysé : site et fiche Google pas encore regardés.') + '</p>';
+        : ch.etude && ch.etude.comptee ? 'D\'après l\'étude du commerce : analyse automatique du site et de la fiche Google pas encore faite.'
+          : 'Pas encore analysé : site et fiche Google pas encore regardés.') + '</p>';
     }
     morceaux.push('Analysé le ' + dateCourte(e.analyseLe));
     if (e.site === 'analyse') morceaux.push('Site analysé (' + pluriel(Math.max(1, Number(site.pages) || 1), 'page') + ')' + (site.tronque ? ', page très longue lue en partie' : ''));
@@ -259,6 +260,131 @@
       [['actif', 'Actifs'], ['peu_actif', 'Peu actifs']].map(function (c) {
         return '<button type="button" class="crm-puce" ' + attribut + '="reseaux-actifs" data-id="' + c[0] + '" aria-pressed="' + (p.reseaux_actifs === c[0]) + '"' + inactif + '>' + c[1] + '</button>';
       }).join('') + '</div></div>';
+  }
+
+  // ───────────────────────────── Étude du commerce (note Marchéo) ─────────────────────────────
+
+  /* Tout ce qui vient de l'étude est une donnée lue sur le web par une tâche extérieure : chaque texte passe par
+     esc(), et une source n'est un lien que si CRM.pur.urlHttps l'accepte (https, hôte simple). */
+  var LIBELLES_CONFIANCE = { forte: 'Confiance forte', moyenne: 'Confiance moyenne', faible: 'Confiance faible' };
+  var LIBELLES_TENDANCE = { bons: 'Bons avis', mitiges: 'Avis mitigés', mauvais: 'Mauvais avis' };
+  var LIBELLES_PHOTOS = { belles: 'Belles photos', correctes: 'Photos correctes', pauvres: 'Photos pauvres' };
+  var LIBELLES_ACTIVITE = { actif: 'actif', peu_actif: 'peu actif', absent: 'absent' };
+  var RESERVES_ETUDE = {
+    non_identifie: 'Commerce pas retrouvé avec certitude : étude à lire avec prudence, non comptée dans la chaleur.',
+    faible: 'Peu d\'éléments trouvés : étude non comptée dans la chaleur.'
+  };
+  var RYTHME_ETUDE = 'l\'étude passe environ toutes les heures, 15 prospects à la fois';
+
+  function noteFr(n) { return String(n).replace('.', ','); }
+  function sansEtudePossible(p) { return p.resultat === 'faux_numero' || p.resultat === 'pas_interesse'; }
+
+  /* Petite note à côté de la pastille de chaleur (file d'appels, Liste) : « 7,5/10 », en retrait quand l'étude est
+     peu fiable ; un sablier quand l'étude est demandée et pas encore arrivée. Rien sans étude ni demande. */
+  function noteMarcheoHtml(p) {
+    var ep = CRM.etudeProspect(p);
+    if (!ep) return '';
+    if (ep.etude && ep.note != null) {
+      var titre = 'Note Marchéo : ' + noteFr(ep.note) + ' sur 10' + (ep.fiable ? '' : ' (étude peu fiable)');
+      return '<span class="crm-note-m' + (ep.fiable ? '' : ' crm-note-m-incertaine') + '" data-note="' + esc(String(ep.note)) + '" title="' + esc(titre) + '">' +
+        '<span class="crm-sr">Note Marchéo </span><b>' + esc(noteFr(ep.note)) + '</b><small>/10</small>' +
+        (ep.fiable ? '' : '<span class="crm-sr"> (étude peu fiable)</span>') + '</span>';
+    }
+    if (ep.demandeeLe) return '<span class="crm-note-m crm-note-m-attente" data-attente="1" title="Étude demandée">' + ic('sablier', 12) + '<span class="crm-sr">Étude demandée</span></span>';
+    return '';
+  }
+
+  function faitEtude(libelle, valeurHtml) {
+    return valeurHtml ? '<div class="crm-etude-fait"><dt>' + esc(libelle) + '</dt><dd>' + valeurHtml + '</dd></div>' : '';
+  }
+  function listeEtude(titre, points, classe) {
+    if (!points.length) return '';
+    return '<div class="crm-etude-points ' + classe + '"><p class="crm-etiquette">' + esc(titre) + '</p><ul>' +
+      points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>';
+  }
+
+  /* Détail d'une étude : avis clients, photos, commande en ligne, réseaux, dirigeant, points forts et faibles, sources. */
+  function detailEtudeHtml(e, opts) {
+    var ac = e.avis_clients, ph = e.photos, html = '';
+    var chiffres = [LIBELLES_TENDANCE[ac.tendance] || '', ac.note != null ? noteFr(ac.note) + ' ★' : '', ac.nombre != null ? pluriel(ac.nombre, 'avis', 'avis') : ''].filter(Boolean);
+    var avisClients = (chiffres.length ? '<b>' + esc(chiffres.join(' · ')) + '</b>' : '') + (ac.resume ? '<span>' + esc(ac.resume) + '</span>' : '');
+    var photos = '';
+    if (ph) {
+      var traits = ph.vues === false ? ['Aucune photo vue'] : [LIBELLES_PHOTOS[ph.qualite] || '',
+        ph.recentes === true ? 'récentes' : ph.recentes === false ? 'anciennes' : '',
+        ph.devanture === true ? 'devanture visible' : ph.devanture === false ? 'pas de devanture' : '',
+        ph.produits === true ? 'produits en photo' : ph.produits === false ? 'pas de photo des produits' : ''].filter(Boolean);
+      photos = (traits.length ? '<b>' + esc(traits.join(' · ')) + '</b>' : '') + (ph.commentaire ? '<span>' + esc(ph.commentaire) + '</span>' : '');
+    }
+    var reseaux = [['Instagram', e.reseaux.instagram], ['Facebook', e.reseaux.facebook]]
+      .filter(function (r) { return LIBELLES_ACTIVITE[r[1]]; }).map(function (r) { return r[0] + ' ' + LIBELLES_ACTIVITE[r[1]]; });
+    var faits = faitEtude('Avis clients', avisClients) + faitEtude('Photos', photos) +
+      faitEtude('Commande en ligne', e.commande_en_ligne === 'oui' ? '<b>Vue' + (e.plateforme ? ' : ' + esc(e.plateforme) : '') + '</b>'
+        : e.commande_en_ligne === 'non_vue' ? '<b>Pas vue</b>' : '') +
+      faitEtude('Traiteur', e.traiteur === true ? '<b>Oui</b>' : e.traiteur === false ? '<b>Non</b>' : '') +
+      faitEtude('Points de vente', e.points_de_vente != null ? '<b>' + esc(String(e.points_de_vente)) + '</b>' : '') +
+      faitEtude('Réseaux', reseaux.length ? '<b>' + esc(reseaux.join(' · ')) + '</b>' : '') +
+      faitEtude('Dirigeant', e.dirigeant ? '<b>' + esc(e.dirigeant) + '</b><span>d\'après l\'annuaire des entreprises</span>' : '') +
+      faitEtude('Création', e.anciennete != null ? '<b>' + esc(String(e.anciennete)) + '</b>' : '');
+    if (faits) html += '<dl class="crm-etude-faits">' + faits + '</dl>';
+    html += listeEtude('Points forts', e.points_forts, 'crm-etude-forts') + listeEtude('Points faibles', e.points_faibles, 'crm-etude-faibles');
+    if (opts.avecAngle && e.angle) html += '<div class="crm-etude-angle"><p class="crm-etiquette">Angle conseillé pour l\'appel</p><p>' + esc(e.angle) + '</p></div>';
+    // Sources : uniquement des adresses https revalidées ; nouvel onglet, sans référent ni accès à cette page.
+    var sources = e.sources.map(function (u) { return pur.urlHttps(u); }).filter(Boolean);
+    if (sources.length) {
+      html += '<div class="crm-etude-sources-bloc"><p class="crm-etiquette">Sources</p><ul class="crm-etude-sources">' + sources.map(function (u) {
+        var hote = (/^https:\/\/([^\/]+)/.exec(u) || [])[1] || u;
+        hote = hote.replace(/^www\./, '');
+        return '<li><a class="crm-btn crm-etude-source" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer" title="' + esc(u) + '" aria-label="' + esc('Source : ' + hote + ' (nouvel onglet)') + '">' +
+          '<span>' + esc(hote) + '</span>' + ic('externe', 12) + '</a></li>';
+      }).join('') + '</ul></div>';
+    }
+    return html;
+  }
+
+  /* Bloc « Étude du commerce » d'un prospect : note Marchéo, confiance en toutes lettres, date, réserve éventuelle,
+     notre avis, détail, et les boutons « Demander l'étude » / « Redemander l'étude » / « Retirer de la file ».
+     opts : { id, attribut ('data-pro' | 'data-action'), inactif (attributs des boutons), repliable (le détail se
+     déplie), ouvert, avecAngle, envoi (une demande est en cours d'envoi) }. '' sans la migration de l'étude. */
+  function etudeHtml(p, opts) {
+    opts = opts || {};
+    if (!p || !CRM.etat.etude) return '';
+    var ep = CRM.etudeProspect(p), e = ep && ep.etude, attente = !!(ep && ep.demandeeLe);
+    var attribut = opts.attribut || 'data-action', inactif = opts.inactif || '';
+    if (!e && !attente && sansEtudePossible(p)) return '';
+    var bouton = function (action, libelle, icone, classe) {
+      return '<button type="button" class="crm-btn' + (classe ? ' ' + classe : '') + '" ' + attribut + '="' + action + '"' + (opts.envoi ? ' disabled' : inactif) + '>' + ic(icone, 14) + libelle + '</button>';
+    };
+    var etat = e ? 'faite' : attente ? 'attente' : 'aucune';
+    var html = '<div class="crm-etude" id="' + esc(opts.id || 'crmEtude') + '" data-etat="' + etat + '"' + (e ? ' data-fiable="' + (ep.fiable ? '1' : '0') + '"' : '') + '>';
+    if (!e) {
+      html += '<div class="crm-etude-tete"><p class="crm-etiquette">Étude du commerce</p></div>';
+      html += attente
+        ? '<p class="crm-etude-attente" role="status">' + ic('sablier', 14) + '<span>En attente d\'étude, demandée ' + esc(dateRelative(ep.demandeeLe)) + ' : ' + esc(RYTHME_ETUDE) + '.</span></p>' +
+          '<div class="crm-etude-actions">' + bouton('etude-retirer', 'Retirer de la file', 'croix') + '</div>'
+        : '<p class="crm-etude-vide">Pas encore d\'étude : fiche, photos, avis et réseaux du commerce regardés pour vous, avec notre note.</p>' +
+          '<div class="crm-etude-actions">' + bouton('etude-demander', 'Demander l\'étude', 'recherche', 'crm-btn-or') + '</div>';
+      return html + '</div>';
+    }
+    html += '<div class="crm-etude-tete"><p class="crm-etiquette">Étude du commerce</p>' +
+      '<p class="crm-etude-note' + (ep.fiable ? '' : ' crm-etude-note-incertaine') + '">' + (e.note != null
+        ? 'Note Marchéo <b>' + esc(noteFr(e.note)) + '</b>/10' : 'Note Marchéo <b>non établie</b>') + '</p>' +
+      '<span class="crm-etude-confiance" data-confiance="' + esc(e.confiance) + '">' + esc(LIBELLES_CONFIANCE[e.confiance]) + '</span>' +
+      (ep.le ? '<span class="crm-etude-date">Étude du ' + esc(dateCourte(ep.le)) + '</span>' : '') + '</div>';
+    if (ep.motif) html += '<p class="crm-etude-reserve" data-motif="' + esc(ep.motif) + '">' + ic('alerte', 14) + '<span>' + esc(RESERVES_ETUDE[ep.motif]) + '</span></p>';
+    if (e.avis) html += '<p class="crm-etude-avis">' + esc(e.avis) + '</p>';
+    var detail = detailEtudeHtml(e, opts);
+    var idDetail = (opts.id || 'crmEtude') + 'Detail';
+    if (detail && opts.repliable) {
+      html += '<button type="button" class="crm-lien crm-etude-deplier" ' + attribut + '="etude-detail" aria-expanded="' + !!opts.ouvert + '" aria-controls="' + esc(idDetail) + '">' +
+        ic(opts.ouvert ? 'chevronBas' : 'chevronDroit', 13) + (opts.ouvert ? 'Masquer le détail' : 'Voir toute l\'étude') + '</button>';
+    }
+    if (detail && (!opts.repliable || opts.ouvert)) html += '<div class="crm-etude-detail" id="' + esc(idDetail) + '">' + detail + '</div>';
+    html += '<div class="crm-etude-actions">';
+    if (attente) {
+      html += '<p class="crm-etude-attente" role="status">' + ic('sablier', 14) + '<span>Nouvelle étude demandée ' + esc(dateRelative(ep.demandeeLe)) + '.</span></p>' + bouton('etude-retirer', 'Retirer de la file', 'croix');
+    } else if (!sansEtudePossible(p)) html += bouton('etude-demander', 'Redemander l\'étude', 'actualiser');
+    return html + '</div></div>';
   }
 
   var LIBELLES_OFFRE_COURT = { vitrine: 'Vitrine', clickcollect: 'Click & Collect', livraison: 'Livraison' };
@@ -485,7 +611,7 @@
       // Présence en ligne : réseaux dont le lien est en cours de modification, et message d'erreur par réseau.
       lienEdition: {}, lienErreur: {},
       // Chaleur du prospect : analyse en cours (bouton « Analyse en cours… »), et dernier message (« Analyse indisponible… »).
-      analyse: false, analyseMessage: '',
+      analyse: false, analyseMessage: '', etudeEnvoi: false,
       brouillons: { note: '', noteAppel: '', tacheTitre: '', tacheDate: '', epingle: '', suiteTitre: '', suiteDate: '', suiteNote: '', telephone: '',
         lienGoogle: '', lienInstagram: '', lienFacebook: '' }
     };
@@ -889,6 +1015,27 @@
       reglagesChaleurHtml(p, 'data-action', inactif, true) + '</div>';
   }
 
+  /* « Étude du commerce » sur la fiche CRM d'un prospect : toujours dépliée. Sans la migration : une ligne discrète. */
+  function htmlEtudeProspect(p) {
+    if (!CRM.etat.etude) {
+      return CRM.etat.prospection ? '<p class="crm-aide crm-etude-absente" id="crmEtudeProspect">Étude indisponible : la migration 20261116_crm_etude.sql n\'est pas encore appliquée.</p>' : '';
+    }
+    return etudeHtml(p, { id: 'crmEtudeProspect', attribut: 'data-action', inactif: attrEcriture(), avecAngle: true, envoi: ui.etudeEnvoi });
+  }
+  function demanderEtudeFiche(f, retirer) {
+    var p = f && f.prospect;
+    if (!p || ui.etudeEnvoi) return;
+    var cle = ui.cle;
+    ui.etudeEnvoi = true;
+    rendre();
+    ecrire(retirer ? CRM.retirerEtudes([p.id]) : CRM.demanderEtudes([p.id], { forcer: true }),
+      retirer ? 'Retiré de la file d\'étude' : 'Étude demandée : elle passe environ toutes les heures').then(function () {
+      if (ui.cle !== cle) return;
+      ui.etudeEnvoi = false;
+      rendre();
+    });
+  }
+
   function analyserProspectFiche(f) {
     var p = f && f.prospect;
     if (!p || ui.analyse) return;
@@ -932,7 +1079,7 @@
     lignes += ligneInfo('Liste', p.liste ? esc(p.liste) : '');
     lignes += ligneInfo('Source', esc(LIBELLES_SOURCE[p.source] || p.source || ''));
     lignes += ligneInfo('Remarque', p.remarque ? esc(p.remarque) : '');
-    var corps = htmlChaleurProspect(p) + '<dl class="crm-infos">' + lignes + '</dl>';
+    var corps = htmlChaleurProspect(p) + htmlEtudeProspect(p) + '<dl class="crm-infos">' + lignes + '</dl>';
     if (p.note) corps += '<div class="crm-citation"><p class="crm-etiquette">Note d\'appel</p><p>' + esc(p.note) + '</p></div>';
     if (p.recommandation) corps += '<div class="crm-citation crm-citation-or"><p class="crm-etiquette">Recommandation obtenue</p><p>' + esc(p.recommandation) + '</p></div>';
     corps += '<div class="crm-sec-pied"><a class="crm-btn" href="#crm/prospection">' + ic('telephone', 14) + 'Ouvrir la prospection</a></div>';
@@ -1269,6 +1416,8 @@
       case 'lien-enregistrer': enregistrerLien(id); break;
       case 'lien-effacer': if (f) effacerLien(f, id); break;
       case 'chaleur-analyser': if (f) analyserProspectFiche(f); break;
+      case 'etude-demander': if (f) demanderEtudeFiche(f, false); break;
+      case 'etude-retirer': if (f) demanderEtudeFiche(f, true); break;
       case 'chaleur-manuelle': if (f) reglerChaleur(f, 'chaleur_manuelle', id); break;
       case 'reseaux-actifs': if (f) reglerChaleur(f, 'reseaux_actifs', id); break;
       case 'note-enregistrer': enregistrerNote(); break;
@@ -1691,7 +1840,8 @@
     ecrire: ecrire, copier: copier, ouvrirMenu: ouvrirMenu, fermerMenu: fermerMenu, menuOuvert: function () { return !!menu; },
     optionsReport: optionsReport, reporterAction: reporterAction, faitAction: faitAction,
     chaleurHtml: chaleurHtml, raisonsChaleurHtml: raisonsChaleurHtml, etatAnalyseHtml: etatAnalyseHtml,
-    reglagesChaleurHtml: reglagesChaleurHtml, reseauxActifsHtml: reseauxActifsHtml, MESSAGE_ANALYSE_INDISPONIBLE: MESSAGE_ANALYSE_INDISPONIBLE,
+    reglagesChaleurHtml: reglagesChaleurHtml, reseauxActifsHtml: reseauxActifsHtml,
+    etudeHtml: etudeHtml, noteMarcheoHtml: noteMarcheoHtml, RYTHME_ETUDE: RYTHME_ETUDE, MESSAGE_ANALYSE_INDISPONIBLE: MESSAGE_ANALYSE_INDISPONIBLE,
     LIBELLES_URGENCE: LIBELLES_URGENCE, DRAPEAUX: DRAPEAUX
   };
 })();

@@ -199,6 +199,17 @@
 .crm-pro .crm-pro-analyse-fin .crm-ic { flex: none; color: var(--a-vert-clair); }
 .crm-pro .crm-pro-analyse-indispo { margin-bottom: 14px; }
 .crm-pro .crm-pro-chaleur-absente { margin: 0 0 12px; }
+/* Étude des prospects : file d'attente (bandeau), « Enrichir la liste », tri par note Marchéo. */
+.crm-pro .crm-pro-etudes { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 14px; padding: 10px 14px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-surface); }
+.crm-pro .crm-pro-etudes p { display: flex; align-items: center; gap: 8px; flex: 1 1 260px; min-width: 0; font-size: 13px; line-height: 1.45; color: var(--a-ink); }
+.crm-pro .crm-pro-etudes p .crm-ic { flex: none; color: var(--or-t); }
+.crm-pro .crm-pro-file-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 10px; }
+.crm-pro .crm-pro-file-actions .crm-lien { color: var(--or-t) !important; }
+.crm-pro .crm-pro-enrichir { margin-bottom: 12px; }
+.crm-pro .crm-pro-enrichir p { display: flex; gap: 8px; }
+.crm-pro .crm-pro-enrichir p .crm-ic { flex: none; margin-top: 3px; color: var(--or-t); }
+.crm-pro .crm-pro-ordre-note > .crm-ic { color: var(--or-t); }
+.crm-pro .crm-pro-carte > .crm-etude { margin-bottom: 0; }
 .crm-pro .crm-pro-trouve-tel .crm-chal { font-size: 11.5px; height: 22px; }
 
 .crm-pro .crm-pro-file-liste { background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 16px; overflow: hidden; }
@@ -337,6 +348,8 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
 
 .crm-pro .crm-pro-table-tete, .crm-pro .crm-pro-rang-corps { display: grid; grid-template-columns: minmax(0, 2.2fr) 128px minmax(0, 1.2fr) minmax(120px, 1fr); align-items: center; gap: 14px; }
 .crm-pro .crm-pro-table-chal .crm-pro-table-tete, .crm-pro .crm-pro-table-chal .crm-pro-rang-corps { grid-template-columns: minmax(0, 2.2fr) 128px minmax(0, .9fr) 172px minmax(120px, 1fr); }
+.crm-pro .crm-pro-table-note .crm-pro-table-tete, .crm-pro .crm-pro-table-note .crm-pro-rang-corps { grid-template-columns: minmax(0, 2.2fr) 128px minmax(0, .9fr) 228px minmax(120px, 1fr); }
+.crm-pro .crm-pro-rang-chal { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
 .crm-pro .crm-pro-table-tete { padding: 9px 90px 9px 14px; background: var(--crm-creux); border-bottom: 1px solid var(--a-line); font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--a-ink-3); }
 .crm-pro .crm-pro-rang { border-top: 1px solid var(--a-line); }
 .crm-pro .crm-pro-table-tete + .crm-pro-rang { border-top: 0; }
@@ -370,6 +383,7 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
   .crm-pro .crm-pro-table-tete, .crm-pro .crm-pro-rang-corps { grid-template-columns: minmax(0, 2fr) 122px minmax(110px, 1fr); }
   .crm-pro .crm-pro-table-tete span:nth-child(3), .crm-pro .crm-pro-rang-liste { display: none; }
   .crm-pro .crm-pro-table-chal .crm-pro-table-tete, .crm-pro .crm-pro-table-chal .crm-pro-rang-corps { grid-template-columns: minmax(0, 2fr) 122px 172px minmax(110px, 1fr); }
+  .crm-pro .crm-pro-table-note .crm-pro-table-tete, .crm-pro .crm-pro-table-note .crm-pro-rang-corps { grid-template-columns: minmax(0, 2fr) 122px 228px minmax(110px, 1fr); }
 }
 
 @media (max-width: 900px) {

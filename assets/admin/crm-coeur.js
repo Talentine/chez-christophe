@@ -1374,6 +1374,11 @@
     r_rdv: 20, r_interesse: 15, r_deja_site: -40, r_refus: -30, r_faux: -15, r_silence: -8, appels_silence: 4,
     // Apport à la chaleur de la fiche (pipeline) d'un prospect chaud ou froid.
     fiche_chaud: 10, fiche_froid: -10,
+    /* Étude du commerce (crm_prospects.etude, écrite par la tâche planifiée) : elle complète les signaux, pondérée
+       par sa confiance (forte × 1, moyenne × 0,6 ; faible ou commerce non identifié : pas comptée du tout).
+       La note Marchéo (0 à 10) pèse (note − 5) × 3, borné à ±15. */
+    etude: { forte: 1, moyenne: 0.6, commande: -45, sans_commande: 12, traiteur: 12, multi: 10, reseaux: 8, reseaux_peu: -3,
+      avis_frequente: 10, avis_installe: 6, avis_mal_note: -5, avis_bons: 4, avis_mauvais: -4, note_centre: 5, note_pas: 3, note_max: 15 },
     rangs: { chaud: 3000, tiede: 2000, non_analyse: 1500, froid: 1000, exclu: 0 }
   };
 
@@ -1510,6 +1515,135 @@
     return n != null && Math.abs(n) <= max ? Math.round(n * 1e6) / 1e6 : null;
   }
 
+  // ───────────────────────────── Étude des prospects (note Marchéo) ─────────────────────────────
+
+  /* Une tâche planifiée, extérieure à ce dépôt, étudie les prospects mis en file (crm_prospects.etude_demandee_at) :
+     fiche, photos, avis, réseaux, annuaire des entreprises. Elle écrit son étude par la fonction SQL
+     crm_etude_ecrire (migration 20261116_crm_etude.sql), qui valide et borne tout. Le navigateur ne fait
+     pourtant confiance à rien de ce qu'il relit : l'étude repasse ici par les mêmes règles, tout texte est
+     échappé à l'affichage et une adresse n'est un lien que si elle est en https. */
+  var COLONNES_ETUDE = ['etude_demandee_at', 'etude_at', 'etude', 'note_marcheo'];
+  var CONFIANCES_ETUDE = ['faible', 'moyenne', 'forte'];
+  var BORNES_ETUDE = { avis: 600, resume: 400, commentaire: 300, plateforme: 60, dirigeant: 80, point: 120, points: 5, angle: 200, source: 300, sources: 8 };
+  // Un faux numéro ou un « pas intéressé » n'est pas étudié (la file de la base les écarte aussi).
+  var RESULTATS_SANS_ETUDE = ['faux_numero', 'pas_interesse'];
+  var ACTIVITES_ETUDE = ['actif', 'peu_actif', 'absent', 'inconnu'];
+
+  function textePropre(v, max) {
+    return typeof v === 'string' ? v.replace(/[\u0000-\u001f\u007f]+/g, ' ').trim().slice(0, max).trim() : '';
+  }
+  /* L'adresse si elle peut aller dans un href : https, hôte en lettres / chiffres / points / tirets (ni identifiants
+     ni port), sans espace, guillemet, chevron ni barre oblique inverse. Sinon ''. Une adresse ne se tronque pas. */
+  function urlHttps(v, max) {
+    var u = typeof v === 'string' ? v.trim() : '';
+    if (!u || u.length > (max || BORNES_ETUDE.source)) return '';
+    return /^https:\/\/([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,24}(\/[^\s<>"'\\`\u0000-\u001f\u007f]*)?$/.test(u) ? u : '';
+  }
+  function parmi(v, liste) { return typeof v === 'string' && liste.indexOf(v) >= 0 ? v : null; }
+  function booleen(v) { return v === true ? true : v === false ? false : null; }
+  function nombreBorne(v, min, max, decimales) {
+    if (typeof v !== 'number' || !isFinite(v) || v < min || v > max) return null;
+    if (!decimales && v !== Math.floor(v)) return null;
+    var f = Math.pow(10, decimales || 0);
+    return Math.round(v * f) / f;
+  }
+  function textesBornes(v, nombre, max) {
+    var liste = [];
+    (Array.isArray(v) ? v.slice(0, 50) : []).forEach(function (x) {
+      var t = textePropre(x, max);
+      if (t && liste.length < nombre) liste.push(t);
+    });
+    return liste;
+  }
+
+  /* Étude telle qu'elle peut être affichée : seules les clés du schéma (version 1), chacune vérifiée ; toutes
+     présentes dans le résultat ('' / null / [] quand l'étude ne dit rien). Forme inconnue → null. */
+  function etudeValide(v) {
+    var e = objet(v);
+    if (!e || e.v !== 1) return null;
+    var confiance = parmi(e.confiance, CONFIANCES_ETUDE);
+    if (!confiance || typeof e.identifie !== 'boolean') return null;
+    var note = e.note == null ? null : nombreBorne(e.note, 0, 10, 1);
+    if (e.note != null && note == null) return null;
+    var ac = objet(e.avis_clients) || {}, ph = objet(e.photos), re = objet(e.reseaux) || {};
+    var sources = [];
+    (Array.isArray(e.sources) ? e.sources.slice(0, 50) : []).forEach(function (x) {
+      var u = urlHttps(x, BORNES_ETUDE.source);
+      if (u && sources.indexOf(u) < 0 && sources.length < BORNES_ETUDE.sources) sources.push(u);
+    });
+    return {
+      v: 1, note: note, confiance: confiance, identifie: e.identifie,
+      avis: textePropre(e.avis, BORNES_ETUDE.avis),
+      avis_clients: {
+        tendance: parmi(ac.tendance, ['bons', 'mitiges', 'mauvais', 'inconnu']) || 'inconnu',
+        note: nombreBorne(ac.note, 1, 5, 1), nombre: nombreBorne(ac.nombre, 0, 10000000, 0), resume: textePropre(ac.resume, BORNES_ETUDE.resume)
+      },
+      photos: ph ? {
+        vues: booleen(ph.vues), qualite: parmi(ph.qualite, ['belles', 'correctes', 'pauvres', 'inconnu']) || 'inconnu',
+        recentes: booleen(ph.recentes), devanture: booleen(ph.devanture), produits: booleen(ph.produits),
+        commentaire: textePropre(ph.commentaire, BORNES_ETUDE.commentaire)
+      } : null,
+      commande_en_ligne: parmi(e.commande_en_ligne, ['oui', 'non_vue', 'inconnu']) || 'inconnu',
+      plateforme: textePropre(e.plateforme, BORNES_ETUDE.plateforme),
+      traiteur: booleen(e.traiteur),
+      points_de_vente: nombreBorne(e.points_de_vente, 1, 9999, 0),
+      reseaux: { instagram: parmi(re.instagram, ACTIVITES_ETUDE) || 'inconnu', facebook: parmi(re.facebook, ACTIVITES_ETUDE) || 'inconnu' },
+      dirigeant: textePropre(e.dirigeant, BORNES_ETUDE.dirigeant),
+      anciennete: nombreBorne(e.anciennete, 1800, 2200, 0),
+      points_forts: textesBornes(e.points_forts, BORNES_ETUDE.points, BORNES_ETUDE.point),
+      points_faibles: textesBornes(e.points_faibles, BORNES_ETUDE.points, BORNES_ETUDE.point),
+      angle: textePropre(e.angle, BORNES_ETUDE.angle),
+      sources: sources
+    };
+  }
+
+  /* L'étude d'un prospect et sa demande : { etude (nettoyée, ou null), note, confiance, identifie, fiable, motif,
+     le (date de l'étude), demandeeLe (en file depuis) }, ou null s'il n'a ni étude ni demande en cours.
+     `fiable` : commerce retrouvé avec certitude ET confiance moyenne ou forte ; sinon l'étude est montrée avec sa
+     réserve (`motif` : 'non_identifie' ou 'faible') et ne compte pas dans la chaleur. */
+  function etudeProspect(p) {
+    if (!p) return null;
+    var e = etudeValide(p.etude), demandee = p.etude_demandee_at || null;
+    if (!e && !demandee) return null;
+    return {
+      etude: e, note: e ? e.note : null, confiance: e ? e.confiance : null, identifie: e ? e.identifie : null,
+      fiable: !!e && e.identifie && e.confiance !== 'faible',
+      motif: !e ? '' : !e.identifie ? 'non_identifie' : e.confiance === 'faible' ? 'faible' : '',
+      le: e ? (p.etude_at || null) : null, demandeeLe: demandee
+    };
+  }
+
+  /* Prénom à dire au téléphone, tiré du nom du dirigeant relevé dans l'annuaire des entreprises (« Marc DUPONT »,
+     « DUPONT Marc », « M. Jean-Pierre MARTIN »). Seulement des lettres, tirets et apostrophes. '' quand on ne peut
+     pas distinguer le prénom du nom (tout en capitales, un seul mot). */
+  function prenomDirigeant(nom) {
+    var t = textePropre(nom, BORNES_ETUDE.dirigeant).replace(/\([^)]*\)/g, ' ').split(/\s*[,;\/&]\s*|\s+et\s+/i)[0] || '';
+    var mots = t.split(/\s+/).filter(function (m) { return /^[\p{L}][\p{L}'’\-]*$/u.test(m) && !/^(m|mr|mme|mlle|monsieur|madame|mademoiselle)$/i.test(m); });
+    if (mots.length < 2) return '';
+    var prenom = mots.filter(function (m) { return /^\p{Lu}[\p{L}'’\-]*\p{Ll}/u.test(m); })[0] || '';
+    return prenom.slice(0, 60);
+  }
+
+  /* Les mieux notés d'abord : études fiables, puis études peu fiables, puis prospects sans note. Ordre gardé à égalité. */
+  function rangNote(p) {
+    var ep = etudeProspect(p);
+    if (!ep || ep.note == null) return 0;
+    return (ep.fiable ? 2000 : 1000) + Math.round(ep.note * 10);
+  }
+  function trierParNote(prospects) {
+    var rangs = (prospects || []).map(function (p, i) { return { p: p, i: i, rang: rangNote(p) }; });
+    rangs.sort(function (a, b) { return b.rang - a.rang || a.i - b.i; });
+    return rangs.map(function (r) { return r.p; });
+  }
+
+  /* Prospects à mettre en file d'étude : ni étude, ni demande en cours, ni faux numéro, ni « pas intéressé ». */
+  function aEtudier(prospects) {
+    return (prospects || []).filter(function (p) {
+      return !!p && !p.enAttente && !/^provisoire-/.test(String(p.id)) && !p.etude_at && !p.etude && !p.etude_demandee_at &&
+        RESULTATS_SANS_ETUDE.indexOf(p.resultat) < 0;
+    });
+  }
+
   function metierChaleur(p) {
     var B = BAREME_CHALEUR.metiers;
     var libelle = sansAccents(p.metier), type = texte(p.business_type).toLowerCase(), cle = '';
@@ -1548,6 +1682,11 @@
     var osm = objet(s.osm), site = objet(s.site), google = objet(s.google);
     var analyse = !!p.analyse_at;
     var manuel = NIVEAUX_MANUELS.indexOf(p.chaleur_manuelle) >= 0 ? p.chaleur_manuelle : null;
+    // L'étude ne compte que si elle est fiable ; ses points sont pondérés par sa confiance.
+    var ep = etudeProspect(p), etude = ep && ep.fiable ? ep.etude : null;
+    var coef = etude ? (etude.confiance === 'forte' ? B.etude.forte : B.etude.moyenne) : 0;
+    function pe(points) { return Math.round(points * coef); }
+    var D_ETUDE = ' (d\'après l\'étude)';
     var etats = {
       site: site && texte(site.etat) ? texte(site.etat) : null,
       // Analysé sans rien de Google : la clé n'était pas configurée.
@@ -1560,6 +1699,8 @@
       return {
         niveau: niveau, libelle: libelleNiveau(niveau), valeur: valeur, manuel: !!manuel && !drapeaux.exclu, exclu: !!drapeaux.exclu,
         partiel: !!drapeaux.partiel, auto: { niveau: niveauAuto, valeur: valeur }, raisons: raisons, etats: etats,
+        // Étude du commerce : comptée dans la note, ou écartée (motif : 'non_identifie', 'faible'). null : pas d'étude.
+        etude: ep && ep.etude ? { comptee: !!etude && !drapeaux.exclu && valeur != null, motif: ep.motif } : null,
         rang: (drapeaux.exclu ? B.rangs.exclu : B.rangs[niveau]) + (valeur || 0)
       };
     }
@@ -1576,7 +1717,7 @@
     if (site && site.deja_marcheo === true) {
       return rendre('froid', 0, [{ cle: 'deja_marcheo', points: 0, texte: '− déjà chez Marchéo' }], { exclu: true });
     }
-    if (!osm && !site && !google && !analyse) return rendre('non_analyse', null, []);
+    if (!osm && !site && !google && !analyse && !etude) return rendre('non_analyse', null, []);
 
     var raisons = [], total = B.base;
     function compter(cle, points, libelle) {
@@ -1597,6 +1738,14 @@
       var plateformes = libellesDe(outils, LIBELLES_OUTILS, null, 2);
       compter('plateforme', B.plateforme, 'prend déjà des commandes en ligne' + (plateformes.length ? ' via ' + plateformes.join(', ') : ' via une plateforme'));
     } else if (etatSite === 'analyse' && commande === 'aucune_vue') compter('sans_commande', B.sans_commande, 'pas vu de commande en ligne sur son site');
+    // L'étude complète ce que le site n'a pas dit, sans jamais compter deux fois la même chose.
+    var dejaEnLigne = commande === 'boutique' || commande === 'plateforme';
+    var commandeEtude = !!etude && etude.commande_en_ligne === 'oui' && !dejaEnLigne;
+    if (commandeEtude) {
+      compter('etude_commande', pe(B.etude.commande), 'commande en ligne vue' + (etude.plateforme ? ' : ' + etude.plateforme : '') + D_ETUDE);
+    } else if (etude && etude.commande_en_ligne === 'non_vue' && !dejaEnLigne && !(etatSite === 'analyse' && commande === 'aucune_vue')) {
+      compter('etude_sans_commande', pe(B.etude.sans_commande), 'pas vu de commande en ligne' + D_ETUDE);
+    }
 
     // Site.
     var sansSite = !texte(p.site_web) || etatSite === 'pas_de_site' || etatSite === 'annuaire';
@@ -1650,6 +1799,9 @@
     if (site && site.sur_commande === true) {
       trio.push(['sur_commande', B.sur_commande, 'produits sur commande' + entreParentheses(libellesDe(mots, LIBELLES_MOTS, MOTS_COMMANDE, 3).filter(function (m) { return m !== 'sur commande'; }))]);
     }
+    if (etude && etude.traiteur === true && !trio.some(function (t) { return t[0] === 'traiteur'; })) {
+      trio.push(['etude_traiteur', pe(B.etude.traiteur), 'offre traiteur' + D_ETUDE]);
+    }
     var cumul = 0;
     trio.forEach(function (t) {
       var points = Math.max(0, Math.min(t[1], B.plafond_traiteur - cumul));
@@ -1670,6 +1822,8 @@
       var adresses = site ? nombreFini(site.adresses) : null;
       compter('multi', B.multi, 'plusieurs points de vente' + (adresses >= 2 ? ' (' + adresses + ' adresses vues)'
         : homonymes >= 1 ? ' (' + (homonymes + 1) + ' commerces de la même maison)' : ''));
+    } else if (etude && etude.points_de_vente >= 2) {
+      compter('etude_multi', pe(B.etude.multi), 'plusieurs points de vente : ' + etude.points_de_vente + D_ETUDE);
     } else if (memeNom >= 1) {
       compter('meme_nom', B.meme_nom, 'même nom qu\'un autre commerce des environs : plusieurs points de vente ? À vérifier');
     }
@@ -1679,6 +1833,12 @@
     if (insta || fb) compter('reseaux', insta && fb ? B.reseaux_deux : B.reseaux_un, 'compte ' + (insta && fb ? 'Instagram et Facebook' : insta ? 'Instagram' : 'Facebook') + ' trouvé');
     if (p.reseaux_actifs === 'actif') compter('reseaux_actifs', B.reseaux_actifs, 'réseaux actifs (constaté à la main)');
     else if (p.reseaux_actifs === 'peu_actif') compter('reseaux_peu', B.reseaux_peu, 'réseaux peu actifs (constaté à la main)');
+    else if (etude) {
+      // Le réglage à la main passe toujours devant : l'étude ne parle que s'il est vide.
+      var ri = etude.reseaux.instagram === 'actif', rf = etude.reseaux.facebook === 'actif';
+      if (ri || rf) compter('etude_reseaux', pe(B.etude.reseaux), (ri && rf ? 'Instagram et Facebook actifs' : ri ? 'Instagram actif' : 'Facebook actif') + D_ETUDE);
+      else if (etude.reseaux.instagram === 'peu_actif' || etude.reseaux.facebook === 'peu_actif') compter('etude_reseaux_peu', pe(B.etude.reseaux_peu), 'réseaux peu actifs' + D_ETUDE);
+    }
 
     // Fiche Google.
     if (google && google.etat === 'trouve') {
@@ -1692,6 +1852,20 @@
       if (google.statut === 'CLOSED_TEMPORARILY') compter('ferme_temporaire', B.ferme_temporaire, 'fermé temporairement d\'après Google');
     }
 
+    // Avis clients relevés par l'étude, quand la fiche Google n'a rien compté.
+    if (etude && !raisons.some(function (r) { return /^google_/.test(r.cle); })) {
+      var ac = etude.avis_clients, pa = 0, texteAvis = '';
+      if (ac.nombre != null && ac.note != null) {
+        var chiffres = ' (' + noteFr(ac.note) + ' ★, ' + ac.nombre + ' avis)';
+        if (ac.nombre >= B.avis_frequente && ac.note >= B.note_frequente) { pa = B.etude.avis_frequente; texteAvis = 'très bons avis clients' + chiffres; }
+        else if (ac.nombre >= B.avis_installe && ac.note >= B.note_installe) { pa = B.etude.avis_installe; texteAvis = 'bons avis clients' + chiffres; }
+        else if (ac.nombre >= B.avis_mal_note && ac.note < B.note_mal_note) { pa = B.etude.avis_mal_note; texteAvis = 'avis clients médiocres' + chiffres; }
+      }
+      if (!pa && ac.tendance === 'bons') { pa = B.etude.avis_bons; texteAvis = 'avis clients plutôt bons'; }
+      else if (!pa && ac.tendance === 'mauvais') { pa = B.etude.avis_mauvais; texteAvis = 'avis clients plutôt mauvais'; }
+      if (pa) compter('etude_avis', pe(pa), texteAvis + D_ETUDE);
+    }
+
     // Joignable.
     if (osm && osm.horaires === true) compter('horaires', B.horaires, 'horaires connus');
     if (texte(p.email)) compter('email', B.email, 'e-mail connu (envoi de la démo possible)');
@@ -1702,6 +1876,15 @@
     if (metier && metier.points) {
       compter('metier', metier.points, metier.points < 0 ? 'métier déjà très équipé en commande en ligne'
         : (metier.points >= B.metier_a_l_avance ? 'métier à commandes à l\'avance' : 'commerce de proximité') + ' (' + metier.libelle + ')');
+    }
+
+    // Notre note (0 à 10), avec un poids borné : elle résume l'étude, elle ne remplace pas les signaux.
+    if (etude && etude.note != null) {
+      var brutNote = (etude.note - B.etude.note_centre) * B.etude.note_pas;
+      compter('etude_note', pe(Math.max(-B.etude.note_max, Math.min(B.etude.note_max, brutNote))), 'note Marchéo ' + noteFr(etude.note) + '/10' + D_ETUDE);
+    }
+    if (ep && ep.etude && !etude) {
+      compter('etude_ecartee', 0, 'étude peu fiable (' + (ep.motif === 'non_identifie' ? 'commerce pas retrouvé avec certitude' : 'peu d\'éléments trouvés') + ') : non comptée');
     }
 
     // Ce que l'appel a appris pèse plus que tout ce qui a été deviné.
@@ -1718,18 +1901,26 @@
     if ((commande === 'boutique' || commande === 'plateforme') && p.resultat !== 'rdv' && p.resultat !== 'interesse') {
       plafonds.push('il prend déjà des commandes en ligne');
     }
+    // Commande en ligne vue par une étude sûre d'elle : même plafond que pour le site.
+    if (commandeEtude && etude.confiance === 'forte' && p.resultat !== 'rdv' && p.resultat !== 'interesse') {
+      plafonds.push('commande en ligne vue par l\'étude');
+    }
     if (plafonds.length && total > B.plafond_froid) compter('plafond', B.plafond_froid - total, 'note plafonnée à Froid : ' + plafonds[0]);
 
     var valeur = borner(total);
     var niveau = valeur >= B.chaud ? 'chaud' : valeur >= B.tiede ? 'tiede' : 'froid';
-    return rendre(niveau, valeur, trierRaisons(raisons), { partiel: !analyse && !site && !google });
+    return rendre(niveau, valeur, trierRaisons(raisons), { partiel: !analyse && !site && !google && !etude });
   }
 
   /* Par où commencer l'appel, d'après les signaux : { cle, texte } ou null. Première règle vraie. */
   function angleProspect(p, chaleur) {
     p = p || {};
     var ch = chaleur || chaleurProspect(p);
-    if (!ch || ch.exclu || !ch.raisons.length) return null;
+    if (!ch || ch.exclu) return null;
+    // L'accroche proposée par l'étude du commerce passe devant les règles automatiques, si l'étude est fiable.
+    var ep = etudeProspect(p);
+    if (ep && ep.fiable && ep.etude.angle) return { cle: 'etude', texte: ep.etude.angle, source: 'etude' };
+    if (!ch.raisons.length) return null;
     var cles = {};
     ch.raisons.forEach(function (r) { cles[r.cle] = r; });
     var site = objet((objet(p.signaux) || {}).site) || {}, google = objet((objet(p.signaux) || {}).google) || {};
@@ -2064,11 +2255,13 @@
      chaleur : faux dès que l'on sait que les colonnes de la migration 20261116_crm_chaleur.sql manquent dans
      crm_prospects (vu à la lecture, au premier refus d'écriture, ou dit par la fonction crm-enrichir). Sans elles :
      aucune pastille de chaleur, prospects ajoutés sans leurs signaux, le reste inchangé.
+     etude : faux dès que l'on sait que les colonnes de la migration 20261116_crm_etude.sql manquent (vu à la
+     lecture ou au premier refus d'écriture). Sans elles : ni bouton « Enrichir la liste », ni note Marchéo, ni requête.
      analyse : 'inconnu' tant que la fonction crm-enrichir n'a pas été appelée, 'ok' après un lot réussi,
      'indisponible' après un échec (fonction non déployée, réseau, serveur). Un rechargement n'y touche pas. */
   function etatInitial() {
     return { charge: false, ecriture: false, ecriturePanne: false, prospection: false, sourcesKo: [], sourcesTronquees: [],
-      liens: true, liensProspects: true, appels: false, reglages: false, chaleur: true, analyse: 'inconnu', google: 'inconnu', googlePlafond: '', erreur: null, chargeLe: null };
+      liens: true, liensProspects: true, appels: false, reglages: false, chaleur: true, etude: true, analyse: 'inconnu', google: 'inconnu', googlePlafond: '', erreur: null, chargeLe: null };
   }
 
   var brut = brutVide();
@@ -2316,7 +2509,7 @@
   function estColonneAbsente(e) {
     return !!e && (e.code === 'PGRST204' || e.code === '42703' ||
       (e.statut === 400 && /column|colonne/i.test(texte(e.detail)) &&
-        /lien_|google_url|instagram|facebook|signaux|analyse_at|chaleur_manuelle|reseaux_actifs|google_note|google_avis|\blat\b|\blon\b/.test(texte(e.detail))));
+        /lien_|google_url|instagram|facebook|signaux|analyse_at|chaleur_manuelle|reseaux_actifs|google_note|google_avis|\blat\b|\blon\b|etude|note_marcheo/.test(texte(e.detail))));
   }
   // Nom de la colonne que l'API dit ne pas connaître, ou '' si le refus ne la nomme pas.
   function colonneRefusee(e) {
@@ -2325,6 +2518,7 @@
     return m ? m[1] : '';
   }
   var MIGRATION_CHALEUR = 'la migration de la chaleur (20261116_crm_chaleur.sql) n\'est pas encore appliquée';
+  var MESSAGE_ETUDE_ABSENTE = 'Étude indisponible : la migration de l\'étude (20261116_crm_etude.sql) n\'est pas encore appliquée.';
   var MIGRATION_LIENS = 'la migration des liens (20261114_crm_liens.sql) n\'est pas encore appliquée';
 
   // Panne passagère (réseau coupé, serveur en erreur), par opposition à une table absente ou à des droits refusés.
@@ -2386,6 +2580,7 @@
       CRM.etat.liens = colonnePresente(nouveau.fiches, 'lien_google');
       CRM.etat.liensProspects = colonnePresente(nouveau.prospects, 'google_url');
       CRM.etat.chaleur = colonnePresente(nouveau.prospects, 'signaux');
+      CRM.etat.etude = colonnePresente(nouveau.prospects, 'etude_demandee_at');
       CRM.etat.appels = annexes.appels;
       CRM.etat.reglages = annexes.reglages;
       CRM.etat.erreur = erreur;
@@ -2572,6 +2767,116 @@
   };
   /* Pourquoi un prospect est proposé à l'analyse : 'jamais', 'google', 'site' ou ''. */
   CRM.resteAAnalyser = function (p) { return resteAAnalyser(p, CRM.horloge()); };
+
+  // ───────────────────────────── Étude des prospects : file d'attente et arrivées ─────────────────────────────
+
+  /* Étude et demande d'étude d'un prospect (voir etudeProspect). null sans la migration de l'étude. */
+  CRM.etudeProspect = function (p) { return CRM.etat.etude ? etudeProspect(p) : null; };
+
+  /* Prospects en attente d'étude, les plus anciennes demandes d'abord (hors faux numéro et « pas intéressé », que
+     la file de la base n'envoie pas à l'étude). */
+  CRM.enFileEtude = function () {
+    if (!CRM.etat.etude) return [];
+    return brut.prospects.filter(function (p) { return !!p.etude_demandee_at && RESULTATS_SANS_ETUDE.indexOf(p.resultat) < 0; })
+      .sort(function (a, b) { return ms(a.etude_demandee_at) - ms(b.etude_demandee_at); });
+  };
+
+  var LOT_ETUDE = 100;
+  // Colonnes que crm_etude_ecrire peut avoir remplies (seulement si elles étaient vides).
+  var COLONNES_TROUVEES = ['commune', 'code_postal', 'adresse', 'site_web', 'instagram', 'facebook', 'google_url', 'email'];
+
+  /* Pose ou retire la demande d'étude d'un ensemble de prospects (une requête par paquet de 100). Optimiste : en
+     cas d'échec, les paquets non enregistrés reviennent à leur valeur d'avant. */
+  function ecrireFileEtude(cibles, valeur) {
+    return suivreEcriture(async function () {
+      var avant = cibles.map(function (p) { return p.etude_demandee_at || null; });
+      cibles.forEach(function (p) { p.etude_demandee_at = valeur; });
+      recalculer();
+      var debut = 0;
+      try {
+        for (; debut < cibles.length; debut += LOT_ETUDE) {
+          var lot = cibles.slice(debut, debut + LOT_ETUDE);
+          var lignes = await crmFetch('PATCH', '/rest/v1/crm_prospects?id=in.(' + lot.map(function (p) { return encodeURIComponent(p.id); }).join(',') + ')&select=id,updated_at',
+            { etude_demandee_at: valeur }, 'return=representation');
+          (Array.isArray(lignes) ? lignes : []).forEach(function (l) {
+            var p = l && trouverParId(brut.prospects, l.id);
+            if (p && l.updated_at) p.updated_at = l.updated_at;
+          });
+        }
+        return cibles.length;
+      } catch (e) {
+        cibles.slice(debut).forEach(function (p, i) { if (p.etude_demandee_at === valeur) p.etude_demandee_at = avant[debut + i]; });
+        if (estColonneAbsente(e)) {
+          CRM.etat.etude = false;
+          recalculer();
+          throw new Error(MESSAGE_ETUDE_ABSENTE);
+        }
+        recalculer();
+        throw e;
+      }
+    });
+  }
+
+  /* Met des prospects en file d'étude (etude_demandee_at = maintenant). Sans `opts.forcer`, ceux qui ont déjà une
+     étude ou une demande sont laissés ; avec (« Redemander l'étude » d'une fiche), ils repassent. Un faux numéro
+     ou un « pas intéressé » n'est jamais mis en file. Résout { demandes }. */
+  CRM.demanderEtudes = async function (ids, opts) {
+    verifierProspection();
+    if (!CRM.etat.etude) throw new Error(MESSAGE_ETUDE_ABSENTE);
+    var forcer = !!(opts && opts.forcer);
+    var prospects = idsAnalysables(ids).map(function (id) { return trouverParId(brut.prospects, id); });
+    var cibles = forcer ? prospects.filter(function (p) { return RESULTATS_SANS_ETUDE.indexOf(p.resultat) < 0; }) : aEtudier(prospects);
+    if (forcer && prospects.length && !cibles.length) throw new Error('Un faux numéro ou un « pas intéressé » n\'est pas étudié.');
+    if (!cibles.length) return { demandes: 0 };
+    return { demandes: await ecrireFileEtude(cibles, CRM.horloge().toISOString()) };
+  };
+
+  /* Retire des prospects de la file d'étude. Résout { retires }. */
+  CRM.retirerEtudes = async function (ids) {
+    verifierProspection();
+    if (!CRM.etat.etude) throw new Error(MESSAGE_ETUDE_ABSENTE);
+    var cibles = idsAnalysables(ids).map(function (id) { return trouverParId(brut.prospects, id); }).filter(function (p) { return !!p.etude_demandee_at; });
+    if (!cibles.length) return { retires: 0 };
+    return { retires: await ecrireFileEtude(cibles, null) };
+  };
+
+  /* Lecture légère des études arrivées depuis la dernière vue (la tâche planifiée écrit en base à son rythme).
+     Seules les lignes dont l'étude est plus récente que la dernière connue sont lues, et seules les colonnes de
+     l'étude sont recopiées ; une colonne que crm_etude_ecrire a pu remplir n'est prise que si elle est vide ici.
+     Résout { arrivees, indisponible }. Ne rejette jamais, n'écrit rien dans la console. */
+  var lectureEtudes = null;
+  CRM.rafraichirEtudes = function () {
+    if (!CRM.etat.etude || !CRM.etat.prospection || !CRM.etat.charge) return Promise.resolve({ arrivees: 0, indisponible: !CRM.etat.etude });
+    if (lectureEtudes) return lectureEtudes;
+    var derniere = '';
+    brut.prospects.forEach(function (p) { if (p.etude_at && (!derniere || ms(p.etude_at) > ms(derniere))) derniere = p.etude_at; });
+    var chemin = '/rest/v1/crm_prospects?select=id,' + COLONNES_ETUDE.concat(COLONNES_TROUVEES).join(',') + ',updated_at&etude_at=' +
+      (derniere ? 'gt.' + encodeURIComponent(derniere) : 'not.is.null') + '&order=etude_at.asc,id.asc&limit=' + TAILLE_PAGE;
+    var generationDepart = generation;
+    lectureEtudes = crmFetch('GET', chemin).then(function (lignes) {
+      // Un rechargement complet est passé entre-temps : il a déjà tout lu.
+      if (!Array.isArray(lignes) || generation !== generationDepart) return { arrivees: 0, indisponible: false };
+      var arrivees = 0;
+      lignes.forEach(function (l) {
+        var p = l && trouverParId(brut.prospects, l.id);
+        if (!p || !l.etude_at || (p.etude_at && ms(l.etude_at) <= ms(p.etude_at))) return;
+        p.etude = l.etude; p.etude_at = l.etude_at; p.note_marcheo = l.note_marcheo == null ? null : l.note_marcheo;
+        // Redemandée ici après l'écriture de cette étude : la demande locale reste.
+        if (!(p.etude_demandee_at && ms(p.etude_demandee_at) > ms(l.etude_at))) p.etude_demandee_at = l.etude_demandee_at || null;
+        COLONNES_TROUVEES.forEach(function (c) { if (c in l && !texte(p[c]) && texte(l[c])) p[c] = l[c]; });
+        if (l.updated_at) p.updated_at = l.updated_at;
+        arrivees++;
+      });
+      if (arrivees) recalculer();
+      return { arrivees: arrivees, indisponible: false };
+    }, function (e) {
+      if (estColonneAbsente(e)) { CRM.etat.etude = false; recalculer(); }
+      return { arrivees: 0, indisponible: true };
+    }).then(function (bilan) { lectureEtudes = null; return bilan; });
+    return lectureEtudes;
+  };
+  // Période du rafraîchissement léger de la vue Prospection, tant qu'il reste des prospects en file (ms).
+  CRM.PERIODE_ETUDES = 60000;
 
   // ───────────────────────────── Écritures du CRM ─────────────────────────────
 
@@ -3578,7 +3883,9 @@
     prospectsDepuisOsm: prospectsDepuisOsm, requeteOverpass: requeteOverpass, analyserImport: analyserImport, recap: recap,
     normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence, estLienMaps: estLienMaps,
     cleEnseigne: cleEnseigne, signauxOsm: signauxOsm, chaleurProspect: chaleurProspect, angleProspect: angleProspect,
-    trierParChaleur: trierParChaleur
+    trierParChaleur: trierParChaleur,
+    etudeValide: etudeValide, etudeProspect: etudeProspect, urlHttps: urlHttps, prenomDirigeant: prenomDirigeant,
+    trierParNote: trierParNote, aEtudier: aEtudier
   };
 
   // Réservé aux tests : remet le cœur à neuf, ou injecte des données sans passer par le réseau.
@@ -3589,7 +3896,7 @@
       CRM.config = { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' };
       ecrituresEnVol = 0; generation = 0; rechargementDu = false; sourcesSansDonnees = [];
       cacheChaleur = new Map(); homonymesFile = null; analyse = null; fonctionAbsente = false; pauseAnalyse = 300; echecsAnalyse = {};
-      CRM.analyseEnCours = null;
+      CRM.analyseEnCours = null; lectureEtudes = null; CRM.PERIODE_ETUDES = 60000;
       CRM.etat = etatInitial();
       CRM.horloge = function () { return new Date(); };
     },

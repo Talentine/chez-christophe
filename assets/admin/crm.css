@@ -200,6 +200,51 @@ html.crm-fige body { overflow: hidden; }
 .crm-chal-reglage .crm-puces { margin-top: 0; }
 .crm-chal-reglage .crm-puce { display: inline-flex; align-items: center; gap: 5px; }
 
+/* Étude du commerce (note Marchéo). Le texte reste à l'encre ; l'or ne porte que la note et les liserés.
+ * Une étude peu fiable (confiance faible, commerce pas retrouvé avec certitude) est en tirets et sans or. */
+.crm-note-m {
+  display: inline-flex; align-items: center; flex: none; gap: 1px; height: 24px; padding: 0 7px; border: 1px solid var(--crm-or-trait); border-radius: 8px;
+  background: var(--crm-or-fond); color: var(--a-ink); font-size: 12px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.crm-note-m b { font-weight: 800; }
+.crm-note-m small { font-size: 10.5px; font-weight: 600; color: var(--a-ink-2); }
+.crm-note-m-incertaine, .crm-note-m-attente { border-style: dashed; border-color: var(--crm-controle); background: none; color: var(--a-ink-2); }
+.crm-note-m-attente { padding: 0 5px; }
+.crm-etude { display: flex; flex-direction: column; gap: 9px; min-width: 0; margin-bottom: 14px; padding: 12px 13px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-bg); }
+.crm-etude .crm-etiquette { margin-bottom: 0; }
+.crm-etude-tete { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.crm-etude-tete .crm-etiquette { flex: 1 1 100%; }
+.crm-etude-note { font-size: 14px; font-weight: 700; color: var(--a-ink); font-variant-numeric: tabular-nums; }
+.crm-etude-note b { font-size: 19px; font-weight: 800; color: var(--or-t); }
+.crm-etude-note-incertaine b { color: var(--a-ink-2); }
+.crm-etude-confiance { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border: 1px solid var(--crm-controle); border-radius: 50px; font-size: 11.5px; font-weight: 700; color: var(--a-ink); white-space: nowrap; }
+.crm-etude-confiance[data-confiance="faible"] { border-style: dashed; color: var(--a-ink-2); }
+.crm-etude-date { margin-left: auto; font-size: 12px; color: var(--a-ink-3); }
+.crm-etude-reserve { display: flex; gap: 8px; padding: 8px 10px; border: 1px solid var(--crm-alerte-trait); border-radius: 10px; background: var(--crm-alerte-fond); font-size: 12.5px; line-height: 1.45; color: var(--a-ink); }
+.crm-etude-reserve .crm-ic { flex: none; margin-top: 2px; color: var(--crm-alerte); }
+.crm-etude-avis { font-size: 13px; line-height: 1.5; color: var(--a-ink); overflow-wrap: anywhere; }
+.crm-etude-vide, .crm-etude-attente { font-size: 12.5px; line-height: 1.45; color: var(--a-ink-2); }
+.crm-etude-attente { display: flex; align-items: center; gap: 7px; flex: 1 1 200px; min-width: 0; }
+.crm-etude-attente .crm-ic { flex: none; color: var(--a-ink-3); }
+.crm-etude-deplier { align-self: flex-start; color: var(--or-t) !important; }
+.crm-etude-detail { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.crm-etude-faits { display: flex; flex-direction: column; gap: 6px; }
+.crm-etude-fait { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 2px 10px; font-size: 12.5px; line-height: 1.45; }
+.crm-etude-fait dt { font-weight: 600; color: var(--a-ink-2); }
+.crm-etude-fait dd { display: flex; flex-direction: column; gap: 1px; min-width: 0; color: var(--a-ink-2); overflow-wrap: anywhere; }
+.crm-etude-fait dd b { font-weight: 700; color: var(--a-ink); }
+.crm-etude-points ul { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+.crm-etude-points li { position: relative; padding-left: 16px; font-size: 12.5px; line-height: 1.45; color: var(--a-ink); overflow-wrap: anywhere; }
+.crm-etude-points li::before { content: '+'; position: absolute; left: 1px; font-weight: 800; color: var(--a-vert-clair); }
+.crm-etude-faibles li::before { content: '−'; color: var(--crm-alerte); }
+.crm-etude-angle p:last-child { margin-top: 4px; padding: 8px 11px; border-left: 3px solid var(--or); border-radius: 0 10px 10px 0; background: var(--crm-or-fond); font-size: 13px; line-height: 1.45; color: var(--a-ink); overflow-wrap: anywhere; }
+.crm-etude-sources { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.crm-etude-sources li { min-width: 0; max-width: 100%; }
+.crm-etude-source { max-width: 100%; font-weight: 600; text-decoration: none; }
+.crm-etude-source span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.crm-etude-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.crm-etude-absente { margin-bottom: 12px; }
+
 /* Étape : un point de couleur et le libellé, jamais un badge plein. */
 .crm-etape { --c: var(--crm-e-prospect); display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); white-space: nowrap; }
 .crm-etape i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
@@ -615,6 +660,8 @@ button.crm-ind:hover { border-color: var(--crm-or-trait); transform: translateY(
   .crm-racine input:not([type=checkbox]), .crm-racine textarea, .crm-racine select { font-size: 16px; }
   .crm-champ-date, .crm-tri select { font-size: 14px !important; }
   .crm-racine .crm-lien { min-height: 44px; }
+  .crm-etude-fait { grid-template-columns: minmax(0, 1fr); }
+  .crm-etude-date { margin-left: 0; }
   .crm-racine .crm-champ:not(textarea) { min-height: 44px; }
   .crm-toast { min-height: 54px; }
   .crm-toast-action { height: 44px; padding: 0 18px; }

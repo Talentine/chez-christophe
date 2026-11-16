@@ -76,6 +76,9 @@
     // Chaleur des prospects : ordre de la file ('liste' = ordre d'ajout, 'chaleur' = les plus chauds d'abord),
     // filtre par niveau, bloc « Pourquoi ? » déplié.
     ordre: 'liste', filtreChaleur: '', pourquoi: false,
+    // Étude des prospects : détail déplié sur la fiche d'appel, confirmation de « Enrichir la liste »
+    // ({ ou: 'appeler' | 'liste', etudes: [ids], analyses: [ids], envoi }), confirmation du retrait de la file.
+    etudeOuverte: false, enrichir: null, retraitEtudes: false,
     numero: { id: null, valeur: '' },
     rech: rechercheNeuve(),
     gestion: {
@@ -89,6 +92,8 @@
   var analyseUI = { demandes: {}, fin: '', minuterie: null, message: '', arret: false };
   // Compteur des changements du cœur : la file triée par chaleur n'est recalculée qu'après l'un d'eux.
   var versionCoeur = 0, cacheBase = null;
+  // Étude : demandes en cours d'envoi (par prospect), minuterie du rafraîchissement léger.
+  var etudeEnvois = {}, veilleEtudes = null, retraitEnvoi = false;
   // Ordre « les plus chauds d'abord » tel qu'il a été montré : { cle (campagne), ids }. Voir figerOrdre.
   var ordreFige = null;
   var communes = { minuterie: null, jeton: 0, controleur: null, liste: [], actif: -1, ouvert: false, message: '' };
@@ -151,14 +156,18 @@
   /* Les prospects de la campagne choisie : c'est sur eux que portent « Fiche i sur n », la progression et le récap. */
   function chaleurActive() { return !!CRM.etat.chaleur; }
   function chaleurDe(p) { return chaleurActive() ? CRM.chaleurProspect(p) : null; }
-  function parChaleur() { return etat.ordre === 'chaleur' && chaleurActive(); }
+  function etudeActive() { return !!CRM.etat.etude && actif(); }
+  // Ordre trié de la file : 'chaleur' (les plus chauds d'abord), 'note' (les mieux notés d'abord) ou '' (ordre de la liste).
+  function ordreTrie() { return etat.ordre === 'chaleur' && chaleurActive() ? 'chaleur' : etat.ordre === 'note' && etudeActive() ? 'note' : ''; }
   function base() {
     var source = tous();
-    var cle = etat.liste + '|' + (parChaleur() ? 'chaleur' : 'liste') + '|' + versionCoeur + '|' + source.length;
+    var ordre = ordreTrie();
+    var cle = etat.liste + '|' + (ordre || 'liste') + '|' + versionCoeur + '|' + source.length;
     if (cacheBase && cacheBase.cle === cle && cacheBase.source === source) return cacheBase.liste;
     var liste = etat.liste ? source.filter(function (p) { return nomListeDe(p) === etat.liste; }) : source;
     // « Les plus chauds d'abord » : « Fiche i sur n », Précédent / Suivant et la numérotation de la file suivent cet ordre.
-    if (parChaleur()) liste = figerOrdre(pur.trierParChaleur(liste, CRM.chaleurProspect));
+    if (ordre === 'chaleur') liste = figerOrdre(pur.trierParChaleur(liste, CRM.chaleurProspect));
+    else if (ordre === 'note') liste = figerOrdre(pur.trierParNote(liste));
     else ordreFige = null;
     cacheBase = { cle: cle, source: source, liste: liste };
     return liste;
@@ -390,8 +399,25 @@
     return '';
   }
 
+  /* File d'attente de l'étude, visible sur les trois sous-onglets : combien de prospects attendent, à quel rythme
+     l'étude passe, et de quoi les retirer (en deux touchers). */
+  function htmlBandeauEtudes() {
+    if (!etudeActive()) return '';
+    var n = CRM.enFileEtude().length;
+    if (!n) return '';
+    var html = '<div class="crm-pro-etudes" id="crmProEtudes"><p role="status">' + ic('sablier', 15) + '<span><b>' + n + ' en attente d\'étude</b> · ' + esc(UI.RYTHME_ETUDE) + '</span></p>';
+    if (etat.retraitEtudes) {
+      html += '<div class="crm-pro-rangee" role="group" aria-label="Confirmer le retrait de la file d\'étude">' +
+        '<button type="button" class="crm-btn crm-btn-danger" data-pro="etudes-retirer-confirmer"' + (retraitEnvoi ? ' disabled' : '') + '>Retirer ' + (n > 1 ? 'les ' + n + ' prospects' : 'le prospect') + '</button>' +
+        '<button type="button" class="crm-btn" data-pro="etudes-retirer-annuler">Annuler</button></div>';
+    } else {
+      html += '<button type="button" class="crm-btn" data-pro="etudes-retirer">Retirer de la file</button>';
+    }
+    return html + '</div>';
+  }
+
   function htmlBandeau() {
-    if (actif()) return htmlBandeauAnalyse();
+    if (actif()) return htmlBandeauAnalyse() + htmlBandeauEtudes();
     return '<div class="crm-bandeau" role="status">' + ic('cadenas', 16) +
       '<p><b>Prospection en lecture seule.</b> La table des prospects ne répond pas : la migration <code>20261114_crm_prospects.sql</code> ' +
       'n\'est pas encore appliquée. La recherche de numéros fonctionne, mais rien ne peut être ajouté à la file.</p></div>';
@@ -527,6 +553,10 @@
         (p.adresse ? '<p class="crm-pro-meta">' + esc(p.adresse) + '</p>' : '') +
         (p.remarque ? '<p class="crm-pro-remarque">' + ic('alerte', 14) + '<span>' + esc(p.remarque) + '</span></p>' : '') + '</div>';
     html += htmlChaleurCarte(p);
+    // Étude du commerce : note Marchéo, notre avis, et le détail à déplier.
+    if (etudeActive()) {
+      html += UI.etudeHtml(p, { id: 'crmProEtude', attribut: 'data-pro', inactif: attrActif(), repliable: true, ouvert: etat.etudeOuverte, avecAngle: true, envoi: !!etudeEnvois[p.id] });
+    }
 
     if (tel) {
       html += '<a class="crm-pro-appeler" href="' + esc(CRM.liens({ telephone: tel }).tel) + '" data-pro="appel">' + ic('telephone', 22) +
@@ -607,8 +637,18 @@
             return '<option value="' + n.id + '"' + (etat.filtreChaleur === n.id ? ' selected' : '') + '>' + esc(n.libelle) + ' (' + (parNiveau[n.id] || 0) + ')</option>';
           }).join('') + '</select>' : '') +
       '</div></div>';
-    if (avecChaleur && etat.ordre === 'chaleur') {
+    var ordre = ordreTrie(), avecEtude = etudeActive();
+    if (avecEtude) {
+      var notes = ordre ? 0 : liste.filter(function (p) { var ep = CRM.etudeProspect(p); return !!ep && ep.note != null; }).length;
+      html += '<div class="crm-pro-file-actions">' + htmlBoutonEnrichir('appeler') +
+        (notes ? '<button type="button" class="crm-lien" data-pro="ordre-note">' + ic('audit', 13) + 'Trier par note Marchéo</button>' : '') + '</div>' +
+        htmlConfirmationEnrichir('appeler');
+    }
+    if (ordre === 'chaleur') {
       html += '<p class="crm-pro-ordre" id="crmProOrdre">' + ic('flamme', 14) + '<span>Ordre : les plus chauds d\'abord</span>' +
+        '<button type="button" class="crm-lien" data-pro="ordre-liste">Revenir à l\'ordre de la liste</button></p>';
+    } else if (ordre === 'note') {
+      html += '<p class="crm-pro-ordre crm-pro-ordre-note" id="crmProOrdre">' + ic('audit', 14) + '<span>Ordre : les mieux notés d\'abord (note Marchéo)</span>' +
         '<button type="button" class="crm-lien" data-pro="ordre-liste">Revenir à l\'ordre de la liste</button></p>';
     } else if (avecChaleur && chaudsAAppeler) {
       html += '<button type="button" class="crm-pro-rappels crm-pro-chauds" data-pro="ordre-chaleur">' + ic('flamme', 15) +
@@ -628,7 +668,7 @@
       return '<button type="button" class="crm-pro-item crm-nav' + (enCours ? ' crm-pro-item-courant' : '') + '" id="crmProItem-' + esc(p.id) + '" data-pro="choisir" data-id="' + esc(p.id) + '"' +
         (enCours ? ' aria-current="true"' : '') + '><span class="crm-pro-item-n">' + rang.get(p.id) + '</span>' +
         '<span class="crm-pro-item-txt"><b>' + esc(p.nom) + '</b><small>' + esc([p.metier, lieuDe(p), tel].filter(Boolean).join(' · ')) + '</small></span>' +
-        '<span class="crm-pro-item-fin">' + (avecChaleur ? UI.chaleurHtml(CRM.chaleurProspect(p), { court: true }) : '') + pastille(p, true) + '</span></button>';
+        '<span class="crm-pro-item-fin">' + (avecChaleur ? UI.chaleurHtml(CRM.chaleurProspect(p), { court: true }) : '') + (avecEtude ? UI.noteMarcheoHtml(p) : '') + pastille(p, true) + '</span></button>';
     }).join('') + '</div>';
     if (visibles.length > etat.limiteFile) {
       html += '<button type="button" class="crm-btn crm-plus" data-pro="file-plus">Afficher ' + Math.min(PAS_FILE, visibles.length - etat.limiteFile) + ' fiches de plus</button>';
@@ -1380,14 +1420,131 @@
     cacheBase = null;
     try { localStorage.setItem(CLE_ORDRE, ordre); } catch (e) { /* stockage bloqué : l'ordre vaut pour la session */ }
     etat.limiteFile = PAS_FILE;
-    if (ordre === 'chaleur') {
-      // On commence par le plus chaud qui reste à appeler.
+    if (ordre !== 'liste') {
+      // On commence par le plus chaud (ou le mieux noté) qui reste à appeler.
       var premier = base().filter(function (p) { return !p.resultat; })[0] || base()[0];
       if (premier) etat.courant = premier.id;
       memoriserPosition();
     }
     rendre();
-    if (ordre === 'chaleur') montrerCarte();
+    if (ordre !== 'liste') montrerCarte();
+  }
+
+  // ───────────────────────────── Étude des prospects (« Enrichir la liste ») ─────────────────────────────
+
+  /* Ce que « Enrichir la liste » ferait sur la liste affichée (filtres compris) : les prospects à mettre en file
+     d'étude, et ceux, jamais analysés, à envoyer à l'analyse automatique. */
+  function cibleEnrichir(ou) {
+    var liste = ou === 'liste' ? listeGestion() : base().filter(dansFiltre);
+    var analyses = chaleurActive() ? liste.filter(function (p) {
+      return !p.enAttente && !/^provisoire-/.test(String(p.id)) && CRM.resteAAnalyser(p) === 'jamais';
+    }).slice(0, ANALYSE_MAX) : [];
+    return {
+      ou: ou, envoi: false, total: liste.length,
+      etudes: pur.aEtudier(liste).map(function (p) { return p.id; }),
+      analyses: analyses.map(function (p) { return p.id; })
+    };
+  }
+  function htmlBoutonEnrichir(ou) {
+    if (!etudeActive()) return '';
+    var ouvert = !!etat.enrichir && etat.enrichir.ou === ou;
+    return '<button type="button" class="crm-btn" data-pro="enrichir" data-id="' + ou + '" id="crmProEnrichirBtn" aria-expanded="' + ouvert + '" aria-controls="crmProEnrichir">' +
+      ic('audit', 14) + 'Enrichir la liste</button>';
+  }
+  function dureeEtude(n) {
+    var heures = Math.ceil(n / 15);
+    return heures <= 1 ? 'environ une heure' : 'environ ' + heures + ' heures';
+  }
+  function htmlConfirmationEnrichir(ou) {
+    var c = etat.enrichir;
+    if (!c || c.ou !== ou || !etudeActive()) return '';
+    var n = c.etudes.length, m = c.analyses.length, enFile = CRM.enFileEtude().length;
+    var lignes = '<p><b>Enrichir la liste affichée ?</b></p>' +
+      (n ? '<p>' + ic('audit', 14) + '<span><b>' + UI.pluriel(n, 'prospect') + ' à étudier</b> : fiche, photos, avis, réseaux, et notre note. ' +
+          esc(UI.RYTHME_ETUDE.charAt(0).toUpperCase() + UI.RYTHME_ETUDE.slice(1)) + ' (' + dureeEtude(n + (c.envoi ? 0 : enFile)) + ' pour tout étudier).</span></p>'
+        : '<p>' + ic('coche', 14) + '<span>Tous les prospects affichés ont déjà une étude ou l\'attendent.</span></p>') +
+      (m ? '<p>' + ic('baguette', 14) + '<span><b>' + UI.pluriel(m, 'prospect') + ' à analyser automatiquement</b> tout de suite (site, fiche Google).</span></p>' : '');
+    return '<div class="crm-pro-confirmation crm-pro-enrichir" id="crmProEnrichir" role="alertdialog" aria-label="Confirmer l\'enrichissement de la liste">' + lignes +
+      '<div class="crm-pro-rangee"><button type="button" class="crm-btn crm-btn-or" data-pro="enrichir-confirmer" id="crmProEnrichirOk"' + (c.envoi ? ' disabled' : '') + '>' +
+        (c.envoi ? 'Envoi…' : 'Enrichir ' + UI.pluriel(Math.max(n, m), 'prospect')) + '</button>' +
+      '<button type="button" class="crm-btn" data-pro="enrichir-annuler">Annuler</button></div></div>';
+  }
+  function ouvrirEnrichir(ou) {
+    if (!etudeActive()) return;
+    if (etat.enrichir && etat.enrichir.ou === ou) { etat.enrichir = null; rendre(); return; }
+    var c = cibleEnrichir(ou);
+    if (!c.etudes.length && !c.analyses.length) {
+      etat.enrichir = null;
+      toast(c.total ? 'Rien à enrichir : les prospects affichés ont déjà une étude ou l\'attendent.' : 'Rien à enrichir : aucun prospect affiché.');
+      rendre();
+      return;
+    }
+    etat.enrichir = c;
+    rendre();
+    var ok = document.getElementById('crmProEnrichirOk');
+    if (ok) ok.focus({ preventScroll: true });
+  }
+  function confirmerEnrichir() {
+    var c = etat.enrichir;
+    if (!c || c.envoi) return;
+    c.envoi = true;
+    rendre();
+    // L'analyse automatique (site, fiche Google) part tout de suite, sans attendre l'étude.
+    if (c.analyses.length) suivreAnalyse(CRM.analyserProspects(c.analyses, { surProgres: planifier }));
+    (c.etudes.length ? CRM.demanderEtudes(c.etudes) : Promise.resolve({ demandes: 0 })).then(function (res) {
+      toast(res.demandes ? UI.pluriel(res.demandes, 'prospect mis', 'prospects mis') + ' en attente d\'étude' + (c.analyses.length ? ' · analyse automatique lancée' : '')
+        : c.analyses.length ? 'Analyse automatique lancée' : 'Rien à enrichir');
+    }, erreur).then(function () {
+      if (etat.enrichir === c) etat.enrichir = null;
+      if (monte()) rendre();
+      veillerEtudes();
+    });
+  }
+
+  /* « Demander l'étude » / « Redemander l'étude » / « Retirer de la file » de la fiche d'appel. */
+  function demanderEtude(id, retirer) {
+    if (!id || etudeEnvois[id]) return;
+    etudeEnvois[id] = true;
+    rendre();
+    (retirer ? CRM.retirerEtudes([id]) : CRM.demanderEtudes([id], { forcer: true })).then(function () {
+      toast(retirer ? 'Retiré de la file d\'étude' : 'Étude demandée : elle passe environ toutes les heures');
+    }, erreur).then(function () {
+      delete etudeEnvois[id];
+      if (monte()) rendre();
+      veillerEtudes();
+    });
+  }
+  function retirerEtudes() {
+    var ids = CRM.enFileEtude().map(function (p) { return p.id; });
+    if (!ids.length || retraitEnvoi) return;
+    retraitEnvoi = true;
+    rendre();
+    CRM.retirerEtudes(ids).then(function (res) {
+      toast(UI.pluriel(res.retires, 'prospect retiré', 'prospects retirés') + ' de la file d\'étude');
+    }, erreur).then(function () {
+      retraitEnvoi = false;
+      etat.retraitEtudes = false;
+      if (monte()) rendre();
+    });
+  }
+
+  /* Rafraîchissement léger : tant qu'il reste des prospects en file, que la vue Prospection est affichée et que
+     l'onglet du navigateur est visible, les études arrivées sont relevées toutes les CRM.PERIODE_ETUDES ms.
+     Rien ne tourne sinon ; la veille repart à l'affichage de la vue, au retour sur l'onglet ou à la prochaine demande. */
+  function vueVisible() { return monte() && conteneur.offsetParent !== null && document.visibilityState !== 'hidden'; }
+  function releverEtudes() {
+    if (!etudeActive() || !vueVisible()) return Promise.resolve();
+    return CRM.rafraichirEtudes().then(function (bilan) {
+      if (bilan && bilan.arrivees) toast(UI.pluriel(bilan.arrivees, 'étude arrivée', 'études arrivées'));
+    });
+  }
+  function veillerEtudes() {
+    if (veilleEtudes || !etudeActive() || !vueVisible() || !CRM.enFileEtude().length) return;
+    veilleEtudes = setTimeout(function () {
+      veilleEtudes = null;
+      if (!etudeActive() || !vueVisible() || !CRM.enFileEtude().length) return;
+      releverEtudes().then(veillerEtudes);
+    }, Math.max(200, Number(CRM.PERIODE_ETUDES) || 60000));
   }
 
   function htmlAttenteRecherche() {
@@ -1493,6 +1650,7 @@
   }
   function listeGestion() {
     var liste = filtresGestion();
+    if (etat.gestion.tri === 'note' && etudeActive()) return pur.trierParNote(liste);
     return etat.gestion.tri === 'chaleur' && chaleurActive() ? pur.trierParChaleur(liste, CRM.chaleurProspect) : liste;
   }
 
@@ -1506,7 +1664,7 @@
     return '<div class="crm-pro-gestion-tete">' +
         '<div class="crm-pro-rangee"><button type="button" class="crm-btn crm-btn-or" data-pro="ouvrir-ajout" aria-expanded="' + (g.panneau === 'ajout') + '"' + attrActif() + '>' + ic('plus', 14) + 'Ajouter un prospect</button>' +
           '<button type="button" class="crm-btn" data-pro="ouvrir-import" aria-expanded="' + (g.panneau === 'import') + '"' + attrActif() + '>' + ic('importer', 14) + 'Importer une liste</button>' +
-          htmlAnalyserTous() + '</div>' +
+          htmlAnalyserTous() + htmlBoutonEnrichir('liste') + '</div>' +
         '<div class="crm-pro-cherche">' + ic('recherche', 15) +
           '<input type="search" id="crmProCherche" data-champ="g-recherche" value="' + esc(g.recherche) + '" placeholder="Nom, commune, numéro" aria-label="Chercher un prospect" autocomplete="off" spellcheck="false"></div>' +
       '</div>' +
@@ -1518,9 +1676,11 @@
         '<select id="crmProGDep" data-champ="g-dep" aria-label="Filtrer par département">' + option('', 'Tous les départements', g.dep) +
           deps.map(function (d) { return option(d, d + ' ' + CRM.nomDepartement(d), g.dep); }).join('') + '</select>' +
         (chaleurActive() ? '<select id="crmProGChaleur" data-champ="g-chaleur" aria-label="Filtrer par chaleur">' + option('', 'Toutes les chaleurs', g.chaleur) +
-          CRM.NIVEAUX_CHALEUR.map(function (n) { return option(n.id, n.libelle, g.chaleur); }).join('') + '</select>' +
-          '<select id="crmProGTri" data-champ="g-tri" aria-label="Ordre de la liste">' + option('ajout', 'Ordre d\'ajout', g.tri) + option('chaleur', 'Les plus chauds d\'abord', g.tri) + '</select>' : '') +
-      '</div>' +
+          CRM.NIVEAUX_CHALEUR.map(function (n) { return option(n.id, n.libelle, g.chaleur); }).join('') + '</select>' : '') +
+        (chaleurActive() || etudeActive() ? '<select id="crmProGTri" data-champ="g-tri" aria-label="Ordre de la liste">' + option('ajout', 'Ordre d\'ajout', g.tri) +
+          (chaleurActive() ? option('chaleur', 'Les plus chauds d\'abord', g.tri) : '') +
+          (etudeActive() ? option('note', 'Les mieux notés d\'abord', g.tri) : '') + '</select>' : '') +
+      '</div>' + htmlConfirmationEnrichir('liste') +
       (!chaleurActive() && actif() ? '<p class="crm-aide crm-pro-chaleur-absente">La chaleur des prospects sera active une fois la migration 20261116_crm_chaleur.sql appliquée.</p>' : '');
   }
 
@@ -1655,8 +1815,8 @@
         '<span class="crm-pro-rang-nom"><b>' + esc(p.nom) + '</b><small>' + esc([p.metier, lieuDe(p)].filter(Boolean).join(' · ') || 'Métier et commune inconnus') + '</small></span>' +
         '<span class="crm-pro-rang-tel">' + esc(tel ? pur.formaterTel(tel) : 'Numéro à trouver') + '</span>' +
         '<span class="crm-pro-rang-liste">' + esc(nomListeDe(p)) + '</span>' +
-        (chaleurActive() ? '<span class="crm-pro-rang-chal">' + UI.chaleurHtml(CRM.chaleurProspect(p)) + '</span>' : '') +
-        '<span class="crm-pro-rang-res">' + (pastille(p, true) || '<span class="crm-pro-rang-rien">À appeler</span>') + '</span></button>' +
+        (chaleurActive() ? '<span class="crm-pro-rang-chal">' + UI.chaleurHtml(CRM.chaleurProspect(p)) + (etudeActive() ? UI.noteMarcheoHtml(p) : '') + '</span>' : '') +
+        '<span class="crm-pro-rang-res">' + (!chaleurActive() && etudeActive() ? UI.noteMarcheoHtml(p) : '') + (pastille(p, true) || '<span class="crm-pro-rang-rien">À appeler</span>') + '</span></button>' +
       '<div class="crm-pro-rang-actions">' +
         (tel ? '<a class="crm-icone-btn crm-icone-or" href="' + esc(CRM.liens({ telephone: tel }).tel) + '" aria-label="Appeler ' + esc(p.nom) + '">' + ic('telephone', 17) + '</a>' : '<span class="crm-pro-rang-vide"></span>') +
         '<button type="button" class="crm-icone-btn" data-pro="rang-menu" id="crmProMenu-' + esc(p.id) + '" aria-haspopup="menu" aria-expanded="false" aria-label="Actions pour ' + esc(p.nom) + '">' + ic('points', 18) + '</button>' +
@@ -1686,7 +1846,7 @@
           : '<button type="button" class="crm-btn" data-pro="onglet" data-id="trouver">' + ic('recherche', 14) + 'Trouver des numéros</button>') + '</div>';
     }
     html += '<datalist id="crmProListesTable">' + listes().map(function (l) { return '<option value="' + esc(l.nom) + '"></option>'; }).join('') + '</datalist>' +
-      '<div class="crm-liste crm-pro-table' + (chaleurActive() ? ' crm-pro-table-chal' : '') + '"><div class="crm-pro-table-tete" aria-hidden="true"><span>Commerce</span><span>Numéro</span><span>Liste</span>' +
+      '<div class="crm-liste crm-pro-table' + (chaleurActive() ? ' crm-pro-table-chal' + (etudeActive() ? ' crm-pro-table-note' : '') : '') + '"><div class="crm-pro-table-tete" aria-hidden="true"><span>Commerce</span><span>Numéro</span><span>Liste</span>' +
         (chaleurActive() ? '<span>Chaleur</span>' : '') + '<span>Résultat</span></div>' +
       liste.slice(0, g.limite).map(htmlRang).join('') + '</div>';
     if (liste.length > g.limite) {
@@ -1875,6 +2035,18 @@
       case 'analyse-arreter': if (CRM.analyseEnCours) { analyseUI.arret = true; CRM.analyseEnCours.annuler(); rendre(); } break;
       case 'analyser-tous': analyserTous(); break;
 
+      // Étude des prospects
+      case 'enrichir': ouvrirEnrichir(id === 'liste' ? 'liste' : 'appeler'); break;
+      case 'enrichir-confirmer': confirmerEnrichir(); break;
+      case 'enrichir-annuler': etat.enrichir = null; rendre(); break;
+      case 'etudes-retirer': etat.retraitEtudes = true; rendre(); break;
+      case 'etudes-retirer-annuler': etat.retraitEtudes = false; rendre(); break;
+      case 'etudes-retirer-confirmer': retirerEtudes(); break;
+      case 'etude-demander': if (courant()) demanderEtude(courant().id, false); break;
+      case 'etude-retirer': if (courant()) demanderEtude(courant().id, true); break;
+      case 'etude-detail': etat.etudeOuverte = !etat.etudeOuverte; rendre(); break;
+      case 'ordre-note': changerOrdre('note'); break;
+
       // Trouver des numéros
       case 'mode': if (r.mode !== id) { r.mode = id; fermerSuggestions(); rendre(); } break;
       case 'commune': choisirCommune(+id); break;
@@ -1956,7 +2128,7 @@
       case 'g-resultat': g.resultat = v; g.limite = PAS_LISTE; rendre(); break;
       case 'g-dep': g.dep = v; g.limite = PAS_LISTE; rendre(); break;
       case 'g-chaleur': g.chaleur = v; g.limite = PAS_LISTE; rendre(); break;
-      case 'g-tri': g.tri = v === 'chaleur' ? 'chaleur' : 'ajout'; g.limite = PAS_LISTE; rendre(); break;
+      case 'g-tri': g.tri = v === 'chaleur' || v === 'note' ? v : 'ajout'; g.limite = PAS_LISTE; rendre(); break;
       case 'ajout-nom': case 'ajout-metier': case 'ajout-commune': case 'ajout-telephone': case 'ajout-remarque': case 'ajout-liste':
         g.ajout[champ.slice(6)] = v;
         break;
@@ -2038,13 +2210,14 @@
       etat.pret = true;
       var memo = lirePositions();
       if (memo.liste && tous().some(function (p) { return nomListeDe(p) === memo.liste; })) etat.liste = memo.liste;
-      try { if (localStorage.getItem(CLE_ORDRE) === 'chaleur') etat.ordre = 'chaleur'; } catch (e) { /* stockage bloqué : ordre de la liste */ }
+      try { var memoOrdre = localStorage.getItem(CLE_ORDRE); if (memoOrdre === 'chaleur' || memoOrdre === 'note') etat.ordre = memoOrdre; } catch (e) { /* stockage bloqué : ordre de la liste */ }
     }
     el.innerHTML = '<div id="crmProBandeau"></div>' +
       '<div class="crm-pro-onglets" id="crmProOnglets" role="tablist" aria-label="Prospection"></div>' +
       '<p class="crm-sr" id="crmProAnnonce" role="status"></p>' +
       '<div id="crmProCorps"></div>';
     rendre();
+    veillerEtudes();
   }
 
   /* L'assistant d'appel (crm-assistant.js) reçoit ici les outils de la vue. Sans lui (fichier absent), la fiche
@@ -2071,11 +2244,15 @@
     if (grandEcran.addEventListener) grandEcran.addEventListener('change', surLargeur); else if (grandEcran.addListener) grandEcran.addListener(surLargeur);
   }
 
-  CRM.surChangement(function () { versionCoeur++; reprendreBrouillons(); if (monte()) planifier(); });
+  CRM.surChangement(function () { versionCoeur++; reprendreBrouillons(); if (monte()) { planifier(); veillerEtudes(); } });
 
   // Une note en cours de frappe part avant que l'onglet ne passe en arrière-plan ou que la page ne se ferme,
   // par un envoi que le navigateur mène à son terme même si la page disparaît.
-  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') viderSaisies(true); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') { viderSaisies(true); return; }
+    // De retour sur l'onglet : les études arrivées entre-temps sont relevées tout de suite, puis la veille reprend.
+    if (etudeActive() && vueVisible() && CRM.enFileEtude().length && !veilleEtudes) releverEtudes().then(veillerEtudes);
+  });
   window.addEventListener('pagehide', function () { viderSaisies(true); });
   window.addEventListener('online', function () { viderSaisies(); });
 
