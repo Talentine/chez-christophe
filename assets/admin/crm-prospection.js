@@ -24,7 +24,9 @@
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   var RAISONS_IMPORT = { sans_nom: 'nom manquant', numero_invalide: 'numéro invalide', doublon: 'déjà présent',
     format: 'colonnes non reconnues (séparez par « | » ou « ; »)' };
-  var CLE_POSITION = 'crm_pro_position', CLE_BROUILLONS = 'crm_pro_brouillons';
+  var CLE_POSITION = 'crm_pro_position', CLE_BROUILLONS = 'crm_pro_brouillons', CLE_ORDRE = 'crm_pro_ordre', CLE_SANS_CLE = 'crm_analyse_sans_cle_dit';
+  // Analyse des prospects (fonction crm-enrichir) : au plus 300 par lancement du bouton, message de fin affiché 6 s.
+  var ANALYSE_MAX = 300, DUREE_FIN_ANALYSE = 6000;
   var DELAI_AVANCE = 350, DELAI_SAISIE = 700, DELAI_COMMUNES = 250;
   // Nouvel essai automatique d'une note refusée : de plus en plus espacé tant que ça échoue.
   var DELAI_RELANCE = 8000, DELAI_RELANCE_MAX = 120000;
@@ -71,15 +73,24 @@
   var etat = {
     sousVue: 'appeler', pret: false,
     liste: '', filtreResultat: 'tous', filtreDep: '', courant: null, accroche: false, limiteFile: PAS_FILE,
+    // Chaleur des prospects : ordre de la file ('liste' = ordre d'ajout, 'chaleur' = les plus chauds d'abord),
+    // filtre par niveau, bloc « Pourquoi ? » déplié.
+    ordre: 'liste', filtreChaleur: '', pourquoi: false,
     numero: { id: null, valeur: '' },
     rech: rechercheNeuve(),
     gestion: {
-      recherche: '', liste: '', resultat: '', dep: '', limite: PAS_LISTE,
+      recherche: '', liste: '', resultat: '', dep: '', chaleur: '', tri: 'ajout', limite: PAS_LISTE,
       panneau: null, erreurAjout: '', ajout: ajoutNeuf(), envoi: false,
       importation: { texte: '', liste: '' },
       action: null, suppression: null
     }
   };
+  // Suivi à l'écran de l'analyse : prospects dont l'analyse a été demandée d'ici, message de fin, message d'indisponibilité.
+  var analyseUI = { demandes: {}, fin: '', minuterie: null, message: '', arret: false };
+  // Compteur des changements du cœur : la file triée par chaleur n'est recalculée qu'après l'un d'eux.
+  var versionCoeur = 0, cacheBase = null;
+  // Ordre « les plus chauds d'abord » tel qu'il a été montré : { cle (campagne), ids }. Voir figerOrdre.
+  var ordreFige = null;
   var communes = { minuterie: null, jeton: 0, controleur: null, liste: [], actif: -1, ouvert: false, message: '' };
   var chrono = null, avance = null;
   // Dernière ligne du journal d'appels écrite pour chaque prospect, pour la corriger si le résultat change aussitôt.
@@ -138,9 +149,44 @@
   }
 
   /* Les prospects de la campagne choisie : c'est sur eux que portent « Fiche i sur n », la progression et le récap. */
+  function chaleurActive() { return !!CRM.etat.chaleur; }
+  function chaleurDe(p) { return chaleurActive() ? CRM.chaleurProspect(p) : null; }
+  function parChaleur() { return etat.ordre === 'chaleur' && chaleurActive(); }
   function base() {
-    if (!etat.liste) return tous();
-    return tous().filter(function (p) { return nomListeDe(p) === etat.liste; });
+    var source = tous();
+    var cle = etat.liste + '|' + (parChaleur() ? 'chaleur' : 'liste') + '|' + versionCoeur + '|' + source.length;
+    if (cacheBase && cacheBase.cle === cle && cacheBase.source === source) return cacheBase.liste;
+    var liste = etat.liste ? source.filter(function (p) { return nomListeDe(p) === etat.liste; }) : source;
+    // « Les plus chauds d'abord » : « Fiche i sur n », Précédent / Suivant et la numérotation de la file suivent cet ordre.
+    if (parChaleur()) liste = figerOrdre(pur.trierParChaleur(liste, CRM.chaleurProspect));
+    else ordreFige = null;
+    cacheBase = { cle: cle, source: source, liste: liste };
+    return liste;
+  }
+  /* Un résultat d'appel change la note (« A déjà un site » : −40) : retrié aussitôt, le prospect que l'on vient de
+     noter partirait en bas de file et « Suivant » repartirait de là, en sautant tous les chauds restants. Les
+     prospects déjà appelés et la fiche affichée gardent donc la place qu'ils avaient ; seuls les prospects encore
+     à appeler sont reclassés (une analyse qui se termine peut les faire monter ou descendre). L'ordre repart de
+     zéro quand on change de campagne ou d'ordre. */
+  function figerOrdre(trie) {
+    var cle = etat.liste || '';
+    var place = {};
+    if (ordreFige && ordreFige.cle === cle) ordreFige.ids.forEach(function (id, i) { place[id] = i; });
+    var fixes = trie.filter(function (p) { return place[p.id] != null && (!!p.resultat || p.id === etat.courant); })
+      .sort(function (a, b) { return place[a.id] - place[b.id]; });
+    if (fixes.length) {
+      var libres = trie.filter(function (p) { return fixes.indexOf(p) < 0; });
+      var rangs = new Array(trie.length);
+      fixes.forEach(function (p) {
+        var i = Math.min(place[p.id], trie.length - 1);
+        while (rangs[i]) i = (i + 1) % trie.length;
+        rangs[i] = p;
+      });
+      for (var i = 0, k = 0; i < rangs.length; i++) if (!rangs[i]) rangs[i] = libres[k++];
+      trie = rangs;
+    }
+    ordreFige = { cle: cle, ids: trie.map(function (p) { return p.id; }) };
+    return trie;
   }
   function courant() { return etat.courant ? parId(etat.courant) : null; }
 
@@ -148,8 +194,13 @@
     return p.resultat === 'a_rappeler' && !!p.rappel_le && String(p.rappel_le).slice(0, 10) <= aujourdhui();
   }
   function dansDepartement(p) { return !etat.filtreDep || p.departement === etat.filtreDep; }
+  function dansChaleur(p) {
+    if (!etat.filtreChaleur || !chaleurActive()) return true;
+    var ch = CRM.chaleurProspect(p);
+    return !!ch && ch.niveau === etat.filtreChaleur;
+  }
   function dansFiltre(p) {
-    if (!dansDepartement(p)) return false;
+    if (!dansDepartement(p) || !dansChaleur(p)) return false;
     var f = etat.filtreResultat;
     if (f === 'tous') return true;
     if (f === 'a_appeler') return !p.resultat;
@@ -238,10 +289,21 @@
       var texte = /^(TEXTAREA)$/.test(foyer.tagName) || (foyer.tagName === 'INPUT' && /^(text|tel|search)$/.test(foyer.type));
       memo = { id: foyer.id, ref: foyer.dataset.id || '', texte: texte, valeur: foyer.value };
       if (texte) { try { memo.debut = foyer.selectionStart; memo.fin = foyer.selectionEnd; } catch (e) { /* champ sans sélection */ } }
+    } else if (foyer && foyer.dataset && foyer.dataset.pro && zone.contains(foyer)) {
+      // Bouton sans identifiant (« Pourquoi ? », réglage manuel, réseaux, « Analyser ») : retrouvé par son action et sa valeur.
+      memo = { action: foyer.dataset.pro, valeur: foyer.dataset.id };
     }
     zone.__html = html;
     zone.innerHTML = html;
-    if (memo) {
+    if (memo && memo.action) {
+      var memes = zone.querySelectorAll('[data-pro="' + memo.action + '"]'), cible = null;
+      for (var m = 0; m < memes.length; m++) {
+        if (memo.valeur === undefined || memes[m].dataset.id === memo.valeur) { cible = memes[m]; break; }
+      }
+      // Bouton disparu ou désactivé (« Analyse en cours… ») : le foyer reste dans le bloc, sur « Pourquoi ? ».
+      if (!cible || cible.disabled) cible = zone.querySelector('[data-pro="pourquoi"]');
+      if (cible && !cible.disabled) cible.focus({ preventScroll: true });
+    } else if (memo) {
       var nouveau = document.getElementById(memo.id);
       if (nouveau && !nouveau.disabled) {
         if (memo.texte && (nouveau.dataset.id || '') === memo.ref) {
@@ -311,8 +373,25 @@
       '<section id="crmProCampagnes" aria-label="Listes d\'appels"></section><section id="crmProTable" aria-label="Tous les prospects"></section>'
   };
 
+  /* Avancement de l'analyse des prospects (site, fiche Google), visible sur les trois sous-onglets sans rien bloquer :
+     progression et « Arrêter » pendant l'analyse, bilan pendant quelques secondes, ou une ligne discrète quand
+     l'analyse n'est pas disponible (fonction non déployée, réseau) : jamais une erreur. */
+  function htmlBandeauAnalyse() {
+    var a = CRM.analyseEnCours;
+    if (a) {
+      var pct = a.total ? Math.round(100 * a.fait / a.total) : 0;
+      return '<div class="crm-pro-analyse" id="crmProAnalyse" role="status"><p>' + ic('baguette', 15) + '<span>Analyse des prospects : <b>' + a.fait + ' / ' + a.total + '</b></span></p>' +
+        '<div class="crm-pro-progres crm-pro-progres-fin" role="progressbar" aria-label="Avancement de l\'analyse" aria-valuemin="0" aria-valuemax="' + a.total +
+          '" aria-valuenow="' + a.fait + '"><i style="width:' + pct + '%"></i></div>' +
+        '<button type="button" class="crm-btn" data-pro="analyse-arreter"' + (analyseUI.arret ? ' disabled' : '') + '>' + (analyseUI.arret ? 'Arrêt…' : 'Arrêter') + '</button></div>';
+    }
+    if (analyseUI.fin) return '<p class="crm-pro-analyse-fin" id="crmProAnalyse" role="status">' + ic('coche', 14) + '<span>' + esc(analyseUI.fin) + '</span></p>';
+    if (analyseUI.message) return '<p class="crm-aide crm-pro-analyse-indispo" id="crmProAnalyse" role="status">' + esc(analyseUI.message) + '</p>';
+    return '';
+  }
+
   function htmlBandeau() {
-    if (actif()) return '';
+    if (actif()) return htmlBandeauAnalyse();
     return '<div class="crm-bandeau" role="status">' + ic('cadenas', 16) +
       '<p><b>Prospection en lecture seule.</b> La table des prospects ne répond pas : la migration <code>20261114_crm_prospects.sql</code> ' +
       'n\'est pas encore appliquée. La recherche de numéros fonctionne, mais rien ne peut être ajouté à la file.</p></div>';
@@ -406,6 +485,32 @@
       '<button type="button" class="crm-btn crm-btn-or" data-pro="fiche-crm">Ouvrir la fiche CRM' + ic('fleche', 14) + '</button></div>';
   }
 
+  function analyseDemandee(id) {
+    var a = CRM.analyseEnCours;
+    return !!analyseUI.demandes[id] || !!(a && a.lot.indexOf(id) >= 0);
+  }
+
+  /* Chaleur du prospect sur la fiche d'appel : la pastille, les deux premières raisons en clair, et sous
+     « Pourquoi ? » toutes les raisons, ce que l'analyse a pu regarder, le réglage à la main et « Analyser ». */
+  function htmlChaleurCarte(p) {
+    var ch = chaleurDe(p);
+    if (!ch) return '';
+    var enCours = analyseDemandee(p.id);
+    var sansSignal = !ch.raisons.length;
+    var bouton = '<button type="button" class="crm-btn" data-pro="analyser"' + (enCours ? ' disabled' : attrActif()) + '>' + ic('baguette', 14) +
+      (enCours ? 'Analyse en cours…' : p.analyse_at ? 'Réanalyser' : 'Analyser') + '</button>';
+    var html = '<div class="crm-pro-chaleur" id="crmProChaleur"><div class="crm-pro-chaleur-ligne">' + UI.chaleurHtml(ch) +
+      (sansSignal || etat.pourquoi ? '' : '<span class="crm-pro-chaleur-resume">' + esc(ch.raisons.slice(0, 2).map(function (r) { return r.texte; }).join(' · ')) + '</span>') +
+      '</div><div class="crm-pro-chaleur-actions">' + (sansSignal && !etat.pourquoi ? bouton : '') +
+      '<button type="button" class="crm-lien" data-pro="pourquoi" aria-expanded="' + etat.pourquoi + '" aria-controls="crmProPourquoi">' +
+        ic(etat.pourquoi ? 'chevronBas' : 'chevronDroit', 13) + 'Pourquoi ?</button></div>';
+    if (etat.pourquoi) {
+      html += '<div class="crm-pro-pourquoi" id="crmProPourquoi">' + UI.raisonsChaleurHtml(ch) + UI.etatAnalyseHtml(p, ch) +
+        UI.reglagesChaleurHtml(p, 'data-pro', attrActif(), false) + '<div class="crm-pro-rangee">' + bouton + '</div></div>';
+    }
+    return html + '</div>';
+  }
+
   function htmlCarte() {
     var p = courant(), liste = base();
     if (!p) return '';
@@ -421,6 +526,7 @@
         '<p class="crm-pro-meta">' + (p.metier ? '<b>' + esc(p.metier) + '</b><span class="crm-sep">·</span>' : '') + esc(lieu.join(' · ')) + '</p>' +
         (p.adresse ? '<p class="crm-pro-meta">' + esc(p.adresse) + '</p>' : '') +
         (p.remarque ? '<p class="crm-pro-remarque">' + ic('alerte', 14) + '<span>' + esc(p.remarque) + '</span></p>' : '') + '</div>';
+    html += htmlChaleurCarte(p);
 
     if (tel) {
       html += '<a class="crm-pro-appeler" href="' + esc(CRM.liens({ telephone: tel }).tel) + '" data-pro="appel">' + ic('telephone', 22) +
@@ -431,6 +537,8 @@
       html += htmlTrouverNumero(p) + appels;
     }
     html += htmlPresence(p);
+    // L'activité d'Instagram / Facebook ne se devine pas (les réseaux ne sont jamais aspirés) : un toucher après un coup d'œil.
+    if (chaleurActive()) html += '<div class="crm-pro-reseaux-actifs">' + UI.reseauxActifsHtml(p, 'data-pro', attrActif()) + '</div>';
     html += '<div class="crm-pro-guide-zone" id="crmProGuideCarte"></div>';
 
     html += '<div class="crm-pro-resultats" role="group" aria-label="Résultat de l\'appel">' + CRM.RESULTATS_PROSPECT.map(function (r) {
@@ -474,6 +582,15 @@
     var deps = [];
     liste.forEach(function (p) { if (p.departement && deps.indexOf(p.departement) < 0) deps.push(p.departement); });
     deps.sort();
+    var avecChaleur = chaleurActive(), parNiveau = {}, chaudsAAppeler = 0;
+    if (avecChaleur) {
+      liste.forEach(function (p) {
+        var ch = CRM.chaleurProspect(p);
+        if (!ch) return;
+        parNiveau[ch.niveau] = (parNiveau[ch.niveau] || 0) + 1;
+        if (ch.niveau === 'chaud' && !p.resultat) chaudsAAppeler++;
+      });
+    }
 
     var html = '<div class="crm-pro-file-tete"><h2>La file d\'appels<span>' + visibles.length + '</span></h2>' +
       '<div class="crm-pro-filtres">' +
@@ -485,7 +602,18 @@
           '<option value="">Tous les départements</option>' + deps.map(function (d) {
             return '<option value="' + esc(d) + '"' + (etat.filtreDep === d ? ' selected' : '') + '>' + esc(d + ' ' + CRM.nomDepartement(d)) + '</option>';
           }).join('') + '</select>' : '') +
+        (avecChaleur ? '<select id="crmProFiltreChaleur" data-champ="filtre-chaleur" aria-label="Filtrer par chaleur"><option value="">Toutes les chaleurs</option>' +
+          CRM.NIVEAUX_CHALEUR.map(function (n) {
+            return '<option value="' + n.id + '"' + (etat.filtreChaleur === n.id ? ' selected' : '') + '>' + esc(n.libelle) + ' (' + (parNiveau[n.id] || 0) + ')</option>';
+          }).join('') + '</select>' : '') +
       '</div></div>';
+    if (avecChaleur && etat.ordre === 'chaleur') {
+      html += '<p class="crm-pro-ordre" id="crmProOrdre">' + ic('flamme', 14) + '<span>Ordre : les plus chauds d\'abord</span>' +
+        '<button type="button" class="crm-lien" data-pro="ordre-liste">Revenir à l\'ordre de la liste</button></p>';
+    } else if (avecChaleur && chaudsAAppeler) {
+      html += '<button type="button" class="crm-pro-rappels crm-pro-chauds" data-pro="ordre-chaleur">' + ic('flamme', 15) +
+        '<span>Commencer par les plus chauds (' + chaudsAAppeler + ')</span>' + ic('fleche', 14) + '</button>';
+    }
     if (rappels && etat.filtreResultat !== 'rappel_jour') {
       html += '<button type="button" class="crm-pro-rappels" data-pro="filtre-rappels">' + ic('horloge', 15) +
         '<span>' + UI.pluriel(rappels, 'rappel prévu', 'rappels prévus') + ' aujourd\'hui ou en retard</span>' + ic('fleche', 14) + '</button>';
@@ -500,7 +628,7 @@
       return '<button type="button" class="crm-pro-item crm-nav' + (enCours ? ' crm-pro-item-courant' : '') + '" id="crmProItem-' + esc(p.id) + '" data-pro="choisir" data-id="' + esc(p.id) + '"' +
         (enCours ? ' aria-current="true"' : '') + '><span class="crm-pro-item-n">' + rang.get(p.id) + '</span>' +
         '<span class="crm-pro-item-txt"><b>' + esc(p.nom) + '</b><small>' + esc([p.metier, lieuDe(p), tel].filter(Boolean).join(' · ')) + '</small></span>' +
-        pastille(p, true) + '</button>';
+        '<span class="crm-pro-item-fin">' + (avecChaleur ? UI.chaleurHtml(CRM.chaleurProspect(p), { court: true }) : '') + pastille(p, true) + '</span></button>';
     }).join('') + '</div>';
     if (visibles.length > etat.limiteFile) {
       html += '<button type="button" class="crm-btn crm-plus" data-pro="file-plus">Afficher ' + Math.min(PAS_FILE, visibles.length - etat.limiteFile) + ' fiches de plus</button>';
@@ -736,7 +864,8 @@
     var liste = base(), n = liste.length, p = courant();
     if (!n) return;
     var i = Math.max(0, liste.indexOf(p));
-    var critere = filtreCible() ? dansFiltre : function (x) { return !x.resultat && dansDepartement(x); };
+    // Le filtre de chaleur de la file s'applique aussi au passage (manuel ou automatique) à la fiche suivante.
+    var critere = filtreCible() ? dansFiltre : function (x) { return !x.resultat && dansDepartement(x) && dansChaleur(x); };
     for (var k = 1; k < n; k++) {
       var x = liste[(i + k) % n];
       if (critere(x)) { aller(x.id, { remonter: true }); return; }
@@ -744,7 +873,10 @@
     // Passage automatique sans suite possible : on reste sur la fiche, la notification « Annuler » reste visible.
     if (opts.auto) return;
     if (filtreCible()) { toast('Aucune autre fiche dans ce filtre.'); return; }
-    if (p && critere(p)) { toast('C\'est la dernière fiche à appeler de cette liste.'); return; }
+    var filtreChaleur = !!etat.filtreChaleur && chaleurActive();
+    if (p && critere(p)) { toast(filtreChaleur ? 'C\'est la dernière fiche à appeler de ce filtre.' : 'C\'est la dernière fiche à appeler de cette liste.'); return; }
+    // Avec un filtre de chaleur, on ne sort pas du filtre pour afficher une fiche qu'il cache.
+    if (filtreChaleur) { toast('Plus aucune fiche à appeler dans ce filtre.'); return; }
     toast('Tous les commerces de cette liste ont un résultat.');
     if (n > 1) aller(liste[(i + 1) % n].id, { remonter: true });
   }
@@ -753,10 +885,12 @@
     var liste = base(), n = liste.length;
     if (n < 2) return;
     var i = Math.max(0, liste.indexOf(courant()));
-    if (filtreCible()) {
+    // Filtre sur des prospects déjà appelés, ou filtre de chaleur : « Précédent » reste dans ce que la file montre.
+    if (filtreCible() || (etat.filtreChaleur && chaleurActive())) {
+      var garde = filtreCible() ? dansFiltre : function (x) { return dansDepartement(x) && dansChaleur(x); };
       for (var k = 1; k < n; k++) {
         var x = liste[(i - k + n) % n];
-        if (dansFiltre(x)) { aller(x.id, { remonter: true }); return; }
+        if (garde(x)) { aller(x.id, { remonter: true }); return; }
       }
       return;
     }
@@ -899,6 +1033,7 @@
     if (etat.liste && nomListeDe(p) !== etat.liste) etat.liste = nomListeDe(p);
     etat.filtreResultat = 'tous';
     etat.filtreDep = '';
+    etat.filtreChaleur = '';
     etat.courant = id;
     changerSousVue('appeler');
     memoriserPosition();
@@ -909,6 +1044,7 @@
     etat.liste = tous().some(function (p) { return nomListeDe(p) === nom; }) ? nom : '';
     etat.filtreResultat = 'tous';
     etat.filtreDep = '';
+    etat.filtreChaleur = '';
     etat.courant = null;
     var premier = base().filter(function (p) { return !p.resultat; })[0];
     if (premier) etat.courant = premier.id;
@@ -1153,6 +1289,7 @@
     rendre();
     CRM.ajouterProspects(lignes).then(function (res) {
       r.ajout = { nb: res.ajoutes, doublons: res.doublons, liste: nom };
+      lancerAnalyseAuto(res.prospects);
       if (res.ajoutes) {
         toast(UI.pluriel(res.ajoutes, 'prospect ajouté', 'prospects ajoutés') + (res.doublons ? ', ' + res.doublons + ' déjà connu' + (res.doublons > 1 ? 's' : '') : ''),
           { action: 'Commencer à appeler', surAction: function () { commencer(nom); } });
@@ -1162,6 +1299,95 @@
       marquerConnus();
       rendre();
     });
+  }
+
+  // ───────────────────────────── Analyse des prospects (site, fiche Google) ─────────────────────────────
+
+  function ditSansCle() {
+    try { if (sessionStorage.getItem(CLE_SANS_CLE) === '1') return true; sessionStorage.setItem(CLE_SANS_CLE, '1'); } catch (e) { /* dit à chaque fois */ }
+    return false;
+  }
+
+  /* Suit une analyse lancée d'ici : le bandeau montre la progression, puis le bilan pendant quelques secondes.
+     Une analyse indisponible (fonction non déployée, réseau coupé) laisse une ligne discrète, jamais une erreur. */
+  function suivreAnalyse(promesse) {
+    analyseUI.fin = '';
+    clearTimeout(analyseUI.minuterie);
+    rendre();
+    return promesse.then(function (bilan) {
+      analyseUI.arret = false;
+      if (bilan.silencieux) return bilan;
+      if (bilan.indisponible) {
+        analyseUI.message = bilan.message || (CRM.etat.chaleur ? UI.MESSAGE_ANALYSE_INDISPONIBLE : '');
+      } else {
+        analyseUI.message = '';
+        if (bilan.analyses || bilan.echecs || bilan.arrete || bilan.googleReportes || bilan.quota) {
+          // Les prospects qui font échouer la fonction sont nommés : on sait lequel regarder à la main.
+          var noms = (bilan.enEchec || []).map(function (id) { var x = parId(id); return x ? x.nom : ''; }).filter(Boolean);
+          analyseUI.fin = UI.pluriel(bilan.analyses, 'prospect analysé', 'prospects analysés') +
+            (bilan.echecs ? ', ' + UI.pluriel(bilan.echecs, 'non abouti', 'non aboutis') : '') +
+            (noms.length ? ' (' + noms.slice(0, 3).join(', ') + (noms.length > 3 ? '…' : '') + ')' : '') +
+            (bilan.restants ? ', ' + UI.pluriel(bilan.restants, 'restant') : '') +
+            (bilan.quota ? ' · plafond Google du jour atteint' + (bilan.googleReportes ? ' : ' + UI.pluriel(bilan.googleReportes, 'fiche Google sera reprise', 'fiches Google seront reprises') + ' demain' : '') : '') +
+            (bilan.google === 'sans_cle' && !ditSansCle() ? ' · Google non interrogé : clé absente' : '');
+          clearTimeout(analyseUI.minuterie);
+          analyseUI.minuterie = setTimeout(function () { analyseUI.fin = ''; if (monte()) rendre(); }, DUREE_FIN_ANALYSE);
+        }
+      }
+      if (monte()) rendre();
+      return bilan;
+    });
+  }
+
+  /* Après un ajout : l'analyse part toute seule, par lots, sans rien bloquer (le toast et « Commencer à appeler »
+     sont déjà là). Rien ne part si la migration manque ou si la fonction est connue absente. */
+  function lancerAnalyseAuto(prospects) {
+    var ids = (prospects || []).map(function (p) { return p && p.id; }).filter(Boolean);
+    if (!ids.length || !chaleurActive() || !actif()) return;
+    suivreAnalyse(CRM.analyseAuto(ids, { surProgres: planifier }));
+  }
+
+  /* « Analyser » / « Réanalyser » d'une fiche d'appel : un seul prospect, tout est refait. */
+  function analyserUn(id) {
+    if (!id || analyseUI.demandes[id]) return;
+    analyseUI.demandes[id] = true;
+    suivreAnalyse(CRM.analyserProspects([id], { forcer: true, surProgres: planifier })).then(function () {
+      delete analyseUI.demandes[id];
+      if (monte()) rendre();
+    });
+  }
+
+  function analyserTous() {
+    var ids = CRM.aAnalyser().slice(0, ANALYSE_MAX).map(function (p) { return p.id; });
+    if (!ids.length || CRM.analyseEnCours) return;
+    suivreAnalyse(CRM.analyserProspects(ids, { surProgres: planifier }));
+  }
+
+  function reglerChaleur(champ, valeur) {
+    var p = courant();
+    if (!p || !actif()) return;
+    // Retoucher le bouton enfoncé des réseaux remet à « inconnu ».
+    if (champ === 'reseaux_actifs' && p.reseaux_actifs === valeur) valeur = null;
+    var champs = {};
+    champs[champ] = valeur || null;
+    CRM.majProspect(p.id, champs).then(null, erreur);
+  }
+
+  function changerOrdre(ordre) {
+    viderSaisies();
+    etat.ordre = ordre;
+    ordreFige = null;
+    cacheBase = null;
+    try { localStorage.setItem(CLE_ORDRE, ordre); } catch (e) { /* stockage bloqué : l'ordre vaut pour la session */ }
+    etat.limiteFile = PAS_FILE;
+    if (ordre === 'chaleur') {
+      // On commence par le plus chaud qui reste à appeler.
+      var premier = base().filter(function (p) { return !p.resultat; })[0] || base()[0];
+      if (premier) etat.courant = premier.id;
+      memoriserPosition();
+    }
+    rendre();
+    if (ordre === 'chaleur') montrerCarte();
   }
 
   function htmlAttenteRecherche() {
@@ -1222,7 +1448,7 @@
         '<label class="crm-pro-trouve-corps"><input type="checkbox" id="crmProSel-' + i + '" data-champ="selection" data-id="' + i + '"' +
           (r.selection.has(i) ? ' checked' : '') + (p.dejaConnu ? ' disabled' : '') + '>' +
           '<span class="crm-pro-trouve-txt"><b>' + esc(p.nom) + '</b><small>' + esc(detail) + '</small></span>' +
-          '<span class="crm-pro-trouve-tel">' + esc(pur.formaterTel(p.telephone)) + htmlReseauxTrouves(p) + (p.dejaConnu ? '<em>' + esc(p.libelleDejaConnu || 'Déjà connu') + '</em>' : '') + '</span></label>' +
+          '<span class="crm-pro-trouve-tel">' + esc(pur.formaterTel(p.telephone)) + UI.chaleurHtml(chaleurDe(p), { court: true }) + htmlReseauxTrouves(p) + (p.dejaConnu ? '<em>' + esc(p.libelleDejaConnu || 'Déjà connu') + '</em>' : '') + '</span></label>' +
         lienExterne(lienGoogle(p), '<span>Vérifier</span>', 'crm-btn crm-btn-discret crm-pro-verifier') + '</div>';
     }).join('') + '</div>';
     if (r.resultats.length > r.limite) {
@@ -1255,11 +1481,19 @@
       if (g.liste && nomListeDe(p) !== g.liste) return false;
       if (g.dep && p.departement !== g.dep) return false;
       if (g.resultat === 'a_appeler' ? !!p.resultat : (g.resultat && p.resultat !== g.resultat)) return false;
+      if (g.chaleur && chaleurActive()) {
+        var ch = CRM.chaleurProspect(p);
+        if (!ch || ch.niveau !== g.chaleur) return false;
+      }
       if (!mots.length) return true;
       var botte = pur.sansAccents([p.nom, p.metier, p.commune, p.code_postal, nomListeDe(p), p.remarque].join(' '));
       if (mots.every(function (m) { return botte.indexOf(m) >= 0; })) return true;
       return chiffres.length >= 4 && String(p.telephone || '').indexOf(chiffres) >= 0;
     });
+  }
+  function listeGestion() {
+    var liste = filtresGestion();
+    return etat.gestion.tri === 'chaleur' && chaleurActive() ? pur.trierParChaleur(liste, CRM.chaleurProspect) : liste;
   }
 
   function attrActif() { return actif() ? '' : ' disabled title="Inactif tant que la migration des prospects n\'est pas appliquée"'; }
@@ -1271,7 +1505,8 @@
     function option(valeur, libelle, choisie) { return '<option value="' + esc(valeur) + '"' + (choisie === valeur ? ' selected' : '') + '>' + esc(libelle) + '</option>'; }
     return '<div class="crm-pro-gestion-tete">' +
         '<div class="crm-pro-rangee"><button type="button" class="crm-btn crm-btn-or" data-pro="ouvrir-ajout" aria-expanded="' + (g.panneau === 'ajout') + '"' + attrActif() + '>' + ic('plus', 14) + 'Ajouter un prospect</button>' +
-          '<button type="button" class="crm-btn" data-pro="ouvrir-import" aria-expanded="' + (g.panneau === 'import') + '"' + attrActif() + '>' + ic('importer', 14) + 'Importer une liste</button></div>' +
+          '<button type="button" class="crm-btn" data-pro="ouvrir-import" aria-expanded="' + (g.panneau === 'import') + '"' + attrActif() + '>' + ic('importer', 14) + 'Importer une liste</button>' +
+          htmlAnalyserTous() + '</div>' +
         '<div class="crm-pro-cherche">' + ic('recherche', 15) +
           '<input type="search" id="crmProCherche" data-champ="g-recherche" value="' + esc(g.recherche) + '" placeholder="Nom, commune, numéro" aria-label="Chercher un prospect" autocomplete="off" spellcheck="false"></div>' +
       '</div>' +
@@ -1282,7 +1517,28 @@
           CRM.RESULTATS_PROSPECT.map(function (r) { return option(r.id, r.libelle, g.resultat); }).join('') + '</select>' +
         '<select id="crmProGDep" data-champ="g-dep" aria-label="Filtrer par département">' + option('', 'Tous les départements', g.dep) +
           deps.map(function (d) { return option(d, d + ' ' + CRM.nomDepartement(d), g.dep); }).join('') + '</select>' +
-      '</div>';
+        (chaleurActive() ? '<select id="crmProGChaleur" data-champ="g-chaleur" aria-label="Filtrer par chaleur">' + option('', 'Toutes les chaleurs', g.chaleur) +
+          CRM.NIVEAUX_CHALEUR.map(function (n) { return option(n.id, n.libelle, g.chaleur); }).join('') + '</select>' +
+          '<select id="crmProGTri" data-champ="g-tri" aria-label="Ordre de la liste">' + option('ajout', 'Ordre d\'ajout', g.tri) + option('chaleur', 'Les plus chauds d\'abord', g.tri) + '</select>' : '') +
+      '</div>' +
+      (!chaleurActive() && actif() ? '<p class="crm-aide crm-pro-chaleur-absente">La chaleur des prospects sera active une fois la migration 20261116_crm_chaleur.sql appliquée.</p>' : '');
+  }
+
+  function htmlAnalyserTous() {
+    if (!chaleurActive() || !actif()) return '';
+    var liste = CRM.aAnalyser(), n = liste.length;
+    if (!n) return '';
+    var enCours = !!CRM.analyseEnCours;
+    // Parmi eux, ceux déjà analysés dont il reste la fiche Google (clé absente, plafond du jour) ou le site à reprendre.
+    // Libellés courts : le bouton tient sur une ligne à 390 px ; le détail est dans l'infobulle.
+    var reprises = liste.filter(function (p) { return !!p.analyse_at; }).length;
+    var libelle = !reprises ? 'Analyser les prospects non analysés (' + n + ')'
+      : reprises === n ? 'Compléter les analyses (' + n + ')'
+        : 'Analyser et compléter (' + UI.pluriel(n, 'prospect') + ')';
+    var titre = enCours ? 'Une analyse est déjà en cours'
+      : reprises ? UI.pluriel(reprises, 'prospect déjà analysé', 'prospects déjà analysés') + ' dont il reste la fiche Google ou le site à regarder' : '';
+    return '<button type="button" class="crm-btn" data-pro="analyser-tous" id="crmProAnalyserTous"' + (enCours ? ' disabled' : '') + (titre ? ' title="' + esc(titre) + '"' : '') + '>' +
+      ic('baguette', 14) + libelle + '</button>';
   }
 
   function champForm(id, champ, libelle, valeur, attributs) {
@@ -1399,6 +1655,7 @@
         '<span class="crm-pro-rang-nom"><b>' + esc(p.nom) + '</b><small>' + esc([p.metier, lieuDe(p)].filter(Boolean).join(' · ') || 'Métier et commune inconnus') + '</small></span>' +
         '<span class="crm-pro-rang-tel">' + esc(tel ? pur.formaterTel(tel) : 'Numéro à trouver') + '</span>' +
         '<span class="crm-pro-rang-liste">' + esc(nomListeDe(p)) + '</span>' +
+        (chaleurActive() ? '<span class="crm-pro-rang-chal">' + UI.chaleurHtml(CRM.chaleurProspect(p)) + '</span>' : '') +
         '<span class="crm-pro-rang-res">' + (pastille(p, true) || '<span class="crm-pro-rang-rien">À appeler</span>') + '</span></button>' +
       '<div class="crm-pro-rang-actions">' +
         (tel ? '<a class="crm-icone-btn crm-icone-or" href="' + esc(CRM.liens({ telephone: tel }).tel) + '" aria-label="Appeler ' + esc(p.nom) + '">' + ic('telephone', 17) + '</a>' : '<span class="crm-pro-rang-vide"></span>') +
@@ -1419,8 +1676,8 @@
   }
 
   function htmlTable() {
-    var g = etat.gestion, liste = filtresGestion();
-    var filtre = g.recherche || g.liste || g.resultat || g.dep;
+    var g = etat.gestion, liste = listeGestion();
+    var filtre = g.recherche || g.liste || g.resultat || g.dep || (chaleurActive() && g.chaleur);
     var html = '<h2 class="crm-pro-section">Tous les prospects<span>' + liste.length + '</span></h2>';
     if (!liste.length) {
       return html + '<div class="crm-vide"><span class="crm-vide-ic">' + ic('recherche', 22) + '</span><p class="crm-vide-titre">Aucun prospect</p>' +
@@ -1429,7 +1686,8 @@
           : '<button type="button" class="crm-btn" data-pro="onglet" data-id="trouver">' + ic('recherche', 14) + 'Trouver des numéros</button>') + '</div>';
     }
     html += '<datalist id="crmProListesTable">' + listes().map(function (l) { return '<option value="' + esc(l.nom) + '"></option>'; }).join('') + '</datalist>' +
-      '<div class="crm-liste crm-pro-table"><div class="crm-pro-table-tete" aria-hidden="true"><span>Commerce</span><span>Numéro</span><span>Liste</span><span>Résultat</span></div>' +
+      '<div class="crm-liste crm-pro-table' + (chaleurActive() ? ' crm-pro-table-chal' : '') + '"><div class="crm-pro-table-tete" aria-hidden="true"><span>Commerce</span><span>Numéro</span><span>Liste</span>' +
+        (chaleurActive() ? '<span>Chaleur</span>' : '') + '<span>Résultat</span></div>' +
       liste.slice(0, g.limite).map(htmlRang).join('') + '</div>';
     if (liste.length > g.limite) {
       html += '<button type="button" class="crm-btn crm-plus" data-pro="liste-plus">Afficher ' + Math.min(PAS_LISTE, liste.length - g.limite) + ' prospects de plus</button>';
@@ -1479,6 +1737,7 @@
       g.envoi = false;
       if (!res.ajoutes) return refuser('Ce numéro est déjà dans la file ou appartient à un commerce déjà dans le CRM.', 'crmProAjoutTel');
       var cree = res.prospects[0];
+      lancerAnalyseAuto(res.prospects);
       g.ajout = ajoutNeuf(liste);
       toast('Prospect ajouté à «\u00a0' + liste + '\u00a0»', { action: 'Appeler', surAction: function () { ouvrirDansAppeler(cree.id); } });
       rendre();
@@ -1500,6 +1759,7 @@
     majApercuImport();
     CRM.ajouterProspects(analyse.lignes.map(function (l) { return Object.assign({}, l, { liste: liste }); })).then(function (res) {
       g.envoi = false;
+      lancerAnalyseAuto(res.prospects);
       if (res.ajoutes) {
         imp.texte = '';
         g.panneau = null;
@@ -1603,7 +1863,17 @@
       case 'choisir': aller(id, { remonter: true }); break;
       case 'file-plus': etat.limiteFile += PAS_FILE; rendre(); break;
       case 'filtre-rappels': etat.filtreResultat = 'rappel_jour'; etat.limiteFile = PAS_FILE; rendre(); break;
-      case 'filtres-effacer': etat.filtreResultat = 'tous'; etat.filtreDep = ''; rendre(); break;
+      case 'filtres-effacer': etat.filtreResultat = 'tous'; etat.filtreDep = ''; etat.filtreChaleur = ''; rendre(); break;
+
+      // Chaleur des prospects
+      case 'pourquoi': etat.pourquoi = !etat.pourquoi; rendre(); break;
+      case 'analyser': if (courant()) analyserUn(courant().id); break;
+      case 'chaleur-manuelle': reglerChaleur('chaleur_manuelle', id); break;
+      case 'reseaux-actifs': reglerChaleur('reseaux_actifs', id); break;
+      case 'ordre-chaleur': changerOrdre('chaleur'); break;
+      case 'ordre-liste': changerOrdre('liste'); break;
+      case 'analyse-arreter': if (CRM.analyseEnCours) { analyseUI.arret = true; CRM.analyseEnCours.annuler(); rendre(); } break;
+      case 'analyser-tous': analyserTous(); break;
 
       // Trouver des numéros
       case 'mode': if (r.mode !== id) { r.mode = id; fermerSuggestions(); rendre(); } break;
@@ -1626,7 +1896,7 @@
       case 'panneau-fermer': g.panneau = null; rendre(); break;
       case 'ajout-valider': validerAjout(); break;
       case 'import-valider': validerImport(); break;
-      case 'gestion-effacer': g.recherche = ''; g.liste = ''; g.resultat = ''; g.dep = ''; g.limite = PAS_LISTE; rendre(); break;
+      case 'gestion-effacer': g.recherche = ''; g.liste = ''; g.resultat = ''; g.dep = ''; g.chaleur = ''; g.tri = 'ajout'; g.limite = PAS_LISTE; rendre(); break;
       case 'liste-plus': g.limite += PAS_LISTE; rendre(); break;
       case 'ouvrir-appel': if (rang) ouvrirDansAppeler(rang.dataset.id); break;
       case 'rang-menu': if (rang && parId(rang.dataset.id)) menuRang(parId(rang.dataset.id), el); break;
@@ -1672,6 +1942,7 @@
         break;
       case 'filtre-resultat': etat.filtreResultat = v; etat.limiteFile = PAS_FILE; rendre(); break;
       case 'filtre-dep': etat.filtreDep = v; etat.limiteFile = PAS_FILE; rendre(); break;
+      case 'filtre-chaleur': etat.filtreChaleur = v; etat.limiteFile = PAS_FILE; rendre(); break;
 
       case 'commune': saisirCommune(v); break;
       case 'departement': r.departement = v; majBlocage(); break;
@@ -1684,6 +1955,8 @@
       case 'g-liste': g.liste = v; g.limite = PAS_LISTE; rendre(); break;
       case 'g-resultat': g.resultat = v; g.limite = PAS_LISTE; rendre(); break;
       case 'g-dep': g.dep = v; g.limite = PAS_LISTE; rendre(); break;
+      case 'g-chaleur': g.chaleur = v; g.limite = PAS_LISTE; rendre(); break;
+      case 'g-tri': g.tri = v === 'chaleur' ? 'chaleur' : 'ajout'; g.limite = PAS_LISTE; rendre(); break;
       case 'ajout-nom': case 'ajout-metier': case 'ajout-commune': case 'ajout-telephone': case 'ajout-remarque': case 'ajout-liste':
         g.ajout[champ.slice(6)] = v;
         break;
@@ -1765,6 +2038,7 @@
       etat.pret = true;
       var memo = lirePositions();
       if (memo.liste && tous().some(function (p) { return nomListeDe(p) === memo.liste; })) etat.liste = memo.liste;
+      try { if (localStorage.getItem(CLE_ORDRE) === 'chaleur') etat.ordre = 'chaleur'; } catch (e) { /* stockage bloqué : ordre de la liste */ }
     }
     el.innerHTML = '<div id="crmProBandeau"></div>' +
       '<div class="crm-pro-onglets" id="crmProOnglets" role="tablist" aria-label="Prospection"></div>' +
@@ -1797,7 +2071,7 @@
     if (grandEcran.addEventListener) grandEcran.addEventListener('change', surLargeur); else if (grandEcran.addListener) grandEcran.addListener(surLargeur);
   }
 
-  CRM.surChangement(function () { reprendreBrouillons(); if (monte()) planifier(); });
+  CRM.surChangement(function () { versionCoeur++; reprendreBrouillons(); if (monte()) planifier(); });
 
   // Une note en cours de frappe part avant que l'onglet ne passe en arrière-plan ou que la page ne se ferme,
   // par un envoi que le navigateur mène à son terme même si la page disparaît.

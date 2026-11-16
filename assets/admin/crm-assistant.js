@@ -475,7 +475,10 @@
         : a.etape === 'qui' ? htmlQui(p, a)
           : a.etape === 'messagerie' ? htmlMessagerie(p, a)
             : a.etape === 'rappel' ? htmlEtapeRappel(p, a) : htmlEtape(p, a);
-      return '<section class="crm-gd" aria-label="Guide d\'appel">' + tete + '<div class="crm-gd-corps" id="crmGdCorps">' + htmlFil(a) + corps + htmlObjections(a) +
+      // « Angle conseillé » : par où commencer, d'après les signaux de chaleur du prospect (site, fiche Google, OpenStreetMap).
+      var angle = typeof CRM.angleProspect === 'function' ? CRM.angleProspect(p) : null;
+      var htmlAngle = angle ? '<p class="crm-gd-angle" id="crmGdAngle" data-angle="' + esc(angle.cle) + '"><span class="crm-gd-etiquette">Angle conseillé</span><span>' + esc(angle.texte) + '</span></p>' : '';
+      return '<section class="crm-gd" aria-label="Guide d\'appel">' + tete + htmlAngle + '<div class="crm-gd-corps" id="crmGdCorps">' + htmlFil(a) + corps + htmlObjections(a) +
         '<div class="crm-gd-pied"><button type="button" class="crm-lien" data-gd="conseils" aria-expanded="' + a.conseils + '" aria-controls="crmGdConseils">' + ic('note', 13) +
             (a.conseils ? 'Masquer les conseils' : 'Conseils et repères') + '</button>' +
           '<button type="button" class="crm-lien" data-gd="recommencer">' + ic('rouvrir', 13) + 'Recommencer l\'appel</button>' +

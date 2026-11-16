@@ -168,6 +168,38 @@ html.crm-fige body { overflow: hidden; }
   color: var(--c); font-weight: 800; font-size: 12.5px; font-variant-numeric: tabular-nums;
 }
 
+/* Chaleur du prospect (besoin de Marchéo) : une icône ET le niveau en toutes lettres, jamais la couleur seule.
+ * Le texte reste à l'encre ; la teinte du niveau (--c) ne porte que l'icône, le liseré et un fond léger. */
+.crm-chal {
+  display: inline-flex; align-items: center; gap: 5px; flex: none; max-width: 100%; height: 24px; padding: 0 9px 0 7px; border-radius: 50px;
+  border: 1px solid var(--crm-controle); border-color: color-mix(in srgb, var(--c, var(--a-ink-3)) 45%, transparent);
+  background: var(--crm-survol); background: color-mix(in srgb, var(--c, var(--a-ink-3)) 14%, transparent);
+  color: var(--a-ink); font-size: 12px; font-weight: 700; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.crm-chal > .crm-ic { flex: none; color: var(--c, var(--a-ink-3)); }
+.crm-chal b { font-weight: 700; }
+.crm-chal i { font-style: normal; font-weight: 800; }
+.crm-chal[data-niveau="non_analyse"] { --c: var(--a-ink-3); border-style: dashed; background: none; font-weight: 600; }
+.crm-chal[data-partiel] { border-style: dashed; }
+.crm-chal-court { gap: 4px; padding: 0 7px 0 6px; }
+.crm-chal-raisons li { display: flex; gap: 10px; padding: 3px 0; font-size: 12.5px; line-height: 1.4; color: var(--a-ink-2); }
+.crm-chal-raisons li b { flex: none; min-width: 30px; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.crm-chal-raisons li span { min-width: 0; overflow-wrap: anywhere; }
+.crm-pts-nul { color: var(--a-ink-3); }
+.crm-chal-manuel { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); }
+.crm-chal-etat { font-size: 12px; line-height: 1.45; color: var(--a-ink-3); }
+.crm-chal-bloc { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; padding: 12px 13px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-bg); }
+.crm-chal-bloc .crm-etiquette { margin-bottom: 0; }
+.crm-chal-tete { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.crm-chal-tete .crm-etiquette { flex: 1 1 100%; }
+.crm-chal-tete .crm-btn { margin-left: auto; }
+.crm-chal-absente { margin-bottom: 12px; }
+.crm-chal-reglages { display: flex; flex-direction: column; gap: 8px; }
+.crm-chal-reglage { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.crm-chal-reglage-titre { min-width: 104px; font-size: 12px; font-weight: 600; color: var(--a-ink-2); }
+.crm-chal-reglage .crm-puces { margin-top: 0; }
+.crm-chal-reglage .crm-puce { display: inline-flex; align-items: center; gap: 5px; }
+
 /* Étape : un point de couleur et le libellé, jamais un badge plein. */
 .crm-etape { --c: var(--crm-e-prospect); display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); white-space: nowrap; }
 .crm-etape i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }

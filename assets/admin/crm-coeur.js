@@ -629,6 +629,8 @@
     fiche.drapeaux.dormante = estDormante(fiche, maintenant);
     // Un perdu saisi à la main garde son motif ; une résiliation en fournit un d'office.
     fiche.motifPerte = fiche.etape === 'perdu' ? (fiche.crm.perdu_at ? fiche.crm.motif_perte : 'Résiliation') : null;
+    // Chaleur du prospect (besoin de Marchéo), calculée ici sans les homonymes de la file : `unifier` reste pure.
+    fiche.chaleurProspect = prospect ? chaleurProspect(prospect, {}) : null;
     fiche.score = score(fiche, maintenant);
     fiche.action = prochaineAction(fiche, maintenant);
     return fiche;
@@ -736,6 +738,10 @@
       var suite = { rdv: [40, 'Rendez-vous obtenu en prospection'], interesse: [30, 'Intéressé lors de l\'appel de prospection'],
         a_rappeler: [10, 'A demandé à être rappelé'] }[fiche.prospect.resultat];
       if (suite) plus(suite[0], suite[1]);
+      // Le besoin de Marchéo constaté sur le prospect (voir chaleurProspect) nuance la chaleur de la fiche.
+      var besoin = fiche.chaleurProspect;
+      if (besoin && besoin.niveau === 'chaud') plus(BAREME_CHALEUR.fiche_chaud, 'Prospect chaud (besoin de Marchéo)');
+      else if (besoin && besoin.niveau === 'froid') plus(BAREME_CHALEUR.fiche_froid, 'Prospect froid (besoin de Marchéo)');
     }
 
     if (age != null) {
@@ -1325,6 +1331,443 @@
     return resultat;
   }
 
+  // ───────────────────────────── Chaleur des prospects ─────────────────────────────
+
+  /* Deux « chaleurs » existent et ne se confondent pas :
+     - la chaleur de la FICHE (scoreChaleur, plus haut) : avancement du suivi une fois le contact pris ;
+     - la chaleur du PROSPECT (ici) : probabilité qu'il ait besoin de Marchéo ET qu'il soit joignable / réceptif.
+     Elle se calcule à partir de signaux stockés (crm_prospects.signaux = { v, osm, site, google }) : ceux
+     d'OpenStreetMap sont posés par le navigateur dès la recherche, ceux du site et de la fiche Google par la
+     fonction crm-enrichir. La note n'est jamais stockée : changer un poids ci-dessous suffit, sans réanalyse.
+     Un signal absent veut dire « pas vu », jamais « non ». */
+
+  // Colonnes de la migration 20261116_crm_chaleur.sql.
+  var COLONNES_CHALEUR = ['signaux', 'analyse_at', 'chaleur_manuelle', 'reseaux_actifs', 'google_note', 'google_avis', 'lat', 'lon'];
+  var NIVEAUX_CHALEUR = [
+    { id: 'chaud', libelle: 'Chaud' }, { id: 'tiede', libelle: 'Tiède' }, { id: 'froid', libelle: 'Froid' },
+    { id: 'non_analyse', libelle: 'Pas encore analysé' }
+  ];
+  var NIVEAUX_MANUELS = ['chaud', 'tiede', 'froid'];
+  var ACTIVITES_RESEAUX = ['actif', 'peu_actif'];
+  var TAILLE_SIGNAUX = 6000;
+
+  // Tous les poids de la note. Base 30, bornes 0 à 100 ; Chaud à partir de 60, Tiède de 40 à 59, Froid en dessous.
+  var BAREME_CHALEUR = {
+    base: 30, chaud: 60, tiede: 40,
+    // Commande en ligne : le signal le plus fort, dans les deux sens. Une boutique ou une plateforme détectée
+    // plafonne la note à Froid (plafond_froid), quels que soient les autres signaux ; seul un appel qui se passe
+    // bien (intéressé, rendez-vous) ou le réglage manuel passent au-dessus.
+    boutique: -45, plateforme: -25, sans_commande: 20, plafond_froid: 39,
+    // Site.
+    reseau_seul: 18, sans_site_confirme: 18, sans_site: 10, parking: 15, injoignable: 0, vieillot: 8,
+    // Commandes déjà prises à la main, offre qui se commande à l'avance (le trio est plafonné).
+    precommande_telephone: 12, precommande_formulaire: 10, traiteur: 12, evenements: 8, fetes: 6, sur_commande: 6, plafond_traiteur: 20,
+    commission: 10, livraison: 4, anti_gaspi: 3,
+    multi: 10, meme_nom: 0, enseigne: -25,
+    reseaux_un: 6, reseaux_deux: 8, reseaux_actifs: 10, reseaux_peu: -3,
+    google_frequente: 10, google_installe: 6, google_mal_note: -5, ferme_temporaire: -20,
+    avis_frequente: 100, note_frequente: 4.2, avis_installe: 30, note_installe: 4, avis_mal_note: 20, note_mal_note: 3.5,
+    horaires: 2, email: 3, mobile: 5, sans_tel: -15,
+    metiers: { traiteur: 10, boucherie: 8, poissonnerie: 8, patisserie: 8, fromagerie: 6, fleuriste: 6, boulangerie: 5, primeur: 4,
+      epicerie: 2, restaurant: 0, pizzeria: -5, fastfood: -5 },
+    metier_a_l_avance: 5,
+    r_rdv: 20, r_interesse: 15, r_deja_site: -40, r_refus: -30, r_faux: -15, r_silence: -8, appels_silence: 4,
+    // Apport à la chaleur de la fiche (pipeline) d'un prospect chaud ou froid.
+    fiche_chaud: 10, fiche_froid: -10,
+    rangs: { chaud: 3000, tiede: 2000, non_analyse: 1500, froid: 1000, exclu: 0 }
+  };
+
+  // Identifiants des listes fermées de la fonction crm-enrichir → mots lisibles. Un identifiant inconnu n'est pas affiché.
+  var LIBELLES_OUTILS = {
+    woocommerce: 'WooCommerce', shopify: 'Shopify', prestashop: 'PrestaShop', wix_stores: 'Wix', squarespace_commerce: 'Squarespace',
+    ecwid: 'Ecwid', magento: 'Magento', wizishop: 'WiziShop', oxatis: 'Oxatis', sumup_boutique: 'SumUp', square_boutique: 'Square',
+    snipcart: 'Snipcart', jimdo_boutique: 'Jimdo', produit_structure: 'fiches produit avec prix', panier_texte: 'panier sur son site',
+    ollca: 'Ollca', epicery: 'Epicery', rapidle: 'Rapidle', pourdebon: 'Pourdebon', mavillemonshopping: 'Ma Ville Mon Shopping',
+    wishibam: 'Wishibam', cagette: 'Cagette', laruche: 'La Ruche qui dit Oui', locavor: 'Locavor', dood: 'Dood', livepepper: 'LivePepper',
+    gloriafood: 'GloriaFood', zelty: 'Zelty', innovorder: 'Innovorder', obypay: 'Obypay', flipdish: 'Flipdish', sumup_commande: 'SumUp',
+    monbanquet: 'Monbanquet', coopcycle: 'CoopCycle',
+    ubereats: 'Uber Eats', deliveroo: 'Deliveroo', justeat: 'Just Eat', delicity: 'Delicity', lyveat: 'Lyveat'
+  };
+  var LIBELLES_MOTS = {
+    traiteur: 'traiteur', plateau: 'plateaux', buffet: 'buffets', cocktail: 'cocktails dînatoires', piece_montee: 'pièces montées',
+    evenement: 'événements', mariage: 'mariages', reception: 'réceptions', entreprise: 'entreprises', fete_famille: 'fêtes de famille',
+    noel: 'Noël', paques: 'Pâques', galette: 'galette des rois', fetes: 'fêtes',
+    sur_commande: 'sur commande', gateau: 'gâteaux sur mesure', pain_surprise: 'pains surprise', panier_garni: 'paniers garnis',
+    colis: 'colis', composition: 'compositions'
+  };
+  var MOTS_TRAITEUR = ['traiteur', 'plateau', 'buffet', 'cocktail', 'piece_montee', 'evenement', 'mariage', 'reception', 'entreprise', 'fete_famille'];
+  var MOTS_EVENEMENTS = ['mariage', 'reception', 'evenement', 'entreprise', 'fete_famille'];
+  // Un prospect analysé dont le site n'a pas répondu est reproposé à l'analyse, au plus ce nombre de fois, pas avant ce délai.
+  var ESSAIS_SITE = 3, DELAI_REESSAI_SITE = 20 * 3600000, DELAI_REESSAI_GOOGLE = 3600000;
+  // Même nom à moins de cette distance : peut-être le même commerçant (jamais plus qu'un « à vérifier »).
+  var RAYON_MEME_NOM = 15000, RAYON_DOUBLON = 30;
+  // Adresses qui ne sont pas « le site du commerce » : elles ne rapprochent pas deux prospects.
+  var HOTES_PARTAGES = ['facebook.com', 'fb.com', 'fb.me', 'instagram.com', 'instagr.am', 'linktr.ee', 'linkin.bio', 'beacons.ai', 'pagesjaunes.fr',
+    'tripadvisor.fr', 'tripadvisor.com', 'petitfute.com', 'yelp.fr', 'yelp.com', 'mappy.com', 'google.com', 'google.fr', 'g.page', 'goo.gl',
+    'business.site', 'solocal.com', 'wixsite.com', 'jimdofree.com', 'e-monsite.com', 'wordpress.com', 'webador.fr', 'site123.me', 'eatbu.com'];
+  var MOTS_COMMANDE = ['sur_commande', 'gateau', 'pain_surprise', 'panier_garni', 'colis', 'composition'];
+  var LIBELLES_INDICES = {
+    sans_viewport: 'pas adapté au téléphone', http_seul: 'sans https', balises_anciennes: 'mise en page d\'époque',
+    mise_en_page_tableaux: 'mise en page en tableaux', generateur_ancien: 'outil de création ancien'
+  };
+  var LIBELLES_METIERS_CHALEUR = {
+    traiteur: 'traiteur', boucherie: 'boucherie', poissonnerie: 'poissonnerie', patisserie: 'pâtisserie', fromagerie: 'fromagerie',
+    fleuriste: 'fleuriste', boulangerie: 'boulangerie', primeur: 'primeur', epicerie: 'épicerie', restaurant: 'restaurant',
+    pizzeria: 'pizzeria', fastfood: 'restauration rapide'
+  };
+  // Mots trop génériques pour reconnaître une enseigne (même liste dans la fonction crm-enrichir, plateformes.js).
+  var MOTS_GENERIQUES = ('boulangerie patisserie boucherie charcuterie traiteur primeur fromagerie cremerie poissonnerie epicerie fine ' +
+    'fleuriste fleurs maison la le les l du de des d au aux chez et a snack pizzeria restaurant sarl sas eurl').split(' ');
+
+  function objet(v) { return v && typeof v === 'object' && !Array.isArray(v) ? v : null; }
+  function listeTextes(v) { return Array.isArray(v) ? v.filter(function (x) { return typeof x === 'string'; }) : []; }
+  function nombreFini(v) { var n = typeof v === 'number' ? v : (v == null || v === '' ? NaN : Number(v)); return isFinite(n) ? n : null; }
+  function libellesDe(ids, table, permis, max) {
+    var vus = [];
+    listeTextes(ids).forEach(function (id) {
+      if (permis && permis.indexOf(id) < 0) return;
+      var l = Object.prototype.hasOwnProperty.call(table, id) ? table[id] : '';
+      if (l && vus.indexOf(l) < 0 && vus.length < (max || 3)) vus.push(l);
+    });
+    return vus;
+  }
+  function entreParentheses(mots) { return mots.length ? ' (' + mots.join(', ') + ')' : ''; }
+  function noteFr(n) { return String(Math.round(n * 10) / 10).replace('.', ','); }
+
+  /* Clé d'enseigne : le nom sans ses mots génériques (« Boulangerie Maison Dupont » → « dupont »). Vide quand il
+     ne reste aucun mot d'au moins quatre lettres : aucune comparaison n'est alors tentée. */
+  function cleEnseigne(nom) {
+    var mots = sansAccents(nom).split(/[^a-z0-9]+/).filter(function (m) { return m && MOTS_GENERIQUES.indexOf(m) < 0; });
+    return mots.some(function (m) { return m.length >= 4; }) ? mots.join(' ') : '';
+  }
+
+  /* Domaine du site d'un commerce (« www.dupont.fr/contact » → « dupont.fr »), ou '' pour une page de réseau
+     social, d'annuaire ou d'hébergeur gratuit : deux commerces qui affichent le même site sont la même maison. */
+  function domaineSite(siteWeb) {
+    var adresse = texte(siteWeb).split(/\s*;\s*/)[0];
+    if (!adresse) return '';
+    var hote = adresse.replace(/^[a-z][a-z0-9+.\-]*:\/\//i, '').replace(/[\/?#].*$/, '').replace(/:\d+$/, '').toLowerCase().replace(/^www\./, '');
+    if (!/^[a-z0-9.\-]+\.[a-z]{2,}$/.test(hote)) return '';
+    for (var i = 0; i < HOTES_PARTAGES.length; i++) {
+      if (hote === HOTES_PARTAGES[i] || hote.slice(-HOTES_PARTAGES[i].length - 1) === '.' + HOTES_PARTAGES[i]) return '';
+    }
+    return hote;
+  }
+  function distanceMetres(a, b) {
+    var rad = function (x) { return x * Math.PI / 180; };
+    var dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+    var h = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.pow(Math.sin(dLon / 2), 2);
+    return 2 * 6371000 * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+  function positionDe(x) {
+    var lat = nombreFini(x && x.lat), lon = nombreFini(x && x.lon);
+    return lat != null && lon != null ? { lat: lat, lon: lon } : null;
+  }
+  /* Deux commerces de même nom sont-ils assez proches pour être peut-être la même maison ? Avec deux positions :
+     moins de 15 km (et pas au même endroit : un doublon n'est pas une seconde boutique). Sinon : même commune ou
+     même code postal, jamais « quelque part dans le même département ». */
+  function voisins(a, b) {
+    var pa = positionDe(a), pb = positionDe(b);
+    if (pa && pb) { var d = distanceMetres(pa, pb); return d > RAYON_DOUBLON && d <= RAYON_MEME_NOM; }
+    var ca = sansAccents(a.commune), cb = sansAccents(b.commune);
+    return (!!ca && ca === cb) || (!!texte(a.code_postal) && texte(a.code_postal) === texte(b.code_postal));
+  }
+  function memeEndroit(a, b) {
+    var pa = positionDe(a), pb = positionDe(b);
+    return !!pa && !!pb && distanceMetres(pa, pb) <= RAYON_DOUBLON;
+  }
+
+  /* Signaux lus dans les étiquettes OpenStreetMap d'un commerce. `homonymes` : nombre d'autres commerces de la
+     MÊME MAISON dans la réponse (même marque ou même site), ou { homonymes, memeNom } ; `memeNom` : nombre de
+     commerces voisins qui portent seulement le même nom (un indice à vérifier, jamais une affirmation).
+     Seul ce qui est vu est noté : une clé absente ne dit rien. */
+  function signauxOsm(etiquettes, homonymes, maintenant) {
+    var e = etiquettes || {};
+    var s = { le: dateLocaleISO(maintenant == null ? new Date() : maintenant) };
+    function oui(v) { return /^(yes|only)$/i.test(texte(v)); }
+    if (texte(e.craft) === 'caterer' || oui(e.catering) || /traiteur/.test(sansAccents(texte(e.name) + ' ' + texte(e.description)))) s.traiteur = true;
+    if (oui(e.delivery)) s.livraison = true;
+    if (oui(e.takeaway) || texte(e.drive_through) === 'yes') s.emporter = true;
+    if (texte(e.opening_hours)) s.horaires = true;
+    var marque = premier(e.brand, e.operator);
+    if (marque) s.marque = marque.slice(0, 80);
+    if (texte(e['brand:wikidata']) || texte(e['operator:wikidata'])) s.enseigne = true;
+    var compte = objet(homonymes) || { homonymes: homonymes };
+    var n = Math.floor(Number(compte.homonymes)), m = Math.floor(Number(compte.memeNom));
+    if (n >= 1) s.homonymes = Math.min(999, n);
+    if (m >= 1) s.meme_nom = Math.min(999, m);
+    return s;
+  }
+
+  // Signaux tels qu'ils peuvent être enregistrés : un objet de version 1 qui tient dans la colonne, sinon rien.
+  function signauxValides(v) {
+    var s = objet(v);
+    if (!s || s.v !== 1) return null;
+    try { return JSON.stringify(s).length <= TAILLE_SIGNAUX ? s : null; } catch (e) { return null; }
+  }
+  function coordonnee(v, max) {
+    var n = nombreFini(v);
+    return n != null && Math.abs(n) <= max ? Math.round(n * 1e6) / 1e6 : null;
+  }
+
+  function metierChaleur(p) {
+    var B = BAREME_CHALEUR.metiers;
+    var libelle = sansAccents(p.metier), type = texte(p.business_type).toLowerCase(), cle = '';
+    // Une pâtisserie est rangée parmi les boulangeries : c'est son libellé qui la distingue.
+    if (/patisserie/.test(libelle)) cle = 'patisserie';
+    else if (Object.prototype.hasOwnProperty.call(B, type)) cle = type;
+    else if (/traiteur/.test(libelle)) cle = 'traiteur';
+    else if (/boucher|charcut/.test(libelle)) cle = 'boucherie';
+    else if (/poissonn/.test(libelle)) cle = 'poissonnerie';
+    else if (/fromag|cremerie/.test(libelle)) cle = 'fromagerie';
+    else if (/fleur/.test(libelle)) cle = 'fleuriste';
+    else if (/boulang/.test(libelle)) cle = 'boulangerie';
+    else if (/primeur|fruits|legumes/.test(libelle)) cle = 'primeur';
+    else if (/epicerie/.test(libelle)) cle = 'epicerie';
+    else if (/pizz/.test(libelle)) cle = 'pizzeria';
+    else if (/rapide|snack|fast/.test(libelle)) cle = 'fastfood';
+    else if (/restaurant/.test(libelle)) cle = 'restaurant';
+    return cle ? { cle: cle, points: B[cle], libelle: LIBELLES_METIERS_CHALEUR[cle] } : null;
+  }
+
+  function libelleNiveau(niveau) {
+    for (var i = 0; i < NIVEAUX_CHALEUR.length; i++) if (NIVEAUX_CHALEUR[i].id === niveau) return NIVEAUX_CHALEUR[i].libelle;
+    return '';
+  }
+
+  /* Chaleur d'un prospect. `contexte` : { homonymes (autres prospects de la file de la même maison : même site),
+     memeNom (prospects voisins de même nom seulement) }, facultatif.
+     Rend { niveau, libelle, valeur, manuel, exclu, partiel, auto: { niveau, valeur }, raisons: [{ cle, points,
+     texte }], etats: { site, google, analyseLe }, rang }. Le texte d'une raison commence par « + », « − » ou « · ».
+     Sans aucun signal : niveau « non_analyse », valeur nulle, aucune raison (les colonnes seules ne font pas une note). */
+  function chaleurProspect(p, contexte) {
+    p = p || {};
+    contexte = contexte || {};
+    var B = BAREME_CHALEUR;
+    var s = objet(p.signaux) || {};
+    var osm = objet(s.osm), site = objet(s.site), google = objet(s.google);
+    var analyse = !!p.analyse_at;
+    var manuel = NIVEAUX_MANUELS.indexOf(p.chaleur_manuelle) >= 0 ? p.chaleur_manuelle : null;
+    var etats = {
+      site: site && texte(site.etat) ? texte(site.etat) : null,
+      // Analysé sans rien de Google : la clé n'était pas configurée.
+      google: google && texte(google.etat) ? texte(google.etat) : (analyse ? 'sans_cle' : null),
+      analyseLe: p.analyse_at || null
+    };
+    function rendre(niveauAuto, valeur, raisons, drapeaux) {
+      drapeaux = drapeaux || {};
+      var niveau = drapeaux.exclu ? 'froid' : (manuel || niveauAuto);
+      return {
+        niveau: niveau, libelle: libelleNiveau(niveau), valeur: valeur, manuel: !!manuel && !drapeaux.exclu, exclu: !!drapeaux.exclu,
+        partiel: !!drapeaux.partiel, auto: { niveau: niveauAuto, valeur: valeur }, raisons: raisons, etats: etats,
+        rang: (drapeaux.exclu ? B.rangs.exclu : B.rangs[niveau]) + (valeur || 0)
+      };
+    }
+
+    // Exclusions : plus fortes que tout, réglage manuel compris. « Fermé définitivement » n'exclut que si la fiche
+    // Google est sûrement la sienne (même téléphone) ; une fiche rapprochée par le nom et le lieu plafonne à Froid.
+    var fermeIncertain = false;
+    if (google && google.statut === 'CLOSED_PERMANENTLY') {
+      if (google.confiance !== 'moyenne') {
+        return rendre('froid', 0, [{ cle: 'ferme', points: 0, texte: '− fermé définitivement d\'après Google' }], { exclu: true });
+      }
+      fermeIncertain = true;
+    }
+    if (site && site.deja_marcheo === true) {
+      return rendre('froid', 0, [{ cle: 'deja_marcheo', points: 0, texte: '− déjà chez Marchéo' }], { exclu: true });
+    }
+    if (!osm && !site && !google && !analyse) return rendre('non_analyse', null, []);
+
+    var raisons = [], total = B.base;
+    function compter(cle, points, libelle) {
+      total += points;
+      raisons.push({ cle: cle, points: points, texte: (points > 0 ? '+ ' : points < 0 ? '− ' : '· ') + libelle });
+    }
+    var etatSite = etats.site, commande = site ? texte(site.commande) : '';
+    var outils = site ? listeTextes(site.outils) : [];
+
+    // Commande en ligne.
+    var plafonds = [];
+    if (fermeIncertain) {
+      compter('ferme_incertain', 0, 'fermé définitivement d\'après une fiche Google au même nom : à vérifier');
+      plafonds.push('fiche Google « fermé définitivement »');
+    }
+    if (commande === 'boutique') compter('boutique', B.boutique, 'a déjà une boutique en ligne' + entreParentheses(libellesDe(outils, LIBELLES_OUTILS, null, 1)));
+    else if (commande === 'plateforme') {
+      var plateformes = libellesDe(outils, LIBELLES_OUTILS, null, 2);
+      compter('plateforme', B.plateforme, 'prend déjà des commandes en ligne' + (plateformes.length ? ' via ' + plateformes.join(', ') : ' via une plateforme'));
+    } else if (etatSite === 'analyse' && commande === 'aucune_vue') compter('sans_commande', B.sans_commande, 'pas vu de commande en ligne sur son site');
+
+    // Site.
+    var sansSite = !texte(p.site_web) || etatSite === 'pas_de_site' || etatSite === 'annuaire';
+    if (etatSite === 'reseau_seul') {
+      var vitrine = site.reseau === 'instagram' ? 'son profil Instagram' : site.reseau === 'facebook' ? 'sa page Facebook' : 'une page de réseau social';
+      compter('reseau_seul', B.reseau_seul, 'sa seule vitrine est ' + vitrine);
+    } else if (etatSite === 'parking') compter('parking', B.parking, 'son site est une page d\'attente');
+    else if (etatSite === 'injoignable') compter('injoignable', B.injoignable, 'site injoignable' + (site.le && dateCourte(site.le) ? ' le ' + dateCourte(site.le) : '') + ' : à vérifier');
+    else if (etatSite === 'illisible') compter('illisible', 0, 'site non lisible par l\'analyse (page générée par script) : à vérifier');
+    else if (texte(p.site_web) && etatSite === 'pas_de_site') {
+      // Un site a été saisi (ou trouvé) depuis l'analyse qui n'en connaissait pas : elle ne vaut plus.
+      compter('site_a_analyser', 0, 'site connu depuis la dernière analyse, pas encore analysé');
+    } else if (sansSite && etatSite !== 'analyse') {
+      if (google && google.etat === 'trouve' && google.site === true) {
+        // La fiche Google indique un site que l'analyse n'a pas encore lu : on ne peut pas écrire « pas de site ».
+        compter('site_a_analyser', 0, 'site indiqué sur sa fiche Google, pas encore analysé');
+      } else if ((etatSite === 'pas_de_site' || etatSite === 'annuaire') && google && google.etat === 'trouve') {
+        compter('sans_site_confirme', B.sans_site_confirme, 'pas de site (ni dans OpenStreetMap ni sur sa fiche Google)');
+      } else compter('sans_site', B.sans_site, 'pas de site connu');
+    }
+    // Dernier passage en échec alors qu'une analyse réussie existe : elle est gardée, et on le dit.
+    var echec = site ? objet(site.echec) : null;
+    if (echec && (etatSite === 'analyse' || etatSite === 'parking' || etatSite === 'illisible')) {
+      compter('injoignable', 0, 'site injoignable' + (echec.le && dateCourte(echec.le) ? ' le ' + dateCourte(echec.le) : '') +
+        (site.le && dateCourte(site.le) ? ' : analyse du ' + dateCourte(site.le) + ' conservée' : ' : analyse précédente conservée'));
+    }
+    if (site && site.vieillot === true && commande !== 'boutique') {
+      var indices = listeTextes(site.indices).map(function (i) {
+        var annee = /^copyright_(\d{4})$/.exec(i);
+        return annee ? 'copyright ' + annee[1] : (Object.prototype.hasOwnProperty.call(LIBELLES_INDICES, i) ? LIBELLES_INDICES[i] : '');
+      }).filter(Boolean).slice(0, 2);
+      compter('vieillot', B.vieillot, 'site ancien' + entreParentheses(indices));
+    }
+
+    // Commandes prises à la main, offre à commander à l'avance.
+    if (site && commande !== 'boutique' && (site.precommande === 'telephone' || site.precommande === 'formulaire')) {
+      if (site.precommande === 'telephone') compter('precommande', B.precommande_telephone, 'prend déjà des commandes par téléphone');
+      else compter('precommande', B.precommande_formulaire, 'prend déjà des commandes par formulaire ou e-mail');
+    }
+    var mots = site ? listeTextes(site.mots) : [];
+    var metierTraiteur = texte(p.business_type) === 'traiteur' && sansAccents(p.metier) === 'traiteur';
+    var trio = [];
+    if ((site && site.traiteur === true) || (osm && osm.traiteur === true) || metierTraiteur) {
+      trio.push(['traiteur', B.traiteur, 'offre traiteur' + entreParentheses(libellesDe(mots, LIBELLES_MOTS, MOTS_TRAITEUR, 3).filter(function (m) { return m !== 'traiteur'; }))]);
+    }
+    else if (site && site.evenements === true) {
+      // Mariages, réceptions… sans mot de traiteur : des commandes à l'avance, pas forcément une offre traiteur.
+      trio.push(['evenements', B.evenements, 'travaille pour des événements' + entreParentheses(libellesDe(mots, LIBELLES_MOTS, MOTS_EVENEMENTS, 3))]);
+    }
+    if (site && site.fetes === true) trio.push(['fetes', B.fetes, 'prend des commandes pour les fêtes']);
+    if (site && site.sur_commande === true) {
+      trio.push(['sur_commande', B.sur_commande, 'produits sur commande' + entreParentheses(libellesDe(mots, LIBELLES_MOTS, MOTS_COMMANDE, 3).filter(function (m) { return m !== 'sur commande'; }))]);
+    }
+    var cumul = 0;
+    trio.forEach(function (t) {
+      var points = Math.max(0, Math.min(t[1], B.plafond_traiteur - cumul));
+      cumul += points;
+      compter(t[0], points, t[2]);
+    });
+    var commission = site ? libellesDe(site.livraison_commission, LIBELLES_OUTILS, null, 3) : [];
+    if (commission.length) compter('commission', B.commission, 'livre via ' + commission.join(', ') + ' (à commission)');
+    else if (osm && (osm.livraison === true || osm.emporter === true)) compter('livraison', B.livraison, 'fait déjà de la livraison ou de l\'emporté');
+    if (site && site.anti_gaspi === true) compter('anti_gaspi', B.anti_gaspi, 'utilise déjà une appli (Too Good To Go)');
+
+    // Plusieurs points de vente, enseigne nationale. Un simple homonyme des environs (« Boulangerie du Centre »
+    // dans deux villes) n'est pas une seconde boutique : il est signalé sans point, à vérifier.
+    var homonymes = Math.max(osm ? (nombreFini(osm.homonymes) || 0) : 0, nombreFini(contexte.homonymes) || 0);
+    var memeNom = Math.max(osm ? (nombreFini(osm.meme_nom) || 0) : 0, nombreFini(contexte.memeNom) || 0);
+    if (osm && osm.enseigne === true) compter('enseigne', B.enseigne, 'enseigne nationale : décision prise au siège');
+    else if ((site && site.multi === true) || homonymes >= 1) {
+      var adresses = site ? nombreFini(site.adresses) : null;
+      compter('multi', B.multi, 'plusieurs points de vente' + (adresses >= 2 ? ' (' + adresses + ' adresses vues)'
+        : homonymes >= 1 ? ' (' + (homonymes + 1) + ' commerces de la même maison)' : ''));
+    } else if (memeNom >= 1) {
+      compter('meme_nom', B.meme_nom, 'même nom qu\'un autre commerce des environs : plusieurs points de vente ? À vérifier');
+    }
+
+    // Réseaux sociaux : la présence est constatée automatiquement, l'activité à la main.
+    var insta = !!texte(p.instagram), fb = !!texte(p.facebook);
+    if (insta || fb) compter('reseaux', insta && fb ? B.reseaux_deux : B.reseaux_un, 'compte ' + (insta && fb ? 'Instagram et Facebook' : insta ? 'Instagram' : 'Facebook') + ' trouvé');
+    if (p.reseaux_actifs === 'actif') compter('reseaux_actifs', B.reseaux_actifs, 'réseaux actifs (constaté à la main)');
+    else if (p.reseaux_actifs === 'peu_actif') compter('reseaux_peu', B.reseaux_peu, 'réseaux peu actifs (constaté à la main)');
+
+    // Fiche Google.
+    if (google && google.etat === 'trouve') {
+      var avis = nombreFini(google.avis), note = nombreFini(google.note);
+      if (avis != null && note != null) {
+        var detail = noteFr(note) + ' ★, ' + avis + ' avis Google';
+        if (avis >= B.avis_frequente && note >= B.note_frequente) compter('google_frequente', B.google_frequente, 'commerce fréquenté (' + detail + ')');
+        else if (avis >= B.avis_installe && note >= B.note_installe) compter('google_installe', B.google_installe, 'commerce installé (' + detail + ')');
+        else if (avis >= B.avis_mal_note && note < B.note_mal_note) compter('google_mal_note', B.google_mal_note, 'mal noté sur Google (' + noteFr(note) + ' ★)');
+      }
+      if (google.statut === 'CLOSED_TEMPORARILY') compter('ferme_temporaire', B.ferme_temporaire, 'fermé temporairement d\'après Google');
+    }
+
+    // Joignable.
+    if (osm && osm.horaires === true) compter('horaires', B.horaires, 'horaires connus');
+    if (texte(p.email)) compter('email', B.email, 'e-mail connu (envoi de la démo possible)');
+    if (!texte(p.telephone)) compter('sans_tel', B.sans_tel, 'pas de numéro');
+    else if (estMobile(p.telephone)) compter('mobile', B.mobile, 'numéro de portable');
+
+    var metier = metierChaleur(p);
+    if (metier && metier.points) {
+      compter('metier', metier.points, metier.points < 0 ? 'métier déjà très équipé en commande en ligne'
+        : (metier.points >= B.metier_a_l_avance ? 'métier à commandes à l\'avance' : 'commerce de proximité') + ' (' + metier.libelle + ')');
+    }
+
+    // Ce que l'appel a appris pèse plus que tout ce qui a été deviné.
+    var appels = Number(p.nb_appels) || 0;
+    if (p.resultat === 'rdv') compter('r_rdv', B.r_rdv, 'rendez-vous obtenu');
+    else if (p.resultat === 'interesse') compter('r_interesse', B.r_interesse, 'intéressé lors de l\'appel');
+    else if (p.resultat === 'deja_site') compter('r_deja_site', B.r_deja_site, 'a dit avoir déjà un site de commande');
+    else if (p.resultat === 'pas_interesse') compter('r_refus', B.r_refus, 'pas intéressé lors de l\'appel');
+    else if (p.resultat === 'faux_numero') compter('r_faux', B.r_faux, 'faux numéro');
+    else if (appels >= B.appels_silence && (p.resultat === 'pas_de_reponse' || p.resultat === 'messagerie')) compter('r_silence', B.r_silence, appels + ' appels sans réponse');
+
+    // Plafond : il prend déjà des commandes en ligne (boutique ou plateforme) → Froid, même très bien installé.
+    // Ce que l'appel a appris (intéressé, rendez-vous) passe au-dessus.
+    if ((commande === 'boutique' || commande === 'plateforme') && p.resultat !== 'rdv' && p.resultat !== 'interesse') {
+      plafonds.push('il prend déjà des commandes en ligne');
+    }
+    if (plafonds.length && total > B.plafond_froid) compter('plafond', B.plafond_froid - total, 'note plafonnée à Froid : ' + plafonds[0]);
+
+    var valeur = borner(total);
+    var niveau = valeur >= B.chaud ? 'chaud' : valeur >= B.tiede ? 'tiede' : 'froid';
+    return rendre(niveau, valeur, trierRaisons(raisons), { partiel: !analyse && !site && !google });
+  }
+
+  /* Par où commencer l'appel, d'après les signaux : { cle, texte } ou null. Première règle vraie. */
+  function angleProspect(p, chaleur) {
+    p = p || {};
+    var ch = chaleur || chaleurProspect(p);
+    if (!ch || ch.exclu || !ch.raisons.length) return null;
+    var cles = {};
+    ch.raisons.forEach(function (r) { cles[r.cle] = r; });
+    var site = objet((objet(p.signaux) || {}).site) || {}, google = objet((objet(p.signaux) || {}).google) || {};
+    var outil = libellesDe(site.outils, LIBELLES_OUTILS, null, 1)[0];
+    function angle(cle, phrase) { return { cle: cle, texte: phrase }; }
+    if (cles.boutique) return angle('boutique', 'Il a déjà une boutique en ligne' + (outil ? ' (' + outil + ')' : '') + '. Demander ce qu\'elle lui rapporte et ce qu\'elle lui coûte ; sinon, passer au suivant.');
+    if (cles.commission) return angle('commission', 'Il livre via ' + libellesDe(site.livraison_commission, LIBELLES_OUTILS, null, 2).join(' et ') + '. Parler de la commande en direct : ses clients, sans commission.');
+    if (cles.plateforme) return angle('plateforme', 'Il vend déjà via ' + (outil || 'une plateforme') + '. Parler de sa propre boutique, à son nom, sans intermédiaire.');
+    if (cles.traiteur) return angle('traiteur', 'Offre traiteur repérée. Parler des commandes de plateaux prises et payées à l\'avance.');
+    if (cles.evenements) return angle('evenements', 'Il travaille pour des événements (mariages, réceptions). Parler des commandes passées et payées à l\'avance.');
+    if (cles.fetes) return angle('fetes', 'Il prend des commandes pour les fêtes. Parler des précommandes sans cahier ni téléphone.');
+    if (cles.precommande) {
+      return angle('precommande', (site.precommande === 'formulaire' ? 'Il prend déjà des commandes par formulaire ou e-mail.' : 'Il prend déjà des commandes par téléphone.') +
+        ' Parler du temps gagné : elles arrivent toutes seules, même boutique fermée.');
+    }
+    if (cles.multi) return angle('multi', 'Plusieurs points de vente. Parler du retrait au choix dans chaque boutique.');
+    if (cles.reseaux_actifs || cles.reseau_seul) {
+      var reseau = texte(p.instagram) || site.reseau === 'instagram' ? 'Instagram' : texte(p.facebook) || site.reseau === 'facebook' ? 'Facebook' : 'les réseaux';
+      // « Sans boutique » ne se dit que si on a pu le constater : site lu sans commande, ou pas de site du tout.
+      var constate = cles.reseau_seul || cles.sans_commande || cles.sans_site_confirme || cles.sans_site || cles.parking;
+      return angle('reseaux', 'Présent sur ' + reseau + (constate ? ', sans boutique' : '') + '. Parler du lien de commande à mettre ' + (reseau === 'Instagram' ? 'dans sa bio' : 'sur sa page') + '.');
+    }
+    if (cles.sans_site_confirme || cles.sans_site || cles.parking) return angle('sans_site', 'Pas de site connu. « Je vous prépare une démo à votre nom, ça ne vous coûte rien. »');
+    if (cles.vieillot) return angle('vieillot', 'Site ancien, sans commande. Proposer de montrer la même chose en version commande sur téléphone.');
+    if (cles.google_frequente) return angle('google', (nombreFini(google.avis) ? nombreFini(google.avis) + ' avis Google' : 'Beaucoup d\'avis Google') + ' : beaucoup de passage. Parler des clients qui commanderaient avant de venir.');
+    return null;
+  }
+
+  /* Les plus chauds d'abord (chaud, tiède, pas encore analysé, froid, à écarter), sans changer l'ordre à égalité. */
+  function trierParChaleur(prospects, chaleurDe) {
+    var rangs = (prospects || []).map(function (p, i) {
+      var ch = typeof chaleurDe === 'function' ? chaleurDe(p) : chaleurProspect(p);
+      return { p: p, i: i, rang: ch ? ch.rang : BAREME_CHALEUR.rangs.non_analyse };
+    });
+    rangs.sort(function (a, b) { return b.rang - a.rang || a.i - b.i; });
+    return rangs.map(function (r) { return r.p; });
+  }
+
   // ───────────────────────────── Prospection : OpenStreetMap, import, récap ─────────────────────────────
 
   function versEnsemble(v) {
@@ -1382,6 +1825,52 @@
     var cases = Array.isArray(options.metiers) ? options.metiers : null;
     var depRecherche = texte(options.departement) || departementDuCode(options.code);
     var vus = new Set(), lignes = [];
+    var maintenant = options.maintenant == null ? new Date() : options.maintenant;
+
+    /* Plusieurs points de vente : pour chaque commerce, combien d'AUTRES éléments de la réponse sont de la même
+       maison (même marque, ou même site à lui), et combien de voisins portent seulement le même nom. Compté sur
+       tous les commerces nommés au métier reconnu, avant les filtres : une seconde boutique sans portable reste
+       une seconde boutique. Un même nom dans deux villes éloignées (« Boulangerie du Centre ») ne compte pas, et
+       un même nom voisin n'est qu'un indice : seuls la marque et le site affirment « plusieurs points de vente ». */
+    var parEnseigne = new Map(), fiches = new Map();
+    function ficheOsm(el, e) {
+      var ref = el.type + '/' + el.id;
+      if (!fiches.has(ref)) {
+        var cp = /^\d{5}$/.test(texte(e['addr:postcode'])) ? texte(e['addr:postcode']) : '';
+        fiches.set(ref, { ref: ref, lat: el.lat != null ? el.lat : el.center && el.center.lat, lon: el.lon != null ? el.lon : el.center && el.center.lon,
+          commune: texte(e['addr:city']), code_postal: cp });
+      }
+      return fiches.get(ref);
+    }
+    function clesEnseigne(e) {
+      var cles = [], cle = cleEnseigne(e.name), marque = sansAccents(e.brand), domaine = domaineSite(premier(e.website, e['contact:website'], e.url));
+      if (cle) cles.push('n:' + cle);
+      if (marque) cles.push('m:' + marque);
+      if (domaine) cles.push('s:' + domaine);
+      return cles;
+    }
+    (elements || []).forEach(function (el) {
+      var e = (el && el.tags) || {};
+      if (!texte(e.name) || !metierOsm(e)) return;
+      var fiche = ficheOsm(el, e);
+      clesEnseigne(e).forEach(function (cle) {
+        if (!parEnseigne.has(cle)) parEnseigne.set(cle, []);
+        parEnseigne.get(cle).push(fiche);
+      });
+    });
+    function homonymesDe(el, e) {
+      var moi = ficheOsm(el, e), maison = new Set(), memeNom = new Set();
+      clesEnseigne(e).forEach(function (cle) {
+        (parEnseigne.get(cle) || []).forEach(function (autre) {
+          // Le même commerce dessiné deux fois (un point et un bâtiment) n'est pas une seconde boutique.
+          if (autre.ref === moi.ref || memeEndroit(moi, autre)) return;
+          if (cle.charAt(0) !== 'n') maison.add(autre.ref);
+          else if (voisins(moi, autre)) memeNom.add(autre.ref);
+        });
+      });
+      maison.forEach(function (ref) { memeNom.delete(ref); });
+      return { homonymes: maison.size, memeNom: memeNom.size };
+    }
 
     (elements || []).forEach(function (el) {
       var e = (el && el.tags) || {};
@@ -1413,6 +1902,10 @@
         instagram: premierLien('instagram', [e['contact:instagram'], e.instagram, siteEnUrl(site)]) || null,
         facebook: premierLien('facebook', [e['contact:facebook'], e.facebook, siteEnUrl(site)]) || null,
         source: 'osm', source_ref: ref,
+        // Position (nœud, ou centre d'un bâtiment) et signaux de chaleur lus dans les étiquettes.
+        lat: coordonnee(el.lat != null ? el.lat : el.center && el.center.lat, 90),
+        lon: coordonnee(el.lon != null ? el.lon : el.center && el.center.lon, 180),
+        signaux: { v: 1, osm: signauxOsm(e, homonymesDe(el, e), maintenant) },
         dejaConnu: !!raison, raisonDejaConnu: raison,
         libelleDejaConnu: raison === 'file' ? 'Déjà dans la file' : raison === 'crm' ? 'Déjà client ou en démo' : null
       });
@@ -1567,10 +2060,15 @@
      crm_fiches / crm_prospects (vu à la lecture ou au premier refus d'écriture). Le reste du CRM n'en dépend pas.
      appels / reglages : faux quand la table du journal d'appels ou celle des réglages n'existe pas (migration
      20261114_crm_appels.sql non appliquée). Rien d'autre n'en dépend : le journal se tait, les réglages restent
-     sur l'appareil. */
+     sur l'appareil.
+     chaleur : faux dès que l'on sait que les colonnes de la migration 20261116_crm_chaleur.sql manquent dans
+     crm_prospects (vu à la lecture, au premier refus d'écriture, ou dit par la fonction crm-enrichir). Sans elles :
+     aucune pastille de chaleur, prospects ajoutés sans leurs signaux, le reste inchangé.
+     analyse : 'inconnu' tant que la fonction crm-enrichir n'a pas été appelée, 'ok' après un lot réussi,
+     'indisponible' après un échec (fonction non déployée, réseau, serveur). Un rechargement n'y touche pas. */
   function etatInitial() {
     return { charge: false, ecriture: false, ecriturePanne: false, prospection: false, sourcesKo: [], sourcesTronquees: [],
-      liens: true, liensProspects: true, appels: false, reglages: false, erreur: null, chargeLe: null };
+      liens: true, liensProspects: true, appels: false, reglages: false, chaleur: true, analyse: 'inconnu', google: 'inconnu', googlePlafond: '', erreur: null, chargeLe: null };
   }
 
   var brut = brutVide();
@@ -1584,11 +2082,18 @@
   var rafraichissement = null;
   var jetonMemoire = null;
   var compteurProvisoire = 0;
+  // Chaleur des prospects : notes déjà calculées (vidées à chaque recalcul) et enseignes présentes dans la file.
+  var cacheChaleur = new Map(), homonymesFile = null, lignesFile = null;
+  // Analyse en cours par la fonction crm-enrichir (une seule à la fois), et fonction connue absente (404).
+  var analyse = null, fonctionAbsente = false, pauseAnalyse = 300;
+  // Prospects dont l'analyse a fait échouer la fonction pendant cette session : repris en dernier, un par un.
+  var echecsAnalyse = {};
 
   var CRM = {
     config: { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' },
     etat: etatInitial(),
     OFFRES: OFFRES, ETAPES: ETAPES, MOTIFS_PERTE: MOTIFS_PERTE, RESULTATS_APPEL: RESULTATS_APPEL,
+    NIVEAUX_CHALEUR: NIVEAUX_CHALEUR, BAREME_CHALEUR: BAREME_CHALEUR, analyseEnCours: null,
     RESULTATS_PROSPECT: RESULTATS_PROSPECT, DEPARTEMENTS: DEPARTEMENTS, METIERS_OSM: METIERS_OSM, RESEAUX: RESEAUX,
     SERVEURS_OVERPASS: SERVEURS_OVERPASS,
     fiches: [], prospects: brut.prospects, appels: brut.appels,
@@ -1623,6 +2128,8 @@
   };
 
   function recalculer() {
+    cacheChaleur = new Map();
+    homonymesFile = null;
     CRM.prospects = brut.prospects;
     CRM.appels = brut.appels;
     CRM.fiches = unifier(brut, Object.assign({}, CRM.config, { sourcesKo: sourcesSansDonnees }), CRM.horloge());
@@ -1715,6 +2222,42 @@
     return json;
   }
 
+  /* Appel d'une fonction Edge (POST JSON) avec le jeton de l'admin. Un 401 déclenche un rafraîchissement du jeton
+     et un second essai. Rejette avec une erreur `reseau` (connexion, délai de 60 s) ou l'erreur HTTP (statut, code). */
+  var DELAI_FONCTION = 60000;
+  async function crmFonction(nom, corps) {
+    async function envoyer() {
+      var controleur = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      var minuterie = setTimeout(function () { if (controleur) controleur.abort(); }, DELAI_FONCTION);
+      try {
+        var r = await fetch(CRM.config.url + '/functions/v1/' + nom, {
+          method: 'POST',
+          headers: { apikey: CRM.config.cleAnon, Authorization: 'Bearer ' + jetonCourant(), 'Content-Type': 'application/json' },
+          body: JSON.stringify(corps), signal: controleur ? controleur.signal : undefined
+        });
+        return { r: r, contenu: await r.text().catch(function () { return ''; }) };
+      } catch (e) {
+        // Délai de 60 s dépassé (la fonction a répondu trop tard) : à distinguer d'un réseau coupé.
+        if (controleur && controleur.signal.aborted) e.delai = true;
+        throw e;
+      } finally { clearTimeout(minuterie); }
+    }
+    var recu;
+    try {
+      recu = await envoyer();
+      if (recu.r.status === 401 && await rafraichirJeton()) recu = await envoyer();
+    } catch (e) {
+      var reseau = new Error('Connexion impossible. Vérifiez le réseau puis réessayez.');
+      reseau.reseau = true;
+      reseau.delai = !!(e && e.delai);
+      throw reseau;
+    }
+    var json = null;
+    if (recu.contenu) { try { json = JSON.parse(recu.contenu); } catch (e) { json = null; } }
+    if (!recu.r.ok) throw erreurHttp(recu.r.status, json, recu.contenu);
+    return json;
+  }
+
   function requetesLecture(maintenant) {
     var j90 = new Date(maintenant.getTime() - 90 * JOUR).toISOString();
     var j60 = new Date(maintenant.getTime() - 60 * JOUR).toISOString();
@@ -1772,8 +2315,16 @@
      42703 dans une requête. */
   function estColonneAbsente(e) {
     return !!e && (e.code === 'PGRST204' || e.code === '42703' ||
-      (e.statut === 400 && /column|colonne/i.test(texte(e.detail)) && /lien_|google_url|instagram|facebook/.test(texte(e.detail))));
+      (e.statut === 400 && /column|colonne/i.test(texte(e.detail)) &&
+        /lien_|google_url|instagram|facebook|signaux|analyse_at|chaleur_manuelle|reseaux_actifs|google_note|google_avis|\blat\b|\blon\b/.test(texte(e.detail))));
   }
+  // Nom de la colonne que l'API dit ne pas connaître, ou '' si le refus ne la nomme pas.
+  function colonneRefusee(e) {
+    var detail = texte(e && e.detail);
+    var m = /'([a-z_]+)' column/.exec(detail) || /column (?:[a-z_]+\.)?"?([a-z_]+)"? does not exist/.exec(detail);
+    return m ? m[1] : '';
+  }
+  var MIGRATION_CHALEUR = 'la migration de la chaleur (20261116_crm_chaleur.sql) n\'est pas encore appliquée';
   var MIGRATION_LIENS = 'la migration des liens (20261114_crm_liens.sql) n\'est pas encore appliquée';
 
   // Panne passagère (réseau coupé, serveur en erreur), par opposition à une table absente ou à des droits refusés.
@@ -1834,6 +2385,7 @@
       // Une table lue sans les colonnes de la migration « liens » : on le sait avant même d'essayer d'écrire.
       CRM.etat.liens = colonnePresente(nouveau.fiches, 'lien_google');
       CRM.etat.liensProspects = colonnePresente(nouveau.prospects, 'google_url');
+      CRM.etat.chaleur = colonnePresente(nouveau.prospects, 'signaux');
       CRM.etat.appels = annexes.appels;
       CRM.etat.reglages = annexes.reglages;
       CRM.etat.erreur = erreur;
@@ -1934,6 +2486,92 @@
     var f = p.id != null ? parCle.get(cleDe('p', p.id)) : null;
     return f ? f.presence : presence({ nom: p.nom, commune: p.commune, prospects: [p] });
   };
+
+  /* Autres prospects de la file de la même maison. `homonymes` : ils affichent le même site (le leur, pas une page
+     Facebook) avec un autre numéro ou une autre commune : plusieurs points de vente. `memeNom` : ils portent
+     seulement le même nom, tout près (15 km, ou même commune) : un indice à vérifier, jamais une affirmation.
+     Deux « Boulangerie du Centre » de deux villes éloignées, ou de deux campagnes sans rapport, ne comptent pas. */
+  function indexerFile() {
+    if (homonymesFile) return;
+    homonymesFile = new Map();
+    lignesFile = new Set(brut.prospects);
+    brut.prospects.forEach(function (x) {
+      var cle = cleEnseigne(x.nom), domaine = domaineSite(x.site_web);
+      [cle && 'n:' + cle, domaine && 's:' + domaine].filter(Boolean).forEach(function (c) {
+        if (!homonymesFile.has(c)) homonymesFile.set(c, []);
+        homonymesFile.get(c).push(x);
+      });
+    });
+  }
+  function homonymesDansFile(p) {
+    var cle = cleEnseigne(p.nom), domaine = domaineSite(p.site_web);
+    function autre(x) {
+      return x !== p && x.id !== p.id && !memeEndroit(p, x) && (texte(x.telephone) !== texte(p.telephone) || sansAccents(x.commune) !== sansAccents(p.commune));
+    }
+    var maison = domaine ? (homonymesFile.get('s:' + domaine) || []).filter(autre) : [];
+    var memeNom = cle ? (homonymesFile.get('n:' + cle) || []).filter(function (x) { return autre(x) && maison.indexOf(x) < 0 && voisins(p, x); }) : [];
+    return { homonymes: maison.length, memeNom: memeNom.length };
+  }
+
+  /* Chaleur d'un prospect (voir chaleurProspect), homonymes de la file compris. Rend null quand les colonnes de la
+     migration manquent : l'interface n'affiche alors aucune pastille. Le résultat est gardé jusqu'au prochain recalcul. */
+  CRM.chaleurProspect = function (p) {
+    if (!p || !CRM.etat.chaleur) return null;
+    if (cacheChaleur.has(p)) return cacheChaleur.get(p);
+    indexerFile();
+    var dansFile = lignesFile.has(p);
+    var ch = chaleurProspect(p, dansFile ? homonymesDansFile(p) : {});
+    // Seules les lignes de la file sont gardées : toute modification d'une d'elles passe par un recalcul, qui vide ce cache.
+    if (dansFile) cacheChaleur.set(p, ch);
+    return ch;
+  };
+  CRM.angleProspect = function (p) {
+    var ch = CRM.chaleurProspect(p);
+    return ch ? angleProspect(p, ch) : null;
+  };
+  function jourUtc(v) { var d = new Date(v); return isNaN(d.getTime()) ? '' : d.toISOString().slice(0, 10); }
+
+  /* Ce qu'il reste à faire analyser d'un prospect : 'jamais' (aucune analyse), 'google' (analysé, mais sa fiche
+     Google n'a pas pu être cherchée : clé absente à l'époque, plafond du jour atteint, panne), 'site' (son site
+     n'a pas répondu : trois essais au plus, un par jour ; ou il a changé depuis l'analyse), ou '' (rien). Sans cela un prospect analysé un jour sans
+     clé Google, ou au-delà du plafond, n'aurait plus jamais sa fiche Google remplie automatiquement. */
+  function resteAAnalyser(p, maintenant) {
+    if (!p) return '';
+    if (!p.analyse_at) return 'jamais';
+    var s = objet(p.signaux) || {}, google = objet(s.google), site = objet(s.site);
+    var etatGoogle = google && texte(google.etat) ? texte(google.etat) : 'sans_cle';
+    var instant = new Date(maintenant).getTime();
+    function age(le) { var t = Date.parse(le); return isNaN(t) ? Infinity : instant - t; }
+    // La fonction vient de dire que le plafond Google du jour est atteint : rien à lui redemander avant demain.
+    var plafondAtteint = !!CRM.etat.googlePlafond && CRM.etat.googlePlafond === jourUtc(instant);
+    // Clé absente : reproposé tant que la fonction n'a pas redit, pendant cette session, qu'elle n'a pas de clé.
+    if (!plafondAtteint && etatGoogle === 'sans_cle' && CRM.etat.google !== 'sans_cle') return 'google';
+    // Plafond du jour : reproposé le lendemain (jour UTC, comme le compteur de la fonction).
+    if (!plafondAtteint && etatGoogle === 'quota' && jourUtc(google.le) !== jourUtc(instant)) return 'google';
+    if (!plafondAtteint && etatGoogle === 'erreur' && age(google.le) >= DELAI_REESSAI_GOOGLE) return 'google';
+    if (site && site.etat === 'injoignable' && (nombreFini(site.essais) || 1) < ESSAIS_SITE && age(site.le) >= DELAI_REESSAI_SITE) return 'site';
+    // Le site a changé depuis l'analyse (saisi, corrigé) : ce qu'elle a vu ne le concerne plus.
+    var siteWeb = texte(p.site_web).slice(0, 300);
+    if (site && siteWeb && (site.etat === 'pas_de_site' || (texte(site.de) && texte(site.de) !== siteWeb))) return 'site';
+    return '';
+  }
+
+  /* Prospects à (faire) analyser, dans l'ordre de la file : ceux que la fonction crm-enrichir n'a jamais regardés,
+     puis ceux dont il reste la fiche Google ou le site à reprendre (voir resteAAnalyser). Les prospects qui ont
+     fait échouer la fonction pendant cette session viennent en dernier. `liste` : nom d'une campagne. */
+  CRM.aAnalyser = function (liste) {
+    var nom = texte(liste), maintenant = CRM.horloge();
+    var jamais = [], reprises = [], difficiles = [];
+    brut.prospects.forEach(function (p) {
+      if (p.enAttente || /^provisoire-/.test(String(p.id)) || (nom && (p.liste || 'Prospection') !== nom)) return;
+      var reste = resteAAnalyser(p, maintenant);
+      if (!reste) return;
+      (echecsAnalyse[p.id] ? difficiles : reste === 'jamais' ? jamais : reprises).push(p);
+    });
+    return jamais.concat(reprises, difficiles);
+  };
+  /* Pourquoi un prospect est proposé à l'analyse : 'jamais', 'google', 'site' ou ''. */
+  CRM.resteAAnalyser = function (p) { return resteAAnalyser(p, CRM.horloge()); };
 
   // ───────────────────────────── Écritures du CRM ─────────────────────────────
 
@@ -2239,12 +2877,22 @@
     p.source = SOURCES_PROSPECT.indexOf(ligne.source) >= 0 ? ligne.source : 'manuel';
     p.liste = p.liste || 'Prospection';
     RESEAUX.forEach(function (r) { p[r.colonneProspect] = normaliserLien(r.id, ligne[r.colonneProspect]) || null; });
+    // Signaux de chaleur lus à la recherche (OpenStreetMap) et position : toujours présents, nuls par défaut.
+    p.signaux = signauxValides(ligne.signaux);
+    p.lat = coordonnee(ligne.lat, 90);
+    p.lon = coordonnee(ligne.lon, 180);
+    if (p.lat == null || p.lon == null) { p.lat = null; p.lon = null; }
     return p;
   }
 
   function sansLiens(p) {
     var copie = Object.assign({}, p);
     RESEAUX.forEach(function (r) { delete copie[r.colonneProspect]; });
+    return copie;
+  }
+  function sansChaleur(p) {
+    var copie = Object.assign({}, p);
+    delete copie.signaux; delete copie.lat; delete copie.lon;
     return copie;
   }
 
@@ -2280,16 +2928,25 @@
     function poster(lot) {
       return crmFetch('POST', '/rest/v1/crm_prospects', lot, 'resolution=ignore-duplicates,return=representation', { videPermis: true });
     }
+    /* Migration « liens » ou « chaleur » non appliquée : les prospects sont ajoutés quand même, sans les colonnes
+       que la base ne connaît pas. Le refus nomme la colonne ; sinon on retire les liens, puis la chaleur. */
     async function envoyer(lot) {
       if (!lot.length) return [];
-      if (!CRM.etat.liensProspects) return (await poster(lot.map(sansLiens))) || [];
-      try {
-        return (await poster(lot)) || [];
-      } catch (e) {
-        if (!estColonneAbsente(e)) throw e;
-        // Migration « liens » non appliquée : les prospects sont ajoutés quand même, sans leurs liens.
-        CRM.etat.liensProspects = false;
-        return (await poster(lot.map(sansLiens))) || [];
+      for (var essai = 0; ; essai++) {
+        var allege = lot;
+        if (!CRM.etat.liensProspects) allege = allege.map(sansLiens);
+        if (!CRM.etat.chaleur) allege = allege.map(sansChaleur);
+        try {
+          return (await poster(allege)) || [];
+        } catch (e) {
+          if (!estColonneAbsente(e) || essai >= 2) throw e;
+          var deChaleur = COLONNES_CHALEUR.indexOf(colonneRefusee(e)) >= 0;
+          if (deChaleur && CRM.etat.chaleur) CRM.etat.chaleur = false;
+          else if (!deChaleur && CRM.etat.liensProspects) CRM.etat.liensProspects = false;
+          else if (CRM.etat.chaleur) CRM.etat.chaleur = false;
+          else if (CRM.etat.liensProspects) CRM.etat.liensProspects = false;
+          else throw e;
+        }
       }
     }
     for (var debut = 0; debut < tri.gardes.length; debut += 200) {
@@ -2365,12 +3022,27 @@
       avecLiens = true;
     });
     if (avecLiens && !CRM.etat.liensProspects) throw new Error('L\'enregistrement des liens est inactif : ' + MIGRATION_LIENS + '.');
+    // Réglages manuels de la chaleur : niveau forcé (null = automatique) et activité des réseaux (null = inconnue).
+    var avecChaleur = false;
+    [['chaleur_manuelle', NIVEAUX_MANUELS], ['reseaux_actifs', ACTIVITES_RESEAUX]].forEach(function (c) {
+      if (!(c[0] in champs)) return;
+      var v = champs[c[0]] == null || champs[c[0]] === '' ? null : champs[c[0]];
+      if (v !== null && c[1].indexOf(v) < 0) throw new Error('Valeur inconnue.');
+      propres[c[0]] = v;
+      avecChaleur = true;
+    });
+    if (avecChaleur && !CRM.etat.chaleur) throw new Error('Réglage inactif : ' + MIGRATION_CHALEUR + '.');
     if (!Object.keys(propres).length) return trouverParId(brut.prospects, id);
-    if (!avecLiens) return patchProspect(id, propres, options);
+    if (!avecLiens && !avecChaleur) return patchProspect(id, propres, options);
     try {
       return await patchProspect(id, propres, options);
     } catch (e) {
       if (!estColonneAbsente(e)) throw e;
+      if (avecChaleur && (!avecLiens || COLONNES_CHALEUR.indexOf(colonneRefusee(e)) >= 0)) {
+        CRM.etat.chaleur = false;
+        recalculer();
+        throw new Error('Réglage inactif : ' + MIGRATION_CHALEUR + '.');
+      }
       CRM.etat.liensProspects = false;
       throw new Error('Lien non enregistré : ' + MIGRATION_LIENS + '.');
     }
@@ -2403,6 +3075,267 @@
     if (Array.isArray(liste)) return recap(liste, titre);
     var nom = texte(liste);
     return recap(nom ? brut.prospects.filter(function (p) { return p.liste === nom; }) : brut.prospects, titre || nom);
+  };
+
+  // ───────────────────────────── Analyse automatique (fonction crm-enrichir) ─────────────────────────────
+
+  var LOT_ANALYSE = 5, PASSAGES_ANALYSE = 2, AUTO_MAX = 60, CLE_ANALYSE_ABSENTE = 'crm_analyse_absente';
+  // Colonnes que la fonction remplit et que le navigateur recopie dans sa ligne.
+  var COLONNES_ENRICHIES = ['signaux', 'analyse_at', 'google_note', 'google_avis', 'google_url', 'site_web', 'email', 'telephone',
+    'instagram', 'facebook', 'lat', 'lon', 'updated_at'];
+
+  function bilanAnalyse(champs) {
+    return Object.assign({ analyses: 0, echecs: 0, restants: 0, indisponible: false, google: null, arrete: false, message: '',
+      // Fiches Google qui n'ont pas pu être cherchées (plafond du jour, clé absente) et prospects qui ont fait échouer la fonction.
+      googleReportes: 0, quota: false, enEchec: [] }, champs);
+  }
+  function idsAnalysables(ids) {
+    var vus = [];
+    (Array.isArray(ids) ? ids : []).forEach(function (id) {
+      if (typeof id !== 'string' || !id || /^provisoire-/.test(id) || vus.indexOf(id) >= 0) return;
+      var p = trouverParId(brut.prospects, id);
+      if (p && !p.enAttente) vus.push(id);
+    });
+    return vus;
+  }
+  // La fonction a répondu 404 pendant cette session : plus d'appel automatique (un clic sur « Analyser » retente).
+  function absenceConnue() {
+    if (fonctionAbsente) return true;
+    try { return typeof sessionStorage !== 'undefined' && sessionStorage.getItem(CLE_ANALYSE_ABSENTE) === '1'; } catch (e) { return false; }
+  }
+  function noterAbsence(absente) {
+    fonctionAbsente = absente;
+    try {
+      if (typeof sessionStorage === 'undefined') return;
+      if (absente) sessionStorage.setItem(CLE_ANALYSE_ABSENTE, '1'); else sessionStorage.removeItem(CLE_ANALYSE_ABSENTE);
+    } catch (e) { /* stockage bloqué : la mémoire de la page suffit */ }
+  }
+  function publierAnalyse() {
+    CRM.analyseEnCours = analyse ? {
+      fait: analyse.fait, total: analyse.total, auto: analyse.auto, lot: analyse.lot.slice(),
+      annuler: function () { if (analyse) analyse.annule = true; }
+    } : null;
+  }
+  function prevenirAnalyse(a) {
+    a.ecouteurs.slice().forEach(function (fn) { try { fn(a.fait, a.total); } catch (e) { /* un écouteur défaillant ne bloque pas l'analyse */ } });
+  }
+
+  /* Recopie dans la ligne du prospect ce que la fonction a écrit en base. Une colonne modifiée par l'utilisateur
+     pendant l'analyse (valeur différente de celle du départ du lot, et non vide) n'est jamais écrasée. */
+  function fusionnerAnalyse(id, recu, depart) {
+    var p = trouverParId(brut.prospects, id);
+    if (!p || !recu || typeof recu !== 'object') return;
+    COLONNES_ENRICHIES.forEach(function (colonne) {
+      if (!(colonne in recu)) return;
+      if (depart && colonne !== 'updated_at' && p[colonne] !== depart[colonne] && p[colonne] != null) return;
+      p[colonne] = recu[colonne];
+    });
+  }
+
+  /* Répond aux demandes venues pendant l'analyse (un clic sur « Analyser » d'une fiche) dès que LEURS prospects
+     sont traités, avec un bilan qui ne porte que sur eux. `fin` : l'analyse s'arrête, tout le monde est servi. */
+  function servirAttentes(a, fin) {
+    var global = a.bilan || bilanAnalyse();
+    a.attentes = a.attentes.filter(function (attente) {
+      var restants = attente.ids.filter(function (id) { return !a.issues[id]; });
+      if (restants.length && !fin) return true;
+      var faits = attente.ids.filter(function (id) { return a.issues[id] === 'ok'; }).length;
+      attente.resoudre(bilanAnalyse({
+        analyses: faits, echecs: attente.ids.length - restants.length - faits, restants: restants.length, google: global.google,
+        indisponible: restants.length > 0 && global.indisponible, arrete: restants.length > 0 && global.arrete,
+        message: restants.length ? global.message : '',
+        quota: attente.ids.some(function (id) { var x = trouverParId(brut.prospects, id), g = x && objet((objet(x.signaux) || {}).google); return !!g && g.etat === 'quota'; }),
+        enEchec: global.enEchec.filter(function (id) { return attente.ids.indexOf(id) >= 0; })
+      }));
+      return false;
+    });
+  }
+
+  /* La file ne garde pas les prospects qui n'attendaient que leur fiche Google quand la fonction vient de dire
+     qu'elle ne peut pas la chercher (pas de clé, plafond du jour atteint) : les appeler ne servirait à rien. */
+  function retirerAttentesGoogle(a, bilan) {
+    var avant = a.file.length;
+    a.file = a.file.filter(function (id) { return !(a.motifs[id] === 'google' && !a.forces[id]); });
+    var retires = avant - a.file.length;
+    a.total -= retires;
+    bilan.googleReportes += retires;
+  }
+
+  async function deroulerAnalyse(a) {
+    var bilan = a.bilan = bilanAnalyse();
+    function arretDemande() { return a.annule || !!(a.signal && a.signal.aborted); }
+    // Prospects repris seuls après l'échec de leur lot, et qui ont échoué seuls : coupables si un autre réussit ensuite.
+    var suspects = [], reussitesSeules = 0;
+    function innocenter() {
+      // La fonction ne répond plus du tout : personne n'est coupable, tout retourne dans la file.
+      suspects.forEach(function (id) {
+        bilan.echecs--; a.fait--; delete a.issues[id];
+        bilan.enEchec = bilan.enEchec.filter(function (x) { return x !== id; });
+        echecsAnalyse[id] = Math.max(0, (echecsAnalyse[id] || 1) - 1);
+        if (!echecsAnalyse[id]) delete echecsAnalyse[id];
+      });
+      a.file = suspects.concat(a.file);
+      suspects = [];
+    }
+    while (a.file.length) {
+      if (arretDemande()) { bilan.arrete = true; break; }
+      // Un lot ne mêle pas les prospects à réanalyser de force et les autres ; un prospect « seul » part seul.
+      var forcer = !!a.forces[a.file[0]], seul = !!a.seuls[a.file[0]], lot = [];
+      while (a.file.length && lot.length < (seul ? 1 : LOT_ANALYSE) && !!a.forces[a.file[0]] === forcer && !!a.seuls[a.file[0]] === seul) lot.push(a.file.shift());
+      a.lot = lot;
+      publierAnalyse();
+      var depart = {};
+      lot.forEach(function (id) {
+        var p = trouverParId(brut.prospects, id), copie = {};
+        if (p) COLONNES_ENRICHIES.forEach(function (colonne) { copie[colonne] = p[colonne]; });
+        depart[id] = p ? copie : null;
+      });
+      var reponse = null, echec = null;
+      try {
+        reponse = await crmFonction('crm-enrichir', { ids: lot, forcer: forcer });
+        if (!reponse || !Array.isArray(reponse.resultats)) echec = { statut: 502 };
+      } catch (e) { echec = e || {}; }
+      if (echec) {
+        a.lot = [];
+        // La fonction a répondu trop tard ou a été interrompue (délai, erreur 5xx) : c'est peut-être UN prospect
+        // (une page énorme ou piégée). Chaque prospect du lot est alors repris seul, et celui qui échoue encore
+        // est compté « non abouti » et nommé, sans bloquer les autres ni les analyses suivantes.
+        var passager = !!echec.delai || (echec.statut >= 500 && echec.statut <= 599);
+        if (passager && lot.length > 1) {
+          lot.forEach(function (id) { a.seuls[id] = true; });
+          a.file = lot.concat(a.file);
+          continue;
+        }
+        if (passager && lot.length === 1 && a.seuls[lot[0]] && !suspects.length && (a.file.length || reussitesSeules)) {
+          var coupable = lot[0];
+          suspects.push(coupable);
+          bilan.echecs++; a.fait++; a.issues[coupable] = 'echec'; bilan.enEchec.push(coupable);
+          echecsAnalyse[coupable] = (echecsAnalyse[coupable] || 0) + 1;
+          publierAnalyse();
+          prevenirAnalyse(a);
+          // Seul et dernier, alors que d'autres du même lot ont réussi : c'est bien lui.
+          if (!a.file.length) suspects = [];
+          continue;
+        }
+        // Rien n'est perdu : le lot (et les suspects non confirmés) retournent en tête de file et comptent parmi les restants.
+        a.file = lot.concat(a.file);
+        innocenter();
+        bilan.indisponible = true;
+        if (echec.statut === 409 && echec.code === 'migration') {
+          CRM.etat.chaleur = false;
+        } else if (echec.statut === 401 || echec.statut === 403) {
+          bilan.message = 'Session expirée ou droits insuffisants. Reconnectez-vous.';
+        } else {
+          CRM.etat.analyse = 'indisponible';
+          if (echec.statut === 404) noterAbsence(true);
+        }
+        break;
+      }
+      // Une réponse : les prospects qui avaient échoué seuls juste avant étaient bien en cause.
+      suspects = [];
+      if (seul) reussitesSeules++;
+      CRM.etat.analyse = 'ok';
+      noterAbsence(false);
+      if (reponse.google === 'actif' || reponse.google === 'sans_cle') { bilan.google = reponse.google; CRM.etat.google = reponse.google; }
+      var traites = {}, plafondAtteint = false;
+      reponse.resultats.forEach(function (r) {
+        var id = r && lot.filter(function (x) { return String(x).toLowerCase() === String(r.id).toLowerCase(); })[0];
+        if (!id || traites[id]) return;
+        traites[id] = true;
+        if (r.etat === 'ok' && r.prospect) {
+          fusionnerAnalyse(id, r.prospect, depart[id]);
+          if (r.google === 'quota') plafondAtteint = true;
+          // Il n'attendait que sa fiche Google et elle n'a toujours pas pu être cherchée : rien de fait pour lui.
+          if (a.motifs[id] === 'google' && !a.forces[id] && (r.google === 'quota' || r.google === 'sans_cle')) bilan.googleReportes++;
+          else bilan.analyses++;
+          a.fait++; a.issues[id] = 'ok';
+          delete echecsAnalyse[id];
+        } else if (r.etat === 'reporte' && (a.passages[id] = (a.passages[id] || 0) + 1) < PASSAGES_ANALYSE) a.file.push(id);
+        else { bilan.echecs++; a.fait++; a.issues[id] = 'echec'; }
+      });
+      lot.forEach(function (id) { if (!traites[id]) { bilan.echecs++; a.fait++; a.issues[id] = 'echec'; } });
+      if (plafondAtteint) { bilan.quota = true; CRM.etat.googlePlafond = jourUtc(CRM.horloge()); }
+      if (plafondAtteint || reponse.google === 'sans_cle') retirerAttentesGoogle(a, bilan);
+      a.lot = [];
+      publierAnalyse();
+      recalculer();
+      prevenirAnalyse(a);
+      servirAttentes(a, false);
+      if (arretDemande()) { bilan.arrete = a.file.length > 0; break; }
+      if (a.file.length && pauseAnalyse) await new Promise(function (resoudre) { setTimeout(resoudre, pauseAnalyse); });
+    }
+    bilan.restants = a.file.length;
+    return bilan;
+  }
+
+  /* Fait analyser des prospects par la fonction crm-enrichir (site du commerce, fiche Google), par lots de 5.
+     opts : { forcer (réanalyser même ce qui est frais), surProgres(fait, total), signal (AbortSignal) }.
+     Résout { analyses, echecs, restants, indisponible, google ('actif' | 'sans_cle' | null), arrete, message,
+     googleReportes, quota, enEchec (ids des prospects qui ont fait échouer la fonction) }.
+     NE REJETTE JAMAIS et n'écrit rien dans la console : une fonction non déployée, un réseau coupé ou une
+     migration absente donnent `indisponible`. Une seule analyse à la fois : un second appel ajoute ses prospects
+     à l'analyse en cours — EN TÊTE s'il vient d'un clic, même s'ils attendaient déjà plus loin dans la file — et
+     sa promesse se résout dès que SES prospects sont traités, avec un bilan qui ne porte que sur eux. */
+  CRM.analyserProspects = function (ids, opts) {
+    opts = opts || {};
+    var liste = idsAnalysables(ids);
+    if (!CRM.etat.chaleur || !CRM.etat.prospection) return Promise.resolve(bilanAnalyse({ indisponible: true, restants: liste.length }));
+    // Une analyse que l'on vient d'arrêter finit son lot : la nouvelle demande part juste après.
+    if (analyse && analyse.annule) return analyse.promesse.then(function () { return CRM.analyserProspects(ids, opts); });
+    var maintenant = CRM.horloge();
+    function motifs(a) { liste.forEach(function (id) { if (!(id in a.motifs)) a.motifs[id] = resteAAnalyser(trouverParId(brut.prospects, id), maintenant); }); }
+    if (analyse) {
+      var a0 = analyse;
+      if (!liste.length) return Promise.resolve(bilanAnalyse());
+      var enVol = function (id) { return a0.lot.indexOf(id) >= 0; };
+      var nouveaux = liste.filter(function (id) { return a0.file.indexOf(id) < 0 && !enVol(id); });
+      // Déjà traité plus tôt dans cette analyse et redemandé : il repasse.
+      nouveaux.forEach(function (id) { if (a0.issues[id]) { delete a0.issues[id]; a0.fait = Math.max(0, a0.fait - 1); a0.total--; } });
+      if (opts.auto) a0.file = a0.file.concat(nouveaux);
+      else {
+        // Un clic passe devant tout le monde : ses prospects quittent leur place dans la file pour en prendre la tête.
+        var devant = liste.filter(function (id) { return !enVol(id); });
+        a0.file = devant.concat(a0.file.filter(function (id) { return devant.indexOf(id) < 0; }));
+        a0.auto = false;
+      }
+      a0.total += nouveaux.length;
+      if (opts.forcer) liste.forEach(function (id) { a0.forces[id] = true; });
+      motifs(a0);
+      if (typeof opts.surProgres === 'function') a0.ecouteurs.push(opts.surProgres);
+      publierAnalyse();
+      return new Promise(function (resoudre) { a0.attentes.push({ ids: liste.slice(), resoudre: resoudre }); });
+    }
+    if (!liste.length) return Promise.resolve(bilanAnalyse());
+    var a = analyse = { file: liste.slice(), total: liste.length, fait: 0, lot: [], forces: {}, seuls: {}, motifs: {}, issues: {}, attentes: [], passages: {},
+      annule: false, auto: !!opts.auto, signal: opts.signal || null, ecouteurs: typeof opts.surProgres === 'function' ? [opts.surProgres] : [] };
+    if (opts.forcer) liste.forEach(function (id) { a.forces[id] = true; });
+    motifs(a);
+    // Ceux qui ont déjà fait échouer la fonction pendant cette session partent seuls : ils n'entraînent plus leur lot.
+    liste.forEach(function (id) { if (echecsAnalyse[id]) a.seuls[id] = true; });
+    publierAnalyse();
+    a.promesse = deroulerAnalyse(a).then(null, function () {
+      // Aucune erreur n'est attendue ici ; par prudence elle devient un bilan, jamais un rejet.
+      a.bilan = bilanAnalyse({ indisponible: true, restants: a.file.length });
+      return a.bilan;
+    }).then(function (bilan) {
+      analyse = null;
+      servirAttentes(a, true);
+      publierAnalyse();
+      recalculer();
+      return bilan;
+    });
+    return a.promesse;
+  };
+
+  /* Analyse lancée toute seule après un ajout de prospects : au plus 60 d'un coup (les autres sont comptés dans
+     `restants`), et rien du tout si la fonction a déjà répondu « absente » pendant cette session. */
+  CRM.analyseAuto = function (ids, opts) {
+    var liste = idsAnalysables(ids);
+    if (absenceConnue()) return Promise.resolve(bilanAnalyse({ indisponible: true, silencieux: true, restants: liste.length }));
+    var surplus = Math.max(0, liste.length - AUTO_MAX);
+    return CRM.analyserProspects(liste.slice(0, AUTO_MAX), Object.assign({}, opts, { auto: true, forcer: false })).then(function (bilan) {
+      return surplus ? Object.assign({}, bilan, { restants: bilan.restants + surplus }) : bilan;
+    });
   };
 
   // ───────────────────────────── Journal d'appels et réglages ─────────────────────────────
@@ -2611,7 +3544,7 @@
         if (e && e.repli) continue;
         throw e;
       }
-      var options = Object.assign({}, parametres.options, { metiers: parametres.metiers, code: parametres.code });
+      var options = Object.assign({}, parametres.options, { metiers: parametres.metiers, code: parametres.code, maintenant: CRM.horloge() });
       if (parametres.niveau === 'departement' && !options.departement) options.departement = texte(parametres.code).toUpperCase();
       return {
         prospects: prospectsDepuisOsm(elements, options, CRM.dejaConnus()),
@@ -2643,7 +3576,9 @@
     unifier: unifier, etape: etape, score: score, prochaineAction: prochaineAction, fil: fil,
     modeles: modeles, liens: liens, lienBoutique: lienBoutique,
     prospectsDepuisOsm: prospectsDepuisOsm, requeteOverpass: requeteOverpass, analyserImport: analyserImport, recap: recap,
-    normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence, estLienMaps: estLienMaps
+    normaliserLien: normaliserLien, recherchesPresence: recherchesPresence, presence: presence, estLienMaps: estLienMaps,
+    cleEnseigne: cleEnseigne, signauxOsm: signauxOsm, chaleurProspect: chaleurProspect, angleProspect: angleProspect,
+    trierParChaleur: trierParChaleur
   };
 
   // Réservé aux tests : remet le cœur à neuf, ou injecte des données sans passer par le réseau.
@@ -2653,11 +3588,15 @@
       CRM.fiches = []; CRM.prospects = brut.prospects; CRM.appels = brut.appels;
       CRM.config = { url: '', cleAnon: '', emailAdmin: '', origine: ORIGINE_DEFAUT, signature: '' };
       ecrituresEnVol = 0; generation = 0; rechargementDu = false; sourcesSansDonnees = [];
+      cacheChaleur = new Map(); homonymesFile = null; analyse = null; fonctionAbsente = false; pauseAnalyse = 300; echecsAnalyse = {};
+      CRM.analyseEnCours = null;
       CRM.etat = etatInitial();
       CRM.horloge = function () { return new Date(); };
     },
     brut: function () { return brut; },
-    crmFetch: crmFetch
+    crmFetch: crmFetch, crmFonction: crmFonction,
+    // Pause entre deux lots d'analyse (ms) : raccourcie par les tests.
+    pauseAnalyse: function (ms) { pauseAnalyse = Math.max(0, Number(ms) || 0); }
   };
 
   if (racine) racine.CRM = CRM;

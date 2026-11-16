@@ -63,7 +63,14 @@
     desinscrit: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m9 10 6 6M15 10l-6 6"/>',
     google: '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><path d="M14.6 8.6a3 3 0 1 0 .4 2.4H12"/>',
     instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
-    facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>'
+    facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+    // Chaleur du prospect : flamme (chaud), thermomètre à mi-hauteur (tiède), flocon (froid), sablier (pas encore analysé).
+    flamme: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    mitige: '<path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/><path d="M12 11v6"/>',
+    flocon: '<path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/>',
+    sablier: '<path d="M5 22h14M5 2h14M17 22v-4.2a2 2 0 0 0-.6-1.4L12 12l-4.4 4.4a2 2 0 0 0-.6 1.4V22M7 2v4.2a2 2 0 0 0 .6 1.4L12 12l4.4-4.4a2 2 0 0 0 .6-1.4V2"/>',
+    baguette: '<path d="m4 20 11-11M14.5 5.5l4 4"/><path d="M19 13v4M17 15h4M6 3v4M4 5h4M11 2v2M10 3h2"/>',
+    main: '<path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/>'
   };
 
   function ic(nom, taille) {
@@ -163,6 +170,95 @@
     if (!s) return '<span class="crm-score crm-n-perdu" title="Fiche perdue : pas de score">–</span>';
     var titre = (s.type === 'sante' ? 'Santé' : 'Chaleur') + ' : ' + s.libelle + ' (' + s.valeur + ' sur 100)';
     return '<span class="crm-score crm-n-' + esc(s.niveau) + '" title="' + esc(titre) + '">' + s.valeur + '</span>';
+  }
+
+  // ───────────────────────────── Chaleur du prospect (composants partagés avec la vue Prospection) ─────────────────────────────
+
+  var ICONES_CHALEUR = { chaud: 'flamme', tiede: 'mitige', froid: 'flocon', non_analyse: 'sablier' };
+  var LIBELLES_SITE = {
+    pas_de_site: 'Pas de site connu', annuaire: 'Pas de site à lui (page d\'annuaire)', parking: 'Page d\'attente ou domaine à vendre',
+    illisible: 'Site non lisible par l\'analyse (page générée par script)'
+  };
+  var LIBELLES_GOOGLE = {
+    trouve: 'Fiche Google trouvée', introuvable: 'Fiche Google non trouvée', sans_cle: 'Google non interrogé (clé absente)',
+    quota: 'Google non interrogé (plafond du jour atteint) : sera repris', erreur: 'Google n\'a pas répondu : sera repris'
+  };
+
+  /* Pastille de chaleur d'un prospect : toujours une icône ET le niveau en toutes lettres (jamais la couleur seule).
+     `ch` : résultat de CRM.chaleurProspect ; null (migration absente) → rien. opts.court : le libellé n'est plus
+     qu'un texte pour lecteur d'écran (file étroite), l'icône et la note restent visibles. */
+  function chaleurHtml(ch, opts) {
+    if (!ch) return '';
+    opts = opts || {};
+    var libelle = ch.exclu ? 'Froid · à écarter' : ch.libelle;
+    var avecValeur = ch.valeur != null && ch.niveau !== 'non_analyse' && !ch.exclu && !ch.manuel;
+    var titre = 'Chaleur du prospect : ' + libelle + (avecValeur ? ' (' + ch.valeur + ' sur 100)' : '') + (ch.manuel ? ', réglé à la main' : '') +
+      (ch.partiel ? '. D\'après OpenStreetMap seulement' : '');
+    return '<span class="crm-chal crm-n-' + esc(ch.niveau) + (opts.court ? ' crm-chal-court' : '') + '" data-niveau="' + esc(ch.niveau) + '"' +
+      (ch.partiel ? ' data-partiel="1"' : '') + (ch.exclu ? ' data-exclu="1"' : '') + ' title="' + esc(titre) + '">' + ic(ICONES_CHALEUR[ch.niveau] || 'sablier', 13) +
+      '<b' + (opts.court ? ' class="crm-sr"' : '') + '>' + esc(libelle) + '</b>' + (avecValeur ? '<i>' + ch.valeur + '</i>' : '') +
+      (ch.manuel ? ic('main', 12) + '<span class="crm-sr">réglé à la main</span>' : '') + '</span>';
+  }
+
+  /* Le « pourquoi » d'une chaleur : une ligne par raison, le signe et les points d'abord. `max` : nombre de lignes. */
+  function raisonsChaleurHtml(ch, max) {
+    if (!ch) return '';
+    var html = '';
+    if (ch.manuel) {
+      html += '<p class="crm-chal-manuel">' + ic('main', 13) + '<span>Réglé à la main · automatique : ' +
+        esc(ch.auto.niveau === 'non_analyse' ? 'pas encore analysé' : UIniveau(ch.auto.niveau) + ' ' + ch.auto.valeur) + '</span></p>';
+    }
+    if (!ch.raisons.length) return html + '<p class="crm-aide crm-chal-vide">Aucun signal pour l\'instant : ce prospect n\'a pas encore été analysé.</p>';
+    var raisons = max ? ch.raisons.slice(0, max) : ch.raisons;
+    return html + '<ul class="crm-chal-raisons">' + raisons.map(function (r) {
+      var signe = r.texte.charAt(0), classe = signe === '+' ? 'crm-pts-plus' : signe === '−' ? 'crm-pts-moins' : 'crm-pts-nul';
+      return '<li data-raison="' + esc(r.cle) + '"><b class="' + classe + '">' + (signe === '·' ? '·' : signe + (r.points ? Math.abs(r.points) : '')) + '</b>' +
+        '<span>' + esc(r.texte.slice(1).trim()) + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  function UIniveau(id) {
+    for (var i = 0; i < CRM.NIVEAUX_CHALEUR.length; i++) if (CRM.NIVEAUX_CHALEUR[i].id === id) return CRM.NIVEAUX_CHALEUR[i].libelle;
+    return '';
+  }
+
+  /* Ligne d'honnêteté : quand l'analyse a eu lieu et ce qu'elle a pu regarder (site analysé, injoignable, pas de
+     site ; fiche Google trouvée ou non, clé absente). */
+  function etatAnalyseHtml(p, ch) {
+    if (!ch || !p) return '';
+    var e = ch.etats || {}, site = (p.signaux && p.signaux.site) || {}, morceaux = [];
+    if (!e.analyseLe) {
+      return '<p class="crm-chal-etat">' + esc(ch.partiel ? 'D\'après OpenStreetMap seulement : site et fiche Google pas encore regardés.'
+        : 'Pas encore analysé : site et fiche Google pas encore regardés.') + '</p>';
+    }
+    morceaux.push('Analysé le ' + dateCourte(e.analyseLe));
+    if (e.site === 'analyse') morceaux.push('Site analysé (' + pluriel(Math.max(1, Number(site.pages) || 1), 'page') + ')' + (site.tronque ? ', page très longue lue en partie' : ''));
+    else if (e.site === 'injoignable') morceaux.push('Site injoignable le ' + dateCourte(site.le || e.analyseLe));
+    else if (e.site === 'reseau_seul') morceaux.push('Sa seule vitrine : ' + (site.reseau === 'instagram' ? 'son profil Instagram' : site.reseau === 'facebook' ? 'sa page Facebook' : 'une page de réseau social'));
+    else if (LIBELLES_SITE[e.site]) morceaux.push(LIBELLES_SITE[e.site]);
+    // Dernier passage en échec : l'analyse réussie d'avant est gardée, avec sa date.
+    if (site.echec && e.site !== 'injoignable') {
+      morceaux.push('Site injoignable le ' + dateCourte(site.echec.le || e.analyseLe) + (site.le ? ' (analyse du ' + dateCourte(site.le) + ' conservée)' : ''));
+    }
+    if (LIBELLES_GOOGLE[e.google]) morceaux.push(LIBELLES_GOOGLE[e.google]);
+    return '<p class="crm-chal-etat">' + esc(morceaux.join(' · ')) + '</p>';
+  }
+
+  /* Réglages à un toucher : niveau forcé (ou retour à l'automatique) et activité des réseaux sociaux.
+     `attribut` : nom de l'attribut d'action (« data-pro » dans la prospection, « data-action » sur la fiche). */
+  function reglagesChaleurHtml(p, attribut, inactif, avecReseaux) {
+    var manuel = p.chaleur_manuelle || '';
+    var niveaux = CRM.NIVEAUX_CHALEUR.filter(function (n) { return n.id !== 'non_analyse'; }).map(function (n) {
+      return '<button type="button" class="crm-puce" ' + attribut + '="chaleur-manuelle" data-id="' + n.id + '" aria-pressed="' + (manuel === n.id) + '"' + inactif + '>' +
+        ic(ICONES_CHALEUR[n.id], 13) + esc(n.libelle) + '</button>';
+    }).join('') + '<button type="button" class="crm-puce" ' + attribut + '="chaleur-manuelle" data-id="" aria-pressed="' + (!manuel) + '"' + inactif + '>Automatique</button>';
+    return '<div class="crm-chal-reglages"><div class="crm-chal-reglage" role="group" aria-label="Régler la chaleur à la main"><span class="crm-chal-reglage-titre">Régler à la main</span>' +
+      '<div class="crm-puces">' + niveaux + '</div></div>' + (avecReseaux ? reseauxActifsHtml(p, attribut, inactif) : '') + '</div>';
+  }
+  function reseauxActifsHtml(p, attribut, inactif) {
+    return '<div class="crm-chal-reglage crm-chal-reseaux" role="group" aria-label="Activité des réseaux"><span class="crm-chal-reglage-titre">Réseaux</span><div class="crm-puces">' +
+      [['actif', 'Actifs'], ['peu_actif', 'Peu actifs']].map(function (c) {
+        return '<button type="button" class="crm-puce" ' + attribut + '="reseaux-actifs" data-id="' + c[0] + '" aria-pressed="' + (p.reseaux_actifs === c[0]) + '"' + inactif + '>' + c[1] + '</button>';
+      }).join('') + '</div></div>';
   }
 
   var LIBELLES_OFFRE_COURT = { vitrine: 'Vitrine', clickcollect: 'Click & Collect', livraison: 'Livraison' };
@@ -388,6 +484,8 @@
       suite: null, perdu: null, epingleEdition: false,
       // Présence en ligne : réseaux dont le lien est en cours de modification, et message d'erreur par réseau.
       lienEdition: {}, lienErreur: {},
+      // Chaleur du prospect : analyse en cours (bouton « Analyse en cours… »), et dernier message (« Analyse indisponible… »).
+      analyse: false, analyseMessage: '',
       brouillons: { note: '', noteAppel: '', tacheTitre: '', tacheDate: '', epingle: '', suiteTitre: '', suiteDate: '', suiteNote: '', telephone: '',
         lienGoogle: '', lienInstagram: '', lienFacebook: '' }
     };
@@ -773,6 +871,54 @@
 
   var LIBELLES_SOURCE = { osm: 'OpenStreetMap', mairie: 'Mairie', import: 'Liste importée', manuel: 'Saisie à la main' };
 
+  /* « Chaleur du prospect » : besoin de Marchéo et facilité à le joindre, d'après ce qui a été vu (OpenStreetMap,
+     son site, sa fiche Google). À ne pas confondre avec la chaleur de la fiche (badge du haut), qui suit le suivi. */
+  function htmlChaleurProspect(p) {
+    var ch = CRM.chaleurProspect(p);
+    if (!ch) {
+      return CRM.etat.prospection ? '<p class="crm-aide crm-chal-absente" id="crmChaleurProspect">La chaleur du prospect sera active une fois la migration 20261116_crm_chaleur.sql appliquée.</p>' : '';
+    }
+    var enCours = ui.analyse || !!(CRM.analyseEnCours && CRM.analyseEnCours.lot.indexOf(p.id) >= 0);
+    var inactif = attrEcriture();
+    return '<div class="crm-chal-bloc" id="crmChaleurProspect">' +
+      '<div class="crm-chal-tete"><p class="crm-etiquette">Chaleur du prospect</p>' + chaleurHtml(ch) +
+        '<button type="button" class="crm-btn" data-action="chaleur-analyser"' + (enCours ? ' disabled' : inactif) + '>' + ic('baguette', 14) +
+          (enCours ? 'Analyse en cours…' : p.analyse_at ? 'Réanalyser' : 'Analyser') + '</button></div>' +
+      (ui.analyseMessage ? '<p class="crm-aide crm-chal-indispo" role="status">' + esc(ui.analyseMessage) + '</p>' : '') +
+      '<p class="crm-etiquette">Pourquoi</p>' + raisonsChaleurHtml(ch) + etatAnalyseHtml(p, ch) +
+      reglagesChaleurHtml(p, 'data-action', inactif, true) + '</div>';
+  }
+
+  function analyserProspectFiche(f) {
+    var p = f && f.prospect;
+    if (!p || ui.analyse) return;
+    var cle = ui.cle;
+    ui.analyse = true;
+    ui.analyseMessage = '';
+    rendre();
+    CRM.analyserProspects([p.id], { forcer: true }).then(function (bilan) {
+      if (ui.cle !== cle) return;
+      ui.analyse = false;
+      ui.analyseMessage = bilan.message || (bilan.indisponible ? MESSAGE_ANALYSE_INDISPONIBLE : bilan.echecs ? 'L\'analyse de ce prospect n\'a pas abouti. Réessayez dans un instant.' : '');
+      if (!bilan.indisponible && !bilan.echecs && !bilan.restants) {
+        crmToast(bilan.google === 'sans_cle' ? 'Prospect analysé (Google non interrogé : clé absente)'
+          : bilan.quota ? 'Prospect analysé (Google non interrogé : plafond du jour atteint)' : 'Prospect analysé');
+      }
+      rendre();
+    });
+  }
+  var MESSAGE_ANALYSE_INDISPONIBLE = 'Analyse indisponible pour l\'instant. Les signaux d\'OpenStreetMap restent pris en compte.';
+
+  function reglerChaleur(f, champ, valeur) {
+    var p = f && f.prospect;
+    if (!p) return;
+    // Retoucher le bouton enfoncé des réseaux remet à « inconnu ».
+    if (champ === 'reseaux_actifs' && p.reseaux_actifs === valeur) valeur = null;
+    var champs = {};
+    champs[champ] = valeur || null;
+    ecrire(CRM.majProspect(p.id, champs), champ === 'chaleur_manuelle' ? (valeur ? 'Chaleur réglée à la main' : 'Chaleur automatique') : 'Activité des réseaux notée');
+  }
+
   function htmlProspection(f) {
     var p = f.prospect;
     if (!p) return '';
@@ -786,7 +932,7 @@
     lignes += ligneInfo('Liste', p.liste ? esc(p.liste) : '');
     lignes += ligneInfo('Source', esc(LIBELLES_SOURCE[p.source] || p.source || ''));
     lignes += ligneInfo('Remarque', p.remarque ? esc(p.remarque) : '');
-    var corps = '<dl class="crm-infos">' + lignes + '</dl>';
+    var corps = htmlChaleurProspect(p) + '<dl class="crm-infos">' + lignes + '</dl>';
     if (p.note) corps += '<div class="crm-citation"><p class="crm-etiquette">Note d\'appel</p><p>' + esc(p.note) + '</p></div>';
     if (p.recommandation) corps += '<div class="crm-citation crm-citation-or"><p class="crm-etiquette">Recommandation obtenue</p><p>' + esc(p.recommandation) + '</p></div>';
     corps += '<div class="crm-sec-pied"><a class="crm-btn" href="#crm/prospection">' + ic('telephone', 14) + 'Ouvrir la prospection</a></div>';
@@ -1122,6 +1268,9 @@
       case 'lien-annuler': annulerLien(id); break;
       case 'lien-enregistrer': enregistrerLien(id); break;
       case 'lien-effacer': if (f) effacerLien(f, id); break;
+      case 'chaleur-analyser': if (f) analyserProspectFiche(f); break;
+      case 'chaleur-manuelle': if (f) reglerChaleur(f, 'chaleur_manuelle', id); break;
+      case 'reseaux-actifs': if (f) reglerChaleur(f, 'reseaux_actifs', id); break;
       case 'note-enregistrer': enregistrerNote(); break;
       case 'fil-supprimer': if (f) supprimerInteraction(f, id); break;
       case 'fil-tout': ui.filComplet = !ui.filComplet; rendre(); break;
@@ -1541,6 +1690,8 @@
     scoreHtml: scoreHtml, offreNom: offreNom, lectureSeule: lectureSeule, attrEcriture: attrEcriture,
     ecrire: ecrire, copier: copier, ouvrirMenu: ouvrirMenu, fermerMenu: fermerMenu, menuOuvert: function () { return !!menu; },
     optionsReport: optionsReport, reporterAction: reporterAction, faitAction: faitAction,
+    chaleurHtml: chaleurHtml, raisonsChaleurHtml: raisonsChaleurHtml, etatAnalyseHtml: etatAnalyseHtml,
+    reglagesChaleurHtml: reglagesChaleurHtml, reseauxActifsHtml: reseauxActifsHtml, MESSAGE_ANALYSE_INDISPONIBLE: MESSAGE_ANALYSE_INDISPONIBLE,
     LIBELLES_URGENCE: LIBELLES_URGENCE, DRAPEAUX: DRAPEAUX
   };
 })();

@@ -177,6 +177,30 @@
 }
 .crm-pro .crm-pro-rappels span { flex: 1; min-width: 0; }
 .crm-pro .crm-pro-rappels:hover { background: var(--crm-or-fond-fort); }
+/* Chaleur des prospects : ordre « les plus chauds d'abord », bloc de la fiche d'appel, bandeau d'analyse. */
+.crm-pro .crm-pro-chauds .crm-ic:first-child { color: var(--crm-chaud); }
+.crm-pro .crm-pro-ordre { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 9px; margin-bottom: 10px; font-size: 12.5px; font-weight: 600; color: var(--a-ink-2); }
+.crm-pro .crm-pro-ordre > .crm-ic { flex: none; color: var(--crm-chaud); }
+.crm-pro .crm-pro-ordre .crm-lien { margin-left: auto; color: var(--or-t) !important; }
+.crm-pro .crm-pro-item-fin { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; flex: none; }
+.crm-pro .crm-pro-chaleur { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-bg); }
+.crm-pro .crm-pro-chaleur-ligne { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; min-width: 0; }
+.crm-pro .crm-pro-chaleur-resume { flex: 1 1 220px; min-width: 0; font-size: 12.5px; line-height: 1.4; color: var(--a-ink-2); overflow-wrap: anywhere; }
+.crm-pro .crm-pro-chaleur-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 10px; }
+.crm-pro .crm-pro-chaleur-actions .crm-lien { margin-left: auto; }
+.crm-pro .crm-pro-pourquoi { display: flex; flex-direction: column; gap: 9px; padding-top: 9px; border-top: 1px solid var(--a-line); }
+.crm-pro .crm-pro-reseaux-actifs { margin-top: -6px; }
+.crm-pro .crm-pro-analyse { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 14px; margin-bottom: 14px; padding: 10px 14px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-surface); }
+.crm-pro .crm-pro-analyse p { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 13px; color: var(--a-ink); font-variant-numeric: tabular-nums; }
+.crm-pro .crm-pro-analyse p .crm-ic { flex: none; color: var(--or-t); }
+.crm-pro .crm-pro-analyse .crm-pro-progres { grid-column: 1; grid-row: 2; }
+.crm-pro .crm-pro-analyse .crm-btn { grid-column: 2; grid-row: 1 / span 2; }
+.crm-pro .crm-pro-analyse-fin { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 13px; color: var(--a-ink-2); }
+.crm-pro .crm-pro-analyse-fin .crm-ic { flex: none; color: var(--a-vert-clair); }
+.crm-pro .crm-pro-analyse-indispo { margin-bottom: 14px; }
+.crm-pro .crm-pro-chaleur-absente { margin: 0 0 12px; }
+.crm-pro .crm-pro-trouve-tel .crm-chal { font-size: 11.5px; height: 22px; }
+
 .crm-pro .crm-pro-file-liste { background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 16px; overflow: hidden; }
 .crm-pro .crm-pro-item {
   display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 10px; width: 100%; min-height: 54px; padding: 8px 14px 8px 10px;
@@ -312,6 +336,7 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
 .crm-pro .crm-pro-rang .crm-pro-champ { max-width: 320px; }
 
 .crm-pro .crm-pro-table-tete, .crm-pro .crm-pro-rang-corps { display: grid; grid-template-columns: minmax(0, 2.2fr) 128px minmax(0, 1.2fr) minmax(120px, 1fr); align-items: center; gap: 14px; }
+.crm-pro .crm-pro-table-chal .crm-pro-table-tete, .crm-pro .crm-pro-table-chal .crm-pro-rang-corps { grid-template-columns: minmax(0, 2.2fr) 128px minmax(0, .9fr) 172px minmax(120px, 1fr); }
 .crm-pro .crm-pro-table-tete { padding: 9px 90px 9px 14px; background: var(--crm-creux); border-bottom: 1px solid var(--a-line); font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--a-ink-3); }
 .crm-pro .crm-pro-rang { border-top: 1px solid var(--a-line); }
 .crm-pro .crm-pro-table-tete + .crm-pro-rang { border-top: 0; }
@@ -344,6 +369,7 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
   .crm-pro .crm-pro-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .crm-pro .crm-pro-table-tete, .crm-pro .crm-pro-rang-corps { grid-template-columns: minmax(0, 2fr) 122px minmax(110px, 1fr); }
   .crm-pro .crm-pro-table-tete span:nth-child(3), .crm-pro .crm-pro-rang-liste { display: none; }
+  .crm-pro .crm-pro-table-chal .crm-pro-table-tete, .crm-pro .crm-pro-table-chal .crm-pro-rang-corps { grid-template-columns: minmax(0, 2fr) 122px 172px minmax(110px, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -372,6 +398,11 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
   .crm-pro .crm-pro-filtres { flex-wrap: nowrap; }
   .crm-pro .crm-pro-filtres select { flex: 1 1 0; min-width: 0; font-size: 14px; }
   .crm-pro .crm-pro-rappels { min-height: 46px; }
+  .crm-pro .crm-pro-file-tete .crm-pro-filtres { flex-wrap: wrap; }
+  .crm-pro .crm-pro-file-tete .crm-pro-filtres select { flex: 1 1 150px; }
+  .crm-pro .crm-pro-ordre .crm-lien { margin-left: 0; }
+  .crm-pro .crm-pro-chaleur-actions .crm-btn { flex: 1 1 auto; }
+  .crm-pro .crm-pro-analyse { padding: 10px 12px; }
   .crm-pro .crm-pro-item { min-height: 60px; padding: 9px 12px 9px 8px; gap: 9px; }
 
   .crm-pro .crm-pro-segment { display: flex; }
@@ -409,6 +440,10 @@ html[data-theme="clair"] .crm-pro .crm-pro-cherche input::-webkit-search-cancel-
   .crm-pro .crm-pro-table-tete + .crm-pro-rang { border-top: 0; }
   .crm-pro .crm-pro-rang-corps { grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; min-height: 62px; padding: 10px 2px 10px 12px; }
   .crm-pro .crm-pro-rang-nom { grid-column: 1 / -1; }
+  /* La chaleur passe sous le nom, en version courte : l'icône et la note, le niveau restant lu par les lecteurs d'écran. */
+  .crm-pro .crm-pro-table-chal .crm-pro-rang-corps { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .crm-pro .crm-pro-rang-chal .crm-chal { gap: 4px; padding: 0 7px 0 6px; }
+  .crm-pro .crm-pro-rang-chal .crm-chal b { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
   .crm-pro .crm-pro-rang-nom small { display: none; }
   .crm-pro .crm-pro-rang-tel { font-size: 12.5px; color: var(--a-ink-2); }
   .crm-pro .crm-pro-rang-res { justify-self: end; }
