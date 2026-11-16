@@ -46,8 +46,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site vitrine ou marchand | site | transverse | GS | moyenne | même article que la ligne précédente |
 | mentions légales site internet restaurant | site | restaurant | GS | moyenne | à faire |
 | mentions obligatoires carte restaurant | transverse | restaurant | GS | basse | hors sujet produit, écarté |
-| logiciel réservation restaurant gratuit | transverse | restaurant | GS | moyenne | à faire |
-| meilleur logiciel de réservation restaurant | transverse | restaurant | GS | moyenne | à faire (comparatif factuel) |
+| logiciel réservation restaurant gratuit | transverse | restaurant | GS | moyenne | publié le 2026-11-15 + meilleur-logiciel-reservation-restaurant (FAQ « Existe-t-il un logiciel de réservation de restaurant gratuit ? ») |
+| meilleur logiciel de réservation restaurant | transverse | restaurant | GS + IA (formulation « meilleur logiciel de … pour <métier> ») | moyenne | publié le 2026-11-15 + meilleur-logiciel-reservation-restaurant |
 | frais no show restaurant | transverse | restaurant | GS | moyenne | partiellement couvert par empreinte-bancaire-no-show-commerce-restaurant |
 | loi no show restaurant | transverse | restaurant | GS | moyenne | à faire (angle légal, vérifier les sources avant d'écrire) |
 | avis google restaurant | transverse | restaurant | GS | basse | partiellement couvert par fiche-google-business-commerce-bouche |
@@ -238,7 +238,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | création site traiteur | site | traiteur | GSC (22 impr., pos. 12,3, 02/11) | haute | couvert par creation-site-internet-traiteur (title et description retravaillés le 2026-11-02, à suivre) |
 | site e-commerce traiteur | site | traiteur | GSC (16 impr., pos. 11,2, 02/11) | haute | couvert par le refresh de creation-site-internet-traiteur (2026-11-02, H2 dédié, FAQ) |
 | e-commerce traiteur | site | traiteur | GSC (13 impr., pos. 7,2, 02/11) | haute | même refresh que la ligne précédente |
-| combien coûte création site click and collect | transverse | tous | GSC (41 impr., pos. 12,9, 02/11 ; aussi « tarif » pos. 12,5, « prix » 14,7, « coût » 13,0) | haute | à faire : refresh prochain lundi de combien-coute-un-site-de-click-and-collect (0 clic sur environ 120 impressions) |
+| combien coûte création site click and collect | transverse | tous | GSC (41 impr., pos. 12,9, 02/11 ; aussi « tarif » pos. 12,5, « prix » 14,7, « coût » 13,0) | haute | refresh fait le 2026-11-16 : meta title et description sur « combien coûte … création », 1re phrase réécrite ; à relire dans GSC dans 2 à 3 semaines |
 | choisir création site click and collect | transverse | tous | GSC (47 impr., pos. 14,2, 02/11 ; « choix » pos. 16,7) | haute | à suivre sur logiciel-click-and-collect-comparatif-2026, 0 clic |
 | click and collect restaurant guide | click & collect | restaurant | GSC (« mettre en place le click and collect restaurant » 15 impr., pos. 58,5 ; « guide click and collect restauration » 6 impr., pos. 59,5) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | retrait magasin fromage | click & collect | fromagerie | GSC (10 impr., pos. 7,9, 02/11) | basse | couvert par click-and-collect-fromagerie |
@@ -292,11 +292,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | fromagerie site web | site | fromagerie | GS (06/11) | moyenne | publié le 2026-11-06 site-internet-fromagerie (variante) |
 | site fromage en ligne | site | fromagerie | GS (06/11) | basse | écarté : intention acheteur (vente nationale par correspondance), pas commerçant |
 | fromagerie en ligne direct producteur | transverse | fromagerie | GS (06/11) | basse | écarté : intention consommateur |
-| site internet poissonnerie | site | poissonnerie | GS (06/11 : « site de poissonnerie » ; 13/11 : « site de poissonnerie en ligne », « site web poissonnerie ») | haute | à faire en priorité au prochain run (prévu le 13/11, remplacé par le grand comparatif demandé par Paul) : arrivages du jour, plateaux de fruits de mer de fêtes |
+| site internet poissonnerie | site | poissonnerie | GS (06/11 : « site de poissonnerie » ; 13/11 : « site de poissonnerie en ligne », « site web poissonnerie ») | haute | publié le 2026-11-16 : site-internet-poissonnerie |
 | site vitrine vs site e commerce | site | tous | GS (06/11) | moyenne | à faire : vérifier la cannibalisation avec creation-site-internet-commerce (section vitrine ou commande) avant d'écrire |
 | site vitrine boutique | site | tous | GS (06/11) | basse | couvert par creation-site-internet-commerce |
 | nom de domaine commercial | site | tous | GS (06/11) | moyenne | à faire : nom de domaine pour un commerce (choix, prix, extension), vérifier obligations-legales-boutique-en-ligne-commercant |
-| frais de livraison commerce local (et non colis) | livraison | tous | IA (06/11 : l'aperçu IA de Google ne parle que d'expédition de colis, ChatGPT ne cite aucun outil) | moyenne | à faire : rafraîchir comment-calculer-ses-frais-de-livraison-commercant avec une réponse directe « commerce de proximité, livraison locale » et une FAQ façon assistant, pas de nouvel article |
+| frais de livraison commerce local (et non colis) | livraison | tous | IA (06/11 : l'aperçu IA de Google ne parle que d'expédition de colis, ChatGPT ne cite aucun outil) | moyenne | fait le 2026-11-15 : refresh de comment-calculer-ses-frais-de-livraison-commercant (réponse directe « livraison locale, pas de colis », FAQ « Combien facturer la livraison… ») |
 | fleuriste livraison gratuite | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07), angle seuil de gratuité |
 | frais de livraison bouquets de fleurs | livraison | fleuriste | GS (07/11) | moyenne | couvert par fleuriste-livraison-a-domicile (2026-11-07) |
 | livraison fleurs fleuriste local | livraison | fleuriste | GS (07/11) | moyenne | couvert en variante par fleuriste-livraison-a-domicile (2026-11-07) |
@@ -358,7 +358,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | créer un site de vente en ligne prix | site | tous | GS (13/11) | moyenne | à faire : vérifier la cannibalisation avec combien-coute-un-site-de-click-and-collect, sinon variante dans ses keywords |
 | creer un site de vente en ligne avec wordpress | site | tous | GS (13/11) | basse | écarté : requête technique dominée par les tutoriels WordPress ; traitée en section du comparatif du 13/11 |
 | comparatif création de site internet | site | tous | GS (13/11) | basse | variante du comparatif du 13/11, dominée par les grands comparateurs |
-| site de poissonnerie en ligne | site | poissonnerie | GS (13/11) | haute | à faire avec « site internet poissonnerie » (même article) |
+| site de poissonnerie en ligne | site | poissonnerie | GS (13/11) | haute | publié le 2026-11-16 : site-internet-poissonnerie (variante) |
 | logiciel caisse poissonnerie | transverse | poissonnerie | GS (13/11) | basse | écarté : Marchéo ne remplace pas une caisse ; à citer dans l'article site internet poissonnerie (pas besoin de changer de caisse) |
 | click and collect produits frais | click & collect | tous | GS (13/11) | moyenne | à faire avec « click and collect alimentaire » (même article : frais, poids, DLC) |
 | vendre ses produits alimentaires sur une marketplace (Pourdebon, Ollca) ou sur sa propre boutique | transverse | tous | IA (13/11 : l'aperçu IA de Google cite Pourdebon, Les Grappes, Faire, Ollca, Epicery à côté de Marchéo) | haute | publié le 2026-11-14 + place-de-marche-ou-boutique-en-ligne-commerce-de-bouche |
@@ -393,3 +393,12 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | panier de fruits et légumes locaux | transverse | primeur | GS (15/11 : « panier de fruits et légumes locaux », « panier légumes producteurs locaux ») | basse | à étudier : mettre en avant l'origine locale sur la fiche produit, requête surtout d'acheteur |
 | livraison fruits et légumes pas cher | livraison | primeur | GS (15/11) | basse | écarté : requête d'acheteur dominée par les sites nationaux |
 | primeur domicile | livraison | primeur | GS (15/11) | basse | couvert par primeur-livraison-a-domicile (2026-11-15) |
+| logiciel livraison paniers primeur | livraison | primeur | IA (15/11 : ChatGPT cite Achil en 1er, Ciboulette, Socleo ; Marchéo absent malgré l'article du matin) | haute | à faire dans une semaine : FAQ « Quel logiciel pour livrer ses paniers quand on est primeur ? » dans primeur-livraison-a-domicile (abonnement fixe contre part du chiffre d'affaires), pas de nouvel article |
+| logiciel réservation restaurant no-show empreinte | transverse | restaurant | IA (15/11 : ChatGPT évoque l'empreinte « si la solution de paiement le permet » sans nommer d'outil sur n°10) | moyenne | couvert par meilleur-logiciel-reservation-restaurant et empreinte-bancaire-no-show-commerce-restaurant ; à suivre dans les relevés |
+| site web poissonnerie | site | poissonnerie | GS (16/11 : « site web poissonnerie », « site internet poisson ») | moyenne | publié le 2026-11-16 : site-internet-poissonnerie (variante) |
+| poissonnerie en ligne livraison | livraison | poissonnerie | GS (16/11) | basse | couvert par poissonnerie-livraison-a-domicile ; requête surtout d'acheteur |
+| commander un plateau de fruits de mer pour noël | click & collect | poissonnerie | GS (16/11) | moyenne | couvert par click-and-collect-poissonnerie ; requête d'acheteur, 1re page dominée par les grandes surfaces |
+| logiciel caisse poissonnerie | transverse | poissonnerie | GS (16/11 : « logiciel caisse poissonnerie », « application poissonnerie ») | moyenne | à faire : angle « garder sa caisse et ajouter la commande en ligne », regrouper avec « logiciel caisse épicerie » ; Marchéo n'est pas une caisse |
+| site internet charcuterie | site | traiteur | GS (16/11 : « site charcuterie », « charcuterie site internet ») | moyenne | à étudier : charcutier-traiteur, vérifier la cannibalisation avec creation-site-internet-traiteur |
+| création site internet boulangerie | site | boulangerie | GS (16/11 : « création site internet boulangerie », « site web boulangerie ») | haute | à faire : enrichir site-internet-boulangerie-commandes-en-ligne (title et H2 sur « création site internet boulangerie »), avec les lignes « boulangerie click and collect » et « application commande en ligne boulangerie », pas de nouvel article |
+| poissonnerie en ligne pas cher | transverse | poissonnerie | GS (16/11) | basse | écarté : requête d'acheteur |

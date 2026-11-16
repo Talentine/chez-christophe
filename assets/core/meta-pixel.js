@@ -11,6 +11,10 @@
 // Si le consentement existe déjà, WeeglAd est chargé de façon synchrone dans le
 // <head> de chaque page (script inline « data-weeglad-gate ») ; sinon il est
 // chargé ici, au clic sur « Accepter ».
+//
+// Gère enfin la balise Google (suivi des conversions Google Ads), toujours après
+// consentement. Le choix porte g:1 quand le bandeau mentionnait Google Ads ; un
+// ancien « oui » donné sans Google est redemandé avant d'activer la balise.
 // ============================================================
 
 (function () {
@@ -18,6 +22,7 @@
   const CLE = 'marcheo_consent_pub';
   const DUREE_MS = 1000 * 60 * 60 * 24 * 390; // ~13 mois
   const WEEGLAD_VK = 'c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613';
+  const GOOGLE_TAG_ID = 'GTM-KP8M92D5'; // balise Google (Google Ads · suivi des conversions)
 
   const file = [];
   let actif = false;
@@ -42,7 +47,7 @@
     return null;
   }
   function ecrireChoix(choix) {
-    try { localStorage.setItem(CLE, JSON.stringify({ choix: choix, t: Date.now(), w: 1 })); } catch (e) {}
+    try { localStorage.setItem(CLE, JSON.stringify({ choix: choix, t: Date.now(), w: 1, g: 1 })); } catch (e) {}
   }
 
   // WeeglAd (après consentement uniquement). Si le <head> l'a déjà chargé, ne fait rien.
@@ -59,6 +64,21 @@
     s2.src = base + 'pixel.js?vk=' + WEEGLAD_VK;
     s2.async = true;
     document.head.appendChild(s2);
+  }
+
+  // Balise Google (après consentement uniquement). L'accord donné dans le bandeau
+  // est transmis à Google via le mode Consentement avant le chargement de la balise.
+  function chargerGoogle() {
+    if (!GOOGLE_TAG_ID || window.__marcheoGoogle) return;
+    window.__marcheoGoogle = 'consentement';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    window.gtag('js', new Date());
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GOOGLE_TAG_ID;
+    document.head.appendChild(s);
   }
 
   function chargerPixel() {
@@ -94,7 +114,7 @@
     d.setAttribute('role', 'dialog');
     d.setAttribute('aria-label', 'Choix des cookies publicitaires');
     d.innerHTML =
-      '<p>Nous utilisons le Pixel Meta et le pixel WeeglAd pour mesurer l\'efficacité de nos publicités auprès des commerçants. ' +
+      '<p>Nous utilisons le Pixel Meta, le pixel WeeglAd et la balise Google Ads pour mesurer l\'efficacité de nos publicités auprès des commerçants. ' +
       'Ils ne s\'activent qu\'avec votre accord. <a href="/confidentialite#art8">En savoir plus</a></p>' +
       '<div class="mq-b"><button type="button" data-c="non">Refuser</button><button type="button" data-c="oui">Accepter</button></div>';
     d.addEventListener('click', function (e) {
@@ -103,16 +123,17 @@
       const choix = b.getAttribute('data-c');
       ecrireChoix(choix);
       d.remove();
-      if (choix === 'oui') { chargerPixel(); chargerWeeglad(); }
+      if (choix === 'oui') { chargerPixel(); chargerWeeglad(); chargerGoogle(); }
     });
     document.body.appendChild(d);
   }
 
   const consentement = lireConsentement();
   const choix = consentement ? consentement.choix : null;
-  const aRedemander = choix === null || (choix === 'oui' && consentement.w !== 1);
+  const aRedemander = choix === null || (choix === 'oui' && (consentement.w !== 1 || consentement.g !== 1));
   if (choix === 'oui') chargerPixel(); // accord déjà donné pour Meta
   if (choix === 'oui' && consentement.w === 1) chargerWeeglad();
+  if (choix === 'oui' && consentement.g === 1) chargerGoogle();
   if (aRedemander) {
     if (document.body) afficherBandeau();
     else document.addEventListener('DOMContentLoaded', afficherBandeau);

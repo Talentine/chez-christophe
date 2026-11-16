@@ -3,7 +3,7 @@ title: "Prix site internet restaurant : combien ça coûte vraiment en 2026"
 titre_court: "Prix d'un site internet de restaurant"
 description: "Prix site internet restaurant : agence, Wix, plateformes ou logiciel métier. Les vrais coûts d'un site avec carte, réservation et vente à emporter."
 date: 2026-10-27
-modified: 2026-11-03
+modified: 2026-11-15
 rubrique: Prix
 emoji: 🍴
 keywords:
@@ -72,7 +72,7 @@ Le détail de ces frais pour un site de commande se trouve dans notre article su
 
 ## Site vitrine ou site avec réservation : que choisir pour un restaurant ?
 
-Un site vitrine suffit si votre salle se remplit seule et que les réservations par téléphone ne vous dérangent pas. Dès que le téléphone sonne pendant le service ou que des tables restent vides à cause des absences, la réservation en ligne devient rentable.
+Un site vitrine suffit si votre salle se remplit seule et que les réservations par téléphone ne vous dérangent pas. Dès que le téléphone sonne pendant le service ou que des tables restent vides à cause des absences, la réservation en ligne devient rentable. Pour choisir l'outil, notre comparatif du [logiciel de réservation pour restaurant](/blog/meilleur-logiciel-reservation-restaurant) détaille les coûts au couvert et les abonnements fixes.
 
 | Votre situation | Le site qu'il vous faut |
 | --- | --- |

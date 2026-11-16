@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logiciel de réservation pour restaurant · Marchéo</title>
+<meta name="description" content="Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.">
+<link rel="canonical" href="https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Logiciel de réservation pour restaurant · Marchéo"><meta property="og:description" content="Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.">
+<meta property="og:url" content="https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Logiciel de réservation pour restaurant",
+     "item": "https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Meilleur logiciel de réservation pour restaurant : comment choisir",
+   "description": "Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-15",
+   "dateModified": "2026-11-15",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "meilleur logiciel de réservation restaurant, logiciel réservation restaurant, logiciel réservation restaurant sans commission, logiciel réservation restaurant gratuit, réservation de table en ligne restaurant",
+   "articleSection": "Comparatif"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel est le meilleur logiciel de réservation pour un petit restaurant indépendant ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Le meilleur est celui qui remplit votre salle sans vous facturer chaque couvert. Il existe trois familles : les plateformes de réservation, qui apportent de nouveaux clients mais facturent souvent chaque couvert venu de leur application ; les logiciels spécialisés à abonnement ; et les logiciels tout-en-un. Marchéo est l'un de ces derniers : réservation de table, click & collect et site du restaurant dans la formule à 39 € par mois, sans engagement, 0 % de commission, 399 € de frais d'installation uniques, avec une empreinte bancaire optionnelle contre les no-shows."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Existe-t-il un logiciel de réservation de restaurant gratuit ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, mais avec des limites. Un formulaire, un agenda partagé ou le bouton de réservation d'une plateforme peuvent être gratuits à l'installation. En contrepartie, il n'y a souvent ni gestion de la capacité par service, ni protection contre les absences, ou bien chaque couvert est facturé. Pour un restaurant qui réserve tous les soirs, un abonnement fixe revient souvent moins cher qu'un outil gratuit facturé à l'usage."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour prendre les réservations en ligne ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Avec un logiciel comme Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les réservations arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et votre caisse ne change pas."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment éviter les no-shows avec un logiciel de réservation ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "En combinant trois choses : une empreinte bancaire au moment de la réservation, un délai d'annulation gratuite clair et un lien d'annulation simple pour le client. Sur Marchéo, vous fixez le montant de l'empreinte par couvert et le délai d'annulation gratuite ; si le client vient, rien n'est prélevé."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Logiciel de réservation pour restaurant</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Comparatif</p>
+<h1>Meilleur logiciel de réservation pour restaurant : comment choisir</h1>
+<p class="lead">Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.</p>
+<p class="meta">Par Paul Merieult · 15/11/2026 · 6 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Le meilleur logiciel de réservation pour un restaurant indépendant est celui qui remplit la salle sans prendre un montant sur chaque couvert et qui protège contre les tables vides. Marchéo inclut la réservation de table, le click &amp; collect et le site du restaurant dans une formule à 39 € par mois, sans engagement et sans commission, avec une empreinte bancaire optionnelle contre les no-shows.</p>
+<p>Ce guide s&rsquo;adresse au restaurateur, au gérant de pizzeria ou de bistrot qui prend encore ses réservations au téléphone ou qui paie une plateforme à chaque couvert. Il complète notre <a href="/blog/creation-site-internet-commerce">guide de la création de site internet pour commerce</a> et la page <a href="/solutions/restaurant">commande en ligne et réservation pour restaurant</a>. Pour voir votre propre page de réservation, la <a href="/inscription">démo gratuite</a> prend 30 secondes.</p>
+<h2>Quels types de logiciels de réservation existent pour un restaurant ?</h2>
+<p>Il existe quatre familles d&rsquo;outils, qui ne font pas le même travail ni ne coûtent de la même façon. Le choix dépend surtout de ce que vous attendez : de nouveaux clients, ou un outil pour vos clients habituels.</p>
+<table>
+<thead>
+<tr>
+<th>Famille</th>
+<th>Ce qu&rsquo;elle apporte</th>
+<th>Comment elle se paie</th>
+<th>Pour qui</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Outil gratuit (formulaire, agenda partagé, messagerie)</td>
+<td>Une prise de réservation simple</td>
+<td>0 €, mais tout se gère à la main</td>
+<td>Petite salle, peu de réservations</td>
+</tr>
+<tr>
+<td>Plateforme de réservation avec application grand public</td>
+<td>De la visibilité auprès de clients qui ne vous connaissent pas</td>
+<td>Souvent une part facturée par couvert venu de l&rsquo;application, parfois un abonnement en plus</td>
+<td>Restaurant qui veut se faire connaître</td>
+</tr>
+<tr>
+<td>Logiciel de réservation spécialisé</td>
+<td>Plan de salle, liste d&rsquo;attente, gestion fine des services</td>
+<td>Abonnement de quelques dizaines d&rsquo;euros par mois, souvent plus avec les options</td>
+<td>Restaurant à forte rotation, plusieurs salles</td>
+</tr>
+<tr>
+<td>Logiciel tout-en-un comme Marchéo</td>
+<td>Réservation, site, commandes à emporter et livraison au même endroit</td>
+<td>Abonnement fixe, 0 % de commission</td>
+<td>Restaurant indépendant qui veut un seul outil</td>
+</tr>
+</tbody>
+</table>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Pour un restaurant, la formule Click &amp; Collect + Réservation ajoute la prise de réservation de table.</p>
+<h2>Que doit faire un bon logiciel de réservation ?</h2>
+<p>Un bon logiciel de réservation doit d&rsquo;abord éviter le surbooking et les tables vides. Le reste est du confort. Voici les fonctions qui comptent vraiment pour une salle de 20 à 80 couverts :</p>
+<ul>
+<li><strong>Choix du jour, de l&rsquo;heure et du nombre de couverts</strong> par le client, en quelques secondes et sans créer de compte.</li>
+<li><strong>Capacité maximale par service</strong> : quand la salle est pleine, le créneau se ferme tout seul.</li>
+<li><strong>Empreinte bancaire</strong> optionnelle, pour décourager les absences sans faire payer ceux qui viennent.</li>
+<li><strong>Lien d&rsquo;annulation</strong> pour le client, avec un délai d&rsquo;annulation gratuite que vous fixez.</li>
+<li><strong>Notification</strong> sur votre téléphone à chaque nouvelle réservation.</li>
+<li><strong>Fichier clients</strong> qui reste chez vous, pour inviter vos habitués à revenir.</li>
+</ul>
+<p>Marchéo couvre ces six points. Le client choisit sa date, son heure et son nombre de couverts, vous réglez la capacité maximale de chaque créneau, et vous décidez du montant de l&rsquo;empreinte par couvert et du délai d&rsquo;annulation gratuite.</p>
+<h2>Combien coûte un logiciel de réservation de restaurant ?</h2>
+<p>Le coût va de 0 € pour un outil fait main à plusieurs dizaines d&rsquo;euros par mois pour un logiciel spécialisé, auquel s&rsquo;ajoute, sur certaines plateformes, une part facturée par couvert. C&rsquo;est cette part variable qui fait la différence à la fin du mois.</p>
+<p>Voici un exemple chiffré, donné à titre d&rsquo;illustration et non comme le tarif d&rsquo;un éditeur précis. Prenons un restaurant qui reçoit 400 couverts réservés en ligne par mois, et une plateforme qui facturerait 2 € par couvert (hypothèse de l&rsquo;exemple) :</p>
+<table>
+<thead>
+<tr>
+<th>Poste</th>
+<th>Plateforme facturée au couvert (exemple)</th>
+<th>Marchéo, formule à 39 €</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Part variable</td>
+<td>400 × 2 € = 800 € par mois</td>
+<td>0 € (0 % de commission)</td>
+</tr>
+<tr>
+<td>Abonnement</td>
+<td>Selon le contrat</td>
+<td>39 € par mois, sans engagement</td>
+</tr>
+<tr>
+<td>Frais de départ</td>
+<td>Selon le contrat</td>
+<td>399 € une seule fois</td>
+</tr>
+<tr>
+<td>Total sur 12 mois</td>
+<td>9 600 € de part variable, hors abonnement</td>
+<td>399 € + 12 × 39 € = 867 €</td>
+</tr>
+</tbody>
+</table>
+<p>Dans cet exemple, l&rsquo;écart dépasse 8 700 € sur un an. Il faut être honnête : la plateforme vous amène aussi des clients que vous n&rsquo;auriez peut-être pas eus. Le bon calcul consiste donc à ne pas payer de part variable sur vos habitués, qui vous auraient trouvé de toute façon. Les frais bancaires d&rsquo;une empreinte réellement prélevée restent à prévoir, comme pour tout paiement par carte ; notre article <a href="/blog/commission-ou-frais-bancaires-vente-en-ligne">commission ou frais bancaires</a> explique la différence.</p>
+<h2>Comment éviter les no-shows au restaurant ?</h2>
+<p>Le moyen le plus efficace est de demander une empreinte bancaire au moment de la réservation. C&rsquo;est une pré-autorisation : le montant est réservé sur la carte du client, pas débité. Si le client vient, rien n&rsquo;est prélevé ; s&rsquo;il ne vient pas et n&rsquo;a pas annulé à temps, vous pouvez capturer le montant prévu.</p>
+<p>Trois réglages font la différence :</p>
+<ol>
+<li><strong>Un montant raisonnable par couvert</strong>, assez pour faire réfléchir, pas assez pour faire fuir.</li>
+<li><strong>Un délai d&rsquo;annulation gratuite clair</strong>, par exemple 24 heures, affiché avant la validation.</li>
+<li><strong>Un lien d&rsquo;annulation simple</strong> dans la confirmation, pour que le client annule au lieu de ne pas venir.</li>
+</ol>
+<p>Notre guide <a href="/blog/empreinte-bancaire-no-show-commerce-restaurant">empreinte bancaire et no-show</a> détaille les règles à afficher et les cas où l&rsquo;empreinte est utile.</p>
+<h2>Faut-il une plateforme ou un outil à votre nom ?</h2>
+<p>Si vous manquez de clients, une plateforme de réservation avec application grand public peut vous aider à vous faire connaître. Si votre salle se remplit déjà grâce au bouche-à-oreille, à Google et à Instagram, un outil à votre nom évite de payer pour des clients qui sont déjà les vôtres.</p>
+<p>Beaucoup de restaurants font les deux : la plateforme pour les nouveaux venus, le site du restaurant pour les habitués, avec un bouton « Réserver » sur la fiche Google Business, sur Instagram et sur la carte. Le même raisonnement vaut pour la livraison ; notre comparatif <a href="/blog/marcheo-ou-uber-eats-restaurant">Marchéo ou Uber Eats pour un restaurant</a> le détaille.</p>
+<h2>Quelles sont les limites d&rsquo;un logiciel tout-en-un ?</h2>
+<p>Un logiciel tout-en-un ne remplace pas un outil de gestion de salle très poussé. Si vous gérez plusieurs salles, un plan de table au couvert près ou une liste d&rsquo;attente en temps réel, un logiciel de réservation spécialisé conviendra mieux.</p>
+<p>Pour Marchéo, il faut aussi savoir que :</p>
+<ul>
+<li>les réservations s&rsquo;ouvrent sur les deux semaines à venir : pour une privatisation ou un repas de groupe dans trois mois, le téléphone reste le bon outil ;</li>
+<li>Marchéo ne vous apporte pas de clients comme une plateforme : c&rsquo;est votre propre page, à faire connaître ;</li>
+<li>Marchéo ne livre pas : si vous proposez la livraison, c&rsquo;est vous qui l&rsquo;organisez, avec la formule à 59 € par mois.</li>
+</ul>
+<h2>Comment choisir en cinq questions ?</h2>
+<p>Avant de signer, posez ces cinq questions à chaque éditeur. Une réponse floue sur l&rsquo;une d&rsquo;elles est un signal.</p>
+<ol>
+<li>Combien je paie si je reçois 400 couverts réservés en ligne ce mois-ci ?</li>
+<li>Les coordonnées des clients m&rsquo;appartiennent-elles ?</li>
+<li>Puis-je demander une empreinte bancaire et fixer moi-même le délai d&rsquo;annulation ?</li>
+<li>Y a-t-il un engagement de durée ?</li>
+<li>Dois-je acheter une tablette ou un autre matériel ?</li>
+</ol>
+<p>Pour Marchéo, les réponses sont : 39 € par mois quel que soit le nombre de couverts, oui, oui, non, et non. La <a href="/inscription">démo gratuite</a> vous montre votre page de réservation en 30 secondes.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel est le meilleur logiciel de réservation pour un petit restaurant indépendant ?</summary><p>Le meilleur est celui qui remplit votre salle sans vous facturer chaque couvert. Il existe trois familles : les plateformes de réservation, qui apportent de nouveaux clients mais facturent souvent chaque couvert venu de leur application ; les logiciels spécialisés à abonnement ; et les logiciels tout-en-un. Marchéo est l'un de ces derniers : réservation de table, click &amp; collect et site du restaurant dans la formule à 39 € par mois, sans engagement, 0 % de commission, 399 € de frais d'installation uniques, avec une empreinte bancaire optionnelle contre les no-shows.</p></details><details><summary>Existe-t-il un logiciel de réservation de restaurant gratuit ?</summary><p>Oui, mais avec des limites. Un formulaire, un agenda partagé ou le bouton de réservation d'une plateforme peuvent être gratuits à l'installation. En contrepartie, il n'y a souvent ni gestion de la capacité par service, ni protection contre les absences, ou bien chaque couvert est facturé. Pour un restaurant qui réserve tous les soirs, un abonnement fixe revient souvent moins cher qu'un outil gratuit facturé à l'usage.</p></details><details><summary>Faut-il acheter du matériel pour prendre les réservations en ligne ?</summary><p>Non. Avec un logiciel comme Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les réservations arrivent sur le téléphone ou l'ordinateur que vous avez déjà, et votre caisse ne change pas.</p></details><details><summary>Comment éviter les no-shows avec un logiciel de réservation ?</summary><p>En combinant trois choses : une empreinte bancaire au moment de la réservation, un délai d'annulation gratuite clair et un lien d'annulation simple pour le client. Sur Marchéo, vous fixez le montant de l'empreinte par couvert et le délai d'annulation gratuite ; si le client vient, rien n'est prélevé.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/site-internet-poissonnerie">Créer le site internet de sa poissonnerie</a><a href="/blog/primeur-livraison-a-domicile">Livrer à domicile quand on est primeur</a><a href="/blog/click-and-collect-epicerie">Le click &amp; collect pour une épicerie</a><a href="/blog/place-de-marche-ou-boutique-en-ligne-commerce-de-bouche">Place de marché ou boutique en ligne</a><a href="/solutions/pizzeria">Site et click &amp; collect pour pizzerias</a><a href="/solutions/restaurant">Site et click &amp; collect pour restaurants</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
+</body>
+</html>

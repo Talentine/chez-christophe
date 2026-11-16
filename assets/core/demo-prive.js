@@ -3,9 +3,9 @@
 // Une boutique créée par un commerçant et pas encore mise en ligne (abonnement non actif)
 // n'est visible que par lui :
 //   - jamais indexée (balise robots noindex posée ici, et absente du sitemap)
-//   - un visiteur qui tombe sur l'adresse voit « Boutique en préparation »
+//   - tout visiteur peut ouvrir la boutique (le mur « Boutique en préparation » est désactivé)
 //   - le commerçant connecté, l'admin Marchéo et les porteurs du lien d'aperçu privé
-//     (?apercu=<clé>, copiable depuis le dashboard) voient la boutique normalement
+//     (?apercu=<clé>, copiable depuis le dashboard) voient en plus le bandeau « Démo privée »
 // Restent publiques : les boutiques avec abonnement actif, les boutiques d'exemple Marchéo
 // (is_fixture), les démos ambassadeur et les démos préparées par Marchéo sans compte lié.
 // ============================================================
@@ -105,8 +105,9 @@
     fait = true;
     noindex();
     window.__DEMO_PRIVEE__ = { cle: cleApercu(biz) };
+    // Les démos sont désormais ouvertes à tous : plus de mur « Boutique en préparation ».
+    // Le commerçant, l'admin et les porteurs du lien d'aperçu gardent leur bandeau « Démo privée ».
     if (estProprietaire(biz) || estAdmin() || aLienApercu(biz)) badge();
-    else mur(biz);
   }
 
   document.addEventListener('business:ready', function (e) {
