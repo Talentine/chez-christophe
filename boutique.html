@@ -4404,13 +4404,18 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
 
   // Date min = aujourd'hui
   var dateInput = document.getElementById('m-resa-date');
-  if (dateInput) dateInput.min = new Date().toISOString().slice(0,10);
+  if (dateInput) dateInput.min = dateLocaleISO(new Date());
 
   var stripe, elements, cardElement;
   var resaCtx = {};
 
   // Charger les créneaux résa du commerçant (jour_semaine + heure_debut + heure_fin)
   var creneauxResaCache = null;
+  // YYYY-MM-DD en heure locale (et non UTC)
+  function dateLocaleISO(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
   async function chargerCreneauxResa() {
     if (creneauxResaCache) return creneauxResaCache;
     var b = (window.__CONFIG__ && window.__CONFIG__.business) || {};
@@ -4445,7 +4450,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
       var d = new Date(today.getTime() + i * 86400000);
       var wd = d.getDay();
       if (!joursActifs[wd]) continue;
-      var iso = d.toISOString().slice(0,10);
+      var iso = dateLocaleISO(d); // date LOCALE (toISOString = UTC → décalait d'un jour en France)
       html += '<button type="button" class="m-resa-jour-btn" data-date="' + iso + '" data-wd="' + wd + '" onclick="selectionnerJour(this)" '
         + 'style="flex-shrink:0;background:#fff;border:1.5px solid #E8E0D5;border-radius:14px;padding:10px 12px;font-family:inherit;cursor:pointer;text-align:center;min-width:64px;-webkit-tap-highlight-color:transparent;">'
         + '<div style="font-size:10px;color:#6B7785;">' + jourNoms[wd] + '</div>'
@@ -4485,7 +4490,7 @@ body.mode-vitrine.mode-demo #m-demo-banner { display: none !important; }
     var dateStr = document.getElementById('m-resa-date').value; // YYYY-MM-DD
     var selectedDate = dateStr ? new Date(dateStr + 'T00:00:00') : null;
     var now = new Date();
-    var todayKey = now.toISOString().slice(0,10);
+    var todayKey = dateLocaleISO(now);
     var seuilMs = now.getTime() + delaiMin * 60 * 1000;
 
     // Générer les slots de 30 min entre heure_debut et heure_fin

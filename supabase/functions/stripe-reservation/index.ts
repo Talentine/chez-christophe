@@ -53,6 +53,141 @@ async function ownsReservation(userId: string, reservation_id: string): Promise<
   return !!admin;
 }
 
+// ── Notifications de réservation ──────────────────────────────
+// Appelée une seule fois par réservation, quand elle passe « confirmee »
+// (création démo, ou confirm après empreinte). Chaque canal est indépendant :
+// un échec (pas d'email, Twilio KO…) n'empêche ni les autres ni la réservation.
+//   1. Push au commerçant (via send-push, appel interne service_role)
+//   2. Email au commerçant
+//   3. Email de confirmation au client (avec lien d'annulation)
+//   4. SMS de confirmation au client (sauf opt-out SMS connu)
+const SITE_URL = (Deno.env.get('SITE_URL') || 'https://xn--marcho-fva.fr').replace(/\/$/, '');
+const RESEND_FROM = Deno.env.get('RESEND_FROM') || 'Marchéo <onboarding@resend.dev>';
+const REPLY_TO = Deno.env.get('REPLY_TO_EMAIL') || 'marcheo.contact@gmail.com';
+
+const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as any)[ch]);
+
+function fmtJour(dateIso: string) {
+  const d = new Date(dateIso + 'T12:00:00Z');
+  return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
+}
+
+function normaliserTel(brut: string, pays = 'FR'): string {
+  let tel = String(brut || '').replace(/[\s.\-()\/]/g, '');
+  if (tel.startsWith('00')) tel = '+' + tel.slice(2);
+  if (tel.startsWith('+')) return tel;
+  const indicatif = pays === 'BE' ? '+32' : '+33';
+  if (tel.startsWith('0')) return indicatif + tel.slice(1);
+  return indicatif + tel;
+}
+
+async function envoyerMail(to: string, subject: string, html: string) {
+  const key = Deno.env.get('RESEND_API_KEY');
+  if (!key) throw new Error('RESEND_API_KEY manquante');
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: RESEND_FROM, to, subject, html, reply_to: REPLY_TO }),
+  });
+  if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
+}
+
+function layoutMail(titre: string, corps: string, boutique: string) {
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc(titre)}</title></head>
+<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#FAF7F0;color:#1f3028;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#FAF7F0;padding:32px 16px;"><tr><td align="center">
+<table width="100%" style="max-width:560px;background:#fff;border-radius:16px;overflow:hidden;">
+<tr><td style="background:#2A4535;color:#fff;padding:24px 28px;">
+<div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;opacity:0.7;">${esc(boutique)}</div>
+<div style="font-size:22px;font-weight:600;margin-top:4px;">${esc(titre)}</div></td></tr>
+<tr><td style="padding:28px;line-height:1.6;font-size:15px;">${corps}</td></tr>
+<tr><td style="padding:18px 28px;background:#FAF7F0;color:#7a8a82;font-size:12px;text-align:center;">Email envoyé par Marchéo</td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+async function notifierReservation(reservation_id: string) {
+  const { data: r } = await supabase.from('reservations')
+    .select('id, commercant_id, client_id, nom_client, prenom_client, telephone, email, date_reservation, heure_reservation, nb_couverts, notes, occasion, cancel_token, empreinte_montant_cents')
+    .eq('id', reservation_id).single();
+  if (!r) return;
+  const { data: c } = await supabase.from('commercants')
+    .select('nom_boutique, email, telephone, adresse, ville, pays')
+    .eq('id', r.commercant_id).single();
+  const boutique = c?.nom_boutique || 'Restaurant';
+  const jour = fmtJour(r.date_reservation);
+  const heure = String(r.heure_reservation || '').slice(0, 5);
+  const client = [r.prenom_client, r.nom_client].filter(Boolean).join(' ');
+  const couverts = r.nb_couverts + (Number(r.nb_couverts) > 1 ? ' couverts' : ' couvert');
+  const lienAnnul = `${SITE_URL}/annuler-reservation.html?t=${r.cancel_token}`;
+  const adresse = [c?.adresse, c?.ville].filter(Boolean).join(', ');
+
+  const taches: Promise<unknown>[] = [];
+
+  // 1. Push commerçant
+  taches.push(fetch(Deno.env.get('SUPABASE_URL') + '/functions/v1/send-push', {
+    method: 'POST',
+    headers: { Authorization: 'Bearer ' + Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'), 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      commercant_id: r.commercant_id,
+      titre: '📅 Nouvelle réservation !',
+      corps: `${client} · ${couverts} · ${jour} à ${heure}`,
+      url: '/app-commercant.html',
+    }),
+  }));
+
+  // 2. Email commerçant
+  if (c?.email) {
+    const corps = `
+      <p>Nouvelle réservation de table chez <b>${esc(boutique)}</b> :</p>
+      <div style="background:#FAF7F0;border-radius:10px;padding:14px 16px;margin:16px 0;">
+        <div style="font-size:16px;font-weight:600;text-transform:capitalize;">${esc(jour)} à ${esc(heure)}</div>
+        <div style="margin-top:4px;">👥 ${esc(couverts)}</div>
+        <div style="margin-top:4px;">👤 ${esc(client)} · 📞 ${esc(r.telephone)}${r.email ? ' · ✉️ ' + esc(r.email) : ''}</div>
+        ${r.occasion ? `<div style="margin-top:4px;">🎉 ${esc(r.occasion)}</div>` : ''}
+        ${r.notes ? `<div style="margin-top:4px;">📝 ${esc(r.notes)}</div>` : ''}
+      </div>
+      <p><a href="${SITE_URL}/app-commercant.html" style="color:#2A4535;font-weight:600;">Voir mes réservations →</a></p>`;
+    taches.push(envoyerMail(c.email, `📅 Nouvelle réservation — ${client}, ${couverts}, ${jour} ${heure}`, layoutMail('Nouvelle réservation', corps, boutique)));
+  }
+
+  // 3. Email client
+  if (r.email) {
+    const corps = `
+      <p>Bonjour ${esc(r.prenom_client || '')},</p>
+      <p>Votre table est réservée chez <b>${esc(boutique)}</b>. 🎉</p>
+      <div style="background:#FAF7F0;border-radius:10px;padding:14px 16px;margin:16px 0;">
+        <div style="font-size:16px;font-weight:600;text-transform:capitalize;">${esc(jour)} à ${esc(heure)}</div>
+        <div style="margin-top:4px;">👥 ${esc(couverts)}</div>
+        ${adresse ? `<div style="margin-top:4px;">📍 ${esc(adresse)}</div>` : ''}
+      </div>
+      <p style="font-size:13px;color:#7a8a82;">Un empêchement ? <a href="${lienAnnul}" style="color:#2A4535;">Annuler ma réservation</a></p>`;
+    taches.push(envoyerMail(r.email, `Réservation confirmée — ${boutique}, ${jour} ${heure}`, layoutMail('Réservation confirmée', corps, boutique)));
+  }
+
+  // 4. SMS client
+  const sid = Deno.env.get('TWILIO_ACCOUNT_SID');
+  const tok = Deno.env.get('TWILIO_AUTH_TOKEN');
+  const from = Deno.env.get('TWILIO_PHONE_NUMBER');
+  if (r.telephone && sid && tok && from) {
+    let optOut = false;
+    if (r.client_id) {
+      const { data: cl } = await supabase.from('clients').select('opt_out_sms').eq('id', r.client_id).maybeSingle();
+      optOut = !!cl?.opt_out_sms;
+    }
+    if (!optOut) {
+      const msg = `Bonjour ${r.prenom_client || ''} ! Votre table chez ${boutique} est réservée : ${jour} à ${heure}, ${couverts}. Annulation : ${lienAnnul}`;
+      taches.push(fetch(`https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`, {
+        method: 'POST',
+        headers: { Authorization: 'Basic ' + btoa(`${sid}:${tok}`), 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ To: normaliserTel(r.telephone, c?.pays || 'FR'), From: from, Body: msg }).toString(),
+      }).then(async (res) => { if (!res.ok) throw new Error('Twilio ' + res.status + ' ' + (await res.text()).slice(0, 200)); }));
+    }
+  }
+
+  const res = await Promise.allSettled(taches);
+  res.forEach((x) => { if (x.status === 'rejected') console.error('[reservation] notif KO:', String(x.reason)); });
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
 
@@ -73,6 +208,11 @@ serve(async (req) => {
       const { commercant_id, nb_couverts, date_reservation, heure_reservation, nom_client, prenom_client, telephone, email, notes, occasion } = body;
       if (!commercant_id || !nb_couverts || !date_reservation || !heure_reservation || !nom_client || !telephone) {
         return json({ error: 'Champs requis manquants' }, 400);
+      }
+      // Refuse un créneau déjà passé (heure de Paris) — garde-fou serveur
+      const maintenantParis = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Paris' }).slice(0, 16);
+      if (`${date_reservation} ${String(heure_reservation).slice(0, 5)}` < maintenantParis) {
+        return json({ error: 'Ce créneau est déjà passé, choisissez une autre heure.' }, 400);
       }
 
       // ── Lit les paramètres du commerçant : montant par couvert + politique d'annulation
@@ -105,6 +245,7 @@ serve(async (req) => {
           console.error('[reservation] demo insert err:', demoErr);
           return json({ error: 'Erreur DB' }, 500);
         }
+        try { await notifierReservation(resaDemo.id); } catch (e) { console.error('[reservation] notif err:', e); }
         return json({
           demo: true,
           reservation_id: resaDemo.id,
@@ -170,12 +311,16 @@ serve(async (req) => {
       const setupIntent = await stripe.setupIntents.retrieve(setup_intent_id);
       if (setupIntent.status !== 'succeeded') return json({ error: 'SetupIntent non confirmé' }, 400);
 
-      await supabase.from('reservations').update({
+      const { data: confirmed } = await supabase.from('reservations').update({
         statut: 'confirmee',
         date_confirmation: new Date().toISOString(),
         stripe_payment_intent_id: setupIntent.payment_method as string,
-      }).eq('id', reservation_id);
+      }).eq('id', reservation_id).neq('statut', 'confirmee').select('id');
 
+      // Notifie seulement au premier passage en « confirmee » (pas de doublon si confirm est rappelé)
+      if (confirmed && confirmed.length) {
+        try { await notifierReservation(reservation_id); } catch (e) { console.error('[reservation] notif err:', e); }
+      }
       return json({ ok: true });
     }
 
