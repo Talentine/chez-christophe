@@ -1782,6 +1782,23 @@
       <div id="congesListe" style="display:flex;flex-direction:column;gap:8px;"></div>
     </div>
 
+    <!-- CAPACITÉ DU FOUR / DE PRODUCTION PAR CRÉNEAU -->
+    <div id="reg-four" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🔥 Capacité du four par créneau</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Ex. 15 pizzas maximum par créneau. Quand le créneau est plein, le client choisit le suivant. Retrait et livraison partagent le même four.</div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;margin-bottom:12px;cursor:pointer;">
+        <input type="checkbox" id="fourActif" onchange="document.getElementById('fourWrap').style.display=this.checked?'block':'none'" style="width:18px;height:18px;">
+        Limiter les commandes par créneau
+      </label>
+      <div id="fourWrap" style="display:none;">
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">Nombre maximum par créneau</label>
+        <input type="number" id="fourMax" min="1" max="500" step="1" value="15" inputmode="numeric" style="width:100%;padding:11px 12px;border:1.5px solid var(--creme-fonce);border-radius:10px;font-family:inherit;font-size:15px;margin-bottom:14px;box-sizing:border-box;">
+        <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">Rayons qui passent au four</label>
+        <div id="fourCategories" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;font-size:13px;"><span style="color:var(--texte-doux)">Chargement…</span></div>
+      </div>
+      <button type="button" onclick="sauverFour()" style="width:100%;padding:12px;background:var(--vert);color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;">✓ Enregistrer</button>
+    </div>
+
     <!-- DÉLAIS D'ATTENTE MIN AVANT COMMANDE / RÉSERVATION -->
     <div id="reg-delais" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">⏱ Délais minimum avant commande</div>
@@ -3963,6 +3980,62 @@ window.sauverIdentiteBoutique = async function() {
   }
 };
 
+// ── Capacité du four ─────────────────────────────────────
+async function chargerFourReglages() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const cid = session.commercant_id;
+    const token = await getValidToken();
+    if (!cid || !token || !document.getElementById('fourCategories')) return;
+    const h = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token };
+    const [cRes, kRes] = await Promise.all([
+      fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + cid + '&select=four_max_par_creneau,four_categories', { headers: h }).then(r => r.json()),
+      fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + cid + '&select=produits_base(categorie_id,categories(id,nom,emoji))', { headers: h }).then(r => r.json()),
+    ]);
+    const c = (Array.isArray(cRes) && cRes[0]) || {};
+    const choisies = new Set(c.four_categories || []);
+    const cats = new Map();
+    (Array.isArray(kRes) ? kRes : []).forEach(k => {
+      const cat = k.produits_base && k.produits_base.categories;
+      if (cat && cat.id && !cats.has(cat.id)) cats.set(cat.id, cat);
+    });
+    const liste = [...cats.values()].sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr'));
+    const actif = c.four_max_par_creneau != null;
+    document.getElementById('fourActif').checked = actif;
+    document.getElementById('fourWrap').style.display = actif ? 'block' : 'none';
+    document.getElementById('fourMax').value = c.four_max_par_creneau || 15;
+    const box = document.getElementById('fourCategories');
+    box.innerHTML = liste.length ? liste.map(cat => {
+      // Par défaut (aucun choix enregistré) : on coche les rayons « pizza »
+      const coche = choisies.size ? choisies.has(cat.id) : /pizza/i.test(cat.nom || '');
+      return '<label style="display:flex;align-items:center;gap:10px;cursor:pointer;"><input type="checkbox" class="four-cat" value="' + cat.id + '"' + (coche ? ' checked' : '') + ' style="width:18px;height:18px;"> ' + (cat.emoji ? cat.emoji + ' ' : '') + String(cat.nom).replace(/</g, '&lt;') + '</label>';
+    }).join('') : '<span style="color:var(--texte-doux)">Aucun rayon dans votre catalogue.</span>';
+  } catch (e) { console.log('chargerFourReglages:', e); }
+}
+
+async function sauverFour() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const cid = session.commercant_id;
+    const token = await getValidToken();
+    if (!cid || !token) return;
+    const actif = document.getElementById('fourActif').checked;
+    const max = parseInt(document.getElementById('fourMax').value, 10);
+    const cats = [...document.querySelectorAll('.four-cat:checked')].map(i => i.value);
+    if (actif && (!(max > 0) || !cats.length)) {
+      afficherToast(!cats.length ? '⚠️ Cochez au moins un rayon' : '⚠️ Indiquez un nombre');
+      return;
+    }
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + cid, {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ four_max_par_creneau: actif ? max : null, four_categories: actif ? cats : [] })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    afficherToast(actif ? '✅ Four limité à ' + max + ' par créneau' : '✅ Limite du four désactivée');
+  } catch (e) { afficherToast('❌ Échec de l\'enregistrement'); }
+}
+
 async function sauverDelaisMin() {
   try {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
@@ -4421,6 +4494,7 @@ async function chargerReglages() {
       document.getElementById('delaiReservationVal').textContent = dRes;
       if (typeof window.syncDelaiPresets === 'function') window.syncDelaiPresets('delaiReservationRange', dRes);
     }
+    chargerFourReglages();
   } catch (e) {
     console.log('chargerReglages:', e);
   }

@@ -977,8 +977,53 @@ async function chargerCreneaux() {
   const dataVisibles = multi
     ? data.filter(c => !c.point_retrait_id || pointsRetrait.some(p => p.id === c.point_retrait_id))
     : data;
-  creneaux = genererCreneauxSemaine(dataVisibles, multi ? 200 : 12);
+  const limiteAff = multi ? 200 : 12;
+  creneaux = genererCreneauxSemaine(dataVisibles, multi ? 200 : 60);
+  // Capacité du four : on retire les créneaux où le panier ne rentre plus
+  await chargerFour(commercantId);
+  const qFour = qtePanierFour();
+  let nbComplets = 0;
+  if (FOUR && qFour > 0) {
+    creneaux = creneaux.filter(c => {
+      const ok = fourRestant(c) >= qFour;
+      if (!ok) nbComplets++;
+      return ok;
+    });
+  }
+  creneaux = creneaux.slice(0, limiteAff);
   renderCreneaux();
+  if (nbComplets > 0 && creneaux.length > 0) {
+    grid.insertAdjacentHTML('afterbegin',
+      '<div style="grid-column:1/-1;font-size:12.5px;color:var(--texte-doux);background:#fff8e7;border-radius:10px;padding:10px 12px;margin-bottom:4px;">🔥 Le four est complet sur certains créneaux : seuls ceux où votre commande peut être préparée sont proposés.</div>');
+  }
+}
+
+// ── CAPACITÉ DU FOUR ──────────────────────────────────
+// Le commerçant fixe un nombre max d'articles (ex. pizzas) par créneau.
+// four_etat ne renvoie que des quantités agrégées ; le serveur revérifie
+// à la création de la commande (trigger trg_four_capacite).
+let FOUR = null;
+async function chargerFour(commercantId) {
+  FOUR = null;
+  try {
+    const ids = panier.map(p => p.id).filter(Boolean);
+    if (!ids.length) return;
+    const r = await sb('rpc/four_etat', '', 'POST', { p_commercant: commercantId, p_produits: ids });
+    if (r && Number(r.max) > 0) FOUR = r;
+  } catch (e) { FOUR = null; }
+}
+function qtePanierFour() {
+  if (!FOUR) return 0;
+  const ids = new Set(FOUR.produits || []);
+  return panier.filter(p => ids.has(p.id)).reduce((s, p) => s + Number(p.qte || 0), 0);
+}
+function fourRestant(c) {
+  if (!FOUR || !c.dateISO) return Infinity;
+  const fin = c.dateISO.slice(0, 11) + c.fin + ':00';
+  const occ = (FOUR.occupation || [])
+    .filter(o => o.debut >= c.dateISO && o.debut < fin)
+    .reduce((s, o) => s + Number(o.qte || 0), 0);
+  return Number(FOUR.max) - occ;
 }
 
 function genererCreneauxSemaine(data, limite) {
@@ -1352,6 +1397,22 @@ async function confirmerCommande() {
 
     commandeId = rpcResp?.commande_id || null;
     clientId = rpcResp?.client_id || null;
+    if (!commandeId) {
+      const msg = String(rpcResp?.message || '');
+      const four = msg.match(/FOUR_COMPLET: il reste (\d+)/);
+      if (four) {
+        const reste = Number(four[1]);
+        afficherToastPanier(reste > 0
+          ? `🔥 Le four est presque complet sur ce créneau : il reste ${reste} place${reste > 1 ? 's' : ''}. Choisissez un autre créneau.`
+          : '🔥 Le four est complet sur ce créneau. Choisissez un autre créneau.', 'remove');
+        await chargerCreneaux();
+      } else {
+        afficherToastPanier(msg ? '⚠️ ' + msg : '⚠️ La commande n\'a pas pu être enregistrée, réessayez.', 'remove');
+      }
+      btn.disabled = false;
+      if (btnTxtEl) btnTxtEl.textContent = 'Confirmer la commande →';
+      return;
+    }
     if (commandeId) {
       // Empreinte bancaire (si activée par le commerçant)
       if (empreinteRequise && commandeId && stripeCard) {
