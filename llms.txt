@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Créer un site de vente en ligne avec une IA : est-ce adapté ?](https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia) : Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.
 - [Fromagerie livraison à domicile : plateaux, froid, zone et frais](https://marchéo.fr/blog/fromagerie-livraison-a-domicile) : Fromagerie et livraison à domicile : quoi livrer, plateaux et raclettes, froid, zone, créneaux, frais et fêtes. Le guide pour livrer vos clients vous-même.
 - [Site internet poissonnerie : pages, arrivages, commandes et prix](https://marchéo.fr/blog/site-internet-poissonnerie) : Site internet pour poissonnerie : quelles pages créer, comment montrer les arrivages, prendre les commandes de plateaux en ligne et combien ça coûte.
 - [Meilleur logiciel de réservation pour restaurant : comment choisir](https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant) : Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.

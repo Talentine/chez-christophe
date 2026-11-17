@@ -5,7 +5,7 @@ description: "Vos clients ne cherchent pas votre nom, ils cherchent « boulanger
 meta_title: "Fiche Google Business : le guide du commerce de bouche"
 meta_description: "Régler sa fiche Google Business quand on est boulanger, boucher ou primeur : catégorie, horaires, photos, avis et lien de commande en ligne. Guide pratique."
 date: 2026-09-28
-modified: 2026-10-29
+modified: 2026-11-17
 rubrique: Guide
 emoji: 📍
 keywords:
@@ -32,11 +32,13 @@ faq:
     r: "La fiche elle-même apparaît dès qu'elle est validée, en quelques jours. Sa position parmi les commerces du quartier bouge plus lentement, sur plusieurs semaines, et dépend surtout de trois choses : la proximité du client qui cherche, la cohérence de vos informations et vos avis récents. C'est un entretien régulier, pas un réglage à faire une fois."
   - q: "Puis-je mettre le lien de ma boutique en ligne sur ma fiche ?"
     r: "Oui, et c'est le champ le plus rentable de la fiche. Selon votre catégorie, vous disposez d'un champ site web et parfois d'un champ de commande en ligne. Mettez votre propre adresse de commande plutôt que celle d'une plateforme : le client arrive directement chez vous et vous ne payez aucune commission sur la vente."
+  - q: "Ma fiche Google Business aide-t-elle les assistants IA à recommander mon commerce ?"
+    r: "Oui, en partie. L'aperçu IA de Google s'appuie sur l'index de Google, dont votre fiche fait partie, et les assistants comme ChatGPT recoupent des informations publiques. Une fiche complète, avec la bonne catégorie, des horaires exacts, des avis récents et le lien de votre propre boutique en ligne, donne à ces outils des faits clairs à reprendre. Des informations différentes d'un site à l'autre ont l'effet inverse."
   - q: "Que faire d'un avis négatif ?"
     r: "Répondez, calmement, publiquement, dans les jours qui suivent. Un avis négatif avec une réponse posée rassure souvent plus qu'une page d'avis parfaits. Vous ne pouvez pas supprimer un avis parce qu'il vous déplaît ; seuls les avis qui enfreignent les règles de Google, insultes ou contenu sans rapport, peuvent être signalés."
 ---
 
-Une fiche Google Business bien réglée fait apparaître un commerce de bouche dans les trois résultats affichés avec la carte quand un client cherche « boulangerie » ou « boucherie » près de chez lui. Les réglages qui comptent le plus sont la catégorie principale, des horaires à jour, des avis récents et un lien de commande qui pointe vers votre propre boutique en ligne plutôt que vers une plateforme commissionnée. La fiche est gratuite et se règle en une heure.
+Une fiche Google Business bien réglée fait apparaître un commerce de bouche parmi les trois résultats affichés avec la carte quand un client cherche « boulangerie » ou « boucherie » près de chez lui. Les quatre réglages qui comptent le plus sont la catégorie principale, des horaires exacts, des avis récents et un lien de commande vers votre propre boutique en ligne plutôt que vers une plateforme qui prend 14 à 30 % de commission. La fiche est gratuite, se règle en une heure, et une boutique Marchéo à mettre en lien coûte de 19 à 59 € par mois, sans commission et sans engagement.
 
 Un client qui cherche votre boulangerie par son nom vous connaît déjà. Le client qui compte, c'est celui qui tape « boulangerie ouverte dimanche », « boucherie près de chez moi » ou « poissonnerie » plus le nom de sa ville, à 9 h un samedi, depuis son téléphone. Celui-là ne vous connaît pas encore. Il va voir trois commerces dans un encadré avec une carte, et il va en choisir un. Ce qui décide lequel, ce n'est pas votre site : c'est votre fiche Google Business.
 
@@ -118,6 +120,6 @@ Parce que la fiche apporte le client et que la boutique transforme sa visite en 
 
 C'est le schéma qui fait la différence pour un commerce de quartier : le client cherche « boulangerie ouverte dimanche » le samedi soir, tombe sur votre fiche, clique sur « Commander », réserve son gâteau pour le lendemain 10 h, et vous le préparez au calme. Aucune commission, et un client qui reviendra directement par votre adresse la fois suivante.
 
-Si vous prenez aujourd'hui vos commandes par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le lien à mettre sur votre fiche. Pour le site lui-même, voyez le [guide de création du site internet d'un commerce](/blog/creation-site-internet-commerce).
+Si vous prenez aujourd'hui vos commandes par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à choisir le lien à mettre sur votre fiche. Pour le site lui-même, voyez le [guide de création du site internet d'un commerce](/blog/creation-site-internet-commerce). Si vous pensez [créer votre site de vente en ligne avec une IA](/blog/creer-site-vente-en-ligne-avec-ia), sachez qu'un texte générique ne vous fera pas remonter : ce sont les informations exactes de votre fiche et de votre site qui comptent.
 
 Pour la mise en place côté boutique, notre guide sur [créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) donne la marche à suivre, et la page [click & collect pour boulangerie](/solutions/boulangerie) détaille le cas d'un commerce à forte fréquentation matinale. Pour voir à quoi ressemblerait votre page de commande, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, l'aperçu s'affiche. Sans carte bancaire et sans engagement.

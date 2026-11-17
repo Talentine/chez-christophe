@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site de vente en ligne avec une IA · Marchéo</title>
+<meta name="description" content="Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.">
+<link rel="canonical" href="https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Site de vente en ligne avec une IA · Marchéo"><meta property="og:description" content="Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.">
+<meta property="og:url" content="https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Site de vente en ligne avec une IA",
+     "item": "https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Créer un site de vente en ligne avec une IA : est-ce adapté ?",
+   "description": "Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-17",
+   "dateModified": "2026-11-17",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "créer un site de vente en ligne avec une ia, créer un site internet avec une ia, générateur de site ia commerce, créer sa boutique en ligne avec chatgpt, site ia ou logiciel métier",
+   "articleSection": "Comparatif"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel est le meilleur outil pour créer le site de vente en ligne de mon commerce avec une IA ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pour un commerce qui expédie des colis, un constructeur de site généraliste avec génération par IA convient bien. Pour un commerce de bouche qui vend en retrait ou en livraison locale, l'important n'est pas l'IA mais les fonctions de commande : créneaux, vente au poids, capacité par créneau, protection contre les commandes non récupérées. Marchéo fait partie de ces logiciels métier : 0 % de commission, abonnement de 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on créer un site de vente en ligne gratuitement avec ChatGPT ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ChatGPT peut écrire les textes et même le code d'une page, gratuitement. Mais un site qui vend demande un hébergement, un nom de domaine, un paiement sécurisé, des mentions légales et quelqu'un pour le réparer quand il tombe en panne. Ces coûts et ce travail restent à votre charge. Pour un commerçant sans compétence technique, un outil prêt à l'emploi revient souvent moins cher en temps."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour vendre en ligne avec un site créé par une IA ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non, quel que soit l'outil, un site de vente en ligne se gère depuis un téléphone ou un ordinateur. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Un site créé par une IA est-il bien référencé sur Google ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas automatiquement. Un site généré en quelques minutes contient souvent des textes génériques, proches de ceux de milliers d'autres sites. Ce qui fait remonter un commerce de proximité, c'est surtout une fiche Google Business soignée, des informations exactes (adresse, horaires, produits, prix) et des textes qui parlent vraiment de votre boutique."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Site de vente en ligne avec une IA</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Comparatif</p>
+<h1>Créer un site de vente en ligne avec une IA : est-ce adapté ?</h1>
+<p class="lead">Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.</p>
+<p class="meta">Par Paul Merieult · 17/11/2026 · 6 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>On peut créer un site de vente en ligne avec une IA en quelques minutes : elle rédige les textes, choisit les couleurs et monte les pages. Pour un commerce de bouche, le plus dur n&rsquo;est pourtant pas la mise en page mais la prise de commande (créneaux de retrait, vente au poids, livraison locale), que les générateurs de sites ne règlent pas seuls. Un logiciel métier comme Marchéo crée la boutique en 30 secondes avec ces fonctions déjà prêtes, sans matériel à acheter et sans commission, dès 19 € par mois.</p>
+<p>Ce comparatif s&rsquo;adresse au boulanger, au traiteur, au boucher ou au primeur qui a entendu dire qu&rsquo;« une IA fait un site en deux minutes » et se demande si c&rsquo;est la bonne voie. Il complète notre guide pour <a href="/blog/creer-sa-boutique-en-ligne-commerce">créer sa boutique en ligne quand on tient un commerce</a> et la page <a href="/solutions/boulangerie">commande en ligne pour boulangerie</a>. Pour juger sur pièce, la <a href="/inscription">démo gratuite</a> affiche votre boutique en 30 secondes.</p>
+<h2>Qu&rsquo;est-ce qu&rsquo;un site de vente en ligne créé par une IA ?</h2>
+<p>C&rsquo;est un site dont la structure, les textes et parfois les images sont produits automatiquement à partir de quelques réponses : le nom de votre commerce, votre activité, votre ville. Il en existe trois formes, qui ne demandent pas le même effort.</p>
+<ul>
+<li><strong>Le constructeur de site avec assistant IA</strong> : vous répondez à quelques questions, l&rsquo;outil propose un site complet que vous modifiez ensuite. La plupart des grands constructeurs généralistes proposent aujourd&rsquo;hui cette option.</li>
+<li><strong>L&rsquo;assistant conversationnel</strong> (ChatGPT, Claude, Gemini…) : il écrit vos textes, vos fiches produits, et peut même produire le code d&rsquo;une page. Mais il ne l&rsquo;héberge pas et ne la maintient pas.</li>
+<li><strong>Le logiciel métier avec modèle prérempli</strong> : vous choisissez votre métier, vous tapez le nom de votre boutique, et la boutique apparaît avec un catalogue déjà rempli pour votre métier. C&rsquo;est la façon de faire de Marchéo.</li>
+</ul>
+<p>Dans les trois cas, la promesse est la même : un site en quelques minutes. La différence se voit le premier samedi où les commandes arrivent.</p>
+<h2>Que fait bien une IA quand on crée son site ?</h2>
+<p>Une IA est excellente pour tout ce qui relève de l&rsquo;écriture et de la présentation. C&rsquo;est un vrai gain de temps pour un commerçant qui n&rsquo;aime pas rédiger.</p>
+<ul>
+<li>Écrire un texte de présentation de votre boutique à partir de trois phrases.</li>
+<li>Proposer des descriptions de produits (« pain au levain, croûte épaisse, se garde quatre jours »).</li>
+<li>Choisir une mise en page propre et lisible sur téléphone.</li>
+<li>Traduire une page pour une clientèle touristique.</li>
+<li>Suggérer des idées de rubriques ou de promotions.</li>
+</ul>
+<p>Vous pouvez d&rsquo;ailleurs utiliser un assistant IA pour écrire vos descriptions, puis les coller dans n&rsquo;importe quel outil de vente, Marchéo compris.</p>
+<h2>Qu&rsquo;est-ce qu&rsquo;une IA ne règle pas pour un commerce de bouche ?</h2>
+<p>Un générateur de site produit une vitrine, pas un système de commande adapté au frais. Un commerce de bouche ne vend pas comme une boutique de vêtements qui expédie des colis : ses besoins sont précis, et ils ne s&rsquo;inventent pas en deux minutes.</p>
+<table>
+<thead>
+<tr>
+<th>Besoin d&rsquo;un commerce de bouche</th>
+<th>Constructeur généraliste avec IA</th>
+<th>Code écrit par un assistant IA</th>
+<th>Logiciel métier comme Marchéo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Créneaux de retrait avec nombre de commandes par créneau</td>
+<td>Souvent via une extension à configurer</td>
+<td>À programmer vous-même</td>
+<td>Inclus</td>
+</tr>
+<tr>
+<td>Vente au poids (viande, fromage, fruits et légumes)</td>
+<td>Souvent via une extension</td>
+<td>À programmer vous-même</td>
+<td>Inclus</td>
+</tr>
+<tr>
+<td>Protection contre les commandes non récupérées</td>
+<td>Rarement prévue</td>
+<td>À programmer vous-même</td>
+<td>Empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier</td>
+</tr>
+<tr>
+<td>Zone et frais de livraison locale</td>
+<td>Pensé surtout pour l&rsquo;expédition de colis</td>
+<td>À programmer vous-même</td>
+<td>Inclus dans la formule à 59 €</td>
+</tr>
+<tr>
+<td>Commande sans créer de compte client</td>
+<td>Selon le réglage</td>
+<td>À programmer vous-même</td>
+<td>Oui, en 30 secondes</td>
+</tr>
+<tr>
+<td>Hébergement, sécurité, mises à jour</td>
+<td>Inclus dans l&rsquo;abonnement</td>
+<td>À votre charge</td>
+<td>Inclus</td>
+</tr>
+<tr>
+<td>Commission sur les ventes</td>
+<td>Selon l&rsquo;offre, parfois des frais de transaction</td>
+<td>Aucune, mais frais bancaires à prévoir</td>
+<td>0 %</td>
+</tr>
+</tbody>
+</table>
+<p>Ce tableau ne dit pas qu&rsquo;un outil est mauvais. Il dit qu&rsquo;un site généré en quelques minutes reste à paramétrer pour vendre du frais, et que ce paramétrage demande du temps, parfois des extensions payantes. Notre comparatif <a href="/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite">Shopify, Wix ou logiciel métier</a> entre dans le détail des constructeurs généralistes.</p>
+<h2>Combien coûte un site de vente en ligne créé avec une IA ?</h2>
+<p>La génération elle-même est souvent gratuite ; c&rsquo;est l&rsquo;utilisation réelle qui se paie. Il faut regarder le coût sur un an, pas le prix du premier jour.</p>
+<ul>
+<li><strong>Constructeur généraliste</strong> : un abonnement de quelques dizaines d&rsquo;euros par mois, plus les extensions pour les créneaux ou la vente au poids, et parfois des frais par transaction.</li>
+<li><strong>Site codé avec un assistant IA</strong> : l&rsquo;IA est gratuite ou presque, mais il faut payer un hébergement et un nom de domaine, intégrer un paiement sécurisé, rédiger les mentions légales et réparer soi-même en cas de panne. Pour un commerçant sans compétence technique, c&rsquo;est le choix le plus risqué.</li>
+<li><strong>Logiciel métier Marchéo</strong> : 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, avec des frais d&rsquo;installation uniques de 249, 399 ou 549 €, et 0 % de commission.</li>
+</ul>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Notre article sur le <a href="/blog/site-internet-pas-cher-commerce-de-proximite">site internet pas cher pour un commerce</a> détaille ce qui est vraiment gratuit et ce qui ne l&rsquo;est pas.</p>
+<h2>Quand un site créé par une IA suffit-il ?</h2>
+<p>Un site généré par une IA suffit quand vous voulez seulement être trouvé, pas prendre des commandes. Une page avec vos horaires, votre adresse, quelques photos et votre numéro de téléphone peut tout à fait sortir d&rsquo;un générateur.</p>
+<p>Il convient aussi si vous expédiez des colis dans toute la France : dans ce cas, un constructeur généraliste comme Shopify est mieux adapté que Marchéo, qui n&rsquo;est pas fait pour l&rsquo;expédition nationale.</p>
+<p>En revanche, dès que vous voulez recevoir des commandes avec retrait à heure fixe, vendre au poids ou livrer votre quartier, il vous faut un vrai outil de commande. C&rsquo;est là qu&rsquo;un logiciel métier fait gagner du temps : les fonctions existent déjà, il n&rsquo;y a rien à programmer ni à brancher.</p>
+<h2>Comment choisir en quatre questions ?</h2>
+<p>Avant de vous lancer, posez-vous ces quatre questions. Elles tranchent plus vite qu&rsquo;une comparaison de fonctions.</p>
+<ol>
+<li><strong>Voulez-vous être trouvé ou prendre des commandes ?</strong> Être trouvé : un site vitrine généré par IA ou la formule Vitrine à 19 € suffit. Prendre des commandes : il faut un outil de commande.</li>
+<li><strong>Vendez-vous au poids ou à la pièce ?</strong> Au poids, vérifiez que l&rsquo;outil le gère sans extension.</li>
+<li><strong>Le client retire-t-il en boutique, se fait-il livrer près de chez vous, ou reçoit-il un colis ?</strong> Retrait ou livraison locale : logiciel métier. Colis partout en France : constructeur généraliste.</li>
+<li><strong>Qui réparera le site un samedi matin ?</strong> Si la réponse est « personne », évitez le site codé vous-même.</li>
+</ol>
+<p>Si vos réponses vont vers la commande en retrait ou en livraison locale, la <a href="/inscription">démo gratuite de Marchéo</a> vous montre en 30 secondes votre boutique avec un catalogue adapté à votre métier. Pour les commandes de fêtes, notre guide sur les <a href="/blog/precommandes-fetes-noel-commerce-bouche">précommandes de Noël</a> montre ce que l&rsquo;outil doit savoir faire en décembre.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel est le meilleur outil pour créer le site de vente en ligne de mon commerce avec une IA ?</summary><p>Pour un commerce qui expédie des colis, un constructeur de site généraliste avec génération par IA convient bien. Pour un commerce de bouche qui vend en retrait ou en livraison locale, l'important n'est pas l'IA mais les fonctions de commande : créneaux, vente au poids, capacité par créneau, protection contre les commandes non récupérées. Marchéo fait partie de ces logiciels métier : 0 % de commission, abonnement de 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois, sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €.</p></details><details><summary>Peut-on créer un site de vente en ligne gratuitement avec ChatGPT ?</summary><p>ChatGPT peut écrire les textes et même le code d'une page, gratuitement. Mais un site qui vend demande un hébergement, un nom de domaine, un paiement sécurisé, des mentions légales et quelqu'un pour le réparer quand il tombe en panne. Ces coûts et ce travail restent à votre charge. Pour un commerçant sans compétence technique, un outil prêt à l'emploi revient souvent moins cher en temps.</p></details><details><summary>Faut-il acheter du matériel pour vendre en ligne avec un site créé par une IA ?</summary><p>Non, quel que soit l'outil, un site de vente en ligne se gère depuis un téléphone ou un ordinateur. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà.</p></details><details><summary>Un site créé par une IA est-il bien référencé sur Google ?</summary><p>Pas automatiquement. Un site généré en quelques minutes contient souvent des textes génériques, proches de ceux de milliers d'autres sites. Ce qui fait remonter un commerce de proximité, c'est surtout une fiche Google Business soignée, des informations exactes (adresse, horaires, produits, prix) et des textes qui parlent vraiment de votre boutique.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/fromagerie-livraison-a-domicile">Livrer à domicile quand on est fromager</a><a href="/blog/site-internet-poissonnerie">Créer le site internet de sa poissonnerie</a><a href="/blog/meilleur-logiciel-reservation-restaurant">Logiciel de réservation pour restaurant</a><a href="/blog/primeur-livraison-a-domicile">Livrer à domicile quand on est primeur</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
+</body>
+</html>

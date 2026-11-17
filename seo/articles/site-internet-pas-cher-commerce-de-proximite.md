@@ -3,6 +3,7 @@ title: "Site internet pas cher pour un commerce : ce qui est vraiment gratuit"
 titre_court: "Un site pas cher pour son commerce"
 description: "Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité."
 date: 2026-11-02
+modified: 2026-11-17
 rubrique: Comparatif
 emoji: 💶
 keywords:
@@ -42,7 +43,7 @@ Oui, on peut présenter son commerce en ligne sans rien payer, mais pas prendre 
 | Page Facebook ou Instagram | Photos et actualités | Le client doit vous écrire pour commander |
 | WhatsApp Business | Catalogue et messages | Tout reste à gérer à la main |
 
-La fiche Google passe avant tout le reste, car c'est souvent là que le client vous trouve. Notre guide de la [fiche Google Business](/blog/fiche-google-business-commerce-bouche) donne les réglages utiles. Pour quelques commandes par semaine, lisez aussi notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce).
+La fiche Google passe avant tout le reste, car c'est souvent là que le client vous trouve. Notre guide de la [fiche Google Business](/blog/fiche-google-business-commerce-bouche) donne les réglages utiles. Pour quelques commandes par semaine, lisez aussi notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce). Et si un outil vous propose de générer tout le site en deux minutes, voyez ce qu'il faut savoir avant de [créer un site de vente en ligne avec une IA](/blog/creer-site-vente-en-ligne-avec-ia).
 
 ## Qu'est-ce qu'un site gratuit ne fait pas ?
 

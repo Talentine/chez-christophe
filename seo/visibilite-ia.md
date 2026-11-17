@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°12 (n°10 et n°11 posées le 15/11 vers 16 h ; question de marque suivante : n°24). Aucun relevé du 9 au 11/11 : la routine IA n'a pas tourné ces jours-là.
+Prochaine question en rotation : n°14 (n°12 et n°13 posées le 17/11 vers 16 h 15 ; question de marque suivante : n°23). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -231,3 +231,11 @@ Prochaine question en rotation : n°12 (n°10 et n°11 posées le 15/11 vers 16 
 | 2026-11-15 | ChatGPT | (Marque) Marchéo, c'est quoi ? Quel prix ? (n°23) | oui, prix exacts | marchéo.fr (+1) : tableau 249 / 399 / 549 € et 19 / 39 / 59 €, pas de commission, sans engagement, démo gratuite, livraison par le commerçant, réservation de table ; précise que Marchéo n'apporte pas de clients comme Uber Eats ; plus de « premier mois offert » |
 | 2026-11-15 | Perplexity | Comment éviter les commandes non récupérées en click and collect ? (n°10) | non mesuré | page « Vérification de sécurité en cours » (anti-robot, HTTP 403) : mesure arrêtée, aucune vérification tentée |
 | 2026-11-15 | (note) | navigateur intégré, sans compte ; extension Chrome non connectée ; Google non interrogé après le blocage anti-robot de Perplexity (consigne : arrêter la mesure) | | |
+| 2026-11-17 | ChatGPT | Comment organiser la livraison à domicile pour une boucherie ? (n°12) | non | aucun outil nommé : téléphone, WhatsApp Business « pour démarrer », site avec créneaux, tableau Excel ; source : Légifrance (arrêté du 21/12/2009) ; zones 3 / 5 / 7 €, minimum 30 à 40 € |
+| 2026-11-17 | ChatGPT | Comment fixer ses frais de livraison quand on est commerçant ? (n°13) | non | aucun outil nommé ; sources : Bpifrance Création, La Poste ; méthode coût réel + grille par montant ou par zone ; mélange encore colis et livraison locale |
+| 2026-11-17 | ChatGPT | Quel outil pour une fromagerie qui veut faire la livraison à domicile de ses plateaux ? (mot-clé du matin) | **oui, cité en 1er** (« Mon premier choix ») | marchéo.fr (+2) : boutique, plateaux, paiement en ligne, créneaux, zone et frais, « 59 €/mois pour la formule livraison, hors installation » ; puis Ollca et Mon Petit Drive ; il ajoute « organisation des tournées », à surveiller (Marchéo ne fournit pas de livreurs). 1re citation hors marque par ChatGPT, le jour même de l'article du matin |
+| 2026-11-17 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? (n°24) | oui, faits exacts | marchéo.fr (+2) : 0 %, 19 à 59 €/mois, « Votre propre livreur », base clients conservée, « Marchéo ne fournit pas de livreurs » ; Uber Eats 14 à 30 % ; conseille les deux en complément ; plus d'hésitation « plateforme de livraison » |
+| 2026-11-17 | Perplexity | Comment organiser la livraison à domicile pour une boucherie ? (n°12) | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question sans compte |
+| 2026-11-17 | Google (aperçu IA) | Comment organiser la livraison à domicile pour une boucherie ? (n°12) | non (aperçu IA affiché) ; marchéo.fr absent de la 1re page | aperçu IA : JDC (2020), Le Blog du Dirigeant, Orisha (tournées, 2024), Facebook (Boucherie Maison Borrely), Facture.net, OAFormation ; 1re page : jdc.fr, nakide.fr (« Livraison vs Click & Collect pour une boucherie », 2021), leblogdudirigeant, tactill, monouso, lsa-conso, mypos, orisha ; pages anciennes, aucune spécialisée récente |
+| 2026-11-17 | Google | fromagerie livraison à domicile outil plateaux | pas d'aperçu IA (« Raisonnement… » sans réponse) ; marchéo.fr absent | 1re page : fromageries qui expédient (La Boite du Fromager, Fromagerie Betty, Fromages.com, Pourdebon, Maison Mercier, Frères Marchand) ; aucun guide pour le fromager qui livre son quartier |
+| 2026-11-17 | (note) | navigateur intégré, sans compte, cookies Google refusés ; extension Chrome non utilisée (connectée au compte ChatGPT de Paul) | | |
