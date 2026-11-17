@@ -1,5 +1,6 @@
 -- Capacité du four : nombre maximum d'articles (ex. pizzas) par créneau.
 -- Réglé par le commerçant. NULL = pas de limite.
+-- Réservé aux métiers restaurant, pizzeria et fast-food.
 -- Les créneaux retrait et livraison qui se chevauchent partagent le même four.
 
 alter table public.commercants
@@ -58,7 +59,8 @@ as $$
         group by k.date_retrait) o), '[]'::jsonb)
   )
   from commercants c
-  where c.id = p_commercant and c.four_max_par_creneau is not null;
+  where c.id = p_commercant and c.four_max_par_creneau is not null
+    and c.business_type in ('restaurant', 'pizzeria', 'fastfood');
 $$;
 grant execute on function public.four_etat(uuid, uuid[]) to anon, authenticated;
 
@@ -82,7 +84,8 @@ begin
     return null;
   end if;
   select four_max_par_creneau, four_categories into v_max, v_cats
-    from commercants where id = v_cmd.commercant_id;
+    from commercants where id = v_cmd.commercant_id
+      and business_type in ('restaurant', 'pizzeria', 'fastfood');
   if v_max is null or coalesce(array_length(v_cats, 1), 0) = 0 then
     return null;
   end if;

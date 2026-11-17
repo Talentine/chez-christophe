@@ -1339,6 +1339,11 @@
             <div class="reg-label">Garantie de réservation<div class="reg-sub">Empreinte bancaire anti no-show</div></div>
             <div class="reg-chevron">›</div>
           </div>
+          <div class="reg-row" id="reg-four-row" onclick="scrollToReg('reg-four')" style="display:none;">
+            <div class="reg-icon" style="background:#C8102E;">🔥</div>
+            <div class="reg-label">Capacité du four<div class="reg-sub">Nombre max de pizzas par créneau</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
           <div class="reg-row" onclick="scrollToReg('reg-delais')">
             <div class="reg-icon" style="background:#F4B942;">⏱</div>
             <div class="reg-label">Délais minimum<div class="reg-sub">Avant commande / livraison / résa</div></div>
@@ -1783,7 +1788,7 @@
     </div>
 
     <!-- CAPACITÉ DU FOUR / DE PRODUCTION PAR CRÉNEAU -->
-    <div id="reg-four" class="reg-section-anchor" style="background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+    <div id="reg-four" class="reg-section-anchor" style="display:none;background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
       <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🔥 Capacité du four par créneau</div>
       <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Ex. 15 pizzas maximum par créneau. Quand le créneau est plein, le client choisit le suivant. Retrait et livraison partagent le même four.</div>
       <label style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;margin-bottom:12px;cursor:pointer;">
@@ -3981,12 +3986,20 @@ window.sauverIdentiteBoutique = async function() {
 };
 
 // ── Capacité du four ─────────────────────────────────────
+const METIERS_FOUR = ['restaurant', 'pizzeria', 'fastfood'];
 async function chargerFourReglages() {
   try {
     const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
     const cid = session.commercant_id;
     const token = await getValidToken();
     if (!cid || !token || !document.getElementById('fourCategories')) return;
+    // Réservé aux métiers avec un four : restaurant, pizzeria, fast-food
+    const bt = window.__CONFIG__?.business?.business_type;
+    const fourOk = METIERS_FOUR.includes(bt);
+    document.getElementById('reg-four').style.display = fourOk ? '' : 'none';
+    const row = document.getElementById('reg-four-row');
+    if (row) row.style.display = fourOk ? '' : 'none';
+    if (!fourOk) return;
     const h = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token };
     const [cRes, kRes] = await Promise.all([
       fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + cid + '&select=four_max_par_creneau,four_categories', { headers: h }).then(r => r.json()),
