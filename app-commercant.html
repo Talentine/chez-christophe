@@ -6087,10 +6087,11 @@ function afficherBandeauDemoDashboard() {
     <button onclick="copierLienApercuPrive(this)" title="Copier un lien privé pour montrer votre démo à un proche" style="flex-shrink:0;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Lien privé</button>
     <button onclick="ouvrirAbonnementDepuisBandeau()" style="flex-shrink:0;background:#F4B942;color:#0F2C52;border:none;border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;pointer-events:auto;">Mettre en ligne →</button>
   `;
-  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:101;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
-  document.body.appendChild(banner);
-  // Décale le contenu sous le bandeau
-  document.body.style.paddingTop = '52px';
+  banner.style.cssText = 'position:relative;background:linear-gradient(135deg,#0F2C52,#1a3a6d);color:#fff;padding:10px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:Manrope,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:12.5px;';
+  // Bandeau dans le flux, au-dessus de l'en-tête : il ne recouvre plus le bouton « Déco »
+  const app = document.getElementById('appPrincipal');
+  if (app) app.insertBefore(banner, app.firstChild);
+  else document.body.insertBefore(banner, document.body.firstChild);
 }
 function retirerBandeauDemoDashboard() {
   const b = document.getElementById('demo-dash-banner');
