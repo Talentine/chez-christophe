@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect dans une fromagerie : vendre 
 meta_title: "Click and collect fromagerie : le guide pratique"
 meta_description: "Click and collect pour fromagerie : vente à la coupe, plateaux, formules raclette, créneaux de retrait et paiement. Le guide concret pour démarrer."
 date: 2026-10-16
-modified: 2026-11-06
+modified: 2026-11-17
 rubrique: Guide
 emoji: 🧀
 keywords:
@@ -108,7 +108,7 @@ Les plateformes de livraison prennent en général entre 14 et 30 % de commissio
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
 
-Il fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux et vos frais. Le client commande en 30 secondes, sans créer de compte.
+Il fonctionne avec un abonnement fixe et 0 % de commission. La formule Click & Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d'installation uniques de 399 €. Si vous voulez aussi livrer vous-même vos plateaux, la formule avec livraison est à 59 € par mois. Marchéo ne livre pas : il vous donne l'outil pour régler votre zone, vos créneaux et vos frais, comme l'explique notre guide [fromagerie livraison à domicile](/blog/fromagerie-livraison-a-domicile). Le client commande en 30 secondes, sans créer de compte.
 
 ## Pour commencer
 

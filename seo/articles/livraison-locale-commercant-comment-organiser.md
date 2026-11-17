@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-15
+modified: 2026-11-17
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -169,7 +169,7 @@ Chaque métier livre des produits différents, avec ses contraintes. Voici les p
 - **Primeur.** Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir [la solution pour primeur](/solutions/primeur), le [click and collect primeur](/blog/click-and-collect-primeur) et notre guide [primeur et livraison à domicile des paniers de légumes](/blog/primeur-livraison-a-domicile).
 - **Poissonnerie.** Poisson et plateaux de fruits de mer, tournée très courte. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre guide [poissonnerie livraison à domicile](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux repas pour les entreprises, buffets, menus de fêtes. Pour les bureaux, suivez notre guide de la [livraison de plateaux repas en entreprise](/blog/livraison-plateau-repas-entreprise-traiteur). Voir aussi [la solution pour traiteur](/solutions/traiteur), la [création de site internet de traiteur](/blog/creation-site-internet-traiteur) et notre guide [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile).
-- **Fromagerie.** Plateaux et formules raclette livrés le vendredi soir. Voir [la solution pour fromagerie](/solutions/fromagerie) et le [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
+- **Fromagerie.** Plateaux et formules raclette livrés le vendredi soir. Voir [la solution pour fromagerie](/solutions/fromagerie), le [click and collect en fromagerie](/blog/click-and-collect-fromagerie) et notre guide [fromagerie livraison à domicile](/blog/fromagerie-livraison-a-domicile).
 - **Fleuriste.** Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir [la solution pour fleuriste](/solutions/fleuriste) et notre guide [fleuriste livraison à domicile](/blog/fleuriste-livraison-a-domicile).
 - **Pizzeria.** Livraison du soir sur une zone courte, à heure annoncée. Voir [la solution pour pizzeria](/solutions/pizzeria) et notre guide du [logiciel de livraison pizza](/blog/logiciel-livraison-pizza).
 - **Restaurant.** Livraison des habitués en direct, plateforme pour la découverte si besoin. Voir [la solution pour restaurant](/solutions/restaurant).

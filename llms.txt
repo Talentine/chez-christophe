@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Fromagerie livraison à domicile : plateaux, froid, zone et frais](https://marchéo.fr/blog/fromagerie-livraison-a-domicile) : Fromagerie et livraison à domicile : quoi livrer, plateaux et raclettes, froid, zone, créneaux, frais et fêtes. Le guide pour livrer vos clients vous-même.
 - [Site internet poissonnerie : pages, arrivages, commandes et prix](https://marchéo.fr/blog/site-internet-poissonnerie) : Site internet pour poissonnerie : quelles pages créer, comment montrer les arrivages, prendre les commandes de plateaux en ligne et combien ça coûte.
 - [Meilleur logiciel de réservation pour restaurant : comment choisir](https://marchéo.fr/blog/meilleur-logiciel-reservation-restaurant) : Quel logiciel de réservation pour votre restaurant ? Plateforme, outil spécialisé ou logiciel tout-en-un : coûts, commissions par couvert et no-show comparés.
 - [Primeur livraison à domicile : livrer vos paniers vous-même](https://marchéo.fr/blog/primeur-livraison-a-domicile) : Primeur et livraison à domicile : paniers de légumes, zone, créneaux, poids réel, fraîcheur et frais. Le guide du primeur qui livre lui-même, sans commission.
@@ -103,4 +104,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-16
+- Dernière mise à jour : 2026-11-17

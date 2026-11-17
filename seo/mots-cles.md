@@ -33,7 +33,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | qr code commande à table | click & collect | restaurant | GS | moyenne | à faire |
 | livraison à domicile boucherie | livraison | boucherie | GS + WS (31/10 : 1re page = annuaires et boucheries parisiennes, aucun guide pour boucher) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
 | primeur livraison à domicile | livraison | primeur | GS | haute | publié le 2026-11-15 primeur-livraison-a-domicile |
-| fromagerie livraison à domicile | livraison | fromagerie | GS | moyenne | à faire (pas avant novembre, fromagerie publiée le 16/10) |
+| fromagerie livraison à domicile | livraison | fromagerie | GS (+ 17/11 : « fromagerie livraison », « livraison fromage à domicile ») | moyenne | publié le 2026-11-17 + fromagerie-livraison-a-domicile |
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS + WS (1re page : PDF administratifs, annuaires, faible) | haute | publié le 2026-10-18 poissonnerie-livraison-a-domicile |
 | livraison traiteur à domicile | livraison | traiteur | GS | moyenne | à faire |
 | pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | couvert par logiciel-livraison-pizza (2026-10-26), angle livrer soi-même |
@@ -402,3 +402,9 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site internet charcuterie | site | traiteur | GS (16/11 : « site charcuterie », « charcuterie site internet ») | moyenne | à étudier : charcutier-traiteur, vérifier la cannibalisation avec creation-site-internet-traiteur |
 | création site internet boulangerie | site | boulangerie | GS (16/11 : « création site internet boulangerie », « site web boulangerie ») | haute | à faire : enrichir site-internet-boulangerie-commandes-en-ligne (title et H2 sur « création site internet boulangerie »), avec les lignes « boulangerie click and collect » et « application commande en ligne boulangerie », pas de nouvel article |
 | poissonnerie en ligne pas cher | transverse | poissonnerie | GS (16/11) | basse | écarté : requête d'acheteur |
+| plateau fromage livraison | livraison | fromagerie | GS (17/11 : « plateau charcuterie fromage livraison », « plateau fromage a livrer ») | moyenne | couvert le 2026-11-17 par fromagerie-livraison-a-domicile (keywords + tableau des produits) |
+| plateau raclette livraison | livraison | fromagerie | GS (17/11 : « livraison plateau raclette », « plateau raclette à emporter ») | moyenne | couvert le 2026-11-17 par fromagerie-livraison-a-domicile (FAQ appareil à raclette) |
+| plateau raclette à emporter | click & collect | fromagerie | GS (17/11) | moyenne | à étudier : section dans click-and-collect-fromagerie au prochain rafraîchissement, pas de nouvel article |
+| prix plateau fromage fromagerie | transverse | fromagerie | GS (17/11 : « prix plateau fromage fromagerie ») | moyenne | à faire : angle « fixer le prix de ses plateaux par personne » (marge, formats), sans chiffre inventé |
+| logiciel commande gratuit | click & collect | tous | GS (17/11 : « logiciel commande gratuit », « logiciel bon de commande en ligne gratuit ») | moyenne | à regrouper avec « application click and collect gratuite » ; FAQ déjà présentes dans plusieurs articles, vérifier la cannibalisation |
+| application de vente en ligne gratuite | site | tous | GS (17/11) | basse | à regrouper avec « logiciel commande en ligne gratuit » |
