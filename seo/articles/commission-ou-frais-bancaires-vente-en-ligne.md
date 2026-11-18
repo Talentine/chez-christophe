@@ -3,6 +3,7 @@ title: "Commission ou frais bancaires : quelle différence en vente en ligne ?"
 titre_court: "Commission ou frais bancaires : la différence"
 description: "Commission, abonnement, frais bancaires : ce que chaque mot veut dire quand un commerçant vend en ligne, avec un exemple chiffré et un tableau pour comparer."
 date: 2026-11-12
+modified: 2026-11-18
 rubrique: Guide
 emoji: 🧮
 keywords:
@@ -93,7 +94,7 @@ Un abonnement de 39 € par mois revient moins cher qu'une commission de 14 % d�
 
 En comptant les frais d'installation la première année, le seuil monte un peu. Douze mois à 39 € plus 399 € d'installation font 867 € sur l'année, soit environ 72 € par mois. À 14 % de commission, cela correspond à un peu plus de 500 € de ventes en ligne par mois. Avec une commission de 30 %, le seuil descend à 240 € environ.
 
-En dessous de ces montants, une solution gratuite à la commission, un formulaire ou [WhatsApp Business](/blog/whatsapp-ou-boutique-en-ligne-commerce) peuvent suffire. Au-dessus, l'abonnement fixe coûte moins cher chaque mois.
+En dessous de ces montants, une solution gratuite à la commission, un formulaire ou [WhatsApp Business](/blog/whatsapp-ou-boutique-en-ligne-commerce) peuvent suffire. Au-dessus, l'abonnement fixe coûte moins cher chaque mois. Certains outils ne prennent pas de pourcentage mais un montant fixe à chaque commande : le calcul change, et notre comparatif [frais par commande ou abonnement](/blog/frais-par-commande-ou-abonnement-logiciel-commande) donne les seuils.
 
 ## Que veut dire « sans commission » chez Marchéo ?
 

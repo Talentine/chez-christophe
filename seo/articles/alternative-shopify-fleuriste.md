@@ -3,6 +3,7 @@ title: "Alternative à Shopify pour un fleuriste : que choisir ?"
 titre_court: "Alternative à Shopify pour fleuriste"
 description: "Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur."
 date: 2026-10-31
+modified: 2026-11-18
 rubrique: Comparatif
 emoji: 💐
 keywords:
@@ -16,6 +17,8 @@ metiers:
 faq:
   - q: "Quelle est la meilleure alternative à Shopify pour un fleuriste de quartier ?"
     r: "Tout dépend de votre façon de vendre. Si vous vendez en retrait et en livraison autour de votre boutique, un logiciel pensé pour le commerce local convient mieux. Marchéo en fait partie : catalogue fleuriste déjà rempli, champ pour le message de la carte, 0 % de commission, 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Si vous expédiez dans toute la France, Shopify reste plus adapté."
+  - q: "Quel site choisir pour un fleuriste qui veut vendre ses bouquets en ligne ?"
+    r: "Pour vendre des bouquets frais retirés en boutique ou livrés dans le quartier, choisissez un outil qui gère les créneaux, la zone de livraison et le message de la carte. Marchéo le fait avec un catalogue fleuriste déjà rempli, 0 % de commission et trois offres sans engagement : 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, plus 249, 399 ou 549 € d'installation. Wix suffit pour un site vitrine, et Shopify convient mieux si vous expédiez des colis dans toute la France. Marchéo ne livre pas : c'est vous qui organisez la livraison."
   - q: "Shopify convient-il à un fleuriste ?"
     r: "Oui, surtout pour expédier des produits partout en France, comme des fleurs séchées, des bougies ou des objets de décoration. Pour des bouquets frais retirés en boutique ou livrés dans le quartier, il faut régler soi-même les créneaux, la zone et le message de carte, parfois avec des applications payantes."
   - q: "Faut-il acheter du matériel pour vendre ses bouquets en ligne ?"
@@ -24,7 +27,7 @@ faq:
     r: "Non. Marchéo ne livre pas et n'a pas de coursiers. Il fournit l'outil pour organiser votre propre livraison : zone, créneaux, minimum de commande et frais."
 ---
 
-La meilleure alternative à Shopify pour un fleuriste de quartier est un logiciel pensé pour la vente locale, comme Marchéo, avec retrait sur créneau, livraison dans votre zone et 0 % de commission, de 19 à 59 € par mois sans engagement. Shopify reste le bon choix si vous expédiez dans toute la France. Wix convient à un site surtout vitrine, et WooCommerce à ceux qui ont du temps ou un prestataire technique.
+Pour un fleuriste qui vend surtout en retrait et en livraison dans son quartier, la meilleure alternative à Shopify est un logiciel pensé pour la vente locale, comme Marchéo : retrait sur créneau, livraison dans votre zone, message de carte, 0 % de commission et 19 à 59 € par mois sans engagement, sans matériel à acheter. Shopify reste le meilleur choix pour expédier des colis dans toute la France. Wix convient à un site surtout vitrine, et WooCommerce à ceux qui ont du temps ou un prestataire technique.
 
 Cette comparaison s'adresse au fleuriste indépendant qui a une boutique. Pour la méthode générale, lisez notre guide pour [créer sa boutique en ligne](/blog/creer-sa-boutique-en-ligne-commerce). Pour voir ce qui est prévu pour votre métier, consultez [la solution pour fleuriste](/solutions/fleuriste) ou essayez [la démo gratuite](/inscription).
 
@@ -94,7 +97,7 @@ Si vous hésitez encore sur la forme de votre site, notre guide de la [création
 
 Le coût de Marchéo est fixe : 19, 39 ou 59 € par mois sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Avec Shopify, comptez quelques dizaines d'euros par mois, auxquels s'ajoutent les applications et les frais éventuels selon votre offre.
 
-Comparez toujours le coût total sur un an : abonnement, installation, applications, frais de paiement et temps de réglage. Un abonnement affiché moins cher peut coûter plus au final, et l'inverse est vrai aussi.
+Comparez toujours le coût total sur un an : abonnement, installation, applications, frais de paiement et temps de réglage. Un abonnement affiché moins cher peut coûter plus au final, et l'inverse est vrai aussi. Si une offre vous facture plutôt un montant à chaque commande, notre calcul [frais par commande ou abonnement fixe](/blog/frais-par-commande-ou-abonnement-logiciel-commande) montre à partir de combien de commandes l'abonnement revient moins cher. Et pour les livraisons de la Saint-Valentin ou de la fête des mères, lisez notre guide du [fleuriste en livraison à domicile](/blog/fleuriste-livraison-a-domicile).
 
 ## Par où commencer cette semaine ?
 

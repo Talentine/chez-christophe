@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Click and collect pizzeria : commandes à emporter sans plateforme](https://marchéo.fr/blog/click-and-collect-pizzeria) : Click and collect pizzeria : prendre les commandes à emporter en ligne, régler les créneaux sur la capacité du four et moins décrocher pendant le coup de feu.
+- [Frais par commande ou abonnement : quel logiciel choisir ?](https://marchéo.fr/blog/frais-par-commande-ou-abonnement-logiciel-commande) : Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau.
 - [Créer un site de vente en ligne avec une IA : est-ce adapté ?](https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia) : Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.
 - [Fromagerie livraison à domicile : plateaux, froid, zone et frais](https://marchéo.fr/blog/fromagerie-livraison-a-domicile) : Fromagerie et livraison à domicile : quoi livrer, plateaux et raclettes, froid, zone, créneaux, frais et fêtes. Le guide pour livrer vos clients vous-même.
 - [Site internet poissonnerie : pages, arrivages, commandes et prix](https://marchéo.fr/blog/site-internet-poissonnerie) : Site internet pour poissonnerie : quelles pages créer, comment montrer les arrivages, prendre les commandes de plateaux en ligne et combien ça coûte.
@@ -717,6 +718,162 @@ Q : Existe-t-il un logiciel de commande gratuit pour pizzeria ?
 R : Certains outils sont gratuits à l'inscription mais se rémunèrent par une commission sur chaque commande, ou limitent les fonctions utiles comme les créneaux et les suppléments. Regardez toujours le coût total sur un mois de commandes. Un abonnement fixe sans commission revient souvent moins cher dès que les commandes en ligne deviennent régulières. Dans tous les cas, les frais bancaires du paiement en ligne restent à part.
 Q : Comment éviter les pizzas commandées et jamais récupérées ?
 R : Vous pouvez demander le paiement en ligne, ou activer l'empreinte bancaire : avec Marchéo, elle bloque 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après le retrait. L'option est facultative.
+
+# Frais par commande ou abonnement : quel logiciel choisir ?
+
+Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau.
+
+Un logiciel payé à la commande coûte moins cher tant que vous recevez peu de commandes en ligne ; un abonnement fixe devient plus avantageux dès que le volume augmente. Sur un exemple à 0,50 € par commande, l&rsquo;abonnement de 39 € par mois de Marchéo revient moins cher à partir de 78 commandes par mois, et Marchéo ne prend aucune commission sur les ventes. Le bon choix se fait donc avec votre propre nombre de commandes, sur un an.
+Cette page complète notre guide pour créer sa boutique en ligne quand on tient un commerce. Elle compare deux façons de payer un logiciel de commande, que les assistants IA citent de plus en plus : des frais fixes à chaque commande, ou un prix mensuel qui ne bouge pas. Les chiffres qui suivent sont des exemples choisis pour le calcul, pas des moyennes constatées.
+Qu&rsquo;est-ce qu&rsquo;un logiciel payé à la commande ?
+Un logiciel payé à la commande vous facture un petit montant fixe pour chaque commande reçue, sans abonnement mensuel. Selon les offres, ce montant va de quelques dizaines de centimes à environ 1 € par commande.
+Ce n&rsquo;est pas une commission. Une commission est un pourcentage du panier, en général 14 à 30 % sur une plateforme de livraison : plus le panier est gros, plus vous payez. Les frais par commande restent les mêmes, que le client commande une baguette ou un plateau de 80 €.
+Ce modèle a un vrai avantage : si vous ne recevez aucune commande un mois, vous ne payez rien. Il convient bien pour tester la vente en ligne sans risque.
+Qu&rsquo;est-ce qu&rsquo;un abonnement fixe ?
+Un abonnement fixe est un prix mensuel qui ne dépend ni du nombre de commandes ni de leur montant. Que vous receviez dix commandes ou cinq cents, vous payez la même chose.
+Chez Marchéo, l&rsquo;abonnement est de 19 € par mois pour l&rsquo;offre Vitrine, 39 € par mois pour l&rsquo;offre Click &amp; Collect + Réservation et 59 € par mois pour l&rsquo;offre Click &amp; Collect + Livraison, sans engagement. Des frais d&rsquo;installation uniques s&rsquo;ajoutent au départ : 249, 399 ou 549 € selon l&rsquo;offre.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Frais par commande, abonnement ou commission : quelles différences ?
+La différence tient à la façon dont le coût évolue quand vos ventes augmentent.
+
+
+
+
+Frais par commande
+Abonnement fixe
+Commission
+
+
+
+
+Mode de calcul
+Montant fixe à chaque commande
+Prix fixe par mois
+Pourcentage de chaque panier
+
+
+Ordre de grandeur
+Quelques dizaines de centimes à environ 1 €
+Quelques dizaines d&rsquo;euros par mois
+14 à 30 % sur une plateforme de livraison
+
+
+Coût un mois sans commande
+0 €
+L&rsquo;abonnement
+0 €
+
+
+Augmente avec le nombre de commandes
+Oui, régulièrement
+Non
+Oui
+
+
+Augmente avec le montant du panier
+Non
+Non
+Oui, fortement
+
+
+Pour qui
+Démarrage, petit volume
+Volume régulier
+Besoin de nouveaux clients et de livreurs
+
+
+
+Dans les trois cas, les frais bancaires du paiement par carte en ligne existent aussi, environ 1,5 % plus 0,25 € par paiement. Notre article sur la différence entre commission et frais bancaires les détaille.
+Combien coûte chaque modèle sur un exemple chiffré ?
+Sur un exemple à 150 commandes de 25 € par mois, des frais de 0,50 € par commande coûtent 75 €, un abonnement fixe de 39 € coûte 39 €, et une commission de 14 % coûte 525 €. L&rsquo;écart grandit avec le volume.
+Prenons trois commerces fictifs, avec un panier moyen de 25 €, des frais de 0,50 € par commande et l&rsquo;offre Marchéo à 39 € par mois. Les frais bancaires sont laissés de côté, car ils s&rsquo;appliquent à tous les modèles.
+
+
+
+Commandes en ligne par mois
+Frais par commande (0,50 €)
+Abonnement fixe (39 €)
+Commission (14 %, bas de fourchette)
+
+
+
+
+50 commandes (1 250 € de ventes)
+25 €
+39 €
+175 €
+
+
+150 commandes (3 750 € de ventes)
+75 €
+39 €
+525 €
+
+
+400 commandes (10 000 € de ventes)
+200 €
+39 €
+1 400 €
+
+
+
+À 50 commandes par mois, l&rsquo;outil payé à la commande est le moins cher. À 150 commandes, l&rsquo;abonnement coûte deux fois moins. À 400 commandes, l&rsquo;écart dépasse 150 € par mois, soit plus de 1 900 € sur un an.
+À partir de combien de commandes l&rsquo;abonnement fixe devient-il moins cher ?
+Le seuil se calcule en divisant l&rsquo;abonnement par les frais d&rsquo;une commande. Avec 39 € par mois et 0,50 € par commande, l&rsquo;abonnement est moins cher dès 78 commandes par mois, soit environ 3 commandes par jour d&rsquo;ouverture.
+Le seuil change avec le montant des frais :
+
+
+
+Frais par commande
+Seuil sans les frais d&rsquo;installation
+Seuil la première année (installation de 399 € comprise)
+
+
+
+
+0,25 €
+156 commandes par mois
+289 commandes par mois
+
+
+0,50 €
+78 commandes par mois
+145 commandes par mois
+
+
+1 €
+39 commandes par mois
+73 commandes par mois
+
+
+
+Pour la première année, on ajoute les frais d&rsquo;installation : 12 mois à 39 € plus 399 € font 867 €, soit environ 72 € par mois. À partir de la deuxième année, seul l&rsquo;abonnement compte. Faites le calcul avec votre propre volume : une boulangerie qui prend surtout des commandes de gâteaux le week-end n&rsquo;aura pas le même résultat qu&rsquo;un restaurant qui sert 20 commandes à emporter chaque soir.
+Que faut-il vérifier dans une offre payée à la commande ?
+Vérifiez quatre points, car le prix affiché n&rsquo;est pas toujours le prix payé :
+
+Qui paie les frais : vous, ou le client sous forme de « frais de service » ajoutés à son ticket ?
+Les frais bancaires du paiement en ligne sont-ils compris, ou s&rsquo;ajoutent-ils ?
+Les commandes payées au retrait sont-elles aussi facturées ?
+Y a-t-il des frais au départ, un minimum mensuel ou du matériel à acheter ?
+
+Les frais de service payés par le client méritent une attention particulière. Votre facture baisse, mais votre client paie plus cher en ligne qu&rsquo;au comptoir. Sur un petit panier, cela peut le faire renoncer ou revenir au téléphone.
+Quand un abonnement fixe comme Marchéo est-il le bon choix ?
+Un abonnement fixe est le bon choix quand vous recevez des commandes en ligne chaque semaine et que vous voulez un coût connu d&rsquo;avance. Avec Marchéo, rien n&rsquo;est prélevé sur vos ventes : 0 % de commission, et le prix ne change pas quand vos commandes augmentent.
+L&rsquo;abonnement comprend la boutique en ligne et le site à votre nom, les créneaux de retrait, la commande en 30 secondes sans compte client et, selon l&rsquo;offre, la réservation de table ou la livraison. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier et libérée 24 h après le retrait, protège des commandes non récupérées. Aucune tablette, imprimante ou caisse n&rsquo;est à acheter.
+Il faut aussi connaître les limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients. Et pour expédier des colis dans toute la France, une solution comme Shopify convient mieux.
+Si vous ne recevez que quelques commandes par mois, un outil payé à la commande, un formulaire ou une messagerie peuvent suffire au début. Pour comparer tous les postes de coût, lisez combien coûte un site de click &amp; collect. Les restaurateurs trouveront aussi un comparatif dans notre article sur l&rsquo;application de click and collect pour restaurant sans commission.
+Par où commencer ?
+Commencez par compter vos commandes actuelles : téléphone, messages, commandes notées au comptoir. Multipliez ce nombre par les frais par commande de l&rsquo;offre qui vous intéresse, puis comparez avec un abonnement sur douze mois.
+Pour voir à quoi ressemblerait votre boutique, la démo gratuite de Marchéo affiche un aperçu en 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce, et le catalogue est déjà rempli. Vous pouvez aussi consulter la solution pour restaurant ou la solution pour boulangerie.
+
+Q : Quel logiciel de commande en ligne choisir pour un restaurant : un outil payé à la commande ou un abonnement ?
+R : Tout dépend du nombre de commandes en ligne par mois. Un outil payé quelques dizaines de centimes par commande coûte moins cher tant que vous recevez peu de commandes ; au-delà d'environ 80 à 150 commandes par mois, un abonnement fixe revient en général moins cher. Parmi les abonnements fixes, Marchéo coûte 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus 399 ou 549 € de frais d'installation uniques. Dans tous les cas, comparez le coût sur un an avec votre propre nombre de commandes.
+Q : Les frais de service payés par le client sont-ils gratuits pour le commerçant ?
+R : Pas vraiment. Certains outils ajoutent quelques dizaines de centimes au ticket du client au lieu de vous les facturer. Votre facture baisse, mais votre client paie plus cher que sur place, et il le voit au moment de payer. Pour un panier de 10 €, cela peut freiner la commande. Vérifiez si ces frais sont affichés et si vous pouvez les désactiver.
+Q : Les frais bancaires s'ajoutent-ils aux frais par commande ?
+R : Souvent oui. Le paiement par carte en ligne coûte environ 1,5 % plus 0,25 € par paiement chez un prestataire comme Stripe, quel que soit le logiciel. Certains outils payés à la commande incluent ces frais, d'autres les ajoutent. Demandez-le par écrit. Si le client paie au retrait, il n'y a pas de frais de paiement en ligne.
+Q : Faut-il acheter du matériel pour prendre des commandes en ligne ?
+R : Non, pas forcément. Certains logiciels demandent une tablette ou une imprimante de cuisine, d'autres non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà.
 
 # Créer un site de vente en ligne avec une IA : est-ce adapté ?
 
@@ -2491,7 +2648,7 @@ Ce calcul ne dit pas tout. La plateforme apporte des clients nouveaux et des liv
 À partir de combien de ventes l&rsquo;abonnement fixe revient-il moins cher ?
 Un abonnement de 39 € par mois revient moins cher qu&rsquo;une commission de 14 % dès 280 € de ventes en ligne par mois environ. Le calcul est simple : 39 € divisés par 14 % donnent 279 €.
 En comptant les frais d&rsquo;installation la première année, le seuil monte un peu. Douze mois à 39 € plus 399 € d&rsquo;installation font 867 € sur l&rsquo;année, soit environ 72 € par mois. À 14 % de commission, cela correspond à un peu plus de 500 € de ventes en ligne par mois. Avec une commission de 30 %, le seuil descend à 240 € environ.
-En dessous de ces montants, une solution gratuite à la commission, un formulaire ou WhatsApp Business peuvent suffire. Au-dessus, l&rsquo;abonnement fixe coûte moins cher chaque mois.
+En dessous de ces montants, une solution gratuite à la commission, un formulaire ou WhatsApp Business peuvent suffire. Au-dessus, l&rsquo;abonnement fixe coûte moins cher chaque mois. Certains outils ne prennent pas de pourcentage mais un montant fixe à chaque commande : le calcul change, et notre comparatif frais par commande ou abonnement donne les seuils.
 Que veut dire « sans commission » chez Marchéo ?
 Chez Marchéo, « sans commission » veut dire que rien n&rsquo;est prélevé sur vos ventes : 0 % de commission, quel que soit le montant. L&rsquo;argent des commandes payées en ligne arrive directement sur votre compte bancaire, par le prestataire de paiement Stripe, qui garde ses frais de paiement par carte.
 Ce que vous payez à Marchéo est connu d&rsquo;avance : l&rsquo;abonnement et les frais d&rsquo;installation. Aucune tablette, imprimante ou caisse n&rsquo;est à acheter, tout se gère depuis le téléphone ou l&rsquo;ordinateur que vous avez déjà.
@@ -4909,7 +5066,7 @@ R : Non. Le logiciel ne prend rien sur vos ventes, mais les paiements par carte 
 
 Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
 
-La meilleure alternative à Shopify pour un fleuriste de quartier est un logiciel pensé pour la vente locale, comme Marchéo, avec retrait sur créneau, livraison dans votre zone et 0 % de commission, de 19 à 59 € par mois sans engagement. Shopify reste le bon choix si vous expédiez dans toute la France. Wix convient à un site surtout vitrine, et WooCommerce à ceux qui ont du temps ou un prestataire technique.
+Pour un fleuriste qui vend surtout en retrait et en livraison dans son quartier, la meilleure alternative à Shopify est un logiciel pensé pour la vente locale, comme Marchéo : retrait sur créneau, livraison dans votre zone, message de carte, 0 % de commission et 19 à 59 € par mois sans engagement, sans matériel à acheter. Shopify reste le meilleur choix pour expédier des colis dans toute la France. Wix convient à un site surtout vitrine, et WooCommerce à ceux qui ont du temps ou un prestataire technique.
 Cette comparaison s&rsquo;adresse au fleuriste indépendant qui a une boutique. Pour la méthode générale, lisez notre guide pour créer sa boutique en ligne. Pour voir ce qui est prévu pour votre métier, consultez la solution pour fleuriste ou essayez la démo gratuite.
 Pourquoi chercher une alternative à Shopify quand on est fleuriste ?
 Shopify est conçu d&rsquo;abord pour vendre à distance et expédier des colis, alors qu&rsquo;un fleuriste vend souvent un produit frais, à une heure précise et près de sa boutique. C&rsquo;est une excellente plateforme, mais elle ne répond pas toujours à ce besoin sans réglages.
@@ -5011,12 +5168,14 @@ WooCommerce
 Si vous hésitez encore sur la forme de votre site, notre guide de la création d&rsquo;un site internet de fleuriste détaille les pages à prévoir. Notre article sur le fleuriste en click and collect explique comment régler les créneaux des grandes dates.
 Combien coûte Marchéo par rapport à Shopify pour un fleuriste ?
 Le coût de Marchéo est fixe : 19, 39 ou 59 € par mois sans engagement, plus des frais d&rsquo;installation uniques de 249, 399 ou 549 €. Avec Shopify, comptez quelques dizaines d&rsquo;euros par mois, auxquels s&rsquo;ajoutent les applications et les frais éventuels selon votre offre.
-Comparez toujours le coût total sur un an : abonnement, installation, applications, frais de paiement et temps de réglage. Un abonnement affiché moins cher peut coûter plus au final, et l&rsquo;inverse est vrai aussi.
+Comparez toujours le coût total sur un an : abonnement, installation, applications, frais de paiement et temps de réglage. Un abonnement affiché moins cher peut coûter plus au final, et l&rsquo;inverse est vrai aussi. Si une offre vous facture plutôt un montant à chaque commande, notre calcul frais par commande ou abonnement fixe montre à partir de combien de commandes l&rsquo;abonnement revient moins cher. Et pour les livraisons de la Saint-Valentin ou de la fête des mères, lisez notre guide du fleuriste en livraison à domicile.
 Par où commencer cette semaine ?
 Le plus simple est de comparer un résultat réel. Sur la page d&rsquo;inscription, choisissez « Fleuriste », tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous pourrez ensuite le comparer à une boutique d&rsquo;essai sur Shopify et garder l&rsquo;outil qui vous fait perdre le moins de temps.
 
 Q : Quelle est la meilleure alternative à Shopify pour un fleuriste de quartier ?
 R : Tout dépend de votre façon de vendre. Si vous vendez en retrait et en livraison autour de votre boutique, un logiciel pensé pour le commerce local convient mieux. Marchéo en fait partie : catalogue fleuriste déjà rempli, champ pour le message de la carte, 0 % de commission, 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Si vous expédiez dans toute la France, Shopify reste plus adapté.
+Q : Quel site choisir pour un fleuriste qui veut vendre ses bouquets en ligne ?
+R : Pour vendre des bouquets frais retirés en boutique ou livrés dans le quartier, choisissez un outil qui gère les créneaux, la zone de livraison et le message de la carte. Marchéo le fait avec un catalogue fleuriste déjà rempli, 0 % de commission et trois offres sans engagement : 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, plus 249, 399 ou 549 € d'installation. Wix suffit pour un site vitrine, et Shopify convient mieux si vous expédiez des colis dans toute la France. Marchéo ne livre pas : c'est vous qui organisez la livraison.
 Q : Shopify convient-il à un fleuriste ?
 R : Oui, surtout pour expédier des produits partout en France, comme des fleurs séchées, des bougies ou des objets de décoration. Pour des bouquets frais retirés en boutique ou livrés dans le quartier, il faut régler soi-même les créneaux, la zone et le message de carte, parfois avec des applications payantes.
 Q : Faut-il acheter du matériel pour vendre ses bouquets en ligne ?
@@ -7304,7 +7463,7 @@ Commande en ligne avec retrait et livraison organisée par vous
 
 
 
-Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez combien coûte un site de click &amp; collect. Pour ne pas confondre les trois coûts d&rsquo;une vente en ligne, lisez aussi la différence entre commission et frais bancaires.
+Les trois formules sont sans engagement et à 0 % de commission. Pour le détail des prix pratiqués sur le marché, lisez combien coûte un site de click &amp; collect. Pour ne pas confondre les trois coûts d&rsquo;une vente en ligne, lisez aussi la différence entre commission et frais bancaires. Si une offre vous facture plutôt quelques centimes à chaque commande, notre calcul frais par commande ou abonnement fixe montre à partir de quel volume l&rsquo;abonnement revient moins cher.
 Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
 Pour créer sa boutique en ligne, il vous faut un téléphone, vos produits et une heure de réglages. Beaucoup de commerçants repoussent le projet en pensant qu&rsquo;il faut du matériel, un développeur ou un gros budget. Ce n&rsquo;est plus le cas.
 
