@@ -54,7 +54,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site web traiteur | site | traiteur | GS | moyenne | couvert par creation-site-internet-traiteur (2026-10-17) |
 | site referencement traiteur | site | traiteur | GS | basse | à fondre dans l'article traiteur |
 | click and collect repas | click & collect | traiteur | GS | moyenne | à faire (traiteur, plats du jour) |
-| click and collect pizza | click & collect | pizzeria | GS | moyenne | à faire (marques en tête, angle pizzeria indépendante) |
+| click and collect pizza | click & collect | pizzeria | GS | moyenne | publié le 2026-11-18 click-and-collect-pizzeria (variante) |
 | click and collect produits frais | click & collect | primeur | GS | moyenne | à faire |
 | click and collect halal | click & collect | boucherie | GS | basse | niche, à garder en variante boucherie |
 | plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
@@ -264,7 +264,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application click and collect restaurant comparatif | click & collect | restaurant | IA (03/11 : ChatGPT cite GetEat, WeEat, ARDOIZA, Click&Croque, Collectly ; Perplexity cite Click Eat, GoodBarber, MenuTouch ; Marchéo absent) | haute | à faire : enrichir application-click-and-collect-restaurant (tableau des familles d'outils, frais de paiement à part) quand Bing l'aura indexé, pas de nouvel article |
 | alternative uber eats garder ses clients qr code | transverse | restaurant | IA (03/11 : ChatGPT, Perplexity et Google citent bungeefood, restolabs, heustach ; Marchéo absent sur n°5) | haute | publié le 2026-11-13 + alternative-uber-eats-garder-ses-clients (article IA dédié ; lien ajouté depuis click-and-collect-sans-commission-alternative-uber-eats-deliveroo) |
 | site pour pizzeria | site | pizzeria | GS (04/11) | moyenne | couvert le 2026-11-04 par site-internet-pizzeria |
-| logiciel pizzeria gratuit | click & collect | pizzeria | GS (04/11) | moyenne | à faire : angle « ce qui est vraiment gratuit », à fusionner avec application click and collect gratuite |
+| logiciel pizzeria gratuit | click & collect | pizzeria | GS (04/11) | moyenne | couvert en FAQ de click-and-collect-pizzeria (2026-11-18) |
 | site web food truck | site | fastfood | GS (04/11) + WS (08/11 : 1re page = annonces Codeur.com et guides en anglais) | haute | publié le 2026-11-08 site-internet-food-truck (requête principale « site internet food truck ») |
 | site de fromagerie | site | fromagerie | GS (04/11) | haute | publié le 2026-11-06 site-internet-fromagerie |
 | click and collect bar | click & collect | restaurant | GS (04/11) | basse | à faire (volume probablement faible, à vérifier) |
@@ -410,3 +410,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | application de vente en ligne gratuite | site | tous | GS (17/11) | basse | à regrouper avec « logiciel commande en ligne gratuit » |
 | logiciel livraison plateaux fromagerie | livraison | fromagerie | IA (17/11 : ChatGPT cite Marchéo en 1er, « Mon premier choix », puis Ollca et Mon Petit Drive ; il ajoute « organisation des tournées ») | moyenne | à suivre dans les relevés ; vérifier que fromagerie-livraison-a-domicile dit clairement que Marchéo ne fournit pas de livreurs |
 | organiser livraison boucherie (zones, créneaux, tournée) | livraison | boucherie | IA (17/11 : ChatGPT ne nomme aucun outil sur n°12 ; l'aperçu IA de Google cite JDC 2020, Orisha, OAFormation ; Marchéo absent) | haute | à faire : rafraîchir boucherie-livraison-a-domicile (réponse directe sur la question exacte, regrouper par zone et créneau, minimum de commande) |
+| click and collect pizzeria | click & collect | pizzeria | GS (18/11) + WS (18/11 : 1re page = marques anglaises, Sunday, SumUp, Wix, aucun guide pour pizzeria indépendante) | haute | publié le 2026-11-18 click-and-collect-pizzeria |
+| capacité four pizzas par créneau | click & collect | pizzeria | Produit (fonction ajoutée le 17/11) | moyenne | couvert par click-and-collect-pizzeria (2026-11-18), à reprendre dans logiciel-livraison-pizza au prochain refresh |
+| plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS (18/11) | moyenne | couvert par application-click-and-collect-restaurant (keyword déjà présent) |
+| logiciel commande restaurant gratuit | click & collect | restaurant | GS (18/11) | moyenne | à faire : FAQ dans application-click-and-collect-restaurant (ce qui est gratuit, commission, frais bancaires), pas de nouvel article |
+| site de commande en ligne gratuit | click & collect | tous | GS (18/11) | moyenne | à faire : vérifier la cannibalisation avec site-internet-pas-cher-commerce-de-proximite et google-forms-ou-logiciel-de-commande-commerce avant tout article |
+| site de commande en ligne pas cher | click & collect | tous | GS (18/11) | basse | couvert par site-internet-pas-cher-commerce-de-proximite et combien-coute-un-site-de-click-and-collect |
+| logiciel bon de commande en ligne gratuit | transverse | tous | GS (18/11) | basse | écarté : intention B2B / bons de commande fournisseurs |
+| créer un site de réservation en ligne gratuit | site | restaurant | GS (18/11) | basse | couvert en partie par meilleur-logiciel-reservation-restaurant |

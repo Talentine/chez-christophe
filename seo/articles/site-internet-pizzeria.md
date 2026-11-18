@@ -3,6 +3,7 @@ title: "Site internet pour pizzeria : menu, commande et prix réels"
 titre_court: "Créer le site internet de sa pizzeria"
 description: "Site internet pour pizzeria : pages utiles, menu avec tailles et suppléments, commande à emporter, livraison et prix réels. Le guide du pizzaiolo indépendant."
 date: 2026-11-04
+modified: 2026-11-18
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -82,7 +83,7 @@ Avec Marchéo, le catalogue pizzeria est déjà rempli au départ (pizzas classi
 
 Le site doit répartir les commandes dans des créneaux avec un nombre maximum de commandes par créneau. Sans cette limite, vous recevez douze commandes pour 20 h et aucune pour 20 h 30.
 
-Marchéo propose des créneaux de retrait de 15 ou 30 minutes avec une capacité que vous fixez selon votre four et votre équipe. Quand un créneau est plein, le client choisit le suivant. Le client commande en 30 secondes, sans créer de compte, et reçoit un SMS quand sa commande est prête. Pour éviter les pizzas jamais récupérées, vous pouvez activer une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Le sujet est détaillé dans notre article sur l'[empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
+Marchéo propose des créneaux de retrait de 15 ou 30 minutes avec une capacité que vous fixez selon votre four et votre équipe. Quand un créneau est plein, le client choisit le suivant. Vous pouvez aussi limiter le nombre de pizzas par créneau, comme l'explique notre guide du [click and collect pizzeria](/blog/click-and-collect-pizzeria). Le client commande en 30 secondes, sans créer de compte, et reçoit un SMS quand sa commande est prête. Pour éviter les pizzas jamais récupérées, vous pouvez activer une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Le sujet est détaillé dans notre article sur l'[empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
 
 ## Site internet pizza avec livraison : comment s'organiser ?
 

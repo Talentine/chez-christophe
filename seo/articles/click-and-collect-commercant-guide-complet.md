@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-14
+modified: 2026-11-18
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -163,7 +163,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Épicerie.** Vrac en sachets, produits au poids, paniers garnis et coffrets cadeaux. Lire notre article [click and collect épicerie](/blog/click-and-collect-epicerie) et voir [la solution pour épicerie](/solutions/epicerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).
-- **Pizzeria.** Commandes du soir à heure fixe, options et suppléments. Voir [la solution pour pizzeria](/solutions/pizzeria).
+- **Pizzeria.** Commandes du soir à heure fixe, options et suppléments, nombre de pizzas limité par créneau selon le four. Le détail est dans notre article [click and collect pizzeria](/blog/click-and-collect-pizzeria). Voir aussi [la solution pour pizzeria](/solutions/pizzeria).
 - **Restaurant.** Vente à emporter et réservation de table. Lire notre guide pour choisir une [application click and collect pour restaurant](/blog/application-click-and-collect-restaurant) et voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Commandes prêtes à l'arrivée sur l'emplacement. Voir [la solution pour fast-food](/solutions/fastfood) et le guide du [click & collect pour food-truck](/blog/click-and-collect-food-truck). Pour un snack, un kebab ou un burger en boutique, voyez le [click and collect en restauration rapide](/blog/click-and-collect-restauration-rapide).
 
