@@ -112,7 +112,9 @@ export function construireMailBienvenue(d: DonneesBienvenue) {
   const astuces = [
     ['📱', 'QR code en boutique', 'Imprimez-le depuis <b>Réglages → QR Code &amp; liens</b> et posez-le à la caisse et en vitrine. C\'est le geste qui ramène le plus de clients.'],
     ['📍', 'Fiche Google', 'Collez votre lien dans le champ « Site web » (ou « Commander ») de votre fiche Google Business. Les clients qui vous cherchent tombent directement dessus.'],
-    ['📸', 'Instagram &amp; Facebook', 'Mettez le lien dans votre bio, et annoncez-le en story : « Commandez en ligne, retirez sans attendre ».'],
+    ['📸', 'Instagram &amp; Facebook', avecCommandes
+      ? 'Si vous y êtes, le lien a toute sa place dans votre bio. Vos abonnés seront contents de l\'apprendre, par exemple en story : « Nouveau : vous pouvez maintenant commander en ligne et passer récupérer quand ça vous arrange. »'
+      : 'Si vous y êtes, le lien a toute sa place dans votre bio. Vos abonnés seront contents de l\'apprendre, par exemple en story : « Nouveau : retrouvez nos produits, nos horaires et toutes nos infos sur notre page. »'],
     ['💬', 'Vos clients fidèles', 'Envoyez le lien par SMS ou WhatsApp à vos habitués, ou dites-le simplement au comptoir.'],
   ];
   if (avecCommandes) astuces.push(['🎯', 'Une offre de lancement', 'Pour les premières commandes en ligne, un petit geste (produit offert, priorité au retrait) donne l\'habitude à vos clients.']);
