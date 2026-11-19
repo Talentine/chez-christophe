@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-17
+modified: 2026-11-19
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -172,7 +172,7 @@ Chaque métier livre des produits différents, avec ses contraintes. Voici les p
 - **Fromagerie.** Plateaux et formules raclette livrés le vendredi soir. Voir [la solution pour fromagerie](/solutions/fromagerie), le [click and collect en fromagerie](/blog/click-and-collect-fromagerie) et notre guide [fromagerie livraison à domicile](/blog/fromagerie-livraison-a-domicile).
 - **Fleuriste.** Bouquets livrés à une date et une adresse données, souvent pour offrir. Voir [la solution pour fleuriste](/solutions/fleuriste) et notre guide [fleuriste livraison à domicile](/blog/fleuriste-livraison-a-domicile).
 - **Pizzeria.** Livraison du soir sur une zone courte, à heure annoncée. Voir [la solution pour pizzeria](/solutions/pizzeria) et notre guide du [logiciel de livraison pizza](/blog/logiciel-livraison-pizza).
-- **Restaurant.** Livraison des habitués en direct, plateforme pour la découverte si besoin. Voir [la solution pour restaurant](/solutions/restaurant).
+- **Restaurant.** Livraison des habitués en direct, plateforme pour la découverte si besoin. Le choix du livreur, les plats qui voyagent bien et les créneaux par service sont détaillés dans notre guide pour [mettre en place un service de livraison au restaurant](/blog/service-livraison-restaurant). Voir [la solution pour restaurant](/solutions/restaurant).
 - **Fast-food et food-truck.** Livraison autour de l'emplacement du jour. Voir [la solution pour fast-food](/solutions/fastfood) et le [click & collect pour food-truck](/blog/click-and-collect-food-truck).
 
 Pour les fêtes de fin d'année, les livraisons du 24 et du 31 décembre se préparent dès novembre : notre guide des [précommandes de Noël](/blog/precommandes-fetes-noel-commerce-bouche) donne le calendrier, et l'article [traiteur Noël livraison à domicile](/blog/traiteur-noel-livraison-a-domicile) détaille les tournées de ces deux jours.

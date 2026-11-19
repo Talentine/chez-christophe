@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/service-livraison-restaurant",
   "/blog/click-and-collect-pizzeria",
   "/blog/frais-par-commande-ou-abonnement-logiciel-commande",
   "/blog/creer-site-vente-en-ligne-avec-ia",

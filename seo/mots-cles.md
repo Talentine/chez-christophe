@@ -37,7 +37,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | poissonnerie livraison à domicile | livraison | poissonnerie | GS + WS (1re page : PDF administratifs, annuaires, faible) | haute | publié le 2026-10-18 poissonnerie-livraison-a-domicile |
 | livraison traiteur à domicile | livraison | traiteur | GS | moyenne | à faire |
 | pizzeria livraison à domicile | livraison | pizzeria | GS | moyenne | couvert par logiciel-livraison-pizza (2026-10-26), angle livrer soi-même |
-| service de livraison à domicile restaurant | livraison | restaurant | GS | moyenne | à faire |
+| service de livraison à domicile restaurant | livraison | restaurant | GS | haute | publié le 2026-11-19 service-livraison-restaurant |
 | proposer la livraison gratuite | livraison | transverse | GS | moyenne | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant (section seuil de gratuité) |
 | proposer service livraison | livraison | transverse | GS | moyenne | à faire |
 | minimum de livraison | livraison | transverse | GS | basse | couvert par comment-calculer-ses-frais-de-livraison-commercant |
@@ -165,7 +165,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | pizzeria livraison gratuite | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant + lien depuis logiciel-livraison-pizza |
 | prix livraison pizza | livraison | pizzeria | GS (26/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (méthode) ; écarté comme article dédié (Domino's, Pizza Hut) |
 | site internet pizza livraison | site | pizzeria | GS (26/10) | haute | couvert le 2026-11-04 par site-internet-pizzeria (H2 dédié) |
-| application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
+| application livraison restaurant | livraison | restaurant | GS (26/10) | moyenne | couvert le 2026-11-19 par service-livraison-restaurant (keywords + FAQ logiciel) |
 | zone de livraison restaurant | livraison | restaurant | GS (26/10) | basse | à fondre dans l'article frais et zone de livraison |
 | prix d un site internet pour un restaurant | site | restaurant | GS (27/10) | haute | publié le 2026-10-27 + prix-site-internet-restaurant (variante) |
 | site internet gratuit pour restaurant | site | restaurant | GS (27/10) | moyenne | couvert en FAQ de prix-site-internet-restaurant (2026-10-27) |
@@ -192,7 +192,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | comment calculer ses frais de livraison | livraison | tous | GS (29/10) | haute | publié le 2026-10-29, comment-calculer-ses-frais-de-livraison-commercant |
 | livraison gratuite à partir de combien | livraison | tous | GS (29/10) | moyenne | couvert par comment-calculer-ses-frais-de-livraison-commercant (H2 dédié ; suggestions surtout Amazon/Shein) |
 | frais de livraison traiteur | livraison | traiteur | GS (29/10) | moyenne | publié le 2026-11-02 traiteur-noel-livraison-a-domicile (section frais) |
-| tarif livraison repas à domicile | livraison | restaurant | GS (29/10) | moyenne | à faire avec « service de livraison à domicile restaurant » |
+| tarif livraison repas à domicile | livraison | restaurant | GS (29/10) | moyenne | couvert le 2026-11-19 par service-livraison-restaurant (H2 « Combien facturer la livraison d'un repas à domicile ? ») |
 | restaurant sans frais de livraison | livraison | restaurant | GS (29/10) | basse | intention consommateur, à garder en FAQ |
 | fleuriste livraison deuil | livraison | fleuriste | GS (29/10) | moyenne | couvert le 2026-11-07 (section et FAQ de fleuriste-livraison-a-domicile) |
 | fleuriste qui livre le dimanche | livraison | fleuriste | GS (29/10) | basse | intention consommateur ; idée de créneau du dimanche matin dans l'article fleuriste |
@@ -340,7 +340,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | commission ou frais bancaires vente en ligne | transverse | tous | IA (12/11 : ChatGPT et l'aperçu IA de Google rappellent que 0 % de commission ne veut pas dire zéro frais bancaires, sans citer Marchéo) | haute | publié le 2026-11-12 commission-ou-frais-bancaires-vente-en-ligne |
 | marchéo plateforme de livraison (confusion de marque) | marque | tous | IA (12/11 : ChatGPT présente Marchéo comme « la plateforme de livraison ») | haute | fait le 2026-11-12 : FAQ « Marchéo est-il une plateforme de livraison comme Uber Eats ? » sur /a-propos ; à suivre sur la question n°24 |
 | e-monsite ou logiciel métier commerce de bouche | site | tous | IA (12/11 : l'aperçu IA de Google met e-monsite en 1er sur « sans matériel et sans commission ») | moyenne | à faire : ligne « créateur de site français avec version gratuite » dans le tableau de logiciel-vendre-en-ligne-sans-commission au prochain rafraîchissement |
-| livraison sans passer par uber eats | livraison | restaurant | GS (12/11 après-midi : « restaurant livraison sans uber eats », « livraison sans passer par uber eats ») | haute | à faire : article « livrer ses clients sans passer par Uber Eats » pour un restaurant (zone, créneaux, frais, livreur maison), vérifier la cannibalisation avec click-and-collect-sans-commission-alternative-uber-eats-deliveroo |
+| livraison sans passer par uber eats | livraison | restaurant | GS (12/11 après-midi : « restaurant livraison sans uber eats », « livraison sans passer par uber eats ») | haute | couvert le 2026-11-19 par service-livraison-restaurant (tableau « qui livre ») ; pas de 4e article Uber Eats, cannibalisation avec 3 articles existants |
 | fast food livraison sans uber eats | livraison | fastfood | GS (12/11 après-midi) | moyenne | à faire en section de l'article « livraison sans passer par uber eats » (kebab, burger, tacos) |
 | livraison galette des rois entreprise | livraison | boulangerie | GS (12/11 après-midi) | haute | à faire début décembre : galettes livrées aux entreprises (commande groupée, minimum, tournée du matin), à relier à « commande galette des rois en ligne » sans doubler |
 | livraison galette des rois à domicile | livraison | boulangerie | GS (12/11 après-midi) | moyenne | à faire en section de l'article galette de décembre (requête en partie d'acheteur) |
@@ -422,3 +422,11 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | pâtisserie commandes bûches de noël en ligne (côté commerçant) | click & collect | boulangerie | IA (18/11 : ChatGPT comprend « Comment prendre les commandes de bûches de Noël en ligne ? » côté client et cite Ladurée, Ducasse, Nina Métayer) | moyenne | à faire : reformuler la question n°15 et rafraîchir commande-buche-de-noel-en-ligne (title et réponse directe « pour une pâtisserie ou une boulangerie ») avant début décembre |
 | créer site traiteur wix ou outil de commande | site | traiteur | IA (18/11 : ChatGPT choisit Wix, l'aperçu IA de Google cite Wix, Yola, WordPress, Gemeos Agency ; Marchéo absent sur n°14) | moyenne | à faire : rafraîchir creation-site-internet-traiteur (tableau Wix ou outil de commande, demandes de devis et plateaux) |
 | logiciel click and collect pizzeria (assistants) | click & collect | pizzeria | IA (18/11 : ChatGPT cite Heustach, BDNCollect, PizzOrder Flow, Restoclic, GetEat, Zelty ; Google cite Clickeat, TastyCloud, Obypay) | haute | couvert par click-and-collect-pizzeria (18/11) : remesurer dans une semaine, ajouter une FAQ « Quel logiciel… » si toujours absent |
+| service de livraison pour restaurant | livraison | restaurant | GS (19/11) + WS (19/11 : 1re page = blogs Lightspeed, Skello, Pennylane, Innovorder, aucun indépendant) | haute | publié le 2026-11-19 service-livraison-restaurant (requête principale) |
+| service de livraison fast food | livraison | fastfood | GS (19/11) | moyenne | à faire : section fast-food dans service-livraison-restaurant ou article dédié après le 26/11 |
+| service de livraison de repas en entreprise | livraison | traiteur | GS (19/11) | moyenne | à rapprocher de livraison-plateau-repas-entreprise-traiteur (vérifier cannibalisation) |
+| livraison restaurant paiement espece | livraison | restaurant | GS (19/11) | basse | intention consommateur ; FAQ possible « accepter les espèces à la livraison ? » |
+| frais de livraison traiteur | livraison | traiteur | GS (19/11) | moyenne | à faire : FAQ dans traiteur-noel-livraison-a-domicile ou article frais traiteur |
+| frais de livraison pizza | livraison | pizzeria | GS (19/11) | moyenne | à fondre dans logiciel-livraison-pizza (H2 frais) au prochain rafraîchissement |
+| site web restaurant gratuit | site | restaurant | GS (19/11) | moyenne | à faire : FAQ dans prix-site-internet-restaurant (ce qui est vraiment gratuit) |
+| site internet restaurant exemple | site | restaurant | GS (19/11) | moyenne | à faire : article « exemples de pages pour le site d'un restaurant » (vérifier cannibalisation avec prix-site-internet-restaurant) |

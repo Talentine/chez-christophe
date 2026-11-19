@@ -3,6 +3,7 @@ title: "Marchéo ou Uber Eats pour un restaurant : lequel choisir ?"
 titre_court: "Marchéo ou Uber Eats pour un restaurant"
 description: "Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux."
 date: 2026-11-05
+modified: 2026-11-19
 rubrique: Comparatif
 emoji: 🍽️
 keywords:
@@ -99,6 +100,6 @@ Notre guide pour [proposer le click and collect sans commission](/blog/click-and
 
 ## Que ne fait pas Marchéo ?
 
-Marchéo n'est pas une place de marché et ne vous apportera pas de clients qui ne vous connaissent pas. Il ne livre pas et n'a pas de coursiers. Il ne remplace pas votre caisse. Si votre restaurant vit surtout de clients de passage trouvés dans l'application, et que vous n'avez aucun moyen de livrer, Uber Eats reste plus adapté pour la livraison.
+Marchéo n'est pas une place de marché et ne vous apportera pas de clients qui ne vous connaissent pas. Il ne livre pas et n'a pas de coursiers. Il ne remplace pas votre caisse. Si votre restaurant vit surtout de clients de passage trouvés dans l'application, et que vous n'avez aucun moyen de livrer, Uber Eats reste plus adapté pour la livraison. Si vous pouvez dégager un livreur sur un ou deux créneaux, notre guide du [service de livraison pour restaurant](/blog/service-livraison-restaurant) explique comment le monter : zone, créneaux, frais et plats qui voyagent bien.
 
 En revanche, pour vos habitués, pour la vente à emporter et pour les réservations, payer 14 à 30 % sur chaque commande d'un client qui serait venu de toute façon revient cher. C'est là qu'un site à vous, sans commission, change la marge.

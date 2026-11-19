@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.
 - [Click and collect pizzeria : commandes à emporter sans plateforme](https://marchéo.fr/blog/click-and-collect-pizzeria) : Click and collect pizzeria : prendre les commandes à emporter en ligne, régler les créneaux sur la capacité du four et moins décrocher pendant le coup de feu.
 - [Frais par commande ou abonnement : quel logiciel choisir ?](https://marchéo.fr/blog/frais-par-commande-ou-abonnement-logiciel-commande) : Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau.
 - [Créer un site de vente en ligne avec une IA : est-ce adapté ?](https://marchéo.fr/blog/creer-site-vente-en-ligne-avec-ia) : Créer son site de vente en ligne avec une IA, en quelques minutes : ce que l'IA fait bien, ce qu'elle oublie pour un commerce de bouche, et quoi choisir.
@@ -107,4 +108,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-18
+- Dernière mise à jour : 2026-11-19
