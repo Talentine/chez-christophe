@@ -60,8 +60,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | plateforme de commande en ligne restaurant gratuit | click & collect | restaurant | GS | moyenne | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | logiciel de gestion de commande en ligne | click & collect | transverse | GS | basse | générique |
 | créer site internet restaurant gratuit | site | restaurant | GS | moyenne | à faire (angle : ce que coûte vraiment le gratuit) |
-| logiciel commande traiteur | click & collect | traiteur | GS (17/10) | moyenne | à faire (angle : outil de prise de commande, pas ERP) |
-| logiciel traiteur gratuit | click & collect | traiteur | GS (17/10) | basse | à faire (beaucoup d'ERP/devis en face, à fondre dans l'article précédent) |
+| logiciel commande traiteur | click & collect | traiteur | GS (17/10) | moyenne | publié le 2026-11-19 logiciel-commande-traiteur (comparatif des 4 familles d'outils, devis contre commande à prix fixe) |
+| logiciel traiteur gratuit | click & collect | traiteur | GS (17/10) | basse | couvert le 2026-11-19 : FAQ « Existe-t-il un logiciel traiteur gratuit ? » de logiciel-commande-traiteur |
 | livraison plateau repas traiteur | livraison | traiteur | GS (17/10) | haute | publié le 2026-11-09 + livraison-plateau-repas-entreprise-traiteur |
 | traiteur livraison repas entreprise | livraison | traiteur | GS (17/10) | moyenne | couvert par livraison-plateau-repas-entreprise-traiteur (2026-11-09) |
 | traiteur vente en ligne | click & collect | traiteur | GS (17/10) | moyenne | à faire |
@@ -430,3 +430,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | frais de livraison pizza | livraison | pizzeria | GS (19/11) | moyenne | à fondre dans logiciel-livraison-pizza (H2 frais) au prochain rafraîchissement |
 | site web restaurant gratuit | site | restaurant | GS (19/11) | moyenne | à faire : FAQ dans prix-site-internet-restaurant (ce qui est vraiment gratuit) |
 | site internet restaurant exemple | site | restaurant | GS (19/11) | moyenne | à faire : article « exemples de pages pour le site d'un restaurant » (vérifier cannibalisation avec prix-site-internet-restaurant) |
+| site fleuriste shopify ou wix (source clubic) | site | fleuriste | IA (19/11 : ChatGPT met Shopify en 1er puis Wix, source clubic.com ; Marchéo absent sur n°17) | moyenne | à faire : rafraîchir creation-site-internet-fleuriste (une des plus anciennes) avec une ligne « Shopify ou Wix » dans le tableau et les prix exacts, pas de nouvel article |
+| livrer poisson frais chaîne du froid matériel | livraison | poissonnerie | IA (19/11 : ChatGPT ne nomme aucun outil sur n°16, cite Légifrance, 0 à +2 °C) | basse | à faire : vérifier que poissonnerie-livraison-a-domicile donne la température et le matériel en clair dès la réponse directe |
+| service de livraison restaurant (prix affiché, sans commission) | livraison | restaurant | IA (19/11 : ChatGPT met Clickeat en 1er ; l'aperçu IA de Google cite ChatFood, Clickeat, RoxPos ; Marchéo absent) | haute | à suivre : article du matin service-livraison-restaurant publié le jour même, remesurer dans une semaine |

@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-18
+modified: 2026-11-19
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -159,7 +159,7 @@ Chaque métier a ses produits qui se commandent naturellement en retrait. Un log
 - **Boucherie.** Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article [click and collect boucherie](/blog/click-and-collect-boucherie), notre guide de la [commande de boucherie à Noël](/blog/commande-boucherie-noel-en-ligne) et voir [la solution pour boucherie](/solutions/boucherie).
 - **Primeur.** Paniers de la semaine, vente au kilo, fruits de saison. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer. Lire notre article [click and collect poissonnerie](/blog/click-and-collect-poissonnerie) et voir [la solution pour poissonnerie](/solutions/poissonnerie).
-- **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
+- **Traiteur.** Plats du jour, plateaux, buffets. Voir [la solution pour traiteur](/solutions/traiteur) et la [création de site internet de traiteur](/blog/creation-site-internet-traiteur). Pour choisir l'outil, lisez notre comparatif du [logiciel de commande pour traiteur](/blog/logiciel-commande-traiteur).
 - **Fromagerie.** Coupes au poids, plateaux, formules raclette. Voir [la solution pour fromagerie](/solutions/fromagerie) et le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie).
 - **Épicerie.** Vrac en sachets, produits au poids, paniers garnis et coffrets cadeaux. Lire notre article [click and collect épicerie](/blog/click-and-collect-epicerie) et voir [la solution pour épicerie](/solutions/epicerie).
 - **Fleuriste.** Bouquets par budget, commandes pour une date précise. Le détail est dans notre article [fleuriste click and collect](/blog/click-and-collect-fleuriste). Voir aussi [la solution pour fleuriste](/solutions/fleuriste).

@@ -5,7 +5,7 @@ description: "Création d'un site internet pour traiteur : les pages indispensab
 meta_title: "Création site traiteur et site e-commerce : le guide"
 meta_description: "Création d'un site traiteur ou d'un site e-commerce : pages utiles, photos, allergènes, prix réels et commandes de plateaux en ligne, sans commission."
 date: 2026-10-17
-modified: 2026-11-09
+modified: 2026-11-19
 rubrique: Métier
 emoji: 🍽️
 keywords:
@@ -101,11 +101,13 @@ Les formules Marchéo sont sans engagement et sans commission sur les ventes. Le
 C'est là qu'un site de traiteur rapporte vraiment. Quelques réglages suffisent.
 
 - **Un prix par personne et un minimum.** Plateau à partir de 6 personnes, buffet à partir de 15 : le client ne peut pas commander en dessous.
-- **Un délai de préparation par produit.** 24 heures pour un plateau, 72 heures pour un buffet, par exemple. Le site refuse les commandes trop tardives à votre place.
+- **Un délai de préparation.** 24 heures avant le retrait pour un plateau, par exemple. Le site refuse les commandes trop tardives à votre place. Pour un buffet à préparer plusieurs jours à l'avance, passez plutôt par le téléphone ou le devis.
 - **Des créneaux de retrait ou de livraison**, avec un nombre maximum de commandes par créneau.
 - **Un champ de précisions** pour les allergies, le nombre exact de couverts, le nom de l'entreprise.
 
 Le plat du jour se gère à part : vous publiez le menu de la semaine, les bureaux du quartier commandent avant une heure limite, vous préparez exactement les quantités vendues.
+
+Pour choisir l'outil qui prendra ces commandes, comparez les familles de [logiciels de commande pour traiteur](/blog/logiciel-commande-traiteur) : logiciel de devis, site généraliste ou outil de commande en ligne.
 
 ## Comment éviter les commandes annulées au dernier moment ?
 

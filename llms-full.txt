@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
 - [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.
 - [Click and collect pizzeria : commandes à emporter sans plateforme](https://marchéo.fr/blog/click-and-collect-pizzeria) : Click and collect pizzeria : prendre les commandes à emporter en ligne, régler les créneaux sur la capacité du four et moins décrocher pendant le coup de feu.
 - [Frais par commande ou abonnement : quel logiciel choisir ?](https://marchéo.fr/blog/frais-par-commande-ou-abonnement-logiciel-commande) : Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau.
@@ -579,6 +580,146 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Logiciel de commande traiteur : lequel choisir en 2026 ?
+
+Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
+
+Le bon logiciel de commande pour un traiteur dépend de ce que vous vendez. Pour des mariages et des séminaires sur devis, il faut un logiciel de gestion pour traiteur événementiel. Pour des plateaux repas, des plats du jour et des menus de fêtes à prix fixe, un outil de commande en ligne comme Marchéo suffit : 39 ou 59 € par mois, sans commission et sans matériel à acheter.
+Le fonctionnement du retrait en boutique est détaillé dans notre guide complet du click &amp; collect pour commerçant. Ici, on compare les familles de logiciels qu&rsquo;un traiteur rencontre quand il cherche « logiciel traiteur », avec ce que chacune fait bien, ce qu&rsquo;elle coûte et ce qu&rsquo;elle ne fait pas.
+Quels types de logiciels existe-t-il pour un traiteur ?
+Il existe quatre familles d&rsquo;outils, qui ne répondent pas au même besoin. Beaucoup de traiteurs en utilisent deux à la fois.
+
+Le logiciel de gestion pour traiteur événementiel. Il sert à faire des devis, des fiches techniques, des plannings de personnel et du suivi de matériel pour les grandes prestations.
+Le constructeur de site généraliste (Wix, WordPress, Shopify). Il crée un beau site, et la prise de commande s&rsquo;ajoute avec des extensions et des réglages.
+L&rsquo;outil de commande en ligne pensé pour les commerces de bouche. Il donne un site à votre nom où le client choisit ses plateaux, une date et un créneau, puis paie en ligne ou au retrait.
+Le formulaire, le téléphone ou WhatsApp. C&rsquo;est gratuit, mais chaque commande se recopie à la main.
+
+Quel logiciel choisir selon votre activité ?
+Le choix suit votre chiffre d&rsquo;affaires principal : prestations sur mesure ou produits à prix fixe. Ce tableau résume les forces et les limites de chaque famille.
+
+
+
+Critère
+Logiciel de gestion événementiel
+Site généraliste + extensions
+Outil de commande en ligne (ex. Marchéo)
+Formulaire ou téléphone
+
+
+
+
+Pour quoi
+Mariages, séminaires, devis
+Site de présentation
+Plateaux, plats du jour, menus de fêtes
+Démarrer sans rien payer
+
+
+Devis et fiches techniques
+Oui
+Non
+Non
+Non
+
+
+Commande en ligne avec date et créneau
+Parfois, selon l&rsquo;éditeur
+Avec extensions
+Oui
+Non
+
+
+Paiement en ligne ou garantie
+Variable
+Avec extensions
+Oui, paiement en ligne ou empreinte bancaire
+Non
+
+
+Prix
+Variable, souvent sur devis
+Quelques dizaines d&rsquo;euros par mois, plus les extensions
+39 ou 59 € par mois, 0 % de commission
+Gratuit
+
+
+Matériel
+Ordinateur
+Ordinateur
+Téléphone ou ordinateur que vous avez déjà
+Aucun
+
+
+Temps de mise en place
+Plusieurs jours
+Plusieurs jours à quelques semaines
+Aperçu en 30 secondes
+Immédiat
+
+
+
+Si plus de la moitié de votre activité se fait sur devis, commencez par un logiciel de gestion événementiel. Si l&rsquo;essentiel se vend à prix fixe, un outil de commande en ligne vous fera gagner plus de temps.
+Que doit faire un bon logiciel de commande pour traiteur ?
+Il doit gérer quatre choses propres au métier : le délai de préparation, le nombre de personnes, la garantie de paiement et les pics de fin d&rsquo;année. Le reste est secondaire.
+Le délai de préparation. Un plateau repas commandé à 22 h pour le lendemain midi, c&rsquo;est possible. Un buffet pour 40 personnes, non. Vous devez pouvoir fixer un délai minimum avant le retrait ou la livraison. Dans Marchéo, ce délai se règle de 30 minutes à 24 heures.
+Les quantités. Une entreprise commande 15 plateaux comme un particulier en commande un. Le logiciel doit accepter les grosses quantités et afficher le nom et le téléphone du contact sur la commande.
+La garantie. Une commande de 300 € jamais retirée, c&rsquo;est une journée de travail perdue. Le paiement intégral en ligne ou une empreinte bancaire protègent votre travail. Marchéo propose une empreinte optionnelle jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait, sans rien débiter si le client vient.
+Les fêtes. En décembre, les commandes de menus et de plateaux arrivent toutes en même temps. Il faut une date limite de commande et un nombre maximum de commandes par créneau. Notre guide des précommandes des fêtes explique comment s&rsquo;organiser pour le 24 et le 31.
+Combien coûte un logiciel de commande pour traiteur ?
+Le coût va de zéro pour un formulaire à plusieurs centaines d&rsquo;euros par mois pour un logiciel de gestion complet. Il faut aussi regarder la commission par commande, qui change tout sur un an.
+Avec Marchéo, les prix sont fixes et affichés :
+
+
+
+Formule
+Abonnement mensuel
+Frais d&rsquo;installation uniques
+Ce qu&rsquo;elle permet
+
+
+
+
+Vitrine
+19 €
+249 €
+Présenter vos menus et prestations, sans prise de commande
+
+
+Click &amp; Collect + Réservation
+39 €
+399 €
+Commandes en ligne avec retrait et réservation de table
+
+
+Click &amp; Collect + Livraison
+59 €
+549 €
+Commandes en ligne avec retrait et livraison par vos soins
+
+
+
+Les abonnements sont sans engagement et Marchéo ne prend aucune commission sur vos ventes. À titre de comparaison, les plateformes de livraison prennent en général 14 à 30 % de chaque commande. Sur 2 000 € de plateaux par mois, cela fait 280 à 600 € (exemple de calcul). Pour savoir quand un abonnement fixe devient plus intéressant qu&rsquo;un paiement à la commande, lisez notre comparatif frais par commande ou abonnement.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Faut-il un logiciel différent pour livrer les entreprises ?
+Non, si vous livrez vous-même. Le même outil prend la commande, et vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais de livraison. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison, avec votre véhicule ou votre livreur.
+Pour les plateaux du midi en entreprise, notre guide de la livraison de plateaux repas en entreprise détaille le minimum de commande, l&rsquo;heure limite et la tournée. Si une entreprise demande une facture à régler par virement, établissez-la avec votre outil de facturation habituel.
+Quelles sont les limites d&rsquo;un outil de commande en ligne ?
+Sa limite principale est qu&rsquo;il ne fait pas de devis. Il convient aux produits que le client choisit seul, à un prix connu à l&rsquo;avance. Pour un mariage, un cocktail d&rsquo;entreprise sur mesure ou un séminaire, gardez votre devis, votre rendez-vous et votre acompte habituels.
+Il faut aussi connaître les limites de Marchéo. Les créneaux de retrait s&rsquo;ouvrent sur deux semaines au maximum : il convient aux commandes de la semaine et aux fêtes proches, pas aux réservations prises des mois à l&rsquo;avance. Il ne remplace pas votre logiciel de caisse ni votre comptabilité. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre propre boutique. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.
+Si vous n&rsquo;avez pas encore de site, notre guide de la création d&rsquo;un site internet de traiteur présente les pages utiles et les budgets.
+Par où commencer ?
+Le plus simple est de séparer vos deux activités. Gardez vos devis pour l&rsquo;événementiel, et mettez en ligne d&rsquo;abord ce qui se vend à prix fixe : trois ou quatre plateaux, vos plats du jour, votre menu de fêtes.
+Sur la page d&rsquo;inscription de Marchéo, choisissez votre métier, tapez le nom de votre maison, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue traiteur déjà rempli. Pour voir ce qui est prévu pour votre métier, regardez la solution pour traiteur. Vos clients commandent ensuite en 30 secondes, sans créer de compte.
+
+Q : Quel est le meilleur logiciel de commande en ligne pour un traiteur ?
+R : Cela dépend de ce que vous vendez. Pour des mariages et des séminaires sur devis, un logiciel de gestion pour traiteur événementiel est plus adapté. Pour des plateaux repas, des plats du jour et des menus de fêtes à prix fixe, un outil de commande en ligne suffit. Marchéo en fait partie : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, avec 399 ou 549 € de frais d'installation uniques. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Faut-il acheter du matériel pour prendre les commandes d'un traiteur en ligne ?
+R : Non, pas avec un outil de commande en ligne comme Marchéo. Aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait par carte, il utilise le terminal de paiement que vous avez déjà.
+Q : Existe-t-il un logiciel traiteur gratuit ?
+R : Un formulaire en ligne gratuit peut recueillir des demandes, mais il ne gère ni les créneaux, ni le paiement, ni les quantités par jour. Les logiciels gratuits avec boutique se rémunèrent souvent par une commission ou des frais par vente. Comparez toujours le coût sur un an avec votre propre nombre de commandes.
+Q : Un outil de commande en ligne remplace-t-il les devis pour les mariages ?
+R : Non. Un mariage ou un séminaire se prépare avec un devis, des échanges et souvent un rendez-vous. Un outil de commande en ligne sert aux produits à prix fixe que le client choisit seul : plateaux, pièces cocktail, plats du jour, menus de fêtes. Les deux se complètent.
 
 # Service de livraison restaurant : livrer vos clients vous-même
 
@@ -7492,7 +7633,7 @@ Boulangerie. Gâteaux sur commande, pains spéciaux, viennoiseries du dimanche. 
 Boucherie. Colis, rôtis, découpes à la demande, vente au kilo. Lire notre article click and collect boucherie, notre guide de la commande de boucherie à Noël et voir la solution pour boucherie.
 Primeur. Paniers de la semaine, vente au kilo, fruits de saison. Voir la solution pour primeur et le guide du click and collect primeur.
 Poissonnerie. Poisson préparé, plateaux de fruits de mer. Lire notre article click and collect poissonnerie et voir la solution pour poissonnerie.
-Traiteur. Plats du jour, plateaux, buffets. Voir la solution pour traiteur et la création de site internet de traiteur.
+Traiteur. Plats du jour, plateaux, buffets. Voir la solution pour traiteur et la création de site internet de traiteur. Pour choisir l&rsquo;outil, lisez notre comparatif du logiciel de commande pour traiteur.
 Fromagerie. Coupes au poids, plateaux, formules raclette. Voir la solution pour fromagerie et le guide du click and collect en fromagerie.
 Épicerie. Vrac en sachets, produits au poids, paniers garnis et coffrets cadeaux. Lire notre article click and collect épicerie et voir la solution pour épicerie.
 Fleuriste. Bouquets par budget, commandes pour une date précise. Le détail est dans notre article fleuriste click and collect. Voir aussi la solution pour fleuriste.
@@ -8105,11 +8246,12 @@ Comment prendre les commandes de plateaux et de buffets en ligne ?
 C&rsquo;est là qu&rsquo;un site de traiteur rapporte vraiment. Quelques réglages suffisent.
 
 Un prix par personne et un minimum. Plateau à partir de 6 personnes, buffet à partir de 15 : le client ne peut pas commander en dessous.
-Un délai de préparation par produit. 24 heures pour un plateau, 72 heures pour un buffet, par exemple. Le site refuse les commandes trop tardives à votre place.
+Un délai de préparation. 24 heures avant le retrait pour un plateau, par exemple. Le site refuse les commandes trop tardives à votre place. Pour un buffet à préparer plusieurs jours à l&rsquo;avance, passez plutôt par le téléphone ou le devis.
 Des créneaux de retrait ou de livraison, avec un nombre maximum de commandes par créneau.
 Un champ de précisions pour les allergies, le nombre exact de couverts, le nom de l&rsquo;entreprise.
 
 Le plat du jour se gère à part : vous publiez le menu de la semaine, les bureaux du quartier commandent avant une heure limite, vous préparez exactement les quantités vendues.
+Pour choisir l&rsquo;outil qui prendra ces commandes, comparez les familles de logiciels de commande pour traiteur : logiciel de devis, site généraliste ou outil de commande en ligne.
 Comment éviter les commandes annulées au dernier moment ?
 Un buffet de trente personnes annulé la veille, c&rsquo;est une journée de travail et des produits frais perdus. Deux protections existent.
 La première est le paiement en ligne à la commande. La seconde, plus souple, est l&rsquo;empreinte bancaire : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. Le client sérieux ne paie rien de plus, et vous êtes couvert en cas d&rsquo;absence. L&rsquo;option est facultative. Notre guide sur l&rsquo;empreinte bancaire et les no-shows explique comment la régler.
@@ -9155,10 +9297,10 @@ R : Dès quelques commandes par mois. Un abonnement de 39 € est couvert par un
 
 Fiche Google, Instagram, commande en ligne, SMS aux clients, livraison locale : les cinq étapes dans le bon ordre pour un boulanger, un boucher, un primeur ou un fromager, avec ce que chacune rapporte et ce qui ne sert à rien.
 
-Pour digitaliser un commerce de bouche, commencez par une fiche Google complète, ajoutez une boutique de commande en ligne, puis prévenez vos habitués par SMS. Instagram et la livraison locale viennent ensuite. Avec Marchéo, la boutique coûte de 19 à 59 € par mois sans engagement, plus des frais d&rsquo;installation uniques, avec 0 % de commission.
+Pour digitaliser un commerce de bouche, faites cinq choses dans l&rsquo;ordre : une fiche Google complète, une boutique de commande en ligne, un fichier de clients à prévenir par SMS, Instagram pour montrer vos produits, puis la livraison locale si votre métier s&rsquo;y prête. La boutique en ligne est l&rsquo;étape qui rapporte le plus. Avec Marchéo, elle coûte 19, 39 ou 59 € par mois sans engagement, plus 249, 399 ou 549 € d&rsquo;installation unique, avec 0 % de commission et sans matériel à acheter.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Mais digitaliser ne veut pas dire devenir un site de e-commerce : vos clients doivent vous trouver, savoir quand vous êtes ouvert et pouvoir commander à l&rsquo;avance.
-Étape 1 : la fiche Google, avant tout
-Quand quelqu&rsquo;un tape « boulangerie » dans son quartier, il voit une carte et trois fiches. Si la vôtre est incomplète, il va chez le voisin. La fiche Google Business Profile est gratuite et doit avoir :
+Quelle est la première étape pour digitaliser son commerce ?
+La première étape est la fiche Google Business, gratuite. Quand quelqu&rsquo;un tape « boulangerie » dans son quartier, il voit une carte et trois fiches. Si la vôtre est incomplète, il va chez le voisin. La fiche Google Business Profile est gratuite et doit avoir :
 
 des horaires exacts, y compris les jours fériés et les congés ;
 dix photos récentes de vos produits et de la boutique ;
@@ -9166,24 +9308,26 @@ le téléphone, l&rsquo;adresse, et le lien vers votre boutique en ligne ;
 des réponses à tous les avis, y compris les mauvais, en une phrase polie.
 
 C&rsquo;est une heure de travail, et une étape gratuite. Une fiche complète donne tout de suite au client ce qu&rsquo;il cherche : vos horaires, votre adresse et votre téléphone. Notre guide de la fiche Google Business détaille les réglages.
-Étape 2 : un endroit où commander
-Une fois trouvé, le client veut agir. Sur la plupart des fiches, il ne peut qu&rsquo;appeler. Une boutique en ligne de click &amp; collect lui permet de commander son gâteau, son rôti ou son panier en 30 secondes, de choisir son heure, et de venir retirer sans attendre.
-Ce que la boutique doit avoir pour un commerce de bouche : commande sans création de compte, créneaux de retrait avec capacité, vente au poids et précisions, empreinte bancaire contre les commandes non retirées, gestion depuis le téléphone. Une solution comme Marchéo fournit tout ça avec le catalogue de votre métier déjà rempli, à partir de 39 € par mois pour le click &amp; collect et sans commission. Si vous prenez déjà des commandes par message, comparez WhatsApp et une boutique en ligne. Le lien de la boutique va ensuite sur la fiche Google, sur Instagram, et en QR code sur le comptoir. Pour toutes les étapes, du choix de l&rsquo;outil au lancement, lisez notre guide complet pour créer sa boutique en ligne.
-Étape 3 : un canal pour prévenir vos habitués
-Le numéro de téléphone d&rsquo;un client vaut plus qu&rsquo;un abonné Instagram. Avec une base clients, vous pouvez envoyer un SMS en 30 secondes : les premières fraises sont arrivées, la brioche des Rois est en précommande, la boutique est fermée lundi. Le message arrive directement sur le téléphone du client, alors qu&rsquo;une publication sur les réseaux ne touche qu&rsquo;une partie de vos abonnés.
+Comment permettre à vos clients de commander en ligne ?
+Avec une boutique en ligne de click &amp; collect à votre nom, reliée à votre fiche Google. Une fois trouvé, le client veut agir. Sur la plupart des fiches, il ne peut qu&rsquo;appeler. Une boutique en ligne de click &amp; collect lui permet de commander son gâteau, son rôti ou son panier en 30 secondes, de choisir son heure, et de venir retirer sans attendre.
+Ce que la boutique doit avoir pour un commerce de bouche : commande sans création de compte, créneaux de retrait avec capacité, vente au poids et précisions, empreinte bancaire contre les commandes non retirées, gestion depuis le téléphone. Une solution comme Marchéo fournit tout ça avec le catalogue de votre métier déjà rempli, à partir de 39 € par mois pour le click &amp; collect et sans commission. Si vous prenez déjà des commandes par message, comparez WhatsApp et une boutique en ligne. Le lien de la boutique va ensuite sur la fiche Google, sur Instagram, et en QR code sur le comptoir. Pour toutes les étapes, du choix de l&rsquo;outil au lancement, lisez notre guide complet pour créer sa boutique en ligne. Pour comparer les modes de prix des outils, lisez frais par commande ou abonnement.
+Comment prévenir vos clients habitués ?
+Par SMS, avec les numéros que vos clients vous ont laissés. Le numéro de téléphone d&rsquo;un client vaut plus qu&rsquo;un abonné Instagram. Avec une base clients, vous pouvez envoyer un SMS en 30 secondes : les premières fraises sont arrivées, la brioche des Rois est en précommande, la boutique est fermée lundi. Le message arrive directement sur le téléphone du client, alors qu&rsquo;une publication sur les réseaux ne touche qu&rsquo;une partie de vos abonnés.
 La base se construit toute seule si la commande en ligne enregistre le nom et le numéro. Commande après commande, vous constituez un fichier qui vous appartient. Pour les messages commerciaux, demandez l&rsquo;accord du client.
-Étape 4 : Instagram et Facebook, pour montrer
+À quoi servent Instagram et Facebook pour un commerce de bouche ?
 Les réseaux sociaux servent à une chose : montrer vos produits à des gens du quartier qui ne vous connaissent pas encore. Deux publications par semaine, des photos prises au téléphone, le lien de la boutique dans la bio. Ne comptez pas sur eux pour prendre des commandes : un message privé « vous avez encore des tartes ? » à 18 h 45 n&rsquo;est pas une commande, c&rsquo;est une interruption.
-Étape 5 : la livraison locale, si ça a du sens
-Pour un primeur, un traiteur ou un fleuriste, livrer dans le quartier ouvre une clientèle qui ne se déplace pas : bureaux, personnes âgées, familles le soir. La règle est de le faire à vos conditions : votre zone, vos jours, votre minimum de commande, vos frais de livraison. Une boutique bien faite organise la tournée par créneau avec les adresses et l&rsquo;itinéraire. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne cet outil pour livrer vous-même. Pensez aussi au coût d&rsquo;une plateforme, dont la commission va de 14 à 30 % et qui garde le contact du client.
-Ce qui ne sert à rien
+Faut-il proposer la livraison locale ?
+Oui, si votre métier s&rsquo;y prête et à vos conditions. Pour un primeur, un traiteur ou un fleuriste, livrer dans le quartier ouvre une clientèle qui ne se déplace pas : bureaux, personnes âgées, familles le soir. La règle est de le faire à vos conditions : votre zone, vos jours, votre minimum de commande, vos frais de livraison. Une boutique bien faite organise la tournée par créneau avec les adresses et l&rsquo;itinéraire. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne cet outil pour livrer vous-même. Un traiteur qui hésite entre plusieurs outils trouvera un comparatif dans notre article sur le logiciel de commande pour traiteur. Pensez aussi au coût d&rsquo;une plateforme, dont la commission va de 14 à 30 % et qui garde le contact du client.
+Qu&rsquo;est-ce qui ne sert à rien quand on digitalise son commerce ?
+Quatre dépenses rapportent peu à un commerce de proximité.
 
 Une application à télécharger. Personne n&rsquo;installe l&rsquo;application de sa boulangerie. Un lien et un QR code font le travail.
 Un site vitrine sans commande. Beau, mais le client repart sans avoir pu agir. Si vous faites un site, mettez-y le bouton Commander.
 Une newsletter mensuelle. Trop long à écrire, trop peu lu. Un SMS de deux lignes quand il y a une vraie nouvelle fait mieux.
 Les publicités en ligne. Pour un commerce de proximité, la fiche Google et le bouche-à-oreille battent la publicité payante, sauf cas particulier.
 
-Le bon ordre, résumé
+Dans quel ordre faire les choses ?
+Dans cet ordre, du gratuit au plus engageant :
 
 Fiche Google complète.
 Boutique de commande en ligne, lien partout.
@@ -9193,6 +9337,10 @@ Livraison locale à vos conditions, si votre métier s&rsquo;y prête.
 
 Chaque étape se fait depuis un téléphone, sans matériel à acheter. La première coûte zéro, la deuxième quelques dizaines d&rsquo;euros par mois plus des frais d&rsquo;installation uniques, et c&rsquo;est là que tout se joue : vous pouvez voir votre boutique en 30 secondes pour vous faire une idée.
 
+Q : Quelle solution choisir pour vendre en ligne quand on est boulanger, boucher ou primeur ?
+R : Pour quelques commandes par semaine, WhatsApp Business ou un formulaire peuvent suffire. Pour vendre en ligne de façon régulière, il faut une boutique à votre nom avec créneaux de retrait, vente au poids et paiement en ligne ou au retrait. Marchéo est l'une des options pensées pour les commerces de bouche : 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois, sans engagement, 0 % de commission, plus 249, 399 ou 549 € de frais d'installation uniques. Les plateformes de livraison prennent en général 14 à 30 % de commission, et Shopify convient mieux si vous expédiez des colis dans toute la France.
+Q : Faut-il acheter du matériel pour digitaliser son commerce ?
+R : Non. La fiche Google, la boutique en ligne et les messages aux clients se gèrent depuis le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter ; votre caisse et votre terminal de paiement restent en place pour encaisser au retrait.
 Q : Par quoi commencer pour digitaliser son commerce ?
 R : Par la fiche Google Business, gratuite, avec horaires, photos et téléphone à jour. C'est souvent là qu'un nouveau client vous découvre. Ensuite seulement, une boutique de commande en ligne et un canal pour prévenir vos habitués.
 Q : Quel outil pour digitaliser un petit commerce alimentaire sans commission ?

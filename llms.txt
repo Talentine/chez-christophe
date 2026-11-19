@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
 - [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.
 - [Click and collect pizzeria : commandes à emporter sans plateforme](https://marchéo.fr/blog/click-and-collect-pizzeria) : Click and collect pizzeria : prendre les commandes à emporter en ligne, régler les créneaux sur la capacité du four et moins décrocher pendant le coup de feu.
 - [Frais par commande ou abonnement : quel logiciel choisir ?](https://marchéo.fr/blog/frais-par-commande-ou-abonnement-logiciel-commande) : Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau.
