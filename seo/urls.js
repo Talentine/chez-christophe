@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/coursier-ou-livreur-maison-commerce",
   "/blog/site-internet-primeur",
   "/blog/logiciel-commande-traiteur",
   "/blog/service-livraison-restaurant",

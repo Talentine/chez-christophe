@@ -3,7 +3,7 @@ title: "Création site internet fleuriste : pages, prix et commandes"
 titre_court: "Créer le site internet de son fleuriste"
 description: "Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission."
 date: 2026-10-30
-modified: 2026-10-31
+modified: 2026-11-20
 rubrique: Métier
 emoji: 💐
 keywords:
@@ -20,13 +20,15 @@ faq:
     r: "Cela va de quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Avec Marchéo, comptez 19 € par mois pour un site vitrine, 39 € par mois avec le click & collect et 59 € par mois avec la livraison, sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Il n'y a aucune commission sur vos ventes."
   - q: "Quel logiciel pour créer le site internet d'un fleuriste ?"
     r: "Il existe trois familles d'outils : les constructeurs généralistes comme Wix ou Shopify, les réseaux de transmission florale et les logiciels pensés pour les commerces de proximité. Marchéo fait partie de cette dernière famille : le catalogue fleuriste est déjà rempli (bouquets par budget, compositions, plantes), avec un champ pour le message de la carte, 0 % de commission et un abonnement de 19 à 59 € par mois sans engagement. La démo gratuite prend 30 secondes sur marchéo.fr/inscription."
+  - q: "Shopify ou Wix pour le site d'un fleuriste qui vend des bouquets en ligne ?"
+    r: "Shopify et Wix conviennent bien à un fleuriste qui veut expédier des produits partout en France ou construire un site très personnalisé, pour quelques dizaines d'euros par mois, mais les créneaux de retrait, la zone de livraison et le message de la carte sont à configurer vous-même. Pour un fleuriste de quartier qui vend surtout en retrait et en livraison locale, un logiciel métier comme Marchéo est plus direct : catalogue fleuriste prêt, créneaux et zone intégrés, 19, 39 ou 59 € par mois sans engagement, 0 % de commission."
   - q: "Faut-il acheter du matériel pour créer le site internet d'un fleuriste ?"
     r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez le site et les commandes depuis le téléphone ou l'ordinateur que vous avez déjà."
   - q: "Un fleuriste peut-il avoir son propre site et rester dans un réseau de transmission florale ?"
     r: "Souvent oui, car les deux répondent à des besoins différents : le réseau transmet des commandes d'une ville à l'autre, votre site vend à vos clients du quartier. Relisez tout de même les conditions de votre contrat avant de vous lancer, car elles varient d'un réseau à l'autre."
 ---
 
-La création d'un site internet de fleuriste consiste à mettre en ligne vos horaires, vos bouquets par budget et un moyen simple de commander, en retrait ou en livraison. Pour un fleuriste de quartier, le bon site tient en quelques pages claires, se gère depuis le téléphone et ne prend aucune commission sur vos ventes. Comptez de 19 à 59 € par mois avec un logiciel métier comme Marchéo, plus des frais d'installation uniques.
+Pour créer le site internet d'un fleuriste de quartier, il faut mettre en ligne vos horaires, vos bouquets par budget, un champ pour le message de la carte et un bouton de commande en retrait ou en livraison. Avec Marchéo, logiciel français pour les commerces de proximité, ce site coûte 19 € par mois en vitrine, 39 € avec le click & collect ou 59 € avec la livraison, sans engagement, avec 0 % de commission et sans matériel à acheter. Les frais d'installation sont uniques : 249, 399 ou 549 € selon la formule.
 
 Ce guide s'adresse au fleuriste indépendant qui a une boutique, pas aux sites nationaux qui expédient des fleurs partout en France. La méthode générale est détaillée dans notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce). Ici, on parle de ce qui change quand on vend des fleurs : des produits qui ne sont jamais identiques, des commandes offertes à quelqu'un d'autre et des grandes dates très concentrées.
 
@@ -77,7 +79,7 @@ Un téléphone récent suffit. Posez le bouquet devant un mur uni, près d'une f
 
 Le plus simple est de démarrer avec le retrait en boutique, puis d'ouvrir la livraison dans un rayon proche. Le client choisit son bouquet, écrit le message de la carte, indique ses précisions et sélectionne un créneau. Vous recevez une commande écrite, sans erreur de nom.
 
-La livraison compte beaucoup chez un fleuriste, car une partie des bouquets est offerte à quelqu'un d'autre. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Pour fixer un tarif juste, suivez notre méthode pour [calculer ses frais de livraison](/blog/comment-calculer-ses-frais-de-livraison-commercant).
+La livraison compte beaucoup chez un fleuriste, car une partie des bouquets est offerte à quelqu'un d'autre. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Pour fixer un tarif juste, suivez notre méthode pour [calculer ses frais de livraison](/blog/comment-calculer-ses-frais-de-livraison-commercant). La tournée elle-même est détaillée dans notre guide [fleuriste livraison à domicile](/blog/fleuriste-livraison-a-domicile), et si vous êtes seul en boutique, notre comparatif [coursier ou livreur maison](/blog/coursier-ou-livreur-maison-commerce) vous aide à choisir qui livre.
 
 Pour les commandes importantes, comme une gerbe ou un bouquet de mariée, demandez le paiement en ligne ou activez l'empreinte bancaire. Cette option bloque jusqu'à 75 % du panier sans débiter le client, puis la somme est libérée 24 heures après le retrait.
 

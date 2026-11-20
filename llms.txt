@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Coursier ou livreur maison : comment livrer vos clients ?](https://marchéo.fr/blog/coursier-ou-livreur-maison-commerce) : Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
 - [Site internet primeur : créer le site de votre primeur ou maraîcher](https://marchéo.fr/blog/site-internet-primeur) : Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
 - [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
 - [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.

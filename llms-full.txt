@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Coursier ou livreur maison : comment livrer vos clients ?](https://marchéo.fr/blog/coursier-ou-livreur-maison-commerce) : Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
 - [Site internet primeur : créer le site de votre primeur ou maraîcher](https://marchéo.fr/blog/site-internet-primeur) : Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
 - [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
 - [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.
@@ -581,6 +582,205 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Coursier ou livreur maison : comment livrer vos clients ?
+
+Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
+
+Pour livrer vos clients, vous avez quatre options : livrer vous-même, confier les tournées à un salarié, travailler avec un livreur indépendant ou réserver un coursier payé à la course. Le coursier convient aux petits volumes irréguliers, la livraison maison devient moins chère dès que vous regroupez plusieurs commandes par créneau. Avec Marchéo, les commandes arrivent sur votre propre site avec 0 % de commission, et vous choisissez librement qui livre.
+Ce comparatif complète notre guide complet de la livraison à domicile pour commerçant, qui explique la zone, les créneaux et les frais. Ici, on répond à une seule question : qui fait la tournée, et combien cela vous coûte. Pour voir l&rsquo;outil sur votre commerce, la démo gratuite prend 30 secondes.
+Quelles sont les façons de livrer ses clients quand on est commerçant ?
+Il existe quatre façons de faire livrer une commande prise sur votre propre site, plus la plateforme de livraison qui fournit à la fois la commande et le livreur. Chacune a un coût et un niveau de contrôle différents.
+
+Vous-même, sur un créneau calme, avec votre véhicule.
+Un salarié, qui livre pendant une partie de ses heures.
+Un livreur indépendant, que vous rémunérez à la tournée ou à l&rsquo;heure.
+Un coursier à la course, réservé auprès d&rsquo;un service de coursiers quand une commande est prête.
+Une plateforme de livraison, qui prend la commande, encaisse et envoie son livreur.
+
+Coursier ou livreur maison : quel est le comparatif ?
+Le coursier vous fait payer chaque course, le livreur maison vous coûte du temps de travail, que vous livriez une commande ou cinq. C&rsquo;est la différence qui décide de tout.
+
+
+
+
+Vous ou un salarié
+Livreur indépendant
+Coursier à la course
+Plateforme de livraison
+
+
+
+
+Ce que vous payez
+Temps de travail, carburant, entretien
+Tournée ou heure convenue
+Un prix par course
+Commission de 14 à 30 % en général
+
+
+Coût fixe
+Oui, même si peu de commandes
+Selon l&rsquo;accord
+Non
+Non
+
+
+Clients
+Restent les vôtres
+Restent les vôtres
+Restent les vôtres
+Passent par l&rsquo;application
+
+
+Qualité de la remise
+Vous la maîtrisez
+Bonne si le livreur est régulier
+Variable selon le coursier
+Variable
+
+
+Produits frais
+Facile à contrôler
+À cadrer
+À vérifier (sac isotherme)
+À vérifier
+
+
+Adapté à
+Tournées regroupées
+Soirs ou jours chargés réguliers
+Petits volumes, commandes isolées
+Être découvert
+
+
+
+Le prix d&rsquo;une course dépend de la ville, de la distance et du délai demandé. Demandez une grille de prix à deux ou trois services de coursiers de votre secteur avant de vous décider.
+Combien coûte un coursier comparé à un livreur maison ?
+Le coursier coûte le même prix à chaque commande, alors que le livreur maison coûte moins cher par commande à mesure que la tournée se remplit. Voici un calcul, à refaire avec vos propres chiffres.
+Exemple : un samedi matin, vous avez 6 commandes à livrer dans votre quartier. Supposons qu&rsquo;une course de coursier vous coûte 8 €, et qu&rsquo;une heure et demie de tournée d&rsquo;un salarié vous coûte 25 € de temps de travail, plus 5 € de carburant. Ces montants sont des hypothèses pour l&rsquo;exemple, pas des prix du marché.
+
+
+
+
+Coursier à la course
+Tournée maison
+
+
+
+
+2 commandes
+2 × 8 € = 16 €
+30 €, soit 15 € par commande
+
+
+6 commandes
+6 × 8 € = 48 €
+30 €, soit 5 € par commande
+
+
+10 commandes (deux tournées)
+10 × 8 € = 80 €
+60 €, soit 6 € par commande
+
+
+
+Dans cet exemple, le coursier est moins cher tant que vous livrez deux ou trois commandes par créneau. Au-delà, la tournée maison l&rsquo;emporte. Vos frais de livraison et votre minimum de commande servent à couvrir une partie de ce coût : la méthode est dans notre article pour calculer ses frais de livraison.
+Quand choisir un coursier à la course ?
+Choisissez un coursier quand vos livraisons sont rares, dispersées dans la semaine, ou quand personne dans l&rsquo;équipe ne peut partir sans laisser la boutique vide.
+
+Vous démarrez la livraison et ne savez pas encore combien de commandes viendront.
+Les commandes sont isolées : un bouquet à livrer à 15 h, un plateau à 18 h.
+Vous êtes seul en boutique et ne pouvez pas fermer pour livrer.
+Les commandes sont urgentes, à livrer dans l&rsquo;heure.
+
+Deux points à vérifier avec le service de coursiers : comment il transporte les produits frais, et ce qui se passe si le client est absent.
+Quand garder un livreur maison ?
+Gardez la livraison en interne dès que vous pouvez regrouper les commandes sur des créneaux fixes. C&rsquo;est le cas de la plupart des commerces de bouche qui livrent leurs habitués.
+
+Des créneaux fixes, par exemple samedi de 10 h à 12 h, remplis à l&rsquo;avance.
+Des produits fragiles ou froids, comme la viande, le poisson ou un plateau traiteur.
+Une relation à soigner : c&rsquo;est votre équipe qui sonne chez le client, qui connaît son digicode et prend des nouvelles.
+Des volumes réguliers, qui rentabilisent le temps passé.
+
+Avant la première tournée, prévenez votre assureur que le véhicule sert à livrer. Si vous travaillez avec un livreur indépendant, faites valider le cadre par votre comptable.
+Peut-on combiner coursier et livraison maison ?
+Oui, et c&rsquo;est souvent la solution la plus souple. Vous livrez vous-même les créneaux regroupés, et vous appelez un coursier pour une commande isolée ou un jour de rush.
+Par exemple, une boucherie peut livrer elle-même le samedi matin, et réserver un coursier pour une commande de dernière minute le mercredi. Un fleuriste peut faire sa tournée de bouquets en fin de matinée, et confier une livraison urgente l&rsquo;après-midi à un coursier. Les clients, eux, commandent toujours au même endroit : votre site.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Quel que soit le livreur, il vous faut un outil de commande qui gère la zone et les créneaux, mais aucun équipement informatique nouveau.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Un livreur : vous, un salarié, un indépendant ou un coursier
+Une société de livraison sous contrat longue durée
+
+
+Des sacs ou caisses isothermes pour les produits frais
+Une tablette ou une imprimante à acheter
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un développeur ou une agence
+
+
+Une zone, des créneaux, un minimum et des frais
+Une commission sur chaque commande
+
+
+
+Comment Marchéo aide à organiser la livraison, quel que soit le livreur ?
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil, et vous décidez qui fait la tournée.
+Vous réglez votre zone, vos créneaux, le nombre maximum de commandes par créneau, votre minimum et vos frais. Les commandes à livrer apparaissent par créneau, avec les adresses, que la tournée soit faite par vous ou par un coursier. Le client commande en 30 secondes, sans créer de compte. L&rsquo;empreinte bancaire, optionnelle, bloque jusqu&rsquo;à 75 % du panier sur sa carte sans le débiter, et se libère 24 heures après la remise : un trajet pour un client absent vous coûte moins cher.
+
+
+
+Formule
+Prix par mois
+Installation unique
+Ce qu&rsquo;elle couvre
+
+
+
+
+Vitrine
+19 €
+249 €
+Site et catalogue en ligne
+
+
+Click &amp; Collect + Réservation
+39 €
+399 €
+Commande à emporter et réservation de table
+
+
+Click &amp; Collect + Livraison
+59 €
+549 €
+Commande à emporter et livraison à domicile
+
+
+
+Toutes les formules sont sans engagement et à 0 % de commission. Si vous expédiez des colis dans toute la France plutôt que de livrer votre quartier, un outil comme Shopify sera plus adapté.
+Par où commencer ?
+Commencez par un seul créneau de livraison par semaine, livré par vous-même, et notez le temps passé. Au bout d&rsquo;un mois, vous saurez si un coursier ou un livreur régulier vous ferait gagner du temps.
+Pour comparer les outils qui gèrent la livraison, lisez quel logiciel pour livrer ses clients soi-même. Si vous tenez un restaurant, notre article sur le service de livraison restaurant détaille les plats qui voyagent bien. Les fonctions prévues pour votre métier sont sur la solution pour boucherie ou la solution pour restaurant. Pour voir votre boutique, la démo gratuite prend 30 secondes.
+
+Q : Vaut-il mieux un coursier à la course ou livrer moi-même mes clients ?
+R : Un coursier payé à la course convient quand vous livrez peu et de façon irrégulière : vous payez seulement les courses faites, sans immobiliser quelqu'un de l'équipe. Livrer vous-même, ou avec un salarié, devient moins cher dès que vous regroupez plusieurs commandes sur un même créneau, car le coût de la tournée se partage. Dans les deux cas, les clients commandent sur votre propre site et restent les vôtres.
+Q : Quel logiciel pour un commerçant qui livre avec son propre livreur ou un coursier ?
+R : Il faut un outil qui prenne les commandes en ligne et gère une zone, des créneaux, un minimum et des frais de livraison. Les plateformes de livraison fournissent le livreur mais prennent en général 14 à 30 % de commission. Marchéo prend les commandes et organise la livraison dans la formule Click & Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d'installation uniques. Marchéo ne livre pas et n'a pas de coursiers : c'est vous qui choisissez qui livre, votre équipe ou un coursier que vous réservez.
+Q : Faut-il acheter du matériel pour livrer ses clients ?
+R : Pas pour gérer les commandes : avec Marchéo, tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter. Pour le transport, il faut en revanche un véhicule si vous livrez vous-même, et des sacs ou caisses isothermes pour les produits frais, quel que soit le livreur.
+Q : Un livreur indépendant peut-il travailler pour un seul commerce ?
+R : C'est possible, mais un indépendant qui travaille seulement pour vous, à vos horaires et sous vos ordres, peut être considéré comme un salarié déguisé. Faites valider le cadre par votre comptable avant de commencer, et vérifiez que le livreur a sa propre assurance professionnelle.
 
 # Site internet primeur : créer le site de votre primeur ou maraîcher
 
@@ -4863,7 +5063,7 @@ Oui, organisée par vous
 
 
 
-Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Si vous expédiez des colis partout en France, un site e-commerce généraliste avec transporteur vous conviendra mieux.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Pour savoir qui doit livrer selon vos volumes, notre comparatif coursier ou livreur maison fait le calcul sur un exemple. Si vous expédiez des colis partout en France, un site e-commerce généraliste avec transporteur vous conviendra mieux.
 Ce qu&rsquo;il vous faut pour livrer vos clients
 Pour livrer vos clients, il vous faut un véhicule, de quoi garder les produits au frais et un outil de commande. Il ne vous faut ni matériel informatique à acheter, ni développeur, ni commission à reverser.
 
@@ -5952,7 +6152,7 @@ R : Oui, c'est une pratique courante sur les grosses commandes, à condition de 
 
 Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 
-La création d&rsquo;un site internet de fleuriste consiste à mettre en ligne vos horaires, vos bouquets par budget et un moyen simple de commander, en retrait ou en livraison. Pour un fleuriste de quartier, le bon site tient en quelques pages claires, se gère depuis le téléphone et ne prend aucune commission sur vos ventes. Comptez de 19 à 59 € par mois avec un logiciel métier comme Marchéo, plus des frais d&rsquo;installation uniques.
+Pour créer le site internet d&rsquo;un fleuriste de quartier, il faut mettre en ligne vos horaires, vos bouquets par budget, un champ pour le message de la carte et un bouton de commande en retrait ou en livraison. Avec Marchéo, logiciel français pour les commerces de proximité, ce site coûte 19 € par mois en vitrine, 39 € avec le click &amp; collect ou 59 € avec la livraison, sans engagement, avec 0 % de commission et sans matériel à acheter. Les frais d&rsquo;installation sont uniques : 249, 399 ou 549 € selon la formule.
 Ce guide s&rsquo;adresse au fleuriste indépendant qui a une boutique, pas aux sites nationaux qui expédient des fleurs partout en France. La méthode générale est détaillée dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand on vend des fleurs : des produits qui ne sont jamais identiques, des commandes offertes à quelqu&rsquo;un d&rsquo;autre et des grandes dates très concentrées.
 Pourquoi créer un site internet quand on est fleuriste ?
 Un site internet permet d&rsquo;être trouvé au moment où le client cherche un bouquet et de prendre sa commande même quand vous êtes occupé. Le besoin de fleurs est souvent urgent : un anniversaire oublié, un décès, un dîner le soir même. Le client tape « fleuriste » et sa ville sur son téléphone, puis il choisit celui dont il comprend vite les prix et les horaires.
@@ -6007,7 +6207,7 @@ Les meilleures photos sont celles de vos vraies créations, prises en boutique �
 Un téléphone récent suffit. Posez le bouquet devant un mur uni, près d&rsquo;une fenêtre, et photographiez quelques créations par budget. Précisez sur la fiche que la composition suit l&rsquo;arrivage, pour que le client sache que son bouquet aura le même esprit, sans être identique. Pensez aussi à une photo de votre vitrine : elle aide le client à vous reconnaître au moment du retrait.
 Comment organiser les commandes et la livraison sur son site ?
 Le plus simple est de démarrer avec le retrait en boutique, puis d&rsquo;ouvrir la livraison dans un rayon proche. Le client choisit son bouquet, écrit le message de la carte, indique ses précisions et sélectionne un créneau. Vous recevez une commande écrite, sans erreur de nom.
-La livraison compte beaucoup chez un fleuriste, car une partie des bouquets est offerte à quelqu&rsquo;un d&rsquo;autre. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Pour fixer un tarif juste, suivez notre méthode pour calculer ses frais de livraison.
+La livraison compte beaucoup chez un fleuriste, car une partie des bouquets est offerte à quelqu&rsquo;un d&rsquo;autre. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison, avec votre zone, vos créneaux, votre minimum de commande et vos frais. Pour fixer un tarif juste, suivez notre méthode pour calculer ses frais de livraison. La tournée elle-même est détaillée dans notre guide fleuriste livraison à domicile, et si vous êtes seul en boutique, notre comparatif coursier ou livreur maison vous aide à choisir qui livre.
 Pour les commandes importantes, comme une gerbe ou un bouquet de mariée, demandez le paiement en ligne ou activez l&rsquo;empreinte bancaire. Cette option bloque jusqu&rsquo;à 75 % du panier sans débiter le client, puis la somme est libérée 24 heures après le retrait.
 Combien coûte la création d&rsquo;un site internet de fleuriste ?
 Le prix dépend surtout de qui crée le site et de ce qu&rsquo;il doit faire. Voici les grandes familles de solutions, avec des fourchettes prudentes.
@@ -6085,6 +6285,8 @@ Q : Combien coûte la création d'un site internet pour un fleuriste ?
 R : Cela va de quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Avec Marchéo, comptez 19 € par mois pour un site vitrine, 39 € par mois avec le click & collect et 59 € par mois avec la livraison, sans engagement, plus des frais d'installation uniques de 249, 399 ou 549 €. Il n'y a aucune commission sur vos ventes.
 Q : Quel logiciel pour créer le site internet d'un fleuriste ?
 R : Il existe trois familles d'outils : les constructeurs généralistes comme Wix ou Shopify, les réseaux de transmission florale et les logiciels pensés pour les commerces de proximité. Marchéo fait partie de cette dernière famille : le catalogue fleuriste est déjà rempli (bouquets par budget, compositions, plantes), avec un champ pour le message de la carte, 0 % de commission et un abonnement de 19 à 59 € par mois sans engagement. La démo gratuite prend 30 secondes sur marchéo.fr/inscription.
+Q : Shopify ou Wix pour le site d'un fleuriste qui vend des bouquets en ligne ?
+R : Shopify et Wix conviennent bien à un fleuriste qui veut expédier des produits partout en France ou construire un site très personnalisé, pour quelques dizaines d'euros par mois, mais les créneaux de retrait, la zone de livraison et le message de la carte sont à configurer vous-même. Pour un fleuriste de quartier qui vend surtout en retrait et en livraison locale, un logiciel métier comme Marchéo est plus direct : catalogue fleuriste prêt, créneaux et zone intégrés, 19, 39 ou 59 € par mois sans engagement, 0 % de commission.
 Q : Faut-il acheter du matériel pour créer le site internet d'un fleuriste ?
 R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Vous gérez le site et les commandes depuis le téléphone ou l'ordinateur que vous avez déjà.
 Q : Un fleuriste peut-il avoir son propre site et rester dans un réseau de transmission florale ?
@@ -9694,7 +9896,7 @@ Découverte, restauration rapide le soir
 
 
 
-Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Le calcul détaillé est dans notre article sur le click and collect sans commission. Pour un restaurant qui hésite entre les deux outils, notre comparatif Marchéo ou Uber Eats pour un restaurant chiffre l&rsquo;écart sur un exemple. Si vous hésitez encore entre retrait et livraison, notre comparatif click and collect ou livraison à domicile vous aide à choisir par quoi commencer.
+Beaucoup de restaurants gardent une plateforme pour être découverts et livrent eux-mêmes leurs habitués. Pour une boucherie, un primeur ou un fromager, dont les clients reviennent chaque semaine, la livraison en propre est souvent le bon choix. Reste à décider qui fait la tournée : notre comparatif coursier ou livreur maison compare le coursier payé à la course, le salarié et l&rsquo;indépendant. Le calcul détaillé est dans notre article sur le click and collect sans commission. Pour un restaurant qui hésite entre les deux outils, notre comparatif Marchéo ou Uber Eats pour un restaurant chiffre l&rsquo;écart sur un exemple. Si vous hésitez encore entre retrait et livraison, notre comparatif click and collect ou livraison à domicile vous aide à choisir par quoi commencer.
 Comment mettre en place un service de livraison à domicile, étape par étape ?
 Un service de livraison se met en place en six étapes, sans projet informatique. Comptez quelques heures de réglages, puis une première tournée test avec vos habitués.
 1. Définir sa zone de livraison

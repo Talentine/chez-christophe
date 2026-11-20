@@ -3,6 +3,7 @@ title: "Quel logiciel pour livrer ses clients soi-même ?"
 titre_court: "Le logiciel pour livrer ses clients soi-même"
 description: "Logiciel de tournée, plateforme ou boutique avec livraison : ce que fait chaque outil pour livrer vos clients vous-même, son coût et quand le choisir."
 date: 2026-11-03
+modified: 2026-11-20
 rubrique: Comparatif
 emoji: 🚐
 keywords:
@@ -98,7 +99,7 @@ Chez Marchéo, les prix sont fixes, sans engagement, avec 0 % de commission :
 | Click & Collect + Réservation | 399 € | 39 € | Non, retrait en boutique et réservation de table |
 | Click & Collect + Livraison | 549 € | 59 € | Oui, organisée par vous |
 
-Marchéo ne livre pas et n'a pas de coursiers. C'est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Si vous expédiez des colis partout en France, un site e-commerce généraliste avec transporteur vous conviendra mieux.
+Marchéo ne livre pas et n'a pas de coursiers. C'est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Pour savoir qui doit livrer selon vos volumes, notre comparatif [coursier ou livreur maison](/blog/coursier-ou-livreur-maison-commerce) fait le calcul sur un exemple. Si vous expédiez des colis partout en France, un site e-commerce généraliste avec transporteur vous conviendra mieux.
 
 ## Ce qu'il vous faut pour livrer vos clients
 
