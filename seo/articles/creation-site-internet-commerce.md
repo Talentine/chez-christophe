@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-11-16
+modified: 2026-11-20
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -156,7 +156,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 
 - **Boulangerie.** Gâteaux sur commande et pains spéciaux. Voir [la solution pour boulangerie](/solutions/boulangerie) et notre guide du [site internet de boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne).
 - **Boucherie.** Colis, découpes sur demande, vente au kilo. Voir [la solution pour boucherie](/solutions/boucherie) le guide pour [vendre au poids en ligne](/blog/vendre-au-poids-en-ligne) et notre article dédié au [site internet d'une boucherie](/blog/site-internet-boucherie).
-- **Primeur.** Paniers de saison et vente au kilo. Voir [la solution pour primeur](/solutions/primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
+- **Primeur.** Paniers de saison et vente au kilo. Voir [la solution pour primeur](/solutions/primeur), notre guide du [site internet primeur et maraîcher](/blog/site-internet-primeur) et le guide du [click and collect primeur](/blog/click-and-collect-primeur).
 - **Poissonnerie.** Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir [la solution pour poissonnerie](/solutions/poissonnerie), notre guide du [site internet pour poissonnerie](/blog/site-internet-poissonnerie) et notre article sur la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile).
 - **Traiteur.** Plateaux, buffets, devis pour les événements. Voir [la solution pour traiteur](/solutions/traiteur) et le guide de [création de site internet de traiteur](/blog/creation-site-internet-traiteur).
 - **Fromagerie.** Coupes au poids et plateaux pour recevoir. Voir [la solution pour fromagerie](/solutions/fromagerie) le guide du [click and collect en fromagerie](/blog/click-and-collect-fromagerie) et notre article dédié au [site internet d'une fromagerie](/blog/site-internet-fromagerie).

@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
-modified: 2026-11-15
+modified: 2026-11-20
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -117,6 +117,6 @@ Pour quelques commandes par semaine, un outil gratuit peut suffire au début. No
 
 ## Par où commencer ?
 
-Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l'étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter.
+Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l'étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter. Si vous partez de zéro, notre guide pour créer le [site internet de votre primeur](/blog/site-internet-primeur) détaille les pages, les photos et les prix à afficher.
 
 La page détaillée pour votre métier est ici : [click and collect pour primeur et maraîcher](/solutions/primeur). Pour voir à quoi ressemblerait votre boutique, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l'aperçu s'affiche.

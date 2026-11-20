@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet primeur : créer le site de votre primeur ou maraîcher](https://marchéo.fr/blog/site-internet-primeur) : Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
 - [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
 - [Service de livraison restaurant : livrer vos clients vous-même](https://marchéo.fr/blog/service-livraison-restaurant) : Service de livraison restaurant : qui livre, quelle zone, quels créneaux, quels frais et quel outil pour livrer vos clients vous-même, sans commission.
 - [Click and collect pizzeria : commandes à emporter sans plateforme](https://marchéo.fr/blog/click-and-collect-pizzeria) : Click and collect pizzeria : prendre les commandes à emporter en ligne, régler les créneaux sur la capacité du four et moins décrocher pendant le coup de feu.
@@ -109,7 +110,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-19
+- Dernière mise à jour : 2026-11-20
 
 
 ---
@@ -580,6 +581,152 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet primeur : créer le site de votre primeur ou maraîcher
+
+Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
+
+Un site internet de primeur sert à trois choses : être trouvé quand un client cherche des fruits et légumes près de chez lui, montrer ce qui est de saison cette semaine, et prendre les commandes de paniers à l&rsquo;avance. Le bon site tient en quelques pages, affiche des prix au kilo que vous changez depuis votre téléphone, et ne prend aucune commission sur vos ventes.
+Ce guide s&rsquo;adresse au primeur de quartier comme au maraîcher en vente directe. La méthode générale, valable pour tous les commerces, est dans notre guide de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change quand on vend des produits frais : des prix qui bougent chaque semaine, des ruptures selon la récolte, des paniers composés et des clients qui veulent passer vite.
+Pourquoi un primeur a-t-il besoin d&rsquo;un site internet ?
+Parce que vos clients décident souvent avant de venir. Ils veulent savoir si vous êtes ouvert, si les fraises sont arrivées ou s&rsquo;il reste des paniers pour samedi. Sans site, ils appellent, ou ils vont au supermarché.
+Un site à vous change trois choses :
+
+Vous êtes trouvé en direct. Le client qui tape « primeur » ou « maraîcher » avec le nom de sa ville voit vos horaires, votre adresse et vos jours de marché.
+Les commandes arrivent par écrit. Fini les listes dictées au téléphone pendant que la file attend devant l&rsquo;étal.
+Votre différence se voit. Vos producteurs, vos variétés anciennes, votre saison : c&rsquo;est ce qui vous distingue d&rsquo;un rayon de grande surface.
+
+Site vitrine ou site de commande : que choisir pour un primeur ?
+Un site vitrine suffit si vos clients viennent surtout à la boutique et ne commandent pas à l&rsquo;avance. Dès que vous préparez des paniers ou que des clients vous demandent de mettre des produits de côté, un site de commande avec créneaux de retrait vous fera gagner du temps.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de commandes
+Site vitrine : horaires, adresse, producteurs, photos
+
+
+Paniers de la semaine réservés par téléphone ou SMS
+Site avec click &amp; collect et créneaux de retrait
+
+
+Maraîcher qui vend à la ferme et sur les marchés
+Site avec retrait sur plusieurs lieux et jours fixes
+
+
+Clients âgés ou entreprises qui demandent à être livrés
+Site avec click &amp; collect et livraison locale
+
+
+
+Le fonctionnement de la commande en ligne, du panier au retrait, est détaillé dans notre article sur le click and collect primeur.
+Quelles pages mettre sur le site d&rsquo;un primeur ?
+Quatre ou cinq pages suffisent. Un client veut savoir ce que vous avez, à quel prix, et quand il peut passer.
+
+Accueil : nom, adresse, horaires, jours de marché, et un bouton « Commander » visible dès l&rsquo;ouverture de la page.
+Les produits : fruits, légumes, herbes et produits d&rsquo;épicerie classés par famille, avec le prix au kilo ou à la pièce et l&rsquo;origine.
+Les paniers : panier de la semaine en deux ou trois tailles, avec le prix et un exemple de contenu.
+Vos producteurs : d&rsquo;où viennent vos produits, ce que vous cultivez vous-même si vous êtes maraîcher.
+Infos pratiques : moyens de paiement, lieux et horaires de retrait, zone de livraison si vous livrez, mentions légales.
+
+Pour les mentions légales et les conditions de vente, notre article sur les obligations légales d&rsquo;une boutique en ligne fait le point.
+Comment afficher les prix au kilo et les produits de saison ?
+En vendant au kilo ou à la pièce selon le produit, et en ajustant le catalogue chaque semaine depuis votre téléphone. Le site suit votre étal, pas l&rsquo;inverse.
+Une méthode simple :
+
+Mettez en ligne les produits que vous avez presque toute l&rsquo;année : pommes de terre, carottes, oignons, bananes, citrons.
+Ajoutez les produits de saison quand ils arrivent, et retirez-les quand la saison se termine.
+Indiquez sur les produits pesés que le poids est indicatif et que le prix final est ajusté à la pesée.
+Prévoyez une règle claire pour les ruptures : produit de remplacement proposé, ou retiré du panier et non facturé.
+
+La méthode pour afficher un prix au kilo et ajuster le montant final est expliquée dans notre guide pour vendre au poids en ligne.
+Comment vendre ses paniers de fruits et légumes sur internet ?
+En présentant chaque panier comme un produit à prix fixe, avec une date limite de commande et un créneau de retrait. Le client choisit sa taille, réserve son créneau, et vous savez combien de paniers préparer avant de passer vos commandes au grossiste ou de récolter.
+Quelques règles qui évitent les mauvaises surprises :
+
+Une date limite : par exemple le jeudi soir pour un retrait le samedi.
+Un nombre limité : arrêtez les commandes quand vous avez atteint ce que vous pouvez préparer.
+Des créneaux courts : un retrait toutes les 15 ou 30 minutes étale l&rsquo;affluence du samedi matin.
+
+Sur Marchéo, les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Pour éviter les paniers jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait.
+Combien coûte un site internet pour un primeur ?
+Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+Vente au kilo, paniers et créneaux à configurer vous-même
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification se paie
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Pensé pour les commerces de bouche, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation, 549 € pour le Click &amp; Collect avec Livraison. Le détail des postes de dépense est dans notre article sur ce que coûte un site de click and collect.
+Peut-on livrer ses clients avec le site d&rsquo;un primeur ?
+Oui, si vous organisez vous-même la livraison autour de votre boutique ou de votre ferme. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour fixer votre zone, vos créneaux, votre minimum de commande et vos frais. Les paniers se livrent bien en tournée, un ou deux jours par semaine. Tout est expliqué dans notre article sur la livraison à domicile pour un primeur.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut votre liste de produits et vos horaires, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Votre liste de produits, avec les prix au kilo ou à la pièce
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de votre étal et de vos paniers
+Un développeur ou une agence
+
+
+Vos horaires et vos lieux de retrait
+Une commission sur chaque vente
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Comment faire connaître le site de son primeur ?
+Reliez d&rsquo;abord le site à votre fiche Google Business, c&rsquo;est elle qui apparaît sur la carte quand un client cherche un primeur près de chez lui. Ajoutez-y le lien de commande. Le réglage est expliqué dans notre guide de la fiche Google Business pour un commerce de bouche.
+Ensuite, mettez l&rsquo;adresse du site partout où vos clients vous voient : un QR code sur l&rsquo;étal et à la caisse, une affichette sur votre stand de marché, le lien sur Instagram et Facebook avec les arrivages de la semaine. Un client qui a pris son panier en ligne une fois revient souvent la semaine suivante.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « primeur », tapez le nom de votre boutique ou de votre ferme, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous ajoutez ensuite vos produits, vos paniers et vos créneaux à votre rythme. Pour voir toutes les fonctions prévues pour votre métier, consultez la solution pour primeur.
+
+Q : Quel outil pour créer le site internet d'un primeur ou d'un maraîcher ?
+R : Trois familles existent : les constructeurs généralistes (Wix, WordPress, Shopify), à configurer soi-même pour la vente au kilo et les créneaux de retrait ; les agences et freelances, qui font du sur-mesure facturé à chaque modification ; et les logiciels métier comme Marchéo, pensés pour les commerces de bouche. Marchéo coûte 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Faut-il acheter du matériel pour vendre ses fruits et légumes sur internet ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client n'a pas payé en ligne, vous encaissez au retrait avec votre caisse et votre terminal habituels.
+Q : Combien coûte un site internet pour un primeur ?
+R : De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission et sans engagement, avec des frais d'installation uniques de 249 à 549 € selon la formule.
+Q : Un maraîcher sans boutique peut-il avoir un site de commande ?
+R : Oui. Le site peut proposer le retrait à la ferme, sur un marché ou dans un point de dépôt à des jours et heures fixes, ou une livraison que vous organisez vous-même. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour fixer vos lieux, vos créneaux, votre zone et vos frais.
 
 # Logiciel de commande traiteur : lequel choisir en 2026 ?
 
@@ -7403,7 +7550,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 
 Boulangerie. Gâteaux sur commande et pains spéciaux. Voir la solution pour boulangerie et notre guide du site internet de boulangerie.
 Boucherie. Colis, découpes sur demande, vente au kilo. Voir la solution pour boucherie le guide pour vendre au poids en ligne et notre article dédié au site internet d&rsquo;une boucherie.
-Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur et le guide du click and collect primeur.
+Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur, notre guide du site internet primeur et maraîcher et le guide du click and collect primeur.
 Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie, notre guide du site internet pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie le guide du click and collect en fromagerie et notre article dédié au site internet d&rsquo;une fromagerie.
@@ -8005,7 +8152,7 @@ Le click and collect coûte 39 € par mois avec Marchéo, alors qu&rsquo;une pl
 Marchéo fonctionne avec un abonnement fixe et 0 % de commission. La formule Click &amp; Collect + Réservation est à 39 € par mois, sans engagement, avec des frais d&rsquo;installation uniques de 399 €. La formule avec livraison est à 59 € par mois, avec 549 € d&rsquo;installation. Le client commande en 30 secondes, sans créer de compte.
 Pour quelques commandes par semaine, un outil gratuit peut suffire au début. Notre comparatif WhatsApp ou boutique en ligne vous aide à savoir quand passer à une vraie boutique. Et si vous hésitez entre plusieurs outils, notre grand comparatif explique quelle plateforme pour vendre en ligne ses fruits et légumes.
 Par où commencer ?
-Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter.
+Il vous faut un catalogue court, deux ou trois paniers, des créneaux réglés à votre rythme et un QR code sur l&rsquo;étal et sur la vitrine. Pas de développeur, pas de caisse à changer, pas de matériel à acheter. Si vous partez de zéro, notre guide pour créer le site internet de votre primeur détaille les pages, les photos et les prix à afficher.
 La page détaillée pour votre métier est ici : click and collect pour primeur et maraîcher. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Primeur », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
 Q : Quel logiciel de click and collect choisir pour un primeur ?
