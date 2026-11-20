@@ -947,7 +947,14 @@ async function chargerCreneaux() {
 
   if (modeCommande === 'livraison') {
     document.getElementById('creneauTitre').textContent = '🕐 Créneau de livraison';
-    document.getElementById('creneauSub').textContent = 'Livraison à domicile dans un rayon de 10 km';
+    const bizLiv = __BIZ__ || {};
+    const villesLiv = (bizLiv.zone_livraison || [])
+      .map(z => String(z).replace(/\b\d{4,5}\b/g, '').trim()).filter(Boolean);
+    document.getElementById('creneauSub').textContent = villesLiv.length
+      ? 'Livraison à domicile : ' + villesLiv.join(', ')
+      : (bizLiv.rayon_livraison_km
+          ? 'Livraison à domicile dans un rayon de ' + bizLiv.rayon_livraison_km + ' km'
+          : 'Livraison à domicile');
   } else {
     document.getElementById('creneauTitre').textContent = '🕐 Créneau de retrait';
     if (multiPointsActif()) {
@@ -979,6 +986,21 @@ async function chargerCreneaux() {
     : data;
   const limiteAff = multi ? 200 : 12;
   creneaux = genererCreneauxSemaine(dataVisibles, multi ? 200 : 60);
+  // Livraison : on retire les créneaux qui ont atteint leur nombre max de livraisons
+  // (le serveur revérifie à la création de la commande, trigger trg_livraison_capacite).
+  if (type === 'livraison') {
+    try {
+      const occ = await sb('rpc/livraisons_occupation', '', 'POST', { p_commercant: commercantId });
+      if (Array.isArray(occ)) {
+        const caps = new Map(dataVisibles.map(c => [c.id, Number(c.capacite_max) || 0]));
+        const pris = new Map(occ.map(o => [o.creneau_id + '|' + o.debut, Number(o.n) || 0]));
+        creneaux = creneaux.filter(c => {
+          const cap = caps.get(c.id) || 0;
+          return !cap || (pris.get(c.id + '|' + c.dateISO) || 0) < cap;
+        });
+      }
+    } catch (e) { /* en cas d'erreur réseau, le serveur reste le garde-fou */ }
+  }
   // Capacité du four : on retire les créneaux où le panier ne rentre plus
   await chargerFour(commercantId);
   const qFour = qtePanierFour();
@@ -1405,6 +1427,9 @@ async function confirmerCommande() {
         afficherToastPanier(reste > 0
           ? `🔥 Le four est presque complet sur ce créneau : il reste ${reste} place${reste > 1 ? 's' : ''}. Choisissez un autre créneau.`
           : '🔥 Le four est complet sur ce créneau. Choisissez un autre créneau.', 'remove');
+        await chargerCreneaux();
+      } else if (msg.includes('CRENEAU_COMPLET')) {
+        afficherToastPanier('🚚 Ce créneau de livraison vient d\'être complété. Choisissez un autre créneau.', 'remove');
         await chargerCreneaux();
       } else {
         afficherToastPanier(msg ? '⚠️ ' + msg : '⚠️ La commande n\'a pas pu être enregistrée, réessayez.', 'remove');
