@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°20 (n°18 et n°19 posées le 20/11 vers 16 h 15 ; question de marque suivante : n°24). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
+Prochaine question en rotation : n°22 (n°20 et n°21 posées le 21/11 ; question de marque suivante : n°23). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -263,3 +263,11 @@ Prochaine question en rotation : n°20 (n°18 et n°19 posées le 20/11 vers 16 
 | 2026-11-20 | Google (aperçu IA) | Comment une pizzeria peut-elle prendre les commandes en ligne sans plateforme ? (n°18) | non (aperçu IA affiché) ; marchéo.fr absent de la 1re page | aperçu IA : Algorio, Dish by Metro, module de caisse ; sources : Lundi Matin, METRO.fr, beez360 (11/11/2026), Zef Computers (14/08/2026), Partoo, 6XPOS ; 1re page : zefcomputers, algorio (26/07/2026), beez360, geteat, metro.fr, ordrafood, partoo, qtable.fr (25/08/2026), 6xpos |
 | 2026-11-20 | Google (aperçu IA) | site internet primeur vendre fruits et légumes en ligne (mot-clé du matin) | non (aperçu IA affiché, compris côté acheteur) ; marchéo.fr absent | aperçu IA : Potager City, Cagette.net, Mon Marché, La Ruche qui dit Oui, Pourdebon ; 1re page : mon-marche, potagercity, cagette, laruchequiditoui, lafermeauxfruits, bonjourlebon, zenith-fraicheur, pourdebon |
 | 2026-11-20 | (note) | navigateur intégré, sans compte, cookies Google non acceptés ; extension Chrome non connectée ; Google non interrogé sur n°19 ni sur la question de marque | | |
+| 2026-11-21 | ChatGPT | Comment vendre au poids en ligne pour un fromager ? (n°20) | non | WooCommerce (extension Weight Based Products), Shopify (application Weighwise), PrestaShop ; source economie.gouv.fr (étiquetage DGCCRF) ; explique bien poids fixe ou poids réel après découpe avec régularisation |
+| 2026-11-21 | ChatGPT | (R) Shopify ou Wix pour un commerce de proximité qui fait du click and collect ? (n°21) | non | Shopify (« mon choix pour le commerce », synchronisation avec Shopify POS) et Wix (vitrine, retrait en magasin) ; sources Shopify France et Wix.com seulement ; aucune solution métier citée |
+| 2026-11-21 | ChatGPT | Comment proposer un menu de Noël à emporter dans mon restaurant et prendre les commandes en ligne ? (mot-clé du matin) | non | Zenchef, Obypay (prix affiché sur sa page) ; article menu-noel-a-emporter-restaurant publié le matin non repris |
+| 2026-11-21 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? (n°24) | oui, faits exacts | marchéo.fr (+2) : tableau 0 % de commission, 39 à 59 €/mois, « vous organisez » la livraison, réservation de table, « Marchéo ne fournit pas de livreurs » ; Uber Eats à 20 % en formule de base |
+| 2026-11-21 | Perplexity | Comment vendre au poids en ligne pour un fromager ? (n°20) | non mesuré | page « Vérification de sécurité en cours » (anti-robot, 403) : mesure arrêtée, rien contourné |
+| 2026-11-21 | Google (aperçu IA) | Shopify ou Wix pour un commerce de proximité qui fait du click and collect (n°21) | non (aperçu IA affiché) ; marchéo.fr absent de la 1re page | aperçu IA : Shopify pour le stock et la caisse, Wix pour une vitrine à petit budget ; sources : Mobile Transaction, Artich.io (13/10/2026), Shine, Codeur.com, Tooltester, YouTube ; 1re page : mobiletransaction, Reddit, tooltester, shine, experte.com, chlodesign (09/01/2026), codeur, artich |
+| 2026-11-21 | Google (aperçu IA) | menu de noël à emporter restaurant prendre les commandes en ligne (mot-clé du matin) | non (aperçu IA local, compris côté client) | aperçu IA : traiteurs locaux, E.Leclerc Traiteur ; 1re page : Galeries Lafayette Gourmet, Leclerc, lestablesdenantes, ELLE, ChefMaison, Instagram |
+| 2026-11-21 | (note) | navigateur intégré, sans compte, cookies Google non acceptés ; extension Chrome non vérifiée (même raison que depuis le 28/10) ; Google non interrogé sur n°20 ni sur la question de marque | | |

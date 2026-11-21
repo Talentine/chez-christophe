@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-11-18
+modified: 2026-11-21
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -66,7 +66,7 @@ Créer sa boutique en ligne se fait en sept étapes, dont la plupart prennent qu
 3. **Voir un aperçu avant de payer.** Sur [la page de création de Marchéo](/inscription), vous choisissez votre métier, vous tapez le nom de votre boutique, et l'aperçu apparaît en 30 secondes avec un catalogue déjà rempli pour votre métier.
 4. **Ajuster le catalogue et les prix.** Cochez ce que vous vendez, corrigez les prix, ajoutez une phrase par produit. Gardez une trentaine de références au départ, pas trois cents.
 5. **Ajouter des photos.** Cinq ou six photos prises au téléphone, en lumière du jour, suffisent : votre vitrine, vos produits phares, votre équipe.
-6. **Régler retrait, livraison et paiement.** Jours et heures de retrait, nombre de commandes par créneau, zone et frais de livraison si vous livrez, paiement en ligne ou au retrait, empreinte bancaire si vous le souhaitez.
+6. **Régler retrait, livraison et paiement.** Jours et heures de retrait, nombre de commandes par créneau, zone et frais de livraison si vous livrez, paiement en ligne ou au retrait, empreinte bancaire si vous le souhaitez. Si vous encaissez aujourd'hui avec des liens envoyés par SMS, notre comparatif [lien de paiement ou boutique en ligne](/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) vous aide à savoir quand passer de l'un à l'autre.
 7. **Partager le lien partout.** QR code sur le comptoir et en vitrine, lien sur votre fiche Google, sur Instagram et Facebook, message à vos habitués.
 
 ## Quelles solutions pour créer sa boutique en ligne ?

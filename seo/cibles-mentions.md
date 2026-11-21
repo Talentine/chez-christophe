@@ -114,6 +114,9 @@ Les IA citent surtout ce que d'autres sites disent d'une marque. Ce tableau list
 | Regioneo / Achil / Mon Petit Drive / Socleo | sites d'éditeurs (concurrents) | ChatGPT, « Quel site internet pour un primeur ou un maraîcher qui veut vendre ses fruits et légumes en ligne ? » (20/11) : Regioneo et Achil conseillés en premier | aucune mention possible : page primeur avec prix en clair et FAQ « quel site pour un primeur » | automatique | rien à faire |
 | Potager City / Cagette.net / Mon Marché / La Ruche qui dit Oui / Pourdebon | places de marché et primeurs en ligne | Google, aperçu IA, même question (20/11) : l'IA comprend la question côté acheteur | aucune mention possible (places de marché) | automatique | rien à faire |
 | francenum.gouv.fr (guide du click and collect) | institutionnel | ChatGPT, « Click and collect, ça veut dire quoi pour un commerçant ? » (20/11), seule source | déjà listé (à vérifier) : cité une nouvelle fois | Paul | à vérifier |
+| artich.io (« Click and collect Shopify : guide complet de mise en place », 13/10/2026) | blog d'agence Shopify | Google, aperçu IA, n°21 Shopify ou Wix (21/11) | rien à demander (agence Shopify) ; répondre par notre propre comparatif Shopify ou Wix avec un tableau « retrait en boutique » | automatique | contenu : rafraîchir shopify-wix-ou-logiciel-metier-commerce-de-proximite |
+| tooltester.com (« Wix ou Shopify (2026) ») | comparatif | Google, aperçu IA, n°21 (21/11) | comparatif à deux outils seulement : proposer un encadré « et pour un commerce de proximité ? » (message type 2) | Paul | à étudier, faible chance |
+| zenchef.com / obypay.com | blog d'éditeur (concurrents) | ChatGPT, menu de Noël à emporter restaurant (21/11) | rien à demander (concurrents) ; notre article du matin doit être repris : à revérifier dans une semaine | automatique | à suivre dans les relevés |
 
 ## Messages types (à envoyer par Paul lui-même, adapter le prénom)
 

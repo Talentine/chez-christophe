@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Lien de paiement ou boutique en ligne : que choisir ?](https://marchéo.fr/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) : Lien de paiement ou boutique en ligne pour encaisser les commandes de votre commerce ? Comparatif honnête : coût, frais, temps passé, retrait et no-show.
 - [Menu de Noël à emporter : le proposer dans son restaurant](https://marchéo.fr/blog/menu-noel-a-emporter-restaurant) : Menu de Noël à emporter au restaurant : composer la carte, fixer la date limite, ouvrir les créneaux du 24 et du 31 et éviter les commandes non retirées.
 - [Coursier ou livreur maison : comment livrer vos clients ?](https://marchéo.fr/blog/coursier-ou-livreur-maison-commerce) : Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
 - [Site internet primeur : créer le site de votre primeur ou maraîcher](https://marchéo.fr/blog/site-internet-primeur) : Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
