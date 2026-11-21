@@ -68,6 +68,11 @@
   .mode-card-icon{font-size:28px;margin-bottom:8px;}
   .mode-card-titre{font-size:14px;font-weight:500;margin-bottom:4px;}
   .mode-card-prix{font-size:12px;color:var(--texte-doux);}
+  .mode-grid-3{gap:8px;}
+  .mode-grid-3 .mode-card{padding:12px 6px;}
+  .mode-grid-3 .mode-card-icon{font-size:24px;margin-bottom:6px;}
+  .mode-grid-3 .mode-card-titre{font-size:12.5px;}
+  .mode-grid-3 .mode-card-prix{font-size:11px;}
 
   /* FORM */
   .form-group{margin-bottom:14px;}
@@ -184,7 +189,47 @@
         <div class="mode-card-titre">Livraison domicile</div>
         <div class="mode-card-prix">+3,90 €</div>
       </div>
+      <div class="mode-card" id="modeExpedition" onclick="choisirMode('expedition')" style="display:none">
+        <div class="mode-card-icon">📦</div>
+        <div class="mode-card-titre">Expédition France</div>
+        <div class="mode-card-prix" id="modeExpeditionPrix">Livré en 24 h</div>
+      </div>
     </div>
+  </div>
+
+  <!-- Expédition France (visible si mode expédition) -->
+  <div class="section" id="expeditionSection" style="display:none">
+    <div class="section-titre">📦 Adresse d'expédition</div>
+    <div class="info-box" id="expeditionIntro" style="margin:0 0 14px;">Colis expédié par Chronopost, livré le lendemain de l'expédition.</div>
+    <div class="form-group">
+      <label class="form-label">Nom et prénom du destinataire *</label>
+      <input class="form-input" id="expNom" type="text" placeholder="Marie Dupont" autocomplete="name" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Adresse *</label>
+      <input class="form-input" id="expAdresse" type="text" placeholder="12 rue de la Paix" autocomplete="address-line1" maxlength="38">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Complément (bâtiment, étage, digicode)</label>
+      <input class="form-input" id="expComplement" type="text" placeholder="Bât. B, 3e étage, code 1234" autocomplete="address-line2" maxlength="38">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Code postal *</label>
+        <input class="form-input" id="expCP" type="text" inputmode="numeric" placeholder="75011" maxlength="5" autocomplete="postal-code" oninput="expeditionCpSaisi()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ville *</label>
+        <input class="form-input" id="expVille" type="text" placeholder="Paris" autocomplete="address-level2" maxlength="50">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Téléphone portable * <span style="font-weight:400;color:var(--texte-doux)">(pour le livreur)</span></label>
+      <input class="form-input" id="expTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel" maxlength="20">
+    </div>
+    <div class="form-erreur" id="expeditionErreur">⚠️ Veuillez remplir votre adresse complète</div>
+    <div class="info-box" id="expeditionInfo">📦 Frais d'expédition calculés selon le poids du colis</div>
+    <a id="expeditionLienInfos" href="expedition.html" target="_blank" style="display:inline-block;margin-top:10px;font-size:13px;color:var(--vert);text-decoration:underline;">Délais, emballage, réception : tout savoir sur l'expédition</a>
   </div>
 
   <!-- Adresse (visible si livraison) -->
@@ -267,6 +312,26 @@
       <div id="stripe-card-element" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:12px;padding:14px;"></div>
       <div id="stripe-card-errors" style="color:var(--rouge);font-size:13px;margin-top:8px;display:none"></div>
     </div>
+  </div>
+
+  <!-- Paiement en ligne (expédition uniquement) -->
+  <div class="section" id="paiementExpSection" style="display:none">
+    <div class="section-titre">💳 Paiement sécurisé</div>
+    <div style="background:#f0f7f3;border-left:3px solid var(--vert);padding:14px 16px;border-radius:8px;line-height:1.6;font-size:14px;">
+      Une commande expédiée se règle <strong>en ligne, à la commande</strong>. Si un produit vendu au poids pèse finalement moins que prévu, la différence vous est <strong>remboursée</strong> au départ du colis.
+    </div>
+    <div style="margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--texte-doux);">
+      <span>✓ Paiement sécurisé Stripe</span>
+      <span>✓ Données bancaires non stockées</span>
+    </div>
+    <div id="stripeExpLoading" style="text-align:center;padding:16px;color:var(--texte-doux);font-size:14px;margin-top:10px;">⏳ Chargement du formulaire sécurisé...</div>
+    <div id="stripeExpForm" style="display:none;margin-top:10px;">
+      <div id="stripe-card-exp" style="background:white;border:1.5px solid var(--creme-fonce);border-radius:12px;padding:14px;"></div>
+    </div>
+    <div id="stripe-exp-errors" style="color:var(--rouge);font-size:13px;margin-top:8px;display:none"></div>
+  </div>
+  <div class="section" id="paiementExpDemo" style="display:none;background:#FFF8E7;">
+    <div style="font-size:13.5px;line-height:1.6;color:#6b5514;">🧪 <strong>Boutique en démonstration</strong> : commande de test, sans paiement. En conditions réelles, le client règle ici par carte bancaire.</div>
   </div>
 
   <div class="section">
@@ -390,6 +455,9 @@ function seuilLivraisonGratuite() {
 // Frais réellement facturés : 0 en retrait, 0 au-dessus du seuil de gratuité.
 // Seule source de vérité pour l'affichage, le CTA et la commande envoyée.
 function calcFraisLivraison(sousTotal) {
+  if (modeCommande === 'expedition') {
+    return EXPEDITION.devis && EXPEDITION.devis.ok ? Number(EXPEDITION.devis.frais) || 0 : 0;
+  }
   if (modeCommande !== 'livraison') return 0;
   const seuil = seuilLivraisonGratuite();
   if (seuil !== null && Number(sousTotal) >= seuil) return 0;
@@ -405,17 +473,119 @@ async function chargerDispoLivraison() {
   } catch (e) { LIVRAISON_DISPO = false; }
 }
 
+// ── EXPÉDITION FRANCE (option activée par Marchéo) ────────────
+// Le serveur fait foi : expedition_devis calcule le poids, les frais, la zone
+// et les dates de départ ; checkout_create_order rappelle la même fonction.
+const EXPEDITION = { dispo: false, reglages: null, devis: null, cp: null, enCours: 0, commande: null };
+let stripeCardExp = null;
+
+function lignesPourDevis() {
+  return panier.filter(p => p.id).map(p => ({ produit_base_id: p.id, quantite: p.qte }));
+}
+
+async function chargerDispoExpedition() {
+  EXPEDITION.dispo = false;
+  if (!__CID__ || !__BIZ__ || __BIZ__.offre === 'vitrine') return;
+  try {
+    const rows = await sb('expedition_reglages', `?commercant_id=eq.${__CID__}&select=*`);
+    const r = Array.isArray(rows) ? rows[0] : null;
+    if (!r || !r.active || !r.ouverte || !Array.isArray(r.grille) || r.grille.length === 0) return;
+    // Boutique abonnée : paiement en ligne indispensable
+    if (__BIZ__.abonnement_actif === true && !(__BIZ__.stripe_connect_actif && __BIZ__.stripe_connect_charges_enabled)) return;
+    EXPEDITION.reglages = r;
+    EXPEDITION.dispo = true;
+  } catch (e) { EXPEDITION.dispo = false; }
+}
+
+// Colonnes de la grille selon le nombre de modes proposés
+function ajusterGrilleModes() {
+  const grille = document.querySelector('.mode-grid');
+  if (!grille) return;
+  const visibles = Array.from(grille.children).filter(el => el.style.display !== 'none').length;
+  grille.style.gridTemplateColumns = visibles <= 1 ? '1fr' : (visibles === 2 ? '1fr 1fr' : '1fr 1fr 1fr');
+  grille.classList.toggle('mode-grid-3', visibles >= 3);
+}
+
+function appliquerConfigExpedition() {
+  const carte = document.getElementById('modeExpedition');
+  if (!carte) return;
+  if (!EXPEDITION.dispo) {
+    carte.style.display = 'none';
+    if (modeCommande === 'expedition') choisirMode('retrait');
+    ajusterGrilleModes();
+    return;
+  }
+  carte.style.display = '';
+  const r = EXPEDITION.reglages;
+  const prixMin = Math.min.apply(null, r.grille.map(p => Number(p.prix) || 0));
+  document.getElementById('modeExpeditionPrix').textContent = 'dès ' + fmtEuro(prixMin) + ' €';
+  carte.querySelector('.mode-card-icon').textContent = r.mode_froid ? '❄️' : '📦';
+  document.getElementById('expeditionIntro').textContent = (r.mode_froid
+    ? '❄️ Colis expédié en camion réfrigéré (Chronofresh), livré le lendemain de l\'expédition avant 13 h, partout en France métropolitaine.'
+    : '📦 Colis expédié par Chronopost, livré le lendemain de l\'expédition avant 13 h, partout en France métropolitaine.')
+    + (r.message_client ? ' ' + r.message_client : '');
+  ajusterGrilleModes();
+}
+
+// Devis serveur. cp facultatif : sans code postal, on obtient déjà le poids,
+// les produits non expédiables et le minimum de commande.
+async function demanderDevisExpedition(cp) {
+  const jeton = ++EXPEDITION.enCours;
+  const sousTotal = panier.reduce((s,p) => s + calcTotalLignePanier(p), 0);
+  let devis = null;
+  try {
+    devis = await sb('rpc/expedition_devis', '', 'POST', {
+      p_commercant: __CID__, p_lignes: lignesPourDevis(), p_code_postal: cp || null, p_sous_total: sousTotal,
+    });
+  } catch (e) { devis = null; }
+  if (jeton !== EXPEDITION.enCours) return EXPEDITION.devis; // une demande plus récente est partie
+  if (!devis || typeof devis.ok !== 'boolean') devis = { ok: false, message: 'Calcul des frais indisponible, réessayez.' };
+  EXPEDITION.devis = devis;
+  EXPEDITION.cp = cp || null;
+  afficherDevisExpedition();
+  renderRecap();
+  mettreAJourCTA();
+  return devis;
+}
+
+function afficherDevisExpedition() {
+  const info = document.getElementById('expeditionInfo');
+  const d = EXPEDITION.devis;
+  if (!info) return;
+  info.style.background = ''; info.style.color = '';
+  if (!d) { info.textContent = '📦 Frais d\'expédition calculés selon le poids du colis'; return; }
+  if (!d.ok) {
+    info.textContent = '⚠️ ' + (d.message || 'Expédition indisponible');
+    info.style.background = '#fdf0ef'; info.style.color = '#9a2d24';
+    return;
+  }
+  const kg = (Number(d.poids_g || 0) / 1000).toFixed(1).replace('.', ',');
+  const seuil = Number(d.seuil_gratuite);
+  let txt = '📦 Colis d\'environ ' + kg + ' kg (emballage compris) · expédition : '
+    + (Number(d.frais) > 0 ? fmtEuro(d.frais) + ' €' : 'offerte');
+  if (!d.gratuit && isFinite(seuil) && seuil > 0) txt += ' · offerte dès ' + fmtEuro(seuil) + ' € d\'achat';
+  if (d.en_corse && Number(d.supplement_corse) > 0) txt += ' (dont supplément Corse ' + fmtEuro(d.supplement_corse) + ' €)';
+  info.textContent = txt;
+}
+
+let __expCpTimer = null;
+function expeditionCpSaisi() {
+  clearTimeout(__expCpTimer);
+  const cp = document.getElementById('expCP').value.trim();
+  if (cp.length === 5) __expCpTimer = setTimeout(() => demanderDevisExpedition(cp), 250);
+}
+
 function appliquerConfigLivraison() {
   const carte = document.getElementById('modeLivraison');
   const grille = carte && carte.parentElement;
   if (!LIVRAISON_DISPO) {
     if (carte) carte.style.display = 'none';
-    if (grille) grille.style.gridTemplateColumns = '1fr';
     if (modeCommande === 'livraison') choisirMode('retrait');
+    ajusterGrilleModes();
     return;
   }
   if (carte) carte.style.display = '';
-  if (grille) grille.style.gridTemplateColumns = '';
+  ajusterGrilleModes();
   const base = fraisLivraisonBase();
   const seuil = seuilLivraisonGratuite();
   const prixEl = carte.querySelector('.mode-card-prix');
@@ -538,6 +708,9 @@ async function bootCommerce() {
   // Livraison : uniquement si l'offre l'inclut et que des créneaux existent
   await chargerDispoLivraison();
   appliquerConfigLivraison();
+  // Expédition France : uniquement si l'option est activée et réglée
+  await chargerDispoExpedition();
+  appliquerConfigExpedition();
   // Points de retrait multiples
   await chargerPointsRetrait();
   if (multiPointsActif()) {
@@ -693,10 +866,16 @@ function renderRecap() {
   const total = sous_total + frais;
   const seuilLiv = seuilLivraisonGratuite();
   const livOfferte = modeCommande === 'livraison' && frais === 0 && fraisLivraisonBase() > 0;
+  const estExp = modeCommande === 'expedition';
+  const devisExp = estExp && EXPEDITION.devis && EXPEDITION.devis.ok && EXPEDITION.cp ? EXPEDITION.devis : null;
+  const ligneExp = !estExp ? ''
+    : !devisExp ? `<div class="total-ligne"><span class="total-livraison">📦 Expédition</span><span class="total-livraison" style="font-size:12px;">calculée avec votre code postal</span></div>`
+    : `<div class="total-ligne"><span class="total-livraison">📦 Expédition <small>(${(Number(devisExp.poids_g || 0) / 1000).toFixed(1).replace('.', ',')} kg)</small></span><span class="total-livraison">${frais > 0 ? '+' + fmtEuro(frais) + ' €' : 'Offerte'}</span></div>`;
 
   const html = `
     <div class="total-ligne"><span>Sous-total (${panier.length} article${panier.length>1?'s':''})</span><span>${sous_total.toFixed(2).replace('.',',')} €</span></div>
-    ${frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison${seuilLiv !== null ? ` <small>(offerte dès ${fmtEuro(seuilLiv)} €)</small>` : ''}</span><span class="total-livraison">+${fmtEuro(frais)} €</span></div>` : ''}
+    ${ligneExp}
+    ${!estExp && frais > 0 ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison${seuilLiv !== null ? ` <small>(offerte dès ${fmtEuro(seuilLiv)} €)</small>` : ''}</span><span class="total-livraison">+${fmtEuro(frais)} €</span></div>` : ''}
     ${livOfferte ? `<div class="total-ligne"><span class="total-livraison">🚚 Livraison</span><span class="total-livraison">Offerte</span></div>` : ''}
     <div class="total-ligne" style="font-weight:500;font-size:15px;padding-top:10px;"><span>${panier.some(p => p.poids_indicatif) ? 'Total estimé' : 'Total'}</span><span style="color:var(--vert)">${total.toFixed(2).replace('.',',')} €</span></div>
     ${window.PoidsIndicatif ? PoidsIndicatif.notePanier(panier) : ''}
@@ -711,11 +890,27 @@ function renderRecap() {
 // ── MODE ──────────────────────────────────────────────
 function choisirMode(mode) {
   if (mode === 'livraison' && !LIVRAISON_DISPO) mode = 'retrait';
+  if (mode === 'expedition' && !EXPEDITION.dispo) mode = 'retrait';
   modeCommande = mode;
   document.getElementById('modeRetrait').classList.toggle('actif', mode === 'retrait');
   document.getElementById('modeLivraison').classList.toggle('actif', mode === 'livraison');
+  document.getElementById('modeExpedition').classList.toggle('actif', mode === 'expedition');
   document.getElementById('adresseSection').style.display = mode === 'livraison' ? 'block' : 'none';
   document.getElementById('adresseErreur').classList.remove('visible');
+  document.getElementById('expeditionSection').style.display = mode === 'expedition' ? 'block' : 'none';
+  document.getElementById('expeditionErreur').classList.remove('visible');
+  if (mode === 'expedition') {
+    // Pré-remplissage depuis le compte client
+    const meta = (getSession() && getSession().user && getSession().user.user_metadata) || {};
+    const champNom = document.getElementById('expNom');
+    if (!champNom.value && (meta.prenom || meta.nom)) champNom.value = [meta.prenom, meta.nom].filter(Boolean).join(' ');
+    const champTel = document.getElementById('expTel');
+    if (!champTel.value && meta.telephone) champTel.value = meta.telephone;
+    const lien = document.getElementById('expeditionLienInfos');
+    if (lien && window.CC && window.CC.url) lien.href = window.CC.url('expedition.html');
+    const cp = document.getElementById('expCP').value.trim();
+    demanderDevisExpedition(cp.length === 5 ? cp : null);
+  }
   renderRecap();
   mettreAJourCTA();
 }
@@ -837,6 +1032,32 @@ async function etapeSuivante() {
     allerEtape(2);
 
   } else if (etape === 2) {
+    if (modeCommande === 'expedition') {
+      const erreur = document.getElementById('expeditionErreur');
+      const v = id => document.getElementById(id).value.trim();
+      const cp = v('expCP');
+      if (!v('expNom') || !v('expAdresse') || !/^\d{5}$/.test(cp) || !v('expVille') || v('expTel').replace(/\D/g, '').length < 10) {
+        erreur.textContent = '⚠️ Nom, adresse, code postal, ville et téléphone portable sont nécessaires pour la livraison';
+        erreur.classList.add('visible');
+        return;
+      }
+      erreur.classList.remove('visible');
+      const btnE = document.getElementById('btnAction');
+      const txtE = document.getElementById('btnTxt');
+      if (btnE) btnE.disabled = true;
+      if (txtE) txtE.textContent = 'Calcul des frais d\'expédition...';
+      const devis = await demanderDevisExpedition(cp);
+      if (btnE) btnE.disabled = false;
+      mettreAJourCTA();
+      if (!devis || !devis.ok) {
+        erreur.textContent = '❌ ' + ((devis && devis.message) || 'Expédition indisponible');
+        erreur.classList.add('visible');
+        return;
+      }
+      allerEtape(3);
+      await chargerCreneaux();
+      return;
+    }
     // Valider adresse si livraison
     if (modeCommande === 'livraison') {
       const adresse = document.getElementById('livraisonAdresse').value.trim();
@@ -897,6 +1118,14 @@ async function etapeSuivante() {
   }
 }
 
+// Expédition payante (boutique abonnée) : le bouton final déclenche le paiement
+function expeditionPayante() {
+  return modeCommande === 'expedition' && !!(__BIZ__ && __BIZ__.abonnement_actif === true);
+}
+function libelleBoutonFinal() {
+  return expeditionPayante() ? 'Payer et commander →' : 'Confirmer la commande →';
+}
+
 function mettreAJourCTA() {
   const btn = document.getElementById('btnAction');
   const btnTxt = document.getElementById('btnTxt');
@@ -912,15 +1141,16 @@ function mettreAJourCTA() {
     btnMontant.textContent = total;
     btn.disabled = false;
   } else if (etape === 2) {
-    btnTxt.textContent = 'Choisir un créneau →';
+    btnTxt.textContent = modeCommande === 'expedition' ? 'Choisir la date d\'expédition →' : 'Choisir un créneau →';
     btnMontant.textContent = total;
     btn.disabled = false;
   } else if (etape === 3) {
-    btnTxt.textContent = creneauSelectionne !== null ? 'Mes coordonnées →' : 'Choisissez un créneau';
+    btnTxt.textContent = creneauSelectionne !== null ? 'Mes coordonnées →'
+      : (modeCommande === 'expedition' ? 'Choisissez une date' : 'Choisissez un créneau');
     btnMontant.textContent = '';
     btn.disabled = creneauSelectionne === null;
   } else if (etape === 4) {
-    btnTxt.textContent = 'Confirmer la commande →';
+    btnTxt.textContent = libelleBoutonFinal();
     btnMontant.textContent = total;
     btn.disabled = false;
   } else if (etape === 5) {
@@ -944,6 +1174,30 @@ async function chargerCreneaux() {
   grid.innerHTML = '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Chargement...</div>';
   creneauSelectionne = null;
   mettreAJourCTA();
+
+  if (modeCommande === 'expedition') {
+    document.getElementById('creneauTitre').textContent = '📦 Date d\'expédition';
+    document.getElementById('creneauSub').textContent = 'Choisissez le jour de départ de votre colis : il est livré le lendemain avant 13 h. Soyez présent à la réception.';
+    const J = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const M = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+    const fmt = iso => { const d = new Date(iso + 'T12:00:00'); return { jour: J[d.getDay()], date: d.getDate() + ' ' + M[d.getMonth()] }; };
+    const plus1 = iso => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + 1); return fmt(d.toISOString().slice(0, 10)); };
+    const dates = (EXPEDITION.devis && EXPEDITION.devis.ok && EXPEDITION.devis.dates) || [];
+    creneaux = dates.map(iso => {
+      const a = fmt(iso), l = plus1(iso);
+      return { id: null, expedition: true, dateISO: iso, jour: a.jour, date: a.date, debut: 'Départ', fin: 'livré ' + l.jour.toLowerCase() + ' ' + l.date, livraison: l.jour.toLowerCase() + ' ' + l.date, pointId: null };
+    });
+    grid.style.display = '';
+    grid.innerHTML = creneaux.length
+      ? creneaux.map((c, i) => `
+        <div class="creneau-card" id="creneau-${i}" data-idx="${i}" onclick="selectionnerCreneau(${i})">
+          <div class="creneau-jour">${c.jour}</div>
+          <div class="creneau-date">${c.date}</div>
+          <div class="creneau-heure" style="font-size:12px;">→ livré ${c.livraison}</div>
+        </div>`).join('')
+      : '<div style="text-align:center;padding:20px;color:var(--texte-doux);grid-column:span 2">Aucune date d\'expédition disponible pour le moment</div>';
+    return;
+  }
 
   if (modeCommande === 'livraison') {
     document.getElementById('creneauTitre').textContent = '🕐 Créneau de livraison';
@@ -1216,6 +1470,39 @@ function validerFormulaire() {
 // Si true  → on monte le card element. La PaymentIntent (capture_method=manual)
 //            est créée APRÈS la commande, dans confirmerCommande.
 async function initialiserStripe() {
+  const sectionExp = document.getElementById('paiementExpSection');
+  const sectionDemo = document.getElementById('paiementExpDemo');
+  const sectionFid = document.getElementById('fideliteSection');
+  if (sectionExp) sectionExp.style.display = 'none';
+  if (sectionDemo) sectionDemo.style.display = 'none';
+  if (modeCommande === 'expedition') {
+    // Paiement intégral à la commande : pas d'empreinte, pas de code fidélité
+    // (la récompense s'utilise au retrait en boutique).
+    document.getElementById('empreinteSection').style.display = 'none';
+    if (sectionFid) sectionFid.style.display = 'none';
+    if (!expeditionPayante()) { if (sectionDemo) sectionDemo.style.display = ''; return; }
+    sectionExp.style.display = '';
+    if (stripeCardExp) return;
+    try {
+      stripe = stripe || Stripe(STRIPE_PK);
+      stripeCardExp = stripe.elements().create('card', {
+        style: { base: { fontSize: '15px', color: '#1f3028', fontFamily: 'DM Sans, sans-serif', '::placeholder': { color: '#aaa' } } },
+        hidePostalCode: true,
+      });
+      document.getElementById('stripeExpLoading').style.display = 'none';
+      document.getElementById('stripeExpForm').style.display = 'block';
+      stripeCardExp.mount('#stripe-card-exp');
+      stripeCardExp.on('change', e => {
+        const err = document.getElementById('stripe-exp-errors');
+        err.textContent = e.error ? e.error.message : '';
+        err.style.display = e.error ? 'block' : 'none';
+      });
+    } catch (e) {
+      document.getElementById('stripeExpLoading').textContent = '⚠️ Paiement indisponible pour le moment';
+    }
+    return;
+  }
+  if (sectionFid && __BIZ__ && __BIZ__.fidelite_active) sectionFid.style.display = 'block';
   const section = document.getElementById('empreinteSection');
   // Boutique démo (abonnement non actif) : commandes de test, jamais d'empreinte
   if (!__BIZ__ || !__BIZ__.empreinte_obligatoire || __BIZ__.abonnement_actif !== true) {
@@ -1271,6 +1558,33 @@ async function creerEtConfirmerEmpreinte(commande_id, montant_cents, billing) {
   return { ok: true, payment_intent_id: paymentIntent.id };
 }
 
+// ── EXPÉDITION : paiement de la commande ──────────────────────
+async function appelExpedition(corps) {
+  const r = await fetch(SUPABASE_URL + '/functions/v1/expedition', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(corps),
+  });
+  return r.json();
+}
+
+// Renvoie { ok, error? }. La commande n'est visible du commerçant qu'une fois
+// le paiement confirmé par le serveur (action « finaliser »).
+async function payerCommandeExpedition(commande_id, billing) {
+  const data = await appelExpedition({ action: 'payer', commande_id }).catch(() => null);
+  if (!data || (data.error && !data.deja_paye)) return { ok: false, error: (data && data.error) || 'Paiement indisponible, réessayez.' };
+  if (!data.deja_paye) {
+    if (!stripe || !stripeCardExp) return { ok: false, error: 'Formulaire de paiement indisponible' };
+    const { error } = await stripe.confirmCardPayment(data.client_secret, {
+      payment_method: { card: stripeCardExp, billing_details: billing },
+    });
+    if (error) return { ok: false, error: error.message };
+  }
+  const fin = await appelExpedition({ action: 'finaliser', commande_id }).catch(() => null);
+  if (!fin || !fin.ok) return { ok: false, error: 'Le paiement n\'a pas pu être validé. Vous n\'avez pas été débité : réessayez.' };
+  return { ok: true };
+}
+
 // ── CONFIRMATION ──────────────────────────────────────
 async function confirmerCommande() {
   // Validation CGV
@@ -1301,8 +1615,10 @@ async function confirmerCommande() {
   const email = document.getElementById('email').value.trim();
   const note = document.getElementById('note').value.trim();
 
-  const empreinteRequise = !!(__BIZ__ && __BIZ__.empreinte_obligatoire && __BIZ__.abonnement_actif === true);
+  const estExpedition = modeCommande === 'expedition';
+  const empreinteRequise = !estExpedition && !!(__BIZ__ && __BIZ__.empreinte_obligatoire && __BIZ__.abonnement_actif === true);
   let commandeId = null;
+  let numeroFinal = numero;
 
   try {
     const commercantId = __CID__;
@@ -1327,8 +1643,10 @@ async function confirmerCommande() {
     // Le trigger DB décrémente le stock mais ne bloque PAS la survente.
     // On vérifie donc le stock disponible AVANT de créer la commande.
     // stock_qte = NULL → illimité (ignoré). NULL = comportement legacy.
+    // (ignoré quand on reprend une commande à expédier en attente de paiement :
+    // son stock est déjà réservé.)
     const stockIds = panier.map(p => p.id).filter(Boolean);
-    if (stockIds.length) {
+    if (stockIds.length && !(estExpedition && EXPEDITION.commande)) {
       const stocks = await sb('catalogue',
         `?commercant_id=eq.${commercantId}&produit_base_id=in.(${stockIds.join(',')})&stock_qte=not.is.null&select=produit_base_id,stock_qte,nom_custom`);
       if (Array.isArray(stocks)) {
@@ -1379,9 +1697,26 @@ async function confirmerCommande() {
       document.getElementById('livraisonVille').value.trim()
     ) : null;
 
+    const destExpedition = estExpedition ? {
+      nom: document.getElementById('expNom').value.trim(),
+      adresse: document.getElementById('expAdresse').value.trim(),
+      complement: document.getElementById('expComplement').value.trim(),
+      code_postal: document.getElementById('expCP').value.trim(),
+      ville: document.getElementById('expVille').value.trim(),
+      telephone: document.getElementById('expTel').value.trim(),
+      date: creneau.dateISO,
+    } : null;
+    // Le panier ou l'adresse ont changé depuis l'essai précédent : nouvelle
+    // commande (l'ancienne, jamais payée, est annulée automatiquement).
+    const signatureExp = estExpedition ? JSON.stringify([lignesPourDevis(), destExpedition]) : null;
+    if (EXPEDITION.commande && EXPEDITION.commande.signature !== signatureExp) EXPEDITION.commande = null;
+
     // RPC security definer : crée (ou retrouve) le client + insère la commande + ses lignes
     // en une transaction. Évite la dépendance au SELECT public (PII) et aux PATCH anon.
-    const rpcResp = await sb('rpc/checkout_create_order', '', 'POST', {
+    // Expédition : si le paiement a échoué au premier essai, la commande existe
+    // déjà (en attente de paiement) — on la reprend au lieu d'en créer une seconde.
+    const rpcResp = (estExpedition && EXPEDITION.commande) ? EXPEDITION.commande
+      : await sb('rpc/checkout_create_order', '', 'POST', {
       p_client: {
         commercant_id: commercantId, email, nom, prenom, telephone,
         sms_marketing_consent: smsOptIn,
@@ -1393,8 +1728,9 @@ async function confirmerCommande() {
         numero,
         type: modeCommande,
         creneau_id: creneau.id || null,
-        date_retrait: creneau.dateISO || null,
-        retrait_date: creneau.dateISO || null,
+        date_retrait: estExpedition ? null : (creneau.dateISO || null),
+        retrait_date: estExpedition ? null : (creneau.dateISO || null),
+        expedition: destExpedition,
         statut: empreinteRequise ? 'empreinte_pending' : 'nouvelle',
         sous_total,
         frais_livraison: frais,
@@ -1428,6 +1764,11 @@ async function confirmerCommande() {
           ? `🔥 Le four est presque complet sur ce créneau : il reste ${reste} place${reste > 1 ? 's' : ''}. Choisissez un autre créneau.`
           : '🔥 Le four est complet sur ce créneau. Choisissez un autre créneau.', 'remove');
         await chargerCreneaux();
+      } else if (msg.includes('EXPEDITION_DATE')) {
+        afficherToastPanier('📦 Cette date d\'expédition n\'est plus disponible. Choisissez-en une autre.', 'remove');
+        await demanderDevisExpedition(document.getElementById('expCP').value.trim());
+        allerEtape(3);
+        await chargerCreneaux();
       } else if (msg.includes('CRENEAU_COMPLET')) {
         afficherToastPanier('🚚 Ce créneau de livraison vient d\'être complété. Choisissez un autre créneau.', 'remove');
         await chargerCreneaux();
@@ -1437,6 +1778,28 @@ async function confirmerCommande() {
       btn.disabled = false;
       if (btnTxtEl) btnTxtEl.textContent = 'Confirmer la commande →';
       return;
+    }
+    // Expédition : paiement intégral avant toute confirmation
+    if (estExpedition) {
+      numeroFinal = (EXPEDITION.commande && EXPEDITION.commande.numero) || numero;
+      if (rpcResp.paiement_requis) {
+        EXPEDITION.commande = Object.assign({}, rpcResp, { numero: numeroFinal, signature: signatureExp });
+        if (btnTxtEl) btnTxtEl.textContent = 'Paiement en cours...';
+        const paiement = await payerCommandeExpedition(commandeId, { name: prenom + ' ' + nom, email });
+        if (!paiement.ok) {
+          const err = document.getElementById('stripe-exp-errors');
+          err.textContent = '❌ ' + paiement.error;
+          err.style.display = 'block';
+          err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          btn.disabled = false;
+          if (btnTxtEl) btnTxtEl.textContent = libelleBoutonFinal();
+          return;
+        }
+      } else {
+        // Boutique en démonstration : commande de test, e-mail de confirmation seul
+        appelExpedition({ action: 'finaliser', commande_id: commandeId }).catch(() => {});
+      }
+      EXPEDITION.commande = null;
     }
     if (commandeId) {
       // Empreinte bancaire (si activée par le commerçant)
@@ -1480,7 +1843,7 @@ async function confirmerCommande() {
     // appliquée côté serveur (Edge Function / checkout_create_order). En
     // flux sans paiement (défaut), le commerçant applique la remise au retrait.
     __FIDELITE_REMISE_CENTS__ = 0;
-    const fidCode = (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
+    const fidCode = estExpedition ? '' : (document.getElementById('fideliteCode')?.value || '').trim().toUpperCase();
     if (commandeId && fidCode) {
       try {
         const montantCents = await sb('rpc/utiliser_recompense_fidelite', '', 'POST', {
@@ -1496,8 +1859,17 @@ async function confirmerCommande() {
 
   } catch(e) { console.log('Erreur commande:', e); }
 
-  // EMAIL de confirmation
-  if (commandeId && email) {
+  // Commande non créée (erreur réseau…) : on ne montre jamais l'écran de succès
+  // d'une expédition qui n'existe pas.
+  if (estExpedition && !commandeId) {
+    afficherToastPanier('⚠️ La commande n\'a pas pu être enregistrée, réessayez.', 'remove');
+    if (btn) btn.disabled = false;
+    if (btnTxtEl) btnTxtEl.textContent = libelleBoutonFinal();
+    return;
+  }
+
+  // EMAIL de confirmation (expédition : envoyé par l'Edge Function `expedition`)
+  if (commandeId && email && !estExpedition) {
     fetch(SUPABASE_URL + '/functions/v1/send-email', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
@@ -1517,7 +1889,9 @@ async function confirmerCommande() {
   // SMS
   const tel = document.getElementById('telephone').value.trim();
   if (tel) {
-    const cMsg = modeCommande === 'livraison'
+    const cMsg = estExpedition
+      ? `Bonjour ${prenom} ! Commande ${numeroFinal} confirmée. Expédition ${creneau.jour.toLowerCase()} ${creneau.date}, livraison ${creneau.livraison} par Chronopost. Le suivi arrive par e-mail.`
+      : modeCommande === 'livraison'
       ? `Bonjour ${prenom} ! Commande ${numero} confirmée. Livraison : ${creneau.jour} ${creneau.date} entre ${creneau.debut} et ${creneau.fin}. À bientôt !`
       : (() => {
           const lieu = lieuCreneau(creneau);
@@ -1535,8 +1909,14 @@ async function confirmerCommande() {
 
   // Afficher confirmation
   allerEtape(5);
-  document.getElementById('succesNumero').textContent = numero;
+  document.getElementById('succesNumero').textContent = numeroFinal;
   document.getElementById('succesRetrait').textContent = creneau.jour + ' ' + creneau.date + ' · ' + creneau.debut + ' – ' + creneau.fin;
+  if (estExpedition) {
+    document.getElementById('succesRetraitLabel').textContent = 'Expédition';
+    document.getElementById('succesRetrait').textContent = creneau.jour + ' ' + creneau.date + ' · livré ' + creneau.livraison;
+    const sub = document.querySelector('#step5 .succes-sub');
+    if (sub) sub.innerHTML = 'Votre commande a bien été enregistrée' + (expeditionPayante() ? ' et payée' : '') + '.<br>Vous recevrez le numéro de suivi par e-mail au départ du colis.';
+  }
 
   // Récompense fidélité appliquée → affichée sur l'écran de confirmation
   if (__FIDELITE_REMISE_CENTS__ > 0) {
@@ -1551,13 +1931,15 @@ async function confirmerCommande() {
     if (lienLitige) {
       const slug = (typeof SLUG !== 'undefined' ? SLUG : '') || (location.pathname.split('/').filter(Boolean)[0] || '');
       const params = new URLSearchParams();
-      if (numero) params.set('n', numero);
+      if (numeroFinal) params.set('n', numeroFinal);
       if (slug) params.set('slug', slug);
       lienLitige.href = '/contester?' + params.toString();
     }
   } catch (_) {}
 
-  if (modeCommande === 'livraison') {
+  if (estExpedition) {
+    // rien à ajouter : pas d'itinéraire pour un colis
+  } else if (modeCommande === 'livraison') {
     document.getElementById('succesRetraitLabel').textContent = 'Livraison';
     const adresse = document.getElementById('livraisonAdresse').value.trim() + ', ' +
       document.getElementById('livraisonCP').value.trim() + ' ' +

@@ -458,6 +458,7 @@
 
 <script src="assets/core/init.js?v=brandv2"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
+<script src="/assets/core/expedition-commercant.js?v=1"></script>
 <script src="/assets/core/hero-cadrage.js?v=1"></script>
 <!-- Balise Google (Google Ads · conversion « Inscription ») : chargée uniquement si le commerçant
      a déjà accepté les traceurs publicitaires dans le bandeau (aucun bandeau ici). -->
@@ -1332,6 +1333,11 @@
           <div class="reg-row" onclick="ouvrirZoneLivraison()">
             <div class="reg-icon" style="background:#5BBE3A;">🚚</div>
             <div class="reg-label">Zone de livraison<div class="reg-sub">Rayon, frais, seuil gratuité</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
+          <div class="reg-row" onclick="window.ExpeditionApp && ExpeditionApp.ouvrir()">
+            <div class="reg-icon" style="background:#6b4fbb;">📦</div>
+            <div class="reg-label">Expédition France<div class="reg-sub" id="regExpeditionSub">Option payante · envoyez vos produits partout en France</div></div>
             <div class="reg-chevron">›</div>
           </div>
           <div class="reg-row" onclick="scrollToReg('reg-empreinte')">
@@ -2446,9 +2452,12 @@ function renderCarteCommande(c) {
   const typeBadgeStyle = estLivraison
     ? 'background:#e8f4fd;color:#185fa5;'
     : 'background:#eaf7ee;color:var(--vert-fonce);';
-  const cardTypeStyle = 'border-left:4px solid ' + typeCouleur + ';';
+  // Commande à expédier : habillage dédié (assets/core/expedition-commercant.js)
+  const exp = (c.type === 'expedition' && window.ExpeditionApp) ? ExpeditionApp.carte(c) : null;
+  const cardTypeStyle = 'border-left:4px solid ' + (exp ? exp.couleur : typeCouleur) + ';';
 
-  const btnPrincipal = statutAffiche === 'nouvelle'
+  const btnPrincipal = exp ? exp.btnPrincipal
+    : statutAffiche === 'nouvelle'
     ? `<button class="btn-preparer vert" onclick="changerStatut('${c.id}','prete')">✅ MARQUER PRÊTE</button>`
     : statutAffiche === 'prete'
     ? `<button class="btn-preparer" style="background:var(--vert-fonce);color:white;" onclick="changerStatut('${c.id}','terminee')">🤝 TERMINER ${c.empreinte_status === 'pending' ? '(libère empreinte)' : ''}</button>`
@@ -2468,16 +2477,17 @@ function renderCarteCommande(c) {
         <div>
           <div class="commande-client">${c.client}</div>
           <div class="commande-meta">
-            <span class="meta-pill">⏰ ${c.heure}</span>
+            <span class="meta-pill">${exp ? '📅 ' + exp.heure : '⏰ ' + c.heure}</span>
             <span class="meta-pill">· ${c.montant}</span>
             <span class="meta-pill">· ${c.articles} art.</span>
-            <span class="meta-pill" style="${typeBadgeStyle}font-weight:600;">${typeIcon}</span>
+            <span class="meta-pill" style="${exp ? exp.typeBadgeStyle : typeBadgeStyle}font-weight:600;">${exp ? exp.typeIcon : typeIcon}</span>
             ${aPeser ? `<span class="meta-pill" style="background:#f3f0fa;color:#4b3a7a;font-weight:600;">⚖️ ${aPeser} à peser</span>` : ''}
           </div>
         </div>
-        <span class="badge-statut ${badgeClass}">${badgeTxt}</span>
+        <span class="badge-statut ${exp ? exp.badge.classe : badgeClass}">${exp ? exp.badge.texte : badgeTxt}</span>
       </div>
       ${c.note ? `<div class="commande-note">💬 ${c.note}</div>` : ''}
+      ${exp ? exp.blocHaut : ''}
       ${c.type === 'livraison' && c.adresse ? `
       <div style="margin:8px 0;padding:10px 12px;background:#e8f4fd;border-radius:10px;display:flex;align-items:center;gap:10px;">
         <span style="font-size:18px;">📍</span>
@@ -2503,7 +2513,7 @@ function renderCarteCommande(c) {
           ✉️ Contact
         </button>
       </div>
-      ${renderEmpreinteActions(c)}
+      ${exp ? exp.blocBas : renderEmpreinteActions(c)}
     </div>
   `;
 }
@@ -2835,7 +2845,7 @@ async function chargerPlanningReel() {
   // On charge largement pour pouvoir calculer 30j + planning futur, puis on filtre côté JS
   let toutes = [];
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=500&select=id,numero,type,date_retrait,total_ttc,statut,empreinte_status,commande_lignes(nom_produit,quantite,unite,total_ligne)', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&statut=neq.paiement_pending&order=date_retrait.asc&limit=500&select=id,numero,type,date_retrait,total_ttc,statut,empreinte_status,commande_lignes(nom_produit,quantite,unite,total_ligne)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     toutes = await r.json();
@@ -5168,7 +5178,7 @@ function programmerRefreshMinuit(commercantId) {
 
 async function chargerCommandesSupabase(commercantId) {
   try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&order=date_retrait.asc&limit=500&select=*,commande_lignes(*),clients(prenom,nom,telephone)', {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commandes?commercant_id=eq.' + commercantId + '&statut=neq.paiement_pending&order=date_retrait.asc&limit=500&select=*,commande_lignes(*),clients(prenom,nom,telephone)', {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + await getValidToken() }
     });
     const commandes = await r.json();
@@ -5237,6 +5247,8 @@ async function chargerCommandesSupabase(commercantId) {
       empreinte_status: c.empreinte_status || 'none',
       empreinte_montant_cents: c.empreinte_montant_cents || 0,
       total_ttc: Number(c.total_ttc || 0),
+      // Expédition France : destinataire, paiement, étiquette, suivi
+      exp: window.ExpeditionApp ? ExpeditionApp.depuisLigne(c) : null,
       produits: (c.commande_lignes || []).map(l => ({
         id: l.id,
         nom: l.nom_produit,
@@ -5255,6 +5267,7 @@ async function chargerCommandesSupabase(commercantId) {
 
     renderCommandes();
     chargerPlanningReel();
+    if (window.ExpeditionApp) ExpeditionApp.chargerReglagesCommandes();
 
     // Le statut « Chargement… » ne disparaissait jamais tant que le commerçant
     // ne cliquait pas sur PAUSE. Après la 1re réception effective des commandes,

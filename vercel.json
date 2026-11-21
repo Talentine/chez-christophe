@@ -52,7 +52,8 @@
     { "source": "/:slug/catalogue", "destination": "/catalogue.html?slug=:slug" },
     { "source": "/:slug/panier", "destination": "/panier.html?slug=:slug" },
     { "source": "/:slug/compte", "destination": "/compte.html?slug=:slug" },
-    { "source": "/:slug/notre-histoire", "destination": "/notre-histoire.html?slug=:slug" }
+    { "source": "/:slug/notre-histoire", "destination": "/notre-histoire.html?slug=:slug" },
+    { "source": "/:slug/expedition", "destination": "/expedition.html?slug=:slug" }
   ],
   "headers": [
     {

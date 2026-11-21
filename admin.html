@@ -1687,6 +1687,12 @@ async function chargerCommercants() {
   if (tousCommercants.length === 0) {
     tousCommercants = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&order=created_at.desc') || [];
   }
+  // Option Expédition France : état par boutique (activée / demandée)
+  if (!window.__expeditionParCommercant) {
+    const regs = await sb('expedition_reglages', '?select=commercant_id,active,ouverte,demandee_le,activee_le') || [];
+    window.__expeditionParCommercant = {};
+    (Array.isArray(regs) ? regs : []).forEach(r => { window.__expeditionParCommercant[r.commercant_id] = r; });
+  }
   // Charge l'activité 30j de chaque commerçant en un seul appel
   if (!_activite30jParCommercant) {
     const j30iso = new Date(Date.now() - 30 * 86400_000).toISOString();
@@ -1800,6 +1806,7 @@ function renderTableCommercants(data) {
             ${c.email ? `<a href="mailto:${escHtml(c.email)}" style="display:block;padding:10px 14px;color:var(--a-blanc);font-size:13px;text-decoration:none;">✉️ Écrire un e-mail</a>` : ''}
             <button onclick="fermerMenuActions('${c.id}');window.crmOuvrirFiche&&window.crmOuvrirFiche('c:'+${jsArg(c.id)})" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">🗂 Fiche CRM</button>
             <button onclick="ouvrirPointsRetrait(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">📍 Points de retrait</button>
+            <button onclick="gererExpedition(${jsArg(c.id)},${jsArg(c.nom_boutique||'')});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">${libelleExpedition(c.id)}</button>
             <button onclick="modifierPlan('${c.id}');fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">🎫 Changer de plan</button>
             <button onclick="toggleAbonnement('${c.id}',${!!c.abonnement_actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:var(--a-blanc);font-size:13px;cursor:pointer;font-family:inherit;">${c.abonnement_actif ? "⏸ Passer en mode démo" : "✅ Activer l'abonnement"}</button>
             <button onclick="toggleActif('${c.id}',${!c.actif});fermerMenuActions('${c.id}')" style="display:block;width:100%;text-align:left;padding:10px 14px;background:none;border:none;color:${c.actif ? 'rgb(var(--c-jaune))' : 'rgb(var(--c-vertp))'};font-size:13px;cursor:pointer;font-family:inherit;">${c.actif ? '🚫 Suspendre' : '🔓 Réactiver'}</button>
@@ -1860,6 +1867,53 @@ document.addEventListener('click', function(e) {
 });
 
 // ── SUPPRESSION DÉFINITIVE D'UN COMMERÇANT (admin)
+// ── OPTION EXPÉDITION FRANCE ────────────────────────────────────────
+// Option payante : seul un admin l'active (verrou en base, trigger
+// trg_expedition_reglages_verrou). Le commerçant peut la demander depuis
+// ses réglages ; il la règle lui-même une fois activée.
+function libelleExpedition(id) {
+  const r = (window.__expeditionParCommercant || {})[id];
+  if (r && r.active) return '📦 Expédition France : activée ✓' + (r.ouverte ? ' (ouverte)' : '');
+  if (r && r.demandee_le) return '📦 Expédition France : demandée ⏳';
+  return '📦 Activer Expédition France';
+}
+
+window.gererExpedition = async function(id, nom) {
+  const r = (window.__expeditionParCommercant || {})[id] || null;
+  const active = !!(r && r.active);
+  const demande = r && r.demandee_le ? '\nDemandée par le commerçant le ' + new Date(r.demandee_le).toLocaleDateString('fr-FR') + '.' : '';
+  const msg = active
+    ? 'DÉSACTIVER l\'option Expédition France pour "' + nom + '" ?\n\nLe mode expédition disparaît de son panier. Ses réglages et ses commandes sont conservés.'
+    : 'ACTIVER l\'option payante Expédition France pour "' + nom + '" ?' + demande + '\n\nLe commerçant pourra régler ses tarifs et son compte Chronopost, puis l\'ouvrir à ses clients.\nPensez à facturer l\'option.';
+  if (!confirm(msg)) return;
+  try {
+    if (!sessionAdmin) throw new Error('Session admin expirée — reconnectez-vous.');
+    const rq = await fetch(SUPABASE_URL + '/rest/v1/expedition_reglages?on_conflict=commercant_id', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + sessionAdmin,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates,return=representation'
+      },
+      body: JSON.stringify({ commercant_id: id, active: !active })
+    });
+    const txt = await rq.text();
+    if (!rq.ok) throw new Error('HTTP ' + rq.status + ' ' + txt);
+    const rows = txt ? JSON.parse(txt) : [];
+    if (!Array.isArray(rows) || rows.length === 0 || rows[0].active !== !active) {
+      throw new Error('Modification refusée : votre compte n\'a pas le rôle admin.');
+    }
+    window.__expeditionParCommercant[id] = rows[0];
+    alert(!active
+      ? '✅ Expédition France activée pour "' + nom + '".\nLe commerçant la retrouve dans Réglages → Expédition France.'
+      : 'Expédition France désactivée pour "' + nom + '".');
+    chargerCommercants();
+  } catch (e) {
+    alert('❌ ' + e.message);
+  }
+};
+
 // Soft-delete via PATCH avec le token admin. RLS commercants_admin_all autorise.
 window.supprimerCommercant = async function(id, nom) {
   if (!confirm(

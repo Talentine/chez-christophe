@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1f3028">
+<title id="docTitle">Expédition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/marcheo-tokens.css?v=brandv2">
+<link rel="stylesheet" href="/assets/css/marcheo-base.css?v=brandv2">
+<link rel="stylesheet" href="/assets/css/marcheo-components.css?v=brandv2">
+<style>
+  :root {
+    --vert: #0F2C52;
+    --vert-fonce: #0A1428;
+    --vert-clair: #5BBE3A;
+    --or: #F4B942;
+    --terracotta: #E65533;
+    --creme: #F7F2E8;
+    --creme-fonce: #E5E2D8;
+    --blanc: #ffffff;
+    --texte: #0A1428;
+    --texte-doux: #5A6478;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family:'Inter','Manrope', system-ui, sans-serif;
+    background:var(--creme);
+    color:var(--texte);
+    max-width:480px;
+    margin:0 auto;
+    overflow-x:hidden;
+    padding-bottom:80px;
+    line-height:1.55;
+  }
+  header {
+    background:var(--vert-fonce);
+    padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:100;
+  }
+  .header-back { display:flex; align-items:center; gap:10px; color:white; text-decoration:none; font-size:15px; font-family:'Manrope', system-ui, sans-serif; }
+  .header-back-arrow { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; }
+  .header-title { font-weight:600; }
+
+  .exp-hero { background:var(--vert-fonce); color:white; padding:26px 20px 34px; }
+  .exp-hero-sur { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; opacity:.7; }
+  .exp-hero h1 { color:#fff; font-family:'Manrope', system-ui, sans-serif; font-size:26px; line-height:1.2; margin:6px 0 10px; text-wrap:balance; }
+  .exp-hero p { color:#fff; font-size:14.5px; opacity:.85; }
+
+  .exp-tuiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:-18px 16px 0; position:relative; }
+  .exp-tuile { background:var(--blanc); border-radius:14px; padding:14px 12px; text-align:center; box-shadow:0 2px 10px rgba(10,20,40,.06); }
+  .exp-tuile-ico { font-size:24px; }
+  .exp-tuile-titre { font-weight:700; font-size:14.5px; margin-top:4px; font-family:'Manrope', system-ui, sans-serif; }
+  .exp-tuile-sub { font-size:12px; color:var(--texte-doux); margin-top:2px; }
+
+  .exp-section { margin:22px 16px 0; background:var(--blanc); border-radius:16px; padding:18px 16px; }
+  .exp-section h2 { font-family:'Manrope', system-ui, sans-serif; font-size:17px; margin-bottom:12px; }
+  .exp-section p { font-size:14px; color:var(--texte); margin-bottom:10px; }
+  .exp-section p:last-child { margin-bottom:0; }
+  .exp-note { font-size:13px; color:var(--texte-doux); }
+
+  .exp-etape { display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--creme-fonce); }
+  .exp-etape:first-of-type { border-top:none; padding-top:0; }
+  .exp-etape-num { flex:0 0 28px; height:28px; border-radius:50%; background:var(--vert); color:white; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .exp-etape-titre { font-weight:600; font-size:14.5px; }
+  .exp-etape-txt { font-size:13.5px; color:var(--texte-doux); margin-top:2px; }
+  .exp-exemple { margin-top:12px; background:var(--creme); border-radius:10px; padding:10px 12px; font-size:13.5px; }
+
+  .exp-grille { width:100%; border-collapse:collapse; font-size:14px; }
+  .exp-grille td { padding:9px 0; border-top:1px solid var(--creme-fonce); }
+  .exp-grille tr:first-child td { border-top:none; }
+  .exp-grille td:last-child { text-align:right; font-weight:600; font-variant-numeric:tabular-nums; }
+
+  .exp-liste { list-style:none; }
+  .exp-liste li { font-size:14px; padding:7px 0 7px 26px; position:relative; }
+  .exp-liste li::before { content:'✓'; position:absolute; left:2px; color:var(--vert-clair); font-weight:700; }
+  .exp-liste.non li::before { content:'✕'; color:var(--terracotta); }
+
+  .exp-cta { display:block; margin:22px 16px 0; background:var(--or); color:var(--vert-fonce); text-align:center; text-decoration:none; font-weight:600; font-family:'Manrope', system-ui, sans-serif; padding:15px; border-radius:50px; font-size:15px; }
+  .exp-vide { text-align:center; padding:60px 24px; }
+  .exp-vide p { color:var(--texte-doux); margin:10px 0 20px; }
+
+  .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:var(--blanc); border-top:1px solid rgba(0,0,0,0.08); display:flex; z-index:100; padding-bottom:env(safe-area-inset-bottom,0px); }
+  .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 0 8px; cursor:pointer; border:none; background:none; font-family:'Manrope', system-ui, sans-serif; text-decoration:none; }
+  .nav-icon { font-size:22px; margin-bottom:3px; }
+  .nav-label { font-size:10px; color:#aaa; }
+  .nav-item.active .nav-label { color:var(--vert); font-weight:600; }
+</style>
+<link rel="manifest" href="/manifest-client.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<script src="/assets/core/init.js?v=brandv2"></script>
+<script>window.addEventListener('DOMContentLoaded', () => window.CC && window.CC.initBusiness());</script>
+<script src="/assets/core/expedition.js?v=1" defer></script>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/demo-prive.js?v=2" defer></script>
+</head>
+<body>
+
+<header>
+  <a href="javascript:void(0)" onclick="retourAccueilBoutique()" class="header-back">
+    <div class="header-back-arrow">←</div>
+    <span class="header-title">Expédition</span>
+  </a>
+</header>
+
+<main id="expContenu">
+  <div class="exp-vide"><p>Chargement…</p></div>
+</main>
+
+<p style="margin:0;padding:18px 16px 12px;text-align:center;font-size:11px;line-height:1.4;opacity:.55"><a href="/" style="color:inherit;text-decoration:none">Boutique créée avec Marchéo</a></p>
+
+<nav class="bottom-nav">
+  <a href="javascript:void(0)" onclick="retourAccueilBoutique()" class="nav-item">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Accueil</span>
+  </a>
+  <a href="catalogue.html" class="nav-item">
+    <span class="nav-icon">🛍️</span>
+    <span class="nav-label">Boutique</span>
+  </a>
+  <a href="panier.html" class="nav-item">
+    <span class="nav-icon">🛒</span>
+    <span class="nav-label">Panier</span>
+  </a>
+  <a href="compte.html" class="nav-item">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Compte</span>
+  </a>
+</nav>
+
+<script>
+(function () {
+  const SB_URL = 'https://epvdzhzwfmtnioedyfgm.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwdmR6aHp3Zm10bmlvZWR5ZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NDYwMTgsImV4cCI6MjA5MjAyMjAxOH0.NnMHas3OCJxfqQW3lUG9LDrklsuO_c9-Xpm41K5q1uc';
+  const JOURS = ['', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+
+  const h = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const eur = n => Number(n || 0).toFixed(2).replace('.', ',') + ' €';
+  const kg = n => String(Number(n)).replace('.', ',') + ' kg';
+  const url = p => (window.CC && window.CC.url) ? window.CC.url(p) : p;
+  const dateLongue = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  const lendemain = iso => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + 1); return d.toISOString().slice(0, 10); };
+
+  function listeJours(jours) {
+    const l = (jours || []).slice().sort().map(j => JOURS[j]).filter(Boolean);
+    if (l.length === 0) return '';
+    if (l.length === 1) return 'le ' + l[0];
+    return 'les ' + l.slice(0, -1).join(', ') + ' et ' + l[l.length - 1];
+  }
+
+  function vide(nom) {
+    document.getElementById('expContenu').innerHTML = `
+      <div class="exp-vide">
+        <div style="font-size:44px">📦</div>
+        <h1 style="font-size:20px;margin-top:10px;">Expédition non proposée</h1>
+        <p>${h(nom || 'Cette boutique')} ne propose pas l'expédition par colis pour le moment. Vous pouvez commander en retrait.</p>
+        <a class="exp-cta" style="margin:0" href="${url('catalogue.html')}">Voir la boutique</a>
+      </div>`;
+  }
+
+  async function prochainesDates(id) {
+    try {
+      const r = await fetch(SB_URL + '/rest/v1/rpc/expedition_dates', {
+        method: 'POST',
+        headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_commercant: id, p_nb: 2 }),
+      });
+      const d = await r.json();
+      return Array.isArray(d) ? d : [];
+    } catch (e) { return []; }
+  }
+
+  function rendre(biz, r, dates) {
+    const nom = biz.nom_boutique || 'La boutique';
+    const froid = !!r.mode_froid;
+    const grille = (r.grille || []).slice().sort((a, b) => Number(a.max_kg) - Number(b.max_kg));
+    const prixMin = Math.min.apply(null, grille.map(p => Number(p.prix) || 0));
+    const maxKg = Math.max.apply(null, grille.map(p => Number(p.max_kg) || 0));
+    const seuil = Number(r.seuil_gratuite) > 0 ? Number(r.seuil_gratuite) : null;
+    const min = Number(r.min_commande) > 0 ? Number(r.min_commande) : null;
+    const heure = String(r.heure_limite || '12:00').slice(0, 5).replace(':', ' h ').replace(' h 00', ' h');
+    const prep = Number(r.delai_preparation_jours) || 0;
+    const jours = listeJours(r.jours_expedition);
+    const emballage = Number(r.poids_emballage_g) || 0;
+
+    document.title = 'Expédition — ' + nom;
+
+    const lignesGrille = grille.map((p, i) => {
+      const de = i === 0 ? 'Jusqu\'à ' + kg(p.max_kg) : 'De ' + kg(grille[i - 1].max_kg) + ' à ' + kg(p.max_kg);
+      return `<tr><td>${de}</td><td>${Number(p.prix) > 0 ? eur(p.prix) : 'Offerte'}</td></tr>`;
+    }).join('');
+
+    const exemple = dates.length
+      ? `<div class="exp-exemple">📅 <strong>Prochain départ :</strong> ${h(dateLongue(dates[0]))}, livré ${h(dateLongue(lendemain(dates[0])))}.</div>`
+      : '';
+
+    document.getElementById('expContenu').innerHTML = `
+      <section class="exp-hero">
+        <div class="exp-hero-sur">${h(nom)}</div>
+        <h1>Nos produits livrés chez vous, partout en France</h1>
+        <p>${froid
+          ? 'Votre colis voyage en camion réfrigéré et arrive le lendemain de son départ. Voici tout ce qu\'il faut savoir pour le recevoir dans les meilleures conditions.'
+          : 'Votre colis arrive le lendemain de son départ. Voici tout ce qu\'il faut savoir pour le recevoir dans les meilleures conditions.'}</p>
+      </section>
+
+      <div class="exp-tuiles">
+        <div class="exp-tuile"><div class="exp-tuile-ico">🚚</div><div class="exp-tuile-titre">Livré en 24 h</div><div class="exp-tuile-sub">le lendemain du départ, avant 13 h</div></div>
+        <div class="exp-tuile"><div class="exp-tuile-ico">${froid ? '❄️' : '📦'}</div><div class="exp-tuile-titre">${froid ? 'Camion réfrigéré' : 'Chronopost'}</div><div class="exp-tuile-sub">${froid ? 'Chronofresh, de notre boutique à votre porte' : 'livraison express à domicile'}</div></div>
+        <div class="exp-tuile"><div class="exp-tuile-ico">⚖️</div><div class="exp-tuile-titre">Dès ${eur(prixMin)}</div><div class="exp-tuile-sub">selon le poids du colis</div></div>
+        <div class="exp-tuile"><div class="exp-tuile-ico">${seuil ? '🎁' : '🛒'}</div><div class="exp-tuile-titre">${seuil ? 'Offerte dès ' + eur(seuil) : (min ? 'Dès ' + eur(min) + ' d\'achat' : 'Sans minimum')}</div><div class="exp-tuile-sub">${seuil ? 'd\'achat, en France métropolitaine' : 'pour une commande expédiée'}</div></div>
+      </div>
+
+      ${r.message_client ? `<section class="exp-section"><p>💬 ${h(r.message_client)}</p></section>` : ''}
+
+      <section class="exp-section">
+        <h2>Quand vais-je recevoir ma commande ?</h2>
+        <div class="exp-etape"><div class="exp-etape-num">1</div><div><div class="exp-etape-titre">Vous commandez en ligne</div><div class="exp-etape-txt">Vous choisissez la date de départ de votre colis et réglez par carte bancaire. Un e-mail confirme votre commande.</div></div></div>
+        <div class="exp-etape"><div class="exp-etape-num">2</div><div><div class="exp-etape-titre">Nous préparons votre colis</div><div class="exp-etape-txt">${prep > 0 ? `Comptez ${prep} jour${prep > 1 ? 's' : ''} de préparation` : 'Préparation le jour même'} pour une commande passée avant ${h(heure)}.${jours ? ' Les colis partent ' + h(jours) + '.' : ''} Dès le départ, vous recevez le numéro de suivi par e-mail.</div></div></div>
+        <div class="exp-etape"><div class="exp-etape-num">3</div><div><div class="exp-etape-titre">Livraison le lendemain, avant 13 h</div><div class="exp-etape-txt">Chronopost vous prévient par e-mail ou SMS de son passage. La livraison se fait à votre domicile, contre signature.</div></div></div>
+        ${exemple}
+      </section>
+
+      <section class="exp-section">
+        <h2>Frais d'expédition</h2>
+        <p>Les frais dépendent du poids total du colis${emballage > 0 ? ', emballage ' + (froid ? 'isotherme ' : '') + 'compris' : ''}. Ils sont calculés automatiquement dans votre panier, dès que vous saisissez votre code postal.</p>
+        <table class="exp-grille">${lignesGrille}</table>
+        ${seuil ? `<p style="margin-top:12px;">🎁 <strong>Expédition offerte dès ${eur(seuil)} d'achat.</strong></p>` : ''}
+        ${min ? `<p class="exp-note" style="margin-top:10px;">Commande minimum pour une expédition : ${eur(min)}.</p>` : ''}
+        <p class="exp-note" style="margin-top:10px;">Poids maximum d'un colis : ${kg(maxKg)}. Pour une commande plus importante, contactez-nous.</p>
+      </section>
+
+      <section class="exp-section">
+        <h2>Où livrons-nous ?</h2>
+        <ul class="exp-liste">
+          <li>Toute la France métropolitaine</li>
+          ${r.corse ? `<li>La Corse${Number(r.supplement_corse) > 0 ? ', avec un supplément de ' + eur(r.supplement_corse) : ''}</li>` : ''}
+        </ul>
+        <ul class="exp-liste non">
+          ${r.corse ? '' : '<li>Pas de livraison en Corse</li>'}
+          <li>Pas de livraison en outre-mer, à Monaco ni à l'étranger</li>
+          <li>Pas de livraison en point relais : les produits frais sont remis en main propre</li>
+        </ul>
+      </section>
+
+      ${froid ? `<section class="exp-section">
+        <h2>❄️ La chaîne du froid</h2>
+        <p>Vos produits sont emballés à la boutique le jour du départ, puis confiés à <strong>Chronofresh</strong>, le service de Chronopost dédié aux produits frais : ils voyagent en véhicule réfrigéré, entre 0 et 4 °C, jusqu'à votre porte.</p>
+        <p>Une date limite de consommation figure sur le colis. À réception, placez les produits au réfrigérateur sans attendre.</p>
+      </section>` : ''}
+
+      <section class="exp-section">
+        <h2>À la réception du colis</h2>
+        <ul class="exp-liste">
+          <li><strong>Soyez présent</strong> le jour de la livraison : des produits frais ne peuvent pas attendre un second passage.</li>
+          <li>Indiquez un <strong>numéro de portable</strong> à la commande, le livreur peut en avoir besoin.</li>
+          <li>Vérifiez l'état du colis devant le livreur et notez toute réserve sur le bon de livraison.</li>
+        </ul>
+        <p class="exp-note" style="margin-top:10px;">Si vous modifiez vous-même la livraison auprès de Chronopost (report, point relais, autre adresse), ce changement se fait sous votre responsabilité : la fraîcheur des produits ne peut plus être garantie.</p>
+      </section>
+
+      <section class="exp-section">
+        <h2>Un souci avec votre colis ?</h2>
+        <p>Contactez-nous <strong>dans les 24 heures</strong> suivant la livraison, avec votre numéro de commande et des photos du colis et des produits. Nous trouvons une solution avec vous : remplacement ou remboursement.</p>
+        ${biz.telephone || biz.email ? `<p>${biz.telephone ? '📞 <a href="tel:' + h(String(biz.telephone).replace(/\s/g, '')) + '" style="color:var(--vert);">' + h(biz.telephone) + '</a>' : ''}${biz.telephone && biz.email ? ' · ' : ''}${biz.email ? '✉️ <a href="mailto:' + h(biz.email) + '" style="color:var(--vert);">' + h(biz.email) + '</a>' : ''}</p>` : ''}
+      </section>
+
+      <section class="exp-section">
+        <h2>Paiement et rétractation</h2>
+        <p>Une commande expédiée se règle <strong>en ligne, par carte bancaire, au moment de la commande</strong> (paiement sécurisé Stripe). Si un produit vendu au poids pèse finalement moins que prévu, la différence vous est remboursée au départ du colis.</p>
+        <p class="exp-note">Les denrées périssables ne peuvent pas faire l'objet d'un droit de rétractation (article L221-28 du Code de la consommation). Tant que le colis n'est pas parti, contactez-nous : une annulation reste possible.</p>
+      </section>
+
+      <a class="exp-cta" href="${url('catalogue.html')}">Commander →</a>`;
+  }
+
+  document.addEventListener('expedition:pret', async function (ev) {
+    const biz = (window.__CONFIG__ && window.__CONFIG__.business) || {};
+    const etat = ev.detail || {};
+    if (!etat.disponible || !etat.reglages) { vide(biz.nom_boutique); return; }
+    rendre(biz, etat.reglages, await prochainesDates(biz.id));
+  });
+})();
+</script>
+</body>
+</html>
