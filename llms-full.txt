@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Menu de Noël à emporter : le proposer dans son restaurant](https://marchéo.fr/blog/menu-noel-a-emporter-restaurant) : Menu de Noël à emporter au restaurant : composer la carte, fixer la date limite, ouvrir les créneaux du 24 et du 31 et éviter les commandes non retirées.
 - [Coursier ou livreur maison : comment livrer vos clients ?](https://marchéo.fr/blog/coursier-ou-livreur-maison-commerce) : Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
 - [Site internet primeur : créer le site de votre primeur ou maraîcher](https://marchéo.fr/blog/site-internet-primeur) : Site internet pour primeur ou maraîcher : quelles pages créer, comment afficher les prix au kilo, vendre vos paniers en ligne et combien ça coûte vraiment.
 - [Logiciel de commande traiteur : lequel choisir en 2026 ?](https://marchéo.fr/blog/logiciel-commande-traiteur) : Quel logiciel de commande pour un traiteur ? Comparatif honnête : logiciel de devis, site généraliste, outil de commande en ligne, prix et limites de chacun.
@@ -111,7 +112,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-20
+- Dernière mise à jour : 2026-11-21
 
 
 ---
@@ -582,6 +583,172 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Menu de Noël à emporter : le proposer dans son restaurant
+
+Menu de Noël à emporter au restaurant : composer la carte, fixer la date limite, ouvrir les créneaux du 24 et du 31 et éviter les commandes non retirées.
+
+Pour proposer un menu de Noël à emporter dans votre restaurant, composez une carte courte de plats qui se réchauffent bien, fixez une date limite de commande trois à quatre jours avant le 24, et ouvrez des créneaux de retrait avec un nombre maximum de menus par créneau. Le client commande en ligne et paie à l&rsquo;avance ou laisse une empreinte bancaire. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter.
+La méthode générale est expliquée dans notre guide complet du click and collect pour commerçant. Ici, on parle de ce qui change pour un restaurant pendant les fêtes : une cuisine pensée pour la salle, des plats qui doivent voyager, et deux soirées, le 24 et le 31, où tout le monde vient chercher sa commande en même temps.
+Pourquoi proposer un menu de Noël à emporter ?
+Le menu à emporter permet de vendre les soirs de fêtes sans dépendre du nombre de couverts. Beaucoup de familles veulent bien manger le 24 sans cuisiner ni réserver une table, et cherchent un restaurant de leur quartier.
+
+Une recette en plus de la salle, préparée en grande partie à l&rsquo;avance.
+Une production prévisible, puisque vous connaissez les quantités avant de cuisiner.
+Une option si vous fermez le soir du réveillon, pour vendre quand même ce jour-là.
+Une façon de garder le lien avec les clients qui ne viendront pas en salle pendant les fêtes.
+
+Le menu à emporter ne s&rsquo;improvise pas le 23 décembre. Il se prépare dès fin novembre, avec une carte, des prix et un mode de commande clair.
+Quels plats mettre dans un menu de Noël à emporter ?
+Un bon menu à emporter repose sur des plats qui supportent le transport et le réchauffage. Une sauce qui tranche, une cuisson minute ou un dressage fragile ne survivent pas à vingt minutes de voiture.
+
+
+
+Ça voyage bien
+À éviter
+
+
+
+
+Terrines, foie gras, saumon fumé
+Les fritures et tout ce qui doit être croustillant
+
+
+Plats mijotés, volailles en sauce
+Les cuissons à la minute, viande rosée à point
+
+
+Gratins et garnitures à réchauffer
+Les émulsions et sauces qui tranchent
+
+
+Bûches et entremets bien tenus
+Les desserts glacés sans congélateur chez le client
+
+
+
+Proposez un ou deux menus complets à prix fixe par personne, plus quelques plats à l&rsquo;unité. Indiquez le prix par personne, le nombre minimum de parts et les allergènes. Joignez à chaque commande une fiche de réchauffage simple : température, durée, ordre des plats. C&rsquo;est ce qui évite les appels le soir du 24.
+Comment prendre les commandes du menu de Noël en ligne ?
+La commande en ligne remplace les réservations notées sur un cahier et les appels pendant le service. Le client choisit son menu, le nombre de personnes et son créneau de retrait, puis valide en 30 secondes sans créer de compte.
+
+Créez une rubrique « Noël » dans votre carte en ligne, avec les menus, les plats à l&rsquo;unité et les photos.
+Indiquez la date limite en haut de la rubrique, en clair.
+Ouvrez les créneaux de retrait du 24 et du 31 décembre, par exemple de 15 h à 19 h.
+Fixez un maximum de commandes par créneau pour que la cuisine et le comptoir suivent.
+Partagez le lien : QR code en salle, sur les additions, sur la fiche Google et les réseaux.
+
+Un point à connaître sur Marchéo : les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Ceux du jeudi 24 décembre deviennent réservables vers la mi-décembre. Avant, prenez les réservations par téléphone ou en salle, et invitez les clients à valider en ligne dès l&rsquo;ouverture. Si vous avez déjà la réservation de table, la même formule à 39 € gère les deux : notre article sur le meilleur logiciel de réservation pour restaurant explique comment les combiner.
+Comment organiser les retraits du 24 et du 31 décembre ?
+Le retrait se règle sur la capacité de votre comptoir, pas seulement sur celle de votre cuisine. Le 24 en fin d&rsquo;après-midi, dix clients qui arrivent en même temps font une file sur le trottoir.
+
+Des créneaux de 15 à 30 minutes, étalés sur l&rsquo;après-midi.
+Un nombre maximum de commandes par créneau, prudent au départ.
+Des commandes préparées et étiquetées au nom du client, rangées par créneau.
+Une personne dédiée au comptoir pendant les heures de retrait, si la salle est aussi ouverte.
+Des contenants fermés et adaptés, avec le chaud et le froid séparés.
+
+Pensez aussi au réveillon du 31, qui tombe lui aussi un jeudi en 2026. Les créneaux du 31 s&rsquo;ouvrent environ une semaine après ceux du 24. Pour la méthode commune à tous les commerces de bouche, voyez notre guide des précommandes des fêtes.
+Paiement à l&rsquo;avance, acompte ou empreinte bancaire ?
+Un menu de Noël doit être payé ou garanti à la commande, car un repas préparé et non retiré le 24 est perdu. Les produits de fêtes coûtent cher et ne se revendent pas le lendemain.
+
+
+
+Solution
+Quand l&rsquo;utiliser
+
+
+
+
+Paiement en ligne complet
+Le plus sûr, surtout pour les commandes passées tôt
+
+
+Acompte demandé au téléphone
+Pour les réservations prises avant l&rsquo;ouverture des créneaux
+
+
+Empreinte bancaire
+Pour les commandes passées peu de temps avant le retrait
+
+
+Paiement au retrait
+Seulement pour les habitués que vous connaissez bien
+
+
+
+Avec Marchéo, l&rsquo;empreinte bancaire est facultative. Elle bloque jusqu&rsquo;à 75 % du panier sur la carte du client, sans le débiter, et la somme est libérée 24 heures après le retrait. Comme les banques limitent cette réservation à environ 7 jours, préférez le paiement en ligne pour une commande passée deux semaines avant. Le fonctionnement est détaillé dans notre article sur l&rsquo;empreinte bancaire et le no-show.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Une carte de fêtes courte, avec prix par personne
+Une application à faire télécharger aux clients
+
+
+Des créneaux de retrait avec une capacité maximale
+Une tablette, une imprimante ou une nouvelle caisse
+
+
+Un téléphone ou un ordinateur pour recevoir les commandes
+Un développeur ou une agence
+
+
+Un QR code et un lien à partager
+Une commission sur chaque menu vendu
+
+
+
+Combien coûte la vente du menu de Noël en ligne ?
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Formule Marchéo
+Prix par mois
+Installation unique
+Pour un restaurant
+
+
+
+
+Vitrine
+19 €
+249 €
+Carte et horaires en ligne, sans commande
+
+
+Click &amp; Collect + Réservation
+39 €
+399 €
+Menus à emporter et réservation de table
+
+
+Click &amp; Collect + Livraison
+59 €
+549 €
+Menus à emporter et livraison par vos soins
+
+
+
+Tout est sans engagement et à 0 % de commission. Marchéo ne livre pas et n&rsquo;a pas de coursiers : si vous voulez livrer vos menus, vous organisez votre propre livraison avec l&rsquo;outil, comme l&rsquo;explique notre article sur le traiteur de Noël en livraison à domicile. Pour comparer les outils de commande, notre guide de l&rsquo;application click and collect pour restaurant présente les familles de solutions de façon factuelle.
+Par où commencer ?
+Fixez votre menu et vos prix avant le 1er décembre, annoncez-le en salle et sur votre fiche Google, puis ouvrez la commande en ligne dès que les créneaux du 24 sont disponibles. Commencez avec une capacité prudente par créneau : vous l&rsquo;augmenterez si la cuisine suit.
+La page détaillée pour votre métier est ici : click and collect et réservation pour restaurant. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Restaurant », vous tapez le nom de votre restaurant, l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Quel logiciel pour prendre les commandes du menu de Noël à emporter d'un restaurant ?
+R : Trois familles d'outils existent : les plateformes de livraison, qui prennent une commission sur chaque commande ; les formulaires en ligne gratuits, qui ne gèrent ni les créneaux ni les quantités ; et les logiciels de click and collect sur abonnement fixe. Marchéo en fait partie : 0 % de commission, 39 € par mois pour la formule Click & Collect + Réservation, sans engagement, avec 399 € de frais d'installation uniques. Les créneaux de retrait s'ouvrent sur les deux semaines à venir, donc à la mi-décembre environ pour le 24.
+Q : Faut-il acheter du matériel pour vendre son menu de Noël à emporter en ligne ?
+R : Non. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Si le client paie au retrait, vous utilisez votre terminal de paiement habituel.
+Q : Quelle date limite fixer pour les commandes du menu de Noël ?
+R : La plupart des restaurants ferment les commandes trois à quatre jours avant, soit vers le 20 ou le 21 décembre pour le 24, et vers le 27 ou le 28 pour le 31. Ce délai laisse le temps de passer les commandes aux fournisseurs et de préparer en fonction des quantités réelles.
+Q : Comment éviter qu'un menu de Noël commandé ne soit jamais récupéré ?
+R : Le plus sûr est le paiement en ligne à la commande. L'empreinte bancaire convient aux commandes passées peu de temps avant le retrait : avec Marchéo, elle est facultative, bloque jusqu'à 75 % du panier sans débiter le client et se libère 24 heures après le retrait. Les banques limitent cette réservation à environ 7 jours.
 
 # Coursier ou livreur maison : comment livrer vos clients ?
 
@@ -4924,6 +5091,7 @@ Une commission sur chaque commande
 
 
 Si vous tenez une pizzeria, notre article sur le logiciel de livraison de pizza traite le cas des commandes du soir avec livraison, et celui sur le click &amp; collect pour food-truck celui de la cuisine mobile.
+Pour les fêtes, notre guide pour proposer un menu de Noël à emporter dans son restaurant détaille la carte, la date limite et les créneaux du 24 et du 31 décembre.
 Pour commencer
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Pour un restaurant, le catalogue est déjà rempli avec des plats types à adapter à votre carte.
 Pour voir la page de votre restaurant avant de décider, la démo gratuite prend 30 secondes : vous choisissez « Restaurant », vous tapez le nom de votre établissement, l&rsquo;aperçu s&rsquo;affiche.
@@ -8010,6 +8178,7 @@ Click and collect épicerie
 Click &amp; collect pour food-truck
 Click and collect restauration rapide
 Application click and collect restaurant
+Menu de Noël à emporter au restaurant
 Site internet pour boulangerie
 Digitaliser son commerce de bouche
 

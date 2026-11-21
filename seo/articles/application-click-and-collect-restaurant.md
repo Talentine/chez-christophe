@@ -5,6 +5,7 @@ description: "Application click and collect restaurant : commandes à emporter e
 meta_title: "Application click and collect restaurant : le guide"
 meta_description: "Application click and collect restaurant : commandes à emporter en ligne, créneaux réglés sur la cuisine, 0 % de commission, sans matériel à acheter."
 date: 2026-11-03
+modified: 2026-11-21
 rubrique: Guide
 emoji: 🍴
 keywords:
@@ -112,6 +113,8 @@ Le click and collect d'un restaurant se met en place sans matériel à acheter, 
 | Un abonnement fixe | Une commission sur chaque commande |
 
 Si vous tenez une pizzeria, notre article sur le [logiciel de livraison de pizza](/blog/logiciel-livraison-pizza) traite le cas des commandes du soir avec livraison, et celui sur le [click & collect pour food-truck](/blog/click-and-collect-food-truck) celui de la cuisine mobile.
+
+Pour les fêtes, notre guide pour proposer un [menu de Noël à emporter dans son restaurant](/blog/menu-noel-a-emporter-restaurant) détaille la carte, la date limite et les créneaux du 24 et du 31 décembre.
 
 ## Pour commencer
 

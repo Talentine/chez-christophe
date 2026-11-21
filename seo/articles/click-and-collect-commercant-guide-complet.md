@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-19
+modified: 2026-11-21
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -189,5 +189,6 @@ Les autres guides du blog sur le click & collect :
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)
 - [Click and collect restauration rapide](/blog/click-and-collect-restauration-rapide)
 - [Application click and collect restaurant](/blog/application-click-and-collect-restaurant)
+- [Menu de Noël à emporter au restaurant](/blog/menu-noel-a-emporter-restaurant)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Digitaliser son commerce de bouche](/blog/digitaliser-commerce-bouche)
