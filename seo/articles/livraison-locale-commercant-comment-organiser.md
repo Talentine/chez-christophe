@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-20
+modified: 2026-11-22
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -131,7 +131,7 @@ Quelques réflexes simples aident beaucoup :
 - ne pas laisser une commande sur un palier en l'absence du client ;
 - limiter la durée de la tournée à une heure environ.
 
-Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Pour les produits de la mer, notre guide de la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile) détaille l'organisation.
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Les textes, les températures et la règle des 80 km sont expliqués dans notre guide de la [réglementation de la livraison alimentaire](/blog/reglementation-livraison-alimentaire-commercant). Pour les produits de la mer, notre guide de la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile) détaille l'organisation.
 
 ## Quel logiciel pour gérer la livraison à domicile ?
 
@@ -188,6 +188,7 @@ Les autres guides du blog sur la livraison et la vente en ligne :
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](/blog/poissonnerie-livraison-a-domicile)
 - [Boucherie livraison à domicile : livrer vos clients vous-même](/blog/boucherie-livraison-a-domicile)
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](/blog/fleuriste-livraison-a-domicile)
+- [Réglementation livraison alimentaire : le guide du commerçant](/blog/reglementation-livraison-alimentaire-commercant)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)

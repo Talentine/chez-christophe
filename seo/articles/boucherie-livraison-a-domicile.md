@@ -5,7 +5,7 @@ description: "Boucherie et livraison à domicile : zone, créneaux, froid, colis
 meta_title: "Boucherie livraison à domicile : le guide du boucher"
 meta_description: "Lancer la livraison à domicile dans votre boucherie : froid, zone, créneaux, colis, poids réel et frais. Sans plateforme, sans commission, sans matériel."
 date: 2026-10-31
-modified: 2026-11-06
+modified: 2026-11-22
 rubrique: Métier
 emoji: 🥩
 keywords:
@@ -53,7 +53,7 @@ Pour un boucher de quartier, livrer soi-même est souvent le meilleur choix, car
 
 ## Comment respecter la chaîne du froid pour livrer de la viande ?
 
-La viande doit rester à la bonne température du comptoir jusqu'à la remise au client, et c'est la première chose à régler. Les températures à respecter dépendent du produit : elles sont plus strictes pour la viande hachée et les abats que pour les pièces entières. Le texte de référence pour le commerce de détail est l'arrêté du 21 décembre 2009. Avant de commencer, faites confirmer votre organisation par la DDPP de votre département ou votre chambre de métiers.
+La viande doit rester à la bonne température du comptoir jusqu'à la remise au client, et c'est la première chose à régler. Les températures à respecter dépendent du produit : elles sont plus strictes pour la viande hachée et les abats que pour les pièces entières. Le texte de référence pour le commerce de détail est l'arrêté du 21 décembre 2009, résumé dans notre guide de la [réglementation de la livraison alimentaire](/blog/reglementation-livraison-alimentaire-commercant). Avant de commencer, faites confirmer votre organisation par la DDPP de votre département ou votre chambre de métiers.
 
 Pour une tournée locale, ces réflexes couvrent l'essentiel :
 

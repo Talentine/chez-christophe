@@ -42,6 +42,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Réglementation livraison alimentaire : le guide du commerçant](https://marchéo.fr/blog/reglementation-livraison-alimentaire-commercant) : Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
 - [Lien de paiement ou boutique en ligne : que choisir ?](https://marchéo.fr/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) : Lien de paiement ou boutique en ligne pour encaisser les commandes de votre commerce ? Comparatif honnête : coût, frais, temps passé, retrait et no-show.
 - [Menu de Noël à emporter : le proposer dans son restaurant](https://marchéo.fr/blog/menu-noel-a-emporter-restaurant) : Menu de Noël à emporter au restaurant : composer la carte, fixer la date limite, ouvrir les créneaux du 24 et du 31 et éviter les commandes non retirées.
 - [Coursier ou livreur maison : comment livrer vos clients ?](https://marchéo.fr/blog/coursier-ou-livreur-maison-commerce) : Coursier payé à la course, livreur salarié, indépendant ou vous-même : coûts, contraintes et calcul pour choisir comment livrer les clients de votre commerce.
@@ -113,7 +114,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-21
+- Dernière mise à jour : 2026-11-22
 
 
 ---
@@ -584,6 +585,124 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Réglementation livraison alimentaire : le guide du commerçant
+
+Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
+
+La réglementation de la livraison alimentaire impose à un commerçant de garder ses produits à la bonne température jusqu&rsquo;à la remise au client, avec un transport propre, des relevés de température et une information complète sur les allergènes. Pour une tournée locale de moins de 80 km sans rupture de charge, un véhicule sans attestation technique peut suffire, à condition de tenir les températures. Les textes de référence sont le règlement européen 852/2004 et l&rsquo;arrêté du 21 décembre 2009.
+Cet article complète notre guide complet de la livraison à domicile pour commerçant, qui explique la zone, les créneaux et les frais. Ici, on parle seulement des règles à respecter quand vous livrez de la viande, du poisson, des fruits et légumes, du fromage ou des plats. Ce guide donne les grands principes et ne remplace pas l&rsquo;avis de la direction départementale de la protection des populations (DDPP) de votre département.
+Quels textes encadrent la livraison de produits alimentaires ?
+Trois textes posent l&rsquo;essentiel des règles pour un commerce de détail qui livre ses clients. Vous n&rsquo;avez pas besoin de les lire en entier, mais il est utile de savoir qu&rsquo;ils existent.
+
+
+
+Texte
+Ce qu&rsquo;il encadre
+
+
+
+
+Règlement (CE) n° 852/2004
+L&rsquo;hygiène de toutes les étapes, transport compris : propreté, protection des denrées, maîtrise des températures
+
+
+Arrêté du 21 décembre 2009
+Les règles sanitaires du commerce de détail et du transport des produits d&rsquo;origine animale, avec les températures à respecter
+
+
+Arrêté du 8 octobre 2013
+Les règles équivalentes pour les autres denrées, par exemple les produits végétaux
+
+
+
+Ces textes ont été modifiés plusieurs fois. Avant de fixer votre organisation, consultez la version en vigueur sur Légifrance ou demandez à la DDPP.
+Quelles températures respecter pendant la livraison ?
+La règle de base est simple : un produit doit arriver chez le client à la même température que dans votre vitrine réfrigérée. Les seuils dépendent du produit, et ils sont plus stricts pour ce qui est haché, découpé ou cuisiné à l&rsquo;avance.
+Quelques repères courants, à vérifier dans la version en vigueur de l&rsquo;arrêté du 21 décembre 2009 :
+
+Viande hachée : 2 °C au maximum, l&rsquo;un des seuils les plus stricts.
+Plats cuisinés réfrigérés : 3 °C au maximum.
+Poissons et produits de la mer frais : à la température de la glace fondante.
+Plats livrés chauds : 63 °C au minimum jusqu&rsquo;à la remise.
+Produits surgelés : -18 °C.
+
+Les fruits et légumes et la plupart des fromages sont moins sensibles, mais ils doivent rester à l&rsquo;abri de la chaleur, de la saleté et des produits crus. Si vous livrez plusieurs familles de produits dans la même tournée, calez-vous sur le produit le plus exigeant.
+Faut-il un véhicule frigorifique agréé pour livrer ses clients ?
+Pas toujours. En principe, le transport de denrées sous température dirigée se fait dans un engin qui a une attestation de conformité technique (dite ATP). Mais pour une tournée qui ne dépasse pas 80 km et se fait sans rupture de charge, c&rsquo;est-à-dire sans transférer la marchandise d&rsquo;un véhicule à un autre, un véhicule sans attestation peut être utilisé.
+Cette souplesse a une contrepartie : c&rsquo;est une obligation de résultat. Peu importe le matériel, la température doit être tenue jusqu&rsquo;à la porte du client. Pour une boucherie, une poissonnerie ou un traiteur qui livre son quartier, cela veut dire en pratique :
+
+Des caisses isothermes propres, réservées à cet usage, avec des plaques eutectiques.
+Un chargement au dernier moment, les commandes restant en chambre froide jusqu&rsquo;au départ.
+Une tournée courte, d&rsquo;une heure environ.
+Un thermomètre, pour contrôler la température au départ et à la fin de la tournée.
+
+Pour les surgelés, la viande hachée et les préparations de viande, les exigences sont plus strictes. Si vous en livrez, faites valider votre matériel par la DDPP avant de commencer. Le détail pour la viande est dans notre article boucherie livraison à domicile, et celui pour le poisson dans poissonnerie livraison à domicile.
+Que faut-il prévoir dans son plan de maîtrise sanitaire ?
+Votre plan de maîtrise sanitaire doit couvrir la livraison comme le reste de l&rsquo;activité. Si vous lancez la livraison, ajoutez-y une partie transport, même courte.
+
+Le nettoyage des caisses et du coffre, avec sa fréquence.
+Les relevés de température, notés à chaque tournée.
+La séparation du cru, du cuit et des produits de la mer, dans des contenants distincts.
+Ce que vous faites d&rsquo;une commande non remise : elle revient au froid, et vous décidez si elle peut être revendue ou non.
+La formation de la personne qui livre, si ce n&rsquo;est pas vous.
+
+Quelles informations donner au client qui commande en ligne ?
+Le client qui commande à distance doit avoir, avant de payer, les mêmes informations qu&rsquo;au comptoir. C&rsquo;est le point le plus souvent oublié.
+
+Les allergènes de chaque produit, en particulier pour les plats traiteur, la charcuterie et les préparations.
+La dénomination et le prix, au kilo si vous vendez au poids.
+Les conditions de livraison : zone, créneaux, frais et ce qui se passe en cas d&rsquo;absence.
+Les conseils de conservation à l&rsquo;arrivée, par exemple « à mettre au réfrigérateur dès réception ».
+
+Pour le droit de rétractation, le Code de la consommation exclut en général les produits qui se périment rapidement. Écrivez-le dans vos conditions générales. Les autres obligations d&rsquo;une boutique en ligne sont dans notre article sur les obligations légales d&rsquo;une boutique en ligne.
+Faut-il prévenir son assureur avant de livrer ?
+Oui. Prévenez votre assureur que le véhicule sert à livrer des clients, car l&rsquo;usage professionnel n&rsquo;est pas toujours couvert par un contrat personnel. Vérifiez aussi que votre responsabilité civile professionnelle couvre les produits vendus et livrés.
+Si quelqu&rsquo;un d&rsquo;autre livre pour vous, un salarié ou un coursier, vérifiez qu&rsquo;il est couvert, et cadrez avec lui le respect du froid. Vous restez responsable de la qualité du produit jusqu&rsquo;à la remise.
+Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Pour livrer dans les règles, il vous faut du matériel de transport adapté et une organisation qui garde la tournée courte, mais aucun équipement informatique nouveau.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Des caisses isothermes et des plaques eutectiques
+Un camion frigorifique pour une tournée locale courte, dans la plupart des cas
+
+
+Un thermomètre et une fiche de relevés
+Une tablette ou une imprimante à acheter
+
+
+Une zone limitée et des créneaux courts
+Une plateforme qui prend une commission
+
+
+Des fiches produits avec les allergènes
+Un développeur ou une agence
+
+
+
+Comment Marchéo aide à livrer dans de bonnes conditions ?
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre tournée, et vous restez maître du froid.
+Les réglages qui aident à respecter les règles sont simples : une zone de livraison limitée, des créneaux courts, un nombre maximum de commandes par créneau pour ne pas allonger la tournée, et un minimum de commande. Les commandes apparaissent par créneau, avec les adresses, ce qui permet de préparer au dernier moment. Le client commande en 30 secondes, sans créer de compte. L&rsquo;empreinte bancaire, optionnelle, bloque jusqu&rsquo;à 75 % du panier sans le débiter et se libère 24 heures après la remise : elle limite les absences, et donc les produits frais qui reviennent en boutique.
+La formule qui couvre la livraison est Click &amp; Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d&rsquo;installation uniques. Les fonctions prévues pour votre métier sont sur la solution pour boucherie et la solution pour poissonnerie.
+Par où commencer ?
+Commencez par appeler la DDPP de votre département ou votre chambre de métiers pour présenter votre projet de livraison : c&rsquo;est gratuit et cela évite les mauvaises surprises. Ensuite, équipez-vous de caisses isothermes et d&rsquo;un thermomètre, et lancez un seul créneau par semaine dans une zone courte.
+Pour voir votre boutique avec la livraison, la démo gratuite prend 30 secondes : vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche.
+
+Q : Faut-il un camion frigorifique pour livrer ses clients quand on est commerçant ?
+R : Pas forcément. Pour une tournée locale de moins de 80 km, sans rupture de charge, un véhicule sans attestation technique peut être accepté, à condition que les températures soient tenues jusqu'à la remise au client : c'est une obligation de résultat. En pratique, des caisses isothermes avec des plaques eutectiques et un thermomètre suffisent souvent pour une tournée courte. Pour les surgelés, la viande hachée ou les longues distances, les règles sont plus strictes : faites valider votre organisation par la DDPP de votre département.
+Q : Faut-il acheter du matériel pour livrer des produits frais ?
+R : Il faut du matériel de transport : des caisses ou sacs isothermes, des plaques eutectiques et un thermomètre. En revanche, pour prendre et gérer les commandes, aucun matériel n'est nécessaire avec Marchéo : tout se fait depuis le téléphone ou l'ordinateur que vous avez déjà, sans tablette ni imprimante à acheter.
+Q : Quel logiciel pour organiser la livraison de produits frais à domicile ?
+R : Il faut un outil qui limite la zone, fixe des créneaux courts et un nombre maximum de commandes par créneau, pour que la tournée reste courte. Marchéo le fait dans sa formule Click & Collect + Livraison : 59 € par mois, sans engagement, 0 % de commission, 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui organisez la tournée et qui restez responsable du froid.
+Q : Le client peut-il se rétracter après une livraison de produits frais ?
+R : Non, en règle générale. Le Code de la consommation exclut du droit de rétractation de 14 jours les biens qui peuvent se détériorer ou se périmer rapidement, comme la viande, le poisson ou un plat traiteur. Indiquez-le clairement dans vos conditions générales de vente.
 
 # Lien de paiement ou boutique en ligne : que choisir ?
 
@@ -6253,7 +6372,7 @@ Découverte, plats préparés
 
 
 Comment respecter la chaîne du froid pour livrer de la viande ?
-La viande doit rester à la bonne température du comptoir jusqu&rsquo;à la remise au client, et c&rsquo;est la première chose à régler. Les températures à respecter dépendent du produit : elles sont plus strictes pour la viande hachée et les abats que pour les pièces entières. Le texte de référence pour le commerce de détail est l&rsquo;arrêté du 21 décembre 2009. Avant de commencer, faites confirmer votre organisation par la DDPP de votre département ou votre chambre de métiers.
+La viande doit rester à la bonne température du comptoir jusqu&rsquo;à la remise au client, et c&rsquo;est la première chose à régler. Les températures à respecter dépendent du produit : elles sont plus strictes pour la viande hachée et les abats que pour les pièces entières. Le texte de référence pour le commerce de détail est l&rsquo;arrêté du 21 décembre 2009, résumé dans notre guide de la réglementation de la livraison alimentaire. Avant de commencer, faites confirmer votre organisation par la DDPP de votre département ou votre chambre de métiers.
 Pour une tournée locale, ces réflexes couvrent l&rsquo;essentiel :
 
 Préparez au dernier moment. Gardez les commandes en chambre froide jusqu&rsquo;au départ.
@@ -10356,7 +10475,7 @@ séparer le cru, le cuit et les produits de la mer ;
 ne pas laisser une commande sur un palier en l&rsquo;absence du client ;
 limiter la durée de la tournée à une heure environ.
 
-Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Pour les produits de la mer, notre guide de la livraison à domicile en poissonnerie détaille l&rsquo;organisation.
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Les textes, les températures et la règle des 80 km sont expliqués dans notre guide de la réglementation de la livraison alimentaire. Pour les produits de la mer, notre guide de la livraison à domicile en poissonnerie détaille l&rsquo;organisation.
 Quel logiciel pour gérer la livraison à domicile ?
 Un logiciel de livraison pour commerçant doit faire deux choses : prendre les commandes en ligne et préparer la tournée. Les outils qui ne font que l&rsquo;un des deux vous obligent à recopier les adresses à la main. Pour savoir quand un optimiseur de tournée suffit et quand il faut une boutique avec livraison, lisez notre comparatif quel logiciel pour livrer ses clients soi-même.
 
@@ -10448,6 +10567,7 @@ Les autres guides du blog sur la livraison et la vente en ligne :
 Poissonnerie livraison à domicile : livrer sans casser le froid
 Boucherie livraison à domicile : livrer vos clients vous-même
 Fleuriste livraison à domicile : livrer vos bouquets vous-même
+Réglementation livraison alimentaire : le guide du commerçant
 Click and collect sans commission
 Empreinte bancaire et no-show
 Vendre au poids en ligne
