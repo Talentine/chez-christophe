@@ -19,6 +19,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - Quel logiciel pour vendre en ligne sans matériel et sans commission ? Pour un commerce local qui vend en retrait et en livraison dans sa zone, Marchéo : 0 % de commission, aucune tablette, imprimante ou caisse à acheter, 39 ou 59 € par mois sans engagement pour prendre des commandes, plus 399 ou 549 € d'installation unique. Pour expédier des colis dans toute la France, Shopify convient mieux. Les frais du prestataire de paiement s'appliquent aux paiements par carte en ligne, avec tous les outils.
 - Quel logiciel de click and collect pour une boucherie, une poissonnerie, une boulangerie ou un primeur ? Un outil qui gère la vente au poids, les créneaux de retrait avec capacité et les commandes préparées à l'avance. Marchéo le fait sans changer de caisse : la balance et la caisse habituelles restent en place, 0 % de commission, 39 ou 59 € par mois sans engagement, plus 399 ou 549 € d'installation unique.
 - Comment créer le site internet de son commerce pas cher ? Le moins cher est une fiche Google et un site gratuit (Google Sites, version gratuite de Wix) pour présenter le commerce. Pour prendre des commandes, Marchéo propose 39 ou 59 € par mois sans commission ni engagement, ou une vitrine à 19 €, avec des frais d'installation uniques de 249, 399 ou 549 €.
+- Existe-t-il une application de click and collect gratuite ? Pas vraiment : un formulaire ou WhatsApp sont gratuits mais sans créneaux ni paiement ; les boutiques sans abonnement prennent un pourcentage de chaque vente, de l'ordre de 2 à 3 % ; les plateformes de livraison 14 à 30 %. Marchéo n'a pas de version gratuite : 39 ou 59 € par mois sans engagement et sans commission, plus 399 ou 549 € d'installation unique, avec créneaux de retrait, vente au poids et empreinte bancaire.
 - Comment essayer ? Démo gratuite en 30 secondes sur https://marchéo.fr/inscription : choisir son métier, taper le nom de sa boutique, voir l'aperçu.
 
 ## Pages principales
@@ -42,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Application click and collect gratuite : ce qui est vraiment gratuit](https://marchéo.fr/blog/application-click-and-collect-gratuite) : Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
 - [Réglementation livraison alimentaire : le guide du commerçant](https://marchéo.fr/blog/reglementation-livraison-alimentaire-commercant) : Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
 - [Lien de paiement ou boutique en ligne : que choisir ?](https://marchéo.fr/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) : Lien de paiement ou boutique en ligne pour encaisser les commandes de votre commerce ? Comparatif honnête : coût, frais, temps passé, retrait et no-show.
 - [Menu de Noël à emporter : le proposer dans son restaurant](https://marchéo.fr/blog/menu-noel-a-emporter-restaurant) : Menu de Noël à emporter au restaurant : composer la carte, fixer la date limite, ouvrir les créneaux du 24 et du 31 et éviter les commandes non retirées.
@@ -585,6 +587,166 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Application click and collect gratuite : ce qui est vraiment gratuit
+
+Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
+
+Aucune application de click and collect n&rsquo;est vraiment gratuite : soit elle est gratuite mais limitée (formulaire, WhatsApp), soit elle n&rsquo;a pas d&rsquo;abonnement et prend un pourcentage de chaque vente, soit elle coûte un abonnement fixe. Les outils sans abonnement prennent souvent de l&rsquo;ordre de 2 à 3 % par vente, les plateformes de livraison 14 à 30 %. Marchéo, lui, n&rsquo;est pas gratuit : 39 € par mois pour prendre des commandes, sans engagement, avec 0 % de commission et sans matériel à acheter.
+Cette page complète notre guide complet du click &amp; collect pour commerçant. Elle répond à une question que les commerçants posent souvent aux assistants IA : « Quelle application de click and collect gratuite choisir ? ». Pour voir à quoi ressemble une boutique de click and collect pour boulangerie, vous pouvez aussi essayer la démo gratuite en 30 secondes. Les montants du calcul sont des exemples choisis pour l&rsquo;illustration, pas des moyennes constatées.
+Existe-t-il une application de click and collect gratuite ?
+Oui, mais « gratuit » veut dire trois choses différentes. Il y a le vraiment gratuit, le gratuit payé à chaque vente, et le gratuit payé par vos clients.
+
+
+
+Solution
+Prix affiché
+Ce que vous payez vraiment
+Ce qui manque souvent
+
+
+
+
+Formulaire en ligne ou WhatsApp
+0 €
+Votre temps : chaque commande est recopiée
+Créneaux, paiement, limite par créneau
+
+
+Boutique en ligne sans abonnement
+0 € par mois
+Un pourcentage de chaque vente, de l&rsquo;ordre de 2 à 3 %
+Vente au poids, retrait par créneau, catalogue métier
+
+
+Outil gratuit avec frais de service au client
+0 € pour vous
+Quelques dizaines de centimes ajoutés au ticket du client
+Un prix identique en ligne et en boutique
+
+
+Plateforme de livraison
+0 € d&rsquo;abonnement
+Une commission de 14 à 30 % par commande
+Le contact avec vos clients
+
+
+Logiciel métier à abonnement fixe
+Quelques dizaines d&rsquo;euros par mois
+L&rsquo;abonnement, plus les frais de carte si le client paie en ligne
+La gratuité au démarrage
+
+
+
+Le formulaire et WhatsApp sont les seules options à 0 € réel. Nous les comparons en détail dans Google Forms ou logiciel de commande.
+Que paie-t-on avec une boutique en ligne « gratuite » ?
+On paie avec ses ventes : l&rsquo;outil ne vous facture rien chaque mois, mais il garde une part de chaque paiement. Ce pourcentage inclut souvent les frais de carte bancaire.
+Ce modèle est honnête et pratique pour tester. Il a deux limites. D&rsquo;abord, plus vous vendez, plus vous payez : le coût suit votre chiffre d&rsquo;affaires. Ensuite, ces boutiques sont pensées pour vendre des objets à expédier. Le retrait par créneau, la capacité maximale par heure ou la vente au poids demandent souvent des modules en plus, parfois payants.
+Les frais de paiement par carte, eux, existent partout. Chez un prestataire comme Stripe, ils sont d&rsquo;environ 1,5 % plus 0,25 € par paiement en ligne, quel que soit le logiciel. Si le client paie au retrait, il n&rsquo;y a pas de frais de paiement en ligne.
+Combien coûte vraiment le click and collect sur un an ?
+Sur un exemple chiffré, l&rsquo;outil sans abonnement coûte moins cher, et la plateforme de livraison coûte de loin le plus cher. Prenons une boulangerie qui reçoit 60 commandes en ligne par mois, à 25 € en moyenne, soit 1 500 € par mois, toutes payées par carte en ligne.
+
+
+
+Exemple : 1 500 € de commandes par mois
+Outil sans abonnement à 2,5 % par vente
+Marchéo Click &amp; Collect + Réservation
+Plateforme à 20 % de commission
+
+
+
+
+Abonnement par mois
+0 €
+39 €
+0 €
+
+
+Frais par vente ou de carte par mois
+37,50 €
+environ 37,50 € (1,5 % + 0,25 € par paiement)
+inclus dans la commission
+
+
+Commission par mois
+0 €
+0 €
+300 €
+
+
+Total par mois
+37,50 €
+76,50 €
+300 €
+
+
+Total la première année
+450 €
+918 € + 399 € d&rsquo;installation
+3 600 €
+
+
+Total les années suivantes
+450 €
+918 €
+3 600 €
+
+
+
+Dans cet exemple, Marchéo coûte environ 39 € de plus par mois qu&rsquo;un outil sans abonnement. Si une partie des clients paie au retrait, les frais de carte en ligne baissent d&rsquo;autant. Si les ventes en ligne doublent, l&rsquo;outil à pourcentage double aussi, alors que l&rsquo;abonnement reste à 39 €. Pour le cas des outils facturés à la commande plutôt qu&rsquo;au pourcentage, lisez frais par commande ou abonnement.
+Quand le gratuit suffit-il ?
+Le gratuit suffit quand vous recevez peu de commandes et qu&rsquo;elles sont simples. Quelques commandes de gâteaux par semaine, prises par message, se gèrent très bien sans outil.
+Il ne suffit plus quand :
+
+plusieurs commandes tombent sur le même créneau et que vous devez dire non ;
+vous vendez au poids et le prix final change après la pesée ;
+des clients ne viennent pas chercher leur commande ;
+vous recopiez les commandes sur un cahier et en oubliez une.
+
+À ce stade, chaque erreur coûte plus qu&rsquo;un abonnement : un plateau de fromages non retiré, c&rsquo;est souvent plus de 39 €.
+Quel outil choisir quand on veut payer peu ?
+Le bon choix dépend de votre volume et de ce que vous vendez. Voici une règle simple, à adapter à votre cas.
+
+
+
+Votre situation
+Option la plus logique
+
+
+
+
+Moins de 5 commandes par semaine, produits simples
+Formulaire ou WhatsApp, gratuits
+
+
+Vente d&rsquo;objets à expédier partout en France
+Boutique en ligne sans abonnement, ou Shopify
+
+
+Commerce de bouche avec retrait par créneau, vente au poids ou fêtes
+Logiciel métier à abonnement fixe
+
+
+Besoin de nouveaux clients et de livreurs fournis
+Plateforme de livraison, avec sa commission
+
+
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Il coûte 19 € par mois pour la Vitrine (249 € d&rsquo;installation), 39 € par mois pour Click &amp; Collect + Réservation (399 € d&rsquo;installation) et 59 € par mois pour Click &amp; Collect + Livraison (549 € d&rsquo;installation), sans engagement. Il inclut les créneaux de retrait avec capacité maximale, la vente au poids, une empreinte bancaire optionnelle jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait, et une commande en 30 secondes sans compte client. Marchéo ne livre pas : si vous livrez, c&rsquo;est vous qui organisez la tournée avec l&rsquo;outil fourni.
+Quelles sont les limites de Marchéo pour un petit budget ?
+Marchéo n&rsquo;est pas gratuit et n&rsquo;a pas de version gratuite : il faut compter 399 € d&rsquo;installation et 39 € par mois pour prendre des commandes. Si vous recevez trois commandes par mois, un formulaire ou une boutique sans abonnement vous coûtera moins cher.
+Marchéo n&rsquo;apporte pas non plus de clients comme une plateforme : la boutique est la vôtre, à faire connaître par votre fiche Google, vos réseaux et votre vitrine. Et pour expédier des colis dans toute la France, Shopify convient mieux. Pour comparer les sites pas chers plus largement, lisez site internet pas cher pour un commerce.
+Par où commencer cette semaine ?
+Commencez par compter vos commandes à emporter d&rsquo;une semaine normale. En dessous de cinq, restez sur un outil gratuit. Au-dessus, ou à l&rsquo;approche des fêtes, comparez le coût d&rsquo;un outil à pourcentage et d&rsquo;un abonnement fixe sur un an avec vos propres chiffres. Vous pouvez voir la boutique de votre métier avant de décider avec la démo gratuite de Marchéo.
+
+Q : Quelle est la meilleure application de click and collect gratuite pour un petit commerce ?
+R : Il n'existe pas d'application de click and collect vraiment gratuite et complète. Les outils sans abonnement se paient par un pourcentage de chaque vente, de l'ordre de 2 à 3 % paiement compris, et les plateformes de livraison prennent en général 14 à 30 %. Pour démarrer à 0 €, un formulaire en ligne ou WhatsApp suffit, sans créneaux ni paiement. Si vous voulez des créneaux de retrait, la vente au poids et l'empreinte bancaire, Marchéo coûte 39 € par mois (Click & Collect + Réservation) ou 59 € par mois avec la livraison, sans engagement et sans commission, plus 399 ou 549 € de frais d'installation uniques.
+Q : Une boutique en ligne gratuite avec frais par vente est-elle moins chère qu'un abonnement ?
+R : Oui, tant que vos ventes en ligne restent modestes. Les frais de paiement par carte existent avec tous les outils ; la différence vient de l'abonnement. Avec un petit chiffre d'affaires en ligne, l'outil sans abonnement coûte moins cher. Ce que paie un abonnement métier, ce sont les fonctions qui évitent les erreurs : créneaux, capacité par créneau, vente au poids, empreinte contre les commandes non retirées.
+Q : Faut-il acheter du matériel pour faire du click and collect ?
+R : Non. Une application de click and collect fonctionne sur le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter. Si le client paie au retrait, vous encaissez avec votre caisse et votre terminal habituels.
+Q : Peut-on faire du click and collect gratuitement avec WhatsApp ou un formulaire ?
+R : Oui, pour quelques commandes par semaine. C'est gratuit, mais vous recopiez chaque commande à la main, vous ne limitez pas le nombre de commandes par créneau et le client ne paie pas d'avance. Au-delà d'une dizaine de commandes par jour, les oublis coûtent plus cher qu'un outil.
 
 # Réglementation livraison alimentaire : le guide du commerçant
 
@@ -1992,7 +2154,7 @@ Les frais bancaires du paiement en ligne sont-ils compris, ou s&rsquo;ajoutent-i
 Les commandes payées au retrait sont-elles aussi facturées ?
 Y a-t-il des frais au départ, un minimum mensuel ou du matériel à acheter ?
 
-Les frais de service payés par le client méritent une attention particulière. Votre facture baisse, mais votre client paie plus cher en ligne qu&rsquo;au comptoir. Sur un petit panier, cela peut le faire renoncer ou revenir au téléphone.
+Les frais de service payés par le client méritent une attention particulière. Votre facture baisse, mais votre client paie plus cher en ligne qu&rsquo;au comptoir. Sur un petit panier, cela peut le faire renoncer ou revenir au téléphone. Les outils présentés comme gratuits se paient souvent d&rsquo;une autre façon, par un pourcentage de chaque vente : nous le détaillons dans application click and collect gratuite : ce qui est vraiment gratuit.
 Quand un abonnement fixe comme Marchéo est-il le bon choix ?
 Un abonnement fixe est le bon choix quand vous recevez des commandes en ligne chaque semaine et que vous voulez un coût connu d&rsquo;avance. Avec Marchéo, rien n&rsquo;est prélevé sur vos ventes : 0 % de commission, et le prix ne change pas quand vos commandes augmentent.
 L&rsquo;abonnement comprend la boutique en ligne et le site à votre nom, les créneaux de retrait, la commande en 30 secondes sans compte client et, selon l&rsquo;offre, la réservation de table ou la livraison. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier et libérée 24 h après le retrait, protège des commandes non récupérées. Aucune tablette, imprimante ou caisse n&rsquo;est à acheter.
@@ -8435,7 +8597,7 @@ Oui, avec livraison organisée par vous
 
 
 
-Marchéo ne livre pas et n&rsquo;a pas de coursiers : la formule Livraison vous donne l&rsquo;outil pour organiser votre propre livraison, comme l&rsquo;explique notre guide complet de la livraison à domicile pour commerçant. Pour comparer avec les autres solutions du marché, lisez combien coûte un site de click &amp; collect, notre comparatif des logiciels de click &amp; collect et le calcul face aux plateformes dans click and collect sans commission.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : la formule Livraison vous donne l&rsquo;outil pour organiser votre propre livraison, comme l&rsquo;explique notre guide complet de la livraison à domicile pour commerçant. Pour comparer avec les autres solutions du marché, lisez combien coûte un site de click &amp; collect, notre comparatif des logiciels de click &amp; collect et le calcul face aux plateformes dans click and collect sans commission. Si vous cherchez à démarrer sans payer, notre page sur l&rsquo;application click and collect gratuite détaille ce qui est vraiment gratuit et ce qui se paie à chaque vente.
 Le click and collect selon votre métier
 Chaque métier a ses produits qui se commandent naturellement en retrait. Un logiciel métier les prévoit déjà dans le catalogue de départ.
 
@@ -8836,7 +8998,7 @@ R : Avec Marchéo, la formule Click & Collect + Réservation est à 39 € par m
 
 Poissonnerie et livraison à domicile : zone, créneaux, glace et caisses isothermes, frais, pesée et paiement. Le guide pour livrer vos clients vous-même.
 
-Pour lancer la livraison à domicile dans votre poissonnerie, il faut trois choses : une zone courte, des créneaux fixes et une chaîne du froid tenue du comptoir jusqu&rsquo;à la porte du client. Le reste (frais, minimum, paiement) se règle dans votre outil de commande. Vous pouvez tout faire vous-même, sans plateforme et sans commission.
+Une poissonnerie peut livrer ses clients elle-même, sans plateforme et sans commission, à trois conditions : une zone courte, des créneaux fixes et une chaîne du froid tenue du comptoir à la porte, avec caisses isothermes, glace et thermomètre. Les commandes, la vente au poids, les frais et le minimum se règlent dans un outil de commande en ligne comme Marchéo, à 59 € par mois sans engagement pour la formule Livraison. Marchéo ne livre pas : c&rsquo;est le poissonnier ou son livreur qui fait la tournée.
 Le poisson est le produit le plus exigeant à livrer. Il ne pardonne ni l&rsquo;attente ni la chaleur. C&rsquo;est aussi pour cela que peu de poissonneries indépendantes livrent, et que celles qui le font bien fidélisent vite leurs clients.
 Pourquoi proposer la livraison à domicile dans une poissonnerie ?
 Vos clients ne sont pas toujours libres aux heures d&rsquo;ouverture. Le marché du matin, la file du samedi, la fermeture à 19 h : une partie d&rsquo;entre eux renonce. Quelques profils reviennent souvent :
@@ -8858,7 +9020,7 @@ Contrôlez la température avec un thermomètre au départ et à la fin de la to
 Limitez la durée de la tournée. Mieux vaut deux petites tournées qu&rsquo;une seule très longue.
 Remettez en main propre. Pas de colis de poisson laissé sur un paillasson.
 
-Les règles d&rsquo;hygiène applicables à votre situation dépendent de vos volumes et de votre organisation. Avant de commencer, un appel à la DDPP de votre département ou à votre chambre des métiers évite les mauvaises surprises.
+Les règles d&rsquo;hygiène applicables à votre situation dépendent de vos volumes et de votre organisation. Les textes de référence, les températures et la déclaration auprès de la DDPP sont résumés dans notre guide de la réglementation de la livraison alimentaire. Avant de commencer, un appel à la DDPP de votre département ou à votre chambre des métiers évite les mauvaises surprises.
 Quelle zone de livraison choisir pour une poissonnerie ?
 Restez proche. Pour du poisson frais, une zone courte vaut mieux qu&rsquo;une zone large.
 
@@ -8920,8 +9082,9 @@ L&rsquo;empreinte bancaire. Avec Marchéo, jusqu&rsquo;à 75 % du panier peut ê
 Les réglages de la vente au poids (pièces, tranches, kilos) sont expliqués dans notre article sur la vente au poids en ligne.
 Livrer soi-même ou passer par une plateforme ?
 Les plateformes de livraison prennent en général entre 14 et 30 % de commission par commande. Sur des produits de la mer, où la marge est déjà serrée par les pertes et la glace, c&rsquo;est lourd. Elles sont aussi pensées pour des repas chauds, pas pour du poisson cru à garder au froid.
-Livrer soi-même demande de l&rsquo;organisation, mais vous gardez le prix, le contact avec le client et la maîtrise du froid. Pour une poissonnerie de quartier, c&rsquo;est souvent le meilleur choix.
+Livrer soi-même demande de l&rsquo;organisation, mais vous gardez le prix, le contact avec le client et la maîtrise du froid. Pour une poissonnerie de quartier, c&rsquo;est souvent le meilleur choix. Si vous hésitez entre un salarié qui livre et un coursier payé à la course, notre comparatif coursier ou livreur maison fait le calcul.
 Comment Marchéo aide une poissonnerie à livrer ?
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
 Marchéo ne livre pas et n&rsquo;a pas de coursiers. Il vous donne l&rsquo;outil pour organiser votre propre livraison :
 
 votre zone, vos créneaux et leur nombre maximum de commandes ;
@@ -8934,6 +9097,10 @@ Par quoi commencer ?
 Lancez petit : une zone, deux créneaux par semaine, un minimum de commande. Prévenez vos clients habitués au comptoir et sur votre fiche Google. Au bout d&rsquo;un mois, vous saurez quels jours marchent et pourrez ajuster.
 Si vos clients préfèrent passer en boutique, notre guide du click and collect en poissonnerie explique comment prendre le poisson du week-end et les plateaux de fruits de mer en ligne. La page dédiée à votre métier est ici : la solution pour poissonnerie. Pour voir à quoi ressemblerait votre boutique en ligne, la démo gratuite prend 30 secondes : vous choisissez « Poissonnerie », vous tapez le nom de votre boutique, l&rsquo;aperçu s&rsquo;affiche.
 
+Q : Quel logiciel pour livrer du poisson frais à domicile quand on est poissonnier ?
+R : Il faut un outil de commande en ligne qui gère une zone, des créneaux limités et la vente au poids, pas un simple optimiseur de tournée. Marchéo le fait avec un catalogue poissonnerie pré-rempli : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement et sans commission, plus 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée. Les plateformes de livraison, elles, fournissent les coursiers mais prennent en général 14 à 30 % de chaque commande.
+Q : Faut-il acheter du matériel pour livrer du poisson à domicile ?
+R : Pour la commande en ligne, non : avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter, tout se gère depuis votre téléphone ou votre ordinateur. Pour le transport, il faut en revanche de quoi tenir le froid : caisses isothermes, glace pilée ou pains de glace et un thermomètre, et un véhicule réfrigéré si vos volumes ou vos distances l'exigent.
 Q : Un poissonnier a-t-il besoin d'un camion frigorifique pour livrer ?
 R : Pas forcément pour une petite tournée locale. Beaucoup de commerçants commencent avec des caisses isothermes, de la glace et un thermomètre, sur des trajets courts. Les règles dépendent de vos volumes et de vos distances : la DDPP de votre département peut vous dire ce qui est attendu dans votre cas avant de vous lancer.
 Q : Comment gérer le prix d'un poisson vendu au poids en livraison ?

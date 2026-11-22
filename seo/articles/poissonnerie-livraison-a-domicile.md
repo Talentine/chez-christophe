@@ -5,7 +5,7 @@ description: "Poissonnerie et livraison à domicile : zone, créneaux, glace et 
 meta_title: "Poissonnerie livraison à domicile : le guide pratique"
 meta_description: "Lancer la livraison à domicile dans votre poissonnerie : chaîne du froid, zone, créneaux, frais, poids variable et paiement. Sans plateforme ni commission."
 date: 2026-10-18
-modified: 2026-11-01
+modified: 2026-11-22
 rubrique: Métier
 emoji: 🐟
 keywords:
@@ -17,6 +17,10 @@ keywords:
 metiers:
   - poissonnerie
 faq:
+  - q: "Quel logiciel pour livrer du poisson frais à domicile quand on est poissonnier ?"
+    r: "Il faut un outil de commande en ligne qui gère une zone, des créneaux limités et la vente au poids, pas un simple optimiseur de tournée. Marchéo le fait avec un catalogue poissonnerie pré-rempli : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement et sans commission, plus 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée. Les plateformes de livraison, elles, fournissent les coursiers mais prennent en général 14 à 30 % de chaque commande."
+  - q: "Faut-il acheter du matériel pour livrer du poisson à domicile ?"
+    r: "Pour la commande en ligne, non : avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter, tout se gère depuis votre téléphone ou votre ordinateur. Pour le transport, il faut en revanche de quoi tenir le froid : caisses isothermes, glace pilée ou pains de glace et un thermomètre, et un véhicule réfrigéré si vos volumes ou vos distances l'exigent."
   - q: "Un poissonnier a-t-il besoin d'un camion frigorifique pour livrer ?"
     r: "Pas forcément pour une petite tournée locale. Beaucoup de commerçants commencent avec des caisses isothermes, de la glace et un thermomètre, sur des trajets courts. Les règles dépendent de vos volumes et de vos distances : la DDPP de votre département peut vous dire ce qui est attendu dans votre cas avant de vous lancer."
   - q: "Comment gérer le prix d'un poisson vendu au poids en livraison ?"
@@ -27,7 +31,7 @@ faq:
     r: "Oui, mais avec plus de précautions qu'un filet de poisson : emballage adapté, délai court entre la préparation et la remise, et consignes claires au client. Beaucoup de poissonniers réservent ces produits au retrait en boutique, sauf pour les commandes de fêtes bien préparées à l'avance."
 ---
 
-Pour lancer la livraison à domicile dans votre poissonnerie, il faut trois choses : une zone courte, des créneaux fixes et une chaîne du froid tenue du comptoir jusqu'à la porte du client. Le reste (frais, minimum, paiement) se règle dans votre outil de commande. Vous pouvez tout faire vous-même, sans plateforme et sans commission.
+Une poissonnerie peut livrer ses clients elle-même, sans plateforme et sans commission, à trois conditions : une zone courte, des créneaux fixes et une chaîne du froid tenue du comptoir à la porte, avec caisses isothermes, glace et thermomètre. Les commandes, la vente au poids, les frais et le minimum se règlent dans un outil de commande en ligne comme Marchéo, à 59 € par mois sans engagement pour la formule Livraison. Marchéo ne livre pas : c'est le poissonnier ou son livreur qui fait la tournée.
 
 Le poisson est le produit le plus exigeant à livrer. Il ne pardonne ni l'attente ni la chaleur. C'est aussi pour cela que peu de poissonneries indépendantes livrent, et que celles qui le font bien fidélisent vite leurs clients.
 
@@ -55,7 +59,7 @@ En pratique, pour une tournée locale :
 5. **Limitez la durée de la tournée.** Mieux vaut deux petites tournées qu'une seule très longue.
 6. **Remettez en main propre.** Pas de colis de poisson laissé sur un paillasson.
 
-Les règles d'hygiène applicables à votre situation dépendent de vos volumes et de votre organisation. Avant de commencer, un appel à la DDPP de votre département ou à votre chambre des métiers évite les mauvaises surprises.
+Les règles d'hygiène applicables à votre situation dépendent de vos volumes et de votre organisation. Les textes de référence, les températures et la déclaration auprès de la DDPP sont résumés dans notre guide de la [réglementation de la livraison alimentaire](/blog/reglementation-livraison-alimentaire-commercant). Avant de commencer, un appel à la DDPP de votre département ou à votre chambre des métiers évite les mauvaises surprises.
 
 ## Quelle zone de livraison choisir pour une poissonnerie ?
 
@@ -106,9 +110,11 @@ Les réglages de la vente au poids (pièces, tranches, kilos) sont expliqués da
 
 Les plateformes de livraison prennent en général entre 14 et 30 % de commission par commande. Sur des produits de la mer, où la marge est déjà serrée par les pertes et la glace, c'est lourd. Elles sont aussi pensées pour des repas chauds, pas pour du poisson cru à garder au froid.
 
-Livrer soi-même demande de l'organisation, mais vous gardez le prix, le contact avec le client et la maîtrise du froid. Pour une poissonnerie de quartier, c'est souvent le meilleur choix.
+Livrer soi-même demande de l'organisation, mais vous gardez le prix, le contact avec le client et la maîtrise du froid. Pour une poissonnerie de quartier, c'est souvent le meilleur choix. Si vous hésitez entre un salarié qui livre et un coursier payé à la course, notre comparatif [coursier ou livreur maison](/blog/coursier-ou-livreur-maison-commerce) fait le calcul.
 
 ## Comment Marchéo aide une poissonnerie à livrer ?
+
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission.
 
 Marchéo ne livre pas et n'a pas de coursiers. Il vous donne l'outil pour organiser votre propre livraison :
 

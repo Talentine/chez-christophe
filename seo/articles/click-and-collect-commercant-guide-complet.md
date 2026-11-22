@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-21
+modified: 2026-11-22
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -149,7 +149,7 @@ Chez Marchéo, les prix sont fixes, sans engagement et à 0 % de commission :
 | Click & Collect + Réservation | 39 € | 399 € | Oui, avec réservation de table |
 | Click & Collect + Livraison | 59 € | 549 € | Oui, avec livraison organisée par vous |
 
-Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison, comme l'explique notre guide complet de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison, comme l'explique notre guide complet de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo). Si vous cherchez à démarrer sans payer, notre page sur l'[application click and collect gratuite](/blog/application-click-and-collect-gratuite) détaille ce qui est vraiment gratuit et ce qui se paie à chaque vente.
 
 ## Le click and collect selon votre métier
 
