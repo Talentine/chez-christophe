@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/drive-ou-click-and-collect-commercant",
   "/blog/site-internet-epicerie-fine",
   "/blog/application-click-and-collect-gratuite",
   "/blog/reglementation-livraison-alimentaire-commercant",

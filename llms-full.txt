@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Drive ou click and collect : quelle différence pour un commerçant ?](https://marchéo.fr/blog/drive-ou-click-and-collect-commercant) : Drive ou click and collect : définitions, différences, coût et organisation pour un primeur, un boucher ou un fromager. Lequel choisir, et comment s'y prendre.
 - [Site internet épicerie fine : pages, coffrets, commandes et prix](https://marchéo.fr/blog/site-internet-epicerie-fine) : Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment.
 - [Application click and collect gratuite : ce qui est vraiment gratuit](https://marchéo.fr/blog/application-click-and-collect-gratuite) : Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
 - [Réglementation livraison alimentaire : le guide du commerçant](https://marchéo.fr/blog/reglementation-livraison-alimentaire-commercant) : Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
@@ -83,7 +84,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Quel logiciel pour vendre en ligne sans commission ni matériel ?](https://marchéo.fr/blog/logiciel-vendre-en-ligne-sans-commission) : Quel logiciel choisir pour vendre en ligne sans commission ni matériel à acheter ? Comparatif honnête, vrais frais à prévoir et cas où Marchéo ne convient pas.
 - [Alternative à Shopify pour un fleuriste : que choisir ?](https://marchéo.fr/blog/alternative-shopify-fleuriste) : Quelle alternative à Shopify pour un fleuriste de quartier ? Wix, WooCommerce ou Marchéo : coûts, retrait, livraison locale et cas où Shopify reste meilleur.
 - [Boucherie livraison à domicile : livrer vos clients vous-même](https://marchéo.fr/blog/boucherie-livraison-a-domicile) : Boucherie et livraison à domicile : zone, créneaux, froid, colis, poids réel et frais. Le guide du boucher de quartier qui livre lui-même, sans commission.
-- [Comment prendre les commandes de bûches de Noël en ligne](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
+- [Prendre les commandes de bûches de Noël en ligne en boulangerie](https://marchéo.fr/blog/commande-buche-de-noel-en-ligne) : Boulangerie ou pâtisserie : prendre les commandes de bûches de Noël en ligne, avec stock par parfum, créneaux du 24 et du 31, paiement et prix des outils.
 - [Création site internet fleuriste : pages, prix et commandes](https://marchéo.fr/blog/creation-site-internet-fleuriste) : Création site internet fleuriste : vitrine ou commande en ligne, pages utiles, photos, livraison et prix. Le guide du fleuriste de quartier, sans commission.
 - [Comment calculer ses frais de livraison quand on est commerçant](https://marchéo.fr/blog/comment-calculer-ses-frais-de-livraison-commercant) : Comment calculer ses frais de livraison à domicile : coût d'une tournée, prix par commande, minimum et seuil de gratuité, avec un exemple pas à pas.
 - [WhatsApp ou boutique en ligne : que choisir pour son commerce ?](https://marchéo.fr/blog/whatsapp-ou-boutique-en-ligne-commerce) : WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre.
@@ -588,6 +589,109 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Drive ou click and collect : quelle différence pour un commerçant ?
+
+Drive ou click and collect : définitions, différences, coût et organisation pour un primeur, un boucher ou un fromager. Lequel choisir, et comment s'y prendre.
+
+Le drive et le click and collect commencent de la même façon : le client commande en ligne et choisit un créneau. La différence tient au retrait : en click and collect, le client entre dans la boutique ; en drive, il reste dans sa voiture et on lui apporte sa commande. Pour un commerce de quartier, le click and collect est le plus simple, et le drive s&rsquo;ajoute seulement si une voiture peut s&rsquo;arrêter devant chez vous.
+Ce comparatif complète notre guide complet du click &amp; collect pour commerçant, qui détaille la mise en place du retrait en boutique. Il s&rsquo;adresse surtout aux primeurs, bouchers, fromagers et poissonniers dont les clients viennent en voiture, par exemple en périphérie ou dans un bourg. Pour voir une boutique de click and collect pour primeur, essayez la démo gratuite en 30 secondes.
+Qu&rsquo;est-ce que le drive, et qu&rsquo;est-ce que le click and collect ?
+Le click and collect est une commande en ligne suivie d&rsquo;un retrait en magasin. Le client arrive à l&rsquo;heure choisie, donne son nom au comptoir et repart avec sa commande, déjà préparée et parfois déjà payée.
+Le drive est une variante où le client ne descend pas de sa voiture. Il se gare à un emplacement prévu, signale son arrivée, et quelqu&rsquo;un lui apporte la commande ou la charge dans le coffre. Les grandes surfaces l&rsquo;ont rendu courant avec des pistes dédiées.
+Deux mots proches circulent aussi :
+
+le drive piéton : un retrait à pied dans un point dédié, souvent en ville. Pour un commerce de proximité, c&rsquo;est presque la même chose que le click and collect ;
+le drive fermier : un point de retrait collectif où plusieurs producteurs livrent les commandes de leurs clients, souvent organisé par un groupement de producteurs ou une chambre d&rsquo;agriculture.
+
+Quelles sont les différences concrètes pour un commerçant ?
+La commande en ligne est identique, c&rsquo;est le retrait qui change tout. Le click and collect se fait dans votre boutique sans rien modifier, le drive demande un emplacement, une personne disponible et un moyen d&rsquo;encaisser dehors.
+
+
+
+Critère
+Click and collect
+Drive
+
+
+
+
+Où le client récupère sa commande
+Au comptoir, dans la boutique
+Dans sa voiture, devant ou près de la boutique
+
+
+Emplacement nécessaire
+Aucun, votre boutique suffit
+Une place où la voiture peut s&rsquo;arrêter sans gêner
+
+
+Personnel pendant le retrait
+La personne au comptoir
+Quelqu&rsquo;un qui sort apporter la commande
+
+
+Paiement au retrait
+Votre caisse et votre terminal habituels
+Un terminal mobile, ou paiement en ligne à l&rsquo;avance
+
+
+Ventes en plus au retrait
+Oui, le client voit vos produits en boutique
+Rares, le client ne rentre pas
+
+
+Adapté à une rue piétonne ou étroite
+Oui
+Non
+
+
+Logiciel de commande
+Le même dans les deux cas
+Le même dans les deux cas
+
+
+
+Un point compte beaucoup pour un commerce de bouche : en click and collect, le client qui entre ajoute souvent un produit à sa commande. En drive, cette vente en plus disparaît presque.
+Quand le click and collect suffit-il ?
+Le click and collect suffit dans la grande majorité des commerces de quartier. Si vos clients viennent à pied, en vélo, ou se garent sans difficulté à quelques mètres, ils entrent récupérer leur commande en une minute.
+C&rsquo;est aussi la solution la moins chère : vous ne changez rien à la boutique, la personne au comptoir remet la commande comme une vente normale, et vous encaissez sur votre caisse si le client paie au retrait. Pour un primeur, le guide du click and collect pour primeur détaille les paniers, la vente au poids et les créneaux.
+Quand proposer aussi un drive ?
+Le drive vaut la peine quand vos clients arrivent surtout en voiture et que le stationnement est difficile ou que les commandes sont lourdes. Un primeur en bord de route, une boucherie en zone commerciale ou un fromager qui vend des plateaux pour vingt personnes ont de bonnes raisons de le proposer.
+Trois conditions doivent être réunies :
+
+Un emplacement où une voiture peut s&rsquo;arrêter sans gêner. Si vous voulez réserver une place sur la voie publique devant la boutique, renseignez-vous auprès de votre mairie : l&rsquo;occupation du domaine public demande en général une autorisation.
+Une personne disponible pendant les créneaux de drive, ce qui veut dire limiter le nombre de commandes par créneau.
+Un paiement simple : paiement en ligne à la commande, ou terminal mobile pour encaisser dehors.
+
+Le drive sans créneaux ne tient pas : si dix voitures arrivent en même temps un samedi matin, la file bloque la rue. C&rsquo;est pourquoi l&rsquo;outil de commande doit limiter le nombre de commandes par créneau.
+Combien coûte un drive ou un click and collect ?
+Le logiciel coûte la même chose dans les deux cas, puisque c&rsquo;est la même commande en ligne. Avec Marchéo, comptez 39 € par mois pour Click &amp; Collect + Réservation, ou 59 € par mois pour Click &amp; Collect + Livraison, sans engagement et avec 0 % de commission. S&rsquo;y ajoutent des frais d&rsquo;installation uniques de 399 ou 549 €. Les plateformes de commande et de livraison prennent en général 14 à 30 % de commission sur chaque commande.
+Le drive ajoute surtout du temps de personnel et, parfois, un terminal de paiement mobile si vous n&rsquo;en avez pas. Le click and collect n&rsquo;ajoute rien de plus que le logiciel.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le client commande en 30 secondes, sans créer de compte, et choisit un créneau de retrait avec un nombre maximum de commandes. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait, limite les commandes jamais récupérées.
+Comment organiser un drive avec un logiciel de click and collect ?
+Vous utilisez les mêmes créneaux de retrait et vous expliquez le fonctionnement du drive sur votre boutique en ligne. Le logiciel prend la commande, le reste est une question d&rsquo;organisation.
+
+Annoncez-le clairement sur votre boutique : où se garer, et comment signaler son arrivée (un appel, par exemple).
+Réduisez le nombre de commandes par créneau pendant les heures de drive, pour qu&rsquo;une personne puisse sortir à chaque arrivée.
+Faites payer en ligne si vous n&rsquo;avez pas de terminal mobile, ou demandez une empreinte bancaire pour les grosses commandes. Notre guide sur l&rsquo;empreinte bancaire contre les commandes non retirées explique son fonctionnement.
+Préparez dans des sacs fermés et étiquetés au nom du client, avec les produits frais regroupés au dernier moment.
+
+Si vos clients ne peuvent pas venir du tout, la livraison à domicile est l&rsquo;étape suivante. Le comparatif click and collect ou livraison à domicile aide à choisir.
+Quelles sont les limites de Marchéo pour un drive ?
+Marchéo prend les commandes et gère les créneaux, mais il n&rsquo;organise pas le drive à votre place. Il n&rsquo;y a pas de borne, ni de détection de l&rsquo;arrivée du client : c&rsquo;est vous qui décidez où il se gare et comment il vous prévient.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : si vous passez à la livraison, c&rsquo;est vous qui faites la tournée avec l&rsquo;outil fourni. Ce n&rsquo;est pas non plus une place de marché qui vous apporte des clients. Et les créneaux s&rsquo;ouvrent au maximum deux semaines à l&rsquo;avance, ce qui convient aux commandes de la semaine et aux fêtes, pas aux réservations de plusieurs mois. Enfin, si vous expédiez surtout des colis dans toute la France, Shopify vous conviendra mieux.
+Par où commencer ?
+Commencez par le click and collect, qui ne demande aucun changement dans la boutique. Regardez ensuite, pendant deux ou trois semaines, combien de clients arrivent en voiture avec des commandes lourdes. Si c&rsquo;est fréquent et que vous avez un emplacement, ajoutez un créneau de drive aux heures calmes. Pour voir à quoi ressemblerait votre boutique, créez la démo gratuite de Marchéo en choisissant votre métier.
+
+Q : Quelle est la différence entre le drive et le click and collect ?
+R : Dans les deux cas, le client commande en ligne puis vient chercher sa commande. Avec le click and collect, il entre dans la boutique et récupère sa commande au comptoir. Avec le drive, il reste dans sa voiture et la commande lui est apportée ou chargée dans le coffre, à un emplacement prévu. Le drive piéton est un retrait à pied dans un point dédié, ce qui revient presque au click and collect.
+Q : Quel logiciel pour proposer le drive ou le click and collect dans un commerce de proximité ?
+R : Le même logiciel sert aux deux, puisque la commande en ligne est identique : seule l'organisation du retrait change. Il faut des créneaux de retrait avec un nombre maximum de commandes, la vente au poids et, si possible, une protection contre les commandes non retirées. Marchéo en fait partie : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois avec la livraison, sans engagement et sans commission, plus 399 ou 549 € de frais d'installation uniques. D'autres options existent : les modules de commande des logiciels de caisse, les constructeurs de sites généralistes, ou les drives fermiers collectifs pour les producteurs.
+Q : Faut-il acheter du matériel pour faire un drive ?
+R : Pas de matériel informatique : avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Le drive demande en revanche un emplacement où la voiture peut s'arrêter, et un moyen d'encaisser dehors si le client ne paie pas en ligne : votre terminal de paiement mobile, si vous en avez un.
+Q : Le drive est-il adapté à une petite boutique de quartier ?
+R : Seulement si une voiture peut s'arrêter sans gêne devant ou près de la boutique, et si quelqu'un peut sortir apporter la commande pendant le service. Dans une rue commerçante étroite ou piétonne, le click and collect est plus simple et ne demande aucune organisation particulière.
 
 # Site internet épicerie fine : pages, coffrets, commandes et prix
 
@@ -6802,11 +6906,11 @@ R : Pas forcément pour une courte tournée locale. La règle est de garder la v
 Q : Que faire si le client n'est pas là à la livraison ?
 R : Ne laissez pas la viande devant la porte, car le froid n'est plus garanti. Prévenez le client avant votre passage, appelez-le s'il n'ouvre pas, puis rapportez la commande au froid. Écrivez à l'avance dans vos conditions ce qui se passe en cas d'absence. Une empreinte bancaire limite aussi le risque de commande perdue.
 
-# Comment prendre les commandes de bûches de Noël en ligne
+# Prendre les commandes de bûches de Noël en ligne en boulangerie
 
-Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier.
+Boulangerie ou pâtisserie : prendre les commandes de bûches de Noël en ligne, avec stock par parfum, créneaux du 24 et du 31, paiement et prix des outils.
 
-Pour prendre les commandes de bûches de Noël en ligne, publiez une page avec vos bûches, leur prix par nombre de parts, un stock par parfum et des créneaux de retrait. Le client choisit seul et la commande vous arrive complète, sans carnet ni téléphone. Avec une boutique Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d&rsquo;installation uniques.
+Une boulangerie ou une pâtisserie prend les commandes de bûches de Noël en ligne avec une page qui affiche chaque bûche, son prix par nombre de parts, un stock par parfum et des créneaux de retrait pour le 24 et le 31 décembre. Le client choisit seul et la commande arrive complète, sans carnet ni téléphone. Avec Marchéo, logiciel français de click &amp; collect, cela coûte 39 € par mois sans engagement, 0 % de commission et 399 € de frais d&rsquo;installation uniques, sans matériel à acheter.
 Ce guide s&rsquo;adresse aux boulangeries et aux pâtisseries, et complète notre guide complet du click &amp; collect pour commerçant. Pour voir ce qui est prévu pour votre métier, consultez la page click &amp; collect pour boulangerie.
 Quelle solution choisir pour prendre les commandes de bûches ?
 La bonne solution dépend de votre nombre de commandes. Un formulaire suffit pour quelques dizaines de bûches. Au-delà, ou si vous ne voulez rien recopier, une boutique en ligne devient plus simple.
@@ -6852,7 +6956,7 @@ Pas de place de marché : c&rsquo;est à vous de faire connaître votre boutique
 
 
 
-Si vos clients vous écrivent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à décider.
+Si vos clients vous écrivent déjà par message, notre comparatif WhatsApp ou boutique en ligne vous aide à décider. Si vous cherchez d&rsquo;abord une solution sans abonnement, notre article sur l&rsquo;application de click and collect gratuite montre ce que chaque option coûte vraiment.
 Que mettre sur la page de commande d&rsquo;une bûche ?
 Une bonne page répond à toutes les questions avant que le client ne vous appelle. Pour chaque bûche, indiquez :
 
@@ -6900,7 +7004,7 @@ Vous clôturez les commandes pour le 31
 
 
 
-Un point à connaître sur Marchéo : les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Les créneaux du 24 décembre sont donc réservables à partir du 11 décembre environ. Annoncez cette date à vos clients. Pour les commandes plus précoces, gardez le téléphone ou un formulaire jusqu&rsquo;à cette date.
+Un point à connaître sur Marchéo : les créneaux de retrait s&rsquo;ouvrent sur les deux semaines à venir. Les créneaux du 24 décembre sont donc réservables à partir du 10 décembre environ. Annoncez cette date à vos clients. Pour les commandes plus précoces, gardez le téléphone ou un formulaire jusqu&rsquo;à cette date.
 Comment limiter le nombre de bûches par jour ?
 Limitez à la fois le stock de chaque bûche et le nombre de commandes par créneau. Le stock protège votre production, et le créneau protège votre comptoir.
 Sur Marchéo, chaque produit peut avoir un stock et chaque créneau une capacité maximale. Quand une bûche est épuisée ou qu&rsquo;un créneau est plein, le client ne peut plus le choisir.
@@ -6926,7 +7030,7 @@ Par où commencer cette semaine ?
 Commencez par fixer votre carte de bûches, puis créez votre page de commande. Sur la page d&rsquo;inscription de Marchéo, choisissez « Boulangerie », tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes, gratuitement.
 Pour le reste de la saison, lisez notre guide pour organiser ses précommandes des fêtes. Si vous n&rsquo;avez pas encore de site, voyez aussi le site internet pour boulangerie. Une affiche en vitrine avec un QR code fera le reste auprès de vos habitués.
 
-Q : Quel logiciel utiliser pour prendre les commandes de bûches de Noël en ligne ?
+Q : Quelle application pour qu'une boulangerie ou une pâtisserie prenne les commandes de bûches de Noël en ligne ?
 R : Pour une vingtaine de bûches, un formulaire gratuit suffit, à condition de recopier chaque commande à la main. Si vous expédiez des colis partout en France, Shopify ou WooCommerce conviennent mieux. Pour le retrait en boutique, Marchéo est un logiciel français pensé pour les boulangeries : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
 Q : Quand ouvrir les commandes de bûches de Noël ?
 R : Annoncez vos bûches début novembre, puis ouvrez les commandes fin novembre ou début décembre. Fixez une date limite autour du 18 au 20 décembre pour le 24. Plus vous connaissez tôt vos quantités, plus vos achats et votre production sont justes.
@@ -6934,6 +7038,8 @@ Q : Faut-il acheter du matériel pour prendre les commandes de bûches en ligne 
 R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client règle par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique.
 Q : Peut-on demander un acompte sur une bûche de Noël ?
 R : Oui, c'est une pratique courante sur les grosses commandes, à condition de l'annoncer avant la validation. Avec Marchéo, le plus simple est le paiement en ligne de la commande. Si vous préférez un acompte partiel, encaissez-le au comptoir ou par lien de paiement, puis notez-le sur la commande.
+Q : Quand faut-il ouvrir les commandes de bûches pour le 24 décembre 2026 ?
+R : Fin novembre ou début décembre, avec une date limite autour du 18 au 20 décembre. Le 24 et le 31 décembre 2026 tombent un jeudi. Avec Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre deviennent réservables vers le 10 décembre, ce qu'il faut annoncer à vos clients.
 
 # Création site internet fleuriste : pages, prix et commandes
 
@@ -8589,7 +8695,7 @@ Click and collect veut dire « cliquer et retirer » : le client commande en lig
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
 Ce guide complète notre guide pour créer sa boutique en ligne et se concentre sur le retrait en boutique. Il s&rsquo;adresse aux boulangers, bouchers, primeurs, poissonniers, traiteurs, fromagers, fleuristes, pizzaiolos et restaurateurs qui se demandent concrètement comment cela marche, ce que cela change au quotidien et par où commencer.
 Click and collect, ça veut dire quoi exactement ?
-Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton.
+Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton. Si vos clients viennent surtout en voiture, notre comparatif drive ou click and collect explique ce qui change quand le client ne descend pas de son véhicule.
 Dans la grande distribution, le client vient chercher un colis préparé à partir du stock. Dans un commerce de bouche, c&rsquo;est un peu différent : le client commande un gâteau pour samedi, un rôti de 1,2 kg, un plateau de fromages ou un bouquet pour 18 h. Le produit est souvent préparé ou découpé pour lui. C&rsquo;est pour cela que trois éléments comptent plus qu&rsquo;ailleurs :
 
 le créneau de retrait, pour que la commande soit fraîche et prête à l&rsquo;heure ;
@@ -9132,7 +9238,7 @@ Les jours où vous êtes au marché, par exemple
 
 
 
-Commencez avec des créneaux larges et une capacité basse. Ajustez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
+Commencez avec des créneaux larges et une capacité basse. Ajustez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment. Si vos clients arrivent surtout en voiture avec des paniers lourds, vous pouvez réserver certains créneaux au retrait sans descendre du véhicule : notre comparatif drive ou click and collect pour un commerçant détaille l&rsquo;organisation.
 Payer en ligne ou au retrait ?
 Les deux fonctionnent chez un primeur. Le paiement au retrait est souvent plus simple, puisque le prix final dépend de la pesée. Le paiement en ligne convient bien aux paniers à prix fixe.
 Le vrai risque, c&rsquo;est le panier préparé pour un client qui ne vient pas. Les fruits mûrs ne se revendent pas toujours le lendemain. Pour les grosses commandes, l&rsquo;empreinte bancaire est une protection simple : jusqu&rsquo;à 75 % du panier est bloqué sur la carte du client sans être débité, puis libéré automatiquement 24 heures après le retrait. L&rsquo;option est facultative, vous pouvez la réserver aux commandes importantes. Notre article sur l&rsquo;empreinte bancaire contre les commandes non retirées détaille le fonctionnement.

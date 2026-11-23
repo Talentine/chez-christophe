@@ -5,7 +5,7 @@ description: "Mettre en place le click and collect chez un primeur ou un maraîc
 meta_title: "Click and collect primeur : le guide pratique"
 meta_description: "Click and collect pour primeur et maraîcher : paniers de la semaine, vente au kilo, créneaux de retrait, ruptures et paiement. Le guide concret pour démarrer."
 date: 2026-10-19
-modified: 2026-11-20
+modified: 2026-11-23
 rubrique: Guide
 emoji: 🥕
 keywords:
@@ -95,7 +95,7 @@ Le créneau est le réglage le plus important. Mal réglé, il vous fait crouler
 | Heure limite pour les paniers | La veille au soir, pour préparer au calme |
 | Jours fermés à la commande | Les jours où vous êtes au marché, par exemple |
 
-Commencez avec des créneaux larges et une capacité basse. Ajustez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment.
+Commencez avec des créneaux larges et une capacité basse. Ajustez après deux ou trois semaines, quand vous saurez combien de commandes arrivent vraiment. Si vos clients arrivent surtout en voiture avec des paniers lourds, vous pouvez réserver certains créneaux au retrait sans descendre du véhicule : notre comparatif [drive ou click and collect pour un commerçant](/blog/drive-ou-click-and-collect-commercant) détaille l'organisation.
 
 ## Payer en ligne ou au retrait ?
 

@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-22
+modified: 2026-11-23
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -45,7 +45,7 @@ Ce guide complète notre guide pour [créer sa boutique en ligne](/blog/creer-sa
 
 ## Click and collect, ça veut dire quoi exactement ?
 
-Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton.
+Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton. Si vos clients viennent surtout en voiture, notre comparatif [drive ou click and collect](/blog/drive-ou-click-and-collect-commercant) explique ce qui change quand le client ne descend pas de son véhicule.
 
 Dans la grande distribution, le client vient chercher un colis préparé à partir du stock. Dans un commerce de bouche, c'est un peu différent : le client commande un gâteau pour samedi, un rôti de 1,2 kg, un plateau de fromages ou un bouquet pour 18 h. Le produit est souvent préparé ou découpé pour lui. C'est pour cela que trois éléments comptent plus qu'ailleurs :
 

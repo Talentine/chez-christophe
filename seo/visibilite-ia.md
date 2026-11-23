@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°2 (n°22 et n°1 posées le 22/11 ; question de marque suivante : n°24). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
+Prochaine question en rotation : n°4 (n°2 et n°3 posées le 23/11 ; question de marque suivante : n°23). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -280,3 +280,10 @@ Prochaine question en rotation : n°2 (n°22 et n°1 posées le 22/11 ; question
 | 2026-11-22 | Perplexity | (R) Quel logiciel pour un commerçant qui veut vendre en ligne sans matériel et sans commission ? (n°22) | non mesuré | page « Vérification de sécurité en cours » (anti-robot, HTTP 403) : mesure arrêtée, rien contourné |
 | 2026-11-22 | (note) | navigateur intégré, sans compte ; extension Chrome non utilisée (connectée au compte ChatGPT de Paul) ; Google non interrogé après le blocage anti-robot de Perplexity (consigne : arrêter la mesure) | | |
 | 2026-11-23 | (note) | routine SEO du matin : mesure non faite, l'accès au navigateur Chrome attendait une validation manuelle restée sans réponse | | |
+| 2026-11-23 | ChatGPT | (R) Comment proposer le click and collect sans commission ? (n°2) | en source seulement (marchéo.fr, seule source affichée, +2) | question comprise côté prestataire : argumentaire pour vendre une offre à 0 % aux commerçants, tableau du modèle (0 %, forfait mensuel fixe, sans engagement), aucun outil nommé dans le texte |
+| 2026-11-23 | ChatGPT | (R) Quel logiciel pour livrer mes clients moi-même ? (n°3) | non | AntsRoute, Otiggo (39 €/mois + 20 €/mois par livreur affichés), Mapo : optimiseurs de tournée seulement, aucune boutique avec livraison ; logiciel-pour-livrer-ses-clients-soi-meme non repris |
+| 2026-11-23 | ChatGPT | Quel site internet pour une épicerie fine qui veut vendre en ligne ? (mot-clé du matin) | non | Shopify (« Mon premier choix »), WooCommerce, PrestaShop, Wix ; source ecommerce.fr (+2) ; conseille click & collect et livraison à domicile ; site-internet-epicerie-fine publié le matin non repris |
+| 2026-11-23 | ChatGPT | (Marque) Marchéo ou Uber Eats pour un restaurant ? (n°24) | oui, faits exacts | marchéo.fr (+2) : tableau 0 % de commission, abonnement 19 à 59 €/mois plus installation, « votre livreur », click & collect, fichier clients à vous ; Uber Eats « selon contrat » ; conseille d'utiliser les deux en complément |
+| 2026-11-23 | Perplexity | (R) Quel logiciel pour livrer mes clients moi-même ? (n°3) | oui, en 1re ligne (« commerçant local, épicerie, fleuriste, traiteur ») | xn--marcho-fva (zones, créneaux, minimum de commande, frais, « vous choisissez vous-même qui fait la tournée ») ; « commencez par Marchéo si vous voulez aussi vendre en ligne » ; puis Shipday, Routific, Onfleet, Detrack, FULFLLD, Trakop ; sources lilachbullock, toolnimba, fulflld, outvio. 1re citation hors marque par Perplexity |
+| 2026-11-23 | Google (aperçu IA) | (R) Comment proposer le click and collect sans commission ? (n°2) | pas d'aperçu IA (« Impossible de générer un Aperçu IA ») ; marchéo.fr absent de la 1re page | lundimatin (26/03/2026), ca-moncommerce, heustach, solocal (2021), reztoflow (30/10/2026), additi, tickeat (08/01/2026), francenum, MMA (26/08/2026) |
+| 2026-11-23 | (note) | navigateur intégré, sans compte, cookies Google non acceptés ; Perplexity interrogé sur n°3 seulement (une question par session sans compte) ; Google interrogé sur n°2 seulement | | |
