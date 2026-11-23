@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet épicerie fine : pages, coffrets, commandes et prix](https://marchéo.fr/blog/site-internet-epicerie-fine) : Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment.
 - [Application click and collect gratuite : ce qui est vraiment gratuit](https://marchéo.fr/blog/application-click-and-collect-gratuite) : Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
 - [Réglementation livraison alimentaire : le guide du commerçant](https://marchéo.fr/blog/reglementation-livraison-alimentaire-commercant) : Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
 - [Lien de paiement ou boutique en ligne : que choisir ?](https://marchéo.fr/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) : Lien de paiement ou boutique en ligne pour encaisser les commandes de votre commerce ? Comparatif honnête : coût, frais, temps passé, retrait et no-show.
@@ -116,4 +117,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-22
+- Dernière mise à jour : 2026-11-23

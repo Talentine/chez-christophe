@@ -1,6 +1,7 @@
 ---
 title: "Application click and collect gratuite : ce qui est vraiment gratuit"
 titre_court: "Click and collect gratuit"
+meta_title: "Application click and collect gratuite : le vrai coût"
 description: "Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui."
 date: 2026-11-22
 rubrique: Guide

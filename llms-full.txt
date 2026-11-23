@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site internet épicerie fine : pages, coffrets, commandes et prix](https://marchéo.fr/blog/site-internet-epicerie-fine) : Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment.
 - [Application click and collect gratuite : ce qui est vraiment gratuit](https://marchéo.fr/blog/application-click-and-collect-gratuite) : Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
 - [Réglementation livraison alimentaire : le guide du commerçant](https://marchéo.fr/blog/reglementation-livraison-alimentaire-commercant) : Réglementation de la livraison alimentaire pour un commerçant : textes, températures, véhicule, règle des 80 km, allergènes et assurance, expliqués simplement.
 - [Lien de paiement ou boutique en ligne : que choisir ?](https://marchéo.fr/blog/lien-de-paiement-ou-boutique-en-ligne-commerce) : Lien de paiement ou boutique en ligne pour encaisser les commandes de votre commerce ? Comparatif honnête : coût, frais, temps passé, retrait et no-show.
@@ -116,7 +117,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-22
+- Dernière mise à jour : 2026-11-23
 
 
 ---
@@ -587,6 +588,169 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site internet épicerie fine : pages, coffrets, commandes et prix
+
+Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment.
+
+Un site internet d&rsquo;épicerie fine sert à être trouvé par les clients du quartier, à montrer vos producteurs et vos coffrets, et à prendre les commandes à l&rsquo;avance, surtout pour les fêtes. Pour une clientèle locale, quatre ou cinq pages et une commande avec retrait en boutique suffisent. Avec un logiciel métier comme Marchéo, cela coûte 19 à 59 € par mois, sans commission et sans matériel à acheter.
+La méthode valable pour tous les commerces est dans notre guide complet de la création du site internet d&rsquo;un commerce. Ici, on parle de ce qui change dans une épicerie fine : des centaines de références, des producteurs à raconter, des coffrets cadeaux et une question clé, vendre en local ou expédier des colis.
+Pourquoi une épicerie fine a-t-elle besoin d&rsquo;un site internet ?
+Parce que vos produits se choisissent souvent avant de venir. Un client qui cherche une bonne huile d&rsquo;olive ou un cadeau compare depuis son téléphone, puis se déplace là où il a vu ce qu&rsquo;il veut.
+
+Vous êtes trouvé en direct quand on tape « épicerie fine » avec le nom de votre ville.
+Votre sélection se voit : producteurs, origines, petites maisons, ce qui vous distingue d&rsquo;un supermarché.
+Les coffrets se commandent par écrit, sans budget ni date mal compris au téléphone.
+
+Site vitrine ou site de commande : que choisir pour une épicerie fine ?
+Un site vitrine suffit si vos clients viennent surtout flâner en boutique. Dès que vous préparez des coffrets à l&rsquo;avance ou que des clients fidèles rachètent toujours les mêmes produits, un site de commande avec créneaux de retrait vous fera gagner du temps.
+
+
+
+Votre situation
+Le site qu&rsquo;il vous faut
+
+
+
+
+Clientèle de passage, peu de commandes
+Site vitrine : horaires, adresse, sélection, photos
+
+
+Coffrets et paniers garnis commandés à l&rsquo;avance
+Site avec click &amp; collect et créneaux de retrait
+
+
+Clients du quartier qui demandent à être livrés
+Site avec click &amp; collect et livraison locale
+
+
+Dégustations ou ateliers sur inscription
+Site avec réservation en ligne
+
+
+
+Le fonctionnement de la commande en ligne en épicerie, du vrac au poids aux créneaux de retrait, est détaillé dans notre article sur le click and collect en épicerie.
+Vendre en local ou expédier des colis : quelle différence pour le site ?
+C&rsquo;est la première question à trancher, car elle décide de l&rsquo;outil. Vendre en local, c&rsquo;est le retrait en boutique et la livraison dans votre ville par vos soins. Expédier, c&rsquo;est préparer des colis, calculer des frais de transporteur et gérer les retours dans toute la France.
+
+
+
+
+Vente locale
+Expédition de colis
+
+
+
+
+Clients
+Quartier, ville, alentours
+Toute la France
+
+
+Remise du produit
+Retrait en boutique ou livraison maison
+Transporteur (La Poste, relais)
+
+
+Produits frais
+Possibles
+Difficiles (froid, délais)
+
+
+Outil adapté
+Logiciel métier comme Marchéo
+E-commerce généraliste (Shopify, WooCommerce)
+
+
+
+Marchéo est pensé pour la vente locale : il ne calcule pas de frais de transporteur. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour fixer votre zone, vos créneaux, votre minimum et vos frais si vous livrez vous-même. Si l&rsquo;expédition est votre projet principal, un outil d&rsquo;e-commerce classique sera plus adapté.
+Quelles pages mettre sur le site d&rsquo;une épicerie fine ?
+Quatre ou cinq pages suffisent. Le client veut savoir ce que vous vendez, d&rsquo;où ça vient et comment l&rsquo;obtenir.
+
+Accueil : nom, adresse, horaires, téléphone, et un bouton « Commander » visible dès l&rsquo;ouverture.
+La sélection : classée par rayon (huiles et vinaigres, épices, conserves, biscuits, thés et cafés, vins si votre licence le permet), avec l&rsquo;origine en une ligne.
+Les coffrets et paniers : présentés par budget, avec le contenu, le prix et le délai de préparation.
+Vos producteurs : quelques portraits courts, c&rsquo;est la page qui donne envie de pousser la porte.
+Infos pratiques : paiement, zone de livraison si vous livrez, allergènes, mentions légales.
+
+Les mentions légales, les conditions de vente et l&rsquo;information sur les allergènes sont détaillées dans notre article sur les obligations légales d&rsquo;une boutique en ligne.
+Faut-il mettre toutes ses références en ligne ?
+Non. Commencez par trente à cinquante produits : vos meilleures ventes, vos coffrets et ce que les clients rachètent. Un produit affiché mais épuisé déçoit plus qu&rsquo;un produit absent.
+Avec Marchéo, la démo de l&rsquo;épicerie arrive avec un catalogue déjà rempli (épices, huiles et vinaigres, olives, fruits secs, pâtes et conserves). Vous corrigez les prix, retirez ce que vous ne vendez pas et ajoutez vos spécialités.
+Comment présenter les coffrets cadeaux sur le site ?
+Par budget, c&rsquo;est ainsi que le client raisonne. Proposez trois ou quatre formules, par exemple un petit coffret, un coffret dégustation et un grand panier garni, avec une photo réelle et la liste du contenu. Ajoutez un champ de commentaire pour le message à glisser dans le coffret.
+Pour les fêtes, ouvrez les commandes plusieurs semaines avant, avec des créneaux de retrait sur les jours les plus chargés. Pour limiter les coffrets jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Les autres idées de saison sont dans notre guide des précommandes de fêtes pour les commerces de bouche.
+Combien coûte un site internet pour une épicerie fine ?
+Le prix dépend de qui fait le site et de ce qu&rsquo;il doit faire. Voici les grandes familles, avec des fourchettes prudentes.
+
+
+
+Solution
+Coût indicatif
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Quelques dizaines d&rsquo;euros par mois
+Adapté à l&rsquo;expédition, créneaux de retrait à configurer vous-même
+
+
+Agence ou freelance
+De quelques centaines à plusieurs milliers d&rsquo;euros
+Sur mesure, mais chaque modification se paie
+
+
+Logiciel métier comme Marchéo
+19, 39 ou 59 € par mois, sans engagement
+Pensé pour la vente locale, 0 % de commission
+
+
+
+Chez Marchéo, les frais d&rsquo;installation sont uniques : 249 € pour la Vitrine, 399 € pour le Click &amp; Collect avec Réservation, 549 € pour le Click &amp; Collect avec Livraison. Le détail des postes de dépense est dans notre article sur ce que coûte un site de click and collect.
+Que faut-il pour démarrer, et que ne faut-il pas ?
+Il vous faut votre liste de produits et vos horaires, et rien de nouveau à acheter. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+
+
+
+Ce qu&rsquo;il vous faut
+Ce qu&rsquo;il ne vous faut pas
+
+
+
+
+Une liste de 30 à 50 produits, avec leurs prix
+Une tablette, une imprimante ou une caisse en plus
+
+
+Quelques photos de vos rayons et de vos coffrets
+Un développeur ou une agence
+
+
+Vos horaires et vos formules de coffrets
+Une commission sur chaque vente
+
+
+Le téléphone ou l&rsquo;ordinateur que vous avez déjà
+Un engagement de longue durée
+
+
+
+Comment faire connaître le site de son épicerie fine ?
+Reliez d&rsquo;abord le site à votre fiche Google Business, qui apparaît sur la carte quand un client cherche une épicerie fine près de chez lui, et ajoutez-y le lien de commande (voir notre guide de la fiche Google Business pour un commerce de bouche). Mettez ensuite un QR code près de la caisse et sur les étiquettes des coffrets.
+Par où commencer cette semaine ?
+Commencez par voir à quoi ressemblerait votre site. Sur la page d&rsquo;inscription, choisissez « épicerie », tapez le nom de votre boutique, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement. Vous ajoutez ensuite vos produits et vos coffrets à votre rythme, à temps pour les commandes de fin d&rsquo;année. Toutes les fonctions prévues pour votre métier sont sur la page Marchéo pour les épiceries.
+
+Q : Quel outil pour créer le site internet d'une épicerie fine ?
+R : Tout dépend de l'endroit où vivent vos clients. Pour une clientèle locale qui vient chercher ses produits ou se fait livrer dans le quartier, un logiciel métier comme Marchéo suffit : 19 € par mois pour un site vitrine, 39 € avec le click & collect et la réservation, 59 € avec la livraison, sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €. Pour expédier des colis dans toute la France, une solution d'e-commerce généraliste comme Shopify ou WooCommerce est plus adaptée, car Marchéo ne gère pas les transporteurs.
+Q : Faut-il acheter du matériel pour prendre les commandes sur le site d'une épicerie fine ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez avec votre caisse et votre terminal habituels.
+Q : Combien coûte un site internet pour une épicerie fine ?
+R : De quelques dizaines d'euros par mois avec un constructeur généraliste à plusieurs milliers d'euros avec une agence. Un logiciel métier à abonnement fixe comme Marchéo coûte 19 à 59 € par mois, sans commission et sans engagement, avec des frais d'installation uniques de 249 à 549 € selon la formule.
+Q : Peut-on vendre de l'alcool sur le site d'une épicerie fine ?
+R : Oui, si votre licence le permet. Vendre du vin ou des spiritueux à emporter, y compris par commande en ligne, suppose d'avoir la licence adaptée. Vérifiez votre situation auprès de votre mairie ou des douanes avant de mettre ces produits en ligne, et affichez la mention sur l'abus d'alcool.
 
 # Application click and collect gratuite : ce qui est vraiment gratuit
 
@@ -2986,7 +3150,7 @@ Retrait et livraison dans votre zone, par vos soins
 
 Toutes les formules sont à 0 % de commission et sans engagement. Si vous voulez aussi livrer les clients du quartier, la formule Livraison vous donne l&rsquo;outil (zone, créneaux, minimum de commande, frais), mais Marchéo ne livre pas : c&rsquo;est vous qui organisez la tournée.
 Le click and collect convient-il à toutes les épiceries ?
-Il convient surtout aux épiceries qui vendent localement. Si l&rsquo;essentiel de vos ventes en ligne part en colis vers toute la France, un outil d&rsquo;e-commerce avec expédition sera plus adapté, et notre comparatif quelle plateforme pour vendre en ligne vous aide à choisir. Les deux peuvent se compléter : colis pour les clients éloignés, retrait et livraison locale pour les gens du quartier.
+Il convient surtout aux épiceries qui vendent localement. Si l&rsquo;essentiel de vos ventes en ligne part en colis vers toute la France, un outil d&rsquo;e-commerce avec expédition sera plus adapté, et notre comparatif quelle plateforme pour vendre en ligne vous aide à choisir. Les deux peuvent se compléter : colis pour les clients éloignés, retrait et livraison locale pour les gens du quartier. Pour les pages, les coffrets et le prix, voyez notre guide du site internet d&rsquo;une épicerie fine.
 Par où commencer ?
 Le plus simple est de voir votre future boutique avant de décider. Sur marchéo.fr/inscription, vous choisissez « Épicerie », vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, avec le catalogue déjà rempli. C&rsquo;est gratuit et sans engagement.
 
@@ -8376,6 +8540,7 @@ Chaque métier a ses priorités en ligne, et un logiciel métier les prévoit da
 Boulangerie. Gâteaux sur commande et pains spéciaux. Voir la solution pour boulangerie et notre guide du site internet de boulangerie.
 Boucherie. Colis, découpes sur demande, vente au kilo. Voir la solution pour boucherie le guide pour vendre au poids en ligne et notre article dédié au site internet d&rsquo;une boucherie.
 Primeur. Paniers de saison et vente au kilo. Voir la solution pour primeur, notre guide du site internet primeur et maraîcher et le guide du click and collect primeur.
+Épicerie fine. Coffrets cadeaux, producteurs, vente locale ou colis. Voir la solution pour épicerie et notre guide du site internet d&rsquo;une épicerie fine.
 Poissonnerie. Poisson préparé, plateaux de fruits de mer, chaîne du froid. Voir la solution pour poissonnerie, notre guide du site internet pour poissonnerie et notre article sur la livraison à domicile en poissonnerie.
 Traiteur. Plateaux, buffets, devis pour les événements. Voir la solution pour traiteur et le guide de création de site internet de traiteur.
 Fromagerie. Coupes au poids et plateaux pour recevoir. Voir la solution pour fromagerie le guide du click and collect en fromagerie et notre article dédié au site internet d&rsquo;une fromagerie.
@@ -10345,6 +10510,15 @@ Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pa
 
 Le site internet d&rsquo;une boulangerie sert à prendre les commandes de gâteaux, de pains spéciaux et de produits de fêtes à l&rsquo;avance, avec une heure de retrait choisie par le client. Il lui faut trois choses : des créneaux de retrait avec une capacité, des gâteaux sur mesure faciles à commander, et aucune commission sur chaque vente. Marchéo, logiciel français pour les commerces de bouche, le fait pour 39 € par mois sans engagement, avec 0 % de commission, 399 € d&rsquo;installation unique, le catalogue boulangerie déjà rempli et sans matériel à acheter.
 Une boulangerie n&rsquo;a pas besoin d&rsquo;un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l&rsquo;avance : le gâteau d&rsquo;anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C&rsquo;est là que le carnet au comptoir montre ses limites, et c&rsquo;est là qu&rsquo;un site bien fait change les matinées.
+Comment créer le site internet d&rsquo;une boulangerie pâtisserie ?
+La création du site internet d&rsquo;une boulangerie pâtisserie tient en quatre étapes, et la première prend 30 secondes. Vous n&rsquo;avez besoin ni d&rsquo;un développeur ni de matériel à acheter : votre téléphone ou votre ordinateur suffit.
+
+Choisir l&rsquo;outil. Un constructeur généraliste (Wix, WordPress, Shopify), une agence, ou un logiciel métier comme Marchéo, dont le catalogue boulangerie est déjà rempli.
+Préparer quatre pages. Accueil avec horaires et bouton « Commander », les gâteaux et pains à commander, la boulangerie (votre histoire, vos farines), les infos pratiques et mentions légales.
+Mettre en ligne ce qui se commande à l&rsquo;avance. Entremets par nombre de parts, pains spéciaux, viennoiseries du week-end, bûches et galettes en saison, avec vos vraies photos.
+Relier le site à votre fiche Google et afficher un QR code au comptoir.
+
+La méthode complète, valable pour tous les commerces, est dans notre guide de la création du site internet d&rsquo;un commerce. Si vous hésitez entre un simple site vitrine et un site de commande, la réponse courte : dès que vous prenez des gâteaux sur commande, le site de commande se rembourse vite.
 Que coûte la prise de commande au carnet ?
 Elle coûte des gâteaux jetés et du temps au comptoir. Le samedi à 10 h, une cliente commande un fraisier pour huit personnes pour le lendemain. La vendeuse note sur le carnet, pendant que cinq personnes attendent. Le lendemain, la cliente ne vient pas : le fraisier finit en vitrine à moitié prix. Multipliez par les semaines, ajoutez les erreurs de lecture et les oublis, et vous avez le coût réel d&rsquo;une prise de commande manuelle.
 Que doit faire le site de commande d&rsquo;une boulangerie ?
@@ -10477,6 +10651,8 @@ Q : Quel est le meilleur logiciel de commande en ligne pour une boulangerie ?
 R : Cela dépend de ce que vous vendez à l'avance. Pour des gâteaux sur mesure, des pains spéciaux et des précommandes de fêtes à retirer en boutique, un logiciel à abonnement fixe avec créneaux de retrait convient le mieux. Marchéo est l'une de ces options : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, 399 ou 549 € d'installation unique, catalogue boulangerie déjà rempli. Si votre éditeur de caisse propose un module de commande inclus, comparez-le. Pour expédier des biscuits ou des colis dans toute la France, une solution comme Shopify convient mieux.
 Q : Quelle application de commande en ligne pour une boulangerie ?
 R : Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure.
+Q : Faut-il acheter du matériel pour prendre les commandes en ligne dans une boulangerie ?
+R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez avec votre caisse et votre terminal habituels.
 Q : Que doit-on pouvoir commander en ligne dans une boulangerie ?
 R : Ce qui se commande naturellement à l'avance : gâteaux d'anniversaire et de cérémonie, pains spéciaux, brioches et viennoiseries du week-end, plateaux pour le bureau, galettes et bûches en saison. Le pain quotidien reste au comptoir.
 Q : Comment gérer les gâteaux sur mesure ?

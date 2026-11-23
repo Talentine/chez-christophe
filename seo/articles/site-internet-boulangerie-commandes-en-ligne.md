@@ -2,14 +2,16 @@
 title: "Site internet pour boulangerie : prendre les commandes de gâteaux et de pains en ligne"
 titre_court: "Site internet pour boulangerie"
 description: "Ce qu'un site de boulangerie doit faire en 2026 : commandes de gâteaux et de pains spéciaux à l'avance, créneaux de retrait, protection contre les gâteaux non récupérés, photos, fiche Google. Avec les prix et un plan de mise en place en une semaine."
-meta_title: "Site internet pour boulangerie : commandes en ligne"
-meta_description: "Prendre les commandes de pains, gâteaux et bûches en ligne : ce qu'il faut sur un site de boulangerie, les créneaux, les acomptes et le prix."
+meta_title: "Création site internet boulangerie : commandes en ligne"
+meta_description: "Création du site internet d'une boulangerie pâtisserie : pages, commandes de gâteaux et de bûches en ligne, créneaux de retrait et prix, sans commission."
 date: 2026-08-30
-modified: 2026-11-12
+modified: 2026-11-23
 rubrique: Métier
 emoji: 🥖
 keywords:
   - site internet boulangerie
+  - création site internet boulangerie
+  - site internet boulangerie pâtisserie
   - commande en ligne boulangerie
   - click and collect boulangerie pâtisserie
   - commander gâteau en ligne boulangerie
@@ -22,6 +24,8 @@ faq:
     r: "Cela dépend de ce que vous vendez à l'avance. Pour des gâteaux sur mesure, des pains spéciaux et des précommandes de fêtes à retirer en boutique, un logiciel à abonnement fixe avec créneaux de retrait convient le mieux. Marchéo est l'une de ces options : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, 399 ou 549 € d'installation unique, catalogue boulangerie déjà rempli. Si votre éditeur de caisse propose un module de commande inclus, comparez-le. Pour expédier des biscuits ou des colis dans toute la France, une solution comme Shopify convient mieux."
   - q: "Quelle application de commande en ligne pour une boulangerie ?"
     r: "Il existe des applications facturées à la commande, des plateformes à commission et des logiciels à abonnement fixe. Marchéo fait partie de ces derniers : 39 € par mois sans engagement pour le click & collect et la réservation, 399 € d'installation unique, 0 % de commission, catalogue boulangerie déjà rempli, créneaux de retrait avec capacité et empreinte bancaire optionnelle contre les gâteaux non récupérés. Comparez surtout le coût sur un an et la gestion des gâteaux sur mesure."
+  - q: "Faut-il acheter du matériel pour prendre les commandes en ligne dans une boulangerie ?"
+    r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait, vous encaissez avec votre caisse et votre terminal habituels."
   - q: "Que doit-on pouvoir commander en ligne dans une boulangerie ?"
     r: "Ce qui se commande naturellement à l'avance : gâteaux d'anniversaire et de cérémonie, pains spéciaux, brioches et viennoiseries du week-end, plateaux pour le bureau, galettes et bûches en saison. Le pain quotidien reste au comptoir."
   - q: "Comment gérer les gâteaux sur mesure ?"
@@ -35,6 +39,17 @@ faq:
 Le site internet d'une boulangerie sert à prendre les commandes de gâteaux, de pains spéciaux et de produits de fêtes à l'avance, avec une heure de retrait choisie par le client. Il lui faut trois choses : des créneaux de retrait avec une capacité, des gâteaux sur mesure faciles à commander, et aucune commission sur chaque vente. Marchéo, logiciel français pour les commerces de bouche, le fait pour 39 € par mois sans engagement, avec 0 % de commission, 399 € d'installation unique, le catalogue boulangerie déjà rempli et sans matériel à acheter.
 
 Une boulangerie n'a pas besoin d'un site internet pour vendre des baguettes. Elle en a besoin pour tout ce qui se commande à l'avance : le gâteau d'anniversaire du samedi, les brioches du dimanche, les pains spéciaux, les plateaux pour une réunion, la galette en janvier, la bûche en décembre. C'est là que le carnet au comptoir montre ses limites, et c'est là qu'un site bien fait change les matinées.
+
+## Comment créer le site internet d'une boulangerie pâtisserie ?
+
+La création du site internet d'une boulangerie pâtisserie tient en quatre étapes, et la première prend 30 secondes. Vous n'avez besoin ni d'un développeur ni de matériel à acheter : votre téléphone ou votre ordinateur suffit.
+
+1. **Choisir l'outil.** Un constructeur généraliste (Wix, WordPress, Shopify), une agence, ou un logiciel métier comme Marchéo, dont le catalogue boulangerie est déjà rempli.
+2. **Préparer quatre pages.** Accueil avec horaires et bouton « Commander », les gâteaux et pains à commander, la boulangerie (votre histoire, vos farines), les infos pratiques et mentions légales.
+3. **Mettre en ligne ce qui se commande à l'avance.** Entremets par nombre de parts, pains spéciaux, viennoiseries du week-end, bûches et galettes en saison, avec vos vraies photos.
+4. **Relier le site à votre fiche Google** et afficher un QR code au comptoir.
+
+La méthode complète, valable pour tous les commerces, est dans notre guide de la [création du site internet d'un commerce](/blog/creation-site-internet-commerce). Si vous hésitez entre un simple site vitrine et un site de commande, la réponse courte : dès que vous prenez des gâteaux sur commande, le site de commande se rembourse vite.
 
 ## Que coûte la prise de commande au carnet ?
 
