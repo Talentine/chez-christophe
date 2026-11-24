@@ -1193,7 +1193,7 @@
     <div style="font-family:'Fraunces','Playfair Display',Georgia,serif;font-size:34px;font-weight:500;letter-spacing:-1px;margin-bottom:18px;line-height:1;">Réglages</div>
 
     <!-- HERO BOUTIQUE EN LIGNE — coffee card style proto -->
-    <div style="position:relative;overflow:hidden;background:#1C1814;border-radius:22px;padding:22px 22px;margin-bottom:24px;color:#F4ECDD;">
+    <div id="reg-hero" style="position:relative;overflow:hidden;background:#1C1814;border-radius:22px;padding:22px 22px;margin-bottom:24px;color:#F4ECDD;">
       <div style="position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(244,236,221,0.05);pointer-events:none;"></div>
       <div style="position:relative;z-index:1;">
         <div style="font-size:11px;font-weight:700;color:rgba(244,236,221,0.55);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;">Boutique en ligne</div>
@@ -1285,7 +1285,7 @@
 
     <div id="reglagesMenu">
 
-      <div class="reg-group">
+      <div class="reg-group" id="reg-grp-boutique">
         <div class="reg-group-titre">🏪 Boutique</div>
         <div class="reg-list">
           <div class="reg-row" onclick="scrollToReg('reg-identite')">
@@ -1326,7 +1326,7 @@
         </div>
       </div>
 
-      <div class="reg-group">
+      <div class="reg-group" id="reg-grp-ventes">
         <div class="reg-group-titre">💰 Ventes</div>
         <div class="reg-list">
           <div class="reg-row" onclick="ouvrirZoneLivraison()">
@@ -1362,7 +1362,7 @@
         </div>
       </div>
 
-      <div class="reg-group">
+      <div class="reg-group" id="reg-grp-compte">
         <div class="reg-group-titre">👤 Compte</div>
         <div class="reg-list">
           <div class="reg-row" onclick="scrollToReg('reg-mdp')">
@@ -1382,7 +1382,7 @@
           </div>
           <div class="reg-row" onclick="demarrerTour()">
             <div class="reg-icon" style="background:#F4B942;">🎓</div>
-            <div class="reg-label">Refaire le tour de l'app<div class="reg-sub">Visite guidée des fonctionnalités</div></div>
+            <div class="reg-label">Refaire le tour de l'app<div class="reg-sub">Visite guidée pas à pas, à ton rythme</div></div>
             <div class="reg-chevron">›</div>
           </div>
           <div class="reg-row" onclick="scrollToReg('reg-alarme')">
@@ -1393,7 +1393,7 @@
         </div>
       </div>
 
-      <div class="reg-group">
+      <div class="reg-group" id="reg-grp-abo">
         <div class="reg-group-titre">💼 Abonnement &amp; paiements</div>
         <div class="reg-list">
           <div class="reg-row" onclick="scrollToReg('reg-abonnement')">
@@ -5072,6 +5072,8 @@ window.addEventListener('beforeinstallprompt', e => {
 });
 
 async function demanderPermissionNotifications(reg) {
+  // iPhone hors app installée : l'API Notification n'existe pas
+  if (!('Notification' in window)) return;
   if (Notification.permission === 'granted') {
     const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     abonnerAuxNotifications(reg);
@@ -5624,74 +5626,328 @@ async function verifierSessionCommercant() {
 }
 
 // ============================================================
-// ── TOUR INTERACTIF (onboarding 1er login) ───────────────────
+// ── VISITE GUIDÉE (1er login + « Refaire le tour de l'app ») ──
 // ============================================================
-// Chaque étape qui a un `onglet` navigue automatiquement sur cette page
-// AVANT d'afficher la bulle (le commerçant voit la vraie page concernée
-// pendant qu'il lit la description, pas juste un highlight).
+// Principes :
+//  - Étape 1 = installation sur l'écran d'accueil, étape 2 = notifications.
+//  - Chaque étape ouvre la vraie page et l'ÉCLAIRE (pas de flou) : le
+//    commerçant voit ce dont on parle pendant qu'il lit.
+//  - Rien n'avance tout seul : on passe à la suite uniquement au clic.
+//  - La checklist « Bienvenue » n'apparaît qu'une fois la visite terminée.
+//  - Une étape dont l'onglet est masqué (métier / offre / rôle) est sautée.
 const TOUR_STEPS = [
   {
-    titre: '👋 Bienvenue sur Marchéo !',
-    desc: 'Je vais te montrer ton dashboard en 7 étapes. Ça prend 1 minute, et après tu pourras gérer ta boutique les yeux fermés.',
-    cible: null, // intro
-    onglet: 'commandes', // démarre sur la page principale
-    position: 'center',
-    cta: 'Commencer le tour →'
+    id: 'install',
+    titre: '📲 Installe Marchéo sur ton écran d\'accueil',
+    corps: tourCorpsInstall
   },
   {
-    titre: '📦 Tes commandes en direct',
-    desc: 'Toutes les commandes en cours arrivent ici. Tu vois le client, le créneau, le total. Clique sur une commande pour voir les détails.',
-    cible: '#tab-commandes',
+    id: 'notifs',
+    titre: '🔔 Sois alerté à chaque commande',
+    corps: tourCorpsNotifs
+  },
+  {
     onglet: 'commandes',
-    position: 'top'
+    titre: '🛒 Tes commandes',
+    desc: 'Chaque commande arrive ici. Touche-la pour voir le détail et la faire avancer :'
+      + tourListe([
+        '<b>Nouvelles</b> : à accepter',
+        '<b>Aujourd\'hui</b> / <b>Plus tard</b> : à préparer',
+        '<b>Prêtes</b>, puis <b>Remises</b> au client'
+      ])
   },
   {
-    titre: '📅 Agenda & créneaux',
-    desc: 'Visualise tes journées chargées en un coup d\'œil. Clique sur un jour pour voir les commandes et résa du jour avec les téléphones clients.',
-    cible: '#tab-creneaux',
+    onglet: 'commandes',
+    cibles: ['.stats-card'],
+    titre: '📊 Ta journée en un coup d\'œil',
+    desc: 'Toujours en haut de l\'écran : les retraits et le chiffre d\'affaires du jour, ce qu\'il reste à préparer et les retraits de demain.'
+  },
+  {
     onglet: 'creneaux',
-    position: 'top'
+    titre: '🗓 Ton agenda',
+    desc: 'Touche un jour du calendrier pour voir ses commandes et réservations, avec le téléphone des clients.'
+      + tourAstuce('Tes créneaux se règlent dans <b>Réglages → Mes créneaux récurrents</b>.')
   },
   {
-    titre: '🥕 Tes produits',
-    desc: 'Ajoute un produit en 10 secondes : photo, nom, prix, c\'est en ligne. Tu peux aussi gérer les stocks.',
-    cible: '#tab-produits',
     onglet: 'produits',
-    position: 'top'
+    titre: '🥕 Tes produits',
+    desc: 'Touche <b>+ Ajouter</b> pour créer un produit : photo, nom, prix, et il est en vente. Touche un produit de la liste pour le modifier ou le retirer de la vente.'
   },
   {
-    titre: '💬 Carnet client (CRM)',
-    desc: 'Tous tes clients regroupés par segment : VIP, fidèles, inactifs. Envoie un SMS ou une notification pour les faire revenir.',
-    cible: '#tab-crm',
+    onglet: 'reservations',
+    titre: '📋 Tes réservations',
+    desc: 'Les réservations de table reçues en ligne, avec le nombre de couverts et le téléphone du client.'
+  },
+  {
     onglet: 'crm',
-    position: 'top'
+    titre: '👥 Tes clients',
+    desc: 'Ton carnet client se remplit tout seul à chaque commande :'
+      + tourListe([
+        'Tes chiffres de vente',
+        'Tes clients fidèles, nouveaux, inactifs',
+        'Un message pour faire revenir les inactifs'
+      ])
   },
   {
-    titre: '⚙️ Réglages',
-    desc: 'Identité boutique, palette, horaires, abonnement Marchéo, paiements Stripe : tout est centralisé ici, organisé par catégories.',
-    cible: '#tab-reglages',
+    onglet: 'avis',
+    titre: '⭐ Les avis clients',
+    desc: 'Rien n\'est publié sans toi : tu <b>valides</b> chaque avis, tu peux y <b>répondre</b> ou le <b>masquer</b>.'
+  },
+  {
     onglet: 'reglages',
-    position: 'top'
+    cibles: ['#reg-hero'],
+    titre: '🌐 Ta boutique en ligne',
+    desc: 'L\'adresse à donner à tes clients. <b>Ouvrir</b> montre ta boutique comme ils la voient. <b>QR code</b> te donne une affiche à poser sur ton comptoir.'
   },
   {
-    titre: '🔔 Notifications',
-    desc: 'Tu recevras une notification push à chaque nouvelle commande. Va dans Réglages pour activer les notifs sur ce téléphone.',
-    cible: null,
-    onglet: 'reglages', // reste sur Réglages pour que l\'utilisateur voie le bouton notifs
-    position: 'center'
+    onglet: 'reglages',
+    cibles: ['#reg-grp-boutique'],
+    titre: '🏪 Personnalise ta boutique',
+    desc: 'Tout ce que voient tes clients se règle ici :'
+      + tourListe([
+        'Nom, adresse, téléphone',
+        'Logo, photo d\'accueil et couleurs',
+        'Horaires d\'ouverture',
+        'Créneaux de retrait et de livraison'
+      ])
   },
   {
-    titre: '🎉 C\'est parti !',
-    desc: 'Tu sais tout. Commence par configurer ton identité de boutique et ajouter tes premiers produits. Bonne aventure !',
-    cible: null,
-    onglet: 'commandes', // retour à la page d\'accueil pour démarrer
-    position: 'center',
-    cta: 'Lancer ma boutique 🚀',
-    final: true
+    onglet: 'reglages',
+    cibles: ['#reg-grp-ventes'],
+    titre: '💰 Tes règles de vente',
+    desc: 'Tu décides comment tu vends :'
+      + tourListe([
+        'Zone et frais de livraison',
+        'Délai minimum avant une commande',
+        'Annulations et réservations non honorées',
+        'Plus bas : fidélité et congés'
+      ])
+  },
+  {
+    onglet: 'reglages',
+    cibles: ['#reg-grp-abo'],
+    titre: '💳 Paiements et abonnement',
+    desc: tourListe([
+        '<b>Paiements clients (Stripe)</b> : à connecter pour encaisser en ligne',
+        '<b>Mon abonnement</b> : ton offre et tes factures'
+      ])
+  },
+  {
+    onglet: 'reglages',
+    cibles: ['#reg-grp-compte'],
+    titre: '👤 Ton compte et ton équipe',
+    desc: tourListe([
+        '<b>Comptes salariés</b> : un accès limité pour ton équipe',
+        '<b>Son nouvelle commande</b> : ton alerte sonore',
+        '<b>Mot de passe</b> : pour le changer'
+      ])
+  },
+  {
+    onglet: 'commandes',
+    cibles: ['#m-menu-btn'],
+    sansOnglet: true,
+    titre: '☰ Le menu',
+    desc: 'Toujours en haut à gauche : toutes les pages, <b>Voir ma boutique</b> et la déconnexion.'
+  },
+  {
+    id: 'fin',
+    titre: '🎉 Tu as fait le tour !',
+    desc: 'Il reste à mettre ta boutique en route : ajouter tes produits, tes créneaux et ta photo d\'accueil. On te guide juste après.'
+      + tourAstuce('Pour revoir cette visite : <b>Réglages → Refaire le tour de l\'app</b>.'),
+    cta: 'Lancer ma boutique 🚀'
   }
 ];
 
+function tourListe(items) {
+  return '<ul class="tour-liste">' + items.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ul>';
+}
+function tourAstuce(txt) {
+  return '<div class="tour-astuce">💡 ' + txt + '</div>';
+}
+
+// ── Étape 1 : installation (contenu selon l'appareil) ────────
+let tourInstallOk = false;
+
+function tourAppareil() {
+  const ua = navigator.userAgent || '';
+  const ipad = /iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const ios = ipad || /iPhone|iPod/i.test(ua);
+  const android = !ios && /Android/i.test(ua);
+  // Navigateur intégré à une autre appli (Instagram, Facebook, Gmail…) :
+  // il ne sait pas installer une appli sur l'écran d'accueil.
+  const integre = /FBAN|FBAV|FB_IAB|Instagram|Line\/|MicroMessenger|TikTok|musical_ly|Snapchat|LinkedInApp/i.test(ua)
+    || (ios && !/Safari\//i.test(ua))
+    || (android && /; wv\)/i.test(ua));
+  let nav = 'autre';
+  if (ios) nav = /CriOS/i.test(ua) ? 'chrome' : /FxiOS/i.test(ua) ? 'firefox' : /EdgiOS/i.test(ua) ? 'edge' : 'safari';
+  else if (android) nav = /SamsungBrowser/i.test(ua) ? 'samsung' : /Firefox/i.test(ua) ? 'firefox' : /EdgA/i.test(ua) ? 'edge' : /OPR\//i.test(ua) ? 'opera' : 'chrome';
+  return {
+    ios: ios,
+    ipad: ipad,
+    android: android,
+    nav: nav,
+    integre: integre,
+    nomAppareil: ipad ? 'iPad' : (ios ? 'iPhone' : (android ? 'téléphone' : 'ordinateur')),
+    installee: window.matchMedia('(display-mode: standalone)').matches
+      || window.matchMedia('(display-mode: fullscreen)').matches
+      || window.navigator.standalone === true
+  };
+}
+
+const TOUR_ICO_PARTAGE = '<span class="tour-ico-partage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span>';
+
+function tourEtapesNum(items) {
+  return '<ol class="tour-etapes">' + items.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ol>';
+}
+
+function tourCorpsInstall() {
+  const a = tourAppareil();
+  const intro = 'Bienvenue ! Avant la visite, mets Marchéo sur ton écran d\'accueil : tu l\'ouvres en un geste, comme une appli, et tu reçois tes commandes en notification.';
+  if (a.installee || tourInstallOk) {
+    return '<div class="tour-ok">✅ Marchéo est installée sur cet appareil.</div>'
+      + 'Tu l\'ouvres depuis son icône, comme n\'importe quelle appli. On peut commencer la visite.';
+  }
+
+  // ── iPhone / iPad : pas de bouton d'installation, tout passe par « Partager »
+  if (a.ios) {
+    if (a.integre) {
+      return intro + '<div class="tour-attention">Tu es dans le navigateur d\'une autre appli : l\'installation n\'y est pas possible. Ouvre cette page dans <b>Safari</b> (menu <b>⋯</b> → « Ouvrir dans Safari » ou « Ouvrir dans le navigateur »), puis reviens à cette étape.</div>';
+    }
+    let partager;
+    if (a.nav === 'safari') {
+      partager = 'Touche le bouton <b>Partager</b> ' + TOUR_ICO_PARTAGE + ' '
+        + (a.ipad ? 'en haut à droite de Safari' : 'en bas de Safari')
+        + '<div class="tour-sous">Tu ne le vois pas ? Touche d\'abord <b>⋯</b>, puis <b>Partager</b>.</div>';
+    } else if (a.nav === 'chrome') {
+      partager = 'Touche le bouton <b>Partager</b> ' + TOUR_ICO_PARTAGE + ' en haut à droite, dans la barre d\'adresse de Chrome';
+    } else {
+      partager = 'Ouvre le menu de ton navigateur (<b>☰</b> ou <b>⋯</b>), puis touche <b>Partager</b> ' + TOUR_ICO_PARTAGE;
+    }
+    return intro + tourEtapesNum([
+        partager,
+        'Fais défiler la liste et choisis <b>« Sur l\'écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b> en haut à droite'
+      ])
+      + tourAstuce('Ouvre ensuite Marchéo depuis sa nouvelle icône et reconnecte-toi : la visite reprendra. Tu peux aussi continuer maintenant et l\'installer plus tard.');
+  }
+
+  // ── Android / ordinateur : le navigateur propose l'installation → un seul bouton
+  if (deferredPrompt) {
+    return intro
+      + '<button class="tour-btn-action" onclick="tourInstaller()">📥 Installer Marchéo</button>'
+      + '<div class="tour-note">Une fenêtre s\'ouvre : touche <b>Installer</b> pour confirmer.</div>';
+  }
+
+  if (a.android) {
+    if (a.integre) {
+      return intro + '<div class="tour-attention">Tu es dans le navigateur d\'une autre appli : l\'installation n\'y est pas possible. Touche le menu <b>⋮</b> → <b>« Ouvrir dans Chrome »</b>, puis reviens à cette étape.</div>';
+    }
+    let etapes;
+    if (a.nav === 'samsung') {
+      etapes = [
+        'Touche le menu <b>☰</b> en bas à droite de Samsung Internet',
+        'Choisis <b>« Ajouter à »</b> puis <b>« Écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b>'
+      ];
+    } else if (a.nav === 'firefox') {
+      etapes = [
+        'Touche le menu <b>⋮</b> de Firefox',
+        'Choisis <b>« Ajouter à l\'écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b>'
+      ];
+    } else {
+      etapes = [
+        'Touche le menu <b>⋮</b> en haut à droite ' + (a.nav === 'chrome' ? 'de Chrome' : 'du navigateur'),
+        'Choisis <b>« Ajouter à l\'écran d\'accueil »</b>, puis <b>« Installer »</b>',
+        'Touche <b>Installer</b> pour confirmer'
+      ];
+    }
+    return intro + tourEtapesNum(etapes)
+      + (a.nav === 'chrome' ? '' : tourAstuce('Le plus simple sur Android : ouvrir cette page dans <b>Chrome</b>.'));
+  }
+
+  return intro
+    + tourAstuce('Tu es sur ordinateur : le plus pratique est d\'ouvrir cette page sur ton téléphone et de l\'installer là. Sur cet ordinateur, clique sur l\'icône d\'installation à droite de la barre d\'adresse (Chrome, Edge).');
+}
+
+window.tourInstaller = async function() {
+  if (!deferredPrompt) return;
+  const ev = deferredPrompt;
+  deferredPrompt = null;
+  try {
+    ev.prompt();
+    const res = await ev.userChoice;
+    if (res && res.outcome === 'accepted') tourInstallationFaite();
+  } catch (e) { console.warn('tour install:', e); }
+  tourMajCorps();
+};
+
+function tourInstallationFaite() {
+  tourInstallOk = true;
+  try { if (typeof window.onboardingMarkDone === 'function') window.onboardingMarkDone('install'); } catch (e) {}
+}
+
+window.addEventListener('appinstalled', function() { tourInstallationFaite(); tourMajCorps(); });
+// Le navigateur peut proposer l'installation après l'affichage de l'étape 1
+window.addEventListener('beforeinstallprompt', function() { setTimeout(tourMajCorps, 0); });
+
+// ── Étape 2 : notifications ──────────────────────────────────
+function tourCorpsNotifs() {
+  const a = tourAppareil();
+  const intro = 'Ton téléphone sonne dès qu\'une commande arrive, même quand Marchéo est fermée.';
+  const suite = tourAstuce('Le bouton <b>Tester une notification</b> en haut de l\'écran te montre le résultat. Le son se choisit dans Réglages.');
+  if (!('Notification' in window)) {
+    if (a.ios && !a.installee) {
+      return intro + '<div class="tour-attention">Sur ' + a.nomAppareil + ', les notifications ne fonctionnent qu\'une fois Marchéo installée sur l\'écran d\'accueil (étape précédente) et ouverte depuis son icône. Tu les activeras alors avec le bandeau <b>Activez les notifications</b> en haut de l\'écran.</div>';
+    }
+    if (a.ios) {
+      return intro + '<div class="tour-attention">Ton ' + a.nomAppareil + ' est trop ancien pour les notifications : il faut iOS 16.4 ou plus récent (Réglages → Général → Mise à jour logicielle).</div>';
+    }
+    if (a.android) {
+      return intro + '<div class="tour-attention">Ce navigateur ne permet pas les notifications. Ouvre Marchéo dans <b>Chrome</b> pour en profiter.</div>';
+    }
+    return intro + '<div class="tour-attention">Ce navigateur ne permet pas les notifications. Utilise Chrome ou Edge, ou installe Marchéo sur ton téléphone.</div>';
+  }
+  if (Notification.permission === 'granted') {
+    return '<div class="tour-ok">✅ Les notifications sont activées sur cet appareil.</div>' + suite;
+  }
+  if (Notification.permission === 'denied') {
+    const ou = a.ios
+      ? 'Sur ton ' + a.nomAppareil + ' : <b>Réglages → Notifications → Marchéo → Autoriser les notifications</b>.'
+      : a.android
+        ? (a.installee
+            ? 'Appuie longuement sur l\'icône Marchéo → <b>Infos sur l\'appli → Notifications</b> → active-les.'
+            : 'Touche le cadenas (ou l\'icône de réglages) à gauche de l\'adresse du site → <b>Autorisations → Notifications → Autoriser</b>.')
+        : 'Clique sur le cadenas (ou l\'icône de réglages) à gauche de l\'adresse du site → <b>Notifications → Autoriser</b>.';
+    return intro + '<div class="tour-attention">🔕 Les notifications sont bloquées. ' + ou + ' Puis reviens ici.</div>';
+  }
+  return intro
+    + '<button class="tour-btn-action" onclick="tourActiverNotifs()">🔔 Activer les notifications</button>'
+    + '<div class="tour-note">Ton ' + a.nomAppareil + ' te demande l\'autorisation : touche <b>Autoriser</b>.</div>';
+}
+
+let tourNotifsTimer = null;
+window.tourActiverNotifs = function() {
+  try { if (typeof window.activerNotifications === 'function') window.activerNotifications(); } catch (e) { console.warn('tour notifs:', e); }
+  // La demande d'autorisation est gérée par le navigateur : on surveille la réponse
+  clearInterval(tourNotifsTimer);
+  let essais = 0;
+  tourNotifsTimer = setInterval(function() {
+    essais++;
+    const repondu = !('Notification' in window) || Notification.permission !== 'default';
+    if (repondu || essais > 240 || !tourEnCours) {
+      clearInterval(tourNotifsTimer);
+      if (repondu) tourMajCorps();
+    }
+  }, 500);
+};
+
+// ── Moteur ───────────────────────────────────────────────────
+let tourEtapes = [];
 let tourCurrentStep = 0;
+let tourEnCours = false;
+let tourSuiviTimer = null;
+let tourTrousSig = '';
 
 function tourDoitDemarrer() {
   return localStorage.getItem('marcheo_tour_done') !== '1';
@@ -5701,127 +5957,278 @@ function marquerTourFait() {
   localStorage.setItem('marcheo_tour_done', '1');
 }
 
+function tourOngletVisible(id) {
+  const btn = document.getElementById('tab-' + id);
+  return !!btn && getComputedStyle(btn).display !== 'none';
+}
+
 window.demarrerTour = function() {
-  tourCurrentStep = 0;
   localStorage.removeItem('marcheo_tour_done');
+  tourEtapes = TOUR_STEPS.filter(function(s) { return !s.onglet || tourOngletVisible(s.onglet); });
+  tourCurrentStep = 0;
+  tourEnCours = true;
+  window.tourEnCours = true;
   afficherEtapeTour();
 };
 
 function afficherEtapeTour() {
-  // Nettoie l'overlay précédent
-  const old = document.getElementById('tour-overlay');
-  if (old) old.remove();
+  const step = tourEtapes[tourCurrentStep];
+  if (!step) { tourFermer(true); return; }
 
-  if (tourCurrentStep >= TOUR_STEPS.length) {
-    marquerTourFait();
-    return;
+  let ov = document.getElementById('tour-overlay');
+  if (!ov) {
+    ov = document.createElement('div');
+    ov.id = 'tour-overlay';
+    ov.innerHTML = '<div class="tour-bloqueur"></div>'
+      + '<svg class="tour-voile" aria-hidden="true"><path fill-rule="evenodd"></path></svg>'
+      + '<div class="tour-anneaux"></div>'
+      + '<div class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tour-titre"></div>';
+    document.body.appendChild(ov);
+    // Marge de défilement : une page presque vide doit quand même pouvoir
+    // monter jusque sous l'en-tête pour être éclairée au-dessus de la carte.
+    document.body.classList.add('tour-actif');
+    window.addEventListener('resize', tourPositionner);
+    window.addEventListener('scroll', tourPositionner, true);
+    document.addEventListener('keydown', tourClavier);
+    tourSuiviTimer = setInterval(tourPositionner, 350);
   }
 
-  const step = TOUR_STEPS[tourCurrentStep];
+  const total = tourEtapes.length;
+  const dernier = tourCurrentStep === total - 1;
+  const card = ov.querySelector('.tour-card');
+  card.className = 'tour-card';
+  card.innerHTML = '<div class="tour-tete">'
+    + '<span class="tour-compteur">Étape ' + (tourCurrentStep + 1) + ' sur ' + total + '</span>'
+    + (dernier ? '' : '<button class="tour-btn-passer" onclick="tourSkip()">Passer la visite ✕</button>')
+    + '</div>'
+    + '<div class="tour-barre"><div class="tour-barre-fill" style="width:' + Math.round((tourCurrentStep + 1) / total * 100) + '%"></div></div>'
+    + '<div class="tour-titre" id="tour-titre">' + step.titre + '</div>'
+    + '<div class="tour-desc" id="tour-corps"></div>'
+    + '<div class="tour-actions">'
+    + (tourCurrentStep > 0 ? '<button class="tour-btn-back" onclick="tourPrev()">← Retour</button>' : '<span></span>')
+    + '<button class="tour-btn-next" onclick="' + (dernier ? 'tourFinish()' : 'tourNext()') + '">' + (step.cta || (dernier ? 'Terminer' : 'Suivant →')) + '</button>'
+    + '</div>';
+  tourMajCorps();
+  card.scrollTop = 0;
 
-  // Si l'étape demande un onglet précis, on y navigue d'abord — l'utilisateur
-  // voit ainsi le contenu réel de la page pendant qu'il lit la description.
-  // 500ms = laisse le smooth-scroll vers top + le rendu du tab content se
-  // terminer avant qu'on calcule la position du spotlight (sinon décalé).
-  if (step.onglet && typeof allerOnglet === 'function') {
-    if (typeof ongletActif !== 'undefined' && ongletActif !== step.onglet) {
-      allerOnglet(step.onglet);
-      setTimeout(function(){ rendreOverlayTour(step); }, 500);
-      return;
+  // Ouvre la vraie page concernée, puis cadre la zone à éclairer une fois
+  // l'onglet rendu (allerOnglet lance un défilement doux vers le haut).
+  const numero = tourCurrentStep;
+  const changeOnglet = step.onglet && typeof allerOnglet === 'function' && ongletActif !== step.onglet;
+  if (changeOnglet) allerOnglet(step.onglet);
+  tourTrousSig = '';
+  tourPositionner();
+  setTimeout(function() {
+    if (!tourEnCours || numero !== tourCurrentStep) return;
+    tourCadrer(step);
+    tourPositionner();
+  }, changeOnglet ? 450 : 60);
+}
+
+// Contenu de l'étape (recalculé quand l'état change : app installée, notifs accordées…)
+function tourMajCorps() {
+  const el = document.getElementById('tour-corps');
+  const step = tourEtapes[tourCurrentStep];
+  if (!el || !step || !tourEnCours) return;
+  el.innerHTML = step.corps ? step.corps() : (step.desc || '');
+}
+
+function tourCiblesPage(step) {
+  if (step.cibles) return step.cibles;
+  return step.onglet ? ['#content-' + step.onglet] : [];
+}
+
+// Bas de l'en-tête collant : les zones éclairées commencent en dessous
+function tourBasEntete() {
+  const h = document.querySelector('.app-header');
+  if (!tourVisible(h)) return 6;
+  return Math.max(6, h.getBoundingClientRect().bottom + 6);
+}
+
+function tourVisible(el) {
+  if (!el) return false;
+  const r = el.getBoundingClientRect();
+  return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden';
+}
+
+// Fait défiler la page (et la barre d'onglets) pour amener la zone sous les yeux
+function tourCadrer(step) {
+  if (step.onglet && !step.sansOnglet) {
+    const btn = document.getElementById('tab-' + step.onglet);
+    const barre = btn && btn.closest('.tabs');
+    if (barre && tourVisible(btn)) {
+      barre.scrollLeft = btn.offsetLeft - (barre.clientWidth - btn.offsetWidth) / 2;
     }
   }
-  rendreOverlayTour(step);
+  const premiere = tourCiblesPage(step).map(function(s) { return document.querySelector(s); }).filter(tourVisible)[0];
+  if (premiere && getComputedStyle(premiere).position !== 'fixed') {
+    const entete = document.querySelector('.app-header');
+    const marge = (tourVisible(entete) ? entete.offsetHeight : 60) + 14;
+    const y = premiere.getBoundingClientRect().top + window.scrollY - marge;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'instant' });
+  } else if (!premiere && step.onglet) {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
 }
 
-function rendreOverlayTour(step) {
-  const cible = step.cible ? document.querySelector(step.cible) : null;
-  const isCenter = !cible || step.position === 'center';
+// Place la carte et découpe les zones éclairées. Appelé en continu pendant
+// la visite : le contenu des pages se charge après coup et peut bouger.
+function tourPositionner() {
+  const ov = document.getElementById('tour-overlay');
+  const step = tourEtapes[tourCurrentStep];
+  if (!ov || !step) return;
+  const W = window.innerWidth, H = window.innerHeight;
+  const card = ov.querySelector('.tour-card');
+  const barre = document.querySelector('.tabs');
+  const barreTop = barre && tourVisible(barre) ? barre.getBoundingClientRect().top : H;
 
-  // Position du highlight (seulement si l'élément ciblé est visible)
-  let rect = null;
-  if (cible) {
-    const r = cible.getBoundingClientRect();
-    if (r.width > 0 && r.height > 0) rect = r;
+  const zones = [];
+  const cibles = tourCiblesPage(step);
+  const centre = !cibles.length;
+  card.classList.toggle('tour-centre', centre);
+  card.style.bottom = centre ? '' : (H - barreTop + 12) + 'px';
+  card.style.maxHeight = centre ? '' : Math.max(200, barreTop - 100) + 'px';
+
+  if (!centre) {
+    const limiteBas = card.getBoundingClientRect().top - 12;
+    const limiteHaut = tourBasEntete();
+    cibles.forEach(function(sel) {
+      const el = document.querySelector(sel);
+      if (!tourVisible(el)) return;
+      const r = el.getBoundingClientRect();
+      const fixe = getComputedStyle(el).position === 'fixed';
+      const haut = Math.max(r.top - 6, fixe ? 4 : limiteHaut), bas = Math.min(r.bottom + 6, limiteBas);
+      const gauche = Math.max(r.left - 6, 4), droite = Math.min(r.right + 6, W - 4);
+      if (bas - haut >= 28 && droite - gauche >= 28) zones.push({ x: gauche, y: haut, w: droite - gauche, h: bas - haut });
+    });
+    if (step.onglet && !step.sansOnglet) {
+      const btn = document.getElementById('tab-' + step.onglet);
+      if (tourVisible(btn)) {
+        const r = btn.getBoundingClientRect();
+        const gauche = Math.max(r.left, 2), droite = Math.min(r.right, W - 2);
+        if (droite - gauche >= 28) zones.push({ x: gauche, y: r.top - 2, w: droite - gauche, h: Math.min(r.height + 4, H - r.top) });
+      }
+    }
   }
 
-  const overlay = document.createElement('div');
-  overlay.id = 'tour-overlay';
-  overlay.innerHTML = `
-    <div class="tour-backdrop"></div>
-    ${rect ? `<div class="tour-spotlight" style="top:${rect.top - 6}px;left:${rect.left - 6}px;width:${rect.width + 12}px;height:${rect.height + 12}px;"></div>` : ''}
-    <div class="tour-card ${isCenter ? 'tour-center' : 'tour-bottom'}">
-      <div class="tour-progress">
-        ${TOUR_STEPS.map((_, i) => `<div class="tour-dot ${i === tourCurrentStep ? 'actif' : (i < tourCurrentStep ? 'done' : '')}"></div>`).join('')}
-      </div>
-      <div class="tour-titre">${step.titre}</div>
-      <div class="tour-desc">${step.desc}</div>
-      <div class="tour-actions">
-        ${tourCurrentStep > 0 ? '<button class="tour-btn-back" onclick="tourPrev()">← Retour</button>' : '<button class="tour-btn-skip" onclick="tourSkip()">Passer</button>'}
-        <button class="tour-btn-next" onclick="${step.final ? 'tourFinish()' : 'tourNext()'}">${step.cta || 'Suivant →'}</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
+  const sig = W + 'x' + H + '|' + zones.map(function(z) { return [z.x, z.y, z.w, z.h].map(Math.round).join(','); }).join('|');
+  if (sig === tourTrousSig) return;
+  tourTrousSig = sig;
+
+  let d = 'M0 0H' + W + 'V' + H + 'H0Z';
+  zones.forEach(function(z) {
+    const r = Math.min(14, z.w / 2, z.h / 2);
+    d += 'M' + (z.x + r) + ' ' + z.y + 'h' + (z.w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r
+      + 'v' + (z.h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r
+      + 'h' + (-(z.w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r)
+      + 'v' + (-(z.h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'Z';
+  });
+  const svg = ov.querySelector('.tour-voile');
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  svg.querySelector('path').setAttribute('d', d);
+  ov.querySelector('.tour-anneaux').innerHTML = zones.map(function(z) {
+    return '<div class="tour-anneau" style="left:' + z.x + 'px;top:' + z.y + 'px;width:' + z.w + 'px;height:' + z.h + 'px;"></div>';
+  }).join('');
 }
 
-window.tourNext = function() { tourCurrentStep++; afficherEtapeTour(); };
+function tourClavier(e) {
+  if (!tourEnCours || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === 'ArrowRight') { if (tourCurrentStep < tourEtapes.length - 1) tourNext(); }
+  else if (e.key === 'ArrowLeft') { if (tourCurrentStep > 0) tourPrev(); }
+}
+
+function tourFermer(revenirAccueil) {
+  clearInterval(tourSuiviTimer);
+  clearInterval(tourNotifsTimer);
+  window.removeEventListener('resize', tourPositionner);
+  window.removeEventListener('scroll', tourPositionner, true);
+  document.removeEventListener('keydown', tourClavier);
+  document.getElementById('tour-overlay')?.remove();
+  document.body.classList.remove('tour-actif');
+  tourEnCours = false;
+  window.tourEnCours = false;
+  marquerTourFait();
+  if (revenirAccueil && typeof allerOnglet === 'function' && ongletActif !== 'commandes' && tourOngletVisible('commandes')) allerOnglet('commandes');
+  // La checklist de mise en route attendait la fin de la visite
+  setTimeout(function() {
+    try { if (typeof window.onboardingMaybeShow === 'function') window.onboardingMaybeShow(); } catch (e) {}
+  }, 300);
+}
+
+window.tourNext = function() { tourCurrentStep = Math.min(tourEtapes.length - 1, tourCurrentStep + 1); afficherEtapeTour(); };
 window.tourPrev = function() { tourCurrentStep = Math.max(0, tourCurrentStep - 1); afficherEtapeTour(); };
 window.tourSkip = function() {
-  document.getElementById('tour-overlay')?.remove();
-  marquerTourFait();
+  tourFermer(false);
+  if (typeof afficherToast === 'function') afficherToast('Visite à revoir dans Réglages → Refaire le tour');
 };
-window.tourFinish = function() {
-  document.getElementById('tour-overlay')?.remove();
-  marquerTourFait();
-  if (typeof afficherToast === 'function') afficherToast('🎉 Bonne aventure !');
-};
+window.tourFinish = function() { tourFermer(true); };
 
-// Lancement auto à la connexion
+// Lancement auto à la 1re connexion. appliquerThemeMonCommerce() peut être
+// rappelée plusieurs fois : on ne relance jamais une visite déjà à l'écran.
+let tourLancementPrevu = false;
 function lancerTourSiPremiereVisite() {
-  if (tourDoitDemarrer()) {
-    setTimeout(() => afficherEtapeTour(), 1200);
-  }
+  if (!tourDoitDemarrer() || tourEnCours || tourLancementPrevu) return;
+  tourLancementPrevu = true;
+  setTimeout(function() {
+    tourLancementPrevu = false;
+    if (!tourDoitDemarrer() || tourEnCours) return;
+    if (document.getElementById('selecteurBoutiqueOverlay')) return;
+    if (document.getElementById('appPrincipal')?.style.display === 'none') return;
+    demarrerTour();
+  }, 1200);
 }
 
-// Style du tour (injecté une fois)
+// Style de la visite (injecté une fois)
 (function injectTourStyles(){
   if (document.getElementById('tour-styles')) return;
   const css = `
-    #tour-overlay { position: fixed; inset: 0; z-index: 100000; pointer-events: none; font-family: 'Manrope', system-ui, sans-serif; }
-    .tour-backdrop { position: absolute; inset: 0; background: rgba(15,44,82,.78); backdrop-filter: blur(3px); pointer-events: auto; animation: tourFade .25s ease; }
-    .tour-spotlight {
-      position: absolute; border-radius: 14px;
-      box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 4px #5BBE3A;
-      animation: tourPulse 1.6s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes tourPulse { 0%,100% { box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 4px #5BBE3A; } 50% { box-shadow: 0 0 0 9999px rgba(15,44,82,.78), 0 0 0 8px rgba(91,190,58,.5); } }
+    body.tour-actif { padding-bottom: 100vh !important; }
+    #tour-overlay { position: fixed; inset: 0; z-index: 100000; font-family: 'Manrope', system-ui, sans-serif; }
+    .tour-bloqueur { position: absolute; inset: 0; }
+    .tour-voile { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; animation: tourFade .25s ease; }
+    .tour-voile path { fill: rgba(15,44,82,.62); }
+    .tour-anneaux { position: absolute; inset: 0; pointer-events: none; }
+    .tour-anneau { position: absolute; border-radius: 14px; box-shadow: 0 0 0 3px #5BBE3A; animation: tourPulse 1.8s ease-in-out infinite; }
+    @keyframes tourPulse { 0%,100% { box-shadow: 0 0 0 3px #5BBE3A; } 50% { box-shadow: 0 0 0 3px #5BBE3A, 0 0 0 9px rgba(91,190,58,.35); } }
     @keyframes tourFade { from { opacity: 0; } to { opacity: 1; } }
     .tour-card {
       position: absolute; left: 50%; transform: translateX(-50%);
-      background: #fff; border-radius: 20px; padding: 22px 22px 20px;
-      max-width: 360px; width: calc(100% - 32px);
-      box-shadow: 0 24px 60px rgba(0,0,0,.3);
-      pointer-events: auto;
-      animation: tourSlideUp .35s cubic-bezier(.22,.61,.36,1);
+      background: #fff; border-radius: 20px; padding: 12px 18px 14px;
+      max-width: 440px; width: calc(100% - 24px); box-sizing: border-box;
+      max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; -webkit-overflow-scrolling: touch;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      color: #0F2C52;
     }
-    .tour-card.tour-center { top: 50%; transform: translate(-50%,-50%); }
-    .tour-card.tour-bottom { bottom: 110px; }
-    @keyframes tourSlideUp { from { transform: translate(-50%,30px); opacity: 0; } to { opacity: 1; } }
-    .tour-progress { display: flex; gap: 5px; justify-content: center; margin-bottom: 14px; }
-    .tour-dot { width: 7px; height: 7px; border-radius: 50%; background: #e0e0e0; transition: .2s; }
-    .tour-dot.actif { background: #5BBE3A; width: 22px; border-radius: 5px; }
-    .tour-dot.done { background: #5BBE3A; opacity: .5; }
-    .tour-titre { font-size: 19px; font-weight: 800; color: #0F2C52; margin-bottom: 8px; line-height: 1.3; }
-    .tour-desc { font-size: 13.5px; color: #475569; line-height: 1.55; margin-bottom: 18px; }
+    .tour-card.tour-centre { top: 50%; transform: translate(-50%,-50%); }
+    .tour-tete { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 32px; }
+    .tour-compteur { font-size: 12.5px; font-weight: 800; color: #2A6F3F; letter-spacing: .3px; text-transform: uppercase; }
+    .tour-btn-passer { background: transparent; border: none; color: #64748b; font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 0 8px 12px; font-family: inherit; white-space: nowrap; }
+    .tour-barre { height: 5px; border-radius: 5px; background: #e6ebf1; overflow: hidden; margin: 2px 0 12px; }
+    .tour-barre-fill { height: 100%; border-radius: 5px; background: #5BBE3A; transition: width .3s ease; }
+    .tour-titre { font-size: 20px; font-weight: 800; color: #0F2C52; margin-bottom: 6px; line-height: 1.25; }
+    .tour-desc { font-size: 15px; color: #334155; line-height: 1.5; margin-bottom: 12px; }
+    .tour-desc b { color: #0F2C52; font-weight: 700; }
+    .tour-liste, .tour-etapes { margin: 8px 0 0; padding-left: 22px; }
+    .tour-liste li, .tour-etapes li { margin-bottom: 3px; }
+    .tour-etapes { margin-top: 12px; }
+    .tour-etapes li { margin-bottom: 9px; padding-left: 2px; }
+    .tour-etapes li::marker { font-weight: 800; color: #2A6F3F; }
+    .tour-sous { font-size: 13px; color: #64748b; margin-top: 3px; }
+    .tour-ico-partage { display: inline-flex; vertical-align: -5px; width: 22px; height: 22px; color: #0A84FF; }
+    .tour-ico-partage svg { width: 100%; height: 100%; }
+    .tour-astuce { margin-top: 10px; background: #F7F2E8; border-radius: 12px; padding: 10px 12px; font-size: 13.5px; line-height: 1.5; color: #475569; }
+    .tour-attention { margin-top: 12px; background: #FFF4E0; border-left: 3px solid #F4B942; border-radius: 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.5; color: #6B4E0F; }
+    .tour-ok { background: #EAF7E4; border-radius: 12px; padding: 12px 14px; font-size: 15px; font-weight: 700; color: #1F5A30; margin-bottom: 10px; }
+    .tour-note { font-size: 13px; color: #64748b; margin-top: 8px; text-align: center; }
+    .tour-btn-action { display: block; width: 100%; margin-top: 14px; background: #0F2C52; color: #fff; border: none; border-radius: 14px; padding: 15px 16px; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; }
     .tour-actions { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
-    .tour-btn-skip, .tour-btn-back { background: transparent; border: none; color: #64748b; font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 4px; font-family: inherit; }
-    .tour-btn-next { background: linear-gradient(135deg,#5BBE3A,#2A6F3F); color: #fff; border: none; border-radius: 50px; padding: 10px 22px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 6px 16px rgba(91,190,58,.3); }
-    .tour-btn-next:hover { transform: translateY(-1px); }
-    @media (max-width: 540px) {
-      .tour-card.tour-bottom { bottom: 90px; }
-      .tour-titre { font-size: 17px; }
+    .tour-btn-back { background: transparent; border: none; color: #475569; font-size: 15px; font-weight: 700; cursor: pointer; padding: 12px 8px 12px 0; font-family: inherit; min-height: 48px; }
+    .tour-btn-next { background: linear-gradient(135deg,#5BBE3A,#2A6F3F); color: #fff; border: none; border-radius: 50px; padding: 13px 26px; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; box-shadow: 0 6px 16px rgba(91,190,58,.3); min-height: 48px; }
+    @media (max-width: 380px) {
+      .tour-titre { font-size: 18px; }
+      .tour-desc { font-size: 14.5px; }
     }
+    @media (prefers-reduced-motion: reduce) { .tour-anneau, .tour-voile { animation: none; } }
   `;
   const style = document.createElement('style');
   style.id = 'tour-styles';
@@ -10420,7 +10827,10 @@ function appliquerRestrictionsRole(role) {
 
   window.activerNotifications=function(){
     if(!('Notification' in window)){
-      alert('Ton navigateur ne supporte pas les notifications.');
+      var surIos=/iPad|iPhone|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+      alert(surIos&&window.navigator.standalone!==true
+        ? "Sur iPhone, installe d'abord Marchéo sur l'écran d'accueil (Partager → « Sur l'écran d'accueil »), puis ouvre-la depuis son icône pour activer les notifications."
+        : 'Ton navigateur ne supporte pas les notifications.');
       return;
     }
     if(Notification.permission==='granted'){
@@ -10510,6 +10920,8 @@ function appliquerRestrictionsRole(role) {
   window.onboardingMaybeShow=function(){
     var st=getState();
     if(st._completed||st._skipped) return;
+    // La visite guidée passe d'abord : elle rappelle cette fonction en se fermant
+    try{ if(window.tourEnCours || localStorage.getItem('marcheo_tour_done')!=='1') return; }catch(e){}
     // Affiche après un court délai pour laisser l'app se rendre
     setTimeout(function(){onboardingOpen()},700);
   };
