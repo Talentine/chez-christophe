@@ -5,6 +5,7 @@ description: "Traiteur de Noël en livraison à domicile : carte courte, zone, f
 meta_title: "Traiteur Noël livraison à domicile : le guide du pro"
 meta_description: "Traiteur, proposez la livraison à domicile à Noël : carte, zone, frais, tournées du 24 et du 31, froid et absences, sans plateforme et sans commission."
 date: 2026-11-02
+modified: 2026-11-24
 rubrique: Métier
 emoji: 🎄
 keywords:
@@ -17,17 +18,17 @@ keywords:
 metiers:
   - traiteur
 faq:
-  - q: "Quel logiciel pour gérer les livraisons de Noël d'un traiteur ?"
-    r: "Un tableur et un groupe de messages suffisent pour une dizaine de commandes, à condition de tout recopier à la main. Un optimiseur de tournée classe les arrêts, mais ne prend pas les commandes. Marchéo réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez."
+  - q: "Quel est le meilleur logiciel pour un traiteur qui livre ses repas de Noël sans commission ?"
+    r: "Il n'y a pas un seul meilleur logiciel : tout dépend du nombre de commandes. Un tableur et un groupe de messages suffisent pour une dizaine de commandes, à condition de tout recopier à la main. Un optimiseur de tournée classe les arrêts, mais ne prend pas les commandes. Les plateformes de livraison prennent en général 14 à 30 % de commission. Marchéo réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez."
   - q: "Faut-il acheter du matériel pour livrer ses menus de Noël ?"
     r: "Pas pour prendre et gérer les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Il vous faut en revanche un véhicule et de quoi garder les plats au froid, comme des caisses isothermes et des plaques eutectiques."
   - q: "Combien facturer la livraison d'un repas de Noël ?"
     r: "Comme base de départ, un traiteur peut retenir 5 à 10 € de frais, un minimum de 40 à 60 € et la gratuité à partir de 100 €, à ajuster selon ses distances. Les jours de réveillon, le créneau est rare : relevez le minimum plutôt que d'accepter de petites commandes éloignées."
   - q: "Peut-on commander un menu de Noël plusieurs semaines à l'avance en ligne ?"
-    r: "Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de livraison s'ouvrent sur les deux semaines à venir : ceux du jeudi 24 décembre sont réservables à partir du 11 décembre, et ceux du jeudi 31 décembre à partir du 18 décembre. Annoncez ces dates à vos clients et gardez le téléphone pour les réservations plus anciennes."
+    r: "Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de livraison s'ouvrent sur les deux semaines à venir : ceux du jeudi 24 décembre deviennent réservables vers le 10 décembre, et ceux du jeudi 31 décembre vers le 17 décembre. Annoncez ces dates à vos clients et gardez le téléphone pour les réservations plus anciennes."
 ---
 
-Pour proposer une livraison à domicile de Noël quand on est traiteur, il faut une carte courte, une zone resserrée, un minimum de commande, une date limite tenue et une tournée préparée à l'avance pour le 24 et pour le 31 décembre. Vous livrez vous-même vos clients, sans plateforme et sans commission sur vos menus. Avec Marchéo, la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement et sans matériel à acheter, avec 549 € de frais d'installation uniques.
+Un traiteur qui livre ses repas de Noël à domicile doit décider quatre choses avant les premières commandes : une carte courte qui voyage bien, une zone de 5 à 10 km, un minimum de commande et une date limite pour le 24 et pour le 31 décembre. Il livre lui-même, en deux ou trois tournées fixes, sans plateforme et donc sans commission. Avec Marchéo, la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 549 € de frais d'installation uniques et sans matériel à acheter.
 
 Ce guide s'adresse aux traiteurs indépendants et complète notre [guide complet de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison. Ce qui est prévu pour votre métier se trouve sur la page [click & collect pour traiteur](/solutions/traiteur).
 
@@ -83,8 +84,8 @@ Annoncez votre carte en novembre, puis fixez une date limite ferme pour chaque r
 | --- | --- |
 | Début novembre | Vous arrêtez la carte, les prix et la zone de livraison |
 | Mi-novembre | Vous prenez les premières réservations par téléphone et vous prévenez vos clients |
-| À partir du 11 décembre | Les commandes en ligne pour le 24 s'ouvrent sur Marchéo |
-| À partir du 18 décembre | Les commandes en ligne pour le 31 s'ouvrent sur Marchéo |
+| Vers le 10 décembre | Les commandes en ligne pour le 24 s'ouvrent sur Marchéo |
+| Vers le 17 décembre | Les commandes en ligne pour le 31 s'ouvrent sur Marchéo |
 | 18 au 20 décembre | Date limite pour le 24 |
 | 27 au 28 décembre | Date limite pour le 31 |
 
@@ -99,7 +100,7 @@ Les plats doivent rester au froid du laboratoire jusqu'à la porte du client. So
 - Remettez la commande en main propre, jamais sur un palier.
 - Joignez la fiche de remise en température et la date limite de consommation.
 
-Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers.
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Les températures et les démarches sont résumées dans notre guide de la [réglementation de la livraison alimentaire](/blog/reglementation-livraison-alimentaire-commercant).
 
 ## Comment éviter les absences et les annulations de dernière minute ?
 
@@ -118,7 +119,7 @@ Le bon outil dépend du nombre de commandes que vous attendez. Au-delà d'une di
 | Plateforme de livraison | Commande, paiement, coursier | Commission de 14 à 30 %, le client reste chez elle |
 | Marchéo | Boutique, zone, créneaux, minimum, frais, paiement, tournée | Ne livre pas à votre place |
 
-Avec Marchéo, le catalogue traiteur arrive déjà rempli et les commandes tombent sur votre téléphone, sans matériel à acheter et sans commission. Si vous n'avez pas encore de site, commencez par notre guide de la [création d'un site internet de traiteur](/blog/creation-site-internet-traiteur).
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Le catalogue traiteur arrive déjà rempli et les commandes tombent sur votre téléphone. Si vous n'avez pas encore de site, commencez par notre guide de la [création d'un site internet de traiteur](/blog/creation-site-internet-traiteur).
 
 ## Par où commencer cette semaine ?
 

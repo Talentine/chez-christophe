@@ -1,6 +1,7 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
   "/blog/boulangerie-livraison-a-domicile",
+  "/blog/qr-code-commande-en-ligne-commerce",
   "/blog/drive-ou-click-and-collect-commercant",
   "/blog/site-internet-epicerie-fine",
   "/blog/application-click-and-collect-gratuite",

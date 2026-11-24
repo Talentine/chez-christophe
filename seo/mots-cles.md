@@ -29,8 +29,8 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | site click and collect gratuit | click & collect | transverse | GS | moyenne | publié le 2026-11-22 application-click-and-collect-gratuite (routine IA) |
 | application click and collect gratuite | click & collect | transverse | GS | moyenne | publié le 2026-11-22 application-click-and-collect-gratuite (routine IA) |
 | comment mettre en place le click and collect dans sa boutique | click & collect | transverse | GS | moyenne | publié le 2026-10-21 click-and-collect-commercant-guide-complet (section dédiée de la page pilier) |
-| qr code commande restaurant | click & collect | restaurant | GS | moyenne | à faire |
-| qr code commande à table | click & collect | restaurant | GS | moyenne | à faire |
+| qr code commande restaurant | click & collect | restaurant | GS | moyenne | couvert par qr-code-commande-en-ligne-commerce (2026-11-24) |
+| qr code commande à table | click & collect | restaurant | GS | moyenne | couvert en H2 de qr-code-commande-en-ligne-commerce (2026-11-24) : Marchéo ne fait pas de commande à table, ne pas promettre |
 | livraison à domicile boucherie | livraison | boucherie | GS + WS (31/10 : 1re page = annuaires et boucheries parisiennes, aucun guide pour boucher) | haute | publié le 2026-10-31 boucherie-livraison-a-domicile |
 | primeur livraison à domicile | livraison | primeur | GS | haute | publié le 2026-11-15 primeur-livraison-a-domicile |
 | fromagerie livraison à domicile | livraison | fromagerie | GS (+ 17/11 : « fromagerie livraison », « livraison fromage à domicile ») | moyenne | publié le 2026-11-17 + fromagerie-livraison-a-domicile |
@@ -225,7 +225,7 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | solution click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | logiciel click and collect restaurant | click & collect | restaurant | GS (01/11) | haute | couvert le 2026-11-03 par application-click-and-collect-restaurant (FAQ ou H2) |
 | logiciel commande restaurant gratuit | click & collect | restaurant | GS (01/11) | moyenne | à faire : angle ce qui est vraiment gratuit, avec « plateforme de commande en ligne restaurant gratuit » |
-| qr code commande restaurant | click & collect | restaurant | GS (01/11) | moyenne | à faire : QR code pour faire commander, à table ou en boutique |
+| qr code commande restaurant | click & collect | restaurant | GS (01/11) | moyenne | publié le 2026-11-24 qr-code-commande-en-ligne-commerce (article IA ; commande à table traitée comme limite honnête) |
 | qr code menu restaurant sans site internet | site | restaurant | GS (01/11) | moyenne | à faire |
 | commande foie gras noel | click & collect | tous | GS (01/11) | basse | à faire : requête d'acheteur, seulement si guide de saison commerçant |
 | commande non récupéré par le client | click & collect | tous | GS (01/11) | moyenne | fait le 2026-11-06 dans empreinte-bancaire-no-show-commerce-restaurant (H2 « Comment éviter les commandes non récupérées en click and collect ? ») |
@@ -480,3 +480,6 @@ Sources : GSC = Search Console (impressions et position sur 28 jours au moment d
 | livraison huîtres ouvertes à domicile | livraison | poissonnerie | GS (24/11 : « livraison huitres ouvertes à domicile », « livraison huitres à domicile ») | moyenne | à faire en section, pas d'article : click-and-collect-poissonnerie couvre déjà les plateaux de Noël (cannibalisation de « commander un plateau de fruits de mer pour noël ») ; ajouter un H2 huîtres ouvertes livrées dans poissonnerie-livraison-a-domicile avant le 10/12 |
 | vente huîtres en ligne | click & collect | poissonnerie | GS (24/11 : « achat huitres en ligne », « huitres de bretagne vente en ligne ») | basse | écarté : requêtes d'acheteurs et d'ostréiculteurs qui expédient (Shopify plus adapté) |
 | huîtres à emporter | click & collect | poissonnerie | GS (24/11 : uniquement « + ville ») | basse | écarté : requêtes locales d'acheteurs |
+| qr code commande en ligne commerce | click & collect | tous | IA (24/11 : ChatGPT conseille « QR code sur les sacs, tickets et comptoirs » sur n°5 sans nommer d'outil) | haute | publié le 2026-11-24 qr-code-commande-en-ligne-commerce |
+| alternative uber eats (ChatGPT cite Collectly, Clickeat, Delicity, ChatFood) | transverse | restaurant | IA (24/11 : n°5, source Aexir ; Perplexity cite marchéo.fr en 1re source) | haute | à faire au prochain rafraîchissement de alternative-uber-eats-garder-ses-clients : réponse directe avec les familles d'outils (site de commande en propre, plateforme alternative, commande par messagerie) et le prix exact de Marchéo, pas de nouvel article |
+| site internet commerce pas cher google sites | site | tous | IA (24/11 : ChatGPT cite Wix, WordPress, Google Sites avec un tableau de budget sur n°4 ; Google cite e-monsite « 0 % de commission ») | moyenne | rejoint la ligne du 13/11 : rafraîchir site-internet-pas-cher-commerce-de-proximite (tableau de budget annuel, Google Sites, e-monsite), pas de nouvel article |

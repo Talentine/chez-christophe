@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-23
+modified: 2026-11-24
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -87,7 +87,7 @@ Mettre en place le click and collect demande quatre décisions et quelques régl
 3. **Régler vos créneaux et votre délai de préparation.** Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 4. **Choisir le paiement.** En ligne, au retrait, ou les deux. Décidez aussi si vous activez l'empreinte bancaire.
 5. **Organiser le retrait en boutique.** Un endroit dédié pour les commandes prêtes, étiquetées au nom du client, et un réflexe au comptoir pour les servir vite.
-6. **Le faire savoir.** QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués.
+6. **Le faire savoir.** QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués. Notre guide du [QR code pour commander en ligne](/blog/qr-code-commande-en-ligne-commerce) détaille où l'afficher et ce qu'il doit ouvrir.
 
 Si vous partez de zéro côté site, notre article sur [comment créer un site de click & collect](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) détaille la partie technique.
 

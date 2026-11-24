@@ -44,6 +44,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Boulangerie livraison à domicile : livrer pain et gâteaux vous-même](https://marchéo.fr/blog/boulangerie-livraison-a-domicile) : Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.
+- [QR code pour commander en ligne : le guide du commerçant](https://marchéo.fr/blog/qr-code-commande-en-ligne-commerce) : Comment faire commander vos clients avec un QR code : où l'afficher, ce qu'il doit ouvrir, combien ça coûte et la différence avec la commande à table.
 - [Drive ou click and collect : quelle différence pour un commerçant ?](https://marchéo.fr/blog/drive-ou-click-and-collect-commercant) : Drive ou click and collect : définitions, différences, coût et organisation pour un primeur, un boucher ou un fromager. Lequel choisir, et comment s'y prendre.
 - [Site internet épicerie fine : pages, coffrets, commandes et prix](https://marchéo.fr/blog/site-internet-epicerie-fine) : Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment.
 - [Application click and collect gratuite : ce qui est vraiment gratuit](https://marchéo.fr/blog/application-click-and-collect-gratuite) : Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
@@ -751,6 +752,102 @@ Q : Est-ce rentable de livrer une baguette à domicile ?
 R : Rarement à l'unité, car le panier est trop petit pour couvrir le trajet. La livraison devient rentable avec un minimum de commande, des créneaux groupés et des clients proches les uns des autres : petits déjeuners du week-end, commandes d'entreprises, gâteaux et commandes de fêtes.
 Q : Peut-on livrer des clients tous les matins avec Marchéo ?
 R : Oui, en ouvrant un créneau de livraison chaque matin. Chaque client passe sa commande pour le créneau de son choix. Les créneaux s'ouvrent sur les deux semaines à venir, ce qui suffit pour les petits déjeuners du week-end et les commandes de fêtes.
+
+# QR code pour commander en ligne : le guide du commerçant
+
+Comment faire commander vos clients avec un QR code : où l'afficher, ce qu'il doit ouvrir, combien ça coûte et la différence avec la commande à table.
+
+Pour faire commander vos clients avec un QR code, il vous faut une page de commande en ligne, puis un QR code qui l&rsquo;ouvre, affiché au comptoir, en vitrine et sur vos emballages. Le client scanne, choisit ses produits et un créneau, et commande sans application à installer. Avec Marchéo, le QR code de votre boutique est fourni et prêt à imprimer, sans commission et sans matériel à acheter.
+Ce guide complète notre guide complet du click &amp; collect pour commerçant, qui explique la mise en place du retrait en boutique. Il s&rsquo;adresse aux restaurants, pizzerias, fast-foods, boucheries et primeurs qui veulent que leurs habitués commandent en direct. Pour voir une boutique de commande en ligne pour restaurant, essayez la démo gratuite en 30 secondes.
+Qu&rsquo;est-ce qu&rsquo;un QR code de commande en ligne ?
+C&rsquo;est un code carré imprimé qui ouvre votre page de commande quand le client le scanne avec son téléphone. Il ne prend pas la commande lui-même : il remplace l&rsquo;adresse du site, que personne ne tape à la main.
+Tout repose donc sur la page qu&rsquo;il ouvre. Si elle affiche seulement votre carte en PDF, le client lit mais ne commande pas. Si elle ouvre une boutique avec vos produits, vos prix et des créneaux, le client commande en une minute. Les téléphones récents lisent les QR codes directement avec l&rsquo;appareil photo, sans application.
+Que doit ouvrir le QR code pour que les clients commandent vraiment ?
+Il doit ouvrir une boutique où l&rsquo;on commande sans créer de compte, avec un créneau de retrait ou de livraison. Chaque étape en plus fait abandonner une partie des clients, surtout debout devant un comptoir.
+Voici ce que la page doit permettre :
+
+choisir les produits avec leurs prix, et les options utiles (taille de pizza, cuisson, poids pour la viande ou les légumes) ;
+choisir un créneau de retrait ou de livraison, avec un nombre maximum de commandes par créneau ;
+valider sans compte client, avec un nom et un numéro de téléphone ;
+recevoir une confirmation, pour que le client sache que sa commande est prise.
+
+Avec Marchéo, le client commande en 30 secondes sans créer de compte. Une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait, limite les commandes jamais récupérées.
+Où afficher le QR code de commande ?
+Affichez-le là où le client attend et là où il rentre chez lui avec vos produits. C&rsquo;est à ces deux moments qu&rsquo;il pense à recommander.
+
+
+
+Emplacement
+Pour qui
+Pourquoi ça marche
+
+
+
+
+Comptoir et caisse
+Les clients qui attendent
+Ils ont le téléphone en main et le temps de scanner
+
+
+Vitrine ou porte
+Les passants, boutique fermée
+Ils commandent pour le lendemain sans revenir aux horaires
+
+
+Sacs, cartons de pizza, emballages
+Les clients chez eux
+Ils retrouvent le code au moment de la prochaine faim
+
+
+Flyers et cartes de visite
+Le voisinage, les bureaux proches
+Le code circule sans vous
+
+
+Ticket de caisse ou carte de fidélité
+Les habitués
+Ils passent de la file d&rsquo;attente à la commande en ligne
+
+
+Fiche Google et réseaux sociaux
+Ceux qui vous cherchent en ligne
+Ici, c&rsquo;est le lien qui sert, pas le code
+
+
+
+Sur Internet, le QR code ne sert à rien : mettez le lien direct. La fiche Google Business pour un commerce de bouche explique où l&rsquo;ajouter pour qu&rsquo;il apparaisse sous votre nom sur Google Maps.
+Combien coûte un QR code de commande ?
+Le QR code lui-même est gratuit, c&rsquo;est l&rsquo;outil de commande qui a un coût. Les générateurs en ligne créent un code en quelques secondes, et l&rsquo;impression revient à quelques euros.
+Le vrai choix porte sur l&rsquo;outil qui reçoit la commande. Les plateformes de commande et de livraison prennent en général 14 à 30 % de commission sur chaque commande. Les logiciels à abonnement coûtent un prix fixe par mois, quel que soit le nombre de commandes.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. L&rsquo;abonnement coûte 19 € par mois (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison), sans engagement, avec 0 % de commission. Des frais d&rsquo;installation uniques de 249, 399 ou 549 € s&rsquo;y ajoutent. Le QR code de la boutique est inclus : il se trouve dans les réglages, prêt à imprimer avec le nom de votre commerce, ou à télécharger pour vos flyers.
+Attention aux QR codes « dynamiques » de certains générateurs gratuits : ils passent par une adresse intermédiaire qui peut cesser de fonctionner à la fin d&rsquo;un essai. Un QR code qui pointe directement vers votre boutique ne dépend de personne.
+QR code de commande ou commande à table : est-ce la même chose ?
+Non. Le QR code de commande en ligne sert à commander à emporter ou en livraison, la commande à table sert à commander pendant le repas, assis dans la salle. Ce sont deux outils différents.
+La commande à table demande un logiciel qui relie chaque commande à un numéro de table, l&rsquo;envoie en cuisine et gère l&rsquo;addition. C&rsquo;est souvent un module du logiciel de caisse du restaurant.
+Marchéo ne fait pas de commande à table. Son QR code ouvre la boutique du restaurant pour commander à emporter, se faire livrer, ou réserver une table. Pour un restaurant qui fait beaucoup de vente à emporter, c&rsquo;est souvent le plus utile : le guide de l&rsquo;application click and collect pour restaurant détaille ce cas.
+Comment faire passer vos habitués au QR code ?
+Dites-le, montrez-le, et rendez la commande en ligne plus pratique que la file d&rsquo;attente. Un QR code posé sans explication est peu scanné.
+
+Commencez par vos produits les plus vendus, pour une boutique simple et rapide à parcourir.
+Ajoutez une phrase claire à côté du code : « Commandez ici, c&rsquo;est prêt à votre arrivée ».
+Proposez-le à voix haute aux clients qui attendent, surtout aux heures de pointe.
+Glissez-le dans chaque commande à emporter ou livrée.
+Comptez les commandes en ligne pendant un mois, pour savoir ce que le code vous rapporte.
+
+Si vos clients passent aujourd&rsquo;hui par une plateforme, le QR code est le moyen le plus simple de les faire commander en direct. Notre article sur l&rsquo;alternative à Uber Eats pour garder vos clients explique comment faire la transition sans quitter les plateformes du jour au lendemain. Les pizzerias trouveront un exemple complet dans le guide du click and collect pour pizzeria.
+Quelles sont les limites de Marchéo ?
+Marchéo fournit la boutique et son QR code, mais il ne vous apporte pas de nouveaux clients : ce sont vos affiches, vos emballages et votre fiche Google qui font venir les commandes. Il ne fait pas de commande à table, comme expliqué plus haut.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : si vous proposez la livraison, c&rsquo;est vous qui organisez la tournée avec l&rsquo;outil fourni. Ce n&rsquo;est pas une place de marché, et les créneaux s&rsquo;ouvrent au maximum deux semaines à l&rsquo;avance. Enfin, si vous expédiez surtout des colis dans toute la France, Shopify vous conviendra mieux.
+Pour voir à quoi ressemblerait la boutique ouverte par votre QR code, créez la démo gratuite de Marchéo en choisissant votre métier.
+
+Q : Comment faire commander mes clients avec un QR code ?
+R : Il faut d'abord une page de commande en ligne : une boutique où le client choisit ses produits, un créneau de retrait ou de livraison, et valide. Le QR code n'est qu'un raccourci vers cette page. Imprimez-le et posez-le au comptoir, sur la vitrine, sur les sacs et les flyers. Le client le scanne avec l'appareil photo de son téléphone et commande sans rien installer.
+Q : Quel outil pour créer un QR code de commande sans commission ?
+R : Un générateur de QR code gratuit suffit pour le code lui-même, mais c'est la page de commande qui compte. Les options courantes sont un module de commande lié à votre logiciel de caisse, un constructeur de site avec boutique, ou un logiciel de commande en ligne pour commerçant. Marchéo en fait partie : le QR code de votre boutique est fourni, prêt à imprimer, avec 0 % de commission et un abonnement de 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, plus 249, 399 ou 549 € de frais d'installation uniques.
+Q : Faut-il acheter du matériel pour faire commander par QR code ?
+R : Non. Le client utilise son propre téléphone, et vous suivez les commandes sur le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter. Il faut seulement imprimer le QR code, sur une feuille ou un autocollant.
+Q : Un QR code de commande peut-il servir pour commander à table ?
+R : Pas avec tous les outils. La commande à table demande un logiciel qui relie chaque commande à un numéro de table et l'envoie en cuisine pendant le service. Marchéo ne fait pas de commande à table : son QR code ouvre la boutique pour commander à emporter, en livraison, ou réserver une table.
 
 # Drive ou click and collect : quelle différence pour un commerçant ?
 
@@ -2435,7 +2532,7 @@ Commandes à emporter et livraison par vos soins
 
 Tout est sans engagement et à 0 % de commission. Marchéo ne livre pas et n&rsquo;a pas de coursiers : si vous livrez vous-même, il vous donne l&rsquo;outil pour régler votre zone, vos créneaux et vos frais, comme l&rsquo;explique notre guide du logiciel de livraison de pizza. Si vous comparez avec d&rsquo;autres outils, notre article sur les applications de click and collect pour restaurant présente les familles d&rsquo;outils de façon factuelle.
 Par où commencer ?
-Commencez par vos dix pizzas les plus vendues, deux tailles, vos suppléments principaux et des créneaux de 15 minutes avec une capacité prudente. Affichez le QR code dès le premier soir et dites-le aux clients qui attendent au comptoir.
+Commencez par vos dix pizzas les plus vendues, deux tailles, vos suppléments principaux et des créneaux de 15 minutes avec une capacité prudente. Affichez le QR code dès le premier soir et dites-le aux clients qui attendent au comptoir. Pour bien le placer, sur le comptoir comme sur les cartons, lisez notre guide du QR code de commande en ligne.
 La page détaillée pour votre métier est ici : click and collect pour pizzeria. Pour voir à quoi ressemblerait votre boutique, la démo gratuite prend 30 secondes : vous choisissez « Pizzeria », vous tapez le nom de votre pizzeria, l&rsquo;aperçu s&rsquo;affiche.
 
 Q : Quel logiciel de click and collect pour une pizzeria indépendante ?
@@ -6342,7 +6439,7 @@ R : Oui. Un site professionnel doit indiquer l'identité de l'entreprise, son h�
 
 Traiteur de Noël en livraison à domicile : carte courte, zone, frais, tournées du 24 et du 31 décembre, froid et absences, sans plateforme ni commission.
 
-Pour proposer une livraison à domicile de Noël quand on est traiteur, il faut une carte courte, une zone resserrée, un minimum de commande, une date limite tenue et une tournée préparée à l&rsquo;avance pour le 24 et pour le 31 décembre. Vous livrez vous-même vos clients, sans plateforme et sans commission sur vos menus. Avec Marchéo, la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement et sans matériel à acheter, avec 549 € de frais d&rsquo;installation uniques.
+Un traiteur qui livre ses repas de Noël à domicile doit décider quatre choses avant les premières commandes : une carte courte qui voyage bien, une zone de 5 à 10 km, un minimum de commande et une date limite pour le 24 et pour le 31 décembre. Il livre lui-même, en deux ou trois tournées fixes, sans plateforme et donc sans commission. Avec Marchéo, la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, avec 549 € de frais d&rsquo;installation uniques et sans matériel à acheter.
 Ce guide s&rsquo;adresse aux traiteurs indépendants et complète notre guide complet de la livraison à domicile pour commerçant. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce qui est prévu pour votre métier se trouve sur la page click &amp; collect pour traiteur.
 Pourquoi proposer la livraison à domicile pour les repas de Noël ?
 La livraison vous ouvre les clients qui ne se déplacent pas le jour du réveillon. Ce sont les hôtes qui ne quittent pas leur cuisine, les personnes âgées, les familles installées loin de votre boutique. Pour vous, elle évite aussi une file devant le laboratoire le 24 au matin.
@@ -6425,11 +6522,11 @@ Mi-novembre
 Vous prenez les premières réservations par téléphone et vous prévenez vos clients
 
 
-À partir du 11 décembre
+Vers le 10 décembre
 Les commandes en ligne pour le 24 s&rsquo;ouvrent sur Marchéo
 
 
-À partir du 18 décembre
+Vers le 17 décembre
 Les commandes en ligne pour le 31 s&rsquo;ouvrent sur Marchéo
 
 
@@ -6451,7 +6548,7 @@ Séparez les plats froids, les plats à réchauffer et les desserts.
 Remettez la commande en main propre, jamais sur un palier.
 Joignez la fiche de remise en température et la date limite de consommation.
 
-Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers.
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Les températures et les démarches sont résumées dans notre guide de la réglementation de la livraison alimentaire.
 Comment éviter les absences et les annulations de dernière minute ?
 Le paiement en ligne à la commande est la protection la plus simple pour un repas de fête. Le client s&rsquo;engage, et vous n&rsquo;achetez pas vos produits pour une commande fantôme.
 L&rsquo;empreinte bancaire reste une option pour les commandes passées peu de temps avant la livraison : avec Marchéo, vous choisissez le pourcentage, jusqu&rsquo;à 75 % du panier, sans débiter le client. Elle est libérée 24 heures après la remise de la commande. Comme les banques limitent cette réservation à environ 7 jours, préférez le paiement en ligne pour une commande passée plus tôt. Le détail est dans notre guide sur l&rsquo;empreinte bancaire et les no-shows.
@@ -6488,19 +6585,19 @@ Ne livre pas à votre place
 
 
 
-Avec Marchéo, le catalogue traiteur arrive déjà rempli et les commandes tombent sur votre téléphone, sans matériel à acheter et sans commission. Si vous n&rsquo;avez pas encore de site, commencez par notre guide de la création d&rsquo;un site internet de traiteur.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Le catalogue traiteur arrive déjà rempli et les commandes tombent sur votre téléphone. Si vous n&rsquo;avez pas encore de site, commencez par notre guide de la création d&rsquo;un site internet de traiteur.
 Par où commencer cette semaine ?
 Commencez par trois décisions : votre carte de livraison, votre zone et vos deux dates limites. Écrivez-les sur une page, puis annoncez-les à vos clients habituels, au comptoir et sur votre fiche Google.
 Pour voir votre boutique avec la livraison, essayez la démo gratuite : vous choisissez « Traiteur », vous tapez le nom de votre maison et l&rsquo;aperçu s&rsquo;affiche en 30 secondes.
 
-Q : Quel logiciel pour gérer les livraisons de Noël d'un traiteur ?
-R : Un tableur et un groupe de messages suffisent pour une dizaine de commandes, à condition de tout recopier à la main. Un optimiseur de tournée classe les arrêts, mais ne prend pas les commandes. Marchéo réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.
+Q : Quel est le meilleur logiciel pour un traiteur qui livre ses repas de Noël sans commission ?
+R : Il n'y a pas un seul meilleur logiciel : tout dépend du nombre de commandes. Un tableur et un groupe de messages suffisent pour une dizaine de commandes, à condition de tout recopier à la main. Un optimiseur de tournée classe les arrêts, mais ne prend pas les commandes. Les plateformes de livraison prennent en général 14 à 30 % de commission. Marchéo réunit la boutique en ligne, la zone, les créneaux avec un nombre maximum de commandes, le minimum, les frais et la tournée : 59 € par mois (formule Click & Collect + Livraison), 0 % de commission, sans engagement, avec 549 € de frais d'installation uniques. Marchéo ne livre pas : c'est vous qui livrez.
 Q : Faut-il acheter du matériel pour livrer ses menus de Noël ?
 R : Pas pour prendre et gérer les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Il vous faut en revanche un véhicule et de quoi garder les plats au froid, comme des caisses isothermes et des plaques eutectiques.
 Q : Combien facturer la livraison d'un repas de Noël ?
 R : Comme base de départ, un traiteur peut retenir 5 à 10 € de frais, un minimum de 40 à 60 € et la gratuité à partir de 100 €, à ajuster selon ses distances. Les jours de réveillon, le créneau est rare : relevez le minimum plutôt que d'accepter de petites commandes éloignées.
 Q : Peut-on commander un menu de Noël plusieurs semaines à l'avance en ligne ?
-R : Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de livraison s'ouvrent sur les deux semaines à venir : ceux du jeudi 24 décembre sont réservables à partir du 11 décembre, et ceux du jeudi 31 décembre à partir du 18 décembre. Annoncez ces dates à vos clients et gardez le téléphone pour les réservations plus anciennes.
+R : Oui par téléphone ou par formulaire. Sur Marchéo, les créneaux de livraison s'ouvrent sur les deux semaines à venir : ceux du jeudi 24 décembre deviennent réservables vers le 10 décembre, et ceux du jeudi 31 décembre vers le 17 décembre. Annoncez ces dates à vos clients et gardez le téléphone pour les réservations plus anciennes.
 
 # Click and collect poissonnerie : plateaux de fruits de mer et Noël
 
@@ -8918,7 +9015,7 @@ Choisir votre outil. Il doit gérer les créneaux et, si besoin, la vente au poi
 Régler vos créneaux et votre délai de préparation. Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 Choisir le paiement. En ligne, au retrait, ou les deux. Décidez aussi si vous activez l&rsquo;empreinte bancaire.
 Organiser le retrait en boutique. Un endroit dédié pour les commandes prêtes, étiquetées au nom du client, et un réflexe au comptoir pour les servir vite.
-Le faire savoir. QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués.
+Le faire savoir. QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués. Notre guide du QR code pour commander en ligne détaille où l&rsquo;afficher et ce qu&rsquo;il doit ouvrir.
 
 Si vous partez de zéro côté site, notre article sur comment créer un site de click &amp; collect détaille la partie technique.
 Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
