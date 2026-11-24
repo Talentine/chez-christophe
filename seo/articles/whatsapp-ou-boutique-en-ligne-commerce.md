@@ -3,7 +3,7 @@ title: "WhatsApp ou boutique en ligne : que choisir pour son commerce ?"
 titre_court: "WhatsApp ou boutique en ligne ?"
 description: "WhatsApp Business ou boutique en ligne pour vos commandes ? Comparatif honnête : coût, temps passé, erreurs, paiement, et quand passer de l'un à l'autre."
 date: 2026-10-29
-modified: 2026-11-07
+modified: 2026-11-21
 rubrique: Comparatif
 emoji: 💬
 keywords:
@@ -103,7 +103,7 @@ Non, les deux se complètent très bien. La méthode la plus simple consiste à 
 | Commande de fêtes avec date limite | Boutique en ligne |
 | Client qui ne veut pas commander en ligne | Téléphone ou WhatsApp, comme avant |
 
-Ajoutez le lien de votre boutique dans votre profil WhatsApp Business et dans votre message d'absence. Vos habitués gardent leurs réflexes, et les commandes arrivent rangées par créneau. Pour aller plus loin sur l'absence de commission, lisez notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Ajoutez le lien de votre boutique dans votre profil WhatsApp Business et dans votre message d'absence. Vos habitués gardent leurs réflexes, et les commandes arrivent rangées par créneau. Si vous faites aujourd'hui payer par un lien envoyé dans la conversation, lisez aussi notre comparatif [lien de paiement ou boutique en ligne](/blog/lien-de-paiement-ou-boutique-en-ligne-commerce). Pour aller plus loin sur l'absence de commission, lisez notre article sur le [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
 
 ## Par où commencer ?
 

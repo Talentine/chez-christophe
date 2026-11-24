@@ -3,6 +3,7 @@ title: "Click and collect épicerie : vendre en ligne, retrait en boutique"
 titre_court: "Le click & collect pour une épicerie"
 description: "Click and collect épicerie : quels produits mettre en ligne, vrac au poids, paniers garnis et coffrets de Noël, créneaux de retrait et prix. Sans commission."
 date: 2026-11-14
+modified: 2026-11-23
 rubrique: Métier
 emoji: 🫒
 keywords:
@@ -95,7 +96,7 @@ Toutes les formules sont à 0 % de commission et sans engagement. Si vous voulez
 
 ## Le click and collect convient-il à toutes les épiceries ?
 
-Il convient surtout aux épiceries qui vendent localement. Si l'essentiel de vos ventes en ligne part en colis vers toute la France, un outil d'e-commerce avec expédition sera plus adapté, et notre comparatif [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) vous aide à choisir. Les deux peuvent se compléter : colis pour les clients éloignés, retrait et livraison locale pour les gens du quartier.
+Il convient surtout aux épiceries qui vendent localement. Si l'essentiel de vos ventes en ligne part en colis vers toute la France, un outil d'e-commerce avec expédition sera plus adapté, et notre comparatif [quelle plateforme pour vendre en ligne](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche) vous aide à choisir. Les deux peuvent se compléter : colis pour les clients éloignés, retrait et livraison locale pour les gens du quartier. Pour les pages, les coffrets et le prix, voyez notre guide du [site internet d'une épicerie fine](/blog/site-internet-epicerie-fine).
 
 ## Par où commencer ?
 

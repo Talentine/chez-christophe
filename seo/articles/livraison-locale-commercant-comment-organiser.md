@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-20
+modified: 2026-11-24
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -131,7 +131,7 @@ Quelques réflexes simples aident beaucoup :
 - ne pas laisser une commande sur un palier en l'absence du client ;
 - limiter la durée de la tournée à une heure environ.
 
-Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Pour les produits de la mer, notre guide de la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile) détaille l'organisation.
+Les règles précises dépendent de vos produits : renseignez-vous auprès de la direction départementale de la protection des populations (DDPP) de votre département ou de votre chambre de métiers. Les textes, les températures et la règle des 80 km sont expliqués dans notre guide de la [réglementation de la livraison alimentaire](/blog/reglementation-livraison-alimentaire-commercant). Pour les produits de la mer, notre guide de la [livraison à domicile en poissonnerie](/blog/poissonnerie-livraison-a-domicile) détaille l'organisation.
 
 ## Quel logiciel pour gérer la livraison à domicile ?
 
@@ -164,7 +164,7 @@ Pour le détail des prix du marché, voyez [combien coûte un site de click & co
 
 Chaque métier livre des produits différents, avec ses contraintes. Voici les points à régler en priorité.
 
-- **Boulangerie.** Livraison des commandes de gâteaux, de pains pour les restaurants voisins ou des petits déjeuners du dimanche. Voir [la solution pour boulangerie](/solutions/boulangerie).
+- **Boulangerie.** Livraison des commandes de gâteaux, de pains pour les restaurants voisins ou des petits déjeuners du dimanche. Notre guide de la [boulangerie livraison à domicile](/blog/boulangerie-livraison-a-domicile) détaille la tournée du matin et le minimum de commande. Voir [la solution pour boulangerie](/solutions/boulangerie).
 - **Boucherie.** Colis de viande et commandes de la semaine, au froid. Voir [la solution pour boucherie](/solutions/boucherie) et notre guide [boucherie livraison à domicile](/blog/boucherie-livraison-a-domicile).
 - **Primeur.** Paniers de fruits et légumes sur un ou deux créneaux fixes. Voir [la solution pour primeur](/solutions/primeur), le [click and collect primeur](/blog/click-and-collect-primeur) et notre guide [primeur et livraison à domicile des paniers de légumes](/blog/primeur-livraison-a-domicile).
 - **Poissonnerie.** Poisson et plateaux de fruits de mer, tournée très courte. Voir [la solution pour poissonnerie](/solutions/poissonnerie) et notre guide [poissonnerie livraison à domicile](/blog/poissonnerie-livraison-a-domicile).
@@ -188,6 +188,7 @@ Les autres guides du blog sur la livraison et la vente en ligne :
 - [Poissonnerie livraison à domicile : livrer sans casser le froid](/blog/poissonnerie-livraison-a-domicile)
 - [Boucherie livraison à domicile : livrer vos clients vous-même](/blog/boucherie-livraison-a-domicile)
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](/blog/fleuriste-livraison-a-domicile)
+- [Réglementation livraison alimentaire : le guide du commerçant](/blog/reglementation-livraison-alimentaire-commercant)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)

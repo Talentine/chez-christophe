@@ -3,6 +3,7 @@ title: "Frais par commande ou abonnement : quel logiciel choisir ?"
 titre_court: "Frais par commande ou abonnement"
 description: "Frais fixes par commande ou abonnement mensuel : lequel coûte le moins cher selon votre nombre de commandes en ligne, avec un calcul pas à pas et un tableau."
 date: 2026-11-18
+modified: 2026-11-22
 rubrique: Guide
 emoji: 🧾
 keywords:
@@ -101,7 +102,7 @@ Vérifiez quatre points, car le prix affiché n'est pas toujours le prix payé :
 3. Les commandes payées au retrait sont-elles aussi facturées ?
 4. Y a-t-il des frais au départ, un minimum mensuel ou du matériel à acheter ?
 
-Les frais de service payés par le client méritent une attention particulière. Votre facture baisse, mais votre client paie plus cher en ligne qu'au comptoir. Sur un petit panier, cela peut le faire renoncer ou revenir au téléphone.
+Les frais de service payés par le client méritent une attention particulière. Votre facture baisse, mais votre client paie plus cher en ligne qu'au comptoir. Sur un petit panier, cela peut le faire renoncer ou revenir au téléphone. Les outils présentés comme gratuits se paient souvent d'une autre façon, par un pourcentage de chaque vente : nous le détaillons dans [application click and collect gratuite : ce qui est vraiment gratuit](/blog/application-click-and-collect-gratuite).
 
 ## Quand un abonnement fixe comme Marchéo est-il le bon choix ?
 

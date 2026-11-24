@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-19
+modified: 2026-11-24
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -45,7 +45,7 @@ Ce guide complète notre guide pour [créer sa boutique en ligne](/blog/creer-sa
 
 ## Click and collect, ça veut dire quoi exactement ?
 
-Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton.
+Le click and collect est un mode de vente en deux temps : la commande se fait en ligne (le « click »), le retrait se fait en magasin (le « collect »). En français, on parle aussi de retrait en boutique, de commande à emporter ou de drive piéton. Si vos clients viennent surtout en voiture, notre comparatif [drive ou click and collect](/blog/drive-ou-click-and-collect-commercant) explique ce qui change quand le client ne descend pas de son véhicule.
 
 Dans la grande distribution, le client vient chercher un colis préparé à partir du stock. Dans un commerce de bouche, c'est un peu différent : le client commande un gâteau pour samedi, un rôti de 1,2 kg, un plateau de fromages ou un bouquet pour 18 h. Le produit est souvent préparé ou découpé pour lui. C'est pour cela que trois éléments comptent plus qu'ailleurs :
 
@@ -87,7 +87,7 @@ Mettre en place le click and collect demande quatre décisions et quelques régl
 3. **Régler vos créneaux et votre délai de préparation.** Jours, heures, durée des créneaux, nombre de commandes par créneau, délai minimum entre commande et retrait.
 4. **Choisir le paiement.** En ligne, au retrait, ou les deux. Décidez aussi si vous activez l'empreinte bancaire.
 5. **Organiser le retrait en boutique.** Un endroit dédié pour les commandes prêtes, étiquetées au nom du client, et un réflexe au comptoir pour les servir vite.
-6. **Le faire savoir.** QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués.
+6. **Le faire savoir.** QR code au comptoir et en vitrine, lien sur votre fiche Google et vos réseaux, message à vos habitués. Notre guide du [QR code pour commander en ligne](/blog/qr-code-commande-en-ligne-commerce) détaille où l'afficher et ce qu'il doit ouvrir.
 
 Si vous partez de zéro côté site, notre article sur [comment créer un site de click & collect](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce) détaille la partie technique.
 
@@ -149,7 +149,7 @@ Chez Marchéo, les prix sont fixes, sans engagement et à 0 % de commission :
 | Click & Collect + Réservation | 39 € | 399 € | Oui, avec réservation de table |
 | Click & Collect + Livraison | 59 € | 549 € | Oui, avec livraison organisée par vous |
 
-Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison, comme l'explique notre guide complet de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo).
+Marchéo ne livre pas et n'a pas de coursiers : la formule Livraison vous donne l'outil pour organiser votre propre livraison, comme l'explique notre guide complet de la [livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser). Pour comparer avec les autres solutions du marché, lisez [combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect), notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) et le calcul face aux plateformes dans [click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo). Si vous cherchez à démarrer sans payer, notre page sur l'[application click and collect gratuite](/blog/application-click-and-collect-gratuite) détaille ce qui est vraiment gratuit et ce qui se paie à chaque vente.
 
 ## Le click and collect selon votre métier
 
@@ -189,5 +189,6 @@ Les autres guides du blog sur le click & collect :
 - [Click & collect pour food-truck](/blog/click-and-collect-food-truck)
 - [Click and collect restauration rapide](/blog/click-and-collect-restauration-rapide)
 - [Application click and collect restaurant](/blog/application-click-and-collect-restaurant)
+- [Menu de Noël à emporter au restaurant](/blog/menu-noel-a-emporter-restaurant)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)
 - [Digitaliser son commerce de bouche](/blog/digitaliser-commerce-bouche)

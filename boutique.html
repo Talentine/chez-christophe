@@ -1217,6 +1217,7 @@
 <meta id="m-apple-title" name="apple-mobile-web-app-title" content="Marchéo">
 <script src="assets/core/init.js?v=resto3"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
+<script src="/assets/core/modes-vente.js?v=1"></script>
 <script src="/assets/core/hero-cadrage.js?v=1"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=4" defer></script>
@@ -1513,6 +1514,9 @@ function flattenCatalogueRowBase(row) {
     badge_nouveau:         pb.badge_nouveau || false,
     provenance:            pb.provenance || null,
     custom_fields:         row.custom_fields || {},
+    // Modes de vente (restaurants / pizzerias) : à emporter / livraison par plat
+    vente_retrait:         row.vente_retrait !== false,
+    vente_livraison:       row.vente_livraison !== false,
     en_stock:              row.en_stock !== false,
     prix_lot_qte:          row.prix_lot_qte || null,
     prix_lot:              row.prix_lot || null,
@@ -1583,6 +1587,8 @@ function renderProduitCard(p) {
   const indispo = (p.disponible === false);
   const epuise = indispo || (p.stock_qte !== null && p.stock_qte !== undefined && p.stock_qte <= 0);
   if (epuise && !ep) actionHtml = '<span style="font-size:12px;font-weight:700;color:#9F1B1F;">' + (indispo ? 'Indisponible' : 'Épuisé') + '</span>';
+  // Restaurant / pizzeria : plat servi sur place uniquement → pas d'ajout
+  if (!ep && window.ModesVente && !ModesVente.commandable(p)) actionHtml = ModesVente.actionSurPlace();
   const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${actionHtml}</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
@@ -1597,6 +1603,7 @@ function renderProduitCard(p) {
     <div class="produit-info">
       <div class="produit-nom">${p.nom}</div>
       ${provHtml}
+      ${window.ModesVente ? ModesVente.badgeHtml(p) : ''}
       <div class="produit-footer">
         <div>
           <span class="produit-prix">${p.poids_indicatif ? '≈ ' : ''}${prix}€</span>
@@ -1720,6 +1727,13 @@ async function chargerCoupsDeCoeur(commercantId) {
 // ── PANIERS THÉMATIQUES ──────────────────────────────────────────
 async function chargerPaniers(commercantId) {
   const container = document.getElementById('paniersListe');
+  // Restaurants et pizzerias : pas de section « Nos paniers » ni d'onglet Paniers
+  if (window.ModesVente && ModesVente.concerne()) {
+    const sec = document.getElementById('paniers');
+    if (sec) sec.style.display = 'none';
+    document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => a.style.display = 'none');
+    return;
+  }
   try {
     // 1. Catégories "paniers/plateaux" du métier courant + secondaires
     const b = window.__CONFIG__?.business || {};
@@ -2013,6 +2027,10 @@ function setPoidsPersonnalise(val) {
 
 function ajouterDepuisFicheAccueil() {
   if (!ficheProduitData) return;
+  if (window.ModesVente && !ModesVente.commandable(ficheProduitData)) {
+    afficherToastPanierBoutique('🍽️ Ce plat est servi sur place uniquement', 'remove');
+    return;
+  }
   const auPoids = estProduitAuPoids(ficheProduitData);
   const idx = panier.findIndex(x => x.id === ficheProduitData.id);
   const ligne = { ...ficheProduitData };
@@ -2172,6 +2190,10 @@ function rafraichirBoutonsCartes() {
 }
 
 function ajouterAuPanier(produit) {
+  if (window.ModesVente && produit && !ModesVente.commandable(produit)) {
+    afficherToastPanierBoutique('🍽️ Ce plat est servi sur place uniquement', 'remove');
+    return;
+  }
   // ── GARDE FINALE : produits au poids → ouvrir la fiche pour choisir 250g / 500g / 1kg / etc.
   // Évite les ajouts directs "1 kg par défaut" depuis n'importe quel onglet ou call site.
   // (sauf si la ligne contient déjà poids_kg, signifiant que le poids a déjà été choisi via la fiche)

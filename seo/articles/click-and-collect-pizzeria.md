@@ -5,6 +5,7 @@ description: "Click and collect pizzeria : prendre les commandes à emporter en 
 meta_title: "Click and collect pizzeria : le guide du pizzaiolo"
 meta_description: "Click and collect pour pizzeria : carte avec tailles et suppléments, créneaux réglés sur votre four, paiement et prix réels, sans commission ni matériel."
 date: 2026-11-18
+modified: 2026-11-24
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -107,6 +108,6 @@ Tout est sans engagement et à 0 % de commission. Marchéo ne livre pas et n'a p
 
 ## Par où commencer ?
 
-Commencez par vos dix pizzas les plus vendues, deux tailles, vos suppléments principaux et des créneaux de 15 minutes avec une capacité prudente. Affichez le QR code dès le premier soir et dites-le aux clients qui attendent au comptoir.
+Commencez par vos dix pizzas les plus vendues, deux tailles, vos suppléments principaux et des créneaux de 15 minutes avec une capacité prudente. Affichez le QR code dès le premier soir et dites-le aux clients qui attendent au comptoir. Pour bien le placer, sur le comptoir comme sur les cartons, lisez notre guide du [QR code de commande en ligne](/blog/qr-code-commande-en-ligne-commerce).
 
 La page détaillée pour votre métier est ici : [click and collect pour pizzeria](/solutions/pizzeria). Pour voir à quoi ressemblerait votre boutique, la [démo gratuite](/inscription) prend 30 secondes : vous choisissez « Pizzeria », vous tapez le nom de votre pizzeria, l'aperçu s'affiche.

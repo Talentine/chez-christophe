@@ -1,8 +1,9 @@
 ---
-title: "Comment prendre les commandes de bûches de Noël en ligne"
+title: "Prendre les commandes de bûches de Noël en ligne en boulangerie"
 titre_court: "Commandes de bûches de Noël en ligne"
-description: "Prendre les commandes de bûches de Noël en ligne : options, prix, stock par parfum, créneaux de retrait et paiement. Le guide honnête pour un pâtissier."
+description: "Boulangerie ou pâtisserie : prendre les commandes de bûches de Noël en ligne, avec stock par parfum, créneaux du 24 et du 31, paiement et prix des outils."
 date: 2026-10-30
+modified: 2026-11-24
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -11,10 +12,12 @@ keywords:
   - précommande bûche de noël boulangerie
   - bûche de noël click and collect
   - logiciel commande bûche de noël
+  - commande bûche de noël pâtisserie
+  - application commande bûche de noël boulangerie
 metiers:
   - boulangerie
 faq:
-  - q: "Quel logiciel utiliser pour prendre les commandes de bûches de Noël en ligne ?"
+  - q: "Quelle application pour qu'une boulangerie ou une pâtisserie prenne les commandes de bûches de Noël en ligne ?"
     r: "Pour une vingtaine de bûches, un formulaire gratuit suffit, à condition de recopier chaque commande à la main. Si vous expédiez des colis partout en France, Shopify ou WooCommerce conviennent mieux. Pour le retrait en boutique, Marchéo est un logiciel français pensé pour les boulangeries : 0 % de commission, 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement, avec des frais d'installation uniques de 249, 399 ou 549 €. La démo est gratuite en 30 secondes sur marchéo.fr/inscription."
   - q: "Quand ouvrir les commandes de bûches de Noël ?"
     r: "Annoncez vos bûches début novembre, puis ouvrez les commandes fin novembre ou début décembre. Fixez une date limite autour du 18 au 20 décembre pour le 24. Plus vous connaissez tôt vos quantités, plus vos achats et votre production sont justes."
@@ -22,9 +25,11 @@ faq:
     r: "Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client règle par carte au retrait, il utilise le terminal de paiement que vous avez déjà en boutique."
   - q: "Peut-on demander un acompte sur une bûche de Noël ?"
     r: "Oui, c'est une pratique courante sur les grosses commandes, à condition de l'annoncer avant la validation. Avec Marchéo, le plus simple est le paiement en ligne de la commande. Si vous préférez un acompte partiel, encaissez-le au comptoir ou par lien de paiement, puis notez-le sur la commande."
+  - q: "Quand faut-il ouvrir les commandes de bûches pour le 24 décembre 2026 ?"
+    r: "Fin novembre ou début décembre, avec une date limite autour du 18 au 20 décembre. Le 24 et le 31 décembre 2026 tombent un jeudi. Avec Marchéo, les créneaux s'ouvrent sur les deux semaines à venir : ceux du 24 décembre deviennent réservables vers le 10 décembre, ce qu'il faut annoncer à vos clients."
 ---
 
-Pour prendre les commandes de bûches de Noël en ligne, publiez une page avec vos bûches, leur prix par nombre de parts, un stock par parfum et des créneaux de retrait. Le client choisit seul et la commande vous arrive complète, sans carnet ni téléphone. Avec une boutique Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter, avec 399 € de frais d'installation uniques.
+Une boulangerie ou une pâtisserie prend les commandes de bûches de Noël en ligne avec une page qui affiche chaque bûche, son prix par nombre de parts, un stock par parfum et des créneaux de retrait pour le 24 et le 31 décembre. Le client choisit seul et la commande arrive complète, sans carnet ni téléphone. Avec Marchéo, logiciel français de click & collect, cela coûte 39 € par mois sans engagement, 0 % de commission et 399 € de frais d'installation uniques, sans matériel à acheter.
 
 Ce guide s'adresse aux boulangeries et aux pâtisseries, et complète notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet). Pour voir ce qui est prévu pour votre métier, consultez la page [click & collect pour boulangerie](/solutions/boulangerie).
 
@@ -40,7 +45,7 @@ La bonne solution dépend de votre nombre de commandes. Un formulaire suffit pou
 | Site marchand généraliste (Shopify, WooCommerce) | Quelques dizaines d'euros par mois | Idéal pour expédier des colis | À configurer vous-même pour le retrait sur créneaux |
 | Boutique pour commerce de bouche (ex. Marchéo) | 19 à 59 € par mois, plus installation unique | Catalogue du métier, créneaux, stock, 0 % de commission | Pas de place de marché : c'est à vous de faire connaître votre boutique |
 
-Si vos clients vous écrivent déjà par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à décider.
+Si vos clients vous écrivent déjà par message, notre comparatif [WhatsApp ou boutique en ligne](/blog/whatsapp-ou-boutique-en-ligne-commerce) vous aide à décider. Si vous cherchez d'abord une solution sans abonnement, notre article sur l'[application de click and collect gratuite](/blog/application-click-and-collect-gratuite) montre ce que chaque option coûte vraiment.
 
 ## Que mettre sur la page de commande d'une bûche ?
 
@@ -68,7 +73,7 @@ Ouvrez les commandes fin novembre ou début décembre, et annoncez-les dès déb
 | 24 décembre | Vous remettez les bûches selon les créneaux |
 | 28 au 29 décembre | Vous clôturez les commandes pour le 31 |
 
-Un point à connaître sur Marchéo : les créneaux de retrait s'ouvrent sur les deux semaines à venir. Les créneaux du 24 décembre sont donc réservables à partir du 11 décembre environ. Annoncez cette date à vos clients. Pour les commandes plus précoces, gardez le téléphone ou un formulaire jusqu'à cette date.
+Un point à connaître sur Marchéo : les créneaux de retrait s'ouvrent sur les deux semaines à venir. Les créneaux du 24 décembre sont donc réservables à partir du 10 décembre environ. Annoncez cette date à vos clients. Pour les commandes plus précoces, gardez le téléphone ou un formulaire jusqu'à cette date.
 
 ## Comment limiter le nombre de bûches par jour ?
 
@@ -95,7 +100,7 @@ Préparez aussi le jour même :
 - prévoyez des boîtes aux bonnes tailles avant le 20 décembre ;
 - laissez une marge en fin de journée pour les retardataires.
 
-Évitez de livrer les bûches glacées, qui demandent un transport à température négative. Pour les bûches pâtissières, la livraison locale reste possible si vous l'organisez vous-même dans une caisse isotherme.
+Évitez de livrer les bûches glacées, qui demandent un transport à température négative. Pour les bûches pâtissières, la livraison locale reste possible si vous l'organisez vous-même dans une caisse isotherme. Notre guide de la [livraison à domicile en boulangerie](/blog/boulangerie-livraison-a-domicile) explique comment fixer la zone, les créneaux et le minimum.
 
 ## Combien coûte une boutique pour vendre ses bûches en ligne ?
 

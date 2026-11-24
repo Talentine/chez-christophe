@@ -1,5 +1,13 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/boulangerie-livraison-a-domicile",
+  "/blog/qr-code-commande-en-ligne-commerce",
+  "/blog/drive-ou-click-and-collect-commercant",
+  "/blog/site-internet-epicerie-fine",
+  "/blog/application-click-and-collect-gratuite",
+  "/blog/reglementation-livraison-alimentaire-commercant",
+  "/blog/lien-de-paiement-ou-boutique-en-ligne-commerce",
+  "/blog/menu-noel-a-emporter-restaurant",
   "/blog/coursier-ou-livreur-maison-commerce",
   "/blog/site-internet-primeur",
   "/blog/logiciel-commande-traiteur",
