@@ -708,6 +708,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="/assets/core/init.js?v=brandv2"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
+<script src="/assets/core/modes-vente.js?v=1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=4" defer></script>
@@ -924,6 +925,9 @@ function flattenCatalogueRowBase(row) {
     categories: pb.categories,
     prix_lot_qte: row.prix_lot_qte || null,
     prix_lot: row.prix_lot || null,
+    // Modes de vente (restaurants / pizzerias)
+    vente_retrait: row.vente_retrait !== false,
+    vente_livraison: row.vente_livraison !== false,
   };
 }
 
@@ -962,6 +966,12 @@ async function chargerCategories(catSlugActif) {
     if (!cats.length) cats = await sb('categories', '?order=ordre&select=*');
   } catch { cats = await sb('categories', '?order=ordre&select=*'); }
   const scroll = document.getElementById('filtresScroll');
+
+  // Restaurants et pizzerias : pas de rayon ni d'onglet Paniers
+  if (window.ModesVente && ModesVente.concerne()) {
+    cats = cats.filter(c => !(['paniers','plateaux','plateaux-fromage'].includes(c.slug) || String(c.slug || '').startsWith('paniers-')));
+    document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => a.style.display = 'none');
+  }
 
   const btns = cats.map(c => `
     <button class="filtre-btn ${c.slug === catSlugActif ? 'actif' : ''}"
@@ -1096,8 +1106,9 @@ function renderProduits() {
               <span class="produit-unite"> /${p.unite}</span>
               ${badgeOffreLotCatalogue(p)}
               ${window.PoidsIndicatif ? PoidsIndicatif.badgeCarte(p) : ''}
+              ${window.ModesVente ? ModesVente.badgeHtml(p) : ''}
             </div>
-            ${enPanier
+            ${(!enPanier && window.ModesVente && !ModesVente.commandable(p)) ? ModesVente.actionSurPlace() : enPanier
               ? '<div class="qty-mini" onclick="event.stopPropagation()">'
                 + '<button class="qty-mini-btn" onclick="modifierQteCatalogue(\'' + p.id + '\',-1)">−</button>'
                 + '<span class="qty-mini-num">' + enPanier.qte + '</span>'
@@ -1219,6 +1230,7 @@ function mettreAJourTotalFiche() {
 
 function ajouterDepuisFiche() {
   if (!produitEnCours) return;
+  if (window.ModesVente && !ModesVente.commandable(produitEnCours)) { afficherConfirmationSurPlace(); return; }
 
   const auPoids = estProduitAuPoids(produitEnCours);
   const idx = panier.findIndex(x => x.id === produitEnCours.id);
@@ -1258,6 +1270,7 @@ function ajouterRapide(produitId) {
     ouvrirFiche(produitId);
     return;
   }
+  if (window.ModesVente && !ModesVente.commandable(p)) { afficherConfirmationSurPlace(); return; }
   ajouterAuPanier(p);
   afficherConfirmation(p.nom, 1);
   renderProduits(); // Re-render pour afficher le sélecteur de quantité
@@ -1275,7 +1288,19 @@ function modifierQteCatalogue(produitId, delta) {
   renderProduits();
 }
 
+function afficherConfirmationSurPlace() {
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:72px;left:50%;transform:translateX(-50%);background:#8a5a14;color:white;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;z-index:999;white-space:nowrap;';
+  toast.textContent = '🍽️ Ce plat est servi sur place uniquement';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
+}
+
 function ajouterAuPanier(produit) {
+  if (window.ModesVente && produit && !ModesVente.commandable(produit)) {
+    afficherConfirmationSurPlace();
+    return;
+  }
   // Garde finale : produits au poids → ouvrir la fiche pour choisir le poids exact
   if (produit && produit.poids_kg == null && estProduitAuPoids(produit)) {
     if (typeof ouvrirFiche === 'function') {

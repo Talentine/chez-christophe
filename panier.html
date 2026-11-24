@@ -131,6 +131,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="/assets/core/init.js?v=brandv2"></script>
+<script src="/assets/core/modes-vente.js?v=1"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
@@ -161,6 +162,7 @@
 <div id="step1">
   <div class="section">
     <div class="section-titre">🛒 Vos articles</div>
+    <div id="modesVenteAlerte" style="display:none;background:#FFF4E0;border:1px solid #F0C98A;color:#6b4510;border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.4;margin-bottom:12px;"></div>
     <div id="lignesPanier"></div>
   </div>
   <div class="section">
@@ -408,6 +410,10 @@ async function chargerDispoLivraison() {
 function appliquerConfigLivraison() {
   const carte = document.getElementById('modeLivraison');
   const grille = carte && carte.parentElement;
+  // Restaurants / pizzerias : la vente à emporter peut être coupée
+  const carteR = document.getElementById('modeRetrait');
+  if (carteR) carteR.style.display = (typeof RETRAIT_DISPO === 'undefined' || RETRAIT_DISPO) ? '' : 'none';
+  if (typeof RETRAIT_DISPO !== 'undefined' && !RETRAIT_DISPO && LIVRAISON_DISPO && modeCommande === 'retrait') choisirMode('livraison');
   if (!LIVRAISON_DISPO) {
     if (carte) carte.style.display = 'none';
     if (grille) grille.style.gridTemplateColumns = '1fr';
@@ -415,7 +421,7 @@ function appliquerConfigLivraison() {
     return;
   }
   if (carte) carte.style.display = '';
-  if (grille) grille.style.gridTemplateColumns = '';
+  if (grille) grille.style.gridTemplateColumns = (typeof RETRAIT_DISPO === 'undefined' || RETRAIT_DISPO) ? '' : '1fr';
   const base = fraisLivraisonBase();
   const seuil = seuilLivraisonGratuite();
   const prixEl = carte.querySelector('.mode-card-prix');
@@ -431,6 +437,73 @@ function appliquerConfigLivraison() {
 }
 
 let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+
+// ── MODES DE VENTE (restaurants / pizzerias) ──────────────
+// Le restaurateur peut couper la vente à emporter ou la livraison, pour toute
+// la carte ou plat par plat (ex. seuls les burgers à emporter). Le panier ne
+// propose que les modes valables pour TOUS les plats choisis.
+// Garde-fou serveur : trigger modes_vente_verifier.
+let RETRAIT_DISPO = true;
+let LIVRAISON_BASE = false;      // livraison possible côté boutique (offre + créneaux)
+let MODES_MAP = {};              // produit_base_id → { vente_retrait, vente_livraison }
+let MODES_BLOQUE = false;        // aucun mode commun → commande impossible
+let MODES_RETIRES = [];          // plats « sur place uniquement » retirés du panier
+
+async function chargerModesVente() {
+  LIVRAISON_BASE = LIVRAISON_DISPO;
+  MODES_MAP = {};
+  if (!window.ModesVente || !ModesVente.concerne(__BIZ__)) return;
+  const ids = [...new Set(panier.map(p => p.id).filter(Boolean))];
+  if (ids.length) {
+    try {
+      const rows = await sb('catalogue', `?commercant_id=eq.${__CID__}&produit_base_id=in.(${ids.join(',')})&select=produit_base_id,vente_retrait,vente_livraison`);
+      (Array.isArray(rows) ? rows : []).forEach(r => { MODES_MAP[r.produit_base_id] = r; });
+    } catch (e) { /* le serveur reste le garde-fou */ }
+  }
+  // Plats servis sur place uniquement : retirés du panier
+  MODES_RETIRES = [];
+  panier = panier.filter(p => {
+    if (ModesVente.commandable(MODES_MAP[p.id] || {}, __BIZ__)) return true;
+    MODES_RETIRES.push(p.nom || 'Un plat');
+    return false;
+  });
+  if (MODES_RETIRES.length) localStorage.setItem('panier', JSON.stringify(panier));
+  recalculerModesVente();
+}
+
+function recalculerModesVente() {
+  MODES_BLOQUE = false;
+  const alerte = document.getElementById('modesVenteAlerte');
+  if (!window.ModesVente || !ModesVente.concerne(__BIZ__)) {
+    if (alerte) alerte.style.display = 'none';
+    return;
+  }
+  const s = ModesVente.boutique(__BIZ__);
+  let ret = s.retrait, liv = s.livraison && LIVRAISON_BASE;
+  const sansRet = [], sansLiv = [];
+  panier.forEach(p => {
+    const m = ModesVente.produit(MODES_MAP[p.id] || {}, __BIZ__);
+    if (!m.retrait) { ret = false; sansRet.push(p.nom); }
+    if (!m.livraison) { liv = false; sansLiv.push(p.nom); }
+  });
+  RETRAIT_DISPO = ret;
+  LIVRAISON_DISPO = liv;
+  const msgs = [];
+  if (MODES_RETIRES.length) msgs.push('🍽️ Servi sur place uniquement, retiré du panier : <b>' + MODES_RETIRES.join(', ') + '</b>.');
+  if (panier.length && !ret && !liv) {
+    MODES_BLOQUE = true;
+    if (s.retrait && s.livraison && LIVRAISON_BASE && sansRet.length && sansLiv.length) {
+      msgs.push('⚠️ Ces plats ne peuvent pas être commandés ensemble : <b>' + [...new Set(sansRet)].join(', ') + '</b> uniquement en livraison, <b>' + [...new Set(sansLiv)].join(', ') + '</b> uniquement à emporter. Retirez-en un pour continuer.');
+    } else {
+      msgs.push('⚠️ La commande en ligne n\'est pas disponible pour ces plats. Retirez-les pour continuer.');
+    }
+  }
+  if (alerte) {
+    alerte.innerHTML = msgs.join('<br>');
+    alerte.style.display = msgs.length ? 'block' : 'none';
+  }
+  appliquerConfigLivraison();
+}
 
 // Calcul du total d'une ligne avec offre lot appliquée si applicable
 function calcTotalLignePanier(p) {
@@ -537,6 +610,7 @@ async function bootCommerce() {
   if (noteLabel) noteLabel.textContent = 'Note pour ' + (cfg.business.nom_boutique || 'le commerçant');
   // Livraison : uniquement si l'offre l'inclut et que des créneaux existent
   await chargerDispoLivraison();
+  await chargerModesVente();
   appliquerConfigLivraison();
   // Points de retrait multiples
   await chargerPointsRetrait();
@@ -562,6 +636,7 @@ function init() {
 
 // ── PANIER ────────────────────────────────────────────
 function renderPanier() {
+  if (typeof recalculerModesVente === 'function' && __BIZ__) recalculerModesVente();
   const container = document.getElementById('lignesPanier');
   container.innerHTML = panier.map((p, i) => {
     const totalLigne = calcTotalLignePanier(p).toFixed(2).replace('.', ',');
@@ -711,6 +786,7 @@ function renderRecap() {
 // ── MODE ──────────────────────────────────────────────
 function choisirMode(mode) {
   if (mode === 'livraison' && !LIVRAISON_DISPO) mode = 'retrait';
+  if (mode === 'retrait' && typeof RETRAIT_DISPO !== 'undefined' && !RETRAIT_DISPO && LIVRAISON_DISPO) mode = 'livraison';
   modeCommande = mode;
   document.getElementById('modeRetrait').classList.toggle('actif', mode === 'retrait');
   document.getElementById('modeLivraison').classList.toggle('actif', mode === 'livraison');
@@ -825,6 +901,11 @@ async function verifierZoneLivraison(adresse, cp, ville) {
 }
 
 async function etapeSuivante() {
+  if (etape === 1 && MODES_BLOQUE) {
+    afficherToastPanier('⚠️ Ces plats ne peuvent pas être commandés ensemble', 'remove');
+    document.getElementById('modesVenteAlerte')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
   if (etape === 1) {
     // Vérifier connexion (sauf boutique démo : commande test sans compte)
     const estDemo = !!(__BIZ__ && __BIZ__.abonnement_actif !== true);
@@ -1428,6 +1509,8 @@ async function confirmerCommande() {
           ? `🔥 Le four est presque complet sur ce créneau : il reste ${reste} place${reste > 1 ? 's' : ''}. Choisissez un autre créneau.`
           : '🔥 Le four est complet sur ce créneau. Choisissez un autre créneau.', 'remove');
         await chargerCreneaux();
+      } else if (/MODE_INDISPONIBLE: /.test(msg)) {
+        afficherToastPanier('⚠️ ' + msg.replace(/^.*MODE_INDISPONIBLE: /, ''), 'remove');
       } else if (msg.includes('CRENEAU_COMPLET')) {
         afficherToastPanier('🚚 Ce créneau de livraison vient d\'être complété. Choisissez un autre créneau.', 'remove');
         await chargerCreneaux();

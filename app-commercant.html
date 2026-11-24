@@ -1339,6 +1339,11 @@
             <div class="reg-label">Garantie de réservation<div class="reg-sub">Empreinte bancaire anti no-show</div></div>
             <div class="reg-chevron">›</div>
           </div>
+          <div class="reg-row" id="reg-modes-row" onclick="scrollToReg('reg-modes')" style="display:none;">
+            <div class="reg-icon" style="background:#8a5a14;">🛍️</div>
+            <div class="reg-label">Vente à emporter & livraison<div class="reg-sub">Pour toute la carte ou plat par plat</div></div>
+            <div class="reg-chevron">›</div>
+          </div>
           <div class="reg-row" id="reg-four-row" onclick="scrollToReg('reg-four')" style="display:none;">
             <div class="reg-icon" style="background:#C8102E;">🔥</div>
             <div class="reg-label">Capacité du four<div class="reg-sub">Nombre max de pizzas par créneau</div></div>
@@ -1785,6 +1790,22 @@
         <button type="button" onclick="ajouterConge()" style="padding:11px 18px;background:var(--vert);color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;">Ajouter</button>
       </div>
       <div id="congesListe" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
+    <!-- MODES DE VENTE (restaurants / pizzerias) -->
+    <div id="reg-modes" class="reg-section-anchor" style="display:none;background:var(--blanc);border-radius:14px;padding:18px;border:1px solid var(--creme-fonce);margin-bottom:16px;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:6px;">🛍️ Vente à emporter & livraison</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:14px;">Choisissez ce que vos clients peuvent commander en ligne. Un plat décoché partout reste visible sur votre carte, avec la mention « Sur place uniquement ».</div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;margin-bottom:10px;cursor:pointer;">
+        <input type="checkbox" id="modesRetrait" onchange="majModesVenteUI()" style="width:18px;height:18px;"> 🛍️ Vente à emporter
+      </label>
+      <label id="modesLivraisonWrap" style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;margin-bottom:14px;cursor:pointer;">
+        <input type="checkbox" id="modesLivraison" onchange="majModesVenteUI()" style="width:18px;height:18px;"> 🚚 Livraison
+      </label>
+      <div style="font-size:13px;font-weight:600;margin:4px 0 8px;">Plat par plat</div>
+      <div style="font-size:12px;color:var(--texte-doux);margin-bottom:10px;">Ex. seuls les burgers à emporter : décochez « Emporter » sur les autres plats.</div>
+      <div id="modesPlats" style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:13px;max-height:420px;overflow:auto;"><span style="color:var(--texte-doux)">Chargement…</span></div>
+      <button type="button" onclick="sauverModesVente()" style="width:100%;padding:12px;background:var(--vert);color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;">✓ Enregistrer</button>
     </div>
 
     <!-- CAPACITÉ DU FOUR / DE PRODUCTION PAR CRÉNEAU -->
@@ -3985,6 +4006,111 @@ window.sauverIdentiteBoutique = async function() {
   }
 };
 
+// ── Modes de vente : à emporter / livraison (restaurants, pizzerias) ──
+const METIERS_MODES_VENTE = ['restaurant', 'pizzeria'];
+let __modesPlats = [];   // [{ id, nom, rayon, ordre, ret, liv }]
+let __modesLivOffre = false;
+function echHtml(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+async function chargerModesVenteReglages() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const cid = session.commercant_id;
+    const token = await getValidToken();
+    if (!cid || !token || !document.getElementById('modesPlats')) return;
+    const bt = window.__CONFIG__?.business?.business_type;
+    const ok = METIERS_MODES_VENTE.includes(bt);
+    document.getElementById('reg-modes').style.display = ok ? '' : 'none';
+    const row = document.getElementById('reg-modes-row');
+    if (row) row.style.display = ok ? '' : 'none';
+    if (!ok) return;
+    const h = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token };
+    const [cRes, kRes] = await Promise.all([
+      fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + cid + '&select=offre,vente_retrait,vente_livraison', { headers: h }).then(r => r.json()),
+      fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + cid + '&actif=eq.true&select=id,ordre_affichage,vente_retrait,vente_livraison,produits_base(nom,categories(nom,ordre))', { headers: h }).then(r => r.json()),
+    ]);
+    const c = (Array.isArray(cRes) && cRes[0]) || {};
+    __modesLivOffre = c.offre === 'livraison';
+    document.getElementById('modesRetrait').checked = c.vente_retrait !== false;
+    document.getElementById('modesLivraison').checked = c.vente_livraison !== false;
+    document.getElementById('modesLivraisonWrap').style.display = __modesLivOffre ? 'flex' : 'none';
+    __modesPlats = (Array.isArray(kRes) ? kRes : []).map(k => ({
+      id: k.id,
+      nom: (k.produits_base && k.produits_base.nom) || 'Plat',
+      rayon: (k.produits_base && k.produits_base.categories && k.produits_base.categories.nom) || 'Autres',
+      rayonOrdre: (k.produits_base && k.produits_base.categories && k.produits_base.categories.ordre) || 99,
+      ordre: k.ordre_affichage || 0,
+      ret: k.vente_retrait !== false,
+      liv: k.vente_livraison !== false,
+    })).sort((a, b) => (a.rayonOrdre - b.rayonOrdre) || a.rayon.localeCompare(b.rayon, 'fr') || (a.ordre - b.ordre) || a.nom.localeCompare(b.nom, 'fr'));
+    renderModesPlats();
+  } catch (e) { console.log('chargerModesVenteReglages:', e); }
+}
+function renderModesPlats() {
+  const box = document.getElementById('modesPlats');
+  if (!box) return;
+  if (!__modesPlats.length) { box.innerHTML = '<span style="color:var(--texte-doux)">Aucun plat dans votre carte.</span>'; return; }
+  const shopRet = document.getElementById('modesRetrait').checked;
+  const shopLiv = __modesLivOffre && document.getElementById('modesLivraison').checked;
+  const chip = (i, champ, on, label, actif) => '<button type="button" onclick="basculerModePlat(' + i + ',\'' + champ + '\')"' + (actif ? '' : ' disabled')
+    + ' style="padding:5px 10px;border-radius:50px;font-family:inherit;font-size:12px;font-weight:600;cursor:' + (actif ? 'pointer' : 'not-allowed') + ';'
+    + (on && actif ? 'background:var(--vert);color:#fff;border:1.5px solid var(--vert);' : 'background:#fff;color:var(--texte-doux);border:1.5px solid var(--creme-fonce);')
+    + (actif ? '' : 'opacity:.45;') + '">' + label + '</button>';
+  let html = '', rayon = null;
+  __modesPlats.forEach((p, i) => {
+    if (p.rayon !== rayon) {
+      rayon = p.rayon;
+      html += '<div style="font-size:12px;font-weight:700;color:var(--texte-doux);text-transform:uppercase;letter-spacing:.04em;margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;">'
+        + '<span>' + echHtml(rayon) + '</span>'
+        + '<span style="display:flex;gap:6px;text-transform:none;letter-spacing:0;">'
+        + (shopRet ? '<button type="button" onclick="basculerModeRayon(\'' + echHtml(rayon).replace(/'/g, "\\'") + '\',\'ret\')" style="background:none;border:none;color:var(--vert);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;">Tout emporter</button>' : '')
+        + (shopLiv ? '<button type="button" onclick="basculerModeRayon(\'' + echHtml(rayon).replace(/'/g, "\\'") + '\',\'liv\')" style="background:none;border:none;color:var(--vert);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;">Tout livrer</button>' : '')
+        + '</span></div>';
+    }
+    const surPlace = !(shopRet && p.ret) && !(shopLiv && p.liv);
+    html += '<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--creme-fonce);border-radius:10px;">'
+      + '<div style="flex:1;min-width:0;"><div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + echHtml(p.nom) + '</div>'
+      + (surPlace ? '<div style="font-size:11px;color:#8a5a14;font-weight:600;">🍽️ Sur place uniquement</div>' : '') + '</div>'
+      + chip(i, 'ret', p.ret, '🛍️ Emporter', shopRet)
+      + (__modesLivOffre ? chip(i, 'liv', p.liv, '🚚 Livraison', shopLiv) : '')
+      + '</div>';
+  });
+  box.innerHTML = html;
+}
+function majModesVenteUI() { renderModesPlats(); }
+function basculerModePlat(i, champ) { const p = __modesPlats[i]; if (!p) return; p[champ] = !p[champ]; renderModesPlats(); }
+function basculerModeRayon(rayon, champ) {
+  const plats = __modesPlats.filter(p => p.rayon === rayon);
+  const tous = plats.every(p => p[champ]);
+  plats.forEach(p => { p[champ] = !tous; });
+  renderModesPlats();
+}
+async function sauverModesVente() {
+  try {
+    const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
+    const cid = session.commercant_id;
+    const token = await getValidToken();
+    if (!cid || !token) return;
+    const h = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' };
+    const ret = document.getElementById('modesRetrait').checked;
+    const liv = document.getElementById('modesLivraison').checked;
+    const reqs = [fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + cid, { method: 'PATCH', headers: h, body: JSON.stringify({ vente_retrait: ret, vente_livraison: liv }) })];
+    // Un PATCH par combinaison (au plus 4) plutôt qu'un par plat
+    const groupes = {};
+    __modesPlats.forEach(p => { const k = (p.ret ? 1 : 0) + '' + (p.liv ? 1 : 0); (groupes[k] = groupes[k] || []).push(p.id); });
+    Object.entries(groupes).forEach(([k, ids]) => {
+      reqs.push(fetch(SUPABASE_URL + '/rest/v1/catalogue?commercant_id=eq.' + cid + '&id=in.(' + ids.join(',') + ')', {
+        method: 'PATCH', headers: h, body: JSON.stringify({ vente_retrait: k[0] === '1', vente_livraison: k[1] === '1' })
+      }));
+    });
+    const res = await Promise.all(reqs);
+    if (res.some(r => !r.ok)) throw new Error('HTTP');
+    if (window.__CONFIG__?.business) { window.__CONFIG__.business.vente_retrait = ret; window.__CONFIG__.business.vente_livraison = liv; }
+    const n = __modesPlats.filter(p => !(ret && p.ret) && !(__modesLivOffre && liv && p.liv)).length;
+    afficherToast('✅ Enregistré' + (n ? ' · ' + n + ' plat' + (n > 1 ? 's' : '') + ' sur place uniquement' : ''));
+    renderModesPlats();
+  } catch (e) { afficherToast('❌ Échec de l\'enregistrement'); }
+}
+
 // ── Capacité du four ─────────────────────────────────────
 const METIERS_FOUR = ['restaurant', 'pizzeria', 'fastfood'];
 async function chargerFourReglages() {
@@ -4508,6 +4634,7 @@ async function chargerReglages() {
       if (typeof window.syncDelaiPresets === 'function') window.syncDelaiPresets('delaiReservationRange', dRes);
     }
     chargerFourReglages();
+    chargerModesVenteReglages();
   } catch (e) {
     console.log('chargerReglages:', e);
   }
@@ -6453,6 +6580,10 @@ async function chargerCategories() {
       ...(Array.isArray(globales) ? globales : []),
       ...(Array.isArray(customs) ? customs : []),
     ];
+    // Restaurants et pizzerias : pas de rayon Paniers
+    if (['restaurant', 'pizzeria'].includes(window.__CONFIG__?.business?.business_type)) {
+      categoriesCache = categoriesCache.filter(c => !estCategoriePanier(c));
+    }
   } catch(e) { console.log('Erreur catégories:', e); categoriesCache = []; }
 
   // Remplir les dropdowns en conservant la sélection en cours
