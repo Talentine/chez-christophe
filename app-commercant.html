@@ -9786,10 +9786,10 @@ async function imprimerQRCode() {
 <style>
   @page { size: A4 portrait; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 210mm; height: 297mm; background: #fff; }
+  html, body { width: 210mm; height: 296mm; background: #fff; overflow: hidden; }
   body { font-family: 'Manrope', system-ui, sans-serif; color: #0F2C52;
          -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { width: 210mm; height: 297mm; padding: 14mm; display: flex; }
+  .page { width: 210mm; height: 296mm; padding: 14mm; display: flex; }
   .cadre { flex: 1; border-radius: 10mm; overflow: hidden; display: flex; flex-direction: column;
            border: 1.2mm solid #0F2C52; background: #fff; }
   .haut { background: #0F2C52; color: #fff; text-align: center; padding: 13mm 12mm 11mm; position: relative; }
@@ -9813,12 +9813,7 @@ async function imprimerQRCode() {
   .etape b { display: flex; align-items: center; justify-content: center; width: 8mm; height: 8mm; margin: 0 auto 2mm;
              border-radius: 50%; background: #5BBE3A; color: #fff; font-size: 11pt; }
   .etape div { font-size: 11pt; font-weight: 700; line-height: 1.25; }
-  .bas { border-top: .4mm solid #E5E2D8; padding: 6mm 12mm; display: flex; align-items: center;
-         justify-content: space-between; gap: 6mm; }
-  .bas img { height: 12mm; display: block; }
-  .bas .site { text-align: right; font-size: 10pt; color: #6b7685; line-height: 1.35; }
-  .bas .site strong { display: block; font-size: 13pt; color: #0F2C52; font-weight: 800; }
-  .bas .site strong em { font-style: normal; color: #5BBE3A; }
+  .marque { height: 11mm; display: block; margin-top: 9mm; }
   @media screen { body { background: #e9e6df; height: auto; width: auto; }
                   .page { margin: 0 auto; background: #fff; } }
 </style></head><body>
@@ -9838,10 +9833,7 @@ async function imprimerQRCode() {
       <div class="etape"><b>2</b><div>Je commande</div></div>
       <div class="etape"><b>3</b><div>C'est prêt&nbsp;!</div></div>
     </div>
-  </div>
-  <div class="bas">
-    <img src="${base}/assets/brand/logo.svg" alt="Marchéo.fr">
-    <div class="site">Click &amp; collect de vos commerçants<strong>www.marcheo<em>.fr</em></strong></div>
+    <img class="marque" src="${base}/assets/brand/logo.svg" alt="Marchéo.fr">
   </div>
 </div></div>
 </body></html>`;
