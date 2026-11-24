@@ -9730,30 +9730,8 @@ verifierSessionCommercant().then(function(ok) {
     color: white !important;
     border-color: var(--vert) !important;
   }
-  @media print {
-    body * { visibility: hidden; }
-    #qrPrintArea, #qrPrintArea * { visibility: visible; }
-    #qrPrintArea {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: white; padding: 40px;
-    }
-    #qrPrintArea h1 { font-size: 32px; margin-bottom: 8px; font-family: 'Manrope', system-ui, sans-serif; }
-    #qrPrintArea h2 { font-size: 22px; color: var(--vert-fonce); margin-bottom: 24px; font-weight: 400; }
-    #qrPrintArea .qr-img { width: 320px; height: 320px; }
-    #qrPrintArea .qr-url { font-family: monospace; font-size: 14px; margin-top: 18px; color: #555; }
-    #qrPrintArea .qr-tagline { font-size: 16px; margin-top: 24px; color: #888; max-width: 500px; text-align: center; }
-  }
 </style>
 
-<!-- Zone d'impression QR (cachée hors impression) -->
-<div id="qrPrintArea" style="display:none;">
-  <h1 id="qrPrintNom">Boutique</h1>
-  <h2>Commandez en ligne — retrait & livraison</h2>
-  <canvas id="qrPrintCanvas" class="qr-img"></canvas>
-  <div class="qr-url" id="qrPrintUrl"></div>
-  <div class="qr-tagline">Scannez avec votre téléphone pour accéder à notre boutique en ligne</div>
-</div>
 
 <script>
 // ====================================================================
@@ -9779,20 +9757,115 @@ function genererQRCode() {
   canvas.innerHTML = '<img src="' + qrSrcFor(url, 200) + '" alt="QR code" style="width:200px;height:200px;display:block;" id="qrcodeImg">';
 }
 
-function imprimerQRCode() {
+function echapperHTML(t) {
+  return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function imprimerQRCode() {
   const url = urlBoutiqueLive();
   if (!url) return afficherToast('❌ Slug introuvable');
   const session = JSON.parse(localStorage.getItem('session_commercant') || '{}');
   const nom = session.nom_boutique || 'Notre boutique';
-  const printArea = document.getElementById('qrPrintArea');
-  document.getElementById('qrPrintNom').textContent = nom;
-  document.getElementById('qrPrintUrl').textContent = url;
-  document.getElementById('qrPrintCanvas').outerHTML = '<img id="qrPrintCanvas" class="qr-img" src="' + qrSrcFor(url, 600) + '" alt="QR">';
-  printArea.style.display = 'flex';
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => { printArea.style.display = 'none'; }, 500);
-  }, 600); // laisser le temps à l'image de charger
+  const base = location.protocol + '//' + location.host;
+  const urlAffichee = url.replace(/^https?:\/\//, '').replace(/^www\./, '');
+
+  // Logo du commerce (facultatif)
+  let logoCommerce = '';
+  try {
+    const token = await getValidToken();
+    const r = await fetch(SUPABASE_URL + '/rest/v1/commercants?id=eq.' + session.commercant_id + '&select=logo_url', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + (token || SUPABASE_KEY) }
+    });
+    const d = await r.json();
+    logoCommerce = d?.[0]?.logo_url || '';
+  } catch (e) {}
+
+  const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<title>QR code · ${echapperHTML(nom)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; background: #fff; }
+  body { font-family: 'Manrope', system-ui, sans-serif; color: #0F2C52;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 14mm; display: flex; }
+  .cadre { flex: 1; border-radius: 10mm; overflow: hidden; display: flex; flex-direction: column;
+           border: 1.2mm solid #0F2C52; background: #fff; }
+  .haut { background: #0F2C52; color: #fff; text-align: center; padding: 13mm 12mm 11mm; position: relative; }
+  .haut::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2.2mm;
+                 background: linear-gradient(90deg, #5BBE3A, #F4B942); }
+  .logo-commerce { width: 24mm; height: 24mm; border-radius: 50%; object-fit: cover; background: #fff;
+                   border: 1mm solid #fff; margin: 0 auto 5mm; display: block; }
+  .surtitre { font-size: 12pt; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: #F4B942; }
+  .nom { font-size: 30pt; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin-top: 3mm; }
+  .milieu { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 8mm 12mm; text-align: center; }
+  .accroche { font-size: 25pt; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+  .accroche span { color: #5BBE3A; }
+  .qr-box { margin: 8mm 0 5mm; padding: 5mm; border-radius: 6mm; background: #fff;
+            border: .6mm solid #E5E2D8; box-shadow: 0 2mm 6mm rgba(15,44,82,.08); }
+  .qr-box img { width: 78mm; height: 78mm; display: block; }
+  .scan { font-size: 13pt; font-weight: 600; color: #3a4a5e; }
+  .url { font-size: 12pt; font-weight: 700; margin-top: 2mm; color: #0F2C52; word-break: break-all; }
+  .etapes { display: flex; justify-content: center; gap: 5mm; margin-top: 8mm; }
+  .etape { width: 44mm; padding: 4mm 3mm; border-radius: 4mm; background: #F7F2E8; }
+  .etape b { display: flex; align-items: center; justify-content: center; width: 8mm; height: 8mm; margin: 0 auto 2mm;
+             border-radius: 50%; background: #5BBE3A; color: #fff; font-size: 11pt; }
+  .etape div { font-size: 11pt; font-weight: 700; line-height: 1.25; }
+  .bas { border-top: .4mm solid #E5E2D8; padding: 6mm 12mm; display: flex; align-items: center;
+         justify-content: space-between; gap: 6mm; }
+  .bas img { height: 12mm; display: block; }
+  .bas .site { text-align: right; font-size: 10pt; color: #6b7685; line-height: 1.35; }
+  .bas .site strong { display: block; font-size: 13pt; color: #0F2C52; font-weight: 800; }
+  .bas .site strong em { font-style: normal; color: #5BBE3A; }
+  @media screen { body { background: #e9e6df; height: auto; width: auto; }
+                  .page { margin: 0 auto; background: #fff; } }
+</style></head><body>
+<div class="page"><div class="cadre">
+  <div class="haut">
+    ${logoCommerce ? `<img class="logo-commerce" src="${echapperHTML(logoCommerce)}" alt="">` : ''}
+    <div class="surtitre">Retrouvez-nous en ligne</div>
+    <div class="nom">${echapperHTML(nom)}</div>
+  </div>
+  <div class="milieu">
+    <div class="accroche">Commandez en ligne,<br><span>c'est prêt</span> quand vous arrivez&nbsp;!</div>
+    <div class="qr-box"><img id="qr" src="${qrSrcFor(url, 800)}" alt="QR code"></div>
+    <div class="scan">Scannez avec l'appareil photo de votre téléphone</div>
+    <div class="url">${echapperHTML(urlAffichee)}</div>
+    <div class="etapes">
+      <div class="etape"><b>1</b><div>Je scanne</div></div>
+      <div class="etape"><b>2</b><div>Je commande</div></div>
+      <div class="etape"><b>3</b><div>C'est prêt&nbsp;!</div></div>
+    </div>
+  </div>
+  <div class="bas">
+    <img src="${base}/assets/brand/logo.svg" alt="Marchéo.fr">
+    <div class="site">Click &amp; collect de vos commerçants<strong>www.marcheo<em>.fr</em></strong></div>
+  </div>
+</div></div>
+</body></html>`;
+
+  // Impression via iframe cachée (pas de popup bloquée, la page du dashboard reste intacte)
+  const ancien = document.getElementById('qrPrintFrame');
+  if (ancien) ancien.remove();
+  const iframe = document.createElement('iframe');
+  iframe.id = 'qrPrintFrame';
+  iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;';
+  document.body.appendChild(iframe);
+  const doc = iframe.contentDocument;
+  doc.open(); doc.write(html); doc.close();
+
+  afficherToast('🖨️ Préparation de l\'affiche…');
+  const attendreImages = () => Promise.all(Array.from(doc.images).map(img =>
+    img.complete ? Promise.resolve() : new Promise(res => { img.onload = img.onerror = res; })));
+  const attendrePolices = () => (doc.fonts && doc.fonts.ready) ? doc.fonts.ready : Promise.resolve();
+  await Promise.race([
+    Promise.all([attendreImages(), attendrePolices()]),
+    new Promise(res => setTimeout(res, 4000))
+  ]);
+  iframe.contentWindow.focus();
+  iframe.contentWindow.print();
 }
 
 async function telechargerQRCode() {
