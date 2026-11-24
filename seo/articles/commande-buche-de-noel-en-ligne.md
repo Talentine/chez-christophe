@@ -3,7 +3,7 @@ title: "Prendre les commandes de bûches de Noël en ligne en boulangerie"
 titre_court: "Commandes de bûches de Noël en ligne"
 description: "Boulangerie ou pâtisserie : prendre les commandes de bûches de Noël en ligne, avec stock par parfum, créneaux du 24 et du 31, paiement et prix des outils."
 date: 2026-10-30
-modified: 2026-11-23
+modified: 2026-11-24
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -100,7 +100,7 @@ Préparez aussi le jour même :
 - prévoyez des boîtes aux bonnes tailles avant le 20 décembre ;
 - laissez une marge en fin de journée pour les retardataires.
 
-Évitez de livrer les bûches glacées, qui demandent un transport à température négative. Pour les bûches pâtissières, la livraison locale reste possible si vous l'organisez vous-même dans une caisse isotherme.
+Évitez de livrer les bûches glacées, qui demandent un transport à température négative. Pour les bûches pâtissières, la livraison locale reste possible si vous l'organisez vous-même dans une caisse isotherme. Notre guide de la [livraison à domicile en boulangerie](/blog/boulangerie-livraison-a-domicile) explique comment fixer la zone, les créneaux et le minimum.
 
 ## Combien coûte une boutique pour vendre ses bûches en ligne ?
 

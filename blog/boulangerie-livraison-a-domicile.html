@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boulangerie livraison à domicile : le guide du boulanger · Marchéo</title>
+<meta name="description" content="Lancer la livraison à domicile dans votre boulangerie : pain du matin, viennoiseries, gâteaux, zone, créneaux et frais. Sans plateforme et sans commission.">
+<link rel="canonical" href="https://marchéo.fr/blog/boulangerie-livraison-a-domicile">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Boulangerie livraison à domicile : le guide du boulanger · Marchéo"><meta property="og:description" content="Lancer la livraison à domicile dans votre boulangerie : pain du matin, viennoiseries, gâteaux, zone, créneaux et frais. Sans plateforme et sans commission.">
+<meta property="og:url" content="https://marchéo.fr/blog/boulangerie-livraison-a-domicile"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Livrer à domicile quand on est boulanger",
+     "item": "https://marchéo.fr/blog/boulangerie-livraison-a-domicile"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Boulangerie livraison à domicile : livrer pain et gâteaux vous-même",
+   "description": "Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-24",
+   "dateModified": "2026-11-24",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/boulangerie-livraison-a-domicile",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "boulangerie livraison à domicile, livraison pain à domicile, livraison viennoiserie entreprise, application livraison boulangerie, livraison gâteau à domicile boulangerie",
+   "articleSection": "Métier"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quel logiciel pour qu'une boulangerie propose la livraison à domicile ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Trois options existent : les plateformes de livraison, qui prennent en général 14 à 30 % de commission sur chaque commande ; le téléphone avec un cahier ou un tableur, gratuit mais tout se recopie à la main ; et les logiciels à abonnement fixe pour commerces de bouche. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et 549 € de frais d'installation uniques. Vous y réglez votre zone, vos créneaux, votre minimum et vos frais. Marchéo ne livre pas : c'est vous qui livrez."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour livrer le pain de sa boulangerie ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas pour prendre et gérer les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Pour la tournée, il vous faut un véhicule, des caisses propres et fermées pour le pain, et une caisse isotherme si vous livrez des pâtisseries à la crème."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Est-ce rentable de livrer une baguette à domicile ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Rarement à l'unité, car le panier est trop petit pour couvrir le trajet. La livraison devient rentable avec un minimum de commande, des créneaux groupés et des clients proches les uns des autres : petits déjeuners du week-end, commandes d'entreprises, gâteaux et commandes de fêtes."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on livrer des clients tous les matins avec Marchéo ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, en ouvrant un créneau de livraison chaque matin. Chaque client passe sa commande pour le créneau de son choix. Les créneaux s'ouvrent sur les deux semaines à venir, ce qui suffit pour les petits déjeuners du week-end et les commandes de fêtes."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Livrer à domicile quand on est boulanger</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Métier</p>
+<h1>Boulangerie livraison à domicile : livrer pain et gâteaux vous-même</h1>
+<p class="lead">Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.</p>
+<p class="meta">Par Paul Merieult · 24/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte pour votre boulangerie</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Gâteaux, viennoiseries du dimanche, bûches et galettes : les commandes arrivent jour et nuit, vous vendez plus de commandes spéciales et produisez le juste nécessaire. Zéro commission.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Les clients qui cherchent une boulangerie où commander en ligne près de chez eux vous trouvent sur Google. Un lien pour Instagram, des SMS pour annoncer la galette ou la bûche.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Plus de cahier de commandes ni d'appels pendant la file du matin : tout est écrit, avec l'heure de retrait, et le client récupère sans attendre.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription?metier=boulangerie">Voir ma démo gratuite</a></section>
+<p>Pour lancer la livraison à domicile dans votre boulangerie, misez sur des paniers qui justifient le trajet (petits déjeuners du week-end, commandes d&rsquo;entreprises, gâteaux), une zone resserrée, une tournée du matin à heure fixe et un minimum de commande. Vous livrez vous-même, sans plateforme et sans commission. Avec Marchéo, la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement et sans matériel à acheter.</p>
+<p>Ce guide applique à la boulangerie notre <a href="/blog/livraison-locale-commercant-comment-organiser">guide complet de la livraison à domicile pour commerçant</a>. Il parle de livraison locale, dans votre quartier ou votre commune, pas d&rsquo;expédition en colis. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce qui est prévu pour votre métier se trouve sur la page <a href="/solutions/boulangerie">logiciel pour boulangerie</a>.</p>
+<h2>Pourquoi proposer la livraison à domicile dans une boulangerie ?</h2>
+<p>La livraison vous ouvre les clients qui ne peuvent pas passer le matin, et les commandes trop grosses pour être portées à pied. Une baguette seule ne justifie pas un trajet. Vingt croissants pour une réunion, un gâteau d&rsquo;anniversaire pour douze personnes ou un petit déjeuner complet du dimanche, si.</p>
+<p>Quelques profils reviennent souvent :</p>
+<ul>
+<li><strong>Les familles du week-end</strong>, qui veulent le pain et les viennoiseries à la porte le samedi ou le dimanche.</li>
+<li><strong>Les personnes âgées ou isolées</strong>, surtout dans les villages où la tournée du boulanger existe déjà.</li>
+<li><strong>Les entreprises et les écoles</strong>, pour les petits déjeuners de réunion et les pots de départ.</li>
+<li><strong>Les restaurants et cafés voisins</strong>, qui prennent du pain chaque jour.</li>
+<li><strong>Les fêtes et les anniversaires</strong>, avec les gâteaux, les pièces montées et la bûche.</li>
+</ul>
+<h2>Que livrer quand on est boulanger ?</h2>
+<p>Livrez d&rsquo;abord ce qui se commande à l&rsquo;avance et forme un panier suffisant. Le pain du jour reste la base, mais ce sont les formules et les gâteaux qui rendent la tournée utile.</p>
+<table>
+<thead>
+<tr>
+<th>Produit</th>
+<th>Intérêt en livraison</th>
+<th>Point d&rsquo;attention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formule petit déjeuner (pain, viennoiseries, jus)</td>
+<td>Panier complet, commandé la veille</td>
+<td>Livrer tôt, avant 9 h le week-end</td>
+</tr>
+<tr>
+<td>Viennoiseries pour entreprises</td>
+<td>Grosses quantités, client régulier</td>
+<td>Fixer une heure limite de commande la veille</td>
+</tr>
+<tr>
+<td>Pain pour restaurants et cafés</td>
+<td>Commande récurrente</td>
+<td>Prévoir le même créneau chaque jour</td>
+</tr>
+<tr>
+<td>Gâteaux et entremets</td>
+<td>Panier élevé, commandé plusieurs jours avant</td>
+<td>Transport à plat et au froid</td>
+</tr>
+<tr>
+<td>Bûches et galettes de saison</td>
+<td>Forte demande sur quelques jours</td>
+<td>Stock limité par créneau</td>
+</tr>
+</tbody>
+</table>
+<p>Gardez les produits qui voyagent mal pour la boutique ou le <a href="/blog/click-and-collect-commercant-guide-complet">click and collect</a>. Une offre courte et lisible évite les appels pour savoir ce qui reste.</p>
+<h2>Comment organiser la tournée du matin ?</h2>
+<p>La règle est simple : une tournée à heure fixe, sur un trajet court, avec des commandes closes la veille. Le pain se livre frais, donc la fenêtre est étroite, et vous n&rsquo;avez pas le temps d&rsquo;improviser l&rsquo;itinéraire.</p>
+<p>Une organisation qui fonctionne bien :</p>
+<ol>
+<li><strong>Une heure limite de commande la veille</strong>, par exemple 18 h, pour lancer la fournée au bon volume.</li>
+<li><strong>Un ou deux créneaux le matin</strong>, par exemple 7 h 30 à 8 h 30 en semaine pour les entreprises, 8 h à 10 h le week-end pour les particuliers.</li>
+<li><strong>Une liste des commandes classée par rue</strong>, préparée avant de partir.</li>
+<li><strong>Des sacs nominatifs</strong>, avec le nom et l&rsquo;adresse du client, rangés dans l&rsquo;ordre de la tournée.</li>
+<li><strong>Une consigne claire en cas d&rsquo;absence</strong> : sac accroché à la porte, dépôt chez un voisin ou retour en boutique, à préciser sur la fiche de commande.</li>
+</ol>
+<p>Si une seule personne tient le fournil et la boutique, commencez par le week-end seulement.</p>
+<h2>Quelle zone et quel minimum de commande fixer ?</h2>
+<p>Commencez par une zone resserrée, quelques kilomètres autour de la boulangerie, et un minimum de commande qui couvre votre trajet. Mieux vaut bien servir un quartier que mal servir une ville.</p>
+<p>Les repères à poser avant d&rsquo;ouvrir :</p>
+<ul>
+<li><strong>La zone</strong> : votre commune et les rues ou hameaux voisins, ou une liste de codes postaux.</li>
+<li><strong>Le minimum de commande</strong> : assez haut pour qu&rsquo;une baguette seule ne déclenche pas un trajet.</li>
+<li><strong>Les frais de livraison</strong> : quelques euros, offerts au-delà d&rsquo;un certain montant si vous voulez pousser les formules.</li>
+<li><strong>Les entreprises</strong> : un minimum plus élevé, mais une seule adresse pour beaucoup d&rsquo;articles.</li>
+</ul>
+<p>Pour fixer ces montants à partir de votre coût réel par tournée, suivez notre méthode pour <a href="/blog/comment-calculer-ses-frais-de-livraison-commercant">calculer ses frais de livraison</a>. Testez quelques semaines, puis ajustez.</p>
+<h2>Comment livrer les gâteaux sans les abîmer ?</h2>
+<p>Un gâteau se livre à plat, calé, au froid s&rsquo;il contient de la crème, et le plus près possible de l&rsquo;heure de dégustation. C&rsquo;est le produit le plus fragile de la tournée, et celui qui coûte le plus cher en cas d&rsquo;accident.</p>
+<ul>
+<li><strong>Une boîte rigide</strong> à la bonne taille, pour que le gâteau ne glisse pas.</li>
+<li><strong>Une caisse isotherme</strong> avec plaques eutectiques pour les entremets et les pâtisseries à la crème.</li>
+<li><strong>Un emplacement fixe dans le véhicule</strong>, à plat, loin des caisses de pain.</li>
+<li><strong>Un créneau précis</strong> convenu avec le client, plutôt qu&rsquo;une demi-journée.</li>
+<li><strong>Les allergènes</strong> indiqués sur la fiche du produit et sur l&rsquo;étiquette.</li>
+</ul>
+<p>Les pâtisseries à la crème doivent rester au froid jusqu&rsquo;à la remise, comme dans votre vitrine réfrigérée. Les températures à respecter, le transport et l&rsquo;hygiène sont détaillés dans notre guide de la <a href="/blog/reglementation-livraison-alimentaire-commercant">réglementation de la livraison alimentaire</a>.</p>
+<h2>Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas</h2>
+<p>Pour livrer depuis votre boulangerie, il vous faut une organisation et un outil de commande, pas un équipement coûteux.</p>
+<table>
+<thead>
+<tr>
+<th>Ce qu&rsquo;il vous faut</th>
+<th>Ce qu&rsquo;il ne vous faut pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un véhicule et une personne disponible le matin</td>
+<td>Une tablette, une imprimante ou une caisse à acheter</td>
+</tr>
+<tr>
+<td>Des caisses propres et fermées pour le pain</td>
+<td>Un développeur pour créer le site</td>
+</tr>
+<tr>
+<td>Une caisse isotherme pour les pâtisseries à la crème</td>
+<td>Une plateforme qui prend une commission sur chaque commande</td>
+</tr>
+<tr>
+<td>Une zone, des créneaux, un minimum et des frais clairs</td>
+<td>Une flotte de coursiers</td>
+</tr>
+</tbody>
+</table>
+<h2>Quel outil pour gérer la livraison de votre boulangerie ?</h2>
+<p>L&rsquo;outil doit recevoir les commandes par écrit, avec l&rsquo;adresse, le créneau et le paiement, pour que vous n&rsquo;ayez plus qu&rsquo;à préparer et livrer. Trois familles existent, avec des coûts très différents.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Coût</th>
+<th>Limite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Téléphone et cahier</td>
+<td>Gratuit</td>
+<td>Appels pendant le rush, erreurs de recopie</td>
+</tr>
+<tr>
+<td>Plateforme de livraison</td>
+<td>En général 14 à 30 % de commission</td>
+<td>Le client n&rsquo;est pas à vous, peu adapté aux gâteaux sur commande</td>
+</tr>
+<tr>
+<td>Logiciel à abonnement fixe</td>
+<td>Montant mensuel connu, sans commission</td>
+<td>Vous livrez vous-même</td>
+</tr>
+</tbody>
+</table>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.</p>
+<p>La formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, avec 549 € de frais d&rsquo;installation uniques. Vous y réglez votre zone, vos créneaux, votre minimum et vos frais, et le client commande en 30 secondes sans créer de compte. Les créneaux s&rsquo;ouvrent sur les deux semaines à venir. Pour limiter les commandes annulées au dernier moment, l&rsquo;empreinte bancaire est facultative : elle bloque 75 % du panier sans le débiter et se libère 24 h après la remise.</p>
+<p>Marchéo a aussi ses limites : il ne livre pas, et il n&rsquo;apporte pas de clients comme une place de marché. C&rsquo;est à vous de faire connaître votre service, en boutique et sur votre fiche Google.</p>
+<h2>Comment prévenir vos clients que vous livrez ?</h2>
+<p>Le plus efficace reste le comptoir : un mot à chaque client habitué et une affiche en vitrine avec un QR code vers votre boutique en ligne. Ajoutez le lien sur votre fiche Google et sur les sacs à pain si vous en imprimez.</p>
+<p>Pour les entreprises, déposez une carte avec vos formules petit déjeuner dans les bureaux et les commerces voisins. Pour les fêtes, annoncez la date limite de commande des <a href="/blog/commande-buche-de-noel-en-ligne">bûches de Noël en ligne</a> au moins trois semaines avant. Si vous n&rsquo;avez pas encore de site, notre guide du <a href="/blog/site-internet-boulangerie-commandes-en-ligne">site internet pour boulangerie</a> explique quelles pages créer.</p>
+<h2>Par où commencer cette semaine ?</h2>
+<p>Choisissez un seul usage pour démarrer, par exemple la formule petit déjeuner du dimanche, avec une zone courte et un créneau unique. Mesurez le nombre de commandes pendant un mois avant d&rsquo;élargir.</p>
+<p>Pour voir à quoi ressemblerait la boutique en ligne de votre boulangerie, <a href="/inscription">créez votre démo gratuite</a> : choisissez votre métier, tapez le nom de votre boutique et l&rsquo;aperçu s&rsquo;affiche en 30 secondes.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Quel logiciel pour qu'une boulangerie propose la livraison à domicile ?</summary><p>Trois options existent : les plateformes de livraison, qui prennent en général 14 à 30 % de commission sur chaque commande ; le téléphone avec un cahier ou un tableur, gratuit mais tout se recopie à la main ; et les logiciels à abonnement fixe pour commerces de bouche. Marchéo fait partie de cette dernière famille : la formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et 549 € de frais d'installation uniques. Vous y réglez votre zone, vos créneaux, votre minimum et vos frais. Marchéo ne livre pas : c'est vous qui livrez.</p></details><details><summary>Faut-il acheter du matériel pour livrer le pain de sa boulangerie ?</summary><p>Pas pour prendre et gérer les commandes : avec Marchéo, il n'y a aucune tablette, imprimante ou caisse à acheter, tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà. Pour la tournée, il vous faut un véhicule, des caisses propres et fermées pour le pain, et une caisse isotherme si vous livrez des pâtisseries à la crème.</p></details><details><summary>Est-ce rentable de livrer une baguette à domicile ?</summary><p>Rarement à l'unité, car le panier est trop petit pour couvrir le trajet. La livraison devient rentable avec un minimum de commande, des créneaux groupés et des clients proches les uns des autres : petits déjeuners du week-end, commandes d'entreprises, gâteaux et commandes de fêtes.</p></details><details><summary>Peut-on livrer des clients tous les matins avec Marchéo ?</summary><p>Oui, en ouvrant un créneau de livraison chaque matin. Chaque client passe sa commande pour le créneau de son choix. Les créneaux s'ouvrent sur les deux semaines à venir, ce qui suffit pour les petits déjeuners du week-end et les commandes de fêtes.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/drive-ou-click-and-collect-commercant">Drive ou click and collect</a><a href="/blog/site-internet-epicerie-fine">Créer le site internet de son épicerie fine</a><a href="/blog/application-click-and-collect-gratuite">Click and collect gratuit</a><a href="/blog/reglementation-livraison-alimentaire-commercant">Réglementation livraison alimentaire</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
+</body>
+</html>
