@@ -5072,6 +5072,8 @@ window.addEventListener('beforeinstallprompt', e => {
 });
 
 async function demanderPermissionNotifications(reg) {
+  // iPhone hors app installée : l'API Notification n'existe pas
+  if (!('Notification' in window)) return;
   if (Notification.permission === 'granted') {
     const bn = document.getElementById('banniereNotifs'); if(bn) bn.style.display = 'none';
     abonnerAuxNotifications(reg);
@@ -5768,13 +5770,34 @@ let tourInstallOk = false;
 
 function tourAppareil() {
   const ua = navigator.userAgent || '';
-  const ios = /iPad|iPhone|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const ipad = /iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const ios = ipad || /iPhone|iPod/i.test(ua);
+  const android = !ios && /Android/i.test(ua);
+  // Navigateur intégré à une autre appli (Instagram, Facebook, Gmail…) :
+  // il ne sait pas installer une appli sur l'écran d'accueil.
+  const integre = /FBAN|FBAV|FB_IAB|Instagram|Line\/|MicroMessenger|TikTok|musical_ly|Snapchat|LinkedInApp/i.test(ua)
+    || (ios && !/Safari\//i.test(ua))
+    || (android && /; wv\)/i.test(ua));
+  let nav = 'autre';
+  if (ios) nav = /CriOS/i.test(ua) ? 'chrome' : /FxiOS/i.test(ua) ? 'firefox' : /EdgiOS/i.test(ua) ? 'edge' : 'safari';
+  else if (android) nav = /SamsungBrowser/i.test(ua) ? 'samsung' : /Firefox/i.test(ua) ? 'firefox' : /EdgA/i.test(ua) ? 'edge' : /OPR\//i.test(ua) ? 'opera' : 'chrome';
   return {
     ios: ios,
-    android: /Android/i.test(ua),
-    safari: ios && !/CriOS|FxiOS|EdgiOS/i.test(ua),
-    installee: window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
+    ipad: ipad,
+    android: android,
+    nav: nav,
+    integre: integre,
+    nomAppareil: ipad ? 'iPad' : (ios ? 'iPhone' : (android ? 'téléphone' : 'ordinateur')),
+    installee: window.matchMedia('(display-mode: standalone)').matches
+      || window.matchMedia('(display-mode: fullscreen)').matches
+      || window.navigator.standalone === true
   };
+}
+
+const TOUR_ICO_PARTAGE = '<span class="tour-ico-partage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span>';
+
+function tourEtapesNum(items) {
+  return '<ol class="tour-etapes">' + items.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ol>';
 }
 
 function tourCorpsInstall() {
@@ -5784,27 +5807,65 @@ function tourCorpsInstall() {
     return '<div class="tour-ok">✅ Marchéo est installée sur cet appareil.</div>'
       + 'Tu l\'ouvres depuis son icône, comme n\'importe quelle appli. On peut commencer la visite.';
   }
+
+  // ── iPhone / iPad : pas de bouton d'installation, tout passe par « Partager »
   if (a.ios) {
-    return intro + '<ol class="tour-etapes">'
-      + '<li>Touche le bouton <b>Partager</b> <span class="tour-ico-partage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span> '
-      + (a.safari ? 'en bas de Safari' : 'de ton navigateur') + '</li>'
-      + '<li>Fais défiler et choisis <b>« Sur l\'écran d\'accueil »</b></li>'
-      + '<li>Touche <b>Ajouter</b></li>'
-      + '</ol>'
+    if (a.integre) {
+      return intro + '<div class="tour-attention">Tu es dans le navigateur d\'une autre appli : l\'installation n\'y est pas possible. Ouvre cette page dans <b>Safari</b> (menu <b>⋯</b> → « Ouvrir dans Safari » ou « Ouvrir dans le navigateur »), puis reviens à cette étape.</div>';
+    }
+    let partager;
+    if (a.nav === 'safari') {
+      partager = 'Touche le bouton <b>Partager</b> ' + TOUR_ICO_PARTAGE + ' '
+        + (a.ipad ? 'en haut à droite de Safari' : 'en bas de Safari')
+        + '<div class="tour-sous">Tu ne le vois pas ? Touche d\'abord <b>⋯</b>, puis <b>Partager</b>.</div>';
+    } else if (a.nav === 'chrome') {
+      partager = 'Touche le bouton <b>Partager</b> ' + TOUR_ICO_PARTAGE + ' en haut à droite, dans la barre d\'adresse de Chrome';
+    } else {
+      partager = 'Ouvre le menu de ton navigateur (<b>☰</b> ou <b>⋯</b>), puis touche <b>Partager</b> ' + TOUR_ICO_PARTAGE;
+    }
+    return intro + tourEtapesNum([
+        partager,
+        'Fais défiler la liste et choisis <b>« Sur l\'écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b> en haut à droite'
+      ])
       + tourAstuce('Ouvre ensuite Marchéo depuis sa nouvelle icône et reconnecte-toi : la visite reprendra. Tu peux aussi continuer maintenant et l\'installer plus tard.');
   }
+
+  // ── Android / ordinateur : le navigateur propose l'installation → un seul bouton
   if (deferredPrompt) {
     return intro
       + '<button class="tour-btn-action" onclick="tourInstaller()">📥 Installer Marchéo</button>'
       + '<div class="tour-note">Une fenêtre s\'ouvre : touche <b>Installer</b> pour confirmer.</div>';
   }
+
   if (a.android) {
-    return intro + '<ol class="tour-etapes">'
-      + '<li>Touche le menu <b>⋮</b> en haut à droite du navigateur</li>'
-      + '<li>Choisis <b>« Ajouter à l\'écran d\'accueil »</b> ou <b>« Installer l\'application »</b></li>'
-      + '<li>Touche <b>Installer</b></li>'
-      + '</ol>';
+    if (a.integre) {
+      return intro + '<div class="tour-attention">Tu es dans le navigateur d\'une autre appli : l\'installation n\'y est pas possible. Touche le menu <b>⋮</b> → <b>« Ouvrir dans Chrome »</b>, puis reviens à cette étape.</div>';
+    }
+    let etapes;
+    if (a.nav === 'samsung') {
+      etapes = [
+        'Touche le menu <b>☰</b> en bas à droite de Samsung Internet',
+        'Choisis <b>« Ajouter à »</b> puis <b>« Écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b>'
+      ];
+    } else if (a.nav === 'firefox') {
+      etapes = [
+        'Touche le menu <b>⋮</b> de Firefox',
+        'Choisis <b>« Ajouter à l\'écran d\'accueil »</b>',
+        'Touche <b>Ajouter</b>'
+      ];
+    } else {
+      etapes = [
+        'Touche le menu <b>⋮</b> en haut à droite ' + (a.nav === 'chrome' ? 'de Chrome' : 'du navigateur'),
+        'Choisis <b>« Ajouter à l\'écran d\'accueil »</b>, puis <b>« Installer »</b>',
+        'Touche <b>Installer</b> pour confirmer'
+      ];
+    }
+    return intro + tourEtapesNum(etapes)
+      + (a.nav === 'chrome' ? '' : tourAstuce('Le plus simple sur Android : ouvrir cette page dans <b>Chrome</b>.'));
   }
+
   return intro
     + tourAstuce('Tu es sur ordinateur : le plus pratique est d\'ouvrir cette page sur ton téléphone et de l\'installer là. Sur cet ordinateur, clique sur l\'icône d\'installation à droite de la barre d\'adresse (Chrome, Edge).');
 }
@@ -5837,19 +5898,32 @@ function tourCorpsNotifs() {
   const suite = tourAstuce('Le bouton <b>Tester une notification</b> en haut de l\'écran te montre le résultat. Le son se choisit dans Réglages.');
   if (!('Notification' in window)) {
     if (a.ios && !a.installee) {
-      return intro + '<div class="tour-attention">Sur iPhone, les notifications ne fonctionnent qu\'une fois Marchéo installée sur l\'écran d\'accueil (étape précédente). Tu pourras les activer ensuite avec le bandeau <b>Activez les notifications</b> en haut de l\'écran.</div>';
+      return intro + '<div class="tour-attention">Sur ' + a.nomAppareil + ', les notifications ne fonctionnent qu\'une fois Marchéo installée sur l\'écran d\'accueil (étape précédente) et ouverte depuis son icône. Tu les activeras alors avec le bandeau <b>Activez les notifications</b> en haut de l\'écran.</div>';
     }
-    return intro + '<div class="tour-attention">Ce navigateur ne permet pas les notifications. Ouvre Marchéo dans Chrome (Android) ou Safari (iPhone) pour en profiter.</div>';
+    if (a.ios) {
+      return intro + '<div class="tour-attention">Ton ' + a.nomAppareil + ' est trop ancien pour les notifications : il faut iOS 16.4 ou plus récent (Réglages → Général → Mise à jour logicielle).</div>';
+    }
+    if (a.android) {
+      return intro + '<div class="tour-attention">Ce navigateur ne permet pas les notifications. Ouvre Marchéo dans <b>Chrome</b> pour en profiter.</div>';
+    }
+    return intro + '<div class="tour-attention">Ce navigateur ne permet pas les notifications. Utilise Chrome ou Edge, ou installe Marchéo sur ton téléphone.</div>';
   }
   if (Notification.permission === 'granted') {
     return '<div class="tour-ok">✅ Les notifications sont activées sur cet appareil.</div>' + suite;
   }
   if (Notification.permission === 'denied') {
-    return intro + '<div class="tour-attention">🔕 Les notifications sont bloquées pour ce site. Autorise-les dans les réglages de ton navigateur, puis reviens ici.</div>';
+    const ou = a.ios
+      ? 'Sur ton ' + a.nomAppareil + ' : <b>Réglages → Notifications → Marchéo → Autoriser les notifications</b>.'
+      : a.android
+        ? (a.installee
+            ? 'Appuie longuement sur l\'icône Marchéo → <b>Infos sur l\'appli → Notifications</b> → active-les.'
+            : 'Touche le cadenas (ou l\'icône de réglages) à gauche de l\'adresse du site → <b>Autorisations → Notifications → Autoriser</b>.')
+        : 'Clique sur le cadenas (ou l\'icône de réglages) à gauche de l\'adresse du site → <b>Notifications → Autoriser</b>.';
+    return intro + '<div class="tour-attention">🔕 Les notifications sont bloquées. ' + ou + ' Puis reviens ici.</div>';
   }
   return intro
     + '<button class="tour-btn-action" onclick="tourActiverNotifs()">🔔 Activer les notifications</button>'
-    + '<div class="tour-note">Ton téléphone te demande l\'autorisation : touche <b>Autoriser</b>.</div>';
+    + '<div class="tour-note">Ton ' + a.nomAppareil + ' te demande l\'autorisation : touche <b>Autoriser</b>.</div>';
 }
 
 let tourNotifsTimer = null;
@@ -6139,6 +6213,7 @@ function lancerTourSiPremiereVisite() {
     .tour-etapes { margin-top: 12px; }
     .tour-etapes li { margin-bottom: 9px; padding-left: 2px; }
     .tour-etapes li::marker { font-weight: 800; color: #2A6F3F; }
+    .tour-sous { font-size: 13px; color: #64748b; margin-top: 3px; }
     .tour-ico-partage { display: inline-flex; vertical-align: -5px; width: 22px; height: 22px; color: #0A84FF; }
     .tour-ico-partage svg { width: 100%; height: 100%; }
     .tour-astuce { margin-top: 10px; background: #F7F2E8; border-radius: 12px; padding: 10px 12px; font-size: 13.5px; line-height: 1.5; color: #475569; }
@@ -10752,7 +10827,10 @@ function appliquerRestrictionsRole(role) {
 
   window.activerNotifications=function(){
     if(!('Notification' in window)){
-      alert('Ton navigateur ne supporte pas les notifications.');
+      var surIos=/iPad|iPhone|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+      alert(surIos&&window.navigator.standalone!==true
+        ? "Sur iPhone, installe d'abord Marchéo sur l'écran d'accueil (Partager → « Sur l'écran d'accueil »), puis ouvre-la depuis son icône pour activer les notifications."
+        : 'Ton navigateur ne supporte pas les notifications.');
       return;
     }
     if(Notification.permission==='granted'){
