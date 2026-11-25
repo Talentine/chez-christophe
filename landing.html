@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <!-- iPhone : une icône d'écran d'accueil ajoutée depuis l'accueil s'ouvre en mode app → on envoie vers l'app commerçant -->
+  <script>(function(){try{if(window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches){location.replace('/app');}}catch(e){}})();</script>
   <!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
        (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
   <script data-weeglad-gate>(function(){try{
