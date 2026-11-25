@@ -2460,6 +2460,18 @@ async function chargerGalerieBoutique() {
         };
       });
 
+    // Photos des points de retrait (devantures des autres boutiques), après la galerie
+    try {
+      const bid = cfg?.business?.id;
+      if (bid) {
+        const pts = await supabase('points_retrait', '?commercant_id=eq.' + bid + '&actif=eq.true&photo_url=not.is.null&order=ordre.asc&select=nom,photo_url');
+        (Array.isArray(pts) ? pts : []).forEach(pt => {
+          if (!pt.photo_url || pt.photo_url === heroUrl || galerieItems.some(g => g.url === pt.photo_url)) return;
+          galerieItems.push({ type: 'photo', label: pt.nom, url: pt.photo_url });
+        });
+      }
+    } catch (e) { /* galerie sans les points de retrait */ }
+
     if (galerieItems.length === 0) {
       scroll.innerHTML = '<div class="galerie-item galerie-item-grande"><div class="galerie-placeholder"><span class="galerie-placeholder-icon">📸</span><span>Photos à venir</span></div></div>';
       return;
