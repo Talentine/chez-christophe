@@ -2205,7 +2205,7 @@ ensureFiche();
 render();
 window.addEventListener("beforeunload",persist);
 </script>
-<script>if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("/audit-sw.js").catch(function(){});});}</script>
+<script>if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("/audit-sw.js",{scope:"/audit-"}).catch(function(){});});}</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
