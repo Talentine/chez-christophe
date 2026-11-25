@@ -965,6 +965,21 @@ async function chargerCategories(catSlugActif) {
     cats = await sb('categories', '?business_type=eq.' + bt + '&order=ordre&select=*');
     if (!cats.length) cats = await sb('categories', '?order=ordre&select=*');
   } catch { cats = await sb('categories', '?order=ordre&select=*'); }
+  // Rayons propres à un commerçant : seulement ceux de cette boutique
+  cats = (cats || []).filter(c => !c.commercant_id || c.commercant_id === __CID__);
+  const bcCat = window.__CONFIG__?.business || {};
+  if ((bcCat.rayons_config || {}).custom_first) {
+    cats = [...cats.filter(c => c.commercant_id), ...cats.filter(c => !c.commercant_id)];
+  }
+  const fSlugs = (bcCat.business_config || {}).formules_categories;
+  if (Array.isArray(fSlugs) && fSlugs.length) {
+    const hiddenCat = new Set(((bcCat.rayons_config || {}).hidden) || []);
+    if (hiddenCat.size) cats = cats.filter(c => !hiddenCat.has(c.slug));
+    document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => {
+      a.setAttribute('href', 'catalogue.html?cat=' + encodeURIComponent(fSlugs[0]));
+      const lbl = a.querySelector('.nav-label'); if (lbl) lbl.textContent = 'Formules';
+    });
+  }
   const scroll = document.getElementById('filtresScroll');
 
   // Restaurants et pizzerias : pas de rayon ni d'onglet Paniers
