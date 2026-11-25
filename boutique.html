@@ -1218,6 +1218,7 @@
 <script src="assets/core/init.js?v=resto3"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
 <script src="/assets/core/modes-vente.js?v=1"></script>
+<script src="/assets/core/formules.js?v=1"></script>
 <script src="/assets/core/hero-cadrage.js?v=1"></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=4" defer></script>
@@ -1589,6 +1590,7 @@ function renderProduitCard(p) {
   if (epuise && !ep) actionHtml = '<span style="font-size:12px;font-weight:700;color:#9F1B1F;">' + (indispo ? 'Indisponible' : 'Épuisé') + '</span>';
   // Restaurant / pizzeria : plat servi sur place uniquement → pas d'ajout
   if (!ep && window.ModesVente && !ModesVente.commandable(p)) actionHtml = ModesVente.actionSurPlace();
+  if (window.Formules && Formules.est(p)) actionHtml = '<button class="btn-add" onclick="event.stopPropagation();ajouterAuPanierDepuisCard(\'' + p.id + '\')">+</button>';
   const btnHtml = `<div class="produit-action" id="action-${p.id}" data-prod="${dataStr}">${actionHtml}</div>`;
   const provHtml = p.provenance
     ? `<div class="produit-provenance"><svg class="produit-provenance-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.provenance}</div>`
@@ -1645,6 +1647,11 @@ async function chargerRayons(commercantId) {
   // Merger + filtrer les masqués (par slug)
   // Option boutique : rayons propres au commerçant (ex. formules) affichés en premier
   let cats = (rayonsCfg.custom_first ? [...custom, ...globaux] : [...globaux, ...custom]).filter(c => !hidden.has(c.slug));
+  // Ordre choisi par le commerçant (rayons_config.ordre = liste de slugs) ; les autres suivent
+  if (Array.isArray(rayonsCfg.ordre) && rayonsCfg.ordre.length) {
+    const rang = (c) => { const i = rayonsCfg.ordre.indexOf(c.slug); return i < 0 ? 999 : i; };
+    cats = cats.map((c, i) => ({ c, i })).sort((a, b) => (rang(a.c) - rang(b.c)) || (a.i - b.i)).map(x => x.c);
+  }
   if (!cats.length) { grid.innerHTML = '<p style="text-align:center;color:var(--texte-doux);grid-column:span 2;">Aucun rayon à afficher.</p>'; return; }
   const cfg = window.__CONFIG__;
   const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -1726,58 +1733,19 @@ async function chargerCoupsDeCoeur(commercantId) {
 }
 
 // ── PANIERS THÉMATIQUES ──────────────────────────────────────────
-// ── MODE FORMULES (option boutique) ───────────────────────────────
-// business_config.formules_categories = [slugs de rayons propres au commerçant]
-// → la section « Nos paniers » devient « Nos formules » (titre réglable via
-// business_config.formules_titre), passe au-dessus des rayons et l'onglet du
-// bas pointe vers le premier rayon de formules. Sans ce réglage : rien ne change.
-function formulesConfig() {
-  const bc = (window.__CONFIG__?.business?.business_config) || {};
-  const slugs = Array.isArray(bc.formules_categories) ? bc.formules_categories.filter(Boolean) : [];
-  return slugs.length ? { slugs, titre: bc.formules_titre || 'Nos formules', enTete: bc.formules_en_tete !== false } : null;
-}
-
-async function chargerFormules(commercantId, fcfg) {
-  const container = document.getElementById('paniersListe');
-  const sec = document.getElementById('paniers');
-  const titre = sec && sec.querySelector('.section-title');
-  if (titre) titre.textContent = fcfg.titre;
-  const voirTout = sec && sec.querySelector('.voir-tout');
-  if (voirTout) voirTout.onclick = () => voirCategorie(fcfg.slugs[0], fcfg.titre);
-  const rayons = document.getElementById('rayons');
-  if (fcfg.enTete && sec && rayons && rayons.parentNode) rayons.parentNode.insertBefore(sec, rayons);
-  document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => {
-    a.setAttribute('href', 'catalogue.html?cat=' + encodeURIComponent(fcfg.slugs[0]));
-    const lbl = a.querySelector('.nav-label'); if (lbl) lbl.textContent = 'Formules';
-  });
-  try {
-    const cats = await supabase('categories', '?commercant_id=eq.' + commercantId
-      + '&slug=in.(' + fcfg.slugs.map(encodeURIComponent).join(',') + ')&select=id,nom,slug,emoji');
-    if (!Array.isArray(cats) || !cats.length) { container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucune formule disponible</p>'; return; }
-    cats.sort((a, b) => fcfg.slugs.indexOf(a.slug) - fcfg.slugs.indexOf(b.slug));
-    const rows = await supabase('catalogue', '?commercant_id=eq.' + commercantId
-      + '&actif=eq.true&select=*,produits_base!inner(id,nom,unite,prix_marche_indicatif,photo_url,description,provenance,saisonnier,badge_bio,badge_local,badge_nouveau,categorie_id,categories(nom,emoji))'
-      + '&produits_base.categorie_id=in.(' + cats.map(c => c.id).join(',') + ')'
-      + '&order=ordre_affichage.asc');
-    const produits = (Array.isArray(rows) ? rows : []).map(r => Object.assign(flattenCatalogueRow(r), { _cat: r.produits_base && r.produits_base.categorie_id })).filter(p => p.nom);
-    if (!produits.length) { container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucune formule disponible</p>'; return; }
-    container.innerHTML = cats.map(c => {
-      const items = produits.filter(p => p._cat === c.id);
-      if (!items.length) return '';
-      return '<div class="formules-groupe" style="margin-bottom:18px;">'
-        + '<div style="font-weight:700;font-size:15px;margin:0 2px 10px;">' + (c.emoji ? c.emoji + ' ' : '') + c.nom + '</div>'
-        + '<div class="produits-scroll">' + items.map(renderProduitCard).join('') + '</div></div>';
-    }).join('');
-  } catch (e) {
-    console.log('Erreur formules:', e);
-    container.innerHTML = '<p style="color:#aaa;font-size:13px;">Erreur de chargement</p>';
-  }
-}
-
 async function chargerPaniers(commercantId) {
   const container = document.getElementById('paniersListe');
-  const fcfg = formulesConfig();
-  if (fcfg) return chargerFormules(commercantId, fcfg);
+  // Onglet du bas « Paniers » → rayon formules du commerçant (business_config.formules_rayon)
+  const bcF = window.__CONFIG__?.business?.business_config || {};
+  if (bcF.formules_rayon) {
+    document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => {
+      a.setAttribute('href', 'catalogue.html?cat=' + encodeURIComponent(bcF.formules_rayon));
+      const lbl = a.querySelector('.nav-label'); if (lbl) lbl.textContent = 'Formules';
+    });
+  }
+  // Rayon paniers masqué par le commerçant → pas de section « Nos paniers »
+  const hiddenP = new Set((window.__CONFIG__?.business?.rayons_config || {}).hidden || []);
+  const cachePaniers = () => { const sec = document.getElementById('paniers'); if (sec) sec.style.display = 'none'; };
   // Restaurants et pizzerias : pas de section « Nos paniers » ni d'onglet Paniers
   if (window.ModesVente && ModesVente.concerne()) {
     const sec = document.getElementById('paniers');
@@ -1795,6 +1763,7 @@ async function chargerPaniers(commercantId) {
       container.innerHTML = '<p style="color:#aaa;font-size:13px;padding:10px;">Aucun panier disponible</p>';
       return;
     }
+    if (hiddenP.size && cats.every(c => hiddenP.has(c.slug))) { cachePaniers(); return; }
     const catIds = cats.map(c => c.id);
 
     // 2. produits_base de ces catégories
@@ -1906,6 +1875,7 @@ const POIDS_OPTIONS = [
 ];
 
 function ouvrirFicheProduit(produit) {
+  if (window.Formules && produit && Formules.est(produit)) { ajouterFormuleBoutique(produit); return; }
   ficheProduitData = produit;
   const auPoids = estProduitAuPoids(produit);
   const ep = panier.find(x => x.id === produit.id);
@@ -2225,7 +2195,9 @@ function rafraichirBoutonsCartes() {
   document.querySelectorAll('.produit-action').forEach(wrap => {
     const id = wrap.id.replace(/^action-/, '');
     const ep = panier.find(x => x.id === id);
-    if (ep) {
+    let estF = false;
+    try { estF = !!(window.Formules && Formules.est(JSON.parse(wrap.dataset.prod || '{}'))); } catch (e) {}
+    if (ep && !estF) {
       if (ep.au_poids) {
         const poidsLabel = ep.poids_kg < 1
           ? (ep.poids_kg*1000).toFixed(0) + 'g'
@@ -2240,7 +2212,19 @@ function rafraichirBoutonsCartes() {
   });
 }
 
+// Formule : choix des options avant l'ajout (une ligne par combinaison)
+function ajouterFormuleBoutique(produit) {
+  Formules.ouvrir(produit, function (choix) {
+    Formules.ajouterLigne(panier, produit, choix);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    mettreAJourBadge();
+    rafraichirBoutonsCartes();
+    afficherToastPanierBoutique('✓ ' + produit.nom + ' ajoutée au panier', 'add');
+  });
+}
+
 function ajouterAuPanier(produit) {
+  if (window.Formules && produit && !produit.choix && Formules.est(produit)) { ajouterFormuleBoutique(produit); return; }
   if (window.ModesVente && produit && !ModesVente.commandable(produit)) {
     afficherToastPanierBoutique('🍽️ Ce plat est servi sur place uniquement', 'remove');
     return;

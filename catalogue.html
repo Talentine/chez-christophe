@@ -709,6 +709,7 @@
 <script src="/assets/core/init.js?v=brandv2"></script>
 <script src="/assets/core/poids-indicatif.js?v=1"></script>
 <script src="/assets/core/modes-vente.js?v=1"></script>
+<script src="/assets/core/formules.js?v=1"></script>
 <script src="/assets/core/vitrine-mode.js?v=1" defer></script>
 <script src="/assets/core/analytics.js?v=brandv2" defer></script>
 <script src="/assets/core/demo-pub.js?v=4" defer></script>
@@ -928,6 +929,7 @@ function flattenCatalogueRowBase(row) {
     // Modes de vente (restaurants / pizzerias)
     vente_retrait: row.vente_retrait !== false,
     vente_livraison: row.vente_livraison !== false,
+    custom_fields: row.custom_fields || {},
   };
 }
 
@@ -971,12 +973,17 @@ async function chargerCategories(catSlugActif) {
   if ((bcCat.rayons_config || {}).custom_first) {
     cats = [...cats.filter(c => c.commercant_id), ...cats.filter(c => !c.commercant_id)];
   }
-  const fSlugs = (bcCat.business_config || {}).formules_categories;
-  if (Array.isArray(fSlugs) && fSlugs.length) {
+  const ordreCat = (bcCat.rayons_config || {}).ordre;
+  if (Array.isArray(ordreCat) && ordreCat.length) {
+    const rang = (c) => { const i = ordreCat.indexOf(c.slug); return i < 0 ? 999 : i; };
+    cats = cats.map((c, i) => ({ c, i })).sort((a, b) => (rang(a.c) - rang(b.c)) || (a.i - b.i)).map(x => x.c);
+  }
+  const fRayon = (bcCat.business_config || {}).formules_rayon;
+  if (fRayon) {
     const hiddenCat = new Set(((bcCat.rayons_config || {}).hidden) || []);
     if (hiddenCat.size) cats = cats.filter(c => !hiddenCat.has(c.slug));
     document.querySelectorAll('.bottom-nav .nav-item[href*="cat=paniers"]').forEach(a => {
-      a.setAttribute('href', 'catalogue.html?cat=' + encodeURIComponent(fSlugs[0]));
+      a.setAttribute('href', 'catalogue.html?cat=' + encodeURIComponent(fRayon));
       const lbl = a.querySelector('.nav-label'); if (lbl) lbl.textContent = 'Formules';
     });
   }
@@ -1098,7 +1105,8 @@ function renderProduits() {
   }
 
   grid.innerHTML = produitsFiltres.map(p => {
-    const enPanier = panier.find(x => x.id === p.id);
+    const estFormule = !!(window.Formules && Formules.est(p));
+    const enPanier = estFormule ? null : panier.find(x => x.id === p.id);
     const emoji = p.categories?.emoji || '🌿';
     const prix = p.prix_marche_indicatif;
 
@@ -1139,9 +1147,21 @@ function renderProduits() {
 }
 
 // ── FICHE PRODUIT ─────────────────────────────────────
+// Formule : choix des options avant l'ajout (une ligne par combinaison)
+function ajouterFormuleCatalogue(p) {
+  Formules.ouvrir(p, function (choix) {
+    Formules.ajouterLigne(panier, p, choix);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    mettreAJourPanier();
+    afficherConfirmation(p.nom, 1);
+    renderProduits();
+  });
+}
+
 function ouvrirFiche(produitId) {
   const trouve = tousProduits.find(p => p.id === produitId);
   if (!trouve) return;
+  if (window.Formules && Formules.est(trouve)) { ajouterFormuleCatalogue(trouve); return; }
 
   // Helper sûr pour set textContent / style
   const setText  = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
@@ -1280,6 +1300,7 @@ function ajouterDepuisFiche() {
 function ajouterRapide(produitId) {
   const p = tousProduits.find(x => x.id === produitId);
   if (!p) return;
+  if (window.Formules && Formules.est(p)) { ajouterFormuleCatalogue(p); return; }
   // Produits au kilo → ouvrir la fiche pour choisir 250g / 500g / 1kg / etc.
   if (estProduitAuPoids(p)) {
     ouvrirFiche(produitId);
