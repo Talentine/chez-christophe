@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Nom de domaine pour un commerce : faut-il en acheter un ?](https://marchéo.fr/blog/nom-de-domaine-commerce) : Nom de domaine pour un commerce : est-il obligatoire, comment le choisir, .fr ou .com, avec ou sans accent, combien ça coûte par an et à quoi il sert.
 - [Boulangerie livraison à domicile : livrer pain et gâteaux vous-même](https://marchéo.fr/blog/boulangerie-livraison-a-domicile) : Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.
 - [QR code pour commander en ligne : le guide du commerçant](https://marchéo.fr/blog/qr-code-commande-en-ligne-commerce) : Comment faire commander vos clients avec un QR code : où l'afficher, ce qu'il doit ouvrir, combien ça coûte et la différence avec la commande à table.
 - [Drive ou click and collect : quelle différence pour un commerçant ?](https://marchéo.fr/blog/drive-ou-click-and-collect-commercant) : Drive ou click and collect : définitions, différences, coût et organisation pour un primeur, un boucher ou un fromager. Lequel choisir, et comment s'y prendre.
@@ -120,7 +121,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-24
+- Dernière mise à jour : 2026-11-25
 
 
 ---
@@ -591,6 +592,135 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Nom de domaine pour un commerce : faut-il en acheter un ?
+
+Nom de domaine pour un commerce : est-il obligatoire, comment le choisir, .fr ou .com, avec ou sans accent, combien ça coûte par an et à quoi il sert.
+
+Un nom de domaine pour un commerce n&rsquo;est pas obligatoire, mais il est utile : c&rsquo;est une adresse internet à votre nom, que vous gardez même si vous changez d&rsquo;outil. Il coûte en général d&rsquo;une dizaine à une vingtaine d&rsquo;euros par an. Pour un commerce de proximité, choisissez-le court, proche de votre enseigne, en .fr, et facile à dire au téléphone.
+Cet article détaille un point de notre guide complet de la création du site internet d&rsquo;un commerce. Il répond aux questions qu&rsquo;un boulanger, un boucher, un fleuriste ou un restaurateur se pose avant de payer : en ai-je vraiment besoin, lequel prendre, combien ça coûte et que faire avec.
+Qu&rsquo;est-ce qu&rsquo;un nom de domaine, pour un commerce ?
+Un nom de domaine est l&rsquo;adresse que vos clients tapent pour arriver sur votre site, par exemple boulangerie-dupont.fr. Il se loue à l&rsquo;année auprès d&rsquo;un vendeur spécialisé, appelé bureau d&rsquo;enregistrement.
+Trois choses sont souvent confondues :
+
+Le nom de domaine : l&rsquo;adresse, que vous louez chaque année.
+L&rsquo;hébergement : l&rsquo;endroit où le site est stocké. Avec un constructeur de site ou un logiciel métier, il est compris dans l&rsquo;abonnement.
+Le site : les pages, les photos, la boutique en ligne.
+
+Un nom de domaine est-il obligatoire pour le site de son commerce ?
+Non, aucune règle n&rsquo;oblige un commerce à posséder son nom de domaine. La plupart des outils fournissent une adresse prête à l&rsquo;emploi, et beaucoup de clients arrivent par un lien, un QR code ou votre fiche Google, sans jamais taper l&rsquo;adresse.
+Sur Marchéo, par exemple, votre boutique a son adresse dès la création, de la forme marchéo.fr/nom-du-commerce. Vous la partagez par lien, sur vos réseaux et par QR code en boutique. Cela suffit pour démarrer et prendre des commandes.
+Un nom de domaine à vous apporte trois avantages :
+
+Une adresse courte à imprimer sur la vitrine, les sacs, les cartes et le véhicule.
+Une adresse qui vous suit : si vous changez d&rsquo;outil un jour, vous la faites pointer vers le nouveau site et vos supports imprimés restent valables.
+Une adresse e-mail à votre nom, du type contact@votre-commerce.fr, si vous prenez cette option chez le vendeur.
+
+Comment choisir le nom de domaine de son commerce ?
+Prenez le nom de votre enseigne, tel que vos clients le prononcent. Si ce nom est déjà pris, ajoutez votre métier ou votre ville plutôt que d&rsquo;inventer une abréviation.
+
+
+
+À faire
+À éviter
+
+
+
+
+Le nom de l&rsquo;enseigne, comme sur la vitrine
+Un nom différent de celui que les clients connaissent
+
+
+Le métier ou la ville si le nom est pris (boucherie-martin-lyon.fr)
+Les abréviations et les chiffres difficiles à dicter
+
+
+Un seul tiret au plus, ou aucun
+Trois mots séparés par trois tirets
+
+
+Un nom qui se dicte au téléphone sans épeler
+Les doubles lettres et les orthographes originales
+
+
+Vérifier qu&rsquo;il ne reprend pas une marque déposée
+Copier le nom d&rsquo;un concurrent ou d&rsquo;une enseigne connue
+
+
+
+Faites le test du téléphone : dites l&rsquo;adresse à voix haute à quelqu&rsquo;un, et demandez-lui de l&rsquo;écrire. S&rsquo;il se trompe, vos clients se tromperont aussi.
+Les noms de domaine sont attribués au premier qui les réserve. Avant de payer, vérifiez sur le site de l&rsquo;INPI que le nom n&rsquo;est pas une marque déposée par un autre dans votre activité : cela vous évite un litige plus tard.
+Faut-il prendre un .fr ou un .com ?
+Pour un commerce de proximité, le .fr est le choix le plus logique. Il indique que vous êtes en France, et vos clients le retiennent sans effort. Il est ouvert à toute personne ou entreprise établie dans l&rsquo;Union européenne.
+Le .com est pensé pour une activité sans frontière. Il n&rsquo;apporte rien de plus à une boulangerie ou à une pizzeria dont les clients habitent à quelques kilomètres. Si les deux sont libres et que le budget suit, vous pouvez réserver le second pour qu&rsquo;un autre ne le prenne pas, mais ce n&rsquo;est pas indispensable.
+Nom de domaine avec ou sans accent ?
+Sans accent, c&rsquo;est le plus sûr. Le .fr accepte les lettres accentuées, mais beaucoup de clients tapent sans accent, et certaines messageries gèrent mal une adresse e-mail accentuée.
+Si votre enseigne porte un accent (Fromagerie Céleste, Le Pétrin), deux solutions :
+
+Prendre la version sans accent comme adresse principale. C&rsquo;est celle que vous imprimez.
+Réserver aussi la version avec accent, si elle est libre, et la rediriger vers la première. Vous évitez qu&rsquo;un autre la prenne.
+
+Combien coûte un nom de domaine par an ?
+Un nom de domaine en .fr ou en .com coûte en général d&rsquo;une dizaine à une vingtaine d&rsquo;euros par an. Les vendeurs affichent souvent un prix d&rsquo;appel la première année : c&rsquo;est le prix de renouvellement qu&rsquo;il faut regarder.
+
+
+
+Poste
+Ce qu&rsquo;il faut savoir
+
+
+
+
+Le nom de domaine
+Une dizaine à une vingtaine d&rsquo;euros par an, à renouveler chaque année
+
+
+Les adresses e-mail
+Souvent une option payante, utile seulement si vous voulez contact@votre-commerce.fr
+
+
+Le renouvellement
+Activez le renouvellement automatique : un nom non renouvelé peut être repris par un autre
+
+
+
+Le nom de domaine est donc la plus petite ligne du budget d&rsquo;un site. Le détail des autres coûts est dans notre article sur le site internet pas cher pour un commerce.
+Un conseil qui évite bien des soucis : achetez le nom vous-même, à votre nom, avec votre adresse e-mail. Si une agence ou un proche l&rsquo;achète pour vous, demandez à en être le titulaire. Sinon, récupérer l&rsquo;adresse le jour où vous changez de prestataire peut devenir compliqué.
+Que faire de son nom de domaine une fois acheté ?
+Faites-le pointer vers votre site ou votre boutique en ligne, puis utilisez la même adresse partout. La redirection se règle en quelques minutes dans l&rsquo;espace client du vendeur du nom, sans développeur.
+
+Sur votre fiche Google : mettez l&rsquo;adresse dans le champ « site web ». Les réglages utiles sont dans notre guide de la fiche Google Business pour un commerce de bouche.
+Sur vos supports imprimés : vitrine, sacs, tickets, cartes, à côté d&rsquo;un QR code pour commander en ligne.
+Sur vos réseaux sociaux : dans le lien du profil, à la place d&rsquo;un lien long.
+
+Pensez aussi aux mentions légales de votre site, qui doivent indiquer qui vous êtes et qui héberge le site. La liste est dans notre guide des obligations légales d&rsquo;une boutique en ligne.
+Et avec Marchéo, comment ça se passe ?
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Voici ce que cela change pour le nom de domaine, dit clairement :
+
+Vous n&rsquo;en avez pas besoin pour démarrer. Votre boutique a son adresse, de la forme marchéo.fr/nom-du-commerce, avec un QR code à imprimer.
+Si vous avez déjà un nom de domaine, gardez-le. Vous pouvez y mettre une redirection ou un lien vers votre boutique.
+Marchéo ne vend pas de nom de domaine et ne crée pas d&rsquo;adresses e-mail. Si vous en voulez un, vous l&rsquo;achetez chez un bureau d&rsquo;enregistrement, à votre nom.
+
+Côté prix : 19 € par mois pour un site vitrine, 39 € avec le click &amp; collect et la réservation, 59 € avec le click &amp; collect et la livraison, sans engagement, avec 0 % de commission et des frais d&rsquo;installation uniques de 249, 399 ou 549 €. Marchéo ne livre pas : il vous donne l&rsquo;outil pour organiser votre propre livraison. Les catalogues de départ par métier sont présentés sur les pages solutions, par exemple la solution pour boulangerie ou la solution pour fleuriste.
+Par où commencer cette semaine ?
+Commencez par le site, pas par le nom. Un nom de domaine sans rien derrière ne vous amène aucun client, alors qu&rsquo;une boutique en ligne avec une adresse simple prend des commandes dès le premier jour.
+
+Créez votre boutique et vérifiez qu&rsquo;elle vous convient.
+Regardez si le nom de votre enseigne est libre en .fr.
+Si oui, achetez-le à votre nom et redirigez-le vers votre boutique.
+Mettez la même adresse sur votre fiche Google, votre vitrine et vos sacs.
+
+Pour voir votre boutique avant de vous engager, ouvrez la page d&rsquo;inscription : choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu s&rsquo;affiche en 30 secondes, gratuitement.
+
+Q : Un commerçant a-t-il besoin d'un nom de domaine pour vendre en ligne ?
+R : Non, ce n'est pas obligatoire. Beaucoup d'outils donnent une adresse prête à l'emploi. Sur Marchéo, votre boutique a son adresse de la forme marchéo.fr/nom-du-commerce dès la création, pour 19 € par mois (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison), sans engagement et avec 0 % de commission, plus des frais d'installation uniques de 249, 399 ou 549 €. Un nom de domaine à vous reste utile pour avoir une adresse courte à imprimer et que vous gardez si vous changez d'outil.
+Q : Combien coûte un nom de domaine pour un commerce ?
+R : En général d'une dizaine à une vingtaine d'euros par an pour un .fr ou un .com, hors promotions de première année. Le prix se paie chaque année : regardez le tarif de renouvellement, pas seulement le prix d'appel. Les options vendues en plus (adresses e-mail, hébergement, protection) font vite monter la facture, prenez seulement ce qui vous sert.
+Q : Faut-il choisir un nom de domaine en .fr ou en .com pour un commerce de proximité ?
+R : Pour un commerce dont les clients habitent autour de la boutique, le .fr est le choix le plus logique : il montre tout de suite que vous êtes en France. Le .com n'apporte rien de plus à une clientèle locale. Si les deux sont libres et que votre budget le permet, vous pouvez réserver le second pour éviter qu'un autre ne le prenne.
+Q : Faut-il acheter du matériel ou payer un développeur pour utiliser son nom de domaine ?
+R : Non. Un nom de domaine s'achète en ligne en quelques minutes, et une redirection vers votre boutique se règle dans l'espace client du vendeur du nom, sans développeur. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter : tout se gère depuis le téléphone ou l'ordinateur que vous avez déjà.
 
 # Boulangerie livraison à domicile : livrer pain et gâteaux vous-même
 
@@ -6311,7 +6441,7 @@ Du temps à y passer. Le logiciel ne coûte rien, mais les réglages se font le 
 Les mentions légales restent obligatoires. Un site gratuit doit les afficher comme les autres. Le détail est dans notre guide des obligations légales d&rsquo;une boutique en ligne.
 
 Combien coûte vraiment un site pas cher sur trois ans ?
-Sur trois ans, un site pas cher coûte de 0 à environ 2 700 € selon ce qu&rsquo;il fait. Le calcul ci-dessous est un exemple : le constructeur est compté à 15 € par mois et le nom de domaine à 15 € par an, et ces prix varient selon les offres.
+Sur trois ans, un site pas cher coûte de 0 à environ 2 700 € selon ce qu&rsquo;il fait. Le calcul ci-dessous est un exemple : le constructeur est compté à 15 € par mois et le nom de domaine à 15 € par an, et ces prix varient selon les offres. Pour savoir s&rsquo;il vous en faut un et lequel prendre, lisez notre guide du nom de domaine pour un commerce.
 
 
 
@@ -8795,7 +8925,7 @@ Vous ou votre équipe, au travail.
 Cinq ou six photos suffisent au lancement. Vous les remplacerez au fil des saisons, depuis votre téléphone.
 Nom de domaine, hébergement, mentions légales : que faut-il savoir ?
 Un nom de domaine est l&rsquo;adresse de votre site, l&rsquo;hébergement est l&rsquo;endroit où il est stocké, et les mentions légales sont une obligation pour tout site professionnel. Avec un logiciel métier, l&rsquo;hébergement est compris et vous n&rsquo;avez pas à vous en occuper.
-Le nom de domaine. Il n&rsquo;est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone.
+Le nom de domaine. Il n&rsquo;est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone. Le choix de l&rsquo;extension, les accents et le prix par an sont détaillés dans notre guide du nom de domaine pour un commerce.
 L&rsquo;hébergement. Avec un constructeur de site ou un logiciel métier, il est inclus dans l&rsquo;abonnement. Avec une agence ou un site WordPress installé à part, c&rsquo;est une ligne de budget distincte, à laquelle s&rsquo;ajoutent les mises à jour de sécurité.
 Les mentions légales. Tout site professionnel doit indiquer l&rsquo;identité de l&rsquo;entreprise (nom, adresse, numéro d&rsquo;immatriculation), l&rsquo;hébergeur et un moyen de contact. Dès que vous vendez en ligne, il faut aussi des conditions générales de vente et une information sur les données personnelles collectées. Pour les produits alimentaires, pensez aux allergènes. Le détail, avec le droit de rétractation et le médiateur de la consommation, est dans notre guide des obligations légales d&rsquo;une boutique en ligne.
 Combien coûte la création du site internet d&rsquo;un commerce ?

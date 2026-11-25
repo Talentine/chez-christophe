@@ -3,7 +3,7 @@ title: "Site internet pas cher pour un commerce : ce qui est vraiment gratuit"
 titre_court: "Un site pas cher pour son commerce"
 description: "Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité."
 date: 2026-11-02
-modified: 2026-11-17
+modified: 2026-11-25
 rubrique: Comparatif
 emoji: 💶
 keywords:
@@ -57,7 +57,7 @@ Un site gratuit ne prend pas de commandes organisées, et il ne vous dispense pa
 
 ## Combien coûte vraiment un site pas cher sur trois ans ?
 
-Sur trois ans, un site pas cher coûte de 0 à environ 2 700 € selon ce qu'il fait. Le calcul ci-dessous est un exemple : le constructeur est compté à 15 € par mois et le nom de domaine à 15 € par an, et ces prix varient selon les offres.
+Sur trois ans, un site pas cher coûte de 0 à environ 2 700 € selon ce qu'il fait. Le calcul ci-dessous est un exemple : le constructeur est compté à 15 € par mois et le nom de domaine à 15 € par an, et ces prix varient selon les offres. Pour savoir s'il vous en faut un et lequel prendre, lisez notre guide du [nom de domaine pour un commerce](/blog/nom-de-domaine-commerce).
 
 | Solution | Ce qu'elle fait | Coût la 1re année | Coût sur 3 ans | Commission |
 | --- | --- | --- | --- | --- |

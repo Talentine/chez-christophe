@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/nom-de-domaine-commerce",
   "/blog/boulangerie-livraison-a-domicile",
   "/blog/qr-code-commande-en-ligne-commerce",
   "/blog/drive-ou-click-and-collect-commercant",

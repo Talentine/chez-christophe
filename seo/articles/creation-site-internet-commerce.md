@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-11-23
+modified: 2026-11-25
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -97,7 +97,7 @@ Cinq ou six photos suffisent au lancement. Vous les remplacerez au fil des saiso
 
 Un nom de domaine est l'adresse de votre site, l'hébergement est l'endroit où il est stocké, et les mentions légales sont une obligation pour tout site professionnel. Avec un logiciel métier, l'hébergement est compris et vous n'avez pas à vous en occuper.
 
-**Le nom de domaine.** Il n'est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone.
+**Le nom de domaine.** Il n'est pas indispensable pour démarrer. Sur Marchéo, votre site a déjà son adresse, de la forme marchéo.fr/nom-du-commerce, que vous partagez par lien et par QR code. Si vous avez déjà un nom de domaine, gardez-le : vous pouvez y mettre un lien ou une redirection vers votre site. Si vous en achetez un, choisissez-le court, proche du nom de votre enseigne, et facile à dire au téléphone. Le choix de l'extension, les accents et le prix par an sont détaillés dans notre guide du [nom de domaine pour un commerce](/blog/nom-de-domaine-commerce).
 
 **L'hébergement.** Avec un constructeur de site ou un logiciel métier, il est inclus dans l'abonnement. Avec une agence ou un site WordPress installé à part, c'est une ligne de budget distincte, à laquelle s'ajoutent les mises à jour de sécurité.
 
