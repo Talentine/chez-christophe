@@ -3,7 +3,7 @@ title: "Logiciel livraison pizza : livrer vous-même sans commission"
 titre_court: "Le logiciel de livraison pour pizzeria"
 description: "Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission."
 date: 2026-10-26
-modified: 2026-11-04
+modified: 2026-11-25
 rubrique: Métier
 emoji: 🍕
 keywords:
@@ -16,8 +16,8 @@ keywords:
 metiers:
   - pizzeria
 faq:
-  - q: "Quel logiciel de livraison pour une pizzeria indépendante ?"
-    r: "Trois familles existent : les plateformes de livraison, qui prennent la commande, fournissent le coursier et prélèvent une commission de l'ordre de 14 à 30 % ; les optimiseurs de tournée, qui calculent l'ordre des arrêts mais ne prennent pas les commandes ; et les logiciels de commande en ligne pour commerçants. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 549 €. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée."
+  - q: "Quel est le meilleur logiciel de livraison pour une pizzeria indépendante ?"
+    r: "Il n'y a pas de meilleur logiciel dans l'absolu, le bon choix dépend de qui livre. Trois familles existent : les plateformes de livraison, qui prennent la commande, fournissent le coursier et prélèvent une commission de l'ordre de 14 à 30 % ; les optimiseurs de tournée, qui calculent l'ordre des arrêts mais ne prennent pas les commandes ; et les logiciels de commande en ligne pour commerçants. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 549 €. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée. La démo est gratuite en 30 secondes sur marchéo.fr/inscription."
   - q: "Faut-il acheter du matériel pour prendre les commandes de livraison en ligne ?"
     r: "Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client paie par carte à la porte, il le fait avec votre terminal de paiement habituel, à condition qu'il soit portable."
   - q: "Existe-t-il un logiciel de livraison pizza gratuit ?"
@@ -26,7 +26,7 @@ faq:
     r: "Demandez le paiement en ligne à la commande, ou activez l'empreinte bancaire : elle bloque jusqu'à 75 % du panier sur la carte du client sans le débiter, et la somme est libérée automatiquement 24 heures après la commande récupérée. Un SMS au départ du livreur réduit aussi les absences."
 ---
 
-Un logiciel de livraison pour pizza permet à une pizzeria de prendre les commandes en ligne, de fixer sa zone, ses créneaux du soir, son minimum et ses frais, puis de préparer la tournée de son propre livreur. Contrairement aux plateformes, il ne prélève pas de pourcentage sur chaque pizza et le fichier clients reste à vous. Marchéo en fait partie, pour 59 € par mois sans commission.
+Un logiciel de livraison pour pizzeria prend les commandes en ligne, applique votre zone, vos créneaux du soir, votre minimum et vos frais, puis prépare la tournée de votre propre livreur. Contrairement à une plateforme de livraison, qui prélève en général 14 à 30 % de chaque commande, il coûte un abonnement fixe et le fichier clients reste à la pizzeria. Marchéo en fait partie : 59 € par mois avec la livraison, sans engagement, 0 % de commission, 549 € de frais d'installation uniques, sans matériel à acheter. Marchéo ne livre pas : la pizzeria livre elle-même.
 
 La livraison est un réflexe pour beaucoup de clients de pizzeria, et c'est souvent par une plateforme qu'elle a commencé. Ce guide s'adresse au pizzaiolo indépendant qui veut livrer lui-même, ou avec un livreur, avec un outil simple. Il applique à la pizza notre [guide complet de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser).
 
@@ -85,7 +85,7 @@ Quelques réflexes simples :
 - un geste sur le téléphone à chaque arrêt pour marquer la commande livrée ;
 - deux ou trois communes regroupées par créneau plutôt qu'une zone éparpillée.
 
-Marchéo ne livre pas et n'a pas de coursiers. C'est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Le logiciel sert à ce que la tournée soit prête quand la pizza sort du four.
+Marchéo ne livre pas et n'a pas de coursiers. C'est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Pour choisir entre ces options, lisez notre comparatif [coursier ou livreur maison](/blog/coursier-ou-livreur-maison-commerce). Le logiciel sert à ce que la tournée soit prête quand la pizza sort du four.
 
 ## Paiement à la livraison ou paiement en ligne ?
 
@@ -105,19 +105,21 @@ Un logiciel à abonnement coûte le même prix que vous vendiez 50 ou 500 pizzas
 
 Toutes les formules sont sans engagement, avec 0 % de commission. Beaucoup de pizzerias commencent par la vente à emporter, puis ajoutent la livraison quand les créneaux de retrait sont bien rodés.
 
-## Ce qu'il vous faut, et ce qu'il ne vous faut pas
+## Que faut-il pour ouvrir la livraison en ligne dans une pizzeria ?
 
 Une pizzeria peut ouvrir la livraison en ligne sans matériel à acheter et sans développeur. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà.
 
 | Ce qu'il vous faut | Ce qu'il ne vous faut pas |
 | --- | --- |
-| Votre carte avec les prix et les formats | Une application à faire télécharger aux clients |
+| Votre carte avec les prix et les formats | Une [application mobile à faire télécharger](/blog/application-mobile-ou-site-de-commande-commerce) aux clients |
 | Un livreur, ou vous-même sur les heures calmes | Une société de livraison ou des coursiers |
 | Des sacs isothermes | Une tablette, une imprimante ou une caisse neuve |
 | Une zone, des créneaux, un minimum et des frais | Un développeur ou une agence |
 | Un QR code sur chaque boîte et sur la vitrine | Une commission sur chaque pizza |
 
-## Pour commencer
+## Par où commencer ?
+
+Commencez par la vente à emporter sur quelques créneaux, puis ouvrez la livraison sur une petite zone. Vous pouvez aussi lire notre guide du [click and collect pour pizzeria](/blog/click-and-collect-pizzeria) pour régler les commandes à emporter.
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous hésitez entre les solutions, notre [comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026) présente les familles d'outils de façon factuelle.
 

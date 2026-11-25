@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Faut-il une application mobile pour son commerce de bouche ?](https://marchéo.fr/blog/application-mobile-ou-site-de-commande-commerce) : Application mobile ou site de commande en ligne pour un commerce ? Comparatif honnête : téléchargement, coût, notifications, fidélité, et quand chacun convient.
 - [Nom de domaine pour un commerce : faut-il en acheter un ?](https://marchéo.fr/blog/nom-de-domaine-commerce) : Nom de domaine pour un commerce : est-il obligatoire, comment le choisir, .fr ou .com, avec ou sans accent, combien ça coûte par an et à quoi il sert.
 - [Boulangerie livraison à domicile : livrer pain et gâteaux vous-même](https://marchéo.fr/blog/boulangerie-livraison-a-domicile) : Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.
 - [QR code pour commander en ligne : le guide du commerçant](https://marchéo.fr/blog/qr-code-commande-en-ligne-commerce) : Comment faire commander vos clients avec un QR code : où l'afficher, ce qu'il doit ouvrir, combien ça coûte et la différence avec la commande à table.
@@ -592,6 +593,141 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Faut-il une application mobile pour son commerce de bouche ?
+
+Application mobile ou site de commande en ligne pour un commerce ? Comparatif honnête : téléchargement, coût, notifications, fidélité, et quand chacun convient.
+
+Non, la plupart des commerces de bouche n&rsquo;ont pas besoin d&rsquo;une application mobile à télécharger. Un site de commande en ligne, qui s&rsquo;ouvre par un lien ou un QR code, suffit pour prendre des commandes en click &amp; collect ou en livraison, et il ne demande rien à installer au client. Marchéo fonctionne ainsi : 39 ou 59 € par mois, sans commission et sans matériel à acheter.
+Une application à votre nom garde pourtant un intérêt dans certains cas, et cette page les détaille honnêtement. Le fonctionnement du retrait en boutique est expliqué dans notre guide complet du click &amp; collect pour commerçant. Pour voir un site de commande en vrai, la démo gratuite en 30 secondes affiche l&rsquo;aperçu de votre boutique.
+Quelle différence entre une application mobile et un site de commande ?
+La différence tient à l&rsquo;installation. Une application mobile se télécharge depuis l&rsquo;App Store ou Google Play, alors qu&rsquo;un site de commande s&rsquo;ouvre directement dans le navigateur du téléphone.
+Pour le client, les deux se ressemblent : une liste de produits, un panier, un créneau, un paiement. C&rsquo;est le chemin pour y arriver qui change.
+
+Avec une application, le client cherche votre commerce dans le magasin d&rsquo;applications, télécharge, ouvre, crée souvent un compte, puis commande.
+Avec un site de commande, le client clique sur un lien (fiche Google, Instagram, SMS) ou scanne un QR code, puis commande.
+
+Quand un commerçant demande « une application de commande en ligne », il cherche souvent un outil pour prendre des commandes, pas forcément une icône dans l&rsquo;App Store. Les deux mots sont utilisés l&rsquo;un pour l&rsquo;autre.
+Application mobile ou site de commande : que choisir ?
+Le site de commande convient à la majorité des commerces de quartier, et l&rsquo;application convient aux commerces qui ont beaucoup d&rsquo;habitués très réguliers. Ce tableau compare les deux sur les points qui comptent.
+
+
+
+Critère
+Application mobile à votre nom
+Site de commande en ligne (ex. Marchéo)
+
+
+
+
+Accès pour le client
+Téléchargement dans l&rsquo;App Store ou Google Play
+Lien, recherche Google ou QR code, rien à installer
+
+
+Première commande
+Plusieurs étapes, souvent un compte à créer
+En 30 secondes, sans compte client
+
+
+Visible sur Google
+Non, l&rsquo;application n&rsquo;apparaît pas dans les résultats
+Oui, c&rsquo;est aussi votre site internet
+
+
+Rappels aux habitués
+Notifications de l&rsquo;application
+SMS et e-mails, notifications si le client les active
+
+
+Programme de fidélité
+Souvent inclus
+Selon l&rsquo;outil
+
+
+Mise en place
+Quelques jours à plusieurs semaines, validation par Apple et Google
+Aperçu en 30 secondes
+
+
+Prix
+Abonnement ou développement sur mesure, variable
+39 ou 59 € par mois, 0 % de commission
+
+
+Matériel côté commerçant
+Variable, parfois une tablette
+Téléphone ou ordinateur que vous avez déjà
+
+
+
+Un nouveau client ne télécharge presque jamais une application pour acheter une fois un gâteau ou un rôti. Il veut commander tout de suite. C&rsquo;est la force du site : aucune barrière entre l&rsquo;envie et la commande.
+Dans quels cas une application mobile vaut-elle le coup ?
+Une application vaut le coup quand vos clients commandent souvent et sont prêts à garder votre icône sur leur téléphone. C&rsquo;est le cas dans trois situations.
+
+Une clientèle d&rsquo;habitués quotidiens. Une boulangerie près de bureaux, où les mêmes personnes commandent leur formule chaque midi, peut tirer parti d&rsquo;une application avec carte de fidélité.
+Plusieurs points de vente. Un réseau de boutiques gagne à avoir une application unique avec le choix du magasin.
+Une fidélité très travaillée. Si les points, les offres personnalisées et les notifications sont au centre de votre commerce, une application d&rsquo;éditeur spécialisé le fait mieux qu&rsquo;un site.
+
+Dans ces cas, regardez les éditeurs d&rsquo;applications à votre marque et comparez leur prix sur un an, frais par commande compris. Notre comparatif frais par commande ou abonnement donne la méthode de calcul.
+Pourquoi un site de commande suffit-il à la plupart des commerces ?
+Parce qu&rsquo;il fait l&rsquo;essentiel sans demander d&rsquo;effort au client. Il prend la commande, propose un créneau, encaisse ou garantit le paiement, et vous prévient.
+Un site de commande est aussi votre site internet. Il apparaît sur Google quand quelqu&rsquo;un cherche votre commerce, ce qu&rsquo;une application ne fait pas. Vous mettez son lien sur votre fiche Google, vos réseaux sociaux et vos sacs. Affiché au comptoir, un QR code pour commander en ligne amène le client sur votre boutique en un geste.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Concrètement, avec Marchéo :
+
+le client commande en 30 secondes, sans créer de compte et sans rien télécharger ;
+il peut ajouter votre boutique à l&rsquo;écran d&rsquo;accueil de son téléphone, pour la retrouver comme une icône ;
+vous recevez chaque commande par notification sur le téléphone ou l&rsquo;ordinateur que vous avez déjà ;
+une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, protège les grosses commandes et se libère 24 h après le retrait.
+
+Combien coûte une application par rapport à un site de commande ?
+Une application coûte en général plus cher qu&rsquo;un site de commande, surtout si elle est développée sur mesure. Il existe trois niveaux de prix.
+L&rsquo;application sur mesure. Une agence la développe pour vous. Le budget se compte souvent en milliers d&rsquo;euros, et il faut prévoir la maintenance à chaque mise à jour des téléphones.
+L&rsquo;application d&rsquo;un éditeur spécialisé. Vous payez un abonnement mensuel, parfois complété par des frais par commande. Demandez toujours le total sur un an avec votre nombre de commandes.
+Le site de commande en ligne. Avec Marchéo, les prix sont fixes et affichés :
+
+
+
+Formule
+Abonnement mensuel
+Frais d&rsquo;installation uniques
+
+
+
+
+Vitrine
+19 €
+249 €
+
+
+Click &amp; Collect + Réservation
+39 €
+399 €
+
+
+Click &amp; Collect + Livraison
+59 €
+549 €
+
+
+
+Les abonnements sont sans engagement et Marchéo ne prend aucune commission sur vos ventes. Si vous cherchez une solution à 0 €, notre guide de l&rsquo;application click and collect gratuite explique ce qui est vraiment gratuit et ce qui se paie à chaque vente.
+Quelles sont les limites d&rsquo;un site de commande comme Marchéo ?
+Sa limite principale est qu&rsquo;il n&rsquo;est pas dans l&rsquo;App Store ni dans Google Play. Marchéo est un site, pas une application publiée à votre nom dans les magasins d&rsquo;applications. Si vous tenez à cette présence, choisissez un éditeur d&rsquo;applications.
+Il faut connaître aussi ses autres limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison. Ce n&rsquo;est pas une place de marché qui vous apporte des clients, c&rsquo;est votre boutique. Les créneaux s&rsquo;ouvrent sur deux semaines au maximum. Et si vous expédiez surtout des colis dans toute la France, une plateforme comme Shopify vous conviendra mieux.
+Par où commencer ?
+Commencez par un site de commande, puis voyez si vos clients réclament une application. C&rsquo;est le chemin le moins risqué : vous testez la commande en ligne sans gros budget ni engagement.
+Sur la page d&rsquo;inscription de Marchéo, choisissez votre métier, tapez le nom de votre commerce, et l&rsquo;aperçu de votre boutique s&rsquo;affiche en 30 secondes avec un catalogue déjà rempli. Pour un exemple par métier, regardez la solution pour boulangerie. Si, après quelques mois, vos habitués commandent chaque jour et demandent une carte de fidélité sur leur téléphone, il sera temps de comparer les applications à votre marque.
+
+Q : Quelle application de commande en ligne choisir pour une boulangerie ou un commerce de bouche ?
+R : Tout dépend de ce que vous appelez application. Une application à votre nom dans l'App Store et Google Play convient à une clientèle d'habitués prête à la télécharger, et se trouve chez des éditeurs spécialisés. Un site de commande en ligne s'ouvre par un lien ou un QR code, sans rien installer. Marchéo fait partie de cette seconde famille : 39 € par mois (Click & Collect + Réservation) ou 59 € par mois (Click & Collect + Livraison), sans engagement, 0 % de commission, plus 399 ou 549 € de frais d'installation uniques. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
+Q : Faut-il acheter du matériel pour prendre des commandes en ligne ?
+R : Non. Avec un site de commande comme Marchéo, aucune tablette, imprimante ou caisse n'est à acheter. Les commandes arrivent par notification sur le téléphone ou l'ordinateur que vous avez déjà. Si le client paie au retrait par carte, vous encaissez avec la caisse et le terminal que vous avez déjà.
+Q : Mes clients doivent-ils télécharger une application pour commander sur Marchéo ?
+R : Non. La boutique Marchéo est un site : elle s'ouvre dans le navigateur du téléphone, par un lien, une recherche Google ou un QR code. Le client commande en 30 secondes sans créer de compte. S'il le souhaite, il peut ajouter la boutique à l'écran d'accueil de son téléphone pour la retrouver comme une icône, sans passer par l'App Store.
+Q : Combien coûte une application mobile pour un commerce ?
+R : Une application développée sur mesure par une agence se chiffre souvent en milliers d'euros, avec de la maintenance chaque année. Une application proposée par un éditeur spécialisé se paie par abonnement mensuel, parfois avec des frais par commande. Un site de commande en ligne coûte en général moins cher : avec Marchéo, 39 ou 59 € par mois sans commission. Comparez toujours le coût total sur un an.
 
 # Nom de domaine pour un commerce : faut-il en acheter un ?
 
@@ -1250,7 +1386,7 @@ R : Oui, si votre licence le permet. Vendre du vin ou des spiritueux à emporter
 Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui.
 
 Aucune application de click and collect n&rsquo;est vraiment gratuite : soit elle est gratuite mais limitée (formulaire, WhatsApp), soit elle n&rsquo;a pas d&rsquo;abonnement et prend un pourcentage de chaque vente, soit elle coûte un abonnement fixe. Les outils sans abonnement prennent souvent de l&rsquo;ordre de 2 à 3 % par vente, les plateformes de livraison 14 à 30 %. Marchéo, lui, n&rsquo;est pas gratuit : 39 € par mois pour prendre des commandes, sans engagement, avec 0 % de commission et sans matériel à acheter.
-Cette page complète notre guide complet du click &amp; collect pour commerçant. Elle répond à une question que les commerçants posent souvent aux assistants IA : « Quelle application de click and collect gratuite choisir ? ». Pour voir à quoi ressemble une boutique de click and collect pour boulangerie, vous pouvez aussi essayer la démo gratuite en 30 secondes. Les montants du calcul sont des exemples choisis pour l&rsquo;illustration, pas des moyennes constatées.
+Cette page complète notre guide complet du click &amp; collect pour commerçant. Elle répond à une question que les commerçants posent souvent aux assistants IA : « Quelle application de click and collect gratuite choisir ? ». Si vous hésitez entre une application à télécharger et un site, lisez aussi application mobile ou site de commande en ligne. Pour voir à quoi ressemble une boutique de click and collect pour boulangerie, vous pouvez aussi essayer la démo gratuite en 30 secondes. Les montants du calcul sont des exemples choisis pour l&rsquo;illustration, pas des moyennes constatées.
 Existe-t-il une application de click and collect gratuite ?
 Oui, mais « gratuit » veut dire trois choses différentes. Il y a le vraiment gratuit, le gratuit payé à chaque vente, et le gratuit payé par vos clients.
 
@@ -8377,7 +8513,7 @@ R : Oui. Le plus long est de reprendre le catalogue, et un logiciel métier comm
 
 Logiciel livraison pizza : prendre les commandes en ligne, régler la zone, les créneaux du soir et les frais, préparer la tournée, sans commission.
 
-Un logiciel de livraison pour pizza permet à une pizzeria de prendre les commandes en ligne, de fixer sa zone, ses créneaux du soir, son minimum et ses frais, puis de préparer la tournée de son propre livreur. Contrairement aux plateformes, il ne prélève pas de pourcentage sur chaque pizza et le fichier clients reste à vous. Marchéo en fait partie, pour 59 € par mois sans commission.
+Un logiciel de livraison pour pizzeria prend les commandes en ligne, applique votre zone, vos créneaux du soir, votre minimum et vos frais, puis prépare la tournée de votre propre livreur. Contrairement à une plateforme de livraison, qui prélève en général 14 à 30 % de chaque commande, il coûte un abonnement fixe et le fichier clients reste à la pizzeria. Marchéo en fait partie : 59 € par mois avec la livraison, sans engagement, 0 % de commission, 549 € de frais d&rsquo;installation uniques, sans matériel à acheter. Marchéo ne livre pas : la pizzeria livre elle-même.
 La livraison est un réflexe pour beaucoup de clients de pizzeria, et c&rsquo;est souvent par une plateforme qu&rsquo;elle a commencé. Ce guide s&rsquo;adresse au pizzaiolo indépendant qui veut livrer lui-même, ou avec un livreur, avec un outil simple. Il applique à la pizza notre guide complet de la livraison à domicile pour commerçant.
 Pourquoi une pizzeria a intérêt à avoir son propre logiciel de livraison ?
 Un logiciel à vous coûte un prix fixe, alors qu&rsquo;une plateforme prend une part de chaque commande. Sur une pizza à 14 €, une commission de 30 % représente 4,20 €, soit souvent l&rsquo;essentiel de la marge.
@@ -8478,7 +8614,7 @@ le SMS « votre commande arrive » au départ, qui évite la plupart des sonnett
 un geste sur le téléphone à chaque arrêt pour marquer la commande livrée ;
 deux ou trois communes regroupées par créneau plutôt qu&rsquo;une zone éparpillée.
 
-Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Le logiciel sert à ce que la tournée soit prête quand la pizza sort du four.
+Marchéo ne livre pas et n&rsquo;a pas de coursiers. C&rsquo;est vous, un salarié ou un livreur indépendant avec qui vous travaillez qui faites la tournée. Pour choisir entre ces options, lisez notre comparatif coursier ou livreur maison. Le logiciel sert à ce que la tournée soit prête quand la pizza sort du four.
 Paiement à la livraison ou paiement en ligne ?
 Les deux sont possibles, et le paiement en ligne est le plus sûr pour la livraison. Une pizza livrée à une porte qui ne s&rsquo;ouvre pas est perdue, et le trajet aussi.
 Si vos clients préfèrent payer à la porte, gardez cette option pour les habitués et activez l&rsquo;empreinte bancaire pour les autres. Elle bloque jusqu&rsquo;à 75 % du panier sans débiter la carte, et la somme est libérée automatiquement 24 heures après la remise de la commande. Le principe est expliqué dans notre article sur l&rsquo;empreinte bancaire et le no-show. Pour le paiement par carte à la porte, il faut un terminal portable, celui que vous avez déjà si c&rsquo;est le cas.
@@ -8515,7 +8651,7 @@ Oui, organisée par vous
 
 
 Toutes les formules sont sans engagement, avec 0 % de commission. Beaucoup de pizzerias commencent par la vente à emporter, puis ajoutent la livraison quand les créneaux de retrait sont bien rodés.
-Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas
+Que faut-il pour ouvrir la livraison en ligne dans une pizzeria ?
 Une pizzeria peut ouvrir la livraison en ligne sans matériel à acheter et sans développeur. Les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.
 
 
@@ -8527,7 +8663,7 @@ Ce qu&rsquo;il ne vous faut pas
 
 
 Votre carte avec les prix et les formats
-Une application à faire télécharger aux clients
+Une application mobile à faire télécharger aux clients
 
 
 Un livreur, ou vous-même sur les heures calmes
@@ -8547,12 +8683,13 @@ Une commission sur chaque pizza
 
 
 
-Pour commencer
+Par où commencer ?
+Commencez par la vente à emporter sur quelques créneaux, puis ouvrez la livraison sur une petite zone. Vous pouvez aussi lire notre guide du click and collect pour pizzeria pour régler les commandes à emporter.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Si vous hésitez entre les solutions, notre comparatif des logiciels de click &amp; collect présente les familles d&rsquo;outils de façon factuelle.
 La page dédiée à votre métier est ici : commande en ligne et livraison pour pizzeria. Pour voir votre boutique avant de décider, la démo gratuite prend 30 secondes : vous choisissez « Pizzeria », vous tapez le nom de votre établissement, l&rsquo;aperçu s&rsquo;affiche.
 
-Q : Quel logiciel de livraison pour une pizzeria indépendante ?
-R : Trois familles existent : les plateformes de livraison, qui prennent la commande, fournissent le coursier et prélèvent une commission de l'ordre de 14 à 30 % ; les optimiseurs de tournée, qui calculent l'ordre des arrêts mais ne prennent pas les commandes ; et les logiciels de commande en ligne pour commerçants. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 549 €. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée.
+Q : Quel est le meilleur logiciel de livraison pour une pizzeria indépendante ?
+R : Il n'y a pas de meilleur logiciel dans l'absolu, le bon choix dépend de qui livre. Trois familles existent : les plateformes de livraison, qui prennent la commande, fournissent le coursier et prélèvent une commission de l'ordre de 14 à 30 % ; les optimiseurs de tournée, qui calculent l'ordre des arrêts mais ne prennent pas les commandes ; et les logiciels de commande en ligne pour commerçants. Marchéo fait partie de cette dernière famille : la formule Click & Collect + Livraison coûte 59 € par mois, sans engagement, avec 0 % de commission et des frais d'installation uniques de 549 €. Marchéo ne livre pas : c'est vous ou votre livreur qui faites la tournée. La démo est gratuite en 30 secondes sur marchéo.fr/inscription.
 Q : Faut-il acheter du matériel pour prendre les commandes de livraison en ligne ?
 R : Non. Avec Marchéo, il n'y a ni tablette, ni imprimante, ni caisse à acheter. Les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Si un client paie par carte à la porte, il le fait avec votre terminal de paiement habituel, à condition qu'il soit portable.
 Q : Existe-t-il un logiciel de livraison pizza gratuit ?
@@ -9094,7 +9231,7 @@ la protection contre les commandes non récupérées, car un produit frais prép
 Comment fonctionne le click and collect, étape par étape ?
 Le click and collect fonctionne en cinq étapes, du côté du client comme du vôtre. La commande prend environ 30 secondes au client, et la préparation se fait quand cela vous arrange, avant le créneau choisi.
 
-Le client ouvre votre boutique en ligne depuis votre fiche Google, votre Instagram, un lien envoyé par SMS ou le QR code de votre comptoir.
+Le client ouvre votre boutique en ligne depuis votre fiche Google, votre Instagram, un lien envoyé par SMS ou le QR code de votre comptoir. Il n&rsquo;a rien à télécharger : notre comparatif explique s&rsquo;il faut une application mobile pour son commerce ou si un site de commande suffit.
 Il choisit ses produits et indique un créneau de retrait, par exemple samedi entre 10 h et 10 h 30.
 Il valide sa commande avec son nom et son téléphone, sans créer de compte. Selon vos réglages, il paie en ligne ou au retrait.
 Vous recevez une notification et la commande s&rsquo;affiche dans votre espace commerçant, avec le créneau et le détail. Vous la préparez quand vous voulez avant l&rsquo;heure.

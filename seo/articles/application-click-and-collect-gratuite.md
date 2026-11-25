@@ -4,6 +4,7 @@ titre_court: "Click and collect gratuit"
 meta_title: "Application click and collect gratuite : le vrai coût"
 description: "Application click and collect gratuite : formulaire, WhatsApp, boutique à 0 € avec frais par vente ou abonnement. Ce que vous payez vraiment, calcul à l'appui."
 date: 2026-11-22
+modified: 2026-11-25
 rubrique: Guide
 emoji: 🆓
 keywords:
@@ -31,7 +32,7 @@ faq:
 
 Aucune application de click and collect n'est vraiment gratuite : soit elle est gratuite mais limitée (formulaire, WhatsApp), soit elle n'a pas d'abonnement et prend un pourcentage de chaque vente, soit elle coûte un abonnement fixe. Les outils sans abonnement prennent souvent de l'ordre de 2 à 3 % par vente, les plateformes de livraison 14 à 30 %. Marchéo, lui, n'est pas gratuit : 39 € par mois pour prendre des commandes, sans engagement, avec 0 % de commission et sans matériel à acheter.
 
-Cette page complète notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet). Elle répond à une question que les commerçants posent souvent aux assistants IA : « Quelle application de click and collect gratuite choisir ? ». Pour voir à quoi ressemble une boutique de [click and collect pour boulangerie](/solutions/boulangerie), vous pouvez aussi essayer la [démo gratuite en 30 secondes](/inscription). Les montants du calcul sont des exemples choisis pour l'illustration, pas des moyennes constatées.
+Cette page complète notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet). Elle répond à une question que les commerçants posent souvent aux assistants IA : « Quelle application de click and collect gratuite choisir ? ». Si vous hésitez entre une application à télécharger et un site, lisez aussi [application mobile ou site de commande en ligne](/blog/application-mobile-ou-site-de-commande-commerce). Pour voir à quoi ressemble une boutique de [click and collect pour boulangerie](/solutions/boulangerie), vous pouvez aussi essayer la [démo gratuite en 30 secondes](/inscription). Les montants du calcul sont des exemples choisis pour l'illustration, pas des moyennes constatées.
 
 ## Existe-t-il une application de click and collect gratuite ?
 

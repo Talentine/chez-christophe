@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-24
+modified: 2026-11-25
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -57,7 +57,7 @@ Dans la grande distribution, le client vient chercher un colis préparé à part
 
 Le click and collect fonctionne en cinq étapes, du côté du client comme du vôtre. La commande prend environ 30 secondes au client, et la préparation se fait quand cela vous arrange, avant le créneau choisi.
 
-1. **Le client ouvre votre boutique en ligne** depuis votre fiche Google, votre Instagram, un lien envoyé par SMS ou le QR code de votre comptoir.
+1. **Le client ouvre votre boutique en ligne** depuis votre fiche Google, votre Instagram, un lien envoyé par SMS ou le QR code de votre comptoir. Il n'a rien à télécharger : notre comparatif explique s'il faut [une application mobile pour son commerce](/blog/application-mobile-ou-site-de-commande-commerce) ou si un site de commande suffit.
 2. **Il choisit ses produits** et indique un créneau de retrait, par exemple samedi entre 10 h et 10 h 30.
 3. **Il valide sa commande** avec son nom et son téléphone, sans créer de compte. Selon vos réglages, il paie en ligne ou au retrait.
 4. **Vous recevez une notification** et la commande s'affiche dans votre espace commerçant, avec le créneau et le détail. Vous la préparez quand vous voulez avant l'heure.
