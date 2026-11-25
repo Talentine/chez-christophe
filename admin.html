@@ -2742,12 +2742,12 @@ function afficherCampagnes(visitesListe) {
   visitesListe.forEach(v => {
     const utm = (v.evs.find(e => e.meta && e.meta.utm) || {}).meta?.utm;
     if (!utm) return;
-    const cle = utm.utm_campaign || (utm.utm_source ? '(sans nom de campagne)' : '(pub Meta sans UTM)');
+    const cle = utm.utm_campaign || (utm.utm_source ? '(sans nom de campagne)' : utm.gclid ? '(pub Google Ads sans UTM)' : '(pub Meta sans UTM)');
     const c = camp[cle] = camp[cle] || { n: 0, insc: 0, demo: 0, sources: {} };
     c.n++;
     if (v.evs.some(e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape')) c.insc++;
     if (v.evs.some(e => e.event === 'demo_creee')) c.demo++;
-    const src = nomSource(utm.utm_source || (utm.fbclid ? 'Meta' : '?'));
+    const src = nomSource(utm.utm_source || (utm.gclid ? 'Google Ads' : utm.fbclid ? 'Meta' : '?'));
     c.sources[src] = (c.sources[src] || 0) + 1;
   });
   const lignes = Object.entries(camp).sort((a, b) => b[1].n - a[1].n).slice(0, 15);

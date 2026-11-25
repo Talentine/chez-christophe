@@ -52,7 +52,8 @@
 
   // ── Source de campagne (UTM) : lue à l'arrivée, gardée le temps de la session ──
   //    Ne contient que les paramètres de campagne (pas d'identifiant personnel) ;
-  //    pour fbclid on ne garde que sa présence, jamais sa valeur.
+  //    pour fbclid (Meta) et gclid / gbraid / wbraid (Google Ads) on ne garde que
+  //    leur présence, jamais leur valeur.
   function detectUtm() {
     const CLE = 'marcheo_utm';
     try {
@@ -63,6 +64,7 @@
         if (v) u[k] = v.slice(0, 100);
       });
       if (q.has('fbclid')) u.fbclid = true;
+      if (q.has('gclid') || q.has('gbraid') || q.has('wbraid')) u.gclid = true;
       if (Object.keys(u).length) {
         sessionStorage.setItem(CLE, JSON.stringify(u));
         return u;
