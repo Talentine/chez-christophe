@@ -4,6 +4,12 @@
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
 
+// Ce service worker et celui des boutiques (sw-client.js) partagent la même
+// portée « / » : le dernier chargé remplace l'autre. Chacun sait donc afficher
+// les deux formats de notification :
+//  - commerçant : { titre, corps, url }  (nouvelle commande)
+//  - client     : { title, body, url }
+
 // Réception notification push
 self.addEventListener('push', e => {
   let data = {};
@@ -11,6 +17,20 @@ self.addEventListener('push', e => {
     data = e.data?.json() || {};
   } catch(err) {
     data = { titre: '🛒 Nouvelle commande !', corps: e.data?.text() || '' };
+  }
+
+  // Format client (title/body, sans titre/corps) → même affichage que dans sw-client.js
+  if (data.titre === undefined && data.corps === undefined &&
+      (data.title !== undefined || data.body !== undefined)) {
+    e.waitUntil(
+      self.registration.showNotification(data.title || 'Marchéo', {
+        body: data.body || '',
+        icon: '/icon-192.png',
+        badge: '/icon-192.png',
+        data: { url: data.url || '/', client: true },
+      })
+    );
+    return;
   }
 
   const titre  = data.titre || '🛒 Nouvelle commande !';
@@ -39,6 +59,13 @@ self.addEventListener('notificationclick', e => {
   if (e.action === 'ignorer') return;
 
   const url = e.notification.data?.url || '/app-commercant.html';
+
+  // Notification client : on ouvre simplement la page visée
+  if (e.notification.data?.client) {
+    e.waitUntil(clients.openWindow(url));
+    return;
+  }
+
   e.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true })
       .then(list => {

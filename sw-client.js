@@ -125,11 +125,37 @@ async function staleWhileRevalidate(req, cacheName) {
   return cached || fetchPromise;
 }
 
-// ── Notifications push (préparation) ──
+// ── Notifications push ──
+// Ce service worker et celui de l'app commerçant (sw.js) partagent la même
+// portée « / » : le dernier chargé remplace l'autre. Chacun sait donc afficher
+// les deux formats de notification :
+//  - commerçant : { titre, corps, url }  (nouvelle commande)
+//  - client     : { title, body, url }
 self.addEventListener('push', event => {
   if (!event.data) return;
   try {
-    const data = event.data.json();
+    const data = event.data.json() || {};
+
+    // Format commerçant → même affichage que dans sw.js
+    if (data.titre !== undefined || data.corps !== undefined) {
+      event.waitUntil(
+        self.registration.showNotification(data.titre || '🛒 Nouvelle commande !', {
+          body: data.corps || 'Une nouvelle commande vous attend',
+          icon: '/icon-192.png',
+          badge: '/icon-192.png',
+          vibrate: [300, 100, 300, 100, 300],
+          requireInteraction: true,
+          data: { url: data.url || '/app-commercant.html', marchand: true },
+          actions: [
+            { action: 'voir',    title: '👀 Voir' },
+            { action: 'ignorer', title: 'Ignorer' },
+          ]
+        })
+      );
+      return;
+    }
+
+    // Format client
     event.waitUntil(
       self.registration.showNotification(data.title || 'Marchéo', {
         body: data.body || '',
@@ -143,6 +169,23 @@ self.addEventListener('push', event => {
 
 self.addEventListener('notificationclick', event => {
   event.notification.close();
+  if (event.action === 'ignorer') return;
+
   const url = event.notification.data?.url || '/';
+
+  // Notification commerçant : on réutilise l'app si elle est déjà ouverte
+  if (event.notification.data?.marchand) {
+    event.waitUntil(
+      clients.matchAll({ type: 'window', includeUncontrolled: true })
+        .then(list => {
+          for (const c of list) {
+            if (c.url.includes('app-commercant') && 'focus' in c) return c.focus();
+          }
+          return clients.openWindow(url);
+        })
+    );
+    return;
+  }
+
   event.waitUntil(clients.openWindow(url));
 });
