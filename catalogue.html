@@ -930,6 +930,7 @@ function flattenCatalogueRowBase(row) {
     vente_retrait: row.vente_retrait !== false,
     vente_livraison: row.vente_livraison !== false,
     custom_fields: row.custom_fields || {},
+    ordre_affichage: row.ordre_affichage ?? null,
   };
 }
 
@@ -1065,6 +1066,10 @@ function appliquerFiltres() {
   produitsFiltres.sort((a, b) => {
     if (triActif === 'prix_asc') return (a.prix_marche_indicatif || 0) - (b.prix_marche_indicatif || 0);
     if (triActif === 'prix_desc') return (b.prix_marche_indicatif || 0) - (a.prix_marche_indicatif || 0);
+    // Formules : ordre choisi par le commerçant (petit-déj → midi → goûter)
+    const fa = !!(window.Formules && Formules.est(a)), fb = !!(window.Formules && Formules.est(b));
+    if (fa && fb) return (a.ordre_affichage ?? 999) - (b.ordre_affichage ?? 999);
+    if (fa !== fb) return fa ? -1 : 1;
     return a.nom.localeCompare(b.nom, 'fr');
   });
 
