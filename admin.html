@@ -1176,6 +1176,13 @@
       <style>
         .ana-pill { background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:50px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--a-blanc); cursor:pointer; font-family:inherit; }
         .ana-pill.actif { background:rgba(var(--c-or2),.18); border-color:var(--or-t); color:var(--or-t); }
+        .ana-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-bottom:16px; }
+        .ana-kpi { background:var(--a-surface); border:1px solid var(--a-line); border-radius:12px; padding:12px 14px; }
+        .ana-kpi b { display:block; font-size:22px; font-weight:700; color:var(--a-blanc); }
+        .ana-kpi span { display:block; font-size:12px; color:var(--a-t50); margin-top:2px; }
+        .ana-mini { width:100%; font-size:12.5px; border-collapse:collapse; }
+        .ana-mini th { text-align:left; font-weight:500; color:var(--a-t50); padding:6px 10px 6px 0; }
+        .ana-mini td { padding:7px 10px 7px 0; border-top:1px solid var(--a-l05); }
         .ana-blocs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 18px; }
         .ana-bloc { position:relative; text-align:left; background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:14px; padding:14px 84px 14px 16px; cursor:pointer; font-family:inherit; color:var(--a-blanc); }
         .ana-bloc strong { display:block; font-size:15px; font-weight:700; }
@@ -1244,6 +1251,60 @@
         <span class="a-att">(sur un autre appareil : ouvrir le site avec <code>?ne_pas_suivre=1</code>)</span>
       </label>
 
+      <!-- DÉTAIL : PAGE D'ACCUEIL -->
+      <div class="page-titre" style="font-size:20px;margin-top:24px;">Page d'accueil marchéo.fr</div>
+      <div class="page-sub">Ce que font les visiteurs sur la landing : lecture, arrêts, boutons cliqués</div>
+      <div class="ana-kpis" id="anaAccKpis"></div>
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">Jusqu'où la page est lue <small>Part des lecteurs ayant défilé au moins jusque-là</small></div>
+          <div id="anaAccScroll" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Où ils quittent la page <small>Dernière section vue avant de partir</small></div>
+          <div id="anaAccSections" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Boutons cliqués <small>Emplacement du bouton sur la page</small></div>
+          <div id="anaAccClics" style="font-size:13px;">Chargement…</div>
+        </div>
+      </div>
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Mobile et ordinateur sur la page d'accueil</div>
+        <div id="anaAccAppareils" style="font-size:13px;">Chargement…</div>
+      </div>
+
+      <!-- DÉTAIL : INSCRIPTIONS -->
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Inscriptions</div>
+      <div class="page-sub">Du premier écran de l'inscription à la boutique démo créée</div>
+      <div class="ana-kpis" id="anaInsKpis"></div>
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">Entonnoir d'inscription (visites) <span id="anaEntonnoirClics" class="a-att" style="font-weight:400;font-size:11px;"></span></div>
+          <div id="anaEntonnoir" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Où ils abandonnent <small>Dernière étape atteinte, sans créer de démo</small></div>
+          <div id="anaInsAbandons" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Métiers des démos créées</div>
+          <div id="anaInsMetiers" style="font-size:13px;">Chargement…</div>
+        </div>
+      </div>
+      <div class="mrr-section">
+        <div class="mrr-card">
+          <div class="mrr-titre">D'où viennent ceux qui s'inscrivent</div>
+          <div id="anaInsSources" style="font-size:13px;">Chargement…</div>
+        </div>
+        <div class="mrr-card">
+          <div class="mrr-titre">Inscription sur mobile et ordinateur</div>
+          <div id="anaInsAppareils" style="font-size:13px;">Chargement…</div>
+        </div>
+      </div>
+
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Pages, sources et campagnes</div>
+      <div class="page-sub">Tout le site marchéo.fr hors boutiques : accueil, blog, solutions, inscription</div>
       <div class="mrr-section">
         <div class="mrr-card">
           <div class="mrr-titre">Top 10 pages</div>
@@ -1265,10 +1326,6 @@
       <div class="page-sub">Visites anonymes reliées page à page · données collectées depuis le 11/10/2026</div>
 
       <div class="mrr-section">
-        <div class="mrr-card">
-          <div class="mrr-titre">Entonnoir d'inscription (visites) <span id="anaEntonnoirClics" class="a-att" style="font-weight:400;font-size:11px;"></span></div>
-          <div id="anaEntonnoir" style="font-size:13px;">Chargement…</div>
-        </div>
         <div class="mrr-card">
           <div class="mrr-titre">Pages de sortie (dernière page vue)</div>
           <div id="anaSorties" style="font-size:13px;">Chargement…</div>
@@ -2895,6 +2952,7 @@ async function chargerAnalytics() {
 
     afficherCampagnes(visitesListe);
     afficherParcours(events, normaliserSource);
+    afficherDetailLanding(events, visitesListe, normaliserSource);
     await afficherSitesCommercants(
       eventsBoutiques.filter(e => new Date(e.created_at) >= debutPeriode),
       eventsBoutiques.filter(e => new Date(e.created_at) < debutPeriode),
@@ -2902,6 +2960,138 @@ async function chargerAnalytics() {
   } catch (e) {
     document.getElementById('anaPageViews').textContent = '⚠️';
   }
+}
+
+// ── Détail de la page d'accueil et des inscriptions (bloc Landing) ──
+function afficherDetailLanding(events, visitesListe, normaliserSource) {
+  const vide = '<div class="a-att">Pas encore de donnée sur cette période</div>';
+  const pct = (n, total) => total > 0 ? Math.round(n / total * 100) + ' %' : '—';
+  const kpi = (val, lbl) => '<div class="ana-kpi"><b>' + val + '</b><span>' + lbl + '</span></div>';
+  const moy = (liste, f) => liste.length ? liste.reduce((s, x) => s + f(x), 0) / liste.length : 0;
+  const duree = e => Math.min(Number(e.meta && e.meta.duree) || 0, 1800);
+  const scroll = e => Number(e.meta && e.meta.scroll) || 0;
+  const tableau = (entetes, lignes) => '<div style="overflow-x:auto;"><table class="table-brute ana-mini"><tr>' + entetes.map(h => '<th>' + h + '</th>').join('') + '</tr>'
+    + lignes.map(l => '<tr>' + l.map((c, i) => '<td' + (i ? '' : ' style="font-weight:600;"') + '>' + c + '</td>').join('') + '</tr>').join('') + '</table></div>';
+  const APPAREILS = { mobile: 'Mobile', tablet: 'Tablette', desktop: 'Ordinateur' };
+
+  // ── Page d'accueil ──
+  const estAccueil = e => e.page === '/' || e.page === '/landing.html' || !e.page;
+  const estInscription = e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape' || e.event === 'demo_creee';
+  const visitesAcc = visitesListe.filter(v => v.evs.some(e => e.event === 'page_view' && estAccueil(e)));
+  const sortiesAcc = events.filter(e => e.event === 'page_exit' && estAccueil(e));
+  const aClique = v => v.evs.some(e => e.event === 'cta_inscription' && estAccueil(e));
+  const aDemo = v => v.evs.some(e => e.event === 'demo_creee');
+  const rebonds = visitesAcc.filter(v => v.evs.filter(e => e.event === 'page_view').length === 1 && !v.evs.some(e => e.event === 'cta_inscription')).length;
+  const nAcc = visitesAcc.length;
+  document.getElementById('anaAccKpis').innerHTML =
+    kpi(nAcc.toLocaleString('fr-FR'), 'Visites de la page d\'accueil')
+    + kpi(sortiesAcc.length ? formaterDuree(moy(sortiesAcc, duree)) : '—', 'Temps moyen sur la page')
+    + kpi(sortiesAcc.length ? Math.round(moy(sortiesAcc, scroll)) + ' %' : '—', 'Défilement moyen')
+    + kpi(pct(visitesAcc.filter(aClique).length, nAcc), 'Cliquent « S\'inscrire »')
+    + kpi(pct(visitesAcc.filter(v => v.evs.some(estInscription)).length, nAcc), 'Arrivent à l\'inscription')
+    + kpi(pct(rebonds, nAcc), 'Repartent sans rien faire');
+
+  // Profondeur de lecture
+  const SEUILS = [[10, 'Début de page (10 %)'], [25, 'Un quart (25 %)'], [50, 'La moitié (50 %)'], [75, 'Trois quarts (75 %)'], [95, 'Bas de page']];
+  document.getElementById('anaAccScroll').innerHTML = sortiesAcc.length
+    ? SEUILS.map(([seuil, lbl]) => {
+        const n = sortiesAcc.filter(e => scroll(e) >= seuil).length;
+        return '<div class="lb"><i style="width:' + (n / sortiesAcc.length * 100).toFixed(1) + '%"></i><span>' + lbl + '</span><strong>' + pct(n, sortiesAcc.length) + '</strong></div>';
+      }).join('') + '<div class="a-att" style="font-size:11px;margin-top:6px;">Sur ' + sortiesAcc.length + ' lecture' + (sortiesAcc.length > 1 ? 's' : '') + ' mesurée' + (sortiesAcc.length > 1 ? 's' : '') + '</div>'
+    : vide;
+
+  // Sections où l'on quitte
+  const sections = {};
+  sortiesAcc.forEach(e => { const sec = e.meta && e.meta.section; if (sec) sections[sec] = (sections[sec] || 0) + 1; });
+  const topSections = Object.entries(sections).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  document.getElementById('anaAccSections').innerHTML = topSections.length ? listeBarres(topSections, false) : vide;
+
+  // Boutons cliqués, par emplacement
+  const EMPLACEMENTS = { hero: 'haut de page', nav: 'menu', nav_desktop: 'menu (ordinateur)', nav_mobile: 'menu (mobile)', sticky_mobile: 'barre fixe mobile', cta_final: 'bas de page', etapes: 'section étapes', exemples: 'section exemples' };
+  const AUTRES = { voir_offres: 'Voir les offres', hero_apercu_boutique: 'Aperçu d\'une boutique (haut de page)', contact_email: 'E-mail de contact', contact_form_scroll: 'Aller au formulaire de contact' };
+  const clics = {};
+  events.filter(estAccueil).forEach(e => {
+    let lbl = null;
+    if (e.event === 'cta_inscription') {
+      const pl = String((e.meta && e.meta.placement) || '');
+      const lieu = EMPLACEMENTS[pl] || (pl.indexOf('metier_') === 0 ? 'métier ' + pl.slice(7) : pl.indexOf('tarifs_') === 0 ? 'tarif ' + pl.slice(7) : pl);
+      lbl = 'S\'inscrire' + (lieu ? ' · ' + lieu : '');
+    } else if (AUTRES[e.event]) lbl = AUTRES[e.event];
+    if (lbl) clics[lbl] = (clics[lbl] || 0) + 1;
+  });
+  const topClics = Object.entries(clics).sort((a, b) => b[1] - a[1]).slice(0, 12);
+  document.getElementById('anaAccClics').innerHTML = topClics.length ? listeBarres(topClics, false) : '<div class="a-att">Aucun clic sur cette période</div>';
+
+  // Par appareil
+  const lignesApp = Object.keys(APPAREILS).map(d => {
+    const vs = visitesAcc.filter(v => v.vue1.device === d);
+    const ex = sortiesAcc.filter(e => e.device === d);
+    return vs.length ? [APPAREILS[d], vs.length + ' (' + pct(vs.length, nAcc) + ')', ex.length ? Math.round(moy(ex, scroll)) + ' %' : '—', ex.length ? formaterDuree(moy(ex, duree)) : '—', pct(vs.filter(aClique).length, vs.length), pct(vs.filter(aDemo).length, vs.length)] : null;
+  }).filter(Boolean);
+  document.getElementById('anaAccAppareils').innerHTML = lignesApp.length
+    ? tableau(['Appareil', 'Visites', 'Défilement moyen', 'Temps moyen', 'Cliquent « S\'inscrire »', 'Créent une démo'], lignesApp)
+    : vide;
+
+  // ── Inscriptions ──
+  const visitesIns = visitesListe.filter(v => v.evs.some(estInscription));
+  const nIns = visitesIns.length;
+  const demos = visitesIns.filter(aDemo);
+  const leads = visitesIns.filter(v => v.evs.some(e => e.event === 'lead')).length;
+  const sortiesIns = events.filter(e => e.event === 'page_exit' && /inscription/.test(e.page || ''));
+  const dureesDemo = demos.map(v => {
+    const t0 = v.evs.find(estInscription), t1 = v.evs.find(e => e.event === 'demo_creee');
+    return (new Date(t1.created_at) - new Date(t0.created_at)) / 1000;
+  }).filter(d => d >= 0 && d < 7200);
+  document.getElementById('anaInsKpis').innerHTML =
+    kpi(nIns.toLocaleString('fr-FR'), 'Visites arrivées à l\'inscription')
+    + kpi(leads.toLocaleString('fr-FR'), 'E-mails saisis')
+    + kpi(demos.length.toLocaleString('fr-FR'), 'Démos créées')
+    + kpi(pct(demos.length, nIns), 'Inscriptions menées au bout')
+    + kpi(dureesDemo.length ? formaterDuree(moy(dureesDemo, d => d)) : '—', 'Temps moyen pour créer la démo')
+    + kpi(sortiesIns.length ? formaterDuree(moy(sortiesIns, duree)) : '—', 'Temps moyen sur la page');
+
+  // Abandons : dernière étape atteinte par les visites sans démo
+  const ETAPES = { 1: 'Étape 1 · métier', 2: 'Étape 2 · boutique', 3: 'Étape 3 · photos', 4: 'Étape 4 · compte' };
+  const abandons = {};
+  const sansDemo = visitesIns.filter(v => !aDemo(v));
+  sansDemo.forEach(v => {
+    const max = Math.min(4, Math.max(1, ...v.evs.filter(e => e.event === 'inscription_etape').map(e => Number(e.meta.etape) || 1)));
+    abandons[ETAPES[max]] = (abandons[ETAPES[max]] || 0) + 1;
+  });
+  document.getElementById('anaInsAbandons').innerHTML = sansDemo.length
+    ? listeBarres(Object.values(ETAPES).filter(l => abandons[l]).map(l => [l, abandons[l]]), false)
+      + '<div class="a-att" style="font-size:11px;margin-top:6px;">' + sansDemo.length + ' inscription' + (sansDemo.length > 1 ? 's' : '') + ' non terminée' + (sansDemo.length > 1 ? 's' : '') + ' sur ' + nIns + '</div>'
+    : (nIns ? '<div class="a-att">Aucun abandon sur cette période</div>' : vide);
+
+  // Métiers des démos
+  const metiers = {};
+  events.filter(e => e.event === 'demo_creee').forEach(e => { const m = (e.meta && e.meta.business_type) || 'Non précisé'; metiers[m] = (metiers[m] || 0) + 1; });
+  const topMetiers = Object.entries(metiers).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  document.getElementById('anaInsMetiers').innerHTML = topMetiers.length ? listeBarres(topMetiers, false) : '<div class="a-att">Aucune démo créée sur cette période</div>';
+
+  // Sources des visites arrivées à l'inscription
+  const sources = {};
+  visitesIns.forEach(v => {
+    let src = normaliserSource(v.vue1.referrer);
+    if (src === 'marchéo.fr') src = 'Direct';
+    const utm = v.vue1.meta && v.vue1.meta.utm;
+    if (utm && utm.utm_campaign) src += ' · ' + utm.utm_campaign;
+    const x = sources[src] = sources[src] || { n: 0, demos: 0 };
+    x.n++; if (aDemo(v)) x.demos++;
+  });
+  const topSources = Object.entries(sources).sort((a, b) => b[1].n - a[1].n).slice(0, 10);
+  document.getElementById('anaInsSources').innerHTML = topSources.length
+    ? tableau(['Source', 'Arrivées à l\'inscription', 'Démos créées', 'Taux'], topSources.map(([l, x]) => [escHtml(l), x.n, x.demos, pct(x.demos, x.n)]))
+    : vide;
+
+  // Inscription par appareil
+  const lignesIns = Object.keys(APPAREILS).map(d => {
+    const vs = visitesIns.filter(v => v.vue1.device === d);
+    return vs.length ? [APPAREILS[d], vs.length, vs.filter(aDemo).length, pct(vs.filter(aDemo).length, vs.length)] : null;
+  }).filter(Boolean);
+  document.getElementById('anaInsAppareils').innerHTML = lignesIns.length
+    ? tableau(['Appareil', 'Arrivées à l\'inscription', 'Démos créées', 'Taux'], lignesIns)
+    : vide;
 }
 
 // ── Bloc « Sites commerçants » : trafic des boutiques, avec le détail par boutique ──
