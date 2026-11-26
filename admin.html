@@ -1060,6 +1060,85 @@
         </div>
       </div>
 
+      <!-- IMPÔT PRÉVU (URSSAF micro-entrepreneur) ET REVENU APRÈS IMPÔT -->
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Impôt prévu et revenu après impôt</div>
+      <div class="page-sub">Cotisations URSSAF de micro-entrepreneur, calculées sur le chiffre d'affaires encaissé et déclarées chaque trimestre</div>
+
+      <div class="mrr-card" style="margin-bottom:16px;">
+        <div class="mrr-titre">Votre taux <small>Enregistré sur ce navigateur. Reprenez le taux exact affiché sur votre compte URSSAF.</small></div>
+        <div class="imp-reglages">
+          <label>Cotisations URSSAF
+            <span class="imp-champ"><input type="number" id="impTaux" min="0" max="100" step="0.1" inputmode="decimal" onchange="enregistrerReglagesImpot()"> %</span>
+          </label>
+          <label class="imp-case">
+            <input type="checkbox" id="impVL" onchange="enregistrerReglagesImpot()">
+            Versement libératoire de l'impôt sur le revenu
+          </label>
+          <label id="impVLBloc">Taux du versement libératoire
+            <span class="imp-champ"><input type="number" id="impTauxVL" min="0" max="100" step="0.1" inputmode="decimal" onchange="enregistrerReglagesImpot()"> %</span>
+          </label>
+          <button class="action-btn" onclick="reinitialiserReglagesImpot()">Remettre le taux par défaut</button>
+        </div>
+        <div class="a-att" style="font-size:12px;margin-top:10px;">Par défaut : 21,2 %, le taux micro-entreprise « prestations de services » (BIC). Le versement libératoire, si vous l'avez choisi, ajoute 1,7 %.</div>
+      </div>
+      <style>
+        .imp-reglages { display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px 22px; font-size:13px; }
+        .imp-reglages label { display:flex; flex-direction:column; gap:6px; color:var(--a-t60); }
+        .imp-reglages label.imp-case { flex-direction:row; align-items:center; gap:8px; cursor:pointer; padding-bottom:9px; color:var(--a-blanc); }
+        .imp-champ { display:flex; align-items:center; gap:6px; color:var(--a-blanc); font-weight:600; }
+        .imp-champ input { width:84px; background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:9px; padding:8px 10px; font:inherit; font-weight:600; color:var(--a-blanc); }
+        .imp-champ input:focus { outline:none; border-color:var(--or-t); }
+        #tableImpot td, #tableImpot th { text-align:right; }
+        #tableImpot td:first-child, #tableImpot th:first-child { text-align:left; }
+        #tableImpot tr.imp-total td { font-weight:700; border-top:1.5px solid var(--a-l16); }
+      </style>
+
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr));">
+        <div class="stat-card">
+          <div class="stat-card-val" id="impCA">—</div>
+          <div class="stat-card-lbl" id="impCALbl">CA encaissé cette année</div>
+          <div class="stat-card-delta" id="impCASub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:rgb(var(--c-rouge2))" id="impImpot">—</div>
+          <div class="stat-card-lbl" id="impImpotLbl">Impôt prévu</div>
+          <div class="stat-card-delta" id="impImpotSub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:var(--a-vert-clair)" id="impNet">—</div>
+          <div class="stat-card-lbl">Revenu SaaS après impôt</div>
+          <div class="stat-card-delta" id="impNetSub"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-val" style="color:var(--or-t)" id="impMRRNet">—</div>
+          <div class="stat-card-lbl">MRR après impôt</div>
+          <div class="stat-card-delta" id="impMRRNetSub"></div>
+        </div>
+      </div>
+
+      <div class="table-card" style="margin-bottom:20px;">
+        <div class="table-header">
+          <span class="table-titre">Par trimestre</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="table-brute" id="tableImpot">
+            <thead>
+              <tr>
+                <th>Trimestre</th>
+                <th>CA encaissé</th>
+                <th>Impôt prévu</th>
+                <th>Revenu après impôt</th>
+                <th>À déclarer avant le</th>
+              </tr>
+            </thead>
+            <tbody id="tableImpotCorps">
+              <tr><td colspan="5" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="a-att" style="font-size:12px;padding:12px 16px;line-height:1.5;">CA encaissé estimé à partir des abonnements (frais d'installation, mois offerts, mensualités à date anniversaire). Les montants exacts à déclarer sont ceux de vos encaissements Stripe.</div>
+      </div>
+
       <div class="table-card">
         <div class="table-header">
           <span class="table-titre">Détail par abonnement</span>
@@ -1097,8 +1176,32 @@
       <style>
         .ana-pill { background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:50px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--a-blanc); cursor:pointer; font-family:inherit; }
         .ana-pill.actif { background:rgba(var(--c-or2),.18); border-color:var(--or-t); color:var(--or-t); }
+        .ana-blocs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 18px; }
+        .ana-bloc { position:relative; text-align:left; background:var(--a-v06); border:1.5px solid var(--a-l12); border-radius:14px; padding:14px 84px 14px 16px; cursor:pointer; font-family:inherit; color:var(--a-blanc); }
+        .ana-bloc strong { display:block; font-size:15px; font-weight:700; }
+        .ana-bloc span { display:block; font-size:12px; color:var(--a-t50); margin-top:2px; }
+        .ana-bloc em { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-style:normal; font-size:12px; font-weight:600; color:var(--a-t60); text-align:right; }
+        .ana-bloc.actif { background:rgba(var(--c-or2),.14); border-color:var(--or-t); }
+        .ana-bloc.actif strong, .ana-bloc.actif em { color:var(--or-t); }
+        @media (max-width:640px) { .ana-blocs { grid-template-columns:1fr; } }
       </style>
 
+      <!-- DEUX BLOCS : landing marchéo.fr / sites des commerçants -->
+      <div class="ana-blocs" role="tablist" aria-label="Type de trafic">
+        <button class="ana-bloc actif" role="tab" data-bloc="landing" onclick="changerBlocAnalytics('landing')">
+          <strong>Landing marchéo.fr</strong>
+          <span>Visiteurs qui viennent découvrir Marchéo</span>
+          <em id="anaBlocLandingNb">—</em>
+        </button>
+        <button class="ana-bloc" role="tab" data-bloc="boutiques" onclick="changerBlocAnalytics('boutiques')">
+          <strong>Sites commerçants</strong>
+          <span>Visiteurs des boutiques</span>
+          <em id="anaBlocBoutiquesNb">—</em>
+        </button>
+      </div>
+
+      <!-- BLOC 1 : LANDING MARCHÉO.FR -->
+      <div id="anaBlocLanding">
       <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
         <div class="stat-card">
           <div class="stat-card-val" id="anaVisites">—</div>
@@ -1147,10 +1250,6 @@
           <div id="anaTopPages" style="font-size:13px;">Chargement…</div>
         </div>
         <div class="mrr-card">
-          <div class="mrr-titre">Top boutiques (vues)</div>
-          <div id="anaTopBoutiques" style="font-size:13px;">Chargement…</div>
-        </div>
-        <div class="mrr-card">
           <div class="mrr-titre">Sources (1re page de chaque visite)</div>
           <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
         </div>
@@ -1185,6 +1284,75 @@
         <div class="mrr-titre">Derniers parcours</div>
         <div id="anaParcours" style="font-size:13px;">Chargement…</div>
       </div>
+      </div><!-- /anaBlocLanding -->
+
+      <!-- BLOC 2 : SITES COMMERÇANTS -->
+      <div id="anaBlocBoutiques" style="display:none;">
+        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+          <div class="stat-card">
+            <div class="stat-card-val" id="anaBqVisites">—</div>
+            <div class="stat-card-lbl">Visites</div>
+            <div class="stat-card-delta" id="anaBqVisitesDelta"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val" id="anaBqPageViews">—</div>
+            <div class="stat-card-lbl">Pages vues</div>
+            <div class="stat-card-delta" id="anaBqPageViewsDelta"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val" style="color:var(--or-t)" id="anaBqNb">—</div>
+            <div class="stat-card-lbl">Boutiques visitées</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val" style="color:var(--a-vert-clair)" id="anaBqPanier">—</div>
+            <div class="stat-card-lbl">Visites allées jusqu'au panier</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val" id="anaBqMobile">—</div>
+            <div class="stat-card-lbl">% Mobile (visites)</div>
+          </div>
+        </div>
+
+        <div class="mrr-card" style="margin-bottom:16px;">
+          <div class="mrr-titre"><span id="anaBqTendanceTitre">Visites par jour</span> <small id="anaBqTendanceSub"></small></div>
+          <div id="anaBqTendance"></div>
+        </div>
+
+        <div class="table-card" style="margin-bottom:20px;">
+          <div class="table-header">
+            <span class="table-titre">Détail par boutique</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="table-brute">
+              <thead>
+                <tr>
+                  <th>Boutique</th>
+                  <th>Visites</th>
+                  <th>Pages vues</th>
+                  <th>Pages / visite</th>
+                  <th>Jusqu'au panier</th>
+                  <th>Mobile</th>
+                  <th>Source principale</th>
+                </tr>
+              </thead>
+              <tbody id="anaBqTable">
+                <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Chargement…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mrr-section">
+          <div class="mrr-card">
+            <div class="mrr-titre">Sources (1re page de chaque visite)</div>
+            <div id="anaBqSources" style="font-size:13px;">Chargement…</div>
+          </div>
+          <div class="mrr-card">
+            <div class="mrr-titre">Pages les plus vues</div>
+            <div id="anaBqPages" style="font-size:13px;">Chargement…</div>
+          </div>
+        </div>
+      </div><!-- /anaBlocBoutiques -->
     </div>
 
     <!-- PAGE CRM (rendue par /assets/admin/crm-*.js) -->
@@ -2577,6 +2745,25 @@ async function chargerCommandes() {
 let periodeAnalytics = 'jour';
 const LIBELLES_PERIODE_ANALYTICS = { jour: "aujourd'hui", '7j': '7 derniers jours', '30j': '30 derniers jours' };
 
+// Deux blocs : « landing » (visiteurs qui découvrent Marchéo) et « boutiques » (visiteurs des sites commerçants)
+let blocAnalytics = 'landing';
+function changerBlocAnalytics(bloc) {
+  blocAnalytics = bloc;
+  document.querySelectorAll('.ana-bloc').forEach(b => {
+    const actif = b.dataset.bloc === bloc;
+    b.classList.toggle('actif', actif);
+    b.setAttribute('aria-selected', actif ? 'true' : 'false');
+  });
+  document.getElementById('anaBlocLanding').style.display = bloc === 'landing' ? '' : 'none';
+  document.getElementById('anaBlocBoutiques').style.display = bloc === 'boutiques' ? '' : 'none';
+}
+// Premiers segments d'URL qui ne sont pas des boutiques (le tracker a longtemps pris /blog, /solutions… pour des slugs)
+const ANA_PAS_BOUTIQUE = new Set(['blog','solutions','a-propos','faq','sans-commission','ambassadeur','avis','litige','contester','unsubscribe','inscription','admin','app','catalogue','panier','compte','notre-histoire','cgv','confidentialite','charte','mentions-legales','legal','seo','marketing','docs','assets','api']);
+// Un événement appartient à un site commerçant s'il porte le slug d'une boutique (/:slug, /:slug/catalogue, /:slug/panier…)
+function anaEstBoutique(e) { return !!e.slug && !ANA_PAS_BOUTIQUE.has(e.slug); }
+// Espaces de travail (app commerçant, admin) : ni landing, ni site commerçant
+function anaEstHorsSite(e) { return /^\/(app|admin|app-commercant\.html|admin\.html)\/?$/.test(e.page || ''); }
+
 function changerPeriodeAnalytics(periode) {
   periodeAnalytics = periode;
   document.querySelectorAll('.ana-pill').forEach(p => p.classList.toggle('actif', p.dataset.periode === periode));
@@ -2616,8 +2803,11 @@ async function chargerAnalytics() {
       eventsTous.push(...lot);
       if (lot.length < 1000) break;
     }
-    const events = eventsTous.filter(e => new Date(e.created_at) >= debutPeriode);
-    const eventsAvant = eventsTous.filter(e => new Date(e.created_at) < debutPeriode);
+    // Séparation landing marchéo.fr / sites commerçants
+    const eventsLanding = eventsTous.filter(e => !anaEstBoutique(e) && !anaEstHorsSite(e));
+    const eventsBoutiques = eventsTous.filter(anaEstBoutique);
+    const events = eventsLanding.filter(e => new Date(e.created_at) >= debutPeriode);
+    const eventsAvant = eventsLanding.filter(e => new Date(e.created_at) < debutPeriode);
 
     // Compteurs
     const pageViews = events.filter(e => e.event === 'page_view').length;
@@ -2637,6 +2827,7 @@ async function chargerAnalytics() {
     const mobilePct = nbVisites > 0 ? Math.round((mobile / nbVisites) * 100) + '%' : '—';
 
     document.getElementById('anaVisites').textContent = nbVisites.toLocaleString('fr-FR');
+    document.getElementById('anaBlocLandingNb').textContent = nbVisites.toLocaleString('fr-FR') + ' visite' + (nbVisites > 1 ? 's' : '');
     document.getElementById('anaPageViews').textContent = pageViews.toLocaleString('fr-FR');
     document.getElementById('anaInscClicks').textContent = inscClicks.toLocaleString('fr-FR');
     document.getElementById('anaConversion').textContent = conversion;
@@ -2660,18 +2851,6 @@ async function chargerAnalytics() {
     document.getElementById('anaTopPages').innerHTML = topPages.length
       ? listeBarres(topPages, true)
       : '<div class="a-att">Aucune donnée</div>';
-
-    // Top boutiques (par slug)
-    const slugCounts = {};
-    // Le tracker a longtemps pris /blog, /solutions, /a-propos… pour des boutiques : on les écarte ici
-    const PAS_BOUTIQUE = new Set(['blog','solutions','a-propos','faq','sans-commission','ambassadeur','avis','litige','contester','unsubscribe','inscription','admin','app','catalogue','panier','compte','notre-histoire','cgv','confidentialite','charte','mentions-legales','legal','seo','marketing','docs','assets','api']);
-    events.filter(e => e.event === 'page_view' && e.slug && !PAS_BOUTIQUE.has(e.slug)).forEach(e => {
-      slugCounts[e.slug] = (slugCounts[e.slug] || 0) + 1;
-    });
-    const topSlugs = Object.entries(slugCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
-    document.getElementById('anaTopBoutiques').innerHTML = topSlugs.length
-      ? listeBarres(topSlugs, false)
-      : '<div class="a-att">Aucune visite de boutique</div>';
 
     // Top referrers — normalisation des sources
     function normaliserSource(host) {
@@ -2716,9 +2895,106 @@ async function chargerAnalytics() {
 
     afficherCampagnes(visitesListe);
     afficherParcours(events, normaliserSource);
+    await afficherSitesCommercants(
+      eventsBoutiques.filter(e => new Date(e.created_at) >= debutPeriode),
+      eventsBoutiques.filter(e => new Date(e.created_at) < debutPeriode),
+      debutPeriode, normaliserSource);
   } catch (e) {
     document.getElementById('anaPageViews').textContent = '⚠️';
   }
+}
+
+// ── Bloc « Sites commerçants » : trafic des boutiques, avec le détail par boutique ──
+let _anaBoutiquesNoms = null;
+async function afficherSitesCommercants(events, eventsAvant, debutPeriode, normaliserSource) {
+  // Nom et statut de chaque boutique (une seule lecture par session admin)
+  if (!_anaBoutiquesNoms) {
+    try {
+      const l = await sb('commercants', '?select=slug,nom_boutique,abonnement_actif,is_fixture&limit=2000');
+      if (Array.isArray(l)) {
+        _anaBoutiquesNoms = {};
+        l.forEach(c => { if (c.slug) _anaBoutiquesNoms[c.slug] = c; });
+      }
+    } catch (e) {}
+  }
+  const noms = _anaBoutiquesNoms || {};
+
+  // Visites = identifiant anonyme de visite (meta.sid) ayant vu au moins une page de boutique
+  const vues = events.filter(e => e.event === 'page_view');
+  const parVisite = {};
+  vues.forEach(e => {
+    const sid = e.meta && e.meta.sid;
+    if (sid) (parVisite[sid] = parVisite[sid] || []).push(e);
+  });
+  const visitesListe = Object.values(parVisite).map(v => ({ evs: v, vue1: v[0] }));
+  const nbVisites = visitesListe.length;
+  const estPanier = e => /\/panier(\/|$)/.test(e.page || '');
+  const visitesPanier = visitesListe.filter(v => v.evs.some(estPanier)).length;
+  const mobile = visitesListe.filter(v => v.vue1.device === 'mobile').length;
+  const pct = (n, total) => total > 0 ? Math.round(n / total * 100) + '%' : '—';
+
+  document.getElementById('anaBlocBoutiquesNb').textContent = nbVisites.toLocaleString('fr-FR') + ' visite' + (nbVisites > 1 ? 's' : '');
+  document.getElementById('anaBqVisites').textContent = nbVisites.toLocaleString('fr-FR');
+  document.getElementById('anaBqPageViews').textContent = vues.length.toLocaleString('fr-FR');
+  document.getElementById('anaBqPanier').textContent = nbVisites ? visitesPanier.toLocaleString('fr-FR') + ' (' + pct(visitesPanier, nbVisites) + ')' : '—';
+  document.getElementById('anaBqMobile').textContent = pct(mobile, nbVisites);
+  const vuesAvant = eventsAvant.filter(e => e.event === 'page_view');
+  afficherEvolution('anaBqVisitesDelta', nbVisites, new Set(vuesAvant.filter(e => e.meta && e.meta.sid).map(e => e.meta.sid)).size);
+  afficherEvolution('anaBqPageViewsDelta', vues.length, vuesAvant.length);
+  afficherTendance(visitesListe, debutPeriode, 'anaBqTendance');
+
+  // Détail par boutique
+  const parBoutique = {};
+  vues.forEach(e => {
+    const b = parBoutique[e.slug] = parBoutique[e.slug] || { slug: e.slug, vues: 0, visites: {} };
+    b.vues++;
+    const sid = e.meta && e.meta.sid;
+    if (sid) (b.visites[sid] = b.visites[sid] || []).push(e);
+  });
+  const lignes = Object.values(parBoutique).map(b => {
+    const vs = Object.values(b.visites);
+    const sources = {};
+    vs.forEach(v => { const s = normaliserSource(v[0].referrer); sources[s] = (sources[s] || 0) + 1; });
+    const top = Object.entries(sources).sort((x, y) => y[1] - x[1])[0];
+    return {
+      slug: b.slug, vues: b.vues, visites: vs.length,
+      panier: vs.filter(v => v.some(estPanier)).length,
+      mobile: vs.filter(v => v[0].device === 'mobile').length,
+      source: top ? top[0] + (vs.length > 1 ? ' (' + pct(top[1], vs.length) + ')' : '') : '—',
+    };
+  }).sort((x, y) => y.visites - x.visites || y.vues - x.vues);
+  document.getElementById('anaBqNb').textContent = lignes.length.toLocaleString('fr-FR');
+
+  const etiquette = c => {
+    if (!c) return '<span class="badge badge-starter">Supprimée ou inconnue</span>';
+    if (c.is_fixture) return '<span class="badge badge-starter">Exemple</span>';
+    return c.abonnement_actif === true ? '<span class="badge badge-actif">Abonnée</span>' : '<span class="badge badge-starter">Démo</span>';
+  };
+  document.getElementById('anaBqTable').innerHTML = lignes.slice(0, 100).map(l => {
+    const c = noms[l.slug];
+    return `<tr>
+      <td>
+        <div style="font-weight:500;">${escHtml(c ? c.nom_boutique : l.slug)} ${etiquette(c)}</div>
+        <div style="font-size:12px;"><a href="/${encodeURIComponent(l.slug)}" target="_blank" rel="noopener" style="color:var(--a-t40);font-family:ui-monospace,Menlo,monospace;">/${escHtml(l.slug)}</a></div>
+      </td>
+      <td style="font-weight:600;">${l.visites}</td>
+      <td>${l.vues}</td>
+      <td>${l.visites ? (l.vues / l.visites).toFixed(1).replace('.', ',') : '—'}</td>
+      <td>${l.panier ? l.panier + ' (' + pct(l.panier, l.visites) + ')' : '<span style="color:var(--a-t40);">0</span>'}</td>
+      <td>${pct(l.mobile, l.visites)}</td>
+      <td style="color:var(--a-t60);">${escHtml(l.source)}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--a-t40);">Aucune visite de boutique sur cette période</td></tr>';
+
+  // Sources (une par visite) et pages les plus vues, toutes boutiques confondues
+  const refCounts = {};
+  visitesListe.forEach(v => { const s = normaliserSource(v.vue1.referrer); refCounts[s] = (refCounts[s] || 0) + 1; });
+  const topRefs = Object.entries(refCounts).sort((x, y) => y[1] - x[1]).slice(0, 10);
+  document.getElementById('anaBqSources').innerHTML = topRefs.length ? listeBarres(topRefs, false) : '<div class="a-att">Aucune donnée</div>';
+  const pageCounts = {};
+  vues.forEach(e => { if (e.page) pageCounts[e.page] = (pageCounts[e.page] || 0) + 1; });
+  const topPages = Object.entries(pageCounts).sort((x, y) => y[1] - x[1]).slice(0, 10);
+  document.getElementById('anaBqPages').innerHTML = topPages.length ? listeBarres(topPages, true) : '<div class="a-att">Aucune donnée</div>';
 }
 
 // ── Exclusion des visites de l'admin (drapeau lu par assets/core/analytics.js) ──
@@ -2892,6 +3168,13 @@ async function chargerRevenus() {
   document.getElementById('revMRR').textContent = mrr.toFixed(0) + ' €';
   document.getElementById('revARR').textContent = (mrr * 12).toFixed(0) + ' €';
   document.getElementById('revActifs').textContent = commercants.length;
+  _revMRR = mrr;
+  // Impôt prévu : il faut aussi les abonnements terminés (leur CA a été encaissé avant la résiliation)
+  try {
+    const tous = await sb('commercants', '?select=*,plans(nom,prix_mensuel)&abonnement_debut=not.is.null&is_fixture=eq.false');
+    _revAbonnes = Array.isArray(tous) ? tous : commercants;
+  } catch (e) { _revAbonnes = commercants; }
+  afficherImpot();
 
   document.getElementById('tableRevenus').innerHTML = commercants.map(c => {
     const plan = offreLabelsRev[c.offre] || c.plans?.nom || '—';
@@ -2914,6 +3197,127 @@ async function chargerRevenus() {
   }).join('') || '<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--a-t40);">Aucun abonnement actif</td></tr>';
 }
 
+
+// ── IMPÔT PRÉVU (URSSAF micro-entrepreneur) ───────────
+// Cotisations = taux × chiffre d'affaires encaissé, déclarées par trimestre.
+const IMPOT_DEFAUT = { taux: 21.2, vl: false, tauxVL: 1.7 };
+const IMPOT_CLE = 'marcheo_admin_impot';
+const FRAIS_INSTALLATION = { vitrine: 249, clickcollect: 399, livraison: 549 };
+const PRIX_MENSUEL = { vitrine: 19, clickcollect: 39, livraison: 59 };
+let _revAbonnes = [];
+let _revMRR = 0;
+
+function lireReglagesImpot() {
+  let r = {};
+  try { r = JSON.parse(localStorage.getItem(IMPOT_CLE) || '{}') || {}; } catch (e) {}
+  const borne = (v, d) => { v = Number(v); return isFinite(v) && v >= 0 && v <= 100 ? v : d; };
+  return { taux: borne(r.taux == null ? NaN : r.taux, IMPOT_DEFAUT.taux), vl: r.vl === true, tauxVL: borne(r.tauxVL == null ? NaN : r.tauxVL, IMPOT_DEFAUT.tauxVL) };
+}
+function enregistrerReglagesImpot() {
+  const nombre = id => parseFloat(String(document.getElementById(id).value).replace(',', '.'));
+  const r = { taux: nombre('impTaux'), vl: document.getElementById('impVL').checked, tauxVL: nombre('impTauxVL') };
+  try { localStorage.setItem(IMPOT_CLE, JSON.stringify(r)); } catch (e) {}
+  afficherImpot();
+}
+function reinitialiserReglagesImpot() {
+  try { localStorage.removeItem(IMPOT_CLE); } catch (e) {}
+  afficherImpot();
+}
+
+// Encaissements estimés d'un abonné : frais d'installation le jour de l'activation,
+// puis une mensualité à chaque date anniversaire après les mois offerts, jusqu'à la résiliation.
+function encaissementsAbonne(c, jusquau) {
+  const liste = [];
+  if (!c.abonnement_debut) return liste;
+  const debut = new Date(String(c.abonnement_debut).slice(0, 10) + 'T12:00:00');
+  if (isNaN(debut)) return liste;
+  const fin = c.abonnement_actif !== true && c.abonnement_fin ? new Date(String(c.abonnement_fin).slice(0, 10) + 'T23:59:59') : null;
+  const limite = fin && fin < jusquau ? fin : jusquau;
+  const payeParStripe = !!c.stripe_setup_session_id;
+  // Frais d'installation : montant réellement payé s'il est connu (code promo), sinon le tarif de l'offre
+  const frais = c.frais_acquisition_paye != null ? Number(c.frais_acquisition_paye) || 0 : (payeParStripe ? (FRAIS_INSTALLATION[c.offre] || 0) : 0);
+  if (frais > 0 && debut <= jusquau) liste.push({ date: debut, montant: frais });
+  const prix = Number(PRIX_MENSUEL[c.offre] || (c.plans && c.plans.prix_mensuel) || 0);
+  if (prix <= 0) return liste;
+  // Mois offerts : valeur enregistrée au paiement, sinon la règle de l'offre (1er mois offert hors Vitrine)
+  const moisOfferts = c.mois_offerts != null ? Number(c.mois_offerts) || 0 : (payeParStripe && c.offre !== 'vitrine' ? 1 : 0);
+  const premiere = new Date(debut.getTime() + moisOfferts * 30 * 86400000);
+  for (let i = 0; i < 600; i++) {
+    const d = new Date(premiere);
+    d.setMonth(premiere.getMonth() + i);
+    if (d.getDate() !== premiere.getDate()) d.setDate(0); // 31 → dernier jour du mois
+    if (d > limite) break;
+    liste.push({ date: d, montant: prix });
+  }
+  return liste;
+}
+
+function afficherImpot() {
+  const r = lireReglagesImpot();
+  document.getElementById('impTaux').value = r.taux;
+  document.getElementById('impVL').checked = r.vl;
+  document.getElementById('impTauxVL').value = r.tauxVL;
+  document.getElementById('impVLBloc').style.display = r.vl ? '' : 'none';
+  const tauxTotal = r.taux + (r.vl ? r.tauxVL : 0);
+  const impot = ca => Math.round(ca * tauxTotal / 100);
+  const eur = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+  const tauxTxt = String(Math.round(tauxTotal * 100) / 100).replace('.', ',') + ' %';
+
+  const now = new Date();
+  const annee = now.getFullYear();
+  const trimNow = Math.floor(now.getMonth() / 3);
+  const finTrim = new Date(annee, trimNow * 3 + 3, 0, 23, 59, 59);
+  // Encaissements à ce jour + ceux attendus d'ici la fin du trimestre en cours
+  const trimestres = {};
+  const cle = d => d.getFullYear() + '-' + Math.floor(d.getMonth() / 3);
+  _revAbonnes.forEach(c => encaissementsAbonne(c, finTrim).forEach(p => {
+    const t = trimestres[cle(p.date)] = trimestres[cle(p.date)] || { encaisse: 0, attendu: 0 };
+    if (p.date <= now) t.encaisse += p.montant; else t.attendu += p.montant;
+  }));
+
+  // Années à afficher : de la première année encaissée à l'année en cours (la plus récente en premier)
+  const annees = Object.keys(trimestres).map(k => Number(k.split('-')[0]));
+  const anneeMin = Math.min(annee, ...annees);
+  const ECHEANCES = ['30 avril', '31 juillet', '31 octobre', '31 janvier'];
+  let lignes = '';
+  let caAnnee = 0;
+  for (let a = annee; a >= anneeMin; a--) {
+    let total = 0;
+    for (let t = 0; t < 4; t++) {
+      const v = trimestres[a + '-' + t] || { encaisse: 0, attendu: 0 };
+      total += v.encaisse;
+      const enCours = a === annee && t === trimNow;
+      const futur = a === annee && t > trimNow;
+      const echeance = ECHEANCES[t] + ' ' + (t === 3 ? a + 1 : a);
+      const prevu = enCours && v.attendu > 0
+        ? '<div style="font-size:11px;color:var(--a-t40);font-weight:400;">+ ' + eur(v.attendu) + ' attendus d\'ici la fin du trimestre, soit ' + eur(impot(v.encaisse + v.attendu)) + ' d\'impôt</div>'
+        : '';
+      lignes += '<tr' + (futur ? ' style="opacity:.45;"' : '') + '>'
+        + '<td>T' + (t + 1) + ' ' + a + (enCours ? ' <span class="badge badge-pro">En cours</span>' : '') + '</td>'
+        + '<td>' + (futur ? '—' : eur(v.encaisse)) + prevu + '</td>'
+        + '<td style="color:rgb(var(--c-rouge2));">' + (futur ? '—' : eur(impot(v.encaisse))) + '</td>'
+        + '<td style="color:var(--a-vert-clair);font-weight:600;">' + (futur ? '—' : eur(v.encaisse - impot(v.encaisse))) + '</td>'
+        + '<td style="color:var(--a-t60);">' + echeance + '</td></tr>';
+    }
+    if (a === annee) caAnnee = total;
+    lignes += '<tr class="imp-total"><td>Total ' + a + '</td><td>' + eur(total) + '</td>'
+      + '<td style="color:rgb(var(--c-rouge2));">' + eur(impot(total)) + '</td>'
+      + '<td style="color:var(--a-vert-clair);">' + eur(total - impot(total)) + '</td><td></td></tr>';
+  }
+  document.getElementById('tableImpotCorps').innerHTML = lignes;
+
+  const tCours = trimestres[annee + '-' + trimNow] || { encaisse: 0, attendu: 0 };
+  document.getElementById('impCALbl').textContent = 'CA encaissé en ' + annee;
+  document.getElementById('impCA').textContent = eur(caAnnee);
+  document.getElementById('impCASub').textContent = 'dont ' + eur(tCours.encaisse) + ' ce trimestre (T' + (trimNow + 1) + ')';
+  document.getElementById('impImpotLbl').textContent = 'Impôt prévu en ' + annee + ' (' + tauxTxt + ')';
+  document.getElementById('impImpot').textContent = eur(impot(caAnnee));
+  document.getElementById('impImpotSub').textContent = eur(impot(tCours.encaisse)) + ' à déclarer pour T' + (trimNow + 1) + ', avant le ' + ECHEANCES[trimNow] + (trimNow === 3 ? ' ' + (annee + 1) : '');
+  document.getElementById('impNet').textContent = eur(caAnnee - impot(caAnnee));
+  document.getElementById('impNetSub').textContent = 'CA encaissé − impôt prévu, en ' + annee;
+  document.getElementById('impMRRNet').textContent = eur(_revMRR - _revMRR * tauxTotal / 100);
+  document.getElementById('impMRRNetSub').textContent = eur(_revMRR) + ' de MRR − ' + tauxTxt;
+}
 
 // ── GÉNÉRATEUR DE FACTURES PDF ────────────────────────
 function genererFacture(id, nom, email, prix, plan) {
@@ -3375,7 +3779,8 @@ function afficherEvolution(id, actuel, avant) {
   el.textContent = (pct > 0 ? '▲ +' : pct < 0 ? '▼ ' : '= ') + pct + ' % vs période précédente (' + avant + ')';
   if (pct > 0) el.classList.add('delta-up'); else if (pct < 0) el.classList.add('delta-down');
 }
-function afficherTendance(visitesListe, debut) {
+function afficherTendance(visitesListe, debut, cible) {
+  cible = cible || 'anaTendance';
   const parHeure = periodeAnalytics === 'jour';
   const n = parHeure ? 24 : (periodeAnalytics === '7j' ? 7 : 30);
   const points = [];
@@ -3397,11 +3802,11 @@ function afficherTendance(visitesListe, debut) {
     points.forEach(p => { p.tip = p._d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) + ' : ' + p.v + ' visite' + (p.v > 1 ? 's' : ''); });
   }
   const total = points.reduce((s, p) => s + p.v, 0);
-  document.getElementById('anaTendanceTitre').textContent = parHeure ? 'Visites par heure' : 'Visites par jour';
-  document.getElementById('anaTendanceSub').textContent = total
+  document.getElementById(cible + 'Titre').textContent = parHeure ? 'Visites par heure' : 'Visites par jour';
+  document.getElementById(cible + 'Sub').textContent = total
     ? 'Moyenne : ' + (total / n).toFixed(1).replace('.', ',') + (parHeure ? ' par heure' : ' par jour') + ' · survolez une barre pour le détail'
     : 'Aucune visite sur la période';
-  document.getElementById('anaTendance').innerHTML = barresHtml(points, { aria: 'Visites ' + (parHeure ? 'par heure' : 'par jour'), pasLabel: parHeure ? 3 : (n === 7 ? 1 : 5) });
+  document.getElementById(cible).innerHTML = barresHtml(points, { aria: 'Visites ' + (parHeure ? 'par heure' : 'par jour'), pasLabel: parHeure ? 3 : (n === 7 ? 1 : 5) });
 }
 
 // ── Vue d'ensemble : à faire, démos par semaine, entonnoir
