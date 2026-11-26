@@ -1180,6 +1180,25 @@
         .ana-kpi { background:var(--a-surface); border:1px solid var(--a-line); border-radius:12px; padding:12px 14px; }
         .ana-kpi b { display:block; font-size:22px; font-weight:700; color:var(--a-blanc); }
         .ana-kpi span { display:block; font-size:12px; color:var(--a-t50); margin-top:2px; }
+        .ana-resume { background:rgba(var(--c-or2),.10); border:1px solid rgba(var(--c-or2),.35); border-radius:12px; padding:14px 16px; font-size:14px; line-height:1.65; color:var(--a-blanc); margin-bottom:16px; }
+        .ana-resume b { color:var(--or-t); }
+        .ana-fam { padding:11px 0; border-top:1px solid var(--a-l05); }
+        .ana-fam:first-child { border-top:0; padding-top:2px; }
+        .ana-fam-h { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+        .ana-fam-h strong { font-size:14px; }
+        .ana-fam-h em { font-style:normal; font-weight:700; white-space:nowrap; }
+        .ana-fam-d { font-size:12px; color:var(--a-t50); margin-top:1px; }
+        .ana-fam-b { height:6px; background:var(--a-v06); border-radius:3px; margin:7px 0 5px; }
+        .ana-fam-b i { display:block; height:6px; background:var(--a-data); border-radius:3px; }
+        .ana-fam-r { font-size:12px; color:var(--a-t60); }
+        .ana-lexique { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px 22px; font-size:12.5px; line-height:1.5; color:var(--a-t60); }
+        .ana-lexique b { display:block; color:var(--a-blanc); font-weight:600; }
+        .ana-verdict { display:inline-block; padding:3px 9px; border-radius:50px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+        .ana-verdict.ok { background:rgba(var(--c-vert2),.2); color:rgb(var(--c-vertp)); }
+        .ana-verdict.moyen { background:rgba(var(--c-or),.2); color:var(--or-t); }
+        .ana-verdict.ko { background:rgba(var(--c-rouge2),.2); color:rgb(var(--c-rouge7)); }
+        .ana-verdict.attente { background:var(--a-v10); color:var(--a-t70); }
+        .ana-mini tr.ana-camp td { font-weight:700; background:var(--a-v06); padding-left:8px; }
         .ana-mini { width:100%; font-size:12.5px; border-collapse:collapse; }
         .ana-mini th { text-align:left; font-weight:500; color:var(--a-t50); padding:6px 10px 6px 0; }
         .ana-mini td { padding:7px 10px 7px 0; border-top:1px solid var(--a-l05); }
@@ -1303,23 +1322,60 @@
         </div>
       </div>
 
-      <div class="page-titre" style="font-size:20px;margin-top:28px;">Pages, sources et campagnes</div>
+      <!-- DÉTAIL : D'OÙ VIENNENT LES VISITEURS -->
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">D'où viennent les visiteurs</div>
+      <div class="page-sub">Comment chaque visiteur est arrivé sur marchéo.fr. Une visite = une seule origine.</div>
+      <div class="ana-resume" id="anaOriResume"></div>
+      <div class="mrr-card" style="margin-bottom:16px;">
+        <div class="mrr-titre">Les grandes origines <small>Pour chacune : combien de visites, combien ont commencé l'inscription, combien ont créé leur boutique démo</small></div>
+        <div id="anaOriFamilles" style="font-size:13px;">Chargement…</div>
+      </div>
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Détail site par site</div>
+        <div id="anaOriDetail" style="font-size:13px;">Chargement…</div>
+      </div>
+
+      <!-- DÉTAIL : PUBLICITÉS -->
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Vos publicités</div>
+      <div class="page-sub">Les visiteurs arrivés en cliquant sur une de vos publicités Facebook ou Instagram, et ce qu'ils ont fait ensuite</div>
+      <div class="ana-resume" id="anaPubResume"></div>
+      <div class="ana-kpis" id="anaPubKpis"></div>
+      <div class="mrr-card" style="margin-bottom:16px;">
+        <div class="mrr-titre">Combien ça vous coûte <small>Indiquez ce que vous avez dépensé en publicité sur la période affichée (montant visible dans le Gestionnaire de publicités Meta)</small></div>
+        <div class="imp-reglages">
+          <label>Dépense publicitaire sur la période
+            <span class="imp-champ"><input type="number" id="anaPubDepense" min="0" step="1" inputmode="decimal" placeholder="0" onchange="enregistrerDepensePub()"> €</span>
+          </label>
+        </div>
+        <div id="anaPubCout" style="font-size:13.5px;line-height:1.7;margin-top:12px;"></div>
+      </div>
+      <div class="mrr-card" style="margin-bottom:16px;">
+        <div class="mrr-titre">Résultat publicité par publicité <small>Classées de celle qui amène le plus de démos à celle qui en amène le moins</small></div>
+        <div id="anaPubTable" style="font-size:13px;">Chargement…</div>
+      </div>
+      <div class="mrr-card" style="margin-bottom:20px;">
+        <div class="mrr-titre">Comment lire ces chiffres</div>
+        <div class="ana-lexique">
+          <div><b>Visite</b>Une personne a cliqué sur la publicité et est arrivée sur le site.</div>
+          <div><b>A commencé l'inscription</b>Elle a ouvert la page pour créer sa boutique. La publicité a donné envie.</div>
+          <div><b>Démo créée</b>Elle est allée au bout : sa boutique démo existe. C'est le résultat qui compte.</div>
+          <div><b>Coût par démo</b>Votre dépense divisée par le nombre de démos. Plus il est bas, plus la publicité est rentable.</div>
+          <div><b>Fonctionne</b>La publicité a amené au moins une démo.</div>
+          <div><b>Intéresse, sans aller au bout</b>Des visiteurs commencent l'inscription mais aucun ne la termine : le frein est plutôt dans l'inscription.</div>
+          <div><b>N'accroche pas</b>Au moins 20 visites et personne ne commence l'inscription : le message ou la cible sont à revoir.</div>
+          <div><b>Trop tôt pour juger</b>Moins de 20 visites : attendez d'en avoir plus avant de décider.</div>
+        </div>
+      </div>
+
+      <div class="page-titre" style="font-size:20px;margin-top:28px;">Pages les plus vues</div>
       <div class="page-sub">Tout le site marchéo.fr hors boutiques : accueil, blog, solutions, inscription</div>
       <div class="mrr-section">
         <div class="mrr-card">
           <div class="mrr-titre">Top 10 pages</div>
           <div id="anaTopPages" style="font-size:13px;">Chargement…</div>
         </div>
-        <div class="mrr-card">
-          <div class="mrr-titre">Sources (1re page de chaque visite)</div>
-          <div id="anaReferrers" style="font-size:13px;">Chargement…</div>
-        </div>
       </div>
 
-      <div class="mrr-card" style="margin-bottom:20px;">
-        <div class="mrr-titre">Campagnes (UTM) · visites, inscriptions et démos par campagne</div>
-        <div id="anaCampagnes" style="font-size:13px;">Chargement…</div>
-      </div>
 
       <!-- OÙ LES VISITEURS S'ARRÊTENT -->
       <div class="page-titre" style="font-size:20px;margin-top:28px;">Où les visiteurs s'arrêtent</div>
@@ -2937,20 +2993,7 @@ async function chargerAnalytics() {
       if (h === 'duckduckgo.com' || h.endsWith('.duckduckgo.com')) return 'DuckDuckGo';
       return h;
     }
-    // Une source par visite (referrer de la 1re page vue). Un referrer marchéo.fr en 1re page
-    // = onglet ouvert depuis le site : ce n'est pas une source d'acquisition, on l'écarte.
-    const refCounts = {};
-    visitesListe.forEach(v => {
-      const src = normaliserSource(v.vue1.referrer);
-      if (src === 'marchéo.fr') return;
-      refCounts[src] = (refCounts[src] || 0) + 1;
-    });
-    const topRefs = Object.entries(refCounts).sort((a,b) => b[1]-a[1]).slice(0,10);
-    document.getElementById('anaReferrers').innerHTML = topRefs.length
-      ? listeBarres(topRefs, false)
-      : '<div class="a-att">Trafic direct uniquement</div>';
-
-    afficherCampagnes(visitesListe);
+    afficherOrigines(visitesListe, normaliserSource);
     afficherParcours(events, normaliserSource);
     afficherDetailLanding(events, visitesListe, normaliserSource);
     await afficherSitesCommercants(
@@ -3200,36 +3243,187 @@ function majCaseSuiviAdmin() {
   try { cb.checked = localStorage.getItem('marcheo_ne_pas_suivre') === '1'; } catch (e) { cb.checked = false; }
 }
 
-// ── Campagnes : une visite = la campagne UTM de sa 1re page ──
-function afficherCampagnes(visitesListe) {
-  const SOURCES = { fb: 'Facebook', ig: 'Instagram', an: 'Audience Network', msg: 'Messenger' };
-  const nomSource = s => SOURCES[String(s || '').toLowerCase()] || s;
-  const camp = {};
+// ── D'où viennent les visiteurs, et résultat des publicités ──
+// Chaque visite reçoit une seule origine : publicité, recherche, réseaux sociaux, accès direct…
+let _anaVisitesPub = [];
+let _anaNbVisites = 0;
+function anaUtmVisite(v) { return ((v.evs.find(e => e.meta && e.meta.utm) || {}).meta || {}).utm || null; }
+function anaVisiteInscription(v) { return v.evs.some(e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape' || e.event === 'demo_creee'); }
+function anaVisiteDemo(v) { return v.evs.some(e => e.event === 'demo_creee'); }
+// Publicité payante : lien étiqueté « paid » ou emplacement rempli par Meta (fb, ig, an, msg)
+function anaEstPub(utm) {
+  if (!utm) return false;
+  const src = String(utm.utm_source || '').toLowerCase();
+  return /paid|cpc|ppc|ads|pub/i.test(utm.utm_medium || '') || ['fb', 'ig', 'an', 'msg'].includes(src);
+}
+
+function afficherOrigines(visitesListe, normaliserSource) {
+  const pct = (n, total) => total > 0 ? Math.round(n / total * 100) + ' %' : '—';
+  const pl = (n, mot) => n.toLocaleString('fr-FR') + ' ' + mot + (n > 1 ? 's' : '');
+  const FAMILLES = [
+    { id: 'pub', nom: 'Publicités', desc: 'Ils ont cliqué sur une de vos publicités Facebook ou Instagram.' },
+    { id: 'recherche', nom: 'Recherche Google', desc: 'Ils ont cherché sur Google (ou Bing, Yahoo…) et cliqué sur votre site dans les résultats. Gratuit.' },
+    { id: 'social', nom: 'Réseaux sociaux (hors publicité)', desc: 'Ils ont cliqué sur un lien dans une publication, un profil ou un message Facebook, Instagram, TikTok… Gratuit.' },
+    { id: 'direct', nom: 'Accès direct', desc: 'Ils ont tapé l\'adresse, utilisé un favori ou cliqué un lien dont on ne connaît pas l\'origine (SMS, WhatsApp, QR code).' },
+    { id: 'email', nom: 'E-mail', desc: 'Ils ont cliqué sur un lien reçu par e-mail.' },
+    { id: 'campagne', nom: 'Liens de campagne (hors publicité)', desc: 'Ils ont suivi un lien que vous avez étiqueté : newsletter, partenaire, flyer…' },
+    { id: 'autre', nom: 'Autres sites', desc: 'Ils ont cliqué sur un lien présent sur un autre site internet.' },
+  ];
+  const RECHERCHE = ['Google', 'Bing', 'Yahoo', 'DuckDuckGo'];
+  const SOCIAL = ['Facebook', 'Instagram', 'TikTok', 'LinkedIn', 'YouTube', 'X (Twitter)'];
+  const stats = {}, detail = {};
+  const ajoute = (obj, cle, v) => {
+    const x = obj[cle] = obj[cle] || { n: 0, insc: 0, demo: 0, mobile: 0 };
+    x.n++; if (anaVisiteInscription(v)) x.insc++; if (anaVisiteDemo(v)) x.demo++; if (v.vue1.device === 'mobile') x.mobile++;
+  };
+  _anaVisitesPub = [];
+  _anaNbVisites = visitesListe.length;
   visitesListe.forEach(v => {
-    const utm = (v.evs.find(e => e.meta && e.meta.utm) || {}).meta?.utm;
-    if (!utm) return;
-    const cle = utm.utm_campaign || (utm.utm_source ? '(sans nom de campagne)' : '(pub Meta sans UTM)');
-    const c = camp[cle] = camp[cle] || { n: 0, insc: 0, demo: 0, sources: {} };
-    c.n++;
-    if (v.evs.some(e => (e.event === 'page_view' && /inscription/.test(e.page || '')) || e.event === 'inscription_etape')) c.insc++;
-    if (v.evs.some(e => e.event === 'demo_creee')) c.demo++;
-    const src = nomSource(utm.utm_source || (utm.fbclid ? 'Meta' : '?'));
-    c.sources[src] = (c.sources[src] || 0) + 1;
+    const utm = anaUtmVisite(v);
+    let src = normaliserSource(v.vue1.referrer);
+    if (src === 'marchéo.fr') src = 'Direct'; // onglet ouvert depuis le site : pas une origine extérieure
+    let fam;
+    if (anaEstPub(utm)) { fam = 'pub'; _anaVisitesPub.push(v); }
+    else if (utm && (utm.utm_source || utm.utm_campaign)) fam = /mail|newsletter/i.test((utm.utm_medium || '') + ' ' + (utm.utm_source || '')) ? 'email' : 'campagne';
+    else if (RECHERCHE.includes(src)) fam = 'recherche';
+    else if (SOCIAL.includes(src)) fam = 'social';
+    else if (src === 'E-mail') fam = 'email';
+    else if (src === 'Direct') fam = 'direct';
+    else fam = 'autre';
+    ajoute(stats, fam, v);
+    const NOMS_PUB = { fb: 'Facebook', ig: 'Instagram', an: 'Audience Network', msg: 'Messenger' };
+    const lib = fam === 'pub' ? 'Publicité ' + (NOMS_PUB[String(utm.utm_source || '').toLowerCase()] || utm.utm_source || 'Meta')
+      : fam === 'campagne' ? 'Lien de campagne · ' + (utm.utm_source || utm.utm_campaign)
+      : fam === 'direct' ? 'Accès direct'
+      : fam === 'email' ? 'E-mail'
+      : fam === 'social' ? src + ' (hors publicité)' : src;
+    ajoute(detail, lib, v);
   });
-  const lignes = Object.entries(camp).sort((a, b) => b[1].n - a[1].n).slice(0, 15);
-  const el = document.getElementById('anaCampagnes');
-  if (!lignes.length) { el.innerHTML = '<div class="a-att">Aucune visite venant d\'une campagne sur cette période</div>'; return; }
-  const th = 'padding:6px 8px;font-weight:500;';
-  el.innerHTML = `<div style="overflow-x:auto;"><table class="table-brute" style="width:100%;font-size:12px;border-collapse:collapse;">
-    <tr class="a-att" style="text-align:left;"><th style="${th}padding-left:0;">Campagne</th><th style="${th}">Visites</th><th style="${th}">→ Inscription</th><th style="${th}">Démos</th><th style="${th}padding-right:0;">Sources</th></tr>
-    ${lignes.map(([nom, c]) => `<tr style="border-top:1px solid var(--a-l05);">
-      <td style="padding:6px 8px 6px 0;font-family:monospace;opacity:.8;">${escHtml(nom)}</td>
-      <td style="padding:6px 8px;">${c.n}</td>
-      <td style="padding:6px 8px;">${c.insc} <span class="a-att">(${Math.round(c.insc / c.n * 100)}%)</span></td>
-      <td style="padding:6px 8px;"><strong style="color:${c.demo ? 'rgb(var(--c-vertp))' : 'inherit'};">${c.demo}</strong></td>
-      <td style="padding:6px 0 6px 8px;opacity:.7;">${Object.entries(c.sources).sort((a, b) => b[1] - a[1]).map(([s, n]) => escHtml(s) + ' ' + n).join(' · ')}</td>
-    </tr>`).join('')}
-  </table></div>`;
+  const total = visitesListe.length;
+  const vide = '<div class="a-att">Pas encore de visite sur cette période</div>';
+  const familles = FAMILLES.filter(f => stats[f.id]).sort((a, b) => stats[b.id].n - stats[a.id].n);
+
+  // Résumé en une phrase
+  const elResume = document.getElementById('anaOriResume');
+  if (!total) elResume.innerHTML = 'Aucune visite sur cette période.';
+  else {
+    const f1 = familles[0], s1 = stats[f1.id];
+    const meilleures = familles.filter(f => stats[f.id].demo > 0).sort((a, b) => stats[b.id].demo - stats[a.id].demo);
+    elResume.innerHTML = 'Sur <b>' + pl(total, 'visite') + '</b>, l\'origine n°1 est : <b>' + f1.nom + '</b> (' + pl(s1.n, 'visite') + ', soit ' + pct(s1.n, total) + ').'
+      + (meilleures.length
+        ? ' Ce qui amène le plus de boutiques démo : <b>' + meilleures[0].nom + '</b> (' + pl(stats[meilleures[0].id].demo, 'démo') + ').'
+        : ' Aucune origine n\'a encore amené de boutique démo sur cette période.');
+  }
+
+  document.getElementById('anaOriFamilles').innerHTML = familles.length
+    ? familles.map(f => {
+        const x = stats[f.id];
+        return '<div class="ana-fam"><div class="ana-fam-h"><strong>' + f.nom + '</strong><em>' + pl(x.n, 'visite') + ' · ' + pct(x.n, total) + '</em></div>'
+          + '<div class="ana-fam-d">' + f.desc + '</div>'
+          + '<div class="ana-fam-b"><i style="width:' + (x.n / total * 100).toFixed(1) + '%"></i></div>'
+          + '<div class="ana-fam-r">' + (x.insc ? pl(x.insc, 'visiteur') + ' sur ' + x.n + ' ' + (x.insc > 1 ? 'ont' : 'a') + ' commencé l\'inscription' : 'Personne n\'a commencé l\'inscription')
+          + ' · ' + (x.demo ? '<strong style="color:rgb(var(--c-vertp));">' + pl(x.demo, 'démo') + ' créée' + (x.demo > 1 ? 's' : '') + '</strong>' : 'aucune démo créée') + '</div></div>';
+      }).join('')
+    : vide;
+
+  const lignes = Object.entries(detail).sort((a, b) => b[1].n - a[1].n).slice(0, 15);
+  document.getElementById('anaOriDetail').innerHTML = lignes.length
+    ? '<div style="overflow-x:auto;"><table class="table-brute ana-mini"><tr><th>Origine</th><th>Visites</th><th>Part du trafic</th><th>Ont commencé l\'inscription</th><th>Démos créées</th><th>Sur mobile</th></tr>'
+      + lignes.map(([l, x]) => '<tr><td style="font-weight:600;">' + escHtml(l) + '</td><td>' + x.n + '</td><td>' + pct(x.n, total) + '</td><td>' + x.insc + ' <span class="a-att">(' + pct(x.insc, x.n) + ')</span></td>'
+        + '<td><strong style="color:' + (x.demo ? 'rgb(var(--c-vertp))' : 'inherit') + ';">' + x.demo + '</strong></td><td>' + pct(x.mobile, x.n) + '</td></tr>').join('') + '</table></div>'
+    : vide;
+
+  afficherPublicites();
+}
+
+// Dépense publicitaire saisie à la main, mémorisée par période sur ce navigateur
+function enregistrerDepensePub() {
+  const v = parseFloat(String(document.getElementById('anaPubDepense').value).replace(',', '.'));
+  try {
+    if (isFinite(v) && v > 0) localStorage.setItem('marcheo_admin_depense_pub_' + periodeAnalytics, String(v));
+    else localStorage.removeItem('marcheo_admin_depense_pub_' + periodeAnalytics);
+  } catch (e) {}
+  afficherPublicites();
+}
+
+function afficherPublicites() {
+  const visites = _anaVisitesPub;
+  const pct = (n, total) => total > 0 ? Math.round(n / total * 100) + ' %' : '—';
+  const pl = (n, mot) => n.toLocaleString('fr-FR') + ' ' + mot + (n > 1 ? 's' : '');
+  const eur = n => (n >= 10 ? Math.round(n).toLocaleString('fr-FR') : n.toFixed(2).replace('.', ',')) + ' €';
+  const kpi = (val, lbl) => '<div class="ana-kpi"><b>' + val + '</b><span>' + lbl + '</span></div>';
+  const n = visites.length;
+  const insc = visites.filter(anaVisiteInscription).length;
+  const demos = visites.filter(anaVisiteDemo).length;
+  const periode = LIBELLES_PERIODE_ANALYTICS[periodeAnalytics];
+  let depense = 0;
+  try { depense = parseFloat(localStorage.getItem('marcheo_admin_depense_pub_' + periodeAnalytics)) || 0; } catch (e) {}
+  document.getElementById('anaPubDepense').value = depense || '';
+
+  // Résultat par publicité (utm_content), regroupé par campagne (utm_campaign)
+  const SEUIL = 20;
+  const NOMS = { fb: 'Facebook', ig: 'Instagram', an: 'Audience Network', msg: 'Messenger' };
+  const pubs = {};
+  visites.forEach(v => {
+    const utm = anaUtmVisite(v) || {};
+    const camp = utm.utm_campaign || '(campagne sans nom)';
+    const id = utm.utm_content || '(publicité sans identifiant)';
+    const p = pubs[camp + '|' + id] = pubs[camp + '|' + id] || { camp, id, n: 0, insc: 0, demo: 0, ou: {} };
+    p.n++; if (anaVisiteInscription(v)) p.insc++; if (anaVisiteDemo(v)) p.demo++;
+    const ou = NOMS[String(utm.utm_source || '').toLowerCase()] || utm.utm_source || 'Meta';
+    p.ou[ou] = (p.ou[ou] || 0) + 1;
+  });
+  const liste = Object.values(pubs);
+  const verdict = p => p.demo ? ['ok', 'Fonctionne']
+    : p.n < SEUIL ? ['attente', 'Trop tôt pour juger']
+    : p.insc ? ['moyen', 'Intéresse, sans aller au bout'] : ['ko', 'N\'accroche pas'];
+  // « acq_primeur » → « Primeur »
+  const nomCampagne = c => { const t = String(c).replace(/^acq_/, '').replace(/_/g, ' '); return t.charAt(0).toUpperCase() + t.slice(1); };
+
+  const elResume = document.getElementById('anaPubResume');
+  if (!n) {
+    elResume.innerHTML = 'Aucune visite venue d\'une publicité sur cette période (' + periode + '). Si une publicité tourne en ce moment, vérifiez que son lien contient bien les paramètres de suivi.';
+  } else {
+    const meilleure = liste.slice().sort((a, b) => b.demo - a.demo || b.insc - a.insc || b.n - a.n)[0];
+    elResume.innerHTML = 'Vos publicités ont amené <b>' + pl(n, 'visite') + '</b> (' + pct(n, _anaNbVisites) + ' de tout le trafic). '
+      + (insc ? '<b>' + pl(insc, 'visiteur') + '</b> ' + (insc > 1 ? 'ont' : 'a') + ' commencé l\'inscription' : 'Personne n\'a commencé l\'inscription')
+      + (demos ? ' et <b>' + pl(demos, 'boutique') + ' démo</b> ' + (demos > 1 ? 'ont été créées' : 'a été créée') + ', soit 1 démo toutes les ' + Math.round(n / demos) + ' visites.' : ', et aucune boutique démo n\'a été créée.')
+      + (meilleure && (meilleure.demo || meilleure.insc) ? ' Votre meilleure publicité : <b>' + escHtml(meilleure.id) + '</b> (' + (meilleure.demo ? pl(meilleure.demo, 'démo') : pl(meilleure.insc, 'inscription') + ' commencée' + (meilleure.insc > 1 ? 's' : '')) + ' pour ' + pl(meilleure.n, 'visite') + ').' : '');
+  }
+
+  document.getElementById('anaPubKpis').innerHTML =
+    kpi(n.toLocaleString('fr-FR'), 'Visites venues des publicités')
+    + kpi(pct(n, _anaNbVisites), 'Part de tout le trafic')
+    + kpi(insc.toLocaleString('fr-FR'), 'Ont commencé l\'inscription')
+    + kpi(demos.toLocaleString('fr-FR'), 'Démos créées')
+    + kpi(pct(demos, n), 'Visiteurs qui créent une démo');
+
+  document.getElementById('anaPubCout').innerHTML = !depense
+    ? '<span class="a-att">Saisissez votre dépense pour connaître le coût d\'une visite et d\'une démo.</span>'
+    : !n ? '<span class="a-att">Aucune visite venue des publicités sur cette période : rien à calculer.</span>'
+    : 'Pour <b>' + eur(depense) + '</b> dépensés : chaque visite vous a coûté <b>' + eur(depense / n) + '</b>. '
+      + (demos ? 'Chaque boutique démo créée vous a coûté <b>' + eur(depense / demos) + '</b>.' : 'Aucune démo créée pour l\'instant : cet argent n\'a pas encore rapporté de boutique.');
+
+  // Tableau : campagnes triées par démos, publicités triées par démos dans chaque campagne
+  const parCamp = {};
+  liste.forEach(p => { (parCamp[p.camp] = parCamp[p.camp] || []).push(p); });
+  const somme = (l, k) => l.reduce((t, p) => t + p[k], 0);
+  const camps = Object.entries(parCamp).sort((a, b) => somme(b[1], 'demo') - somme(a[1], 'demo') || somme(b[1], 'n') - somme(a[1], 'n'));
+  document.getElementById('anaPubTable').innerHTML = camps.length
+    ? '<div style="overflow-x:auto;"><table class="table-brute ana-mini"><tr><th>Publicité</th><th>Diffusée sur</th><th>Visites</th><th>Ont commencé l\'inscription</th><th>Démos créées</th><th>Verdict</th></tr>'
+      + camps.map(([camp, l]) => {
+          l.sort((a, b) => b.demo - a.demo || b.insc - a.insc || b.n - a.n);
+          return '<tr class="ana-camp"><td colspan="2">Campagne ' + escHtml(nomCampagne(camp)) + ' <span class="a-att" style="font-weight:400;font-family:ui-monospace,Menlo,monospace;font-size:11px;">' + escHtml(camp) + '</span></td><td>' + somme(l, 'n') + '</td><td>' + somme(l, 'insc') + '</td><td>' + somme(l, 'demo') + '</td><td></td></tr>'
+            + l.map(p => {
+                const [cls, txt] = verdict(p);
+                return '<tr><td style="font-family:ui-monospace,Menlo,monospace;">' + escHtml(p.id) + '</td>'
+                  + '<td style="color:var(--a-t60);">' + Object.entries(p.ou).sort((a, b) => b[1] - a[1]).map(([o, k]) => escHtml(o) + ' ' + k).join(' · ') + '</td>'
+                  + '<td>' + p.n + '</td><td>' + p.insc + ' <span class="a-att">(' + pct(p.insc, p.n) + ')</span></td>'
+                  + '<td><strong style="color:' + (p.demo ? 'rgb(var(--c-vertp))' : 'inherit') + ';">' + p.demo + '</strong></td>'
+                  + '<td><span class="ana-verdict ' + cls + '">' + txt + '</span></td></tr>';
+              }).join('');
+        }).join('') + '</table></div>'
+    : '<div class="a-att">Aucune publicité n\'a amené de visite sur cette période</div>';
 }
 
 function formaterDuree(sec) {
