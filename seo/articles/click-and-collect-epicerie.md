@@ -3,7 +3,7 @@ title: "Click and collect épicerie : vendre en ligne, retrait en boutique"
 titre_court: "Le click & collect pour une épicerie"
 description: "Click and collect épicerie : quels produits mettre en ligne, vrac au poids, paniers garnis et coffrets de Noël, créneaux de retrait et prix. Sans commission."
 date: 2026-11-14
-modified: 2026-11-23
+modified: 2026-11-26
 rubrique: Métier
 emoji: 🫒
 keywords:
@@ -74,7 +74,7 @@ Quelques réglages qui marchent bien en épicerie :
 - **Un délai minimum de préparation**, pour ne pas recevoir une commande à préparer dans les dix minutes.
 - **Une capacité réduite pour les coffrets**, qui demandent plus de temps qu'un sac de courses.
 
-Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir. Pour Noël, cela suffit pour prendre les commandes de coffrets début décembre, mais pas pour des réservations des mois à l'avance. Notre guide des [précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche) donne un calendrier pour s'organiser.
+Sur Marchéo, les créneaux s'ouvrent sur les deux semaines à venir. Pour Noël, cela suffit pour prendre les commandes de coffrets début décembre, mais pas pour des réservations des mois à l'avance. Notre guide des [précommandes des fêtes](/blog/precommandes-fetes-noel-commerce-bouche) donne un calendrier pour s'organiser, et notre méthode pour vendre vos [coffrets d'épicerie fine de Noël en précommande](/blog/coffret-epicerie-fine-noel-precommande) détaille les budgets, les prix et les retraits de décembre.
 
 ## Paiement en ligne ou au retrait : que choisir pour une épicerie ?
 

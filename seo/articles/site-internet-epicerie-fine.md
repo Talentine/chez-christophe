@@ -4,6 +4,7 @@ titre_court: "Créer le site internet de son épicerie fine"
 meta_title: "Site internet épicerie fine : pages, coffrets et prix"
 description: "Site internet épicerie fine : quelles pages créer, comment montrer producteurs et coffrets, vendre en local ou expédier, et combien ça coûte vraiment."
 date: 2026-11-23
+modified: 2026-11-26
 rubrique: Métier
 emoji: 🫒
 keywords:
@@ -86,7 +87,7 @@ Avec Marchéo, la démo de l'épicerie arrive avec un catalogue déjà rempli (�
 
 Par budget, c'est ainsi que le client raisonne. Proposez trois ou quatre formules, par exemple un petit coffret, un coffret dégustation et un grand panier garni, avec une photo réelle et la liste du contenu. Ajoutez un champ de commentaire pour le message à glisser dans le coffret.
 
-Pour les fêtes, ouvrez les commandes plusieurs semaines avant, avec des créneaux de retrait sur les jours les plus chargés. Pour limiter les coffrets jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. Les autres idées de saison sont dans notre guide des [précommandes de fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche).
+Pour les fêtes, ouvrez les commandes plusieurs semaines avant, avec des créneaux de retrait sur les jours les plus chargés. Pour limiter les coffrets jamais récupérés, Marchéo propose une empreinte bancaire optionnelle de 75 % du panier, libérée 24 h après le retrait. La composition, les prix et le calendrier sont détaillés dans notre guide des [coffrets d'épicerie fine de Noël en précommande](/blog/coffret-epicerie-fine-noel-precommande). Les autres idées de saison sont dans notre guide des [précommandes de fêtes pour les commerces de bouche](/blog/precommandes-fetes-noel-commerce-bouche).
 
 ## Combien coûte un site internet pour une épicerie fine ?
 
