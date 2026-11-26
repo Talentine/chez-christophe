@@ -44,6 +44,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 
 ## Guides et articles
 - [Coffret épicerie fine Noël : vendre vos coffrets en précommande](https://marchéo.fr/blog/coffret-epicerie-fine-noel-precommande) : Coffret épicerie fine Noël : composer trois budgets, fixer les prix, ouvrir les précommandes et organiser les retraits de décembre. Sans commission.
+- [WooCommerce click and collect : adapté à un commerce de bouche ?](https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche) : WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.
 - [Faut-il une application mobile pour son commerce de bouche ?](https://marchéo.fr/blog/application-mobile-ou-site-de-commande-commerce) : Application mobile ou site de commande en ligne pour un commerce ? Comparatif honnête : téléchargement, coût, notifications, fidélité, et quand chacun convient.
 - [Nom de domaine pour un commerce : faut-il en acheter un ?](https://marchéo.fr/blog/nom-de-domaine-commerce) : Nom de domaine pour un commerce : est-il obligatoire, comment le choisir, .fr ou .com, avec ou sans accent, combien ça coûte par an et à quoi il sert.
 - [Boulangerie livraison à domicile : livrer pain et gâteaux vous-même](https://marchéo.fr/blog/boulangerie-livraison-a-domicile) : Boulangerie et livraison à domicile : quoi livrer, tournée du matin, zone, créneaux, minimum, frais et gâteaux. Le guide pour livrer vos clients vous-même.
@@ -750,6 +751,194 @@ Q : Quand ouvrir les précommandes de coffrets de Noël ?
 R : Annoncez vos coffrets dès la fin novembre et prenez les commandes début décembre, avec une date limite autour du 18 au 20 décembre. Avec Marchéo, les créneaux de retrait s'ouvrent sur les deux semaines à venir : ceux du 24 décembre deviennent réservables vers le 10 décembre. Pour une commande plus précoce, gardez le téléphone ou un bon de commande papier.
 Q : Peut-on mettre du vin ou du champagne dans un coffret vendu en ligne ?
 R : Oui, si votre licence vous autorise à vendre de l'alcool à emporter. La commande en ligne ne change pas cette règle. Vérifiez votre situation auprès de votre mairie avant de mettre ces coffrets en ligne, affichez la mention sur l'abus d'alcool et ne remettez pas le coffret à un mineur.
+
+# WooCommerce click and collect : adapté à un commerce de bouche ?
+
+WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.
+
+WooCommerce permet de faire du click and collect, mais il n&rsquo;est pas prêt à l&rsquo;emploi pour un commerce de bouche. L&rsquo;extension est gratuite et sans commission, à condition d&rsquo;ajouter un hébergement, un nom de domaine et des modules pour les créneaux de retrait et la vente au poids, puis d&rsquo;assurer les mises à jour. Un logiciel métier comme Marchéo fournit ces fonctions d&rsquo;origine pour 19 à 59 € par mois, sans commission et sans matériel à acheter.
+Ce comparatif complète notre guide pour créer la boutique en ligne de son commerce. Il s&rsquo;adresse au primeur, au boucher, au fromager ou au boulanger à qui l&rsquo;on a conseillé WooCommerce « parce que c&rsquo;est gratuit », et qui veut savoir ce que cela demande vraiment avant de se lancer.
+Qu&rsquo;est-ce que WooCommerce ?
+WooCommerce est une extension gratuite qui transforme un site WordPress en boutique en ligne. Ce n&rsquo;est pas un service clé en main : c&rsquo;est un logiciel libre que vous installez sur un hébergement que vous louez.
+Concrètement, vous êtes propriétaire de votre site et vous pouvez tout modifier. En échange, c&rsquo;est vous, ou un prestataire, qui installez le site, choisissez le thème, ajoutez les extensions, faites les sauvegardes et les mises à jour de sécurité.
+WooCommerce a été pensé d&rsquo;abord pour la vente à distance avec expédition : fiches produits, panier, paiement, transporteurs. C&rsquo;est là qu&rsquo;il est le plus à l&rsquo;aise.
+WooCommerce permet-il le click and collect ?
+Oui, WooCommerce propose le retrait en point de vente comme mode de livraison. Le client choisit « retrait » au lieu d&rsquo;une expédition, et il vient chercher sa commande dans votre boutique.
+Ce retrait de base ne suffit pas toujours à un commerce de bouche. Un primeur ou un boucher a besoin que le client choisisse un jour et une heure, et que le nombre de commandes par créneau soit limité. Sans cela, quinze commandes peuvent tomber pour le samedi 11 h.
+Ces créneaux existent sous forme d&rsquo;extensions, gratuites ou payantes, proposées par des éditeurs différents. Elles fonctionnent, mais il faut les choisir, les régler, vérifier qu&rsquo;elles s&rsquo;entendent avec votre thème et les garder à jour.
+Que faut-il ajouter à WooCommerce pour un commerce de bouche ?
+Il faut ajouter ce qui touche aux produits frais : les créneaux, le poids et la protection contre les commandes non retirées. Le tableau compare WooCommerce à un logiciel métier sur ces besoins.
+
+
+
+Besoin d&rsquo;un commerce de bouche
+WooCommerce
+Logiciel métier (ex. Marchéo)
+
+
+
+
+Retrait en boutique
+Inclus
+Inclus
+
+
+Créneaux de retrait avec capacité
+Extension à ajouter et à régler
+Prévus d&rsquo;origine
+
+
+Vente au poids (prix au kilo, poids ajusté)
+Extension ou réglages spécifiques
+Prévue d&rsquo;origine
+
+
+Catalogue de départ
+À créer produit par produit
+Catalogue du métier déjà rempli
+
+
+Commande sans compte client
+Possible, à activer
+Oui, en 30 secondes
+
+
+Empreinte bancaire contre les commandes non retirées
+Dépend du module de paiement et d&rsquo;extensions
+Optionnelle, jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait
+
+
+Livraison locale (zone, minimum, créneaux)
+Extensions à ajouter
+Incluse dans l&rsquo;offre à 59 €
+
+
+Mises à jour et sécurité
+À votre charge
+Faites par l&rsquo;éditeur
+
+
+Commission sur les ventes
+0 %
+0 %
+
+
+Expédition de colis en France
+Très bien gérée
+Non prévue
+
+
+
+Sur la vente au poids, le principe est le même partout : le client commande un poids indicatif, et le prix final s&rsquo;ajuste à la pesée. Notre guide pour vendre au poids en ligne explique comment l&rsquo;annoncer clairement au client.
+Combien coûte WooCommerce pour un petit commerce ?
+WooCommerce ne coûte rien à installer, mais le site autour a un coût, en argent ou en temps. Voici les postes à prévoir. Les montants sont des ordres de grandeur, car chaque hébergeur et chaque éditeur d&rsquo;extension fixe ses prix.
+
+
+
+Poste
+WooCommerce
+Marchéo
+
+
+
+
+Logiciel
+Gratuit
+Abonnement de 19, 39 ou 59 € par mois, sans engagement
+
+
+Hébergement
+Quelques euros à quelques dizaines d&rsquo;euros par mois
+Compris
+
+
+Extensions (créneaux, poids, paiement)
+De gratuit à plusieurs dizaines d&rsquo;euros par an chacune
+Fonctions comprises
+
+
+Mise en place
+Votre temps, ou un prestataire, souvent de quelques centaines à quelques milliers d&rsquo;euros
+Frais d&rsquo;installation uniques de 249, 399 ou 549 €
+
+
+Maintenance
+Votre temps, ou un contrat de maintenance
+Comprise
+
+
+Frais bancaires
+Ceux du prestataire de paiement
+Ceux de Stripe
+
+
+
+Prenons un exemple, donné comme exemple. Un primeur choisit l&rsquo;offre Click &amp; Collect + Réservation de Marchéo. La première année lui coûte 39 € × 12 + 399 €, soit 867 €. Les années suivantes, 468 €.
+Avec WooCommerce, un commerçant qui fait tout lui-même peut dépenser moins que cela en argent. Il le paie en heures : installation, catalogue à saisir, réglages des créneaux, puis mises à jour chaque mois. S&rsquo;il passe par une agence, la création seule dépasse souvent le coût de plusieurs années d&rsquo;abonnement.
+La vraie question n&rsquo;est donc pas « gratuit ou payant ». C&rsquo;est « qui s&rsquo;occupe du site, et combien d&rsquo;heures cela prend ».
+Quand WooCommerce est-il le bon choix ?
+WooCommerce est le bon choix si vous voulez un site entièrement à vous et que quelqu&rsquo;un sait s&rsquo;en occuper. Il convient bien dans quatre cas :
+
+vous avez déjà un site WordPress et une personne qui le tient à jour ;
+vous expédiez des colis dans toute la France (conserves, miel, thés, vins) ;
+vous voulez un blog, des pages sur mesure et un design très personnel ;
+vous aimez régler les choses vous-même et vous avez du temps hors saison.
+
+Dans ces situations, WooCommerce est une solution solide et reconnue. Si vous hésitez plutôt entre deux constructeurs de sites, lisez notre comparatif Shopify, Wix ou logiciel métier.
+Quand un logiciel métier est-il plus simple ?
+Un logiciel métier est plus simple si vous vendez surtout des produits frais, en retrait ou en livraison dans votre quartier, et que vous n&rsquo;avez pas le temps de tenir un site. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Vous choisissez votre métier, le catalogue arrive déjà rempli, et vous corrigez les prix. Les créneaux de retrait, la vente au poids et l&rsquo;empreinte bancaire sont déjà là. Les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.
+Marchéo a aussi ses limites, et mieux vaut les connaître :
+
+il n&rsquo;est pas fait pour expédier des colis dans toute la France : WooCommerce ou Shopify conviennent mieux ;
+Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison ;
+ce n&rsquo;est pas une place de marché : c&rsquo;est votre boutique, à faire connaître vous-même ;
+vous ne modifiez pas le code du site : la mise en page est moins libre qu&rsquo;avec WordPress.
+
+Comment choisir entre WooCommerce et un logiciel métier ?
+Posez-vous trois questions, dans cet ordre. Les réponses suffisent en général à trancher.
+
+
+
+Votre situation
+Le plus adapté
+
+
+
+
+Vos ventes partent surtout en colis
+WooCommerce ou Shopify
+
+
+Vous avez déjà un site WordPress entretenu
+WooCommerce, avec une extension de créneaux
+
+
+Vous vendez des produits frais en retrait ou en livraison locale
+Un logiciel métier comme Marchéo
+
+
+Vous n&rsquo;avez ni temps ni prestataire pour la maintenance
+Un logiciel métier
+
+
+Vous voulez un design et des pages totalement sur mesure
+WooCommerce
+
+
+
+Si vous êtes primeur, notre guide du click and collect pour primeur détaille les paniers, la vente au kilo et l&rsquo;organisation du retrait, quel que soit l&rsquo;outil choisi.
+Par où commencer ?
+Le plus simple est de voir le résultat avant de décider. Sur la page d&rsquo;inscription, choisissez votre métier et tapez le nom de votre boutique : l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Comparez-le au temps qu&rsquo;il vous faudrait pour arriver au même point avec WooCommerce. Pour voir ce qui est prévu pour votre métier, commencez par exemple par la solution pour primeur et maraîcher.
+
+Q : WooCommerce est-il adapté au click and collect d'un commerce de proximité ?
+R : Oui, à condition de le compléter. WooCommerce propose le retrait en point de vente, mais le choix d'un créneau de retrait avec un nombre maximal de commandes, la vente au poids et l'empreinte bancaire demandent des extensions à choisir, à régler et à tenir à jour. Il convient bien si vous êtes à l'aise avec WordPress ou accompagné par un prestataire.
+Q : WooCommerce ou logiciel métier : quelle est la meilleure solution pour la boutique en ligne d'un primeur ou d'un boucher ?
+R : Cela dépend du temps que vous voulez y passer. WooCommerce est gratuit à installer, sans commission, et très personnalisable, mais vous assemblez tout vous-même : hébergement, extensions, mises à jour. Un logiciel métier comme Marchéo est prêt à l'emploi : catalogue du métier déjà rempli, créneaux de retrait, vente au poids, 0 % de commission, 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois sans engagement, plus 249, 399 ou 549 € de frais d'installation uniques. Pour expédier des colis dans toute la France, WooCommerce ou Shopify restent plus adaptés.
+Q : WooCommerce est-il vraiment gratuit ?
+R : L'extension WooCommerce est gratuite et ne prend aucune commission sur vos ventes. Ce qui se paie autour : l'hébergement du site, le nom de domaine, parfois le thème, les extensions pour les créneaux ou le poids, et le temps de maintenance ou le prestataire qui s'en charge. Les frais bancaires du prestataire de paiement s'ajoutent, comme partout.
+Q : Faut-il acheter du matériel pour vendre en ligne avec WooCommerce ou Marchéo ?
+R : Non, dans les deux cas. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec WooCommerce, il n'y a pas de matériel non plus, mais il faut louer un hébergement pour le site.
 
 # Faut-il une application mobile pour son commerce de bouche ?
 
@@ -5913,7 +6102,7 @@ R : Oui. Le client choisit un poids indicatif, par exemple 250 g de comté, et v
 
 Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission.
 
-Le click and collect en restauration rapide permet à vos clients de commander leur menu en ligne et de le récupérer au comptoir à l&rsquo;heure choisie, sans faire la queue. Il faut une page de commande avec vos menus et vos sauces, des créneaux de 15 minutes au midi et une capacité limitée par créneau. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter.
+En restauration rapide, le click and collect consiste à faire commander le client en ligne avant son arrivée, pour qu&rsquo;il récupère son menu au comptoir à l&rsquo;heure choisie, sans faire la queue. Trois réglages suffisent pour tenir le rush du midi : des créneaux de 15 minutes, un nombre maximal de commandes par créneau et un délai de 20 à 30 minutes entre la commande et le retrait. Avec Marchéo, cela coûte 39 € par mois sans engagement, plus 399 € de frais d&rsquo;installation uniques, avec 0 % de commission et sans borne ni tablette à acheter.
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission. Ce guide pour les snacks, kebabs, burgers et sandwicheries complète notre guide complet du click &amp; collect pour commerçant.
 Dans un fast-food, tout se joue sur une heure et demie. Quand la file déborde sur le trottoir, une partie des clients repart sans commander. Le click and collect ne crée pas de temps en cuisine, mais il répartit les commandes sur tout le service et vide le comptoir au pire moment.
 Pourquoi proposer le click and collect dans un fast-food ?
@@ -6000,7 +6189,7 @@ Les commandes sont étalées sur des créneaux
 
 
 
-Pour un snack ou un kebab indépendant, commencer par le click and collect est souvent plus simple : il n&rsquo;y a rien à installer, et vous voyez vite si vos clients l&rsquo;utilisent. La borne peut venir plus tard si votre salle est grande. Ce qu&rsquo;il vous faut et ce qu&rsquo;il ne vous faut pas :
+Pour un snack ou un kebab indépendant, commencer par le click and collect est souvent plus simple : il n&rsquo;y a rien à installer, et vous voyez vite si vos clients l&rsquo;utilisent. La borne peut venir plus tard si votre salle est grande. Quant à l&rsquo;application à télécharger, elle n&rsquo;est pas nécessaire pour démarrer : notre article faut-il une application mobile pour son commerce de bouche compare l&rsquo;application et le site de commande. Ce qu&rsquo;il vous faut et ce qu&rsquo;il ne vous faut pas :
 
 
 
@@ -6025,7 +6214,7 @@ Une commission sur chaque commande
 
 Paiement en ligne ou au comptoir ?
 Les deux fonctionnent ; tout dépend de votre crainte des commandes jamais récupérées. Le paiement au comptoir rassure les clients habitués et ne change rien à votre façon d&rsquo;encaisser. Le risque, c&rsquo;est le menu préparé pour quelqu&rsquo;un qui ne vient pas.
-Marchéo propose une empreinte bancaire optionnelle de 75 % du panier : rien n&rsquo;est débité si le client vient, et l&rsquo;empreinte est libérée 24 h après le retrait. Elle est surtout utile pour les grosses commandes de groupe. Le fonctionnement est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les no-shows.
+Marchéo propose une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier : rien n&rsquo;est débité si le client vient, et l&rsquo;empreinte est libérée 24 h après le retrait. Elle est surtout utile pour les grosses commandes de groupe. Le fonctionnement est détaillé dans notre article sur l&rsquo;empreinte bancaire contre les no-shows.
 Combien coûte le click and collect pour un fast-food ?
 Le click and collect en direct coûte un abonnement fixe, sans pourcentage sur les ventes. Chez Marchéo, les prix sont les suivants, sans engagement et avec 0 % de commission :
 
@@ -6058,7 +6247,7 @@ Click &amp; Collect + Livraison
 Comment faire connaître sa commande en ligne à ses clients ?
 Vos premiers clients en ligne sont ceux qui font déjà la queue chez vous. Commencez par eux :
 
-un QR code sur le comptoir, sur les sacs et sur les tickets ;
+un QR code pour commander en ligne sur le comptoir, sur les sacs et sur les tickets ;
 le lien de commande sur votre fiche Google et sur votre compte Instagram ;
 une phrase simple à la caisse : « La prochaine fois, commandez en ligne, c&rsquo;est prêt à votre arrivée » ;
 une affiche visible depuis la file : c&rsquo;est là que l&rsquo;envie de ne plus attendre est la plus forte.
@@ -6067,8 +6256,8 @@ Si vous faites aussi les marchés ou les zones d&rsquo;activité avec un camion,
 Essayer sur votre propre carte
 Le plus simple est de voir à quoi ressemblerait votre page de commande. La démo gratuite prend 30 secondes : vous choisissez « Fast-food », vous tapez le nom de votre snack et vous voyez l&rsquo;aperçu, avec un catalogue déjà rempli.
 
-Q : Quel logiciel de click and collect pour un snack ou un fast-food indépendant ?
-R : Trois familles existent : les modules de click and collect proposés avec certains logiciels de caisse, les applications de commande dédiées à la restauration et les logiciels de boutique en ligne pour commerçants comme Marchéo. Marchéo coûte 39 € par mois pour le click & collect avec la réservation de table, ou 59 € par mois avec la livraison, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 ou 549 €. Le client commande en 30 secondes sans créer de compte.
+Q : Quelle est la meilleure application de click and collect pour un snack ou un fast-food indépendant ?
+R : Il n'y a pas une seule réponse : trois familles existent. Les modules de click and collect vendus avec certains logiciels de caisse conviennent si vous changez de caisse. Les applications de commande dédiées à la restauration conviennent aux enseignes qui veulent une application à leur nom. Les logiciels de boutique en ligne comme Marchéo conviennent à un indépendant qui veut démarrer vite, sans matériel à acheter. Marchéo coûte 39 € par mois pour le click & collect avec la réservation de table, ou 59 € par mois avec la livraison, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 ou 549 €. Le client commande en 30 secondes sans créer de compte.
 Q : Faut-il acheter une borne ou une tablette pour faire du click and collect dans un fast-food ?
 R : Non. Le client commande depuis son propre téléphone et les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, il n'y a ni borne, ni tablette, ni imprimante, ni caisse à acheter. La borne de commande sert à autre chose : elle accélère la prise de commande des clients déjà présents dans la salle.
 Q : Combien de commandes en ligne accepter par créneau le midi ?
@@ -6080,7 +6269,7 @@ R : Non, ce sont deux usages différents. Les plateformes de livraison vous amè
 
 Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux.
 
-Marchéo et Uber Eats ne font pas le même métier. Uber Eats est une plateforme qui vous apporte des clients et des coursiers, contre une commission de l&rsquo;ordre de 14 à 30 % par commande. Marchéo est le site de commande de votre restaurant : 0 % de commission, 39 ou 59 € par mois sans engagement, mais c&rsquo;est vous qui livrez.
+Marchéo prend 0 % de commission et coûte 39 ou 59 € par mois sans engagement, alors qu&rsquo;Uber Eats prélève une commission de l&rsquo;ordre de 14 à 30 % sur chaque commande. Les deux ne font pas le même métier : Uber Eats est une plateforme de livraison qui vous apporte des clients et des coursiers, Marchéo est le site de commande de votre restaurant, et ce n&rsquo;est pas une plateforme de livraison. Avec Marchéo, c&rsquo;est vous qui livrez, ou le client qui vient retirer sa commande.
 Ce comparatif s&rsquo;adresse au restaurateur, au pizzaiolo ou au gérant de fast-food qui hésite entre les deux, ou qui se demande s&rsquo;il faut garder les deux. Il complète notre guide complet de la livraison à domicile pour commerçant et la page commande en ligne et réservation pour restaurant. Pour voir à quoi ressemble votre propre site de commande, la démo gratuite prend 30 secondes.
 Quelle est la différence entre Marchéo et Uber Eats ?
 La différence tient en une phrase : Uber Eats vend vos plats dans son application, Marchéo vous donne votre propre boutique en ligne. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
@@ -8653,7 +8842,7 @@ Un engagement de longue durée
 
 
 
-Si vous hésitez aussi avec WooCommerce, PrestaShop, une place de marché ou une plateforme de livraison, notre grand comparatif répond à la question quelle plateforme pour vendre en ligne. Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect. Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le logiciel pour vendre en ligne sans commission.
+Si l&rsquo;on vous a conseillé WordPress, notre article WooCommerce et click and collect pour un commerce de bouche détaille ce qu&rsquo;il faut y ajouter et ce que cela coûte. Si vous hésitez aussi avec PrestaShop, une place de marché ou une plateforme de livraison, notre grand comparatif répond à la question quelle plateforme pour vendre en ligne. Pour comparer aussi les plateformes de livraison et les outils de restauration, lisez notre comparatif des logiciels de click &amp; collect. Pour le calcul des coûts sur un an, voyez le prix d&rsquo;un site de click &amp; collect. Si votre priorité est de ne rien payer sur vos ventes, lisez notre article sur le logiciel pour vendre en ligne sans commission.
 Par où commencer ?
 Le plus simple est de voir le résultat avant de choisir. Sur la page d&rsquo;inscription, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Vous pourrez le comparer à une boutique d&rsquo;essai sur Shopify ou Wix. Pour voir ce qui est prévu pour votre métier, commencez par exemple par la solution pour boucherie.
 
@@ -9809,6 +9998,7 @@ Pour aller plus loin sur un point précis, voici les guides du blog liés à la 
 Comment créer un site de click &amp; collect pour son commerce
 Combien coûte un site de click &amp; collect
 Quelle plateforme pour vendre en ligne ? Le grand comparatif
+WooCommerce et click and collect : est-ce adapté à un commerce de bouche ?
 Comparatif des logiciels de click &amp; collect
 Digitaliser son commerce de bouche : par où commencer
 Site internet pour boulangerie

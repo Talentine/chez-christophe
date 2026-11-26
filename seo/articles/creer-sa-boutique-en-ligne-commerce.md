@@ -5,7 +5,7 @@ description: "Créer sa boutique en ligne quand on tient un commerce de proximit
 meta_title: "Créer sa boutique en ligne pour son commerce : guide complet"
 meta_description: "Créer sa boutique en ligne pour un commerce de proximité : étapes, solutions comparées, prix réels, pièges. Sans matériel à acheter et sans commission."
 date: 2026-10-20
-modified: 2026-11-21
+modified: 2026-11-26
 rubrique: Guide complet
 emoji: 🛍️
 keywords:
@@ -181,6 +181,7 @@ Pour aller plus loin sur un point précis, voici les guides du blog liés à la 
 - [Comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce)
 - [Combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect)
 - [Quelle plateforme pour vendre en ligne ? Le grand comparatif](/blog/quelle-plateforme-pour-vendre-en-ligne-commerce-de-bouche)
+- [WooCommerce et click and collect : est-ce adapté à un commerce de bouche ?](/blog/woocommerce-click-and-collect-commerce-de-bouche)
 - [Comparatif des logiciels de click & collect](/blog/logiciel-click-and-collect-comparatif-2026)
 - [Digitaliser son commerce de bouche : par où commencer](/blog/digitaliser-commerce-bouche)
 - [Site internet pour boulangerie](/blog/site-internet-boulangerie-commandes-en-ligne)

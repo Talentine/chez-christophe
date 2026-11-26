@@ -3,6 +3,7 @@ title: "Click and collect restauration rapide : gérer le rush du midi"
 titre_court: "Le click and collect en restauration rapide"
 description: "Click and collect en restauration rapide : créneaux du midi, menus et sauces en ligne, paiement, prix et alternative à la borne de commande, sans commission."
 date: 2026-11-05
+modified: 2026-11-26
 rubrique: Guide
 emoji: 🍔
 keywords:
@@ -15,8 +16,8 @@ metiers:
   - fastfood
   - restaurant
 faq:
-  - q: "Quel logiciel de click and collect pour un snack ou un fast-food indépendant ?"
-    r: "Trois familles existent : les modules de click and collect proposés avec certains logiciels de caisse, les applications de commande dédiées à la restauration et les logiciels de boutique en ligne pour commerçants comme Marchéo. Marchéo coûte 39 € par mois pour le click & collect avec la réservation de table, ou 59 € par mois avec la livraison, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 ou 549 €. Le client commande en 30 secondes sans créer de compte."
+  - q: "Quelle est la meilleure application de click and collect pour un snack ou un fast-food indépendant ?"
+    r: "Il n'y a pas une seule réponse : trois familles existent. Les modules de click and collect vendus avec certains logiciels de caisse conviennent si vous changez de caisse. Les applications de commande dédiées à la restauration conviennent aux enseignes qui veulent une application à leur nom. Les logiciels de boutique en ligne comme Marchéo conviennent à un indépendant qui veut démarrer vite, sans matériel à acheter. Marchéo coûte 39 € par mois pour le click & collect avec la réservation de table, ou 59 € par mois avec la livraison, sans engagement, avec 0 % de commission et des frais d'installation uniques de 399 ou 549 €. Le client commande en 30 secondes sans créer de compte."
   - q: "Faut-il acheter une borne ou une tablette pour faire du click and collect dans un fast-food ?"
     r: "Non. Le client commande depuis son propre téléphone et les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec Marchéo, il n'y a ni borne, ni tablette, ni imprimante, ni caisse à acheter. La borne de commande sert à autre chose : elle accélère la prise de commande des clients déjà présents dans la salle."
   - q: "Combien de commandes en ligne accepter par créneau le midi ?"
@@ -25,7 +26,7 @@ faq:
     r: "Non, ce sont deux usages différents. Les plateformes de livraison vous amènent de nouveaux clients en prenant une commission, généralement de l'ordre de 14 à 30 % selon les offres. Le click and collect en direct sert vos habitués, sans commission. Beaucoup de restaurants rapides gardent les deux et invitent leurs réguliers à commander sur leur propre page."
 ---
 
-Le click and collect en restauration rapide permet à vos clients de commander leur menu en ligne et de le récupérer au comptoir à l'heure choisie, sans faire la queue. Il faut une page de commande avec vos menus et vos sauces, des créneaux de 15 minutes au midi et une capacité limitée par créneau. Avec Marchéo, cela coûte 39 € par mois, sans commission et sans matériel à acheter.
+En restauration rapide, le click and collect consiste à faire commander le client en ligne avant son arrivée, pour qu'il récupère son menu au comptoir à l'heure choisie, sans faire la queue. Trois réglages suffisent pour tenir le rush du midi : des créneaux de 15 minutes, un nombre maximal de commandes par créneau et un délai de 20 à 30 minutes entre la commande et le retrait. Avec Marchéo, cela coûte 39 € par mois sans engagement, plus 399 € de frais d'installation uniques, avec 0 % de commission et sans borne ni tablette à acheter.
 
 Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. Ce guide pour les snacks, kebabs, burgers et sandwicheries complète notre [guide complet du click & collect pour commerçant](/blog/click-and-collect-commercant-guide-complet).
 
@@ -78,7 +79,7 @@ Une borne de commande et le click and collect ne répondent pas au même besoin.
 | Effet sur la file | La prise de commande va plus vite | Une partie des clients ne fait plus la queue |
 | Effet sur le rush | Aucun : tout le monde arrive en même temps | Les commandes sont étalées sur des créneaux |
 
-Pour un snack ou un kebab indépendant, commencer par le click and collect est souvent plus simple : il n'y a rien à installer, et vous voyez vite si vos clients l'utilisent. La borne peut venir plus tard si votre salle est grande. Ce qu'il vous faut et ce qu'il ne vous faut pas :
+Pour un snack ou un kebab indépendant, commencer par le click and collect est souvent plus simple : il n'y a rien à installer, et vous voyez vite si vos clients l'utilisent. La borne peut venir plus tard si votre salle est grande. Quant à l'application à télécharger, elle n'est pas nécessaire pour démarrer : notre article [faut-il une application mobile pour son commerce de bouche](/blog/application-mobile-ou-site-de-commande-commerce) compare l'application et le site de commande. Ce qu'il vous faut et ce qu'il ne vous faut pas :
 
 | Ce qu'il vous faut | Ce qu'il ne vous faut pas |
 | --- | --- |
@@ -90,7 +91,7 @@ Pour un snack ou un kebab indépendant, commencer par le click and collect est s
 
 Les deux fonctionnent ; tout dépend de votre crainte des commandes jamais récupérées. Le paiement au comptoir rassure les clients habitués et ne change rien à votre façon d'encaisser. Le risque, c'est le menu préparé pour quelqu'un qui ne vient pas.
 
-Marchéo propose une empreinte bancaire optionnelle de 75 % du panier : rien n'est débité si le client vient, et l'empreinte est libérée 24 h après le retrait. Elle est surtout utile pour les grosses commandes de groupe. Le fonctionnement est détaillé dans notre article sur l'[empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
+Marchéo propose une empreinte bancaire optionnelle, jusqu'à 75 % du panier : rien n'est débité si le client vient, et l'empreinte est libérée 24 h après le retrait. Elle est surtout utile pour les grosses commandes de groupe. Le fonctionnement est détaillé dans notre article sur l'[empreinte bancaire contre les no-shows](/blog/empreinte-bancaire-no-show-commerce-restaurant).
 
 ## Combien coûte le click and collect pour un fast-food ?
 
@@ -108,7 +109,7 @@ Le click and collect en direct coûte un abonnement fixe, sans pourcentage sur l
 
 Vos premiers clients en ligne sont ceux qui font déjà la queue chez vous. Commencez par eux :
 
-- un QR code sur le comptoir, sur les sacs et sur les tickets ;
+- un [QR code pour commander en ligne](/blog/qr-code-commande-en-ligne-commerce) sur le comptoir, sur les sacs et sur les tickets ;
 - le lien de commande sur votre fiche Google et sur votre compte Instagram ;
 - une phrase simple à la caisse : « La prochaine fois, commandez en ligne, c'est prêt à votre arrivée » ;
 - une affiche visible depuis la file : c'est là que l'envie de ne plus attendre est la plus forte.

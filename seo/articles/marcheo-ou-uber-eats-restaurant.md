@@ -3,7 +3,7 @@ title: "Marchéo ou Uber Eats pour un restaurant : lequel choisir ?"
 titre_court: "Marchéo ou Uber Eats pour un restaurant"
 description: "Marchéo ou Uber Eats pour votre restaurant : ce que fait chacun, ce qu'il coûte, qui livre, à qui appartiennent les clients, et quand utiliser les deux."
 date: 2026-11-05
-modified: 2026-11-19
+modified: 2026-11-26
 rubrique: Comparatif
 emoji: 🍽️
 keywords:
@@ -27,7 +27,7 @@ faq:
     r: "Pas d'un coup. Les coordonnées des clients restent chez la plateforme. La méthode qui marche consiste à glisser un flyer ou un QR code dans chaque sac livré, pour inviter les habitués à commander la fois suivante sur votre site, puis à réduire la plateforme une fois que les commandes directes ont pris le relais."
 ---
 
-Marchéo et Uber Eats ne font pas le même métier. Uber Eats est une plateforme qui vous apporte des clients et des coursiers, contre une commission de l'ordre de 14 à 30 % par commande. Marchéo est le site de commande de votre restaurant : 0 % de commission, 39 ou 59 € par mois sans engagement, mais c'est vous qui livrez.
+Marchéo prend 0 % de commission et coûte 39 ou 59 € par mois sans engagement, alors qu'Uber Eats prélève une commission de l'ordre de 14 à 30 % sur chaque commande. Les deux ne font pas le même métier : Uber Eats est une plateforme de livraison qui vous apporte des clients et des coursiers, Marchéo est le site de commande de votre restaurant, et ce n'est pas une plateforme de livraison. Avec Marchéo, c'est vous qui livrez, ou le client qui vient retirer sa commande.
 
 Ce comparatif s'adresse au restaurateur, au pizzaiolo ou au gérant de fast-food qui hésite entre les deux, ou qui se demande s'il faut garder les deux. Il complète notre [guide complet de la livraison à domicile pour commerçant](/blog/livraison-locale-commercant-comment-organiser) et la page [commande en ligne et réservation pour restaurant](/solutions/restaurant). Pour voir à quoi ressemble votre propre site de commande, la [démo gratuite](/inscription) prend 30 secondes.
 

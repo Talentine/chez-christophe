@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WooCommerce ou logiciel métier ? · Marchéo</title>
+<meta name="description" content="WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.">
+<link rel="canonical" href="https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="WooCommerce ou logiciel métier ? · Marchéo"><meta property="og:description" content="WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.">
+<meta property="og:url" content="https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "WooCommerce ou logiciel métier ?",
+     "item": "https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "WooCommerce click and collect : adapté à un commerce de bouche ?",
+   "description": "WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-26",
+   "dateModified": "2026-11-26",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "woocommerce click and collect, woocommerce commerce de proximité, woocommerce ou logiciel métier, woocommerce retrait en magasin créneaux, alternative à woocommerce commerce de bouche, woocommerce est-il gratuit",
+   "articleSection": "Comparatif"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "WooCommerce est-il adapté au click and collect d'un commerce de proximité ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, à condition de le compléter. WooCommerce propose le retrait en point de vente, mais le choix d'un créneau de retrait avec un nombre maximal de commandes, la vente au poids et l'empreinte bancaire demandent des extensions à choisir, à régler et à tenir à jour. Il convient bien si vous êtes à l'aise avec WordPress ou accompagné par un prestataire."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "WooCommerce ou logiciel métier : quelle est la meilleure solution pour la boutique en ligne d'un primeur ou d'un boucher ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Cela dépend du temps que vous voulez y passer. WooCommerce est gratuit à installer, sans commission, et très personnalisable, mais vous assemblez tout vous-même : hébergement, extensions, mises à jour. Un logiciel métier comme Marchéo est prêt à l'emploi : catalogue du métier déjà rempli, créneaux de retrait, vente au poids, 0 % de commission, 19 € (Vitrine), 39 € (Click & Collect + Réservation) ou 59 € (Click & Collect + Livraison) par mois sans engagement, plus 249, 399 ou 549 € de frais d'installation uniques. Pour expédier des colis dans toute la France, WooCommerce ou Shopify restent plus adaptés."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "WooCommerce est-il vraiment gratuit ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "L'extension WooCommerce est gratuite et ne prend aucune commission sur vos ventes. Ce qui se paie autour : l'hébergement du site, le nom de domaine, parfois le thème, les extensions pour les créneaux ou le poids, et le temps de maintenance ou le prestataire qui s'en charge. Les frais bancaires du prestataire de paiement s'ajoutent, comme partout."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour vendre en ligne avec WooCommerce ou Marchéo ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non, dans les deux cas. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec WooCommerce, il n'y a pas de matériel non plus, mais il faut louer un hébergement pour le site."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › WooCommerce ou logiciel métier ?</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Comparatif</p>
+<h1>WooCommerce click and collect : adapté à un commerce de bouche ?</h1>
+<p class="lead">WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.</p>
+<p class="meta">Par Paul Merieult · 26/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>WooCommerce permet de faire du click and collect, mais il n&rsquo;est pas prêt à l&rsquo;emploi pour un commerce de bouche. L&rsquo;extension est gratuite et sans commission, à condition d&rsquo;ajouter un hébergement, un nom de domaine et des modules pour les créneaux de retrait et la vente au poids, puis d&rsquo;assurer les mises à jour. Un logiciel métier comme Marchéo fournit ces fonctions d&rsquo;origine pour 19 à 59 € par mois, sans commission et sans matériel à acheter.</p>
+<p>Ce comparatif complète notre guide pour <a href="/blog/creer-sa-boutique-en-ligne-commerce">créer la boutique en ligne de son commerce</a>. Il s&rsquo;adresse au primeur, au boucher, au fromager ou au boulanger à qui l&rsquo;on a conseillé WooCommerce « parce que c&rsquo;est gratuit », et qui veut savoir ce que cela demande vraiment avant de se lancer.</p>
+<h2>Qu&rsquo;est-ce que WooCommerce ?</h2>
+<p>WooCommerce est une extension gratuite qui transforme un site WordPress en boutique en ligne. Ce n&rsquo;est pas un service clé en main : c&rsquo;est un logiciel libre que vous installez sur un hébergement que vous louez.</p>
+<p>Concrètement, vous êtes propriétaire de votre site et vous pouvez tout modifier. En échange, c&rsquo;est vous, ou un prestataire, qui installez le site, choisissez le thème, ajoutez les extensions, faites les sauvegardes et les mises à jour de sécurité.</p>
+<p>WooCommerce a été pensé d&rsquo;abord pour la vente à distance avec expédition : fiches produits, panier, paiement, transporteurs. C&rsquo;est là qu&rsquo;il est le plus à l&rsquo;aise.</p>
+<h2>WooCommerce permet-il le click and collect ?</h2>
+<p>Oui, WooCommerce propose le retrait en point de vente comme mode de livraison. Le client choisit « retrait » au lieu d&rsquo;une expédition, et il vient chercher sa commande dans votre boutique.</p>
+<p>Ce retrait de base ne suffit pas toujours à un commerce de bouche. Un primeur ou un boucher a besoin que le client choisisse un jour et une heure, et que le nombre de commandes par créneau soit limité. Sans cela, quinze commandes peuvent tomber pour le samedi 11 h.</p>
+<p>Ces créneaux existent sous forme d&rsquo;extensions, gratuites ou payantes, proposées par des éditeurs différents. Elles fonctionnent, mais il faut les choisir, les régler, vérifier qu&rsquo;elles s&rsquo;entendent avec votre thème et les garder à jour.</p>
+<h2>Que faut-il ajouter à WooCommerce pour un commerce de bouche ?</h2>
+<p>Il faut ajouter ce qui touche aux produits frais : les créneaux, le poids et la protection contre les commandes non retirées. Le tableau compare WooCommerce à un logiciel métier sur ces besoins.</p>
+<table>
+<thead>
+<tr>
+<th>Besoin d&rsquo;un commerce de bouche</th>
+<th>WooCommerce</th>
+<th>Logiciel métier (ex. Marchéo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrait en boutique</td>
+<td>Inclus</td>
+<td>Inclus</td>
+</tr>
+<tr>
+<td>Créneaux de retrait avec capacité</td>
+<td>Extension à ajouter et à régler</td>
+<td>Prévus d&rsquo;origine</td>
+</tr>
+<tr>
+<td>Vente au poids (prix au kilo, poids ajusté)</td>
+<td>Extension ou réglages spécifiques</td>
+<td>Prévue d&rsquo;origine</td>
+</tr>
+<tr>
+<td>Catalogue de départ</td>
+<td>À créer produit par produit</td>
+<td>Catalogue du métier déjà rempli</td>
+</tr>
+<tr>
+<td>Commande sans compte client</td>
+<td>Possible, à activer</td>
+<td>Oui, en 30 secondes</td>
+</tr>
+<tr>
+<td>Empreinte bancaire contre les commandes non retirées</td>
+<td>Dépend du module de paiement et d&rsquo;extensions</td>
+<td>Optionnelle, jusqu&rsquo;à 75 % du panier, libérée 24 h après le retrait</td>
+</tr>
+<tr>
+<td>Livraison locale (zone, minimum, créneaux)</td>
+<td>Extensions à ajouter</td>
+<td>Incluse dans l&rsquo;offre à 59 €</td>
+</tr>
+<tr>
+<td>Mises à jour et sécurité</td>
+<td>À votre charge</td>
+<td>Faites par l&rsquo;éditeur</td>
+</tr>
+<tr>
+<td>Commission sur les ventes</td>
+<td>0 %</td>
+<td>0 %</td>
+</tr>
+<tr>
+<td>Expédition de colis en France</td>
+<td>Très bien gérée</td>
+<td>Non prévue</td>
+</tr>
+</tbody>
+</table>
+<p>Sur la vente au poids, le principe est le même partout : le client commande un poids indicatif, et le prix final s&rsquo;ajuste à la pesée. Notre guide pour <a href="/blog/vendre-au-poids-en-ligne">vendre au poids en ligne</a> explique comment l&rsquo;annoncer clairement au client.</p>
+<h2>Combien coûte WooCommerce pour un petit commerce ?</h2>
+<p>WooCommerce ne coûte rien à installer, mais le site autour a un coût, en argent ou en temps. Voici les postes à prévoir. Les montants sont des ordres de grandeur, car chaque hébergeur et chaque éditeur d&rsquo;extension fixe ses prix.</p>
+<table>
+<thead>
+<tr>
+<th>Poste</th>
+<th>WooCommerce</th>
+<th>Marchéo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logiciel</td>
+<td>Gratuit</td>
+<td>Abonnement de 19, 39 ou 59 € par mois, sans engagement</td>
+</tr>
+<tr>
+<td>Hébergement</td>
+<td>Quelques euros à quelques dizaines d&rsquo;euros par mois</td>
+<td>Compris</td>
+</tr>
+<tr>
+<td>Extensions (créneaux, poids, paiement)</td>
+<td>De gratuit à plusieurs dizaines d&rsquo;euros par an chacune</td>
+<td>Fonctions comprises</td>
+</tr>
+<tr>
+<td>Mise en place</td>
+<td>Votre temps, ou un prestataire, souvent de quelques centaines à quelques milliers d&rsquo;euros</td>
+<td>Frais d&rsquo;installation uniques de 249, 399 ou 549 €</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Votre temps, ou un contrat de maintenance</td>
+<td>Comprise</td>
+</tr>
+<tr>
+<td>Frais bancaires</td>
+<td>Ceux du prestataire de paiement</td>
+<td>Ceux de Stripe</td>
+</tr>
+</tbody>
+</table>
+<p>Prenons un exemple, donné comme exemple. Un primeur choisit l&rsquo;offre Click &amp; Collect + Réservation de Marchéo. La première année lui coûte 39 € × 12 + 399 €, soit 867 €. Les années suivantes, 468 €.</p>
+<p>Avec WooCommerce, un commerçant qui fait tout lui-même peut dépenser moins que cela en argent. Il le paie en heures : installation, catalogue à saisir, réglages des créneaux, puis mises à jour chaque mois. S&rsquo;il passe par une agence, la création seule dépasse souvent le coût de plusieurs années d&rsquo;abonnement.</p>
+<p>La vraie question n&rsquo;est donc pas « gratuit ou payant ». C&rsquo;est « qui s&rsquo;occupe du site, et combien d&rsquo;heures cela prend ».</p>
+<h2>Quand WooCommerce est-il le bon choix ?</h2>
+<p>WooCommerce est le bon choix si vous voulez un site entièrement à vous et que quelqu&rsquo;un sait s&rsquo;en occuper. Il convient bien dans quatre cas :</p>
+<ul>
+<li>vous avez déjà un site WordPress et une personne qui le tient à jour ;</li>
+<li>vous expédiez des colis dans toute la France (conserves, miel, thés, vins) ;</li>
+<li>vous voulez un blog, des pages sur mesure et un design très personnel ;</li>
+<li>vous aimez régler les choses vous-même et vous avez du temps hors saison.</li>
+</ul>
+<p>Dans ces situations, WooCommerce est une solution solide et reconnue. Si vous hésitez plutôt entre deux constructeurs de sites, lisez notre comparatif <a href="/blog/shopify-wix-ou-logiciel-metier-commerce-de-proximite">Shopify, Wix ou logiciel métier</a>.</p>
+<h2>Quand un logiciel métier est-il plus simple ?</h2>
+<p>Un logiciel métier est plus simple si vous vendez surtout des produits frais, en retrait ou en livraison dans votre quartier, et que vous n&rsquo;avez pas le temps de tenir un site. Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.</p>
+<p>Vous choisissez votre métier, le catalogue arrive déjà rempli, et vous corrigez les prix. Les créneaux de retrait, la vente au poids et l&rsquo;empreinte bancaire sont déjà là. Les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.</p>
+<p>Marchéo a aussi ses limites, et mieux vaut les connaître :</p>
+<ul>
+<li>il n&rsquo;est pas fait pour expédier des colis dans toute la France : WooCommerce ou Shopify conviennent mieux ;</li>
+<li>Marchéo ne livre pas et n&rsquo;a pas de coursiers : il vous donne l&rsquo;outil pour organiser votre propre livraison ;</li>
+<li>ce n&rsquo;est pas une place de marché : c&rsquo;est votre boutique, à faire connaître vous-même ;</li>
+<li>vous ne modifiez pas le code du site : la mise en page est moins libre qu&rsquo;avec WordPress.</li>
+</ul>
+<h2>Comment choisir entre WooCommerce et un logiciel métier ?</h2>
+<p>Posez-vous trois questions, dans cet ordre. Les réponses suffisent en général à trancher.</p>
+<table>
+<thead>
+<tr>
+<th>Votre situation</th>
+<th>Le plus adapté</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vos ventes partent surtout en colis</td>
+<td>WooCommerce ou Shopify</td>
+</tr>
+<tr>
+<td>Vous avez déjà un site WordPress entretenu</td>
+<td>WooCommerce, avec une extension de créneaux</td>
+</tr>
+<tr>
+<td>Vous vendez des produits frais en retrait ou en livraison locale</td>
+<td>Un logiciel métier comme Marchéo</td>
+</tr>
+<tr>
+<td>Vous n&rsquo;avez ni temps ni prestataire pour la maintenance</td>
+<td>Un logiciel métier</td>
+</tr>
+<tr>
+<td>Vous voulez un design et des pages totalement sur mesure</td>
+<td>WooCommerce</td>
+</tr>
+</tbody>
+</table>
+<p>Si vous êtes primeur, notre guide du <a href="/blog/click-and-collect-primeur">click and collect pour primeur</a> détaille les paniers, la vente au kilo et l&rsquo;organisation du retrait, quel que soit l&rsquo;outil choisi.</p>
+<h2>Par où commencer ?</h2>
+<p>Le plus simple est de voir le résultat avant de décider. Sur <a href="/inscription">la page d&rsquo;inscription</a>, choisissez votre métier et tapez le nom de votre boutique : l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement. Comparez-le au temps qu&rsquo;il vous faudrait pour arriver au même point avec WooCommerce. Pour voir ce qui est prévu pour votre métier, commencez par exemple par <a href="/solutions/primeur">la solution pour primeur et maraîcher</a>.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>WooCommerce est-il adapté au click and collect d'un commerce de proximité ?</summary><p>Oui, à condition de le compléter. WooCommerce propose le retrait en point de vente, mais le choix d'un créneau de retrait avec un nombre maximal de commandes, la vente au poids et l'empreinte bancaire demandent des extensions à choisir, à régler et à tenir à jour. Il convient bien si vous êtes à l'aise avec WordPress ou accompagné par un prestataire.</p></details><details><summary>WooCommerce ou logiciel métier : quelle est la meilleure solution pour la boutique en ligne d'un primeur ou d'un boucher ?</summary><p>Cela dépend du temps que vous voulez y passer. WooCommerce est gratuit à installer, sans commission, et très personnalisable, mais vous assemblez tout vous-même : hébergement, extensions, mises à jour. Un logiciel métier comme Marchéo est prêt à l'emploi : catalogue du métier déjà rempli, créneaux de retrait, vente au poids, 0 % de commission, 19 € (Vitrine), 39 € (Click &amp; Collect + Réservation) ou 59 € (Click &amp; Collect + Livraison) par mois sans engagement, plus 249, 399 ou 549 € de frais d'installation uniques. Pour expédier des colis dans toute la France, WooCommerce ou Shopify restent plus adaptés.</p></details><details><summary>WooCommerce est-il vraiment gratuit ?</summary><p>L'extension WooCommerce est gratuite et ne prend aucune commission sur vos ventes. Ce qui se paie autour : l'hébergement du site, le nom de domaine, parfois le thème, les extensions pour les créneaux ou le poids, et le temps de maintenance ou le prestataire qui s'en charge. Les frais bancaires du prestataire de paiement s'ajoutent, comme partout.</p></details><details><summary>Faut-il acheter du matériel pour vendre en ligne avec WooCommerce ou Marchéo ?</summary><p>Non, dans les deux cas. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Avec WooCommerce, il n'y a pas de matériel non plus, mais il faut louer un hébergement pour le site.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/coffret-epicerie-fine-noel-precommande">Vendre ses coffrets de Noël en précommande</a><a href="/blog/application-mobile-ou-site-de-commande-commerce">Application mobile ou site de commande</a><a href="/blog/nom-de-domaine-commerce">Nom de domaine pour un commerce</a><a href="/blog/boulangerie-livraison-a-domicile">Livrer à domicile quand on est boulanger</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a><a href="/solutions/fromagerie">Site et click &amp; collect pour fromageries et crèmeries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
+</body>
+</html>
