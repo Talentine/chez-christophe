@@ -14,6 +14,7 @@
  * 7. Conversions : une seule par clic ; « Itinéraire » ne pilote plus les enchères.
  * 8. Crée une annonce complète par métier, vers la page du métier,
  *    et met en pause l'ancienne annonce quand elle était notée « Médiocre ».
+ * 9. Resserre en « mot clé exact » les 11 mots-clés qui ont payé des clics hors cible.
  *
  * Rien n'est supprimé : tout peut être réactivé à la main.
  */
@@ -49,6 +50,15 @@ var NEGATIFS_COMMUNS = [
 var NEGATIFS_CC = [
   '"e commerce"', 'ecommerce', 'ecom', '"commerce electronique"', 'business', 'idée', 'idee',
   'rentable', '"micro entreprise"', 'marketplace', 'marketplaces'
+];
+
+// Mots-clés en « expression exacte » qui ont payé des clics hors cible (gâteaux, viande,
+// TikTok, e-commerce...) : on les remplace par leur version « mot clé exact ».
+var A_RESSERRER = [
+  'site internet boulangerie', 'boutique en ligne boulangerie', 'site web pâtisserie',
+  'site internet pâtisserie', 'site vente boulangerie', 'site web fromagerie',
+  'site internet traiteur', 'site internet boucherie', 'click and collect commerce',
+  'boutique en ligne commerçant', 'création site internet commerçant'
 ];
 
 var TITRES_COMMUNS = [
@@ -158,6 +168,31 @@ function main() {
       if (String(k.getMatchType()) === 'BROAD' && k.isEnabled()) { k.pause(); faits.push(k.getText()); }
     }
     return faits.length + ' : ' + faits.join(', ');
+  });
+
+  // 9. Mots-clés trop larges : version « mot clé exact » créée, version « expression » en pause
+  tenter('9. Mots-clés resserrés en mot clé exact', function () {
+    var nu = function (t) { return String(t).replace(/^["\[]|["\]]$/g, '').toLowerCase(); };
+    var it = AdsApp.keywords().withCondition('campaign.id IN (' + SEARCH_METIERS + ',' + SEARCH_CC + ')').get();
+    var tous = [];
+    while (it.hasNext()) tous.push(it.next());
+    var exacts = {};
+    tous.forEach(function (k) {
+      if (String(k.getMatchType()) === 'EXACT') exacts[k.getAdGroup().getId() + '|' + nu(k.getText())] = true;
+    });
+    var faits = [], ko = [];
+    tous.forEach(function (k) {
+      var texte = nu(k.getText());
+      if (String(k.getMatchType()) !== 'PHRASE' || !k.isEnabled() || A_RESSERRER.indexOf(texte) === -1) return;
+      var groupe = k.getAdGroup();
+      if (!exacts[groupe.getId() + '|' + texte]) {
+        var op = groupe.newKeywordBuilder().withText('[' + texte + ']').build();
+        if (!op.isSuccessful()) { ko.push(texte + ' (' + op.getErrors().join(' | ') + ')'); return; }
+      }
+      k.pause();
+      faits.push(texte);
+    });
+    return faits.length + ' : ' + faits.join(', ') + (ko.length ? ' ; refusés : ' + ko.join(', ') : '');
   });
 
   // 7. Conversions
