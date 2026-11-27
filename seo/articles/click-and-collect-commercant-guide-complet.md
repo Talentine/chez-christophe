@@ -5,7 +5,7 @@ description: "Click and collect, ça veut dire quoi pour un commerçant ? Défin
 meta_title: "Click and collect, c'est quoi ? Définition et mise en place"
 meta_description: "Click and collect : définition simple, fonctionnement étape par étape, créneaux, paiement, no-show et prix réels pour un commerce, sans matériel ni commission."
 date: 2026-10-21
-modified: 2026-11-26
+modified: 2026-11-27
 rubrique: Guide complet
 emoji: 🛒
 keywords:
@@ -135,6 +135,8 @@ Les commandes non récupérées s'évitent surtout avec un rappel clair et une e
 
 Avec Marchéo, l'empreinte bancaire est optionnelle. Vous choisissez le pourcentage du panier bloqué sur la carte du client, jusqu'à 75 %. Rien n'est débité si le client vient chercher sa commande : l'empreinte est libérée 24 h après le retrait. Si la commande n'est pas récupérée, vous êtes couvert. Notre article sur [l'empreinte bancaire et le no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant) détaille le fonctionnement.
 
+Pour une commande de fête prise longtemps à l'avance, l'acompte reste utile : notre comparatif [acompte, arrhes ou empreinte bancaire](/blog/acompte-arrhes-ou-empreinte-bancaire-commande) explique quelle garantie demander selon la commande.
+
 D'autres réflexes aident aussi : demander le téléphone à chaque commande, afficher la règle de retrait au moment de valider, et appeler le client si le créneau est dépassé.
 
 ## Combien coûte le click and collect pour un commerçant ?
@@ -179,6 +181,7 @@ Les autres guides du blog sur le click & collect :
 - [Alternative à Uber Eats pour garder ses clients](/blog/alternative-uber-eats-garder-ses-clients)
 - [Combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
+- [Acompte, arrhes ou empreinte bancaire : que choisir](/blog/acompte-arrhes-ou-empreinte-bancaire-commande)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)
 - [Précommandes des fêtes de fin d'année](/blog/precommandes-fetes-noel-commerce-bouche)
 - [Commandes de bûches de Noël en ligne](/blog/commande-buche-de-noel-en-ligne)

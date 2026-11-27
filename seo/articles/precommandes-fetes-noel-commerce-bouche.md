@@ -5,7 +5,7 @@ description: "Chapons, plateaux de fruits de mer, plateaux de fromages, buffets 
 meta_title: "Précommandes de Noël : le guide du commerçant"
 meta_description: "Ouvrir ses précommandes de fêtes en ligne : dates limites, acomptes, créneaux de retrait et gestion du 24 et du 31. Guide pratique pour un commerce de bouche."
 date: 2026-09-07
-modified: 2026-11-12
+modified: 2026-11-27
 rubrique: Guide
 emoji: 🎄
 keywords:
@@ -70,7 +70,7 @@ Les produits au kilo demandent un réglage particulier, et c'est le moment de l'
 
 Une commande de fêtes vous engage : vous achetez le produit, vous bloquez du temps de travail, vous refusez d'autres clients. Il est normal de demander une garantie.
 
-Deux mécanismes fonctionnent, et ils ne s'excluent pas :
+Deux mécanismes fonctionnent, et ils ne s'excluent pas. Notre comparatif [acompte, arrhes ou empreinte bancaire](/blog/acompte-arrhes-ou-empreinte-bancaire-commande) détaille ce que chacun change si le client annule :
 
 1. **L'acompte** : 20 à 30 % à la commande, le solde au retrait. C'est la pratique la plus répandue chez les traiteurs et sur les grosses pièces. Elle filtre les commandes qui n'étaient qu'une intention.
 2. **L'empreinte bancaire** : le client n'est pas débité, le montant est réservé sur sa carte comme pour un hôtel, puis libéré automatiquement après le retrait. Sur Marchéo, l'empreinte couvre jusqu'à 75 % du panier et se libère 24 heures après le retrait. Si le client ne vient pas, vous décidez de capturer ou non. Les banques limitent en général cette réservation à environ 7 jours : gardez-la pour les commandes passées peu de temps avant le retrait, et préférez le paiement en ligne pour les autres.
