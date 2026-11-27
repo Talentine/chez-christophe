@@ -1286,8 +1286,8 @@
         <div class="hero-info-pill" id="heroAdresse" style="display:none">&nbsp;</div>
         <div class="hero-info-pill" id="heroTel" style="display:none">&nbsp;</div>
         <div class="hero-info-pill" id="heroHoraires" style="display:none">&nbsp;</div>
-        <div class="hero-info-pill">🚚&nbsp;<span id="pillLivraison">Livraison offerte dès 25€</span></div>
-        <div class="hero-info-pill">⏰&nbsp;Commandez avant 16h pour être livré demain</div>
+        <div class="hero-info-pill" id="heroPillLivraison">🚚&nbsp;<span id="pillLivraison">Livraison offerte dès 25€</span></div>
+        <div class="hero-info-pill" id="heroPillDelai">⏰&nbsp;Commandez avant 16h pour être livré demain</div>
       </div>
     </div>
   </div>
@@ -2761,7 +2761,9 @@ function appliquerConfigUI(cfg) {
     }).then(r => r.ok ? r.json() : []).then(pts => {
       if (!Array.isArray(pts) || pts.length === 0) return;
       const noms = pts.map(p => p.nom).filter(Boolean);
-      const court = noms.slice(0, 3).join(' · ') + (noms.length > 3 ? ' +' + (noms.length - 3) : '');
+      // Option par boutique (business_config.hero_tous_points) : liste complète des points
+      const tousPts = !!(b.business_config && b.business_config.hero_tous_points);
+      const court = tousPts ? noms.join(' · ') : noms.slice(0, 3).join(' · ') + (noms.length > 3 ? ' +' + (noms.length - 3) : '');
       setText('heroAdresse', '📍 ' + (pts.length > 1 ? pts.length + ' points de retrait : ' : 'Retrait : ') + court);
       const pill = el('heroAdresse');
       if (pill) pill.title = noms.join(', ');
@@ -2798,6 +2800,11 @@ function appliquerConfigUI(cfg) {
   window.__seuilLivraison = seuil;
   const pill = el('pillLivraison');
   if (pill) pill.textContent = 'Livraison offerte dès ' + seuil + '€';
+  // Option par boutique (business_config.hero_sans_livraison) : masque les pills livraison
+  if (b.business_config && b.business_config.hero_sans_livraison) {
+    showIf('heroPillLivraison', false);
+    showIf('heroPillDelai', false);
+  }
 
   // Hero photo — affichée nette, sans voile. Sans photo (ou photo cassée), le bloc disparaît.
   const hero = el('heroPrincipal'), bg = el('heroBgPhoto');
