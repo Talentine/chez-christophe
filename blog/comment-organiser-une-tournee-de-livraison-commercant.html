@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!-- WeeglAd : 2 balises (la 1re synchrone, la 2de async), écrites ici seulement si le consentement publicitaire est déjà donné
+     (bandeau et chargement après « Accepter » : /assets/core/meta-pixel.js) -->
+<script data-weeglad-gate>(function(){try{
+  if(window.__weeglad||/bot|crawler|spider|crawling|HeadlessChrome|Lighthouse/i.test(navigator.userAgent))return;
+  var v=JSON.parse(localStorage.getItem('marcheo_consent_pub')||'null');
+  if(!v||v.choix!=='oui'||v.w!==1||!v.t||Date.now()-v.t>=33696000000)return;
+  window.__weeglad='head';
+  document.write('<script src="https://www.weeglad.com/api/tracking/pixel-inline.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613"><\/script>'
+    +'<script src="https://www.weeglad.com/api/tracking/pixel.js?vk=c59682c734c7112d14c7dd98d22fb4fd60871d07292ac613" async><\/script>');
+}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organiser une tournée de livraison · Marchéo</title>
+<meta name="description" content="Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.">
+<link rel="canonical" href="https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Marchéo">
+<meta property="og:title" content="Organiser une tournée de livraison · Marchéo"><meta property="og:description" content="Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.">
+<meta property="og:url" content="https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant"><meta property="og:image" content="https://marchéo.fr/assets/brand/logo-marcheo.png"><meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2C52">
+<link rel="icon" href="/assets/brand/monogram.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://marchéo.fr/#org",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "logo": "https://marchéo.fr/assets/brand/logo.svg",
+   "sameAs": [
+    "https://www.linkedin.com/company/146944714/"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Paul Merieult"
+   },
+   "email": "marcheo.contact@gmail.com",
+   "areaServed": "FR",
+   "slogan": "La boutique en ligne des commerçants indépendants, sans matériel et sans commission",
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission."
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://marchéo.fr/#logiciel",
+   "name": "Marchéo",
+   "url": "https://marchéo.fr/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Web, iOS, Android (navigateur)",
+   "inLanguage": "fr-FR",
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "description": "Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click & collect et livraison à domicile, sans matériel à acheter et sans commission. 0 % de commission, sans engagement. Marchéo ne livre pas : il fournit l'outil pour que le commerçant organise sa propre livraison.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Vitrine",
+     "price": "19",
+     "priceCurrency": "EUR",
+     "description": "Site internet du commerce, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "19",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Réservation",
+     "price": "39",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait en boutique et réservation de table, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Click & Collect + Livraison",
+     "price": "59",
+     "priceCurrency": "EUR",
+     "description": "Commande en ligne avec retrait et livraison à domicile organisée par le commerçant, abonnement mensuel sans engagement, 0 % de commission",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "59",
+      "priceCurrency": "EUR",
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://marchéo.fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Blog",
+     "item": "https://marchéo.fr/blog"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Organiser une tournée de livraison",
+     "item": "https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Comment organiser une tournée de livraison quand on est commerçant",
+   "description": "Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.",
+   "inLanguage": "fr-FR",
+   "datePublished": "2026-11-27",
+   "dateModified": "2026-11-27",
+   "author": {
+    "@type": "Person",
+    "name": "Paul Merieult",
+    "jobTitle": "Fondateur de Marchéo",
+    "url": "https://marchéo.fr/a-propos"
+   },
+   "publisher": {
+    "@id": "https://marchéo.fr/#org"
+   },
+   "mainEntityOfPage": "https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant",
+   "image": "https://marchéo.fr/assets/brand/logo-marcheo.png",
+   "keywords": "comment organiser une tournée de livraison, organiser une tournée de livraison, planifier une tournée de livraison, organiser une tournée de livraison gratuite, application pour organiser une tournée de livraison, tournée de livraison commerçant",
+   "articleSection": "Guide"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Comment organiser une tournée de livraison quand on est un petit commerce ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Regroupez les commandes par créneau, fermez les commandes avant le départ, classez les arrêts en une boucle, chargez le véhicule dans l'ordre inverse, prévenez les clients par SMS au départ et marquez chaque commande livrée. Avec 5 à 25 arrêts dans un rayon de 3 à 5 km, une liste par créneau et une application d'itinéraire suffisent."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Quel logiciel pour organiser une tournée de livraison dans un commerce de bouche ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Il existe deux familles. Les optimiseurs de tournée calculent l'ordre des arrêts mais ne prennent pas les commandes. Les logiciels de commande avec livraison prennent la commande, l'adresse et le paiement, puis préparent la liste de la tournée par créneau. Marchéo fait partie de la seconde famille : 59 € par mois pour la formule Click & Collect + Livraison, 549 € de frais d'installation uniques, 0 % de commission, sans engagement. Marchéo ne livre pas : c'est vous qui faites la tournée."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-on organiser une tournée de livraison gratuitement ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, tant que la tournée reste courte. Une application d'itinéraire gratuite comme Google Maps ou Waze guide d'un arrêt à l'autre, avec un nombre d'arrêts limité par itinéraire. Elle ne choisit pas l'ordre à votre place et ne prend pas les commandes : vous classez les adresses vous-même avant de partir."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il acheter du matériel pour organiser ses tournées de livraison ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas de matériel informatique. Avec Marchéo, les commandes et la liste de la tournée se consultent sur le téléphone ou l'ordinateur que vous avez déjà, sans tablette, imprimante ni caisse à acheter. Il vous faut en revanche un véhicule et, pour les produits frais, des caisses isothermes avec des plaques de froid."
+     }
+    }
+   ]
+  }
+ ]
+}</script>
+<style>
+:root{--bleu:#0F2C52;--bleu-fonce:#0A1428;--vert:#5BBE3A;--vert-fonce:#46A02A;--soleil:#F4B942;--creme:#F7F2E8;--creme-fonce:#E5E2D8;--gris:#5B6472;--blanc:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--bleu-fonce);background:var(--blanc);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--bleu);text-decoration-thickness:1px;text-underline-offset:3px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--creme-fonce)}
+.header-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--bleu);text-decoration:none;letter-spacing:-.01em}.logo img{height:34px;width:auto}
+.logo span{color:var(--vert)}
+.nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--bleu);font-weight:600;font-size:14px;padding:8px 12px;border-radius:50px}
+.nav a:hover{background:var(--creme)}.nav a.cta{background:var(--vert);color:#fff;padding:9px 16px}.nav a.cta:hover{background:var(--vert-fonce)}.nav a.offres{border:2px solid var(--bleu);padding:7px 14px;font-weight:700;white-space:nowrap}.nav a.offres:hover{background:var(--bleu);color:#fff}
+.hide-m{display:inline}@media(max-width:640px){.hide-m{display:none}.nav{flex-wrap:nowrap;gap:5px}.nav a{padding:8px 9px;font-size:12.5px;white-space:nowrap}.nav a.offres{padding:6px 9px}.nav a.cta{padding:8px 10px}.header-in{padding:10px 10px;gap:6px}.logo{font-size:16px;gap:6px}.logo img{height:30px}}@media(max-width:400px){.logo span{display:none}}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+.crumbs{font-size:13px;color:var(--gris);margin:0 0 18px}.crumbs a{color:var(--gris);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vert-fonce);margin:0 0 10px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4.6vw,44px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em;text-wrap:balance;color:var(--bleu)}
+.sous-titre{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:600;color:var(--bleu);margin:-4px 0 12px;max-width:760px;line-height:1.3}
+.lead{font-size:20px;color:#2b3a52;margin:0 0 10px;max-width:760px}
+.meta{font-size:13px;color:var(--gris);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+article{max-width:720px}
+article h2{font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1.2;margin:40px 0 12px;color:var(--bleu);text-wrap:balance}
+article h3{font-size:19px;margin:28px 0 8px;color:var(--bleu)}
+article p{margin:0 0 16px}article ul,article ol{padding-left:22px;margin:0 0 16px}article li{margin:0 0 6px}
+article strong{color:var(--bleu)}
+article table{border-collapse:collapse;width:100%;margin:8px 0 22px;font-size:15px;display:block;overflow-x:auto}
+article th,article td{border:1px solid var(--creme-fonce);padding:9px 12px;text-align:left;vertical-align:top}article th{background:var(--creme);font-weight:700}
+article blockquote{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--soleil);background:var(--creme);border-radius:0 10px 10px 0}
+.encart{background:var(--creme);border-radius:14px;padding:18px 20px;margin:24px 0}.encart h3{margin:0 0 8px}
+.faq details{border-top:1px solid var(--creme-fonce);padding:12px 0}.faq details:last-child{border-bottom:1px solid var(--creme-fonce)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--bleu);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--vert);font-weight:800}.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0}
+aside{position:sticky;top:76px}
+.card{background:var(--bleu);color:#fff;border-radius:16px;padding:22px;margin:0 0 16px}.card h3{margin:0 0 6px;font-size:18px;color:#fff}.card p{margin:0 0 14px;font-size:14px;color:rgba(255,255,255,.82)}
+.btn{display:inline-block;background:var(--vert);color:#fff;font-weight:800;text-decoration:none;padding:12px 18px;border-radius:50px;font-size:15px}.btn:hover{background:var(--vert-fonce)}
+.btn.soleil{background:var(--soleil);color:var(--bleu)}
+.lien-liste{background:var(--creme);border-radius:16px;padding:18px 20px}.lien-liste h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+.lien-liste a{display:block;padding:6px 0;font-size:15px;text-decoration:none;font-weight:600}.lien-liste a:hover{text-decoration:underline}
+.cta-final{margin:48px 0 0;background:linear-gradient(135deg,var(--bleu),#1B3F6E);color:#fff;border-radius:20px;padding:34px 28px;text-align:center}
+.cta-final h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 8px;font-size:28px;color:#fff}.cta-final p{margin:0 0 18px;color:rgba(255,255,255,.85)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:26px 0}
+.tuile{border:1px solid var(--creme-fonce);border-radius:14px;padding:18px;text-decoration:none;color:inherit;background:#fff;display:flex;flex-direction:column;gap:6px}
+.tuile:hover{border-color:var(--vert);box-shadow:0 6px 18px rgba(15,44,82,.08)}.tuile .e{font-size:26px}.tuile h3{margin:0;font-size:17px;color:var(--bleu)}.tuile p{margin:0;font-size:14px;color:var(--gris)}
+.tuile .d{font-size:12px;color:var(--gris)}
+.gains{background:var(--creme);border:1px solid var(--creme-fonce);border-radius:18px;padding:22px 22px 20px;margin:6px 0 30px}
+.gains h2{font-family:"Playfair Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 14px;color:var(--bleu)}
+.gains ol{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:12px}
+.gains li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;margin:0}
+.gains li:first-child{border:2px solid var(--vert)}
+.gains .gi{font-size:24px;line-height:1.2;flex:none}
+.gains li strong{display:block;font-size:17px;color:var(--bleu);margin:0 0 2px}
+.gains li p{margin:0;font-size:15px;color:#2b3a52}
+.gains-plus{font-size:14px;color:var(--gris);margin:0 0 14px}
+@media(max-width:640px){.gains{padding:18px 14px;margin:4px -6px 26px}.gains h2{font-size:21px}.gains li{padding:12px;gap:10px}.gains .gi{font-size:20px}}
+footer{border-top:1px solid var(--creme-fonce);padding:26px 20px 40px;font-size:13px;color:var(--gris);text-align:center}footer a{color:var(--gris)}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-in">
+  <a href="/" class="logo" aria-label="Marchéo, accueil"><img src="/assets/brand/logo-square.svg" alt="" width="34" height="34">Marchéo<span>.fr</span></a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="/solutions" class="hide-m">Par métier</a>
+    <a href="/#tarifs" class="offres">Voir les offres</a>
+    <a href="/faq" class="hide-m">FAQ</a>
+    <a href="/inscription" class="cta">Créer ma boutique</a>
+  </nav></div></header>
+<main>
+<p class="crumbs"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › Organiser une tournée de livraison</p>
+<div class="grid">
+<article>
+<p class="eyebrow">Guide</p>
+<h1>Comment organiser une tournée de livraison quand on est commerçant</h1>
+<p class="lead">Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.</p>
+<p class="meta">Par Paul Merieult · 27/11/2026 · 7 min de lecture</p>
+<section class="gains" aria-label="Ce que Marchéo vous rapporte"><h2>Ce que ça vous rapporte</h2><ol><li><span class="gi">📈</span><div><strong>Plus de commandes, plus de chiffre d'affaires</strong><p>Vos clients commandent à toute heure, même boutique fermée, et passent récupérer. L'empreinte bancaire sécurise chaque commande et vous ne payez aucune commission : chaque euro vendu reste dans votre caisse.</p></div></li><li><span class="gi">📣</span><div><strong>Plus de visibilité</strong><p>Votre commerce a son propre site, trouvé sur Google avec votre nom et votre ville. Un lien à mettre sur Instagram, Facebook et votre fiche Google, et des SMS pour annoncer vos nouveautés à vos clients.</p></div></li><li><span class="gi">⏱️</span><div><strong>Plus de temps</strong><p>Fini les commandes au téléphone pendant le rush : elles arrivent par écrit, avec le créneau de retrait. Vous préparez au calme, le client passe en deux minutes.</p></div></li></ol><p class="gains-plus"><strong>Et aussi :</strong> 0 % de commission · sans engagement · aucun matériel à acheter · site livré clé en main avec vos produits et vos photos · accompagnement au lancement.</p><a class="btn" href="/inscription">Voir ma démo gratuite</a></section>
+<p>Pour organiser une tournée de livraison, un commerçant regroupe ses commandes par créneau, arrête les commandes avant le départ, classe les arrêts en une seule boucle, charge le véhicule dans l&rsquo;ordre inverse des arrêts et prévient chaque client par SMS au moment de partir. Pour 5 à 25 livraisons dans un rayon de 3 à 5 km, une liste par créneau et une application d&rsquo;itinéraire suffisent, sans logiciel de transporteur.</p>
+<p>Ce guide s&rsquo;adresse au boucher, au primeur, au boulanger, au fromager ou au traiteur qui livre lui-même ses clients. Il détaille une étape de notre <a href="/blog/livraison-locale-commercant-comment-organiser">guide complet de la livraison à domicile pour commerçant</a>, qui couvre aussi la zone, les créneaux et les frais. Pour voir une boutique qui prépare la tournée à votre place, la <a href="/inscription">démo gratuite</a> prend 30 secondes.</p>
+<h2>Comment organiser une tournée de livraison, étape par étape ?</h2>
+<p>Une tournée de livraison s&rsquo;organise en six gestes, toujours dans le même ordre. Le plus important se passe avant de monter dans le véhicule.</p>
+<ol>
+<li><strong>Regrouper par créneau.</strong> Toutes les commandes du vendredi 17 h à 19 h partent ensemble. Vous ne livrez jamais une commande seule.</li>
+<li><strong>Fermer les commandes à l&rsquo;avance.</strong> Fixez une heure limite, par exemple la veille au soir ou deux heures avant le départ. Sans heure limite, la liste change pendant que vous chargez.</li>
+<li><strong>Limiter le nombre de livraisons par créneau.</strong> Dix ou quinze commandes, pas une de plus. Quand le créneau est plein, le client choisit le suivant.</li>
+<li><strong>Classer les arrêts.</strong> Vous tracez une boucle qui part du commerce et y revient, sans repasser deux fois dans la même rue.</li>
+<li><strong>Charger et prévenir.</strong> Les commandes entrent dans le véhicule dans l&rsquo;ordre inverse des arrêts, puis un SMS part : « Votre commande arrive dans l&rsquo;heure. »</li>
+<li><strong>Marquer chaque commande livrée.</strong> À la fin, vous savez ce qui a été remis et ce qui revient au magasin.</li>
+</ol>
+<h2>Combien de livraisons peut-on faire en une heure ?</h2>
+<p>Le nombre de livraisons par heure dépend de deux durées : le trajet entre deux arrêts et le temps passé à chaque porte. Comptez en général 3 à 5 minutes par arrêt pour vous garer, sonner et remettre la commande, davantage dans un immeuble sans ascenseur.</p>
+<p>Le calcul est simple : 60 minutes divisées par (trajet moyen + temps à la porte). Le tableau donne des ordres de grandeur, à corriger après votre première tournée chronométrée.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Trajet moyen entre deux arrêts</th>
+<th>Temps à la porte</th>
+<th>Livraisons par heure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centre-ville, arrêts proches</td>
+<td>3 à 4 minutes</td>
+<td>4 à 5 minutes</td>
+<td>6 à 8</td>
+</tr>
+<tr>
+<td>Quartier pavillonnaire</td>
+<td>4 à 6 minutes</td>
+<td>3 minutes</td>
+<td>6 à 8</td>
+</tr>
+<tr>
+<td>Villages autour du commerce</td>
+<td>8 à 12 minutes</td>
+<td>3 minutes</td>
+<td>4 à 5</td>
+</tr>
+</tbody>
+</table>
+<p>Ce chiffre fixe la capacité de vos créneaux. Si vous faites six livraisons par heure et que le créneau dure deux heures, n&rsquo;acceptez pas plus de douze commandes. Il sert aussi à <a href="/blog/comment-calculer-ses-frais-de-livraison-commercant">calculer vos frais de livraison</a> à partir du coût réel de la tournée.</p>
+<h2>Dans quel ordre faire les arrêts ?</h2>
+<p>Faites les arrêts en boucle, pas en étoile. Une tournée en étoile revient vers le commerce entre chaque client et double les kilomètres. Une boucle part dans une direction et rentre par une autre.</p>
+<p>Trois règles simples suffisent pour une petite tournée :</p>
+<ul>
+<li>commencez par le client le plus éloigné si les produits supportent le trajet, pour vous rapprocher du commerce à chaque arrêt ;</li>
+<li>passez en premier chez les clients qui ont les produits les plus fragiles : poisson, plats chauds, glaces, pièces montées ;</li>
+<li>regroupez les adresses d&rsquo;une même rue ou d&rsquo;un même immeuble, même si elles ont été commandées à des heures différentes.</li>
+</ul>
+<p>Une application d&rsquo;itinéraire gratuite vous guide ensuite d&rsquo;un arrêt à l&rsquo;autre. Elle accepte un nombre d&rsquo;arrêts limité par itinéraire et ne choisit pas l&rsquo;ordre à votre place : c&rsquo;est vous qui classez les adresses. Au-delà de vingt ou trente arrêts, ou avec plusieurs livreurs, un optimiseur de tournée devient utile.</p>
+<h2>Comment charger le véhicule ?</h2>
+<p>Chargez dans l&rsquo;ordre inverse des arrêts : la dernière commande livrée entre la première, au fond. La première livrée reste près de la porte.</p>
+<p>Notez sur chaque sac le nom du client et le numéro de l&rsquo;arrêt. Séparez le frais du reste : viande, poisson, fromage et plats traiteur voyagent dans des caisses isothermes avec des plaques de froid, chargées au dernier moment. Les températures à respecter et les règles d&rsquo;hygiène sont détaillées dans notre guide de la <a href="/blog/reglementation-livraison-alimentaire-commercant">réglementation de la livraison alimentaire</a>.</p>
+<h2>Comment éviter les clients absents ?</h2>
+<p>Un client absent, c&rsquo;est un trajet perdu et parfois un produit frais à jeter. On l&rsquo;évite avec un créneau court, un message au départ et une garantie de paiement.</p>
+<ul>
+<li><strong>Un créneau de deux heures au plus.</strong> « Vendredi entre 17 h et 19 h » se retient, « vendredi après-midi » non.</li>
+<li><strong>Un SMS au départ</strong>, avec votre numéro pour que le client puisse vous joindre.</li>
+<li><strong>Une consigne à la commande</strong> : code de la porte, étage, voisin qui peut réceptionner les produits non frais.</li>
+<li><strong>Le paiement en ligne ou une empreinte bancaire</strong>, pour que le client s&rsquo;engage avant que vous ne preniez la route.</li>
+</ul>
+<p>Si personne n&rsquo;ouvre, appelez, attendez deux ou trois minutes, puis continuez. La commande revient au froid au magasin et le client vient la retirer.</p>
+<h2>Faut-il un logiciel pour organiser sa tournée ?</h2>
+<p>Un logiciel n&rsquo;est pas obligatoire pour quelques livraisons par semaine, mais il supprime la recopie des adresses dès que les clients commandent en ligne. Le bon outil dépend de la façon dont vos commandes arrivent.</p>
+<table>
+<thead>
+<tr>
+<th>Outil</th>
+<th>Ce qu&rsquo;il fait</th>
+<th>Limite</th>
+<th>Coût</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carnet et téléphone</td>
+<td>Note les commandes et les adresses</td>
+<td>Tout est recopié à la main, erreurs d&rsquo;adresse</td>
+<td>Gratuit</td>
+</tr>
+<tr>
+<td>Application d&rsquo;itinéraire</td>
+<td>Guide d&rsquo;un arrêt à l&rsquo;autre</td>
+<td>Nombre d&rsquo;arrêts limité, ordre à choisir vous-même</td>
+<td>Gratuit</td>
+</tr>
+<tr>
+<td>Optimiseur de tournée</td>
+<td>Calcule l&rsquo;ordre des arrêts, suit le livreur</td>
+<td>Ne prend pas les commandes</td>
+<td>Version gratuite limitée, puis abonnement mensuel</td>
+</tr>
+<tr>
+<td>Logiciel de commande avec livraison</td>
+<td>Prend la commande, l&rsquo;adresse et le paiement, prépare la liste par créneau</td>
+<td>Ne livre pas à votre place</td>
+<td>Abonnement fixe</td>
+</tr>
+</tbody>
+</table>
+<p>Marchéo appartient à la dernière famille. La formule Click &amp; Collect + Livraison coûte 59 € par mois, sans engagement, avec 549 € de frais d&rsquo;installation uniques et 0 % de commission. Vous réglez la zone, les créneaux et leur capacité, le minimum de commande et les frais. Pour chaque créneau, la liste des commandes et des adresses est prête sur votre téléphone, avec l&rsquo;itinéraire à ouvrir dans Google Maps ou Waze. Marchéo ne livre pas et n&rsquo;a pas de coursiers : c&rsquo;est vous, ou votre livreur, qui faites la tournée. Notre comparatif <a href="/blog/logiciel-pour-livrer-ses-clients-soi-meme">quel logiciel pour livrer ses clients soi-même</a> détaille quand un optimiseur suffit.</p>
+<h2>Ce qu&rsquo;il vous faut, et ce qu&rsquo;il ne vous faut pas</h2>
+<p>Une tournée de quartier demande peu de moyens. Il vous faut de l&rsquo;organisation, pas de matériel informatique.</p>
+<table>
+<thead>
+<tr>
+<th>Ce qu&rsquo;il vous faut</th>
+<th>Ce qu&rsquo;il ne vous faut pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Des créneaux fixes avec un nombre de livraisons limité</td>
+<td>Livrer à la demande, une commande à la fois</td>
+</tr>
+<tr>
+<td>Une heure limite de commande</td>
+<td>Un logiciel de transporteur</td>
+</tr>
+<tr>
+<td>Le téléphone que vous avez déjà</td>
+<td>Une tablette, une imprimante ou une caisse à acheter</td>
+</tr>
+<tr>
+<td>Un véhicule et des caisses isothermes pour le frais</td>
+<td>Des coursiers ou une plateforme qui prend une commission</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque métier a son rythme : tournée du matin pour le pain, fin de journée pour les paniers et la viande. Voyez par exemple la page <a href="/solutions/boucherie">commande en ligne et livraison pour boucherie</a> ou notre guide <a href="/blog/primeur-livraison-a-domicile">primeur livraison à domicile</a>.</p>
+<h2>Pour commencer</h2>
+<p>Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.</p>
+<p>Commencez par une seule tournée par semaine, dans une zone courte, et chronométrez-la. Ajoutez un créneau quand le premier est plein. Pour voir votre boutique avec la livraison, essayez la <a href="/inscription">démo gratuite</a> : vous choisissez votre métier, vous tapez le nom de votre commerce et l&rsquo;aperçu s&rsquo;affiche.</p><h2 id="faq">Questions fréquentes</h2><div class="faq"><details><summary>Comment organiser une tournée de livraison quand on est un petit commerce ?</summary><p>Regroupez les commandes par créneau, fermez les commandes avant le départ, classez les arrêts en une boucle, chargez le véhicule dans l'ordre inverse, prévenez les clients par SMS au départ et marquez chaque commande livrée. Avec 5 à 25 arrêts dans un rayon de 3 à 5 km, une liste par créneau et une application d'itinéraire suffisent.</p></details><details><summary>Quel logiciel pour organiser une tournée de livraison dans un commerce de bouche ?</summary><p>Il existe deux familles. Les optimiseurs de tournée calculent l'ordre des arrêts mais ne prennent pas les commandes. Les logiciels de commande avec livraison prennent la commande, l'adresse et le paiement, puis préparent la liste de la tournée par créneau. Marchéo fait partie de la seconde famille : 59 € par mois pour la formule Click &amp; Collect + Livraison, 549 € de frais d'installation uniques, 0 % de commission, sans engagement. Marchéo ne livre pas : c'est vous qui faites la tournée.</p></details><details><summary>Peut-on organiser une tournée de livraison gratuitement ?</summary><p>Oui, tant que la tournée reste courte. Une application d'itinéraire gratuite comme Google Maps ou Waze guide d'un arrêt à l'autre, avec un nombre d'arrêts limité par itinéraire. Elle ne choisit pas l'ordre à votre place et ne prend pas les commandes : vous classez les adresses vous-même avant de partir.</p></details><details><summary>Faut-il acheter du matériel pour organiser ses tournées de livraison ?</summary><p>Pas de matériel informatique. Avec Marchéo, les commandes et la liste de la tournée se consultent sur le téléphone ou l'ordinateur que vous avez déjà, sans tablette, imprimante ni caisse à acheter. Il vous faut en revanche un véhicule et, pour les produits frais, des caisses isothermes avec des plaques de froid.</p></details></div>
+<section class="cta-final"><h2>Voyez votre boutique en 30 secondes</h2><p>Choisissez votre métier, tapez le nom de votre commerce : l'aperçu de votre site s'affiche avec le catalogue déjà rempli. Gratuit, sans carte bancaire.</p>
+  <a class="btn soleil" href="/inscription">Créer ma démo gratuite</a></section>
+</article>
+<aside>
+  <div class="card"><h3>Marchéo, c'est quoi ?</h3><p>La boutique en ligne de click & collect et de livraison locale des commerces de bouche. 0 % de commission, à partir de 19 € par mois, sans engagement.</p><a class="btn" href="/inscription">Créer ma démo gratuite</a></div>
+  <div class="lien-liste"><h3>À lire aussi</h3><a href="/blog/coffret-epicerie-fine-noel-precommande">Vendre ses coffrets de Noël en précommande</a><a href="/blog/woocommerce-click-and-collect-commerce-de-bouche">WooCommerce ou logiciel métier ?</a><a href="/blog/application-mobile-ou-site-de-commande-commerce">Application mobile ou site de commande</a><a href="/blog/nom-de-domaine-commerce">Nom de domaine pour un commerce</a><a href="/solutions/boulangerie">Site et click &amp; collect pour boulangeries et pâtisseries</a><a href="/solutions/boucherie">Site et click &amp; collect pour boucheries et charcuteries</a><a href="/solutions/primeur">Site et click &amp; collect pour primeurs et maraîchers</a><a href="/solutions/traiteur">Site et click &amp; collect pour traiteurs</a><a href="/solutions/fromagerie">Site et click &amp; collect pour fromageries et crèmeries</a></div>
+</aside>
+</div>
+</main>
+<footer>© 2026 Marchéo · <a href="/a-propos">À propos</a> · <a href="/blog">Blog</a> · <a href="/solutions">Métiers</a> · <a href="/faq">FAQ</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="mailto:marcheo.contact@gmail.com">marcheo.contact@gmail.com</a></footer>
+<script src="/assets/core/analytics.js?v=brandv2" defer></script>
+<script src="/assets/core/meta-pixel.js?v=4" defer></script>
+</body>
+</html>

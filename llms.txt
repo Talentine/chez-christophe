@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Comment organiser une tournée de livraison quand on est commerçant](https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant) : Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.
 - [Coffret épicerie fine Noël : vendre vos coffrets en précommande](https://marchéo.fr/blog/coffret-epicerie-fine-noel-precommande) : Coffret épicerie fine Noël : composer trois budgets, fixer les prix, ouvrir les précommandes et organiser les retraits de décembre. Sans commission.
 - [WooCommerce click and collect : adapté à un commerce de bouche ?](https://marchéo.fr/blog/woocommerce-click-and-collect-commerce-de-bouche) : WooCommerce pour le click and collect d'un commerce de bouche : ce qui est inclus, ce qu'il faut ajouter, le coût réel et quand préférer un logiciel métier.
 - [Faut-il une application mobile pour son commerce de bouche ?](https://marchéo.fr/blog/application-mobile-ou-site-de-commande-commerce) : Application mobile ou site de commande en ligne pour un commerce ? Comparatif honnête : téléchargement, coût, notifications, fidélité, et quand chacun convient.
@@ -124,4 +125,4 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-26
+- Dernière mise à jour : 2026-11-27

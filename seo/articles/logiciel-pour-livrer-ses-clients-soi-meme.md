@@ -3,7 +3,7 @@ title: "Quel logiciel pour livrer ses clients soi-même ?"
 titre_court: "Le logiciel pour livrer ses clients soi-même"
 description: "Logiciel de tournée, plateforme ou boutique avec livraison : ce que fait chaque outil pour livrer vos clients vous-même, son coût et quand le choisir."
 date: 2026-11-03
-modified: 2026-11-20
+modified: 2026-11-27
 rubrique: Comparatif
 emoji: 🚐
 keywords:
@@ -85,7 +85,7 @@ Choisissez selon l'origine de vos commandes et la taille de vos tournées. Le ta
 | Vous livrez des colis dans toute la France | Site e-commerce avec transporteur, comme Shopify |
 | Boutique avec livraison et tournées très longues ou plusieurs livreurs | Les deux : la boutique prend les commandes, l'optimiseur calcule l'ordre |
 
-Pour la plupart des commerces de bouche, qui livrent quelques créneaux par semaine dans un rayon de 3 à 5 km, la liste de tournée de la boutique suffit. Un optimiseur devient utile plus tard, si le volume grossit.
+Pour la plupart des commerces de bouche, qui livrent quelques créneaux par semaine dans un rayon de 3 à 5 km, la liste de tournée de la boutique suffit. Un optimiseur devient utile plus tard, si le volume grossit. Pour la méthode sans outil payant, voyez [comment organiser une tournée de livraison](/blog/comment-organiser-une-tournee-de-livraison-commercant) : boucle, chargement, clients absents.
 
 ## Combien coûte un logiciel pour livrer ses clients soi-même ?
 

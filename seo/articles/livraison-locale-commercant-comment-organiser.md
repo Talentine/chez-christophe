@@ -5,7 +5,7 @@ description: "Mettre en place un service de livraison à domicile : zone, créne
 meta_title: "Mettre en place la livraison à domicile : le guide"
 meta_description: "Comment mettre en place un service de livraison à domicile dans votre commerce : zone, créneaux, frais, paiement, tournée, sans plateforme et sans commission."
 date: 2026-08-28
-modified: 2026-11-24
+modified: 2026-11-27
 rubrique: Guide complet
 emoji: 🚚
 keywords:
@@ -100,7 +100,7 @@ Pour les produits vendus au poids, le montant final dépend de la pesée : voyez
 
 ### 5. Organiser la tournée
 
-La tournée doit être préparée par créneau : la liste des commandes, les adresses dans l'ordre et l'itinéraire, ouvrable dans Google Maps ou Waze. Vous chargez dans l'ordre inverse des arrêts et vous partez. Un SMS au départ, « Votre commande arrive dans l'heure », évite la plupart des absences.
+La tournée doit être préparée par créneau : la liste des commandes, les adresses dans l'ordre et l'itinéraire, ouvrable dans Google Maps ou Waze. Vous chargez dans l'ordre inverse des arrêts et vous partez. Un SMS au départ, « Votre commande arrive dans l'heure », évite la plupart des absences. Pour l'ordre des arrêts, le chargement et le nombre de livraisons par heure, lisez [comment organiser une tournée de livraison](/blog/comment-organiser-une-tournee-de-livraison-commercant).
 
 ### 6. Confirmer la livraison
 
@@ -189,6 +189,7 @@ Les autres guides du blog sur la livraison et la vente en ligne :
 - [Boucherie livraison à domicile : livrer vos clients vous-même](/blog/boucherie-livraison-a-domicile)
 - [Fleuriste livraison à domicile : livrer vos bouquets vous-même](/blog/fleuriste-livraison-a-domicile)
 - [Réglementation livraison alimentaire : le guide du commerçant](/blog/reglementation-livraison-alimentaire-commercant)
+- [Comment organiser une tournée de livraison quand on est commerçant](/blog/comment-organiser-une-tournee-de-livraison-commercant)
 - [Click and collect sans commission](/blog/click-and-collect-sans-commission-alternative-uber-eats-deliveroo)
 - [Empreinte bancaire et no-show](/blog/empreinte-bancaire-no-show-commerce-restaurant)
 - [Vendre au poids en ligne](/blog/vendre-au-poids-en-ligne)
