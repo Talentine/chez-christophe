@@ -5,7 +5,7 @@ description: "Création du site internet de votre commerce : site vitrine ou de 
 meta_title: "Création site internet commerce : le guide complet 2026"
 meta_description: "Créer le site internet de son commerce : vitrine ou commande en ligne, pages utiles, nom de domaine, mentions légales et prix réels. Sans matériel à acheter."
 date: 2026-10-22
-modified: 2026-11-25
+modified: 2026-11-28
 rubrique: Guide complet
 emoji: 🌐
 keywords:
@@ -66,7 +66,7 @@ Un site vitrine présente votre commerce sans prendre de commande ; un site de c
 | Ce qu'il change au quotidien | Moins de questions au téléphone sur les horaires | Moins d'appels, préparation aux heures creuses, retrait rapide |
 | Prix chez Marchéo | 19 € par mois, 249 € d'installation | 39 € ou 59 € par mois, 399 € ou 549 € d'installation |
 
-Une bonne règle : si vos clients vous appellent déjà pour réserver ou commander, il vous faut un site de commande. Sinon, commencez par une vitrine. Sur Marchéo, vous pouvez passer de la formule Vitrine à une formule avec commande plus tard, sans refaire le site.
+Une bonne règle : si vos clients vous appellent déjà pour réserver ou commander, il vous faut un site de commande. Sinon, commencez par une vitrine. Sur Marchéo, vous pouvez passer de la formule Vitrine à une formule avec commande plus tard, sans refaire le site. Notre comparatif [site vitrine ou site marchand](/blog/site-vitrine-ou-site-marchand-commerce) donne des exemples par métier et les signes qui montrent qu'il est temps de changer.
 
 Le site de commande se décline en deux usages. Le **click & collect**, où le client retire en boutique au créneau choisi, est expliqué dans notre [guide complet du click and collect pour commerçant](/blog/click-and-collect-commercant-guide-complet). La **livraison à domicile**, que vous organisez vous-même, est détaillée dans le guide [livraison locale pour un commerçant](/blog/livraison-locale-commercant-comment-organiser).
 
@@ -187,6 +187,7 @@ Le plus simple est de voir à quoi ressemblerait le site de votre commerce avant
 Pour aller plus loin, voici les guides du blog liés à la création du site de votre commerce :
 
 - [Créer sa boutique en ligne pour son commerce : le guide complet](/blog/creer-sa-boutique-en-ligne-commerce)
+- [Site vitrine ou site marchand : que choisir pour son commerce](/blog/site-vitrine-ou-site-marchand-commerce)
 - [Comment créer un site de click & collect pour son commerce](/blog/comment-creer-un-site-click-and-collect-pour-son-commerce)
 - [Combien coûte un site de click & collect](/blog/combien-coute-un-site-de-click-and-collect)
 - [Digitaliser son commerce de bouche : par où commencer](/blog/digitaliser-commerce-bouche)

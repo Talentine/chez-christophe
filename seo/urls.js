@@ -1,5 +1,6 @@
 // Généré par seo/build.py, ne pas éditer à la main
 export default [
+  "/blog/site-vitrine-ou-site-marchand-commerce",
   "/blog/acompte-arrhes-ou-empreinte-bancaire-commande",
   "/blog/comment-organiser-une-tournee-de-livraison-commercant",
   "/blog/coffret-epicerie-fine-noel-precommande",

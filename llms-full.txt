@@ -43,6 +43,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 - [Marchéo pour fast-foods et food-trucks](https://marchéo.fr/solutions/fastfood) : Commandes en ligne sans commission, menu du jour, clients prévenus par SMS et push de votre emplacement.
 
 ## Guides et articles
+- [Site vitrine ou site marchand : que choisir pour son commerce ?](https://marchéo.fr/blog/site-vitrine-ou-site-marchand-commerce) : Site vitrine ou site marchand pour un commerce de proximité ? Différences, prix, exemples par métier et les signes qui montrent qu'il faut passer à la commande.
 - [Acompte, arrhes ou empreinte bancaire : que choisir ?](https://marchéo.fr/blog/acompte-arrhes-ou-empreinte-bancaire-commande) : Acompte, arrhes ou empreinte bancaire : définitions, différences en cas d'annulation, exemple chiffré et bon choix pour un commerce de bouche ou un restaurant.
 - [Comment organiser une tournée de livraison quand on est commerçant](https://marchéo.fr/blog/comment-organiser-une-tournee-de-livraison-commercant) : Comment organiser une tournée de livraison dans un commerce de proximité : regrouper par créneau, ordonner les arrêts, charger, prévenir les clients.
 - [Coffret épicerie fine Noël : vendre vos coffrets en précommande](https://marchéo.fr/blog/coffret-epicerie-fine-noel-precommande) : Coffret épicerie fine Noël : composer trois budgets, fixer les prix, ouvrir les précommandes et organiser les retraits de décembre. Sans commission.
@@ -126,7 +127,7 @@ Métiers couverts : boulangeries et pâtisseries, boucheries et charcuteries, pr
 ## Contact
 - Email : marcheo.contact@gmail.com
 - Pays : France
-- Dernière mise à jour : 2026-11-27
+- Dernière mise à jour : 2026-11-28
 
 
 ---
@@ -597,6 +598,169 @@ Q : Combien de commandes à l'avance puis-je accepter sans bloquer le comptoir ?
 R : Comptez ce que vous produisez réellement en 15 minutes et n'en ouvrez que la moitié à la réservation. Sur un poste qui sort 20 plats par quart d'heure, 8 à 10 commandes en ligne par créneau sont tenables, et la file du comptoir avance quand même.
 Q : Marchéo livre-t-il les commandes ?
 R : Non. Marchéo ne livre pas et n'a pas de coursiers : il vous donne l'outil pour organiser votre propre livraison, avec vos moyens. Vous fixez votre zone, vos créneaux, votre minimum de commande et vos frais, et la tournée est organisée par créneau. Aucune commission.
+
+# Site vitrine ou site marchand : que choisir pour son commerce ?
+
+Site vitrine ou site marchand pour un commerce de proximité ? Différences, prix, exemples par métier et les signes qui montrent qu'il faut passer à la commande.
+
+Entre un site vitrine et un site marchand, le bon choix pour un commerce de proximité dépend d&rsquo;une seule chose : est-ce que vos clients ont besoin de commander avant de venir ? Si tout se vend au comptoir, un site vitrine suffit pour être trouvé sur Google. Si une partie de vos ventes se prépare à l&rsquo;avance, un site marchand avec retrait en boutique vous fait gagner du temps. Chez Marchéo, le premier coûte 19 € par mois et le second 39 € par mois, sans commission.
+Ce comparatif prolonge notre guide complet sur la création du site internet de son commerce, qui couvre aussi les pages à prévoir, le nom de domaine et les prix. Ici, on tranche une seule question, avec des exemples par métier et les signes qui montrent qu&rsquo;il est temps de passer de l&rsquo;un à l&rsquo;autre.
+Quelle est la différence entre un site vitrine et un site marchand ?
+Un site vitrine montre votre commerce, un site marchand prend des commandes. Le premier répond aux questions « où êtes-vous, que vendez-vous, quand êtes-vous ouvert ». Le second ajoute un catalogue avec des prix, un panier et une validation de commande.
+On parle aussi de site e-commerce ou de site de commande : c&rsquo;est la même chose. Une précision compte pour un commerce de bouche : vendre en ligne ne veut pas dire expédier des colis. Dans la plupart des cas, le client commande sur le site puis vient chercher sa commande en boutique (c&rsquo;est le click &amp; collect), ou se fait livrer dans le quartier.
+
+
+
+Critère
+Site vitrine
+Site marchand
+
+
+
+
+Rôle
+Présenter le commerce et être trouvé
+Prendre les commandes en ligne
+
+
+Contenu
+Photos, produits, horaires, adresse, téléphone
+Catalogue avec prix, panier, créneaux de retrait ou de livraison
+
+
+Paiement
+Aucun, tout se passe en boutique
+En ligne ou au retrait, selon vos réglages
+
+
+Travail au quotidien
+Mettre à jour les horaires et les nouveautés
+Tenir le catalogue à jour et préparer les commandes
+
+
+Obligations légales
+Mentions légales
+Mentions légales, conditions générales de vente, information sur les données
+
+
+Prix chez Marchéo
+19 € par mois, 249 € d&rsquo;installation
+39 ou 59 € par mois, 399 ou 549 € d&rsquo;installation
+
+
+
+Les règles à respecter dès que vous vendez en ligne sont détaillées dans notre guide des obligations légales d&rsquo;une boutique en ligne.
+Quand un site vitrine suffit-il ?
+Un site vitrine suffit quand vos clients achètent sur place, sans rien réserver. Son travail est alors de vous faire trouver et de donner envie de pousser la porte.
+C&rsquo;est le bon choix si :
+
+vos ventes se font presque toutes au comptoir, à l&rsquo;impulsion ou au passage ;
+personne ne vous appelle pour commander ou réserver ;
+vous n&rsquo;avez pas le temps, pour l&rsquo;instant, de tenir un catalogue en ligne à jour ;
+vous voulez d&rsquo;abord exister sur Google, avec un site à votre nom relié à votre fiche d&rsquo;établissement.
+
+Un site vitrine ne remplace pas la fiche Google, il la complète. Notre guide de la fiche Google Business pour un commerce de bouche explique comment relier les deux.
+Quand faut-il un site marchand ?
+Il vous faut un site marchand dès qu&rsquo;une partie de vos ventes se prépare à l&rsquo;avance. Le signe le plus simple : si le téléphone sonne pour des commandes, un site de commande fera ce travail à votre place, y compris le soir et le dimanche.
+D&rsquo;autres signes vont dans le même sens :
+
+une file d&rsquo;attente aux heures de pointe, que des commandes préparées à l&rsquo;avance réduiraient ;
+des commandes notées sur un carnet, avec des oublis ou des erreurs ;
+des produits de fêtes à réserver, comme les bûches, les plateaux ou les volailles ;
+des clients qui demandent si vous livrez ;
+des commandes préparées que personne ne vient chercher. Sur un site marchand, une empreinte bancaire optionnelle, jusqu&rsquo;à 75 % du panier, limite ce risque.
+
+Dans tous ces cas, le client commande seul en 30 secondes, sans créer de compte, et choisit son créneau. Notre guide pour créer sa boutique en ligne détaille la mise en place étape par étape.
+Site vitrine ou site marchand : que choisir selon son métier ?
+Le choix varie selon le métier, parce que la part des ventes préparées à l&rsquo;avance n&rsquo;est pas la même partout. Ce tableau donne un point de départ, à ajuster selon votre clientèle.
+
+
+
+Métier
+Un site vitrine suffit si
+Un site marchand s&rsquo;impose si
+
+
+
+
+Boulangerie
+Vous vendez surtout pain et viennoiseries au passage
+Vous prenez des commandes de gâteaux, de pièces montées, de galettes ou de bûches
+
+
+Boucherie
+Vos clients choisissent à l&rsquo;étal
+Vous préparez des colis, des rôtis ou des commandes de fêtes
+
+
+Primeur
+Vos clients composent leur panier sur place
+Vous proposez des paniers ou des corbeilles, en retrait ou en livraison
+
+
+Fromagerie
+Vous vendez surtout à la coupe
+Vous préparez des plateaux pour les repas et les fêtes
+
+
+Restaurant
+Vous servez uniquement en salle, sans réservation
+Vous faites de la vente à emporter ou vous prenez des réservations
+
+
+
+Pour une pizzeria, un fast-food ou un traiteur, la question se pose à peine : l&rsquo;essentiel de l&rsquo;activité se commande à l&rsquo;avance, donc le site marchand est la règle. Pour voir ce qui est prévu pour votre métier, regardez par exemple la solution pour boulangerie.
+Combien coûte un site vitrine, et combien coûte un site marchand ?
+Le prix dépend surtout de la façon de créer le site, plus que de son type. Les fourchettes ci-dessous sont des ordres de grandeur, qui varient selon les prestataires.
+
+
+
+Solution
+Site vitrine
+Site marchand
+
+
+
+
+Constructeur généraliste (Wix, WordPress, Shopify)
+Votre temps et un abonnement mensuel
+Un abonnement plus élevé, des extensions et parfois des frais de transaction
+
+
+Prestataire ou agence
+Environ 500 à 2 000 €
+Plusieurs milliers d&rsquo;euros, maintenance en plus
+
+
+Marchéo
+19 € par mois, 249 € d&rsquo;installation
+39 € par mois (Click &amp; Collect + Réservation) ou 59 € par mois (Click &amp; Collect + Livraison), 399 ou 549 € d&rsquo;installation
+
+
+
+Avec un logiciel métier, l&rsquo;écart entre les deux est donc d&rsquo;environ 20 € par mois. Marchéo ne prélève aucune commission : l&rsquo;abonnement est fixe, sans engagement, quel que soit le nombre de commandes. Pour comparer en détail, lisez notre comparatif Shopify, Wix ou logiciel métier.
+Marchéo est le logiciel français qui permet à un commerçant indépendant de créer en 30 secondes sa boutique en ligne et son site internet, avec click &amp; collect et livraison à domicile, sans matériel à acheter et sans commission.
+Il faut aussi connaître ses limites. Marchéo ne livre pas et n&rsquo;a pas de coursiers : la formule à 59 € vous donne l&rsquo;outil pour organiser votre propre livraison. Les créneaux s&rsquo;ouvrent sur deux semaines au plus. Et si votre projet est d&rsquo;expédier des colis dans toute la France, un site e-commerce classique comme Shopify vous conviendra mieux.
+Peut-on commencer par un site vitrine et passer au site marchand ensuite ?
+Oui, et c&rsquo;est souvent la façon la plus prudente de se lancer. Vous commencez par la vitrine, vous regardez si vos clients la consultent, puis vous ouvrez la commande quand le besoin se confirme.
+Une précaution s&rsquo;impose : vérifiez dès le départ que le passage ne vous obligera pas à tout refaire. Avec un site vitrine réalisé sur mesure, ajouter la vente en ligne revient souvent à payer un second projet. Sur Marchéo, vous passez de la formule Vitrine à une formule avec commande sans refaire le site : même adresse, mêmes photos, même catalogue.
+Pour réussir ce passage, trois gestes suffisent :
+
+Commencez par dix à quinze produits, ceux que vos clients réservent déjà par téléphone.
+Ouvrez peu de créneaux au début, aux heures où vous êtes disponible pour préparer.
+Annoncez la nouveauté avec un QR code sur le comptoir, le lien sur votre fiche Google et un mot à vos habitués. Aucun matériel n&rsquo;est à acheter : les commandes arrivent sur le téléphone ou l&rsquo;ordinateur que vous avez déjà.
+
+Par où commencer ?
+Le plus simple est de voir les deux sur pièce avant de choisir. Sur la page d&rsquo;inscription de Marchéo, choisissez votre métier, tapez le nom de votre boutique, et l&rsquo;aperçu de votre site s&rsquo;affiche en 30 secondes, gratuitement, avec un catalogue déjà rempli. Vous verrez tout de suite si une simple vitrine vous suffit ou si la commande en ligne a sa place chez vous.
+
+Q : Site vitrine ou site marchand : lequel choisir pour un commerce de proximité ?
+R : Choisissez un site vitrine si vos clients achètent sur place sans rien réserver : il sert à être trouvé sur Google et à donner vos horaires. Choisissez un site marchand, c'est-à-dire un site de commande, si une partie de vos ventes se prépare à l'avance : gâteaux, colis de viande, plateaux, paniers, plats à emporter. Marchéo, logiciel français pour les commerces de bouche, propose les deux : 19 € par mois pour la Vitrine, 39 € par mois pour le Click & Collect + Réservation, 59 € par mois pour le Click & Collect + Livraison, avec 0 % de commission, sans engagement, et des frais d'installation uniques de 249, 399 ou 549 €.
+Q : Quelle est la différence entre un site vitrine et un site marchand ?
+R : Un site vitrine présente le commerce, ses produits, ses horaires et son adresse, sans permettre d'acheter. Un site marchand, aussi appelé site e-commerce ou site de commande, laisse le client choisir ses produits, valider sa commande et, si vous le souhaitez, payer en ligne. Pour un commerce de bouche, la commande se termine le plus souvent par un retrait en boutique ou une livraison locale, pas par l'envoi d'un colis.
+Q : Faut-il acheter du matériel pour passer d'un site vitrine à un site marchand ?
+R : Non. Avec Marchéo, aucune tablette, imprimante ou caisse n'est à acheter : les commandes arrivent sur le téléphone ou l'ordinateur que vous avez déjà. Le passage de la formule Vitrine à une formule avec commande se fait sans refaire le site, et l'abonnement reste sans engagement.
+Q : Un site marchand coûte-t-il beaucoup plus cher qu'un site vitrine ?
+R : Cela dépend de la façon de le créer. Chez une agence, un site de vente sur mesure coûte en général plusieurs milliers d'euros, contre environ 500 à 2 000 € pour une vitrine. Avec un logiciel métier, l'écart est faible : chez Marchéo, 19 € par mois pour la vitrine et 39 € par mois pour la commande en ligne avec retrait en boutique, sans commission sur les ventes.
 
 # Acompte, arrhes ou empreinte bancaire : que choisir ?
 
@@ -7323,7 +7487,7 @@ Quelles sont les limites de Marchéo pour un petit budget ?
 Marchéo n&rsquo;est pas l&rsquo;option la moins chère, et il ne convient pas à tous les commerces. Mieux vaut le savoir avant de choisir.
 
 Ce n&rsquo;est pas gratuit. La démo l&rsquo;est, mais le service demande un abonnement et des frais d&rsquo;installation uniques.
-La Vitrine ne vend pas. À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l&rsquo;offre à 39 ou 59 €.
+La Vitrine ne vend pas. À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l&rsquo;offre à 39 ou 59 €. Pour choisir entre les deux, lisez notre comparatif site vitrine ou site marchand pour un commerce.
 Il n&rsquo;apporte pas de clients. Marchéo n&rsquo;est pas une place de marché. Votre boutique se fait connaître par votre fiche Google, votre vitrine et vos réseaux.
 Il ne livre pas. Marchéo n&rsquo;a pas de coursiers. Il fournit l&rsquo;outil pour organiser votre propre livraison.
 
@@ -9678,7 +9842,7 @@ Prix chez Marchéo
 
 
 
-Une bonne règle : si vos clients vous appellent déjà pour réserver ou commander, il vous faut un site de commande. Sinon, commencez par une vitrine. Sur Marchéo, vous pouvez passer de la formule Vitrine à une formule avec commande plus tard, sans refaire le site.
+Une bonne règle : si vos clients vous appellent déjà pour réserver ou commander, il vous faut un site de commande. Sinon, commencez par une vitrine. Sur Marchéo, vous pouvez passer de la formule Vitrine à une formule avec commande plus tard, sans refaire le site. Notre comparatif site vitrine ou site marchand donne des exemples par métier et les signes qui montrent qu&rsquo;il est temps de changer.
 Le site de commande se décline en deux usages. Le click &amp; collect, où le client retire en boutique au créneau choisi, est expliqué dans notre guide complet du click and collect pour commerçant. La livraison à domicile, que vous organisez vous-même, est détaillée dans le guide livraison locale pour un commerçant.
 Quelles pages mettre sur le site internet de son commerce ?
 Le site d&rsquo;un commerce de proximité n&rsquo;a besoin que de cinq pages, ou de cinq parties sur une même page. Un site court et à jour vaut mieux qu&rsquo;un site long et oublié.
@@ -9832,6 +9996,7 @@ Le plus simple est de voir à quoi ressemblerait le site de votre commerce avant
 Pour aller plus loin, voici les guides du blog liés à la création du site de votre commerce :
 
 Créer sa boutique en ligne pour son commerce : le guide complet
+Site vitrine ou site marchand : que choisir pour son commerce
 Comment créer un site de click &amp; collect pour son commerce
 Combien coûte un site de click &amp; collect
 Digitaliser son commerce de bouche : par où commencer

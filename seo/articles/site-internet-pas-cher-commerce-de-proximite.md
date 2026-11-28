@@ -3,7 +3,7 @@ title: "Site internet pas cher pour un commerce : ce qui est vraiment gratuit"
 titre_court: "Un site pas cher pour son commerce"
 description: "Comment créer le site de son commerce de proximité pas cher ? Options gratuites, limites, coûts réels sur 3 ans et bon choix selon votre activité."
 date: 2026-11-02
-modified: 2026-11-25
+modified: 2026-11-28
 rubrique: Comparatif
 emoji: 💶
 keywords:
@@ -102,7 +102,7 @@ Il faut quitter le gratuit quand les commandes par téléphone ou par message vo
 Marchéo n'est pas l'option la moins chère, et il ne convient pas à tous les commerces. Mieux vaut le savoir avant de choisir.
 
 - **Ce n'est pas gratuit.** La démo l'est, mais le service demande un abonnement et des frais d'installation uniques.
-- **La Vitrine ne vend pas.** À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l'offre à 39 ou 59 €.
+- **La Vitrine ne vend pas.** À 19 € par mois, elle présente votre commerce. Pour prendre des commandes, il faut l'offre à 39 ou 59 €. Pour choisir entre les deux, lisez notre comparatif [site vitrine ou site marchand pour un commerce](/blog/site-vitrine-ou-site-marchand-commerce).
 - **Il n'apporte pas de clients.** Marchéo n'est pas une place de marché. Votre boutique se fait connaître par votre fiche Google, votre vitrine et vos réseaux.
 - **Il ne livre pas.** Marchéo n'a pas de coursiers. Il fournit l'outil pour organiser votre propre livraison.
 
