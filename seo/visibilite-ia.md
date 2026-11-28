@@ -31,7 +31,7 @@ Questions de référence (marquées R) :
 23. (Marque) Marchéo, c'est quoi ? Quel prix ?
 24. (Marque) Marchéo ou Uber Eats pour un restaurant ?
 
-Prochaine question en rotation : n°12 (n°10 et n°11 posées le 27/11 ; question de marque suivante : n°23). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
+Prochaine question en rotation : n°13 (n°12 posée le 28/11 au matin ; question de marque suivante : n°23). Aucun relevé du 9 au 11/11 ni le 16/11 : la routine IA n'a pas tourné ces jours-là.
 
 ## Bilans hebdomadaires (le dimanche)
 
@@ -327,3 +327,7 @@ Prochaine question en rotation : n°12 (n°10 et n°11 posées le 27/11 ; questi
 | 2026-11-27 (16 h) | Perplexity | Combien coûte un site internet pour un restaurant en 2026 ? (n°11) | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question, comme le matin |
 | 2026-11-27 (16 h) | Google (aperçu IA) | Combien coûte un site internet pour un restaurant en 2026 ? (n°11) | non ; marchéo.fr absent de la 1re page | aperçu IA : « 20 à 150 € par mois en abonnement, ou 900 à plus de 5 000 € sur mesure » ; cite Wix, les « plateformes spécialisées restauration » (commande en ligne sans commission), France Num (médiane 1 200 €) ; sources francenum.gouv.fr, wix.com, Menuthere (25/10/2026), compte-pro.com, ConvertiLab, Mon petit bistro ; 1re page : compte-pro.com, Appero, Marine Moceri, monpetitbistro.com (28/04/2026, « 20 à 30 €/mois »), francenum (2021), Menuthere (« à partir de 49 € »), wix.com, Yuca (27/03/2026) |
 | 2026-11-27 (16 h) | (note) | navigateur intégré, sans compte, cookies non essentiels refusés sur ChatGPT, cookies Google non acceptés ; Google interrogé sur n°11 seulement (n°10 et la tournée relevés le matin) | | |
+| 2026-11-28 | Google (aperçu IA) | Site vitrine ou site marchand : que choisir pour un commerce de proximité ? (mot-clé du matin) | non ; marchéo.fr absent de la 1re page | aperçu IA : vitrine pour démarrer, site marchand (click and collect ou livraison) pour vendre à distance, « approche progressive » ; budgets d'agence (vitrine 2 000 à 8 000 €, e-commerce 6 000 à 25 000 €), aucun abonnement cité ; sources itiConseil, dood.com, Réussir-en.fr, bm-services, BraindCode, Geoboost, Gandi News ; 1re page : iti-conseil, réussir-en.fr, Geoboost, BraindCode, Solocal (YouTube), Paris Commerces, bm-services, dood.com, Gandi ; article publié le matin même, à relever dans une semaine |
+| 2026-11-28 | Google (aperçu IA) | Comment organiser la livraison à domicile pour une boucherie ? (n°12) | non ; marchéo.fr absent du début de la 1re page | aperçu IA en 4 points (chaîne du froid, zone et créneaux avec heure limite, flotte propre ou coursiers, tournées) ; « gérer vos propres tournées évite les commissions » ; sources Comme à la Boucherie, Mon Marché, Boucherie Dynamique, Courses U, Orisha, blog.stuart.com, Eric Pineau, YouTube (Business Passion Cuisine) ; 1re page : comme-a-la-boucherie.com, boucherie-labarthe.fr |
+| 2026-11-28 | Perplexity | Site vitrine ou site marchand : que choisir pour un commerce de proximité ? | non mesuré | « Inscrivez-vous et répétez votre demande » dès la 1re question, comme les jours précédents |
+| 2026-11-28 | (note) | routine du matin : navigateur intégré, sans compte, cookies Google non acceptés | | |
